@@ -1,0 +1,180 @@
+[Tue 11:05:40] <dlongley>	Agenda: http://lists.w3.org/Archives/Public/public-credentials/2014Sep/0023.html
+[Tue 11:05:56] <dlongley>	chair: dlongley
+[Tue 11:05:56] <dlongley>	scribe: marybold
+[Tue 11:06:16] <marybold>	dlongley: First up on the agenda: completing the Web Payments use cases.
+[Tue 11:05:56] <dlongley>	Topic: Complete Web Payments Use Case Review
+[Tue 11:06:03] <dlongley>	https://www.w3.org/community/webpayments/wiki/UseCases#Identity
+[Tue 11:06:43] <marybold>	dlongley: Last meeting, we were talking about a payer Jack sending money to Jill--asking for an identifier
+[Tue 11:06:47] <dlongley>	Use Case: Gunther (payer) enters a short-identifier that he believes identifies The Widget Store (merchant) into a UI. The UI displays a certificate of authenticity that indicates the short identifier is in fact for The Widget Store. Gunther uses the short identifier to make a payment to the store.
+[Tue 11:06:53] *	Eric_ (ad0341da@gateway/web/freenode/ip.173.3.65.218) has joined #credentials
+[Tue 11:07:00] <voip-cr>	Dave Lehn (SIP/6003-00000073) has joined the conference.
+[Tue 11:07:20] <marybold>	dlongley: The next use is related to that: Gunther, who is the payer seeking the Widget store (see text of use case).
+[Tue 11:07:36] <marybold>	dlongley: In this case, it's Gunther wanting to pay a store for a  widget.
+[Tue 11:07:39] *	You are now known as manu
+[Tue 11:08:24] <marybold>	dlongley: We reviewed this in Web Payments community group and looked at feedback == now cleaned up.
+[Tue 11:08:39] <marybold>	dlongley: Does anyone here today have any feedback or questions about this use case?
+[Tue 11:08:59] <marybold>	ekorb: A store... or any entity trying to transact with that person?
+[Tue 11:09:10] <marybold>	ekorb: If a university...
+[Tue 11:09:31] <marybold>	dlongley: Yes, it would work in the same way: a short identifier to map to any entity.
+[Tue 11:06:47] <dlongley>	Topic: Identity Recovery
+[Tue 11:09:41] <dlongley>	Design Criteria: A primary entity (buyer, merchant, etc.) with access to a credential service sets a second entity (buyer, merchant, etc.) as a backup for accessing their credentials should they inadvertently lose their ability to access the credential service (accidental loss of password or 2-factor authentication device).
+[Tue 11:09:48] <marybold>	dlongley: Moving to the last case from the WebPayments CG: design criteria.
+[Tue 11:10:18] <marybold>	dlongley: back-up for accessing credentials--accidental loss of password or 2-factor authentication
+[Tue 11:10:37] <marybold>	dlongley: Person loses password--ability to recover access to your account
+[Tue 11:11:03] <marybold>	dlongley: Overly complex to try to put into the standard. We can let best practices and the market decide the direction to proceed.
+[Tue 11:11:48] <marybold>	dlongley: We're going to leave the use case in there as something to consider. The complexity doesn't buy us anything. It would best to let individual identity providers decide what recovery measures to offer their customers.
+[Tue 11:12:09] <dlongley>	Topic: Use Cases from Tim Holborn
+[Tue 11:12:11] <marybold>	dlongley: If no comments... Let's look over Tim's use cases; I don't think he has joined us yet.
+[Tue 11:12:15] <dlongley>	http://lists.w3.org/Archives/Public/public-credentials/2014Sep/0018.html
+[Tue 11:12:19] <dlongley>	http://lists.w3.org/Archives/Public/public-credentials/2014Sep/0019.html
+[Tue 11:12:30] <dlongley>	Manu's email: http://lists.w3.org/Archives/Public/public-credentials/2014Sep/0024.html
+[Tue 11:12:40] <marybold>	dlongley: Tim's original email is provided by link; Manu edited to make the list easier to digest.
+[Tue 11:13:04] <marybold>	dlongley: Something that struck me: we need to have a brief discussion on definition
+[Tue 11:13:54] <marybold>	dlongley: My view of credential meaning: a credential a set of provably authentic statements. Provably authenthic = someone actually endorsed.
+[Tue 11:14:07] <marybold>	dlongley: Other clarifying statements?
+[Tue 11:15:04] <marybold>	ekorb: Couple of things around credentials: the word, proof, can have different meanings. Evidence = artifacts that go along with the credential on what you demonstrated. I prefer the word, claim.
+[Tue 11:15:31] <marybold>	ekorb: I claim I have a driver's licence. The proof is a link back to the document issued to me. Maybe Mary can add some words.
+[Tue 11:15:52] <marybold>	dlongley: Need to distinguish between someone making a statement, and the truth of the statement itself.
+[Tue 11:16:34] <marybold>	dlongley: Follow evidence links to confirm, it is like this statement is true. Beyond confirming that someone said it. If you trust the party,  you may assume it is true--but different matter.
+[Tue 11:17:44] <marybold>	ekorb: We've been dealing with the word, evidence, which would link to a portfolio (example).
+[Tue 11:18:02] *	manu so they moved me around on the presentation Agenda, but forgot to tell me. I'm trying to see if I'm presenting today or tomorrow now. If they can't fit me in today, I'll join shortly.
+[Tue 11:18:35] <marybold>	ekorb: Link is to the actual piece of art that prompted the credential. Similarly, evidence could be from a test. Maybe Bill Gebert has some more words about how they address.
+[Tue 11:18:52] <marybold>	bill: Eric, thanks. Nice job describing from educational focus.
+[Tue 11:19:11] <marybold>	bill: Many of the credentials that ETS produces are high stakes.
+[Tue 11:19:28] <voip-cr>	Manu Sporny (SIP/6000-00000074) has joined the conference.
+[Tue 11:19:28] <marybold>	bill: Ex: higher education in U.S., U.K., Australia, etc.
+[Tue 11:19:57] <marybold>	bill: The element of high stakes is crucial. The issuance of those credential requires secure.
+[Tue 11:19:47] <manu>	scribe: manu
+[Tue 11:19:53] *	manu marybold, I'll take over scribing.
+[Tue 11:20:17] <manu>	bill: I just wanted to add from an education perspective, it's really the supporting evidence and the security of that evidence that gives the credential its weight.
+[Tue 11:20:33] <manu>	dlongley: I think these are all good points, speak to underlying nature of credentials and how technology will be useful.
+[Tue 11:21:29] <manu>	mark: Parallel with a government document, I think you don't simply say "I have a license", you have to present the document. In order to get that document, you had to provide certain behaviors - you had to pass certain tests.
+[Tue 11:22:08] <manu>	mark: With respect to education, wouldn't it be the document that was endorsed? It seems to me the presentation of something that you have that is vouched for via an accredited authority, the credential is "free"?
+[Tue 11:23:11] <manu>	bill: I think that's partially correct, maybe fully correct, there is a slight twist to it - proofing of identity of the person claiming that credential. Everyone has read stories of people impersonating others to take high-stakes examinations to get the appropriate scores to be utilized. So, it's not just the credential, it's the combination of the credential and the proofing of the person that claims that credential.
+[Tue 11:23:14] <manu>	mark: That makes a lot of sense.
+[Tue 11:23:49] <manu>	dlongley: You could present two credentials - a driver's license and a picture of your face (issued by USPTO). You can combine credentials.
+[Tue 11:24:28] <manu>	dlongley: The point I was trying to make wrt. differentiating the assertion that a credential is true is that, at its core, the most basic type of credential you can have is a set of statements about an identity that can be digitally signed. The actual evidence might not be in the credential.
+[Tue 11:25:34] <manu>	dlongley: You may not have to show the evidence at all. It's important that we support the ability to attach evidence, one that asserts identity. The only thing we need for a core credential is a set of statements that is signed by some party. If you trust that party, you assume that the party did what they need to to issue that credential.
+[Tue 11:25:43] <manu>	ekorb: I don't know if we use the word "prove" or "claim".
+[Tue 11:26:35] <manu>	dlongley: We may need to do some wordsmithing with the defintion, but we have a general idea of how to move forward. A credential is a set of statements that has been digitally signed, so that a verifyer can look at that set of statements and can verify the information. You know that the issuer of the credential is that actually issued it.
+[Tue 11:26:44] *	Bill (90515509@gateway/web/freenode/ip.144.81.85.9) has joined #credentials
+[Tue 11:26:54] <manu>	ekorb: The proof is beholden on the issuer. We trust them to protect their keys, we trust them to sign proper information. 
+[Tue 11:27:08] *	Bill is now known as Guest59334
+[Tue 11:27:34] <manu>	dlongley: I'm going to start going down the consolidated list from Manu's email. 
+[Tue 11:27:44] <dlongley>	Topic: Generalized Credentials
+[Tue 11:27:44] <dlongley>	Design Criteria: Support the following types of education, government, and healthcare credentials
+[Tue 11:27:49] <manu>	dlongley: The first thing we have is a design criteria - it tries to make a generic case out of credentials.
+[Tue 11:27:55] <dlongley>	+ I have a education degree in field X
+[Tue 11:27:55] <dlongley>	+ I am a student, studying in field Y
+[Tue 11:27:55] <dlongley>	+ I am a lecturer at university Z
+[Tue 11:27:55] <dlongley>	+ I am a citizen
+[Tue 11:27:55] <dlongley>	+ My date of birth is, etc.
+[Tue 11:27:56] <dlongley>	+ I have a prescription / right to purchase this medication
+[Tue 11:27:58] <dlongley>	+ I am an Emergency Health Professional
+[Tue 11:28:00] <dlongley>	+ i have a valid First Aid Certificate
+[Tue 11:28:02] <dlongley>	+ This is my Vehicle
+[Tue 11:28:04] <dlongley>	+ This is my registered trademark
+[Tue 11:28:06] <dlongley>	+ I have a yacht-club Membership
+[Tue 11:28:08] <dlongley>	+ I am a Webizen
+[Tue 11:28:10] <dlongley>	+ I work at Fast Food Chain xyz - Please authorise my discount
+[Tue 11:28:12] <dlongley>	+ I work at Telecommunications Company XYZ: Let me in the door to this secure facility
+[Tue 11:28:18] <dlongley>	+ I am a lawyer or Accountant
+[Tue 11:28:20] <dlongley>	+ I am a Lawyer or Accountant representing this client
+[Tue 11:28:26] <manu>	dlongley: These are all the types of credentials we could support.
+[Tue 11:29:59] <manu>	dlongley: All of these fall into a generic scope for credentials. If we use JSON-LD to represent these credentials, we can use any number of vocabularies to assert these credentials. All of these are supported by the technology. We could talk about individual ones if people would like, but most of them fall within the notion of credentials. These are statements about stuff that can be digitally signed.
+[Tue 11:30:12] *	Mark__ (ad43127a@gateway/web/freenode/ip.173.67.18.122) has joined #credentials
+[Tue 11:30:23] <manu>	bill: This is the beginning of a list that could be thousands of entries long.
+[Tue 11:30:42] <manu>	dlongley: Yes, we're not going to be able to create  a list of all credentials that can be created. It's up to the market vertical to figure this stuff out.
+[Tue 11:31:03] <manu>	dlongley: There are three use cases here that we may want to move over to Web Payments:
+[Tue 11:30:50] <dlongley>	+ I purchased this TV within the last 12 months (i still have a warrantee)
+[Tue 11:30:50] <dlongley>	+ I paid this bill on this day
+[Tue 11:30:50] <dlongley>	+ My insurance for my yatch is paid
+[Tue 11:31:20] *	manu forgot to pay his yatch insurance this month.
+[Tue 11:31:53] <dlongley>	Topic: Read/Write Permissions
+[Tue 11:31:53] <dlongley>	Use Case: Enable access to patient storage for particular individuals.
+[Tue 11:31:53] <dlongley>	+ I authorise this doctor to write to my patient record
+[Tue 11:31:54] <dlongley>	+ I deauthorise this doctor to write to my patient record
+[Tue 11:31:54] <dlongley>	+ Emergency Health Providers can Access my Patient Records
+[Tue 11:31:59] <manu>	dlongley: We need to make sure we don't extend the scope too much.
+[Tue 11:33:25] <manu>	dlongley: I think we're in a gray area here on whether or not this should fall into the Credential work. We could use authorization as a way of accessing credentials - medical records are just another form of credential.
+[Tue 11:33:58] <manu>	dlongley: A doctor can write a statement to your record to say "You have a particular disease X"
+[Tue 11:34:16] <manu>	dlongley: Another thing might be a 'vaccination credential' - don't know how well this use case fits into credentials work.
+[Tue 11:34:36] <manu>	bill: I sort of agree with you, this is almost permissions, not credentials.
+[Tue 11:34:47] <manu>	bill: I don't understand where this fits in w/ credentials.
+[Tue 11:34:48] <manu>	q+
+[Tue 11:34:48] <voip-cr>	Added manu to the speaker queue: manu
+[Tue 11:36:51] <manu>	manu: This has to do with WebACL and permission access to arbitrary data. I don't think we should try and solve that problem here.
+[Tue 11:37:39] <manu>	dlongley: Yes, I don't think we're talking about telling identity providers how they should go about handling permissions. Who is allowed to write/read, etc. It's important that we have a protocol for allowing those writes to happen, but I don't think we're interested in creating the WebACL specification to do that.
+[Tue 11:38:04] <manu>	dlongley: We're concerned with the protocol that allows you to do the reading/writing, but I don't think we should try to standardize the whole permissions stack.
+[Tue 11:38:26] <manu>	ekorb: We also should be careful about not mixing the idea of a credential. A prescription is not a credential.
+[Tue 11:38:37] <manu>	ekorb: We're not talking about reports, we're talking about credentials that make a claim.
+[Tue 11:39:04] <manu>	ekorb: I do like the idea of making a claim "My doctor can have access to my health report", but I think that's where it ends.
+[Tue 11:39:26] <manu>	dlongley: I think if we go on, not having a permanent credential, transitory credentials, we'll get into that as we go along.
+[Tue 11:39:30] *	Mark__ has quit (Quit: Page closed)
+[Tue 11:39:33] <manu>	dlongley: Any more feedback on this use case.
+[Tue 11:39:51] *	Mark__ (ad43127a@gateway/web/freenode/ip.173.67.18.122) has joined #credentials
+[Tue 11:40:07] <dlongley>	Topic: Proof of Delivery
+[Tue 11:40:07] <dlongley>	Use Case: A sender transmits some data to a receiver. The receiver transmits a digitally signed certificate of delivery to the sender.
+[Tue 11:40:07] <dlongley>	+ I have sent you legal notification digitally
+[Tue 11:40:07] <dlongley>	+ I have authored this document which i seek to be delivered as
+[Tue 11:40:07] <dlongley>	registered mail to the named recipient
+[Tue 11:40:08] <dlongley>	+ I seek a date-stamp (and checksum) on this document send to the
+[Tue 11:40:08] <manu>	dlongley: General consensus seems to be that this is out of scope, we do want to support certain aspects, but not that interested in standardizing Access Control Lists, and that work is supportive of what we're doing here.
+[Tue 11:40:10] <dlongley>	specified recipient.
+[Tue 11:40:12] <dlongley>	(and i seek to declare terms to that transmission)
+[Tue 11:41:05] <manu>	dlongley: This is an example of a use case where we're getting into transitory credentials. I'm not sure what the utility of this statement is, number of different use cases where we could fill out specifics. I guess you might want to prove that you did infact send a legal document, like a summons.
+[Tue 11:41:55] <manu>	bill: This seems like a receipt confirmation, from a traditional ecommerce transaction. The use case itself might really be better worded as "certificate of receipt from sender".
+[Tue 11:42:21] <manu>	ekorb: Is this like DocuSign? At the end, you get a list of all of the handoffs back and forth.
+[Tue 11:42:29] <manu>	dlongley: I think it could be very similar to that.
+[Tue 11:42:31] <manu>	q+
+[Tue 11:42:31] <voip-cr>	Added manu to the speaker queue: manu, manu
+[Tue 11:43:59] <manu>	q-
+[Tue 11:44:00] <voip-cr>	Removed manu from the speaker queue: manu
+[Tue 11:44:00] <manu>	q-
+[Tue 11:44:01] <voip-cr>	Removed manu from the speaker queue: (empty)
+[Tue 11:44:33] <manu>	manu: I don't know if we want to support this use case. There are two parts to it. One of them is a 'proof of delivery' part, the latter is the piece of paper itself (the proof).
+[Tue 11:44:44] <manu>	ekorb: The credential itself is part of a bigger package, it's a subset of a transaction.
+[Tue 11:45:40] <manu>	dlongley: I think that's true for the commerce case, there might be a use case where you don't exchange money. You can still use ecommerce APIs to accomplish that, but maybe you wouldn't want to. This seems pretty open ended for the first cut of the technology. We already support the notion of writing arbitrary credentials to a particular identity. I think that covers the aspects of this that we'd be interested in at this point.
+[Tue 11:46:01] <manu>	ekorb: With the TrueCred APIs, we have this concept of 'claims'. Isn't a 'claim' considered proof of delivery? 
+[Tue 11:46:18] <manu>	dlongley: I think in that approach, we store something as a claim itself - not the 'proof of delivery'.
+[Tue 11:47:01] <manu>	dlongley: This seems like this is out of scope to a certain extent. What we do have in the technology does support this. This is too generic of a use case for us to say whether or not this clearly fits in w/ what we want to do. It's too easy for us to say "this is ecommerce" or something to that effect.
+[Tue 11:47:07] <manu>	dlongley: If there are no other comments, we can move on.
+[Tue 11:47:11] <dlongley>	Topic: Sharing Private Data
+[Tue 11:47:11] <dlongley>	Use Case: Credentials issuer seeks to share private information (web resources) with credentials holder.
+[Tue 11:47:11] <dlongley>	Feedback from Manu: Why is this use case not covered by SSL? Do you mean that the Credentials issuer needs to write information to the credential holder's online storage?
+[Tue 11:48:25] <manu>	dlongley: If we're just talking about writing to credential holder's online storage, we have that technology already. I'm not sure what this use case is about. I think it's supposed to be about privacy, this might be related to the Data Rights stuff that Tim has been talking about.
+[Tue 11:48:43] <dlongley>	Topic: Credential-based Access
+[Tue 11:48:43] <dlongley>	Use Case: Individual is fined for traffic infringement and seeks access to Video (and/or audio) evidence recorded by law-enforcement.  A means is sought to do this privately (as to avoid the material being published on youtube).
+[Tue 11:48:45] <manu>	dlongley: "I only authorize this information to be shared with you for these reasons"
+[Tue 11:49:42] <manu>	dlongley: This sounds like a fairly standard case of using some credential to allow you to view some evidence. This is fairly well within what we're trying to standardize here. I don't know if it needs to be reworded? Maybe we could be more specific about the type of credential shown.
+[Tue 11:49:56] <dlongley>	Topic: Confidential Sharing/Agreement
+[Tue 11:49:56] <dlongley>	Use Case: A confidential document is being distributed for the purpose of disclosure and mutual agreement.
+[Tue 11:49:56] <dlongley>	Manu's feedback: Why can't the distribution happen over SSL? Do you want the document to be transmitted over SSL and for the contents to be encrypted to the receiver? Then have the contents digitally signed and re-encrypted to the sender?
+[Tue 11:50:47] <manu>	dlongley: It's not clear whether this needs to fit into the credentials work, it's just typical transmission of information from one person to the other over an ecrypted channel
+[Tue 11:50:47] <manu>	q+
+[Tue 11:50:48] <voip-cr>	Added manu to the speaker queue: manu
+[Tue 11:52:22] <manu>	manu: I don't see what this has to do with credentials. The only thing it has in common are digital signatures.
+[Tue 11:52:47] <manu>	dlongley: We are using encryption, cryptography, and digital signatures in this group, but that seems to be the only connection. There is some overlap with the technologies, but that seems to be it.
+[Tue 11:52:52] <manu>	dlongley: I think we should mark this one as out of scope.
+[Tue 11:52:59] <dlongley>	Topic: Advertising and Data Rights
+[Tue 11:52:59] <dlongley>	Use Case: I have a hybrid TV service (Broadcast + Broadband) here is my identity details, i would like to control who and how this information is used for targeted advertising & other purposes.
+[Tue 11:52:59] <dlongley>	Might want to remove the hybrid TV service bit, don't know why that's
+[Tue 11:52:59] <dlongley>	relevant? Maybe because of the advertising angle? You don't want to be
+[Tue 11:53:00] <dlongley>	advertised to using your identity information, but you need to use it to
+[Tue 11:53:02] <dlongley>	unlock the "over the age of 13" channels?
+[Tue 11:54:25] <manu>	dlongley: In this use case, this is about data rights. It's about being able to present a credential to say you have access to certain services /but/ don't sell my information to advertisers.
+[Tue 11:55:09] <manu>	dlongley: This fits in w/ showing a credential to get access to services, and then work with data rights vocabulary, where the credential can only be used in certain ways. We should clean up this use case a bit, maybe after that we can fit it into version 1.
+[Tue 11:55:15] <dlongley>	Topic: Credentials for Internet of Things
+[Tue 11:55:15] <dlongley>	Use Case: This intelligent light globe is connected at my home.  I would like access to the light globe to turn it on/off remotely.
+[Tue 11:55:16] <dlongley>	Seems like a secondary case for authorized access to IoT device? Don't
+[Tue 11:55:16] <dlongley>	know if we need this one, as others should cover it.
+[Tue 11:56:01] <manu>	dlongley: I agree, this feels like it's just another access control to a service issue. Where access control might be determined by presenting a credential.
+[Tue 11:56:03] <manu>	ekorb: I agree.
+[Tue 11:56:03] <manu>	taaz: agreed.
+[Tue 11:56:47] <manu>	dlongley: There is another more advanced list of use cases, most of them applied to Web Payments, but for today I think we're done. We can't get into those.
+[Tue 11:56:53] <manu>	dlongley: Any other thoughts/questions wrt. call?
+[Tue 11:57:08] <voip-cr>	Mark (IAX2/diamondcard-10368) has left the conference.
+[Tue 11:57:09] <voip-cr>	Manu Sporny (SIP/6000-00000074) has left the conference.
+[Tue 11:57:09] <voip-cr>	Dave Longley (SIP/6002-0000006e) has left the conference.
+[Tue 11:57:10] <voip-cr>	Bill (SIP/144.81.85.9:56026-00000070) has left the conference.
+[Tue 11:57:10] <voip-cr>	Eric (IAX2/diamondcard-11871) has left the conference.
