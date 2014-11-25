@@ -1,0 +1,175 @@
+[Tue 11:05:06] <m4nu>	scribe: NateOtto
+[Tue 11:05:13] <m4nu>	Agenda: http://lists.w3.org/Archives/Public/public-credentials/2014Nov/0052.html
+[Tue 11:05:58] <NateOtto>	Manu: Today on the agenda, we are continuing the digital signatures discussion, and coordination on how we may contribute documents to the w3c for consideration. Any other updates to Agenda?
+[Tue 11:06:04] <NateOtto>	No other updates to the agenda
+[Tue 11:06:20] <m4nu>	Topic: Digital Signatures - Pushback from Social Web / Harry Halpin
+[Tue 11:06:39] <NateOtto>	Manu: Hopefully everybody has been able to see the email thread that broke out about the digital signatures discussion.
+[Tue 11:07:18] <NateOtto>	Manu: Someone who is in both the Credentials community group and the Social Media working group cross-posted
+[Tue 11:07:39] <NateOtto>	Manu: I'm not going to contribute at this moment to the discussion, but we can go around and everyone can give their opinion.
+[Tue 11:07:44] <NateOtto>	Manu: Anybody want to start?
+[Tue 11:08:09] <NateOtto>	Brian: I'll go first. I'm newer to the W3c. I guess I have more questions than comments. Hopefully we can use those as a jumping-out point.
+[Tue 11:08:16] <NateOtto>	Brian: I'd like to know more about the history.
+[Tue 11:08:30] <NateOtto>	Brian: Henry mentioned previous conversations.
+[Tue 11:09:09] <NateOtto>	Brian: Maybe we could discuss this history, and what it would mean if the Credentials CG said "we want linked signatures", what that would mean for adoption, and the likelihood of these ideas moving forward as they are.
+[Tue 11:09:33] <NateOtto>	Dave: I have a quick comment on the history, the security review that Harry mentioned
+[Tue 11:09:56] <NateOtto>	dlongley: The security review Harry mentioned was a very high level overview
+[Tue 11:10:25] <NateOtto>	dlongley: the main goals were to provide a linked data format and a single way of encrypting and a single way of signing messages going across
+[Tue 11:11:01] <NateOtto>	dlongley: There was a perception that the SM was a complete and full spec rather than an early stage spec, so there were comments about the algorithm that they picked
+[Tue 11:11:22] *	erok (ad0341da@gateway/web/freenode/ip.173.3.65.218) has joined #credentials
+[Tue 11:11:25] <NateOtto>	dlongley: We had picked a commonly used signing algorithm, which was criticised
+[Tue 11:11:49] <NateOtto>	...the algorithm that these reviewers suggested was very new.
+[Tue 11:12:36] <NateOtto>	Dlongley: they picked up on a typo in Manu's post, "cyclic" block chaining instead of "cypher" block chain, and people criticized "beginner crypto errors"
+[Tue 11:12:36] *	dmccrory (cffab582@gateway/web/freenode/ip.207.250.181.130) has joined #credentials
+[Tue 11:12:59] <NateOtto>	Dlongley: the discussion should have been about how to contain the data, not the algorithm that they chose
+[Tue 11:13:38] <NateOtto>	dlongley: This is different from JOSE, which says here are all the algorithms, they all go through this central point; to consider more, you have to go to the IETF and get approval
+[Tue 11:13:56] <NateOtto>	dlongley: choosing an algoritm is sort of orthogonal to the questions that we were asking
+[Tue 11:14:30] <NateOtto>	dlongley: It seems like this was a way to snipe the spec down and dismiss it (and say "come back when you're more serious") is how I viewed it anyway
+[Tue 11:14:37] <m4nu>	voip: 10105 is Dale
+[Tue 11:14:37] <voip-cr>	Dale is now associated with IAX2/diamondcard-10105.
+[Tue 11:15:00] <NateOtto>	Dale: from "CourseLoad", on the educational technology side of things
+[Tue 11:15:16] <NateOtto>	Manu: we have never submitted the SM spec to the IETF for security review
+[Tue 11:15:54] <NateOtto>	Manu: We wrote up the problems with JOSE and suggested some points as far as the direction that they should go
+[Tue 11:16:08] <NateOtto>	Manu: But SM has never been submitted for a security review. That is false.
+[Tue 11:17:17] <voip-cr>	Nate (IAX2/diamondcard-615) has left the conference.
+[Tue 11:17:27] <cmcavoy>	would like to comment as well
+[Tue 11:17:28] <NateOtto>	Eric: We see JSON-LD as a key technology for describing credentials.
+[Tue 11:17:48] <m4nu>	scribe: m4nu
+[Tue 11:18:16] <m4nu>	dlongley: I'd like to agree with Eric as well - JOSE sets out to create a container format for a blob of information that's signed. It makes the data opaque. You can't work w/ the data in its signed form. That's a problem that has a number of knock-on effects.
+[Tue 11:19:02] <m4nu>	dlongley: Here are some problems that arise from that - one of them is that, since you don't store the signed data itself in JSON, you can't transmit it in a native JSON format. You can transmit it as base64 encoded data, but you can't turn it back into JSON and transmit it that way. Native JSON parsers/serializers will screw up the signature.
+[Tue 11:19:33] <m4nu>	dlongley: That also means you can't use certain document stores like MongoDB on the signed data itself... you lose the cryptographic properties, you have to save it as base64, native parsers will destroy data.
+[Tue 11:19:40] <cmcavoy>	+1 to above
+[Tue 11:20:19] <NateOtto>	scribe: NateOtto
+[Tue 11:20:19] <NateOtto>	dlongley: your data doesn't function as JSON after it was signed in JOSE (scribe assumes)
+[Tue 11:20:41] <NateOtto>	dlongley: It's harder to get at the data in a JOSE signed document vs in the SM data format
+[Tue 11:21:07] <NateOtto>	dlongley: one of the reasons JOSE exists was to replace ASN.1, but it reminds me of ASN.1
+[Tue 11:21:47] <NateOtto>	dlongley: It gets way down into the technical weeds, but there are a lot of rules to follow for how all the data structures are treated. ASN.1 is also hard to extend, because extensions each require a new domain-specific parser
+[Tue 11:22:01] *	NateOtto has quit (Ping timeout: 246 seconds)
+[Tue 11:22:27] <NateOtto>	dlongley: For example, a PCKS (sp) spec requires tweaking of the data structures from the ones that were signed for transport. Don't spend a lot of time thinking about that, because you shouldn't have to.
+[Tue 11:22:59] <NateOtto>	dlongley: In the ASN.1 space, rules are difficult to implement. The JOSE stack removes that by removing a canonicalization alg, but that introduces other problems.
+[Tue 11:23:43] <NateOtto>	dlongley: The way data is serialized is one-off effort, you don't have to keep implementing the serialization
+[Tue 11:24:12] <NateOtto>	dlongley: the specific syntax by how you transport the message is irrelevant. That's why you want a canonicalization algorithm.
+[Tue 11:24:32] <NateOtto>	dlongley: The text format for serializing data to be signed is N-Quads, is a very simple algorithm and format to understand.
+[Tue 11:24:49] <NateOtto>	dlongley: It uses the RDF data model. You implement it, and it's done.
+[Tue 11:25:16] <NateOtto>	dlongley: It gets nowhere close to the rules of ASN.1, but it doesn't eliminate the serilization alg like JOSE
+[Tue 11:25:31] <NateOtto>	dlongley: You get to see the data in the format that you want it in (Linked Data as first class citizen)
+[Tue 11:25:47] <NateOtto>	dlongley: You don't need to pile linked data into these base64 blobs which need to be double encoded.
+[Tue 11:26:04] <NateOtto>	Manu: Any other thoughts?
+[Tue 11:27:01] <m4nu>	NateOtto: I've been trying to look at Open Badges issued by many issuers over time. One of the problems that has caused me the most headaches in this process, when I'm expecting to read JSON data - I come across a big blob. Hardly anyone uses digital signatures, but a couple of different fields change from strings into JSON objects at one point in the spec.
+[Tue 11:27:26] <m4nu>	NateOtto: When I was expecting something to be an object, and I get a string. When you expect Linked Data and come across a base-64 encoded blob.
+[Tue 11:27:45] <NateOtto>	dlongley: Harry made the point that there are many b64 encoders.
+[Tue 11:28:14] <NateOtto>	dlongley: You can add more things into your toolchain, or you can do it this way, and it's easier
+[Tue 11:28:34] <NateOtto>	cmcavoy: We ran into a lot of problem with badges encountering signatures as wrappers
+[Tue 11:29:03] <NateOtto>	cmcavoy: We made up our own solution of including the signatures in the body to draft. But now, with JSON-LD, this is solved.
+[Tue 11:29:40] <NateOtto>	cmcavoy: We saw that as a huge bonus for the community, and it would make them a lot easier to implement it. It's an important discussion, the reason that we're here is that we want to be able to sign badges in a way that is easier to make portable
+[Tue 11:29:54] <m4nu>	voip: connections?
+[Tue 11:30:02] <NateOtto>	dlongley: A couple other points
+[Tue 11:30:32] <NateOtto>	bsletten: It seemed pushback was being driven by other issues: presented as a standard when it isn't -- presented by a community group not a standards grou
+[Tue 11:30:56] <NateOtto>	bsletten: It seems this is the point of community group process, to explore problems and standards
+[Tue 11:31:11] <eric>	Yes, very contradictory position W3C is taking.
+[Tue 11:31:33] <NateOtto>	bsletten: I'm curious if my understanding of the CG process is skewed, or if it's really intended to address things at a technical level that aren't being explored in the Working Groups
+[Tue 11:32:22] <NateOtto>	dlongley: CGs were places for people with good technical advice, to incubate ideas and move them into the official space.
+[Tue 11:32:46] <NateOtto>	dlongley: allows work to be fast tracked once it becomes part of the official space, because a lot of background had already had been done. That was the intent.
+[Tue 11:33:06] <NateOtto>	dlongley: It seems the CGs are viewed as an outlet for people who aren't in the official space
+[Tue 11:33:48] <NateOtto>	dlongley: With the email thread, it's almost disparaging to all the people in community groups who try to further the web
+[Tue 11:34:19] <NateOtto>	dlongley: every email that comes out that says "that's just a community group; it doesn't really matter" is damaging to the w3c
+[Tue 11:34:43] <NateOtto>	manu: It's mainly Ian Jacobs (sp) and ____ who created Community Groups
+[Tue 11:35:02] <NateOtto>	manu: It came out of the XHTML2 effort, which the w3c lost.
+[Tue 11:35:26] <NateOtto>	manu: a group led by Ian Hixson forked the standards body, and created a spec that eventually became HTML5
+[Tue 11:35:47] <NateOtto>	manu: W3C had lost credibility on its ability to pick the right standard
+[Tue 11:36:19] <NateOtto>	manu: community groups are basically a way for w3c to allow experimentation to happen without the years-long process of getting the blessing of all of its members
+[Tue 11:36:51] <NateOtto>	manu: I'm sure dlongley and dlehn remember how nasty people were to us in the beginning. It was presented as this crap specification that will go nowhere
+[Tue 11:37:09] <NateOtto>	manu: In the end of the day the thing that won out was the fundamentally beautiful ideas that were in the specification
+[Tue 11:37:47] <NateOtto>	manu: I think Harry's reponse as a w3c staffer reflects the thinking that w3c was doing in the XHTML2 days, everybody singing kumbayaa and declaring victory, and now you this small group is trying to split the specification
+[Tue 11:38:07] <NateOtto>	manu: instead of talking about the technical issues, what we're seeing are a whole bunch of process issues being thrown in front of us
+[Tue 11:38:38] <NateOtto>	manu: This is way out of line from my standpoint and my experience from working with w3c. It's happening because the SM spec is a threat to the JOSE spec.
+[Tue 11:39:06] <NateOtto>	manu: We could very well be wrong. Everybody who's worked on the secure messaging spec knows we do have some very solid criticisms of JOSE
+[Tue 11:39:18] <NateOtto>	manu: JOSE is so far down the standards path that they can't very well change direction at this point.
+[Tue 11:39:43] <NateOtto>	manu: When you're in a group for so long, it starts to become kind of an echo chamber. You stop hearing that you might have made a mistake after a few years.
+[Tue 11:39:57] <NateOtto>	manu: CGs are meant to do what they're doing: explore new technologies & ...
+[Tue 11:40:14] <NateOtto>	manu: We've been through this and we're seeing the same attitude again with the Secure Messaging stuff
+[Tue 11:40:24] <NateOtto>	manu: Assume we're wrong and we find that SM is a pile of crap.
+[Tue 11:41:05] <NateOtto>	manu: (hypothetical), and we have to swap JOSE in. We would still have the ability to sign documents, but we have the downsides with JOSE that we mentioned.
+[Tue 11:41:26] <NateOtto>	manu: It wouldn't mean we can't have digitally signed credentials
+[Tue 11:41:40] <NateOtto>	manu: The secure messaging spec is the only piece of our stack that is getting any pushback
+[Tue 11:42:06] <NateOtto>	manu: I'll put a pin in that for right now. I want to get Dale McCrory to introduce himself.
+[Tue 11:42:08] <m4nu>	Topic: Introduction to Dale McCrory
+[Tue 11:42:44] <NateOtto>	dmccrory: I gave an intro on an earlier call as well. I work at CourseLoad as a director of product management. I replied to the thread on the JSON jwt approach.
+[Tue 11:42:57] <NateOtto>	dmccrory: I had built a significant JOSE implementation before
+[Tue 11:43:35] <NateOtto>	dmccrory: I'm an enterprise pragmatist by nature; how does enterprise integration happen? I've seen WS-* with good features and extensibility points not get implemented.
+[Tue 11:43:55] <NateOtto>	dmccrory: I saw that spec not get implemented because it didn't work on all the platforms.
+[Tue 11:44:27] <NateOtto>	dmccrory: I'm here because I'm interested in higher education and identity and how students can use credentials across their lifetime
+[Tue 11:44:12] <m4nu>	Topic: Digital Signature Strategy
+[Tue 11:44:40] <NateOtto>	manu: We have a number of potential paths forward
+[Tue 11:45:14] <NateOtto>	manu: One of them is to give up on the SM stuff and go with JOSE. That would be the easiest way forward to a technical standard. The downsides being the ones dlongley, cmcavory, and NateOtto have raised.
+[Tue 11:45:41] <NateOtto>	manu: I'm sure Harry and the JOSE group would love it if we went that path
+[Tue 11:46:15] <NateOtto>	manu: One path is to say, "if JOSE is the best technological solution, show us how we can overcome these barriers we've identified"
+[Tue 11:46:33] <NateOtto>	manu: We have some experience in the Badge Alliance of this maybe happening, that JOSE wasn't picked up.
+[Tue 11:46:58] <NateOtto>	manu: There absolutely can be competing specfications between w3c and IETF. Harry's right that this is problematic.
+[Tue 11:47:20] <NateOtto>	manu: there is inflexibility in the JOSE group -- they didn't change anything in response to our review, but we really weren't expecting them to.
+[Tue 11:47:30] <NateOtto>	manu: sometimes the only way to get that change is a competing tech stack
+[Tue 11:47:51] <NateOtto>	manu: it's also important to note that JOSE and SM don't have to fight one another. For example the JOSE key format is a great key format.
+[Tue 11:48:20] <NateOtto>	manu: There may be way that we could constrain JOSE binary blobs to certain fields. There are hybrid approaches we could pursue here
+[Tue 11:48:37] <NateOtto>	manu: "We'd like to proceed with the SM spec, but we have a plan B that uses JOSE"
+[Tue 11:49:05] <NateOtto>	manu: we got down the path far enough to see that JOSE didn't look like the right solution, but we could have a contingency plan if SM is shot down. (This would require a lot of work)
+[Tue 11:49:31] <NateOtto>	dlongley: What's going to be the same regardless: We need RDF normalization alg. We need this regarless of signature technology.
+[Tue 11:49:50] <NateOtto>	eric: what's the importance?
+[Tue 11:50:10] <NateOtto>	dlongley: Linked Data is about meaning. these technologies allow you to use any of the syntaxes to express the same meaning.
+[Tue 11:50:43] <NateOtto>	dlongley: It will effectively produce the blob that you don't need to interact with. JOSE produces that blob at the transport layer
+[Tue 11:51:02] <NateOtto>	manu: Turtle, RDF-XML, JSON-LD, all use the same data model
+[Tue 11:51:23] <NateOtto>	manu: Graph normalization produces the same output from any of these formats that express the same meaning
+[Tue 11:51:58] <NateOtto>	manu: The JOSE approach would basically to take the input syntax, shove it into the base64 format for signing.
+[Tue 11:52:41] <NateOtto>	eric: I suggest that you emphasize this as the top reason for this effort
+[Tue 11:52:59] <NateOtto>	dlongley: Harry did acknowledge that this is of interest and potentially that it should be standardized
+[Tue 11:53:33] <NateOtto>	dlongley: but that's just a piece of the whole signature puzzle. That makes it possible to get a single serialized representation of linked data. Regardless of the signing technology, this is the input that will be signed.
+[Tue 11:53:57] <NateOtto>	dlongley: That's where the paths diverge. We could transmit the data as linked data, or we could use a JOSE container
+[Tue 11:54:28] <NateOtto>	manu: What we'll be signing is N-Quads. This is a very foreign format for web developers
+[Tue 11:54:46] <NateOtto>	dlongley: They'll have to do two steps, base64decode and then convert to JSON-LD
+[Tue 11:55:02] <NateOtto>	eric: This is essentially what we're doing now in our APIs (at Accreditrust)
+[Tue 11:55:05] <NateOtto>	dlongley: That's right
+[Tue 11:55:25] <NateOtto>	dlongley: That's how the SM spec works. You're defining a property that corresponds to the signature, and you're putting that into its native format
+[Tue 11:55:44] <NateOtto>	manu: At this point, I wonder if we're close to a consensus or figuring out a path forward
+[Tue 11:56:05] <NateOtto>	manu: one of the things Dale said is very important; we need to be pragmatic about this
+[Tue 11:56:22] <NateOtto>	manu: we don't want to be in a fight with IETF with w3c blocking
+[Tue 11:56:37] <NateOtto>	manu: we can get around this if there are enough groups who want to try out the SM spec
+[Tue 11:57:17] <NateOtto>	bsletten: I think we're not doing the spirit of the community group justice if we just roll over and say "I'll use JOSE" - That said, having a contingency plan is also important
+[Tue 11:57:54] <NateOtto>	bsletten: we want to keep exploring and vetting the SM ideas further, but we have to have a contingency plan too. I wouldn't want everything else going on in this group to be blocked by this point.
+[Tue 11:58:14] <NateOtto>	eric: I agree with Brian's first comment, but maybe not the second stance.
+[Tue 11:58:53] <NateOtto>	eric: our fallback is JOSE, they'll see that crack in the armor and say, "why don't you just fall back now". We don't want to give them that option.
+[Tue 11:59:59] <NateOtto>	dlongley: We could [missed]
+[Tue 11:59:59] <NateOtto>	eric: I think what dlongley just said was a better fallback position than "let's just use JOSE"
+[Tue 12:00:14] <NateOtto>	bsletten: If it's that simple, why are we even talking about SM then?
+[Tue 12:00:28] <NateOtto>	bsletten: I'm fine with that as a backup plan, I'm just saying I think we need a backup plan
+[Tue 12:00:48] <NateOtto>	dlongley: I think that highlights that there shouldn't be as much push back on the messaging spec as there is
+[Tue 12:01:00] <NateOtto>	dlongley: We should emphasize that this is a mechanism for LINKED data
+[Tue 12:01:12] <NateOtto>	dlongley: Maybe it would be less of a threat if they saw it that way
+[Tue 12:01:20] <NateOtto>	bsletten: The name is a point of contention as well
+[Tue 12:01:38] <NateOtto>	dlongley: Let's come up with a better name and avoid that point entirely
+[Tue 12:02:18] <NateOtto>	eric: If we switching things around, ... can our mechanism work with OpenID?
+[Tue 12:02:58] <NateOtto>	dlongley: It can be made to work like that, but... you can always create a context for JSON data where you could make it linked Data
+[Tue 12:03:12] <NateOtto>	dlongley: We're trying to be able to compare meaning between two different syntaxes
+[Tue 12:03:34] <NateOtto>	manu: With the secure messaging stuff, you're digitally signing the meaning; with the JOSE stuff, you're signing a blob
+[Tue 12:03:43] <NateOtto>	dlongley: You're always signing a blob
+[Tue 12:03:57] <NateOtto>	dlongley: The difference is that with SM you don't have to see the blob
+[Tue 12:04:51] <NateOtto>	dlongley: With JOSE you have to take the exact same blob to give to someone else so they can check it. With SM, the data can be transformed into a variety of syntaxes and passed around the web, but as long as you pass it through the algorithm that signature can always be checked.
+[Tue 12:05:30] <NateOtto>	eric: if JOSE didn't exist, would Social Web group be required to use linked data?
+[Tue 12:05:53] <NateOtto>	manu: That group is close to using JSON-LD as a must requirement, but for some reasons some of their members resist that, so it's not a requirement
+[Tue 12:06:02] <NateOtto>	manu: It's in their charter to explore linked data
+[Tue 12:06:41] <NateOtto>	manu: if JOSE didn't exist, and (we had a standard already), and they needed to sign something, they would probably be able to pick up our standard on Social Web
+[Tue 12:07:01] <NateOtto>	manu: Harry's saying that JOSE has first mover advantage and an international standard, but it's still a draft.
+[Tue 12:07:21] <NateOtto>	manu: It probably will be a standard in a few years, but SM may be as well
+[Tue 12:07:36] <eric>	what does it take to become a WG?
+[Tue 12:07:57] <NateOtto>	dlongley: To clarify, there is a standards level working group at the IETF working on JOSE, we are just a community group
+[Tue 12:08:11] <NateOtto>	manu: We'll take some of this to a mailing list
+[Tue 12:08:35] <NateOtto>	manu: Soon we'll want to start directly engaging the JOSE group, see if they're interested in responding to some of these ideas
+[Tue 12:09:09] <NateOtto>	manu: If 20 member companies vote in favor of a group becoming a standard, it can become an official working group. We have 10 interested.
+[Tue 12:09:35] <NateOtto>	manu: It also helps to have a finished spec. We have a spec that is roughly 80% done
+[Tue 12:10:03] <voip-cr>	Manu Sporny (SIP/6000-00000071) has left the conference.
+[Tue 12:10:04] <voip-cr>	Brian Sletten (SIP/192.168.1.161-00000072) has left the conference.
+[Tue 12:10:05] <voip-cr>	Dave Longley (SIP/6002-00000075) has left the conference.
+[Tue 12:10:09] <voip-cr>	Dave Lehn (SIP/6003-00000076) has left the conference.
+[Tue 12:10:12] <voip-cr>	ekorb (IAX2/diamondcard-15681) has left the conference.
+[Tue 12:10:13] <voip-cr>	Mark (SIP/sip.linphone.org-00000073) has left the conference.
+[Tue 12:10:16] *	Mark__ has quit (Quit: Page closed)
+[Tue 12:10:17] <NateOtto>	Present+ Mark, Lehn
+[Tue 12:10:17] <NateOtto>	manu: We'll talk again next week. Happy Thanksgiving to those in the US or look forward to not talking with your American colleagues later this week for everyone else!
+[Tue 12:10:26] <voip-cr>	Dale (IAX2/diamondcard-10105) has left the conference.
