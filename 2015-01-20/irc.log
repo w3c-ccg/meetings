@@ -1,0 +1,188 @@
+[Tue 11:03:47] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015Jan/0022.html
+[Tue 11:03:54] <manu>	scribe: mleuba
+[Tue 11:04:40] <mleuba>	manu: Any updates/changes to the Agenda before we get started?
+[Tue 11:04:52] <mleuba>	No changes.
+[Tue 11:04:55] *	Gue______ is now known as ottonomy
+[Tue 11:05:42] <manu>	Topic: Bedrock / P3 Release
+[Tue 11:05:44] <mleuba>	Manu: Quick update on bedrock, P3, Web Payments, etc.  (See agenda).  Anything else should discuss?  None
+[Tue 11:05:52] *	ottonomy is now known as NateOtto
+[Tue 11:05:59] <manu>	Here's the link to the announcement: https://lists.w3.org/Archives/Public/public-credentials/2015Jan/0019.html
+[Tue 11:06:08] <mleuba>	Manu: Announcement re: release  of Payment processor
+[Tue 11:06:27] <manu>	https://github.com/digitalbazaar/bedrock#bedrock
+[Tue 11:07:01] *	erkorb (~erkorb@ool-ad0341da.dyn.optonline.net) has joined #credentials
+[Tue 11:07:25] <mleuba>	Manu: Digital Bazaar public release, "Bedrock" project, a commercial organization that has committed to the standards from this group.  Better if implementation is public so other companies can see the implementations.  Source code is on Github, hoping to drive through the process
+[Tue 11:07:28] <manu>	voip: connections?
+[Tue 11:07:30] <mleuba>	Manu: questions?
+[Tue 11:07:45] <mleuba>	None.
+[Tue 11:07:50] <manu>	Topic: Credentials / Web Payments IG Agenda
+[Tue 11:09:02] <mleuba>	Manu: Next topic (Cred/IG web payments agenda).  I think we have the subject on IG agenda.  Will go through all documents we have created.   There is a non-trivial amount of people working on it, we expect a credentials working group. At Robobank in the Netherlands, many interesting large companies Bloomberg, NACS, Rabobank, US Federal Reserve, etc. a number of good people involved.  Questions?
+[Tue 11:09:48] <mleuba>	None.
+[Tue 11:09:52] <manu>	Topic: Signatures Update
+[Tue 11:10:07] <mleuba>	Manu: Next is signatures update - Dave Longley pls take us through.
+[Tue 11:10:15] <dlongley>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html#hash-paths
+[Tue 11:10:40] <mleuba>	dlongley:  Have drafted prose to describe normalization, will be broken into smaller steps for implementation.
+[Tue 11:11:08] <manu>	q+
+[Tue 11:11:08] <voip-cr>	Added manu to the speaker queue: manu
+[Tue 11:11:19] <mleuba>	Longley: What is left is clarifying to implementors, minor sub-algorithms.  Spec is coming along.
+[Tue 11:11:55] <manu>	manu: here's the one from 2011 http://json-ld.org/spec/ED/rdf-graph-normalization//20111016/
+[Tue 11:12:18] <manu>	manu: looking at table of contents http://json-ld.org/spec/ED/rdf-graph-normalization//20111016/#toc
+[Tue 11:12:54] <NateOtto>	Q, which I can get on audio after this: Is hashing the normalized representation part of this spec?
+[Tue 11:13:05] <mleuba>	Manu: I have question re: the "old spec".  there were a lot of sub-algorithms.  For example in 2011, (showing table of contents), if you look at TOC there are a lot of sub-algorithms, has there been a big simplification of the algorithms?
+[Tue 11:14:23] <mleuba>	Longley:  yes it has been simplified.   All implementations are running the new algorithm.  The new algorithm is much simpler.  Ways of using hashes,...  Most of what's needed is in the algorithm described.
+[Tue 11:15:38] <mleuba>	 Longley: what will pop out is an abstact notation.  Nodes without labels, this spec should describe how to output a string, exactly the same string, every time.
+[Tue 11:15:41] <elf-pavlik>	BTW we use it comparing graphs in ActivityStreams 2.0 examples :) for now JSON-LD and Turtle + RDFa coming soon! https://github.com/jasnell/w3c-socialwg-activitystreams/blob/testing/tests/examples.js#L7
+[Tue 11:16:12] <mleuba>	 Longley:  This is the canonical, normalized dataset that will pop out through this spec.
+[Tue 11:16:26] *	Guest_ (~textual@c-71-237-170-49.hsd1.wa.comcast.net) has joined #credentials
+[Tue 11:16:43] <manu>	q+ to talk about ld signatures
+[Tue 11:16:43] <voip-cr>	Added manu to the speaker queue: manu, manu
+[Tue 11:16:49] <manu>	Nate, the hashing process is a part of this spec: https://web-payments.org/specs/source/ld-signatures/
+[Tue 11:16:50] <mleuba>	Longley: Describing other features which can be consumed to create a hash, in another spec.  This spec ensures a canonical dataset output.
+[Tue 11:17:03] <mleuba>	Nate: That is what I was asking, thanks.
+[Tue 11:17:04] <manu>	q-
+[Tue 11:17:04] <voip-cr>	Removed manu from the speaker queue: manu
+[Tue 11:17:04] <manu>	q-
+[Tue 11:17:05] <voip-cr>	Removed manu from the speaker queue: (empty)
+[Tue 11:17:31] <mleuba>	Longley: Spec uses hashing internally, the output can use whatever hash you like
+[Tue 11:19:16] *	NateOtto has quit (Ping timeout: 244 seconds)
+[Tue 11:19:21] <mleuba>	Manu: Summarizing - take some RDS input (nquad, JSON-LD,...)  creates a canonical representation,  Longley: will be an abstract context fully canonicalized.  Can also use to get a string out in Nquad.
+[Tue 11:20:06] <mleuba>	Manu: an abstract syntax dataset does not have form yet, compared to color Red.  
+[Tue 11:20:06] <mleuba>	 Longley: something to talk about, not yet written down.
+[Tue 11:20:32] <Guest_>	Nate: The purpose of making a canonical string representation is clear to me.
+[Tue 11:20:43] *	Guest_ is now known as NateOtto
+[Tue 11:20:50] <manu>	mleuba: It would be good to have an example of how all of this fits together.
+[Tue 11:21:12] <mleuba>	Manu: Does that make sense?   
+[Tue 11:21:12] <mleuba>	Mark: having a brief explanatory document would help.   
+[Tue 11:21:12] <mleuba>	Manu: we have a video that can be released:
+[Tue 11:22:01] <elf-pavlik>	http://jasnell.github.io/w3c-socialwg-activitystreams/activitystreams2.html#examples
+[Tue 11:22:17] <NateOtto>	Is the normalized representation also intended to be a translation step between different linked data syntaxes?
+[Tue 11:23:23] <mleuba>	elf: Having examples will be helpful for testing.    
+[Tue 11:23:23] <mleuba>	Longley: testing the same graph with different syntaxes?   
+[Tue 11:23:23] <mleuba>	elf:  Yes            
+[Tue 11:23:23] <mleuba>	Manu: can't see how social web group will create something longterm w/o graph normalization signatures.
+[Tue 11:24:52] <mleuba>	Manu: where has digital signatures trusted messaging discussion gone elf?   
+[Tue 11:24:52] <mleuba>	elf: we are not there yet.  (described group activities).  No strong commitment to RDF model but it makes sense.  Still needs clarification.  
+[Tue 11:24:52] <mleuba>	Manu: the data model is confusing re: RDF.
+[Tue 11:24:58] <mleuba>	elf: I have same impression
+[Tue 11:26:17] <mleuba>	Nate: Is normalized representation a translation step or would people more directly translate?     
+[Tue 11:26:17] <mleuba>	Longley:  I would not expect normalization to translate into another syntax.  Unnecessary.  Only reason to use normalization is to canonicalize.  Otherwise skip it.
+[Tue 11:26:44] <mleuba>	Longley: Canonicalize to compare two things.
+[Tue 11:26:48] <NateOtto>	The purposes of the normalization is generally comparision (are these two things the same?)
+[Tue 11:26:52] <manu>	Topic: Badge Alliance Vocabulary/Context Update
+[Tue 11:26:57] <NateOtto>	hashing, signatures, etc.
+[Tue 11:27:06] <NateOtto>	http://standard.openbadges.org
+[Tue 11:28:11] <manu>	q+ to respond to review comments.
+[Tue 11:28:11] <voip-cr>	Added manu to the speaker queue: manu
+[Tue 11:28:18] <mleuba>	Manu: Context discussion next.  Nate, can you give us an update?  
+[Tue 11:28:18] <mleuba>	Nate:  provided link to document.  Thanks Manu for read through and responses.  Highlighting 1) Credentials Vocabulary, has mixed purposes.  Built for open badges.  Good to have a Credentials Vocabulary, where should it live?
+[Tue 11:28:36] <mleuba>	nate: Should it be in open badges vocabulary context file?
+[Tue 11:28:37] <dlongley>	q+
+[Tue 11:28:37] <voip-cr>	Added dlongley to the speaker queue: manu, dlongley
+[Tue 11:29:46] <NateOtto>	One main purpose of this spec was to not break existing implementations
+[Tue 11:30:07] <NateOtto>	Manu: Mindframe two, is "where do we want to go in 5-10 years if we only have one shot of getting things right?"
+[Tue 11:30:34] <mleuba>	Manu: Apologies for sounding negative, first OBI has a lot of badges, need backward compatibility, priority one - don't break implementations.  This serves that purpose well.  Second, where to go in next 5-10 years if we have one shot to get it right?  Scalable, solid security, reasonable to implement, etc.  That's the approach I used when reviewing the spec.  Unfair to the work I know.
+[Tue 11:31:46] <elf-pavlik>	q+ re @id and url
+[Tue 11:31:46] <voip-cr>	Added elf-pavlik to the speaker queue: manu, dlongley, elf-pavlik
+[Tue 11:31:47] <mleuba>	Manu:  how to achieve both goals?  Nate: No offense of course.  Agree the document aligns with the goal of backward compatibility.  But the discussions were all looking forward to the long term goals.
+[Tue 11:31:49] <manu>	ack manu
+[Tue 11:31:49] <voip-cr>	manu has the floor (to respond to review comments.). The next speaker is dlongley.
+[Tue 11:31:50] <manu>	ack ldongley
+[Tue 11:31:51] <voip-cr>	manu has the floor. The next speaker is elf-pavlik.
+[Tue 11:32:01] <manu>	q?
+[Tue 11:32:02] <voip-cr>	Speaker queue: manu
+[Tue 11:32:06] <manu>	ack manu
+[Tue 11:32:07] <voip-cr>	manu has the floor (re @id and url). The speaker queue is empty.
+[Tue 11:32:16] *	elf-pavlik hmm...
+[Tue 11:32:17] *	manu sorry elf-pavlik
+[Tue 11:32:25] *	manu add yourself back on - there is a bug in the voip bot
+[Tue 11:32:29] <elf-pavlik>	q+ re @id and url
+[Tue 11:32:30] <voip-cr>	Added elf-pavlik to the speaker queue: elf-pavlik
+[Tue 11:32:34] *	manu it screws up the order.
+[Tue 11:32:38] <mleuba>	Longley:  Comment, re; Credentials Vocabulary, I agree.  It should be minimal, use OBI as a base.  Badges context could include, One context in a badge, would be dependent on a badges context.
+[Tue 11:32:43] <dlongley>	https://web-payments.org/contexts/security-v1.jsonld
+[Tue 11:32:46] *	elf-pavlik no problem :)
+[Tue 11:33:16] <dlongley>	https://web-payments.org/contexts/identity-v1.jsonld
+[Tue 11:33:17] <mleuba>	Longley:  also, simple terms in security vocabulary that may get included in credentials vocabulary.
+[Tue 11:34:08] <manu>	ack elf-pavlik 
+[Tue 11:34:09] <voip-cr>	elf-pavlik has the floor (re @id and url). The speaker queue is empty.
+[Tue 11:34:09] <mleuba>	Longley: I thing a lot of credentials can be done with a few terms.  already in security context in web payments.  Looking there may be helpful.  Should be a tiny document.  Can layer other stuff they bring on top.
+[Tue 11:34:38] <NateOtto>	Is App ID the term you used there, elf?
+[Tue 11:34:55] <manu>	at-id - @id - the JSON-LD thing, Nate
+[Tue 11:35:08] <manu>	Not App ID :)
+[Tue 11:36:37] <dlongley>	q+
+[Tue 11:36:37] <voip-cr>	Added dlongley to the speaker queue: dlongley
+[Tue 11:36:57] <dlongley>	"@id" == "at id"
+[Tue 11:37:17] <mleuba>	elf: Question, how to work with @ID?   Did you take a different approach?    cannot use natural way that @ID is identifier.  The url is the ID of the document.      
+[Tue 11:37:17] <mleuba>	Nate: Legacy open badges standard was not developed for JSON-LD.     
+[Tue 11:37:17] <mleuba>	Elf: Described the issues related to @ID being absent.
+[Tue 11:37:20] <dlongley>	@id aliasing may solve this.
+[Tue 11:37:31] <NateOtto>	One of the very final changes remaining to the Open Badges spec to finalize the 1.1 version is to add @id as a property to be used in all hosted badge objects (Assertions, Badge Classes, Issuer Orgs)
+[Tue 11:37:49] <NateOtto>	currently in the assertion it's in verify.url
+[Tue 11:38:37] <mleuba>	manu: I understand.  There are several approaches in LD world to specify the ID.  JSON-LD uses @ID.  Gives the object an identifier.  Schema.org has decided not to use @ID but a blank node identifier.  The thing has no identifier.  Not a very cohesive LD story, but is easy for some developers to understand.
+[Tue 11:39:05] <dlongley>	q-
+[Tue 11:39:05] <voip-cr>	Removed dlongley from the speaker queue: (empty)
+[Tue 11:39:41] <elf-pavlik>	"url": "@id"
+[Tue 11:40:01] <dlongley>	^JSON-LD aliasing would map "url" to "@id"
+[Tue 11:40:11] <mleuba>	Manu:   some developers.   @ID in JSON-LD, url in schema.org, and other terms in other orgs.   There are 3 different ways to specify a url for the thing, if we use JSON-LD aliasing feature we can get the specs on the same level.  Problem, the schema.org decided not to.  JSON-LD decided to do that and map the two worlds. Which path will the groups take?
+[Tue 11:42:00] <mleuba>	Manu:  Make sense, elf and Nate?  <yes>   Nate: we are including @ID for internally hosted properties.  It will be required for OB 1.1 .    We need to incluide url in the verify method.   As we talk about 5-10 year plan, the method for Validation is up for review.
+[Tue 11:42:27] <mleuba>	Manu: Questions?  <none>
+[Tue 11:42:32] *	elf-pavlik i had noise, apologies!
+[Tue 11:42:33] <Kerri>	Did we come to a decsion as to whether we should have a separate credentials vocabulary doc?
+[Tue 11:44:17] <mleuba>	Manu: Back to review of Nate's vocabulary document.  
+[Tue 11:44:17] <mleuba>	Nate: I will respond in writing, anything specific?   <Kerry's question>.  
+[Tue 11:44:17] <mleuba>	Manu: always easier to have one JSON-LD context, with 5-6 vocabulary documents pulled together.  My preference is 1 JSON-LD context that pulls in various OBI vocabularies, identiity credentials, security vocab etc.  That' the best implem. path.  Nate?
+[Tue 11:44:46] <mleuba>	Nate:  I agree one JSON-LD context is the way to go.
+[Tue 11:46:22] <mleuba>	Nate: as context changes from version 1.1 to 1.2, the validation will change but the vocabulary will stay constant.  An OBI context file design is under consideration.  Manu: we have considered this and we will probably do a Context v1 and Context v2, to force us to not break things.
+[Tue 11:47:06] <mleuba>	Manu:  Breaking changes (v1 - v2) will become painful.   We are wondering if using context for versioning is ok, we think yes for Major versions but not for minor versions.
+[Tue 11:47:38] <mleuba>	Manu: just a point of info if it is helpful.    
+[Tue 11:47:38] <mleuba>	Nate:  thanks for the history on that.
+[Tue 11:47:46] <manu>	q?
+[Tue 11:47:46] <voip-cr>	There are no speakers in the queue.
+[Tue 11:47:55] <NateOtto>	Any other feedback on whether/how to separate credentials vocabulary from OBI vocab?
+[Tue 11:48:17] <mleuba>	Longley:  Need to clarify, consensus is multiple different vocabularies, a single context that pulls from those vocabularies.
+[Tue 11:48:24] <mleuba>	Manu:  +1 that
+[Tue 11:48:28] <NateOtto>	ToDo: look for items in this OBI vocab draft for the very most general vocab items to generalize into a credentials vocabulary
+[Tue 11:49:11] <Kerri>	+1 to migration path & legacy.
+[Tue 11:49:26] <mleuba>	Manu: How to deal with changes, least disruptive, so all "legacy" data has migration path w/o changes.    Longley: if we can't meet that is to have a clear set of translation API calls.
+[Tue 11:49:34] <mleuba>	Manu: Good idea.
+[Tue 11:50:20] <elf-pavlik>	http://www.w3.org/TR/2014/WD-activitystreams-core-20141023/
+[Tue 11:50:25] <elf-pavlik>	http://www.w3.org/TR/2014/WD-activitystreams-vocabulary-20141023/
+[Tue 11:51:01] <Kerri>	That sounds reasonable
+[Tue 11:51:01] <NateOtto>	+1 coherent
+[Tue 11:51:05] <mleuba>	Manu: Looking at 5-10 years,  split the vocabulary from the document,
+[Tue 11:51:09] <elf-pavlik>	+1
+[Tue 11:51:27] <mleuba>	Manu:  Kerry, Nate, elf said it sounds coherent
+[Tue 11:51:41] <manu>	Topic: Roadmap
+[Tue 11:52:02] <manu>	mleuba: The Google doc URL has been moved to a public ownership - https://docs.google.com/document/d/1Tm5E9GBlWZsftEPiTu0ZZsGqwqYwtOOWwsYIU-cbQwQ/edit
+[Tue 11:52:17] <manu>	mleuba: If everyone has access to the credentials spec, let me know - you should.
+[Tue 11:52:34] <dlongley>	manu: Only people with the link can get access, it won't show up in a public search.
+[Tue 11:52:36] <manu>	mleuba: If you need access, let me know.
+[Tue 11:52:57] <manu>	mleuba: We've incorporated most of the feedback that has been received - welcome the opportunity to review.
+[Tue 11:53:00] <NateOtto>	As part of this work factoring out a general credentials vocabulary from the OBI implementation, I'll contribute the credentials vocab as a draft to the Google Doc that Mark linked.
+[Tue 11:53:02] <manu>	mleuba: It's open to review at this stage.
+[Tue 11:53:28] <manu>	mleuba: One large area - timeline that we want to associate with major milestones - there is a structure there, can people suggest targets for that?
+[Tue 11:53:44] <manu>	mleuba: developing the spec, completing activities, resolving open issues, etc. 
+[Tue 11:54:12] <manu>	mleuba: The last open area is one that Nate and Sunny are going to help with - reliant on the OBI work that Nate and Sunny are working on now - holding that in advance until previous work is done. That work is imminent, Nate?
+[Tue 11:54:29] <manu>	NateOtto: Yes, the outcome of this call is to fix that - we have some direction now, I'll be doing that over the next few weeks.
+[Tue 11:54:34] <manu>	mleuba: Any comments of question?
+[Tue 11:55:03] <dlongley>	NateOtto: https://web-payments.org/specs/source/identity-credentials/#a-typical-identity
+[Tue 11:55:15] <dlongley>	see "credential" property in there for an example of a really basic credential
+[Tue 11:56:08] <dlongley>	the claim specifics would be from some domain-specific vocabulary
+[Tue 11:56:52] <NateOtto>	The idea for the future being that a legacy badge could be a type of claim used in an identity credential?
+[Tue 11:57:02] <dlongley>	manu: I think we want the credentials vocabulary to be a separate document that is referenced by the roadmap.
+[Tue 11:57:16] <NateOtto>	(In any case, feel free to reach out to me off this call so we don't pollute the agenda/chat with a deep side channel dive)
+[Tue 11:58:03] <dlongley>	manu: At some point we should point off to the use cases document and follow the same basic approach for use cases, something we may end up calling the "Credential Agent", and the vocabulary. "If you want to learn more about the vocabulary, go here" etc.
+[Tue 11:58:18] <dlongley>	manu: The roadmap document should be really high-level and link to more detailed documents.
+[Tue 11:58:21] *	dlongley sorry nate, also scribing
+[Tue 11:58:49] <dlongley>	manu: We may want a goals section, but all details should be in the other specifications.
+[Tue 11:59:05] <dlongley>	manu: Thoughts on that approach, high-level roadmap + details in other docs?
+[Tue 11:59:06] <elf-pavlik>	+1
+[Tue 11:59:09] <dlongley>	+1
+[Tue 11:59:41] <elf-pavlik>	I quite like http://www.w3.org/TR/owl2-overview/ or http://www.w3.org/TR/prov-overview/
+[Tue 12:00:00] <dlongley>	manu: It took us a while to come to that approach in the Web Payments group and it seems like a good idea and we can save time here.
+[Tue 12:00:33] <dlongley>	mleuba: I suggest we think about it. I've got placeholders in there for comments.
+[Tue 12:00:53] <dlongley>	manu: Anything else we feel is important to discuss before next week?
+[Tue 12:00:54] *	marybold has quit (Quit: Page closed)
+[Tue 12:01:08] <dlongley>	nothing
+[Tue 12:01:09] <slee>	thanks everyone
+[Tue 12:01:13] <NateOtto>	Great, thanks all!
+[Tue 12:01:13] <NateOtto>	Present+ evgeny, dlehn, mary, eric
