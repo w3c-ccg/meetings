@@ -1,0 +1,174 @@
+[Tue 11:03:48] <manu>	Present: Eric, Manu, Sunny, Longley, Evgeny, Mary, Mark, Kerri, Victoriano, Nate
+[Tue 11:04:23] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015Jan/0042.html
+[Tue 11:04:33] <manu>	scribe: marybold
+[Tue 11:04:37] <voip-cr>	11 (SIP/85.62.72.19-0000009a) has joined the conference.
+[Tue 11:05:04] <marybold>	Manu: see agenda link. Today, we will discuss same as past several weeks. Update on Signature, JSON-LD, Roadmap. Anything else?
+[Tue 11:05:47] <marybold>	Manu: If no updates to Agenda, let's get into it. Update on signatures.
+[Tue 11:05:40] <manu>	Topic: Signatures Update
+[Tue 11:05:46] <manu>	http://json-ld.org/spec/latest/rdf-dataset-normalization/
+[Tue 11:05:51] <dlongley>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html
+[Tue 11:06:19] <dlongley>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html#hash-paths
+[Tue 11:06:31] <dlongley>	"Usually, when trying to determine if two nodes in a graph are equivalent..."
+[Tue 11:06:35] <marybold>	Dave: Spec coming along, little bit of a time. See link. I updated a little text in hash section-- overview or introductory text: see link "#hash-paths"
+[Tue 11:07:17] <marybold>	Dave: This is a little more colloquial about how the algorithm works. If you have base understanding, you will see how "nodes are equivalent"
+[Tue 11:07:23] <marybold>	Dave: Questions or comments?
+[Tue 11:08:17] <marybold>	Manu: Do we need some graphics to explain how this works? That's a pain and the graphics can come at the end. Normalization is hard enough to understand and it's great to have this colloquialism. A graphic or visual can help others undersrand.
+[Tue 11:08:26] <NateOtto>	Is detecting node equivalence for comparing two documents or to see if sub-properties, say from two different source nodes, should be nested within the same output nodes
+[Tue 11:08:46] <marybold>	Dave: If anyone would created an animated GIF, that would be great... process of bucket to paper.
+[Tue 11:09:01] <marybold>	Manu: Able to tap into a library?
+[Tue 11:09:35] <marybold>	Dave: Probably not. Difficult to do. The algorithm has an analogy--hook it up to the algorithm itself, not sure if it would work.
+[Tue 11:09:44] <voip-cr>	Dave Lehn (SIP/6003-0000009b) has joined the conference.
+[Tue 11:09:54] <manu>	Present+ Lehn
+[Tue 11:09:57] <NateOtto>	Manu: would it be possible to use (Javascript data visualization library) D3 to visualize how the data is actually sorted in the node.js library that has implemented this normalization spec.
+[Tue 11:10:11] <NateOtto>	(that's a paraphrase, not a question I'm asking of Manu)
+[Tue 11:10:21] <marybold>	Dave: You might end up writing a lot of code. Sounds complex, might be possible to do. Only purpose would be this exercise.
+[Tue 11:10:36] <marybold>	Manu: Looking for ways to explain this--I think the language is fine. Just a thought.
+[Tue 11:10:53] <marybold>	Manu: Other comments? New stuff this week is the hash-paths?
+[Tue 11:11:05] <marybold>	Dave: also updated several sections.
+[Tue 11:11:15] <manu>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html#blank-node-labeler-state
+[Tue 11:11:27] <manu>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html#node-relabeling-algorithm
+[Tue 11:11:35] <manu>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html#hash-paths
+[Tue 11:11:46] <marybold>	Manu: see links for updated sections. Other questions?
+[Tue 11:12:07] <manu>	Topic: Badges/Credentials Vocabulary and Context
+[Tue 11:12:34] <manu>	Feedback from BA is here: http://etherpad.badgealliance.org/obi-vocab-review-credcg
+[Tue 11:12:36] <marybold>	Manu: Jump into badges and credentials vocabulary. Nate and Sunny took a review to BA, which provided feedback here (see link).
+[Tue 11:12:53] <marybold>	Manu: I went back to it and provided more feedback. Nate or Sunny?
+[Tue 11:13:22] <marybold>	Nate: Is this format suitable for long-term archiving?
+[Tue 11:14:39] <marybold>	Manu: Typically, work is captured in mailing lists bc W3C assures long-lived libraries and archives. Ideal case is that discussions happen in the mailing list. Date, time, URLs captured. Etherpads handy for meetings, then move to mailing list.
+[Tue 11:15:27] <marybold>	Nate: Good discussion was generated. Point of this review you want to discuss, Manu?
+[Tue 11:16:11] <voip-cr>	11 (SIP/85.62.72.19-0000009a) has left the conference.
+[Tue 11:16:14] <marybold>	Manu: Main realization is that it's going to be very difficult for us to create one document out of this discussion. Different goals by different groups--e.g., BA for backward compatibility.
+[Tue 11:16:49] <voip-cr>	11 (SIP/85.62.72.19-0000009c) has joined the conference.
+[Tue 11:16:57] <marybold>	Manu: Credentials CG doesn't have the same implementation pressure (yet). We're in a position that we cannot ask the BA to change a lot of the vocab they have.
+[Tue 11:17:59] <marybold>	Manu: The path forward: one vocab with a date for future; two vocabs; 2 diff JSON-LD contexts. If 2 versions, we don't have to discuss breaking vocab changes.
+[Tue 11:19:20] <marybold>	Manu: For the future, we can discuss in a different conversation--separate vocabulary. "Old" and "New" JSON-LD contexts. Hard to carefully thread a need like ISO time stamps. Clients would have increased complexity.
+[Tue 11:20:09] <marybold>	Nate: I agree--I am trying to write software to account for any badge written any time. When we make a breaking change--make it rare and carefully considered.
+[Tue 11:21:05] <marybold>	Nate: Making a dedicated vocab for things that will be deprecated: we don't know exactly what will be deprecated. Make sure that OpenBadges model (powerful and expressive) can be used.
+[Tue 11:22:06] <marybold>	Nate: Organization A badge - powerful trust statements - who is trusted by whom. Breaking change needs to be only once?
+[Tue 11:22:19] <marybold>	Manu: +1, totally agree.
+[Tue 11:22:31] <NateOtto>	Mary, sorry for the disjointed long ramble! Hard to transcribe I'm sure
+[Tue 11:23:07] <NateOtto>	@vocab is a sledgehammer, we want a scalpel
+[Tue 11:23:17] <marybold>	Manu: Since we're using JSON-LD, the OBI stuff could just go off in its own direction. You can just assign a vocab to a sub-tree and if it comes valid... Even in the worse case, no coordination between the 2 groups, you can still take...
+[Tue 11:24:17] <voip-cr>	11 (SIP/85.62.72.19-0000009f) has joined the conference.
+[Tue 11:24:18] <voip-cr>	Dave Longley (SIP/6002-000000a0) has joined the conference.
+[Tue 11:34:16] <NateOtto>	scribe: NateOtto
+[Tue 11:35:03] <NateOtto>	Manu: Going back... We were discussing how the OBI stuff could basically go off on its own and could still be integrated into the identity credentials spec, because it's going to still use JSON-LD going forward. The only base requirement is that it uses JSON
+[Tue 11:35:34] <manu>	NateOtto: We're going to be looking at "how to package deep nesting of badge class / inside delivered representation inside credential".
+[Tue 11:36:00] <manu>	NateOtto: We will be fixing that quirk over time - breaking change of some sort. There will still be a good compatability path in the future.
+[Tue 11:36:04] <dlongley>	voip-cr: 0004 is manu
+[Tue 11:36:04] <voip-cr>	manu is now associated with SIP/6000-00000004.
+[Tue 11:36:11] <dlongley>	voip-cr: 8104 is me
+[Tue 11:36:12] <voip-cr>	dlongley is now associated with IAX2/diamondcard-8104.
+[Tue 11:36:15] <dlongley>	voip-cr: mute dlongley
+[Tue 11:36:37] <NateOtto>	Eric: In the TrueCred platform, we have a export path implementation set up. Would be happy to work with you on that
+[Tue 11:36:42] <manu>	Eric: In TrueCred, we can export OBI and import OBI - we have a vocabulary to do that. I can provide samples.
+[Tue 11:37:29] <NateOtto>	Nate: Looking forward to having you in those conversations
+[Tue 11:37:44] <NateOtto>	Sunny: Where do we go from here after netting out feedback?
+[Tue 11:37:57] <NateOtto>	Manu: Where we go is up to the group
+[Tue 11:38:22] <NateOtto>	Manu: my personal thoughts are that we want to focus on producing some documents. The easy focus is the vocabulary document, which doesn't require any breaking changes to anything
+[Tue 11:38:41] <manu>	SO here's an example of a vocabulary document: https://web-payments.org/vocabs/commerce
+[Tue 11:38:48] <NateOtto>	Manu: I put in a link to the etherpad, as an example of a vocabulary document
+[Tue 11:39:04] <NateOtto>	Manu: If you look at that document it's a fairly simple exmaple of what a vocabulary document is.
+[Tue 11:39:21] <manu>	https://web-payments.org/vocabs/commerce.ttl
+[Tue 11:39:33] <NateOtto>	Manu: Its a human-readable file, but this second link is a machine readable file.
+[Tue 11:39:40] <dlongley>	https://web-payments.org/vocabs/commerce.jsonld
+[Tue 11:39:47] <NateOtto>	Manu: this is what a machine sees when it views that vocabulary document
+[Tue 11:39:50] <dlongley>	^JSON-LD version
+[Tue 11:40:19] <NateOtto>	Manu: The next step is the JSON-LD context, which shows how to use that vocabulary document in a JSON-LD implementation
+[Tue 11:41:01] <NateOtto>	Manu: Next step is to decide what to do with the OBI. Whether to put OBI items known to be to-deprecate into a separate document
+[Tue 11:41:22] <NateOtto>	Manu: 1. definitely do a known-to-be-moving-forward vocab, 2. then maybe a to-be-deprecated vocabulary, 3. Then maybe a to-be-deprecated context
+[Tue 11:42:40] <NateOtto>	Manu: Then splitting out some badge-specific steps like splitting out the to-be-deprecated to its own context
+[Tue 11:42:45] *	marybold has quit (Quit: Page closed)
+[Tue 11:42:51] <NateOtto>	Sunny: How do we know how consensus has been reached
+[Tue 11:43:12] <NateOtto>	Manu: We typically take a straw poll. Doesn't mean that absolutely everybody agrees, but that the majority move on a best path to move forward.
+[Tue 11:43:32] <dlongley>	http://www.w3.org/community/credentials/charter/
+[Tue 11:43:56] <dlongley>	See: "Decision process"
+[Tue 11:44:06] <NateOtto>	Manu: There is an extensive w3c document on consensus. If someone disagrees about the path to move forward -- if someone has an objection, we do a vote, which is a long 2-3 weeks process. We try not to do a vote to resolve formal objections because it takes so long
+[Tue 11:44:14] <NateOtto>	Sunny: Quite a process
+[Tue 11:44:37] <NateOtto>	Manu: Typically we almost never vote. We typcally talk through problems and come to solutions that work for the whole group. Typically isn't a contentious process.
+[Tue 11:45:00] <NateOtto>	Manu: Other thing to note is that we are not an official w3c group, but we are following the same process as the official groups
+[Tue 11:45:15] <eric>	We are an official Community Group.
+[Tue 11:45:26] <NateOtto>	Manu: Hopefully over the next year, the Web Payments IG decides they want to form an official Standards Group
+[Tue 11:45:37] <NateOtto>	Manu: which would bring on requirements of full process
+[Tue 11:45:47] <eric>	Next is a Working Group
+[Tue 11:45:51] <NateOtto>	Manu: At this point we're trying to rough out the documents that a future official Working Group would pick up
+[Tue 11:46:02] <NateOtto>	Nate: thanks, eric for helping sort out the language there
+[Tue 11:46:19] <dlongley>	to clarify: We are an official W3C Community Group, not an official W3C Working Group
+[Tue 11:46:57] <eric>	You must be a W3C member to participate in a Working Group as well.
+[Tue 11:47:13] <NateOtto>	Manu: The reason we're detailing all of this is so that these discussions don't have to be rehashed later when it becomes a Working Group
+[Tue 11:48:28] <NateOtto>	Sunny: (sorry didn't catch all that) Asking about what could cause fragmentation
+[Tue 11:48:37] <SunnyLee>	Nate, all good
+[Tue 11:49:14] <SunnyLee>	My question: wondering how the BA standard work fits in and how can we prevent fragemention of the work, how do we ensure we don't create similar but ultimately different standards?
+[Tue 11:49:14] <NateOtto>	Manu: Here's something that could cause fragmentation: if the BA decides it isn't interested in Identity Credentials... it could create two ways of issuing badges or credentials out there, a BA approach and an Identity Credentials approach.
+[Tue 11:49:31] <NateOtto>	Manu: If there's no path for these technologies to converge, it could cause fragmentation
+[Tue 11:50:24] <NateOtto>	Manu: Here's an example; if in the 2.0 Badge spec, if a decision is made to continue to use JOSE for digital signatures and focus on hosted assertions to validate, that doesn't mean that this approach couldn't be standardized. They could be cases that apply to different communities with different sets of goals.
+[Tue 11:50:54] <NateOtto>	Manu: With standards, we really really really try to create unified standards that work as broadly as possible, but sometimes two communities can't figure out how to merge their initiatives and you end up with two standards that end up doing their own thing
+[Tue 11:51:28] <eric>	supporting the same LD vocabulary and structure goes a long way to keep the applications together.
+[Tue 11:51:53] <NateOtto>	Manu: In order to prevent that from happening, we have to talk about what's the migration path for the vocabulary set that we have... how is existing badge info expressed in Identity Credentials in the future? .. Are breaking changes to Badges in the future going to go in a different and more breaking direction?
+[Tue 11:51:58] <dlongley>	voip-cr: unmute dlongley
+[Tue 11:51:58] <voip-cr>	dlongley has been unmuted.
+[Tue 11:52:05] <dlongley>	q+
+[Tue 11:52:05] <voip-cr>	Added dlongley to the speaker queue: dlongley
+[Tue 11:52:29] <eric>	The JWT and HTTP Signature standard track will work itself out.
+[Tue 11:52:38] <NateOtto>	Dlongley: I would add that I don't think there's any danger that we would accidentally create similar but different standards
+[Tue 11:52:50] <NateOtto>	dlongley: as long as we're all working on the same documents, these documents should ultimately be compatible
+[Tue 11:53:13] <dlongley>	voip-cr: mute dlongley
+[Tue 11:53:13] <voip-cr>	dlongley has been muted.
+[Tue 11:53:16] <NateOtto>	dlongley: In the case where we are trying to create something similar, we will be able to come to consensus
+[Tue 11:53:29] <NateOtto>	Manu: For that kind of fragmentation to occur, you have to essentially have someone walk away from the table
+[Tue 11:53:41] <NateOtto>	Manu: the things that lead to that tend to be a huge disconnect in communication.
+[Tue 11:53:46] <eric>	@Sunny Is the BA going to start their own W3C effort?
+[Tue 11:54:00] <SunnyLee>	eric: AFAIK no
+[Tue 11:54:17] <SunnyLee>	doesn't seem for us to have any reason to considering this cred cg work, no?
+[Tue 11:54:25] <NateOtto>	Manu: any other questions on this item?
+[Tue 11:54:29] <NateOtto>	<no questions>
+[Tue 11:54:43] <Kerri>	I agree, Sunny.
+[Tue 11:55:15] *	dlongley SunnyLee: Nope, we're working the same space and want to avoid fragmentation so we should be working on the same w3c effort.
+[Tue 11:55:35] <SunnyLee>	dlongley: yep in agreement
+[Tue 11:55:45] <eric>	+1
+[Tue 11:55:46] <manu>	NateOtto: On the vocabulary - entities defined in that document - wrote out 4 classes following commerce vocabulary. Goals that we're trying to accomplish - badge class. You may have seen my email to credentials list from Sunday night - do we call an identity document that we call that a credential or a collection of credentials.
+[Tue 11:56:18] *	Mark___ (4779fc1c@gateway/web/freenode/ip.71.121.252.28) has joined #credentials
+[Tue 11:56:34] <NateOtto>	Manu: I agree with those statements, Nate
+[Tue 11:56:59] <NateOtto>	Manu: I don't think you can have a bunch of different credentials and then also call the document that they're put into a (singular) "credential"
+[Tue 11:57:27] <NateOtto>	Manu: the "identity document" terminology goes back a decade or so: so you have this document on the web, and that document is a kind of container, an expression of your identity or one facet of it
+[Tue 11:57:46] <dlongley>	voip-cr: unmute dlongley
+[Tue 11:57:47] <voip-cr>	dlongley has been unmuted.
+[Tue 11:57:54] <manu>	NateOtto: It's a more powerful metaphor to - a collection is fit for purpose. Containers to put multiple credentials into.
+[Tue 11:57:57] <eric>	@Manu It might be good to tell the community about our positioning on Identity
+[Tue 11:57:58] <dlongley>	voip-cr: mute dlongley
+[Tue 11:57:58] <voip-cr>	dlongley has been muted.
+[Tue 11:58:16] <voip-cr>	11 (SIP/85.62.72.19-00000022) has left the conference.
+[Tue 11:58:41] <dlongley>	voip-cr: unmute dlongley
+[Tue 11:58:41] <voip-cr>	dlongley has been unmuted.
+[Tue 11:58:47] <voip-cr>	11 (SIP/85.62.72.19-00000023) has joined the conference.
+[Tue 11:59:08] <NateOtto>	dlongley: want to add some comments to that. I think we're in agreement that ID document is a container of credentials
+[Tue 11:59:52] <NateOtto>	dlongley: also the point that a crednetial is "a particular set of claims made by a single issuer", though it could be endorsed by another
+[Tue 12:00:41] <NateOtto>	dlongley: dlongley, Nate's quote from a sociologist might be an important part of the definition of credential. The claim about the data making an identity suited for a particular job or opportunity. We might want to say that a credential is a claim about an entity that makes it well suited to take a particular action
+[Tue 12:00:57] <eric>	+1
+[Tue 12:02:10] <NateOtto>	dlongley: suppose you took a test, got an A. The results of the test is not necessarily the credential, btu the fact that you took the test and passed might be the content of the credential, whereas the fact that you took a test during that class and got an A might not be the credential itself
+[Tue 12:02:14] <dlongley>	voip-cr: mute dlongley
+[Tue 12:02:14] <voip-cr>	dlongley has been muted.
+[Tue 12:02:33] <NateOtto>	manu: out of time for today, but this is a good discussion and the stuff that we're going to get into even more
+[Tue 12:02:48] <NateOtto>	manu: These are the types of discussions we have to have in order to produce a good vocabulary document and a good roadmap document
+[Tue 12:03:01] <NateOtto>	manu: I'm hearing more alignment than not. I'm not hearing widespread disagreement
+[Tue 12:03:17] <NateOtto>	manu: there has been an incredible amount of thought into how we're modeling these issues in the identity credentials spec
+[Tue 12:03:51] <NateOtto>	manu: in coming weeks, we'll have to drill into this so that we understand the nuances in these different data models
+[Tue 12:04:20] <Kerri>	Good luck next week, Manu. Looking fwd to hearing how it goes.
+[Tue 12:04:24] <NateOtto>	manu: this call canceled next week, (unless volunteer). I'm going to be in the Netherlands pushing the credentials agenda at the Web Payments IG meeting
+[Tue 12:04:29] *	manu thx Kerri  :)
+[Tue 12:04:41] <NateOtto>	Mark: Please everyone take a look at the roadmap document: https://docs.google.com/document/d/1Tm5E9GBlWZsftEPiTu0ZZsGqwqYwtOOWwsYIU-cbQwQ/edit# Provide comments
+[Tue 12:04:43] <SunnyLee>	thanks all!
+[Tue 12:04:57] <NateOtto>	Manu: Thanks to all for working on that document.
+[Tue 12:05:10] <Kerri>	Thanks everyone!
+[Tue 12:05:18] <NateOtto>	manu: discussion to continue on the mailing list
+[Tue 12:05:28] <eric>	Topic: Digital Promise Summit for Workforce
+[Tue 12:05:28] <eric>	I wanted to add one thing
+[Tue 12:05:45] <Victoriano>	do it here or withhold it forever :-)
+[Tue 12:06:09] *	Kerri has quit (Quit: Page closed)
+[Tue 12:06:15] <eric>	Perhaps Sunny can give us an update next time on the event happening this week in SFO
+[Tue 12:06:24] <eric>	on badges
+[Tue 12:06:34] <Victoriano>	it would be nice to hear
+[Tue 12:06:42] <manu>	ok, we should ask her to do that.
+[Tue 12:06:51] <eric>	Mary Bold will be there as well.
+[Tue 12:07:08] <NateOtto>	Glad to hear Mary will be there
+[Tue 12:07:29] <NateOtto>	(It's a Digital Promise-sponsored summit on credentials for workforce)
