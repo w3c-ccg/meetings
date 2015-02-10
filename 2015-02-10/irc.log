@@ -1,0 +1,160 @@
+[Tue 11:04:15] <manu>	scribe: dlongley
+[Tue 11:04:26] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015Feb/0024.html
+[Tue 11:04:56] <dlongley>	manu: We have a discussion on decentralized identifiers we're adding to the agenda as the second item.
+[Tue 11:05:19] <dlongley>	manu: Anything else to add?
+[Tue 11:05:37] <manu>	voip: 3162 is Laura
+[Tue 11:05:44] <manu>	voip: 7501 is Brent
+[Tue 11:05:47] <NateOtto>	I updated the vocabulary section of Mark's roadmap doc a small amount. https://docs.google.com/document/d/1Tm5E9GBlWZsftEPiTu0ZZsGqwqYwtOOWwsYIU-cbQwQ/edit# -- could be part of the Badge Alliance JSON context update.
+[Tue 11:06:00] <manu>	Topic: Introduction to Laura Fowler
+[Tue 11:06:35] <dlongley>	laura: I'm a principal enterprise architect for ETS. I've been asked to sit on this meeting in place of Bill Gebert. He's unable to join on a weekly basis, I'm sitting in for him and working with our teams on badges and credentials.
+[Tue 11:06:49] <manu>	Topic: Introduction to Brent Shambaugh
+[Tue 11:07:13] *	Victoriano (5aa1ccfd@gateway/web/freenode/ip.90.161.204.253) has joined #credentials
+[Tue 11:07:15] <dlongley>	brent: I've been spending the past year or two with the Web Payments CG, I'm here because I'm looking at applications to enterprise and engineering tools and integrating Linked Data with those things and payments too.
+[Tue 11:07:30] <manu>	Topic: Web Payments IG Face-to-Face
+[Tue 11:07:39] <manu>	https://www.w3.org/Payments/IG/wiki/Meeting_Summary_Feb2015
+[Tue 11:07:58] <manu>	voip: 0046 is Eric
+[Tue 11:07:59] <voip-cr>	Eric is now associated with SIP/sip.linphone.org-00000046.
+[Tue 11:08:11] <dlongley>	manu: The minutes should be out for the F2F Web Payments IG meeting in Utrecht in a week or so.
+[Tue 11:08:19] <dlongley>	manu: There's a summary link in IRC for an overview of what happened.
+[Tue 11:08:48] *	bshambaugh (~quassel@adsl-108-249-247-144.dsl.okcyok.sbcglobal.net) has joined #credentials
+[Tue 11:09:28] <dlongley>	manu: Overall, we were expecting 18 people and around 30 showed up. We had a lot of great representatives there from large corps, including GSM, Rabobank, Bloomberg, National Association of Convenience Stores, World Pay, etc. big major players in the space. As far as credentials stuff is concerned, we went in making a case that credentials are important for the payments work, specifically for KYC and anti-money laundering and regulations, etc. and in general the group agrees.
+[Tue 11:10:33] <dlongley>	manu: And we were able to get some fairly loose consensus around three items, 1. creds are important for payments, the group feels that a credentialing component must be exist to standardize web payments, 2. regulations can't easily be met without credentials, 3. if the Web Payments IG creates a WG for credentials, the work should be done in an independent WG just for credentials
+[Tue 11:10:50] <dlongley>	manu: The group wants to look at the use cases we've done here which is really good. So it's all great news, we got what we wanted to out of the F2F meeting.
+[Tue 11:11:25] <dlongley>	manu: We weren't able to spend much time looking at the roadmap and use cases, but in general, the Web Payments IG would like to work more closely with the Credentials CG over the next few months. We've got some work to do for any official work that might start up around the credentialling initiative.
+[Tue 11:11:30] <dlongley>	manu: Any questions or concerns?
+[Tue 11:11:45] <dlongley>	none
+[Tue 11:12:44] <dlongley>	manu: The one thing we may want to do differently from what we've been doing here. We've been focusing on technical stuff, but at some point W3C will want us to propose some kind of charter to float around W3C membership. We also want to start trying to get votes from the membership for this work. We've got 400 organizations we can make contact with and see if they'd like to support a WG charter for credentials.
+[Tue 11:12:53] <NateOtto>	Exciting progress. Thanks for travelling.
+[Tue 11:13:05] <manu>	Topic: Decentralized Identifiers for Credentials/Badges
+[Tue 11:13:10] <manu>	scribe: manu
+[Tue 11:13:27] <manu>	Manu: nate, do you mind giving us some background?
+[Tue 11:13:39] <voip-cr>	Brian Sletten (SIP/192.168.1.227-00000040) has left the conference.
+[Tue 11:13:50] <manu>	Nate: A discussion came up on Badge Alliance standards board about ways to identify documents in a badge storage mechanism.
+[Tue 11:14:19] <manu>	Nate: One contributor is frustrated w/ badge issuers that are hosting multiple documents, much like identity document, sometimes descriptions are changed, he wanted a GUID.
+[Tue 11:14:42] <manu>	Nate: I remember the @id is a part of the Open Badges spec... we will have a unique identifier in the form of an IRI, so that will be compliant.
+[Tue 11:15:03] <manu>	Nate: There may be a DNS-like infrastructure to look up badges back to the "document of truth".
+[Tue 11:15:12] <manu>	Nate: Not sure if that's useful vs. just using IRIs. 
+[Tue 11:15:47] <manu>	Nate: We also had a discussion around the Experience API (xAPI). The xAPI group is building in support to transport badges. Looks like they built that spec off of the Activity Streams 1.0 spec. Looks like they've diverged from AS 2.0.
+[Tue 11:15:57] <manu>	Nate: So far, it's not JSON-LD...
+[Tue 11:16:49] <dlongley>	manu: We have a lot of thoughts in this area. We're concerned about vendor lock-in, we don't want vendors to create badges and then keep people from being able to move their badges around and choose where they store them, etc. We, meaning "Digital Bazaar" is concerned that using IRIs could lead to vendor lock in.
+[Tue 11:17:18] <manu>	dlongley: We have been talking about decentralized identifiers to prevent vendor lock-in. We want stuff to be portable, been talking about this in Web Payments for years.
+[Tue 11:17:51] <manu>	dlongley: We've been referring to them as "DID"s - decentralized identifiers. We've explored a couple of ideas like DNS-like systems, blockchain-like systems, decentralized query systems, etc.
+[Tue 11:18:00] <NateOtto>	I saw a demo of the "telehash" approach last summer.
+[Tue 11:18:10] <manu>	dlongley: Distributed hashtables to look up names - Manu wrote a blog post at some point.
+[Tue 11:18:42] <manu>	dlongley: You can do a query on a network to find pieces of information. All these sorts of ideas try to solve the same problem. How do you have an identifier for you badge / identity? Can you change where that information is stored? Can you have an opaque identifier?
+[Tue 11:18:44] <elf-pavlik>	which post? identity credentals one?
+[Tue 11:18:55] <manu>	manu: elf-pavlik, yes, the Identity credentials one.
+[Tue 11:19:12] <manu>	dlongley: So there are a number of things we've been discussing related to decentralized identifiers.
+[Tue 11:19:26] <elf-pavlik>	for the record http://manu.sporny.org/2014/identity-credentials/
+[Tue 11:19:27] <manu>	dlongley: So, with the credentials work, we want some way to prevent vendor lock-in. We want to make portability possible.
+
+[Tue 11:20:09] <manu>	Nate: Two points, I guess - we were thinking about using IRIs - low barrier to entry, everyone can resolve them. In order to prevent lock-in, we have this "authorization to issue on my behalf" credential?
+[Tue 11:20:32] <manu>	Nate: maybe identity can generate another ID - then authorize other platforms to issue badges for them.
+[Tue 11:21:04] <manu>	Nate: Re-up on the authorization after a certain time period - prevent vendor lock-in, without needing a technical spec. A lot of the people that are issuing badges are probably not going to be keen on building in telehash or blockchains yet.
+[Tue 11:21:42] <manu>	Nate: My main focus is to try to moderate BA mailing list - when questions get too big for badge alliance - like "what do we do for identifiers" - I want to push those questions into this group - into larger spaces.
+[Tue 11:21:53] *	Slee (68ad36ed@gateway/web/freenode/ip.104.173.54.237) has joined #credentials
+[Tue 11:22:04] <manu>	Nate: We want to adopt larger technologies - ones that are more general.
+[Tue 11:22:51] <manu>	dlongley: With regard to people controlling their own domain - difficult for most people to do - but many people want to be able to control their own identity - they're going to end up using a domain that is not in their control. We don't want them to be locked into those "identity providers" or "credential storage systems". They're going to use a 3rd party to store their data.
+[Tue 11:23:51] <manu>	dlongley: And we want them to be able to move away from that provider. We can't rely on HTTP IRIs for it - I don't think we'd deviate from using IRIs... but they might not be HTTP IRIs, you might have to resolve them in a different way - coming up with another system that has a lower barrier to entry. People shouldn't have to buy a domain to be in control of their own identity.
+[Tue 11:24:22] <manu>	dlongley: There are several other layers of abstraction here - we don't think of vendors as ones that store badges, there's a dichotomy there - there is an issuer who can create the badges, then there is another organization that might store the badges.
+[Tue 11:24:44] <voip-cr>	11 (SIP/85.62.72.19-00000047) has left the conference.
+[Tue 11:25:01] <manu>	dlongley: There are several different components that could be combined into one entity, or they could be split out. Issuers wouldn't need to implement telehash. Someone could say "This is my DID", and then that's it. the issuer issues to that DID.
+[Tue 11:25:12] <manu>	dlongley: There are different layers of abstraction that we could put in to make it easier for issuers.
+[Tue 11:25:29] <manu>	Nate: So a service dedicated to transport things between HTTP IRIs and some other telehash-like IRIs. 
+[Tue 11:25:55] <manu>	dlongley: Yeah, there are a number of different ways that we could achieve this - we want data portability, we want to make it easy for people that don't have their own domain to still be in control of their identity.
+[Tue 11:26:12] <manu>	Nate: Sounds like excellent goals - the ability to have the conversation here is good - we want to push this question out of BA mailing list to here.
+[Tue 11:26:35] <manu>	Nate: My immediate "TODO" question - as we think about identity and identifiers - what should we do to make sure we'll be compatibile with something like this.
+[Tue 11:26:55] <manu>	dlongley: We expect this stuff should go into Identity Credentials spec or a companion WebDHT spec.
+[Tue 11:27:29] <manu>	dlongley: As far as creating documents/badges - as long as you're using JSON-LD and badge IDs are IRIs... what we will be creating, I think, are interfaces and protocols to indicate how to write to someone's personal set of credentials. That's the space that should be followed more closely.
+[Tue 11:28:22] <manu>	brian: I support and agree with the larger intiative of data portability - and a telehash-like identifier. Is there a certain credential use case where people don't care about portability. The organization that's issuing it - if issuer is not in control of it, they don't care.
+[Tue 11:28:34] <manu>	brian: Can we just fall back on resolvable IRIs - is that acceptable?
+[Tue 11:29:02] <manu>	dlongley: It's a design goal, it's not a design reality. Any sort of DID would be at a different identifier. You'd say "use this IRI" to write to my identity.
+[Tue 11:29:20] <manu>	dlongley: So, the issuer would assign credentials to a DID.
+[Tue 11:29:38] <NateOtto>	Most of our issuer organizations in the Open Badges world are orgs with their own websites... often the heavy lift is to do the editing on that site on a regular basis, not just getting and continuing to pay for the domain. So they are using badge-specific issuing platforms. A one-time site edit to add authorization doesn't seem too difficult for an organization in this case.
+[Tue 11:29:42] <manu>	dlongley: At a high-level, issuers would use HTTP to write... at a low-level, you can use a DID.
+[Tue 11:30:11] <manu>	dlongley: If we can make it easy for everyone to use a DID, we want to standardize on that. your point is well taken - we don't want to make this difficult for folks.
+[Tue 11:31:26] <manu>	Example of URL-based identifier: https://dev.payswarm.com/i/manu
+[Tue 11:32:21] <manu>	Example of decentralized identifier: did:4873205982347592835723980
+[Tue 11:32:26] *	Guest22978 is now known as ekorb
+[Tue 11:32:34] <dlongley>	manu: One addition to that, I agree with Dave Longley's comments and Brian you make a good point, we don't want to make issuing badges an arduous thing. That's not the proposal, rather, when you log into an Issuer Website, you give them your ID, today with OBI that's your email address or salted email address, etc. That's rev 1. In the future, we want to issue badges to a dereferencable URL. I could log into an issuer site, for
+[Tue 11:32:34] <dlongley>	 example, using the URL in IRC. I could assign the badges to that URL. The downside is that once those badges are issued to that website I'm locked into it. If that site goes away or deletes my identity, etc. my badges are gone unless I can somehow prove I once owned that URL. Now we're saying you could tell the issuer, that instead of using HTTPS, please use my DID.
+[Tue 11:33:07] <dlongley>	manu: Any badge assigned by the issuer would go to that DID and there's a lot of complexity underneath that (hidden away) and we want to make it as easy to use as possible.
+[Tue 11:33:11] <elf-pavlik>	q+ re: XDI, iName (cloudName), iNumber
+[Tue 11:33:12] <voip-cr>	Added elf-pavlik to the speaker queue: elf-pavlik
+[Tue 11:33:21] <dlongley>	manu: In the case that we fail to create a good decentralized id mechanism we just fall back to URLs
+[Tue 11:33:24] <NateOtto>	The Badge Alliance is extremely sensitive to issues that make the user experience difficult for credential recipients.
+[Tue 11:34:12] <Victoriano>	q+ re: OrcID
+[Tue 11:34:12] <voip-cr>	Added Victoriano to the speaker queue: elf-pavlik, Victoriano
+[Tue 11:34:19] <dlongley>	manu: The downside is we're going to create vendor lock-in; where there are very few badge "vaults" and little possible competition. W3c has created standards over 20 years that have vendor lock-in because the basic identifier mechanism leads to it.
+[Tue 11:34:36] <manu>	ack elf-pavlik 
+[Tue 11:34:37] <voip-cr>	elf-pavlik has the floor (re: XDI, iName (cloudName), iNumber). The next speaker is Victoriano.
+[Tue 11:35:08] <manu>	elf: XDI is important - we should look at iName and iNumber - you pay for it... iNumber always stays with you - domain name doesn't expire. We could look at how XDI works - would be happy to invite him to the discussion.
+[Tue 11:35:35] <manu>	ack Victoriano 
+[Tue 11:35:36] <voip-cr>	elf-pavlik has the floor (re: OrcID). The speaker queue is empty.
+[Tue 11:35:40] <manu>	q?
+[Tue 11:35:41] <voip-cr>	There are no speakers in the queue.
+[Tue 11:36:24] <manu>	Victoriano: Do you know about OrcID? I wouldn't promote it - it's vendor lock in - unique identifier that you give to authors - so you can tell one "John Smith" from another "John Smith". You should be able to move that around with you.
+[Tue 11:36:25] <Victoriano>	orcid.org
+[Tue 11:36:49] <manu>	Victoriano: I'm not supportive of that, because of vendor lock-in - but maybe we can learn from it since they're becoming big in academic environments.
+[Tue 11:38:24] <dlongley>	manu: There are a number of orgs that are setting themselves up as identifier organizations. GS1 is an example of this, barcodes, and IDs like that in the world, etc. What we're trying for here is a decentralized mechanism where you get to issue your own identifiers and claim them instead of having a centralized org do it for you. We don't want to create these super orgs that just hand out IDs to people. We think we have a bett
+[Tue 11:38:25] <dlongley>	er infrastructure this time around to solve this. We couldn't solve this in 80's and 90's as easy, but today we have a global community infrastructure that can generate IDs in a way that doesn't conflict, etc. The Internet, instead of creating an org that sucks up several million dollars a year and just issues IDs.
+[Tue 11:38:27] <elf-pavlik>	http://xdi.org/xdi-spec-docbook/xdi/xdi-core-1.0/xdi-core-1.0-wd02.xml you can find Markus Sabadello on list of Credentials CG participants
+[Tue 11:38:37] <Victoriano>	big applause from me to manu
+[Tue 11:39:03] <manu>	Nate: One of the other possibilities in Badge alliance - issue directly to public key? It is a solution to make sure things are decentralized, we'd have to build up quite a workflow around how to prove identity.
+[Tue 11:39:38] <Victoriano>	PGP web of trust?
+[Tue 11:40:19] <dlongley>	manu: One of the other things that came out of F2F, Ripple Labs and Ethereum were there, they've been involved in the bitcoin work as well, there was a lot of discussion around identifiers, blockchain tech and so forth. All these techs are in the same basic area and it's going to take some time for consensus for the right approach. Overall goal is prevent vendor lock in and make it easy to use, if it's not easy it won't be used.
+[Tue 11:41:03] <voip-cr>	vic (SIP/90.161.204.253:5060-0000004a) has left the conference.
+[Tue 11:41:09] <manu>	dlongley: One more quick thing - we've discussed how to use public keys to generate identifiers - there are a couple of drawbacks in the identity space... in Bitcoin, you don't care what your address is - if you have a problem, you just generate a new identifier and move your money over.
+[Tue 11:41:22] <ekorb>	q+
+[Tue 11:41:22] <voip-cr>	Added ekorb to the speaker queue: ekorb
+[Tue 11:41:41] <manu>	dlongley: You might want to keep that identity for a really long time - if public key is compromised, how do you do that?
+[Tue 11:42:43] <manu>	dlongley: It's a much bigger problem than just switching addresses - a  lot of your credentials are now linked to that identifier, but now that identifier is no good. It's a trickier business to switch keys. Generating IDs directly from cryptosystems have bigger rammifications on identity than cryptocurrencies.
+[Tue 11:43:25] <manu>	Eric: More of a question than a statement - vanity domains - like .ceo - people are using those as identity - all those systems would be able to offer identity piece once we have this identity system sorted.
+[Tue 11:43:29] <Victoriano>	Elf, i'd say yes
+[Tue 11:43:40] <manu>	Eric: We don't want people to create identity for themselves at great expense.
+[Tue 11:44:02] <manu>	dlongley: It's not clear that we should go that path - layer on top of DNS - most people don't own their own domains. We want lower barrier to entry - don't pay for an ID.
+[Tue 11:44:07] <ekorb>	such as erickorb.ceo which is part of the peoplebrowser platform.
+[Tue 11:44:45] <ekorb>	+1 manu, that's what I wanted to come out.
+[Tue 11:45:10] <dlongley>	manu: If we want this thing to be ubiquitous, we can't say that you have to spend even $7/year to buy an identifier. People won't necessarily want to spend that money for just a couple credentials and some people can't, and we want to reduce the amount of friction for creating a domain. Any one of those those .ceo, .me domains is a non-trivial amount of money in kenya, ethopia, even some people in the US dont' want a vanity URL, etc.
+[Tue 11:45:29] <dlongley>	manu: That's why facebook and twitter are so pervasive, they don't have to pay anything and they can jump in and claim their URL. The problem is lock in.
+[Tue 11:46:29] <manu>	Topic: Signatures Update
+[Tue 11:46:38] <dlongley>	http://json-ld.org/spec/latest/rdf-dataset-normalization/index.html#hash-quads
+[Tue 11:46:51] <manu>	dlongley: There are some brief updates to simpler algorithms that are a part of the normalization algorithm.
+[Tue 11:47:13] <manu>	dlongley: Update to Quads - a quad is an RDF statement Joe knows Phil Graph0.
+[Tue 11:47:41] <manu>	dlongley: Joe is the Subject. knows is the predicate/property. Phil is the Object. Graph0 is the graph containing the statements.
+[Tue 11:47:56] <manu>	dlongley: So, this is a short sub-algorithm and brief update to the spec at this point.
+[Tue 11:48:27] <manu>	manu: How much more work is left?
+[Tue 11:48:37] *	LFowler has quit (Ping timeout: 246 seconds)
+[Tue 11:48:49] <manu>	dlongley: I need a solid week to work on the spec exclusively - just a weeks worth of work on it - it's taking a while because I don't have much time to work on it.
+[Tue 11:49:16] <manu>	Topic: Badge Alliance Context/Vocabulary Update
+[Tue 11:49:35] <manu>	Nate: We have made a few changes over last couple of weeks - changes will be reflected in document in next week.
+[Tue 11:50:24] <manu>	Nate: One of the main changes - additional terms - adding previous property to a badge, must be matched to a JSON-LD statement, we want to be compatible with Linked Data Signatures. Anyoen could implement LD signing mechanism as an extension. A valid JSON-LD data that could be added to a badge.
+[Tue 11:50:41] <manu>	Nate: We're changing references to the word from "standard" back to "specification".
+[Tue 11:50:55] <manu>	Nate: We made update to vocabulary document - term names.
+[Tue 11:51:30] <manu>	Nate: The first thing - claim - property/value pair. Credential class - badge class is a specific set of claims issued as one set to many recipients so people can observe that many recipients received the claims.
+[Tue 11:52:00] <manu>	Nate: BA thinks that there is a lot of value wrt. who has what set - endorsement work, a way for a 3rd party to endorse a badge class - say "this particular class has value".
+[Tue 11:52:23] <manu>	Nate: A Credential collection - grouping of credentials.
+[Tue 11:52:38] <manu>	Nate: Identity, which is an IRI acting as a common identifier - issuer, requester, endorser, etc.
+[Tue 11:52:59] <manu>	Elf: Could you tell me a bit more about a collection? Is there paging concerns, etc?
+[Tue 11:53:37] <manu>	Nate: We haven't come up with how they will be delivered. Identity credentials does list JSON-LD representations of credentials... paging hasn't been addressed in that spec. Basically, you have a JSON-LD array. I don't think paging has been addressed.
+[Tue 11:54:20] <dlongley>	manu: I think elf, you're alluding to the Linked Data Platform Container stuff, it means something very specific there. Are you asking a question about the difference between a Collection and a Container?
+[Tue 11:54:30] <manu>	Elf: Just wondering about the functionality - requirements.
+[Tue 11:55:12] <manu>	Nate: Good question - I think one of our earlier use cases had to do w/ composition of credentials. One particular credential might not have enough information wrt. having enough information to prove something. 3-4 different validated statements presented together in format that could be understood.
+[Tue 11:55:29] <manu>	Nate: Analyze trust relationship - powerful case to look at.
+[Tue 11:56:15] <manu>	dlongley: One point with respect to format for identity credentials - we designed with that in mind. If you look at the spec, the way the spec is laid out - each credential makes claims about a particular ID. The @id is the IRI for the identity. Each credential - the @id property is also the identity.
+[Tue 11:56:45] <manu>	dlongley: You can take all the credentials and merge via JSON-LD framing - check signatures, run through framing, and has a complete merged identity object for use.
+[Tue 11:57:06] <manu>	Elf: Could you make an example on the playground and send to mailing list?
+[Tue 11:57:11] <manu>	Elf: That would be helpful.
+[Tue 11:57:48] <dlongley>	you're correct, it's not
+[Tue 11:58:32] <NateOtto>	https://docs.google.com/document/d/1Tm5E9GBlWZsftEPiTu0ZZsGqwqYwtOOWwsYIU-cbQwQ/edit# vocabulary document
+[Tue 11:58:52] <manu>	Nate: There is the work on that document.
+[Tue 11:59:05] <manu>	Nate: Also other work will be on a new domain... probably up later this week.
+[Tue 11:59:07] <ekorb>	@nate is there a product road map for 2015 for OBI?
+[Tue 11:59:25] <voip-cr>	Brent (IAX2/diamondcard-7501) has left the conference.
+[Tue 11:59:26] <NateOtto>	I'll forward that question along to BA staff, @ekorb
+[Tue 11:59:45] <manu>	Topic: Roadmap Update
+[Tue 11:59:57] <manu>	marybold: We need to go back through use cases and look at roadmap.
+[Tue 11:59:59] <NateOtto>	on the roadmap, Mark wants to develop a timeline in the near term.
+[Tue 12:00:25] <manu>	manu: Any other business?
+[Tue 12:00:25] <manu>	Present+ Kerri
+[Tue 12:00:38] <elf-pavlik>	manu: roadmap document looks good, we just need to start filling up the gaps
