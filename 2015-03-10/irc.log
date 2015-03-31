@@ -1,0 +1,79 @@
+[Tue 11:10:47] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015Mar/0019.html
+[Tue 11:10:47] <manu>	scribe: Mark
+[Tue 11:11:00] <voip-cr>	Dave Lehn [SIP/6003-00000028] has joined the conference.
+[Tue 11:11:22] *	elf-pavlik 'voip: 26 is me' didn't work - also 27 looks like possbily me as well :(
+[Tue 11:11:31] *	elf-pavlik but i can hear ok!
+[Tue 11:11:32] <Mark>	Manu: Reviewed agenda, some issues with telecomm bridge, anything else?  (None)
+[Tue 11:11:41] <manu>	Topic: Teleconference Bridge
+[Tue 11:11:55] <dlongley-db>	voip-cr: 026 is elf-pavlik
+[Tue 11:12:07] *	LFowler (46d749a9@gateway/web/freenode/ip.70.215.73.169) has joined #credentials
+[Tue 11:12:25] <elf-pavlik>	voip: 26 is me
+[Tue 11:12:42] *	elf-pavlik roger!
+[Tue 11:13:01] *	elf-pavlik link to new bot?
+[Tue 11:13:17] <Mark>	Manu: Telecomm bridge.  Issue due to update Sunday, caused failure.  Software was outdated, this upgrade was significant.  More work needed to add back features that were affected.  Digital Bazaar is working on it.
+[Tue 11:13:53] *	NateOtto has quit (Ping timeout: 240 seconds)
+[Tue 11:14:26] <Mark>	Manu: SIP client may not have proper CODEC installed. STEEX is needed.    Will debug with Mark, Nate and  Rob after the call.
+[Tue 11:14:53] *	NateOtto (~textual@c-71-237-170-49.hsd1.or.comcast.net) has joined #credentials
+[Tue 11:14:58] <NateOtto>	Yep, I'm in by phone now; I've got a few minutes after the call if you want me to stick around to debug
+[Tue 11:15:12] <Mark>	Rob: When I opened the debug window it started working.
+[Tue 11:15:21] <manu>	Topic: Credentials Working Group Charter
+[Tue 11:15:27] <manu>	https://docs.google.com/document/d/1xfdzFahQpaQKGL4aOvePlIdsJO6Q5OJkPgSIxtUx9Vc/
+[Tue 11:16:35] <Mark>	Manu: Working Group Charter - nothing updated recently, implies folks are ok with it.  The main thing is  we need people recruiting, we need to decide which organizations to recruit.  Suggest we create a list of orgs and assign people to contact them.  Manu taking that action.
+[Tue 11:16:59] <manu>	Recruiting document: https://docs.google.com/document/d/1u0DC4U7jAayv1IvOY2qu7nMRtiFOPxwCT3BkPJek5ho/edit
+[Tue 11:17:27] <elf-pavlik>	adding it to https://github.com/opencreds/website/wiki
+[Tue 11:18:01] <NateOtto>	Doc is "view only"
+[Tue 11:18:21] <Mark>	Manu: We have some members listed (W3C, other) but we can start adding organizations, e.g. IBM, Google, Digital Bazaar, if folks can start adding now, other orgs please add them to the list.  Anyone with the link can edit.
+[Tue 11:19:24] <Mark>	Manu: biggest issue re: charter is to get the list of orgs together, then insure we have technical alignment before first workshop.  This will smooth the start of the technical working group.
+[Tue 11:20:33] <Mark>	Manu: Eric I will lean hard on you to fill out this list, now would be good.  One concern with the list, some of the orgs may not want this to be publicly known.   This list constitutes potential and in no way asserts the orgs listed support the work.
+[Tue 11:22:08] <Mark>	Manu: We need to work hard to get the candidates in as W3C members.
+[Tue 11:22:46] <manu>	Topic: Use Cases / Linked Data Signatures
+[Tue 11:23:44] <Mark>	Manu: Use Cases - there has been no forward movement in the last week due to efforts to get the web payments stuff worked out.  There is concern in WP group that something needs to be done with credentials, but W3c staff seems not to know the credentials work in ongoing even though we have demo'd.  The W3c staff is writing blog posts that ignore the Credentials CG.
+[Tue 11:24:37] *	LFowler has quit (Ping timeout: 246 seconds)
+[Tue 11:24:45] <Mark>	Manu: it's a bit frustrating, any questions on use cases or Linked Data signatures?
+[Tue 11:24:52] <manu>	Topic: Credentials/Badges Vocabulary Update
+[Tue 11:24:54] <Mark>	Manu: Nate update?
+[Tue 11:26:00] <Mark>	Nate: I want to make badges a first class citizen of credentials, use JSON-LD framing to create an array of IRI's to put at the top of the document.  I'm still working on it.
+[Tue 11:26:13] <elf-pavlik>	any issue on github with clear explainaiton about the challange
+[Tue 11:26:25] <elf-pavlik>	framing etc.
+[Tue 11:26:37] <Mark>	Manu: Which challenge elf?
+[Tue 11:26:41] <elf-pavlik>	yes please, send it to mailing list NateOtto :)
+[Tue 11:26:58] <Mark>	Nate: I have the mailing list.
+[Tue 11:28:08] <Mark>	Manu: Digital Bazaar does not want there to be a difference between credentials and badges.  Badges are credentials.  Credentials are proofs of attributes in the identity.  If you want a property called badges, and an array of URL's or full blown objects, you oould use the credentials to do that.
+[Tue 11:28:45] <Mark>	Nate: we are in alignment.  We have people asking "what badges do they have"?  Having a way to reference that at the top of the document woudl be useful.
+[Tue 11:29:19] <Mark>	Dave: if you have a base class type of badge you can do that.  any other type of information would come with that.  All that would get brought along.
+[Tue 11:29:30] <Mark>	Nate: I'll take to the mailing list.
+[Tue 11:29:53] <Mark>	Manu: a question iI have, when will we have a first pass of Vocabulary document?
+[Tue 11:30:21] <elf-pavlik>	would we consider RDFa Vocabulary Entailment in scope? http://www.w3.org/TR/rdfa-syntax/#s_vocab_entailment
+[Tue 11:30:26] <Mark>	Nate: In two weeks, we are assembling the pieces.
+[Tue 11:30:39] <Mark>	Manu: let us know, having something in Github would be good.
+[Tue 11:30:49] <Mark>	Nate: I'll get that process going.
+[Tue 11:31:19] <Mark>	Manu: Responding to Elf, Yes but we do not want to expose anyone to that stuff.
+[Tue 11:31:34] <elf-pavlik>	roger!
+[Tue 11:31:50] <Mark>	Dave: Should be put in vocabulary, useful.  But to solve this problem, that is too deep than necessary.
+[Tue 11:32:16] <dlongley-db>	a credential could have a @type of ["Credential", "Badge", "Class101Badge"]
+[Tue 11:32:18] <Mark>	Manu: All you need to do is use JSON data and mention the vocabulary.
+[Tue 11:32:33] <elf-pavlik>	yes, thank you!
+[Tue 11:32:47] <manu>	Topic: Roadmap Update
+[Tue 11:32:57] <manu>	Mark: My only comment is that there are some outstanding comments by Kerri.
+[Tue 11:33:05] <manu>	Mark: I'd like the group to review those comments. 
+[Tue 11:33:28] <manu>	Mark: In the envisioned uses section, the details provided are details of the same uses. I'm not sure we wanted to get into that level of granularity. Need an independent review of that.
+[Tue 11:34:18] <voip-cr>	16092160944 [SIP/69.71.222.196-00000029] has joined the conference.
+[Tue 11:34:19] <voip-cr>	16092160944 [SIP/69.71.222.196-00000029] has joined the conference.
+[Tue 11:34:19] <voip-cr>	16092160944 [SIP/69.71.222.196-00000029] has joined the conference.
+[Tue 11:34:30] <voip-cr>	16092160944 [SIP/69.71.222.196-00000029] has left the conference.
+[Tue 11:34:30] <voip-cr>	unknown participant has left the conference.
+[Tue 11:34:30] <voip-cr>	unknown participant has left the conference.
+[Tue 11:34:34] <Mark>	Manu:  Any roadmap updates?
+[Tue 11:34:45] <elf-pavlik>	https://lists.w3.org/Archives/Public/public-credentials/
+[Tue 11:35:12] <NateOtto>	I've had a really busy week!
+[Tue 11:35:18] <NateOtto>	Next week should be way better.
+[Tue 11:35:32] <Mark>	Mark: I had a question about Kerri's edits, I thought they were further details of the existing cases and I am not sure they are necessary but I would like others to weigh in.
+[Tue 11:35:50] <manu>	Recruiting doc: https://docs.google.com/document/d/1Tm5E9GBlWZsftEPiTu0ZZsGqwqYwtOOWwsYIU-cbQwQ/edit
+[Tue 11:35:58] <Mark>	Manu: We need to keep the progress levels up.  We have slowed in recent weeks and need to pick up the pace.
+[Tue 11:36:07] <manu>	Recruiting doc: https://docs.google.com/document/d/1u0DC4U7jAayv1IvOY2qu7nMRtiFOPxwCT3BkPJek5ho/edit#
+[Tue 11:36:47] <Mark>	Manu: On the recruiting doc, please place your name so we can know who is recruiting which orgs.
+[Tue 11:37:16] <Mark>	Eric: Question about the open payment foundation progress.
+[Tue 11:38:05] <Mark>	Manu: Stalled due to other work.  The organization exists but we are waiting for IRS non-profit status, submitting paperwork to software federation.
+[Tue 11:38:26] <NateOtto>	elf-pavlik -- added this to my automatically-on IRC channels, so I'll be here during the week.
+[Tue 11:38:32] <Mark>	Accreditrust will help move that forward.
+
