@@ -1,0 +1,134 @@
+[Tue 11:04:28] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015Mar/0003.html
+[Tue 11:04:39] <NateOtto>	scribe: NateOtto
+[Tue 11:04:39] <NateOtto>	manu: Today, profile use cases with elf
+[Tue 11:05:08] <NateOtto>	manu: Then a quick talk about the CCG charger, use cases after that, and LD signatures spec, credentials/badges vocabulary
+[Tue 11:05:39] <NateOtto>	manu: any updates/changes to agenda?
+[Tue 11:05:57] <NateOtto>	manu: Then, we'll start off with elf's item
+[Tue 11:17:55] <NateOtto>	Manu: We'll skip the roadmap update until Mark or Mary are back
+[Tue 11:18:14] <manu>	Topic: Credentials Working Group Charter
+[Tue 11:18:14] *	dlongley elf-pavlik, keep trying, we may just have to move your agenda item to next week
+[Tue 11:18:15] <NateOtto>	Sorry, elf, We'll move your agenda item to the next week or later in the call if you get audio
+[Tue 11:18:24] *	elf-pavlik ok
+[Tue 11:18:25] <NateOtto>	manu: next item: credentials working group charter
+[Tue 11:18:39] <NateOtto>	manu: There haven't been many updates to the charter, because it's simpler yet.
+[Tue 11:18:50] <NateOtto>	manu: to do: we need to move the timeline section into this document.
+[Tue 11:18:51] <elf-pavlik>	erok210, maybe you can turn of video on join.me ?
+[Tue 11:19:38] <NateOtto>	manu: I've been circulating the charter among w3c staff, and getting feedback
+[Tue 11:20:12] <NateOtto>	manu: Told them we might want to skip the IG process and move right into a working group. Some staff don't see a problem; some staff don't see a problem, as long as there is not technical misalignment in the group
+[Tue 11:20:46] *	elf-pavlik ok got audio :)
+[Tue 11:20:49] <NateOtto>	manu: However, if some of these new organizations coming on, that are not yet taking part in these calls, if they don't understand the technology we are proposing, it will be nearly impossible to jump directly into a working group.
+[Tue 11:21:50] <NateOtto>	manu: so there are two options:1) do a bunch of front-running with these new-joining companies and build understanding and technical alignment or 2) do a short Interest Group phase where we hash through issues
+[Tue 11:22:17] <NateOtto>	manu: If we start the Interest Group process, we're looking at a year. We shoot for 6 months, but it's usually a year.
+[Tue 11:22:37] <NateOtto>	manu: If we go IG route, the discussions there are discussions that we will need to be having anyway
+[Tue 11:23:06] <NateOtto>	manu: If we go directly into a WG and there's any doubt of technical alignment, it could derail the work
+[Tue 11:23:53] <NateOtto>	manu: If we had disagreement in a WG structure, it would derail discussion, and end up having Interest Group like discussions
+[Tue 11:24:10] <NateOtto>	manu: as we talk to the big organizations who aren't on today's call, there will be a lot of getting-up-to-speed to do
+[Tue 11:24:55] <NateOtto>	manu: My gut feeling is that we won't be able to jump right into a WG. Talking with the large organizations in question, they are at a very high level, they don't have the engineers picked out yet
+[Tue 11:25:05] <NateOtto>	bsletten: Do we have consensus on the milestone items from the roadmap?
+[Tue 11:25:21] <NateOtto>	manu: we didn't talk a lot on it
+[Tue 11:25:33] <NateOtto>	manu: We will have to change the dates on the roadmap to Start + X Months format
+[Tue 11:25:36] <manu>	https://docs.google.com/document/d/1Tm5E9GBlWZsftEPiTu0ZZsGqwqYwtOOWwsYIU-cbQwQ/edit#heading=h.trx7rzba1zyf
+[Tue 11:26:02] <NateOtto>	manu: any objectsion to moving this timeline (with modifications to Start of group + N Months format) into the charter?
+[Tue 11:26:16] <dlongley>	no objection, +1 to using relative to "start time" approach
+[Tue 11:26:30] <NateOtto>	manu: if an Interest Group starts up, the IG would take over the charter
+[Tue 11:26:30] *	elf-pavlik lost audio again :(
+[Tue 11:26:40] <erok210>	no objection, +1
+[Tue 11:26:44] *	elf-pavlik back!
+[Tue 11:27:14] <NateOtto>	manu: charter, credentials use cases, credentials/badges vocabulary, identity credentials spec would all get held up
+[Tue 11:27:38] <NateOtto>	manu: (RDF dataset normalization, signing HTTP Messages, Linked Data Signatures spec would still move forward)
+[Tue 11:27:39] <Kerri>	No objections
+[Tue 11:28:21] <manu>	Topic: Use Cases
+[Tue 11:28:29] <manu>	http://opencreds.org/specs/source/use-cases/
+[Tue 11:28:30] <NateOtto>	manu: next up, high level discussion of use cases, then specifically elf's social use cases
+[Tue 11:29:05] <manu>	http://www.w3.org/2015/Talks/ij-usecases/
+[Tue 11:29:23] <NateOtto>	manu: Trying to build a use cases format that is easy enough for journalists, but detailed enough to extract technical requirements from
+[Tue 11:30:06] <dlongley>	perhaps 3 steps: how a credential is issued, how one is requested from you, how one is consumed
+[Tue 11:30:18] <manu>	https://dvcs.w3.org/hg/webpayments/raw-file/default/latest/use-cases/index.html#introduction
+[Tue 11:30:56] <NateOtto>	manu: maybe dlongley's are three different flows perhaps
+[Tue 11:31:17] <NateOtto>	manu: the use cases are meant to frame what our vision for the future of credentials on the web looks like
+[Tue 11:31:40] <NateOtto>	manu: Use cases are broken into phases; in payments there are four different phases; in credentials, there are three basic phases, ...
+[Tue 11:32:07] <NateOtto>	dlongley: the three different phases we might have in the credentials work are Issuing a credential, requesting a credential, consuming a credential.
+[Tue 11:32:30] <NateOtto>	NateOtto: recipient push is another flow that should be represented, not just consumer/requestor pull
+[Tue 11:32:41] <manu>	https://dvcs.w3.org/hg/webpayments/raw-file/default/latest/use-cases/index.html#negotiation-of-payment-terms
+[Tue 11:32:53] <NateOtto>	manu: If you see section 2.1 on Web Payments use case, each phase is broken into steps. Some of the steps are optional.
+[Tue 11:33:15] <NateOtto>	manu: in credentials case, it might be much simpler than the payments case; the payments case has a number of really complex flows
+[Tue 11:33:16] <dlongley>	q+
+[Tue 11:33:16] <voip-cr>	Added dlongley to the speaker queue: dlongley
+[Tue 11:33:27] <NateOtto>	manu: I'm hoping it will be a tad bit easier for credentials than it will be for payments
+[Tue 11:33:57] <manu>	ack dlongley
+[Tue 11:33:57] <voip-cr>	dlongley has the floor. The speaker queue is empty.
+[Tue 11:33:59] <NateOtto>	manu: clearly the credentials flows will have a bunch of steps in each phase, and break those down
+[Tue 11:34:49] <NateOtto>	dlongley: some of the refactoring of the web payments use cases reflects a similar refactor to reflecting push/pull in credentials as NateOtto noted
+[Tue 11:35:14] <NateOtto>	dlongley: some of the steps would only apply to push; some would only apply to pull flow
+[Tue 11:35:48] <NateOtto>	manu: comments?
+[Tue 11:36:09] <NateOtto>	Kerri: We'll need a week to think about whether the Web payments phase-based approach is the approach we want to take
+[Tue 11:36:38] <NateOtto>	manu: I recommend Ian Jacobs slide deck (linked above) as very useful for assembling use cases.
+[Tue 11:36:52] <NateOtto>	manu: look at the introduction in the web payments use cases, which explains how things are broken out.
+[Tue 11:37:07] <NateOtto>	Kerri has a use cases doc to share (after elf?)
+[Tue 11:37:11] <elf-pavlik>	http://www.w3.org/Social/InterestGroup/track/actions/2
+[Tue 11:37:12] <NateOtto>	https://docs.google.com/document/d/1f2U97L5vrFHOActRFVSRDg3koTeA6_Oy3SCGmkimziM/edit#
+[Tue 11:37:13] <manu>	Topic: Profile Use Cases
+[Tue 11:37:28] *	manu yes, Kerri - you're up after Elf.
+[Tue 11:37:48] <NateOtto>	elf-pavlik: had posted a document in the mailing list with social web use cases
+[Tue 11:38:36] <NateOtto>	manu: I took an in-depth use; they overlap almost 90% with some of the work this group wants to do
+[Tue 11:39:00] <NateOtto>	manu: question, is the Social Web WG going to plow ahead and define a solution, or are they deferring the creation of a solution to another group?
+[Tue 11:39:24] <NateOtto>	elf-pavlik: I can ask today in a meeting. There is some overlapping group, and there is a chance to offload from the SW WG, which is already overloaded
+[Tue 11:39:33] <NateOtto>	elf-pavlik: Maybe there is a chance to reuse this existing work
+[Tue 11:40:10] <NateOtto>	http://www.w3.org/Social/InterestGroup/track/actions/2 -- here's the SW use cases elf posted, for reference
+[Tue 11:40:36] <NateOtto>	manu: in Social Web, have they rejected JSON-LD in favor of the core protocol, but leaves JSON-LD open for those who wants to use it?
+[Tue 11:40:53] <NateOtto>	elf-pavlik: no requirement/resolution on whether or not JSON-LD is required. Many use it.
+[Tue 11:41:15] <NateOtto>	elf-pavlik: there is a meeting march 17-18
+[Tue 11:41:54] <elf-pavlik>	Social WG Face 2 Face https://www.w3.org/wiki/Socialwg/2015-03-17
+[Tue 11:42:02] <NateOtto>	elf-pavlik: a credential is used by other parties? What's the use of credentials for personal information..?
+[Tue 11:42:28] <NateOtto>	manu: You can self-issue credentials, say to add information to your profile like a phone number. Or you could include it as claims that are not signed by anyone.
+[Tue 11:42:45] <NateOtto>	elf-pavlik: I don't see why I have to sign information that I have posted myself.
+[Tue 11:43:35] <NateOtto>	manu: Let's take this discussion to the mailing list -- I think we have lots of thoughts on this
+[Tue 11:44:08] <NateOtto>	manu: I think there's a lot of overlap on here, and my fear is that the social web group will plow ahead and create something that could conflict with what we're creating
+[Tue 11:44:55] <NateOtto>	manu: One notion is that you have just key-value pairs, and another notion is to have key-value pairs that are attached to signed credentials
+[Tue 11:45:20] <NateOtto>	manu: You've clearly identified a big overlap between the Social Web group and any credentials work happening at the W3C
+[Tue 11:45:58] <NateOtto>	NateOtto: Looking forward to having this back on the mailing list for some slower thinking. :)
+[Tue 11:46:12] <NateOtto>	Kerri: will post link to use cases draft as it stands today
+[Tue 11:46:13] <Kerri>	https://docs.google.com/a/achievery.com/document/d/1f2U97L5vrFHOActRFVSRDg3koTeA6_Oy3SCGmkimziM/edit?disco=AAAAAVk-Y_U
+[Tue 11:46:49] <NateOtto>	Kerri: would be helpful to have some feedback on these cases
+[Tue 11:47:07] <NateOtto>	Kerri:this brings in what we know about badges and previous credential work
+[Tue 11:47:43] <NateOtto>	manu: should we all start working in this document, and then eventually move it into w3c format?
+[Tue 11:47:49] <NateOtto>	Kerri: that would be helpful
+[Tue 11:47:54] <NateOtto>	Kerri: We'll think about the phases.
+[Tue 11:48:27] <manu>	Nate: I added in at the bottom of the doc, a brand new use case - Recipient Repudiability
+[Tue 11:50:58] <manu>	Nate: This has to do with a case where someone says something about you that you don't want to be on the Web and you want to take it down.
+[Tue 11:51:27] <NateOtto>	NateOtto: if anyone has feedback on that case particularly, comments in the doc here are a good spot
+[Tue 11:51:56] <NateOtto>	manu: this document might be a good place to park the document, but we'll need to denote group consensus to make them an official doc component
+[Tue 11:52:09] <manu>	Topic: Linked Data Signatures spec
+[Tue 11:52:15] <manu>	https://web-payments.org/specs/source/ld-signatures/
+[Tue 11:52:20] <NateOtto>	manu: We can discuss which use cases are officially approved when we finish this phase
+[Tue 11:52:28] *	SLeeBA has quit (Ping timeout: 246 seconds)
+[Tue 11:52:44] <NateOtto>	manu: LD signatures status; Do we want to split out the key management portions of the spec?
+[Tue 11:53:24] <NateOtto>	manu: the attaching keys to identities, registration of keys. Looks like we need to update this document to the newest GraphSignature algorithm, which uses some more secure cryptographic primatives
+[Tue 11:53:28] <manu>	Topic: Credentials/Badges Vocabulary Update
+[Tue 11:53:33] <manu>	https://docs.google.com/document/d/1xQrBwK5tiggSWMXh7ByZ4acEjtMaIMgqyQey67fh5TQ/edit
+[Tue 11:54:00] <manu>	Nate: No new changes on doc yet - top priority is figuring out how a "BadgeClass" fits into this identity/spec - see if technical reality and doc match up.
+[Tue 11:54:22] <manu>	Nate: Trying out a bunch of JSON-LD Framing techniques, make this notion of "X identity has badges A, B, and C".
+[Tue 11:55:09] <manu>	Nate: From perspective of Badge Alliance - a way of reasoning about an identity wrt. how consumers are represented. What are the diferences between different badges - reason about the different folks that have them. If anyone has any technical suggestions on how to make them mesh, would be interested in talking about them.
+[Tue 11:55:55] <elf-pavlik>	q+ re: how do we keep track on all those drafts (in GDocs)? using wiki page, opencreds.org, ...?
+[Tue 11:55:55] <voip-cr>	Added elf-pavlik to the speaker queue: elf-pavlik
+[Tue 11:56:05] <erok210>	eric: Doesn't that go to the concept of Privacy settings?
+[Tue 11:56:12] <manu>	Nate: I'd like to see a finished product - an identity w/ an array of credentials - what are the badge classes - badges that this user has earned. IRIs of badge class - linked badges array - full representation of those badges listed. So, trying to figure out the answer to "How many badges are owned by person X?"
+[Tue 11:56:36] <NateOtto>	manu: Right now they are linked from agendas
+[Tue 11:56:51] <NateOtto>	manu: but looking to see if we have a wiki enabled for our CG -- we do not
+[Tue 11:57:08] <NateOtto>	manu: we had been tracking them in GitHub, but it's not easy for everyone to edit those documents
+[Tue 11:57:20] <NateOtto>	manu: Let me see if W3C would activate a wiki for us
+[Tue 11:57:39] <NateOtto>	elf-pavlik: we could take this question to the mailing list
+[Tue 11:57:55] <NateOtto>	manu: any objecttions to trying to collect all this stuff in a GitHub Wiki
+[Tue 11:58:12] <elf-pavlik>	in Social WG/IG I also proposed using http://prose.io
+[Tue 11:58:23] <elf-pavlik>	e.g. http://prose.io/#w3c-social/soc-glossary/edit/gh-pages/index.html
+[Tue 11:58:47] <manu>	ACTION: Nate to create github wiki to list all working documents for the group.
+[Tue 11:58:59] <NateOtto>	Nate: no objections, I'll create an index to the documents discussed in the last several agendas
+[Tue 11:59:12] <erok210>	eric: Doesn't that go to the concept of Privacy settings?
+[Tue 11:59:27] <erok210>	eric: with respect to listing creds from an identity?
+[Tue 11:59:28] <NateOtto>	NateOtto: no more on vocabulary
+[Tue 11:59:47] <erok210>	eric: paging too
+[Tue 11:59:51] <NateOtto>	manu: we will try to align some time offline to chat about the question Nate raised
+[Tue 12:00:16] <Kerri>	Thank you
+[Tue 12:00:17] <NateOtto>	manu: thanks, everyone. will chat again next week.
+[Tue 12:00:18] <NateOtto>	Nate: Thanks, all
+
