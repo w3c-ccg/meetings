@@ -1,0 +1,211 @@
+[Tue 11:03:31] <manu>	scribe: gkellogg
+[Tue 11:03:37] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015May/0020.html
+[Tue 11:04:04] <voip-cr>	19082484252 [SIP/69.71.222.196-000001c8] has joined the conference.
+[Tue 11:04:16] <gkellogg>	manu: webappsec update, graph normalization, Credentials management API extension
+[Tue 11:04:43] *	SLee_ (8e884c69@gateway/web/freenode/ip.142.136.76.105) has joined #credentials
+[Tue 11:04:45] <gkellogg>	… Also, a small mod to the openbadges context via taaz
+[Tue 11:04:47] <manu>	voip: 1c8 is Eric
+[Tue 11:04:47] <voip-cr>	Associated Eric with SIP/69.71.222.196-000001c8.
+[Tue 11:05:09] *	kerri_lemoie (46bcb31d@gateway/web/freenode/ip.70.188.179.29) has joined #credentials
+[Tue 11:05:16] <manu>	voip: 1c8 is Kerri
+[Tue 11:05:16] <voip-cr>	Associated Kerri with SIP/69.71.222.196-000001c8.
+[Tue 11:05:24] <manu>	voip: 1ca is Sunny
+[Tue 11:05:24] <voip-cr>	Associated Sunny with SIP/142.136.76.105-000001ca.
+[Tue 11:05:28] <manu>	voip: connections?
+[Tue 11:05:29] <voip-cr>	Conference participants are: Brian Sletten [SIP/sip2sip.info-000001c2], Nate Otto [SIP/sip2sip.info-000001c3], Jordan [SIP/69.71.222.196-000001c4], Dave Longley [SIP/6002-000001c5], Manu Sporny [SIP/6000-000001c6], Gregg Kellogg [SIP/sip2sip.info-000001c7], Kerri [SIP/69.71.222.196-000001c8], 16617480240 [SIP/69.71.222.196-000001c9], Sunny [SIP/142.136.76.105-000001ca].
+[Tue 11:05:38] <dlongley>	voip-cr: 1c8 is Eric
+[Tue 11:05:38] <voip-cr>	Associated Eric with SIP/69.71.222.196-000001c8.
+[Tue 11:05:43] <dlongley>	voip-cr: 1c9 is Kerri
+[Tue 11:05:44] <voip-cr>	Associated Kerri with SIP/69.71.222.196-000001c9.
+[Tue 11:05:53] <manu>	Topic: Introduction to Jordan Windsor
+[Tue 11:06:28] <NateOtto>	Welcome, Jordan!
+[Tue 11:06:34] <manu>	jordan: My name is Jordan Windsor - listening in, interested in evolving technologies impact our business - interested in Credentials on behalf of Lexus of Richmond.
+[Tue 11:06:37] <NateOtto>	 This is an open channel, and we're gald to have you.
+[Tue 11:07:03] <manu>	Topic: Open Badges xsd:string issue
+[Tue 11:07:03] <manu>	scribe: manu
+[Tue 11:07:03] <voip-cr>	16097341186 [SIP/69.71.222.196-000001cb] has joined the conference.
+[Tue 11:07:09] <manu>	voip: 1cb is Richard
+[Tue 11:07:10] <voip-cr>	Associated Richard with SIP/69.71.222.196-000001cb.
+[Tue 11:07:17] <NateOtto>	Demonstration of the xsd:string problem in the open badges context: http://json-ld.org/playground/#/gist/0d1ca2097f94cae690cf
+[Tue 11:07:43] <gkellogg>	manu: we detected an issue with the Open Badges context, and the output suprized us.
+[Tue 11:08:11] <gkellogg>	Nateotto: I’ve confirmed the behavior, but haven’t pushed out an update yet.
+[Tue 11:08:18] <voip-cr>	victoriano [SIP/90.161.204.253-000001cc] has joined the conference.
+[Tue 11:08:29] <voip-cr>	victoriano [SIP/90.161.204.253-000001cc] has left the conference.
+[Tue 11:08:39] <manu>	dlongley: I can summarize the issue
+[Tue 11:08:47] <voip-cr>	victoriano [SIP/90.161.204.253-000001cd] has joined the conference.
+[Tue 11:08:56] <manu>	dlongley: When the new open badges context was first put out, I believe you were adding, for certain term definitions - to only apply to strings.
+[Tue 11:08:58] <voip-cr>	victoriano [SIP/90.161.204.253-000001cd] has left the conference.
+[Tue 11:09:36] <manu>	dlongley: You were setting the type to an xsd:string - unfortunately, the JSON-LD processing rules consider @type to be completely opaque, so what that means is - in plain JSON strings for your values, instead of JSON strings that have xsd:string @type, the processor will see them as two differen things.
+[Tue 11:10:09] <voip-cr>	victoriano [SIP/90.161.204.253-000001ce] has joined the conference.
+[Tue 11:10:20] <voip-cr>	victoriano [SIP/90.161.204.253-000001ce] has left the conference.
+[Tue 11:10:21] <voip-cr>	16617480240 [SIP/69.71.222.196-000001d0] has joined the conference.
+[Tue 11:10:39] <voip-cr>	16092160944 [SIP/69.71.222.196-000001d1] has joined the conference.
+[Tue 11:10:42] <manu>	dlongley: Processor won't see as JSON string - xsd types are only interpreted by the toRDF and fromRDF algorithms in JSON-LD. In effect, what happens is that if you have a context, and you have "name" and you say it only applies to things w/ "xsd:string" - if you have type xsd:string on it - compact using that context, that term will not be detected. It'll use some other rule in your context.
+[Tue 11:10:48] <kerri_lemoie>	voip: 1d0 is Kerri
+[Tue 11:10:48] <voip-cr>	Associated Kerri with SIP/69.71.222.196-000001d0.
+[Tue 11:10:54] <voip-cr>	victoriano [SIP/90.161.204.253-000001d2] has joined the conference.
+[Tue 11:11:05] <voip-cr>	victoriano [SIP/90.161.204.253-000001d2] has left the conference.
+[Tue 11:11:30] <manu>	dlongley: JSON strings don't map to that in expansion/compaction rules. Automatic translation doesn't happen - some items don't compact down. So, JSON-LD 1.0 - if you want a term to be selected for values to be selected for JSON strings, you can't restrict it to just strings.
+[Tue 11:11:42] <manu>	dlongley: However, that's ok - JSON-LD contexts aren't supposed to be used for validation.
+[Tue 11:11:49] <manu>	dlongley: You can use JSON Schema for validation.
+[Tue 11:12:06] *	victoriano (~vic@90.161.204.253) has joined #credentials
+[Tue 11:12:08] <manu>	NateOtto: We were just putting it in there to provide as much info as we could - here's what you should expect to find. 
+[Tue 11:12:23] <manu>	NateOtto: I have a question on other types - is there any useful information I can put in the context for the type of info about their ID?
+[Tue 11:13:07] <manu>	dlongley: When you're creating term definitions in the context they're definitions that a processor will use to take a property and replace it w/ a term. JSON-LD processors see properties come in w/ a value, if there is a match in the JSON-LD context, it'll replace it w/ a shorter form of it.
+[Tue 11:13:27] <gkellogg>	dlongley describes the use of context for compaction, it has other roles when expanding.
+[Tue 11:13:49] <manu>	dlongley: Don't think of it as a way of providing hints for people. If you want to restrict it by type, put the type in there. That is a hard restriction, if the type doesn't exist in the data, the term will not be selected. If you want things to compact down, don't put the type in there unless the incoming data has that type.
+[Tue 11:14:09] <manu>	NateOtto: Will that property be selected with proper type information?
+[Tue 11:14:44] <manu>	dlongley: If you have a term that's not restricted by type, if that's the only term available, the property associated w/ the term will be compacted, but the @value/@type will be the same (but expanded), but the term will compact down.
+[Tue 11:15:13] <gkellogg>	q+
+[Tue 11:15:15] <manu>	NateOtto: Ok, will make changes in a bit and we'll put it into production shortly.
+[Tue 11:15:15] <dlongley>	for example - "http://example.com/term": {"@value": "foo", "@type": "bar"} - "term": {"@value": "foo", "@type": "bar"}
+[Tue 11:15:45] <voip-cr>	Dave Lehn [SIP/6003-000001d3] has joined the conference.
+[Tue 11:15:46] <NateOtto>	https://openbadgespec.org/v1/context.json Here's the context for instance.
+[Tue 11:16:20] <manu>	gkellogg: I'll note that there is other information that you can put in a document containing a JSON-LD context, not used by JSON-LD processors, but many of the vocabularies I work on, the context is published at the location of the vocabulary. An RDFs definition of that vocabulary, it's entirely consistent to have the body of that document have an RDFs definition. It's completely unused by a JSON-LD processor, but is a good way to document what your JSON-LD context is doing.
+[Tue 11:16:23] <NateOtto>	gkellogg: Interesting, we're using some additional material in our context just like you describe, but it's an open badges specific addition of links to validation schema using JSON-schema
+[Tue 11:16:54] <manu>	NateOtto: We do have some links on structural validation in our JSON-LD context documents in the future. We hope to integrate that stuff in in the future.
+[Tue 11:17:47] <manu>	Topic: WebAppSec Credential Management API
+[Tue 11:18:20] <manu>	dlongley: Manu and I were on the WebAppSec call yesterday, where they were talking about Credential Management API progress. We had a short discussion at end of that call.
+[Tue 11:18:32] <manu>	dlongley: Summary of what was discussed on the call: https://lists.w3.org/Archives/Public/public-webappsec/2015May/0101.html
+[Tue 11:18:58] <manu>	dlongley: Essentially, there are a couple of concerns that we have w/ the existing API and how it can be extended to support Credentials CG credentials in the future.
+[Tue 11:19:23] <manu>	dlongley: The current API is supportive of "same-origin credentials" - which are credentials generated for a specific site and only work on one website.
+[Tue 11:19:45] <manu>	dlongley: They are operating on the basis that the interaction that you go to a website, get a credential from that website, and use the credential only on that website.
+[Tue 11:20:22] <manu>	dlongley: The Credentials CG credentials assume the scenario where you get a credential from one website and need to use it on a different website - these are "cross-origin credentials".
+[Tue 11:20:38] <manu>	dlongley: We have to make sure that the Credential Management API will work with cross-origin credentials.
+[Tue 11:20:46] <manu>	dlongley: We need to make sure of 2 things, at least:
+[Tue 11:21:08] <manu>	dlongley: The first is that the credential can't be "who you are" - it's that an identifier is associated with a set of credentials.
+[Tue 11:21:39] <manu>	dlongley: The second is that you can go off to a remote website to fetch your credential. Credential storage doesn't have to just happen in your local browser. You have to be able to store and retrieve credentials from other websites.
+[Tue 11:21:58] <manu>	dlongley: 3rd party storage/retrieval is important to use, otherwise you end up locking your credentials into your browser.
+[Tue 11:22:24] <manu>	dlongley: You enter username/password that's easy to create a credential from that - you can't easily re-create a drivers license, or a corporate ID card.
+[Tue 11:22:32] <manu>	dlongley: We need to make sure we can use cross-origin credentials.
+[Tue 11:22:46] <manu>	dlongley: We need to make sure that browser implementers can integrate w/ our type of credentials.
+[Tue 11:23:00] <NateOtto>	q+
+[Tue 11:23:21] <manu>	dlongley: We've signed up to formulating how credentials would work w/ cross-origin credentials and the Credential Management API.
+[Tue 11:23:30] <manu>	dlongley: We're going to sync up w/ them next week after we've put our proposal forward.
+[Tue 11:24:09] <manu>	NateOtto: It seems to me wrt. WebAppSec - they're thinking all about authentication - the person is who they expect. That's an important part of our credentials as well. We can't have someone else presenting our credentials - but we have an idea of how to do authorization to do more interesting things. 
+[Tue 11:24:23] <manu>	NateOtto: Those credentials that I'm showing you authorize me to do more interesting things w/ your system.
+[Tue 11:24:47] <manu>	NateOtto: It seems like what they're doing just formalizes the status quo - we're hoping for a broader feature - a service can switch on the credentials you have.
+[Tue 11:25:17] <voip-cr>	6304 [SIP/216.252.204.51-000001d7] has joined the conference.
+[Tue 11:25:26] <manu>	dlongley: Yes, that's exactly right. What we've found is that the way we've modeled it - you can provide different credentials to provide deeper authorization. It covers just about every use case you could think of. The login case that they're dealing w/ is just one tiny case.
+[Tue 11:25:28] <voip-cr>	6304 [SIP/216.252.204.51-000001d7] has left the conference.
+[Tue 11:25:48] <manu>	dlongley: That's really what login is.
+[Tue 11:26:02] <manu>	dlongley: They ask for a subset of information about you - to prove information is true - to take a variety of actions.
+[Tue 11:26:33] <manu>	NateOtto: They're really only looking at Credentials Management API from a login point of view, has it been difficult convincing them that the problem is broader than what they're focusing on and that's constraining their solution?
+[Tue 11:27:23] <manu>	dlongley: We really haven't had enough time to go through everything w/ them. We don't want to expand their scope, and there is this W3C Process issue we're bumping up against. We can't talk about too much outside of their Charter. We can only talk about extensibility, not about what we're doing.
+[Tue 11:27:51] <NateOtto>	manu: That's one of the big unfortunate things of how this is coming about. Maybe Eric or Melvin sent me an email letting me know there is a new working group that has to do with account selection at w3c
+[Tue 11:28:12] <gkellogg>	q+
+[Tue 11:28:43] <NateOtto>	manu: that means there are 5 groups at W3c that are all kinda-sorta working on the same thing, and it's looking like W3C is not doing as good a job coordinating all these groups together as they should be. We're trying to do that work and connect them together so there isn't the disaster of 5 different APIs.
+[Tue 11:29:32] <NateOtto>	manu: W3C process is written so that working groups should not go outside their charter, so the only thing we can discuss in the WebAppSec group, is this login thing, and because that's their charter, they're looking at the solution in a constrained way. Therefore, we can only be looking at the extensibility part of their API.
+[Tue 11:30:39] <NateOtto>	gkellogg: W3C "Activities" are coordinated by Activity Leads. It seems like these groups span more than one activity, but it seems there is some coordinating entity necessary for this.
+[Tue 11:30:49] <manu>	gkellogg: Typically there are activities - W3C has activity areas that cover broad sets of things that are interrelated. There is an activity lead that is responsible for coordinating this work. There seems like there is some coordinating entity that's necessary - perhaps there are other areas that require interactivity coordination.
+[Tue 11:31:01] <NateOtto>	gkellogg: Has there been any discussion, or has there been any insight into that process?
+[Tue 11:31:11] <gkellogg>	manu: the person in charge of coordination is overloaded, so this has been lost.
+[Tue 11:31:36] <gkellogg>	… eg, the credential management API folks don’t see the need to cover us, because of the narrow interpretation of their charter.
+[Tue 11:32:07] <gkellogg>	… There’s fundamental disagemenet as to how much overlap there is. Many feel that these should evolve separately, and bring them together later.
+[Tue 11:32:28] <gkellogg>	… Our feeling is that this will lead to 4 different APIs that overlap, but will never be resolved.
+[Tue 11:33:03] <gkellogg>	… Conversations are ongoing. WebPayments IG will make some recommendations to W3C; fundamentally, we just need to get 3 key W3C people together to make this point.
+[Tue 11:33:40] <manu>	dlongley: Fundamentally, the work we're doing here encompasses what the other groups are doing. They're focusing on more narrow use cases that fit into the larger design that we have for credentials on the Web. Hopefully we can teach people that that's true.
+[Tue 11:34:38] <gkellogg>	manu: the other danger is that, eg, dlongley and I need to go off and invent a credential management extension, and we’re falling behind. This will make it difficult to stay up to date across all these groups, and we’re likely to get run over by the narrow focus of these groups.
+[Tue 11:35:03] <gkellogg>	… In this iteration, it’s been a month, and they’re waiting to go, but we’ve been swamped.
+[Tue 11:35:28] <gkellogg>	… It’s going to be difficult for us to respond to respond to these issues.
+[Tue 11:35:41] <gkellogg>	… This take away from time necessary for recruiting, summaries, and so forth.
+[Tue 11:36:13] <gkellogg>	… We need help on the other documents: use cases, recruiting, architecture, etc. Otherwise, we won’t be ready when W3CM asks us to start official work.
+[Tue 11:36:30] <NateOtto>	Sunny, Kerri and I can do work on the Use Cases doc this week.
+[Tue 11:36:50] <SLee_>	+1
+[Tue 11:36:57] <gkellogg>	bsletten: I can work on the use cases too, next week.
+[Tue 11:37:22] <gkellogg>	manu: we need to start recruiting this or next week. i’ll send out about 75 emails to get the process going.
+[Tue 11:37:45] <gkellogg>	… We really need a document we can send out to new members, so that people in this group can show it to recruit new members.
+[Tue 11:38:56] <gkellogg>	… If you follow the request, they want a survey of all previous systems to show why they don’t work. It will take a long time to prepare such a response.
+[Tue 11:39:15] <manu>	Topic: Graph Normalization Test Suite
+[Tue 11:39:28] <voip-cr>	Kerri [SIP/69.71.222.196-000001d0] has left the conference.
+[Tue 11:39:37] <gkellogg>	https://github.com/ruby-rdf/rdf-normalize
+[Tue 11:39:43] <manu>	gkellogg: I started working on my own implementation of RDF Graph Normalization
+[Tue 11:40:25] <manu>	gkellogg: A part of what I ran across - there are two different normalization algorithms in use right now 2012 and 2015.
+[Tue 11:40:38] <manu>	Manu: We need graph normalization to digitally sign credentials, so that people can verify and trust them.
+[Tue 11:41:20] <manu>	gkellogg: We'll probably need a separate repository that focuses on normalization, which can then serve as the basis for a normalization micro working group or whatever it might be. There is precendence for this. There is a W3C group on github where different WGs maintain repositories for issue management and stuff like that.
+[Tue 11:42:11] <voip-cr>	16617480240 [SIP/69.71.222.196-000001dc] has joined the conference.
+[Tue 11:42:23] <manu>	gkellogg: gh-pages can serve as a web home for this stuff - CSV on the Web group work like this. It was my thought that it's time for us to separate out the normalize work at least into its own repository so we can move it forward and get it prepared. Because it is so specialized, it's not in the core expertise of this particular group, having it as a separate repo allows the conversation to develop on their own. Move it to some place else moving foward.
+[Tue 11:42:29] <kerri_lemoie>	voip: 1dc is Kerri
+[Tue 11:42:29] <voip-cr>	Associated Kerri with SIP/69.71.222.196-000001dc.
+[Tue 11:42:37] <manu>	dlongley: I'm in favor of moving it over to its own repository.
+[Tue 11:42:40] <manu>	Manu: me too.
+[Tue 11:42:54] <manu>	gkellogg: Then I'll take the action to do that - we can do that under the JSON-LD github organization.
+[Tue 11:43:17] <manu>	Manu: Yep, that location sounds great.
+[Tue 11:43:32] <manu>	ACTION: Gregg to split 2015 normalization out to separate repo on json-ld.org.
+[Tue 11:43:44] <manu>	gkellogg: Out of the 50+ tests, I pass all but 7 of them.
+[Tue 11:44:01] <NateOtto>	Good work, gkellogg ! Independent implementations!
+[Tue 11:44:36] <manu>	gkellogg: We're close to 2 interoperable implementations. It was pretty easy to implement, some of the nomenclature was difficult to understand, we can correct it.
+[Tue 11:44:52] <manu>	gkellogg: It's much more straighforward than the canonicalization algorithms used for graph isomorphism.
+[Tue 11:45:02] <manu>	dlongley: It looks like it's under 250 lines in Ruby.
+[Tue 11:45:09] <manu>	gkellogg: Yeah, it's pretty small, which is good.
+[Tue 11:45:28] <manu>	gkellogg: I think the algorithm descriptions are a bit too low-level - something in between a mathematical proof and a by-the-numbers implementation.
+[Tue 11:45:30] <manu>	dlongley: I agree.
+[Tue 11:45:52] <manu>	gkellogg: Having something described that can be independently implemented and come this close to interop is key. So, that's good.
+[Tue 11:47:02] <gkellogg>	http://aidanhogan.com/docs/skolems_blank_nodes_www.pdf
+[Tue 11:47:47] <manu>	gkellogg: We will want to clean it up a bit, but given that there is no WG whose mission to push it forward doesn't exist yet - but interest is increasing due to the new Skolem paper.
+[Tue 11:48:02] <manu>	manu: Huge kudos to Dave Longley for figuring this out years before this paper came out.
+[Tue 11:48:51] <manu>	gkellogg: I think that this work was so closely percieved as being associated w/ JSON-LD that is why it wasn't mentioned, which was false - it had a great deal to do w/ general RDF stuff. We need to get it into a separate WG, to get others invovled.
+[Tue 11:49:12] <manu>	Topic: Community Group Focus
+[Tue 11:50:01] <gkellogg>	scribe: gkellogg
+[Tue 11:50:18] <gkellogg>	manu: the first priority is to start recruiting. this will take up to 3 months to achieve.
+[Tue 11:51:29] <gkellogg>	… 1) We’re trying to convince W3CM that this is worth doing. 2) to get new members into W3C. 3) we need to bring internal and external organizations up to speed so they’re comfortable to start a WG, instead of going into background research mode.
+[Tue 11:52:02] <gkellogg>	… The degenerate case we don’t want to fall into is to create an IG to discuss what should be done. That’s why we’ve been operating for the last year.
+[Tue 11:52:38] <gkellogg>	… I’ll get W3C Membership on board. We can start recruiting using the use cases and executive summary as is.
+[Tue 11:53:12] <gkellogg>	… The second stange will be to go after large orgs, which aren’t currenlty members.. What we don’t have is a high-level summary of credentials and the standards process.
+[Tue 11:53:32] <gkellogg>	... We need volunteers to create these documents, which need to be there before this can be done.
+[Tue 11:54:06] <gkellogg>	… Once we have a questionare filled out, we need to convince them that our plan will work. We have Badge Aliance, vocabuarly, and identity credentials specification.
+[Tue 11:54:28] <gkellogg>	… If we do that as a first step, we’re on our way to making this the default way that credentials are stored and exchanged on the web.
+[Tue 11:55:00] <gkellogg>	richard: credentials need a standard; that’s a statement of advocacy.
+[Tue 11:55:10] <gkellogg>	… 2) W3C is the right place to develop this standard
+[Tue 11:55:20] <gkellogg>	… 3) The credentials group is the right way to do this.
+[Tue 11:55:35] <gkellogg>	… We also need existing and new W3C members to staff and populate to make this work.
+[Tue 11:55:37] <eric_r_korb>	I lost connection to voip
+[Tue 11:56:03] <gkellogg>	… If we have a document, or section for each of these points, this will help.
+[Tue 11:56:30] <gkellogg>	… We have something that we’ve used, and perhaps we can submit something that will help.
+[Tue 11:57:07] <voip-cr>	19082484252 [SIP/69.71.222.196-000001dd] has joined the conference.
+[Tue 11:57:23] <gkellogg>	manu: richard will poke around to get core materials. The structure you outlined is great, we’ll work with that with input from ETS. Hopefully we can get it out next week.
+[Tue 11:57:46] <gkellogg>	richard: Of course, the W3C should have documents for much of this, so it may be more assembly than authorship.
+[Tue 11:58:12] <gkellogg>	… If you have some existing source documents, point me to them and I’ll use those to create a framework.
+[Tue 11:58:38] <gkellogg>	manu: we also need to make another pass on the use cases document.
+[Tue 11:59:01] <gkellogg>	… What comes after use cases is requirements and basic capabilities, but there’s time to do that. A new group won’t be created until late September.
+[Tue 11:59:18] <kerri>	Will do. :)
+[Tue 11:59:53] <voip-cr>	Gregg Kellogg [SIP/sip2sip.info-000001c7] has left the conference.
+[Tue 11:59:53] <voip-cr>	Manu Sporny [SIP/6000-000001c6] has left the conference.
+[Tue 11:59:55] <voip-cr>	Dave Longley [SIP/6002-000001c5] has left the conference.
+[Tue 11:59:56] <voip-cr>	Dave Lehn [SIP/6003-000001d3] has left the conference.
+[Tue 11:59:57] <voip-cr>	16092160944 [SIP/69.71.222.196-000001d1] has left the conference.
+[Tue 12:00:00] <voip-cr>	Jordan [SIP/69.71.222.196-000001c4] has left the conference.
+[Tue 12:00:00] *	kerri_lemoie has quit (Quit: Page closed)
+[Tue 12:00:00] <voip-cr>	Sunny [SIP/142.136.76.105-000001ca] has left the conference.
+[Tue 12:00:00] <voip-cr>	Brian Sletten [SIP/sip2sip.info-000001c2] has left the conference.
+[Tue 12:00:02] <voip-cr>	Nate Otto [SIP/sip2sip.info-000001c3] has left the conference.
+[Tue 12:00:20] *	victoriano has quit (Remote host closed the connection)
+[Tue 12:00:47] <dlongley>	voip-cr: connections?
+[Tue 12:00:48] <voip-cr>	Conference participants are: Eric [SIP/69.71.222.196-000001c8], Kerri [SIP/69.71.222.196-000001c9], Richard [SIP/69.71.222.196-000001cb], Kerri [SIP/69.71.222.196-000001dc], 19082484252 [SIP/69.71.222.196-000001dd].
+[Tue 12:00:54] <manu>	voip: disconnect 1c8
+[Tue 12:00:54] <voip-cr>	Disconnecting Eric [SIP/69.71.222.196-000001c8].
+[Tue 12:00:54] <voip-cr>	Eric [SIP/69.71.222.196-000001c8] has left the conference.
+[Tue 12:00:56] *	SLee_ has quit (Quit: Page closed)
+[Tue 12:00:57] <voip-cr>	Gregg Kellogg [SIP/sip2sip.info-000001de] has joined the conference.
+[Tue 12:01:01] *	manu wait
+[Tue 12:01:10] *	manu gotta stop the recording - everyone off the line :)
+[Tue 12:01:12] <dlongley>	voip-cr: disconnect 1de
+[Tue 12:01:12] <voip-cr>	Disconnecting Gregg Kellogg [SIP/sip2sip.info-000001de].
+[Tue 12:01:12] <voip-cr>	Gregg Kellogg [SIP/sip2sip.info-000001de] has left the conference.
+[Tue 12:01:18] <dlongley>	voip-cr: disconnect 1dc
+[Tue 12:01:18] <voip-cr>	Disconnecting Kerri [SIP/69.71.222.196-000001dc].
+[Tue 12:01:18] <voip-cr>	Kerri [SIP/69.71.222.196-000001dc] has left the conference.
+[Tue 12:01:21] <dlongley>	voip-cr: disconnect 1cb
+[Tue 12:01:21] <voip-cr>	Disconnecting Richard [SIP/69.71.222.196-000001cb].
+[Tue 12:01:21] <voip-cr>	Richard [SIP/69.71.222.196-000001cb] has left the conference.
+[Tue 12:01:23] <dlongley>	voip-cr: disconnect 1dd
+[Tue 12:01:24] <voip-cr>	Disconnecting 19082484252 [SIP/69.71.222.196-000001dd].
+[Tue 12:01:24] <voip-cr>	19082484252 [SIP/69.71.222.196-000001dd] has left the conference.
+[Tue 12:01:26] <dlongley>	voip-cr: connections?
+[Tue 12:01:27] <voip-cr>	Conference participants are: Kerri [SIP/69.71.222.196-000001c9].
+[Tue 12:01:30] <dlongley>	voip-cr: disconnect 1c9
+[Tue 12:01:30] <voip-cr>	Disconnecting Kerri [SIP/69.71.222.196-000001c9].
+[Tue 12:01:30] <voip-cr>	Kerri [SIP/69.71.222.196-000001c9] has left the conference.
+[Tue 12:01:30] <manu>	Present+ Kerri, Sunny, taaz, victoriano, 
+[Tue 12:01:30] <voip-cr>	No one is on the conference bridge.
+[Tue 12:01:30] <voip-cr>	Shutting down and leaving...
