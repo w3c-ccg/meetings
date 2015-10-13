@@ -1,0 +1,274 @@
+[Tue 11:07:11] <gkellogg>	scribe: gkellogg
+[Tue 11:07:20] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2015Oct/0006.html
+[Tue 11:07:52] <gkellogg>	manu: expecting to do some intros today, but they don’t seem to be on the call.
+[Tue 11:08:06] <gkellogg>	… We can look at the W3C TPAC presentation and then go into demo.
+[Tue 11:08:39] <manu>	Topic: NACS Show
+[Tue 11:08:37] <gkellogg>	bsletten: just got back from Las Vegas and spoke to NACS about credentials, and they are interested.
+[Tue 11:08:37] <gkellogg>	Manu: Anything we should do/change as a result of your presentations? Are we aligned with their expectations?
+[Tue 11:08:37] <gkellogg>	bsletten: Nothing to change, they now know that there is something interesting going on here, tried to get some of them to join.
+[Tue 11:09:02] <manu>	Topic: HTTP Signatures
+[Tue 11:09:02] <gkellogg>	bblfish: also have stuff to talk about.
+[Tue 11:09:21] <manu>	We reved the spec - https://tools.ietf.org/html/draft-cavage-http-signatures-05
+[Tue 11:09:25] <bblfish>	ah good thanks
+[Tue 11:09:51] <gkellogg>	manu: we have a new version of the HTTP Signatures spec, with minimal changes so it won’t expire. We had a bunch of emails that it had expired and concerned that we wouldn’t take it forward.
+[Tue 11:11:52] <manu>	Topic: Introductions to New Members
+[Tue 11:11:59] <gkellogg>	Carla: you may know me from Mozilla and Open Badges, noew working with IMS Global.
+[Tue 11:12:29] <gkellogg>	… We’re looking at interop within education. We’re looking at Digital Credentials and metadata/criteria needed to build-out Open Badges.
+[Tue 11:13:00] <gkellogg>	… There are three different teams working on this, with about 5 months to go. We’re looking at frameworks and requirements for interoperability.
+[Tue 11:13:28] <paroneayea>	would it be useful for me to give a brief introduction?
+[Tue 11:14:34] <gkellogg>	paroneayea: I’m Chris Webber, working on the W3C Social Web WG. We’re working on ActivityStreams/JSON-LD federation standard for having an experience between decentralized sites. Credentials are important for this.
+[Tue 11:15:11] <manu>	Topic: W3C TPAC Credentials DRAFT Presentation
+[Tue 11:15:26] <manu>	https://docs.google.com/presentation/d/1ithW3t-ahelw_0jsAbVmhXi5NyRl_-BAW6hMnJmoixc/edit?usp=sharing
+[Tue 11:15:26] <Carla>	Hey everybody. Glad to be here. If you would like to connect my contact information is as follows. email: ccasilli@imsglobal.org ; twitter: @carlacasilli ; skype: cmcasilli
+[Tue 11:16:09] <gkellogg>	manu: We’re prepping for two presentations at the end of October at TPAC. There’s one on the credentials work; it tries to summarize the survey we sent out; we’re up to 43/60 responses.
+[Tue 11:16:32] <gkellogg>	… There’s also data on the anonymized results.
+[Tue 11:16:37] <manu>	Anonymized results of survey (43 responses): http://opencreds.org/presentations/2015/w3c-tpac/anonymized.html
+[Tue 11:17:33] <gkellogg>	… The responses are randomized and specifics made generic. There are a bunch of graphs which are also in the presentation that underscore the types of capabilities people are looking for.
+[Tue 11:18:04] <gkellogg>	… We lead among all the groups that are discussing next-gen payments and related activities.
+[Tue 11:18:29] <manu>	Topic: Credentials Reference Implementation Demo
+[Tue 11:18:39] *	manu https://join.me/digitalbazaar
+[Tue 11:19:13] <gkellogg>	manu: the demo shows the entire credentials eco-system.
+[Tue 11:20:17] <gkellogg>	… The eco-system has 3 major actors: issuers (e.g., DMV, Passport, Education Institutes …).
+[Tue 11:20:56] <gkellogg>	… Also Identity Providers who store credentials on your behalf.  About anyone can become a provider.
+[Tue 11:21:44] <gkellogg>	… And the third group are credential consumers, those who need to see credentials for some form of proof (access to bank account, completion of degree, …).
+[Tue 11:22:06] <gkellogg>	… The goal of the group is to be sure that each of the actors plays in a level playing field, and interoperability is key.
+[Tue 11:22:33] <gkellogg>	… The demo shows all 3 actors operating; it’s focus on TPAC specifically for the interest of payments.
+[Tue 11:22:45] <gkellogg>	… They’ll re-visit the discussion that was tabled over the summer.
+[Tue 11:23:14] <gkellogg>	… The first demo is payment-specific. The second is more open/free on Wednesday, that talks about education/healthcare concerns.
+[Tue 11:24:12] <gkellogg>	… Entry point is to create an account on an Identity Provider (IDP), such as Google/Facebook/Twitter, but could be school or business.
+[Tue 11:24:23] <gkellogg>	… (shows creating an account)
+[Tue 11:25:56] <gkellogg>	… Where it deviates from normal sign-up, you get a popup for a polyfill, which gives you a decentralized identifier. The credential is assigned to something that is portable, different from email or social media addresses. This allows the solution to be user-centric so the user is responsible for their own credentials, and not tied to something owned by someone else.
+[Tue 11:26:05] <mediaprophet>	+1
+[Tue 11:26:15] <paroneayea>	are there links to more decentralized identifiers stuff?
+[Tue 11:26:30] <paroneayea>	it being not linked to domains sounds great
+[Tue 11:26:43] <gkellogg>	dlongley: My comment is to point out that the window that pops up is something that would be standardized in the future.
+[Tue 11:27:14] <gkellogg>	bblfish: you’re thinking of this as part of the credential management API.
+[Tue 11:27:23] <gkellogg>	… Is the identifier are URL or a URI?
+[Tue 11:27:41] <mediaprophet>	v.bad echo. please turn down speakers...
+[Tue 11:27:44] <gkellogg>	dlongley: It’s intended to be a URL or URI with the “did” scheme, that can be fetched.
+[Tue 11:28:07] <paroneayea>	I have a question once henry's question is resolved
+[Tue 11:28:17] <gkellogg>	… The reason for a new scheme is to create a way of specifying decentralized identifiers. Http URLs are tied to a specific location, so are not appropriate.
+[Tue 11:28:42] <gkellogg>	bblfish: If you loose your private key, you can loose access.
+[Tue 11:28:48] <gkellogg>	dlongley: we can talk about that later.
+[Tue 11:29:36] <gkellogg>	manu: we can also use HTTP URLs, but if you don’t have control of the URL (which you can’t really), that is compatibile with this sytem. We thing that DIDs are a great solution, though.
+[Tue 11:30:22] <paroneayea>	interesting
+[Tue 11:30:29] <gkellogg>	… Also, if you lose your PK, you can delegate access to the DID to other people or organizations, so that even if you loose your PK, you can update the document with a new key. We don’t thin this suffers from the kinds of problems BitCoin suffers.
+[Tue 11:30:49] <gkellogg>	paroneayea: This sounds interesting. Where are these stored, and what is ussed to retrieve a DID?
+[Tue 11:31:02] *	ShaneM (~ShaneM@c-50-171-235-149.hsd1.mn.comcast.net) has joined #credentials
+[Tue 11:31:42] <gkellogg>	manu: In the future, they’ll be on a WebDHT; this technology has been around for around 15 years. We need to bring the technology on the web Rather than create a new protocol, we can build it on top of HTTP/HTTPS.
+[Tue 11:32:26] <gkellogg>	… The way it’s stored is in a DHT, and retrieved using HTTP to hit nodes in the DHT to find the data you’re looking for. In the Polyfill, it’s sotred on authorization.io, with a REST-based API. THat will continue to be exposed in the future.
+[Tue 11:33:15] <gkellogg>	bblfish: it will be interesting to make sure we can do this in an orthogonal way, so that WebID could be based on this.
+[Tue 11:33:52] <gkellogg>	… We should make sure that HTTP/HTTPS onion-URLs follow the same kind of process so that people can choose the type of system the like, with competition/creativity among providers.
+[Tue 11:34:16] <gkellogg>	… IF the main notaion of a WebID is a reference to a person, then it’s powerful enough to cover all these kinds of cases.
+[Tue 11:34:19] <mediaprophet>	Does WebID = Agent? or Legal Entity? or Person?
+[Tue 11:35:06] <mediaprophet>	FYI: http://www.w3.org/wiki/WebID
+[Tue 11:35:13] <gkellogg>	dlongley: what you’re saying is inherent in the design. It’s like a WebID with a URL you follow to get information about the person. There’s a concept of a DID you can choose, so that it follows you around instead of being tied to a particular domain. We support any kind of URL, but we’re showing the DID concept.
+[Tue 11:35:40] <gkellogg>	manu: We’re proposing what we think the ideal is, but make sure that it’s open to other solutions.
+[Tue 11:36:26] <gkellogg>	… (continues demo) Creating a DID, stored in the browser local storage. This returns a DID back to the IDP.
+[Tue 11:36:45] <gkellogg>	… (account created, associated with DID), now I can create credentials)
+[Tue 11:37:18] <gkellogg>	… (goes to another site which is an credential issuer). It requires that I log in, and I use my DID.
+[Tue 11:37:52] <gkellogg>	… YOu can use crypto, selecting identity (from local storage), which completes login.
+[Tue 11:38:24] <gkellogg>	… I then get a drivers licence (shows JSON-LD representation of DL, tied to DID).
+[Tue 11:38:55] <gkellogg>	… It has several claims (name, image, birthdate, gender, address, …)
+[Tue 11:39:32] <gkellogg>	… Also includes signature linking to DMV as signer.
+[Tue 11:40:04] *	erkorb_rm (~eric.korb@110.sub-70-192-142.myvzw.com) has joined #credentials
+[Tue 11:40:13] <gkellogg>	… You create the Credneital and it goes back to IDP, who stores credentials. The signer has no idea what IDP is used to store the credential.
+[Tue 11:41:15] <gkellogg>	… Middle-ware intermediates moving the credneital between sites, so it’s never used to connect one service with another directly. You can store PII once things are complete, so that it can’t be later hacked.
+[Tue 11:41:38] <mediaprophet>	What do browsers need to do to make this work if anything?
+[Tue 11:42:06] <paroneayea>	I don't have questions, but I think I need to get a list of all relevant specs
+[Tue 11:42:24] <voip-cr>	19088126557 [SIP/69.71.222.196-00000188] has joined the conference.
+[Tue 11:42:29] <paroneayea>	and read through them
+[Tue 11:42:39] <erkorb_rm>	that's ekorb SIP
+[Tue 11:42:55] <gkellogg>	bblfish: You go do the DMV, login with your ID (DID), they sign a document saying that the person with the DID has various properties. The browser accepts the Cert in the browser, where it can be stored at an IDP, or stay in the browser.
+[Tue 11:43:18] <gkellogg>	… When someone asks for your DL, you can send it from your IDP or browser.
+[Tue 11:43:36] <mediaprophet>	cheers\
+[Tue 11:43:52] <erkorb_rm>	dlongley, joim.me info?
+[Tue 11:44:06] <mediaprophet>	https://join.me/digitalbazaar
+[Tue 11:44:11] <gkellogg>	manu: goes to a credential consumer. You create a bank account, they can pre-fill information by submitting a drivers licence, a cert version can ensure that information is not fraudulant.
+[Tue 11:44:36] *	NateOtto (~textual@c-71-237-170-49.hsd1.or.comcast.net) has joined #credentials
+[Tue 11:44:55] <gkellogg>	… I submit my DL, it goes back to middleware, where I select my identity, which takes me to my IDP. They see that someone has asked for the DL, but they don’t know who.
+[Tue 11:45:20] <voip-cr>	Nate Otto [SIP/sip2sip.info-00000189] has joined the conference.
+[Tue 11:45:57] <gkellogg>	… If it know who was asking, they could violate your privace. The IDP gets a request, and the user can select it in their browser, with verifiable data.
+[Tue 11:46:32] <gkellogg>	… I click “done”, and the browser takes the credential back, and asks to be sure to send it back to requester, and the user sends the credentials from the browser.
+[Tue 11:47:15] <gkellogg>	… I send it to the bank, and it can verify it, and proceed with signup.
+[Tue 11:47:17] <gkellogg>	q+
+[Tue 11:47:17] <voip-cr>	gkellogg has been added to the queue: gkellogg
+[Tue 11:48:08] <manu>	ack gkellogg 
+[Tue 11:48:09] <voip-cr>	gkellogg has the floor.
+[Tue 11:48:17] <manu>	gkellogg: What does the bank need to do to verify that credential.
+[Tue 11:49:11] <gkellogg>	manu: first step is to check basic syntactic validity. It can then fetch the PK, to be sure it matches.
+[Tue 11:49:35] <gkellogg>	… It checks to be sure the issuers signature is valid, but needs to be sure the issuer can be trusted.
+[Tue 11:50:31] <gkellogg>	… It’s up to the recievers to choose the issuers they trust. For an example, for an international DL, the US might trust it’s alies, but not someone else. THey would have a list of organizations they accept credentials from.
+[Tue 11:50:55] <gkellogg>	… There could be deepter information, link-back to issuer to be sure it’s not revoked, but no link back to IDP.
+[Tue 11:51:49] <NateOtto>	+1 on that countersignature by the credential's recipient.
+[Tue 11:51:50] <gkellogg>	… The credential is counter-signed by the holder of the credential in addition to the issuer. The holder signs when the send it to a consumer.
+[Tue 11:52:04] <gkellogg>	… This prevents replay attacks.
+[Tue 11:53:00] <JohnTib>	q+
+[Tue 11:53:01] <voip-cr>	JohnTib has been added to the queue: JohnTib
+[Tue 11:53:29] <gkellogg>	bblfish: If there’s a way for the consumer to say what kind of credentials the accept (who they trust), so the client can filter among stored credentials.
+[Tue 11:53:59] <manu>	q+ erkorb
+[Tue 11:53:59] <voip-cr>	manu has been added to the queue: JohnTib, erkorb
+[Tue 11:54:00] <gkellogg>	dlongley: we’re looking into that; they could specify properties of credentials they want, and may also show the set of issuers they trust.
+[Tue 11:54:06] <manu>	ack JohnTib 
+[Tue 11:54:06] <voip-cr>	JohnTib has the floor.
+[Tue 11:54:39] <gkellogg>	JohnTib: I still find it hard to visualize are the workflows among the parties. This would be a great topic of a future Manu-Cast.
+[Tue 11:55:17] <gkellogg>	… Say I have a credential that asserts my age, I have a phone and go into a bar to order a date. What would the transaction look like?
+[Tue 11:56:01] <gkellogg>	manu: There’s a privacy component to your question, you really don’t want to reveal anything other than your age. Not even exposing your DID.
+[Tue 11:56:34] <erkorb_rm>	6 points of identity
+[Tue 11:57:01] <erkorb_rm>	plus, photo id
+[Tue 11:57:02] <gkellogg>	… To get the credential, you go to an issuer, who proves your identity (utility bill, SS card) and may issue multiple credentials to you. It could be afull passport, but also a credential simply asserting your age.
+[Tue 11:57:24] <gkellogg>	… When someone needs to know your age, you could show just the credential that asserts the miminum they need to know.
+[Tue 11:58:17] <gkellogg>	… Another approach is called a “Bearer Credneital”, that can prove something in a pseudo-anonymous way. This would allow a single use of something that didn’t actually assert your ID.
+[Tue 11:58:52] <mediaprophet>	Does a mechanism exist that discourages groups from demanding more information from a credential than is required for legal purposes?
+[Tue 11:59:09] *	dlongley got it
+[Tue 11:59:13] <dlongley>	scribe: dlongley
+[Tue 11:59:15] <voip-cr>	Gregg Kellogg [SIP/10.0.1.12-0000017d] has left the conference.
+[Tue 11:59:30] <Carla>	q+
+[Tue 11:59:31] <voip-cr>	Carla has been added to the queue: erkorb, Carla
+[Tue 11:59:52] <dlongley>	Manu: Yes and no. The way that the system works right now is that the consumer queries for a set of attributes that they need to know about you.
+[Tue 12:00:43] <erkorb_rm>	so, at the liquor store, they would have you scan a QR code that would request your ID.
+[Tue 12:00:50] <dlongley>	Manu: So if they just need to know your name the query is just name and you're taken to the IdP to prove your name. Your Idp shows you 20 creds with your name. We're hoping the software and the people make it obvious that you pick the credential(s) with the least amount of information. It's up to you to decide what you ultimately hand over.
+[Tue 12:00:53] <mediaprophet>	given the potential explosion in identity requests, has any consideration been made into reputation?
+[Tue 12:00:55] <bblfish>	q?
+[Tue 12:00:55] <voip-cr>	The current speaker queue is: erkorb, Carla
+[Tue 12:00:58] <manu>	ack erkorb
+[Tue 12:01:00] <voip-cr>	erkorb has the floor.
+[Tue 12:01:11] <bblfish>	q+ bblfish
+[Tue 12:01:11] <voip-cr>	bblfish has been added to the queue: Carla, bblfish
+[Tue 12:01:12] <voip-cr>	manu has been added to the queue: Carla, bblfish, bblfish
+[Tue 12:01:18] <voip-cr>	Brian Sletten [SIP/sip2sip.info-0000017c] has left the conference.
+[Tue 12:01:35] <mediaprophet>	ie: perhaps using ontologies to describe what might be required to fulfill particular requests.
+[Tue 12:01:55] <dlongley>	Eric: A privacy question: As a best practice, I suspect that we would not want people to publish credentials on a public website that contain their DID. If they did they could be tracked. If I publish my driver's license on linked in then people could track me with any credential I ever put out there.
+[Tue 12:02:34] <dlongley>	Manu: Maybe, it just depends on how public you want that particular identity to be. You can have many identities. Maybe it's your public identity and you get credentials for it and publish those and you don't have a problem with exposing that information.
+[Tue 12:02:51] *	_gkellogg has quit (Ping timeout: 260 seconds)
+[Tue 12:02:52] <mediaprophet>	ie: if an adult website or online game, that may simply require name or proof of age, requests more information for say - ‘free credits’ , perhaps reputation plays a role?
+[Tue 12:03:04] <dlongley>	Manu: There may be requirements to keep things hidden, however, sometimes. Like any healthcare credentials.
+[Tue 12:03:14] <mediaprophet>	i imagine part of that is beyond the scope of credentials spec.  Yet support for ontological functional adaption may need to be included?
+[Tue 12:03:26] <dlongley>	Manu: There isn't a clear answer to the question, it follows practices of today, some things you want public and some things you want private.
+[Tue 12:03:28] <manu>	ack Carla 
+[Tue 12:03:29] <voip-cr>	Carla has the floor.
+[Tue 12:03:34] <erkorb_rm>	so, that makes a case for multiple IdPs
+[Tue 12:04:39] <dlongley>	Carla: You answered some of the questions I had, one was about atomic level credentials, not needing everything in a credential, just a few bits of information. So my other question, your provider is saying "Here are five credentials that are being requested of you." I'm wondering about the owner of these credentials and how people juggle that? Will IdP help handle that, if so how?
+[Tue 12:04:55] <dlongley>	Manu: There is a competitive marketplace for IdPs and one of the factors would be how well they help you select the credentials to use.
+[Tue 12:05:31] <dlongley>	Manu: An Idp could say this is the credential you should share because it exposes you the least amount of information. Another might say "You use your driver's license all over the Web, just go ahead and use it again."
+[Tue 12:05:39] <manu>	ack bblfish 
+[Tue 12:05:39] <voip-cr>	bblfish has the floor.
+[Tue 12:05:42] <dlongley>	Manu: It's up to IdP software to compete to help you the way you want.
+[Tue 12:05:54] <manu>	q+ bblfish
+[Tue 12:05:54] <voip-cr>	manu has been added to the queue: bblfish, bblfish
+[Tue 12:05:58] <dlongley>	Eric: By default credentials are private, you have to make them public by choice.
+[Tue 12:06:08] <dlongley>	Manu: Yes.
+[Tue 12:06:14] <manu>	ack bblfish
+[Tue 12:06:14] <voip-cr>	bblfish has the floor.
+[Tue 12:06:15] <manu>	ack bblfish
+[Tue 12:06:15] <voip-cr>	bblfish has the floor.
+[Tue 12:06:37] <manu>	q+ mediaprophet
+[Tue 12:06:38] <voip-cr>	manu has been added to the queue: mediaprophet
+[Tue 12:06:38] <mediaprophet>	privacy by default; for the entire credential? or for elements of the credential? is it all or nothing?
+[Tue 12:07:16] <dlongley>	Henry: What I was thinking of is, I suppose one reason for integrating the IdP in the browser is that if you authenticate to one site with 3 different credentials, then in fact they can get the sum of that information. If the IdP doesn't know who you are connecting then it can't help you make certain decisions. It seems like you'd need that sort of thinking for automation.
+[Tue 12:07:18] <dlongley>	q+
+[Tue 12:07:18] <voip-cr>	dlongley has been added to the queue: mediaprophet, dlongley
+[Tue 12:08:09] <dlongley>	Henry: On the other side, imagine if you had different IDs, one for your age, one for your driver's license, one for membership of a club, you could have other credentials that identify those? You could have as many of those credentials that identifier (owl:sameAs relations).
+[Tue 12:08:26] *	dlongley have a response to Henry
+[Tue 12:08:27] <voip-cr>	19088126557 [SIP/69.71.222.196-0000018a] has joined the conference.
+[Tue 12:08:40] <dlongley>	Manu: Yes we want to automate these processes as much as possible.
+[Tue 12:09:30] <manu>	dlongley: Quick response - there are other technologies out there that don't fully provide all features that we need. Some of these other protocols, the way the protocol is designed requires the IdP to know all sites you're logging into.
+[Tue 12:09:45] <manu>	dlongley: You can provide the IdP with where you're logging into, but that is not shared by default.
+[Tue 12:10:04] <mediaprophet>	here
+[Tue 12:10:04] <mediaprophet>	Has any consideration been made into reputation?
+[Tue 12:10:04] <mediaprophet>	ie: perhaps using ontologies to describe what might be required to fulfill particular requests.
+[Tue 12:10:05] <mediaprophet>	ie: if an adult website or online game, that may simply require name or proof of age, requests more information for say - ‘free credits’ , perhaps therein a mechanism around reputation might play a role?
+[Tue 12:10:06] <mediaprophet>	thereafter: i imagine part of that is beyond the scope of credentials spec.  Yet support for ontological functional adaption may need to be included?
+[Tue 12:10:07] <mediaprophet>	Therein; by privacy by default; is that for the entire credential? or for elements of the credential? is it all or nothing?
+[Tue 12:10:43] <dlongley>	Manu: "Are there any ontologies for requests?" The requests use linked data so we can arbitrarily extend them in the future as needed.
+[Tue 12:10:51] <dlongley>	Manu: RIght now they are attribute based.
+[Tue 12:11:10] <dlongley>	Manu: Yes, you can have reputation-based credentials, absolutely.
+[Tue 12:11:18] <mediaprophet>	i mean...
+[Tue 12:11:25] <mediaprophet>	mailing list it...
+[Tue 12:11:26] <dlongley>	Manu: I don't know what you mean by "ontological functional adaption"
+[Tue 12:11:31] *	Guest68368 has quit (Ping timeout: 246 seconds)
+[Tue 12:11:56] <dlongley>	Manu: When it comes to a credential itself, it's all or nothing (in terms of privacy), because of the limits of cryptography at the moment. We can ask issues to atomize the information as much as possible.
+[Tue 12:12:17] *	erkorb_rm has quit (Ping timeout: 252 seconds)
+[Tue 12:12:23] <dlongley>	dlongley: It's all-or-nothing right now, there are cryptographers working on getting around this but there are lots of limitations right now.
+[Tue 12:12:41] <dlongley>	Manu: It's up to people in the market to create and publish reputation ontologies and issues to use them, etc.
+[Tue 12:12:42] <manu>	q?
+[Tue 12:12:42] <voip-cr>	The current speaker queue is: mediaprophet, dlongley
+[Tue 12:12:47] <manu>	ack 
+[Tue 12:12:48] <dlongley>	q-
+[Tue 12:12:49] <voip-cr>	dlongley has been removed from the queue: mediaprophet
+[Tue 12:12:53] <manu>	ack  mediaprophet
+[Tue 12:12:55] <mediaprophet>	sorry - i copy and pasted it to make it easier for you…  cheers.  i’ll follow-up on the list.
+[Tue 12:12:58] <manu>	ack mediaprophet
+[Tue 12:12:59] <voip-cr>	mediaprophet has the floor.
+[Tue 12:13:26] <dlongley>	Henry: What is the relationship with HTTP signatures?
+[Tue 12:13:43] <dlongley>	Manu: They are designed to give you access to this system. They are meant for machines or agents to be able to access Websites.
+[Tue 12:13:59] <manu>	dlongley: The flow that we showed today is a browser-based API
+[Tue 12:14:24] <manu>	dlongley: In the future, you may give automatic access to certain credentials to certain consumers - in those systems, where you are preauthorized, there are the issuers and consumers - they use HTTP Signatures to authenticate.
+[Tue 12:14:31] <mediaprophet>	Is it possible to make hierarchical credentials that create in effect a package of crednetials?
+[Tue 12:14:32] <mediaprophet>	Ie: a drivers license is made up of several child credentials…?
+[Tue 12:14:33] <mediaprophet>	ie: Age, Address, DL ID, etc.
+[Tue 12:14:48] <paroneayea>	very helpful!
+[Tue 12:14:52] <JohnTib>	very helpful
+[Tue 12:14:56] <dlongley>	Manu: Any other questions send to the mailing list, hopefully this was helpful to everyone and to understand the flow for where we are today.
+[Tue 12:15:12] <mediaprophet>	thank you…  good to see ;)
+[Tue 12:15:15] <dlongley>	Manu: Thanks everyone for the call today!
+[Tue 12:15:15] <dlongley>	Topic: Post-meeting Discussion
+[Tue 12:15:15] <dlongley>	scribe: manu
+[Tue 12:17:13] <dlongley>	mediaprophet, you could provide the same information a driver's license provides by combining other credentials together
+[Tue 12:17:22] <mediaprophet>	yup
+[Tue 12:17:25] <mediaprophet>	that was what i was thinking
+[Tue 12:17:32] <mediaprophet>	so, the DL ends up being a credential package
+[Tue 12:17:33] <dlongley>	when a consumer requests attributes, what you essentially do is what we've been calling
+[Tue 12:17:35] <dlongley>	"compose a view of your identity"
+[Tue 12:17:52] <dlongley>	you pick N credentials ... and those, together, will provide the attributes requested
+[Tue 12:17:52] <mediaprophet>	therein; if someone needs Proof of Age, perhaps the Sig. on the Age constituent is an element
+[Tue 12:18:05] <mediaprophet>	yet.
+[Tue 12:18:18] <mediaprophet>	for trust purposes, they might want the age you’ve listed on your DL
+[Tue 12:18:27] <dlongley>	so what gets sent to the consumer is an "identity document" with a bunch of credentials ... which, with JSON-LD processing ends up being a doc with a bunch of attributes on it for use
+[Tue 12:18:57] <dlongley>	anyway, this stuff is all linked data, so it's fairly flexible
+[Tue 12:19:13] <dlongley>	we don't know what people will want to put in these credentials and we don't pretend to know it ... so we get out of the way and let people innovate.
+[Tue 12:19:13] <mediaprophet>	understood…  With a Digital Cinema Package or DCP.
+[Tue 12:19:31] <dlongley>	we just want to ensure interop ... and then let markets evolve as needed.
+[Tue 12:19:37] <mediaprophet>	https://en.wikipedia.org/wiki/Digital_Cinema_Package
+[Tue 12:19:51] <mediaprophet>	it’s basically got a bunch of files in it.
+[Tue 12:19:58] <mediaprophet>	i think it’s best i follow-up on the mailing list.
+[Tue 12:20:08] <dlongley>	mediaprophet: ok
+[Tue 12:20:08] <mediaprophet>	it’s also 3:19am here.  so probably better in the morning ;)
+[Tue 12:20:12] <dlongley>	yes :), gnight!
+[Tue 12:20:32] <mediaprophet>	cheers.  really enjoyed the demo.
+[Tue 12:20:53] <dlongley>	great :)
+[Tue 12:20:58] <paroneayea>	indeed
+[Tue 12:21:06] <paroneayea>	really interested in exploring further
+[Tue 12:21:53] <paroneayea>	just downloaded http://opencreds.org/specs/source/identity-credentials/ to my e-reader, will read over tonight
+[Tue 12:22:59] <dlongley>	paroneayea: be warned that's pretty out of date.
+[Tue 12:23:04] <mediaprophet>	I think the simple version, is that i’m thinking about a tree structure.  So the child results are simple claims like age, etc.  the parent record might reference those claim documents and use them to create a ‘parent’ claim, for example - drivers license.  Theory being around whether it’s possible to in-effect create a credential where a check-box (for instance) could be used to select that ‘age’ element, of a DL.
+[Tue 12:23:18] <paroneayea>	dlongley, is there newer material I should read?
+[Tue 12:23:20] <dlongley>	paroneayea, don't pay attention to any of the REST API stuff.
+[Tue 12:23:22] <mediaprophet>	being that it is part of the ‘trust provider’ delivered by the motor authority
+[Tue 12:23:45] <mediaprophet>	yet, don’t need to supply the entire claims chain, contained within the parent cred.
+[Tue 12:23:46] <dlongley>	paroneayea, if you want to know about the API used in the demo: https://github.com/digitalbazaar/credentials-polyfill
+[Tue 12:24:22] <dlongley>	the stuff in the Identity Credentials spec regarding how things are marked up isn't too far off
+[Tue 12:24:56] <bblfish>	I suppose one question is how does the idp send the credentials to the Relying Party? In OpenId it is via a redirect, but that requires a URL with encoded attribute values. Is there another way?
+[Tue 12:25:00] <dlongley>	it's worth reading that spec anyway, just know that a lot of what was in the demo hasn't been updated in the spec
+[Tue 12:25:41] <dlongley>	mediaprophet, there are certain limitations based on cryptography for plucking out bits of a doc
+[Tue 12:25:55] <mediaprophet>	understand.
+[Tue 12:26:18] <mediaprophet>	yet, question might be whether you can create a cred. that incorporates other creds.
+[Tue 12:26:19] <dlongley>	bblfish: with the browser API, the IdP sends them to the browser
+[Tue 12:26:25] <dlongley>	via a JS API
+[Tue 12:26:29] <mediaprophet>	and thereafter package them in some way...
+[Tue 12:26:37] <bblfish>	is that a new API?
+[Tue 12:26:40] <dlongley>	bblfish, https://github.com/digitalbazaar/credentials-polyfill
+[Tue 12:26:58] <dlongley>	bblfish, yes, it's a new API ... we're slowly converging with the Credential Management API
+[Tue 12:27:08] <dlongley>	this demo was our largest move towards it ... we're not too far off now.
+[Tue 12:27:18] <bblfish>	great.
+[Tue 12:27:30] <dlongley>	essentially `navigator.credentials.get()` is called on the consumer site ... just like the Credential Management API
+[Tue 12:28:02] <dlongley>	it returns a Promise that will resolve, eventually, to the credentials (or "identity document containing credentials") selected at your IdP
+[Tue 12:28:07] <dlongley>	after you go through the flow.
+[Tue 12:28:28] <dlongley>	similarly, you call `navigator.credentials.store` at the issuer site to store something ... it returns a Promise that will resolve once you've done something at your IdP.
+[Tue 12:28:42] <dlongley>	and this is all polyfilled with postMessage and iframes and such.
+[Tue 12:29:01] <dlongley>	(full source available at that link)
+[Tue 12:29:16] <dlongley>	https://github.com/digitalbazaar/authorization.io
+[Tue 12:29:22] <dlongley>	also open source^
+[Tue 12:29:41] <dlongley>	that's the code the `authorization.io` site runs that acts as the part of the browser that would run the flows and display your IdP and so on.
+[Tue 12:34:11] <mediaprophet>	nb. before manu picked-up the questions, i copy / pasted them, trying to make it easier…  so in effect, there’s duplicates
+[Tue 12:34:11] <manu>	Present+ taaz, annie, rob, korb, richard, nate
