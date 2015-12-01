@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Scrawl - A Meeting Scribing Tool</title>
+  <meta name="description" content="The Scrawl scribing tool is used to translate IRC logs into meeting minutes." />
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="scrawl.js"></script>
+  <link href='//fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../stylesheets/github-dark.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print">
+  <link rel="stylesheet" media="screen" href="scrawl.css" />
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+// the update counter keeps track of the number of pending updates
+var updateCounter = 0;
+var updateCounterTimeout = null;
+
+// generates and outputs the minutes to the HTML output
+displayMinutes = function() {
+  var ircLog = $('#irc-log').val()
+  minutes = scrawl.generateMinutes(ircLog, 'html');
+
+  $('#html-output').html(minutes);
+};
+
+// updates the minutes
+updateMinutes = function(event) {
+  if(event)   {
+    updateCounter = 1;
+  } else {
+    updateCounter--;
+  }
+
+  if(updateCounter <= 0) {
+    displayMinutes();
+  } else {
+    if(updateCounterTimeout) {
+      clearTimeout(updateCounterTimeout);
+    }
+    updateCounterTimeout = setTimeout(updateMinutes, 1000);
+  }
+};
+
+// displays each markup portion
+showMarkup = function(type) {
+  var ircLog = $('#irc-log').val()
+  // Display the appropriate markup text area based on the 'type'
+  if(type == 'html')
+  {
+    var html = scrawl.htmlHeader + scrawl.generateMinutes(ircLog, 'html') +
+      scrawl.htmlFooter;
+
+    $('#irc-log').hide();
+    $('#text-markup').hide();
+    $('#html-markup').val(html);
+    $('#html-markup').show();
+  }
+  else if(type == 'text')
+  {
+    var text = scrawl.generateMinutes(ircLog, 'text')
+
+    $('#html-markup').hide();
+    $('#irc-log').hide();
+    $('#text-markup').val(text);
+    $('#text-markup').show();
+  }
+  else
+  {
+    $('#text-markup').hide();
+    $('#html-markup').hide();
+    $('#irc-log').show();
+  }
+}
+
+// initialize scrawl
+$.getJSON( "people.json", function(people) {
+  scrawl.group = "Verifiable Claims Task Force";
+  scrawl.people = people;
+});
+  </script>
+</head>
+<body>
+
+<main>
+<section class="content light-bg">
+   <div id="html-output"></div>
+</section>
+
+<!--textarea id="html-output" width="80" height="20"></textarea>
+
+<textarea id="text-output" width="80" height="20"></textarea -->
+
+<section class="light-bg toolbar-height toolbar-padding"></section>
+
+<section id="toolbar">
+   <span class="left-column">
+      <textarea id="irc-log" class="toolbar-height" name="meeting-irc-log" placeholder="Paste and edit the IRC log here" onkeyup="javascript:updateMinutes()"></textarea>
+      <textarea id="html-markup" style="display: none;" class="toolbar-height"></textarea>
+      <textarea id="text-markup" style="display: none;" class="toolbar-height"></textarea>
+   </span>
+   <span class="right-column">
+      <div class="button" onclick="javascript:showMarkup('raw')">Show Raw Log</div>
+      <div class="button" onclick="javascript:showMarkup('html')">Show HTML</div>
+      <div class="button" onclick="javascript:showMarkup('text')">Show Text</div>
+   </span>
+</section>
+
+</main>
+</body>
+</html>
+
