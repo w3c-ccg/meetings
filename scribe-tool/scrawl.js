@@ -724,7 +724,7 @@
       rval += 'Present:\n  ' +
         scrawl.wordwrap(peoplePresent, 65, '\n  ') + '\n';
       if(context.audio) {
-        rval += 'Audio:\n  http://opencreds.org/minutes/' +
+        rval += 'Audio:\n  http://w3c.github.io/vctf/meetings/' +
           time.getFullYear() + '-' +
            month + '-' + day + '/audio.ogg\n\n';
       } else {
