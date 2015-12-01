@@ -29,9 +29,9 @@ var dstDir = path.resolve(path.join(program.directory));
 var logFile = path.resolve(path.join(program.directory, 'irc.log'));
 var indexFile = path.resolve(path.join(program.directory, 'index.html'));
 var htmlHeader = fs.readFileSync(
-  __dirname + 'header.html', {encoding: 'utf8'});
+  __dirname + '/header.html', {encoding: 'utf8'});
 var htmlFooter = fs.readFileSync(
-  __dirname + 'footer.html', {encoding: 'utf8'});
+  __dirname + '/footer.html', {encoding: 'utf8'});
 var peopleJson = fs.readFileSync(
   __dirname + '/people.json', {encoding: 'utf8'});
 gLogData = '';
@@ -171,7 +171,7 @@ async.waterfall([ function(callback) {
     var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
       .replace(/\n/g, '').replace('Scribe:  ', '');
     content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
-      'for this week\'s Verifiable CLaims telecon are now available:\n\n' +
+      'for this week\'s Verifiable Claims telecon are now available:\n\n' +
       'http://w3c.github.io/vctf/meetings/'+ gDate + '/\n\n' +
       'Full text of the discussion follows for W3C archival purposes.\n' +
       'Audio from the meeting is available as well (link provided below).\n\n' +
