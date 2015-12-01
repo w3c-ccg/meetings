@@ -108,8 +108,7 @@ function sendEmail(username, password, hostname, content, callback) {
     text:    content,
     from: 'msporny@digitalbazaar.com',
     //from:    username + '@' + hostname,
-//    to:      'Web Payments IG <public-webpayments-ig@w3.org>',
-to:      'Manu Sporny <msporny@digitalbazaar.com>, Dave Lehn <dlehn@digitalbazaar.com>',
+    to:      'Web Payments IG <public-webpayments-ig@w3.org>, Credentials CG <public-credentials@w3.org>',
     subject: 'Verifiable Claims Telecon Minutes for ' + gDate
   }, function(err, message) {
     if(err) {
