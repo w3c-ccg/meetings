@@ -457,6 +457,7 @@
          if(nick in aliases)
          {
            rval = scrawl.scribe(msg, textMode, aliases[nick]);
+           scrawl.present(context, aliases[nick]);
          }
        }
        // the line is by the scribe
