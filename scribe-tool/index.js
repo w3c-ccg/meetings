@@ -1,7 +1,7 @@
 var _ = require('underscore');
 var async = require('async');
 var email = require('emailjs');
-var fs = require('fs')
+var fs = require('fs');
 var path = require('path');
 var program = require('commander');
 var scrawl = require('./scrawl');
@@ -16,6 +16,7 @@ program
   .option('-e, --email', 'If set, publish the minutes to the mailing list')
   .option('-t, --twitter', 'If set, publish the minutes to Twitter')
   .option('-g, --google', 'If set, publish the minutes to G+')
+  .option('-i, --index', 'Build meeting index')
   .option('-q, --quiet', 'Don\'t print status information to the console')
   .parse(process.argv);
 
@@ -34,7 +35,7 @@ var htmlFooter = fs.readFileSync(
   __dirname + '/footer.html', {encoding: 'utf8'});
 var peopleJson = fs.readFileSync(
   __dirname + '/people.json', {encoding: 'utf8'});
-gLogData = '';
+var gLogData = '';
 var gDate = path.basename(dstDir);
 gDate = gDate.replace(/-[a-z]+$/, '');
 
@@ -65,7 +66,7 @@ function postToWordpress(username, password, content, callback) {
     '/">available in the archive</a>.</p>';
 
   // calculate the proper post date
-  gmtDate = datetime.toISOString();
+  var gmtDate = datetime.toISOString();
   gmtDate = gmtDate.replace('T', ' ');
   gmtDate = gmtDate.replace(/\.[0-9]*Z/, '');
 
@@ -121,7 +122,7 @@ function sendEmail(username, password, hostname, content, callback) {
     }
     callback();
   });
-};
+}
 /*************************** Main Functionality ******************************/
 
 async.waterfall([ function(callback) {
@@ -159,6 +160,105 @@ async.waterfall([ function(callback) {
     callback();
   }
 }, function(callback) {
+  // write the index.html file to disk
+  if(program.index) {
+    if(!program.quiet) {
+      console.log('scrawl: Writing meeting summaries...');
+    }
+    var minutesDir = __dirname + '/..';
+    var logFiles = [];
+    async.auto({
+      readDirs: function(callback) {
+        fs.readdir(minutesDir, callback);
+      },
+      findLogs: ['readDirs', function(callback, results) {
+        async.each(results.readDirs, function(item, callback) {
+          var ircLog = minutesDir + '/' + item + '/irc.log';
+          fs.exists(ircLog, function(exists) {
+            if(exists) {
+              logFiles.push(ircLog);
+            }
+            callback();
+          });
+        }, function(err) {
+          callback(err, logFiles);
+        });
+      }],
+      buildSummaries: ['findLogs', function(callback, results) {
+        var summaries = {};
+        async.each(results.findLogs, function(item, callback) {
+          fs.readFile(item, "utf8", function(err, data) {
+            if(err) {
+              return callback(err);
+            }
+
+            // generate summary items
+            var summary = {
+              topic: [],
+              resolution: []
+            };
+            summary.topic = data.match(/topic: (.*)/ig);
+            summary.resolution = data.match(/resolved: (.*)/ig);
+
+            // strip extraneous information
+            for(var i in summary.topic) {
+              summary.topic[i] = summary.topic[i].replace(/topic: /ig, '');
+            }
+            for(var j in summary.resolution) {
+              summary.resolution[j] =
+                summary.resolution[j].replace(/resolved: /ig, '');
+            }
+
+            var date = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
+            summaries[date] = summary;
+            callback();
+          });
+        }, function(err) {
+          callback(err, summaries);
+        });
+      }]
+    }, function(err, results) {
+      if(err) {
+        return callback(err);
+      }
+
+      // write out summary file
+      var summaryHtml = htmlHeader.replace('../../stylesheet', '../stylesheet');
+      var summaryKeys = Object.keys(results.buildSummaries).sort().reverse();
+      for(var k in summaryKeys) {
+        var key = summaryKeys[k];
+        var summary = results.buildSummaries[key];
+        summaryHtml += '<h3>Meeting for ' + key + '</h3>\n';
+        if(summary.topic.length > 0) {
+          summaryHtml += '<h4>Topics</h4><ol>\n';
+          for(var t in summary.topic) {
+            var tcounter = parseInt(t) + 1;
+            summaryHtml +=
+              '<li><a href="' + key + '/#topic-' + tcounter + '">' +
+              summary.topic[t] + '</a></li>\n';
+          }
+          summaryHtml += '</ol>\n';
+        }
+        if(summary.resolution.length > 0) {
+          summaryHtml += '<h4>Resolutions</h4><ol>\n';
+          for(var r in summary.resolution) {
+            var rcounter = parseInt(r) + 1;
+            summaryHtml +=
+              '<li><a href="' + key + '/#resolution-' + rcounter + '">' +
+              summary.resolution[r] + '</a></li>\n';
+          }
+          summaryHtml += '</ol>\n';
+        }
+      }
+      summaryHtml += htmlFooter;
+
+      fs.writeFileSync(__dirname + '/../index.html', summaryHtml, 'utf-8');
+      callback();
+    });
+  } else {
+    callback();
+  }
+}, function(callback) {
   // send the email about the meeting
   if(program.email) {
     if(!program.quiet) {
@@ -166,7 +266,7 @@ async.waterfall([ function(callback) {
     }
 
     // generate the body of the email
-    var content = scrawl.generateMinutes(gLogData, 'text', gDate)
+    var content = scrawl.generateMinutes(gLogData, 'text', gDate);
     var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
       .replace(/\n/g, '').replace('Scribe:  ', '');
     content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
