@@ -239,7 +239,7 @@ async.waterfall([ function(callback) {
           }
           summaryHtml += '</ol>\n';
         }
-        if(summary.resolution.length > 0) {
+        if(summary.resolution && summary.resolution.length > 0) {
           summaryHtml += '<h4>Resolutions</h4><ol>\n';
           for(var r in summary.resolution) {
             var rcounter = parseInt(r) + 1;
