@@ -1,0 +1,162 @@
+[Fri 12:04:02] <dlongley>	scribe: dlongley
+[Fri 12:04:31] <dlongley>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016Jan/0016.html
+[Fri 12:04:31] <dlongley>	Manu: Brad Hill has been a Security Engineer at PayPal, the FIDO Alliance, and is now at Facebook. He is also the co-Chair of the Web Application Security Working Group at W3C. He is here as an individual and is NOT representing WebApp Sec or his company in any capacity.
+[Fri 12:05:09] <dlongley>	manu: We'd like to talk with you today about the Verifiable Claims Task Force proposal and your thoughts, the conversation will be driven by you, whatever you want to talk about, we'd like to hear about. If there are any key questions we think were missed we can go over at the end.
+[Fri 12:05:23] <manu>	Brad: I've put down a lot of my thoughts here: https://docs.google.com/document/d/1aFAPObWUKEiSvPVqh9w1e6_L3iH4T08FQbJIOOlCvzU/edit#
+[Fri 12:05:27] <voip-vctf>	17278084918 [SIP/69.71.222.196-0000057e] has joined the conference.
+[Fri 12:05:32] <dlongley>	bhill: Sounds good. I've put down some of my thoughts in a Google doc, I've seen it's gotten a lot of readers and comments, it's as good of a way to start as any.
+[Fri 12:05:50] <dlongley>	manu: Ok, let's go through the doc first then.
+[Fri 12:06:01] <manu>	voip: 57e is DavidEzell
+[Fri 12:06:01] <voip-vctf>	Associated DavidEzell with SIP/69.71.222.196-0000057e.
+[Fri 12:06:53] <dlongley>	manu: Let's start with the problem statement.
+[Fri 12:06:54] <manu>	Topic: Verifiable Claims Problem Statement
+[Fri 12:07:04] <manu>	http://w3c.github.io/vctf/#problem
+[Fri 12:07:52] <dlongley>	bhill: I think it's fine. The thing that stood out to me was the part about not changing service provider without losing digital identity. A lot of the claims that are interesting have canonical issuers and I can't port them anyway.
+[Fri 12:07:58] <dlongley>	bhill: I'm not sure what's imagined by identity portability.
+[Fri 12:08:13] <dlongley>	bhill: Which of the three parties that you're porting claims between is unclear.
+[Fri 12:09:24] <voip-vctf>	Eric Korb [SIP/sip.linphone.org-0000057f] has joined the conference.
+[Fri 12:09:34] <voip-vctf>	Eric Korb [SIP/sip.linphone.org-0000057f] has left the conference.
+[Fri 12:09:54] <dlongley>	manu: That hasn't been proposed as a work item (porting between issuers). The idea here is that there may be multiple issuers that say, for example, you've passed the SAT, GRE, or issuers for driver's license, passports, etc. There would only be one issuer for many of those like the US government. But for other things like learning credentials that say you've passed a particular credential there would be lots of issuers. When we're talking about portability, we're saying that once a credential has been issued to an individual or organization, they can choose where to store that credential. It's the user's choice ... a digital wallet, a online service, etc. And they can change it.
+[Fri 12:10:04] <dlongley>	manu: Does that clear that up?
+[Fri 12:10:06] <dlongley>	bhill: Yes.
+[Fri 12:10:13] <dlongley>	manu: Now that that's clear are there any concerns?
+[Fri 12:10:24] <voip-vctf>	19087694252 [SIP/69.71.222.196-00000580] has joined the conference.
+[Fri 12:10:37] <dlongley>	bhill: There are some questions about trust like is the trust proprietary or are the technologies, etc? But we can talk about that later.
+[Fri 12:10:43] <dlongley>	bhill: Otherwise no.
+[Fri 12:12:31] <dlongley>	bhill: I think the statement that "there is no standard that makes it easy for users to assert qualifications to a service provider" isn't entirely accurate. If you look at SAML for instance, tech that has been used to transfer claims for rights and entitlements, used in the education sector, etc. I think it's been used in a number of places and it would be worth doing some more tech history around SAML and what that ecosystem looks like and looked like and if it didn't catch on where it's worth mentioning as a viable competitor today, the reasons why/why not would be good. Finding out about systems in Europe and educational systems would be good. Maybe there isn't a user centric version of that, but there are service centric ones that meet that claim.
+[Fri 12:12:43] <dlongley>	manu: Certainly SAML is one of the techs we will do a deep dive on in the task force.
+[Fri 12:13:27] <dlongley>	manu: There are places where SAML is widely deployed like you said, they have said that it's not ideally suited for some of the types of use case they have. So we have talked with very large orgs in the education sector that have SAML deployed who have said it's not viable.
+[Fri 12:13:38] <dlongley>	manu: But you're saying do a very deep dive with SAML and talk about what's not working and the pitfalls, etc.
+[Fri 12:13:41] <dlongley>	bhill: Yeah.
+[Fri 12:14:04] <dlongley>	manu: Can you think of any other systems that are similar to SAML in this respect? Cross-industry standard that can express and exchange claims?
+[Fri 12:14:38] <dlongley>	bhill: OAuth is similar but if you want to look at the history of large scale efforts for exchanging this type of info SAML is the best case to look at.
+[Fri 12:14:50] <dlongley>	manu: So we should rework the problem statement to talk about SAML.
+[Fri 12:15:21] <dlongley>	bhill: If I'm a CTO somewhere and I've been around for a while and I've spent 10s of millions of dollars and I've seen SAML then I want to see in the problem statement what would make this new tech more successful than SAML.
+[Fri 12:15:29] <dlongley>	manu: Ok, any other concerns with the problem statement?
+[Fri 12:15:33] <dlongley>	bhill: No, makes sense.
+[Fri 12:15:54] <dlongley>	manu: Makes sense that it's something we should look into or do you feel that something positive won't come out of it?
+[Fri 12:16:33] <dlongley>	bhill: I think that this is something people have wanted for a long time. It's an obvious way we interact in the real world and we want to bring it to the digital world and there are challenges and difficulties in doing that so I've tried to highlight some of those in the google doc. I'd like to help make this attempt more successful. It's something to attempt or at least desire.
+[Fri 12:16:59] <dlongley>	manu: We're very thankful for that document and we're going to be taking what you wrote and what others wrote in an output from the task force on things to look out for.
+[Fri 12:17:15] <dlongley>	manu: Ok, let's go with general concerns about user-centric architectures next.
+[Fri 12:17:29] <dlongley>	manu: Have you had a chance to read some of the feedback/comments in the google doc you wrote yet?
+[Fri 12:17:36] <dlongley>	manu: If not, we can talk about fraud and abuse section.
+[Fri 12:17:44] <manu>	Topic: Anti-Fraud / Anti-Abuse
+[Fri 12:18:27] <dlongley>	bhill: Hopefully I've said it fairly well, there are other types of architectures and systems... there are some things where user agents take some responsibility in this regard, there are things like smart screen from MS, so on... if a credential gets stolen out of your device by malware, then your agent is no longer in the loop to provide that bubble of protection and then who has visibility into how you deal with that.
+[Fri 12:18:41] <dlongley>	bhill: In service-centric systems the service always knows where the credential is being used.
+[Fri 12:18:53] <dlongley>	bhill: If someone clones my credit card then no one knows it's being used and that's difficult.
+[Fri 12:19:13] <dlongley>	bhill: In large companies and at large scale, having a clearing house that can do analytics, etc. helps with fraud.
+[Fri 12:20:06] <dlongley>	manu: Do you think that a user-centric approach fundamentally cannot provide the same types of protection? Or can it be modified, such as a digital signature must be put on a credential when it's exchanged to lock it down, etc.
+[Fri 12:20:30] <dlongley>	manu: Is it possible to make a user-centric system as powerful as a service-centric one w/respect to fraud/abuse or can you do things in a user-centric system to get the same level of protection?
+[Fri 12:21:25] <dlongley>	bhill: I think there are ways you can do better than nothing. You can have a token binding to a key like you mentioned. I don't know if that impedes on your goals w/portability. I think there are fundamentally ways that service-centric archs can provide protection over user-centric. Large orgs can do that, whereas users may choose to interact with entities anyway because they don't know better or don't care.
+[Fri 12:21:36] <dlongley>	bhill: Where are how and what users are allowed to send credentials to is hard to control.
+[Fri 12:22:38] <dlongley>	manu: Do you think if there was such a user-centric system and it was successful, would it be a bad thing? Would the fraud/abuse problem be something that can't be addressed by a user-centric system? Are you saying even if we put as many protections as we could, the ecosystem would make us worse off than we are today because of this architecture? Because there aren't orgs that are being paternalistic about what you can/can't do... would it be worse fundamentally?
+[Fri 12:23:16] <dlongley>	bhill: I think it's not a question of fundamentally worse, it's just a set of techs that will compete with service-centric arch, and if you don't do as much of a good job making people be able to use it with reasonable degrees of trust and assurance then people won't use it. It will be a competition in the marketplace.
+[Fri 12:23:22] <dlongley>	bhill: You should think of the best possible way to do it.
+[Fri 12:23:29] <dlongley>	bhill: To be successful.
+[Fri 12:23:41] <dlongley>	manu: So the issues are addressable but we have to keep eyes open and do good analysis.
+[Fri 12:23:55] <dlongley>	bhill: I can't say, there are a lot of moving parts in the system regarding complexity of the tech and adoption and what scenarios you want to support.
+[Fri 12:24:11] <dlongley>	bhill: I can just say it's something to think about carefully and trade off against a lot of other concerns.
+[Fri 12:24:19] <dlongley>	manu: Any other thoughts/concerns on fraud/abuse before moving on?
+[Fri 12:24:34] <dlongley>	bhill: Nope, I've got things in the doc, but not comprehensive, only an hour and half to work on, etc.
+[Fri 12:24:35] <manu>	Topic: Revocation / Status Checking
+[Fri 12:25:02] <dlongley>	manu: Ok. It seems there's an assumption that long-lived credentials are hard to check status on.
+[Fri 12:26:01] <dlongley>	bhill: No, it's just a design decision to think about. You look at systems where you need to ping back to assurers to ensure things are still valid, but a loss of privacy. But there are ways for the user agent to get up to date status information and sending it along when exchanging, that was mentioned in the comments as an alternative. You just have to think about these things and they impact the complexity of the protocol.
+[Fri 12:26:50] <dlongley>	manu: There are four combinations the group has been looking at. 1. A long-lived identifier as a person w/a long lived-credential assigned to one of those IDs you own, and you can crypto-prove you own it. It's like a driver's license that you can have for multiple years at a time and there's some revocation list associated with it.
+[Fri 12:27:33] <dlongley>	manu: 2. When you get that long-lived credential there's a way to convert it to a short-lived credential and you can unbind your long-lived ID from it and you can do this conversion and hand over a short-lived version of it to give pseudo-anonymity.
+[Fri 12:27:51] *	WorldBrain (~WorldBrain@public.cloak) has joined #vctf
+[Fri 12:27:56] <dlongley>	manu: 3. a short-lived identifier with no revocation list.
+[Fri 12:28:09] <dlongley>	manu: 4. short-lived credential requested on demand, bound to a channel ID.
+[Fri 12:28:25] <dlongley>	manu: Those are the four mechanisms we are looking at for how these credentials are used, etc.
+[Fri 12:28:31] *	dlehn (~dlehn@public.cloak) has joined #vctf
+[Fri 12:28:52] <voip-vctf>	David I. Lehn [SIP/6003-00000582] has joined the conference.
+[Fri 12:28:53] <dlongley>	manu: Do you feel that that handles all the cases, with long-lived credential tied to a long-lived ID, to short-lived, etc. Do those cover the types the ecosystem might need?
+[Fri 12:29:11] <dlongley>	bhill: I'm not sure, it's the first time I've heard those four things ... but can't say if comprehensive at this point.
+[Fri 12:29:15] <dlongley>	manu: Any of those seem crazy?
+[Fri 12:29:37] <dlongley>	bhill: It makes reasonable sense, I don't know if revocation list is the right term, it sounds like it applies to more than one credential. I don't know how to square that with privacy concerns.
+[Fri 12:29:51] <dlongley>	manu: Yeah, wrong term, there's some revocation information for your credential and your agent can refresh that for you.
+[Fri 12:29:58] <dlongley>	bhill: Stapled-revocation information.
+[Fri 12:30:16] <dlongley>	manu: Ok, we'll use that terminology.
+[Fri 12:30:27] <dlongley>	manu: Anything else on revocation or status checking you'd want to discuss?
+[Fri 12:31:08] <dlongley>	bhill: No, mostly ... hmm, mostly I feel like you're asking for my endorsement. I'm not hear to do that, I've raised some concerns. I can't endorse that the concerns will all be addressed because you can't say this will be a 3 or a 4 ... it's big and complex.
+[Fri 12:31:20] <dlongley>	manu: Yeah, to be clear, we're not looking for endorsement, we want as much raw input that we can have.
+[Fri 12:31:38] <dlongley>	manu: We want to see if there is anything unreasonable that you can point to and say "that looks really wrong."
+[Fri 12:31:54] <dlongley>	manu: If we said "we're only doing long-lived IDs and no revocation" you'd probably say that that sounds bad for a broad ecosystem.
+[Fri 12:32:01] <dlongley>	manu: That's the kind of feedback we're looking for.
+[Fri 12:32:35] <dlongley>	bhill: Ok, but I've only looked at the problem statement so I can't speak, on the fly, to any particular proposals and if they'll work with large ecosystem concerns, it's more about balancing all of these things to create a successful ecosystem.
+[Fri 12:32:36] <manu>	Topic: Slow Evolution of Agent-Centric Protocols
+[Fri 12:33:25] *	gkellogg_ (~gkellogg@public.cloak) has joined #vctf
+[Fri 12:34:49] <dlongley>	bhill: So, we have the example right now with trying to transition away from SHA-1 in TLS. And it's a protocol in the hands of consumers out there on the Web. It's a hard transition to make. Lots of lots of people still have browsers that use SSL 3.0 only that was obsoleted 12 years ago. Lots of people have devices that have to be entirely replaced to upgrade. There are elderly people who have the same computer they've used for years, still Windows 95 out there. Google is saying "we're using OpenID Connect and turning the rest off" and Google can do that and a billion users can get those newer, better features. That's different from needing to upgrade all the user agents in the field.
+[Fri 12:34:57] <dlongley>	bhill: And you have vulnerabilities that last a long time.
+[Fri 12:35:11] <dlongley>	manu: Ok, certainly distributed systems have those downsides...
+[Fri 12:35:18] <manu>	http://w3c.github.io/vctf/#design-approaches
+[Fri 12:35:25] <dlongley>	manu: So we've got this list of service-centric qualities down at the bottom.
+[Fri 12:35:35] <dlongley>	manu: [lists some qualities]
+[Fri 12:36:06] <dlongley>	manu: Do you: 1. agree that those are downsides to the service-centric approach? There are downsides, do you think there are more, do you disagree with what we have?
+[Fri 12:36:11] <dlongley>	manu: What are your thoughts?
+[Fri 12:36:50] <dlongley>	bhill: I don't know if those qualities are all downsides. I don't know if silos is correct. I can use any user agent to get info from facebook, etc.
+[Fri 12:37:05] <dlongley>	manu: That means you can't get a digital driver's license and put it in facebook and then use it on another driver's license.
+[Fri 12:37:12] <dlongley>	manu: Does that make sense?
+[Fri 12:37:35] <dlongley>	bhill: I guess, but you can get your own PGP key and publish it on facebook or in another place.
+[Fri 12:37:48] <dlongley>	bhill: Using "agent" here is confusing because it is a browser or a digital wallet or what?
+[Fri 12:38:00] *	erkorb_rm (~eric.korb@public.cloak) has joined #vctf
+[Fri 12:38:22] <dlongley>	manu: Does it make more sense if you take agent out and make it a service silo?
+[Fri 12:39:03] <manu>	dlongley: I was going to ask - are there pieces of information specific to users, not specific to a particular service - social relationships, associate them with themselves, move them to different social networks.
+[Fri 12:39:27] <manu>	dlongley: So, they don't have to define all of those in a particular service. We're trying to figure out how you can capture information like that in this problem statement.
+[Fri 12:40:18] <manu>	bhill: The most common claim is email address - you control that - Google asserts my work email address to other people - OpenID Connect sign in. I control that address. Far and away, most common claim type, canonical issuer of email - email provider have address with me - lots of issuers are trusted to make that claim.
+[Fri 12:40:41] <manu>	dlongley: That kind of thing we'd like to see more of - so it's not just email addresses - before you could do something like that, you have to do that over and over at different services.
+[Fri 12:41:06] *	dezell (~dezell@public.cloak) has joined #vctf
+[Fri 12:41:20] <manu>	dlongley: In this case, the issuer shouldn't have to change - you only need one issuer for that email address - help reduce fraud, carry those claims with you, use them at other services. You should be able to do this sort of thing w/ other claims.
+[Fri 12:41:43] *	dezell hello folks.  I figured out that I can come in through the public network (not our internal network) and get around the block.
+[Fri 12:42:05] <manu>	dlongley: If you have to go back to each issuer, and that's the only issuer that can supply the claims. You want to collect those claims - you on a particular issuer - that's the user centric model. I am someone and I want to collect these claims from a variety of different issuers. As long as consumers trust the issuers, the system works nicely.
+[Fri 12:42:40] <manu>	bhill: I understand that's what you're trying to build - that doesn't mean service-centric claims are locked into service providers. I think the hardest/most interesting part is who is trusted to assert which claims and why.
+[Fri 12:42:52] *	dezell apologies I must drop early.  Thanks very much to the task force and to Brad for his time.
+[Fri 12:42:59] <manu>	bhill: That's a problem in service-centric/user-centric world.
+[Fri 12:44:12] <manu>	dlongley: Identity providers (curators) hold on to your credentials, the way the model works with SAML, the issuer is the provider, you have to go off to individual services and identify yourself. Your identity is bound up with each one of these issuers. Where that identity is either long-lived and cross-domain or it is specific to a particular site - you can get credentials issued for that particular site. That's pushing the user to the center rather than having 
+[Fri 12:44:12] <manu>	all these different services having these views of people.
+[Fri 12:44:41] <manu>	bhill: I get it - the problem statement there, and the properties should be qualified how service-centric systems work. Not a question of how user-centric system is supposed to work.
+[Fri 12:45:25] <dlongley>	manu: Do you want to talk about costs and trust/semantics?
+[Fri 12:45:32] <dlongley>	bhill: Trust and Semantics is the most interesting one.
+[Fri 12:45:35] <manu>	Topic: Trust and Semantics
+[Fri 12:46:02] <dlongley>	bhill: There is no simple answer and how you build a successful ecosystem is hard to do. Given a case study with SAML, Susan Landow has a good paper on this.
+[Fri 12:46:47] <dlongley>	bhill: It's a good talk about competing economic issues of the competing parties and why those other systems haven't taken off and how we bootstrap that kind of trust and the meaning and semantics of claims in an arbitrarily extensible system ...
+[Fri 12:46:56] <manu>	bhill: Susan Landau (economic coupled with single sign on) - on SAML and Federation and economic incentives and why those systems haven't taken off.
+[Fri 12:46:57] <bsletten>	http://weis2011.econinfosec.org/papers/Economic%20Tussles%20in%20Federated%20Identity%20Management.pdf
+[Fri 12:47:13] <dlongley>	bhill: [missed] it was too complicated for people to figure out the business problems.
+[Fri 12:47:25] <dlongley>	manu: So your statement is more of a "what are the business models that will make this work?"
+[Fri 12:47:43] <dlongley>	manu: The assertion is "This ecosystem is very costly to set up, so you need to make sure there is a business model that supports that cost."
+[Fri 12:47:47] <dlongley>	manu: Is that the gist?
+[Fri 12:49:15] <dlongley>	bhill: Yeah. If you want it to scale better or be competitive with service-centric stuff... people use super providers now. If I want to get people to sign up I can just put Google, Facebook, etc. on there and I'll get users. "Nobody ever got fired for going with IBM" idea. If there are a bunch of providers is that viable, etc? Presumably some of my employers do... but checking university credentials is a big deal, people getting fired for falsifying that stuff.
+[Fri 12:50:50] <dlongley>	manu: We're seeing a lot of movement in the education space and a lot of participants in the work are from that sector. When people have a degree, did courses, etc. how do we make that stuff easier to check? We are engaging with that community and there are business models they are very interested in pursuing ... and one of the problems we're having is connecting folks like you that are raising these questions and the orgs that want to use it. I don't know if it would be helpful for you to talk to those orgs to see that there are business models there or poke at them. Figure out if you've done a cost analysis on X or Y.
+[Fri 12:51:00] <dlongley>	manu: Would you be interested in discussing this with the education industry?
+[Fri 12:51:29] <dlongley>	bhill: If you guys are doing that, that's great. This is not my project, I won't engage with other industry partners, they shouldn't care if my concerns are addressed, you should care.
+[Fri 12:51:42] <dlongley>	bhill: If you think these are valid concerns you should think about addressing them. I don't think my endorsement turns on this one or another.
+[Fri 12:52:20] <dlongley>	manu: Yeah, it helps for us to get this kind of feedback from you because we can take it to the education industry and they need to lay out their needs clearly because if you are a security researcher and not over there you don't see that.
+[Fri 12:53:50] <dlongley>	manu: We want to ask what kind of work product. ... let's say we go down this user-centric route and there's something to work on, what do you think that should be. For example if the group decides this is something we should be doing... do you think a baby step for coming up with a standard format for expressing verifiable claims is valuable? Do you think the first step would be coming up with a data format for that stuff? Don't talk about protocols, etc.? That's an example of a baby step, or do you think that coming up with that is somewhat in a vacuum, without thinking about the protocol would be a mistake? Can you point to a phase 1 of a WG?
+[Fri 12:54:38] <dlongley>	bhill: What are the parts that need to be standardized? ... You want to have portability between agents then that needs to be standardized. How does the agent work and how does it communicate? What are the interfaces between the agent and the issuers and the agent and the consumers for this basic architecture to succeed.
+[Fri 12:54:44] <dlongley>	bhill: That's the part that needs to be standardized.
+[Fri 12:55:17] <dlongley>	manu: The pushback we have on that is that it's too bold and we could start with the format of the claim first and phase 2 we talk about the agent and how it interfaces with the other parties.
+[Fri 12:55:26] <dlongley>	manu: Should we do that or just go ahead with doing both?
+[Fri 12:55:29] <dlongley>	bhill: You can approach it either way.
+[Fri 12:55:52] <dlongley>	bhill: Maybe defining the claims format first, if and what, the business cases are and what the interest is to drive it going forward.
+[Fri 12:56:02] <dlongley>	manu: So failing at a basic format means agent protocol is unlikely.
+[Fri 12:56:28] <dlongley>	bhill: Well, not that you'd fail but if we can do this is it interesting enough to get people to use these types of claim, and would it build support for going further to talk about delivering them to people, etc.
+[Fri 12:56:45] <dlongley>	manu: We are asking everyone we're interviewing the same question... if there's something to work on, what is the smartest thing to work on first?
+[Fri 12:57:19] <dlongley>	manu: If we circulated a charter to do a basic credential/claim format understanding it will fit in a larger ecosystem ... do you think W3C membership would respond favorably or not?
+[Fri 12:57:20] <dlongley>	bhill: I don't know.
+[Fri 12:57:27] <dlongley>	manu: Ok, that's a helpful answer.
+[Fri 12:57:34] <dlongley>	manu: We don't know how they'd respond either.
+[Fri 12:57:56] *	dezell has quit (Ping timeout: 180 seconds)
+[Fri 12:57:59] <dlongley>	manu: Do you think another standards membership body would be better qualified to work on this or might as well do it at W3C?
+[Fri 12:59:01] <dlongley>	bhill: Certainly, a lot of the community experience with the service-centric protocol is not in the W3C. OAuth, OpenID, OpenID Connect, SAML, those have come out of IETF, OASIS Foundation, etc. To the extent you want to expertise of people in the general problem space with a different architecture they aren't by and large super active at W3C. There are people at W3C like Jeff Hodges. But the W3C might be the most interesting place to do this in terms of the user agent.
+[Fri 12:59:15] <dlongley>	bhill: It's probably something that looks a lot like a web browser, this "wallet" thing -- or an extension or part of it.
+[Fri 12:59:31] <dlongley>	bhill: I would reach out and establish a liaison with other groups.
+[Fri 13:00:13] <dlongley>	manu: Yeah, we plan to do that. Part of this is getting those folks involved, for example Drummond Reed, OpenID, XDI, OASIS, ... Christopher Allen who co-authored SSL/TLS. We plan to engage with SAML, LDAP folks as well, etc.
+[Fri 13:00:27] <dlongley>	manu: Is there anything else you wanted to mention or talk about today, Brad?
+[Fri 13:00:31] <dlongley>	bhill: I think that's it.
+[Fri 13:00:45] <dlongley>	manu: Thank you so much, I really do appreciate you taking the time you took, you're really busy.
+[Fri 13:00:59] <voip-vctf>	Manu Sporny [SIP/6000-00000579] has left the conference.
+[Fri 13:01:00] <voip-vctf>	Matthew Collier [SIP/6008-0000057b] has left the conference.
+[Fri 13:01:01] <dlongley>	manu: I hope we can reach out again if we have more concerns.
+[Fri 13:01:02] <voip-vctf>	David I. Lehn [SIP/6003-00000582] has left the conference.
+[Fri 13:01:03] <dlongley>	bhill: Sure.
+[Fri 13:01:05] <manu>	Present+ sletten, ezell, korb, collier, lehn
