@@ -340,7 +340,7 @@ async.waterfall([ function(callback) {
     }
 
     // format in a way that is readable on G+
-    content = '*Verifiable Claims Group Meeting Summary for ' + gDate + '*\n\n' +
+    content = '*Verifiable Claims Task Force Meeting Summary for ' + gDate + '*\n\n' +
       'We discussed ' + formattedItems + '.\n\n' +
       content + '\nFull transcript and audio logs are available here:\n\n' +
       'http://w3c.github.io/vctf/meetings/' + gDate + '/\n\n' +
@@ -387,7 +387,7 @@ async.waterfall([ function(callback) {
         }
       }, function(err, results) {
         // construct the tweet
-        var tweet = 'Verifiable Claims Group discusses ' +
+        var tweet = 'Verifiable Claims Task Force discusses ' +
           results.message + ': https://w3c.github.io/vctf/meetings/' +
           gDate + '/ #w3c #vctf';
 
