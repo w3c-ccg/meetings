@@ -1,0 +1,140 @@
+[Wed 17:03:52] <manu>	scribe: collier-matthew
+[Wed 17:04:51] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016Jan/0062.html
+[Wed 17:05:10] <collier-matthew>	manu: Thank Drummond for being here today.
+[Wed 17:05:35] <collier-matthew>	manu: We're asking people who have been in identity space for decade+
+[Wed 17:05:56] <manu>	http://w3c.github.io/vctf/
+[Wed 17:06:02] <collier-matthew>	manu: the new initiative is called verifiable claims and W3C is trying to decide if we should do work there.
+[Wed 17:06:20] <collier-matthew>	manu: we have a problem statement, scope of work
+[Wed 17:06:40] <collier-matthew>	manu: we are trying to figure out if people like yourself feel the work is worthwhile and generally get your thoughts on the topic
+[Wed 17:06:56] *	Guest (~textual@public.cloak) has joined #vctf
+[Wed 17:06:57] <collier-matthew>	Topic: Problem Statement
+[Wed 17:06:57] <collier-matthew>	manu: we're going to go over the problem statement and get your thoughts
+[Wed 17:07:10] <manu>	http://w3c.github.io/vctf/#problem
+[Wed 17:07:32] <collier-matthew>	manu: we start with assertion that there is no user-centric solution on the web right now.
+[Wed 17:07:50] <collier-matthew>	manu: we believe that people want to create a user-centric ecosystem
+[Wed 17:07:58] <collier-matthew>	... do you agree with that statement
+[Wed 17:08:32] <collier-matthew>	Drummond: I strongly agree.  Existing solutions are heavily service-centric and there does not exist a user-centric system.
+[Wed 17:09:02] <collier-matthew>	... any system where the identifier for the user is ... where the claims are not portable, is not user-centric
+[Wed 17:09:30] <collier-matthew>	manu: we assert there are a number of problems with service-centric systems.
+[Wed 17:10:03] <collier-matthew>	... people cannot easily change their identity provider or service provider without losing their digital identity.
+[Wed 17:10:16] <collier-matthew>	... do you have any comments on that statement?
+[Wed 17:10:28] <collier-matthew>	Drummond: if anything, that statement is not strong enought
+[Wed 17:10:46] <collier-matthew>	... the issues you're pointing to are issues for users, not for service providers.
+[Wed 17:11:43] <collier-matthew>	... systems that give users independence must be reflected in the protocols and standards
+[Wed 17:11:56] <collier-matthew>	... openid, oAuth and OpenID do not address that issue.
+[Wed 17:12:24] <collier-matthew>	...  it's hard to quantify what would happen in the marketplace if a user-centric standard exists
+[Wed 17:12:54] <collier-matthew>	... credit cards could be used as an analogy.  No one could have predicted the impact that credit cards have had.
+[Wed 17:13:09] <collier-matthew>	manu: how deeply involved were you in the OpenID process?
+[Wed 17:13:19] <collier-matthew>	Drummond: I was one of the founding board members.
+[Wed 17:14:21] <dlongley>	scribe: dlongley
+[Wed 17:14:31] <dlongley>	Drummond: I was deeply involved with OpenID 1.0, and some of the early OAuth stuff, the InfoCard Foundation (Executive Director), and left at the beginning of OpenID Connect. 
+[Wed 17:15:42] <dlongley>	Drummond: I was on the OpenID board until we transitioned to OpenID Connect. OpenID generation 1 was the original protocol, when it was started, the foundation then started to standardize OpenID 2 and that was to bring all the protocols together and make a standard and that was not succeeding the face of facebook/social login. Third generation leveraged OAuth because it had taken off and it became OpenID Connect. I wasn't involved in finalization of OpenID  Connect.
+[Wed 17:16:17] <dlongley>	Manu: Do you think that OpenID Connect solves this problem and we can just use it to carry these claims or maybe just add an extension?
+[Wed 17:16:23] <dlongley>	Drummond: No, we need a big architectural shift.
+[Wed 17:16:27] <dlongley>	Drummond: I can try to articulate why...
+[Wed 17:17:07] <dlongley>	Topic: OpenID Connect
+[Wed 17:17:07] <dlongley>	Drummond: What OpenID Connect still doesn't address is portability of user's digital identity and their claims. I personally have been convinced some time now that we're only going to get there by moving to a semantic graph model for modeling identity and claims.
+[Wed 17:17:32] <dlongley>	Drummond: If you don't take that step it's not adaptable, extensible enough to do it. Otherwise you're just going to get single-sign on at best.
+[Wed 17:17:48] <dlongley>	Manu: Can you be more specific with technologies when you say semantic tech?
+[Wed 17:18:24] <dlongley>	Drummond: The identifiers need to be portable and are supported with semantic graphs and linked to claims for the user or organizations and that will provide the technological basis for interop and portability for broad adoption.
+[Wed 17:18:42] <dlongley>	Manu: So tech like the XDI work you've been involved in for a long time and Linked Data at W3C?
+[Wed 17:18:47] <dlongley>	Drummond: Yes, those are the two things I would point to.
+[Wed 17:19:29] <dlongley>	Manu: Moving to the second bullet point -- about no interop standard that cuts across industries. Industries create their own solutions and they are costly and don't work across lines. I think you've covered that but do you find any language in there to be long?
+[Wed 17:20:04] <dlongley>	Drummond: I wouldn't change a word, I'd emphasize that if you break out of industry specific solutions you will enable a whole new level of not sure e-commerce but e-business; relationships that can take place online today but just can't today because of too much friction.
+[Wed 17:20:24] <dlongley>	Manu: Third point, asserting qualifications on the Web is hard. Do you know of any tech that makes it easy to do today?
+[Wed 17:21:37] <dlongley>	Drummond: That is an unsolved problem. There's been no adoption not even slight-adoption, only industry specific solutions, no standard. It was in scope for OpenID and OpenID attribute exchange, the center of the bowling alley for InfoCard and neither one made a dent in that part of the problem. I'm very close with the OpenID community and I don't want to go on record as saying it hasn't worked, as they are still working on it, but that doesn't change my mind that until you move to a semantic graph model or the claims and the sharing of the claims and make it portable you won't get over the hump.
+[Wed 17:22:20] <dlongley>	Manu: We've done these interviews with a variety of different people and some are asserting that OpenID attribute exchange handles it and that's all we need plus some JOSE stuff with JOTS, etc. and that's all you need, the problem is solved. That's all the tech you need for verifiable claims, do you agree/disagree/partial agree/thoughts?
+[Wed 17:23:14] <dlongley>	Drummond: I think you can absolutely make a case that the OpenID Connect architecture is designed to provide claims and I honestly have not gone back down into the standard and looked at attributes and see if they provide signed claims that can be stored independent of the service provider and do they provide portability. I don't believe the answer to any of those is yes. But I'm qualifying that by saying I haven't dived back down into it to make sure that's true.
+[Wed 17:23:32] <dlongley>	Manu: Do you know of anyone we could definitively ask that of?
+[Wed 17:24:34] <dlongley>	Drummond: Sure, John Bradley, Mike Jones, Matt Zakamura and I've known all three for a long time, all involved w/OpenID and 2/3 involved with InfoCard. If you're going to get the strongest "yeah, this is why we solved the problem" it would be from them. All very articulate. I'd point you at John Bradley first maybe I can get you an intro.
+[Wed 17:24:59] <dlongley>	Manu: Ok, we haven't heard from them yet, only hearing 3rd-4th hand from others saying the problem is solved but we want to dig in and get answers from people closer to the source.
+[Wed 17:25:08] <dlongley>	Manu: We'd love an intro w/John Bradley.
+[Wed 17:25:11] <dlongley>	Drummond: I'd be happy to do that.
+[Wed 17:26:12] <dlongley>	Manu: That's the problem statement. We're asserting that this is not a solved problem, specifically we're saying "user-centric mechanism" standard is not a solved problem. We're contrasting that w/service centric mechanism. We're saying you can do service-centric things today, but as you said you can't express this information as a semantic graph and people can port claims from one place to another and that's where we need to do some work.
+[Wed 17:26:20] <dlongley>	Drummond: Yeah.
+[Wed 17:26:25] <manu>	Topic: Definitions and User-Centric vs. Service-Centric
+[Wed 17:26:25] <manu>	http://w3c.github.io/vctf/#definitions
+[Wed 17:26:59] <dlongley>	Manu: We say verifiable claims are a set of statements that are cryptographically verifiable (non-repudiable/authentically made)
+[Wed 17:27:07] <dlongley>	Manu: That's what we're calling a verifiable claim.
+[Wed 17:27:09] <dlongley>	Manu: Any questions on that?
+[Wed 17:27:12] <dlongley>	Drummond: Nope, very clear.
+[Wed 17:27:40] <dlongley>	Manu: User centric vs. service-centric [manu reads definition].
+[Wed 17:28:12] <dlongley>	Manu: An example of service-centric would be facebook/twitter ID, logging in with social login is a service centric experience. You don't pick your credentials from wherever you want to store them, you have to store them at facebook/twitter/etc.
+[Wed 17:28:16] <dlongley>	Manu: Is that clear?
+[Wed 17:28:44] <dlongley>	Drummond: Editorial writing feedback -- if you read through the ramifications of each it makes it clear. The opening statement about placing people at the center of the ecosystem is too vague.
+[Wed 17:29:44] <dlongley>	Drummond: If you didn't have the ramifications the definitions aren't clear enough. I'd be happy to work with it looking at ramifications. This is near and dear to my heart because with Respect Network we're building a whole user-centric system. We started with five principles for what this means in law and I'm not suggesting you go that far, but there's a level of precision and depth that's not here yet.
+[Wed 17:29:58] <dlongley>	Manu: We'd love some help with updating the language here, something terse or good explanation of these things.
+[Wed 17:30:00] <dlongley>	Drummond: Sure.
+[Wed 17:30:01] *	Guest has quit ("My MacBook Pro has gone to sleep. ZZZzzz…")
+[Wed 17:30:23] <dlongley>	Topic: Respect Network
+[Wed 17:30:23] <dlongley>	Manu: Could you go into the Respect Network more and those five tenets, etc?
+[Wed 17:30:30] <dlongley>	Drummond: Sure, but not too deep we'd spend the whole call on it :).
+[Wed 17:31:07] *	Guest (~textual@public.cloak) has joined #vctf
+[Wed 17:31:23] <dlongley>	Drummond: User-centric claims and users having control of their claims ... if you said there was a network, similar to a social network, where when you join the network you aren't only getting portable identifiers, and a semantic graph you can use, but you are guaranteed, legally, in the membership agreement, if you promised permission, protection, portability, and proof.
+[Wed 17:31:41] <dlongley>	Drummond: The promise is that every member of the network is making the same promise, it's mutual amongst all members.
+[Wed 17:31:52] <dlongley>	Drummond: Permission means all data, all claims is viewed by permissions.
+[Wed 17:32:03] <dlongley>	Drummond: Protection: When you accept shared data you agree to protect it.
+[Wed 17:32:25] <dlongley>	Drummond: Portability: The identity and data of any member is portable you can't lock it in, it's based on semantic graph.
+[Wed 17:32:53] <dlongley>	Drummond: Proof: Enforcement of that agreement on the network is via a reputation system on the network itself. At a baseline it just establishes the level of trust people or orgs have in you.
+[Wed 17:33:04] <dlongley>	Manu: Is there a network of any kind that meets these five principles today?
+[Wed 17:33:14] <dlongley>	Drummond: Absolutely not that's why we're building it :)
+[Wed 17:33:35] <dlongley>	Drummond: One of my great interests in this work is portable digital identity is fundamental, we can't build our network without it. It's a starting place, not an ending place.
+[Wed 17:34:52] <dlongley>	Manu: We're about half-way through. The general question is: Do you feel that there's a certain part of this problem that should be tackled before the others? If you agree with problem statement and user vs. service centric. Do you feel that just working on the data format like the semantic modeling portion of it, is that enough? Or do you feel like you have to work on the data format and the protocol for issuing, storing, requesting, ... do they have to be done in parallel or can it be phased work?
+[Wed 17:35:43] <dlongley>	Topic: Portable Identifiers
+[Wed 17:35:43] <dlongley>	Drummond: I'm always in favor of phasing the work but I don't think that the architecture and the tech solution can be separated out that way. I think you have to look at this wholistically. There are three legs of the triangle. Data format, protocol, and the identifiers. You need that pyramid right for it to hold up. I would argue that whole huge efforts in the industry have failed for that reason.
+[Wed 17:35:50] <dlongley>	Manu: Because of a lack of portable identifiers?
+[Wed 17:36:15] <dlongley>	Drummond: No, that's not the only reason, but spending literally 15 years on that one core aspect ... it's a lot harder than it looks. It's more important than it looks.
+[Wed 17:36:48] <dlongley>	Drummond: If you don't pay attention to that, then you'll find that all the claims and the protocols wind up being service centric and I want to put a fine point on that. OpenID said they'll solve it by giving everyone a URL. That was a starting point going into it.
+[Wed 17:36:57] <dlongley>	Drummond: They didn't recognize that URLs aren't designed to be portable identifiers.
+[Wed 17:37:35] <dlongley>	Drummond: That's one aspect .... I could go on for hours. Claims that aren't expressed as a semantic graph ... the entire InfoCard effort expressed claims as XML and not a semantic graph and it looks easy and straighforward and we hit the wall.
+[Wed 17:37:46] <dlongley>	Drummond: And the protocol, don't get me started.
+[Wed 17:37:51] <dlongley>	Manu: We do want to hear about it!
+[Wed 17:38:00] <dlongley>	Manu: But first, what are the minimum requirements for the identifier?
+[Wed 17:38:14] <dlongley>	Manu: You're saying URLs (as in, http-based URLs) aren't the solution. What is the solution?
+[Wed 17:38:33] <dlongley>	Drummond: I can give a fairly short answer, I think the WebDHT spec, it's just a draft but it was fairly well-articulated there.
+[Wed 17:39:07] <dlongley>	Drummond: It's not that an http-based identifier could not be portable it's that the design of DNS is fundamentally ... is not ... there are aspects of portable identifiers that aren't addressed by DNS you have to move to URNs or OIDs ...
+[Wed 17:39:11] <dlongley>	Drummond: DOI.
+[Wed 17:39:19] <dlongley>	Drummond: To get into the space of identifiers that are designed for persistence.
+[Wed 17:39:30] <dlongley>	Drummond: Ultimately the challenge is in that triangle.
+[Wed 17:39:37] <dlongley>	Drummond: I assume you guys are familiar with that.
+[Wed 17:39:39] <dlongley>	Manu: Yes.
+[Wed 17:40:00] <dlongley>	Drummond: You want persistence, portability by the user, controlled by the user. Providing that technically and making that usable is really hard.
+[Wed 17:40:04] <dlongley>	Manu: Right.
+[Wed 17:41:04] <dlongley>	Manu: We have been met with a fair bit of skepticism with this initiative that comes in various forms -- one of them is: We don't see how this problem statement is any different from OpenID Connect or SAML or Liberty, etc. those previous things. Do you see what the difference is or do you still think that the way we've worded the problem statement is unclear? How we're trying to differentiate this work.
+[Wed 17:41:31] <dlongley>	Drummond: I do see the difference in a major way. I can see why others are looking at it and saying "not enough of a difference" and it's a matter of perspective of these underlying problems.
+[Wed 17:42:04] <dlongley>	Drummond: I attended a previous call and followed links to read about the critiques and they are good and real. The challenges of moving from centralized authorities to decentralized ones and claims are enormous.
+[Wed 17:42:08] <dlongley>	Drummond: They are hard problems.
+[Wed 17:42:28] <dlongley>	Drummond: And you have entrenched interests, some are disinterested or actively opposed to decentralized solutions because it's threatening.
+[Wed 17:43:47] <dlongley>	Drummond: I'm not sure what the best way to deal with that is. I do agree to more precisely articulate existing systems and why they don't solve the user-centric problem ... the better you can do that the more obvious it becomes that this work is needed. I don't know, on a political basis, if it's a winnable war. I've left that area to go to the startup side ... enough arguing and we'll just build something. We'll build some on open standards and otherwise just invent what we need that isn't there.
+[Wed 17:44:11] <dlongley>	Topic: Ideal Place for Work
+[Wed 17:44:11] <dlongley>	Drummond: I think W3C has done great work with JSON-LD and that's really helped open things up and I do think if something can be done this is the right group to do it.
+[Wed 17:44:41] <dlongley>	Manu: You think this is a solvable problem (not a technological one), but it's not like we're talking about faster than light travel, it's feasible... 2 or 3 years if we can head in the right direction.
+[Wed 17:44:43] <dlongley>	Drummond: Absolutely.
+[Wed 17:44:51] <dlongley>	Drummond: I'm not saying that XDI is needed for something like that.
+[Wed 17:45:10] <dlongley>	Drummond: JSON-LD is a solid foundation, the WebDHT work, blockchain tech. All the crypto is there.
+[Wed 17:45:22] <dlongley>	Drummond: Really the problem is getting to consensus and code bases that will implement.
+[Wed 17:45:29] <dlongley>	Drummond: That will implement portable claims and digital identity.
+[Wed 17:45:33] <dlongley>	Manu: Where do you think the work is best done?
+[Wed 17:46:22] <dlongley>	Manu: You're moving to the startup realm and you'll be building and deploying there and that's one way to go about it. Another way is to go to a standards body and do the work there and they can actually be done in parallel, those two things. Which standards setting org is the best to make rapid progress? OASIS? W3C? IETF? Something new?
+[Wed 17:47:54] <dlongley>	Drummond: The only clear answer is not the latter. Org after org happened to help with this ... arguable OpenID foundation could have done a fork inside one of the existing ones but it didn't politically happen that way. I don't think you need a new one, I could be wrong, if entrenched interests won't sign on, etc. I'm almost certain ... I can hear people "in my hear" saying that is what OpenID foundation is for and it should be an OpenID WG. I really don't know ... my experience has been with OASIS for a long time, yours has been with W3C and that has produced some outstanding stuff and IETF is always going to be there. I don't have enough experience with those other orgs to guide you there.
+[Wed 17:48:08] <dlongley>	Manu: So I'm scanning down the list of open questions that we had...
+[Wed 17:48:38] <dlongley>	Manu: And you've given us fantastic answers and the amount of insight you have is really great and perhaps the deepest we've gotten to date because of your heavy involvement over the last 15 years.
+[Wed 17:49:43] <dlongley>	Manu: So thank you. We already asked the question if there is tech that can solve this problem ... but are there techs today that could solve bits and pieces of it? What bits of OAuth2 would you use and what bits of OpenID Connect or JSON-LD would you use? Can you identify really interesting tech that you feel would accelerate the process? Do you have any strong feelings about any of that?
+[Wed 17:49:58] <dlongley>	Drummond: I have very strong feelings that the basis for the solution has to be semantic graph. Complete conviction.
+[Wed 17:50:15] <dlongley>	Drummond: RDF and JSON-LD will absolutely do the trick, XDI will eventually but it's still very young. I don't think you'd want to try and use it to solve this problem.
+[Wed 17:52:01] <dlongley>	Drummond: The crypto I am a huge fan of the what the bitcoin community has developed. I've been getting steeped in that, working with Christopher Allen. I absolutely believe that ... I'm realizing early on that there's one thing I didn't mention that I can point to ... my own thinking has evolved tremendously in the last year. What's not addressed in the existing protocols OpenID, SAML, you name it, what's missing completely is key management. Specifically user-centric key management. It just doesn't exist -- no animal meets that requirement. The closest thing you can come to is bitcoin wallet. That's because it's based entirely on proof of control. If you're going to provide portable identity and portable claims with real control by the user, then you have to solve that problem.
+[Wed 17:52:12] <dlongley>	Drummond: You have to solve the problem of user-side control of key management.
+[Wed 17:52:39] <dlongley>	Drummond: What the bitcoin community has done with keys and how it's going with key recovery and building that in with the overall solution is going to be what's required to "really hand over the keys to the user".
+[Wed 17:52:55] <dlongley>	Manu: Haha, ok that's great. We've gotten a lot of great info from you today.
+[Wed 17:53:15] <dlongley>	Manu: We'll be reporting all of this back to W3C management and the VCTF group, etc. Do you have any other thoughts or concerns about the work?
+[Wed 17:53:22] <dlongley>	Manu: Before we close this discussion out?
+[Wed 17:54:03] <dlongley>	Drummond: Not really. I'm tremendously interested to see if ... it's like being interviewed for a presidential election ... here's my opinion by what's going to happen here? I'm interested to see what W3C does, to see if a WG gets started.
+[Wed 17:54:33] <dlongley>	Manu: We're trying to get a WG after the next 3-4 months and we're going due diligence since this is a well-trod road and W3C wants to make sure we talk with people like you, etc.
+[Wed 17:54:42] <dlongley>	Manu: Do you see what we're trying to do as different this time around?
+[Wed 17:56:24] <dlongley>	Drummond: I think that sums up the whole interview -- if the aspects of the problem that we've talked about are specifically in the charter of this new group, then it can actually solve the problem and get user-centric, interoperable claims in a way that won't be gotten to ... OpenID aspires to that (SAML doesn't), OpenID people would say bring it here and we'll make it the next generation of what we're doing. From my perspective, I don't know about the political standards battle. But we *have* to get to semantic graph. portable identifiers, and user control, key management and then we'll finally get where industries have been trying to get. If you can put together the effort that will tackle those things then we will get there.
+[Wed 17:56:42] <dlongley>	Drummond: Brad Hill's critique was very articulate about the challenges.
+[Wed 17:56:52] <dlongley>	Drummond: I believe they are all solvable but they are real challenges.
+[Wed 17:57:03] <dlongley>	Manu: Thank you again for all your time, we really appreciate it.
+[Wed 17:57:13] <dlongley>	Manu: We'll CC you on that so  you can make any corrections. Thanks so much.
+[Wed 17:57:35] <dlongley>	Drummond: I'd be happy to help any way I can.
+[Wed 17:57:40] <dlongley>	Present+ taaz
