@@ -225,7 +225,7 @@
     {
       scrawl.counter += 1;
       rval = '<div onmouseout="$(\'#link-' + scrawl.counter + '\').hide()" ' +
-        'onmouseover="$(\'#link-' + scrawl.counter + '\').show()"" ' +
+        'onmouseover="$(\'#link-' + scrawl.counter + '\').show()" ' +
         'id="' + scrawl.counter + '" ';
 
       if(person != undefined)
