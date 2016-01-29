@@ -660,7 +660,7 @@
            'please upgrade.</audio></div></dd>\n';
       }
 
-      rval += '</dl>\n';
+      rval += '</dl>\n</div>\n';
     }
     else
     {
