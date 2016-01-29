@@ -37,7 +37,7 @@ var peopleJson = fs.readFileSync(
   __dirname + '/people.json', {encoding: 'utf8'});
 var gLogData = '';
 var gDate = path.basename(dstDir);
-gDate = gDate.replace(/-[a-z]+$/, '');
+gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
 
 // configure scrawl
 scrawl.group = 'Verifiable Claims Telecon';
@@ -209,7 +209,7 @@ async.waterfall([ function(callback) {
                 summary.resolution[j].replace(/resolved: /ig, '');
             }
 
-            var date = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
+            var date = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/)[1];
             summaries[date] = summary;
             callback();
           });
