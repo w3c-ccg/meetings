@@ -1,0 +1,132 @@
+[Fri 13:05:34] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016Jan/0067.html
+[Fri 13:05:38] <manu>	scribe: dlongley
+[Fri 13:06:30] <dlongley>	manu: The call is minuted and recorded, let us know if you have a problem with that.
+[Fri 13:06:34] <dlongley>	dick: Ok.
+[Fri 13:06:47] <dlongley>	manu: Thank you for being here today, we know you're incredibly busy so we appreciate the time to get your thoughts on this area.
+[Fri 13:07:03] <dlongley>	manu: The assumption here is that you're speaking as an individual, not representing Amazon.
+[Fri 13:07:29] <dlongley>	dick: I'm speaking as an individual and none of my contributions (I don't think I'll make up anything with IP in it), my Amazon counsel as said none of this would fall under W3C contribution policies.
+[Fri 13:07:33] <dlongley>	manu: Got it and they don't.
+[Fri 13:09:01] <dlongley>	manu: Just a quick intro for those that don't know Dick Hardt - he has been involved in the identity space for over a decade and was involved in the creation of OpenID and OAuth among many other identity-related initiatives. His Wikipedia page is here: https://en.wikipedia.org/wiki/Dick_Hardt
+[Fri 13:09:01] <dlongley>	manu: We've chatted with you twice before to give you an overview about what this work is about and we've talked to you a bit about the Credential CG work to help you understand the type of work we've been doing. The main reason we reached out to you is to make sure we do our due diligence before starting work at W3C, if we do in fact start it. We want to hear you thoughts on all this, concerns, pitfalls, areas of work that important, things to avoid, in general a brain dump from you because you've been so involved in this space for the past decade+. We've got a problem statement and user centric vs. service centric -- and things we can talk about but it's really up to you, we don't have to stick to the proposed agenda.
+[Fri 13:09:14] <dlongley>	manu: Any thoughts on the agenda before we get started, did you want to focus on anything else?
+[Fri 13:09:16] <manu>	Topic: Problem Statement
+[Fri 13:09:24] <dlongley>	dick: Sounds good, we can figure it out as we go and start with the agenda.
+[Fri 13:09:26] <manu>	http://w3c.github.io/vctf/#problem
+[Fri 13:10:01] <dlongley>	manu: What we're really trying to do is get the problem statement right because we want to scope this work down. We don't want to try and "solve identity for the Web", it's a really sticky area and we don't want to fall into that trap.
+[Fri 13:10:05] <dlongley>	dick: So why not?
+[Fri 13:10:38] <dlongley>	manu: Because we think that it's been attempted many times. We're trying to take a layered approach to get there and scope down narrowly into a bite-sized chunk because we don't think W3C membership or other bodies have an appetite for something larger.
+[Fri 13:11:24] <dlongley>	dick: As soon as you start diving into any aspect of it you have to think about how it will scale to solve identity on the Web, it's difficult to have a big bang approach and poof it solves everything about identity, but it's important to have a vision for what identity looks like in the future a mountain you're going to and then you say here's the first problem you're going to solve.
+[Fri 13:11:57] <dlongley>	manu: Got it, that's the general approach we want to take. We want to take a layered approach, we believe this is the bottom layer and we can build on top of it, understanding that we're trying to get to a unified vision. Does that sound like the right thing to do?
+[Fri 13:12:32] <dlongley>	dick: Not quite because you're talking about as if there is a bottom layer and then higher layers, I'm thinking there are areas of pain where you can get traction early and you solve it for one group and as that gets solved and matures you can move to other groups.
+[Fri 13:12:55] <dlongley>	manu: I agree. So we were hoping that banking and finance, healthcare and education would be the main drivers forward. The orgs really driving this seem to be the education industry.
+[Fri 13:13:53] <dlongley>	dick: I like the education industry, the healthcare and finance have lots of pain but they have so many different requirements it's hard to solve those well. It likely will distort what you're doing such that what you build won't be easily used elsewhere. Imagine if the first thing on the Web was healthcare and banking. We're going to do online healthcare and banking and then envision what we got out of that would be useful for porn or etrade.
+[Fri 13:14:36] <dlongley>	manu: We're making an assertion in the problem statement, we're saying there's no widely-used user centric system for exchanging claims/credentials via the Web. We were talking to Christopher Allen yesterday and he said a better term is "self-sovereign" where people own their own data.
+[Fri 13:14:46] <dlongley>	manu: Would you state the problem statement the other way?
+[Fri 13:17:31] <dlongley>	Topic: User-centric Design vs Privacy-centric Design
+[Fri 13:17:31] <dlongley>	dick: I think putting the user centric attribute in front of it is proposing a particular solution instead of saying what the problem is. I've been a big driver of user centric and what's important about that. In order to have scale, I think a user-oriented approach is what is needed. Putting everything in the middle is tough, if you put stuff at the edges you can scale, the Internet has shown this. If we want to operate at Internet scale you need a distributed approach. And a flow that goes through the user instead of centrally enables you to have the scale and also has another valuable attribute around privacy and knowledge and consent. If it's flowing through the user with the user more in the middle of it then they have the ability to have more knowledge and understanding of what's there, not necessarily that they will understand but the tools are there and they can participate in what's happening. In contrast to giving a little bit of piece of data to a server and they talk to a bunch of other servers and you have no idea what's going on and they go off and talk about you and then get back to you to let you know your credit is good. THat's different from "power to the people view" and that's not really the model that I think is critical. All the identity statements made about you aren't yours and aren't made by yours. It's someone else that's trusted that's making that statement.
+[Fri 13:18:02] <dlongley>	dick: It's the state of CA saying I can drive, Canada saying I'm a citizen, Amazon saying I'm an employee, UBC saying I attended, a credit agency saying I've got good credit, those are statements others have said about me.
+[Fri 13:18:13] <dlongley>	manu: THat's good and I'm hearing alignment with the thinking we've been doing.
+[Fri 13:18:24] <dlongley>	manu: The person is in control of those claims when they hand them over.
+[Fri 13:18:48] <dlongley>	dick: I would say that the user is in the loop when the claims are moved. Control and informed, so they know it's happening and acknowledge it, but it's not that they control it per se.
+[Fri 13:19:47] <dlongley>	dick: Subtle but significant. With control says "I've got them all and I can hand them out" and I don't think it's a requirement for that. I would just say "There's no widely used standard for ... presenting a claim from one entity to another." Anything that's self-asserted isn't interested, it's really the stuff that other entities are saying about you that we want to get to.
+[Fri 13:20:16] <dlongley>	Topic: OpenID Connect, SAML, and OAuth
+[Fri 13:20:16] <dlongley>	manu: When we didn't have user centric there -- a lot of assertions were made that the tech is already there, like OpenID Connect, SAML, etc. and those techs exist and can express, present, receive verifiable claims.
+[Fri 13:20:19] <dlongley>	dick: I don't think so.
+[Fri 13:21:00] <dlongley>	dick: Having worked on a number of those technologies I don't think they do it at all. They do it for like one or two claims right? But it's not a broad thing where I can go to any random site and share a wide variety claims with them... I can go to a site and prove I have a google or facebook account, but none of the interesting things I just talked about.
+[Fri 13:21:23] <dlongley>	manu: We were talking to John Bradley and he said that OpenID has a system of distributed claims and you can do this.
+[Fri 13:21:25] <dlongley>	dick: I don't think so.
+[Fri 13:22:00] <dlongley>	manu: People have said you can just put these technologies together JOTS/JOSE, OpenID Connect, etc. and you can achieve this no problem.
+[Fri 13:22:18] <dlongley>	dick: I think there are a bunch of useful pieces there but other pieces are missing because obviously we're not able to do it today.
+[Fri 13:22:58] <dlongley>	manu: If we were to start this work, what would a working group focus on? Would it be being able to express the claim, data format, signature format, etc. extensibility for various industries? Or do you think that's useless without also working on the protocol for issuing consuming, expressing credentials.
+[Fri 13:23:16] <dlongley>	manu: Do you think identifiers are important, self-sovereign identifiers? Being able to tie claims to identifiers that aren't tied to domains.
+[Fri 13:23:24] <dlongley>	manu: What would the first useful step be?
+[Fri 13:23:30] <dlongley>	dick: Let's back up a bit on the problem statement.
+[Fri 13:24:14] <dlongley>	Topic: Useful Technology Pieces
+[Fri 13:24:14] <dlongley>	dick: You talk about those techs and one of the pieces that isn't clear is ... "How can we share claims in a way that doesn't create a highly-correlated identity fabric?" So we need to say "How is it privacy protected" and I don't see that and that's part of the problem. We need a mechanism of sharing these that is privacy protecting.
+[Fri 13:24:34] <dlongley>	manu: Yes, absolutely, I think that's a core desire. But you think we're not pointing that out to the appropriate degree in the problem statement?
+[Fri 13:25:12] <dlongley>	dick: Yeah, you think that's covered by the user-centric attribute, but I want to take that out and put in privacy ... user-centric does cover it when you go deeper but privacy should be brought up. YOu can say the user is informed about what the system is doing.
+[Fri 13:25:23] <dlongley>	dick: The other questions you put up there... do we need a way of expressing claims?
+[Fri 13:25:54] <dlongley>	dick: I don't think we need yet another way of expressing a claim, that's well-trodden path. Do we need an architecture that's privacy protecting? We need that today.
+[Fri 13:25:59] <dlongley>	manu: How would you express claims?
+[Fri 13:26:08] <dlongley>	dick: I would just use JWTs (jots).
+[Fri 13:26:37] <dlongley>	dick: If someone wants to use [missed] we can do that too. I don't think we need a new way to do that, what am I binding these things to ... that's privacy protecting and that's missing.
+[Fri 13:26:50] <dlongley>	manu: Can you go into the privacy protecting architecture more?
+[Fri 13:26:58] <dlongley>	dick: We don't have something for that, we need to figure that out.
+[Fri 13:27:05] <dlongley>	manu: Is that different from the protocol or related?
+[Fri 13:28:31] <dlongley>	dick: Related. A number of people have talked about ideas but there's no consensus. Distributed ledger is one way to do it so it's not centralized identity, so that's a way of doing some pieces, but there's no consensus about how to go about doing that but how does it all fit together no one has laid it out. As soon as you get to privacy solutions it's been a full stack that doesn't take advantage of everything else. We need something with all the right characteristics for privacy but enables us to use a bunch of other machinery so we can link it into other systems. Anything shared off of facebook isn't privacy protectin necessarily. Facebook is the one store and that's problematic for a bunch of other reasons.
+[Fri 13:28:45] <dlongley>	manu: So you think that's most important, privacy protecting architecture and protocl, etc.?
+[Fri 13:28:54] <dlongley>	Topic: The Work on OpenID
+[Fri 13:28:54] <dlongley>	dick: Well, now we move into where the work should happen, is W3C the best place?
+[Fri 13:28:57] <dlongley>	manu: What do you think?
+[Fri 13:29:42] <dlongley>	dick: The only reason the OpenID foundation exists because the IETF was mean to us and if they wouldn't let us play in their sandbox we'll make our own. But now they aren't mean so we can play there. Maybe there are are some architecture in statements that would make sense in W3C.
+[Fri 13:29:53] <dlongley>	manu: Protocol mode in IETF and higher-level document stuff in W3C.
+[Fri 13:30:01] <dlongley>	dick: Yeah, that seems to be how those orgs are broken up and what people look to.
+[Fri 13:30:25] <dlongley>	manu: I'm interested in hearing about OpenID Foundation -- how do you feel the OpenID Foundation experiment worked and what were good lessons learned from that initiative?
+[Fri 13:30:30] *	dlongley no audio for me
+[Fri 13:30:39] *	dlongley ha :)
+[Fri 13:32:33] <dlongley>	dick: On one hand, we got a lot of momentum around OpenID because there were some pain points that many people in the community had and so our timing was good on working to solve a problem. So we rallied and got people together. The problem was relying party websites wanted to reduce the friction of people signing up. As we got into using them, logging in wasn't really a painpoint for the relying party but registering was. As soon as the user had to type it was bad but just clicking buttons was a huge plus. In registration we wanted to know a verified email because its a friction in conversion, if they have to go to an email and click a button it was out of the flow and if they could just click and be redirected so I don't have to verify myself that's great. Unfortunately as we came up with that we stumbled around...
+[Fri 13:33:29] <dlongley>	dick: addressing some of the other issues in the protocol and some of the members in the foundation implemented version 2 of OpenID they were reluctant to look at a new version or have work go on about the adoption issues around OpenID and that stalled innovation and then the foundation say everyone is using OAuth and the facebook model and the foundation pivoted to using that because that's what people are doing and that suddenly moved us away from a user-centric flow to a service-centric flow.
+[Fri 13:33:52] <dlongley>	manu: Looking at tech today, OpenID Connect is there and most of sites I go to have login with facebook, login with twitter, login with google, etc. why do you think that happened?
+[Fri 13:34:00] <dlongley>	dick: Why do I think which happened?
+[Fri 13:34:14] <dlongley>	manu: Multiple different login buttons on a site? Do you feel that OpenID Connect was supposed to address that or that was the natural outcome?
+[Fri 13:34:33] <dlongley>	dick: Well, we've often called that the Nascar problem with a big flurry of logos and icons all over the place the user trying to pick it.
+[Fri 13:35:16] <dlongley>	dick: For the relying party they just wanted to simplify registration and there were additional value adds there, and the OAuth flow would let you find out about the user and which one it was an it was a substitution for authentication when it was really an authorization flow. [missed] In contast to SAML.
+[Fri 13:35:36] <dlongley>	manu: A number of people have said SAML can express verifiable claims so maybe you just need to revamp SAML and it will address the problem statement, your thoughts?
+[Fri 13:36:04] <dlongley>	dick: That's what the SAML people told us as the OpenID people that their stuff would work and then it became Oauth and OpenID connect and so clearly it wasn't solving the problem and people did these other things, so No.
+[Fri 13:36:25] <dlongley>	dick: One of the other problems with SAML is JSON has eclipsed XML. The other thing is that the protocol flow ... people have learned how to do that simpler and easier.
+[Fri 13:36:42] <dlongley>	manu: Just to be clear though, your'e not suggesting that OpenID Connect could be modified to address the problem statement.
+[Fri 13:37:21] <dlongley>	dick: Depends what you mean by modify. OAuth 1 and 2 are radically different and some people think OAuth 2 just modified OAuth 1. It could be a good starting point with OpenID connect but it's a big difference to get to what we're talking about and how we manage the privacy aspects, etc.
+[Fri 13:37:42] <dlongley>	manu: So it sounds like then we could get the problem to fit around the privacy aspect instead of something else we're focusing on.
+[Fri 13:38:04] <dlongley>	manu: We're asserting there are a number of problems that exist today because of service-centric architectures [manu lists ramifications from vctf].
+[Fri 13:40:09] <dlongley>	dick: Before you go too much further ... let me make a few statements. In order for something to happen people often need a commercial driver for it. We had commercial drivers for the Web, you had AOL. If we're trying to solve something that's a foundational infrastructure problem it's going to be difficult for there to be a business model around it and fortunately we have standards bodies to handle it. To talk about some places that have somewhat solved citizen identity like Estonia and Singapore. They've put in centralized systems and their cultures allow them to know everything you're doing and it works for them. It's a railway type system getting data from A to B but going to C is really hard. It's really only the big players that are pariticipating in moving it around so it doesn't have the internet/web characteristics where it's easy for anyone to join and that dramatically reduces innovation because the bar to participate is too high like rails.
+[Fri 13:40:23] <dlongley>	dick: Rails are a certain width, where you can go is dictated by the railway the carts, the way it moves.
+[Fri 13:40:37] <dlongley>	dick: Different from highways systems, add new roads, connect up to it, etc.
+[Fri 13:41:04] <dlongley>	Topic: The Best Mode for a Solution
+[Fri 13:41:04] <dlongley>	dick: Railway is more efficient to move from A to B but long term the highway system has so much more flexibility but isnt' as safe, controlled but enables more innovation.
+[Fri 13:41:16] <dlongley>	dick: What's the highway system for moving identity info vs. the railway system that's proven in a few countries.
+[Fri 13:42:24] <dlongley>	manu: There's always a big argument for building systems out in a modular way... and those args apply here, but do you feel that it would be damaging for us to say there may be 3 or 4 ways to express a claim ... do you think we should say you should have multiple solutions at each point in the architecture, multiple ways to express, multiple ways to transport, etc or would that be a failure to standardize?
+[Fri 13:43:12] <dlongley>	dick: I think there are a number of things to leave open for standardization. You say which way of the road you drive on and how stop signs look and how traffic lights work there are a few things like that, the minimal amount for interop, but the payload is probably something we don't need to specify. That can be a different group and maybe a variety of different systems.
+[Fri 13:43:14] *	dlongley what about data model?
+[Fri 13:43:18] *	dlongley maybne different syntax
+[Fri 13:43:24] *	dlongley but standardize on data model for claims?
+[Fri 13:43:33] <manu>	http://w3c.github.io/vctf/#problem
+[Fri 13:44:11] <dlongley>	manu: Do you believe the problems in the statement exist today or would you state them in a different way?
+[Fri 13:44:32] <dlongley>	dick: I'd rephrase 1 differently and the second and third ones are great ways of talking about it.
+[Fri 13:45:17] <dlongley>	dick: Vendor lock in is obviously a challenge and starting off ... identity services inject themselves into every relationship is just stating an opinion around something. You want to get away from where there's somebody that has to be central in the movement because that doesn't scale and it has negative privacy implications.
+[Fri 13:45:33] <dlongley>	dick: It's a control point ... there a number of problems I'd like to articulate better.
+[Fri 13:45:52] <dlongley>	dick: You don't want everything to go through a central service, minimize that, this is the Web. Or maybe operate like DNS is operated.
+[Fri 13:46:11] *	dlongley you were saying syntax doesn't matter, but maybe interop w/data model.
+[Fri 13:46:38] <dlongley>	manu: You were saying things that are at this standards core, so you may want to standardize on a data model.
+[Fri 13:46:50] <dlongley>	dick: You want to enable all of those and let people change the data model, maybe there will be a new one in 10 years.
+[Fri 13:46:59] <dlongley>	manu: So more like content-negotiation like http handled it?
+[Fri 13:47:18] <dlongley>	manu: You've got the http protocol to move docs but content-negotiation to say what syntax to use, etc.
+[Fri 13:47:36] <dlongley>	dick: And the same server may be able to say it in a variety of different formats and as new models come out they can say it in a different way.
+[Fri 13:47:58] <dlongley>	manu: Ok, let's move off of problem statement ... do you feel like the changes you've mentioned you'd feel comfortable saying there should be work started around it?
+[Fri 13:48:19] <dlongley>	dick: It's a problem that needs to be solved and we should figure out how to solve it and there's a lack of consensus around the problem so far and a good work item would be tightening up that problem statement.
+[Fri 13:48:38] <dlongley>	manu: That's effectively what the VCTF is charged with doing so we want to come out with a problem statement with consensus.
+[Fri 13:48:53] <dlongley>	dick: I think if you don't have consensus from a wide variety of people not just a single industry it won't solve the problem.
+[Fri 13:49:05] <dlongley>	manu: Banking, healthcare, education, general web technologists as a minimum?
+[Fri 13:50:35] <dlongley>	dick: I would go with rough consensus and downplay the people who have the hard problems and minimizing their influence because they will have so many other requirements that will cloud the essential ones. Education is potentially more open to things. And doesn't have privacy and ... all these other things like HIPAA and other financial regs ... and identity system would not work with them initially and the regulatory environment and how it works and people have more confidence in what they do (banking and healthcare) would eventually adopt those things. But having them drive it would lead us down a path to a suboptimal solution that would work for them but not others.
+[Fri 13:50:59] <dlongley>	dick: Education, porn sites that want to know you're old enough, things that aren't mission critical, no life endangerment, etc.
+[Fri 13:51:35] <dlongley>	dick: With OpenID we had that whole long tail of people who wanted to solve the problem but it wasn't mission critical stuff. They just wanted registration solved and you can type in your own email etc ... that was a great use case and we blew it.
+[Fri 13:51:50] <dlongley>	manu: So anything that's dealing with low stakes registration?
+[Fri 13:52:04] <dlongley>	manu: Give us your shipping address or prove you're over 18.
+[Fri 13:52:27] <dlongley>	dick: Yeah, the postal services have been trying to figure out how to be relevant and where do you really live and proof of that's really your address could be an area.
+[Fri 13:52:46] *	dlongley other lessons learned?
+[Fri 13:52:52] *	dlongley from previous experience?
+[Fri 13:53:49] <dlongley>	manu: It sounds like with some changes based on your input you'd maybe be ok with the problem statement and you think there's work here to be done on a protocol and privacy, etc. Are you in general saying, this is interesting and we could do some work here? or do you think maybe we shouldn't start the work right now ... any thoughts?
+[Fri 13:54:50] <dlongley>	dick: The timing thing ... the main thing in this space we need a chicken, egg, and a rooster. Someone making the statement, someone wants the statement, and the user. All three need to get aligned. Adding that third party makes it a little more complicated than in the past. You need to find some industry that wants to solve it but is willing to pay the highway tax we'll call it in a way that's more open and extensible to solving other problems.
+[Fri 13:55:12] <dlongley>	manu: As you pointed out, education is one such industry, they want to express credentials in a standard way...
+[Fri 13:55:35] <dlongley>	dick: From a timing point of view you need someone who wants the info and they will also be sending it out and they can tell the students what to do.
+[Fri 13:55:55] <dlongley>	dick: So that sounds like it has the right characteristics of a group to work with. The challenge is making sure it works in other places as well.
+[Fri 13:55:58] <dlongley>	dick: Extensible, etc.
+[Fri 13:56:27] <dlongley>	dick: SAML was a mistake because everything had to fit into a particular type of assertion and how will you stuff SAML into an HTTP header and so on.
+[Fri 13:56:45] *	manu http://w3c.github.io/vctf/meetings/
+[Fri 13:56:45] <dlongley>	dick: If I heard more about what everyone else had to say I'd have opinions on what they said.
+[Fri 13:57:01] <dlongley>	manu: There's a link with everyone else so far, so you can read it, all public.
+[Fri 13:57:17] <dlongley>	manu: Christopher Allen, Brad Hill, Drummond Reed, so far in terms of interviews.
+[Fri 13:57:33] <dlongley>	manu: We might circle back around with you once we have a charter and get your feedback.
+[Fri 13:57:42] <dlongley>	dick: Ok, I hope it will.
+[Fri 13:57:57] <dlongley>	manu: We really appreciate your help. Thank you very much.
+[Fri 13:57:57] <dlongley>	Present+ taaz
+
