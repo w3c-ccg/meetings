@@ -1,0 +1,198 @@
+[Tue 11:06:38] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016Apr/0006.html
+[Tue 11:06:47] *	dlongley not sure if we're capturing that in an issue yet
+[Tue 11:06:53] <dlongley>	scribe: dlongley
+[Tue 11:07:00] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000020] has left the conference.
+[Tue 11:07:12] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000021] has joined the conference.
+[Tue 11:07:35] <ShaneM>	present+ ShaneM
+[Tue 11:07:39] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000021] has left the conference.
+[Tue 11:07:45] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000022] has joined the conference.
+[Tue 11:07:56] <dlongley>	manu: So we've had some concerning feedback on the charter and without mentioning it too specifically, we'd like to get some feedback from everyone here on that as best we can and we'll be discussing our strategy moving forward to get the charter to the next stage.
+[Tue 11:08:12] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000022] has left the conference.
+[Tue 11:08:17] <voip-vctf>	Rob Trainer [SIP/108.40.126.181-00000023] has joined the conference.
+[Tue 11:08:21] <dlongley>	ChristopherA: I'd like to briefly explain what the bitcoin and blockchain community are thinking about in this space.
+[Tue 11:08:44] <voip-vctf>	Rob Trainer [SIP/108.40.126.181-00000023] has left the conference.
+[Tue 11:08:45] <dlongley>	manu: Yes, let's do a brief intro to you and some of your background and if you can launch into who you're representing at W3C and talk about blockchain that would be great.
+[Tue 11:08:53] <manu>	Topic: Introduction to Christopher Allen
+[Tue 11:09:23] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000025] has joined the conference.
+[Tue 11:09:26] <voip-vctf>	19082515136 [SIP/69.65.34.216-00000024] has joined the conference.
+[Tue 11:09:39] *	CarlaCasilli (~CarlaCasilli@public.cloak) has joined #vctf
+
+[Tue 11:09:58] <dlongley>	ChristopherA: My name is Christopher Allen, probably best known for leading the IETF effort to make SSL and TLS 1.0 a standard. That was a 4-5 year process to get through and today is largest deployed security standard in the world. Involved in a lot of different things, smart contracts, CTO of Certicom, mobile dev, all kinds of interesting things. Most recently in the last two years, I've been involved in the bitcoin/blockchain area.
+[Tue 11:10:01] <manu>	voip: 024 is EricKorb-BillDeLorenzo
+[Tue 11:10:01] <voip-vctf>	Associated EricKorb-BillDeLorenzo with SIP/69.65.34.216-00000024.
+[Tue 11:10:09] <manu>	Topic: Blockchain Interest in Identity Credentials
+[Tue 11:11:29] <manu>	http://id2020summit.org/
+[Tue 11:11:49] <dlongley>	ChristopherA: I've been hired by Blockstream to lead their standards efforts and to do research into specific initiatives. One of them is to work on decentralized ID. For the past year I've been working on XDI which is an OASIS standard, making it a decentralized protocol rather than centralized. We produced a strawman last Oct and moving forward. They presented their ideas to get a SBIR grant. DB has also submitted research proposals and they also won an SBIR and I'm helping with that as well. At UN I'm working on self-sovereign identity ... around issues human rights, refugees, digital identity. I'm very passionate about decentralized identity and I don't know how to do it without blockchain technologies.
+[Tue 11:11:51] *	jasonweaver (~jasonweaver@public.cloak) has joined #vctf
+[Tue 11:11:57] *	Rob (~rtrainer@public.cloak) has joined #vctf
+[Tue 11:12:01] *	rtrainer has quit (Client closed connection)
+[Tue 11:12:04] *	Rob is now known as rtrainer
+[Tue 11:12:32] <voip-vctf>	14103039303 [SIP/69.65.34.216-00000026] has joined the conference.
+[Tue 11:12:50] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-00000019] has left the conference.
+[Tue 11:12:55] <manu>	voip: 026 is RobTrainer
+[Tue 11:12:55] <voip-vctf>	Associated RobTrainer with SIP/69.65.34.216-00000026.
+[Tue 11:13:14] <manu>	https://github.com/bitcoin/bips/blob/master/bip-0070.mediawiki
+[Tue 11:13:15] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-00000027] has joined the conference.
+[Tue 11:13:27] <manu>	https://github.com/bitcoin/bips/blob/master/bip-0075.mediawiki
+[Tue 11:13:39] *	BillDeL (~chatzilla@public.cloak) has joined #vctf
+[Tue 11:13:42] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-00000027] has left the conference.
+[Tue 11:13:48] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-00000028] has joined the conference.
+[Tue 11:14:15] *	ShaneM phone went insane (again)
+[Tue 11:14:15] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-00000028] has left the conference.
+[Tue 11:14:31] <dlongley>	ChristopherA: I've come to W3C around the verifiable identities and what you call user-centric and we call self-sovereign identity is exactly what we need to have for the blockchain community. We have BIP-70 which is a standard, it's roughly equivalent to a Web Payments standard, someone looked at it and said they are 80% similar. BIP-75 (?) helps you share credential information. Particularly useful when you have to report things for large transactions. It's not a KYC but a "I'm transferring more than $10K worth of value and have to report that." We want to do that with confidentiality and in no way do we want that info to connect to the actual funds transferred etc. We're creating a private channel and sending credentials. X.509 is a problem here it makes us uncomfortable and we'd like to see verifiable credentials used to replace X.509 in a more decentralized way. We want to reconcile BIP-70 with Web Payments and Confidential Channels to Web Payments and we'd love to see verifiable credentials/claims, something very much in that direction for a variety of future work.
+[Tue 11:14:44] <voip-vctf>	BillDeL [SIP/sip2sip.info-00000029] has joined the conference.
+[Tue 11:14:55] <ChristopherA>	http://www.ID2020.org
+[Tue 11:15:11] <voip-vctf>	BillDeL [SIP/sip2sip.info-00000029] has left the conference.
+[Tue 11:15:14] <ChristopherA>	conference at UN http://www.ID2020summit.org
+[Tue 11:15:18] <voip-vctf>	BillDeL [SIP/sip2sip.info-0000002a] has joined the conference.
+[Tue 11:15:19] <dlongley>	manu: So hopefully people understand from that that we're gaining interest from a number of other industries, payments and education involved, hopefully some national gov'ts will be joining us soon can't talk too much about it yet. Showing the work we're doing is quite interesting to people who are feeling the pain of a lack of credentials on the Web.
+[Tue 11:15:28] <dlongley>	manu: Any other additions to the agenda?
+[Tue 11:15:41] <dlongley>	none
+[Tue 11:15:31] <manu>	Topic: Review of Questionnaire
+[Tue 11:15:45] <voip-vctf>	BillDeL [SIP/sip2sip.info-0000002a] has left the conference.
+[Tue 11:16:06] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-0000002b] has joined the conference.
+[Tue 11:16:09] <dlongley>	manu: We have an editor's draft of a charter and use cases, FAQ, final report, for VC that we're asking for feedback on. We're going to be circulating a questionnaire.
+[Tue 11:16:20] <manu>	Questionnaire for feedback on Verifiable Claims Editors Draft Charter: http://goo.gl/forms/8aQ0UPDPDo
+[Tue 11:16:47] <dlongley>	manu: If folks haven't had a chance to review it, please respond with feedback.
+[Tue 11:16:58] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-0000002b] has left the conference.
+[Tue 11:17:06] <dlongley>	manu: The question we're asking people is "Does the charter look good to you, and if not, what needs changing? And if it looks good, will you actually join the WG?"
+[Tue 11:17:16] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-0000002c] has joined the conference.
+[Tue 11:17:27] <dlongley>	manu: That's the key question. Is anyone going to object -- and if you don't object, will you actually join and put resources into the WG?
+[Tue 11:17:43] <voip-vctf>	Shane McCarron [SIP/Callcentric.com-0000002c] has left the conference.
+[Tue 11:17:49] <dlongley>	manu: We have ~50 orgs to circulate the charter to and get feedback.
+[Tue 11:17:59] <dlongley>	manu: If folks have had time to review the questionnaire, does anyone have any comments/concerns about it?
+[Tue 11:18:30] <dlongley>	ChristopherA: I answered it yesterday and I felt like, compared to earlier charters, I felt that there was some watering down on user-centric, self-sovereign stuff I care about but I felt I could live with it and move forward.
+[Tue 11:18:41] <dlongley>	manu: That wasn't the intent, we tried to keep it in there.
+[Tue 11:18:59] <dlongley>	ChristopherA: I agree it's in there, I just felt that it was becoming a smaller piece, but I'm fine with it. I can't compromise on that piece.
+[Tue 11:19:05] <CarlaCasilli>	Wondering if we should include a question about, if you are a W3C member and would participate, how many people from your oganization would be able to contribute to the work?
+[Tue 11:19:14] <voip-vctf>	16122174726 [SIP/69.65.34.216-0000002e] has joined the conference.
+[Tue 11:19:19] <dlongley>	manu: I think no one wants to compromise on that in this group. This group has been about that from the beginning, it's what differentiates it from OpenID Connect, SAML, existing technologies.
+[Tue 11:19:32] <ChristopherA>	In my case at last 1.0+ FTE engineers
+[Tue 11:19:36] <dlongley>	manu: If others feel like we've accidentally watered it down we want to change it, so that's good feedback.
+[Tue 11:20:12] <dlongley>	ChristopherA: BlockStream would probably put in multiple engineers but equivalent to 1.0 FTE.
+
+[Tue 11:20:36] <voip-vctf>	Conference participants are: Gregg Kellogg [SIP/10.0.1.174-0000000f], ColleenKennedy [SIP/69.65.34.216-00000010], Dave Longley [SIP/6002-00000011], Manu Sporny [SIP/6000-00000012], PeterHofman [SIP/69.65.34.216-00000013], ChristopherAllen [SIP/69.65.34.216-00000014], Stuart Sutton [SIP/sip2sip.info-00000015], 12125583175 [SIP/69.65.34.216-00000016], jasonweaver [SIP/sip.firertc.com-00000018], Matt Stone [SIP/sip.linphone.org-0000001a], jasonweaver
+[Tue 11:20:36] <voip-vctf>	[SIP/sip2sip.info-0000001c], David I. Lehn [SIP/6003-0000001e], Carla Casilli [SIP/sip2sip.info-00000025], EricKorb-BillDeLorenzo [SIP/69.65.34.216-00000024], RobTrainer [SIP/69.65.34.216-00000026], 16122174726 [SIP/69.65.34.216-0000002e].
+[Tue 11:20:52] *	dlongley missed who was speaking?
+[Tue 11:21:01] *	manu that was Matt Stone
+[Tue 11:21:11] <manu>	WebDHT proposal: http://opencreds.org/specs/source/webdht/
+[Tue 11:21:21] <dlongley>	stone: The balance between focusing on identity and claims, etc. is important. [missed]
+[Tue 11:21:29] <manu>	voip: 2e is ShaneM
+[Tue 11:21:30] <voip-vctf>	Associated ShaneM with SIP/69.65.34.216-0000002e.
+[Tue 11:21:38] *	ShaneM thanks
+[Tue 11:21:46] *	manu need a colon :P
+[Tue 11:22:50] <stone>	+1 on ChristopherA contribution :)
+[Tue 11:23:09] <dlongley>	ChristopherA: I want to be able to add selective disclosure -- I've got a cryptographer looking into several things there. That's not a requirement in the group, but we're taking it a notch up. This isn't necessarily something big banks are going to jump in feet first, there's some entrenched momentum. But we think we can get hearts/minds of dev community and signing a file, allowing delegation, allowing code coverage, different types of reputation, "i put 20 hours of security review into build X and found a flaw" those kinds of statements get the dev community interested. And because of the blockchain hype (to be honest) we have some small countries interested in the work.
+[Tue 11:23:42] <dlongley>	ChristopherA: This allows us to roll some of this stuff out in PoCs and such. Figuring out a strategy from small to the big, feels like ... the results of some of the pushback we're getting from the big.
+[Tue 11:24:03] <dlongley>	manu: If you're on this call, please feel out that questionnaire.
+[Tue 11:24:30] <ShaneM>	remember that it is okay to lobby your friends too
+[Tue 11:24:34] <dlongley>	manu: The way we get this work started is if 25 orgs commit to putting someone into the WG and even more that will commit to supporting the work even if they can't get someone into the WG. Please get them to me by 3pm today.
+[Tue 11:24:38] <ChristopherA>	+1 for adding number FTE to survey
+[Tue 11:24:58] <dlongley>	manu: "Them" meaning any feedback to the questionnaire (any changes) because we'll be sending it out at 5pm or so.
+[Tue 11:25:07] <dlongley>	manu: To 50 orgs, and also, please spread the word.
+[Tue 11:25:27] <ShaneM>	(manu means 5pm eastern time)
+[Tue 11:25:39] <dlongley>	manu: I'm a -1 to putting FTE in the survey, we just want to know if they are going to send someone. That's good enough, we don't need an exact number right now, want to keep the questionnaire simple.
+[Tue 11:26:32] <dlongley>	ChristopherA: I was at hyperledger meeting -- they are talking about these types of things, OASIS XDI is, there's a W3C blockchain community that is skirting around some of these issues. I just wanted people to be aware that there's a desire in some communities they may not be aware of VC/credentials, but there are people to recruit.
+[Tue 11:26:51] <dlongley>	manu: One way to do that is to point them at this questionnaire. If you know of an org that isn't participating regularly in this group, please ping them.
+[Tue 11:26:52] *	jasonweaver has quit (Ping timeout: 180 seconds)
+[Tue 11:27:02] <dlongley>	manu: The charter and use cases are hopefully a good intro to what we want to do.
+[Tue 11:27:09] <ShaneM>	IDPF would have interest here.  RIAA.  CTA.
+[Tue 11:27:13] <manu>	Topic: Charter Review To Date
+[Tue 11:27:58] <dlongley>	manu: A number of us went to the W3C AC meeting in Boston a couple weeks ago. We talked with large orgs and people concerned about the charter and alleviated concerns there. We got some good input from W3C TAG and that was going fairly well.
+[Tue 11:28:40] <dlongley>	manu: We have since received feedback through the AC forum. The AC is 400 individuals with reps from orgs members. And charter reviews can happen on the AC forum and we got responses back from two very large orgs.
+[Tue 11:29:07] <voip-vctf>	14807191646 [SIP/sip.firertc.com-0000002f] has joined the conference.
+[Tue 11:29:10] <dlongley>	manu: Both of them gave mixed feedback. These are two out of 400 that have provided feedback. The responses fit into a couple of themes.
+[Tue 11:30:29] <dlongley>	manu: The first theme has to do with the orgs feeling work is being done elsewhere, like at ISO. The problem with the ISO stuff is that we can't see it because it's $80K or $180K or something a year to see it. Through a liaison relationship we're going to try and see that stuff. To be clear, the Web is not powered by ISO standards, but they are related. They did not point at OpenID/SAML, they said that the data format stuff is happening at ISO so W3C shouldn't do the work.
+[Tue 11:30:51] *	jasonweaver (~jasonweaver@public.cloak) has joined #vctf
+[Tue 11:31:05] <dlongley>	manu: The second theme was some skepticism that W3C won't staff the work. W3C staff is spread thin these days, we've suggested hiring a W3C fellow to do it.
+[Tue 11:31:33] <dlongley>	manu: More feedback was that they weren't hearing from any orgs with skin in the game. No one from this group responded and that silence was viewed as indifference.
+[Tue 11:31:52] <ShaneM>	I wrote a blog post about this... https://www.spec-ops.io/blog/investing-and-being-invested-standards
+[Tue 11:32:03] <dlongley>	manu: If you are in this group and you are a W3C member and you did not respond to that W3C AC post for the review of this charter *please* make sure you respond, get your AC rep to respond.
+[Tue 11:32:15] *	ShaneM notes that I was not on the AC yet when the request went out ;-)
+[Tue 11:32:25] <dlongley>	ChristopherA: I officially joined today, so if you can point me where to respond or who to respond.
+[Tue 11:32:38] <manu>	Request for informal AC review of charter: https://lists.w3.org/Archives/Member/w3c-ac-forum/2016JanMar/0081.html
+[Tue 11:33:13] <dlongley>	manu: What you said in the Credentials CG and Web Payments IG was great but the AC forum folks won't see it. They are fantastically involved and for larger orgs they are in a lot of WGs. Anyway, what you said was great it just needs to get in front of these other orgs.
+[Tue 11:33:43] <dlongley>	manu: So second theme was they weren't hearing support. I think people in this group are thinking that it should be obvious, because they've been in here for years that you support the work, but none of the other AC members know that.
+[Tue 11:33:49] <dlongley>	manu: So please respond so that they know.
+[Tue 11:34:38] <ShaneM>	q+ to talk to the point about pushing an agenda and the recent feedback we received
+[Tue 11:34:39] <voip-vctf>	ShaneM has been added to the queue: ShaneM
+[Tue 11:35:00] <dlongley>	manu: The third theme was a bit frustrating because we've been asked multiple times not to presuppose a solution by W3C staff and a couple member orgs -- to not push any particular agenda. You could argue that the Credentials CG has an agenda, we have a particular design and some nascent specs. We got feedback from W3C members that the correct way to this stuff is twitter, facebook login, google plus, etc.
+[Tue 11:35:29] <dlongley>	manu: We're saying that we're going to create a data format/syntax that works and not work on protocols but we'll figure that out in the WG.
+[Tue 11:36:03] <dlongley>	manu: Now we're being told by other orgs that we have to, instead, do the opposite, and take a position, have some spec input and say what the one true way of doing this is. And they've said to go back an incubate for 6 mo-year (etc) and come back with a proposal.
+[Tue 11:36:16] <dlongley>	manu: Those are the themes we're hearing, but to underscore, this is just from two member companies out of 400.
+[Tue 11:36:30] <manu>	ack ShaneM 
+[Tue 11:36:31] <voip-vctf>	ShaneM has the floor (to talk to the point about pushing an agenda and the recent feedback we received).
+[Tue 11:37:18] <dlongley>	ShaneM: I don't want anyone here to take the feedback he's relaying the wrong way. One person made a comment and that comment is very different from the comments we've been hearing. We haven't gotten that feedback to date. The good news is that we have an answer ... we have been incubating for years. We can say that.
+[Tue 11:38:07] <dlongley>	ShaneM: We can also say we didn't bring that forward because of X, Y, Z. Not blame anyone/cast aspersions, but we can go ahead and say this stuff and we can even move forward if there's just one member objecting -- we just need to respond. We can still move forward.
+[Tue 11:39:05] <dlongley>	stone: This is more a question maybe tactics. If you want ... I just read the email again asking for an informal review of the charter. I looked at this and we're one of the authors and giving continuous feedback here in the group. Where do you want feedback, what's the most bang for the buck?
+[Tue 11:39:29] <dlongley>	manu: The best bang for the buck would be to respond to the notion that there aren't big orgs with skin in the game. Pearson is a great counter example to that argument.
+[Tue 11:39:43] *	ChristopherA has quit (Ping timeout: 180 seconds)
+[Tue 11:39:44] <CarlaCasilli>	Are either of the two orgs that provided feedback part of the ISO work? Is there a possible conflict of interest?
+[Tue 11:39:52] <dlongley>	manu: Responding directly to that and saying why you're participating and so on and saying that in the AC forum would go a long way in countering that argument.
+[Tue 11:40:07] <dlongley>	stone: So just reply to that email?
+[Tue 11:40:08] <dlongley>	manu: Yes.
+[Tue 11:40:18] <dlongley>	manu: You'll want to seek out your rep and have them do it.
+[Tue 11:40:30] <dlongley>	stone: Got it, I'll try to get through the corporate process.
+[Tue 11:40:50] <manu>	q+ Carla to ask if there is a possible conflict of interest
+[Tue 11:40:51] <voip-vctf>	manu has been added to the queue: manu
+[Tue 11:41:24] <manu>	The ISO work is: JTC1 SC 27 [http://www.iso.org/iso/iso_technical_committee?commid=45306,  https://en.wikipedia.org/wiki/ISO/IEC_JTC_1/SC_27]
+[Tue 11:41:39] <dlongley>	ChristopherA: I just tried replying but can't yet, I'll figure it out. I've got a question ... it is worthwhile responding to the individual feedback? I don't know, specifically, what's going on with the ISO standard or what it is or what number it is. My guess is that's it's associated with using attributes w/X.509 certificates. It has a centrality to it that all the ISO standards have and that's a problem. Should we respond to those individual things and why those things don't fit?
+[Tue 11:41:52] <manu>	“ISO/IEC 29191 Requirements for partially anonymous, partially unlinkable authentication”, “ISO/IEC 29003 Identity proofing” “WG 5 Study Period on Privacy-preserving attribute-based entity authentication”.
+[Tue 11:42:33] <dlongley>	manu: None of these sound like what we're doing, maybe some aspects that overlap, a lot of them sound like studies, not technical proposals. They said their security expert told them not to participate in the work because they're already working on it.
+[Tue 11:42:56] <dlongley>	manu: Carla raised a good question -- are these orgs participating in the ISO work and is there a conflict of interest?
+[Tue 11:43:31] <dlongley>	manu: I'd say yes they probably are and possible a conflict of interest. I'm sure one of them is heavily involved in trying to produce identity solutions. The argument used was that there are plenty of standardization efforts happening in this space and we don't need another one.
+[Tue 11:44:23] *	manu feigns surprise at a large organization steamrolling a centralized solution through an pseudo-open "standardization" process. :P
+[Tue 11:44:31] <dlongley>	ChristopherA: I wanted to add one more thing, hyperledger/IBM submitted their first proposal and some people think steamrolling the process. Further investigation has shown that IBM may be around membership services, which is a centralized CA-like for doing blockchains and other kinds of things blockchains can do and that's something they are fundamentally not telling people about in their strategy with the group.
+[Tue 11:44:34] <voip-vctf>	14807191646 [SIP/sip.firertc.com-0000002f] has left the conference.
+[Tue 11:45:06] <voip-vctf>	14807191646 [SIP/sip.firertc.com-00000030] has joined the conference.
+[Tue 11:45:09] <dlongley>	ChristopherA: I'm wondering if there are similar things here -- like entrenched centralized models for these types of things, etc. It could be that some orgs are in the CA services model and that's another level of conflict.
+[Tue 11:45:32] <dlongley>	manu: Yeah, selling centralized identity solutions, etc could be conflict of interest. But we should be careful that they aren't responding according to that.
+[Tue 11:45:33] <voip-vctf>	14807191646 [SIP/sip.firertc.com-00000030] has left the conference.
+[Tue 11:45:47] <voip-vctf>	jasonweaver [SIP/sip2sip.info-00000031] has joined the conference.
+[Tue 11:46:01] <dlongley>	manu: They thought what we're trying to do is identity, but we've said, time and time again we're not trying to solve identity on the Web/Internet, this is just about verifiable claims. But that message is being lost when reading the charter.
+[Tue 11:46:09] <dlongley>	manu: So that's maybe something we have to change (spell out) in the charter.
+[Tue 11:46:32] <dlongley>	manu: We have 15 mins left, let's move onto how this feedback changes how we work in the next 4-6 weeks. Unless there are objections, I'd like to move us to that.
+[Tue 11:46:46] *	dlongley there was some concern over what browsers need to implement
+[Tue 11:47:03] <dlongley>	ChristopherA: Was there any objection with how Web Payments fit in?
+[Tue 11:47:51] <voip-vctf>	19146563103 [SIP/69.65.34.216-00000032] has joined the conference.
+[Tue 11:47:56] <dlongley>	manu: There were two things I failed to raise -- one of the large orgs wanted to know what browser vendors would need to do. There was some assumption that browser vendors would have to be involved and we've been careful to craft the charter so that's not required but that still wasn't clear.
+[Tue 11:48:15] <ShaneM>	I don't think there is any requirement for built-in user agent support in what we are attempting to specify.
+[Tue 11:48:55] *	Erik (~Erik@public.cloak) has joined #vctf
+[Tue 11:49:00] <dlongley>	manu: To answer your question -- the Web Payments IG talked about this in the last meeting. The comments from the IG were primarily that this stuff is a fundamental primitive for Web Payments and faster payments, etc. And so the discussion was about how the IG responds in a way that is supportive of the work starting.
+[Tue 11:49:28] <dlongley>	ChristopherA: I may be able to get some more Web Payments members interested.
+[Tue 11:49:35] *	dlongley BIP-75 "confidential channels"
+[Tue 11:50:41] <dlongley>	ChristopherA: It lets people send credentials -- and there's half a dozen banks, $300M funded startups, all talking around in this space. From the blockchain/cryptocurrency field this is something they very much care about. They want to have a transaction with someone that meets regulations but not reveal who you are to third parties.
+[Tue 11:51:00] <dlongley>	manu: So the Web Payments work is specifically not chartered to work on that for Phase I, so we can't change that.
+[Tue 11:52:06] <dlongley>	manu: But, what you could do is talk to the Web Payments IG and say, for future facing work we care deeply about this and it's required. Delaying start on the work is not an option. What we've been asserting over the last several years is that this work isn't happening elsewhere and if it is, it's not user-centric/self-sovereign, but centralized. And the work being proposed at W3C is not being done elsewhere and is essential to education, healthcare, payments, etc. initiatives.
+[Tue 11:52:06] <manu>	Topic: Options Moving Forward
+[Tue 11:53:39] <dlongley>	manu: We had a bit of a discussion in the WPIG and some sidebars with members in this group. The WPIG is trying to figure out how to take an official position like "This is missing from the Web and we need it." So we're thinking maybe the WPIG could publish a "Finding" like the W3C TAG does for things that are missing the Web Platform or anti-patterns in design, etc. Maybe the WPIG could publish a note and say "This is what we think right now." And the rest of the W3C membership could then see that and that a 179 member interest group says we need to solve this problem.
+[Tue 11:54:38] <dlongley>	manu: That's one strategy moving forward. Another is that this group isn't telling W3C what we should do. We (VCTF/CG) do not want to do all the technical work right now, if you do too much the membership doesn't like it. If you do too much work you may not get support because it looks like a rubber stamp, and too little work looks like you don't know what you're doing. So we need something in the middle.
+[Tue 11:55:10] <dlongley>	manu: We could split up the Identity Credentials spec into two specs protocol and data format+syntax and then submit the latter to show a drafty proposal.
+[Tue 11:55:37] <dlongley>	manu: Then we can talk about how that solution can fit into any of the protocols or into a new one.
+[Tue 11:55:41] <dlongley>	manu: So maybe a month of work.
+[Tue 11:56:03] <dlongley>	manu: So those are the proposals for moving forward ... one we don't control, that's up to the IG.
+[Tue 11:56:31] <dlongley>	manu: As far as work we can do in this group we need to revise the charter and use cases based on feedback, collect more feedback, but one item to add to the work is to propose a rough draft for the WG to start with.
+[Tue 11:56:43] <dlongley>	manu: There's really only one thing this group would need to add.
+[Tue 11:56:54] <dlongley>	+1 to proposing a drafty spec on data format+syntax
+[Tue 11:57:12] <dlongley>	ChristopherA: Where are the lines on the proposals? Couldn't quite follow.
+[Tue 11:57:35] <ShaneM>	I think this group should be advocating with its own and other AC membners to chime in on the earl;y review thread.  I think that is the most helpful thing we can do for our generael case.
+[Tue 11:57:40] <dlongley>	manu: We have 3-4 specs that are incubating in the Credentials CG/Opencreds. We've been incubating, WebDHT and the Identity Credentials specs primarily.
+[Tue 11:58:36] <dlongley>	ChristopherA: Specifically, referring to those two, the WebDHT spec ... it needs to be solved, but it's furthest away from what we need. The spec for the data format/syntax with just the addition of proof of existence you could publish certificates. I would concentrate more on that side of things.
+[Tue 11:59:02] <dlongley>	manu: Yeah, exactly. We're not proposing WebDHT be put into a WG now, it's too early. We know we need it for self-sovereign identifiers, but that needs more incubation.
+[Tue 11:59:17] <dlongley>	manu: We'd take the IC spec and remove the protocol bits and just show data model + syntax and show how to express it.
+[Tue 11:59:30] <voip-vctf>	Stuart Sutton [SIP/sip2sip.info-00000015] has left the conference.
+[Tue 11:59:40] <dlongley>	manu: And that's it. And we say that's all we're going to work on. We're going to propose how it could go into OpenID Connect/SAML and it's up to those communities to adopt.
+[Tue 11:59:48] <ShaneM>	Doing data model in YAML?  Are you mad?
+[Tue 11:59:53] <ShaneM>	oh... SAML
+[Tue 11:59:55] <dlongley>	manu: Data format + syntax and a note on how it could potentially look in those protocols.
+[Tue 12:00:27] <dlongley>	manu: Shane brings up the point that we should be advocating to the AC members -- please, this week, respond to the AC forum.
+[Tue 12:00:32] <dlongley>	manu: If you're a W3C member.
+[Tue 12:00:58] <dlongley>	ChristopherA: Is anyone here going to be at the Internet Identity Workshop this month?
+[Tue 12:01:14] <voip-vctf>	jasonweaver [SIP/sip2sip.info-00000031] has left the conference.
+[Tue 12:01:35] <dlongley>	manu: I think that's a no... we should chat with you a bit so you could circulate these ideas at IIW. Identity Woman pinged us about coming to IIW and my hope was that you and Drummond could talk about it there.
+[Tue 12:01:42] <voip-vctf>	Carla Casilli [SIP/sip2sip.info-00000025] has left the conference.
+[Tue 12:01:47] *	CarlaCasilli has quit ("Page closed")
+[Tue 12:01:51] *	phofmanntsy has quit (Ping timeout: 180 seconds)
+[Tue 12:01:59] <dlongley>	manu: That's it for the call today, thanks all.
+[Tue 12:01:59] <dlongley>	Present+ Allen, hofman, kellogg, lehn, delorenzo, Kennedy, weaver, trainer
+
