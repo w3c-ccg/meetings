@@ -1,0 +1,151 @@
+[Tue 11:05:37] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016May/0045.html
+[Tue 11:08:50] <gkellogg> scribe: gkellogg
+[Tue 11:06:01] *	jlaw (~jlaw@public.cloak) has joined #vctf
+[Tue 11:07:56] <manu>	Topic: Introduction to New Participants
+[Tue 11:08:13] *	dduane (~dduane@public.cloak) has joined #vctf
+[Tue 11:08:21] *	dlongley name, org, why you're interested in the call
+[Tue 11:08:34] *	manu Kiara Robles
+[Tue 11:08:50] <gkellogg>	kiara: I’m interning at BlockChain; I’ve been involved with the design workshop and 2020; hoping to attened MIT workshop.
+[Tue 11:08:57] *	dlongley Adam Lake, Digital Bazaar
+[Tue 11:09:03] <gkellogg>	Adam: started with Digital Bazaar last week.
+[Tue 11:09:39] <gkellogg>	dcrocker: I’ve been working on internet protocols and architecture for a long time, mostly email. Went to New York and found myself interested in your architecture and ways to improve it.
+[Tue 11:10:00] <voip-vctf>	Shane McCarron [SIP/callcentric.com-000002d1] has left the conference.
+[Tue 11:10:11] <voip-vctf>	Matt Stone [SIP/sip.linphone.org-000002e4] has joined the conference.
+[Tue 11:10:12] <gkellogg>	Andrieu: I came because of IIW; I’m between startups but writing a book on requirements modeling.
+[Tue 11:10:21] *	stone (~stone@public.cloak) has joined #vctf
+[Tue 11:10:30] <gkellogg>	… The UN summit made me think I might have something to contribut here.
+[Tue 11:10:39] <voip-vctf>	Shane McCarron [SIP/callcentric.com-000002e5] has joined the conference.
+[Tue 11:10:49] <ShaneM>	voip: 2e5 is ShaneM
+[Tue 11:10:49] <voip-vctf>	Associated ShaneM with SIP/callcentric.com-000002e5.
+[Tue 11:11:10] <gkellogg>	madlin: I’m on the Accelerate team on the DHS SIR team on blockchain-based identity. I’ve been working a long time in government standards.
+[Tue 11:11:26] <gkellogg>	… I spend most of my time working on cyber-security standards for fed and state governments
+[Tue 11:11:52] <gkellogg>	Drummond: I’m founder of Respect Network; we were awarded a DHS grant on blockchain identityh.
+[Tue 11:12:19] <gkellogg>	jLaw: Building a distributed legister dedicated to distributed identity.
+[Tue 11:12:55] <gkellogg>	bonomo: I’m an independent consultant focusing on Block Chain and working on standards.
+[Tue 11:13:19] <manu>	Topic: Self-Sovereign Identity Architecture
+[Tue 11:13:49] <gkellogg>	manu: for the past 4 years, starting in WPCG, we’ve been talking about identity and exchanging claims (“attestations”)
+[Tue 11:14:21] <gkellogg>	… These concepts have been around for a while, and been in the “Identity Ecosystem” over the last 10-15 years. Mainly in IIW and other forums.
+[Tue 11:14:59] <gkellogg>	… Recently, it’s been called “self-soverign identity”. At the ID2020 event and rebooting web-of-trust workship, the concept of an architecture surfaced again.
+[Tue 11:15:39] <gkellogg>	… During this, dcrocker and others took a look at our work. We’re going to show the W3C members in a couple of months, so we’re trying to get it in good shape. It’s not done, but it’s a first cut.
+[Tue 11:15:59] <gkellogg>	… We need to quickly come to conensus.
+[Tue 11:16:32] <gkellogg>	dcrocker: I want to stress my own view of archiecture diagrams is that they need to be simple and easy to understand.
+[Tue 11:16:41] <gkellogg>	… Ballancing this, they need to be complete enough.
+[Tue 11:17:05] <gkellogg>	… On average, diagrams are overly complicated. I was delighted with the diagrams from this work.
+[Tue 11:17:40] <manu>	This is the paper that we submitted to the ID2020 Design Workshop: https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/topics-and-advance-readings/a-self-sovereign-identity-architecture.pdf
+[Tue 11:17:41] <gkellogg>	… In the NY discussion, we looked at ways to enhance it (not replace). We explored this over hours and Manu circulated some diagrams based on these talks.
+[Tue 11:18:19] <gkellogg>	… I realized that no where in the diagrams is there an indication of the identiy itself. Maybe there shouldn’t be, but we should think about that.
+[Tue 11:18:55] <manu>	Here are the documents that we worked on at ID2020 - again *VERY PRELIMINARY / JUST FOR DISCUSSION*
+[Tue 11:19:07] <Drummond>	I would argue that this is exactly what self-sovereign identity is about - there is NO BOX for a self-sovereign identity because there is no conventional "identity provider"
+[Tue 11:19:26] <voip-vctf>	14105315457 [SIP/69.65.34.216-000002e6] has joined the conference.
+[Tue 11:19:28] <gkellogg>	… I also find it useful to have diagrams which work at different levels. For example, public behavior vs private behavior. In email, there’s the user agent and mail transfer agent. Looking at RC 598, UA and MTA are still there, but there is also quite a bit more.
+[Tue 11:19:39] <manu>	Version 1.0 (this is more or less the Credentials CG's architecture): https://raw.githubusercontent.com/WebOfTrustInfo/ID2020DesignWorkshop/master/event-documents/graphic-recording/Day%202%2006%20Work%20Round%202%20Report%20Out/Day%202%2006%20WR2%20Self-Sovereign%20ID%20Arch%202%201o3.jpg
+[Tue 11:19:39] <manu>	Version 2.0: https://raw.githubusercontent.com/WebOfTrustInfo/ID2020DesignWorkshop/master/event-documents/graphic-recording/Day%202%2006%20Work%20Round%202%20Report%20Out/Day%202%2006%20WR2%20Self-Sovereign%20ID%20Arch%202%202o3.jpg
+[Tue 11:19:39] <manu>	Version 2.0 Notes: https://raw.githubusercontent.com/WebOfTrustInfo/ID2020DesignWorkshop/master/event-documents/graphic-recording/Day%202%2006%20Work%20Round%202%20Report%20Out/Day%202%2006%20WR2%20Self-Sovereign%20ID%20Arch%202%203o3.jpg
+[Tue 11:19:45] <gkellogg>	… The fact the original is still valid is still useful.
+[Tue 11:19:46] *	ottonomy (~ottonomy@public.cloak) has joined #vctf
+[Tue 11:19:47] *	lchasen (~lchasen@public.cloak) has joined #vctf
+[Tue 11:19:48] *	ottonomy is now known as NateOtto
+[Tue 11:20:07] <gkellogg>	… For example, the repository is internal to the holder, so it might not need to be shown in the basic architecture.
+[Tue 11:20:11] <voip-vctf>	Nate Otto [SIP/sip2sip.info-000002e7] has joined the conference.
+[Tue 11:20:14] <ChristopherA>	q+
+[Tue 11:20:14] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 11:20:28] <gkellogg>	manu: for those who don’t know, Dave is one of the people who created email standards.
+[Tue 11:20:46] <manu>	ack ChristopherA 
+[Tue 11:20:46] <voip-vctf>	ChristopherA has the floor.
+[Tue 11:21:29] <gkellogg>	ChristopherA: I was intregued by was that in the original doc, we had DID in the center, and then it was moved over to be a number of different oracles. Can you explain?
+[Tue 11:22:47] <gkellogg>	dcrocker: I expect this to be controversial. A side point: the diagram has DiD and similarly the other box had “ledger”. One of the challenges is to distinguish between abstactions and implementations. “Ledger” has taken on the notion of an implementation approach. Similar with DiD.
+[Tue 11:23:24] <manu>	We're looking at this diagram right now for those wondering: https://raw.githubusercontent.com/WebOfTrustInfo/ID2020DesignWorkshop/master/event-documents/graphic-recording/Day%202%2006%20Work%20Round%202%20Report%20Out/Day%202%2006%20WR2%20Self-Sovereign%20ID%20Arch%202%202o3.jpg
+[Tue 11:23:46] <gkellogg>	… The other actors in the system need to query for information; there are different types of queries. The identiy itself, history of claims, other dynamic data. The ledger reference refers to a growing journal, but has data static when created. One might want to query dynamic data.
+[Tue 11:24:08] <gkellogg>	… The idea is to merge all of these into a single abstraction, which were listed in the box out of NY.
+[Tue 11:24:18] <voip-vctf>	David I. Lehn [SIP/6003-000002e8] has joined the conference.
+[Tue 11:24:25] <ChristopherA>	q+
+[Tue 11:24:25] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 11:24:31] <gkellogg>	manu: The Oracle box includes ledgers, generators, registry and file stores.
+[Tue 11:24:31] <manu>	ack ChristopherA 
+[Tue 11:24:31] <voip-vctf>	ChristopherA has the floor.
+[Tue 11:25:09] <gkellogg>	ChristopherA: I’m intregued by this change as it relates to smart signatures and can make use of a variety of different oracles. It’s an interesting new way to think about it.
+[Tue 11:25:45] <dlongley>	+1 for this path
+[Tue 11:26:06] <voip-vctf>	ShaneM [SIP/callcentric.com-000002e5] has left the conference.
+[Tue 11:26:38] <gkellogg>	manu: Good news is that there’s not screaming to keep going down this path. In the coming weeks, we can refine these diagrams with the goal of fanalizing in the 3rd week of june. That’s when the WPIG would start reviewing, and see if we want to take to an IG meeting on July 1st.
+[Tue 11:27:02] <gkellogg>	dcrocker: I think that’s a realistic timeframe. Let me encourage to contact me directly offline.
+[Tue 11:27:07] <voip-vctf>	Shane McCarron [SIP/callcentric.com-000002e9] has joined the conference.
+[Tue 11:27:14] *	ShaneM laments low tech crap
+[Tue 11:27:28] <manu>	Topic: Decentralized Identifiers
+[Tue 11:27:29] *	dlehn (~dlehn@public.cloak) has joined #vctf
+[Tue 11:27:50] <voip-vctf>	14082468253 [SIP/69.65.34.216-000002ea] has joined the conference.
+[Tue 11:28:08] <gkellogg>	manu: In this group we’ve known that the decentralized identifier problem is very difficult to solve, but required for user-centric/self-soverign identiy.
+[Tue 11:28:35] <ChristopherA>	link to 10 principles of Self-Sovereign Identity http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html
+[Tue 11:28:57] <gkellogg>	… The key think is the understanding that we need to have an identifier that can’t be taken away from an individual through force or coersion. We create the concept of a “WebDHT” (a hash table with history), but that’s getting into implementation details.
+[Tue 11:29:18] <gkellogg>	… A higher level requirement is that we have an identifier that can be instantiated and owned so that it can’t be taken away.
+[Tue 11:29:41] <gkellogg>	… We’ve discussed block chain, journal, DHT a number of times, but we should wind back and look at requirements.
+[Tue 11:31:09] <gkellogg>	Drummond: It was a very intense discussion on DiD architecture. I have some notes freom that discussion. We got to concensus on goals of the architecture. We came down to two key goals: define the structure of an identifier that can serve as a discoverable key for a value.
+[Tue 11:31:47] <gkellogg>	… The value part is the “DiD object”: define the structure of an object that can provide cryptographic proof of DiD ownership and update permission.
+[Tue 11:32:38] <gkellogg>	… Also, for the DiD Object to provide pointers to other sources of claims and other peer DiDs. For purposes of privace protection, a person (or principal) may need to have multiple/many DiDs to keep different personas separate.
+[Tue 11:33:09] <gkellogg>	… From the standpoint of claims-based ID, the concept of a DiD-Tuple is a genesis claim, and is the starting point.
+[Tue 11:34:41] <gkellogg>	… most discussion was over a “public DiD”, so that you can refer to it to discover,lookup and verify a DiD. This corresponds to an “omni-directional identifier”. However, from a privacy consideration there are limitations. There are also cases for private DiDs shared by a limited set of holders, thus a “uni-directional identifier".
+[Tue 11:35:52] <gkellogg>	… There was discussion around DiD discovery. Could use ledgers or oracles as peers, which provides independence but not a known starting point.
+[Tue 11:36:34] <gkellogg>	… The second bucket was “addressable ledgers”, was to treat them as part of the URI space (ledger of ledgers). This would make the DiD itself addressable, but has questions of portability.
+[Tue 11:36:49] <gkellogg>	… The third option was meta-protocols to allow ledger interaction.
+[Tue 11:37:24] <ChristopherA>	q+
+[Tue 11:37:24] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 11:37:25] <gkellogg>	… The last option as the “index ledger”, the idea that by concensus there is a single DiD registry, where the object may be stored elsewhere, but there is a master index.
+[Tue 11:38:01] <manu>	ack ChristopherA 
+[Tue 11:38:01] <voip-vctf>	ChristopherA has the floor.
+[Tue 11:38:02] <gkellogg>	… We’re interviewing individuals intersted in this area and want to contribute; Anyone on this call is weclome to participate.
+[Tue 11:39:22] <gkellogg>	ChristopherA: We’re punting on naming, which has caused problems in the past. This should be reflected in the archiecture. Names are credentials not identifiers. People want the right to revoke credentials that are harmful, and this may have not been thought of enough.
+[Tue 11:40:22] <gkellogg>	… Secondly, on the meta-DiD discussion, we wanted to be able to move the root identier from one chain to another. Self-soverign users would have a choice of what chain to use, as well as the ability to move it later. We think we have some good answers by having every chain have it’s own DiD.
+[Tue 11:41:03] <manu>	q+ to ask what the next steps are wrt. DIDs...
+[Tue 11:41:03] <voip-vctf>	manu has been added to the queue: manu
+[Tue 11:41:11] <gkellogg>	… These things are hard, but we think we can say it’s possible with this architecture, but don’t want to have to prove it first. The intent is to have a design which allows for portability, but this may be a 2.0 feature.
+[Tue 11:41:21] <manu>	ack manu
+[Tue 11:41:21] <voip-vctf>	manu has the floor (to ask what the next steps are wrt. DIDs...).
+[Tue 11:42:17] <gkellogg>	manu: The DiD stuff is a long-term need for verifiable claims work. Today, in the current architecture, we’re just using URLs. If you want to use it today, you must bind the claim to a URL, which places the domain holder in control. We’d like the DiD stuff to replace that.
+[Tue 11:42:34] <voip-vctf>	Shane McCarron [SIP/callcentric.com-000002e9] has left the conference.
+[Tue 11:42:37] <dlongley>	notes that, technically, it's still a URL if the scheme is "did" instead of "https"... this is still a URL: "did:abcd1234..."
+[Tue 11:42:48] <gkellogg>	… There is a system up already used in demos. The issue is that it’s just backed by a regular DB, it needs to be distributed.
+[Tue 11:42:55] <dlongley>	it's just dereferenced in some other way (TBD)
+[Tue 11:43:07] <voip-vctf>	Shane McCarron [SIP/callcentric.com-000002eb] has joined the conference.
+[Tue 11:43:13] <gkellogg>	… We don’t need it to be ready by the time W3C membership votes, but we should have a plan.
+[Tue 11:44:14] <gkellogg>	Drummond: one of the time-frames is based on the 6-month DHS contract. Our job there is to perform as many interviews as we can, trying to do 20-30 by the end of June and produce a sample architecture and prototype.
+[Tue 11:44:44] <gkellogg>	… We anticipate that a spec should/would come out of this. I’d like to get through the heart of the work this summer and be able to implement/test in the fall.
+[Tue 11:45:58] <gkellogg>	ChristopherA: Block Stack has implemented various aspects of this in their own architecture. We’re working with them to bring alignment; in effect, they offer DHT and could come into alignment with the overall DiD and self-soverign architecture.
+[Tue 11:46:46] <gkellogg>	… In oreder to do DiDs property you need a proof of existence, which was also worked on at the design workship, that will make the work easier to move forward.
+[Tue 11:46:50] *	manu Ryan of Ryan Shea from Blockstack.
+[Tue 11:47:09] <gkellogg>	… There’s interest in a standard way to do this, possible using linked data sigiatureas as a way to do this.
+[Tue 11:47:28] <manu>	Topic: Verifiable Claims Use Cases Review
+[Tue 11:47:44] <lchasen>	In regards to the interviews that Drummond mentioned, we are currently running a survey re "applicability of blockchain tech" here https://www.surveymonkey.com/r/Applicability_of_Blockchain_Technology_to_Privacy_Respecting_Identity_Management. Feel free to take it and indicate whether you are interested in a further in-depth interview.
+[Tue 11:48:08] <gkellogg>	manu: At ID2020 we also broke out to talk about use cases. They looked at Shane’s document for potential W3C vote and had some thoughts about it.
+[Tue 11:48:11] *	ShaneM notes 12 minutes
+[Tue 11:48:26] <JoeAndrieu>	https://drive.google.com/folderview?id=0B1x0qWwnnOk5aGU5cWx6WlIta0k&usp=drive_web
+[Tue 11:48:27] <gkellogg>	… I wanted to introduce Joe Andrieu to talk about this.
+[Tue 11:48:43] <Drummond>	Also, this a reference to Kim Cameron's Laws of Identity (with the law about omnidirectional and unidirectional identifiers): https://www.identityblog.com/stories/2005/05/13/TheLawsOfIdentity.pdf
+[Tue 11:48:49] *	manu noted, ShaneM - we'll be back to work items next week.
+[Tue 11:49:21] <gkellogg>	andrieu: I wanted to be sure that my writeup aligns with Shane’s work.
+[Tue 11:49:55] <gkellogg>	… Our first impressions was that we wished the human value was more prominent. It should discuss how system addresses real human problems.
+[Tue 11:51:03] <manu>	We're looking at this document: http://w3c.github.io/webpayments-ig/VCTF/use-cases/
+[Tue 11:51:28] <gkellogg>	… For example, easily humanly recallable titles. I appriciate that there is confusion over this. Things like “the lazy doctor” in UC 4.3.1. We tried to come up with a short name capturing the human value of each use case. A lazy doctor doesn’t maintain credentials, but a bad university has credentials pulled.
+[Tue 11:52:02] <gkellogg>	… I’d like to give some examples of requirements modeling (not engineering).
+[Tue 11:52:32] <gkellogg>	… I have some tools and techniques that can make these use cases easier to absorb, to capture essential interactions.
+[Tue 11:53:02] <gkellogg>	… One of the notes is that there is a lot to digest, and there was tension between a rigorous specification/detail, but this is at odds with the process.
+[Tue 11:53:15] <gkellogg>	… This puts the focus on a really good architectural diagram.
+[Tue 11:54:18] <gkellogg>	manu: speaking for myself, I think that would be fantastic. You’re group was forced to do it in an hour, which is really good. The W3C Membership may spend 5-10 minutes on it before moving on. The UC doc ends up driving requirements for a future WG.
+[Tue 11:54:58] <gkellogg>	… People make two passes of UC, 5 minutes to vote to proceed, and the second set is people actually doing the work, who will look with a comb to determine if work is in scope.
+[Tue 11:55:51] <gkellogg>	shanem: You said you had trouble getting your mind on the difference between scenarios and use cases. Note that it was structured as requirements, with supporting use cases.
+[Tue 11:56:24] <gkellogg>	jandrieu: Use Cases are overloaded to mean a lot of different things. But sometimes UC is in the problem domain, or the solution domain.
+[Tue 11:56:31] <manu>	Topic: Update on Work Items
+[Tue 11:57:05] <gkellogg>	manu: there are a number of documents that still need to be updated.
+[Tue 11:57:24] <gkellogg>	… I’m going to send out another request on the survey.
+[Tue 11:57:38] <gkellogg>	… Also, we’re hoping that Adam will work on AC or Architecture summary.
+[Tue 11:58:13] <gkellogg>	Adam: I’m getting up to speed on working on both. We should be on track for 3rd week of June.
+[Tue 11:58:34] <voip-vctf>	Shane McCarron [SIP/callcentric.com-000002eb] has left the conference.
+[Tue 11:58:43] <gkellogg>	manu: The W3C advisory committee needs a brief summary so they know why they should vote for this.
+[Tue 11:59:09] <adamlake>	I also have feedback on the other documents, including Use Cases.
+[Tue 11:59:25] <adamlake>	if the authors of those docs want it.
+[Tue 11:59:35] <gkellogg>	ChristopherA: there’s a blockchain workship coming up 2 days before the one at MIT
+[Tue 11:59:36] <dezell>	q+
+[Tue 11:59:36] <voip-vctf>	dezell has been added to the queue: dezell
+[Tue 12:00:08] <gkellogg>	dezell: Let’s work on getting a story infront of WPIG ASAP.
+[Tue 12:00:19] <jandrieu>	Thanks, all. I need to run.  I've joined the email list and will focus on something presentable to the group within the week.
+[Tue 12:00:41] *	dezell has quit ("")
+[Tue 12:00:44] <gkellogg>	manu: next week: heads down on getting voting package together.
+[Tue 12:00:44] <gkellogg>	Present+ trainer, otto, sutton, casilli, lehn, stone, DeLorenzo, bonomo, madlin, korb, jlaw, duane
