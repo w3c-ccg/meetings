@@ -1,0 +1,147 @@
+[Wed 14:01:45] <dlongley>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016Jun/0029.html
+[Wed 14:01:45] <dlongley>	scribe: dlongley
+[Wed 14:02:16] <manu>	Topic:  Discuss purpose of architecture proposal
+[Wed 14:02:24] <alake>	http://w3c.github.io/webpayments-ig/VCTF/architecture/
+[Wed 14:03:19] <alake>	long form version, https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/raw/master/topics-and-advance-readings/a-self-sovereign-identity-architecture.pdf
+[Wed 14:03:19] <dlongley>	manu: We're putting this proposal together because a number of people at W3C requested it. This arch doc is here to quickly inform people about the type of arch we're talking about. I would even go as far to say that our audience for this is technical orgs, specifically members of W3C, or orgs that would become members of W3C if the work takes off. That's really all the background that we need.
+[Wed 14:05:33] <dlongley>	manu: Deadline is the 20th. The WPIG is going to review all this stuff. To catch you up on where we are, we've been talking about Verifiable Claims, they used to be called Credentials, for about 4 years. This used to be in the Web Payments Community Group. It was later split into its own group at the Credentials Community Group, where it incubated for about 18 months. Then the Web Payments Interest Group, official W3C group, started up and it is responsible for coming up with charters for WGs. VC was taken up by the IG and the VC task force was created to come up with the charter and these other docs and we're going to give those docs to the IG and have them read it and then ask them if they will take it to W3C membership for a vote.
+[Wed 14:05:38] <dlongley>	manu: There's a F2F on the first of July.
+[Wed 14:05:43] <dlongley>	manu: That's why we have this deadline.
+[Wed 14:06:02] <dlongley>	dcrocker: This is a hard deadline for getting a group vote on whether to approve the documents in their current form and put it forward to the W3C membership for approval.
+[Wed 14:06:22] <dlongley>	dcrocker: Just trying to understand the broad strokes of this. Assuming it gets approved, what happens after that?
+[Wed 14:07:03] <dlongley>	manu: If approved by IG it goes to W3C management, and they will tell us if they think the membership won't have any objectives. We may have a roadblock there -- if we get buy in from them and can prove we've got consensus over the past 2 years, etc. THen they would put it to a vote by the whole membership 400+ orgs.
+[Wed 14:07:40] <dlongley>	manu: There are two thumbs down we could get, one is from management -- that means we haven't answered some question from them, usually a large member company has an issue they need resolved.
+[Wed 14:07:57] <dlongley>	manu: Management has been unconvinced twice before but has come back with vague requests.
+[Wed 14:08:10] <dlongley>	dcrocker: Thanks. I apologize for not doing this homework sooner.
+[Wed 14:08:20] <dlongley>	manu: There's no way for you to know without us having this conversation.
+[Wed 14:09:15] <dlongley>	dcrocker: I'm trying to figure out a good way for us to navigate here. I have a bunch of questions I'm looking at -- and the stuff I'm looking at has changed dramatically in the past week or two. It's not good or bad it's that there are changes. When something changes that much this quickly it means it hasn't had time to get into people's brains and discussions for them to know how it will be used. Which strikes me exactly as the issue that these votes are trying to consider.
+[Wed 14:09:48] <dlongley>	manu: Let me clarify a bit, I don't believe what we're proposing in this doc has really changed when it comes to the tribal knowledge in this community. When it comes to what was talked about at the design workshop, that's where there are differences.
+[Wed 14:10:13] <dlongley>	Topic: Analysis of current document
+[Wed 14:10:13] <dlongley>	dcrocker: Right. I tried to make some annotations on the document that you circulated. We didn't get around to talking about those. Any example of a very basic question about this question and a previous one... where's the identity in this?
+[Wed 14:10:36] <dlongley>	dcrocker: Holder, issuer, inspector, storage location -- where's the identity? The entity that the claims are being made about is never mention.
+[Wed 14:10:40] <dlongley>	manu: We've been calling it that the subject.
+[Wed 14:10:49] <dlongley>	q+
+[Wed 14:10:49] <voip-vctf>	dlongley has been added to the queue: dlongley
+[Wed 14:11:02] <dlongley>	q-
+[Wed 14:11:02] <voip-vctf>	dlongley has been removed from the queue:
+[Wed 14:11:08] <dlongley>	dlongley: we can get to that question in particular, i have thoughts
+[Wed 14:12:19] <dlongley>	dcrocker: We have claims that are ... where they come from is clear (the issuer), where they go actually seems less clear. The reason I say that is ... claims go to the holder and are held in the repository. There appeared in the discussions I was around ... upper box currently labeled registry and used to be ledger ... it was a place to go to verify the claims. You could go there to test the accuracy,  not the validity, whether an issuer made the claims can be checked.
+[Wed 14:13:40] <dlongley>	manu: Let me explain removing the ledger. The W3C is just starting to look at blockchain tech. End of June workshop. If we walked in there with a ledger as part of the architecture, we could get pushback and it's not a fundamental component of the system. It's not core to the system. The decentralized identifier system registry is just there for claiming identifiers that you can prove you have ownership over. We tried to narrow the scope of the diagram down to the minimum necessary to bootstrap the ecosystem. For every box and arrow you add it's potentially another spec and protocol you have to define.
+[Wed 14:14:10] <dlongley>	dcrocker: The basic simplicity of the architecture I found really appealing. A simpler architecture means we took the time to make it shorter.
+[Wed 14:14:32] <dlongley>	q+ to say we could have other diagrams that break roles down further.
+[Wed 14:14:32] <voip-vctf>	dlongley has been added to the queue: dlongley
+[Wed 14:15:00] *	manu apologizes to dlongley for having to scribe so much :(
+[Wed 14:15:44] <manu>	scribe: manu
+[Wed 14:15:44] <manu>	dlongley: I think you mentioned on previous calls - good to have simple diagram to have people consume. Other diagrams might provide more depth/features - other groups of people that want to understand how you break roles down into subroles. For example, holder.
+[Wed 14:15:52] <alake>	lost audio
+[Wed 14:16:07] *	manu we can still hear, alake 
+[Wed 14:16:20] <dcrocker>	looks like i got disconnected. will call back
+[Wed 14:16:25] <manu>	dlongley: Holder could be broken down into software agent that moves stuff around. Same thing for requests - single box - single boxes can be broken down into multiple rules.
+[Wed 14:16:31] <voip-vctf>	15402850083 [SIP/69.65.34.216-00000384] has joined the conference.
+[Wed 14:16:32] *	manu waiting
+[Wed 14:16:38] <manu>	voip: 384 is AdamLake
+[Wed 14:16:38] <voip-vctf>	Associated AdamLake with SIP/69.65.34.216-00000384.
+[Wed 14:16:51] *	dlongley waiting for dave to call back in
+[Wed 14:17:03] <voip-vctf>	14082468253 [SIP/69.65.34.216-00000385] has joined the conference.
+[Wed 14:17:15] <manu>	voip: 385 is DaveCrocker
+[Wed 14:17:15] <voip-vctf>	Associated DaveCrocker with SIP/69.65.34.216-00000385.
+[Wed 14:17:56] <manu>	Topic: Identifier registry
+[Wed 14:17:56] <manu>	dcrocker: So, I think the question I ended on was - decentralized identifier registry, in current version, is really only and exactly an identifier registry, you check it to see if an identifier is registered and to whom.
+[Wed 14:18:52] <manu>	dlongley: We have been trying to make the diagram that we present in general to be as simple as possible. There are other things that can break roles down into other pieces that more advanced parties would like to learn about. We have a simple diagram to figure out how information can move around. We could have other architecture diagrams that explain how that works. Where is the identity? Where are the verifiable claims?
+[Wed 14:19:45] <manu>	dlongley: You could actually break this down into subject that claim is about, software agent that moves claims around, repository that is a storage abstraction - furthermore, where they might go might break down into software/hardware that you hold onto as a person, or it could be a public blockchain that you use to hold on for public claims, or you use some other mechanisms to store private information.
+[Wed 14:20:34] <manu>	dlongley: There are a number of different pieces that are not necessary for core architecture, but very important for solving more use cases and implementing the system. Same thing is true for party that receives claims - that same role, which we've called 'consumer', 'inspector' could really be a number of subroles... requesting vs. verification of claim. Maybe claim verification can be delegated.
+[Wed 14:21:31] <manu>	dlongley: Or it could check a whitelist for a bunch of issuers that it trusts, or it could be that issuers can receive stuff from accredicration bodies. we don't want all of that in the simplest diagram. We have parties that issue credentials, there are parties that control these claims, parties that can request them, and some concept of an identifier that has independent existence - so you have more power/control - store them as you see fit.
+[Wed 14:21:56] <manu>	dlongley: All of those things are a part of the core architecture - you could even say you could take out independent existence part and still have the system work (take out Decentralized Identifier Registry).
+[Wed 14:22:30] <manu>	dcrocker: The concept of layering - macro-granuality for one version of arch, and one for smaller-granuality.. we want to make sure macro boxes don't change as you go down to the micro-version.
+[Wed 14:22:51] <manu>	dcrocker: So, challenge is boxes you have and what labels you have on them. So, for example - registry - for registry and identifiers who own them.
+[Wed 14:23:13] <manu>	dcrocker: Yes, that's all that it does. is it going to be something else as you add more detail. If it's going to be something else, then the label is going to be a problem.
+[Wed 14:23:41] <manu>	dcrocker: Saying something like decentralized is an implementation issue - better to have architecture not have implementation details.
+[Wed 14:23:56] <manu>	dlongley: Another one of these had "oracle" - don't know if that's too generic.
+[Wed 14:24:40] <manu>	dcrocker: We came up with Oracle because that box had multiple pieces of functionality - we had functions that were different from the other two. oracle is not a good word, but didn't have much else to replace it with. Reporter might work.
+[Wed 14:25:06] <manu>	dcrocker: The other one, the more you and others have talked about the Holder, the more I see it as something more than just a holder. The reality is that it is the entity being identified.
+[Wed 14:25:23] <manu>	dlongley: Most of the time that's true, but sometimes it is about another subject.
+[Wed 14:25:51] <manu>	dcrocker: I think that's a striking and useful basis for noting that "identity" - the "identity" being identified is a separate box in the architecture and it ought to be distinguished. I think I understand why that didn't happen.
+[Wed 14:25:59] <manu>	q+ to say specifically why that didn't happen - identity.
+[Wed 14:25:59] <voip-vctf>	manu has been added to the queue: dlongley, manu
+[Wed 14:26:32] <manu>	dcrocker: You can have actors that have different roles at different times. Implementation vs. architecture - two different boxes might be performed by same actor, that's okay - but they don't have to be compressed into one box.
+[Wed 14:26:46] <manu>	dlongley: The fact that a single player might have multiple roles shouldn't affect the architecture. 
+[Wed 14:27:11] <manu>	dcrocker: For holder, you have a descriptive tag to say it manages the registry entry. That doesn't sound like holder to me, it sounds like owner.
+[Wed 14:27:50] <manu>	dlongley: We had a certain concept that goes back to self-soverign identity - you're in control of your own claims. The fact that you might employ software agent to do some of these things. We're trying to keep this particular architecture as simple as possible trying to tease out those subtle differences.
+[Wed 14:27:55] <manu>	ack dlehn 
+[Wed 14:27:55] <voip-vctf>	dlehn isn't on the speaker queue.
+[Wed 14:27:58] <manu>	ack dlongley 
+[Wed 14:27:58] <voip-vctf>	dlongley has the floor (to say we could have other diagrams that break roles down further.).
+[Wed 14:28:00] <manu>	ack manu 
+[Wed 14:28:00] <voip-vctf>	manu has the floor (to say specifically why that didn't happen - identity.).
+[Wed 14:28:48] <dlongley>	manu: Jsut to quickly why we try to stay away from identity. Very early on we had identity in a number of these documents -- and the response we got back from reviewers was vehement opposition to any work because we were "trying to tackle the identity problem" and W3C absolutely does not want to get involved in that rolling failure that is identity on the Web and the internet.
+[Wed 14:29:19] <dlongley>	dcrocker: I do understand the religious wars that go on with that, I used it because I saw "identifier" and that's an easy term and someone owns that and I used "identity" for that.
+[Wed 14:29:29] <dlongley>	manu: The thing that the verifiable claim is about is the "subject" of those claims.
+[Wed 14:30:08] <dlongley>	manu: But "holder" is a bit different -- there's a part of the architecture that you haven't been exposed to yet. One of them is to design a privacy aware architecture, at no point should the issuer or repo know who you're giving the claim over to.
+[Wed 14:30:23] <manu>	dlongley: At no point should they know that until you have given consent.
+[Wed 14:30:59] <dlongley>	dcrocker: That's fine -- but not affected by what we're discussing. I think that the arch can show this privacy feature. I think that's a particular bit of insight that someone looking at the arch can tell or not tell.
+[Wed 14:31:06] <dlongley>	manu: We haven't figured out how to do it and if you can do it that's great.
+[Wed 14:31:30] <dlongley>	manu: I wanted to mention the self-sovereign bit is important. There are things we've put into the diagram, specifically to demonstrate why this is different from SAML or OpenID Connect.
+[Wed 14:32:50] <dlongley>	manu: We have orgs that can issue claims, orgs that can request claims, and all of that stuff is supported in OpenID Connect. Most federated systems today -- they don't support two things: the concept of a subject of a verifiable claim can exist independently of an IdP. That can be done through decentralized identifiers -- where anyone can claim an identifier and manage it. That's a core requirement for people to have independent existence. That's why we don't have oracle in here. We wanted to get specific about the key differences here.
+[Wed 14:32:54] <dlongley>	manu: In the future we could have oracle in there.
+[Wed 14:33:30] <dlongley>	dcrocker: Saying "decentralized" in that box is a marketing function to help viewers of this diagram an essential functioning difference between architectures.
+[Wed 14:33:49] <dlongley>	dcrocker: I'm assuming and I think it's really important, that this be something that it helps guide technical people with this.
+[Wed 14:34:26] <dlongley>	manu: The W3C AC will look at 15-30 min tops looking at this proposal and there's much more material here. In every one of these docs we want them to understand that this is new, narrowly scoped, and achievable.
+[Wed 14:34:37] <dlongley>	dcrocker: Makes sense and also explains why we want to get it down to a few pages.
+[Wed 14:35:02] <dlongley>	Topic: Repository
+[Wed 14:35:02] <dlongley>	dcrocker: A couple of suggestions: For the purposes you've described, you don't need the repo box. It's an internal function to the holder.
+[Wed 14:35:18] <dlongley>	manu: The fact that you can separate the repo from the issuer is an important part of the architecture. In most tech today you can't separate those two.
+[Wed 14:35:47] <dlongley>	dcrocker: There can be a third party -- even though all access to the info in the repo is through the holder, a really important point -- you want to highlight that it can be an independent third party.
+[Wed 14:35:59] <dlongley>	dcrocker: There would be some standard interfaces to it presumably.
+[Wed 14:36:00] <dlongley>	manu: Yes.
+[Wed 14:36:19] <dlongley>	dcrocker: The same can be said for the inspection function. It can, and I suspect will, to be delegated to an independent third party.
+[Wed 14:37:24] <manu>	dlongley: I would say that's true, I would expect there to be a standard way to make a request to a user agent and pass on that request to a user agent that works on behalf of the holder so they can fulfill that request. When you're talking about the inspector, you're talking about independent verifiable - standard interface or algorithm that you can run over a credential to determine whether or not something is verified or fails verification.
+[Wed 14:37:35] <manu>	dlongley: Are you talking about protocols asking to see if something is verified?
+[Wed 14:38:30] <manu>	dcrocker: I was thinking about the latter - 3rd party inspector was standing between the inspector and the party consuming the information - how to model this - better to have this as the entity that's going to consume the information as being directly connected into the rest of the architecture and rest of the inspection function behind delegated. Just as holder may not want to delegate the function.
+[Wed 14:38:45] <manu>	dlongley: I agree - don't know if we make the diagram more complicated. 
+[Wed 14:39:01] <manu>	dcrocker: Same argument for repository is the same argument that should be for inspector.
+[Wed 14:39:19] <manu>	dcrocker: I think the argument is the same, functions are different.
+[Wed 14:39:32] <manu>	dlongley: Argument is almost the same, don't think it matters if it's in the arch document.
+[Wed 14:40:24] <manu>	dcrocker: Fact that the subject is not in here - maybe we can have subject be above registry - one line going to Registry - that will be entity that manages identifier - holder just manages them - arrow from registry to holder - registry from any of the bottom three - needs to go from registry to bottom 3. Issuer, holder, and inspector, all they do is query the registry.
+[Wed 14:42:41] <dlongley>	scribe: dlongley
+[Wed 14:42:41] <dlongley>	manu: Subject, I would argue is not necessary in the diagram, because we don't really talk about verifiable claims other than having them in the white boxes. I don't know if having subject helps understand or not. To delegate inspection to a third party is absolutely the same, I'm not convinced that it's important to point that out. One of the reasons being that the system is designed so that every website receiving this information ... receiving a claim... they can do a simple check on it, and it seems like if they delegate that it requires more complexity. I don't know if we need to have that discussion at this point. Every box we add we have to depend as being mandatory in the architecture.
+[Wed 14:43:11] <dlongley>	Topic: Simplifying Diagram
+[Wed 14:43:11] <dlongley>	dcrocker: So I hear you, part of balancing act, want to include enough to be coherent but not too much.
+[Wed 14:44:04] <dlongley>	manu: You could remove repo and the system would still function. You could remove decentralized identifier registry -- but that's not proposed in the first version of the WG at all. We're just talking about data model and syntax. Not talking about protocols yet because it was hot button.
+[Wed 14:44:38] <dlongley>	manu: Creating a decentralized registry was a hot point, creating that at all means you're not ready for standardization -- you need a system that's bootstrapped with a million people, etc. before doing that.
+[Wed 14:44:48] <dlongley>	manu: It's great that you want self-sovereign identity but it's way too early.
+[Wed 14:45:06] <dlongley>	dcrocker: I can't say that I disagree with them, and that gets into the challenge of how conservative this has to be vs. how visionary can this be.
+[Wed 14:45:46] <dlongley>	manu: It can be somewhat visionary -- we just need to make sure that the data model and syntax we create allows for decentralized identifiers to fit in here, but not do it in v1, but allow for v2.
+[Wed 14:46:41] <dlongley>	manu: We want to be able to say "This is where we're headed" ... we're not putting oracles, ledgers, etc. in there -- because while we want those to be parts of the ecosystem in the future, we feel that it would confuse or send W3C AC reps down the wrong path. We want them thinking about the core problem - the first step for VC. We can show them the next step after that, but not expose them to the 10 year plan.
+[Wed 14:46:51] <dlongley>	manu: In general, that's our thinking on it.
+[Wed 14:46:55] <dlongley>	manu: All of that is up for debate.
+[Wed 14:47:31] <dlongley>	dcrocker: I'm trying to understand enough of where things are and what you ahve in mind so that any suggestions take that in. It makes me unclear why you kept the decentralized registry in there. We want to demonstrate the difference between OpenID Connect.
+[Wed 14:47:51] <dlongley>	manu: We want to demonstrate the difference between OpenID Connect.
+[Wed 14:48:24] <dlongley>	q+
+[Wed 14:48:24] <voip-vctf>	dlongley has been added to the queue: dlongley
+[Wed 14:49:32] <manu>	dcrocker: The enthusiasm that tends to dominate cool new stuff - it's always cool, but enthusiasm for it gets in the way that less cool, less neat, reliable stuff works.
+[Wed 14:49:33] <manu>	ack dlehn 
+[Wed 14:49:33] <voip-vctf>	dlehn isn't on the speaker queue.
+[Wed 14:49:36] <manu>	ack dlongley 
+[Wed 14:49:36] <voip-vctf>	dlongley has the floor.
+[Wed 14:50:36] <manu>	dlongley: One reason to have this in here is to demonstrate that the architecture is fundamentally different from existing architectures. This architecture enables new types of innovation - by changing architecture, rearranging mechanism - we can enable innovation - we don't have to say we need this, we can say if we standardize these other parts, in the future, we can standardize in the future how people can innovate.
+[Wed 14:51:20] <manu>	dcrocker: Ok, I think I have enough now on what's driving you - start w/ something with as simple as possible - maybe it looks like existing systems - registry - global arbitrator of identifiers. Have a registry - have the subject above it - have issuer, holder, inspector, and that's it.
+[Wed 14:51:42] <manu>	dcrocker: That doesn't look exiting - another version has elaborations that we've talked about - tells people where it starts and where it's going and it does it easily.
+[Wed 14:52:22] <dlongley>	manu: On the call yesterday, when I said maybe we have two versions of these diagrams -- that's kind of what I was getting at. First one can show an oversimplified view of where we are and then another one for where we could get in the future.
+[Wed 14:52:42] <dlongley>	manu: The concrete changes you suggested sounded interesting to me. I can see how could break out those boxes and show how we get from one system to the next.
+[Wed 14:52:54] <dlongley>	manu: Do we show both of these?
+[Wed 14:53:06] <manu>	dcrocker: You've already indicated some marketing/sales problem if you only show the simple one - how is this different?
+[Wed 14:53:12] <dlongley>	dcrocker: You have marketing/sales problems with only the simple one.
+[Wed 14:53:17] <manu>	scribe: manu
+[Wed 14:53:17] <manu>	dcrocker: The whole point behind simple one is that it's not supposed to be different...
+[Wed 14:53:59] <manu>	dlongley: Important to show both - this is kinda how things work together, subtle differences, this is where we can head in the future - purpose is to build a data model and syntax around claims that allows this future visionary architecture to arise - once people start using data model/format, people can innovate on other components.
+[Wed 14:54:41] <dlongley>	manu: So dcrocker, you're saying, put subject in there, switch the errors with the registry, put repo into the holder and leave it there/don't show it, or break repository out and break third party verifier out of it.
+[Wed 14:56:37] <manu>	dlongley: That's a core architectural change - separation from issuer - separate registry - identifier is integrated into identity providers (issuer-repository)
+[Wed 14:56:48] <manu>	dlongley: By breaking these pieces out, that's what's core to building these new systems in the future.
+[Wed 14:57:24] <alake>	maybe we use just "identifier Registry" to be identity provider agnostic but the architecture allows for decentralized registries.
+[Wed 14:57:30] <manu>	dcrocker: I'm so used to thinking as DNS as global registry, I keep forgetting that we have all sorts of identifier creation in various systems - Twitter username, for example. I hadn't thought about this as an enhancement - you get to make point about independent registration 
+[Wed 14:57:55] <manu>	dlongley: I like that as well - but how do we stop people from talking about implementation details. We want to break those things apart...
+[Wed 14:58:30] <manu>	dcrocker: The short answer is URI are an existence proof for global identifier registration service - and in fact, early version will use something like that. It may have limitations, but it's a well understood construct. The identifiers are just URIs. 
+[Wed 14:58:45] <manu>	dlongley: Yes, I think that's okay - URIs...
+[Wed 14:59:23] <manu>	Adam: I'm working on document, observing mostly, appreciate feedback/pushback - helps us understand what other folks might push back on.
+[Wed 14:59:47] <manu>	dcrocker: What I'm inclined to offer is to make a pass on the document and make changes that you can look at and think about.
+[Wed 14:59:47] <manu>	present+ taaz
