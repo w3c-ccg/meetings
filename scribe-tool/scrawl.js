@@ -96,7 +96,9 @@
     if(nodejs) {
       modified = entities.encodeNonUTF(text);
     } else {
-      modified = $('<div/>').text('' + text).html()
+      modified = text.replace(/[\"&<>]/g, function (a) {
+        return { '"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;' }[a];
+      });
     }
     modified = modified.replace(urlRx, '<a href="$1">$1</a>');
 
