@@ -1,0 +1,164 @@
+[Tue 11:05:29] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-webpayments-ig/2016Jul/0056.html
+[Tue 11:05:30] <voip-vctf>	14105315457 [SIP/69.65.34.216-00000561] has joined the conference.
+[Tue 11:05:32] <voip-vctf>	Matthew Larson [SIP/sip.linphone.org-00000562] has joined the conference.
+[Tue 11:05:33] <voip-vctf>	Jim Goodell [SIP/192.168.2.8-00000563] has joined the conference.
+[Tue 11:05:48] <NateOtto>	scribe: NateOtto
+[Tue 11:05:59] <voip-vctf>	Jim Goodell [SIP/192.168.2.8-00000563] has left the conference.
+[Tue 11:06:03] <manu>	voip: 561 is LesChasen
+[Tue 11:06:03] <voip-vctf>	Associated LesChasen with SIP/69.65.34.216-00000561.
+[Tue 11:07:01] <NateOtto>	manu: On the Agenda today: Dissenting opinions have become public on the verifiable claims stuff; Some discussion on JOSE/JWT; Verifiable Claims Working Group F2F agenda prepping for success if it's approved; Any other business, including how we might coordinate with rebooting web of trust workshop and Internet Identity Workshop.
+[Tue 11:07:07] *	JimG (~JimG@public.cloak) has joined #vctf
+[Tue 11:07:09] <NateOtto>	manu: Any updates/ changes to the agenda?
+[Tue 11:07:20] <manu>	Topic: Review All Dissenting Opinions
+[Tue 11:07:26] *	stone (~stone@public.cloak) has joined #vctf
+[Tue 11:07:57] <NateOtto>	manu: The good news as of two weeks ago was that Web Payments IG decided to push VCTF charter / entire proposal onto W3C Management to approve and send to W3C membership for a vote
+[Tue 11:08:05] <voip-vctf>	Shane McCarron [SIP/callcentric.com-00000565] has joined the conference.
+[Tue 11:08:11] <ShaneM>	present+ ShaneM
+[Tue 11:08:12] <NateOtto>	manu: IG Passed it almost unanimously; there were three dissenting opinions
+[Tue 11:08:35] <NateOtto>	manu: One came from Microsoft, strong; One came from Google, not as strong, around process/incubation; 3rd one came from W3C Staff that they couldn't support the charter as is.
+[Tue 11:08:47] <NateOtto>	manu: Now that the minutes are public we can talk more about each company's objection
+[Tue 11:08:52] <voip-vctf>	15087286074 [SIP/69.65.34.216-00000566] has joined the conference.
+[Tue 11:08:58] <voip-vctf>	Matt Stone [SIP/sip.linphone.org-00000567] has joined the conference.
+[Tue 11:09:26] <NateOtto>	manu: Microsoft: Mike Champion said MS's opinion is that the work is unnecessarily, overlaps too heavily with JOSE/JWT work; There are plenty of ways to express claims out there.
+[Tue 11:10:15] <NateOtto>	manu: This was repeated at the blockchains/identity workshop where several MS employees expressed they hadn't heard from any of their clients that this was necessary. They expect industry verticals to figure out making claims work across those verticals instead of standardization.
+[Tue 11:10:35] <NateOtto>	manu: There were also a few process concerns about whether this was incubated long enough and had enough cross-pollenation with JWT work.
+[Tue 11:11:10] <NateOtto>	manu: This opinion is not unversally held across the Microsoft organization. But the people who are speaking up against the work have been heavily involved in JOSE/JWT work.
+[Tue 11:11:15] <NateOtto>	manu: Any questions on MS's position?
+[Tue 11:11:31] <NateOtto>	Drummond: Is there a particular opponent at Microsoft we should be aware of?
+[Tue 11:11:58] <NateOtto>	manu: I think most of this is coming from Anthony Natalin (sp)? Mike Champion is largely repeating his concerns.
+[Tue 11:12:13] <NateOtto>	manu: We are trying to set up a call with Anthony to see if we can get around this objection.
+[Tue 11:12:31] <NateOtto>	manu: Mainly, what they're saying: whatever you build, you should just build it on top of JOSE/JWT
+[Tue 11:12:38] <Erik>	JOSE/JWT doesnt support linked data. It must all be embedded in the JWT.
+[Tue 11:12:55] <NateOtto>	manu: And just build it for the education sector, because that's who we have in the group
+[Tue 11:13:29] <NateOtto>	manu: As Erik has pointed out, JWT isn't a perfect fit with Linked Data. Some financial services organizations and others in non-education verticals are pushing for a non-JWT solution
+[Tue 11:13:36] <burn>	q+
+[Tue 11:13:36] <voip-vctf>	burn has been added to the queue: burn
+[Tue 11:13:53] <NateOtto>	manu: Also, you can use JOSE/JWT in the suggested spec, it's up to an industry vertical about what they want to use
+[Tue 11:14:17] <NateOtto>	Drummond: I'm surprised, because when I met with Kim Cameron (sp), sounds like there was support within Microsoft
+[Tue 11:14:28] <NateOtto>	manu: Sounds like Mike is unaware of Kim's position on this
+[Tue 11:14:31] <burn>	q-
+[Tue 11:14:31] <voip-vctf>	burn has been removed from the queue:
+[Tue 11:14:46] <NateOtto>	manu: We should get them talking to one another; this might be enough to remove Microsoft's objection to the work
+[Tue 11:15:37] *	Erik Opinions at large companies vary. Same in Microsoft.
+[Tue 11:15:39] <NateOtto>	burn: There is in all cases working with technology, there is a difference between a technology and a solution that uses a technology. JWT is a technology, it's not the solution that we need. It's one possible grammar that can be used in a solution.
+[Tue 11:15:53] <dlongley>	for people's information: our spec shows an example using JSON-LD (Example 3) and an example using JWT (Example 4) -- here: http://opencreds.org/specs/source/claims-data-model/#expressing-entity-credentials-in-json
+[Tue 11:16:37] <NateOtto>	manu: Any other questions about Microsoft before moving on to Google?
+[Tue 11:16:44] <NateOtto>	manu: Google
+[Tue 11:17:07] <NateOtto>	manu: Google agreed more or less with what Microsoft said, but didn't rehash any of it, so we don't know the degree to which they hold those opinions.
+[Tue 11:17:18] <NateOtto>	manu: Chris ___ was speaking for Google.
+[Tue 11:18:03] <burn>	Michael said this too, that we don't have "real skin in the game from the members who would have to implement and use the resulting specs"
+[Tue 11:18:07] <NateOtto>	manu: Chris felt the work needed to be incubated more. He felt that we don't have enough variation in members outside of education who want to see the work happen. Education is primarily the group we should focus on; if that solution works, we should expand to other sectors (finance, healthcare) after getting more members from those setors.
+[Tue 11:18:29] <NateOtto>	manu: It was a bit confusing why Chris felt there wasn't support in financial services sector because this was being considered in the Web Payments IG.
+[Tue 11:19:15] <NateOtto>	manu: other objection -- we haven't incubated this work enough. We asked twice "how much incubation is enough". there was no solid answer. More "we'll know it when we see it" not "once you have this deployed in three companies for 10000 people"
+[Tue 11:20:01] <NateOtto>	manu: We did note that the most approved charter in W3C history was the Web Payments IG which had been incubated for 4 years, which was opposed by Google and Microsoft, and was called by them an example of work that began too soon. If that doesn't meet the bar for incubation, what does?
+[Tue 11:20:09] *	stone has quit (Client closed connection)
+[Tue 11:20:32] *	stone (~stone@public.cloak) has joined #vctf
+[Tue 11:21:00] <NateOtto>	manu: My guess is that most of it might boil down to Google wasn't involved in the incubation, so it wasn't incubated long enough. Problem: they don't want to be involved in the work because it exposes them to patent concerns and issues. Google and Microsoft didn't form the Web Payments work until the WG formed -- or maybe only just before at the very end of the IG phase.
+[Tue 11:21:50] <NateOtto>	manu: In any case, it seemed a lot of their posiiton was "why weren't we consulted" -- when they were consulted and didn't respond. Google did have the opinion that the work was important and they wanted it to continue.
+[Tue 11:22:05] <NateOtto>	manu: Google wasn't taking a hard-line stance as Microsoft
+[Tue 11:22:22] <NateOtto>	manu: Apple, who we weren't expecting to weigh in, was very supportive of taking the work to a W3C vote.
+[Tue 11:22:29] <NateOtto>	manu: Any questions on Google?
+[Tue 11:22:42] <NateOtto>	manu: The other organizations who voted in favor was mostly everyone in the room.
+[Tue 11:22:58] <NateOtto>	manu: the people who have participated in the IG and the VCTF were +1 to move the work forward
+[Tue 11:23:16] <NateOtto>	manu: the work over the next month will be chasing down people at Google and Microsoft to see if there's any room for negotiation
+[Tue 11:23:39] <NateOtto>	Drummond: I'll try to make the connection between Mike and Kim; no promises.
+[Tue 11:23:40] <cwebber2>	present+ cwebber2
+[Tue 11:23:44] <manu>	Topic: JOSE / JWT Clarification/Analysis
+[Tue 11:23:55] *	stone has quit (Client closed connection)
+[Tue 11:24:09] <manu>	http://opencreds.org/specs/source/claims-data-model/#expressing-entity-credentials-in-json
+[Tue 11:24:13] *	stone (~stone@public.cloak) has joined #vctf
+[Tue 11:24:23] <NateOtto>	manu: We have a seciton in the spec now that talks about expressing verifiable claims as a JWT
+[Tue 11:24:30] <NateOtto>	manu: scroll down in the above link to Example number 4.
+[Tue 11:25:16] <dlongley>	the Linked Data signatures example is Example number 3.
+[Tue 11:25:23] <dlongley>	(right above 4)
+[Tue 11:25:27] <NateOtto>	manu: Over the next month or two, we need to be very clear about the reasons some organizations are exploring LD signatures over JWT. Try to stay as agnostic as possible in the working group. "If you want to use LD Signatures, here's how you sign a claim" "If you want to use JWT this is how you sign a claim"
+[Tue 11:25:47] <NateOtto>	manu: We've been looking at JWT for a number of years, have discovered some issues that have caused us to move away from it.
+[Tue 11:26:08] <NateOtto>	manu: background: JWT is a base64 encoded blob -- you can't see the content unless you decode it
+[Tue 11:26:40] <dlongley>	potentially a problem or limitation for public credentials
+[Tue 11:26:50] <NateOtto>	manu: orgs like CTI want to be able to publish credential templates to the web and have them be searchable, picked up by search crawlers. It's not impossible.
+[Tue 11:27:08] <ShaneM>	also important for things like Coupons and search engines...  schema.org model is so well understood by the industry now I am loathe to try to turn that boat
+[Tue 11:27:44] <NateOtto>	manu: JWT must be base64 encoded because whitespace matters, where it doesn't for Linked Data signatures.
+[Tue 11:28:16] <NateOtto>	manu: We expect JWT to be a point of contention throughout the work. The more people who are tuned into why this is a point of contention, the better. We  don't want folks in this group to go into the discussion completely unaware of the tradeoffs.
+[Tue 11:28:37] <NateOtto>	q+ to comment on JWT
+[Tue 11:28:37] <voip-vctf>	NateOtto has been added to the queue: NateOtto
+[Tue 11:29:49] <NateOtto>	dan: Specifically about the example as well - It would be nice to include what the public key is so people can verify the signature. Other thing is that you used RS256 algorithm, which is the most widespread, but IETF is working very hard to encourage public posted examples to use stronger encryption. Can we use EC256 or one of the EC variants instead?
+[Tue 11:30:05] <dlongley>	stronger really meaning "more efficient" in this case (or perhaps predicted to have a longer lifespan)
+[Tue 11:30:29] <NateOtto>	dan: We may never be in a position in a spec to recommend specific algorithms, but even in the case of having examples, it's good to have the examples do what you expect people to do, because newbies often use those as a clue about what algorithm to pick.
+[Tue 11:30:49] <NateOtto>	manu: Point taken, we should upgrade to ES256.
+[Tue 11:31:10] <dlongley>	k1
+[Tue 11:32:03] <NateOtto>	manu: other points -- there is concern about NSA backdooring into some of the curves -- Bitcoin community is particularly concerned about that. There's no Sec256k1 (sp) implementation for JWT that I know of as well. These are all kind of concerns we should raise as issue markers. If we use something like ES256, we could say "some people are concerned about NSA backdooring of these algorithms; if you have those concerns you can use another"
+[Tue 11:32:05] <dlongley>	bitcoin uses "secp256k1" and the Web crypto API only supports "secp256r1"
+[Tue 11:32:22] <dlongley>	the latter having some NSA backdoor suspicions
+[Tue 11:32:58] <NateOtto>	dan: Ah, so you had equally valid concerns going in a different direction. If you look at ___ there's a note that says "watch this space because we may need to upgrade to something else". We just want to show whatever the best up-to-date recommendations are, whatever they end up being.
+[Tue 11:34:16] <NateOtto>	manu: We're looking at a bunch of rapidly evolving parts of the signatures space. Good point. This is up to the proposed working group to decide, if any recommendation. We may say "look at this other page for the most up to date recommendation because the lifetime of anything we could use right now is short"
+[Tue 11:34:38] <NateOtto>	manu: the other ask of the group is please participate in this work, either doing a review of the paper or putting your thoughts in.
+[Tue 11:34:53] <NateOtto>	manu: please insert link to which paper you would like people to view here in the log.
+[Tue 11:35:38] <NateOtto>	dezell: (right) - we've talked about a number of things, like web couponing. Having this data structured so that people can find it is very important.
+[Tue 11:35:56] <manu>	ack NateOtto 
+[Tue 11:35:56] <voip-vctf>	NateOtto has the floor (to comment on JWT).
+[Tue 11:35:59] <dlongley>	s/dlongley?/Shane
+[Tue 11:36:05] <NateOtto>	shane: I understand the advantages of JWT and why people feel strongly about it; but my opinion is it's not great embedding in content
+[Tue 11:36:33] <burn>	s/___/RFC7518 (see https://tools.ietf.org/html/rfc7518#section-3)/
+[Tue 11:36:53] <manu>	NateOtto: My question - been digging into signature mechanisms - Linked Data Signature might work very well for OpenBadges stuff, primarily because it is good at being embedded at different levels. For the purposes of this document, should we be actively identifying parts where JWT are problematic?
+[Tue 11:36:57] *	burn grr, forgot about slashes in my url messing up the regexp
+[Tue 11:37:12] <NateOtto>	manu: Probably not in this document, but in the analysis document, we'll want to do that.
+[Tue 11:37:29] <NateOtto>	manu: This analysis doc we're putting together will contain all the reasons to use LD Signatures or JWT, and what you're talking about would be super helpful.
+[Tue 11:37:35] *	manu burn, don't worry about it - I apply the regexes by hand. :)
+[Tue 11:38:01] <voip-vctf>	David I. Lehn [SIP/6003-00000568] has joined the conference.
+[Tue 11:38:04] <NateOtto>	manu: we'll likely start out with a google doc, stay tuned for the link
+[Tue 11:38:24] <NateOtto>	otto: Google docs is cool, but terrible for code -- found this other one that is pretty cool for editing code in markdown: usecanvas.com/
+[Tue 11:38:26] <ShaneM>	apropos of nothing - check out this for shared editing and annotation: https://dokie.li/
+[Tue 11:38:32] <manu>	Linked Data Signatures was called Secure Messaging back in 2013, we did an analysis: http://manu.sporny.org/2013/sm-vs-jose/
+[Tue 11:39:16] <NateOtto>	manu: We put out this blog post where we went through and documented the current state of the JOSE stack talking about the benefits and drawbacks. Put this in as input to the JOSE WG as concerns, and we did not get a response from the group, nothing significant beyond "yeah we're looking into it"
+[Tue 11:39:39] <NateOtto>	manu: none of the specs were changed as result to input -- particularly because we were asking for big changes, and they were at the end of the standardization process.
+[Tue 11:40:06] <manu>	Topic: Verifiable Claims Face-to-Face Agenda
+[Tue 11:40:16] <manu>	https://docs.google.com/document/d/1uYDRcHs_EOpJzezJerKnKT4Grni1sFLX2nRp7zlq2BE/edit
+[Tue 11:40:21] <NateOtto>	manu: This topic comes with a huge caveat: There is no such thing as the VCWG
+[Tue 11:40:58] <NateOtto>	manu: we are currently chatting with W3C staff/mgmt to see how the proposal can be put forward to W3C membership for a vote. We're effectively in a holding pattern for W3C management for changes they would like to see made to the charter.
+[Tue 11:41:34] <NateOtto>	manu: Wendy Seltzer is the point person on this, currently engaged at IETF in Berlin this week, so we don't expect quick response. We've already discussed this in this group, so we'll likely be able to respond very quickly to what she says.
+[Tue 11:42:28] <NateOtto>	manu: Then it's up to W3C management to put it up for a vote. W3C management felt it was unlkely to get a vote closed by TPAC, but we might get the vote open by TPAC. we're talking about getting some space in the Web Payments IG
+[Tue 11:42:47] <NateOtto>	manu: This is a link for a proposed full day agenda, but we're likely to want to propose a half day agenda as well
+[Tue 11:43:19] <NateOtto>	manu: Waiting for W3C management to provide feedback on what type of charter would mostly likely be able go through a W3C membership vote.
+[Tue 11:43:45] <NateOtto>	manu: It's hard to plan travel on this short notice. Today would be about 8 weeks which is the minimum.
+[Tue 11:44:16] <NateOtto>	manu: We may be asking folks to join the W3C and plan make the travel to TPAC in the near term if we can get the time on the schedule, and our schedule ask will depend on who can come.
+[Tue 11:45:12] <NateOtto>	manu: the agenda draft goes from 8:30 to 5:30/6pm. There's a space for comments/brainstorming at the bottom of that page. Please make comments and things of that nature. We'll probably extend this page to also prototype half-day or two-day agendas as well.
+[Tue 11:45:26] <NateOtto>	manu: Any questions or concerns about the agenda?
+[Tue 11:45:29] <burn>	Agenda looks good
+[Tue 11:45:47] <ShaneM>	We could just organize a meeting on the Sunday ;-)
+[Tue 11:45:50] <NateOtto>	manu: alright, I think that's the end of our official call agenda.
+[Tue 11:46:08] <NateOtto>	manu: ... shane, that is true; that's definitely a very interesting option.
+[Tue 11:46:23] <NateOtto>	manu: Would there be folks who could show up to TPAC a day early for a VC meeting?
+[Tue 11:46:29] <NateOtto>	dan: Definitely yes
+[Tue 11:46:41] <Richard_Varn>	varn: i cannot. i am on vacation that weekend
+[Tue 11:46:44] <NateOtto>	manu: might have to change my flight
+[Tue 11:47:11] <NateOtto>	ShaneM: I was sort of joking, but if you feel like it's good, we could do a quick 2-day survey or something.
+[Tue 11:47:33] <ShaneM>	Mid-October
+[Tue 11:48:07] <NateOtto>	manu: Other option would be to link it in with Internet Identity Workshop
+[Tue 11:48:10] <Drummond>	+1 to linking it in with the Internet Identity Workshop
+[Tue 11:48:14] <manu>	Topic: Coordinating with Other Workshops
+[Tue 11:48:35] <NateOtto>	manu: Internet Identity workshop 25th-27 October, Mtn View
+[Tue 11:48:49] <gkellogg>	+1 to IIW
+[Tue 11:49:01] <NateOtto>	Nate: I'm conflicted on that date, we have ePIC in Bologna and MozFest in London that week for the Open Badges community. Heavy conference season.
+[Tue 11:49:51] <Richard_Varn>	varn: Educause in in Anaheim October 25-28
+[Tue 11:49:54] <NateOtto>	manu: That might not be a bad idea; we could pick up a number of people from there, at least as observers- might be a good way to kick off a first face-to-face.
+[Tue 11:50:58] <Richard_Varn>	Varn: Send out a survey
+[Tue 11:51:24] <NateOtto>	manu: Drummond, do you think we could colocate at IW
+[Tue 11:51:40] <NateOtto>	Drummond: ___ is always looking for ways to make colocations like that happen; High possibility.
+[Tue 11:51:46] <burn>	when is iiw?
+[Tue 11:51:52] <NateOtto>	manu: Will reach out to you, Phil, and IIW folks.
+[Tue 11:51:53] <burn>	oh
+[Tue 11:53:02] <NateOtto>	manu: There's a blockchain/healthcare workshop in MD in end of September, then immediately after is Rebooting Web of Trust Workshop. Clearly we want a verifiable claims thread through all of those. We want to keep people up to date on what's going on.
+[Tue 11:53:37] <NateOtto>	manu: Clearly some of us are going to miss each of these events. Kind of an open question to folks: think about opportunities to weave VC stuff in with these identity conferences you're going to. If you get a bright idea on a good way to colocate, let us know.
+[Tue 11:55:12] *	ShaneM notes 5 minutes
+[Tue 11:55:19] <NateOtto>	manu: Thanks. Any other thoughts on coordinating with other conferences?
+[Tue 11:55:47] <NateOtto>	otto: ePIC (internet and Identity conference -- very small, probably not the right people, but they'd be very open to colocating in Bologna end of October) -- the other end of october options might be more attractive.
+[Tue 11:56:24] <NateOtto>	manu: It's very unlikely for people to be able to commit to travel to TPAC, so it's my hope that we can use TPAC to circulate charter, but not likely to be able to get the orgs that really want to participate to TPAC
+[Tue 11:56:59] <NateOtto>	NateOtto: BA will not pay for W3C membership until this charter is approved to hold it over their heads, so a non-TPAC F2F would be more ideal for me.
+[Tue 11:57:08] <dezell>	q+
+[Tue 11:57:08] <voip-vctf>	dezell has been added to the queue: dezell
+[Tue 11:57:13] <NateOtto>	manu: Anything else?
+[Tue 11:57:14] <manu>	ack dezell 
+[Tue 11:57:14] <voip-vctf>	dezell has the floor.
+[Tue 11:57:28] *	dezell it will wait
+[Tue 11:57:47] <NateOtto>	manu: That's it for the call. We will meet again next week if we have made progress on the JWT analysis.
+[Tue 11:57:47] <manu> Present+ trainer, sutton, longley, kellogg, casilli, lehn, sporny, goodell, lake, burn, eanderson, ezell, otto, reed, chasen, larson, stone
