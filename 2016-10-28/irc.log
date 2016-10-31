@@ -2,81 +2,69 @@
 [Fri 00:00:00] <manu> Agenda: https://docs.google.com/document/d/1uYDRcHs_EOpJzezJerKnKT4Grni1sFLX2nRp7zlq2BE/edit#
 [Fri 00:00:00] <manu> Chairs: Richard Varn, Matt Stone
 [Fri 00:00:00] <manu> scribe: manu
-[Thu 00:00:00] <manu> Present+ Kellogg, McCarron, Turner, Robert, Hnetila, Tibbetts, ChristopherA, Toozny, Fehrman, Webber, Fehrman, Hughes, Hopkins, Fletcher, Fontana, Hunt, Hardt, Pasqual, Varn, Andrieu, Gropper, Longley, Korb, Sporny, Somerville, Vescent, Marr, Lake, Heuer, Rooney, Reed, Ruff, Law, Migus, Mingarelli, Escuadera, Bajor, nathang, cameron, simpson
+[Fri 00:00:00] <manu> Present+ Kellogg, McCarron, Turner, Robert, Hnetila, Tibbetts, ChristopherA, Toozny, Fehrman, Webber, Fehrman, Hughes, Hopkins, Fletcher, Fontana, Hunt, Hardt, Pasqual, Varn, Andrieu, Gropper, Longley, Korb, Sporny, Somerville, Vescent, Marr, Lake, Heuer, Rooney, Reed, Ruff, Law, Migus, Mingarelli, Escuadera, Bajor
 [Fri 00:00:00] <manu> Topic: Agenda Review
 [Fri 00:00:00] <manu> stone: We have a more technical agenda than yesterday
-[Fri 00:00:00] <manu> stone: Focus is dig into deliverables of the charter, deep dive on data model, deep dive on digital signatures, but before that - have a discussion on decentralized identifers and how that might affect the work.
+[Fri 00:00:00] <manu> stone: Focus is dig into deliverables of the charter, deep dive on data model, deep dive on digital signatures, but before that - have a discussion on decentralized identifers and how that might affect the work. We have some new participants today:
 [Fri 00:00:00] <manu> Nathan George, Evernym
 [Fri 00:00:00] <manu> Don Cameron, Shipstead - norweigian media company
-[Fri 00:00:00] <manu> Timothy Ruff, Evernym
-[Fri 00:00:00] <manu> Gregg Kellogg, Spec Ops
-[Fri 00:00:00] <manu> Drummond Reed, Evernym
-[Fri 00:00:00] <manu> Christopher Allen, Blockstream
-[Fri 00:00:00] <Varn> Richard Varn Educational Testing Service
-[Fri 00:00:00] <manu> Eric Korb, Accreditrust
 [Fri 00:00:00] <manu> Peter Simpson, Evernym
-[Fri 00:00:00] <manu> John Tibbets, IMS Global and Vitalsource
-[Fri 00:00:00] <stone_> Matt Stone, Pearson
-[Fri 00:00:00] <manu> s/Tibbets/Tibbetts/
-[Fri 00:00:00] <manu> stone: Any changes?
+[Fri 00:00:00] <manu> stone: Any changes to the agenda?
 [Fri 00:00:00] <manu> manu: We want to talk about other long term architectural items
-[Fri 00:00:00] <manu> Drummond: We need to talk about other long term architectural concerns
-[Fri 00:00:00] <manu> Drummond: Like same origin vs. multi origin
+[Fri 00:00:00] <manu> allen: We need to talk about other long term architectural concerns
+[Fri 00:00:00] <manu> allen: Like same origin vs. multi origin
 [Fri 00:00:00] <manu> Topic: Long-term Architectural Concerns
-[Fri 00:00:00] <stone_> Drummond: start the discusion w/ manu's paper
-[Fri 00:00:00] <stone_> paper that was submitted to the "rebooting web of trust"
-[Fri 00:00:00] <manu> file:///home/msporny/Desktop/source/rebooting-the-web-of-trust-fall2016/topics-and-advance-readings/privacy-preserving-identity-architectures.md
-[Fri 00:00:00] <manu> JohnTib (~textual@public.cloak) has joined #vctf
-[Fri 00:00:00] <gkellogg> https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/privacy-preserving-identity-architectures.md
-[Fri 00:00:00] <stone_> ChristopherA: started w/ discussion about DID in prep for RWoT
+[Fri 00:00:00] <stone> Drummond: start the discusion w/ manu's paper
+[Fri 00:00:00] <stone> paper that was submitted to the "rebooting web of trust"
+[Fri 00:00:00] <stone> ChristopherA: started w/ discussion about DID in prep for RWoT
 [Fri 00:00:00] <manu> Privacy Preserving Identity Architectures: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/privacy-preserving-identity-architectures.md
 [Fri 00:00:00] * manu link there ^^^^
-[Fri 00:00:00] <stone_> have 2 approaches: 1) want to replace PGP which is a store and forward/asysnc approach
+[Fri 00:00:00] <stone> have 2 approaches: 1) want to replace PGP which is a store and forward/asysnc approach
 [Fri 00:00:00] <manu> new approach is blockchain that doesn't follwo the same patters of client/server relationship
-[Fri 00:00:00] <stone_> manu: browser securigy model today is "same origin" which means one web site can't reach into another web site
+[Fri 00:00:00] <stone> manu: browser securigy model today is "same origin" which means one web site can't reach into another web site
 [Fri 00:00:00] <manu> manu: this is a good security model, but now we have cases wehere you want to share data between sites - s
-[Fri 00:00:00] <stone_> "same origin" doesn't work well here
-[Fri 00:00:00] <stone_> manu:  a side affect of this approahc make super providers like google and facebook who can mediate the sharing
+[Fri 00:00:00] <stone> "same origin" doesn't work well here
+[Fri 00:00:00] <stone> manu:  a side affect of this approahc make super providers like google and facebook who can mediate the sharing
 [Fri 00:00:00] <manu> manu: the other approach is self-sovereign approach. which should reduce the super-provider risk but there are new security challenges here.
 [Fri 00:00:00] <manu> manu: major concern it that the public doesn't understand the risk/value of the data that they're sharing if they're in control.  super providers understand the risk better
 [Fri 00:00:00] <manu> manu: credential providers have to have a robust IT infrastructure b/c inspector will continuously come back to verify it.
 [Fri 00:00:00] <manu> manu: example community college - what if the college goes away?
 [Fri 00:00:00] <ShaneM> Present+ nrooney
-[Fri 00:00:00] <stone_> manu: in self-sovereign, the infrastructure isn't necessarily required.
-[Fri 00:00:00] <stone_> Timmothy - is there evidence that people don't understand what theyr sharing
-[Fri 00:00:00] <stone_> manu: yes, there's evidence that people are easily fished
-[Fri 00:00:00] <stone_> ChristopherA: but, MS doen't necessarily understand the impact of the CA security in the browser
+[Fri 00:00:00] <stone> manu: in self-sovereign, the infrastructure isn't necessarily required.
+[Fri 00:00:00] <stone> Timmothy - is there evidence that people don't understand what theyr sharing
+[Fri 00:00:00] <stone> manu: yes, there's evidence that people are easily fished
+[Fri 00:00:00] <stone> ChristopherA: but, MS doen't necessarily understand the impact of the CA security in the browser
 [Fri 00:00:00] <manu> joe: and people don't really understand what they're sharing w/ facebook
 [Fri 00:00:00] <manu> ShaneM: super provider can easily block/redirect traffic to "bad actors" and known bad sites.
 [Fri 00:00:00] <manu> ChristopherA: NSA can review anyone that's 4 degrees away from a terror suspect
 [Fri 00:00:00] <manu> ChristopherA: facebook density shows that the average separation is 4.3
-[Fri 00:00:00] <stone_> gkellogg: is there a way to delegate to a mediator?
+[Fri 00:00:00] <stone> gkellogg: is there a way to delegate to a mediator?
 [Fri 00:00:00] <manu> ChristopherA: not sure mediator is the right idea, currators would represent rules/policies
 [Fri 00:00:00] <JoeAndrieu> q+
 [Fri 00:00:00] * Zakim sees JoeAndrieu on the speaker queue
-[Fri 00:00:00] <stone_> richard: thinking about sister, she calls the GeekSquad for everything.  what's the role of the concierge service?
+[Fri 00:00:00] <stone> richard: thinking about sister, she calls the GeekSquad for everything.  what's the role of the concierge service?
 [Fri 00:00:00] <manu> ChristopherA: guardianship model may work?
 [Fri 00:00:00] <manu> richard: conservatorship is a better term - they have legal authority of a subset of responsiblities
 [Fri 00:00:00] <manu> JoeAndrieu: does the mediator have to be there?  both Chrome and Norton may warn me of a bad actor
 [Fri 00:00:00] <manu> ChristopherA: must have the principle of portability.  how do you export from one service/agent to another?
 [Fri 00:00:00] <JoeAndrieu> q-
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <stone_> richardvarn: we haven't recognized autonomous agency.  if you have delegated to a human agent, they have legal responsibilty
+[Fri 00:00:00] <stone> richardvarn: we haven't recognized autonomous agency.  if you have delegated to a human agent, they have legal responsibilty
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
-[Fri 00:00:00] <stone_> richard: what about automation?
+[Fri 00:00:00] <stone> richard: what about automation?
 [Fri 00:00:00] <manu> q/
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
 [Fri 00:00:00] <ShaneM> q+ to talk about regulatory issues
 [Fri 00:00:00] * Zakim sees agropper, ShaneM on the speaker queue
-[Fri 00:00:00] <stone_> please try to use the queue
+[Fri 00:00:00] <stone> please try to use the queue
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees ShaneM on the speaker queue
 [Fri 00:00:00] <manu> q+  to note that this stuff can be sorted out in the market - verifiable claims repository enables this functionality.
 [Fri 00:00:00] * Zakim sees ShaneM, manu on the speaker queue
 [Fri 00:00:00] <ChristopherA> https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/privacy-preserving-identity-architectures.md
-[Fri 00:00:00] <stone_> agropper: harvard law published a paper about information fiduciaries - saying that this is law that ought to be made but isn't settled
+[Fri 00:00:00] <stone> agropper: harvard law published a paper about information fiduciaries - saying that this is law that ought to be made but isn't settled
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees ShaneM, manu on the speaker queue
 [Fri 00:00:00] <Drummond> "information fiduciaries" is a very interesting concept
@@ -87,25 +75,25 @@
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
 [Fri 00:00:00] <manu> Zakim sees manu, Timothy on the speaker queue
 [Fri 00:00:00] <ChristopherA> http://lawreview.law.ucdavis.edu/issues/49/4/Lecture/49-4_Balkin.pdf
-[Fri 00:00:00] <stone_> agropper: build, run, outsource are the ways uma talks to it
+[Fri 00:00:00] <stone> agropper: build, run, outsource are the ways uma talks to it
 [Fri 00:00:00] <Drummond> I think the self-sovereign identity community should investigate that - ironic that it wasn't discussed at Internet Identity Workshop this past week
-[Fri 00:00:00] <stone_> ShaneM: need to find an approach that doens't prohibit
+[Fri 00:00:00] <stone> ShaneM: need to find an approach that doens't prohibit
 [Fri 00:00:00] <manu> q+ ChristopherA
 [Fri 00:00:00] * Zakim sees manu, Timothy, ChristopherA on the speaker queue
 [Fri 00:00:00] <manu> ack manu
 [Fri 00:00:00] <Zakim> manu, you wanted to note that this stuff can be sorted out in the market - verifiable claims repository enables this functionality.
 [Fri 00:00:00] * Zakim sees Timothy, ChristopherA on the speaker queue
-[Fri 00:00:00] <stone_> ShaneM: but regulatory issues aren't our remit.
-[Fri 00:00:00] <stone_> manu: our specs must enable the "right thing to happen to happen"
+[Fri 00:00:00] <stone> ShaneM: but regulatory issues aren't our remit.
+[Fri 00:00:00] <stone> manu: our specs must enable the "right thing to happen to happen"
 [Fri 00:00:00] <Drummond> q
-[Fri 00:00:00] <stone_> q?
+[Fri 00:00:00] <stone> q?
 [Fri 00:00:00] * Zakim sees Timothy, ChristopherA on the speaker queue
 [Fri 00:00:00] <agropper> http://www.theatlantic.com/technology/archive/2016/10/information-fiduciary/502346/
 [Fri 00:00:00] <manu> ack Timothy
 [Fri 00:00:00] * Zakim sees ChristopherA on the speaker queue
 [Fri 00:00:00] <Drummond> +q
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond on the speaker queue
-[Fri 00:00:00] <stone_> Timothy: if less sophisticated people can be fooled, a 3rd party is required - alternatively a protocol may work
+[Fri 00:00:00] <stone> Timothy: if less sophisticated people can be fooled, a 3rd party is required - alternatively a protocol may work
 [Fri 00:00:00] <Varn> A third party may not be required, but some will want it as an option and we cannot preclude that
 [Fri 00:00:00] <gkellogg> q?
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond on the speaker queue
@@ -115,24 +103,24 @@
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond, Varn, manu on the speaker queue
 [Fri 00:00:00] <manu> ack ChristopherA
 [Fri 00:00:00] * Zakim sees Drummond, Varn, manu on the speaker queue
-[Fri 00:00:00] <stone_> timothy: the protocol would support a trust list that would serve to protect the less sophistocated individual
+[Fri 00:00:00] <stone> timothy: the protocol would support a trust list that would serve to protect the less sophistocated individual
 [Fri 00:00:00] <gkellogg> q+ to discuss chain of trust, and how a user can trust an issuer
 [Fri 00:00:00] * Zakim sees Drummond, Varn, manu, gkellogg on the speaker queue
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees Drummond, Varn, manu, gkellogg, agropper on the speaker queue
-[Fri 00:00:00] <stone_> ChristopherA: we're enabling the ground work for a protocol, but we don't have that in our charter now.  it's hard to communicate, everyone is stupid, look at how many just click through, and this will just be worse.
+[Fri 00:00:00] <stone> ChristopherA: we're enabling the ground work for a protocol, but we don't have that in our charter now.  it's hard to communicate, everyone is stupid, look at how many just click through, and this will just be worse.
 [Fri 00:00:00] <manu> ack Drummond
 [Fri 00:00:00] * Zakim sees Varn, manu, gkellogg, agropper on the speaker queue
 [Fri 00:00:00] <manu> q+ to note t ime
 [Fri 00:00:00] * Zakim sees Varn, manu, gkellogg, agropper on the speaker queue
-[Fri 00:00:00] <stone_> ChristopherA: asserts taht they could have done better, so if falls to the individual
+[Fri 00:00:00] <stone> ChristopherA: asserts taht they could have done better, so if falls to the individual
 [Fri 00:00:00] <manu> Drummond: the concept of a decentralized internet is a big shift - it's EXTREMELY threatening to the powers that be on the web today?
 [Fri 00:00:00] <manu> ack Varn
 [Fri 00:00:00] * Zakim sees manu, gkellogg, agropper on the speaker queue
-[Fri 00:00:00] <stone_> Drummond:  is that something we are dealing w?
+[Fri 00:00:00] <stone> Drummond:  is that something we are dealing w?
 [Fri 00:00:00] <manu> Varn: sometimes we ahve these kinds of discussions.  we don't think a standard should favor or assume a market fit
 [Fri 00:00:00] <Drummond> "A standard should expand market opportunities" <== yes
-[Fri 00:00:00] <stone_> ChristopherA: historically, the standards process has been used to advantage a particular group
+[Fri 00:00:00] <stone> ChristopherA: historically, the standards process has been used to advantage a particular group
 [Fri 00:00:00] <manu> Varn: but this group doesn't want that...
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees manu, gkellogg, agropper on the speaker queue
@@ -144,10 +132,10 @@
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
 [Fri 00:00:00] <ShaneM> q+ to talk about market forces and how curation services are likely to help people who are more naive than others
 [Fri 00:00:00] * Zakim sees agropper, ShaneM on the speaker queue
-[Fri 00:00:00] <stone_> gkellogg: we come up with these sorts of issues fo trust - how do you trust someone new? if you trusted someone in the past, can you trust them again?  not our role, but we need to speak to that.
+[Fri 00:00:00] <stone> gkellogg: we come up with these sorts of issues fo trust - how do you trust someone new? if you trusted someone in the past, can you trust them again?  not our role, but we need to speak to that.
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees ShaneM on the speaker queue
-[Fri 00:00:00] <stone_> agropper: from patient privacy rights, dealing w/ the issue of trust and dealing iwth individuals who don't understand their risk
+[Fri 00:00:00] <stone> agropper: from patient privacy rights, dealing w/ the issue of trust and dealing iwth individuals who don't understand their risk
 [Fri 00:00:00] <manu> agropper: uma, let's individuals control access and allows each transaction be compared to the user's policies
 [Fri 00:00:00] <manu> agropper: allows user to adopt policies from providers like ACLU, patient righs, etc. that is tokenized into a rule set that the protocol can inspect and enforce
 [Fri 00:00:00] <manu> q?
@@ -157,30 +145,30 @@
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <manu> zakim, close the queue
 [Fri 00:00:00] <Zakim> ok, manu, the speaker queue is closed
-[Fri 00:00:00] <stone_> ShaneM: there are organizations that we trust as consumers, we can tell our less sophisticated users who they can trust.  there are a group of people who will do it themselves
+[Fri 00:00:00] <stone> ShaneM: there are organizations that we trust as consumers, we can tell our less sophisticated users who they can trust.  there are a group of people who will do it themselves
 [Fri 00:00:00] <manu> zakim, open the queue
 [Fri 00:00:00] <Zakim> ok, manu, the speaker queue is open
 [Fri 00:00:00] <manu> q+ Drummond to present
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
-[Fri 00:00:00] <stone_> ChristopherA: also recognize that centralities emerged because we tried to decentralize things.  the market forces bend toward centralization
+[Fri 00:00:00] <stone> ChristopherA: also recognize that centralities emerged because we tried to decentralize things.  the market forces bend toward centralization
 [Fri 00:00:00] <manu> ChristopherA: internet founders, vint cerf, TBL, see this over and over again, we have to constantly decentralize
 [Fri 00:00:00] <manu> Drummond: DId discussion
 [Fri 00:00:00] <manu> Topic: Decentralized Identifiers
-[Fri 00:00:00] <stone_> Drummond: origin of the work is IIW several years ago.
+[Fri 00:00:00] <stone> Drummond: origin of the work is IIW several years ago.
 [Fri 00:00:00] <manu> Drummond: in IIWXX - collective realization that blockchain/distributed ledger could eliminate the problem of a central identity provider
 [Fri 00:00:00] <manu> Drummond: christopher put up a strawman showing a process that could work, then RWoT
 [Fri 00:00:00] <manu> Drummond: there were 2 people in every session from federal govt.  DHS and Office of Health Care (something)...
 [Fri 00:00:00] <manu> Drummond: they suggested that DHS might start funding research
 [Fri 00:00:00] <nage> DHS and the Office of the National Coordinator for Health Information Technology
-[Fri 00:00:00] <stone_> Drummond: manu and christopher were connecting on VCTF and connecting the dots about identity
+[Fri 00:00:00] <stone> Drummond: manu and christopher were connecting on VCTF and connecting the dots about identity
 [Fri 00:00:00] <manu> Drummond: christopher, manu, drummnd responed to grant and won part of it, each consulting to the other.
-[Fri 00:00:00] <stone_> ChristopherA: pushed back with "stop talking about names" which means "human readable identifier" that doesn't have to be reassignable.
+[Fri 00:00:00] <stone> ChristopherA: pushed back with "stop talking about names" which means "human readable identifier" that doesn't have to be reassignable.
 [Fri 00:00:00] <manu> q+ to note VC work on DIDs
 [Fri 00:00:00] * Zakim sees Drummond, manu on the speaker queue
 [Fri 00:00:00] <manu> ack Drummond
 [Fri 00:00:00] <Zakim> Drummond, you wanted to present
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
-[Fri 00:00:00] <stone_> Drummond: ChristopherA took out the human readable name out of the process.
+[Fri 00:00:00] <stone> Drummond: ChristopherA took out the human readable name out of the process.
 [Fri 00:00:00] <manu> Drummond: this is "just numbers" - not labels
 [Fri 00:00:00] <manu> gkellogg: wiki has taken a similar approach...
 [Fri 00:00:00] <manu> Drummond: how many google doc identifiers do you know (none b/c people remember the name they give them)
@@ -189,57 +177,57 @@
 [Fri 00:00:00] * Zakim sees manu, agropper on the speaker queue
 [Fri 00:00:00] <manu> q-
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
-[Fri 00:00:00] <stone_> Drummond: better identity management leads to better cyber security
+[Fri 00:00:00] <stone> Drummond: better identity management leads to better cyber security
 [Fri 00:00:00] <agropper> q-
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <manu> ShaneM wonders if this version of URL is the same as WHATWG URL
-[Fri 00:00:00] <stone_> Drummond: we need an identier that is both persistent and dereferencable and MUST NOT require centralized registration
+[Fri 00:00:00] <stone> Drummond: we need an identier that is both persistent and dereferencable and MUST NOT require centralized registration
 [Fri 00:00:00] <manu> Drummond: and cryptographically verifiable!
 [Fri 00:00:00] <nage> Private permissionless blockchain model square is filled by Intel Sawtooth
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
-[Fri 00:00:00] <stone_> Drummond: public/permissioned allows government to trust the nodes and who they are
+[Fri 00:00:00] <stone> Drummond: public/permissioned allows government to trust the nodes and who they are
 [Fri 00:00:00] <manu> Drummond: permissioned ledger of diffused trust managed by many parties provides the baseline for banks and govt to participate
 [Fri 00:00:00] <manu> Drummond: resests censorship, etc.
 [Fri 00:00:00] <agropper> q-
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <stone_> agropper: states may write legisation that defines what can be trusted that may or may not be compatible
+[Fri 00:00:00] <stone> agropper: states may write legisation that defines what can be trusted that may or may not be compatible
 [Fri 00:00:00] <ChristopherA> http://legislature.vermont.gov/assets/Documents/2016/Docs/BILLS/H-0737/H-0737%20As%20Introduced.pdf
 [Fri 00:00:00] <manu> "In this section “blockchain technology” means a mathematically 19 secured, chronological, and decentralized consensus ledger or database whether maintained via Internet interaction, peer-to-peer network, or otherwise.
 [Fri 00:00:00] <gkellogg> q+
 [Fri 00:00:00] * Zakim sees gkellogg on the speaker queue
-[Fri 00:00:00] <stone_> ack gkellogg
+[Fri 00:00:00] <stone> ack gkellogg
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <stone_> gkellogg: is there a registry of method names
+[Fri 00:00:00] <stone> gkellogg: is there a registry of method names
 [Fri 00:00:00] <manu> Drummond: this is a consensus network/technology so will be the methodsd
 [Fri 00:00:00] <manu> q+
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
-[Fri 00:00:00] <stone_> ack manu
+[Fri 00:00:00] <stone> ack manu
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <stone_> manu: authorization IO is a DID registry
+[Fri 00:00:00] <stone> manu: authorization IO is a DID registry
 [Fri 00:00:00] <erkorb_rm> q+
 [Fri 00:00:00] * Zakim sees erkorb_rm on the speaker queue
-[Fri 00:00:00] <stone_> erkorb_rm: where does that leave auth.io?
-[Fri 00:00:00] <stone_> manu: we'd likely use make a legacy thing and migrate to the new distributed network
-[Fri 00:00:00] <stone_> Drummond: reviews 5 rules for respecting privacy
+[Fri 00:00:00] <stone> erkorb_rm: where does that leave auth.io?
+[Fri 00:00:00] <stone> manu: we'd likely use make a legacy thing and migrate to the new distributed network
+[Fri 00:00:00] <stone> Drummond: reviews 5 rules for respecting privacy
 [Fri 00:00:00] <Varn> q+
 [Fri 00:00:00] * Zakim sees erkorb_rm, Varn on the speaker queue
 [Fri 00:00:00] <gkellogg> q?
 [Fri 00:00:00] * Zakim sees erkorb_rm, Varn on the speaker queue
 [Fri 00:00:00] <manu> ack erkorb_rm
 [Fri 00:00:00] * Zakim sees Varn on the speaker queue
-[Fri 00:00:00] <stone_> Drummond: 1) allow multiple DIDs for a person 2)avoid sharing keys across DID 3)don't put private attributes on a public ledger b/c it's corelatable 4) avoid correlation of off ledger pointers 5) use anonymous credentials when possible
+[Fri 00:00:00] <stone> Drummond: 1) allow multiple DIDs for a person 2)avoid sharing keys across DID 3)don't put private attributes on a public ledger b/c it's corelatable 4) avoid correlation of off ledger pointers 5) use anonymous credentials when possible
 [Fri 00:00:00] <manu> ack Varn
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <ShaneM> q?
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <JohnTib> q+
 [Fri 00:00:00] * Zakim sees JohnTib on the speaker queue
-[Fri 00:00:00] <stone_> Varn: key recovery?
+[Fri 00:00:00] <stone> Varn: key recovery?
 [Fri 00:00:00] <manu> Drummond: it's a "should" method - early days some won't have it
 [Fri 00:00:00] <manu> Drummond: this is the decentralized PKI!
 [Fri 00:00:00] <manu> charley_ has quit (Client closed connection)
-[Fri 00:00:00] <manu> stone__ (~stone@public.cloak) has joined #vctf
+[Fri 00:00:00] <manu> stone_ (~stone@public.cloak) has joined #vctf
 [Fri 00:00:00] <JohnTib> q?
 [Fri 00:00:00] * Zakim sees JohnTib on the speaker queue
 [Fri 00:00:00] --- Channel #vctf modes: +
@@ -255,8 +243,8 @@
 [Fri 00:00:00] <JohnTib> q-
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <Drummond> Manu: you can have a set of verifiable claims that are bound together into an entity
-[Fri 00:00:00] <stone_> Q+
-[Fri 00:00:00] * Zakim sees Drummond, stone_ on the speaker queue
+[Fri 00:00:00] <stone> Q+
+[Fri 00:00:00] * Zakim sees Drummond, stone on the speaker queue
 [Fri 00:00:00] <Drummond> Manu: it still needs to be clarified how claims nest
 [Fri 00:00:00] <manu> Manu: all issues should be in the issues tracker
 [Fri 00:00:00] <Drummond> Matt: Is the idea that the third tier (the claims metadata) is controlled by the issuer?
@@ -264,17 +252,17 @@
 [Fri 00:00:00] <manu> Manu: the object that you send over the wire is a protocol thing
 [Fri 00:00:00] <manu> Manu: the signature on the bottom right now is the issuer's signature, but it is intended to be wrapped in the holder's signature.
 [Fri 00:00:00] <Varn> q+
-[Fri 00:00:00] * Zakim sees Drummond, stone_, Varn on the speaker queue
+[Fri 00:00:00] * Zakim sees Drummond, stone, Varn on the speaker queue
 [Fri 00:00:00] <Drummond> Manu: but that's not intended to be called a claim because that object is at the protocol layer
 [Fri 00:00:00] <ShaneM> q?
-[Fri 00:00:00] * Zakim sees Drummond, stone_, Varn on the speaker queue
+[Fri 00:00:00] * Zakim sees Drummond, stone, Varn on the speaker queue
 [Fri 00:00:00] <Drummond> Matt: we have to have a name for that "bundle of data" top-level object but we're not going to discuss now
 [Fri 00:00:00] <Drummond> Stone: is there a difference between the "thing that is shared" or the "entity"
 [Fri 00:00:00] <Drummond> Manu: let's hold off on that
 [Fri 00:00:00] <gkellogg> q-
-[Fri 00:00:00] * Zakim sees Drummond, stone_, Varn on the speaker queue
+[Fri 00:00:00] * Zakim sees Drummond, stone, Varn on the speaker queue
 [Fri 00:00:00] <gkellogg> ack Drum
-[Fri 00:00:00] * Zakim sees stone_, Varn on the speaker queue
+[Fri 00:00:00] * Zakim sees stone, Varn on the speaker queue
 [Fri 00:00:00] <gkellogg> ack stone
 [Fri 00:00:00] * Zakim sees Varn on the speaker queue
 [Fri 00:00:00] <gkellogg> ack varn
@@ -417,7 +405,7 @@
 [Fri 00:00:00] <ShaneM> manu: So call the container a verifiable claim?
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
-[Fri 00:00:00] <ShaneM> stone__: is there an example where it is not verifiable?
+[Fri 00:00:00] <ShaneM> stone_: is there an example where it is not verifiable?
 [Fri 00:00:00] <ShaneM> manu: we could just delete the signature key
 [Fri 00:00:00] <ShaneM> gregg: we could delete everything...  it is the metadata that makes it verifiable
 [Fri 00:00:00] <manu> Drummond: What's the entity?
@@ -616,7 +604,7 @@
 [Fri 00:00:00] <manu> Problem: large and clear text not signed
 [Fri 00:00:00] <manu> Our goal is verification approach.
 [Fri 00:00:00] <manu> Some cases timestamps all we need.
-[Fri 00:00:00] <stone__> q?
+[Fri 00:00:00] <stone_> q?
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <JohnTib> Especially with low-trust issuer
 [Fri 00:00:00] <manu> Extensions to Linked Data Signatures: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/blockchain-extensions-for-linked-data-signatures.md
