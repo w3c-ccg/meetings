@@ -5,60 +5,61 @@
 [Fri 00:00:00] <manu> Present+ Kellogg, McCarron, Turner, Robert, Hnetila, Tibbetts, ChristopherA, Toozny, Fehrman, Webber, Fehrman, Hughes, Hopkins, Fletcher, Fontana, Hunt, Hardt, Pasqual, Varn, Andrieu, Gropper, Longley, Korb, Sporny, Somerville, Vescent, Marr, Lake, Heuer, Rooney, Reed, Ruff, Law, Migus, Mingarelli, Escuadera, Bajor
 [Fri 00:00:00] <manu> Topic: Agenda Review
 [Fri 00:00:00] <manu> stone: We have a more technical agenda than yesterday
-[Fri 00:00:00] <manu> stone: Focus is dig into deliverables of the charter, deep dive on data model, deep dive on digital signatures, but before that - have a discussion on decentralized identifers and how that might affect the work. We have some new participants today:
-[Fri 00:00:00] <manu> Nathan George, Evernym
-[Fri 00:00:00] <manu> Don Cameron, Shipstead - norweigian media company
-[Fri 00:00:00] <manu> Peter Simpson, Evernym
+[Fri 00:00:00] <manu> stone: Focus is dig into deliverables of the charter, deep dive on data model, deep dive on digital signatures, but before that - have a discussion on decentralized identifiers and how that might affect the work. We have some new participants today:
+[Fri 00:00:00] <manu> ... Nathan George, Evernym
+[Fri 00:00:00] <manu> ... Don Cameron, Shipstead - norweigian media company
+[Fri 00:00:00] <manu> ... Peter Simpson, Evernym
 [Fri 00:00:00] <manu> stone: Any changes to the agenda?
 [Fri 00:00:00] <manu> manu: We want to talk about other long term architectural items
 [Fri 00:00:00] <manu> allen: We need to talk about other long term architectural concerns
 [Fri 00:00:00] <manu> allen: Like same origin vs. multi origin
 [Fri 00:00:00] <manu> Topic: Long-term Architectural Concerns
-[Fri 00:00:00] <stone> Drummond: start the discusion w/ manu's paper
-[Fri 00:00:00] <stone> paper that was submitted to the "rebooting web of trust"
+[Fri 00:00:00] <stone> scribe: stone
+[Fri 00:00:00] <stone> Drummond: start the discussion w/ manu's paper
+[Fri 00:00:00] <stone> ... paper that was submitted to the "rebooting web of trust"
 [Fri 00:00:00] <stone> ChristopherA: started w/ discussion about DID in prep for RWoT
 [Fri 00:00:00] <manu> Privacy Preserving Identity Architectures: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/privacy-preserving-identity-architectures.md
 [Fri 00:00:00] * manu link there ^^^^
-[Fri 00:00:00] <stone> have 2 approaches: 1) want to replace PGP which is a store and forward/asysnc approach
-[Fri 00:00:00] <manu> new approach is blockchain that doesn't follwo the same patters of client/server relationship
-[Fri 00:00:00] <stone> manu: browser securigy model today is "same origin" which means one web site can't reach into another web site
-[Fri 00:00:00] <manu> manu: this is a good security model, but now we have cases wehere you want to share data between sites - s
-[Fri 00:00:00] <stone> "same origin" doesn't work well here
-[Fri 00:00:00] <stone> manu:  a side affect of this approahc make super providers like google and facebook who can mediate the sharing
-[Fri 00:00:00] <manu> manu: the other approach is self-sovereign approach. which should reduce the super-provider risk but there are new security challenges here.
-[Fri 00:00:00] <manu> manu: major concern it that the public doesn't understand the risk/value of the data that they're sharing if they're in control.  super providers understand the risk better
-[Fri 00:00:00] <manu> manu: credential providers have to have a robust IT infrastructure b/c inspector will continuously come back to verify it.
-[Fri 00:00:00] <manu> manu: example community college - what if the college goes away?
+[Fri 00:00:00] <stone> have 2 approaches: 1) want to replace PGP which is a store and forward/async approach
+[Fri 00:00:00] <manu> new approach is blockchain that doesn't follow the same patters of client/server relationship
+[Fri 00:00:00] <stone> manu: browser security model today is "same origin" which means one web site can't reach into another web site
+[Fri 00:00:00] <stone> manu: this is a good security model, but now we have cases where you want to share data between sites - s
+[Fri 00:00:00] <stone> ... "same origin" doesn't work well here
+[Fri 00:00:00] <stone> manu:  a side affect of this approach make super providers like google and facebook who can mediate the sharing
+[Fri 00:00:00] <stone> manu: the other approach is self-sovereign approach. which should reduce the super-provider risk but there are new security challenges here.
+[Fri 00:00:00] <stone> manu: major concern it that the public doesn't understand the risk/value of the data that they're sharing if they're in control.  super providers understand the risk better
+[Fri 00:00:00] <stone> manu: credential providers have to have a robust IT infrastructure b/c inspector will continuously come back to verify it.
+[Fri 00:00:00] <stone> manu: example community college - what if the college goes away?
 [Fri 00:00:00] <ShaneM> Present+ nrooney
 [Fri 00:00:00] <stone> manu: in self-sovereign, the infrastructure isn't necessarily required.
-[Fri 00:00:00] <stone> Timmothy - is there evidence that people don't understand what theyr sharing
+[Fri 00:00:00] <stone> ruff: is there evidence that people don't understand what theyr sharing
 [Fri 00:00:00] <stone> manu: yes, there's evidence that people are easily fished
-[Fri 00:00:00] <stone> ChristopherA: but, MS doen't necessarily understand the impact of the CA security in the browser
-[Fri 00:00:00] <manu> joe: and people don't really understand what they're sharing w/ facebook
-[Fri 00:00:00] <manu> ShaneM: super provider can easily block/redirect traffic to "bad actors" and known bad sites.
-[Fri 00:00:00] <manu> ChristopherA: NSA can review anyone that's 4 degrees away from a terror suspect
-[Fri 00:00:00] <manu> ChristopherA: facebook density shows that the average separation is 4.3
+[Fri 00:00:00] <stone> ChristopherA: but, MS doesn't necessarily understand the impact of the CA security in the browser
+[Fri 00:00:00] <stone> JoeAndrieu: and people don't really understand what they're sharing w/ facebook
+[Fri 00:00:00] <stone> ShaneM: super provider can easily block/redirect traffic to "bad actors" and known bad sites.
+[Fri 00:00:00] <stone> ChristopherA: NSA can review anyone that's 4 degrees away from a terror suspect
+[Fri 00:00:00] <stone> ChristopherA: facebook density shows that the average separation is 4.3
 [Fri 00:00:00] <stone> gkellogg: is there a way to delegate to a mediator?
-[Fri 00:00:00] <manu> ChristopherA: not sure mediator is the right idea, currators would represent rules/policies
+[Fri 00:00:00] <stone> ChristopherA: not sure mediator is the right idea, curators would represent rules/policies
 [Fri 00:00:00] <JoeAndrieu> q+
 [Fri 00:00:00] * Zakim sees JoeAndrieu on the speaker queue
 [Fri 00:00:00] <stone> richard: thinking about sister, she calls the GeekSquad for everything.  what's the role of the concierge service?
-[Fri 00:00:00] <manu> ChristopherA: guardianship model may work?
-[Fri 00:00:00] <manu> richard: conservatorship is a better term - they have legal authority of a subset of responsiblities
-[Fri 00:00:00] <manu> JoeAndrieu: does the mediator have to be there?  both Chrome and Norton may warn me of a bad actor
-[Fri 00:00:00] <manu> ChristopherA: must have the principle of portability.  how do you export from one service/agent to another?
+[Fri 00:00:00] <stone> ChristopherA: guardianship model may work?
+[Fri 00:00:00] <stone> richard: conservatorship is a better term - they have legal authority of a subset of responsiblities
+[Fri 00:00:00] <stone> JoeAndrieu: does the mediator have to be there?  both Chrome and Norton may warn me of a bad actor
+[Fri 00:00:00] <stone> ChristopherA: must have the principle of portability.  how do you export from one service/agent to another?
 [Fri 00:00:00] <JoeAndrieu> q-
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <stone> richardvarn: we haven't recognized autonomous agency.  if you have delegated to a human agent, they have legal responsibilty
+[Fri 00:00:00] <stone> rvarn: we haven't recognized autonomous agency.  if you have delegated to a human agent, they have legal responsibilty
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
-[Fri 00:00:00] <stone> richard: what about automation?
+[Fri 00:00:00] <stone> rvarn: what about automation?
 [Fri 00:00:00] <manu> q/
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
 [Fri 00:00:00] <ShaneM> q+ to talk about regulatory issues
 [Fri 00:00:00] * Zakim sees agropper, ShaneM on the speaker queue
-[Fri 00:00:00] <stone> please try to use the queue
+[Fri 00:00:00] * stone please try to use the queue
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees ShaneM on the speaker queue
 [Fri 00:00:00] <manu> q+  to note that this stuff can be sorted out in the market - verifiable claims repository enables this functionality.
@@ -73,11 +74,11 @@
 [Fri 00:00:00] <Zakim> ShaneM, you wanted to talk about regulatory issues
 [Fri 00:00:00] <manu> q+ Timothy
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
-[Fri 00:00:00] <manu> Zakim sees manu, Timothy on the speaker queue
+[Fri 00:00:00] * Zakim sees manu, Timothy on the speaker queue
 [Fri 00:00:00] <ChristopherA> http://lawreview.law.ucdavis.edu/issues/49/4/Lecture/49-4_Balkin.pdf
 [Fri 00:00:00] <stone> agropper: build, run, outsource are the ways uma talks to it
 [Fri 00:00:00] <Drummond> I think the self-sovereign identity community should investigate that - ironic that it wasn't discussed at Internet Identity Workshop this past week
-[Fri 00:00:00] <stone> ShaneM: need to find an approach that doens't prohibit
+[Fri 00:00:00] <stone> ShaneM: need to find an approach that doesn't prohibit
 [Fri 00:00:00] <manu> q+ ChristopherA
 [Fri 00:00:00] * Zakim sees manu, Timothy, ChristopherA on the speaker queue
 [Fri 00:00:00] <manu> ack manu
@@ -85,13 +86,13 @@
 [Fri 00:00:00] * Zakim sees Timothy, ChristopherA on the speaker queue
 [Fri 00:00:00] <stone> ShaneM: but regulatory issues aren't our remit.
 [Fri 00:00:00] <stone> manu: our specs must enable the "right thing to happen to happen"
-[Fri 00:00:00] <Drummond> q
+[Fri 00:00:00] <Drummond> q?
 [Fri 00:00:00] <stone> q?
 [Fri 00:00:00] * Zakim sees Timothy, ChristopherA on the speaker queue
 [Fri 00:00:00] <agropper> http://www.theatlantic.com/technology/archive/2016/10/information-fiduciary/502346/
 [Fri 00:00:00] <manu> ack Timothy
 [Fri 00:00:00] * Zakim sees ChristopherA on the speaker queue
-[Fri 00:00:00] <Drummond> +q
+[Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond on the speaker queue
 [Fri 00:00:00] <stone> Timothy: if less sophisticated people can be fooled, a 3rd party is required - alternatively a protocol may work
 [Fri 00:00:00] <Varn> A third party may not be required, but some will want it as an option and we cannot preclude that
@@ -99,7 +100,7 @@
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond on the speaker queue
 [Fri 00:00:00] <Varn> q+
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond, Varn on the speaker queue
-[Fri 00:00:00] <manu> q+ to say why this is not necssarily a protocol solution
+[Fri 00:00:00] <manu> q+ to say why this is not necessarily a protocol solution
 [Fri 00:00:00] * Zakim sees ChristopherA, Drummond, Varn, manu on the speaker queue
 [Fri 00:00:00] <manu> ack ChristopherA
 [Fri 00:00:00] * Zakim sees Drummond, Varn, manu on the speaker queue
@@ -111,17 +112,17 @@
 [Fri 00:00:00] <stone> ChristopherA: we're enabling the ground work for a protocol, but we don't have that in our charter now.  it's hard to communicate, everyone is stupid, look at how many just click through, and this will just be worse.
 [Fri 00:00:00] <manu> ack Drummond
 [Fri 00:00:00] * Zakim sees Varn, manu, gkellogg, agropper on the speaker queue
-[Fri 00:00:00] <manu> q+ to note t ime
+[Fri 00:00:00] <manu> q+ to note time
 [Fri 00:00:00] * Zakim sees Varn, manu, gkellogg, agropper on the speaker queue
-[Fri 00:00:00] <stone> ChristopherA: asserts taht they could have done better, so if falls to the individual
+[Fri 00:00:00] <stone> ChristopherA: asserts that they could have done better, so if falls to the individual
 [Fri 00:00:00] <manu> Drummond: the concept of a decentralized internet is a big shift - it's EXTREMELY threatening to the powers that be on the web today?
 [Fri 00:00:00] <manu> ack Varn
 [Fri 00:00:00] * Zakim sees manu, gkellogg, agropper on the speaker queue
 [Fri 00:00:00] <stone> Drummond:  is that something we are dealing w?
-[Fri 00:00:00] <manu> Varn: sometimes we ahve these kinds of discussions.  we don't think a standard should favor or assume a market fit
+[Fri 00:00:00] <stone> Varn: sometimes we have these kinds of discussions.  we don't think a standard should favor or assume a market fit
 [Fri 00:00:00] <Drummond> "A standard should expand market opportunities" <== yes
 [Fri 00:00:00] <stone> ChristopherA: historically, the standards process has been used to advantage a particular group
-[Fri 00:00:00] <manu> Varn: but this group doesn't want that...
+[Fri 00:00:00] <stone> Varn: but this group doesn't want that...
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees manu, gkellogg, agropper on the speaker queue
 [Fri 00:00:00] <manu> ack manu
@@ -135,9 +136,9 @@
 [Fri 00:00:00] <stone> gkellogg: we come up with these sorts of issues fo trust - how do you trust someone new? if you trusted someone in the past, can you trust them again?  not our role, but we need to speak to that.
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees ShaneM on the speaker queue
-[Fri 00:00:00] <stone> agropper: from patient privacy rights, dealing w/ the issue of trust and dealing iwth individuals who don't understand their risk
-[Fri 00:00:00] <manu> agropper: uma, let's individuals control access and allows each transaction be compared to the user's policies
-[Fri 00:00:00] <manu> agropper: allows user to adopt policies from providers like ACLU, patient righs, etc. that is tokenized into a rule set that the protocol can inspect and enforce
+[Fri 00:00:00] <stone> agropper: from patient privacy rights, dealing w/ the issue of trust and dealing with individuals who don't understand their risk
+[Fri 00:00:00] <stone> agropper: uma, let's individuals control access and allows each transaction be compared to the user's policies
+[Fri 00:00:00] <stone> agropper: allows user to adopt policies from providers like ACLU, patient rights, etc. that is tokenized into a rule set that the protocol can inspect and enforce
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees ShaneM on the speaker queue
 [Fri 00:00:00] <manu> ack ShaneM
@@ -151,17 +152,17 @@
 [Fri 00:00:00] <manu> q+ Drummond to present
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <stone> ChristopherA: also recognize that centralities emerged because we tried to decentralize things.  the market forces bend toward centralization
-[Fri 00:00:00] <manu> ChristopherA: internet founders, vint cerf, TBL, see this over and over again, we have to constantly decentralize
-[Fri 00:00:00] <manu> Drummond: DId discussion
+[Fri 00:00:00] <stone> ChristopherA: internet founders, vint cerf, TBL, see this over and over again, we have to constantly decentralize
+[Fri 00:00:00] <stone> Drummond: DId discussion
 [Fri 00:00:00] <manu> Topic: Decentralized Identifiers
 [Fri 00:00:00] <stone> Drummond: origin of the work is IIW several years ago.
-[Fri 00:00:00] <manu> Drummond: in IIWXX - collective realization that blockchain/distributed ledger could eliminate the problem of a central identity provider
-[Fri 00:00:00] <manu> Drummond: christopher put up a strawman showing a process that could work, then RWoT
-[Fri 00:00:00] <manu> Drummond: there were 2 people in every session from federal govt.  DHS and Office of Health Care (something)...
-[Fri 00:00:00] <manu> Drummond: they suggested that DHS might start funding research
+[Fri 00:00:00] <stone> Drummond: in IIWXX - collective realization that blockchain/distributed ledger could eliminate the problem of a central identity provider
+[Fri 00:00:00] <stone> Drummond: christopher put up a strawman showing a process that could work, then RWoT
+[Fri 00:00:00] <stone> Drummond: there were 2 people in every session from federal govt.  DHS and Office of Health Care (something)...
+[Fri 00:00:00] <stone> Drummond: they suggested that DHS might start funding research
 [Fri 00:00:00] <nage> DHS and the Office of the National Coordinator for Health Information Technology
 [Fri 00:00:00] <stone> Drummond: manu and christopher were connecting on VCTF and connecting the dots about identity
-[Fri 00:00:00] <manu> Drummond: christopher, manu, drummnd responed to grant and won part of it, each consulting to the other.
+[Fri 00:00:00] <stone> Drummond: christopher, manu, drummnd responed to grant and won part of it, each consulting to the other.
 [Fri 00:00:00] <stone> ChristopherA: pushed back with "stop talking about names" which means "human readable identifier" that doesn't have to be reassignable.
 [Fri 00:00:00] <manu> q+ to note VC work on DIDs
 [Fri 00:00:00] * Zakim sees Drummond, manu on the speaker queue
@@ -169,10 +170,10 @@
 [Fri 00:00:00] <Zakim> Drummond, you wanted to present
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
 [Fri 00:00:00] <stone> Drummond: ChristopherA took out the human readable name out of the process.
-[Fri 00:00:00] <manu> Drummond: this is "just numbers" - not labels
-[Fri 00:00:00] <manu> gkellogg: wiki has taken a similar approach...
-[Fri 00:00:00] <manu> Drummond: how many google doc identifiers do you know (none b/c people remember the name they give them)
-[Fri 00:00:00] <manu> Drummond: DHS = Department of Homeland Security
+[Fri 00:00:00] <stone> Drummond: this is "just numbers" - not labels
+[Fri 00:00:00] <stone> gkellogg: wiki has taken a similar approach...
+[Fri 00:00:00] <stone> Drummond: how many google doc identifiers do you know (none b/c people remember the name they give them)
+[Fri 00:00:00] <stone> Drummond: DHS = Department of Homeland Security
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees manu, agropper on the speaker queue
 [Fri 00:00:00] <manu> q-
@@ -182,24 +183,24 @@
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <manu> ShaneM wonders if this version of URL is the same as WHATWG URL
 [Fri 00:00:00] <stone> Drummond: we need an identier that is both persistent and dereferencable and MUST NOT require centralized registration
-[Fri 00:00:00] <manu> Drummond: and cryptographically verifiable!
+[Fri 00:00:00] <stone> Drummond: and cryptographically verifiable!
 [Fri 00:00:00] <nage> Private permissionless blockchain model square is filled by Intel Sawtooth
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
 [Fri 00:00:00] <stone> Drummond: public/permissioned allows government to trust the nodes and who they are
-[Fri 00:00:00] <manu> Drummond: permissioned ledger of diffused trust managed by many parties provides the baseline for banks and govt to participate
-[Fri 00:00:00] <manu> Drummond: resests censorship, etc.
+[Fri 00:00:00] <stone> Drummond: permissioned ledger of diffused trust managed by many parties provides the baseline for banks and govt to participate
+[Fri 00:00:00] <stone> Drummond: resests censorship, etc.
 [Fri 00:00:00] <agropper> q-
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <stone> agropper: states may write legisation that defines what can be trusted that may or may not be compatible
 [Fri 00:00:00] <ChristopherA> http://legislature.vermont.gov/assets/Documents/2016/Docs/BILLS/H-0737/H-0737%20As%20Introduced.pdf
-[Fri 00:00:00] <manu> "In this section “blockchain technology” means a mathematically 19 secured, chronological, and decentralized consensus ledger or database whether maintained via Internet interaction, peer-to-peer network, or otherwise.
+[Fri 00:00:00] <ChristopherA> "In this section “blockchain technology” means a mathematically 19 secured, chronological, and decentralized consensus ledger or database whether maintained via Internet interaction, peer-to-peer network, or otherwise.
 [Fri 00:00:00] <gkellogg> q+
 [Fri 00:00:00] * Zakim sees gkellogg on the speaker queue
 [Fri 00:00:00] <stone> ack gkellogg
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <stone> gkellogg: is there a registry of method names
-[Fri 00:00:00] <manu> Drummond: this is a consensus network/technology so will be the methodsd
+[Fri 00:00:00] <stone> Drummond: this is a consensus network/technology so will be the methodsd
 [Fri 00:00:00] <manu> q+
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
 [Fri 00:00:00] <stone> ack manu
@@ -224,33 +225,34 @@
 [Fri 00:00:00] <JohnTib> q+
 [Fri 00:00:00] * Zakim sees JohnTib on the speaker queue
 [Fri 00:00:00] <stone> Varn: key recovery?
-[Fri 00:00:00] <manu> Drummond: it's a "should" method - early days some won't have it
-[Fri 00:00:00] <manu> Drummond: this is the decentralized PKI!
-[Fri 00:00:00] <manu> charley_ has quit (Client closed connection)
-[Fri 00:00:00] <manu> stone_ (~stone@public.cloak) has joined #vctf
+[Fri 00:00:00] <stone> Drummond: it's a "should" method - early days some won't have it
+[Fri 00:00:00] <stone> Drummond: this is the decentralized PKI!
+[Fri 00:00:00] <stone> charley_ has quit (Client closed connection)
+[Fri 00:00:00] stone_ (~stone@public.cloak) has joined #vctf
 [Fri 00:00:00] <JohnTib> q?
 [Fri 00:00:00] * Zakim sees JohnTib on the speaker queue
 [Fri 00:00:00] --- Channel #vctf modes: +
-[Fri 00:00:00] <manu> Channel #vctf created on Thu Apr 21 12:46:05 2016
-[Fri 00:00:00] <Drummond> Start of Data Model Deep Dive
+[Fri 00:00:00] Channel #vctf created on Thu Apr 21 12:46:05 2016
+[Fri 00:00:00] <Drummond> scribe: Drummond
+[Fri 00:00:00] <Drummond> Topic: Start of Data Model Deep Dive
 [Fri 00:00:00] <Drummond> Manu: describes overall structure of a verifiable claim
-[Fri 00:00:00] <Drummond> A DID is a subject identifier
-[Fri 00:00:00] <manu> The set of claims includes a subject identifier claims about the subject, claim set metadata, and the digital signature of the issuer
+[Fri 00:00:00] <Drummond> ... A DID is a subject identifier
+[Fri 00:00:00] <Drummond> ... The set of claims includes a subject identifier claims about the subject, claim set metadata, and the digital signature of the issuer
 [Fri 00:00:00] <Drummond> Shane: the subject identifier does not HAVE to be a DID - it can be any identifier
 [Fri 00:00:00] <manu> +q
 [Fri 00:00:00] * Zakim sees JohnTib, Drummond on the speaker queue
-[Fri 00:00:00] <Drummond> Joe: asking whether there can be multiple claims
+[Fri 00:00:00] <Drummond> JoeAndrieu: asking whether there can be multiple claims
 [Fri 00:00:00] <JohnTib> q-
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <Drummond> Manu: you can have a set of verifiable claims that are bound together into an entity
 [Fri 00:00:00] <stone> Q+
 [Fri 00:00:00] * Zakim sees Drummond, stone on the speaker queue
 [Fri 00:00:00] <Drummond> Manu: it still needs to be clarified how claims nest
-[Fri 00:00:00] <manu> Manu: all issues should be in the issues tracker
+[Fri 00:00:00] <Drummond> Manu: all issues should be in the issues tracker
 [Fri 00:00:00] <Drummond> Matt: Is the idea that the third tier (the claims metadata) is controlled by the issuer?
 [Fri 00:00:00] <Drummond> Manu: the claims metadata is derived from the claims and not strictly controlled by the issuer
-[Fri 00:00:00] <manu> Manu: the object that you send over the wire is a protocol thing
-[Fri 00:00:00] <manu> Manu: the signature on the bottom right now is the issuer's signature, but it is intended to be wrapped in the holder's signature.
+[Fri 00:00:00] <Drummond> Manu: the object that you send over the wire is a protocol thing
+[Fri 00:00:00] <Drummond> Manu: the signature on the bottom right now is the issuer's signature, but it is intended to be wrapped in the holder's signature.
 [Fri 00:00:00] <Varn> q+
 [Fri 00:00:00] * Zakim sees Drummond, stone, Varn on the speaker queue
 [Fri 00:00:00] <Drummond> Manu: but that's not intended to be called a claim because that object is at the protocol layer
@@ -283,25 +285,27 @@
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <ShaneM> ack Drummond
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
+[Fri 00:00:00] <ShaneM> scribe: ShaneM
 [Fri 00:00:00] <ShaneM> drummond: that ID represents this thing.  What is it called?
 [Fri 00:00:00] <ShaneM> manu: It is a set of claims
 [Fri 00:00:00] <ShaneM> ... the reason it is called a set is because there could be lots of things in there.
-[Fri 00:00:00] <manu> Drummond:  Can a claim contain other claims?
-[Fri 00:00:00] <manu> everyone: Yes
+[Fri 00:00:00] <ShaneM> Drummond:  Can a claim contain other claims?
+[Fri 00:00:00] <ShaneM> everyone: Yes
 [Fri 00:00:00] <manu> q?
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <ShaneM> Drummond: it seems to me that the id at the top of this document, identifying this whole set of claims, is to what a DID ID is to a DDO.  It is what this is about.  Does that make sense?
-[Fri 00:00:00] <manu> everyone: Yes
-[Fri 00:00:00] <manu> Gregg: So this could be a DDO
-[Fri 00:00:00] <manu> Joe:  No....
+[Fri 00:00:00] <ShaneM> everyone: Yes
+[Fri 00:00:00] <ShaneM> Gregg: So this could be a DDO
+[Fri 00:00:00] <ShaneM> JoeAndrieu:  No....
 [Fri 00:00:00] <ShaneM> Manu: this is a point of discussion
 [Fri 00:00:00] <Drummond> There was general discussion of whether a set of claims could be a DDO
 [Fri 00:00:00] <gkellogg> q?
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
+[Fri 00:00:00] <Drummond> scribe: Drummond
 [Fri 00:00:00] <Drummond> Manu: a claim set MUST contain a claim component
 [Fri 00:00:00] <Drummond> Christopher: but if a DDO contained a claim, it could be a valid claim set
-[Fri 00:00:00] <manu> gkellogg: If the claim element contains multiple claims, then it is a claim set, and we can't call it a claim set
-[Fri 00:00:00] <manu> q+
+[Fri 00:00:00] <Drummond> gkellogg: If the claim element contains multiple claims, then it is a claim set, and we can't call it a claim set
+[Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <gkellogg> Claimvelopoe for thing holding claims
 [Fri 00:00:00] <manu> ack drum
@@ -312,7 +316,7 @@
 [Fri 00:00:00] <manu> q+
 [Fri 00:00:00] * Zakim sees nage, Drummond on the speaker queue
 [Fri 00:00:00] <Drummond> There was general discussion about what the id in the claim represents vs what the id on the overall VC represents
-[Fri 00:00:00] <manu> Drummond wants to see the RDF graph behind this JSON-LD document
+[Fri 00:00:00] <Drummond> ... Drummond wants to see the RDF graph behind this JSON-LD document
 [Fri 00:00:00] <gkellogg> q?
 [Fri 00:00:00] * Zakim sees nage, Drummond on the speaker queue
 [Fri 00:00:00] <gkellogg> q-
@@ -323,13 +327,13 @@
 [Fri 00:00:00] <JohnTib> q+
 [Fri 00:00:00] * Zakim sees Drummond, JohnTib on the speaker queue
 [Fri 00:00:00] <Drummond> nage: asks what is necessary to test a complete claim
-[Fri 00:00:00] <manu> stone: we dont' want every inspector to have to verify every claim every time
-[Fri 00:00:00] <manu> richard: a claim can be submitted for a group, and evaluation of that claim is up to the inspector
+[Fri 00:00:00] <Drummond> stone: we dont' want every inspector to have to verify every claim every time
+[Fri 00:00:00] <Drummond> richard: a claim can be submitted for a group, and evaluation of that claim is up to the inspector
 [Fri 00:00:00] <gkellogg> q+ to ask about id of claim not being the same as the type of the id
 [Fri 00:00:00] * Zakim sees Drummond, JohnTib, gkellogg on the speaker queue
 [Fri 00:00:00] <Drummond> manu draws a diagram of the overall model
-[Fri 00:00:00] <manu> the outer envelope for the VC object has been called a credential, although Manu says that the security community wants to change that
-[Fri 00:00:00] <manu> Manu starts to draw the RDF graph of the example VC object we have been looking at
+[Fri 00:00:00] <Drummond> ... the outer envelope for the VC object has been called a credential, although Manu says that the security community wants to change that
+[Fri 00:00:00] <Drummond> ... Manu starts to draw the RDF graph of the example VC object we have been looking at
 [Fri 00:00:00] <gkellogg> q?
 [Fri 00:00:00] * Zakim sees Drummond, JohnTib, gkellogg on the speaker queue
 [Fri 00:00:00] <gkellogg> ack drum
@@ -337,14 +341,14 @@
 [Fri 00:00:00] <Drummond> Drummond got it clarified that the RDF node at the center of the graph is of type "credential" but the WG agrees the name for the type is going to be changed
 [Fri 00:00:00] <JoeAndrieu> q+
 [Fri 00:00:00] * Zakim sees JohnTib, gkellogg, JoeAndrieu on the speaker queue
-[Fri 00:00:00] <Assaf> q
+[Fri 00:00:00] <Assaf> q?
 [Fri 00:00:00] <ShaneM> Gregg: There are youtube videos that descriibe the RDF data model and how it maps into JSON-LD etc.
 [Fri 00:00:00] <gkellogg> ack john
 [Fri 00:00:00] * Zakim sees gkellogg, JoeAndrieu on the speaker queue
-[Fri 00:00:00] <ShaneM> john: I want to recommend that we call them Credential today becuase all the slides say Credential.
-[Fri 00:00:00] <manu> Secondly.... this notion of "a bus that is full of people" as an example of a credential.  Claims are composeable.
+[Fri 00:00:00] <ShaneM> john: I want to recommend that we call them Credential today because all the slides say Credential.
+[Fri 00:00:00] <ShaneM> Secondly.... this notion of "a bus that is full of people" as an example of a credential.  Claims are composeable.
 [Fri 00:00:00] <Drummond> John: suggests that the Task Force continue to use the term credential until another term is chosen
-[Fri 00:00:00] <manu> Drummond suggests (as a newcomer to the data model) that showing the RDF graph is hugely important
+[Fri 00:00:00] <Drummond> Drummond suggests (as a newcomer to the data model) that showing the RDF graph is hugely important
 [Fri 00:00:00] <ShaneM> ... it is important to realize that in some collections something different happens.
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees gkellogg, JoeAndrieu, Drummond on the speaker queue
@@ -368,7 +372,7 @@
 [Fri 00:00:00] * Zakim sees Assaf, manu, Drummond, jheuer on the speaker queue
 [Fri 00:00:00] <gkellogg> ack assaf
 [Fri 00:00:00] * Zakim sees manu, Drummond, jheuer on the speaker queue
-[Fri 00:00:00] <manu> ShaneM is back online
+[Fri 00:00:00] ShaneM is back online
 [Fri 00:00:00] <ShaneM> q+ to ask about composing a credential for a single subject
 [Fri 00:00:00] * Zakim sees manu, Drummond, jheuer, ShaneM on the speaker queue
 [Fri 00:00:00] <gkellogg> ack manu
@@ -381,9 +385,10 @@
 [Fri 00:00:00] * Zakim sees Drummond, ShaneM on the speaker queue
 [Fri 00:00:00] <gkellogg> ack drum
 [Fri 00:00:00] * Zakim sees ShaneM on the speaker queue
+[Fri 00:00:00] <ShaneM> scribe: ShaneM
 [Fri 00:00:00] <ShaneM> jheuer: We should illustrate the difference between hasA and isA
-[Fri 00:00:00] <manu> Drummond: This is based on an RDF data model.  In my other work the RDF is in the background
-[Fri 00:00:00] <manu> I don't think we should hide the RDF-ness of the data model and why that is valuable.
+[Fri 00:00:00] <ShaneM> Drummond: This is based on an RDF data model.  In my other work the RDF is in the background
+[Fri 00:00:00] <ShaneM> ... I don't think we should hide the RDF-ness of the data model and why that is valuable.
 [Fri 00:00:00] <ShaneM> Gregg: We were nervous exposing that in JSON-LD.  It turns people off
 [Fri 00:00:00] <manu> q+ to devils advocate that we may not need linked data
 [Fri 00:00:00] * Zakim sees ShaneM, manu on the speaker queue
@@ -398,10 +403,10 @@
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <ShaneM> -1 about being TOO upfront about RDF
 [Fri 00:00:00] <Drummond> Manu: the use of the RDF data model is important, but if we feature it too much, then it will raise too many antibodies
-[Fri 00:00:00] <manu> charley (~charley@public.cloak) has joined #vctf
+[Fri 00:00:00] charley (~charley@public.cloak) has joined #vctf
 [Fri 00:00:00] <ShaneM> Drummond: The reason this presentation is confusing is that it is unclear what the subject of the claim is vs. what the claim set is.
-[Fri 00:00:00] <manu> gregg: the container is of type verifiable claim....
-[Fri 00:00:00] <manu> drummond: what a great idea.
+[Fri 00:00:00] <ShaneM> gregg: the container is of type verifiable claim....
+[Fri 00:00:00] <ShaneM> drummond: what a great idea.
 [Fri 00:00:00] <ShaneM> manu: So call the container a verifiable claim?
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
@@ -415,11 +420,11 @@
 [Fri 00:00:00] <gkellogg> ack drum
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <ShaneM> manu presents more slides
-[Fri 00:00:00] <manu> manu: a context is the thing that gives specific meaning to the metadata.
+[Fri 00:00:00] <ShaneM> manu: a context is the thing that gives specific meaning to the metadata.
 [Fri 00:00:00] <ShaneM> ... we use linked data for the datamodel because it makes merging data later really easy
 [Fri 00:00:00] <Drummond> Drummond suggests that you just call it the "RDF umbilical cord" ;-)
 [Fri 00:00:00] <ShaneM> ... if it were just JSON merging two things that say "homePage" you don't know about the semantics.
-[Fri 00:00:00] <manu> gkellogg: the nice thing about context is that keys dereference to URLs so there is unique meaning.
+[Fri 00:00:00] <ShaneM> gkellogg: the nice thing about context is that keys dereference to URLs so there is unique meaning.
 [Fri 00:00:00] <ShaneM> manu: you can express the model in a variety of syntaxes.
 [Fri 00:00:00] <ShaneM> JSON is big now.  Something else might be big in the future.
 [Fri 00:00:00] <Drummond> manu explains the reasons for using the Linked Data model
@@ -436,6 +441,7 @@
 [Fri 00:00:00] <ShaneM> ack ShaneM
 [Fri 00:00:00] <Zakim> ShaneM, you wanted to ask about signing and how it relates to graphs
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
+[Fri 00:00:00] <Drummond> scribe: Drummond
 [Fri 00:00:00] <Drummond> ShaneM: asks a question about signing: what are we encrypting: the bytes that are the JSON-LD serialization or are we signing the underlying graph
 [Fri 00:00:00] <Drummond> manu: the answer is not straightforward as you think
 [Fri 00:00:00] <ShaneM> manu: we want the answer to be that we are signing the underlying graph
@@ -461,16 +467,16 @@
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <Drummond> Drummond: what is the serialziation specified by the RDF dataset normalization algorithm
-[Fri 00:00:00] <manu> Christopher: there are up to four versions of a serialization that need to be signed/stored/verified
+[Fri 00:00:00] <Drummond> Christopher: there are up to four versions of a serialization that need to be signed/stored/verified
 [Fri 00:00:00] <Drummond> manu: that canonical serialization format is N-Quads
 [Fri 00:00:00] <Drummond> gkellogg: that format includes several other aspects of full normalization, including how blanks nodes are identified
-[Fri 00:00:00] <manu> gkellogg: lists the reasons for using Linked Data, which uses the RDF data model
-[Fri 00:00:00] <manu> Christopher: to him, it's not about RDF, it's about being able to deterministically sign graphs
-[Fri 00:00:00] <manu> Christopher: likes the idea of not referring to RDF, but to linked graphs
-[Fri 00:00:00] <manu> gkellogg: the key thing is representing the data model in a way that is independent of serialization
-[Fri 00:00:00] <manu> gkellogg: likes the use of the term "statements" instead of "triples" or "RDF triples"
+[Fri 00:00:00] <Drummond> gkellogg: lists the reasons for using Linked Data, which uses the RDF data model
+[Fri 00:00:00] <Drummond> Christopher: to him, it's not about RDF, it's about being able to deterministically sign graphs
+[Fri 00:00:00] <Drummond> Christopher: likes the idea of not referring to RDF, but to linked graphs
+[Fri 00:00:00] <Drummond> gkellogg: the key thing is representing the data model in a way that is independent of serialization
+[Fri 00:00:00] <Drummond> gkellogg: likes the use of the term "statements" instead of "triples" or "RDF triples"
 [Fri 00:00:00] <Drummond> manu: explained some history about how JSON-LD came to use RDF, but did not originally
-[Fri 00:00:00] <manu> manu: "Linked Data" is the term we can use
+[Fri 00:00:00] <Drummond> manu: "Linked Data" is the term we can use
 [Fri 00:00:00] <Drummond> gkellogg: Linked Data describes data in terms of statements
 [Fri 00:00:00] <gkellogg> q?
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
@@ -484,7 +490,7 @@
 [Fri 00:00:00] <manu> ack Drummond
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
 [Fri 00:00:00] <Drummond> manu: there are multiple ways to deal with privacy when using RDF. One way is to not name all the nodes, but that's a very blunt instrument
-[Fri 00:00:00] <Drummond> gkellogg: skips the "What is RDF?" slide because we coveredit
+[Fri 00:00:00] <Drummond> gkellogg: skips the "What is RDF?" slide because we covered it
 [Fri 00:00:00] <manu> covered it
 [Fri 00:00:00] <manu> gkellogg: shows a slide illustrating how a credential in JSON-LD translates into Turtle as a different serialization
 [Fri 00:00:00] <Drummond> gkellogg: "flattening" is a JSON-LD concept that puts all the main objects at the top level. See the JSON-LD playground for more.
@@ -492,10 +498,10 @@
 [Fri 00:00:00] <manu> gkellogg: this becomes particularly useful when you are querying the data. For example, you can ask for a credential and the processor can know that a ProofOfAgeCredential is a type of Credential
 [Fri 00:00:00] <JohnTib> q+
 [Fri 00:00:00] * Zakim sees manu, JohnTib on the speaker queue
-[Fri 00:00:00] <Drummond> erick: another example is figuring out the domain and range of a claim, e.g., that an age is something a person has
-[Fri 00:00:00] <manu> gregk: offers to put up an extensive example during lunch
+[Fri 00:00:00] <Drummond> ekorb: another example is figuring out the domain and range of a claim, e.g., that an age is something a person has
+[Fri 00:00:00] <manu> gkellogg: offers to put up an extensive example during lunch
 [Fri 00:00:00] <manu> the group is breaking to get pizza
-[Fri 00:00:00] <manu> er_korb_rm (~eric.korb@public.cloak) has joined #vctf
+[Fri 00:00:00] er_korb_rm (~eric.korb@public.cloak) has joined #vctf
 [Fri 00:00:00] <manu> Lunch
 [Fri 00:00:00] <manu> we're back!
 [Fri 00:00:00] <ShaneM> scribenick: ShaneM
@@ -505,29 +511,29 @@
 [Fri 00:00:00] <manu> ack manu
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <ShaneM> JohnTib: we talked about formalities.  I want to talk about a practical reason to use JSON-LD
-[Fri 00:00:00] <manu> ... I work in education.  In projects at IMS Global we created a VC environment and a claim that represented a record of performance
-[Fri 00:00:00] <manu> .... targeted at competency based schools
-[Fri 00:00:00] <manu> ... most appropriate for things like MOOCs, distance learning, etc.
-[Fri 00:00:00] <manu> ... lengthy document, deeply nested.  Info about individuals, institutions, and then info about each course and the competencies in the courses
-[Fri 00:00:00] <manu> ... we tried to represent things as JOTs vs VCs
-[Fri 00:00:00] <manu> ... we couldn't get implementations to deal with large, deeply netsted stucturez.
-[Fri 00:00:00] <manu> ... so when a claim is very complex, you need to have something with the horsepower to represent it and treat it in a reliable manner
-[Fri 00:00:00] <manu> There is a link in the notes from a couple of days ago.
-[Fri 00:00:00] <er_korb_rm> _rm has quit (Ping timeout: 180 seconds)
-[Fri 00:00:00] <er_korb_rm> <manu> Lunch
-[Fri 00:00:00] <manu> <manu> we're back!
-[Fri 00:00:00] <er_korb_rm> <ShaneM> scribenic
-[Fri 00:00:00] <ShaneM> One way to think abvout the difference between a JOT and a VC.  The use case of a JOT is for relatively small things.
-[Fri 00:00:00] <ShaneM> cwebber2: What I want is a DDO that points to my credentials.  And validate that thee holder has those credentials but does not reveal information about who I am.
+[Fri 00:00:00] <ShaneM> ... I work in education.  In projects at IMS Global we created a VC environment and a claim that represented a record of performance
+[Fri 00:00:00] <ShaneM> .... targeted at competency based schools
+[Fri 00:00:00] <ShaneM> ... most appropriate for things like MOOCs, distance learning, etc.
+[Fri 00:00:00] <ShaneM> ... lengthy document, deeply nested.  Info about individuals, institutions, and then info about each course and the competencies in the courses
+[Fri 00:00:00] <ShaneM> ... we tried to represent things as JOTs vs VCs
+[Fri 00:00:00] <ShaneM> ... we couldn't get implementations to deal with large, deeply netsted stucturez.
+[Fri 00:00:00] <ShaneM> ... so when a claim is very complex, you need to have something with the horsepower to represent it and treat it in a reliable manner
+[Fri 00:00:00] <ShaneM> There is a link in the notes from a couple of days ago.
+[Fri 00:00:00] _rm has quit (Ping timeout: 180 seconds)
+[Fri 00:00:00] <manu> Lunch
+[Fri 00:00:00] <manu> we're back!
+[Fri 00:00:00] <ShaneM> scribenick: ShaneM
+[Fri 00:00:00] <ShaneM> One way to think about the difference between a JOT and a VC.  The use case of a JOT is for relatively small things.
+[Fri 00:00:00] <ShaneM> webber: What I want is a DDO that points to my credentials.  And validate that thee holder has those credentials but does not reveal information about who I am.
 [Fri 00:00:00] <er_korb_rm> example of etranscript represented in JSON-LD http://atlasu.us/index.php/unofficial-transcript
 [Fri 00:00:00] <ShaneM> one reason is privacy.  Another is peer review.... we want some curation.  So we need some anonymity
 [Fri 00:00:00] <ShaneM> manu: we need to be careful to not push RDF and linked data too much.
 [Fri 00:00:00] <ShaneM> ... we don't want people to not play either.
-[Fri 00:00:00] <manu> Christopher: Couldn't we push it down a layer?
+[Fri 00:00:00] <ShaneM> Christopher: Couldn't we push it down a layer?
 [Fri 00:00:00] <ShaneM> manu: No.  We are delivering a data model.
 [Fri 00:00:00] <ShaneM> ... google has proven that most developers just cut and paste code.
-[Fri 00:00:00] <manu> gkellogg: and those devleopers have no idea that they are describing things in RDF
-[Fri 00:00:00] <manu> ... but the fact that they are allows for the population of a knowledge graph
+[Fri 00:00:00] <ShaneM> gkellogg: and those developers have no idea that they are describing things in RDF
+[Fri 00:00:00] <ShaneM> ... but the fact that they are allows for the population of a knowledge graph
 [Fri 00:00:00] <ShaneM> manu: we should be open to the concept of RDF being rejected
 [Fri 00:00:00] <ShaneM> when adding things to a credential (like an open badge) you need to add a context about the claim AND you need to add a key about an earnedBadge so that the information is incorporated.
 [Fri 00:00:00] <manu> ChristopherA: Why would you want top embed a context in a scope instead of at the top level?
@@ -535,51 +541,51 @@
 [Fri 00:00:00] <manu> What's the best practice?
 [Fri 00:00:00] <manu> Again, it depends.  Schema.org does A LOT of terms.
 [Fri 00:00:00] <manu> Other vocabularies are limited.
-[Fri 00:00:00] <manu> eric: OBI for example hasa term evidence - and that might collide with someone elses term.
+[Fri 00:00:00] <manu> eric: OBI for example hasa term evidence - and that might collide with someone else's term.
 [Fri 00:00:00] <manu> Christopher: Are there different classes of people.  Creators vs. composers.
 [Fri 00:00:00] <ShaneM> manu: If you are composing they are going have contexts already.
 [Fri 00:00:00] <ShaneM> gkellogg: the reason to use JSON-LD is to deal with conflicting terms.
 [Fri 00:00:00] <manu> Christopher: Can I countersign a composition?
 [Fri 00:00:00] * cwebber2 notes that "cwebber2" quote earlier didn't come from him
-[Fri 00:00:00] <ShaneM> Manu:  sure.  well, in theory.  No one is doing it.
-[Fri 00:00:00] * ShaneM yeah I relaized that sorry
-[Fri 00:00:00] <manu> cwebber2 np!
+[Fri 00:00:00] <ShaneM> Manu: sure.  well, in theory.  No one is doing it.
+[Fri 00:00:00] * ShaneM yeah I realized that sorry
+[Fri 00:00:00] * cwebber2 np!
 [Fri 00:00:00] <ShaneM> eric explains some properties from the CTI vocabulary
 [Fri 00:00:00] <ShaneM> manu shows how to compose some claims together into a new entity
 [Fri 00:00:00] <ShaneM> gkellogg: the problem is that this resolves to a graph, and the information about the individual credentials.
 [Fri 00:00:00] <ShaneM> manu: the assertion is that "you wouldn't do that"
 [Fri 00:00:00] <ShaneM> ... let me put it a different way.  Jane wouold collect this stuff together and ssaying this is information about me.
-[Fri 00:00:00] <manu> gkellogg and ShaneM are confused about how composition relates keys to credentials.
+[Fri 00:00:00] <ShaneM> gkellogg and ShaneM are confused about how composition relates keys to credentials.
 [Fri 00:00:00] <JohnTib> JohnTib now scribing
 [Fri 00:00:00] <ShaneM> scribenick: JohnTib
 [Fri 00:00:00] <manu> Topic: Digital Signatures
-[Fri 00:00:00] <JohnTib> Christoper been working on dignatures
-[Fri 00:00:00] <manu> All of this relies on digital signature tech...there are tradeoffs
+[Fri 00:00:00] <JohnTib> ChristopherA: been working on signatures
+[Fri 00:00:00] <JohnTib> ... All of this relies on digital signature tech...there are tradeoffs
 [Fri 00:00:00] * manu JohnTib make sure to put the person's name then colon then what they said
-[Fri 00:00:00] <JohnTib> Describe the trade-offs.
+[Fri 00:00:00] <JohnTib> ... Describe the trade-offs.
 [Fri 00:00:00] * manu JohnTib so... Christopher: says hi
-[Fri 00:00:00] <manu> manu or rather, Christopher: hi
-[Fri 00:00:00] <JohnTib> Problem statement: currently difficult to express and transmit proof of age.  Plus we are all on different platforms.
-[Fri 00:00:00] <manu> Another problem--huge attack surface--especially on some languages, platforms; e.g, Javascript
-[Fri 00:00:00] <JohnTib> Use cases: express a digital coupon or degree
-[Fri 00:00:00] <manu> Use cases: enable global semantices and data merging
-[Fri 00:00:00] <manu> Use cases: also meet the needs of different communities; i.e., OAuth and JWT
-[Fri 00:00:00] <manu> Our mission is about data model not flows.
-[Fri 00:00:00] <JohnTib> Signature for verif claim:  goes through fields of the signature node.
-[Fri 00:00:00] <manu> Note that the creator field may point to a particular signing party (with their own public key)...we may want to choose among many creators.
-[Fri 00:00:00] <manu> Shane: have you considered breaking up creator from creator-key?
-[Fri 00:00:00] <manu> Gregg: in JSON-LD you can use overlapping fields.
+[Fri 00:00:00] * manu or rather, Christopher: hi
+[Fri 00:00:00] <JohnTib> ... Problem statement: currently difficult to express and transmit proof of age.  Plus we are all on different platforms.
+[Fri 00:00:00] <JohnTib> ... Another problem--huge attack surface--especially on some languages, platforms; e.g, Javascript
+[Fri 00:00:00] <JohnTib> ... Use cases: express a digital coupon or degree
+[Fri 00:00:00] <JohnTib> ... Use cases: enable global semantices and data merging
+[Fri 00:00:00] <JohnTib> ... Use cases: also meet the needs of different communities; i.e., OAuth and JWT
+[Fri 00:00:00] <JohnTib> ... Our mission is about data model not flows.
+[Fri 00:00:00] <JohnTib> ... Signature for verif claim:  goes through fields of the signature node.
+[Fri 00:00:00] <JohnTib> ... Note that the creator field may point to a particular signing party (with their own public key)...we may want to choose among many creators.
+[Fri 00:00:00] <JohnTib> Shane: have you considered breaking up creator from creator-key?
+[Fri 00:00:00] <JohnTib> Gregg: in JSON-LD you can use overlapping fields.
 [Fri 00:00:00] <JohnTib> manu: when signing for a particular situation ensure that the bundle is tied to a domain so it can't be replayed.
 [Fri 00:00:00] <JohnTib> gregg: what of the signature node is signed.
 [Fri 00:00:00] <JohnTib> manu: only signature value is excluded for the signing
-[Fri 00:00:00] <JohnTib> ChrA: nonce is used for replay attach.  Optional.
-[Fri 00:00:00] <manu> Signature value shown is a PIM signature.  RSA algorithm.
-[Fri 00:00:00] <manu> Goes through signing of JWT
-[Fri 00:00:00] <manu> JWT has <header> DOT <data> DOT <signature>
-[Fri 00:00:00] <manu> Inspecting JWT.  Uses 'entityCredential' field for the VC.
+[Fri 00:00:00] <JohnTib> ChristopherA: nonce is used for replay attach.  Optional.
+[Fri 00:00:00] <JohnTib> ... Signature value shown is a PIM signature.  RSA algorithm.
+[Fri 00:00:00] <JohnTib> ... Goes through signing of JWT
+[Fri 00:00:00] <JohnTib> ... JWT has <header> DOT <data> DOT <signature>
+[Fri 00:00:00] <JohnTib> ... Inspecting JWT.  Uses 'entityCredential' field for the VC.
 [Fri 00:00:00] <manu> q+
 [Fri 00:00:00] * Zakim sees JohnTib on the speaker queue
-[Fri 00:00:00] <JohnTib> Large number of languages and situations.
+[Fri 00:00:00] <JohnTib> ... Large number of languages and situations.
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees JohnTib, agropper on the speaker queue
 [Fri 00:00:00] <manu> ack JohnTib
@@ -589,53 +595,53 @@
 [Fri 00:00:00] <JohnTib> Shane: is it supposed to be isomorphic?
 [Fri 00:00:00] <manu> q+
 [Fri 00:00:00] * Zakim sees agropper, manu on the speaker queue
-[Fri 00:00:00] <JohnTib> adrian: need 2 representations of the data to preserve original.
+[Fri 00:00:00] <JohnTib> agropper: need 2 representations of the data to preserve original.
 [Fri 00:00:00] <JohnTib> manu: linked data signatures don't normalize the data.  JWT signing is sensitive to whitespace, etc.
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
 [Fri 00:00:00] <manu> ack manu
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <JohnTib> ChrisA: When we are working grouping, we can recommend approaches for linked data signatures.
-[Fri 00:00:00] <manu> Chris A: needs a security review--but natively supports JSON and Linked Data
-[Fri 00:00:00] <manu> Approach #2: Use JWTs.  Plus: standard and lots of libraries
-[Fri 00:00:00] <manu> Drawbacks: problems with composition
-[Fri 00:00:00] <manu> Approach 3: Linked Data JSON Web Tokens
-[Fri 00:00:00] <manu> Compromise that is incrementally better than JWT.
-[Fri 00:00:00] <manu> Problem: large and clear text not signed
-[Fri 00:00:00] <manu> Our goal is verification approach.
-[Fri 00:00:00] <manu> Some cases timestamps all we need.
+[Fri 00:00:00] <JohnTib> ChristopherA: When we are working grouping, we can recommend approaches for linked data signatures.
+[Fri 00:00:00] <JohnTib> ChristopherA: needs a security review--but natively supports JSON and Linked Data
+[Fri 00:00:00] <JohnTib> ... Approach #2: Use JWTs.  Plus: standard and lots of libraries
+[Fri 00:00:00] <JohnTib> ... Drawbacks: problems with composition
+[Fri 00:00:00] <JohnTib> ... Approach 3: Linked Data JSON Web Tokens
+[Fri 00:00:00] <JohnTib> ... Compromise that is incrementally better than JWT.
+[Fri 00:00:00] <JohnTib> ... Problem: large and clear text not signed
+[Fri 00:00:00] <JohnTib> ... Our goal is verification approach.
+[Fri 00:00:00] <JohnTib> ... Some cases timestamps all we need.
 [Fri 00:00:00] <stone_> q?
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
-[Fri 00:00:00] <JohnTib> Especially with low-trust issuer
+[Fri 00:00:00] <JohnTib> ... Especially with low-trust issuer
 [Fri 00:00:00] <manu> Extensions to Linked Data Signatures: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/blockchain-extensions-for-linked-data-signatures.md
-[Fri 00:00:00] <JohnTib> ChrsA: commissioned munge to use Bitcoin signatures.  They are not RSA, smaller but interesting differences.
-[Fri 00:00:00] <manu> name secp256k1.  We're using a Bitcoin curve and elliptic curve.  Creator is not a traditional public key.  It's the hash of a public key.
-[Fri 00:00:00] <manu> CanonicalAlgorithm uses RDF normalization.
+[Fri 00:00:00] <JohnTib> ChristopherA: commissioned munge to use Bitcoin signatures.  They are not RSA, smaller but interesting differences.
+[Fri 00:00:00] <JohnTib> ... name secp256k1.  We're using a Bitcoin curve and elliptic curve.  Creator is not a traditional public key.  It's the hash of a public key.
+[Fri 00:00:00] <JohnTib> ... CanonicalAlgorithm uses RDF normalization.
 [Fri 00:00:00] <JohnTib> manu: defining a new signature algorithm is simple.  Just 3 values: canonicalization, digest, signature.
-[Fri 00:00:00] <JohnTib> Other thing was blockchain anchoring.  How to do timestamps.  In addition to signature info add a publication proof.  Merkel tree of everybody who wanted document signed in Bitcoin.
+[Fri 00:00:00] <JohnTib> ... Other thing was blockchain anchoring.  How to do timestamps.  In addition to signature info add a publication proof.  Merkel tree of everybody who wanted document signed in Bitcoin.
 [Fri 00:00:00] <Drummond> Cost of anchoring signatures in blockchains may be a real issue
-[Fri 00:00:00] <manu> both in terms of time and actual financial cost
+[Fri 00:00:00] <Drummond> both in terms of time and actual financial cost
 [Fri 00:00:00] <JohnTib> (Thanks Drummond)
-[Fri 00:00:00] <manu> MerklePublicationProof to fully verify.
-[Fri 00:00:00] <manu> Proves not only signed by person but at a particular time.
+[Fri 00:00:00] <JohnTib> MerklePublicationProof to fully verify.
+[Fri 00:00:00] <JohnTib> Proves not only signed by person but at a particular time.
 [Fri 00:00:00] <JohnTib> Manu: use case large cache of diamonds to exchange--useful to resolve escrow issues
-[Fri 00:00:00] <JohnTib> chrisA: someone has signed code and signature was stolen and new vulnerable code is created.  Therefore, signing time helps to resolve a bogus code change.
+[Fri 00:00:00] <JohnTib> ChristopherA: someone has signed code and signature was stolen and new vulnerable code is created.  Therefore, signing time helps to resolve a bogus code change.
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
-[Fri 00:00:00] <JohnTib> open questions: support proof of publication in signature? blockchain receipts? integrate Chainpont 2.0.  Open timestamp?  Should we start defining APIs.
+[Fri 00:00:00] <JohnTib> ... open questions: support proof of publication in signature? blockchain receipts? integrate Chainpont 2.0.  Open timestamp?  Should we start defining APIs.
 [Fri 00:00:00] <JohnTib> manu: fun to look at clear text signatures.
 [Fri 00:00:00] <JohnTib> drummond: standardizing signatures is a signature issue not VCTF issue.
 [Fri 00:00:00] <JohnTib> manu: typically linked data signatures (LDS) is an IETF issue.
 [Fri 00:00:00] <er_korb_rm> https://web-payments.org/specs/source/ld-signatures/
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
-[Fri 00:00:00] <JohnTib> ChrisA: before SSL there was a patent holder.  Then microsoft proposed PCT.  Then SSL3.0 came out.  Went to informtion draft to working group.  Took 3 years.  Possible we'll get it going, try lots of stuff, after some arm-twisting we'll do vctf as an informational draft.
+[Fri 00:00:00] <JohnTib> ChristopherA: before SSL there was a patent holder.  Then microsoft proposed PCT.  Then SSL3.0 came out.  Went to informtion draft to working group.  Took 3 years.  Possible we'll get it going, try lots of stuff, after some arm-twisting we'll do vctf as an informational draft.
 [Fri 00:00:00] <manu> ack Drummond
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <JohnTib> Drummond: will VCTF have normative reference to signature?
 [Fri 00:00:00] <JohnTib> manu: can't.  thinking is we can include JWT signing that could be normative.
 [Fri 00:00:00] <JohnTib> manu: new ecosys with dids, signatures, etc we'll have to be careful.
-[Fri 00:00:00] <JohnTib> chrisa: maybe we can do some 'graph' approach (not RDF) approach.
+[Fri 00:00:00] <JohnTib> christophera: maybe we can do some 'graph' approach (not RDF) approach.
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
 [Fri 00:00:00] <JohnTib> manu: sigs defined now for three algorithms.  have to 1) express as graph 2) normalize and 3) sign.
@@ -646,11 +652,11 @@
 [Fri 00:00:00] <Drummond> I'd like to understand the composition signature problem
 [Fri 00:00:00] <manu> q+ to talk about identity containers
 [Fri 00:00:00] * Zakim sees manu on the speaker queue
-[Fri 00:00:00] <JohnTib> adrian: identity container level  looks like UMA and JWTs
+[Fri 00:00:00] <JohnTib> agropper: identity container level  looks like UMA and JWTs
 [Fri 00:00:00] <JohnTib> manu: JSON signature.  UMA focussed on JWTs.  Some think of 1 api to access containers.  Also another protocol from web payments for creating and sending web payment.  Payment app is a wallet.  APIs for other identity containers coming from multiple sources.  Many thinks there isn't a unified identity container for some time.
-[Fri 00:00:00] <manu> manu: if people reject linked data we could use json signature format.  Then compatible with UMA.
+[Fri 00:00:00] <JohnTib> manu: if people reject linked data we could use json signature format.  Then compatible with UMA.
 [Fri 00:00:00] <JohnTib> chris: all of json canonicalization approaches are without syntax.  Simply sorted within equal levels with lexicographic ordering.
-[Fri 00:00:00] <manu> it's json tidying up.
+[Fri 00:00:00] <JohnTib> ... it's json tidying up.
 [Fri 00:00:00] <agropper> q+
 [Fri 00:00:00] * Zakim sees manu, agropper on the speaker queue
 [Fri 00:00:00] <JohnTib> gregg: suggestion sign claims in an entity into their own named graph
@@ -658,20 +664,20 @@
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees manu, agropper, Drummond on the speaker queue
 [Fri 00:00:00] <JohnTib> manu: issue of jwt: problem nesting or chaining jwts.
-[Fri 00:00:00] <JohnTib> ends up with big list of signatures that doubles data everytime.
+[Fri 00:00:00] <JohnTib> ... ends up with big list of signatures that doubles data everytime.
 [Fri 00:00:00] <manu> ack manu
 [Fri 00:00:00] <Zakim> manu, you wanted to talk about identity containers
 [Fri 00:00:00] * Zakim sees agropper, Drummond on the speaker queue
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <Drummond> wait a minute, how can a signature sign the signature field? Doesn't that create a recursion problem?
-[Fri 00:00:00] <JohnTib> adrian: tying verifiable claims to JWTs will be pyrrhic victory.  everything needs to be tied to a standard.  we can't introduce a contingency we don't need.
+[Fri 00:00:00] <JohnTib> agropper: tying verifiable claims to JWTs will be pyrrhic victory.  everything needs to be tied to a standard.  we can't introduce a contingency we don't need.
 [Fri 00:00:00] <JohnTib> manu: for the openid and jwt people there's been strong support for using JWTs
 [Fri 00:00:00] <Drummond> q-
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <JohnTib> gregg: working group has to provide use cases and see if jwt can handle it.
-[Fri 00:00:00] <manu> maybe a json signature is more acceptable because it's based on json.
-[Fri 00:00:00] <manu> eric: does it solve the problem.
+[Fri 00:00:00] <JohnTib> ... maybe a json signature is more acceptable because it's based on json.
+[Fri 00:00:00] <JohnTib> ... eric: does it solve the problem.
 [Fri 00:00:00] <Assaf> q+
 [Fri 00:00:00] * Zakim sees Assaf on the speaker queue
 [Fri 00:00:00] <manu> ack Assaf
@@ -679,13 +685,13 @@
 [Fri 00:00:00] <Drummond> q+
 [Fri 00:00:00] * Zakim sees Drummond on the speaker queue
 [Fri 00:00:00] <JohnTib> assaf: who gets to choose signature method?
-[Fri 00:00:00] <manu> chrisA: working group can put forward list of signatures.
-[Fri 00:00:00] <manu> each approach has disadvantages and political risk.
 [Fri 00:00:00] <manu> scribe: manu
-[Fri 00:00:00] <manu> erick: We need interoperability at some point, so how do we get there?
+[Fri 00:00:00] <manu> christopherA: working group can put forward list of signatures.
+[Fri 00:00:00] <manu> ... each approach has disadvantages and political risk.
+[Fri 00:00:00] <manu> ekorb: We need interoperability at some point, so how do we get there?
 [Fri 00:00:00] <manu> q+
 [Fri 00:00:00] * Zakim sees Drummond, manu on the speaker queue
-[Fri 00:00:00] <manu> erick: OpenBadges isn't a standard in the formal sense, but may people are using it, perhaps that should be our approach.
+[Fri 00:00:00] <manu> ekorb: OpenBadges isn't a standard in the formal sense, but may people are using it, perhaps that should be our approach.
 [Fri 00:00:00] <Drummond> Drummond's point is that interoperability on signatures could be a matter of defacto standards rather than dejure if necessary
 [Fri 00:00:00] <manu> Christopher: We want to be able to create validators/proofs w/o PII - that's a dream goal, but I'd like to be able to make sure that each of you can accept non-personal information as an option.
 [Fri 00:00:00] <manu> Christopher: If we can get the developers doing it, they're going to do what happened at Google... get developer adoption first.
@@ -703,7 +709,7 @@
 [Fri 00:00:00] * Zakim sees agropper on the speaker queue
 [Fri 00:00:00] <manu> Christopher: Collecting funds from a variety of parties to try and support some indie developers - Spec Ops or otherwise to start coding this stuff around Bitcoin curve.
 [Fri 00:00:00] <manu> Christopher: If you are interested in being a recipient or contribute to those funds, let me know.
-[Fri 00:00:00] <manu> AdrianG: If there is some way that patient privacy rights can formally help this process without having to spend money - we're all volunteers - if we can influence W3C, do let me know.
+[Fri 00:00:00] <manu> agropper: If there is some way that patient privacy rights can formally help this process without having to spend money - we're all volunteers - if we can influence W3C, do let me know.
 [Fri 00:00:00] <manu> ack agropper
 [Fri 00:00:00] * Zakim sees no one on the speaker queue
 [Fri 00:00:00] <manu> Giovanna: I'm an entrepreneur, rewarding people for completing positive actions, verified owner profile, we want people to own their data. We'd be happy to be used as a test subject for what we're talking about. Launching in January.
@@ -720,38 +726,38 @@
 [Fri 00:00:00] <manu> https://lists.w3.org/Archives/Public/public-webpayments-comments/2016Oct/0031.html
 [Fri 00:00:00] <gkellogg> manu: reiew’s tantek’s feedback.
 [Fri 00:00:00] <gkellogg> … Chris Wilson from Google and Mike Champion from Microsoft are also looking for implementations and more concrete deliverables.
-[Fri 00:00:00] <manu> … We have documented commitments to implement; they’re just not seeing it.
-[Fri 00:00:00] <manu> … Also, why do we need a working group? Why not keep incubating.
-[Fri 00:00:00] <manu> … Mark Nautingham also +1’d
-[Fri 00:00:00] <manu> … We have several implementation commitments from people in this room, who will respond independently.
-[Fri 00:00:00] <manu> … If LRNG, Lumnia and other organizations that are actually using the technology chime it, that will help a lot.
-[Fri 00:00:00] <manu> … That’s fairly easy to do it. They’ll respond with who is really important.
-[Fri 00:00:00] <manu> https://w3c.github.io/webpayments-ig/VCTF/implementers/
+[Fri 00:00:00] <gkellogg> … We have documented commitments to implement; they’re just not seeing it.
+[Fri 00:00:00] <gkellogg> … Also, why do we need a working group? Why not keep incubating.
+[Fri 00:00:00] <gkellogg> … Mark Nautingham also +1’d
+[Fri 00:00:00] <gkellogg> … We have several implementation commitments from people in this room, who will respond independently.
+[Fri 00:00:00] <gkellogg> … If LRNG, Lumnia and other organizations that are actually using the technology chime it, that will help a lot.
+[Fri 00:00:00] <gkellogg> … That’s fairly easy to do it. They’ll respond with who is really important.
+[Fri 00:00:00] <gkellogg> https://w3c.github.io/webpayments-ig/VCTF/implementers/
 [Fri 00:00:00] <gkellogg> stone: might be interesting to take the list ^^^ to see what stage they’re in (promise or in-flight)
-[Fri 00:00:00] <manu> shanem: Spec Ops has promised to do pieces of this.
-[Fri 00:00:00] <manu> … We need a standard to prevent lack of interoperability.
+[Fri 00:00:00] <gkellogg> shanem: Spec Ops has promised to do pieces of this.
+[Fri 00:00:00] <gkellogg> … We need a standard to prevent lack of interoperability.
 [Fri 00:00:00] <gkellogg> manu: that’s the second point: why do you need a WG. Because of interoperability.
 [Fri 00:00:00] <gkellogg> … Government work needs to use this and needs standards to reference.
-[Fri 00:00:00] <manu> drummond: quoting: “Before it’s claimed to the contrary, this should not be understood as lack of support, but that we don’t want to create eco-systems, but support those which develop”
-[Fri 00:00:00] <manu> … When you show up with paved cow-paths, then it should be clear that we’re not creating something out of whole-cloth.
+[Fri 00:00:00] <gkellogg> drummond: quoting: “Before it’s claimed to the contrary, this should not be understood as lack of support, but that we don’t want to create eco-systems, but support those which develop”
+[Fri 00:00:00] <gkellogg> … When you show up with paved cow-paths, then it should be clear that we’re not creating something out of whole-cloth.
 [Fri 00:00:00] <gkellogg> manu: we seem to have concencus on the response; implementors will step forward to claim their implementations and why it’s inappropriate to standardize.
 [Fri 00:00:00] <gkellogg> Chris: quotes from his note, rather blisteringly.
 [Fri 00:00:00] <gkellogg> manu: next couple of weeks we’ll start up weekly meetings again.
 [Fri 00:00:00] <gkellogg> ShaneM: Is there a standards track for DiD?
-[Fri 00:00:00] <manu> ChrisA: It’s under discussion: Kantera, OASIS, or a commons organization.
-[Fri 00:00:00] <manu> … They all have tradeoffs. It seems premature right now, as backoff is required.
-[Fri 00:00:00] <manu> Adrian: I’ve had the same converation about there HEART should be fostered. It’s in the OpenID foundation, but should move.
-[Fri 00:00:00] <manu> ChrisA: There’s beginning to emerge decentralized development; it’s all in GitHub and PGP committed. Everything comes wiht consent agreements. This gives many of the benefits of standards organizations, except with individual rather than company commitments.
-[Fri 00:00:00] <manu> … Other organizations devolve the standards requirements.
-[Fri 00:00:00] <manu> … MIT Media Lab is one part contributing to BitCoin core, with some part-time commitments.
-[Fri 00:00:00] <manu> … They have their own take on Open Badges, but fundamentally block chain. They love DiDs and block-chain.
-[Fri 00:00:00] <manu> Adrian: There’s also people in Main Data Networking (IPFS like). They’re funded by the feds for similar reasons.
-[Fri 00:00:00] <manu> ChrisA: There will be a review on some of the work done under grant by Digital Baazar and Drummond’s company.
+[Fri 00:00:00] <gkellogg> ChristopherA: It’s under discussion: Kantera, OASIS, or a commons organization.
+[Fri 00:00:00] <gkellogg> … They all have tradeoffs. It seems premature right now, as backoff is required.
+[Fri 00:00:00] <gkellogg> agropper: I’ve had the same converation about there HEART should be fostered. It’s in the OpenID foundation, but should move.
+[Fri 00:00:00] <gkellogg> ChristopherA: There’s beginning to emerge decentralized development; it’s all in GitHub and PGP committed. Everything comes wiht consent agreements. This gives many of the benefits of standards organizations, except with individual rather than company commitments.
+[Fri 00:00:00] <gkellogg> … Other organizations devolve the standards requirements.
+[Fri 00:00:00] <gkellogg> … MIT Media Lab is one part contributing to BitCoin core, with some part-time commitments.
+[Fri 00:00:00] <gkellogg> … They have their own take on Open Badges, but fundamentally block chain. They love DiDs and block-chain.
+[Fri 00:00:00] <gkellogg> agropper: There’s also people in Main Data Networking (IPFS like). They’re funded by the feds for similar reasons.
+[Fri 00:00:00] <gkellogg> ChristopherA: There will be a review on some of the work done under grant by Digital Baazar and Drummond’s company.
 [Fri 00:00:00] <gkellogg> … There’s another fund for academic/comercial cross-work.
 [Fri 00:00:00] <gkellogg> … This would be a different group if GDPR people from europe were involved.
-[Fri 00:00:00] <manu> Drummond: if you’re in europe, and subject to GDPR, you must be auditable or suffer a 4% penalty.
-[Fri 00:00:00] <manu> … Could be called Verifiable Claims for Employment Act.
-[Fri 00:00:00] <manu> Joe: If we don’t become a WG, not sure what the future is, but the work need to happen.
+[Fri 00:00:00] <gkellogg> Drummond: if you’re in europe, and subject to GDPR, you must be auditable or suffer a 4% penalty.
+[Fri 00:00:00] <gkellogg> … Could be called Verifiable Claims for Employment Act.
+[Fri 00:00:00] <gkellogg> JoeAndrieu: If we don’t become a WG, not sure what the future is, but the work need to happen.
 [Fri 00:00:00] <gkellogg> manu: W3C TPAC is in Burlingame next year. They have an unconference setting, so that is a way to bring things up.
 [Fri 00:00:00] <gkellogg> stone: Thanks for the great meeting everyone, next meeting is online, next Tuesday, same time.
 [Fri 00:00:00] <gkellogg> End of Meeting
