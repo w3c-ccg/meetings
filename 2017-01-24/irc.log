@@ -1,0 +1,264 @@
+[Tue 11:04:11] <manu>	scribe: ottonomy
+[Tue 11:04:22] <burn>	Topic: Agenda Review
+[Tue 11:04:35] *	nage (~nathan.george@public.cloak) has joined #vctf
+[Tue 11:04:48] <burn>	Agenda is https://lists.w3.org/Archives/Public/public-credentials/2017Jan/0024.html
+[Tue 11:04:48] <ottonomy>	burn: comments or suggestions on the agenda?
+[Tue 11:04:48] <ottonomy>	No changes.
+[Tue 11:04:55] <manu>	Agenda:  https://lists.w3.org/Archives/Public/public-credentials/2017Jan/0024.html
+[Tue 11:04:56] <voip-vctf>	nage [SIP/sip2sip.info-0000006f] has joined the conference.
+[Tue 11:05:06] <burn>	Topic: Status of Verifiable Claims WG Vote
+[Tue 11:05:24] <ottonomy>	burn: Manu, can you give us an update on the Working Group vote status?
+[Tue 11:05:35] <voip-vctf>	Unknown [SIP/69.65.34.216-00000070] has joined the conference.
+[Tue 11:05:40] *	dezell (~dezell@public.cloak) has joined #vctf
+[Tue 11:05:48] <ottonomy>	manu: The vote is over; we did well. The W3C staff is now talking to the organizations that formally objected. They asked for some information from us, particularly around privacy.
+[Tue 11:05:56] <JoeAndrieu>	voip: 06f is JoeAndrieu
+[Tue 11:05:56] <voip-vctf>	Associated JoeAndrieu with SIP/sip2sip.info-0000006f.
+[Tue 11:06:12] <voip-vctf>	16179245273 [SIP/69.65.34.216-00000071] has joined the conference.
+[Tue 11:06:16] <ottonomy>	manu: Have we responded to privacy concerns, will we continue to respond etc. We sent them a list of links going back to 2011 where we have worked to address privacy concerns.
+[Tue 11:06:28] <ottonomy>	manu: Don't know when this process will be over.
+[Tue 11:06:57] <manu>	voip: 0071 is AdrianGropper
+[Tue 11:06:57] <voip-vctf>	Associated AdrianGropper with SIP/69.65.34.216-00000071.
+[Tue 11:07:05] <manu>	voip: 0070 is JoeAndrieu
+[Tue 11:07:09] <voip-vctf>	Associated JoeAndrieu with SIP/69.65.34.216-00000070.
+[Tue 11:07:12] <nage>	voip: 06f is nage
+[Tue 11:07:12] <voip-vctf>	Associated nage with SIP/sip2sip.info-0000006f.
+[Tue 11:07:13] <manu>	voip: 006f is NathanGeorge
+[Tue 11:07:13] <voip-vctf>	Associated NathanGeorge with SIP/sip2sip.info-0000006f.
+[Tue 11:07:16] <ottonomy>	burn: Any other questions on the status of the creation of the Verifiable Claims Working Group?
+[Tue 11:07:17] <burn>	Topic: Use Cases Narratives and Revocation/Privacy
+[Tue 11:07:18] *	manu thx nage :)
+[Tue 11:07:23] <voip-vctf>	17278084918 [SIP/69.65.34.216-00000072] has joined the conference.
+[Tue 11:07:27] <dezell>	voip:   072 is me
+[Tue 11:07:27] <voip-vctf>	Unknown command:   072 is me
+[Tue 11:07:29] <burn>	https://github.com/opencreds/vc-use-cases/issues/33
+[Tue 11:07:33] <manu>	voip: 0072 is dezell
+[Tue 11:07:33] <voip-vctf>	Associated dezell with SIP/69.65.34.216-00000072.
+[Tue 11:07:40] *	manu dezell - voipbot hates spaces :P
+[Tue 11:07:40] *	dezell I tried!
+[Tue 11:07:50] *	manu will have to update the regex.
+[Tue 11:07:56] <ottonomy>	burn: We'll time-limit this discussion. Manu and Joe are the two who are going to have the first comments here.
+[Tue 11:07:58] <dezell>	Present+ dezell
+[Tue 11:08:18] *	MattLarson (~MattLarson@public.cloak) has joined #vctf
+[Tue 11:08:26] <voip-vctf>	14105315457 [SIP/69.65.34.216-00000074] has joined the conference.
+[Tue 11:08:52] *	les (~les@public.cloak) has joined #vctf
+[Tue 11:08:55] <ottonomy>	JoeAndrieu: This started out as simply another way to represent the tasks in the use cases. Specifically to upgrade and expand the "sequences" we have. This is how I do it in my practice. What came out of this exercise for me were some questions about architecture and protocol. These are somewhat outside our charter, but the questions were hard to answer without at least a strawman.
+[Tue 11:09:08] <manu>	voip: 0074 is LesChasen
+[Tue 11:09:08] <voip-vctf>	Associated LesChasen with SIP/69.65.34.216-00000074.
+[Tue 11:09:32] <ottonomy>	JoeAndrieu: From a requirements standpoint, it seemed like a distributed ledger would at some point be necessary, made it seem like an architecture section is necessary
+[Tue 11:09:53] <ottonomy>	manu: The idea of converting sequences to essential narratives seems good. Waiting on you, Joe, to take the next step
+[Tue 11:10:33] <ottonomy>	manu: On revocation, there has to be some work on the data model side on how to express revocation. Some work has been done on this. Nate Otto (ottonomy) and Badge Alliance/Open Badges have done some work on RevocationLists as one method.
+[Tue 11:10:47] <ottonomy>	manu: Do we want as part of the verifiable claims work to specify how revocation is handled?
+[Tue 11:11:03] <ottonomy>	manu: One thing we can put in a credential is a "place to look up revocation information".
+[Tue 11:11:31] <ottonomy>	manu: One approach is to say this is out of scope, to say that here's a revocation url but it's up to you to figure out what's at the end of that list.
+[Tue 11:11:41] <burn>	q+ what do you mean by an object for revocation?
+[Tue 11:11:41] <voip-vctf>	burn has been added to the queue: burn
+[Tue 11:11:43] <dlongley>	q+ to say that we should specify how to at least express how revocation will work
+[Tue 11:11:43] <voip-vctf>	dlongley has been added to the queue: burn, dlongley
+[Tue 11:11:59] <ottonomy>	manu: Those are at least two of the questions in front of us about revocation? Do we want to express it in the group / do we specify a specific protocol?
+[Tue 11:12:08] <burn>	q?
+[Tue 11:12:08] <voip-vctf>	The current speaker queue is: burn, dlongley
+[Tue 11:12:17] <ottonomy>	manu: I think you got the descriptions right in the narrative got it right.
+[Tue 11:12:59] <burn>	ack burn
+[Tue 11:12:59] <voip-vctf>	burn has the floor (what do you mean by an object for revocation?).
+[Tue 11:13:08] <ottonomy>	manu: I'll stop there. We have a couple decisions about what we want to support in the group and how far we want to spec this out. My company will be implementing ledger-based revocation and url/http-based revocation in the next 6 months. We'll have experimental proposals for the group to see if they want to bring any of these approaches in.
+[Tue 11:13:28] <ottonomy>	burn: Could you say a little bit more about how to point to an external object for revocation?
+[Tue 11:13:36] <jonnycrunch>	q+
+[Tue 11:13:36] <voip-vctf>	jonnycrunch has been added to the queue: dlongley, jonnycrunch
+[Tue 11:14:18] <burn>	ack dlongley
+[Tue 11:14:18] <voip-vctf>	dlongley has the floor (to say that we should specify how to at least express how revocation will work).
+[Tue 11:14:20] <ottonomy>	manu: In the current certificate authority system we have a system for certificate revocation lists. This is a format for certs that have been revoked by a CA. We're effectively talking about the same thing, so part of this is to see if we can use the same format. Or if a new format that's a better fit for VCs.
+[Tue 11:14:24] <ottonomy>	...would be better
+[Tue 11:14:59] <burn>	ack jonnycrunch
+[Tue 11:14:59] <voip-vctf>	jonnycrunch has the floor.
+[Tue 11:15:03] <ottonomy>	dlongley: We shouldn't assume that there is just one way to do revocation. There may be varying needs for different levels of privacy or etc. What we should be able to do is express information in the credential itself to describe what type of revocation method is used.
+[Tue 11:15:23] <nage>	+1
+[Tue 11:15:29] <amigus>	q?
+[Tue 11:15:29] <voip-vctf>	The speaker queue is empty.
+[Tue 11:15:33] <amigus>	q+
+[Tue 11:15:33] <voip-vctf>	amigus has been added to the queue: amigus
+[Tue 11:15:40] <burn>	ack amigus
+[Tue 11:15:40] <voip-vctf>	amigus has the floor.
+[Tue 11:15:42] <ottonomy>	jonnycrunch: I pitched this to the american board of medical specialities. There's some differences about how this would like to be expressed...
+[Tue 11:16:05] <ottonomy>	amigus: I agree with everyone here. I don't think we've done a complete job if we "scope out" revocation. Need to have at least one way in scope for the project.
+[Tue 11:16:20] <ottonomy>	burn: I'm not hearing any disagreement with putting revocation into scope.
+[Tue 11:16:33] <manu>	q+ to ask Nate his thoughts and scribe for him while he talks.
+[Tue 11:16:33] <voip-vctf>	manu has been added to the queue: manu
+[Tue 11:16:35] <ottonomy>	burn: I think we knew that anyway, but it's nice to have it reviewed here that we agree that it's in scope.
+[Tue 11:16:54] <ottonomy>	manu: I do want to hear from Nathan George and Nate Otto
+[Tue 11:17:35] <ottonomy>	manu: The next steps for issue #33 is about converting sequences to essential narratives: Let Joe convert the doc to this format.
+[Tue 11:17:47] <ottonomy>	manu: We should take this revocation thing and move it to its own issue.
+[Tue 11:18:15] <ottonomy>	manu: We need to create an issue in the data model to add a section on revocation.
+[Tue 11:18:21] <ottonomy>	q+
+[Tue 11:18:21] <voip-vctf>	ottonomy has been added to the queue: manu, ottonomy
+[Tue 11:18:28] <manu>	ack manu
+[Tue 11:18:28] <voip-vctf>	manu has the floor (to ask Nate his thoughts and scribe for him while he talks.).
+[Tue 11:18:29] <burn>	ack ottonomy
+[Tue 11:18:29] <voip-vctf>	ottonomy has the floor.
+[Tue 11:18:48] <manu>	ottonomy: Yes, Badge Alliance and Open Badges Spec, moved to IMS Global, we do have a notion of revocation list, and hosted revocation.
+[Tue 11:19:27] <manu>	ottonomy: We have two ways of verification of revocation... ID that is HTTP based for revocation... go fetch document, use whatever you found as canonical document, if there is a property revoked=true, then it's been revoked. Most people only publish that property.
+[Tue 11:20:07] <burn>	q?
+[Tue 11:20:07] <voip-vctf>	The speaker queue is empty.
+[Tue 11:20:24] <manu>	ottonomy: There is also a signed assertion version, you can use a revocation list where there is a Linked Data document that contains an array of revoked assertions, if you find a revoked assertion, then you can assume it's revoked. you can find revocation reason. From this experience, not all platforms are going to want to use the same method of revocation, we wanted to keep spec open to things like ledger-based revocation in the future. 
+[Tue 11:20:47] <manu>	ottonomy: If they are using signed verification - they may be sensitive to hosting costs, so ledger based may be the way to go in the future there.
+[Tue 11:20:54] <burn>	q?
+[Tue 11:20:54] <voip-vctf>	The speaker queue is empty.
+[Tue 11:21:49] <ottonomy>	nage: A lot of our revocation story is centered around the idea of anonymous credentials. About whether data is included or not included in a specific claim. We can extend that story to cover credentials that are not presented as an anonymous credential. Would like to cover how revocation is covered in a "did"-like object.
+[Tue 11:22:11] <burn>	q?
+[Tue 11:22:11] <voip-vctf>	The speaker queue is empty.
+[Tue 11:22:17] <ottonomy>	burn: Manu, you had volunteered to create a new issue for the data model?
+[Tue 11:22:47] <ottonomy>	manu: Sounds like we are creating a new section in the data model for revocation. Sounds like we don't want to say there must be only one way. I'll volunteer to write this section.
+[Tue 11:22:59] <ottonomy>	otto: Yes, I can help put that together
+[Tue 11:23:12] <ottonomy>	burn: Make sure to put forward and back references to what we have.
+[Tue 11:23:22] <ottonomy>	burn: When you create the issue, link to #33 and from #33
+[Tue 11:23:27] <ottonomy>	manu: will do.
+[Tue 11:23:48] <ottonomy>	burn: Any other questions/comments/discussion on either issue #33 or the topic of revocation, creating a new revocation section.
+[Tue 11:23:57] <burn>	Topic: Correlation Analysis and Prevention
+[Tue 11:24:06] <burn>	https://github.com/opencreds/vc-data-model/issues/12
+[Tue 11:24:22] <ottonomy>	burn: I think it was the same two people on this one.
+[Tue 11:24:35] *	manu added Revocation issue - https://github.com/opencreds/vc-data-model/issues/34
+[Tue 11:25:00] <ottonomy>	JoeAndrieu: This started out initially as an open question about how we deal with correlation in the privacy section. I made some notes, but I'll skip them, because they're not what the issue became. Adrian added what I call a "use domain".
+[Tue 11:25:22] <ottonomy>	JoeAndrieu: How do you talk about these usages that are really several transactions in a system.
+[Tue 11:26:03] *	erkorb_rm (~eric.korb@public.cloak) has joined #vctf
+[Tue 11:26:04] <ottonomy>	JoeAndrieu: What came out was a discussion about correlation. Questions for me came up like, "What's the architecture?" How can we talk about correlation of different entities in these transactions. Adrian's language didn't necessarily break it out in terms of architecture and components.
+[Tue 11:26:28] <voip-vctf>	19082515759 [SIP/69.65.34.216-00000075] has joined the conference.
+[Tue 11:26:44] <burn>	q?
+[Tue 11:26:44] <voip-vctf>	The speaker queue is empty.
+[Tue 11:26:44] <voip-vctf>	Associated Eric Korb with SIP/69.65.34.216-00000075.
+[Tue 11:26:46] <ottonomy>	JoeAndrieu: We still have this open issue for how we want to talk about the architecture in this document? How do we want to talk about correlation (and preventing correlation) in our data model so we can nail down privacy impacts of verifiable claims?
+[Tue 11:27:37] <ottonomy>	manu: I think the use case was super helpful from Adrian to help narrow down all the types of anti-correlation that we want to build into the system. It's also clear that we can't do anti-correlation in some of these scenarios. Pure URL approaches will correlate strongly... other approaches like using pseudonymous signatures in other cases will preserve your privacy.
+[Tue 11:28:26] <ottonomy>	manu: Not sure where we go with this. Two things we have to do in WG: Enable a privacy-enhancing non-correlatable way of doing this (minimum bar in the data model). Question: can we suggest any standard way to do this -- while these technologies are still in development, haven't gone through security review.
+[Tue 11:28:49] <ottonomy>	manu: Best we may do is say in the spec that it is desired that these be non-correlatable, but provide a warning for pitfalls that make them correlatable.
+[Tue 11:29:20] <ottonomy>	manu: Then outside the group, work on things like group signatures, anonymous signatures, ... things that plug into the spec and without any modification to the spec improve people's privacy.
+[Tue 11:29:37] <jonnycrunch>	q+
+[Tue 11:29:37] <voip-vctf>	jonnycrunch has been added to the queue: jonnycrunch
+[Tue 11:29:41] <ottonomy>	manu: For now, we should specifically point out what actions lead to correlatability.
+[Tue 11:29:41] <dlongley>	we should say "unintentionally correlated"
+[Tue 11:29:56] <ottonomy>	burn: Adrian are you on the call?
+[Tue 11:30:02] <dlongley>	since correlation is both a goal and something to avoid
+[Tue 11:30:07] <burn>	s/burn/JoeAndrieu/
+[Tue 11:30:33] <burn>	ack jonnycrunch
+[Tue 11:30:33] <voip-vctf>	jonnycrunch has the floor.
+[Tue 11:30:34] <ottonomy>	gropper: I'm tracking what's being said. Glad to try to help. Not at a point where I can relate this in terms of the technology, but let's keep at it.
+[Tue 11:31:00] <ottonomy>	jonnycrunch: Great use case, well documented. While this is my niche, it's a heavy lift.
+[Tue 11:31:16] <burn>	q?
+[Tue 11:31:16] <voip-vctf>	The speaker queue is empty.
+[Tue 11:31:39] <burn>	q?
+[Tue 11:31:39] <voip-vctf>	The speaker queue is empty.
+[Tue 11:31:42] <ottonomy>	jonnycrunch: Let's start off with a simple use case, with this global vision in mind. This is less of a use case than a "use domain" or a "vision". We're not quite there to apply this technology to make sure we completely enable privacy from the get-go.
+[Tue 11:32:33] <ottonomy>	JoeAndrieu: I mentioned that in both the issues we talked about, a desire to have some straw man architecture/protocol, even though that's outside of scope. Maybe we can do what we did for revocation about how we talk about this within the documents.
+[Tue 11:33:22] <ottonomy>	JoeAndrieu: Vision: This pharmacy has its domain of trust, this doctor has its domain of trust. We want the Pharmacy to not be able to make certain correlations, but others might need to... Need a description of architecture in this document.
+[Tue 11:33:30] <ottonomy>	manu: What type of architecture, and which document?
+[Tue 11:34:00] <manu>	q+ to propose security analysis for specific scenarios, and generalize from there.
+[Tue 11:34:00] <voip-vctf>	manu has been added to the queue: manu
+[Tue 11:34:24] <burn>	ack manu
+[Tue 11:34:24] <voip-vctf>	manu has the floor (to propose security analysis for specific scenarios, and generalize from there.).
+[Tue 11:34:29] <ottonomy>	JoeAndrieu: I have asked for an architecture in general for all verifiable claims (what are our assumptions about all verifiable claims). For revocation, I can address what I need by using a "url, where there may be something". Some of these other use domains need some circles and arrows to explain the different actors, or the different domains of trust.
+[Tue 11:34:33] <agropper>	q+
+[Tue 11:34:33] <voip-vctf>	agropper has been added to the queue: agropper
+[Tue 11:36:16] <jonnycrunch>	+1
+[Tue 11:36:30] <ottonomy>	manu: Trying to get to next step here. Last thing you said hit the nail on the head. We haven't documented the privacy domains. I don't think we're there yet, but we can do a privacy-and-security analysis on Adrian (agropper's) use case. We're all pushing toward something where you're not correlatable, but if we take specific scenarios and apply the spec as we have it, we'll be able to say what the privacy implcations are. If we do this enough times, we may come up with a general case, but let's only generalize after we start to see patterns from specific cases based on the VC spec we have now.
+[Tue 11:36:39] <burn>	ack agropper
+[Tue 11:36:39] <voip-vctf>	agropper has the floor.
+[Tue 11:38:09] <ottonomy>	agropper: I think in terms of privacy engineering -- to your comment about this being a "use domain": given that privacy engineering is a field, it would be useful to bring that document into the conversation that joe introduced us to whether we're developing a use case or use domain.
+[Tue 11:38:43] <dlongley>	+1 to manu's suggestion
+[Tue 11:38:46] <ottonomy>	burn: Any objections to proceeding with manu's suggestion, starting with agropper's use case?
+[Tue 11:38:50] <ottonomy>	+1
+[Tue 11:39:07] <jonnycrunch>	q+
+[Tue 11:39:07] <voip-vctf>	jonnycrunch has been added to the queue: jonnycrunch
+[Tue 11:39:08] *	manu the royal "We"
+[Tue 11:39:17] <ottonomy>	burn: We do need people to do that though. The discussion was "We could do this"... Who would be willing to work on that?
+[Tue 11:39:17] <jonnycrunch>	I do
+[Tue 11:39:29] <agropper>	http://nvlpubs.nist.gov/nistpubs/ir/2017/NIST.IR.8062.pdf
+[Tue 11:39:36] *	manu can volunteer to do that...
+[Tue 11:39:41] <burn>	ack jonnycrunch
+[Tue 11:39:41] <voip-vctf>	jonnycrunch has the floor.
+[Tue 11:39:44] <amigus>	sign me up
+[Tue 11:39:54] <ottonomy>	JoeAndrieu: I can help, this is the next step to this work, but I'm not familiar with agropper's term of privacy engineering
+[Tue 11:39:56] <manu>	I volunteer to help w/ the privacy analysis for Adrian Gropper's use case.
+[Tue 11:40:16] <amigus>	(I know enough about NIST privacy engineering to be *very* dangerous). :-)
+[Tue 11:40:41] <ottonomy>	jonnycrunch: It's about documenting the stakeholders. Understanding the technology that's used in a position. I'm with the american board of medical specialties, and this is a cumbersome process right now. Need first understanding the landscape of players, then the technical landscape.
+[Tue 11:41:21] <agropper>	I volunteer as well
+[Tue 11:41:53] <ottonomy>	jonnycrunch: I can help understand the stakeholders and document that. The privacy engineering field will have specific angle. I can help with documenting the stakeholders, but this is a heavy lift. There are background players, like employers (providers of health insurance..). It' s about understanding the flow of information in the state of the art and identifying opportunities for privacy enhancement.
+[Tue 11:42:00] <nage>	I've been through all these data flows before (developed medical data products prior to my work at Evernym), and can also participate as needed
+[Tue 11:42:03] <ottonomy>	burn: JoeAndrieu, will you oversee this and get it started?
+[Tue 11:42:16] <ottonomy>	JoeAndrieu: I think this is going to be more than a one hour chat and we're done.
+[Tue 11:42:25] <ottonomy>	JoeAndrieu: should we set up a call?
+[Tue 11:43:00] <ottonomy>	burn: Every time we talk about privacy, there are other aspects that come up? Worry that we wouldn't have the right person on a breakout call when that happens.
+[Tue 11:43:23] <ottonomy>	JoeAndrieu: Meant to propose a call on "Use Cases" generally, not just this task.
+[Tue 11:43:27] <jonnycrunch>	+1
+[Tue 11:44:05] <ottonomy>	burn: We have what we need to proceed for this issue? Thoughts on proposal from Joe for separate Use Cases call?
+[Tue 11:44:13] <jonnycrunch>	q+
+[Tue 11:44:13] <voip-vctf>	jonnycrunch has been added to the queue: jonnycrunch
+[Tue 11:44:16] <ottonomy>	manu: We're suffering from telecon-itis. Though we want to help......
+[Tue 11:45:11] <ottonomy>	manu: See your point, want to agree. Will have trouble carving out time on a regular basis. Wondering how to help without volunteering to attend another telecon. Could we just continue in GitHub and just tag a bunch of people who volunteered? Or just one call to make a gameplan then move to async in the issue tracker?
+[Tue 11:45:18] <ottonomy>	JoeAndrieu: I take your point.
+[Tue 11:46:19] <jonnycrunch>	+1
+[Tue 11:46:20] <burn>	ack jonnycrunch
+[Tue 11:46:20] <voip-vctf>	jonnycrunch has the floor.
+[Tue 11:46:26] <ottonomy>	JoeAndrieu: You guys have lots of calls, looking at the larger community of conversations going on here. We could try moving this forward on GitHub, or have an initiating call to establish a framework and then tease out the details on GitHub. I'd like to (at least) do that. As part of my conversation with agropper there was some good back and forth, but I'm not sure I've grasped the whole domain. Maybe take a call to frame the domain and then move to GitHub.
+[Tue 11:46:29] <ottonomy>	jonnycrunch: Great solution.
+[Tue 11:46:44] <burn>	q+ to say that we can dedicate next week's call for this if Joe wants
+[Tue 11:46:44] <voip-vctf>	burn has been added to the queue: burn
+[Tue 11:46:54] <burn>	ack burn
+[Tue 11:46:54] <voip-vctf>	burn has the floor (to say that we can dedicate next week's call for this if Joe wants).
+[Tue 11:46:55] <ottonomy>	jonnycrunch: If we have one call to hash out details, then move to github. This is a great domain to "solve", if we solve this one, other solutions may come from it.
+[Tue 11:47:08] <ShaneM>	"A Repo-Man's life is always intense"
+[Tue 11:47:21] <ottonomy>	burn: Do you need something longer than an hour? We could dedicate next week's call to this for the kickoff meeting.
+[Tue 11:47:33] <manu>	I noted volunteers here: https://github.com/opencreds/vc-data-model/issues/12#issuecomment-274862221
+[Tue 11:47:40] <ottonomy>	JoeAndrieu: that would be great. Save me the trouble of organizing a different time on people's calendar.
+[Tue 11:47:49] <manu>	q+ to ask about technical progress/implementation (new Agenda topic)
+[Tue 11:47:49] <voip-vctf>	manu has been added to the queue: manu
+[Tue 11:47:52] <ottonomy>	burn: Any objections to using next week's telecon for that?
+[Tue 11:47:59] <JoeAndrieu>	And lets keep the github moving forward as well
+[Tue 11:48:03] <ottonomy>	burn: will connect with you on agenda, to let you take it over.
+[Tue 11:48:08] <burn>	ack manu
+[Tue 11:48:09] <voip-vctf>	manu has the floor (to ask about technical progress/implementation (new Agenda topic)).
+[Tue 11:48:42] <ottonomy>	manu: question for you, Dan: At some point, we should talk about those of us who will be implementing over the next 6 months... test suite... requirements.
+[Tue 11:49:02] <ottonomy>	burn: I'll be talking with the other chairs later this week about what would be a good way to address that. We'll be sending some thoughts out to the list within a week or so.
+[Tue 11:49:24] <ottonomy>	burn: We're at the end of our "above-the-line" items for the agenda.
+[Tue 11:49:28] *	manu has changed the topic to: Agenda: https://lists.w3.org/Archives/Public/public-credentials/2017Jan/0024.html
+[Tue 11:49:46] <ottonomy>	burn: JoeAndrieu, is there anything else you're aware of in the issues that would be good for productive discussion for 10 minutes?
+[Tue 11:50:44] <burn>	Topic: Filtering, Focusing use cases
+[Tue 11:50:55] <ottonomy>	andrieu: In vc-data-model privacy issues, several are near duplicates: #11 & #12, #6 & #7
+[Tue 11:51:06] <manu>	q+ to talk about digital offers, digital coupons, digital receipts, etc...
+[Tue 11:51:06] <voip-vctf>	manu has been added to the queue: manu
+[Tue 11:51:07] <burn>	q?
+[Tue 11:51:07] <voip-vctf>	The current speaker queue is: manu
+[Tue 11:51:13] <burn>	ack manu
+[Tue 11:51:13] <voip-vctf>	manu has the floor (to talk about digital offers, digital coupons, digital receipts, etc...).
+[Tue 11:51:19] <ottonomy>	JoeAndrieu: make sure we get everyone's pet use case on the list of what's dealt with.
+[Tue 11:51:21] <burn>	q+
+[Tue 11:51:21] <voip-vctf>	burn has been added to the queue: burn
+[Tue 11:51:58] <ShaneM>	+1 to that
+[Tue 11:53:00] <ottonomy>	manu: Along those lines, JoeAndrieu, I think we've been talking about healthcare and education for a bit, but the VC work was kicked off and started by the Web Payments IG. They care about things like digital loyalty, coupons, offers. From my perspective those are all verifiable claims. JoeAndrieu, do you feel these retail use cases are well represented in the doc? I'd hate to get into the group and not have these use cases present for people who are not yet at the table (in some cases, they  have their own group for Digital Offers). Those have been use cases for a long while, the reshuffling to focus on focal use cases, we may have lost a few of those retail/commerce use cases.
+[Tue 11:53:34] <ShaneM>	we had lots of use cases about finance in the document I edited...
+[Tue 11:53:36] <jonnycrunch>	That is my concern as well that we are doing a "push" into healthcare, when there currently is a "pull" in the web payments domain.
+[Tue 11:53:45] <ottonomy>	JoeAndrieu: Yes we did; The only two retail we have are young use cases. Adult beverages... Manu what I'm hearing is we need to overall review whether we have the domains we want to focus on. In those domains, do we have the use cases that matter to those domains?
+[Tue 11:54:01] <ottonomy>	JoeAndrieu: Under retail, we only have address verification and adult beverages.
+[Tue 11:55:01] *	dezell is hearing you.
+[Tue 11:55:10] <ottonomy>	manu: This is a problem to only have so little for our organization. I want to at least want some of these (loyalty, offers) in the document so people can't say we ignored it. We're not coordinating with the Digital Offers group enough. Would like to cross pollenate, so we can hear their use cases. Get more of those people into this group beyond dezell and myself.
+[Tue 11:55:25] *	dezell agrees that DO should be front/center in terms of use cases.
+[Tue 11:55:46] <dezell>	q?
+[Tue 11:55:46] <voip-vctf>	The current speaker queue is: burn
+[Tue 11:56:04] <dlongley>	offers: "you can buy this for X", loyalty: "you are loyalty member X", receipts: "you bought this for X, it's your proof-of-purchase", discounts/coupons: "you can buy this thing at a reduced rate" or "you can buy two of these for the price of one"
+[Tue 11:56:04] <JoeAndrieu>	q+
+[Tue 11:56:04] <voip-vctf>	JoeAndrieu has been added to the queue: burn, JoeAndrieu
+[Tue 11:56:07] <ottonomy>	manu: It's Digtial Offers (this thing, this price), digital coupons, loyalty cards, digital receipts (which will be raised soon in WP IG as point of interest). Web Payments IG working on 2017 vision now, having face-to-face in Chicago in March. Would be good to get some of this work fed back to the WP IG especially on digital offers.
+[Tue 11:56:14] <burn>	ack burn
+[Tue 11:56:14] <voip-vctf>	burn has the floor.
+[Tue 11:57:06] <dezell>	I agree that Digital Offers should be front/center in terms of use cases.
+[Tue 11:57:09] <ottonomy>	burn: I want to hear some of the comments from others, as we're getting short on time. Want to make general statement that it's easy sometimes when (this effort spun out of payments, so payments group may think we know what they need), but at some point soon we need to prioritize what we work on. Priority is likely to be based on those who are participating in the group.
+[Tue 11:58:00] <burn>	q?
+[Tue 11:58:00] <voip-vctf>	The current speaker queue is: JoeAndrieu
+[Tue 11:58:02] <ottonomy>	burn: Before dezell panics, this is not saying use cases from payments are not important, but more of a motivation for that group to keep participating. Participation will be what ensures we can focus on that work when we start prioritizing. Any prioritization we do now will be redone/reshuffled when the WG starts anyway.
+[Tue 11:58:09] <burn>	ack JoeAndrieu
+[Tue 11:58:09] <voip-vctf>	JoeAndrieu has the floor.
+[Tue 11:58:55] <ottonomy>	JoeAndrieu: Previously, I suggested bringing in domain experts in each of these domains. Is there a way to do that for the domains we're addressing in healthcare, finance, retail, (education). Is it a good process idea to try to corral specific people?
+[Tue 11:59:28] <ottonomy>	burn: It's fine to invite people you think will help us move forward. If they're difficult to get, find a week they might be able to attend and let's work it into the agenda then.
+[Tue 12:00:00] <ottonomy>	JoeAndrieu: More like identifying people who are already in the conversation. "I want to work with YOU on HEALTHCARE" "I want to work with YOU on FINANCE". Are there people in our conversation already we can earmark?
+[Tue 12:00:09] <amigus>	Please consider me an SME for financial services
+[Tue 12:00:14] <ottonomy>	burn: Good discussion; we're at the end of the hour.
+[Tue 12:00:39] <ottonomy>	burn: Let's table that for the moment. Not quite sure where to put it. Very important question about how that should work. Let's talk offline, JoeAndrieu about a good way to incorporate.
+[Tue 12:00:46] <ottonomy>	burn: Thank you very much.
+[Tue 12:00:46] <ottonomy>	Present: Lake, sporny, andrieu, lehn, longley, mccarron, burn,  migus, ottonomy, holt, nage, gropper, dezell, chasen, korb
+
