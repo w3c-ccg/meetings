@@ -109,7 +109,7 @@ function sendEmail(username, password, hostname, content, callback) {
     text:    content,
     from: 'msporny@digitalbazaar.com',
     //from:    username + '@' + hostname,
-    to:      'Web Payments IG <public-webpayments-ig@w3.org>, Credentials CG <public-credentials@w3.org>',
+    to:      'Credentials CG <public-credentials@w3.org>',
     subject: 'Verifiable Claims Telecon Minutes for ' + gDate
   }, function(err, message) {
     if(err) {
@@ -118,7 +118,7 @@ function sendEmail(username, password, hostname, content, callback) {
     }
 
     if(!program.quiet) {
-      console.log('scrawl: Sent minutes email to public-webpayments-ig@w3.org');
+      console.log('scrawl: Sent minutes email to public-credentials@w3.org');
     }
     callback();
   });
