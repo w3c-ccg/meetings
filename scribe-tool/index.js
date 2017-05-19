@@ -110,7 +110,7 @@ function sendEmail(username, password, hostname, content, callback) {
     from: 'msporny@digitalbazaar.com',
     //from:    username + '@' + hostname,
     to:      'Credentials CG <public-credentials@w3.org>',
-    subject: 'Credentials CG Telecon Minutes for ' + gDate
+    subject: '[MINUTES] W3C Credentials CG Call - ' + gDate + ' 12pm ET'
   }, function(err, message) {
     if(err) {
       console.log('scrawl:', err);
