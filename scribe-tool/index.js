@@ -40,7 +40,7 @@ var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
 
 // configure scrawl
-scrawl.group = 'Verifiable Claims CG Telecon';
+scrawl.group = 'Credentials CG Telecon';
 scrawl.people = JSON.parse(peopleJson);
 
 /************************* Utility Functions *********************************/
@@ -110,7 +110,7 @@ function sendEmail(username, password, hostname, content, callback) {
     from: 'msporny@digitalbazaar.com',
     //from:    username + '@' + hostname,
     to:      'Credentials CG <public-credentials@w3.org>',
-    subject: 'Verifiable Claims CG Telecon Minutes for ' + gDate
+    subject: 'Credentials CG Telecon Minutes for ' + gDate
   }, function(err, message) {
     if(err) {
       console.log('scrawl:', err);
@@ -270,7 +270,7 @@ async.waterfall([ function(callback) {
     var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
       .replace(/\n/g, '').replace('Scribe:  ', '');
     content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
-      'for this week\'s Verifiable Claims CG telecon are now available:\n\n' +
+      'for this week\'s Credentials CG telecon are now available:\n\n' +
       'http://w3c.github.io/vctf/meetings/'+ gDate + '/\n\n' +
       'Full text of the discussion follows for W3C archival purposes.\n' +
       'Audio from the meeting is available as well (link provided below).\n\n' +
@@ -340,7 +340,7 @@ async.waterfall([ function(callback) {
     }
 
     // format in a way that is readable on G+
-    content = '*Verifiable Claims CG Meeting Summary for ' + gDate + '*\n\n' +
+    content = '*Credentials CG Meeting Summary for ' + gDate + '*\n\n' +
       'We discussed ' + formattedItems + '.\n\n' +
       content + '\nFull transcript and audio logs are available here:\n\n' +
       'http://w3c.github.io/vctf/meetings/' + gDate + '/\n\n' +
@@ -387,7 +387,7 @@ async.waterfall([ function(callback) {
         }
       }, function(err, results) {
         // construct the tweet
-        var tweet = 'Verifiable Claims CG discusses ' +
+        var tweet = 'Credentials CG discusses ' +
           results.message + ': https://w3c.github.io/vctf/meetings/' +
           gDate + '/ #w3c #vctf';
 
@@ -407,7 +407,7 @@ async.waterfall([ function(callback) {
       console.log('scrawl: Creating new blog post.');
     }
     var content = {
-      post_title: 'Verifiable Claims CG Meeting Minutes for ' + gDate,
+      post_title: 'Credentials CG Meeting Minutes for ' + gDate,
       post_content: scrawl.generateMinutes(gLogData, 'html', gDate)
     };
 
@@ -421,7 +421,7 @@ async.waterfall([ function(callback) {
       prompt.get({
         properties: {
           username: {
-            description: 'Enter the Verifiable Claims WordPress username',
+            description: 'Enter the Credentials WordPress username',
             pattern: /^.{4,}$/,
             message: 'The username must be at least 4 characters.',
             'default': 'msporny'
