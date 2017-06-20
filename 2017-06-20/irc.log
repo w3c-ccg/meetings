@@ -1,0 +1,256 @@
+[Tue 12:03:01] <dlongley>	scribe: dlongley
+[Tue 12:03:29] <voip-vctf>	18057058651 [SIP/69.65.34.216-00000150] has joined the conference.
+[Tue 12:03:31] <dlongley>	kimhd goes over the agenda
+[Tue 12:03:48] *	manu make sure to assign people to phone lines so we know who is here.
+[Tue 12:03:50] *	Moses (~Moses@public.cloak) has joined #vctf
+[Tue 12:03:56] *	manu MOSES! :)
+[Tue 12:04:05] <dlongley>	kimhd: I'm going to talk to some of the signatures suites to give an overview of what's in those suites. Manu isn't able to make it today but Dave Longley may be able to fill in for some questions while that's happening.
+[Tue 12:04:06] <JoeAndrieu>	voip: 0150 is JoeAndrieu
+[Tue 12:04:06] <voip-vctf>	Associated JoeAndrieu with SIP/69.65.34.216-00000150.
+[Tue 12:04:23] *	manu doesn't know if Moses is on the call yet.
+[Tue 12:04:30] *	manu he just joined IRC.
+[Tue 12:05:07] <voip-vctf>	14155694979 [SIP/69.65.34.216-00000151] has joined the conference.
+[Tue 12:05:15] <dlongley>	grempe: I'm the vice president of Engineering with Tierion
+[Tue 12:06:38] <dlongley>	kimhd: We're talking about having a remote hackathon in July, 2nd or 3rd week. Ryan and Christopher and I are interested in getting some code and more detailed specs out related to that.
+[Tue 12:07:00] <dlongley>	kimhd: Next week we'll have Jan Camenisch presenting on selective disclosure, CL signatures, etc.
+[Tue 12:07:16] <dlongley>	kimhd: We haven't had much time to discuss those work items much so far, looking forward for that.
+[Tue 12:08:01] <dlongley>	kimhd: We're getting a lot of responses on the poll -- decentralized IDs is in the lead, lots of interest there. VC related items getting interest. Privacy and security requirements doing well. Data minimization and selective disclosure.... we'll be snapshotting these results next week and going ahead with identifying which work items to start on first.
+[Tue 12:08:09] <dlongley>	kimhd: Let's jump into the work items.
+[Tue 12:08:13] <dlongley>	Topic: Bitcoin DID Method (BTCR)
+[Tue 12:08:13] <dlongley>	kimhd: Ryan?
+[Tue 12:08:48] <dlongley>	Ryan: I'm talking about BTCR method specific implementation of distributed identity. This falls under the DID spec format.
+[Tue 12:08:49] <ChristopherA>	did:btcr:tx-5678-678-6789-678
+[Tue 12:08:59] <dlongley>	Ryan: It's a way to control an identity and prove that you control it using the bitcoin blockchain.
+[Tue 12:09:39] <dlongley>	Ryan: Basically, we have a spec to follow under the DID master spec and our task is to define how an identity is controlled and changed using entries on the bitcoin blockchain and tie that to a DDO (a description of what the identity is).
+[Tue 12:09:53] <ChristopherA>	did(decentralized identitier):btcr(bitcoin refererence):tx-kddk...(a bech32 encoded transaction ID)
+[Tue 12:10:23] <rgrant>	https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/event-documents/group-abstracts/work-abstract-did-methods-btcr-pgpr.md
+[Tue 12:10:24] <dlongley>	Ryan: And then get that implemented in some software. That's what we'll be working on at the hackathon and that's what the topic is. What's done is that we have a clear spec to meet with the DID spec, we have an implementation plan that we outlined at the latest RWoT conference in the Spring.
+[Tue 12:10:29] <dlongley>	Ryan: Summary page in IRC.
+[Tue 12:10:37] <dlongley>	Ryan: Dead link in there that needs to be fixed.
+[Tue 12:11:26] <dlongley>	Ryan: We have a clear outline of the work we need to do and fleshing out that doc into a draft spec. What we're aiming for going forward is in October, Boston conference we'd like to have a draft spec and operating software. Couple of questions we need to answer about whether we're using two transactions or one transaction with a special OP code in the bitcoin scripting system.
+[Tue 12:11:29] <ChristopherA>	The October conference is https://www.eventbrite.com/e/rebootingweboftrust-design-workshop-v-fall-2017-in-boston-area-usa-tickets-34984665075
+[Tue 12:11:36] <dlongley>	Ryan: We'd like to make some progress on that at the hackathon.
+[Tue 12:11:36] <kimhd>	q+ to ask about DDOs
+[Tue 12:11:36] <voip-vctf>	kimhd has been added to the queue: kimhd
+[Tue 12:11:40] <dlongley>	Ryan: Any questions?
+[Tue 12:11:46] <dlongley>	ack kimhd
+[Tue 12:11:46] <voip-vctf>	kimhd has the floor (to ask about DDOs).
+[Tue 12:11:50] <squarfed>	q+
+[Tue 12:11:50] <voip-vctf>	squarfed has been added to the queue: squarfed
+[Tue 12:12:01] <ChristopherA>	q+
+[Tue 12:12:01] <voip-vctf>	ChristopherA has been added to the queue: squarfed, ChristopherA
+[Tue 12:12:14] <dlongley>	kimhd: About the DDOs, I talked to Christopher briefly, is the assumption that the DDO is stored in IPFS or could be URLs or content at one, or what?
+[Tue 12:13:18] <kimhd>	q?
+[Tue 12:13:18] <voip-vctf>	The current speaker queue is: squarfed, ChristopherA
+[Tue 12:13:19] <dlongley>	Ryan: Are we pointing to external DDOs? (DID description object). The DID record is a pointer to the information that you want to present for your identity and you can change that at any time. And that's contained in the DDO. We're going to try and support both. Links out to IPFS as well as a new idea about a fully deterministic DDO that is implied by the set of transactions that have occurred with the DID itself.
+[Tue 12:13:37] <manu>	voip: connections?
+[Tue 12:13:37] <voip-vctf>	Conference participants are: Glen Braun [SIP/sip2sip.info-00000139], Unknown [SIP/69.65.34.216-0000013e], squarfed [SIP/69.65.34.216-00000141], 13125222321 [SIP/69.65.34.216-00000143], 393409684362 [SIP/69.65.34.216-00000146], 14156131653 [SIP/69.65.34.216-00000147], kimhd [SIP/69.65.34.216-00000148], Dave Longley [SIP/6002-0000014a], ChristopherA [SIP/69.65.34.216-00000149], David I. Lehn [SIP/6003-0000014c], 16462345693
+[Tue 12:13:37] <voip-vctf>	[SIP/69.65.34.216-0000014e], Manu Sporny [SIP/6000-0000014f], JoeAndrieu [SIP/69.65.34.216-00000150], 14155694979 [SIP/69.65.34.216-00000151].
+[Tue 12:13:48] <manu>	voip: 141 is FredericoSportini
+[Tue 12:13:50] <voip-vctf>	Associated FredericoSportini with SIP/69.65.34.216-00000141.
+[Tue 12:14:14] <ChristopherA>	FedericoSportini Great!
+[Tue 12:14:14] *	kimhd how do I remove myself from the queue?
+[Tue 12:14:20] <ChristopherA>	ack kimhd
+[Tue 12:14:20] <voip-vctf>	kimhd isn't on the speaker queue.
+[Tue 12:14:25] *	manu q- or ack kimhd
+[Tue 12:14:31] <dlongley>	Frederico: I would definitely be interested in taking part in the hackathon. We would also like to implement the BTCR ... do our own implementation or write a community one, clients interested. We talked briefly with Christopher at last RWoT and we have a few questions on BTCR and if we could discuss how to solve these issues it would be great for us. Thanks.
+[Tue 12:14:41] <ChristopherA>	q?
+[Tue 12:14:41] <voip-vctf>	The current speaker queue is: squarfed, ChristopherA
+[Tue 12:14:44] <squarfed>	q-
+[Tue 12:14:44] <voip-vctf>	squarfed has been removed from the queue: ChristopherA
+[Tue 12:14:47] <ChristopherA>	ack squarfed
+[Tue 12:14:47] <voip-vctf>	squarfed isn't on the speaker queue.
+[Tue 12:15:33] *	kimhd there is; I said it, but didn't post it. one sec
+[Tue 12:15:49] *	manu Moses - Agenda here - https://lists.w3.org/Archives/Public/public-credentials/2017Jun/0077.html
+[Tue 12:15:52] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2017Jun/0077.html
+[Tue 12:15:58] *	manu got it, kimhd 
+[Tue 12:16:09] *	kimhd thanks!
+[Tue 12:16:10] <dlongley>	Christopher: Thanks. Basically I'm curious how many other people are interested in this initial thing, bitcoin based DID system. We want to see more people taking advantage of the techniques we create with VC and the uses for it. Don't want to use a lot of the CG time for how the different approaches work. We know how to do it in a simple way and another way to make it compatible with Blockstack and IPFS and other uses. Bigger question has more to do with what the DDO looks like. Whether the DDO should be a VC itself.
+[Tue 12:17:23] <dlongley>	ChristopherA: For some of the simpler uses maybe it should be, but current 1.0 spec just has it as a JSON structure. Harder question is, more specific to bitcoin, to preserve anonymity and to preserve censorship resistance it has been suggested to use a more complex structure that sort of hides the information such that a miner can't recognize "this is somebody trying to register a change in a DID so i'm not putting that in my block" there are ways to hide that add extra complexity and we're not sure if it's worth it or how high that risk is.
+[Tue 12:17:31] <kimhd>	q?
+[Tue 12:17:31] <voip-vctf>	The current speaker queue is: ChristopherA
+[Tue 12:17:32] <ChristopherA>	ack ChristopherA
+[Tue 12:17:32] <voip-vctf>	ChristopherA has the floor.
+[Tue 12:17:33] *	manu afks - have another conflicting call :(
+[Tue 12:17:35] <dlongley>	ChristopherA: If people have opinions on that or a better solution please let us know.
+[Tue 12:17:36] <rgrant>	Christopher is describing a tradeoff between OP_RETURN and using script hashes
+[Tue 12:18:50] <dlongley>	grempe: So I would suggest taking a look at our new Chainpoint 3.0 solution which is coming out shortly with a full openstack backend. New proof format for anchoring data to the bitcoin and ethereum blockchains, it would be a good solution for anchoring any data. We use OP_RETURN for anchoring in bitcoin. There has been discussions looking into alternatives that would be more censorship, pay to contract hashes, etc. But no solid implementations to use as a reference yet. Using OP_RETURN is pretty much the name of the game these days.
+[Tue 12:18:51] <ChristopherA>	The base of btcr uses op_return, the paytocontracthash has been suggested as being more censorship resistant.
+[Tue 12:18:57] <ChristopherA>	q+
+[Tue 12:18:57] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 12:19:16] <dlongley>	kimhd: That would be perfect, a quick over of the signature suites and talking through Chainpoint 3.0 -- we'd be happy to have you present.
+[Tue 12:19:27] <kimhd>	ack ChristopherA
+[Tue 12:19:27] <voip-vctf>	ChristopherA has the floor.
+[Tue 12:19:50] <voip-vctf>	Manu Sporny [SIP/6000-0000014f] has left the conference.
+[Tue 12:19:55] <rgrant>	did:btcr:tx1-rjk0-u5ng-4jsf-mc
+[Tue 12:20:13] <rgrant>	https://github.com/veleslavs/bips/blob/Bech32_Encoded_TxRef/bip-XXXX-Bech32_Encoded_Transaction_Postion_References.mediawiki
+[Tue 12:20:20] <dlongley>	ChristopherA: I'm familiar with Chainpoint and would love to have you talk more about that. The biggest thing you should maybe be aware of is that we're linking to the TXN through a proposal that links in a different way. It's a much shorter and specifically oriented to have both error correcting and error detecting capability. If your interested in supporting that in Chainpoint that would be fabulous.
+[Tue 12:20:28] <kimhd>	q?
+[Tue 12:20:28] <voip-vctf>	The speaker queue is empty.
+[Tue 12:20:29] <dlongley>	grempe: I'd be happy to take a look at that.
+[Tue 12:22:01] <dlongley>	Topic: Chainpoint v3.0
+[Tue 12:22:01] <dlongley>	grempe: Chainpoint updates... We have a new version of the proof format Chainproof 3.0. There's a change going on with us which is that it won't just be a proof format that we're hoping people will standardize on. But also what is currently a closed backend stack for verifying. We're creating an entirely new opensource version of that backend stack, available for others to run. We're partnering with some large orgs to run additional copies of this backend stack and they will participate in what we're calling the chainpoint network that will share data through a privace blockchain and you can use any instance to verify a proof against bitcoin or ethereum.
+[Tue 12:24:07] <dlongley>	grempe: Previously the proof format purely a JSON-LD doc, new is still JSON-LD but we thought its format, highly nestable, extensible. We're including precision timestamps in that proof for the first time. Firstly the NTP time for the servers generating the proof (time proof is submitted), when you submit a hash to us we give you back instantly a V1 UUID which contains the high-precision timestamp and random data. The handle for the proof contains a precision timestamp. To reduce amount of trust required in the timestamp we are incorporating the NIST beacon, a 512 random value published every minute by NIST, put together in a hashed list blockchain of those publicly. We're incorporating that value into every proof we generate, which lets you bookend this proof. This lets you say it wasn't submitted prior to a certain time according to NIST.
+[Tue 12:24:49] <dlongley>	grempe: You can prove the time you submitted the proof was within a window of time, cryptographically. New meta data in there too, timestamps, UUID, ISO8601 format, and providing several tools using JSON schema format for validation.
+[Tue 12:24:50] <ChristopherA>	q+
+[Tue 12:24:50] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 12:25:31] <dlongley>	grempe: Lastly, we're also supporting a binary format for this proof, we provide a simple tool where you can use ... applies message pack and compression onto the JSON-LD proof so you have something that's maybe 35% of the original size of the proof. This can be presented in binary form or in base64-encoded binary form. Our API will return it in either format at your request.
+[Tue 12:25:41] <dlongley>	grempe: Those are the big highlights on what's changing and I'm happy to address any questions.
+[Tue 12:25:46] <kimhd>	ack ChristopherA
+[Tue 12:25:46] <voip-vctf>	ChristopherA has the floor.
+[Tue 12:25:58] <dlongley>	ChristopherA: This is actually a joint meeting of the CCG and the Digital Verification CG.
+[Tue 12:26:19] <dlongley>	ChristopherA: Are you interested in submitting this as a draft for us to work on and move it towards an official standards process at some point?
+[Tue 12:26:48] <kimhd>	q?
+[Tue 12:26:49] <voip-vctf>	The speaker queue is empty.
+[Tue 12:26:51] <dlongley>	grempe: I know that the Chainpoint format has been going through the community standards process and perhaps we can take that discussion offline with Wayne because he's in a better position to answer.
+[Tue 12:27:04] <dlongley>	ChristopherA: Can it be used in a fashion so it can be used in a signature block of something else that's being signed in other ways?
+[Tue 12:27:31] <dlongley>	grempe: Yes, as this is a JSON-LD doc with its own chainpoint type, if that outer document is also JSON-LD with a JSON-LD signature you can also embed this into a larger document and it would be a part of the signature of that overall document.
+[Tue 12:27:33] <dlongley>	ChristopherA: Thanks.
+[Tue 12:27:57] <kimhd>	Topic: Linked Data Signatures
+[Tue 12:27:57] <kimhd>	https://goo.gl/jU9oSS
+[Tue 12:28:38] <dlongley>	kimhd: Presenting Linked Data Signatures. What's the intent and scope for each signature suite in the work item list? This is not deep technical detail review, but getting people on the same page for what's involved.
+[Tue 12:29:40] <dlongley>	kimhd: On slide 2. RSA Signature Suite 2017. We worked on this at the last RWoT. We had a little hackathon. People working on implementing this suite to vet it out. It worked out. Now the idea is to take it forward. What did we do during RWoT? We took the draft community report and said "Is this complete enough to implement?"
+[Tue 12:29:48] <dlongley>	kimhd: As a new signature suite to add to the LD signature suites.
+[Tue 12:30:42] <dlongley>	kimhd: It would allow us to verify JSON and linked data signatures. There had been concerns with JWS -- a lot of it around needing to base64 encode the contents. Also related to ending up with a message that cannot be stored in a JSON document store without decoding it and losing the signature, etc. We used the unencoded payloads open for JWS a relatively new feature.
+[Tue 12:32:28] <dlongley>	kimhd: It uses a combination of unencoded and attached payloads and get the signature value in that way. A lot of details in the RWoT paper at the end. The big surprise was that there was very limited support in the JWS libraries for this unencoded payload option. So we took the PHP library and figured out what was going on there, built test cases there, and built the equivalent in Python, JavaScript, Java. Worked out fine in the end. We want to address a couple of things with folks in the JWS community. Should we add these as extensions to their libraries? Don't want to include as a hacky thing. If this feature is available, then it's very straightforward. Usage is just like other LD signature suites.
+[Tue 12:32:47] <dlongley>	kimhd: Concerns around managing additional binary things we need to carry along, base64 encoding, etc. addresses them.
+[Tue 12:33:06] <dlongley>	kimhd: We should add clarifications to the specification, Manu had all of one day to write it up, we can enhance that with things discovered during implementation.
+[Tue 12:33:46] <dlongley>	kimhd: Most important part is that it removes friction where LD signatures weren't playing well with JWS. Community concerns around that -- was a blocker but Manu and some JWS folks worked through it and we now have this solution that makes them compatible.
+[Tue 12:33:52] <kimhd>	q?
+[Tue 12:33:52] <voip-vctf>	The speaker queue is empty.
+[Tue 12:33:53] <dlongley>	kimhd: Any questions?
+[Tue 12:34:25] <dlongley>	kimhd: Moving onto the Merkleproof signature suite. This is Chainpoint v2, not 3.0 that was just discussed.
+[Tue 12:35:44] <dlongley>	kimhd: No timestamps. This is just Chainpoint v2 with an additional type indicating its space in the LD signature suite. A lot of people are wanting to use LD signatures to describe data that has been put into a Merkletree and anchored to the blockchain. Wayne had donated this to this community and we want to formalize this suite. The work has already been done, the main things we might want to have discussion over is naming or things like that. Effectively we have a lot of implementations using it, blockcerts is using it. Chainpoint v2 has been used by a lot of people in the wild.
+[Tue 12:35:47] <dlongley>	kimhd: Questions?
+[Tue 12:35:48] <rgrant>	q+
+[Tue 12:35:48] <voip-vctf>	rgrant has been added to the queue: rgrant
+[Tue 12:35:54] <kimhd>	ack rgrant
+[Tue 12:35:54] <voip-vctf>	rgrant has the floor.
+[Tue 12:36:07] <dlongley>	Ryan: I don't completely understand what the Merkle proof is offering, do you have a link to follow?
+[Tue 12:36:20] <ChristopherA>	q+
+[Tue 12:36:21] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 12:36:24] <dlongley>	kimhd: I didn't include the links because the bulk of what's in spec.
+[Tue 12:36:27] <dlongley>	q+
+[Tue 12:36:27] <voip-vctf>	dlongley has been added to the queue: ChristopherA, dlongley
+[Tue 12:36:34] <ChristopherA>	q-
+[Tue 12:36:34] <voip-vctf>	ChristopherA has been removed from the queue: dlongley
+[Tue 12:37:02] <ChristopherA>	q+
+[Tue 12:37:03] <voip-vctf>	ChristopherA has been added to the queue: dlongley, ChristopherA
+[Tue 12:37:08] <ChristopherA>	ack dlongley
+[Tue 12:37:08] <voip-vctf>	dlongley has the floor.
+[Tue 12:37:22] <ChristopherA>	ack ChristopherA
+[Tue 12:37:22] <voip-vctf>	ChristopherA has the floor.
+[Tue 12:37:22] <kimhd>	q?
+[Tue 12:37:22] <voip-vctf>	The speaker queue is empty.
+[Tue 12:37:58] <Moses>	I should probably introduce myself and offer a use case that we have brewing.
+[Tue 12:38:20] <dlongley>	ChristopherA: The main point that may not be clear from the discussion is just having a signature for things isn't necessarily good enough. Adding a timestamp by a merkle proof that basically says -- is an acknowledgement of the rough time of the event is useful. The timestamping service or the chainproofing service basically gives you all of the leaves so that you can reconstruct the merkle proof the way it was registered.
+[Tue 12:38:26] <dlongley>	q+
+[Tue 12:38:26] <voip-vctf>	dlongley has been added to the queue: dlongley
+[Tue 12:38:46] <dlongley>	ChristopherA: Chainpoint 3 offers more fidelity and information and compression of the data.
+[Tue 12:39:04] <dlongley>	ChristopherA: And other features I'm forgetting. I'd love to see the 3.0 stuff brought in now that we have a chance to standardize on this.
+[Tue 12:39:48] <DavidC>	q+
+[Tue 12:39:48] <voip-vctf>	DavidC has been added to the queue: dlongley, DavidC
+[Tue 12:39:53] <dlongley>	kimhd: For blockcerts to use it -- blockchain transaction gives us a timestamp. There's a signing key related to that and we're using JSON-LD normalization to get the consistent hash that's getting placed in the merkletree.
+[Tue 12:40:02] <dlongley>	kimhd: To prove the hash of this document matches what's expected.
+[Tue 12:40:31] <kimhd>	q?
+[Tue 12:40:31] <voip-vctf>	The current speaker queue is: dlongley, DavidC
+[Tue 12:40:34] *	fdjsfkslfjksd (~fdjsfkslfjksd@public.cloak) has joined #vctf
+[Tue 12:41:14] <dlongley>	Moses: Hi everybody, I'm Moses. The use case we're working on is in the ICO space. We've recently recruited the former FCC commissioner to help us comply with requirements. One use case we came up with is to create a DID for an investor -- FCC wants to prevent cheating (real person) -- and then a VC saying how much crypto they've spent/accrued. We are working on that kind of use case.
+[Tue 12:41:26] <dlongley>	Moses: The stuff about Chainpoint 2.0 that's really interesting.
+[Tue 12:41:39] <dlongley>	Moses: Any questions about the use case?
+[Tue 12:41:52] <DavidC>	There are very few use cases where timestamps are actually needed. Making a will in private is one such case. But I do not see this to be a VC use case. By their very nature, VCs are given by issuers to subjects therefore two parties are involved. In this case secure time stamps are not needed since both parties can verify the time
+[Tue 12:42:23] <kimhd>	dlongley: term that's useful "proof of publication". gives more trust that something happened at some point in time. can check in other location.
+[Tue 12:42:42] <kimhd>	ack dlongley
+[Tue 12:42:42] <voip-vctf>	dlongley has the floor.
+[Tue 12:42:42] <ChristopherA>	ack dlongley
+[Tue 12:42:42] <voip-vctf>	dlongley isn't on the speaker queue.
+[Tue 12:42:44] <kimhd>	q?
+[Tue 12:42:44] <voip-vctf>	The current speaker queue is: DavidC
+[Tue 12:42:49] <ChristopherA>	ack DavidC
+[Tue 12:42:49] <voip-vctf>	DavidC has the floor.
+[Tue 12:42:56] *	dlongley you might be muted
+[Tue 12:43:01] <DavidC>	Proof of publication requires an author and a publisher, so again secure time stamps are not needed
+[Tue 12:43:11] *	fdjsfkslfjksd has quit ("Page closed")
+[Tue 12:43:14] <squarfed>	q?
+[Tue 12:43:15] <voip-vctf>	The speaker queue is empty.
+[Tue 12:43:17] <squarfed>	q+
+[Tue 12:43:17] <voip-vctf>	squarfed has been added to the queue: squarfed
+[Tue 12:43:21] <DavidC>	If two parties are involved they can verify the time between themselves
+[Tue 12:43:39] <squarfed>	ack
+[Tue 12:43:39] <ChristopherA>	ack squarfed
+[Tue 12:43:39] <voip-vctf>	squarfed has the floor.
+[Tue 12:43:44] <kimhd>	ack squarfed
+[Tue 12:43:44] <voip-vctf>	squarfed isn't on the speaker queue.
+[Tue 12:43:52] <ChristopherA>	q+
+[Tue 12:43:52] <voip-vctf>	ChristopherA has been added to the queue: ChristopherA
+[Tue 12:43:57] <dlongley>	Frederico: I was curious to know what is the relationship between Chainpoint and open timestamps. Do they use the same timestamps, competing implementations or what?
+[Tue 12:43:57] <squarfed>	q-
+[Tue 12:43:57] <voip-vctf>	undefined isn't on the speaker queue.
+[Tue 12:44:28] <kimhd>	q?
+[Tue 12:44:28] <voip-vctf>	The current speaker queue is: ChristopherA
+[Tue 12:45:15] <Moses>	If you're like to chat about our use case or just become friends, please contact me at moses@ngenven.com or skype eddress "mosesma"
+[Tue 12:45:36] <dlongley>	grempe: Both open timestamps and chainpoint are opensource protocols. We feel that ours is more documented and understood and easier to use. They both anchor to the blockchain, open timestamp to bitcoin, Chainpoint to bitcoin and ethereum. They only support a binary version, we have a JSON-LD, pure binary, and base64 encoded version of the binary. Both trying to achieve similar goals, use OP_RETURN for bitcoin, but I think we do a better job. We will handle scale out of the box, orders of magnitude more than open timestamps does. At the rate of 10s of 1000s of hashes per second. Those are a few things I would highlight.
+[Tue 12:45:44] <kimhd>	ack ChristopherA
+[Tue 12:45:44] <voip-vctf>	ChristopherA has the floor.
+[Tue 12:45:50] <kimhd>	q+
+[Tue 12:45:50] <voip-vctf>	kimhd has been added to the queue: kimhd
+[Tue 12:47:10] <kimhd>	q-
+[Tue 12:47:10] <voip-vctf>	kimhd has been removed from the queue:
+[Tue 12:47:19] <dlongley>	ChristopherA: I need to speak to this a little bit. I've been frustrated by the situation. Peter Todd was participating in RWoT. We reconciled some proposals to make Chainpoint 2 and then Peter and Tierion talked to make Chainpoint 3 and open timestamps. Things fell apart and I tried to address or fix that, I'm going to support whichever one goes through the standards process. If open timestamps wants to say we're going to listen and be inclusive of designs for a large number of people I will support that. They are roughly equivalent. Open timestamps have some potentially unique ideas not implemented. I will support whatever is standards track.
+[Tue 12:47:22] <kimhd>	q?
+[Tue 12:47:22] <voip-vctf>	The speaker queue is empty.
+[Tue 12:48:12] <ChristopherA>	There are a couple more listed at https://w3c-dvcg.github.io/
+[Tue 12:48:31] <ChristopherA>	in particular 2016 Pseudonymous Signature Suite
+[Tue 12:48:40] <ChristopherA>	https://w3c-dvcg.github.io/lds-pseudonymous2016/
+[Tue 12:49:00] <kimhd>	dlongley: LD signatures is the base signature suite, includes defining different components -- canon., message digest, signature
+[Tue 12:49:44] <kimhd>	dlongley: addresses key verification -- bidirectional linking. Specific signature suites can override
+[Tue 12:50:21] <kimhd>	dlongley: on top of that, others have been developed. RSA 2017, 2016Koblitz EC
+[Tue 12:51:15] <kimhd>	dlongley: redaction signature suite: CL signatures to create pseudonymous. redact certain portions, without revealing too much
+[Tue 12:51:18] <rgrant>	q+
+[Tue 12:51:18] <voip-vctf>	rgrant has been added to the queue: rgrant
+[Tue 12:51:22] <ChristopherA>	q+ on redaction
+[Tue 12:51:22] <voip-vctf>	ChristopherA has been added to the queue: rgrant, ChristopherA
+[Tue 12:51:42] <kimhd>	dlongley: is a proposed work item (we'll discuss next week, btw)
+[Tue 12:52:20] <kimhd>	ack rgrant
+[Tue 12:52:20] <voip-vctf>	rgrant has the floor.
+[Tue 12:52:32] <Moses>	Let me restate what was noted: "Hi everybody, I'm Moses. The use case we're working on is in the ICO space. We've recently recruited a former FCC commissioner to help us build new technology that could comply with certain requirements. One use case we came up with is to create a DID for an accredited investor -- the SEC wants to protect investors -- and then a VC from a wallet saying how much crypto they've spent/accrued. We are working on this kind of use case."
+[Tue 12:53:07] <Moses>	SEC not FCC
+[Tue 12:53:49] <kimhd>	dlongley: another way -- take giant doc of claims, break down into individual statements, salt each, put in merkle tree. Manu and Evernym would be able to speak to this
+[Tue 12:54:11] <kimhd>	ack ChristopherA
+[Tue 12:54:11] <voip-vctf>	ChristopherA has the floor (on redaction).
+[Tue 12:55:13] <kimhd>	Christopher: need nonces to avoid fingerprinting
+[Tue 12:55:39] <kimhd>	ChristopherA: need nonces to avoid fingerprinting (correction)
+[Tue 12:55:47] <dlongley>	ChristopherA: The redaction suite allows something that is fully signed -- you have proof of the entire set of claims, presenter can present a set of claims and have it still be valid. You can do it cryptographically through redaction using merkletree, using nonces, etc. to prevent fingerprinting, like the FOAF problem two decades ago. When people published hashes of email addresses and you could figure out who is friends of others. The CL cryptographic technique is another way to present but has computational requirements.
+[Tue 12:56:03] *	fjdkjf (~fjdkjf@public.cloak) has joined #vctf
+[Tue 12:56:04] <Moses>	The convolution of a set of claims is not a simple problem. I should ask our AI lead to come on the call with me and talk about how to organize and weight a set of claims optimally to provide a multi-dimensional express of reputation.
+[Tue 12:56:05] <dlongley>	q+
+[Tue 12:56:05] <voip-vctf>	dlongley has been added to the queue: dlongley
+[Tue 12:56:17] <ChristopherA>	q=
+[Tue 12:56:19] <ChristopherA>	q-
+[Tue 12:56:19] <voip-vctf>	undefined isn't on the speaker queue.
+[Tue 12:56:27] <kimhd>	ack dlongley
+[Tue 12:56:27] <voip-vctf>	dlongley has the floor.
+[Tue 12:57:16] <kimhd>	dlongley: run canon first, produces ordered statements ---- always get same order. each stmt is separate claim. each must be salted to avoid fingerprinting
+[Tue 12:58:11] <kimhd>	dlongley: correlation problem: if you get hashes, can compare against others. when you have canon form, can modify in a way to produce randomless. Place each in a merkle tree, sign root. This is one way
+[Tue 12:58:31] <kimhd>	dlongley: other way is to use CL signatures
+[Tue 12:58:49] <voip-vctf>	Glen Braun [SIP/sip2sip.info-00000139] has left the conference.
+[Tue 12:58:53] <kimhd>	dlongley: can think of as a bit stream. can choose to present (or not) certain bits
+[Tue 12:59:18] <kimhd>	dlongley: reveal just those bits. Each one has certain computation complexity. can be difficult if a lot of info.
+[Tue 12:59:36] <kimhd>	dlongley: tradeoffs either way
+[Tue 13:00:55] *	glenbr has quit ("Page closed")
+[Tue 13:01:07] <rgrant>	i voted for redaction, but a late vote last week
+[Tue 13:01:37] <rgrant>	squarfed: how should we get in contact?
+[Tue 13:01:47] *	DavidC has quit ("Page closed")
+[Tue 13:01:51] <squarfed>	federico.squartini@gmail.com
+[Tue 13:01:59] <squarfed>	and find me on the rwot slack
+[Tue 13:02:00] <rgrant>	great!
+[Tue 13:02:17] <voip-vctf>	Dave Longley [SIP/6002-0000014a] has left the conference.
+[Tue 13:02:19] <Moses>	Thanks everyone. I'd love to get some URLs for intro materials? There were a lot of acronyms to learn.
+[Tue 13:08:04] <dlongley>	ChristopherA: did I answer your question adequately about the salting of canonicalized statements?
+[Tue 13:08:50] <dlongley>	dlongley: i think that portion would be considered part of the signature mechanism -- as you may need to include, for example, some kind of "seed" for generating the salts and include that in the signature parameters (but this would be kept secret when disclosing)
+[Tue 13:09:31] <dlongley>	dlongley: so it seems that you canonicalize, then generate signature parameters, which include a "seed" input for the salt generator and any other parameters required ...
+[Tue 13:09:38] *	stonematt has quit ("Leaving...")
+[Tue 13:10:22] <dlongley>	dlongley: then to perform the signature you generate the "salt" for each statement from the seed and some algorithm -- and then you hash that.
+[Tue 13:10:43] <dlongley>	dlongley: it's more like a preparation step for signing or perhaps even part of the "digest algorithm" than the canonicalization algorithm.
+[Tue 13:10:56] <dlongley>	dlongley: it's a special salted hash, effectively.
+[Tue 13:10:56] <dlongley>	Present+ glenbr, sporny, longley, sportini, kimhd, christophera, JoeAndrieu, lehn, moses, bohan, nage, rgrant
