@@ -1,0 +1,136 @@
+[Tue 12:09:08] <ChristopherA> scribe: rgrant
+[Tue 12:09:08] <ChristopherA>	Welcome to the joint Credentials CG and Data Verification CG — Today's agenda: https://lists.w3.org/Archives/Public/public-credentials/2017Jun/0098.html
+[Tue 12:09:24] <manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2017Jun/0098.html
+[Tue 12:09:53] *	amigus (~Adam@public.cloak) has joined #vctf
+[Tue 12:10:12] <rgrant>	ChristopherA: main topic will be selective disclosure
+[Tue 12:10:44] *	JoeAndrieu slaps Moses around a bit with a large fishbot
+[Tue 12:11:11] <voip-vctf>	14432803624 [SIP/69.65.34.216-00000185] has joined the conference.
+[Tue 12:11:16] <amigus>	voip: 185 is me
+[Tue 12:11:16] <voip-vctf>	Associated amigus with SIP/69.65.34.216-00000185.
+[Tue 12:11:18] <rgrant>	Topic: Introductions
+[Tue 12:11:18] <rgrant>	Moses: what is the connection between protocol cookies and learning using ML techniques?
+[Tue 12:11:47] *	manu wait a sec, we didn't hear from Rutu! :)
+[Tue 12:11:51] <voip-vctf>	16789329012 [SIP/69.65.34.216-00000186] has joined the conference.
+[Tue 12:12:07] <burn>	voip: 0186 is DanBurnett
+[Tue 12:12:07] <voip-vctf>	Associated DanBurnett with SIP/69.65.34.216-00000186.
+[Tue 12:12:40] <rgrant>	glenbr: introduction: based in Seattle with a blockchain company.  identity, verification.  using Solidity.  looking for directions for spec.
+[Tue 12:12:45] *	manu glenbr - there are multiple specs that the group is working on...
+[Tue 12:13:09] *	manu glenbr  - happy to point you in the proper direction - but need to know specifics about what you want.
+[Tue 12:13:18] <rgrant>	Rutu: My name is Dr. Rutu Mulkar-Mehta a professor at Northeastern University, Seattle Branch interested in Artificial Intelligence and Blockchain. I also have a company Ticary Solutions interested in this space. Moses invited me to participate in this group.
+[Tue 12:14:21] <ChristopherA>	We have an active naming poll going on here: https://goo.gl/6jpvoy
+[Tue 12:14:42] <rgrant>	ChristopherA: reminder of work prioritization poll, please fill that out: https://goo.gl/sNs2vl
+[Tue 12:15:07] <rgrant>	ChristopherA: other action items: naming and mission statement
+[Tue 12:15:23] <rgrant>	ChristopherA: no meeting next week.  next is July 11th
+[Tue 12:15:36] <ChristopherA>	Next meeting on 11 July - Attempt to close on a formal proposal name & mission.
+[Tue 12:16:12] <Drummond>	I won't be able to attend the July 11 meeting -- must be at DHS Cybersecurity Showcase event in DC to report on our DKMS (Decentralized Key Management System) work
+[Tue 12:16:20] <rgrant>	ChristopherA: hackathon for did:btcr!  (contact ChrisopherA or kimhd)
+[Tue 12:16:46] <kimhd>	Jan's slides: https://goo.gl/E7anK6
+[Tue 12:17:09] <ChristopherA>	Data Minimization and Selective Disclosure Report
+[Tue 12:17:35] *	squarfed (~squarfed@public.cloak) has joined #vctf
+[Tue 12:17:58] *	manu Rutu - what's your last name and preferred personal website (or LinkedIn page) - we need it for the minutes.
+[Tue 12:18:00] <rgrant>	ChristopherA: intent is to define, distinguish between these
+[Tue 12:18:15] <ChristopherA>	https://w3c-dvcg.github.io/lds-redaction2016/
+[Tue 12:18:20] <rgrant>	ChristopherA: there are two proposals...
+[Tue 12:18:23] <voip-vctf>	Unknown [SIP/69.65.34.216-00000187] has joined the conference.
+[Tue 12:18:54] <ChristopherA>	https://w3c-dvcg.github.io/lds-pseudonymous2016/
+[Tue 12:19:01] <Jan_Camenisch>	related link: https://abc4trust.eu where we have done a lot of the work to be discussed today
+[Tue 12:19:08] <Moses>	To: rgrant - about the connection between protocol cookies and learning using ML techniques - not sure yet, I just know there's a pony in here somewhere... haha
+[Tue 12:19:21] <squarfed>	voip: 187 is squarfed
+[Tue 12:19:21] <voip-vctf>	Associated squarfed with SIP/69.65.34.216-00000187.
+[Tue 12:19:22] <Rutu>	Ny Name and Affiliation: Dr. Rutu Mulkar-Mehta,  linkedin - https://www.linkedin.com/in/rutumulkar/
+[Tue 12:19:23] <Drummond>	Great work - ABC4Trust
+[Tue 12:19:37] <dlongley>	"liz-ann-skee-uh"
+[Tue 12:19:50] <ChristopherA>	https://goo.gl/E7anK6
+[Tue 12:20:08] <rgrant>	Topic: Selective Disclosure and CL Signatures
+[Tue 12:20:56] <rgrant>	Jan_Camenisch: 19 years at IBM, crypto for longer.  EU-funded large collaborative projects.
+[Tue 12:21:50] <rgrant>	Jan_Camenisch: building a full middleware stack, running technology pilots at e.g. a Greek school
+[Tue 12:22:34] *	manu thx Rutu 
+[Tue 12:22:34] <rgrant>	Jan_Camenisch: students able to critique course using proven identity with security from reprisal
+[Tue 12:22:40] <rgrant>	Jan_Camenisch: TPM work
+[Tue 12:23:23] *	rgrant ok
+[Tue 12:23:52] <rgrant>	Moses: selective disclosure search
+[Tue 12:24:07] <ChristopherA>	slides: https://goo.gl/E7anK6
+[Tue 12:25:43] <rgrant>	Jan_Camenisch: Not sure about audience, but here goes - high level first, not crypto level.
+[Tue 12:26:21] <ChristopherA>	ABC for Trust: https://abc4trust.eu/
+[Tue 12:28:38] <rgrant>	Jan_Camenisch: focusing today  on authentication
+[Tue 12:29:12] <rgrant>	...discussing scenario on slide 7
+[Tue 12:30:24] <rgrant>	...a major split in techniques is whether the issuer must be online at the time of VC use
+[Tue 12:31:08] *	ottonomy has quit ("My MacBook Pro has gone to sleep. ZZZzzz…")
+[Tue 12:31:47] <rgrant>	...review of scenario
+[Tue 12:32:11] <Moses>	Yes, we've been calling it "partial transparency search" or "transactionalized search" - a simple example is a movie screenwriter provides and selective disclosure about their new screenplay about a certain subject, but only producers who have actually made a movie can see the abstract, and if it's Spielberg searching, more info. Those willing to sign an NDA smart contract can get more info automatically. Essentially, we'd be disintermediating talent agencies.
+[Tue 12:32:38] <rgrant>	jan: moving to slide 9, we see offline scenario
+[Tue 12:34:25] <rgrant>	...we only need to disclose the information for the question at hand
+[Tue 12:35:16] <manu>	q+ to ask about desire to try to help us get this stuff into a spec that we can use with Verifiable Claims.
+[Tue 12:35:16] <voip-vctf>	manu has been added to the queue: manu
+[Tue 12:35:34] <rgrant>	Jan_Camenisch: discussion of blockchain and crypto options
+[Tue 12:36:03] <rgrant>	ChristopherA: value here is description of working systems.
+[Tue 12:36:20] <voip-vctf>	14432803624 [SIP/69.65.34.216-00000188] has joined the conference.
+[Tue 12:36:25] <ChristopherA>	q?
+[Tue 12:36:25] <voip-vctf>	The current speaker queue is: manu
+[Tue 12:36:29] <ChristopherA>	ack manu
+[Tue 12:36:29] <voip-vctf>	manu has the floor (to ask about desire to try to help us get this stuff into a spec that we can use with Verifiable Claims.).
+[Tue 12:36:33] <amigus>	voip: 188 is me
+[Tue 12:36:33] <voip-vctf>	Associated amigus with SIP/69.65.34.216-00000188.
+[Tue 12:38:01] <rgrant>	manu: there is overlap in formalizing this work in the W3C setting.  we don't have capability for VC and psudonymous-sigs outside of test settings.  are there any patent blockers?
+[Tue 12:39:04] <rgrant>	Jan_Camenisch: unclear what steps are
+[Tue 12:39:27] <manu>	q+ to clarify what we'd need to make this go standards track.
+[Tue 12:39:27] <voip-vctf>	manu has been added to the queue: manu
+[Tue 12:40:17] <rgrant>	ChristopherA: mentions potential for real-world deployments
+[Tue 12:40:19] <manu>	q-
+[Tue 12:40:19] <voip-vctf>	manu has been removed from the queue:
+[Tue 12:40:57] <rgrant>	Jan_Camenisch: IBM has no patents on the basic algorithms, but other parties do have some patents.  IANAL.
+[Tue 12:41:52] <rgrant>	Jan_Camenisch: what is identity?  we all have many.
+[Tue 12:42:28] <rgrant>	...identity is the attributes I'm using now
+[Tue 12:43:55] <rgrant>	...identities can be conflicting views
+[Tue 12:45:13] <rgrant>	Jan_Camenisch: what does identity need?  attributes.  authentication method.  transport.  presentation policy (slide 14)
+[Tue 12:47:05] <rgrant>	Jan_Camenisch: some credentials are bound to a key, and require proof of control
+[Tue 12:48:09] <rgrant>	...anything not key-bound is shareable, but you can't be sure that the person presenting that attribute is not spoofing
+[Tue 12:49:23] <rgrant>	...the handles are pseudonyms
+[Tue 12:50:04] *	stonematt has quit ("Leaving...")
+[Tue 12:50:20] <rgrant>	...(slide 17) there are domain specific pseudonyms
+[Tue 12:50:24] *	ottonomy (~ottonomy@public.cloak) has joined #vctf
+[Tue 12:52:31] *	ottonomy_ (~ottonomy@public.cloak) has joined #vctf
+[Tue 12:52:31] *	ottonomy has quit (Client closed connection)
+[Tue 12:53:22] <voip-vctf>	Moses [SIP/69.65.34.216-0000017d] has left the conference.
+[Tue 12:53:46] <rgrant>	...(slide 19) "Credential Specification" is the set of known schemas
+[Tue 12:54:04] <voip-vctf>	14156997117 [SIP/69.65.34.216-0000017e] has left the conference.
+[Tue 12:54:07] *	Noah has quit ("Page closed")
+[Tue 12:54:12] <voip-vctf>	12066188530 [SIP/69.65.34.216-00000189] has joined the conference.
+[Tue 12:57:25] <Drummond>	This is so good that I'd be happy to do Part 2 on the next call if Jan is able.
+[Tue 12:58:41] <rgrant>	Jan_Camenisch: describing presentation
+[Tue 13:00:08] <voip-vctf>	Markus [IAX2/diamondcard-iax-11368] has left the conference.
+[Tue 13:00:57] *	nage there is a Rust implementation of these concepts for Sovrin available as a C callable library with iOS, Java and other API wrappers here https://github.com/hyperledger/indy-sdk.  There is also an implementation of some of these concepts waiting to be merged into fabric-ca at Hyperledger, and there is a lot to look at in Idemix as well.
+[Tue 13:01:38] *	kimhd +1 to continue discussing on 7/11 ; hopefully Jan is available
+[Tue 13:01:39] <rgrant>	ChristopherA: offering background of similar directions from VC community
+[Tue 13:01:44] *	ottonomy_ has quit ("My MacBook Pro has gone to sleep. ZZZzzz…")
+[Tue 13:02:23] *	ottonomy (~ottonomy@public.cloak) has joined #vctf
+[Tue 13:02:28] <kimhd>	q?
+[Tue 13:02:28] <voip-vctf>	The speaker queue is empty.
+[Tue 13:02:38] <rgrant>	ChristopherA: describes legal authority of working group
+[Tue 13:03:00] <rgrant>	...this community has authority fro reports and recommendations
+[Tue 13:03:34] <voip-vctf>	16467122824 [SIP/69.65.34.216-0000016e] has left the conference.
+[Tue 13:03:56] <rgrant>	...describing crypto options that sometimes involve a blockchain
+[Tue 13:04:32] <rgrant>	...we'd love to have more advice from your team, especially in nomenclature
+[Tue 13:05:10] *	kimhd thanks for correcting that Ryan 
+[Tue 13:05:43] *	amigus has quit ("Going offline, see ya! (www.adiirc.com)")
+[Tue 13:06:17] <rgrant>	Jan_Camenisch: possible directions include revocation
+[Tue 13:06:21] *	amigus (~Adam@public.cloak) has joined #vctf
+[Tue 13:06:29] <voip-vctf>	DrummondReed [SIP/69.65.34.216-0000016f] has left the conference.
+[Tue 13:07:50] <rgrant>	manu: Evernym and Digital Bazaar have strong interest in this space, and Jan_Camenisch + team could add to strength of specification with advice and multiple implementations
+[Tue 13:08:28] <rgrant>	...clarification around crypto usage and data structures would be a great area of involvement
+[Tue 13:08:44] <rgrant>	Jan_Camenisch: asks what status of VCs is
+[Tue 13:08:56] <burn>	sounds like a good discussion topic for next meeting
+[Tue 13:09:08] <dlongley>	+1 next meeting
+[Tue 13:09:31] <ChristopherA>	Next meeting is July 11th, but we need to finalize on final name and mission statement.
+[Tue 13:09:39] <ChristopherA>	So maybe later in July.
+[Tue 13:10:01] <burn>	next meeting == future meeting
+[Tue 13:10:09] *	dlongley yeah, maybe not 11th specifically
+[Tue 13:10:13] <rgrant>	manu: describes "several months" of refinement
+[Tue 13:10:20] *	dlongley i think some of us are out on the 11th, actually.
+[Tue 13:11:29] <rgrant>	ChristopherA: possible further work in revocation.  example: issuer of a verified claim is no longer live to clarify
+[Tue 13:12:01] <rgrant>	ChristopherA: are we using the right elliptic curves?  how to steer around patents?
+[Tue 13:12:21] <burn>	FYI for our visitors, the official term we use is "verifiable claims", not "verified claims"
+[Tue 13:12:36] <burn>	We don't assume that claims are already verified :)
+[Tue 13:14:48] <rgrant>	ChristopherA: navigates possible further topics with Jan_Camenisch
+[Tue 13:15:26] <rgrant>	ChristopherA: thanks everyone!  thanks Jan_Camenisch!  next meeting July 11th.  adjourned.
+[Tue 13:12:36] <manu>	Present+ lake, rutu, lehn, sporny, moses, longley, andrieu, nage, grant, kimhd, jan, christophera, braun, lehn, drummond, amigus, burn, squarfed
