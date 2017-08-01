@@ -228,7 +228,7 @@ async.waterfall([ function(callback) {
       for(var k in summaryKeys) {
         var key = summaryKeys[k];
         var summary = results.buildSummaries[key];
-        summaryHtml += '<h3>Meeting for ' + key + '</h3>\n';
+        summaryHtml += '<h3><a href="' + key + '/">Meeting for ' + key + '</a></h3>\n';
         if(summary.topic.length > 0) {
           summaryHtml += '<h4>Topics</h4><ol>\n';
           for(var t in summary.topic) {
