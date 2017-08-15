@@ -57,12 +57,12 @@ function postToWordpress(username, password, content, callback) {
   wpSummary = wpSummary.substring(
     wpSummary.indexOf('<dl>'), wpSummary.indexOf('</dl>') + 5);
   wpSummary = wpSummary.replace(/href=\"#/g,
-    'href="https://w3c.github.io/vctf/meetings/' + gDate + '/#');
+    'href="https://w3c-ccg.github.io/meetings/' + gDate + '/#');
   wpSummary = wpSummary.replace(/href=\"audio/g,
-    'href="https://w3c.github.io/vctf/meetings/' + gDate + '/audio');
+    'href="https://w3c-ccg.github.io/meetings/' + gDate + '/audio');
   wpSummary = wpSummary.replace(/<div><audio[\s\S]*\/audio><\/div>/g, '');
   wpSummary += '<p>Detailed minutes and recorded audio for this call are ' +
-    '<a href="https://w3c.github.io/vctf/meetings/' + gDate +
+    '<a href="https://w3c-ccg.github.io/meetings/' + gDate +
     '/">available in the archive</a>.</p>';
 
   // calculate the proper post date
@@ -271,7 +271,7 @@ async.waterfall([ function(callback) {
       .replace(/\n/g, '').replace('Scribe:  ', '');
     content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
       'for this week\'s Credentials CG telecon are now available:\n\n' +
-      'http://w3c.github.io/vctf/meetings/'+ gDate + '/\n\n' +
+      'https://w3c-ccg.github.io/meetings/'+ gDate + '/\n\n' +
       'Full text of the discussion follows for W3C archival purposes.\n' +
       'Audio from the meeting is available as well (link provided below).\n\n' +
       '----------------------------------------------------------------\n' +
@@ -343,8 +343,8 @@ async.waterfall([ function(callback) {
     content = '*Credentials CG Meeting Summary for ' + gDate + '*\n\n' +
       'We discussed ' + formattedItems + '.\n\n' +
       content + '\nFull transcript and audio logs are available here:\n\n' +
-      'http://w3c.github.io/vctf/meetings/' + gDate + '/\n\n' +
-      '#vctf #w3c';
+      'https://w3c-ccg.github.io/meetings/' + gDate + '/\n\n' +
+      '#w3c #ccg';
 
     console.log('scrawl: You will need to paste this to your G+ stream:\n');
     console.log(content);
@@ -388,8 +388,8 @@ async.waterfall([ function(callback) {
       }, function(err, results) {
         // construct the tweet
         var tweet = 'Credentials CG discusses ' +
-          results.message + ': https://w3c.github.io/vctf/meetings/' +
-          gDate + '/ #w3c #vctf';
+          results.message + ': https://w3c-ccg.github.io/meetings/' +
+          gDate + '/ #w3c #ccg';
 
         // send the tweet
         twitter.updateStatus(tweet, function(data) {
