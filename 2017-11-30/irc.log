@@ -1,0 +1,415 @@
+[Thu 13:06:04] <manu>	Agenda: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit
+[Thu 13:06:35] *	manu \o
+[Thu 13:07:12] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 13:07:21] <cwebber2>	present+ Chris_Webber
+[Thu 13:07:45] <manu>	Present+ SamSmith, dlongley, cwebber, sabadello, lundkvist, buchner
+[Thu 13:08:20] <manu>	scribe: manu
+[Thu 13:08:20] <manu>	Chair: drummond
+[Thu 13:08:20] <manu>	Topic: DID Hardening Proposal v3
+[Thu 13:08:25] <drummond>	DID Spec Hardening Proposal V3: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit
+[Thu 13:09:19] <manu>	drummond: This is the second of a series of calls on the DID Spec...
+[Thu 13:09:31] *	dlongley will backup scribe for you manu
+[Thu 13:09:38] *	manu thx
+[Thu 13:10:03] <manu>	drummond: Manu and Dave weren't able to be on the call last week - our goal here is to close on the DID spec, this proposal is the next stage of discussion.
+[Thu 13:10:37] <manu>	drummond: Last CG call made it seem like these are competing proposals, but that's not the case, it's just a continuation of the conversation.
+[Thu 13:11:04] <manu>	drummond: We have six items we could get to consensus on with folks that were on the call last time, there are two items that are new-ish don't have consensus
+[Thu 13:11:39] <manu>	drummond: Haven't had much time to move those thigns forward - interested in sync'ing w/ Manu, Dave, and anyone else that hasn't been a part of this yet to talk about first six things.
+[Thu 13:12:16] <dlongley>	manu: It's a post-Rebooting version which I actually got PRs in on. Hopefully over the next couple of weeks I'll get that finalized so we can layer this work on top of that. Steady stream of PRs from now on.
+[Thu 13:12:52] <manu>	drummond: Let's talk through the issues in order, questions, answers, ideally come to some sort of agreement on it.
+[Thu 13:13:02] <manu>	manu: Sounds good
+[Thu 13:13:06] <manu>	dlongley: Good to me.
+[Thu 13:13:11] <manu>	Topic: Format Independence
+[Thu 13:14:10] <manu>	drummond: This is what we talked about at TPAC - JSON-LD is great but there are people that want other serialization formats as well.
+[Thu 13:14:19] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 13:14:38] <cwebber2>	q+
+[Thu 13:14:50] *	cwebber2 not sure if we're using a queue :)
+[Thu 13:15:12] <manu>	drummond: Proposal is that we have a requirement in the spec that a processor can process just the JSON w/o the JSON-LD so that the two formats are compatible. You're already doing this w/ the other specs.
+[Thu 13:15:28] *	voip-ccg (~voipbot@public.cloak) has joined #ccg
+[Thu 13:15:29] <voip-ccg>	Conference started.
+[Thu 13:15:29] <voip-ccg>	Manu Sporny [SIP/6000-00000192] is in the conference.
+[Thu 13:15:29] <voip-ccg>	Manu Sporny [SIP/6000-00000192] has joined the conference.
+[Thu 13:15:34] <manu>	q+ cwebber2 
+[Thu 13:15:37] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 13:15:39] <voip-ccg>	manu has been added to the queue: cwebber2
+[Thu 13:15:43] <manu>	ack cwebber2 
+[Thu 13:15:43] <voip-ccg>	cwebber2 has the floor.
+[Thu 13:15:54] <ChristianLundkvist>	q?
+[Thu 13:15:54] <voip-ccg>	The speaker queue is empty.
+[Thu 13:17:02] <manu>	cwebber: We're doing this in ActivityPub, but we need to make sure you can go both ways - plain JSON also needs to be parsed as JSON-LD - it can be expanded into a graph and all terms are defined, new properties in the context... this is not hard to do in general... even w/ apps using naieve JSON tooling. Mastadon is using ActivityPub - they're not using JSON-LD tooling except when they're using LD Signatures, so it's nice because you can uphold both properties at  the same time.
+[Thu 13:17:11] *	suedynym (~suedynym@public.cloak) has joined #ccg
+[Thu 13:17:25] <manu>	cwebber: I'd like to make sure we hold up what is suggested - any JSON-LD document must be able to be treated by naieve JSON-LD tooling, but also the reverse.
+[Thu 13:17:29] <manu>	dlongley: Agree completely.
+[Thu 13:17:47] <manu>	drummond: That's what I got from our conversation at W3C TPAC - thoughts from others?
+[Thu 13:18:05] <manu>	SamSmith: What's the overhead of carring around the context? Do you have to include the context every time?
+[Thu 13:18:17] <manu>	dlongley: The overhead is a single key and value in the JSON document.
+[Thu 13:18:40] <manu>	SamSmith: Ok, so you don't have to download it. So plain JSON is parsed as JSON-LD, don't you have to be able to see the context?
+[Thu 13:19:00] <manu>	dlongley: Yes, if you are trying to use it as JSON-LD you have to get the context, otherwise, not.
+[Thu 13:19:08] <manu>	SamSmith: Ok, but only if you're JSON-LD.
+[Thu 13:19:27] <manu>	drummond: Ok, so if you are doing JSON-LD parsing, do you need to fetch the context and validate the JSON-LD document? 
+[Thu 13:19:50] <manu>	dlongley: The only time you need to get the context is when you're transforming, normalizing, etc. If you're not doing that, you don't need to do that.
+[Thu 13:20:38] <manu>	cwebber: What's nice is that method implementers can make it readable by plain JSON and parseable by JSON-LD, method implementers need to be careful, but you can degrade from there... use JSON native tooling... that's fine, or if you pull in as JSON-LD.
+[Thu 13:20:57] <manu>	sabadello: What about JWS as signatures? Wouldn't you just use LD Signatures in all cases?
+[Thu 13:21:10] <manu>	dlongley: That's an open question, don't know who wants to use JWS?
+[Thu 13:21:28] <manu>	ChristianLundkvist: We're using JWS now - for attestations.
+[Thu 13:22:26] <manu>	ChristianLundkvist: We did some discussion that it's unclear if the DID Document itself needs to be signed as it is fetched out of the resolver, or if it's enough that a signature is present out of band but validated in the resolver itself, and then returned in whatever data format is supported.
+[Thu 13:22:45] <manu>	dlongley: I have a couple of comments - whether or not a signature is present is up to a combination of the DID Method, the resolver, and the application that's using it.
+[Thu 13:22:56] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 13:23:03] <manu>	dlongley: LD Signatures has a signature suite that is compatible with JWS... you still need to canonicalize.
+[Thu 13:23:27] <manu>	SamSmith: We can't enforce canonicalization in JSON.
+[Thu 13:23:52] <manu>	SamSmith: Any time you have a JSON document that embeds a signature and you reserialize - JSON doesn't have a canonical serialization, you'd have to include the part of the document signed in base 64
+[Thu 13:24:18] <manu>	dlongley: The canonicalization algorithm used is on the JSON-LD data - whatever whitespace, as long as data semantics change, you can use JSON-LD to conver to RDF.
+[Thu 13:24:23] <manu>	q+
+[Thu 13:24:23] <voip-ccg>	manu has been added to the queue: manu
+[Thu 13:24:45] <dlongley>	manu: Let me jump in really quickly. There's going to be a very severe mismatch between what Sam is saying and what we're saying because we don't have a history.
+[Thu 13:25:36] <dlongley>	manu: We know about all of the shortcomings of the JOSE stack and the normalization issues. And many of those things are what led us to create the Linked Data stuff. We have 8-9+ year history working with this canonicalization, etc. Our comments aren't coming from a naive standpoint. I agree with what you're saying Sam about there being no JSON canonical form.
+[Thu 13:26:01] <dlongley>	manu: When you sign with JOSE you do base64 encode it. We understand that. We know about that issue. So this concept of mixing JSON and JWS and the DID documents... I'm concerned about it.
+[Thu 13:26:35] <dlongley>	manu: But that's kind of somebody else's problem. Our ledger picks JSON-LD and Linked Data Signatures for a variety of reasons because we think the end result is simpler than using plain JSON + JWS JOSE stack, etc. If someone else wants to use JSON and JWS stack etc, they have to figure that out.
+[Thu 13:26:51] <dlongley>	Sam: I heard we should just stick with LDS and that's all that's supported.
+[Thu 13:27:09] <dlongley>	manu: No, not saying that. This work started out with JOSE and we hit brick walls, we switched to LDS. We've been there.
+[Thu 13:27:33] <dlongley>	Sam: I don't say JOSE is the answer either. Having a base64 field that is signed is something that will work in general as opposed to requiring the full JOSE stack to manage everything.
+[Thu 13:27:51] <dlongley>	Sam: One of the problems with JOSE is that you can specify all the signatures with all the parameters, there are security holes.
+[Thu 13:28:05] <dlongley>	Sam: It might be a strawman to say there are only LDS and JOSE as choices.
+[Thu 13:28:20] <cwebber2>	q+
+[Thu 13:28:20] <voip-ccg>	cwebber2 has been added to the queue: manu, cwebber2
+[Thu 13:28:32] <dlongley>	manu: We're not saying that. We're saying we have a fairly good understanding of the shortcoming of JOSE JWS and you can do it that way if you want, that's allowable. If you want to use LDS you can do that.
+[Thu 13:28:38] <manu>	ack manu
+[Thu 13:28:39] <voip-ccg>	manu has the floor.
+[Thu 13:29:01] <dlongley>	Sam: We went from we want to have DID docs to both using JSON tooling and JSON-LD tooling and then you need JSON-LD tooling for the signature.
+[Thu 13:29:30] <dlongley>	manu: Yeah, I agree. We have to be careful though for every new thing we add here. There's a tremendous amount of complexity for each of these things, particularly for security audits.
+[Thu 13:29:38] *	manu apologies cwebber2 
+[Thu 13:30:09] <dlongley>	Sam: The standard protocol practice is to attach the signature after the serialization. Whereas in LDS you are embedding the signature in the Linked Data, requires canonicalization. You can't build a LD master schema where the signatures are part of your schema.
+[Thu 13:30:10] <manu>	q+ cwebber
+[Thu 13:30:10] <voip-ccg>	manu has been added to the queue: cwebber2, cwebber
+[Thu 13:30:15] <manu>	q- cwebber
+[Thu 13:30:16] <voip-ccg>	cwebber has been removed from the queue: cwebber2
+[Thu 13:30:18] <manu>	ack cwebber2 
+[Thu 13:30:18] <voip-ccg>	cwebber2 has the floor.
+[Thu 13:30:24] *	dlongley apologies ... can't type all this and listen critically at the same time :)
+[Thu 13:30:36] *	drummond I'll help
+[Thu 13:30:44] <manu>	cwebber: I've been working w/ Mastadon... seeing how they use naive JSOn tooling
+[Thu 13:30:59] <manu>	cwebber: If you end up base64 encoding and signing, you can't embed.
+[Thu 13:31:10] <manu>	SamSmith: You can, but you can embed and base64 and embed.
+[Thu 13:31:28] <manu>	SamSmith: You don't have a bare document that's exploded and exposed and canonicalized/re-sign...
+[Thu 13:31:32] <manu>	q+ to note duplication of data.
+[Thu 13:31:32] <voip-ccg>	manu has been added to the queue: manu
+[Thu 13:32:08] <drummond>	q+
+[Thu 13:32:08] <voip-ccg>	drummond has been added to the queue: manu, drummond
+[Thu 13:32:25] <manu>	cwebber: Even in their case, they use naieve tooling, but they do use LD signatures stuff... dev that uses it doesn't know about LD signatures - but does use the libraries. Even though you're using LD tooling, you can have a naieve tooling mindset.
+[Thu 13:32:41] <manu>	SamSmith: Except that if the Linked Data tooling is doing lookups, in a data intensive app - that's expensive.
+[Thu 13:33:25] <manu>	dlongley: You can cache data, that's not an issue in production, you don't do lookups in that case. I don't think anyone is saying use ONLY LD Signatures.
+[Thu 13:33:45] <manu>	dlongley: We say "here are the specs on how to do X" -- we point folks at that.
+[Thu 13:34:06] <manu>	SamSmith: I think that's a great thing - we may want to make it easy for people to migrate from standard JSON format to LD format.
+[Thu 13:34:40] <manu>	dlongley: I think Chris' perspective is - it's just another version of JWS and a magic signature gets attached to your document, you made a call, a signature appeared, that's another way to look at LD Signatures - you don't need to bring in the mental model of signatures.
+[Thu 13:35:19] <manu>	nage: Yes, you get this JSON data and you use whatever library to deal w/ the signatures... as different tech and signatures evolve, we want the central data model to keep working.
+[Thu 13:35:24] <dlongley>	s/signatures./linked data./
+[Thu 13:35:36] *	mike-lodder (~mike-lodder@public.cloak) has joined #ccg
+[Thu 13:36:09] <manu>	drummond: This keeps coming up - Jason Law said signatures are optional... data integrity - ties in w/ point #2, if you don't validate DID Document against target ledger, you're raising other security issues.
+[Thu 13:36:11] <manu>	q?
+[Thu 13:36:11] <voip-ccg>	The current speaker queue is: manu, drummond
+[Thu 13:36:12] <manu>	ack drummond 
+[Thu 13:36:12] <voip-ccg>	drummond has the floor.
+[Thu 13:36:51] <manu>	drummond: You don't always have the DID when you register the DID Document... one possible approach here is to simplify DID spec to say signatures are covered in another document.
+[Thu 13:37:00] <mike-lodder>	q?
+[Thu 13:37:00] <voip-ccg>	The current speaker queue is: manu
+[Thu 13:37:04] <dlongley>	q+ to respond to the purpose of a DID doc
+[Thu 13:37:04] <voip-ccg>	dlongley has been added to the queue: manu, dlongley
+[Thu 13:37:51] <dlongley>	manu: I wanted to go back to the format independence question. If someone wants to do JSON and JWS/JWT that's fine. But someone is going to have to write and maintain those sets of specifications. Who is volunteering to do that? That's the first question. If we want that serialization to get through the W3C standardization process then at least two ledgers will need to implement that to get it through W3C rec process.
+[Thu 13:38:04] <dlongley>	manu: I'd like to know who is going to be doing JSON+JWS (non-LDS version).
+[Thu 13:38:25] <dlongley>	Markus: Two code bases or two ledgers?
+[Thu 13:38:34] <dlongley>	manu: That's an interesting question. Not sure.
+[Thu 13:38:46] <dlongley>	Markus: What if there are two resolvers? One in Java and one in another language?
+[Thu 13:39:00] *	kimhd (~kimhd@public.cloak) has joined #ccg
+[Thu 13:39:28] <dlongley>	dlongley: This is getting to my point about the purpose of DID documents and proving interop, etc.
+[Thu 13:39:38] <dlongley>	manu: I didn't hear anyone pipe up and say they will use JWS.
+[Thu 13:39:40] <dlongley>	manu: Christian?
+[Thu 13:39:50] <dlongley>	Christian: Probably? We are currently using plain JSON and JWS for most of our stuff.
+[Thu 13:40:09] <dlongley>	drummond: Is there is a deeper question to ask... what methods represented on the call plan to produce signed DID documents vs. unsigned?
+[Thu 13:40:18] *	kimhd sorry, late to the party. Did we bring up the unencoded, detached payload option in the RSA2017 sig suite 
+[Thu 13:40:49] <dlongley>	manu: I'd phrase it differently, at some point there has to be some kind of cryptographic proof. The other concern that we have ... let me jump back. We could assert that there is no signature on a DID document, or say it's optional I mean, and that's fine across every DID method we're looking at.
+[Thu 13:40:49] <kimhd>	voip: connections?
+[Thu 13:40:49] <voip-ccg>	Conference participants are: Manu Sporny [SIP/6000-00000192].
+[Thu 13:41:08] <dlongley>	manu: I think that's totally fine. Even in the Veres One ledger the signature is not on the DID document itself it's on an event that comes into the ledger.
+[Thu 13:41:28] *	mike-lodder kimhd I don't think so
+[Thu 13:41:38] <dlongley>	manu: When you fetch the DID document there's a wrapping signature there.
+[Thu 13:42:14] <mike-lodder>	q+
+[Thu 13:42:14] <voip-ccg>	mike-lodder has been added to the queue: manu, dlongley, mike-lodder
+[Thu 13:42:15] <dlongley>	manu: The whole argument around JWS is moot and then we could potentially stop talking about it.
+[Thu 13:42:56] <dlongley>	manu: The more options we give people the more things others will have to do... if people want JSON, JSON-LD, JWS, LDS, methodX, methodY, and so on -- you're pulling in more libraries.
+[Thu 13:43:38] <dlongley>	manu: The people pushing JSON-LD and LDS have a strong reason for doing so. Is the JSON and JWS stuff really buying people much? Saying things are optional and so on leads to extra security and operational costs.
+[Thu 13:43:42] <kimhd>	q+ is https://w3c-dvcg.github.io/lds-rsa2017/ an option for those who want JWS?
+[Thu 13:43:42] <voip-ccg>	kimhd has been added to the queue: manu, dlongley, mike-lodder, kimhd
+[Thu 13:43:43] <dlongley>	q?
+[Thu 13:43:43] <voip-ccg>	The current speaker queue is: manu, dlongley, mike-lodder, kimhd
+[Thu 13:43:47] <manu>	ack manu
+[Thu 13:43:47] <voip-ccg>	manu has the floor (to note duplication of data.).
+[Thu 13:43:58] <manu>	drummond: Ok, with each of these, will try to see if we have consensus
+[Thu 13:44:10] <manu>	drummond: There are hypothesis I'm going to ask about.
+[Thu 13:44:27] <manu>	drummond: It sounds like there is agreement that spec can say format is JSON-LD, but can be used as naive JSON.
+[Thu 13:44:41] <manu>	drummond: Second thing, signatures in DID docs are optional.
+[Thu 13:44:57] <cwebber2>	q?
+[Thu 13:44:57] <voip-ccg>	The current speaker queue is: dlongley, mike-lodder, kimhd
+[Thu 13:45:18] <manu>	drummond: Each DID Method could specify whether signatures are valid - or DID Spec can say you can attach signatures to document.
+[Thu 13:45:32] <manu>	drummond: Folks at table willing to specify, here is how you do JWS signature, they can do that, and we're done.
+[Thu 13:46:19] <manu>	dlongley: I'm going to try to rewind - signatures being optional - general concern that there might be some confusion over purpose of a DID Document and determining what the data model will look like, what serialization will look like - create a common format for what is returned by resolver. 
+[Thu 13:46:53] <cwebber2>	+1 to applications which use DIDs regardless of DID method :)
+[Thu 13:47:01] <manu>	dlongley: You improve interop by having resolvers return same DID docs - I'm thinking of this in terms of apps that want to use DIDs, regardless of what method is being used by those DIDs... when we talk about signatures - DID Document that's returned, authenticity is checked by resolver, or trust resolver in some way.
+[Thu 13:47:05] <drummond>	dlongley: "The purpose of a DID document is to return a standard set of metadata associated with a DID".
+[Thu 13:47:16] <drummond>	q+
+[Thu 13:47:17] <voip-ccg>	drummond has been added to the queue: dlongley, mike-lodder, kimhd, drummond
+[Thu 13:47:29] <manu>	dlongley: There are trade-offs in these cases - common tooling, resolver can potentially be a lot simpler.
+[Thu 13:47:31] <manu>	ack dlongley 
+[Thu 13:47:31] <voip-ccg>	dlongley has the floor (to respond to the purpose of a DID doc).
+[Thu 13:48:03] <drummond>	To remember what I want to say when the queue gets to me: should we look at DID resolution as a two-step process.
+[Thu 13:48:18] <cwebber2>	+1 to a common protocol!
+[Thu 13:48:28] *	cwebber2 has thoughts on this
+[Thu 13:48:31] <cwebber2>	q?
+[Thu 13:48:31] <voip-ccg>	The current speaker queue is: mike-lodder, kimhd, drummond
+[Thu 13:48:33] <cwebber2>	q+
+[Thu 13:48:33] <voip-ccg>	cwebber2 has been added to the queue: mike-lodder, kimhd, drummond, cwebber2
+[Thu 13:48:35] <SamSmith>	The simplest common protocol for http is to add a Signature header
+[Thu 13:48:38] <drummond>	Also, to talk about Dave's point about a common purpose of DIDs and DID docs.
+[Thu 13:48:48] <manu>	dlongley: That does depend on some common method for retrieving things from these ledgers. That's going to cause resolvers to become heavyweight... build apps that have embedded resolvers, that work across multiple DID methods - it's important for us to figure out if there is a common protocol to retrieve things from a variety of ledgers... how do we create resolvers that can pull from different ledgers, we want interop between different DID Methods... there may be apps that do care about that, but for apps that don't, we want to support that.
+[Thu 13:48:54] <SamSmith>	The signature header signs the body of the response
+[Thu 13:48:56] <manu>	dlongley: It's important to understand consequences 
+[Thu 13:49:00] <cwebber2>	q-
+[Thu 13:49:00] <voip-ccg>	cwebber2 has been removed from the queue: mike-lodder, kimhd, drummond
+[Thu 13:49:08] <SamSmith>	Q?
+[Thu 13:49:15] <SamSmith>	q?
+[Thu 13:49:15] <voip-ccg>	The current speaker queue is: mike-lodder, kimhd, drummond
+[Thu 13:49:47] <manu>	nage: This gets to the same point that Dave made... where we get into trouble w/ variation of signature scheme, not tight binding to identifier, data model... we get around this in DID spec by making so many things optional.
+[Thu 13:50:14] <cwebber2>	q+
+[Thu 13:50:14] <voip-ccg>	cwebber2 has been added to the queue: mike-lodder, kimhd, drummond, cwebber2
+[Thu 13:50:30] <manu>	nage: We can push much of this into method spec... but where we talk about Verifiable Credentials - data model / signature block interact - this is going to be an ongoing issue as we try to deal w/ context where we don't depend on LD data model... signature scheme may not be able to depend on context
+[Thu 13:50:34] <dlongley>	q?
+[Thu 13:50:34] <voip-ccg>	The current speaker queue is: mike-lodder, kimhd, drummond, cwebber2
+[Thu 13:50:46] <manu>	nage: We can resolve on the DID spec, but on VC spec, it'll become a real issue.
+[Thu 13:50:47] <manu>	ack mike-lodder 
+[Thu 13:50:48] <voip-ccg>	mike-lodder has the floor.
+[Thu 13:50:52] <manu>	ack kimhd 
+[Thu 13:50:52] <voip-ccg>	kimhd has the floor (is https://w3c-dvcg.github.io/lds-rsa2017/ an option for those who want JWS?).
+[Thu 13:50:55] <mike-lodder>	q-
+[Thu 13:50:55] <voip-ccg>	undefined isn't on the speaker queue.
+[Thu 13:50:57] <kimhd>	https://w3c-dvcg.github.io/lds-rsa2017/
+[Thu 13:50:59] <mike-lodder>	Q?
+[Thu 13:51:02] <mike-lodder>	q?
+[Thu 13:51:02] <voip-ccg>	The current speaker queue is: drummond, cwebber2
+[Thu 13:51:13] <manu>	kimhd: For those that want to use JWS, you could use  https://w3c-dvcg.github.io/lds-rsa2017/
+[Thu 13:51:13] <kimhd>	https://tools.ietf.org/html/rfc7797
+[Thu 13:51:27] <manu>	kimhd: The intent was to help address these scenarios - is this suitable for those that want to use JWS?
+[Thu 13:51:31] <dlongley>	we plan on using it
+[Thu 13:51:38] <manu>	ack drummond 
+[Thu 13:51:38] <voip-ccg>	drummond has the floor.
+[Thu 13:52:06] <manu>	drummond: Core purpose of DIDs and DID Documents and DID Methods... I don't think there is debate about this, but we should focus.
+[Thu 13:52:14] <dlongley>	q+ to make more comments on DID purpose
+[Thu 13:52:14] <voip-ccg>	dlongley has been added to the queue: cwebber2, dlongley
+[Thu 13:52:18] <manu>	drummond: I'm going to put a hypothesis out there... react to it.
+[Thu 13:52:34] <manu>	drummond: Agree w/ Dave Longley - you need to get back a standard set of metadata
+[Thu 13:52:54] <manu>	drummond: Common data that you want - associated set of keys, associated service endpoints.
+[Thu 13:53:07] <SamSmith>	@kimhd  the linked document does not seem to describe and attached signature block?
+[Thu 13:53:10] <manu>	drummond: a way to associate them when necessary
+[Thu 13:53:33] <manu>	drummond: That's the one thing that DID Docs need to do... very basic layer for many things we don't anticipate.
+[Thu 13:53:45] <manu>	q+ nage
+[Thu 13:53:45] <voip-ccg>	manu has been added to the queue: cwebber2, dlongley, nage
+[Thu 13:53:58] <dlongley>	q-
+[Thu 13:53:59] <voip-ccg>	dlongley has been removed from the queue: cwebber2, nage
+[Thu 13:54:05] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 13:54:07] <manu>	drummond: I see a pattern here - start to think of resolution as a two step process - client to resolver and resolver to method.
+[Thu 13:54:12] <ChristianLundkvist>	q?
+[Thu 13:54:12] <voip-ccg>	The current speaker queue is: cwebber2, nage
+[Thu 13:54:18] <ChristianLundkvist>	q+
+[Thu 13:54:18] <voip-ccg>	ChristianLundkvist has been added to the queue: cwebber2, nage, ChristianLundkvist
+[Thu 13:54:18] <markus_sabadello>	q+
+[Thu 13:54:19] <voip-ccg>	markus_sabadello has been added to the queue: cwebber2, nage, ChristianLundkvist, markus_sabadello
+[Thu 13:54:30] <manu>	drummond: Metadata that client needs back and verifiacation that client needs - resolver is not technically required.
+[Thu 13:54:45] <SamSmith>	q+
+[Thu 13:54:45] <voip-ccg>	SamSmith has been added to the queue: cwebber2, nage, ChristianLundkvist, markus_sabadello, SamSmith
+[Thu 13:55:22] <manu>	drummond: resolver needs to implement method to talk to target system... then perform whatever verification is necessary - that's where DID checking comes in... that becomes  much easier to focus on core metadata... instead of focusing on core verification.
+[Thu 13:55:26] <manu>	ack cwebber2 
+[Thu 13:55:26] <voip-ccg>	cwebber2 has the floor.
+[Thu 13:55:52] <manu>	cwebber: I agree with Drummond, for good reason, a lot of us are focused on the low level... but hopefully we're handing this off to developers.
+[Thu 13:56:29] <manu>	cwebber: Their big question is "I'm not going to download a full node", we're probably going to end up more DNS like - resolvers that people connect to... how do you trust just one resolver?
+[Thu 13:56:50] <kimhd>	@SamSmith sorry I forgot. This paper is the one with details: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/final-documents/ld-signatures.pdf
+[Thu 13:57:48] <manu>	cwebber: Maybe we should have some general protocol to run over HTTP - so common - implementers are not going to be interested in running that... maybe best path is to make sure there really are the economics are returning a DID Document are such that people will want to run resolvers.
+[Thu 13:57:57] <manu>	q+ to ask that we get back to Format Independence.
+[Thu 13:57:57] <voip-ccg>	manu has been added to the queue: nage, ChristianLundkvist, markus_sabadello, SamSmith, manu
+[Thu 13:58:13] <dlongley>	+1, it isn't going to happen.
+[Thu 13:58:14] <manu>	cwebber: We can't expect most people to download full chains.
+[Thu 13:58:18] <manu>	ack nage
+[Thu 13:58:18] <voip-ccg>	nage has the floor.
+[Thu 13:58:21] <dlongley>	downloading full nodes.
+[Thu 13:58:35] <manu>	ack nage
+[Thu 13:58:36] <voip-ccg>	nage isn't on the speaker queue.
+[Thu 13:58:43] <manu>	ack ChristianLundkvist 
+[Thu 13:58:44] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 13:59:44] <manu>	ChristianLundkvist: Most of the DID Methods that we are discussing probably don't even need the signature on the DID Document - a lot of the discussion is moot - however, the discussion might be shifted to talk more about Verifiable Claims, which is not the purpose of this discussion, but there is a question of whether or not Verifiable Credentials is a JSON-LD document.
+[Thu 13:59:51] <dlongley>	there's a W3C working group for that :)
+[Thu 14:00:28] <dlongley>	q+
+[Thu 14:00:28] <voip-ccg>	dlongley has been added to the queue: markus_sabadello, SamSmith, manu, dlongley
+[Thu 14:00:31] <manu>	ChristianLundkvist: I'm not sure if DID Resolver needs to spit out a DID Document w/ a signature on it - the onus on verifying that there is a cryptographically strong link between DID and DID Document falls on the resolver.
+[Thu 14:00:43] <manu>	ack markus_sabadello 
+[Thu 14:00:43] <voip-ccg>	markus_sabadello has the floor.
+[Thu 14:00:51] <dlongley>	if it falls on the resolver then we're going to need to have another piece (a "client" for the resolver) that actual applications use, they will not be running full nodes, etc.
+[Thu 14:01:03] <drummond>	What Christian is saying is what I was trying to say, which is that the resolver can implement the verification step, and that can be method specific, and then return a "plain" DID document.
+[Thu 14:01:33] <manu>	sabadello: Some comments on lightweight and heavyweight - Drummond said something about two-phase or two-part resolution architecture... logic that you need is lightweight, you could run it on a local machine... sometimes you need a full node (more heavyweight)
+[Thu 14:01:45] <manu>	sabadello: BTCR DID, you can resolve it in 3 different ways... 
+[Thu 14:01:58] <dlongley>	if "sometimes" you want a full node -- either people won't use them or we need another piece in the architecture to make those DID methods more tenable.
+[Thu 14:02:12] <SamSmith>	q-
+[Thu 14:02:12] <voip-ccg>	SamSmith has been removed from the queue: manu, dlongley
+[Thu 14:02:21] <manu>	sabadello: Some ledgers return a DID Document itself - Veres One is very lightweight, for example... but you can't do that w/ other methods that are more heavyweight.
+[Thu 14:02:22] <drummond>	q+
+[Thu 14:02:23] <voip-ccg>	drummond has been added to the queue: manu, dlongley, drummond
+[Thu 14:02:53] <manu>	sabadello: There will be different setups/configs - not much value in having signature in DID Doocument itself, how do you setup the components, how close is resolver to source of truth, how do you trust resolver -- those questions are important.
+[Thu 14:02:59] <manu>	ack manu
+[Thu 14:02:59] <voip-ccg>	manu has the floor (to ask that we get back to Format Independence.).
+[Thu 14:03:14] *	cwebber2 is probably most guilty of meandering, sorry :)
+[Thu 14:03:43] <dlongley>	manu: The conversation we're having is good but meandering a bit. I want to close out the format independence thing with a specific proposal. I think we all agree that we want format independence. There's an abstract data model, services, keys and identifiers as concepts in there.
+[Thu 14:03:56] <dlongley>	manu: JSON/JSON-LD may be used there as a format for it.
+[Thu 14:04:11] <dlongley>	manu: It sounds like signatures are optional. Does that close out option 1?
+[Thu 14:04:43] <dlongley>	drummond: I think there's a third thing. Will we in the DID spec still specify standard signatures that we can recommend?
+[Thu 14:04:48] <dlongley>	drummond: That methods can refer to.
+[Thu 14:05:45] <dlongley>	manu: When it comes to W3C and how it does stuff like that, you tend to give some examples. You split into core data model where you say "here's how you express the data model as JSON/JSON-LD in examples" and you leave other serializations to external specs. You don't prevent other serializations from happening. That's perfectly reasonable, some people go more academic than that and say you should just talk about the data model full stop. Go to other specs
+[Thu 14:05:45] <dlongley>	for that.
+[Thu 14:06:02] <dlongley>	manu: To shortcut the conversation for this let's just put JSON and JSON-LD into the spec.
+[Thu 14:06:10] <dlongley>	manu: If someone wants something else we can reopen.
+[Thu 14:06:20] <dlongley>	drummond: I think there's broad support. Anyone on the call disagree with that approach?
+[Thu 14:06:21] <dlongley>	none
+[Thu 14:06:21] <cwebber2>	+1
+[Thu 14:06:23] <dlongley>	drummond: I think we're there.
+[Thu 14:06:32] *	manu that only took 1 hour :P
+[Thu 14:06:37] <manu>	q?
+[Thu 14:06:37] <voip-ccg>	The current speaker queue is: dlongley, drummond
+[Thu 14:06:44] <manu>	ack dlongley 
+[Thu 14:06:44] <voip-ccg>	dlongley has the floor.
+[Thu 14:07:48] <manu>	dlongley: Regarding resolvers - Markus said that some resolvers might need full node, others you'll only need lightweight... DID Methods that require full method in resolver will only be used by mechanisms that ... don't want that to happen, don't want full nodes to be left out where DID is... they just want to use DIDs... run lightweight resolver for anything... 
+[Thu 14:07:52] *	cwebber2 we'll end up with IPID only :)
+[Thu 14:07:57] <manu>	dlongley: get the DID Document, do something with it.
+[Thu 14:08:38] <cwebber>	or incentivize them to do so
+[Thu 14:08:41] <manu>	dlongley: We need another layer in the architecture here - we need a protocol -- we might want to push more complex stuff into ledger nodes... embed lightweight clients/resolvers... 
+[Thu 14:09:11] <ChristianLundkvist>	q+
+[Thu 14:09:11] <voip-ccg>	ChristianLundkvist has been added to the queue: drummond, ChristianLundkvist
+[Thu 14:09:13] <cwebber>	if you got paid something like filecoin to provide DIDs
+[Thu 14:09:22] <cwebber>	there may be motivation to provide all these DIDs
+[Thu 14:09:38] <ChristianLundkvist>	Strongly disagree about putting DID resolution in blockchain nodes
+[Thu 14:10:10] <manu>	dlongley: For example, if all DID Methods  -- lightweight protocol on HTTP... applications want to use any data across DID method, implement HTTP GET - don't want to reopen #1, but a piece of that might be that resolvers then place signatures on DID Document that come back and that's part of authenticatoin method, trust resolver, trust authentication that came back - sigs appear on DID Docs as they come back from resolvers... run a full node for this - people aren't going to do that for lots of apps.
+[Thu 14:10:11] <sabadello>	agree with dlongley that resolvers can be run as a cloud service
+[Thu 14:10:15] <drummond>	Resolvers adding signatures? From the resolver itself?
+[Thu 14:10:34] <manu>	dlongley: To accept users ... we want interop - we're missing critical peice of architecture, push stuff into ledgers or resolvers are services.
+[Thu 14:10:39] *	manu missed a ton of that dlongley.
+[Thu 14:10:51] <cwebber>	but +1 we need a way that people can use resolvers, and we need a way to have general-cross-interoperability
+[Thu 14:10:55] <mike-lodder>	q?
+[Thu 14:10:55] <voip-ccg>	The current speaker queue is: drummond, ChristianLundkvist
+[Thu 14:11:19] <mike-lodder>	Then we need to be able to verify the resolver results
+[Thu 14:11:26] <manu>	dlongley: We want to push complexity to DID Methods, not resolvers.
+[Thu 14:11:52] <manu>	q+ to ask if we can stick to items we need consensus on.
+[Thu 14:11:52] <voip-ccg>	manu has been added to the queue: drummond, ChristianLundkvist, manu
+[Thu 14:11:58] <manu>	ack drummond 
+[Thu 14:11:58] <voip-ccg>	drummond has the floor.
+[Thu 14:12:38] <manu>	drummond: For two steps - client / app talking to resolver - lightweight protocol there - Markus made the point, multiple configurations - because of the crypto involved, where the verification takes place - DID Spec, defines conformance targets.
+[Thu 14:12:48] <manu>	drummond: Say "here are the different configurations"
+[Thu 14:13:38] <manu>	drummond: Can work w/ Markus - you cover those so you are defining ways to resolve a DID, and refer to conformance targets... if you talk to resolver, that's how X is done, if you're adding signature, that's how Y is done - I don't think anyone is saying we should do it all at ledger/client ... all 3 are possibilities.
+[Thu 14:14:19] <manu>	drummond: We can put that back out as topic - define different configs - conformance targets for implementers of spec and we need to do it in the spec. DID Docs / Methods and resolution - tackle that in context of definitions.
+[Thu 14:14:22] <cwebber2>	q?
+[Thu 14:14:22] <voip-ccg>	The current speaker queue is: ChristianLundkvist, manu
+[Thu 14:14:23] <manu>	ChristianLundkvist: What do you mean by that?
+[Thu 14:14:27] <manu>	ack ChristianLundkvist 
+[Thu 14:14:28] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 14:14:37] <manu>	ChristianLundkvist: If you have DID Method, it's only valid if you run a full node?
+[Thu 14:15:05] <dlongley>	perhaps we want a DID resolution spec instead -- where DID methods would define a mapping to a common protocol
+[Thu 14:15:24] <cwebber2>	+1 to a DID resolution spec
+[Thu 14:15:28] <dlongley>	and not mention this in the DID spec (other than to say "look over here for interoperable DID resolution")
+[Thu 14:15:31] <mike-lodder>	This distinction seems more important to a library implementation, rather than the method spec itself
+[Thu 14:15:34] <cwebber2>	q+ to say there are two major questions: is there a general purpose protocol for retrieving DIDs, and what are the economics of doing that work
+[Thu 14:15:34] <voip-ccg>	cwebber2 has been added to the queue: manu, cwebber2
+[Thu 14:15:50] <manu>	drummond: Resolvers that have different capabilities - client, DID Method can talk directly to target system - resolver, resolver is local... resolver is in cloud... resolver in cloud but light client - all of these configurations - there is a standard set of options.
+[Thu 14:16:28] <dlongley>	we're going to end up creating a centralized point of failure if we do that -- markus.
+[Thu 14:16:40] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 14:16:41] <dlongley>	everyone is going to want to use a monolithic resolution service
+[Thu 14:16:50] <manu>	drummond: The reason we need to define those config options is so a DID Method spec - for pattern A, this is how you do that, for pattern B, this is how you do it - method spec don't have to recreate wheel.
+[Thu 14:17:04] <manu>	drummond: We did a simpler version of this for XRDS
+[Thu 14:17:28] <manu>	sabadello: I think we can define common interface for talking to resolver 
+[Thu 14:18:28] <manu>	dlongley: I want us to be aware of making resolution too heavyweight - we might create a single point of failure... might recreate a problem. Don't want us to get totally derailed.
+[Thu 14:18:29] <manu>	q?
+[Thu 14:18:29] <voip-ccg>	The current speaker queue is: manu, cwebber2
+[Thu 14:18:33] <manu>	ack manu
+[Thu 14:18:33] <voip-ccg>	manu has the floor (to ask if we can stick to items we need consensus on.).
+[Thu 14:18:40] <cwebber2>	q-
+[Thu 14:18:40] <voip-ccg>	cwebber2 has been removed from the queue:
+[Thu 14:18:53] <dlongley>	manu: I originally put myself on the queue to say exactly that. DID resolution sounds like a full on sprint and we need to walk and maybe run.
+[Thu 14:18:59] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 14:19:01] <ChristianLundkvist>	q?
+[Thu 14:19:01] <voip-ccg>	The speaker queue is empty.
+[Thu 14:19:13] <dlongley>	manu: If we could have the rest of the folks in the group pull us back to the items we're talking about -- because meandering conversations don't help on spec text.
+[Thu 14:19:32] <manu>	Topic: Optional ID Property for the DID
+[Thu 14:19:43] *	manu no problem markus_sabadello -- just q+ when you want to talk.
+[Thu 14:19:45] *	dlongley no worries markus, just type "q+" to get on the queue
+[Thu 14:19:49] <manu>	q+ to provide input on #2
+[Thu 14:19:52] <voip-ccg>	manu has been added to the queue: manu
+[Thu 14:19:58] <cwebber2>	q+
+[Thu 14:19:58] <voip-ccg>	cwebber2 has been added to the queue: manu, cwebber2
+[Thu 14:20:04] <drummond>	+1 to making sure to focus on the spec using cloud-based resolvers does not reintroduce centralization.
+[Thu 14:20:39] <dlongley>	manu: Yes, I disagree with having the ID be optional. Playing off a number of things I heard on the call today. One of the purposes of the DID document is to provide a common piece of data an application can use regardless of the DID method that's behind it. The closer the DID docs look between multiple systems, the easier it is for the ecosystem to use them.
+[Thu 14:20:50] <drummond>	Ah-ha! Light bulb. If we specify a two-step resolution process, then the DID doc CAN require the DID.
+[Thu 14:20:52] <dlongley>	manu: Let's make it look almost identical, that's a design goal even if we can't fully actualize it.
+[Thu 14:21:15] <dlongley>	manu: Making it optional is because there's an "emergent" value that is the ID.
+[Thu 14:21:40] <dlongley>	manu: I'm thinking about BTC-R there's this initial bootstrapping process and you don't know the ID until it's created after the fact. But would you ever have an application ask a resolver for something ... it has an ID it's asking for.
+[Thu 14:21:47] <drummond>	q+
+[Thu 14:21:47] <voip-ccg>	drummond has been added to the queue: manu, cwebber2, drummond
+[Thu 14:21:48] <dlongley>	manu: So you would expect the DID doc to have the ID in it when it resolves.
+[Thu 14:21:58] <dlongley>	manu: I can't think of any DID method where it's optional.
+[Thu 14:22:42] <dlongley>	buchner: Composition of merkle root hash and [missed details while listening]
+[Thu 14:22:53] <manu>	ack manu
+[Thu 14:22:53] <voip-ccg>	manu has the floor (to provide input on #2).
+[Thu 14:22:56] <dlongley>	manu: But you can add the ID later.
+[Thu 14:23:02] <dlongley>	buchner: But the payload may be signed.
+[Thu 14:23:12] <dlongley>	(and adding the ID could affect the validity)
+[Thu 14:23:44] <dlongley>	cwebber2: It's completely reasonable that you could have an emergent document so you can't have ID when you generate it, but you can always tack on the ID when you hand it over to the user. Even if there was no way to have the ID until you do all the generation.
+[Thu 14:23:56] <drummond>	I agree with Manu's point that the resolver will ALWAYS have the DID, regardless of whether it is emergent. This is why a two-step resolution process makes sense.
+[Thu 14:24:07] <drummond>	q?
+[Thu 14:24:07] <voip-ccg>	The current speaker queue is: cwebber2, drummond
+[Thu 14:24:12] <dlongley>	?: If you're trying to validate this, maybe or maybe not, but if you're trying to ensure that hashes match up -- removing the ID to check things would have to be known to the client.
+[Thu 14:24:12] <manu>	ack cwebber2 
+[Thu 14:24:12] <voip-ccg>	cwebber2 has the floor.
+[Thu 14:24:32] <manu>	ack drummond 
+[Thu 14:24:32] <voip-ccg>	drummond has the floor.
+[Thu 14:24:38] <dlongley>	cwebber2: I don't see any reason why that wouldn't be possible [to include those instructions to remove the ID before doing validity checks].
+[Thu 14:24:55] <dlongley>	yes, we need to think about this in terms of resolution more than in terms of DID methods!
+[Thu 14:24:59] <dlongley>	that's where the interop is.
+[Thu 14:25:17] <manu>	drummond: This further enforces concept of two-step resolution process - you don't have to stick in another component, two step can be implemented directly by a client... two steps are separating execution of method, and whatever is returned.
+[Thu 14:26:03] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 14:26:03] <dlongley>	q?
+[Thu 14:26:03] <voip-ccg>	The speaker queue is empty.
+[Thu 14:26:06] <dlongley>	q+
+[Thu 14:26:06] <voip-ccg>	dlongley has been added to the queue: dlongley
+[Thu 14:26:11] <manu>	drummond: Here's a common metadata that needs to be returned, here's what needs to be returned by target system - I think we can all agree on that - DIDs are emergent property, Sam's got use cases aroudn that - that's cool, that can happen in step 1... but step 2 is where the DID Method thing comes in.
+[Thu 14:26:48] <manu>	drummond: Getting back to point - app can make its own security decisions on what resolver it trusts for what verification... or needs to talk to full node, or resolver - resolver code is in me - I'll trust it...
+[Thu 14:27:16] <manu>	dlongley: Completely agree with that - We don't care what DID Methods do, but DID DOcuments are what pops out and that's what we're trying to standardize.
+[Thu 14:27:55] <manu>	dlongley: These are the checks I did, there are a variety of thigns we can do that - what's going on w/ DID Methods, etc. We care about same DID Document pops out on other side - includes whatever information is necessary.
+[Thu 14:28:10] <manu>	drummond: Resolver could add signature? You said that earlier.
+[Thu 14:28:24] <manu>	dlongley: It could be, there might be a variety of ways to do that.
+[Thu 14:28:25] <manu>	q+
+[Thu 14:28:25] <voip-ccg>	manu has been added to the queue: dlongley, manu
+[Thu 14:28:27] <manu>	ack dlongley 
+[Thu 14:28:27] <voip-ccg>	dlongley has the floor.
+[Thu 14:29:00] <manu>	drummond: Some might have thought of signature on DID Document coming from resolver, some from ledger... we want everything to create similar documents.
+[Thu 14:29:11] *	cwebber2 interop not interflop!
+[Thu 14:29:44] *	mike-lodder how did we get back to talking about the resolver ;)
+[Thu 14:30:52] *	dlongley mike-lodder -- i think much of what we've been saying is in the DID-method domain is really about coming to agreement on what happens when you resolve a DID.
+[Thu 14:31:10] *	dlongley but yes, we're bad at staying on topic :)
+[Thu 14:31:28] <manu>	SamSmith: One of the suggestions was that there be an ID field that has the DID, but the DID might not be the actual DID, but the type or algorithm to generate the DID.
+[Thu 14:31:37] *	mike-lodder dlongley I agree with your first statement
+[Thu 14:32:08] *	manu all roads lead to a discussion about the resolver.
+[Thu 14:32:15] *	cwebber2 agrees with both statements :)
+[Thu 14:32:48] <manu>	SamSmith: I'm fine w/ supporting the concept that we're talking about final document that's resolved, not some interim version.
+[Thu 14:33:00] *	mike-lodder dlongley that DID-method domain is about coming to agreement on what happens when you resolve
+[Thu 14:33:09] <dlongley>	the "mapping" from however things are stored by a particular DID method to how you get to the "resolved" DID document is up to the method... but it does need to say it
+[Thu 14:33:23] <manu>	q+ to note that a DID Method spec can provide the interim docs and do whatever they want for internal purposes.
+[Thu 14:33:23] <voip-ccg>	manu has been added to the queue: manu, manu
+[Thu 14:33:26] <manu>	ack manu
+[Thu 14:33:26] <voip-ccg>	manu has the floor.
+[Thu 14:33:45] <manu>	q- manu to note time.
+[Thu 14:33:45] <voip-ccg>	manu has been removed from the queue:
+[Thu 14:34:16] <manu>	drummond: What is the best way to continue discussion of next 3 items?
+[Thu 14:36:39] *	mike-lodder has quit ("Leaving")
+[Thu 14:37:46] <manu>	SamSmith: How do we update the hardening proposal?
+[Thu 14:37:55] <manu>	drummond: Add change suggestions to docs, try not to use only comments.
+[Thu 14:38:11] <manu>	dlongley: Use the suggest feature, easier to find stuff.
