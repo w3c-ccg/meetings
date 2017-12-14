@@ -1,0 +1,452 @@
+[Thu 13:04:19] <manu>	Chair: Drummond
+[Thu 13:04:38] <manu>	Agenda: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit# 
+[Thu 13:05:05] <manu>	scribe: suedonym
+[Thu 13:05:21] *	dlongley yes
+[Thu 13:05:34] *	kimhd (~kimhd@public.cloak) has joined #ccg
+[Thu 13:05:56] <suedonym>	present: suedonym, drummond, nage, markus, lodder, lundkvist, samsmith, zundel, kimhd, gropper, manu, longley
+[Thu 13:07:06] *	kimhd would rather we use the German word Weltanschauung
+[Thu 13:08:39] <suedonym>	Meeting: Credentials CG - DID Hardening Task Force
+[Thu 13:08:39] <suedonym>	Topic: Current Status of DID Hardening Discussions
+[Thu 13:08:39] <suedonym>	drummond: any conclusions or options that came out of the worldview conflicts email thread?
+[Thu 13:09:08] <manu>	q+ to suggest that we look at concrete examples.
+[Thu 13:09:08] <voip-ccg>	manu has been added to the queue: manu
+[Thu 13:10:11] <suedonym>	Gropper:The worldview dichotomy appears as we try to standardize the way scopes are handled. OAuth and UMA on top of OAuth seem to have an allergy to linked data protocols (I don't understand why). Meanwhile linked data could be a solution to making scopes clear and reliable in UMA (but I have no experience with RDF).
+[Thu 13:12:37] <suedonym>	Manu: suggests that we not dwell today on the philosophical level. How does it look IN the did doc?
+[Thu 13:13:09] <nage>	ack manu
+[Thu 13:13:10] <voip-ccg>	manu has the floor (to suggest that we look at concrete examples.).
+[Thu 13:13:23] <nage>	q?
+[Thu 13:13:24] <voip-ccg>	The speaker queue is empty.
+[Thu 13:14:17] *	dlongley i was also under the impression that we might want to move to some easier bits of the DID spec to bite off today :)
+[Thu 13:14:23] *	manu just lost connection.
+[Thu 13:14:47] *	manu it's called -- Re: DID Spec - key management - 3 proposals (was: Re: Worldview conflicts on the purpose of DID documents)
+[Thu 13:14:50] <ChristianLundkvist>	q?
+[Thu 13:14:51] <voip-ccg>	The speaker queue is empty.
+[Thu 13:15:29] *	agropper (~agropper@public.cloak) has joined #ccg
+[Thu 13:15:41] <ChristopherA>	just arrived.
+[Thu 13:16:06] <dlongley>	q+ to say don't feel strongly, just noticing that we're having good asynchronous discussion
+[Thu 13:16:07] <voip-ccg>	dlongley has been added to the queue: dlongley
+[Thu 13:16:26] <dlongley>	q-
+[Thu 13:16:27] <voip-ccg>	dlongley has been removed from the queue:
+[Thu 13:08:39] <suedonym>	Topic: Options for Keys / Authentication
+[Thu 13:17:14] <suedonym>	drummond: Manu has done a good job of framing the options. We will go through the shared doc and drummond will make notes
+[Thu 13:17:14] <suedonym>	drummond: Options are here - https://lists.w3.org/Archives/Public/public-credentials/2017Dec/0046.html
+[Thu 13:17:58] <ChristopherA>	q+
+[Thu 13:17:58] <voip-ccg>	ChristopherA has been added to the queue: ChristopherA
+[Thu 13:18:12] <ChristianLundkvist>	q+
+[Thu 13:18:13] <voip-ccg>	ChristianLundkvist has been added to the queue: ChristopherA, ChristianLundkvist
+[Thu 13:18:14] <ChristianLundkvist>	q?
+[Thu 13:18:15] <voip-ccg>	The current speaker queue is: ChristopherA, ChristianLundkvist
+[Thu 13:18:45] <kimhd>	q+ to discuss options
+[Thu 13:18:45] <voip-ccg>	kimhd has been added to the queue: ChristopherA, ChristianLundkvist, kimhd
+[Thu 13:21:14] <suedonym>	Christopher: scared about some of these approaches comes from SSL. Everything was adaptable. it made it very difficult. Created cypher suites. Could be added onto, etc. Ended up having several hundred cypher suites. Desire to keep it standard in a high lever spec that everyone supoorts scares him. BTCR - there are a bunch of things we cannot easily support.
+[Thu 13:21:25] <mike-lodder>	q?
+[Thu 13:21:25] <voip-ccg>	The current speaker queue is: ChristopherA, ChristianLundkvist, kimhd
+[Thu 13:21:38] <drummond>	q+
+[Thu 13:21:38] <voip-ccg>	drummond has been added to the queue: ChristopherA, ChristianLundkvist, kimhd, drummond
+[Thu 13:22:09] <nage>	ack ChristopherA
+[Thu 13:22:09] <voip-ccg>	ChristopherA has the floor.
+[Thu 13:22:21] <nage>	q?
+[Thu 13:22:21] <voip-ccg>	The current speaker queue is: ChristianLundkvist, kimhd, drummond
+[Thu 13:22:48] <dlongley>	q+ to say that *applications* other than the blockchain will use keys listed in a DID
+[Thu 13:22:48] <voip-ccg>	dlongley has been added to the queue: ChristianLundkvist, kimhd, drummond, dlongley
+[Thu 13:22:50] <samsmith>	@chris if both algorithmic agility and cypher suites are bad what is your proposed solution
+[Thu 13:22:53] <manu>	q+ to suggest that we may be able to focus discussion by focusing on use cases
+[Thu 13:22:53] <voip-ccg>	manu has been added to the queue: ChristianLundkvist, kimhd, drummond, dlongley, manu
+[Thu 13:23:03] <samsmith>	q+
+[Thu 13:23:03] <voip-ccg>	samsmith has been added to the queue: ChristianLundkvist, kimhd, drummond, dlongley, manu, samsmith
+[Thu 13:23:35] <samsmith>	q+ what is the solution if neither cypher suite or algorithmic agility?
+[Thu 13:23:35] <voip-ccg>	samsmith has been added to the queue: ChristianLundkvist, kimhd, drummond, dlongley, manu, samsmith, samsmith
+[Thu 13:23:44] <nage>	ack ChristianLundkvist
+[Thu 13:23:44] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 13:24:43] <suedonym>	Christian: Wants to speak on option 3. Believes it goes against what DID docs are supposed to do.
+[Thu 13:25:00] <ChristopherA>	q+
+[Thu 13:25:00] <voip-ccg>	ChristopherA has been added to the queue: kimhd, drummond, dlongley, manu, samsmith, samsmith, ChristopherA
+[Thu 13:25:52] <drummond>	+1 to Christian's point that "if nothing about key management and description is standardized, we won't have interop"
+[Thu 13:26:07] <manu>	+1 to that as well... we're trying to standardize stuff here... 
+[Thu 13:26:23] <manu>	specifically, at least authentication mechanisms and how you express them.
+[Thu 13:26:32] <suedonym>	Christian: Any method could support whatever cypher suites that makes sense to them. Provide a list of standards that can be used.
+[Thu 13:26:32] <manu>	so, -1 to Option #3
+[Thu 13:26:48] <drummond>	+1 to having a list of standard cryptosuites to choose from - that's been the proposal for standardized key descriptions all along.
+[Thu 13:27:10] <drummond>	Yes, -1 to Option #3
+[Thu 13:27:11] <nage>	q?
+[Thu 13:27:11] <voip-ccg>	The current speaker queue is: kimhd, drummond, dlongley, manu, samsmith, samsmith, ChristopherA
+[Thu 13:27:15] <nage>	ack kimhd
+[Thu 13:27:15] <voip-ccg>	kimhd has the floor (to discuss options).
+[Thu 13:27:43] <suedonym>	Kim: Options A,B,C. It can be confusing to implementers if the elements are expressed component wise. Of the three options, B would be a non-option. Does not cluster
+[Thu 13:28:38] <suedonym>	KimHd: Her preference would be closer to Option A. Wants to understand more about implosionist suites.
+[Thu 13:28:59] <suedonym>	q?
+[Thu 13:28:59] <voip-ccg>	The current speaker queue is: drummond, dlongley, manu, samsmith, samsmith, ChristopherA
+[Thu 13:29:25] <manu>	ack drummond 
+[Thu 13:29:26] <voip-ccg>	drummond has the floor.
+[Thu 13:29:35] <samsmith>	Q?
+[Thu 13:29:41] <manu>	q?
+[Thu 13:29:41] <voip-ccg>	The current speaker queue is: dlongley, manu, samsmith, samsmith, ChristopherA
+[Thu 13:29:57] *	manu samsmith --- voip bot is case sensitive (unfortunatleY)
+[Thu 13:30:02] <suedonym>	drummond: thought a firm decision was made that the access rules for updating the did doc are method specific.
+[Thu 13:30:23] <suedonym>	... For methods that want to describe those capabilities, we should do a different spec.
+[Thu 13:30:50] <suedonym>	drummond: agrees that key management service description are in scope and have been all along.
+[Thu 13:31:42] <suedonym>	drummond: scope questions broader than key management has come up.
+[Thu 13:32:56] <nage>	q?
+[Thu 13:32:56] <voip-ccg>	The current speaker queue is: dlongley, manu, samsmith, samsmith, ChristopherA
+[Thu 13:33:04] <suedonym>	drummond: how to express the overall model for key management - keeps hearing there are certain combinations that are best practices. Put all the umph behind that. Need to encourage best practices.
+[Thu 13:33:28] <nage>	ack dlongley
+[Thu 13:33:28] <voip-ccg>	dlongley has the floor (to say that *applications* other than the blockchain will use keys listed in a DID).
+[Thu 13:34:36] <nage>	+1 to both ledgers and applications leveraging keys in a DID document AND having some interoperability scope to those keys (to keep things functionally compatible)
+[Thu 13:34:38] <nage>	ack manu
+[Thu 13:34:38] <voip-ccg>	manu has the floor (to suggest that we may be able to focus discussion by focusing on use cases).
+[Thu 13:35:21] <suedonym>	Manu: is there an option that was not expressed in his email?
+[Thu 13:35:27] <drummond>	+1 to Dave's point that DID docs need to be able to express two categories of key material: 1) keys or proofs necessary to update the DID doc, 2) keys or proofs needed by various applications.
+[Thu 13:35:37] <nage>	q?
+[Thu 13:35:37] <voip-ccg>	The current speaker queue is: samsmith, samsmith, ChristopherA
+[Thu 13:35:49] <suedonym>	manu: Can we eliminate any of the options now?
+[Thu 13:37:38] <drummond>	Totally agree that we want to standardize any common functionality across ledgers, including any usage of keys that needs to work across ledgers.
+[Thu 13:38:13] <suedonym>	Manu: -1 to not standardizing. Wants to hear what Sam's thoughts are on Option 3. WHere do we go from there? We may be able to reifne the problem set of what we are trying to solve.
+[Thu 13:38:14] <nage>	ack samsmith
+[Thu 13:38:14] <voip-ccg>	samsmith has the floor.
+[Thu 13:38:18] <nage>	ack samsmith
+[Thu 13:38:19] <voip-ccg>	samsmith has the floor (what is the solution if neither cypher suite or algorithmic agility?).
+[Thu 13:39:28] <nage>	q?
+[Thu 13:39:28] <voip-ccg>	The current speaker queue is: ChristopherA
+[Thu 13:39:43] <suedonym>	sam: Option 3 is not what is what he is proposing. He was proposing where almost everything is in the key type.
+[Thu 13:39:59] <drummond>	Sam explained that what he thinks should be bound is the cryptographic suite, operation, and version.
+[Thu 13:40:18] <dlongley>	+1 to what Sam is saying about key type -- it's what we do with Linked Data Signature suites
+[Thu 13:40:36] <dlongley>	(which includes a "year" as a version)
+[Thu 13:40:40] <manu>	+1 to what Sam is saying -- which is exactly what Linked Data Signatures do via SignatureSuites.
+[Thu 13:41:29] <drummond>	Wondering if we can get a subset of this group to agree on a "best practice for key descriptions" and then recommend that back to the group?
+[Thu 13:41:31] <suedonym>	Sam: if you want cryptography that progresses in time, you have to have a way to have the hooks for management. Ability to revoke, and maintain.
+[Thu 13:41:32] <drummond>	q+
+[Thu 13:41:32] <voip-ccg>	drummond has been added to the queue: ChristopherA, drummond
+[Thu 13:41:56] <manu>	q+ to mention https://w3c-dvcg.github.io/ld-signatures/#signature-suites
+[Thu 13:41:57] <voip-ccg>	manu has been added to the queue: ChristopherA, drummond, manu
+[Thu 13:42:14] <dlongley>	putting the year in the suite also is a strong indicator of version vs just "version 1" or "version 2"
+[Thu 13:42:21] <kimhd>	q+ to clarify impression that option A includes more than what LD Signatures currently do
+[Thu 13:42:21] <voip-ccg>	kimhd has been added to the queue: ChristopherA, drummond, manu, kimhd
+[Thu 13:43:13] <ChristianLundkvist>	scribe: ChristianLundkvist
+[Thu 13:43:22] *	manu thanks suedonym!!!
+[Thu 13:43:23] <drummond>	Thanks Christian.
+[Thu 13:43:27] *	manu thanks for taking over ChristianLundkvist !
+[Thu 13:43:32] *	dlongley thanks scribes!
+[Thu 13:43:33] <drummond>	q?
+[Thu 13:43:33] <voip-ccg>	The current speaker queue is: ChristopherA, drummond, manu, kimhd
+[Thu 13:43:41] <nage>	Chairs: at some point should we close the queue so that we can propose to eliminate options or make some type of decision?
+[Thu 13:43:46] <nage>	ack ChristopherA
+[Thu 13:43:46] <voip-ccg>	ChristopherA has the floor.
+[Thu 13:43:46] *	manu it makes sense samsmith -- we're in violent agreement with you on much of what you said...
+[Thu 13:43:50] <ChristianLundkvist>	Sam: The purpose would not be in the type, you can use a signing key for authentication or other things
+[Thu 13:44:06] <manu>	q?
+[Thu 13:44:06] <voip-ccg>	The current speaker queue is: drummond, manu, kimhd
+[Thu 13:44:16] <kimhd>	q-
+[Thu 13:44:16] <voip-ccg>	kimhd has been removed from the queue: drummond, manu
+[Thu 13:44:17] <drummond>	@nage yes, but I don't know the procedure for that. Can you suggest it?
+[Thu 13:44:48] *	manu nage - VoIPBot doesn't have "close queue" option, I don't think :(
+[Thu 13:44:55] *	manu hasn't implemented that yet :(
+[Thu 13:44:59] <ChristianLundkvist>	ChristopherA: General problem - there may be a problem with combinatorial complexity when doing cipher suites as well
+[Thu 13:45:07] *	squarfed has quit (Ping timeout: 180 seconds)
+[Thu 13:45:21] <kimhd>	my confusion is cleared up: Sam clarified that purpose isn't in the type, which is consistent with LD signatures.
+[Thu 13:45:45] *	nage yes, I was expecting the chair to just say "the queue will be closed because ______" and then "the queue is now closed" and once we get through the action then announce "the queue is open again"
+[Thu 13:45:57] <drummond>	Ok
+[Thu 13:46:05] <ChristianLundkvist>	ChristopherA: What do we need to define in order to do CRUD operations on the DID document?
+[Thu 13:46:19] <drummond>	The problem is that I'm not sure we've reached that point in the discussion.
+[Thu 13:46:27] <drummond>	q?
+[Thu 13:46:27] <voip-ccg>	The current speaker queue is: drummond, manu
+[Thu 13:46:28] <nage>	q?
+[Thu 13:46:28] <voip-ccg>	The current speaker queue is: drummond, manu
+[Thu 13:46:28] <ChristianLundkvist>	ChristopherA: We might be trying to do too much
+[Thu 13:46:34] <nage>	ack drummond
+[Thu 13:46:34] <voip-ccg>	drummond has the floor.
+[Thu 13:46:38] <dlongley>	and "application" or "application class" shouldn't be in the type either, IMO. -- but we need to capture that in a relation.
+[Thu 13:47:10] <kimhd>	I'd like to understand the differences between option B and C; can someone speak to that more
+[Thu 13:47:16] <kimhd>	?
+[Thu 13:47:35] *	manu kimhd I could... 
+[Thu 13:47:41] *	kimhd thanks
+[Thu 13:47:46] <samsmith>	Key material is in the key bag for the universal purpose of key management that is discovery to enable suite upgrades rotation revocation.  The specific purpose is in a different branch than the bag with a reference to the key material in the bag. This is now a graph not a tree
+[Thu 13:47:46] <manu>	q+ to explain difference between option B and option C
+[Thu 13:47:46] <voip-ccg>	manu has been added to the queue: manu, manu
+[Thu 13:47:53] <ChristianLundkvist>	Drummond: Everyone in favor of having the ability to do CRUD on DID document. Option #3 might be enough to support that, but this kicks interop key mgmt down the road (needed for applications)
+[Thu 13:47:58] *	manu after driving a stake through Option #3's still beating heart.
+[Thu 13:48:08] <samsmith>	Specific purpose is authentication, etc etc
+[Thu 13:48:13] *	manu I mean, Option #3 is a vampire... not a person... so it's cool.
+[Thu 13:48:33] <ChristianLundkvist>	Drummond: My reaction to #3 is "lets' not say CRUD on DID docs is the only thing we'll do"
+[Thu 13:49:09] <ChristianLundkvist>	Drummond: Evernym has contract with DHS to do key mgmt part - so it's important
+[Thu 13:49:16] <nage>	q?
+[Thu 13:49:16] <voip-ccg>	The current speaker queue is: manu, manu
+[Thu 13:49:25] *	dlongley i.e. PROPOSAL: Here's what is proposed.
+[Thu 13:50:16] *	dlongley https://lists.w3.org/Archives/Public/public-credentials/2017Dec/0046.html
+[Thu 13:50:36] <ChristianLundkvist>	Manu: Can we have a vote to eliminate option #3 from the list of key descriptions?
+[Thu 13:50:45] <manu>	PROPOSAL: Eliminate Option #3 from the discussion choices as described in this email: https://lists.w3.org/Archives/Public/public-credentials/2017Dec/0046.html
+[Thu 13:50:50] <nage>	+1
+[Thu 13:50:52] <brentz>	+1
+[Thu 13:50:54] <dlongley>	+1
+[Thu 13:50:54] <kimhd>	+1
+[Thu 13:50:55] <mike-lodder>	+1
+[Thu 13:50:55] <drummond>	+1
+[Thu 13:50:55] <ChristianLundkvist>	+1
+[Thu 13:50:57] <samsmith>	+1
+[Thu 13:50:58] <manu>	+1
+[Thu 13:50:58] <ChristopherA>	+0
+[Thu 13:50:59] *	kimhd die!
+[Thu 13:51:04] *	manu haha
+[Thu 13:51:09] *	dlongley :)
+[Thu 13:51:29] *	mike-lodder stake in the heart for vampire
+[Thu 13:52:14] *	dlongley RESOLVED: <cut and paste>
+[Thu 13:52:28] <drummond>	RESOLVED: Eliminate Option #3 from the discussion choices as described in this email: https://lists.w3.org/Archives/Public/public-credentials/2017Dec/0046.html
+[Thu 13:52:40] *	mike-lodder 6?
+[Thu 13:52:40] *	manu yaaay! victory!
+[Thu 13:52:44] *	John_ (~John@public.cloak) has joined #ccg
+[Thu 13:52:53] *	manu possibly a Pyrrhic victory.
+[Thu 13:53:00] *	John-BCGov (~John-BCGov@public.cloak) has joined #ccg
+[Thu 13:53:26] <nage>	q?
+[Thu 13:53:26] <voip-ccg>	The current speaker queue is: manu, manu
+[Thu 13:53:34] <manu>	ack manu
+[Thu 13:53:34] <nage>	ack manu
+[Thu 13:53:34] <voip-ccg>	manu has the floor (to mention https://w3c-dvcg.github.io/ld-signatures/#signature-suites).
+[Thu 13:53:34] <voip-ccg>	manu has the floor (to explain difference between option B and option C).
+[Thu 13:53:42] <manu>	ack manu
+[Thu 13:53:42] <voip-ccg>	manu isn't on the speaker queue.
+[Thu 13:53:45] <nage>	q?
+[Thu 13:53:45] <voip-ccg>	The speaker queue is empty.
+[Thu 13:54:03] <ChristianLundkvist>	Manu: Kim pointed out differences between #3 and #C
+[Thu 13:54:30] <manu>	https://w3c-dvcg.github.io/ld-signatures/#signature-suites
+[Thu 13:54:34] <ChristianLundkvist>	Manu: ChristopherA says need to be careful about algo agility, Sam agrees in general
+[Thu 13:54:46] <drummond>	q+
+[Thu 13:54:47] <voip-ccg>	drummond has been added to the queue: drummond
+[Thu 13:55:01] <ChristianLundkvist>	Manu: We have suites in JSON-LD, need to cut down the suites to a small amount that makes sense
+[Thu 13:55:09] <samsmith>	q+  key bag and multiple key purpose
+[Thu 13:55:09] <voip-ccg>	samsmith has been added to the queue: drummond, samsmith
+[Thu 13:55:30] *	ChristopherA Yes. it is why I'm here instead of working on JOSE
+[Thu 13:55:36] <samsmith>	Jose bad yes too much agility
+[Thu 13:55:41] <ChristianLundkvist>	... JOSE/JWT stack has issues with algo agility, very loose wrt that
+[Thu 13:56:21] <ChristianLundkvist>	Manu: If you like restricted algo agility suites JOSE might not be a good choice
+[Thu 13:56:42] <ChristianLundkvist>	Manu: Sam + evernym folks like #A a lot
+[Thu 13:56:47] <nage>	q?
+[Thu 13:56:47] <voip-ccg>	The current speaker queue is: drummond, samsmith
+[Thu 13:57:10] <samsmith>	But JWT is good not for algo agility but because signatures are not embedded in graph
+[Thu 13:57:23] <drummond>	+1 to Manu's point that we want to be very specific about what a key can be used for.
+[Thu 13:57:29] <ChristianLundkvist>	Manu: Folks seem to be against total combinatorial agility, which is good
+[Thu 13:57:50] <ChristianLundkvist>	Manu: In option B we break out what a key can be used for
+[Thu 13:57:52] <ChristopherA>	can application and purpose be one value?
+[Thu 13:58:05] <kimhd>	I thought Sam was supporting something closer to option C, but he's on the queue and can speak to that
+[Thu 13:58:28] <kimhd>	i.e. separating out purpose
+[Thu 13:58:31] <dlongley>	i would think so (application and purpose captured in one value ... or even application "class" to allow multiple applications to use it)
+[Thu 13:58:45] <ChristopherA>	thus type: signaturesuite apppur: vcissuersigning
+[Thu 13:58:50] <ChristianLundkvist>	Manu: In #C you encode the application of the key through the relation.
+[Thu 13:58:57] <samsmith>	I am proposing an option D
+[Thu 13:58:59] <drummond>	q?
+[Thu 13:58:59] <voip-ccg>	The current speaker queue is: drummond, samsmith
+[Thu 13:58:59] <ChristopherA>	q+
+[Thu 13:58:59] <voip-ccg>	ChristopherA has been added to the queue: drummond, samsmith, ChristopherA
+[Thu 13:59:02] *	kimhd makes sense, thanks Manu
+[Thu 13:59:07] <nage>	ack drummond
+[Thu 13:59:07] <voip-ccg>	drummond has the floor.
+[Thu 13:59:10] <nage>	q?
+[Thu 13:59:10] <voip-ccg>	The current speaker queue is: samsmith, ChristopherA
+[Thu 13:59:12] <dlongley>	in option C the relation could include purpose and application/application class.
+[Thu 13:59:21] <ChristianLundkvist>	Manu: In #B the application lives with the key
+[Thu 13:59:22] *	kimhd samsmith troublemaker option d
+[Thu 13:59:43] *	John_ has quit (Ping timeout: 180 seconds)
+[Thu 14:00:08] *	nage points out that option C supposes that there is an ontology of applications/application classes that can be counted on over time in terms of interoperability
+[Thu 14:00:19] <samsmith>	Option D is option C is expressed as a compact string plus a version which is not in C.  and then Purpose is in its own branch
+[Thu 14:00:20] <dlongley>	"purpose" is also not fully pinned down, IMO -- whether we're talking about crypto operation only or something higher level... which is why things like "authentication" as a purpose is a bad idea, IMO. ... that's not a crypto operation, it's an application level consideration
+[Thu 14:00:21] <manu>	q+ to describe pros and cons for each A, B, and C.
+[Thu 14:00:21] <voip-ccg>	manu has been added to the queue: samsmith, ChristopherA, manu
+[Thu 14:00:26] <ChristianLundkvist>	Drummond: Have a lot of regard for crypto-folks in this group. Those who have the battle scars and care about this, if those ppl came together and come to consensus that I would probably support it.
+[Thu 14:00:37] <nage>	q?
+[Thu 14:00:38] <voip-ccg>	The current speaker queue is: samsmith, ChristopherA, manu
+[Thu 14:00:38] <dlongley>	it should be done as a relation only ... you can use this key to authenticate that this entity, for example, signed something.
+[Thu 14:00:48] <ChristianLundkvist>	Sam: I propose "option D"
+[Thu 14:00:51] *	manu nage yes, but if you're using a standards spec, then you have accepted that an ontology exists (for any syntax)
+[Thu 14:01:11] <ChristianLundkvist>	Drummond: Should we propose that a subset of ppl hammer out a proposal and bring it to the group?
+[Thu 14:01:15] *	nage just wanted to make sure that didn't pass implicitly
+[Thu 14:01:16] <drummond>	q+
+[Thu 14:01:16] <voip-ccg>	drummond has been added to the queue: samsmith, ChristopherA, manu, drummond
+[Thu 14:01:20] <drummond>	q-
+[Thu 14:01:20] <voip-ccg>	drummond has been removed from the queue: samsmith, ChristopherA, manu
+[Thu 14:01:22] <drummond>	q?
+[Thu 14:01:22] <voip-ccg>	The current speaker queue is: samsmith, ChristopherA, manu
+[Thu 14:01:31] <ChristopherA>	the date is a version
+[Thu 14:01:42] *	mike-lodder samsmith type or purpose?
+[Thu 14:01:42] *	manu is intrigued by Sam's proposal D.
+[Thu 14:01:47] *	TelegramSam (~TelegramSam@public.cloak) has joined #ccg
+[Thu 14:01:49] <ChristopherA>	RSACryptographicSigningKey2017a
+[Thu 14:01:55] <nage>	ack samsmith
+[Thu 14:01:55] <voip-ccg>	samsmith has the floor ( key bag and multiple key purpose).
+[Thu 14:01:55] <ChristianLundkvist>	Topic: Option #D
+[Thu 14:01:55] <ChristianLundkvist>	Sam: Option D above: Take #C, add a version, combine it into a small type string
+[Thu 14:02:02] <nage>	q?
+[Thu 14:02:02] <voip-ccg>	The current speaker queue is: ChristopherA, manu
+[Thu 14:02:04] <dlongley>	i like OptionD *minus* the key encoding. (Sam didn't mention encoding)
+[Thu 14:02:10] <ChristianLundkvist>	Sam: Values are a tuple, not optional
+[Thu 14:02:12] <drummond>	I'm also intrigued by Sam's Option D proposal
+[Thu 14:02:25] <ChristianLundkvist>	Sam: Application purpose exists somewhere else in the bag/graph
+[Thu 14:02:42] <dlongley>	OptionD ... RsaCryptographicSigningKey2017 ... and then "publicKeyPem" contains the key material in PEM format (other terms can specify it in other formats)
+[Thu 14:02:44] *	manu not throwing up in his mouth wrt. the proposal... this is good.
+[Thu 14:02:48] <kimhd>	me too, but also wondering about status of encoding in this world
+[Thu 14:02:49] *	nage is liking "Option D" more and more, because it decouples capabilities from "this is a key"
+[Thu 14:02:55] <ChristianLundkvist>	Sam: Somewhere else is specified the ontology etc, we decide if we want to standardize some of that
+[Thu 14:03:00] <dlongley>	q?
+[Thu 14:03:00] *	manu ooh, keyref, hmm, not so hot on that.
+[Thu 14:03:00] <voip-ccg>	The current speaker queue is: ChristopherA, manu
+[Thu 14:03:48] <nage>	ack ChristopherA
+[Thu 14:03:48] <voip-ccg>	ChristopherA has the floor.
+[Thu 14:03:51] <nage>	q?
+[Thu 14:03:51] <voip-ccg>	The current speaker queue is: manu
+[Thu 14:04:04] <manu>	q+ to mention that "SignatureSuites" were for proofs, and we're talking about keys... interesting difference.
+[Thu 14:04:04] <voip-ccg>	manu has been added to the queue: manu, manu
+[Thu 14:04:05] <ChristianLundkvist>	ChristopherA: One of things that drew me in to this community was the signature suite date that specified the version
+[Thu 14:04:22] <ChristianLundkvist>	ChristopherA: Willing to concede that same signature/proof system could have application + purpose
+[Thu 14:04:50] <ChristianLundkvist>	ChristopherA: Can see specific crypto methods supporting signing and not encryption etc
+[Thu 14:05:00] *	swcurran (~swcurran@public.cloak) has joined #ccg
+[Thu 14:05:19] <drummond>	Interesting point ChristopherA brings up about "signcrypt" keys
+[Thu 14:05:38] <samsmith>	@ manu  not signature suites but cryptographic suites  at a given level of cryptographic strength
+[Thu 14:05:43] <ChristianLundkvist>	ChristopherA: If I can be persuaded there is a concise list of application + purpose then I'm willing to accept that. Not sure I like the idea of separating application + purpose into two fields
+[Thu 14:05:52] <drummond>	q?
+[Thu 14:05:52] <voip-ccg>	The current speaker queue is: manu, manu
+[Thu 14:06:09] <manu>	ack manu
+[Thu 14:06:09] <voip-ccg>	manu has the floor (to describe pros and cons for each A, B, and C.).
+[Thu 14:06:09] <manu>	ack manu
+[Thu 14:06:09] <voip-ccg>	manu has the floor (to mention that "SignatureSuites" were for proofs, and we're talking about keys... interesting difference.).
+[Thu 14:06:24] <ChristopherA>	I still lean to proofs.
+[Thu 14:06:56] <ChristianLundkvist>	Manu: I find Sam's option #d intriguing. If Sam can type it up would be good
+[Thu 14:07:09] <ChristianLundkvist>	Manu: Pros/Cons:
+[Thu 14:07:09] <samsmith>	q+
+[Thu 14:07:09] <voip-ccg>	samsmith has been added to the queue: samsmith
+[Thu 14:08:02] <dlongley>	it requires every new application to maintain an ontology for key types
+[Thu 14:08:06] <drummond>	+1 for Option A including a year (for versioning) and it makes it easier for developers to exactly specify a key.
+[Thu 14:08:06] <ChristianLundkvist>	Manu: #A Pro: Very specific, can't get more specific. Almost impossible for devs to screw up. Cons: May be in a combinatorial problem. May be 50-100 types springing into existence
+[Thu 14:08:31] <ChristianLundkvist>	Manu: Option #A could turn into bad combinatorial problem
+[Thu 14:09:00] <drummond>	q+ to talk about why Option A does not make the combinatorial problem any worse
+[Thu 14:09:01] <voip-ccg>	drummond has been added to the queue: samsmith, drummond
+[Thu 14:09:06] <ChristianLundkvist>	Manu: #B Pro: No combinatorial problem. Con: Developers can easily screw it up if they only pay attention to some parts
+[Thu 14:09:17] <dlongley>	imo, key purpose, where that refers to permitted crypto operation only, should always be baked into the key type.
+[Thu 14:09:25] *	ChristopherA So despite purpose of ciphersuites to reduce surface, people did lots of ciphersuites. Bad pattern there. I don't know what to do to solve that. Expiration dates? More friction?
+[Thu 14:09:49] <dlongley>	application/application class/other kinds of higher-level "usage" should be done via a relation (DID subject - relation - key)
+[Thu 14:10:03] <ChristianLundkvist>	... #C Attempts middle ground: No need to do purpose in the type. Don't open the misimplementation problem as badly.
+[Thu 14:10:23] *	ChristopherA how about PROPOSAL: Two values, the signature "type", and a constrained list of applicationpurpose
+[Thu 14:10:35] *	dlongley not sure what the fix is either, but using the year as a version is an attempt to make people at least think about it.
+[Thu 14:10:43] <nage>	q?
+[Thu 14:10:43] <voip-ccg>	The current speaker queue is: samsmith, drummond
+[Thu 14:10:51] *	dlongley or think about old suites and be inclined to deprecate them
+[Thu 14:10:53] <drummond>	Drummond wonders whether we should have a poll to see if we can eliminate Option B?
+[Thu 14:11:08] <ChristianLundkvist>	Manu: Looks like we're going back to signature suites and saying they're a good idea. The sig suites right now are put on "proofs" and not
+[Thu 14:11:13] <ChristianLundkvist>	Manu: Looks like we're going back to signature suites and saying they're a good idea. The sig suites right now are put on "proofs" and not "key material"
+[Thu 14:11:56] <ChristianLundkvist>	Manu: In suite we are binding the key type, application and purpose together. It's more of an application suite
+[Thu 14:11:57] *	ChristopherA I agree with Manu's observation.
+[Thu 14:12:05] <dlongley>	+1
+[Thu 14:12:13] <drummond>	q?
+[Thu 14:12:13] <voip-ccg>	The current speaker queue is: samsmith, drummond
+[Thu 14:12:22] *	manu hasn't seen Option D
+[Thu 14:12:30] <ChristianLundkvist>	Sam: I just posted an email in the "worldview" email thread
+[Thu 14:12:35] <dlongley>	binding of application or "higher-level use" should be done through relation, IMO.
+[Thu 14:13:00] <ChristianLundkvist>	Sam: Strong agreement with almost everything Manu said. Don't think everything should be in type. Everything except purpose should be in type. also version
+[Thu 14:13:22] <drummond>	+1 to Sam's point that version belongs in the key type description.
+[Thu 14:13:25] <ChristianLundkvist>	Sam: Then we break discussion of key managment/material away from the usage
+[Thu 14:14:12] <ChristianLundkvist>	Sam: Everyone wants their worldview to be a MUST. Not always possible, can use SHOULD
+[Thu 14:14:20] *	manu \o/ - totally agree w/ Sam.
+[Thu 14:14:28] <dlongley>	+1 yay for Sam.
+[Thu 14:14:41] <ChristianLundkvist>	Sam: Limit the MUST to the simplest, most universal things we can agree on. Other stuff can be SHOULD
+[Thu 14:15:05] <ChristianLundkvist>	Sam: Signing is a crypto operation inside a crypto suite
+[Thu 14:15:08] <drummond>	+1 to our job here being to describe key material within a cryptographic suite
+[Thu 14:15:15] <ChristianLundkvist>	Sam: Every operation is tied to the same suite
+[Thu 14:15:42] <ChristianLundkvist>	Sam: Bigger than signature suites - we're talking about cryptographic suites
+[Thu 14:15:49] <drummond>	+1 to specifying cryptographic suites
+[Thu 14:15:56] <ChristianLundkvist>	Sam: Signing, MACs etc all from the same suite
+[Thu 14:16:04] <drummond>	q?
+[Thu 14:16:04] <voip-ccg>	The current speaker queue is: samsmith, drummond
+[Thu 14:16:17] <drummond>	ack samsmith
+[Thu 14:16:17] <voip-ccg>	samsmith has the floor.
+[Thu 14:16:50] <ChristianLundkvist>	Sam: Suggests key bag with crypto suites, then application specification elsewhere in the graph
+[Thu 14:16:52] <dlongley>	*and* we should make sure that we don't let the *meaning* of that signature bleed into that suite, that's application layer stuff... for example, does a signature mean "someone made a claim about me (verifiable credential)" or does a signature mean "sign me into this service" ... both of these are "authentication" -- but it's up to the application to decide what that means.
+[Thu 14:17:26] <drummond>	Sam: type should be "cryptographic suite, operation, and version". The value is the actual key itself, and the id is a unique way to reference that key.
+[Thu 14:17:47] <manu>	q+ oooh, there's keyref again... concerned... but happy with almost everything Sam said... we need examples.
+[Thu 14:17:47] <voip-ccg>	manu has been added to the queue: drummond, manu
+[Thu 14:18:09] <kimhd>	option D is very promising to me. Cryptographic suites make sense as an entity on their own. The final type "blesses" a valid combination (along with a version)
+[Thu 14:18:16] <ChristianLundkvist>	Drummond: Is there enough interest in option #D that we should write it up?
+[Thu 14:18:21] <kimhd>	+1
+[Thu 14:18:23] <manu>	ack drummond 
+[Thu 14:18:23] <voip-ccg>	drummond has the floor (to talk about why Option A does not make the combinatorial problem any worse).
+[Thu 14:18:40] *	ChristopherA @sam, why not cryptographisuiteversion, operation?
+[Thu 14:19:01] *	manu +1 to that ^^^^
+[Thu 14:19:02] <mike-lodder>	+1 option D
+[Thu 14:19:08] *	ChristopherA I'm willing to go to asking for a draft of D
+[Thu 14:19:09] <manu>	ack manu
+[Thu 14:19:09] <voip-ccg>	manu has the floor (oooh, there's keyref again... concerned... but happy with almost everything Sam said... we need examples.).
+[Thu 14:19:13] <ChristianLundkvist>	Drummond: Other proposal is to have a subgroup to think about it and come back with a proposal
+[Thu 14:19:23] <samsmith>	@christopherA  as long as its a tightly bound tuple or string its that same to me
+[Thu 14:19:28] <mike-lodder>	+1 examples
+[Thu 14:19:48] <ChristianLundkvist>	Sam: Option D is written up in an email.
+[Thu 14:20:00] <ChristianLundkvist>	Drummond: There are no examples yet
+[Thu 14:20:09] <ChristopherA>	I'd really like to see a start list from Manu of applicationpurpose are already implied by current implementations
+[Thu 14:20:53] <drummond>	Drummond notes that keyref is also something that's needed in service descriptions
+[Thu 14:21:25] <ChristianLundkvist>	Manu: a bit concerned about key ref in option D. Still assumes we have a bag of key material
+[Thu 14:21:46] *	ChristopherA Can we separate the bag question from D
+[Thu 14:21:51] <ChristianLundkvist>	Sam: For key mgmt the bag allows us to do key discovery.
+[Thu 14:22:02] <drummond>	Drummond notes that this question - about having a "bag of keys" - is one of those worldview conflict areas.
+[Thu 14:22:18] <ChristianLundkvist>	Manu: Huge discussion to have there. Want to focus now on the stuff we're almost there on
+[Thu 14:23:01] <ChristianLundkvist>	Manu: The "type" specifier doesn't have to be a long string with combinatorial issue
+[Thu 14:23:07] <ChristopherA>	The name of a cryptosuiteV doesn't constrain it — it is the spec that is behind that name of suite points to.
+[Thu 14:23:35] <ChristianLundkvist>	Manu: We should go out and specify all the suites there are and see how many there are
+[Thu 14:23:52] *	ChristopherA appsuite-yr-a is fine by me
+[Thu 14:24:09] <ChristianLundkvist>	Manu: type should be crypto suite or application suite, need to see JSON or JSON-LD markup to see if we're on same page
+[Thu 14:24:13] <nage>	q?
+[Thu 14:24:14] <voip-ccg>	The speaker queue is empty.
+[Thu 14:24:17] <dlongley>	q+
+[Thu 14:24:17] <voip-ccg>	dlongley has been added to the queue: dlongley
+[Thu 14:24:18] <ChristopherA>	q+
+[Thu 14:24:19] <voip-ccg>	ChristopherA has been added to the queue: dlongley, ChristopherA
+[Thu 14:24:19] <ChristianLundkvist>	Manu: Others can weigh in on key material
+[Thu 14:24:33] <nage>	ack dlongley
+[Thu 14:24:33] <voip-ccg>	dlongley has the floor.
+[Thu 14:24:55] <ChristianLundkvist>	Longley: Need to be careful with "value" since more than one format to represent a key
+[Thu 14:25:11] <nage>	ack ChristopherA
+[Thu 14:25:11] <voip-ccg>	ChristopherA has the floor.
+[Thu 14:25:13] <ChristianLundkvist>	dlongley: In general think it's a good approach
+[Thu 14:25:19] <mike-lodder>	q+
+[Thu 14:25:19] <voip-ccg>	mike-lodder has been added to the queue: mike-lodder
+[Thu 14:25:24] <mike-lodder>	q?
+[Thu 14:25:24] <voip-ccg>	The current speaker queue is: mike-lodder
+[Thu 14:25:27] <drummond>	Dave points out that there's more than one format for serializing a key, so the encoding is also part of what needs to be described.
+[Thu 14:25:48] <dlongley>	that sounds like microformats which i'm -1 to
+[Thu 14:25:56] <ChristianLundkvist>	ChristopherA: Not that concerned about value. Could be up to the app/crypto suite to support the value format
+[Thu 14:26:06] <dlongley>	i'm fine with the appsuite defining what to do, but they wouldn't use "value" (i wouldn't think).
+[Thu 14:26:58] <drummond>	q?
+[Thu 14:26:58] <voip-ccg>	The current speaker queue is: mike-lodder
+[Thu 14:27:00] <ChristianLundkvist>	ChristopherA: Really would like to have an idea of the application purpose - how many of them are there? How many can support the values we would be using? Both for the CRUD of DID docs and also for verifiable claims
+[Thu 14:27:08] *	manu super excited about all of the progress we've made today.
+[Thu 14:27:24] <nage>	q+ to talk about "application" vs "key intent"
+[Thu 14:27:24] <voip-ccg>	nage has been added to the queue: mike-lodder, nage
+[Thu 14:27:30] <nage>	ack mike-lodder
+[Thu 14:27:30] <voip-ccg>	mike-lodder has the floor.
+[Thu 14:28:07] <dlongley>	i'm interested in what nathan has to say about application vs. key-intent ... i think we're conflating things a bit and i'm not sure where everyone is.
+[Thu 14:28:25] <drummond>	q+
+[Thu 14:28:25] <voip-ccg>	drummond has been added to the queue: nage, drummond
+[Thu 14:28:50] *	ChristopherA Let's move forward and request a proposal for option D
+[Thu 14:28:55] <ChristianLundkvist>	lodder: Sounds like we don't want to do Option #A or option #B? Should we take those off the list?
+[Thu 14:29:24] *	ChristopherA that is why I want the list of applicationpurpose
+[Thu 14:29:38] <ChristianLundkvist>	Nage: Application suite implies that we know in advance what the applications are, and that might not be the case
+[Thu 14:29:42] <dlongley>	+1 to nathan, "application" is an ambiguous term i think, in this discussion.
+[Thu 14:30:05] <dlongley>	and application in the way nathan means -- should be defined by relation (or an application class should be defined by relation), it isn't part of the key type.
+[Thu 14:30:12] <drummond>	Nathan said that its not so much application suite - because that's not a fixed list - developers can "use or abuse" any key for anything they want. So intent of usage is imporant.
+[Thu 14:30:13] <dlongley>	but that's separate from "key intent", etc.
+[Thu 14:30:17] <drummond>	q?
+[Thu 14:30:17] <voip-ccg>	The current speaker queue is: nage, drummond
+[Thu 14:30:21] <ChristianLundkvist>	Nage: Don't think we have the ability to enforce the usage of keys for specific applications
+[Thu 14:30:23] <drummond>	ack nage
+[Thu 14:30:24] <voip-ccg>	nage has the floor (to talk about "application" vs "key intent").
+[Thu 14:30:31] <nage>	ack drummond
+[Thu 14:30:31] <voip-ccg>	drummond has the floor.
+[Thu 14:30:50] *	swcurran has quit ("Page closed")
+[Thu 14:32:10] <mike-lodder>	+1 drummond for key specs and intent
+[Thu 14:32:41] *	mike-lodder has quit ("Leaving")
+[Thu 14:32:52] <nage>	dlongley: the Crypto suite defines the crypto guarantees, but I think we are trying to express is some additional "recommended criteria for selecting this key for your use-case"
+[Thu 14:33:09] <ChristianLundkvist>	Drummond: Let's use the mailing list as much as we can.
+[Thu 14:33:26] <dlongley>	nage: which is fine by me -- i just don't want extremely specific applications to bleed into the key type.
+[Thu 14:33:29] <ChristianLundkvist>	Drummond: We still need to discuss service descriptions and Sam's HD metadata stuff
+[Thu 14:33:41] <dlongley>	YahooSignInKey
+[Thu 14:33:41] <ChristopherA>	Gotta run. Ciao!
+[Thu 14:33:44] *	squarfed (~squarfed@public.cloak) has joined #ccg
+[Thu 14:33:48] *	kimhd yay! lots of progress
+[Thu 14:34:03] *	kimhd has quit ("Page closed")
+[Thu 14:34:12] <nage>	dlongley: we're on the same page there, and when someone says "applicationsuite" I'm afraid of types like "PlatformX_DoItExactkyMyWayForAuthentication" types
+[Thu 14:34:21] <dlongley>	yup
+[Thu 14:34:24] <dlongley>	-1 to that.
+
