@@ -1,0 +1,332 @@
+[Thu 13:07:30] <manu>	Agenda: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit
+[Thu 13:07:43] <manu>	Meeting: DID Spec Task Force
+[Thu 13:07:43] *	JoeAndrieu (~JoeAndrieu@public.cloak) has joined #ccg
+[Thu 13:07:48] <manu>	Chair: Drummond
+[Thu 13:08:24] <manu>	scribe: manu
+[Thu 13:08:30] <manu>	Drummond: Welcome to 2018 :)
+[Thu 13:08:32] <JoeAndrieu>	btw, my apologies in advance. I will not be able to stay the full 90 min, but I'm glad to make what I can.
+[Thu 13:08:40] <manu>	Drummond: We're driving toward closure
+[Thu 13:08:59] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 13:09:07] <manu>	drummond: Good discussion on the list, let's use that as the starting point for this discussion
+[Thu 13:09:32] <manu>	drummond: The goal of these calls is to drive toward closure of these calls - next stable version that we're implementing to. I'm hoping we won't need these calls beyond January. 
+[Thu 13:09:46] <manu>	drummond: We're implementing a prototype of DKMS, highly dependent on DIDs.
+[Thu 13:10:44] <manu>	drummond: We have a delivery deadline mid-march... we'd really like to be implementing against a stable DID spec. Just providing input - really good to drive this toward closure this month if possible.
+[Thu 13:11:11] <manu>	drummond: any other overall perspectives on progress of spec, priorities of call?
+[Thu 13:11:13] <manu>	q+
+[Thu 13:11:13] <voip-ccg>	manu has been added to the queue: manu
+[Thu 13:11:49] <drummond>	Manu: under a deadline in mid-February as well.
+[Thu 13:11:51] <JoeAndrieu>	q+
+[Thu 13:11:51] <voip-ccg>	JoeAndrieu has been added to the queue: manu, JoeAndrieu
+[Thu 13:11:54] <nage>	q+
+[Thu 13:11:54] <voip-ccg>	nage has been added to the queue: manu, JoeAndrieu, nage
+[Thu 13:12:15] <drummond>	Manu: we may need to have even more frequent meetings to get the next version of the spec closed.
+[Thu 13:12:20] <nage>	q-
+[Thu 13:12:20] <voip-ccg>	nage has been removed from the queue: manu, JoeAndrieu
+[Thu 13:12:23] <sabadello>	q+
+[Thu 13:12:23] <voip-ccg>	sabadello has been added to the queue: manu, JoeAndrieu, sabadello
+[Thu 13:12:56] <drummond>	Manu: seeing some level of agreement in the mailing list threads, but we need to go faster.
+[Thu 13:13:07] <drummond>	ack manu
+[Thu 13:13:07] <voip-ccg>	manu has the floor.
+[Thu 13:13:15] <JoeAndrieu>	just an early heads up wrt to schedule stuff. It looks like the spring RWoT will be the first week of March (6th,7th,8th)
+[Thu 13:13:17] <drummond>	ack JoeAndrieu
+[Thu 13:13:17] <voip-ccg>	JoeAndrieu has the floor.
+[Thu 13:13:28] <manu>	JoeAndrieu: Talking about schedule, next RWoT is March 6th-8th.
+[Thu 13:13:50] *	agropper (~agropper@public.cloak) has joined #ccg
+[Thu 13:14:05] <manu>	drummond: That overlaps with DC Blockchain summit.
+[Thu 13:14:10] *	nage JoeAndrieu where is it?
+[Thu 13:14:17] <JoeAndrieu>	Santa Barbara
+[Thu 13:14:44] <agropper>	Link to the DC Blockchain Summit, please...
+[Thu 13:15:08] <manu>	sabadello: Regarding schedule - reaffirm my interest to work on universal resolver - as soon as there is a stable version, we can upgrade that project.
+[Thu 13:15:20] <manu>	q?
+[Thu 13:15:20] <voip-ccg>	The current speaker queue is: sabadello
+[Thu 13:15:23] <manu>	ack sabadello 
+[Thu 13:15:26] <voip-ccg>	sabadello has the floor.
+[Thu 13:15:45] *	pelle (~pelle@public.cloak) has joined #ccg
+[Thu 13:16:20] <nage>	q+
+[Thu 13:16:20] <voip-ccg>	nage has been added to the queue: nage
+[Thu 13:16:23] <manu>	drummond: Any other broader comments before we dive in?
+[Thu 13:16:24] <pelle>	q+
+[Thu 13:16:24] <voip-ccg>	pelle has been added to the queue: nage, pelle
+[Thu 13:16:55] <manu>	Topic: Biometric Authentication
+[Thu 13:16:55] <manu>	lodder: Manu, if you could send me biometric stuff that you're using as a reference to better understand that, that would be helpful.
+[Thu 13:17:08] <drummond>	q+
+[Thu 13:17:08] <voip-ccg>	drummond has been added to the queue: nage, pelle, drummond
+[Thu 13:17:15] <manu>	lodder: You've just made me more nervous, or it's a bad idea in general, tech isn't ready yet - post it into chat, that would be helpful.
+[Thu 13:17:33] <manu>	manu: Yeah, I can do that.
+[Thu 13:17:34] <ChristianLundkvist>	q?
+[Thu 13:17:34] <voip-ccg>	The current speaker queue is: nage, pelle, drummond
+[Thu 13:17:38] <drummond>	ack nage
+[Thu 13:17:38] <voip-ccg>	nage has the floor.
+[Thu 13:17:42] <drummond>	ack pelle
+[Thu 13:17:42] <voip-ccg>	pelle has the floor.
+[Thu 13:17:42] <ChristianLundkvist>	q?
+[Thu 13:17:42] <voip-ccg>	The current speaker queue is: drummond
+[Thu 13:18:18] <manu>	pelle: Also wanted to just point out that I don't think we need biometrics for daily usage - I think it would be helpful, if we can't complete, what's the most important thing we need to get ready right now - rather than spec out all biometrics stuff -- spec out what we need for interop.
+[Thu 13:18:19] <manu>	q+
+[Thu 13:18:19] <voip-ccg>	manu has been added to the queue: drummond, manu
+[Thu 13:18:52] <manu>	pelle: then let spec be open for implementation of biometrics - so we have a limit, so we don't make this a never ending thing where we need to discuss things forever and ever. I dont' think there's that much needed for most basic parts we're talking about.
+[Thu 13:19:02] <manu>	pelle: There may be scope stuff that we disagree on.
+[Thu 13:20:00] <manu>	drummond: I missed most of the opening explanation of biometrics that manu gave on biometric template option... so, suggest that we start there - short description of that... use case and need for it? Is it a type of key, is it not a type of key? How urgent is it to have that in the spec?
+[Thu 13:21:02] <drummond>	manu: first point - Digital Bazaar is not asking for a biometric option to be spec'd out. However they would like to make sure it is considered at this point so it's clear where it would eventually go in the spec.
+[Thu 13:21:56] <drummond>	manu: explains that the biometric authentication being discussed is not a key, but a method of authentication.
+[Thu 13:22:23] <drummond>	manu: the state of the art in biometrics has moved far beyond the earlier non-rotatable version.
+[Thu 13:22:39] <drummond>	manu: public key crypto is still a stronger form of authentication than biometrics.
+[Thu 13:23:04] <drummond>	manu: you would not want to use biometrics for high-value auth transactions
+[Thu 13:23:33] <drummond>	manu: To use this method, you first need to create a biometric template. All of them are proprietary today.
+[Thu 13:23:55] <drummond>	manu: the template can be very simple, like an integer, or more complex, like a complex hash.
+[Thu 13:24:50] <drummond>	manu: once you have the template you put it on a biometric server, which is a system that you control, vs. one controlled by others.
+[Thu 13:25:18] <agropper>	q+
+[Thu 13:25:18] <voip-ccg>	agropper has been added to the queue: drummond, manu, agropper
+[Thu 13:25:52] <drummond>	manu: then if you can generate a biometric match against that system, that system can authenticate you. But it's privacy preserving because the biometric template stays under your control.
+[Thu 13:26:44] <drummond>	manu: the biometric server can keep any number of biometric templates of different kinds in order to provide multiple biometric auth factors.
+[Thu 13:27:24] <drummond>	manu: there are standard protocols for these kinds of biometric server matching approaches, such as IEEE BOPS.
+[Thu 13:27:44] <drummond>	manu: it's clear that such a template is not key material, but just used for matching.
+[Thu 13:27:52] <drummond>	q?
+[Thu 13:27:52] <voip-ccg>	The current speaker queue is: drummond, manu, agropper
+[Thu 13:27:57] <manu>	ack drummond 
+[Thu 13:27:57] <voip-ccg>	drummond has the floor.
+[Thu 13:27:58] <ChristianLundkvist>	q?
+[Thu 13:27:58] <voip-ccg>	The current speaker queue is: manu, agropper
+[Thu 13:27:58] <manu>	ack manu
+[Thu 13:27:58] <voip-ccg>	manu has the floor.
+[Thu 13:28:02] <manu>	ack agropper 
+[Thu 13:28:02] <voip-ccg>	agropper has the floor.
+[Thu 13:28:09] <ChristianLundkvist>	q?
+[Thu 13:28:09] <voip-ccg>	The speaker queue is empty.
+[Thu 13:28:15] <drummond>	q+
+[Thu 13:28:15] <voip-ccg>	drummond has been added to the queue: drummond
+[Thu 13:28:56] <manu>	agropper: I understand what you mean by biometric server / authentication server - to be an endpoint, authorization server that HIE of One represents... you control authorization server - or biometrics as you put it. Why isn't this biometric server just and endpoint in the DID Document?
+[Thu 13:29:00] <manu>	q+ to answer adrian
+[Thu 13:29:00] <voip-ccg>	manu has been added to the queue: drummond, manu
+[Thu 13:29:01] <drummond>	agropper: asked manu why isn't the biometric server not just an endpoint in the DID document?
+[Thu 13:29:51] <drummond>	manu: it could be modeled that way, i.e., one of the service endpoints could be a biometric server using a specific biometric auth protocol.
+[Thu 13:30:26] <drummond>	manu: the basic idea is that application and purpose are important to consider.
+[Thu 13:30:49] <agropper>	q+
+[Thu 13:30:49] <voip-ccg>	agropper has been added to the queue: drummond, manu, agropper
+[Thu 13:31:29] <drummond>	manu: if we were to break out biometric authentication into a list of services, it would just recreate the same kind of authentication we are trying to solve in DID documents.
+[Thu 13:31:33] <manu>	ack manu
+[Thu 13:31:33] <voip-ccg>	manu has the floor (to answer adrian).
+[Thu 13:31:36] <manu>	ack drummond 
+[Thu 13:31:36] <voip-ccg>	drummond has the floor.
+[Thu 13:33:04] <manu>	drummond: If one takes the perspective that the primary problem we're trying to solve with DID Document is key discovery - one could argue that you don't need to talk about biometrics (do it in service fields). This is an alternative perspective on scope here, emphasis on problem we're solving. 
+[Thu 13:33:43] <manu>	drummond: I'm a huge supporter of what Manu just described - biometric authentication service is being provided by eyeRespond, Sovrin stewards - implementing Thai Fishing Fleet workers and Myanmar refugees. working with iRespond on privacy respecting aspects of it. 
+[Thu 13:34:09] <manu>	drummond: The way we've been planning on doing it is discovery of iRespond as service endpoint and mechanism to deal w/ iRespond as a service.
+[Thu 13:34:10] <drummond>	q?
+[Thu 13:34:11] <voip-ccg>	The current speaker queue is: agropper
+[Thu 13:34:15] <manu>	q+ to note the sticking point
+[Thu 13:34:15] <voip-ccg>	manu has been added to the queue: agropper, manu
+[Thu 13:34:18] <manu>	ack agropper 
+[Thu 13:34:18] <voip-ccg>	agropper has the floor.
+[Thu 13:35:21] <drummond>	agropper: did not understand how manu's explanation of the use of a biometric server was privacy respecting.
+[Thu 13:35:41] <manu>	agropper: I did not understand, from the privacy perspective, manu's explanation of why template has anything to do w/ DID document as opposed to being negotiated w/ whoever is doing authentication out of band. I don't necessarily need explanation, this is very relevant to what we care about at HIE of One - we do want the endpoint to the authorization server to be considred a personal/private store. It's relevant that we have another use case for authentication that needs to be aligned, but didn't want to take up any more time. There are scope that need to be negotiated between various groups.
+[Thu 13:35:51] <manu>	agropper: I don't understand why template is any different from that?
+[Thu 13:35:53] <drummond>	q?
+[Thu 13:35:53] <voip-ccg>	The current speaker queue is: manu
+[Thu 13:36:05] <nage>	+1 to agropper's comments on the scope creep inherent in trying to more fully model authorization
+[Thu 13:36:18] <drummond>	+1
+[Thu 13:37:13] <drummond>	manu: is hearing the arguments that DID docs are about public key discovery, but not agreeing.
+[Thu 13:37:50] <drummond>	manu: the thing that the biometrics discussion highlights is that one of the important things that we are trying to do with keys is authentication.
+[Thu 13:38:01] <nage>	q+
+[Thu 13:38:02] <voip-ccg>	nage has been added to the queue: manu, nage
+[Thu 13:38:09] <JoeAndrieu>	q+
+[Thu 13:38:09] <voip-ccg>	JoeAndrieu has been added to the queue: manu, nage, JoeAndrieu
+[Thu 13:38:13] <drummond>	manu: it would be nice if we could log into a website using the material in a DID document
+[Thu 13:38:19] <drummond>	q+
+[Thu 13:38:20] <voip-ccg>	drummond has been added to the queue: manu, nage, JoeAndrieu, drummond
+[Thu 13:38:47] <drummond>	manu: what we are trying to standardize is this universal way to do authentication
+[Thu 13:39:15] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 13:39:27] <drummond>	manu: if the scope is broadened to include something like biometrics, as one more form of proof. Keys are just one mechanism.
+[Thu 13:39:40] <drummond>	manu: thinking about only keys is the wrong way to think about it.
+[Thu 13:40:08] <drummond>	manu: all we need to do is one minor twist to the DID documents to support these other mechanisms.
+[Thu 13:40:23] <pelle>	q+
+[Thu 13:40:23] <voip-ccg>	pelle has been added to the queue: manu, nage, JoeAndrieu, drummond, pelle
+[Thu 13:40:50] <manu>	ack manu
+[Thu 13:40:50] <drummond>	manu: the sticking point appears to be whether the scope is just public key management or whether it should include other auth mechanisms.
+[Thu 13:40:51] <voip-ccg>	manu has the floor (to note the sticking point).
+[Thu 13:40:52] *	manu thx drummond 
+[Thu 13:40:52] <drummond>	q?
+[Thu 13:40:52] <voip-ccg>	The current speaker queue is: nage, JoeAndrieu, drummond, pelle
+[Thu 13:42:09] <manu>	nage: There is a subtle distinction on how we're thinking about authentication - may reveal difference in design. A more general authentication mechanism might leak information, misleads user to determine what they're getting, more of an authorization case instead of a more authentication sense. Verification of non-transferrable posession of a secret, the biometric template functions as a key.
+[Thu 13:42:44] <drummond>	nage: there is a subtle distinction about using biometrics for authentication/authorization, which in turn depends on a key on the biometric server. So that's why it's something that goes into the array of keys.
+[Thu 13:43:29] <samsmith>	q?
+[Thu 13:43:29] <voip-ccg>	The current speaker queue is: nage, JoeAndrieu, drummond, pelle
+[Thu 13:43:32] <drummond>	...Nathan is worried about leaking privacy information in a DID document if it enables biometric authentication.
+[Thu 13:43:38] <samsmith>	q+
+[Thu 13:43:38] <voip-ccg>	samsmith has been added to the queue: nage, JoeAndrieu, drummond, pelle, samsmith
+[Thu 13:43:52] <drummond>	ack nage
+[Thu 13:43:52] <voip-ccg>	nage has the floor.
+[Thu 13:43:56] <manu>	nage: What you're doing is relying on possession of hardware device - a lot like a public key in that case, if they've secured it properly. One of the keys that goes in the array. If we start to imply that the intent is baked into the key - person consumed DID, only after they've authenticated - defer authorization out of DID, we need to selectively disclose information - bare minimum required for authentication, in flat "key" array, we have enough for authentication piece - put everything else into a service endpoint. It's generic information about raw biometrics (correlatable), which wouldn't be good, we should avoid.
+[Thu 13:44:07] <drummond>	ack JoeAndrieu
+[Thu 13:44:07] <voip-ccg>	JoeAndrieu has the floor.
+[Thu 13:44:27] <manu>	JoeAndrieu: Standardizing authentication through extensible mechanisms doesn't mean every method needs to define all of that stuff - even if some methods are not involved.
+[Thu 13:44:47] <nage>	but it would prevent you from accepting these foreign DIDs if you don't understand the more full concept, no?
+[Thu 13:44:52] <manu>	JoeAndrieu: I think we should be able to find authenticatoin details in a DID document regardless of which DID Method is being used. Maybe most methods don't use biometrics.
+[Thu 13:45:39] <manu>	JoeAndrieu: It also means maybe you outlined the value of indirection in a spec about authentication, but we don't have a good model on when you'd prevent access in a model here. I need to have a filter somewhere where I can stop you from getting some data.
+[Thu 13:45:57] <manu>	JoeAndrieu: That feels like a rathole - indirection is probably the better way to handle it.
+[Thu 13:46:02] <drummond>	q?
+[Thu 13:46:02] <voip-ccg>	The current speaker queue is: drummond, pelle, samsmith
+[Thu 13:46:05] <manu>	ack drummond 
+[Thu 13:46:05] <voip-ccg>	drummond has the floor.
+[Thu 13:46:11] <nage>	use case example: in the future a template scheme is discovered to be flawed, so you only want to disclose the information to parties that have an existing relationship
+[Thu 13:47:26] <nage>	(it is fair to point out that a key derivation scheme, or a bad one, could have similar issues)
+[Thu 13:47:30] <manu>	Topic: DID Spec Scope?
+[Thu 13:47:30] <manu>	drummond: I think this is a good discussion - I get the value of biometrics discussion, but actual scope difference between DID Document being public key discover and service endpoint discovery - you may want to do authentication some other way. Authentication/authorization is some other field? What's the scope of the DID Document? Provide any kind of authentication proof material? Or public service endpoint discovery?
+[Thu 13:48:08] <manu>	drummond: What is the scope here? Any form of authentication material? Or just keys only?
+[Thu 13:48:10] <manu>	q?
+[Thu 13:48:10] <voip-ccg>	The current speaker queue is: pelle, samsmith
+[Thu 13:48:22] <manu>	ack pelle 
+[Thu 13:48:22] <voip-ccg>	pelle has the floor.
+[Thu 13:48:34] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 13:48:36] <sabadello>	q+
+[Thu 13:48:36] <voip-ccg>	sabadello has been added to the queue: samsmith, sabadello
+[Thu 13:48:49] <manu>	pelle: I think that's a good way of decisioning this, but we should be open for all kinds of stuff in the future. What we need right now is public key to verify different kinds of data
+[Thu 13:49:51] <drummond>	+1 to the primary use case being "public keys"
+[Thu 13:49:56] <nage>	+1
+[Thu 13:50:15] <manu>	pelle: I don't necessarily think that that needs to be an official requirement of DID spec - some kinds of authentication methods, I'm fine with that... I'm also fine w/ keys. If we accept that primary use case is public keys, we don't have to have to spec out what's in DID spec, we could do that in a separate spec... how do you get a public key for a particular purpose? I need to get public key for DID doc, but I think we can do everything that Manu wants w/o stopping public key part of it as long as we accept that it's essentially a container.
+[Thu 13:50:39] <manu>	pelle: If you want to do something w/ biometrics, by all means put it in "authentication", but we don't have to go into any details about that.
+[Thu 13:50:53] <JoeAndrieu>	+1 to extensibility in light of the primary use today as public keys
+[Thu 13:51:25] <manu>	pelle: For drummonds point - if there are two particular things that DID Document is good at we can standardize that, we don't need to dive into details on stuff like biometrics, but provide space for it... don't want that to stop us from getting public key stuff done.
+[Thu 13:51:29] <drummond>	+1 to not limiting the DID document to just pubic key and service discovery.
+[Thu 13:51:31] <drummond>	q?
+[Thu 13:51:31] <voip-ccg>	The current speaker queue is: samsmith, sabadello
+[Thu 13:51:36] <manu>	ack samsmith 
+[Thu 13:51:36] <voip-ccg>	samsmith has the floor.
+[Thu 13:52:22] <manu>	samsmith: This discussion is interesting, I'm having a hard time figuring out where to jump in. It's clear that there is a divide here, what I'm hearing is a desire for DID Documents to be a source of more than just minimalist metadata to bootstrap decentralized identifier.
+[Thu 13:52:30] <manu>	q+ to say "DID Documents are about discovery"
+[Thu 13:52:30] <voip-ccg>	manu has been added to the queue: sabadello, manu
+[Thu 13:53:14] <manu>	samsmith: I get the argument, for a little bit of extra work, we can add more functionality where we can't terminate because every little bit gets us more - but it adds to discussion wrt. are we doing it the right way. It's starting to get to where I don't know what the DID document is for.
+[Thu 13:54:03] <manu>	samsmith: I thought it was so we could bootstrap control over public/private key pair to DID... now we're talking about authenticating other data, not just the DID itself. I don't think that ends. Now we don't have to specify all those other use cases, every protocol for every other authentication mechanism.
+[Thu 13:54:45] <manu>	samsmith: Who controls the DID, who controls metadata, anything more than that is a lot of extra work. It's not necessary to bootstrap into all those things we need to do. Who owns the DID, how is that DID controlled, it's a service endpoint that's not essential to the DID Document.
+[Thu 13:54:48] <drummond>	+1 to the scope of the DID document being what is "essential to a DID document"
+[Thu 13:54:53] <drummond>	q?
+[Thu 13:54:53] <voip-ccg>	The current speaker queue is: sabadello, manu
+[Thu 13:54:57] <manu>	ack sabadello 
+[Thu 13:54:57] <voip-ccg>	sabadello has the floor.
+[Thu 13:55:08] <nage>	+1 to samsmith.  If we can bootstrap with that much we can figure the rest out.
+[Thu 13:55:36] <drummond>	q+
+[Thu 13:55:36] <voip-ccg>	drummond has been added to the queue: manu, drummond
+[Thu 13:55:52] <manu>	Topic: DID Document Extensibility
+[Thu 13:55:52] <manu>	sabadello: Not a cryptographer or biometrics, should DID document be primarily about public key discovery or support broader set of authentication material. I like extensibility, so would support what Manu's suggesting, have option for extensibility, if people want to publish that, we shouldn't prohibit that even if we increase correlation/reduce privacy (possibly)
+[Thu 13:56:19] <drummond>	q?
+[Thu 13:56:19] <voip-ccg>	The current speaker queue is: manu, drummond
+[Thu 13:56:21] <manu>	sabadello: publishing public keys is main objective, we should not restrict it to it... may want to publish verifiable credentials in DID document, so why not biometric template.
+[Thu 13:56:22] <manu>	ack
+[Thu 13:57:09] <drummond>	manu: wanted to underscore that everyone wants to do public key discovery. And Digital Bazaar is not suggesting in any way that it not important.
+[Thu 13:57:38] <drummond>	manu: but at the same time we should not put off other authentication options.
+[Thu 13:57:42] <JoeAndrieu>	I need to run. Thanks. This is good work, folks.
+[Thu 13:58:18] <drummond>	manu: if we can say where other type of authentication material would go in the DID document, that would provide the extensibility that Markus spoke to.
+[Thu 13:58:56] <drummond>	manu: so methods or applications that don't need other forms of authentication don't have to use them.
+[Thu 13:59:17] *	JoeAndrieu has quit ("Page closed")
+[Thu 13:59:37] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 14:00:01] <drummond>	manu: would broaden "DID documents are about public key and service endpoint discovery" to "DID documents are about discovery, period".
+[Thu 14:00:39] <drummond>	manu: that includes publication of all types of discovery info, potentially even public credentials.
+[Thu 14:00:40] <agropper>	+1 to Manu : DID documents are about discovery
+[Thu 14:00:47] <sabadello>	+1 to broader concept of discovery
+[Thu 14:01:48] <drummond>	manu: we would put biometric auth details out of scope for the DID spec itself, but leave a place for it.
+[Thu 14:02:09] <samsmith>	authentication of what?  Did owner or something else
+[Thu 14:02:10] <drummond>	q?
+[Thu 14:02:10] <voip-ccg>	The current speaker queue is: manu, drummond
+[Thu 14:02:13] <drummond>	ack manu
+[Thu 14:02:13] <voip-ccg>	manu has the floor (to say "DID Documents are about discovery").
+[Thu 14:02:13] <manu>	ack manu 
+[Thu 14:02:14] <voip-ccg>	manu isn't on the speaker queue.
+[Thu 14:02:16] <manu>	ack drummond 
+[Thu 14:02:16] <voip-ccg>	drummond has the floor.
+[Thu 14:03:05] <manu>	drummond: I think we're getting clarity around difference between DID Documents being around public key discovery and service endpoint discovery, and it being about discovery in general. 
+[Thu 14:03:32] <manu>	drummond: You will have one architecture w/ the narrower scope and a different architecture with the broader one.
+[Thu 14:05:05] <agropper>	We can assume that institutions will index DID documents.
+[Thu 14:05:05] <manu>	drummond: If we could solve one and only one thing w/ DID documents, keys and service discovery - it's hard to argue against extensibility - one approach to take is extensibility - use JSON-LD? For thing that I'm claiming is essential, public key discovery, service discovery - here are data structures to do that.
+[Thu 14:05:47] <manu>	drummond: The third thing - here's how you do other forms of discovery - here are specific branches/vocabs for at least two other things, biometric authentication services, so we can say here's how you extend it - here's how you extend it.
+[Thu 14:06:00] <manu>	drummond: Any such extensions are out of scope - proposal, would love to get feedback on that.
+[Thu 14:06:01] <drummond>	q?
+[Thu 14:06:01] <voip-ccg>	The speaker queue is empty.
+[Thu 14:06:10] *	manu grins - we've beaten this horse to death :P
+[Thu 14:06:27] <manu>	q+
+[Thu 14:06:28] <voip-ccg>	manu has been added to the queue: manu
+[Thu 14:06:29] <sabadello>	q+
+[Thu 14:06:29] <voip-ccg>	sabadello has been added to the queue: manu, sabadello
+[Thu 14:06:34] <nage>	q+
+[Thu 14:06:34] <voip-ccg>	nage has been added to the queue: manu, sabadello, nage
+[Thu 14:06:35] <manu>	q-
+[Thu 14:06:35] <voip-ccg>	manu has been removed from the queue: sabadello, nage
+[Thu 14:06:42] <manu>	q+
+[Thu 14:06:42] <voip-ccg>	manu has been added to the queue: sabadello, nage, manu
+[Thu 14:06:50] <drummond>	ack sabadello
+[Thu 14:06:50] <voip-ccg>	sabadello has the floor.
+[Thu 14:07:01] <manu>	sabadello: that sounds good to me - how to describe key service endpoints - possible to extend that - w/ other branches.
+[Thu 14:07:04] <pelle>	I'm in agreement with Drummonds suggestions
+[Thu 14:07:42] <manu>	sabadello: if the data model is RDF/JSON-LD, you have open world assumption anyway - add attributes/predicates to that data model anyway. It doesn't make sense to have extensible graph model and then tell people they can't use the extensibility.
+[Thu 14:07:45] <drummond>	+1 to Markus' point that if we have a specific extensibility model, we can all use it
+[Thu 14:07:49] <drummond>	q?
+[Thu 14:07:49] <voip-ccg>	The current speaker queue is: nage, manu
+[Thu 14:08:44] <manu>	nage: I was going to add - semantics of whether we call it key wrt. data linkages that comes from an external system - what do I have to check to see if its the actual person - practical interop of that is what I want to preserve. As long as we can preseve that, we're good.
+[Thu 14:08:57] <drummond>	q+
+[Thu 14:08:57] <voip-ccg>	drummond has been added to the queue: nage, manu, drummond
+[Thu 14:09:09] <drummond>	ack nage
+[Thu 14:09:09] <voip-ccg>	nage has the floor.
+[Thu 14:09:19] <manu>	nage: I want to make sure that if I get a DID, I can check to make sure who that is.
+[Thu 14:09:23] <manu>	q-
+[Thu 14:09:23] <voip-ccg>	manu has been removed from the queue: drummond
+[Thu 14:09:24] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 14:09:25] <manu>	q+
+[Thu 14:09:25] <voip-ccg>	manu has been added to the queue: drummond, manu
+[Thu 14:10:34] <manu>	Topic: Fundamental DID Architecture
+[Thu 14:10:34] <manu>	drummond: This crystalizes the fundamental architecture of what we're after - it puts a solid stake in the ground to get to the extensibility model we want. If there is agreement about that, there could be branches of the DID Document that we are going to define.
+[Thu 14:11:01] <manu>	drummond: Here's what we're defining for bootstrap functionality - first we're defining how we're doing public key discovery - branch for doing that - and how you do service discovery.
+[Thu 14:12:24] <manu>	drummond: There is a difference in the emphasis in public key discovery - authentication being something you want to do, other thing that came up on the thread -- authentication and encryption - if you pay attention to one w/o the other, you're missing the point... keys are not just for authentication.... public key management, hope I'm not just carrying that perspective, that was the problem that public key crypto solved.
+[Thu 14:13:38] <manu>	drummond: So, if we can focus on architecture - public key discovery, then service discovery - if we want to go about it in that way - how do we get to a proposal on public key management piece - service endpoint piece, then have proposals on other two, spec and wrap text on it, finish this month.
+[Thu 14:13:38] <drummond>	q?
+[Thu 14:13:39] <voip-ccg>	The current speaker queue is: drummond, manu
+[Thu 14:13:46] <drummond>	ack drummond
+[Thu 14:13:46] <voip-ccg>	drummond has the floor.
+[Thu 14:13:52] <drummond>	ack manu
+[Thu 14:13:52] <voip-ccg>	manu has the floor.
+[Thu 14:15:01] <pelle>	q+
+[Thu 14:15:01] <voip-ccg>	pelle has been added to the queue: pelle
+[Thu 14:15:53] <drummond>	manu: if we are agreed on an open world data model, then the spec is inherently extensible. That question has come up many times in terms of what is required in the spec, and the need for naive JSON support.
+[Thu 14:16:15] <drummond>	manu: would like to avoid the extensibility debate.
+[Thu 14:17:06] <drummond>	manu: RE Drummond's proposal to standardize specific branches, Manu agrees that service discovery is one of the branches.
+[Thu 14:18:01] <drummond>	manu: but the question of public key discovery is not clear.
+[Thu 14:18:55] <drummond>	manu: if it about public key discovery, then it's about an array of keys. If it's about purposes like auth and encryption, then we have two different branches.
+[Thu 14:19:51] <manu>	ack pelle 
+[Thu 14:19:51] <voip-ccg>	pelle has the floor.
+[Thu 14:20:10] <drummond>	manu: the concrete proposal that Manu is making is to pick apart the concrete proposals on the mailing list, and decide on the basis of that narrower scope how best to handle the problem.
+[Thu 14:20:24] *	ChristianLundkvist has quit (Ping timeout: 180 seconds)
+[Thu 14:20:41] <manu>	pelle: About extensibility - I don't think it has to be anything particularly complex - it's a data object, we specify for areas that we are standardizing, we have a type, purpose, this could be used for something that can be updated in the future, otherwise anything that you can put in the DID document, go a head.
+[Thu 14:20:59] <manu>	q+ to avoid "put anything in DID Document"... explain why that may be a problem.
+[Thu 14:20:59] <voip-ccg>	manu has been added to the queue: manu
+[Thu 14:21:04] <drummond>	q+
+[Thu 14:21:04] <voip-ccg>	drummond has been added to the queue: manu, drummond
+[Thu 14:21:51] <manu>	pelle: If I want to go in and authenticate something from Sovrin, I can get public key data, I can get service endpoints, that's all we need. Put LinkedIn names, we're doing that already in proto DID, no need for specific formal bit on extensibility - put anything you want for your particular method, it can be JSOn-LD, if you don't want it use something else.
+[Thu 14:21:54] <drummond>	q?
+[Thu 14:21:54] <voip-ccg>	The current speaker queue is: manu, drummond
+[Thu 14:21:59] <drummond>	ack manu
+[Thu 14:21:59] <voip-ccg>	manu has the floor (to avoid "put anything in DID Document"... explain why that may be a problem.).
+[Thu 14:22:27] <drummond>	manu: has a word of warning about "use anything for extensibility"
+[Thu 14:23:20] <pelle>	The only point is that we don't need to worry about it right now. We can deal with that elsewhere
+[Thu 14:23:36] <drummond>	manu: the problem of semantic conflict is going to rear its head if we follow a "laisse faire" approach to extensibility.
+[Thu 14:24:02] <drummond>	manu: this is the problem that RDF & JSON-LD solves.
+[Thu 14:25:14] <drummond>	Drummond is on the queue to talk about the previous discussion about support for naive JSON.
+[Thu 14:25:26] <drummond>	q/
+[Thu 14:25:29] <drummond>	q?
+[Thu 14:25:29] <voip-ccg>	The current speaker queue is: drummond
+[Thu 14:25:33] <manu>	ack drummond
+[Thu 14:25:34] <voip-ccg>	drummond has the floor.
+[Thu 14:26:45] <manu>	drummond: I do agree that we want to specify the extensibility model clearly... want to point everyone back to a conversation at W3C TPAC - is it possible to specify the core branches are understandable to naieve JSON developers?
+[Thu 14:27:09] <manu>	drummond: To deal w/ that issue, simple DID Document parsers, we should adopt that same approach.
+[Thu 14:27:53] <manu>	drummond: I do agree w/ Manu's point - if we're going to talk about structure of branches, one thing we should do is -- service endpoint branch, let's get proposals up there, define that and close on it as quickly as it can. We have already identified that there are interactions w/ those endpoints and keys.
+[Thu 14:28:01] <manu>	drummond: service endpoint may need to reference key.
+[Thu 14:28:54] <manu>	drummond: I think we're down to this question - is it key management first and auth/encrypt purposes, or is it organized by purpose? Keys in different branches of the graph? There is no a-priori argument - no pure logical argument you can make for those decisions.
+[Thu 14:29:14] <manu>	drummond: Let's use the list, any mechanism that we can to close these issues.
+[Thu 14:29:33] <manu>	q+ to suggest a non-ideal path forward.
+[Thu 14:29:33] <voip-ccg>	manu has been added to the queue: manu
+[Thu 14:30:06] <manu>	drummond: we've made a fair amount of progress, will try to summarize to email list...
+[Thu 14:30:19] <drummond>	ack manu
+[Thu 14:30:19] <voip-ccg>	manu has the floor (to suggest a non-ideal path forward.).
+[Thu 14:30:41] <pelle>	Sorry have to run to another meeting
+[Thu 14:31:31] <drummond>	manu: sees a potential clear compromise between the two worldviews. It is for one group to set up a keys array, and other to set up an authentication and encryption branches.
+[Thu 14:32:24] <drummond>	manu: the downside is that actually doing discovery is more complex for developers.
+[Thu 14:32:38] <drummond>	manu: this may also have security vulnerabilities.
+[Thu 14:32:57] <drummond>	manu: if all else fails, we could end up deciding on that.
+[Thu 14:33:31] <manu>	drummond: Ok, with that, take discussion to mailing list then take rest of discussion to mailing list.
+[Thu 14:33:31] <manu>	present+ chapman
