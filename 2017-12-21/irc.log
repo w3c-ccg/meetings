@@ -1,0 +1,334 @@
+[Thu 13:05:31] <suedonym>	Meeting: DID Task Force
+[Thu 13:05:31] <suedonym>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2017Dec/0080.html
+[Thu 13:05:31] <suedonym>	scribe: suedonym
+[Thu 13:05:31] <suedonym>	present+ drummond, longley, samsmith, lundkvist, lodder, gropper, cwebber, zundel, sabadello, buchner, manu, ottonomy, johnjordan
+[Thu 13:06:24] <suedonym>	<Drummond> Discussion of cryptographic key material
+[Thu 13:06:24] <suedonym>	<Drummond> Topic: Cryptographic Key Material
+[Thu 13:07:27] <suedonym>	Drummond: 2 proposals to go through
+[Thu 13:09:14] <suedonym>	Drummond: #1 Single flat array of key description objects
+[Thu 13:10:01] <suedonym>	Drummond: These are examples of types. Work has not been completed on algorithm for things in the name yet.
+[Thu 13:10:56] <suedonym>	... Added cryptographic version and key
+[Thu 13:10:58] *	markus_sabadello has quit (Ping timeout: 180 seconds)
+[Thu 13:12:40] <suedonym>	Drummond: Advantages: Simplicity, one-step selection, promotion of crypto best practices
+[Thu 13:12:54] <suedonym>	... Disadvantages: not RDF friendly
+[Thu 13:13:22] <suedonym>	... Variations: coding should be a separate field.
+[Thu 13:14:23] <suedonym>	... Possible mitigations: key material can be in a graph instead of a tree. Still have an RDF friendly path
+[Thu 13:15:26] <suedonym>	longley: We may get into the same best of both worlds in both proposals. May be able to merge the two
+[Thu 13:17:04] <drummond>	+1 that key material should be described in a way that is independent of the DID method.
+[Thu 13:18:17] <suedonym>	longley: Allows it to list keys that may not be owned by the DID owner.
+[Thu 13:18:27] *	ottonomy has quit ("My MacBook Pro has gone to sleep. ZZZzzz…")
+[Thu 13:18:32] <suedonym>	longley: calls out who is the key owner
+[Thu 13:18:56] <suedonym>	longley: want to see the relations: who is this keys ownher
+[Thu 13:19:22] <suedonym>	longley: key encodings are separate from the key type.
+[Thu 13:20:05] <suedonym>	longley: listede a biometric template that is not strictly a key
+[Thu 13:20:49] <suedonym>	longley: ability to effectively present proofs and some auth material that proves you are the only to establish that proof.
+[Thu 13:21:26] <suedonym>	longley: version base off a year.
+[Thu 13:23:09] <suedonym>	longley: advantages: Simplicity, one-step selecti0on, promotion of cryptographic best practices, year based versions, friendly for JSON-LD, RDF and regular JSON, signular names for properties, flexibility and extensibility
+[Thu 13:23:51] <samsmith>	q?
+[Thu 13:23:51] <voip-ccg>	The speaker queue is empty.
+[Thu 13:24:04] *	cdchapman (~cdchapman@public.cloak) has joined #ccg
+[Thu 13:24:35] <drummond>	+1 to using singular names for properties. I've been equivocating about that for years.
+[Thu 13:25:35] <suedonym>	longley: Disadvantages: morethan one place to find a key, increase complexity, lack of use cases beyond "authentication" and "key management"
+[Thu 13:26:45] <drummond>	dlongley: "You only need to care about the relations that matter to you."
+[Thu 13:26:55] <cwebber>	q+
+[Thu 13:26:55] <voip-ccg>	cwebber has been added to the queue: cwebber
+[Thu 13:27:44] <suedonym>	longley: longley: would be nice to see use cases
+[Thu 13:28:05] *	ChristianLundkvist (~ChristianLundkvist@public.cloak) has joined #ccg
+[Thu 13:28:08] <ChristianLundkvist>	q?
+[Thu 13:28:08] <voip-ccg>	The current speaker queue is: cwebber
+[Thu 13:28:20] <suedonym>	Samsmith: concern that all keys are subject to key management.
+[Thu 13:28:27] <ChristianLundkvist>	q+
+[Thu 13:28:27] <voip-ccg>	ChristianLundkvist has been added to the queue: cwebber, ChristianLundkvist
+[Thu 13:28:49] <drummond>	samsmith: "All keys are subject to key management, not just those listed in keyManagement"
+[Thu 13:29:39] <drummond>	samsmith: "I think we need to be enable key management as a first-order property of any DID document".
+[Thu 13:29:49] <suedonym>	Samsmith: if the bag of keys is for key management, then they are doing it wrong
+[Thu 13:30:11] <dlongley>	q+
+[Thu 13:30:12] <voip-ccg>	dlongley has been added to the queue: cwebber, ChristianLundkvist, dlongley
+[Thu 13:31:22] <suedonym>	longley: key management being separate area is one variation of this proposal that he would be ok with.
+[Thu 13:31:39] <suedonym>	longley: no duplicates when looking at this as a graph model
+[Thu 13:31:55] <drummond>	dlongley: having key management be a separate application is something he's open to.
+[Thu 13:33:33] <suedonym>	samsmith: concern that it will be hard for naive JSON-LD users.
+[Thu 13:34:03] <drummond>	q+
+[Thu 13:34:03] <voip-ccg>	drummond has been added to the queue: cwebber, ChristianLundkvist, dlongley, drummond
+[Thu 13:34:03] <dlongley>	q-
+[Thu 13:34:03] <voip-ccg>	dlongley has been removed from the queue: cwebber, ChristianLundkvist, drummond
+[Thu 13:34:05] <suedonym>	longley: you may be listing keys that are not owned by you.
+[Thu 13:34:08] <drummond>	q?
+[Thu 13:34:08] <voip-ccg>	The current speaker queue is: cwebber, ChristianLundkvist, drummond
+[Thu 13:34:09] <suedonym>	q+
+[Thu 13:34:09] <voip-ccg>	suedonym has been added to the queue: cwebber, ChristianLundkvist, drummond, suedonym
+[Thu 13:34:26] *	ottonomy (~ottonomy@public.cloak) has joined #ccg
+[Thu 13:35:16] <suedonym>	cwebber: 1st section: ambient auth problem. Security risk if you put everything in the same bucket.
+[Thu 13:35:46] <suedonym>	cwebber: Shouldnt be mixing the purpose in the type
+[Thu 13:36:03] <suedonym>	cwebber: 1st proposal would be better if we had "purpose"
+[Thu 13:36:13] *	markus_sabadello (~markus_sabadello@public.cloak) has joined #ccg
+[Thu 13:36:27] <samsmith>	q+ purpose vs operation
+[Thu 13:36:27] <voip-ccg>	samsmith has been added to the queue: cwebber, ChristianLundkvist, drummond, suedonym, samsmith
+[Thu 13:37:01] <dlongley>	yeah -- purpose vs. operation a common point of confusion.
+[Thu 13:37:07] <markus_sabadello>	q+
+[Thu 13:37:07] <voip-ccg>	markus_sabadello has been added to the queue: cwebber, ChristianLundkvist, drummond, suedonym, samsmith, markus_sabadello
+[Thu 13:37:35] <suedonym>	lundkvist: lack of use cases in proposal 2. Glaring lack of signing of verifiable claims
+[Thu 13:38:22] <dlongley>	q+ to say verifying a signature is authentic is "authentication" ... need to figure out where to draw the line
+[Thu 13:38:22] <voip-ccg>	dlongley has been added to the queue: cwebber, ChristianLundkvist, drummond, suedonym, samsmith, markus_sabadello, dlongley
+[Thu 13:38:35] <drummond>	For reference, the Google doc we are referencing is https://docs.google.com/document/d/13fp7V3v1nBuhxTI55Al8KLG2kyxFthBz-Ush-ZL58KA/edit#
+[Thu 13:38:47] <suedonym>	lundkvist: Concern that this feels like this is a free for all.
+[Thu 13:39:33] <dlongley>	q+ to say the "purpose" of a signature is different from the "purpose" of a key.
+[Thu 13:39:33] <voip-ccg>	dlongley has been added to the queue: cwebber, ChristianLundkvist, drummond, suedonym, samsmith, markus_sabadello, dlongley, dlongley
+[Thu 13:40:01] <suedonym>	lundkvist: should have some standardizations of terms, otherwise it could be problematic
+[Thu 13:40:09] *	mikelodder +1 ChristianL
+[Thu 13:40:27] <dlongley>	q+ to mention open world assumption
+[Thu 13:40:27] <voip-ccg>	dlongley has been added to the queue: cwebber, ChristianLundkvist, drummond, suedonym, samsmith, markus_sabadello, dlongley, dlongley, dlongley
+[Thu 13:40:30] <ChristianLundkvist>	q?
+[Thu 13:40:30] <voip-ccg>	The current speaker queue is: cwebber, ChristianLundkvist, drummond, suedonym, samsmith, markus_sabadello, dlongley, dlongley, dlongley
+[Thu 13:40:35] <drummond>	ChristianLundkvist: If everyone can come up with their own relations to describe key material, we could end up with a very long and scattered list of options that hurts interop.
+[Thu 13:40:58] <dlongley>	ack cwebber
+[Thu 13:40:58] <voip-ccg>	cwebber has the floor.
+[Thu 13:41:03] <dlongley>	ack ChristianLundkvist
+[Thu 13:41:03] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 13:41:04] <drummond>	ack cwebber
+[Thu 13:41:04] <voip-ccg>	cwebber isn't on the speaker queue.
+[Thu 13:41:06] <dlongley>	ack drummond
+[Thu 13:41:06] <voip-ccg>	drummond has the floor.
+[Thu 13:41:12] <dlongley>	ack seudonym
+[Thu 13:41:12] <voip-ccg>	seudonym isn't on the speaker queue.
+[Thu 13:41:15] <dlongley>	q?
+[Thu 13:41:15] <voip-ccg>	The current speaker queue is: suedonym, samsmith, markus_sabadello, dlongley, dlongley, dlongley
+[Thu 13:41:21] <dlongley>	ack suedonym
+[Thu 13:41:21] <voip-ccg>	suedonym has the floor.
+[Thu 13:41:23] <dlongley>	q?
+[Thu 13:41:23] <voip-ccg>	The current speaker queue is: samsmith, markus_sabadello, dlongley, dlongley, dlongley
+[Thu 13:41:38] <suedonym>	samsmith: responding to ChrisW. There is a semantic ambiguity. There is cryptographic application and application purpose.
+[Thu 13:42:15] <suedonym>	samsmith: Use the term "operation" because it is ambiguous.
+[Thu 13:42:30] <drummond>	samsmith: cryptographic operatons are different than "purpose". The same cryptographic operation can be used for multiple purposes.
+[Thu 13:42:47] <dlongley>	ack samsmith
+[Thu 13:42:47] <voip-ccg>	samsmith has the floor (purpose vs operation).
+[Thu 13:43:56] <drummond>	samsmith: either put everything in the type, or only break out operation and/or encoding. "Purpose" should be a different type of relation.
+[Thu 13:44:04] <drummond>	q?
+[Thu 13:44:04] <voip-ccg>	The current speaker queue is: markus_sabadello, dlongley, dlongley, dlongley
+[Thu 13:44:32] <cwebber>	well string splitting / parsing the type string, for one thing (aside from being incompatible with json-ld) is already a messy thing
+[Thu 13:44:36] <suedonym>	samsmith: we have key material that includes a type, not a purpose. Use the path to define the application purpose.
+[Thu 13:45:06] <drummond>	samsmith: so purpose is something that could be broken out into a relation.
+[Thu 13:45:30] <dlongley>	ack markus_sabadello
+[Thu 13:45:30] <voip-ccg>	markus_sabadello has the floor.
+[Thu 13:47:06] <suedonym>	Markus: to merge the two proposals, could we have a branch to the graph with descriptions
+[Thu 13:47:30] <suedonym>	Markus: should be able to work with people who only know JSON
+[Thu 13:47:31] <dlongley>	ack dlongley
+[Thu 13:47:31] <voip-ccg>	dlongley has the floor (to say verifying a signature is authentic is "authentication" ... need to figure out where to draw the line).
+[Thu 13:47:33] <dlongley>	ack dlongley
+[Thu 13:47:33] <voip-ccg>	dlongley has the floor (to say the "purpose" of a signature is different from the "purpose" of a key.).
+[Thu 13:47:34] <dlongley>	ack dlongley
+[Thu 13:47:34] <voip-ccg>	dlongley has the floor (to mention open world assumption).
+[Thu 13:47:34] <samsmith>	+1
+[Thu 13:49:24] *	cwebber that wasn't me :)
+[Thu 13:49:27] <drummond>	dlongley: all three of his comments are related to applying the Open World Assumption to DID documents. Which in this context means that each application can specify the relations that it needs.
+[Thu 13:49:43] <drummond>	Sorry cwebber: couldn't tell who it was.
+[Thu 13:50:25] <drummond>	q+ (to speak to "owner" and whether there can be a default that the owner is the DID owner)
+[Thu 13:50:25] <voip-ccg>	drummond has been added to the queue: drummond
+[Thu 13:50:56] <ChristianLundkvist>	q+
+[Thu 13:50:56] <voip-ccg>	ChristianLundkvist has been added to the queue: drummond, ChristianLundkvist
+[Thu 13:51:03] <cwebber>	q+ manu
+[Thu 13:51:03] <voip-ccg>	cwebber has been added to the queue: drummond, ChristianLundkvist, manu
+[Thu 13:51:05] <suedonym>	Manu has joined
+[Thu 13:51:24] <dlongley>	ack drummond
+[Thu 13:51:24] <voip-ccg>	drummond has the floor ((to speak to "owner" and whether there can be a default that the owner is the DID owner)).
+[Thu 13:51:28] *	cwebber he did ask to be queued right?
+[Thu 13:51:37] *	dlongley not sure :)
+[Thu 13:52:32] <dlongley>	q+ to say that DID methods can auto-generate DID owners if the need to.
+[Thu 13:52:32] <voip-ccg>	dlongley has been added to the queue: ChristianLundkvist, manu, dlongley
+[Thu 13:52:42] <samsmith>	q+
+[Thu 13:52:42] <voip-ccg>	samsmith has been added to the queue: ChristianLundkvist, manu, dlongley, samsmith
+[Thu 13:53:03] <mikelodder>	lodder: I'm not sure why you need an owner field when owning a key could serve the same purpose
+[Thu 13:53:37] *	msporny (~msporny@public.cloak) has joined #ccg
+[Thu 13:53:50] <dlongley>	ack ChristianLundkvist
+[Thu 13:53:50] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 13:53:50] <msporny>	q?
+[Thu 13:53:50] <voip-ccg>	The current speaker queue is: manu, dlongley, samsmith
+[Thu 13:55:01] <suedonym>	lundkvist: pragmatically if a dev wants to develop against the did doc, and we only specify _________________end up putting everything in one bucket\
+[Thu 13:55:09] *	John_Jordan (~John_Jordan@public.cloak) has joined #ccg
+[Thu 13:55:12] <dlongley>	q+ to say FOR those developers where "authentication" can actually make sense
+[Thu 13:55:12] <voip-ccg>	dlongley has been added to the queue: manu, dlongley, samsmith, dlongley
+[Thu 13:55:24] <dlongley>	q+ to say (what Christian said would only be true for those)
+[Thu 13:55:24] <voip-ccg>	dlongley has been added to the queue: manu, dlongley, samsmith, dlongley, dlongley
+[Thu 13:55:30] <suedonym>	lundkvist: developers will choose the path of least resistance
+[Thu 13:56:06] <drummond>	ChristianLundkvist: worries that if any purpose can contain an array of keys, then developers won't actually know where to put a key, because they can all interpret purposes differently.
+[Thu 13:56:38] <dlongley>	ack manu
+[Thu 13:56:38] <voip-ccg>	manu has the floor.
+[Thu 13:56:44] <ChristianLundkvist>	q?
+[Thu 13:56:44] <voip-ccg>	The current speaker queue is: dlongley, samsmith, dlongley, dlongley
+[Thu 13:56:46] <drummond>	q?
+[Thu 13:56:46] <voip-ccg>	The current speaker queue is: dlongley, samsmith, dlongley, dlongley
+[Thu 13:57:38] <drummond>	manu: putting every key in "authentication" would be an abuse of that property.
+[Thu 13:57:43] <suedonym>	manu: call out that certain fields are used for certain things
+[Thu 13:57:49] <drummond>	q+
+[Thu 13:57:49] <voip-ccg>	drummond has been added to the queue: dlongley, samsmith, dlongley, dlongley, drummond
+[Thu 13:58:01] <mikelodder>	lodder: The problem is if there are too many options developers have to do lots of homework to use it
+[Thu 13:58:15] <suedonym>	manu: break these out into application classes, may need to narrow them
+[Thu 13:58:17] *	ottonomy has quit ("My MacBook Pro has gone to sleep. ZZZzzz…")
+[Thu 13:58:29] *	PhilSole (~PhilSole@public.cloak) has joined #ccg
+[Thu 13:58:46] <ChristianLundkvist>	q+
+[Thu 13:58:46] <voip-ccg>	ChristianLundkvist has been added to the queue: dlongley, samsmith, dlongley, dlongley, drummond, ChristianLundkvist
+[Thu 13:58:49] <ChristopherA>	(synonyms: certification  verification attestation corroboration evidence proof substantiation testament testimonial)
+[Thu 13:59:07] <ChristianLundkvist>	That was not really my argument :)
+[Thu 13:59:10] <ChristopherA>	+1 to more narrow
+[Thu 13:59:38] <dlongley>	ack
+[Thu 13:59:40] <drummond>	q?
+[Thu 13:59:40] <voip-ccg>	The current speaker queue is: dlongley, samsmith, dlongley, dlongley, drummond, ChristianLundkvist
+[Thu 13:59:43] <dlongley>	ack dlongley
+[Thu 13:59:43] <voip-ccg>	dlongley has the floor (to say that DID methods can auto-generate DID owners if the need to.).
+[Thu 14:01:02] <dlongley>	ack dlongley
+[Thu 14:01:02] <voip-ccg>	dlongley has the floor (to say FOR those developers where "authentication" can actually make sense).
+[Thu 14:01:04] <dlongley>	ack dlongley
+[Thu 14:01:04] <voip-ccg>	dlongley has the floor (to say (what Christian said would only be true for those)).
+[Thu 14:01:08] <cwebber>	+1 on getting consensus that the application distinction is important as the next step
+[Thu 14:01:25] <cwebber>	it sounds like we're very close to all ack'ing that
+[Thu 14:01:31] <dlongley>	q?
+[Thu 14:01:31] <voip-ccg>	The current speaker queue is: samsmith, drummond, ChristianLundkvist
+[Thu 14:01:33] <cwebber>	(regardless of the approach taken)
+[Thu 14:01:34] <dlongley>	ack samsmith
+[Thu 14:01:34] <voip-ccg>	samsmith has the floor.
+[Thu 14:02:21] *	ottonomy (~ottonomy@public.cloak) has joined #ccg
+[Thu 14:02:39] *	cwebber how long is the call?  I might have to leave in a few
+[Thu 14:02:42] <suedonym>	samsmith: if i were i naive programmer coming to this spec and was told that if you wanted your key to be managed, in the appropriate dumping ground. If they dump it in key management, at least its manageable.
+[Thu 14:02:52] *	dlongley another 30 mins, cwebber
+[Thu 14:03:03] *	cwebber will check if they can stick around :)
+[Thu 14:03:05] <ChristianLundkvist>	q?
+[Thu 14:03:05] <voip-ccg>	The current speaker queue is: drummond, ChristianLundkvist
+[Thu 14:03:09] <markus_sabadello>	q+
+[Thu 14:03:09] <voip-ccg>	markus_sabadello has been added to the queue: drummond, ChristianLundkvist, markus_sabadello
+[Thu 14:03:14] <suedonym>	samsmith: if you want it to be interoperable, use a narrow defined application purpose
+[Thu 14:03:20] <msporny>	q+ to mention that we may be giving up too soon on devs.
+[Thu 14:03:20] <voip-ccg>	msporny has been added to the queue: drummond, ChristianLundkvist, markus_sabadello, msporny
+[Thu 14:03:59] <suedonym>	samsmith: having application purposes that are narrow is a good thing as long as we don't lose the other half of the application
+[Thu 14:04:16] <dlongley>	ack drummond
+[Thu 14:04:16] <voip-ccg>	drummond has the floor.
+[Thu 14:04:16] *	cwebber ok, can stay :)
+[Thu 14:04:20] *	dlongley yay :)
+[Thu 14:05:32] *	dlongley the "third" proposal is probably just a framing profile of the second one :)
+[Thu 14:05:37] <suedonym>	drummond: agrees with Sam. Have one place to manage keys, volunteered to make a proposal that merges those
+[Thu 14:05:43] *	dlongley in JSON-LD terms.
+[Thu 14:05:59] <drummond>	@dlongley: yes, I think you are right
+[Thu 14:06:38] <suedonym>	lundkvist: if you have narrow application purposes and you want to enforce it, that necessitates a lot of coordination.
+[Thu 14:07:14] <suedonym>	lundkvist: concern devs wil make up their own, and they won't be compatible. Or dump them into the wrong purpose
+[Thu 14:07:18] <dlongley>	we could tell them that they need to use JSON-LD to properly use relations if that's an issue for those developers :)... you don't get those conflicts.
+[Thu 14:07:24] <drummond>	To summarize what I said, a proposal that combines a flat array of keys for the purpose of "direct reference" and key management with using RDF relations to describe the purpose of any of those keys will give us the best of both worlds.
+[Thu 14:07:42] <samsmith>	q+
+[Thu 14:07:42] <voip-ccg>	samsmith has been added to the queue: ChristianLundkvist, markus_sabadello, msporny, samsmith
+[Thu 14:08:05] <markus_sabadello>	+1 to drummond's summary involving flat array and references
+[Thu 14:09:06] <suedonym>	lundkvist: the 2nd proposal will become more like the 1st proposal due to the fact you have to come up with different application purposes
+[Thu 14:09:21] <dlongley>	i don't buy the argument that if someone is inaccurate that everyone will be
+[Thu 14:09:29] <ChristianLundkvist>	q?
+[Thu 14:09:29] <voip-ccg>	The current speaker queue is: ChristianLundkvist, markus_sabadello, msporny, samsmith
+[Thu 14:09:29] <dlongley>	q?
+[Thu 14:09:29] <voip-ccg>	The current speaker queue is: ChristianLundkvist, markus_sabadello, msporny, samsmith
+[Thu 14:09:31] <dlongley>	ack ChristianLundkvist
+[Thu 14:09:31] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 14:09:32] <John_Jordan>	johnjordan: from a naive person's perspective it sounds like the challenge is to create conditions where this is sufficient specificity to set us off in the right direction to allow network effects to take hold on the semantic meaning of these elements
+[Thu 14:10:01] <drummond>	Well said, John_Jordan
+[Thu 14:10:11] <suedonym>	samsmith: what we can do to address the concern, be explicit in the must vs should.
+[Thu 14:10:46] <suedonym>	samsmith: only if the devs really know, then they can put it in an application purpose.
+[Thu 14:10:57] <drummond>	samsmith: recommends that we say that adding a key reference to an application purpose, it should be a SHOULD.
+[Thu 14:11:12] <dlongley>	q?
+[Thu 14:11:12] <voip-ccg>	The current speaker queue is: markus_sabadello, msporny, samsmith
+[Thu 14:11:14] <dlongley>	ack markus_sabadello
+[Thu 14:11:14] <voip-ccg>	markus_sabadello has the floor.
+[Thu 14:11:14] <drummond>	Q?
+[Thu 14:11:17] <John_Jordan>	+1 sounds like a very practical approach
+[Thu 14:11:35] <mikelodder>	lodder: I agree with Sam. Thats calms my fears
+[Thu 14:12:35] <drummond>	+1 to what samsmith just said: that the spec should say a key MUST go into keyManagement but that if a developer needs to express an application purpose, they SHOULD list the key under a relation.
+[Thu 14:12:56] <dlongley>	q?
+[Thu 14:12:56] <voip-ccg>	The current speaker queue is: msporny, samsmith
+[Thu 14:12:59] <dlongley>	ack msporny
+[Thu 14:12:59] <voip-ccg>	msporny has the floor (to mention that we may be giving up too soon on devs.).
+[Thu 14:13:00] <ChristianLundkvist>	q+
+[Thu 14:13:00] <voip-ccg>	ChristianLundkvist has been added to the queue: samsmith, ChristianLundkvist
+[Thu 14:13:18] <drummond>	q+
+[Thu 14:13:18] <voip-ccg>	drummond has been added to the queue: samsmith, ChristianLundkvist, drummond
+[Thu 14:14:13] *	manusporny (~msporny@public.cloak) has joined #ccg
+[Thu 14:14:15] <drummond>	Drummond disagrees with Manu's contention that "creating a generalized container is a bad idea".
+[Thu 14:14:18] <suedonym>	manu: compromise: creating any kind of generalized container is a bad idea. the reason you create standards is to prevent interoperability.
+[Thu 14:15:48] <drummond>	The reason is that the "generalized container" is a very specific type of data structure for a very specific and important purpose: key management. And most importantly, that the type field in key descriptions in this array carries the essential description information that developers need to choose the right key.
+[Thu 14:16:27] <suedonym>	manu: if a dev makes a mistake and puts it in the wrong place, they can always correct it
+[Thu 14:16:33] <suedonym>	q?
+[Thu 14:16:33] <voip-ccg>	The current speaker queue is: samsmith, ChristianLundkvist, drummond
+[Thu 14:16:35] <drummond>	q?
+[Thu 14:16:35] <voip-ccg>	The current speaker queue is: samsmith, ChristianLundkvist, drummond
+[Thu 14:16:38] <dlongley>	ack samsmith
+[Thu 14:16:38] <voip-ccg>	samsmith has the floor.
+[Thu 14:17:02] <markus_sabadello>	q+
+[Thu 14:17:02] <voip-ccg>	markus_sabadello has been added to the queue: ChristianLundkvist, drummond, markus_sabadello
+[Thu 14:17:23] <suedonym>	samsmith: in a naive JSON DID the bag of keys is there for the purpose of key discovery.
+[Thu 14:18:06] <dlongley>	i think it's a bad idea if you don't have *any* other relations
+[Thu 14:18:11] <suedonym>	samsmith: the reason people want the key bag is so its easy to do the right thing.
+[Thu 14:18:14] <drummond>	samsmith: Manu, it gives the naive JSON developers easy to do the simplest thing. Manu responded that developers can just search the entire document for keys.
+[Thu 14:18:17] <dlongley>	if you only use "keys" as a place to find descriptions and other fields are where you *start* to find the key for the right purpose ... you're ok (that includes key management)
+[Thu 14:18:57] <suedonym>	... if we have nformative material, most devs will respond to that. if we force them to do it without clear guidelines. that is why we need the "should"
+[Thu 14:18:58] <drummond>	samsmith: if we educate developers about why and how to use application relations to describe a key is a "good SHOULD".
+[Thu 14:19:16] <drummond>	q?
+[Thu 14:19:16] <voip-ccg>	The current speaker queue is: ChristianLundkvist, drummond, markus_sabadello
+[Thu 14:19:22] <suedonym>	Time check: 10 minutes
+[Thu 14:19:34] *	drummond thanks Susan
+[Thu 14:20:10] <suedonym>	lundkvist: question on key management application purpose. unclear what that means exactly. are they the keys that allow an update to the DID doc? It seems method specific to have those.
+[Thu 14:20:13] *	msporny has quit (Ping timeout: 180 seconds)
+[Thu 14:21:08] <suedonym>	lundkvist: seems like key management might live somewhere else. potentially in the method specs.
+[Thu 14:21:36] <manusporny>	q+ to ask why we don't just have a getAllKeys function?
+[Thu 14:21:36] <voip-ccg>	manusporny has been added to the queue: ChristianLundkvist, drummond, markus_sabadello, manusporny
+[Thu 14:21:37] <samsmith>	christian  keys that are managed not keys that are used for managment
+[Thu 14:21:46] <samsmith>	q+
+[Thu 14:21:46] <voip-ccg>	samsmith has been added to the queue: ChristianLundkvist, drummond, markus_sabadello, manusporny, samsmith
+[Thu 14:21:47] <dlongley>	ack ChristianLundkvist
+[Thu 14:21:47] <voip-ccg>	ChristianLundkvist has the floor.
+[Thu 14:21:56] <suedonym>	lundkvist: seems more related to the discovery
+[Thu 14:21:58] <drummond>	Reminder to myself to state what I think the benefits of the "middle ground" proposal are: use an array of keys (best name for that array TBD) to list all keys, and use relations to describe the purpose of those keys.
+[Thu 14:22:09] <suedonym>	q?
+[Thu 14:22:09] <voip-ccg>	The current speaker queue is: drummond, markus_sabadello, manusporny, samsmith
+[Thu 14:23:05] <dlongley>	ack drummond
+[Thu 14:23:05] <voip-ccg>	drummond has the floor.
+[Thu 14:24:11] <dlongley>	q+ to say NOT all the keys need key management
+[Thu 14:24:11] <voip-ccg>	dlongley has been added to the queue: markus_sabadello, manusporny, samsmith, dlongley
+[Thu 14:24:20] *	dlongley remember the ones that are not owned by you.
+[Thu 14:24:29] *	dlongley those may not fall under "key management"
+[Thu 14:25:24] <dlongley>	q-
+[Thu 14:25:24] <voip-ccg>	dlongley has been removed from the queue: markus_sabadello, manusporny, samsmith
+[Thu 14:25:34] <suedonym>	q?
+[Thu 14:25:34] <voip-ccg>	The current speaker queue is: markus_sabadello, manusporny, samsmith
+[Thu 14:25:37] <dlongley>	i just wanted to say that not ALL keys may need key management, especially those not owned by you.
+[Thu 14:25:47] <dlongley>	ack markus_sabadello
+[Thu 14:25:47] <voip-ccg>	markus_sabadello has the floor.
+[Thu 14:26:33] <suedonym>	markus: one assumption we make is that we have complete freedom to add to the did doc. That is hopefully what the did methods support. but there may be methods that don't.
+[Thu 14:26:35] <dlongley>	then those other DID methods won't work with many applications :)
+[Thu 14:27:10] <ChristianLundkvist>	Still a bit confused, was the "keyManagement" list one that contains all the keys? It would mimic the "keys" bag of Proposal 1? So "keyManagement" is not really a application purpose but more of a collection of the keys?
+[Thu 14:27:23] <ChristianLundkvist>	I should say all the keys owned by the users
+[Thu 14:27:23] <dlongley>	no way to specify services or anything else sounds like a fairly useless DID :)
+[Thu 14:27:31] <drummond>	quick poll to see, of those on IRC right now, who is in favor of the idea of creating a joint proposal based on what Drummond just summarized. Pleaes +1 or -1 for the minutes.
+[Thu 14:27:31] <dlongley>	q?
+[Thu 14:27:31] <voip-ccg>	The current speaker queue is: manusporny, samsmith
+[Thu 14:27:33] <dlongley>	ack manusporny
+[Thu 14:27:33] <voip-ccg>	manusporny has the floor (to ask why we don't just have a getAllKeys function?).
+[Thu 14:27:36] <drummond>	+1
+[Thu 14:29:39] <drummond>	manusporny: proposes a simple library call to do getAllKeys. He does not agree with the "bag of keys" approach.
+[Thu 14:29:41] <samsmith>	But then the application purpose becomes a MUST not a SHOULD
+[Thu 14:29:54] <drummond>	+1 to Sam's point.
+[Thu 14:29:58] <mikelodder>	-1 getAllKeys
+[Thu 14:30:07] <drummond>	-1 getAllKeys
+[Thu 14:30:34] <samsmith>	-1 getAllKeys
+[Thu 14:30:49] <drummond>	This is where we get to the "conflict of worldviews" issue that I emailed the list about.
+[Thu 14:31:37] <sabadello>	Some minimalistic DID methods may not support specifying a purpose for a key.
+[Thu 14:31:52] <drummond>	+1 to Markus' point
+[Thu 14:31:58] <samsmith>	+1
+[Thu 14:32:23] <suedonym>	q?
+[Thu 14:32:23] <voip-ccg>	The current speaker queue is: samsmith
+[Thu 14:32:29] <dlongley>	ack samsmith
+[Thu 14:32:29] <voip-ccg>	samsmith has the floor.
+[Thu 14:33:13] <drummond>	q+ to close the call
+[Thu 14:33:13] <voip-ccg>	drummond has been added to the queue: drummond
+[Thu 14:33:31] <suedonym>	Drummond: Talk about next steps...
+[Thu 14:34:08] *	cwebber notes that json-ld *is* an attempt to find that intersection
+[Thu 14:34:29] *	cwebber between naive json and graph-land
+[Thu 14:34:51] *	cwebber we've talked about making sure we can uphold both at once
+[Thu 14:34:56] *	cwebber I think we still can :)
+[Thu 14:34:58] <suedonym>	Drummond: volunteered to start a third proposal.
+[Thu 14:35:03] *	dlongley cwebber you should say that in the channel for the minutes
+[Thu 14:35:12] <cwebber>	note that json-ld *is* an attempt to find that intersection
+[Thu 14:35:16] <cwebber>	between naive json and graph-land
+[Thu 14:35:19] <cwebber>	we've talked about making sure we can uphold both at once
+[Thu 14:35:23] <cwebber>	I think we still can :)
