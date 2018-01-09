@@ -107,8 +107,7 @@ function sendEmail(username, password, hostname, content, callback) {
   // send the message
   server.send({
     text:    content,
-    from: 'msporny@digitalbazaar.com',
-    //from:    username + '@' + hostname,
+    from:    username + '@' + hostname,
     to:      'Credentials CG <public-credentials@w3.org>',
     subject: '[MINUTES] W3C Credentials CG Call - ' + gDate + ' 12pm ET'
   }, function(err, message) {
