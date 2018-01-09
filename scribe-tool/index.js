@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var async = require('async');
-var email = require('emailjs');
+var emailjs = require('emailjs');
 var fs = require('fs');
 var path = require('path');
 var program = require('commander');
@@ -96,18 +96,28 @@ function postToWordpress(username, password, content, callback) {
   });
 }
 
-function sendEmail(username, password, hostname, content, callback) {
-  var server  = email.server.connect({
-    //user: username,
-    //password: password,
-    host: hostname,
-    ssl: false
-  });
+function sendEmail(email, username, password, hostname, content, callback) {
+  var server = null;
+
+  if(password.length > 3) {
+    server = emailjs.server.connect({
+      user: username,
+      password: password,
+      host: hostname,
+      ssl: false
+    });
+  } else {
+    server = emailjs.server.connect({
+      user: username,
+      host: hostname,
+      ssl: false
+    });
+  }
 
   // send the message
   server.send({
     text:    content,
-    from:    username + '@' + hostname,
+    from:    email,
     to:      'Credentials CG <public-credentials@w3.org>',
     subject: '[MINUTES] W3C Credentials CG Call - ' + gDate + ' 12pm ET'
   }, function(err, message) {
@@ -276,9 +286,10 @@ async.waterfall([ function(callback) {
       '----------------------------------------------------------------\n' +
       content;
 
-    if(process.env.SCRAWL_EMAIL_USERNAME && process.env.SCRAWL_EMAIL_PASSWORD &&
-      process.env.SCRAWL_EMAIL_SERVER) {
+    if(process.env.SCRAWL_EMAIL && process.env.SCRAWL_EMAIL_USERNAME && 
+      process.env.SCRAWL_EMAIL_PASSWORD && process.env.SCRAWL_EMAIL_SERVER) {
       sendEmail(
+        process.env.SCRAWL_EMAIL, 
         process.env.SCRAWL_EMAIL_USERNAME, process.env.SCRAWL_EMAIL_PASSWORD,
         process.env.SCRAWL_EMAIL_SERVER, content, callback);
     } else {
@@ -286,6 +297,12 @@ async.waterfall([ function(callback) {
       prompt.start();
       prompt.get({
         properties: {
+          email: {
+            description: 'Enter your email address',
+            pattern: /^.{1,}@.{1,}$/,
+            message: 'The email address must be valid.',
+            'default': 'msporny@digitalbazaar.com'
+          },
           server: {
             description: 'Enter your email server',
             pattern: /^.{4,}$/,
@@ -303,12 +320,12 @@ async.waterfall([ function(callback) {
             pattern: /^.{4,}$/,
             message: 'The password must be at least 4 characters.',
             hidden: true,
-            'default': 'password'
+            'default': ''
           }
         }
       }, function(err, results) {
-        sendEmail(results.username, results.password, results.server,
-          content, callback);
+        sendEmail(results.email, results.username, results.password, 
+          results.server, content, callback);
       });
     }
   } else {
