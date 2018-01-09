@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Fetches the raw minutes for cleanup
+
+DATE=`date +%Y-%m-%d`
+
+# Get the editor commands
+. ./publishing.cfg
+
+# Create the minutes directory if it doesn't already exist
+mkdir -p $DATE
+
+# Download raw logs and recordings
+echo "Downloading IRC logs for $DATE..."
+curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $DATE/irc.log
+echo "Downloading audio recording for $DATE..."
+curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-audio.wav" > $DATE/audio-raw.wav
+
+# Edit the IRC log
+$EDITOR $DATE/irc.log &
+
+# Edit the audio recording
+$WAV_EDITOR $DATE/audio-raw.wav &
+
+# Print out directions on finalizing minutes
+echo "To finalize the minutes, follow these instructions:"
+echo "   https://github.com/w3c-ccg/w3c-ccg.github.io/blob/master/irc_ref.md#publishing"
+
