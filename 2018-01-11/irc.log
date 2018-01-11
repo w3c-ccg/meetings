@@ -1,0 +1,310 @@
+[2018-01-11T18:08:07.486Z]	<manu>	Agenda: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit
+[2018-01-11T18:08:07.486Z]	<manu>	meeting: Decentralized Identifiers Task Force
+[2018-01-11T18:08:07.486Z]	<manu>	chair: drummond
+[2018-01-11T18:08:09.856Z]	<manu>	scribe: manu
+[2018-01-11T18:08:42.581Z]	<manu>	drummond: Thanks to Manu for the proposal, good discussions on the mailing list.
+[2018-01-11T18:09:05.261Z]	<manu>	drummond: One thing to help advance it today, wrote up some thoughts that build on that proposal - we should discuss that today.
+[2018-01-11T18:09:21.174Z]	<manu>	drummond: Do others have thoughts about that proposal that we should discuss? Key insights to drive to spec closure?
+[2018-01-11T18:10:24.197Z]	<manu>	drummond: Harmonization proposal is here: https://lists.w3.org/Archives/Public/public-credentials/2018Jan/0022.html
+[2018-01-11T18:10:49.984Z]	<manu>	drummond: Dan Buchner at DIF said Microsoft is doing DIDs... going over requirements w/ them.
+[2018-01-11T18:11:35.691Z]	<manu>	drummond: This is stuff is advancing quickly... Microsoft giving talk at Davos, decentralized infrastructure is one of the things being talked about by MS head.
+[2018-01-11T18:12:04.231Z]	<manu>	drummond: Kim Cameron is thoroughly involved and behind effort that Microsoft wants to build API support into Azure Active Directory.
+[2018-01-11T18:12:43.620Z]	<manu>	drummond: On to specifics... sent URL to the mailing list -- link forthcoming...
+[2018-01-11T18:12:58.205Z]	<drummond>	URL for the Google doc Drummond is presenting and inviting anyone to edit/comment - https://docs.google.com/document/d/1z8o2VPjvXIw6-KrxGTdSPfOshDlBGmj0MhH3QJXS0eg/edit#heading=h.hgyrqixmo1f0
+[2018-01-11T18:14:56.552Z]	<manu>	drummond: Since proposal was published, had DIF meeting, had chat w/ Markus and Sam.
+[2018-01-11T18:15:09.169Z]	<manu>	drummond: Let's dive into this - quickly go over five specific things
+[2018-01-11T18:15:21.044Z]	<manu>	Topic: DID Harmonization
+[2018-01-11T18:15:50.917Z]	<manu>	drummond: I found explanation of tree and graph harmonization helpful. Because of requirements, you can do tree and graph oriented processing... designed to do that, editorial recommendation.
+[2018-01-11T18:15:57.670Z]	<manu>	drummond: next items are more substantive.
+[2018-01-11T18:16:17.569Z]	<manu>	drummond: from a tree-oriented perspective, I'm calling 'id', 'publicKey', and 'service' core.
+[2018-01-11T18:16:51.216Z]	<manu>	drummond: theme of minimalist is that we just need those 'tree' properties and can get stuff done - Manu's proposal allowed that you can have both tree-oriented and graph-oriented in the same document if you design it elegantly enough.
+[2018-01-11T18:17:49.442Z]	<manu>	drummond: if you look at it from the tree-oriented perspective, satisfied on extensibility model - graph / richer perspective... from tree-oriented perspective, if you look at these three properties, if you look at authentication as a service that may not need an endpoint, then the same thing can be described as a service w/o an endpoint. Type property could be used in that way.
+[2018-01-11T18:18:46.523Z]	<dlongley>	hmm, slightly concerned that what Drummond is describing might end up turning "services" into a "bag"
+[2018-01-11T18:18:49.660Z]	<manu>	drummond: service type descriptor -- protocol for doing authentication, doesn't use an endpoint, in band protocol... but there can be a different version of that... DIF planning on new WG for DID Auth - site you're logged into w/ different endpoint, different protocol, service with endpoint.
+[2018-01-11T18:20:11.002Z]	<manu>	drummond: Moving on to public key property... owner property -- JSON-LD signatures requires it... other key descriptions may use it, it may be inferred, when it is required it's clear why it is.
+[2018-01-11T18:20:17.159Z]	<dlongley>	q+ to talk about assumed owner property
+[2018-01-11T18:20:20.649Z]	<drummond>	q?
+[2018-01-11T18:20:28.874Z]	<manu>	ack dlehn
+[2018-01-11T18:20:30.382Z]	<manu>	ack dlongley
+[2018-01-11T18:21:17.015Z]	<manu>	dlongley: About the owner property, if it's assumed, then what we recommend that we do the same thing that we did with 'id'... resolvers inject that property where it should be... some DID methods might not have ID, produced/implied... but you inject it into final DID document when you're done. We can inject into key information in same way as key ID.
+[2018-01-11T18:21:24.909Z]	<manu>	q+ signatures may screw that up
+[2018-01-11T18:21:39.273Z]	<manu>	markus_sabadello: basically, DID document will have owner for every public key.
+[2018-01-11T18:21:45.807Z]	<manu>	drummond: It's either explicit or implicit.
+[2018-01-11T18:21:47.818Z]	<manu>	ack manu
+[2018-01-11T18:22:00.351Z]	<ChristianLundkvist>	q?
+[2018-01-11T18:22:08.570Z]	<dlongley>	manu: so the only thing that throws a wrench into the works there is that there are potentially DID ledgers that might sign things
+[2018-01-11T18:22:20.116Z]	<dlongley>	manu: we dont' do the implied thing in Veres One, we'd be careful to include owner before signature
+[2018-01-11T18:22:28.020Z]	<drummond>	manu: the one wrench in the works is that auto-included signature would invalidate the signature.
+[2018-01-11T18:22:28.763Z]	<dlongley>	manu: Injecting the owner field post signature would make it invalid.
+[2018-01-11T18:22:40.521Z]	<dlongley>	manu: It's not a blocking thing, just considerations.
+[2018-01-11T18:23:05.761Z]	<dlongley>	manu: Specifically about owner, keep in mind that this isn't just about DID documents but it's useful outside in the general Web. If you express keys on the public Web, for example.
+[2018-01-11T18:24:00.179Z]	<dlongley>	manu: We do need owner elsewhere, we can't assume who the owner is. It can be kind of dangerous to assume, it could turn a programming mistake -- a DID document authoring mistake into a security vulnerability. We should consider heavily about presuming certain values are certain values when it comes to things like key material.
+[2018-01-11T18:24:21.143Z]	<dlongley>	manu: Want to be explicit, not implicit. The owner of a key that's listed may not be the DID -- you may list keys that belong to other poeple.
+[2018-01-11T18:24:35.031Z]	<dlongley>	manu: You may have M of N signatures, for example, where you list other people's keys.
+[2018-01-11T18:24:47.617Z]	<dlongley>	manu: We should be careful and have a further security analysis on this.
+[2018-01-11T18:24:57.843Z]	<dlongley>	manu: Moving make to the key references stuff, that's fine, we were hoping that would happen.
+[2018-01-11T18:25:22.169Z]	<dlongley>	manu: Key references looks good. Core tree properties, I'm wondering if something was missed. Christian on the mailing list said that he likes the idea of purpose and application being split out from the general key description.
+[2018-01-11T18:25:42.143Z]	<dlongley>	manu: The proposal on the mailing list did just that. Authentication/encryption/whatever, uses following the tree based path or the graph property.
+[2018-01-11T18:25:50.363Z]	<dlongley>	manu: We were not going to put that in with the key.
+[2018-01-11T18:26:03.236Z]	<drummond>	q+
+[2018-01-11T18:26:04.251Z]	<dlongley>	manu: That means the core tree properties needs to have that there. Not sure if we're challenging that or what here.
+[2018-01-11T18:26:24.949Z]	<dlongley>	manu: This raises the question about where does the purpose go. I thought there seemed to be general consensus on the mailing list that the purpose should be outside of the key, not part of the key description.
+[2018-01-11T18:26:45.312Z]	<manu>	ack drummond
+[2018-01-11T18:27:02.852Z]	<manu>	drummond: Just wanted to do an overview, didn't want to get into discussion in depth.
+[2018-01-11T18:28:20.746Z]	<manu>	drummond: In response to Manu, what we've illustrated here is what was proposed, but it recognizes that the 'authentication' type, referencing public key used for authentication... another way to look at that - what does the type represent... that's a service, an in band service, doesn't need a separate endpoint.
+[2018-01-11T18:28:53.172Z]	<manu>	drummond: If you cross-reference a key from a service description, you're effectively doing the same thing... it's clearly an authentication service - described in type of that service... more of a tree-oriented description... but accomplishes the same thing.
+[2018-01-11T18:29:16.773Z]	<manu>	drummond: Part of the original proposal, big believer, doesn't matter where type is defined, type for service, type for authentication -- it should have a spec... what is this type for.
+[2018-01-11T18:29:38.685Z]	<dlongley>	q+ to say concerned about turning services into a bag
+[2018-01-11T18:29:39.805Z]	<manu>	drummond: You can also model this as a service - that's what I'm trying to illustrate here.
+[2018-01-11T18:29:47.275Z]	<ChristianLundkvist>	q?
+[2018-01-11T18:29:47.518Z]	<drummond>	q?
+[2018-01-11T18:29:51.119Z]	<manu>	ack dlongley
+[2018-01-11T18:30:04.093Z]	<manu>	dlongley: I'm concerned about this approach... anythign can be a service, so let's make a giant bag of services.
+[2018-01-11T18:30:25.411Z]	<drummond>	q+
+[2018-01-11T18:30:39.764Z]	<manu>	dlongley: To a certain extent, we can argue that keys are services as well - if we make our bag generic enough, but if we do that, we lose core ideas of splitting it out - clear purpose and relation to follow to get to the information you need to get to.
+[2018-01-11T18:31:07.880Z]	<manu>	dlongley: I like the idea of following a certain relation to where we want to go - same arguments apply for bag of keys.
+[2018-01-11T18:31:08.239Z]	<drummond>	q?
+[2018-01-11T18:31:10.836Z]	<manu>	ack drummond
+[2018-01-11T18:31:42.349Z]	<ChristopherA>	Sorry I’m late. Too many Thursday calls.
+[2018-01-11T18:32:05.872Z]	<manu>	drummond: Just want to reinforce that write up is about tree-oriented processing viewpoint -- do not think it's a repudiation/replacement of graph-oriented viewpoint. I'm not trying to say we shouldn't have/define well known graph contexts.
+[2018-01-11T18:32:31.418Z]	<manu>	drummond: Folks who want to do it that way can do it that way... we can define how a DID Document can be used from a tree vs. graph-based standpoint...
+[2018-01-11T18:32:38.511Z]	<manu>	drummond: It's fairly elegant, both world views can be put together.
+[2018-01-11T18:32:47.561Z]	<dlongley>	q+ to respond to tree vs. graph
+[2018-01-11T18:32:56.311Z]	<manu>	drummond: Folks who have a graph-oriented view can see how it can work from a tree-based and vice-versa.
+[2018-01-11T18:33:19.909Z]	<manu>	drummond: This is not to say we shouldn't have the exact set of fields being proposed and spec should say "for graph oriented view -- here are standardized properties"
+[2018-01-11T18:33:42.896Z]	<manu>	drummond: The DID context that we'll be defining in the spec, will be defining these base properties...
+[2018-01-11T18:33:55.131Z]	<manu>	drummond: Those properties are you can only use the raw name for in that context.
+[2018-01-11T18:34:18.267Z]	<manu>	dlongley: What do you mean by "can only use"?
+[2018-01-11T18:34:29.285Z]	<manu>	drummond: To clarify - property names map to items in JSON-LD context.
+[2018-01-11T18:34:30.506Z]	<manu>	dlongley: yes
+[2018-01-11T18:34:44.899Z]	<manu>	drummond: If someone wants to come along and define the service, they have to do that in their context.
+[2018-01-11T18:35:08.330Z]	<manu>	dlongley: Yes, they can do that... they can define a new property in the DID document, they can extend w/ a new context.
+[2018-01-11T18:35:16.780Z]	<manu>	dlongley: They can also define a context for their application -- it's a straightforward context.
+[2018-01-11T18:35:42.028Z]	<manu>	drummond: What term do you use to describe properties and property names defined in the JSON-LD context.
+[2018-01-11T18:35:45.846Z]	<manu>	dlongley: That's called a "term"
+[2018-01-11T18:36:06.099Z]	<manu>	drummond: Is there native vs. extension?
+[2018-01-11T18:36:29.147Z]	<manu>	dlongley: No, not needed... there is not root context for a JSON-LD document?
+[2018-01-11T18:36:49.413Z]	<manu>	drummond: How would we refer to "terms" defined in DID Document JSON-LD context that we'll define?
+[2018-01-11T18:37:00.461Z]	<manu>	q+ to note that we're in extensibility weeds, would like to go back to main proposal.
+[2018-01-11T18:37:03.562Z]	<manu>	ack dlongley
+[2018-01-11T18:37:30.658Z]	<manu>	drummond: A DID Context term can be used to refer to something in JSON-LD DID Context.
+[2018-01-11T18:37:51.954Z]	<manu>	dlongley: Having other properties at top level is not incompatible w/ tree processing model... different place to put that information.
+[2018-01-11T18:38:08.600Z]	<manu>	dlongley: so, items at the top level are compatible w/ tree and graph processing models.
+[2018-01-11T18:38:31.497Z]	<manu>	drummond: I'll retract that statement... you can process graphs as trees.
+[2018-01-11T18:38:37.962Z]	<manu>	dlongley: A tree is a subset of a graph.
+[2018-01-11T18:39:12.405Z]	<manu>	drummond: What's being proposed in B is that it's not that it's a tree model, it's a minimalist view of description - a simple model of description, not as rich as graph-based approach.
+[2018-01-11T18:39:32.460Z]	<manu>	drummond: Basically, you can reference things from a service instead of via authentication.
+[2018-01-11T18:39:50.964Z]	<dlongley>	q+ to say where we're minimizing
+[2018-01-11T18:40:10.863Z]	<samsmith>	q?
+[2018-01-11T18:40:17.746Z]	<samsmith>	q+
+[2018-01-11T18:40:23.405Z]	<manu>	drummond: Manu's proposal says that if you have to reference a key, you have to do it via the authentication field... if you have an authentication service w/ a endpoint, is that not a service? or is it?
+[2018-01-11T18:40:25.251Z]	<dlongley>	q+ to say we're minimizing on fewer properties or we're minimizing on differences between the two approaches
+[2018-01-11T18:40:26.848Z]	<manu>	ack manu
+[2018-01-11T18:40:40.365Z]	<dlongley>	manu: All I wanted to do was that we are way down the extensibility rabbit hole.
+[2018-01-11T18:40:46.015Z]	<drummond>	ack manu
+[2018-01-11T18:40:53.563Z]	<drummond>	ack dlongley
+[2018-01-11T18:41:15.986Z]	<manu>	dlongley: When we're minimizing - we could reduce properties in document... or alternative - minimize on differences between approaches.
+[2018-01-11T18:41:23.319Z]	<manu>	q+ to ask where purpose goes in B approach?
+[2018-01-11T18:41:50.795Z]	<drummond>	q+ to ask about what to do about an authentication service that has an endpoint
+[2018-01-11T18:41:52.195Z]	<manu>	dlongley: You don't have to worry about tree and graph distinction - the more important thing is to minimize towards reducing differences.
+[2018-01-11T18:42:01.119Z]	<manu>	dlongley: I'm not clear on why it woudl be better to go in that direction.
+[2018-01-11T18:42:05.103Z]	<dlongley>	q-
+[2018-01-11T18:42:05.131Z]	<drummond>	q?
+[2018-01-11T18:42:12.279Z]	<manu>	ack samsmith
+[2018-01-11T18:42:12.858Z]	<drummond>	ack samsmith
+[2018-01-11T18:42:25.458Z]	<manu>	samsmith: It's not clear what the purpose of the authentication block is.
+[2018-01-11T18:43:37.480Z]	<manu>	samsmith: In my mind, there is a target of authenticating someone for some purpose. Are we authenticating owner of DID document? Are we authenticating some other service or protocol that is yet to be determined. I'm very concerned about the latter. Generically specifying authentication. If we were talking about just authentication to the DID document, but then we're talking about a protocol for how we authenticate DID documents.
+[2018-01-11T18:43:46.710Z]	<drummond>	q?
+[2018-01-11T18:43:46.870Z]	<manu>	samsmith: If you could clarify that, that would be helpful.
+[2018-01-11T18:43:54.344Z]	<drummond>	ack manu
+[2018-01-11T18:43:58.378Z]	<ChristopherA>	q+
+[2018-01-11T18:44:26.797Z]	<dlongley>	manu: Where are we putting the purpose and application related to the key. That's not an answer to Sam yet. If we remove authentication, it follows that we have to put application and purpose somewhere.
+[2018-01-11T18:44:50.768Z]	<dlongley>	manu: The assertion is moving it to the service array and we're not putting it in the key. I wanted to clarify ... it's not pointed out in the proposal, but that has to be true -- that info has to go somewhere.
+[2018-01-11T18:45:14.284Z]	<dlongley>	manu: My assumption is that application/purpose is going into service descriptions now, but I don't know what those look like I can't easily analyze what's being proposed. That's an option question on section B.
+[2018-01-11T18:45:39.152Z]	<dlongley>	manu: Sam, I think you're right... the reason we had authentication and encryption was because there's a general use case for authenticating as the entity associated with the DID.
+[2018-01-11T18:45:43.168Z]	<dlongley>	manu: That's a use case everyone has.
+[2018-01-11T18:46:13.889Z]	<dlongley>	manu: What you say is true that it can be a bit concerning when you use "authentication" and when you don't. On the mailing list, I explained that that property expresses the purpose and application fairly clearly and it's a meta protocol. It's not a service with an endpoint.
+[2018-01-11T18:46:30.783Z]	<dlongley>	manu: I think what's being argued is that the services array could contain both services with endpoints and these other things.
+[2018-01-11T18:46:45.420Z]	<dlongley>	manu: We have a specific set of use cases where the authentication would be used, one is Web-based authentication ...
+[2018-01-11T18:47:09.604Z]	<dlongley>	samsmith: As soon as you say a set of use cases and you sign something and the something you are signing is authenticating you as the owner and controller of the DID document.
+[2018-01-11T18:47:24.641Z]	<dlongley>	manu: Yes, you're signing something to authenticate as the entity associated with the DID document.
+[2018-01-11T18:47:49.693Z]	<dlongley>	Sam: That makes a lot more sense. We want to authenticate control of the DID document and we're going to have a spot for that specific purpose and define a protocol for that. And every different protocol for that needs a document somewhere else.
+[2018-01-11T18:47:55.595Z]	<dlongley>	manu: Yes, and that's what the authentication suites were about.
+[2018-01-11T18:48:17.197Z]	<dlongley>	manu: It defines exactly what the protocol would be and my assumption was that the services would have an endpoint ... and now they don't necessarily have one.
+[2018-01-11T18:48:33.662Z]	<dlongley>	samsmith: So we could have authentication suites be subsets. It's the same information, where do you put it?
+[2018-01-11T18:48:57.746Z]	<dlongley>	manu: The argument for splitting it out would be to be very explicit about these containers. It's the anti-bag argument -- don't let the bag lose meaning because it has everything in it.
+[2018-01-11T18:49:16.093Z]	<dlongley>	manu: Maybe authentication suites only go in the authentication bag. For the encryption bag, only encryption suites/protocols/mechanisms go in there.
+[2018-01-11T18:49:31.700Z]	<drummond>	Drummond invites others on the call to weigh in on this topic.
+[2018-01-11T18:49:36.346Z]	<dlongley>	manu: That seems to be the discussion we keep having -- how generic do we make these containers. We tend to push back when it goes to such a level that you can just put anything in the container.
+[2018-01-11T18:49:41.329Z]	<drummond>	q?
+[2018-01-11T18:49:43.586Z]	<dlongley>	manu: That's why you split those things out.
+[2018-01-11T18:49:51.052Z]	<dlongley>	samsmith: I would say that that is not specific enough.
+[2018-01-11T18:49:57.590Z]	<dlongley>	+1 to getting more specific!
+[2018-01-11T18:50:16.040Z]	<dlongley>	samsmith: Having an authentication bag and an encryption bag isn't specific enough.
+[2018-01-11T18:50:47.266Z]	<drummond>	This seems more and more an argument about the best way to do description (of both keys and services).
+[2018-01-11T18:50:55.783Z]	<dlongley>	samsmith: We're saying we want to have this more specific but still generic way to do authentication. I disagree. If we're going to authenticate DIDs we should outline that protocol and standardize or have a set to suggest to standardize on. Until we're prepared to do that, let's make it simple and just do keys.
+[2018-01-11T18:51:02.948Z]	<dlongley>	manu: I was with you up until your last sentence.
+[2018-01-11T18:51:10.037Z]	<drummond>	ack drummond
+[2018-01-11T18:51:14.867Z]	<dlongley>	i believe we have a need for DID auth, not a need so much for generic keys.
+[2018-01-11T18:51:27.515Z]	<dlongley>	DID auth is super important, IMO.
+[2018-01-11T18:52:03.730Z]	<manu>	drummond: I like that we're getting down to the nub of it, different viewpoints on description -- the more specific, more complete the spec behind a type, the more it can be used to identify what's needed. It's a different type of description, not discoverable in the graph in a DID document, defined/identified via URL/mapping.
+[2018-01-11T18:52:44.988Z]	<samsmith>	I agree that DID auth is important, essential  But DID auth is not Auth for any other purpose
+[2018-01-11T18:52:58.307Z]	<manu>	drummond: It's one way of doing description, graph model, authentication - neither approach is wrong, if we are not going to convince one another that we - both methods supported and away we go.
+[2018-01-11T18:53:02.136Z]	<samsmith>	As soon as you expand beyond DID auth you are on a slippery slope
+[2018-01-11T18:53:10.137Z]	<dlongley>	samsmith: that's fine .. but let's pick a relation that's for DID auth specifically and make that thing then.
+[2018-01-11T18:53:14.250Z]	<drummond>	ack ChristopherA
+[2018-01-11T18:53:23.965Z]	<samsmith>	+
+[2018-01-11T18:53:32.542Z]	<manu>	ChristopherA: I have similar concerns, new bags emerging - adding more and more things in that nothing in DID would be anything but how to do stuff w/ the DID.
+[2018-01-11T18:53:58.923Z]	<manu>	ChristopherA: Stuff in DID Document is only about DIDs -- e.g. IDs, Verifiable Credentials, etc.
+[2018-01-11T18:54:34.715Z]	<manu>	ChristopherA: I wanted to be far more specific - part of the challenge is we're calling these topics areas generic words - rather than being "encryption" -- be more specific.
+[2018-01-11T18:54:46.268Z]	<manu>	ChristopherA: Maybe it should be "didAuthentication"?
+[2018-01-11T18:54:58.911Z]	<manu>	ChristopherA: Even the section name sounds like a bag.
+[2018-01-11T18:55:07.130Z]	<dlongley>	i'd be happy if we got this down to a bikeshedding discussion
+[2018-01-11T18:55:09.766Z]	<dlongley>	vs. a modeling one.
+[2018-01-11T18:55:13.324Z]	<manu>	drummond: It really boils down to this - how much description is in the value vs. the properties.
+[2018-01-11T18:55:24.217Z]	<drummond>	q?
+[2018-01-11T18:55:37.568Z]	<manu>	q+ to ask if we're good w/  being very specific?
+[2018-01-11T18:56:21.972Z]	<dlongley>	q?
+[2018-01-11T18:56:41.850Z]	<manu>	samsmith: Is this about DIDs/ DID Auth - we specify it... if it is about somethng else, we punt.
+[2018-01-11T18:57:14.609Z]	<manu>	samsmith: Let's have a section that is a reference that has information for protocol/protocol set for doing DID Auth.
+[2018-01-11T18:57:14.977Z]	<drummond>	q+
+[2018-01-11T18:57:19.916Z]	<manu>	manu: +1 to limiting to that.
+[2018-01-11T18:57:23.606Z]	<dlongley>	+1
+[2018-01-11T18:57:44.276Z]	<dlongley>	let's agree that this is how we ought to model things ... and then just pick the things we are ready to standardize, like a place to do DID auth.
+[2018-01-11T18:57:48.404Z]	<manu>	samsmith: Then we can all agree that this is essential, and we should say how to get key material for DID owner/signer/etc.
+[2018-01-11T18:58:50.099Z]	<manu>	drummond: Types of authentication for entity identified by the DID... other auth protocols -- absolutely authentication services out there, what do you do w/ authentication service? authentication or do you put it under service?
+[2018-01-11T18:59:02.395Z]	<manu>	drummond: What about FIDO, OpenID, WebAuth -- there are subprotocols/profiles.
+[2018-01-11T18:59:21.166Z]	<manu>	drummond: They are different protocols, part of a family, are they all defined there? If we had a branch, it would be for that set of DID Auth stuff?
+[2018-01-11T18:59:33.729Z]	<drummond>	q?
+[2018-01-11T18:59:44.167Z]	<dlongley>	yes, it's PURPOSE is for authenticating the subject of the DID
+[2018-01-11T19:00:26.198Z]	<manu>	samsmith: We have an DID authentication branch that points to the key bag, both people can be happy, but we limit discussion to auth branch to being DID Auth... any other form of authentication is off of the table. If we want to add something to that bag in the future, I don't think we'll ever get there to limit to essential things to move forward.
+[2018-01-11T19:00:36.214Z]	<manu>	manu: +1
+[2018-01-11T19:00:41.465Z]	<dlongley>	+1 authenticating the DID entity is essential
+[2018-01-11T19:00:45.869Z]	<dlongley>	and that's what we all want need.
+[2018-01-11T19:01:09.302Z]	<drummond>	So Drummond proposes two questions: 1) should we have a LIMITED "authentication" branch that is only about DID auth? 2) What do we do about other authentication services (e.g., OpenID Connect)?
+[2018-01-11T19:01:22.074Z]	<manu>	ChristopherA: Yes, if you do a DID Auth, you can do other objects, then you can authenticate additional things -- progressive trust, verify via DID Auth, then you can go further.
+[2018-01-11T19:01:28.652Z]	<dlongley>	+1 to bootstrapping post authentication of the DID entity.
+[2018-01-11T19:01:43.357Z]	<manu>	drummond: Two questions I'd love to close on the call are above.
+[2018-01-11T19:01:43.437Z]	<dlongley>	q?
+[2018-01-11T19:02:22.881Z]	<manu>	ack manu
+[2018-01-11T19:02:25.525Z]	<drummond>	ack manu
+[2018-01-11T19:02:31.362Z]	<ChristopherA>	+1 to bootstrap first
+[2018-01-11T19:02:55.167Z]	<dlongley>	doing OpenID or whatever to authenticate yourself as some other thing (or whatever) belongs somewhere else, not in the DID auth bag we're talking about.. .. that was *always* the intention from my perspective.
+[2018-01-11T19:03:26.043Z]	<ChristianLundkvist>	I'm cool with limiting "authentication" to DID Auth
+[2018-01-11T19:03:33.351Z]	<ChristopherA>	+1 did authentication bag
+[2018-01-11T19:03:46.202Z]	<dlongley>	i dont' think we need to call it "didAuthentication" because it is a *relation* where the DID is the subject ... from a graph model perspective, but i'm happy to bikeshed.
+[2018-01-11T19:03:46.229Z]	<drummond>	q?
+[2018-01-11T19:03:52.613Z]	<dlongley>	to be clear, that was *always* the intent
+[2018-01-11T19:04:18.739Z]	<dlongley>	q+
+[2018-01-11T19:04:42.505Z]	<manu>	drummond: It was always the intent, but that was not clear -- term meant that it's for all authentication.
+[2018-01-11T19:05:25.572Z]	<ChristopherA>	q+
+[2018-01-11T19:05:45.601Z]	<manu>	drummond: This also answers question - what about other authentication services? There are endpoints, we need services, any service except for authentication... someone can say that's a service... as long as we're clear -- about our guidance, if you're going to do DID Auth, it belongs in this branch.
+[2018-01-11T19:05:48.880Z]	<drummond>	ack drummond
+[2018-01-11T19:05:51.010Z]	<markus_sabadello>	q+
+[2018-01-11T19:05:54.793Z]	<drummond>	ack dlongley
+[2018-01-11T19:06:32.318Z]	<drummond>	q?
+[2018-01-11T19:06:32.788Z]	<manu>	dlongley: I think the reason we weren't making it clear, if you look at it from a graph model perspective, the subject of the DID is explicitly stated and the property is authentication, so it's clearly about DID Authentication.
+[2018-01-11T19:06:36.093Z]	<manu>	ack ChristianLundkvist
+[2018-01-11T19:06:38.470Z]	<manu>	ack ChristopherA
+[2018-01-11T19:07:10.481Z]	<manu>	ChristopherA: Yes, if you think of it from tree-way of thinking, you need extra hint that it's didAuthentication - good observation, maybe there are other places where graph way of thinking may need clarification.
+[2018-01-11T19:07:42.167Z]	<manu>	ChristopherA: In effect, we have a tendancy to want to do things at once, in my head, it's more of a progressive trust model... we talked about it in CCG and what is progressive trust blog post that I did.
+[2018-01-11T19:08:06.395Z]	<manu>	ChristopherA: Authentication isn't an atomic operation, it is a process where you start w/ little things
+[2018-01-11T19:08:43.602Z]	<drummond>	Christopher has a good point about property names ("terms" in JSON-LD parlance) - the preferred semantics depends on whether you are looking at the term from the tree-oriented view or the graph-oriented view. Dave's point illustrates that.
+[2018-01-11T19:08:56.698Z]	<manu>	ChristopherA: I encourage you to focus on this being part of a bootstrap process. There may be things before and after, it's not authenticated or not... you're authenticated enough for the scenario. There is no end to authentication.
+[2018-01-11T19:09:15.034Z]	<drummond>	q?
+[2018-01-11T19:09:17.460Z]	<manu>	ChristopherA: The process stops short of real world truth.
+[2018-01-11T19:09:19.460Z]	<manu>	ack markus_sabadello
+[2018-01-11T19:09:36.199Z]	<dlongley>	And unfortunately, the meaning in the "tree model" is mostly derived from specs only, there's no explicit underlying data model.
+[2018-01-11T19:09:59.596Z]	<dlongley>	but we can be clear about the meaning in our spec -- even if you get it intuitively with the graph view.
+[2018-01-11T19:10:01.858Z]	<manu>	markus_sabadello: I agree with having branch called authentication, should be used for DID-based authentication. Not sure if it should be limited to DID Auth - limit it to one specific protocol, OpenID would be a service? Wouldn't service also use key material used in authentication branch?
+[2018-01-11T19:10:17.949Z]	<manu>	markus_sabadello: Would it apply to all services/endpoints?
+[2018-01-11T19:10:20.557Z]	<manu>	q+ to respond.
+[2018-01-11T19:10:27.313Z]	<manu>	q-
+[2018-01-11T19:10:56.286Z]	<manu>	dlongley: OpenID, you'd be authenticating some other piece of information, from graph model perspective, authenticating as entity that owns DID, if you want to authenticate as something else, that goes somewhere else.
+[2018-01-11T19:10:56.747Z]	<drummond>	q+
+[2018-01-11T19:11:24.181Z]	<manu>	markus_sabadello: I didn't mean authenticate someone else, I meant using different protocols.... but OpenID might where you identify as DID.
+[2018-01-11T19:11:42.689Z]	<manu>	markus_sabadello: different protocol, uses same key material as DID auth... should use what's in authentication branch.
+[2018-01-11T19:11:46.355Z]	<manu>	q+ to say broader
+[2018-01-11T19:11:55.688Z]	<manu>	dlongley: we'll have to be more careful about DID auth
+[2018-01-11T19:12:14.191Z]	<manu>	dlongley: it means authenticating a subject of DID document.
+[2018-01-11T19:12:17.491Z]	<markus_sabadello>	good question.. is "did auth" a specific protocol ?
+[2018-01-11T19:12:38.128Z]	<ChristopherA>	No, it is method specific
+[2018-01-11T19:12:42.889Z]	<manu>	drummond: OpenID does the same thing... what this highlights is that there is a specific protocol for DID Auth, what do we do for v2?
+[2018-01-11T19:13:06.899Z]	<ChristopherA>	If openID wants to do a method spec, then sure
+[2018-01-11T19:13:24.448Z]	<manu>	drummond: I do understand that we can create a new relation... branch for each type of auth service - I get that, ones that are services are easy... but where does it end up?
+[2018-01-11T19:13:37.511Z]	<manu>	drummond: Does it force us to pick one path or other.
+[2018-01-11T19:13:38.064Z]	<samsmith>	q+
+[2018-01-11T19:13:53.486Z]	<dlongley>	manu: I'd like us to claim victory while we can and move on.
+[2018-01-11T19:14:10.654Z]	<dlongley>	manu: We have agreement, so the core tree properties id, publicKey, authentication (or didAuthentication), and service
+[2018-01-11T19:14:21.121Z]	<dlongley>	manu: And we're only going to talk about DID auth and put that in the authentication field.
+[2018-01-11T19:14:37.672Z]	<markus_sabadello>	+1 to id, publicKey, authentication, service
+[2018-01-11T19:14:47.914Z]	<dlongley>	manu: We can discuss things further and make solid progress. I'm wondering if we have enough to say we've got the core properties, id, publicKey, authentication, and service and put that into the spec and implement against it.
+[2018-01-11T19:14:58.406Z]	<dlongley>	manu: We still need to have a discussion about what goes int those fields, but it's significant progress.
+[2018-01-11T19:15:08.313Z]	<manu>	ack manu
+[2018-01-11T19:15:08.313Z]	<manu>	q?
+[2018-01-11T19:15:12.389Z]	<dlongley>	drummond: Good constructive point. Please think about that.
+[2018-01-11T19:15:14.339Z]	<manu>	ack drummond
+[2018-01-11T19:15:24.317Z]	<drummond>	ack samsmith
+[2018-01-11T19:15:57.463Z]	<manu>	samsmith: I agree, let's declare victory before we lose it. :)
+[2018-01-11T19:16:41.236Z]	<manu>	samsmith: In example that manu provided, there are two types - crypto type in key... application/purpose type in "authentication".
+[2018-01-11T19:17:07.935Z]	<dlongley>	to sam-- yes, but *what* are you authenticating -- it's the *subject* of the relation, which we want from a graph modeling perspective.
+[2018-01-11T19:17:09.400Z]	<manu>	drummond: if you approach authentication from service standpoint, you could also have authentication protocol identified by type.
+[2018-01-11T19:17:21.342Z]	<dlongley>	so that's all fine from our perspective.
+[2018-01-11T19:17:45.729Z]	<dlongley>	+1 its essential, let's call it out in its own branch.
+[2018-01-11T19:17:51.000Z]	<manu>	samsmith: Authentication is an essential feature of a DID document, so I'm ok calling that out in its own branch.
+[2018-01-11T19:18:23.766Z]	<manu>	drummond: That branch is for DID authentication protocols... if you're using any other auth protocol, put it in service branch... but we expect this to be multiple protocols over time, how do we design it over time. This resonates w/ me.
+[2018-01-11T19:18:30.664Z]	<dlongley>	this generalizes for other identity documents on the Web (which makes what we've been doing with Linked Data signatures ... it's why we want it this way! :) )
+[2018-01-11T19:18:50.092Z]	<manu>	drummond: I can see why encryption wasn't brought up in the same way -- they really meant it in context of key/protocol... key negotiation protocols.
+[2018-01-11T19:19:14.236Z]	<dlongley>	q+ to mention generalizing
+[2018-01-11T19:19:24.789Z]	<manu>	drummond: What about key negotiation protcols? combination of key type which is cryptographic operation... like Diffie-Hellman - I need to talk about BOTH keys AND protocol.
+[2018-01-11T19:20:04.554Z]	<manu>	samsmith: We can be specific by nesting types where each type adds new information that isn't essential to previous level of Type... or have long branches that break up types into individual fields (but that's slippery slope of too much algorithm agility).
+[2018-01-11T19:20:30.054Z]	<drummond>	q?
+[2018-01-11T19:20:32.661Z]	<manu>	drummond: Markus brought up discomfort w/ public keys, auth, and services - but wanted to invite Markus to weigh in.
+[2018-01-11T19:20:34.609Z]	<manu>	q+ markus_sabadello
+[2018-01-11T19:20:44.447Z]	<manu>	ack dlongley
+[2018-01-11T19:21:44.167Z]	<manu>	dlongley: another reason , somewhat historically, putting authentication at top level is to not specify DID Documents as anything different. Included in that thing could be "how to authenticate" all of that matches well with this approach, you can re-use other types of protocols - whether somethin gis being resolved from DID Resolver... or URL Resolver, it just works.
+[2018-01-11T19:21:47.791Z]	<manu>	ack markus_sabadello
+[2018-01-11T19:22:16.033Z]	<drummond>	Dave is making the point that authentication of a DID subject is special enough that it should be elevated to a top-level branch.
+[2018-01-11T19:22:29.283Z]	<dlongley>	i think in this conversation "DID auth" is generic.
+[2018-01-11T19:22:39.236Z]	<drummond>	q+
+[2018-01-11T19:22:43.963Z]	<manu>	markus_sabadello: I'm very comfortable with this approach, authentication branch should be limited to DID Auth - concrete protocol. Dave was talking about something more generic, just subject, not DID owner. I don't think authentication branch should be restricted.
+[2018-01-11T19:22:47.886Z]	<dlongley>	it's not restricted to a particular protocol but is specific to authenticating the DID entity.
+[2018-01-11T19:22:53.134Z]	<drummond>	ack drummond
+[2018-01-11T19:22:59.249Z]	<manu>	manu: +1 ^^ that
+[2018-01-11T19:24:06.100Z]	<manu>	drummond: If we say in the spec, "This is for authentication for DID Subjects", that accomodates the different protocols that could be used to do that, then I do believe in what Dave and Manu have been saying... DID Auth is special.
+[2018-01-11T19:24:57.137Z]	<manu>	drummond: It's not just because some forms of it won't have endpoints... let's say OpenID sees DIDs take off, if they want to do a profile of OpenID DIDAuth, then what I'm hearing is "Ok, then you're defining something, type/protocol that belongs in that authentication branch.
+[2018-01-11T19:25:44.419Z]	<manu>	markus_sabadello: Maybe OpenID could use what's in authentication branch.
+[2018-01-11T19:26:01.866Z]	<manu>	dlongley: I agree that it could go both ways, this would be the place to put something if you HAVE to do a new OpenID protocol.
+[2018-01-11T19:27:07.327Z]	<ChristopherA>	q+
+[2018-01-11T19:27:08.215Z]	<drummond>	q?
+[2018-01-11T19:27:27.592Z]	<manu>	drummond: Then why wouldn't we just use a service description... back full circle.
+[2018-01-11T19:28:45.028Z]	<manu>	samsmith: I think we don't know the answer yet because we haven't walked through OpenID yet. There are many iterations of this, let's not try to solve all of those problems yet, let's agree that "authentication" meets needs of tree and graph based model and we need auth and key reference and a type field that specifies protocol and now we can move on to specific protocols.
+[2018-01-11T19:28:51.723Z]	<manu>	manu: +1000
+[2018-01-11T19:29:18.493Z]	<manu>	drummond: There are two things 1) This is a DID Auth protocol, and 2) it does not have a separate endpoint.
+[2018-01-11T19:29:28.742Z]	<dlongley>	and when we say "DID auth protocol" we mean, it is for authenticating the entity identified BY THE DID.
+[2018-01-11T19:29:33.629Z]	<manu>	drummond: Any protocol that fits those items goes here - happy w/ that definition.
+[2018-01-11T19:29:46.618Z]	<manu>	ack ChristopherA
+[2018-01-11T19:30:46.517Z]	<manu>	ChristopherA: I'm in general agreement with that... if OpenID wants to create a DID Method, that's the other way they can do things. Methods do have a certain ability to do things their own way -- if there is enough information in a DID Method, then you can proceed/reuse information.
+[2018-01-11T19:30:54.896Z]	<manu>	ChristopherA: There are escape valves here.
+[2018-01-11T19:31:21.247Z]	<manu>	drummond: Anyone have any issues with this?
+[2018-01-11T19:31:27.168Z]	<dlongley>	victory victory victory!
+[2018-01-11T19:31:29.133Z]	<drummond>	q+
+[2018-01-11T19:31:32.976Z]	<manu>	markus_sabadello: I'm comfortable with it.
+[2018-01-11T19:31:42.024Z]	<manu>	q+ to ask if I should draft some spec text.
+[2018-01-11T19:31:49.160Z]	<dlongley>	ack drummond
+[2018-01-11T19:31:49.605Z]	<drummond>	ack manu
+[2018-01-11T19:32:13.753Z]	<ChristopherA>	Please write!
+[2018-01-11T19:32:41.181Z]	<manu>	manu: Should I start drafting spec text?
+[2018-01-11T19:33:15.271Z]	<manu>	drummond: Yes, now have a clear enough picture... will point back to this exercise of how hard it is for well meaning people to agree while staring at the same document.
+[2018-01-11T19:33:18.808Z]	<ChristianLundkvist>	+1 from me! :)
+[2018-01-11T19:34:06.590Z]	<dlongley>	\o/
+[2018-01-11T19:34:43.146Z]	<manu>	Topic: Spec Updates
+[2018-01-11T19:35:42.495Z]	<dlongley>	manu: I was able to get David Chadwick as a spec editor and get the whole process working on his machine. He was able to do PRs and edit -- so you and I, Drummond, can go through the same process.
+[2018-01-11T19:35:44.893Z]	<dlongley>	drummond: perfect.
+[2018-01-11T19:35:53.612Z]	<dlongley>	manu: Ok, we'll do that.
+[2018-01-11T19:36:09.647Z]	<dlongley>	manu: There are some sections that needs to come out, like the authorization section (did method specific).
+[2018-01-11T19:36:15.304Z]	<dlongley>	(or goes into a common optional spec)
+[2018-01-11T19:37:02.485Z]	<dlongley>	drummond: Ok, I'm happy. If you want to take what's there to get us to the next baseline and we start working against, I'm more than happy. Pull out what you need to comes out, put in what you know needs to go in. I'll be happy to engage at that point. And assign action items to me.
+[2018-01-11T19:37:09.711Z]	<dlongley>	drummond: Can't wait to get it done.
+[2018-01-11T19:37:22.128Z]	<dlongley>	manu: I'll try to get the spec restructured and then you and me doing PRs against specific sections.
+[2018-01-11T19:40:08.710Z]	<drummond>	CONGRATS and thank you everyone for persisting through to get to this point where we can get down to drafting.
