@@ -1,0 +1,219 @@
+[2018-01-25T18:04:13.065Z]	<manu>	Agenda: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit
+[2018-01-25T18:05:57.820Z]	<suedonym>	present+ lodder, manu, drummond, camenisch, hartog, Lundkvist, Longley, Smith, gropper, suedonym, markus
+[2018-01-25T18:07:17.583Z]	<manu>	Chair: drummond
+[2018-01-25T18:07:17.583Z]	<manu>	scribe: suedonym
+[2018-01-25T18:07:17.583Z]	<manu>	Topic: DID Harmonization PR
+[2018-01-25T18:07:17.583Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/41
+[2018-01-25T18:07:41.643Z]	<manu>	https://pr-preview.s3.amazonaws.com/w3c-ccg/did-spec/pull/41.html
+[2018-01-25T18:09:01.142Z]	<suedonym>	Manu: spec should now be aligned with consensus from the last call. Place to put public key, authentication suites.
+[2018-01-25T18:09:38.235Z]	<suedonym>	... Compact algorithm seems to work for those involved in the calls.
+[2018-01-25T18:10:21.902Z]	<drummond>	So delegation is one of the open issues
+[2018-01-25T18:10:29.235Z]	<suedonym>	Manu: no method on delegation right now, will probable be method specific initially.
+[2018-01-25T18:10:50.488Z]	<drummond>	q+
+[2018-01-25T18:11:02.147Z]	<suedonym>	Manu: Experimental items are marked as such in the doc.
+[2018-01-25T18:11:23.218Z]	<drummond>	Manu, can you share links to the new registries?
+[2018-01-25T18:12:34.064Z]	<suedonym>	Drummond: Example 2 Service does not have a property. Manu: That was intentional.
+[2018-01-25T18:12:58.931Z]	<suedonym>	Manu: If you have a service endpoint you can put it there, but you do not have to do that.
+[2018-01-25T18:14:05.714Z]	<mike-lodder>	Is the "type" optional? It seems to just be a description tag
+[2018-01-25T18:14:36.884Z]	<suedonym>	Kyle: Q - Example 10 lists encryption as experimental. Where will encryption be in DID Auth?
+[2018-01-25T18:15:56.835Z]	<suedonym>	Manu: This is still up in the air, good argument for both ways (authentication/encryption)
+[2018-01-25T18:16:08.597Z]	<dlongley>	btw, i would think we're talking about "keyAgreement" for TLS, not "encryption"
+[2018-01-25T18:16:37.578Z]	<dlongley>	q+ to say its probably key agreement
+[2018-01-25T18:16:44.225Z]	<mike-lodder>	q+
+[2018-01-25T18:17:49.607Z]	<JanC>	I've got a question related to pseudonyms, i.e., when a public key is a pseudonym
+[2018-01-25T18:18:00.965Z]	<suedonym>	Drummond: Encryption for DID Auth protocol - it is a separate property will DID Auth end up under auth or service? If all it needed was the type and the key I'm using, these 2 entries under authentication is what that is for.
+[2018-01-25T18:18:20.818Z]	<suedonym>	q?
+[2018-01-25T18:18:33.427Z]	<dlongley>	q-
+[2018-01-25T18:18:41.834Z]	<JanC>	q+
+[2018-01-25T18:19:06.153Z]	<suedonym>	Drummond: justification for separation - you don't need to define it as a service.
+[2018-01-25T18:19:35.322Z]	<suedonym>	Manu: If people want to messaging encryption as a service, it can be done in encryption.
+[2018-01-25T18:19:43.630Z]	<drummond>	ack drummond
+[2018-01-25T18:19:55.420Z]	<drummond>	q?
+[2018-01-25T18:20:01.922Z]	<dlongley>	q+ to say what i was going to say because manu mentioned it
+[2018-01-25T18:20:04.860Z]	<christianlundkvist>	q?
+[2018-01-25T18:20:44.528Z]	<suedonym>	Lodder: in both the service and public key, are they optional or required?
+[2018-01-25T18:20:52.147Z]	<suedonym>	Manu: They are not optional.
+[2018-01-25T18:21:05.313Z]	<dlongley>	example 6
+[2018-01-25T18:22:11.356Z]	<suedonym>	Lodder: will those types be defined?
+[2018-01-25T18:22:51.453Z]	<suedonym>	Drummond: We will have a set defined in the DiD off that will be published. There will be a spec that defines that in here.
+[2018-01-25T18:23:00.702Z]	<suedonym>	q?
+[2018-01-25T18:23:09.128Z]	<Kyle_den_hartog>	q+
+[2018-01-25T18:23:33.937Z]	<dlongley>	we should put some URL examples in there
+[2018-01-25T18:23:39.733Z]	<suedonym>	Drummond:Short names established by DiD context, mapped to global url's.
+[2018-01-25T18:23:40.114Z]	<drummond>	q?
+[2018-01-25T18:23:46.522Z]	<drummond>	ack mike-lodder
+[2018-01-25T18:23:51.649Z]	<dlongley>	as that's how they will appear when using the DID @context if they were not defined by the group
+[2018-01-25T18:24:38.742Z]	<suedonym>	JanC: Public keys could be anonymous, in some context you might want to limit to one identity
+[2018-01-25T18:25:04.770Z]	<suedonym>	Manu: That sounds method specific.
+[2018-01-25T18:25:48.757Z]	<suedonym>	Manu: you could get hyper specific on the key you put in the did doc. Once you spend the key, that can be called out.
+[2018-01-25T18:26:23.572Z]	<suedonym>	Manu: You can annotate that key for a specific assumption.
+[2018-01-25T18:27:16.718Z]	<suedonym>	Manu: In the JSON world, if they reuse that terminology from JSON LD you can do it the same.
+[2018-01-25T18:27:42.697Z]	<suedonym>	JanC: Fields in the public keys you could add a field for context...
+[2018-01-25T18:27:54.857Z]	<suedonym>	q?
+[2018-01-25T18:28:12.071Z]	<JanC>	q-
+[2018-01-25T18:28:48.655Z]	<drummond>	ack dlongley
+[2018-01-25T18:29:14.105Z]	<suedonym>	Topic: Encryption
+[2018-01-25T18:29:14.105Z]	<suedonym>	longley: Do we have a use case for putting encryption in this doc?
+[2018-01-25T18:29:36.363Z]	<Christianlundkvist>	q?
+[2018-01-25T18:29:50.651Z]	<suedonym>	Lodder: Use a srvice, and the public key is used as a back up. Private key held elsewhere. Key encapsule
+[2018-01-25T18:30:17.018Z]	<suedonym>	longley: Use cases seem to fall under key agreement
+[2018-01-25T18:30:31.881Z]	<mike-lodder>	+1 to change to keyAgreement
+[2018-01-25T18:30:53.060Z]	<Christianlundkvist>	q+
+[2018-01-25T18:30:55.639Z]	<suedonym>	Drummond: Inherent under the service, or key type when identifying the key. We are open to call encryption out if its needed.
+[2018-01-25T18:31:00.667Z]	<manu>	mike-lodder, do you think we should have KeyAgreement as a form of authentication suite? or separate from authentication?
+[2018-01-25T18:31:14.955Z]	<manu>	q+ to ask mike-lodder if we want to use keyAgreement as an application suite?
+[2018-01-25T18:31:44.829Z]	<suedonym>	dlongley: We have to have use cases for anything we put in here.
+[2018-01-25T18:33:11.108Z]	<markus_sabadello>	q+
+[2018-01-25T18:33:13.011Z]	<drummond>	q?
+[2018-01-25T18:35:03.933Z]	<suedonym>	Kyle: we dont want to make the assumption that we will be operating in a tls channel, so the way would be to use an encryption key.
+[2018-01-25T18:35:45.043Z]	<suedonym>	Drummond: The DID Auth - the protocol would be assigned a URL, the name would go into the JSON LD
+[2018-01-25T18:36:29.803Z]	<suedonym>	Drummond: if there are multiple keys, then we have a different situation. We only allow for one key right now.
+[2018-01-25T18:37:00.789Z]	<suedonym>	dlongley: the encryption to the service would be listed in the service block.
+[2018-01-25T18:37:40.798Z]	<drummond>	q?
+[2018-01-25T18:37:48.953Z]	<Kyle_den_hartog>	q-
+[2018-01-25T18:37:59.172Z]	<drummond>	ack Kyle_den_hartog
+[2018-01-25T18:38:16.097Z]	<drummond>	ack Christianlundkvist
+[2018-01-25T18:38:40.673Z]	<suedonym>	Christian: What we are discussing could also be in a service end point. DID Doc is like a root of trust.
+[2018-01-25T18:39:31.322Z]	<drummond>	I agree with Christian that the DID document could be just a starting point for key negotiation.
+[2018-01-25T18:39:55.410Z]	<dlongley>	+1 seems like the most common/expected approach
+[2018-01-25T18:39:59.018Z]	<drummond>	As he is pointing out, it may be used only for provisioning. It could be a common design pattern.
+[2018-01-25T18:40:12.088Z]	<drummond>	q?
+[2018-01-25T18:41:11.171Z]	<suedonym>	Christian: assume we have a tls channel, have an authentification protocol for username and pw.
+[2018-01-25T18:41:29.796Z]	<suedonym>	Manu: Interesting proposal
+[2018-01-25T18:41:41.318Z]	<drummond>	The challenge with an assumption of a TLS channel for DID auth is that it requires bootstrapping decentralized identity solutions from centralized CA PKI.
+[2018-01-25T18:41:49.487Z]	<dlongley>	i think we're talking about two different things
+[2018-01-25T18:41:52.485Z]	<dlongley>	1. getting around the CA system
+[2018-01-25T18:41:59.295Z]	<dlongley>	2. authenticating once you have a TLS channel
+[2018-01-25T18:42:05.540Z]	<dlongley>	where in #1 you try and do both at once
+[2018-01-25T18:42:19.197Z]	<dlongley>	but with #1, that's really messy on the Web. (doing both at once)
+[2018-01-25T18:42:19.879Z]	<suedonym>	Manu: the design pattern you are pointing out christian is upgrades.
+[2018-01-25T18:42:30.334Z]	<dlongley>	so combining both approaches would be more ideal, IMO.
+[2018-01-25T18:42:42.379Z]	<dlongley>	and you can do #2 without doing #1 if you trust the CA system.
+[2018-01-25T18:42:56.653Z]	<manu>	ack manu
+[2018-01-25T18:42:57.150Z]	<mike-lodder>	You have to be careful with that and address two issues: the absence of forward secrecy for all data, and the replayability
+[2018-01-25T18:43:04.069Z]	<drummond>	It does seem like including "encryption" as a defined branch of a DID document is on the bubble, and we should not include it if no one has a good use case for it.
+[2018-01-25T18:43:07.201Z]	<markus_sabadello>	q-
+[2018-01-25T18:43:07.474Z]	<drummond>	q+
+[2018-01-25T18:44:07.035Z]	<dlongley>	+1 to using authentication or service
+[2018-01-25T18:44:12.059Z]	<suedonym>	Manu: Key agreement - Could we say that did auth or tls will either go in an auth bucket or service bucket?
+[2018-01-25T18:44:12.778Z]	<markus_sabadello>	Sorry I need to leave.. I don't see any big problems with this version of the spec, and I'm also looking forward to further discussing the details of DID Auth.
+[2018-01-25T18:44:31.577Z]	<drummond>	Mike Lodder makes a good point about encryption for key agreement being something that should be done outside of the DID document.
+[2018-01-25T18:44:56.972Z]	<drummond>	q?
+[2018-01-25T18:45:08.875Z]	<mike-lodder>	+1 to remove encryption
+[2018-01-25T18:45:10.347Z]	<Kyle_den_hartog>	+1 to removing from spec
+[2018-01-25T18:45:17.282Z]	<dlongley>	+1 to removing encryption
+[2018-01-25T18:45:29.897Z]	<dlongley>	"DID-TLS" is a good name for this
+[2018-01-25T18:45:33.886Z]	<dlongley>	and it should use TLS
+[2018-01-25T18:45:35.529Z]	<suedonym>	Manu: remove encryption from the spec
+[2018-01-25T18:46:28.272Z]	<suedonym>	Drummond: End up with just a set of keys, and a set of types, and the pattern we have in there will be just fine.
+[2018-01-25T18:46:33.207Z]	<dlongley>	you could also just list a certificate in a DID Doc.
+[2018-01-25T18:46:47.984Z]	<dlongley>	and then bootstrap that way
+[2018-01-25T18:47:21.878Z]	<dlongley>	(it's like certificate pinning, but putting it on the blockchain instead of in the client)
+[2018-01-25T18:47:30.730Z]	<drummond>	Decision: take "encryption" out of the spec.
+[2018-01-25T18:47:33.116Z]	<drummond>	q?
+[2018-01-25T18:48:04.442Z]	<sam>	Q+
+[2018-01-25T18:48:30.021Z]	<hartog>	I've looked at finding a way to translate an auth key in a DID Doc into a CA. Not sure how it would be done, but if it could it wouldn't require any changes to TLS. Also not an eloquent solution to the problem.
+[2018-01-25T18:48:45.511Z]	<suedonym>	Drummond: Feature discussed early on that solves a significant problem of being able to map a did doc that maps to a url. Name element (property) for a service.
+[2018-01-25T18:48:58.710Z]	<dlongley>	yeah, not elegant but would be a better "plan B" than rolling a new TLS
+[2018-01-25T18:49:01.556Z]	<dlongley>	IMO.
+[2018-01-25T18:49:13.681Z]	<suedonym>	q?
+[2018-01-25T18:49:14.463Z]	<drummond>	q?
+[2018-01-25T18:49:36.062Z]	<drummond>	ack drummond
+[2018-01-25T18:49:51.922Z]	<drummond>	ack sam
+[2018-01-25T18:51:01.940Z]	<manu>	q+
+[2018-01-25T18:51:08.108Z]	<suedonym>	Sam: Ex 2. we have the id which is the did, then the public key with the same did. In key rotation, how do I change the auth in this example? . Earlier we only had the frag identifier.
+[2018-01-25T18:51:22.278Z]	<dlongley>	btw, we may want to use a full ID for simplicity instead of using a fragment identifier: https://github.com/w3c-ccg/did-spec/pull/41/files#r163934080
+[2018-01-25T18:52:09.650Z]	<suedonym>	Manu: Fragment ID - resolved are specific to JSON LD. Frag dont necessary work the same across specs.
+[2018-01-25T18:52:44.061Z]	<suedonym>	Manu: Frag ID's are resolved on the base url.
+[2018-01-25T18:53:42.074Z]	<suedonym>	Drummond: Example 2 has reference to  frag identifier that just has a hash sign. Why is it not the same reference?
+[2018-01-25T18:53:45.924Z]	<suedonym>	Manu: it could be.
+[2018-01-25T18:53:51.993Z]	<suedonym>	Sam: that is how it used to be.
+[2018-01-25T18:54:04.521Z]	<suedonym>	Sam: why woud you not always do it with the hash sign?
+[2018-01-25T18:54:22.518Z]	<dlongley>	q+ to say i think we should probably just use the full URL.
+[2018-01-25T18:54:30.017Z]	<suedonym>	Manu: if you are a machine, you will want to work with the full url.
+[2018-01-25T18:54:48.205Z]	<suedonym>	Sam: Are we doing examples for machines or for developers?
+[2018-01-25T18:55:15.412Z]	<suedonym>	... This needs to be spelled out very specifically in the spec for developers.
+[2018-01-25T18:56:00.593Z]	<suedonym>	Sam: Examples should be consistent
+[2018-01-25T18:56:39.068Z]	<suedonym>	Manu: all examples will use frag identifiers
+[2018-01-25T18:56:59.032Z]	<suedonym>	Manu: Authorization did doc you may point to other keys, you will have to include the full url.
+[2018-01-25T18:57:25.682Z]	<suedonym>	dlongley: recommend we use the full url everywhere.
+[2018-01-25T18:57:50.888Z]	<suedonym>	Manu: as long as we are consistent.
+[2018-01-25T18:58:09.141Z]	<drummond>	q?
+[2018-01-25T18:58:31.267Z]	<suedonym>	Lodder: As a programmer, I useually end up using an absolute path 90% of the time. Agree we should use full url.
+[2018-01-25T18:58:47.973Z]	<suedonym>	... Make processing rules clear.
+[2018-01-25T18:58:55.316Z]	<Kyle_den_hartog>	+1 to full path. Helps remove any convolution that may occur
+[2018-01-25T18:59:32.964Z]	<suedonym>	Sam: explain the variants somewhere else.
+[2018-01-25T19:00:02.874Z]	<dlongley>	a foolish consistency...
+[2018-01-25T19:00:27.821Z]	<dlongley>	q-
+[2018-01-25T19:00:37.605Z]	<manu>	ack manu
+[2018-01-25T19:01:05.218Z]	<manu>	Topic: DID Fragment Identifiers
+[2018-01-25T19:02:02.529Z]	<suedonym>	Sam: The original hardening doc V3 had a write up on meta data syntax component.
+[2018-01-25T19:02:22.927Z]	<drummond>	DID Hardening Spec Proposal V3: https://docs.google.com/document/d/1je9Bnhe-1tLgP1bfCSUjvbQ_qllwCz042aGncWX7Uio/edit#heading=h.abon80m52d50
+[2018-01-25T19:02:37.288Z]	<suedonym>	Sam: Its in Sec 10.
+[2018-01-25T19:03:15.302Z]	<manu>	q+
+[2018-01-25T19:03:21.201Z]	<suedonym>	Sam: with the current way that did frags are being proposed with JSON ld, would that conflict with using rfc6901 or being able to reference other parts of the did spec using rfc6901?
+[2018-01-25T19:03:54.025Z]	<suedonym>	Manu: This is JSON pointed
+[2018-01-25T19:04:53.124Z]	<suedonym>	Manu: this cold be problematic for JSON/JSON ld compatibility.
+[2018-01-25T19:05:35.000Z]	<suedonym>	Sam: JSON LD is the problem.
+[2018-01-25T19:06:49.117Z]	<suedonym>	Manu: the group wants compatibility between the two. We use identifier. When there is not an identifier, that is when it gets hairy. Need use cases for this.
+[2018-01-25T19:07:09.681Z]	<dlongley>	what's the use case?
+[2018-01-25T19:09:09.138Z]	<dlongley>	you can have the same problem if you pick other technologies -- many technologies are mutually exclusive
+[2018-01-25T19:09:25.024Z]	<suedonym>	Sam: Concern: If assume so much with JSON LD we wall off any other options.
+[2018-01-25T19:09:25.101Z]	<drummond>	q+
+[2018-01-25T19:10:38.688Z]	<drummond>	I think what Sam is proposing is that the spec say that the DID spec supports JSON Pointer.
+[2018-01-25T19:11:04.599Z]	<suedonym>	Drummond: summary - th did spec in the fragment portion, we say were going to support json pointer for syntax. Make one modifying assumption - if it references a did fragment identifier.
+[2018-01-25T19:11:53.410Z]	<suedonym>	Drummond: If you follow with a slash, now your'e using a json pointer.
+[2018-01-25T19:12:05.302Z]	<dlongley>	q+ to ask for a concrete example
+[2018-01-25T19:12:35.338Z]	<manu>	q+ to say I think it's incompatible w/ HTML-baesd fragIDs
+[2018-01-25T19:12:38.555Z]	<suedonym>	Sam: Does anyone see where that is not compatible?
+[2018-01-25T19:12:40.815Z]	<suedonym>	q?
+[2018-01-25T19:12:44.839Z]	<manu>	ack manu
+[2018-01-25T19:12:46.240Z]	<manu>	ack drummond
+[2018-01-25T19:12:56.028Z]	<drummond>	q?
+[2018-01-25T19:13:23.070Z]	<suedonym>	Sam: 2 proposals in Ex 10 on fragments.
+[2018-01-25T19:13:41.751Z]	<suedonym>	Sam: Is that 2nd proposal compatible?
+[2018-01-25T19:15:18.904Z]	<suedonym>	Sam: The shards are not keys, they are parts of keys
+[2018-01-25T19:16:44.436Z]	<suedonym>	Sam: are we truly supporting naive json and json ld?
+[2018-01-25T19:16:45.248Z]	<drummond>	Sam is going over an example of why he wants to use JSON Pointer style fragments to support references within naive JSON documents.
+[2018-01-25T19:17:00.369Z]	<drummond>	q?
+[2018-01-25T19:17:06.772Z]	<drummond>	ack dlongley
+[2018-01-25T19:17:57.372Z]	<drummond>	Dave thinks there may be some compatability problems with supporting JSON pointer.
+[2018-01-25T19:17:57.988Z]	<suedonym>	Dlongely: would expect there will be some compatibility problems. If you see a slash after, you would have to do something different.
+[2018-01-25T19:17:59.334Z]	<drummond>	q?
+[2018-01-25T19:18:43.781Z]	<suedonym>	Manu: Trying to map as cleanly as possible what web developers use in general.
+[2018-01-25T19:18:57.727Z]	<cwebber2>	I just joined
+[2018-01-25T19:19:12.981Z]	<suedonym>	Manu:  accept that fragments do have some special encoding.
+[2018-01-25T19:19:20.792Z]	<drummond>	manu: fragment identifier resolution is defined by the media type spec
+[2018-01-25T19:20:45.017Z]	<drummond>	Manu feels that using a "brittle" approach for addressing within a DID document (and he considers JSON Pointer such an approach) could be dangerous.
+[2018-01-25T19:20:56.987Z]	<sam>	q+
+[2018-01-25T19:20:58.899Z]	<suedonym>	Manu: If we are going to give this stuff special meaning, it means that we are talking about something that is a new media type (not json/jsonld0
+[2018-01-25T19:21:06.943Z]	<dlongley>	actually, i don't think there would be any incompatiblity with JSON-LD libraries right now ... it would just be a layer on top you'd have to run -- and JSON-LD users would have to make sure to frame the document a certain way (and know what that frame is)
+[2018-01-25T19:21:16.345Z]	<drummond>	This means that DID documents would need to be a separate media type.
+[2018-01-25T19:21:16.650Z]	<dlongley>	which might not be possible
+[2018-01-25T19:22:03.109Z]	<drummond>	I would very much like to avoid having to make DID documents a separate media type
+[2018-01-25T19:22:21.561Z]	<suedonym>	q?
+[2018-01-25T19:22:21.603Z]	<drummond>	q?
+[2018-01-25T19:22:40.905Z]	<suedonym>	Sam: in the current did spec, we have a special meaning for a fragment.
+[2018-01-25T19:22:44.826Z]	<drummond>	ack manu
+[2018-01-25T19:23:53.427Z]	<suedonym>	Time check: 6 mins
+[2018-01-25T19:25:11.634Z]	<suedonym>	Manu: the library that processes the url is  highly specific library
+[2018-01-25T19:26:06.564Z]	<suedonym>	Manu: fragment ids for did's re more complex, then call in pointers.
+[2018-01-25T19:26:32.394Z]	<suedonym>	Manu: concern this will lead to security issues.
+[2018-01-25T19:26:50.014Z]	<dlongley>	q+
+[2018-01-25T19:27:20.967Z]	<drummond>	ack sam
+[2018-01-25T19:27:25.555Z]	<drummond>	ack dlongley
+[2018-01-25T19:28:19.844Z]	<manu>	q+ to suggest path format
+[2018-01-25T19:30:33.683Z]	<suedonym>	Drummond: Q - do you still want to make a specific proposal for json syntax? Sam: yes, but dont want that to hold it up.
+[2018-01-25T19:30:56.709Z]	<drummond>	Sam will consider making a future proposal about supporting JSON Pointer.
+[2018-01-25T19:31:04.565Z]	<drummond>	ack manu
+[2018-01-25T19:31:25.803Z]	<suedonym>	Manu: if pathing is that important, we should address did paths.
+[2018-01-25T19:31:38.060Z]	<drummond>	Drummond is open to talking about DID paths.
+[2018-01-25T19:32:23.874Z]	<drummond>	Action: Drummond to get with the folks working on the service name solution to turn it into a concrete proposal.
+[2018-01-25T19:32:30.230Z]	<suedonym>	... Are we going to keep scheduling these meetings through Feb?
+[2018-01-25T19:32:55.425Z]	<suedonym>	Manu: Any objections to merging this change set next Tuesday?
+[2018-01-25T19:33:00.261Z]	<mike-lodder>	+1 to merge
+[2018-01-25T19:33:03.181Z]	<mike-lodder>	After review
+[2018-01-25T19:33:05.614Z]	<drummond>	Any objections to merge this PR in by next Tuesday?
+[2018-01-25T19:34:26.731Z]	<suedonym>	Drummond: Continue this meeting next week? Yes. Pick items that are blocking people. Bring those to the meeting.
+[2018-01-25T19:35:07.578Z]	<suedonym>	Drummond: If you have items that are blocking, send them to the mailing group, and Manu and Drummond to be added to the agenda.
+[2018-01-25T19:35:15.471Z]	<suedonym>	Thanks everyone!
