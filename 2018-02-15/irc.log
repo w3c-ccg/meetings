@@ -1,0 +1,148 @@
+[2018-02-15T18:05:11.164Z]	<drummond>	Links for today: DID spec - https://w3c-ccg.github.io/did-spec/
+[2018-02-15T18:05:22.497Z]	<manu>	Agenda: https://docs.google.com/document/d/1aR8V_JUJdq1Sbi47wCV5aa-dEY0e-V2RqwPNP5ci1bg/edit#heading=h.21shj40jfml
+[2018-02-15T18:05:22.497Z]	<manu>	Meeting: DID Task Force
+[2018-02-15T18:05:22.497Z]	<manu>	Date: 2018-02-16
+[2018-02-15T18:05:22.497Z]	<manu>	scribe: suedonym
+[2018-02-15T18:05:22.497Z]	<manu>	Chair: Drummond
+[2018-02-15T18:05:22.497Z]	<manu>	present+ drummond, suedonym, manu, longley, samsmith, lundkvist, christophera, cwebber, best, nage, lodder, 
+[2018-02-15T18:05:22.497Z]	<drummond>	DID Spec Issues: https://github.com/w3c-ccg/did-spec/issues/
+[2018-02-15T18:06:05.391Z]	<drummond>	DID Spec Completion Proposals: https://docs.google.com/document/d/1aR8V_JUJdq1Sbi47wCV5aa-dEY0e-V2RqwPNP5ci1bg/edit#heading=h.21shj40jfml
+[2018-02-15T18:06:37.529Z]	<manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2018Feb/0030.html
+[2018-02-15T18:07:28.038Z]	<manu>	Present+ cwebber
+[2018-02-15T18:11:47.071Z]	<Suedonym>	Topic: DID Service URLs
+[2018-02-15T18:10:36.866Z]	<Suedonym>	christophera: service address stuff. What is the scope of how much we will be standardizing? What is the minimal verifiable claim Repository service?
+[2018-02-15T18:11:14.361Z]	<Suedonym>	drummond: the proposals still need to be added to the spec.  Action item for drummond.
+[2018-02-15T18:11:47.071Z]	<Suedonym>	proposal to solve: how do you go from did service url to a target url.
+[2018-02-15T18:13:27.217Z]	<Suedonym>	manu: we should not assume everything after the semicolon is a service description.
+[2018-02-15T18:15:36.648Z]	<Suedonym>	Manu: the other question - how will we pass perimeter services? Why don't we make that the general mechanism. The thing after the separator we should make more ostensible than just services.
+[2018-02-15T18:16:16.782Z]	<ChristopherA>	q+
+[2018-02-15T18:17:05.413Z]	<Suedonym>	Sam: Service end point. shouldnt it just be end point?
+[2018-02-15T18:17:20.908Z]	<Suedonym>	Manu: there was a specific reason for that.
+[2018-02-15T18:17:45.247Z]	<manu>	q+ to respond to sam about serviceEndpoint
+[2018-02-15T18:17:46.208Z]	<cwebber2>	q+
+[2018-02-15T18:18:56.717Z]	<Suedonym>	christopherA:  why isnt this handled by the method spec?  ALlow a resolver to handle some of this.
+[2018-02-15T18:20:30.998Z]	<Suedonym>	drummond: purpose of service names is to solve this problem. if you want to build a service url, there needs to be a general standard to turn the did service url to a target url.
+[2018-02-15T18:20:35.138Z]	<cwebber2>	there's more to services than just returning URLs
+[2018-02-15T18:20:37.038Z]	<manu>	Yes, the resolver doesn't touch this most of the time
+[2018-02-15T18:20:41.210Z]	<cwebber2>	more information that's available
+[2018-02-15T18:20:41.340Z]	<sams>	q?
+[2018-02-15T18:20:49.637Z]	<manu>	other apps will need this as well
+[2018-02-15T18:20:58.962Z]	<cwebber2>	this also *has to be* one of the things that all of the methods need to agree on
+[2018-02-15T18:21:09.819Z]	<cwebber2>	all applications should be able to understand this and not care how the guts of the method works
+[2018-02-15T18:21:15.757Z]	<cwebber2>	I have lots of opinions on this :)
+[2018-02-15T18:21:16.085Z]	<Suedonym>	christophera: f is this actually something that is returned by the did resolver to the app?
+[2018-02-15T18:21:45.397Z]	<Suedonym>	q?
+[2018-02-15T18:22:06.707Z]	<cwebber2>	note
+[2018-02-15T18:22:12.011Z]	<cwebber2>	that I originally wrote up the version of this
+[2018-02-15T18:22:15.493Z]	<cwebber2>	and I put a colon
+[2018-02-15T18:22:20.107Z]	<cwebber2>	and someone switched it to a semicolon
+[2018-02-15T18:22:28.134Z]	<cwebber2>	I'm not sure why still
+[2018-02-15T18:22:32.073Z]	<Suedonym>	drummond: limited by the character set. we can revisit the semicolon
+[2018-02-15T18:22:51.189Z]	<Suedonym>	drummond: this is method independent.
+[2018-02-15T18:22:53.342Z]	<manu>	cwebber2: can't use colon.. we use colons all over the place in Veres One as other forms of delimiters
+[2018-02-15T18:22:57.350Z]	<cwebber2>	I'm not opposed to it but I still don't understand why a colon wouldn't be used since we're using a colon for the others
+[2018-02-15T18:23:00.483Z]	<cwebber2>	manu: ah ok
+[2018-02-15T18:23:12.093Z]	<Suedonym>	q?
+[2018-02-15T18:23:12.163Z]	<drummond>	q?
+[2018-02-15T18:23:22.901Z]	<drummond>	ack ChristopherA
+[2018-02-15T18:23:27.361Z]	<drummond>	ack manu
+[2018-02-15T18:23:41.329Z]	<ChristopherA>	q+ Seperately, what is a minimal viable service
+[2018-02-15T18:23:44.670Z]	<Suedonym>	manu: short answer it id not did method specific. the services we are hoping for are a common mechanism across all methods.
+[2018-02-15T18:25:21.683Z]	<Suedonym>	manu: responding to Sam asked about service vs end point. concern if people mix vocab into methods (name, description, end point, etc) as a result there is a chance if we just end point it will get clobbered
+[2018-02-15T18:25:56.777Z]	<drummond>	q?
+[2018-02-15T18:25:58.057Z]	<Suedonym>	manu: developers can always change it in their method using JSONLD mapping
+[2018-02-15T18:27:08.313Z]	<Suedonym>	manu: Pending action item: we should claim all of the terms in schema.org
+[2018-02-15T18:29:21.757Z]	<Suedonym>	cwebber2: comment on resolvers will do the work of transforming this into the url.
+[2018-02-15T18:30:57.791Z]	<Suedonym>	longley: new option submitted. Would like to see other use cases for transforming the url.
+[2018-02-15T18:33:00.497Z]	<Suedonym>	christopherA: can you add in those use cases here please?
+[2018-02-15T18:35:38.327Z]	<Suedonym>	manu:we don't say what the did-path does.
+[2018-02-15T18:36:00.039Z]	<Suedonym>	drummond: happy to go in and fix that stuff. Its all standard URI.
+[2018-02-15T18:36:57.073Z]	<Suedonym>	manu: concern that what we are agreeing to will paint us into a corner. We need to give folks more time.
+[2018-02-15T18:39:29.931Z]	<cwebber2>	q+
+[2018-02-15T18:39:47.486Z]	<Suedonym>	christophera: Need definition of minimal viable service for this.
+[2018-02-15T18:39:49.092Z]	<cwebber2>	q-
+[2018-02-15T18:40:17.629Z]	<Suedonym>	manu: what happens when you just want to select from a set of things. Its not a 1 to 1 mapping. Its not a service look up.
+[2018-02-15T18:42:31.704Z]	<cwebber2>	scribe: cwebber2
+[2018-02-15T18:43:03.417Z]	<cwebber2>	drummond: this solves the problem by putting the service in the authority component
+[2018-02-15T18:43:12.911Z]	<cwebber2>	drummond: I've never seen a use case for this where you need to do anything else
+[2018-02-15T18:43:25.368Z]	<cwebber2>	drummond: what you're doing in discovery is going from abstract discovery to...
+[2018-02-15T18:43:44.145Z]	<cwebber2>	drummond: those mechanisms for selecting that would use a fragment on the did document itself, or a query on the did document itself
+[2018-02-15T18:43:53.520Z]	<cwebber2>	drummond: nothing prevents us from doing that
+[2018-02-15T18:44:01.320Z]	<cwebber2>	q?
+[2018-02-15T18:44:24.345Z]	<cwebber2>	ChristopherA: let me suggest we take this, puzzle through when you have multiple paths
+[2018-02-15T18:44:38.249Z]	<cwebber2>	ChristopherA: a service can be accessed through http/tor/etc
+[2018-02-15T18:44:48.809Z]	<cwebber2>	ChristopherA: they're equally valid but you want to prioritize one
+[2018-02-15T18:45:00.432Z]	<drummond>	q?
+[2018-02-15T18:45:02.564Z]	<sams>	Q?
+[2018-02-15T18:45:03.329Z]	<cwebber2>	drummond: I don't think i understand, this is a url translation mechanism
+[2018-02-15T18:45:10.882Z]	<sams>	q+
+[2018-02-15T18:45:22.238Z]	<cwebber2>	ChristopherA: this is you're trying to move from something you understand to something you don't
+[2018-02-15T18:45:31.450Z]	<cwebber2>	ChristopherA: IPFS can go through a variety of mechanisms, ignoring http
+[2018-02-15T18:45:58.462Z]	<manu>	q+ I got it -- try to do an OR, it won't work
+[2018-02-15T18:45:59.477Z]	<cwebber2>	ChristopherA: if I want to go through a number of centralized services that convert IPFS to HTTP, so I can use an http url, but that's lossy on decentralization compared to ipfs://
+[2018-02-15T18:46:09.198Z]	<manu>	ack ChristopherA
+[2018-02-15T18:46:13.324Z]	<dlongley>	q?
+[2018-02-15T18:46:15.877Z]	<cwebber2>	drummond: I understand, you've got multiple services you want the same url to map to
+[2018-02-15T18:46:28.771Z]	<cwebber2>	drummond: I've seen that before, I'll say you can write custom code to do that
+[2018-02-15T18:46:45.539Z]	<cwebber2>	drummond: if we complicate that about the simplified use case... doesn't preclude that you can do the simple standard way
+[2018-02-15T18:46:56.252Z]	<cwebber2>	ChristopherA: but then you're in the category of service type is an http service
+[2018-02-15T18:47:03.220Z]	<cwebber2>	drummond: which you could absolutely write the code for
+[2018-02-15T18:48:00.494Z]	<cwebber2>	ChristopherA: I'm maybe saying if you can spend a bit of time puzzling through resolving to two different things that give the same result in the end, maybe there's an easy way to do it, maybe it's just having serviceType through IPFS, something, a priority tag... but if you spend a bit of time puzzling through then tell me you can't do it, then I'll feel bettter
+[2018-02-15T18:48:10.403Z]	<dlongley>	q?
+[2018-02-15T18:48:12.948Z]	<cwebber2>	drummond: we'll take it a look before, it's come up before, we'll see what we can come up with
+[2018-02-15T18:48:16.668Z]	<drummond>	q?
+[2018-02-15T18:48:32.941Z]	<drummond>	ack cwebber2
+[2018-02-15T18:49:06.322Z]	<dlongley>	cwebber2: Christopher gave a better example than I was going to, but it may be not incompatible syntax wise to reserve the `=` char and the `&` char... and if you don't specify a parameter it defaults to "service".
+[2018-02-15T18:49:33.970Z]	<dlongley>	cwebber2: Similar to how languages have default parameters map in certain ways. I don't know this would make things better or making our lives harder with more options.
+[2018-02-15T18:49:50.814Z]	<cwebber2>	drummond: good suggestion, I'm the last one to argue against extensibility
+[2018-02-15T18:49:59.131Z]	<manu>	Why can't we just do did:example?resolve=serviceName/foo/bar/baz#frag-1
+[2018-02-15T18:50:01.774Z]	<cwebber2>	drummond: I do like that point, and the particular point of keep the simple case simple
+[2018-02-15T18:50:07.180Z]	<drummond>	q?
+[2018-02-15T18:50:11.030Z]	<cwebber2>	drummond: next peron on the queu is... sam
+[2018-02-15T18:50:11.738Z]	<drummond>	ack sams
+[2018-02-15T18:50:35.823Z]	<cwebber2>	cwebber: manu, maybe if there's no path it could be confused with the query parameter?
+[2018-02-15T18:51:06.597Z]	<cwebber2>	sams: I like to keep the simple simple, but maybe simple service is an array, it's a namespaced aprameter, have a whole cap of semicolons
+[2018-02-15T18:51:25.657Z]	<cwebber2>	sams: I'm not sure people commenting realize the syntax allows you to do that
+[2018-02-15T18:51:36.720Z]	<cwebber2>	sams: I agree strongly that the 90% usecase will be a single service
+[2018-02-15T18:51:49.704Z]	<cwebber2>	sams: every time you do an = it makes things verbose, and there's a cost to verbosity
+[2018-02-15T18:52:05.400Z]	<cwebber2>	sams: especially when refering to identifier has a cost
+[2018-02-15T18:52:16.640Z]	<drummond>	"minification" <== love it
+[2018-02-15T18:52:42.201Z]	<cwebber2>	drummond: I'm opening to the idea of reserving = so that we can add parameterization later
+[2018-02-15T18:52:42.366Z]	<drummond>	q?
+[2018-02-15T18:52:58.184Z]	<cwebber2>	drummond: since manu wasn't here last week, I wanted to cover these other 2 things
+[2018-02-15T18:53:13.380Z]	<cwebber2>	Topic: Other DID Spec Items
+[2018-02-15T18:53:13.380Z]	<cwebber2>	drummond: we had query components, wanted to add things back in
+[2018-02-15T18:53:33.043Z]	<dlongley>	manu: not sure if your suggestion is to just use the query... but you'd have to encode the '/'s i think (if it was in the query)
+[2018-02-15T18:54:21.962Z]	<cwebber2>	manu: why not follow a standard url component, you'd have to escape the slash, but anyway... you can't do ors I don't think
+[2018-02-15T18:54:26.434Z]	<cwebber2>	manu: I feel uneasy about it
+[2018-02-15T18:54:35.754Z]	<cwebber2>	manu: maybe if we have an issue and have further discussion there
+[2018-02-15T18:54:40.842Z]	<cwebber2>	manu: query component, that's great
+[2018-02-15T18:54:51.411Z]	<cwebber2>	manu: I don't think the query part is controvercial... that could probably go in a PR
+[2018-02-15T18:55:11.188Z]	<cwebber2>	manu: also Markus has done a PR, he added a publicKey and authn section to spec (?)
+[2018-02-15T18:55:15.324Z]	<cwebber2>	manu: look at those PRs
+[2018-02-15T18:55:20.480Z]	<drummond>	q?
+[2018-02-15T18:55:28.748Z]	<drummond>	ack manu
+[2018-02-15T18:55:29.411Z]	<cwebber2>	drummond: completely agree, and goal was to turn all three into PRs
+[2018-02-15T18:55:55.292Z]	<cwebber2>	drummond: let me just say we did stop on the json pointer thing, folks on last week's call understood the case but dave understood the case on it
+[2018-02-15T18:56:27.612Z]	<cwebber2>	dlongley: I haven't had time to think further
+[2018-02-15T18:57:21.485Z]	<manu>	q+
+[2018-02-15T18:57:37.373Z]	<cwebber2>	cwebber: Little Bobby Tables reference: https://www.xkcd.com/327/
+[2018-02-15T18:58:14.263Z]	<cwebber2>	cwebber2: I'm nervous that xpath style things like json pointers can be brittle and can lead to  people having little bobby table type problems
+[2018-02-15T18:58:53.687Z]	<cwebber2>	manu: we haven't had a lot of agreement about ways to fetch things, especially because there are at least 3 valid ways we haven't agreed on
+[2018-02-15T18:59:35.217Z]	<cwebber2>	manu: we can say that if you're in json-only mode you can apply json pointter as is, in json-ld you can frame it... we can explore and if patterns emerge we can put it in
+[2018-02-15T18:59:56.663Z]	<cwebber2>	manu: that's the same issue we've had in json-ld and we haven't gotten consensus there, I think if we do the same thing we'll have that problem with path based resolution here too
+[2018-02-15T18:59:56.663Z]	<drummond>	q?
+[2018-02-15T19:00:01.517Z]	<drummond>	ack manu
+[2018-02-15T19:00:22.140Z]	<cwebber2>	sams: I think if notthing prevents it a should as opposed to a MUST is fine
+[2018-02-15T19:00:22.880Z]	<cwebber2>	q+
+[2018-02-15T19:00:34.688Z]	<cwebber2>	sams: it's an important use case to access metadata
+[2018-02-15T19:00:47.838Z]	<drummond>	ack cwebber2
+[2018-02-15T19:01:06.552Z]	<manu>	cwebber2: I'm really worried about putting this as a SHOULD -- it may not be obvious , non obvious risks.
+[2018-02-15T19:01:35.265Z]	<cwebber2>	drummond: we're at the end of our hour, good discussion, I'd like to go through the process
+[2018-02-15T19:01:52.770Z]	<cwebber2>	drummond: just to take a sec to discuss between now and then: RWoT, discuss having a DID day there
+[2018-02-15T19:02:12.979Z]	<cwebber2>	drummond: I think our goal betwen now and then is to work on as many issues as we can, so we can have a stable of a spec with as few issues as possible
+[2018-02-15T19:02:16.266Z]	<cwebber2>	drummond: everyone on board?
+[2018-02-15T19:02:29.890Z]	<cwebber2>	drummond: in that case, let me just ask, do people want to have additional calls on thursday?
+[2018-02-15T19:02:45.866Z]	<cwebber2>	drummond: I'd suggest hour long calls and look at issues
+[2018-02-15T19:03:18.879Z]	<cwebber2>	drummond: let's get into issues and work on the spec
+[2018-02-15T19:03:23.077Z]	<cwebber2>	drummond: anything else?
