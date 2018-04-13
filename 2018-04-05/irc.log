@@ -1,0 +1,118 @@
+menu
+Status #ccgX
+#ccg: 2018-03-27 AGENDA: https://lists.w3.org/Archives/Public/public-credentials/2018Mar/0071.html   VOICE is https://zoom.us/j/5158678375
+[09:02] == kimhd [~kimhd@public.cloak] has joined #ccg
+[09:02] <kimhd> present+
+[09:05] <kimhd> scribe: kimhd
+[09:05] == cwebber2 [~cwebber2@public.cloak] has quit [Ping timeout: 180 seconds]
+[09:05] <kimhd> AGENDA: https://lists.w3.org/Archives/Public/public-credentials/2018Apr/0007.html
+[09:06] <kimhd> Also present: Val Thomas
+[09:06] <kimhd> Nate: We'll have a short call because a small group due to IIW
+[09:06] <kimhd> Nate: I'm Nate Otto from Concentric Sky; Kim is scribing
+[09:06] <kimhd> Nate: we'll look at paper from RWoT
+[09:07] <kimhd> Nate: let's do intros
+[09:08] <kimhd> Serge: Excited to join Open Badges and Verifiable Claims
+[09:09] <kimhd> Val: working with government of Canada. Usecase for VC / Blockchain prototype was accepted
+[09:09] <kimhd> present+ RandyMcDonald
+[09:10] <kimhd> RandyMcDonald: primarily interested in use cases for education development
+[09:10] == ottonomy [~ottonomy@public.cloak] has joined #ccg
+[09:10] <kimhd> Section: Reviewing Open Badges are Verifiable Credentials paper from RWoT
+[09:11] <kimhd> Nate: feel free to speak up any time
+[09:11] <kimhd> ottonomy: providing a short overview of concepts
+[09:11] <kimhd> ottonomy: review roles of host, displayer, verifier
+[09:12] <kimhd> ottonomy: paper reviews various threads such as VCs, DIDs, DID layers, and discuss how they work together
+[09:13] <kimhd> ottonomy: we're building general purpose technologies, can use for different types of claims. would like to develop critical mass for technologies/standards that work well together, to build network effects
+[09:14] <kimhd> ottonomy: also important is usability, privacy protection
+[09:14] <kimhd> ottonomy: paper has examples of expressing claims in different formats
+[09:15] <kimhd> ottonomy: motivation - OB and VC are complementary, should fit together nicely.
+[09:15] <kimhd> ottonomy: similar data models, signature and verification methods
+[09:15] <kimhd> ottonomy: Blockcerts OB extension draft uses LD signatures and verification
+[09:16] <kimhd> ottonomy: 2 different communities building software that's not currently compatible. can harness efforts better by ensuring we're aligned
+[09:16] <kimhd> ottonomy: what is the core kernel of value within each initiative?
+[09:17] <kimhd> ottonomy: OB - defined achievements. Ontology for specific achievements that matter within a community, and criteria to qualify
+[09:17] <kimhd> ottonomy: BadgeClass is a defined credential; 2.0 also includes VCs as endorsements
+[09:18] <kimhd> ottonomy: VC specification has no rich vocab about what sort of claims you express, defined achievements
+[09:19] <kimhd> ottonomy: has strong general structure for signing and verification
+[09:19] <kimhd> ottonomy: OB has strong adoption, millions of issuances
+[09:19] <kimhd> ottonomy: paper describes 2 different options for joining
+[09:20] <kimhd> ottonomy: for joining VCs and OBs
+[09:20] <kimhd> ottonomy: First, make a claim that a recipient "holds" a credential
+[09:20] <kimhd> ottonomy: "holds" is a term from VC community, meaning recipient holds a credential
+[09:21] <kimhd> ottonomy: the claim is "recipient holds the credential"
+[09:21] <kimhd> ottonomy: option 2 -- claim is an OpenBadges Assertion.
+[09:21] <kimhd> ottonomy: subject is the id of the assertion, not the subject
+[09:22] <kimhd> ottonomy: possible with option 1 to use hashed email (original id system from OB)
+[09:22] <kimhd> ottonomy: i.e. "this recipient goes with this claim"
+[09:23] <kimhd> ottonomy: in order to make work well with wallet software, we need to understand VC wallet expectations
+[09:23] <kimhd> ottonomy: there are cool advantages to identifiers like DIDs
+[09:24] <kimhd> ottonomy: if we're successful, probably most implementations will use DIDs in the future, but will remain compatible
+[09:24] <kimhd> ottonomy: gives 1 layer of correlation protection
+[09:24] <kimhd> ottonomy: "claim recipient holds a credential" vs "claim assertion exists"
+[09:25] <kimhd> ottonomy: paper is verbose because we're discussing 2 different methods and implementation
+[09:26] <kimhd> ottonomy: next phase is prototyping; prove that 1 can work well. Start with option 1 bc better aligned with VC ecosystem; expecting id of recipient. Won't be able to authenticate a user with an assertion
+[09:26] == RandyIA [~RandyIA@public.cloak] has joined #ccg
+[09:26] <kimhd> ottonomy: expect that if option 1 prototypes are successful, we'll just junk option 2 and remove all references in the paper.
+[09:27] <kimhd> ottonomy: let's look at a couple more use cases
+[09:27] <kimhd> ottonomy: recipient id'd by DIDs
+[09:27] <kimhd> ottonomy: OB uses OB identity object, frequently email address (can be hashed)
+[09:28] <kimhd> ottonomy: hashed provides a little bit of privacy. Not perfect, can still be correlated, but helps
+[09:28] <kimhd> ottonomy: ID string as IRI format
+[09:29] <kimhd> ottonomy: can use DIDs in OB via type "id"
+[09:29] <kimhd> Serge: we still have 1 issuer/1 recipient
+[09:30] <kimhd> Serge: other use cases require intermediary
+[09:30] <kimhd> Serge: recipient signs badge before training. After training, issuer signs. To make fully valid, line manager has to sign
+[09:31] <kimhd> Serge: in this case, it's a workflow for recognition
+[09:31] <kimhd> Serge: extension -- perhaps it expires after 1 year and line manager needs to resign
+[09:31] <kimhd> Serge: we might want to expand vocab as well
+[09:32] <ottonomy> kimhd: Yes there are multiple signatures in a Verifiable Credential. Called chained signatures. Can be ordered or not ordered.
+[09:33] <ottonomy> kimhd: I'm thinking through Serge's scenario a bit more.
+[09:34] <ottonomy> kimhd: Maybe the line manager's claim is the one that has the expiration date that gets renewed later
+[09:34] <ottonomy> kimhd: This is a really good example to test our assumptions.
+[09:35] <kimhd> val: to add to Serge's example. From work force side of things, if we think about VCs as learning outcomes (received training, attained knowledge).
+[09:35] <kimhd> val: in workplace, there's the additional level of applying skills (i.e. not just received learning)
+[09:35] <kimhd> val: this is getting a lot of interest wrt workforces of the future
+[09:36] <kimhd> val: applying the knowledge becomes an additional credential that can travel with the individual
+[09:36] <kimhd> ottonomy: not sure how to structure this, i.e. who is issuer, is there a chain of claims?
+[09:37] <ottonomy> Peer Claims paper: https://bit.ly/peerclaims-rwot6
+[09:38] <kimhd> ottonomy: above is peer claims paper. feel free to add use cases
+[09:38] == cwebber2 [~cwebber2@public.cloak] has joined #ccg
+[09:39] <kimhd> ottonomy: workflow involving multiple steps (self assertion and recognition by peers
+[09:39] <kimhd> +1 to that
+[09:39] <kimhd> ottonomy: turn this into a paper, examples
+[09:39] <kimhd> ottonomy: have to keep pipeline full
+[09:39] <kimhd> ottonomy: let's write up over next 2 weeks
+[09:40] <kimhd> q+
+[09:40] <kimhd> val: fed gov project is called "talent clouds"
+[09:40] <kimhd> q-
+[09:41] <kimhd> val: goal us to create discoverable skills. They can test these as part of that effort
+[09:43] <ottonomy> kimhd: Many of the existing examples are driver licenses or passports.
+[09:44] <kimhd> Serge: is anybody working on contracts on VCs?
+[09:44] <ottonomy> kimhd: this opens us up to claims that are not just on the single-issuer-single-recipient spectrum
+[09:44] <ottonomy> kimhd: I would want to look into that
+[09:44] <kimhd> Serge: learning contract would perhaps be a better model
+[09:45] <ottonomy> kimhd: I agree -- that naturally seems to have the concept of a lifecycle built in, whereas a credential is more of a static thing. What we're all talking about is something with more possible states
+[09:46] <ottonomy> Action: Serge will contribute a use case paragraph to Peer Claims Paper
+[09:46] <kimhd> ottonomy: rest of the paper covers DID as an issuer
+[09:46] <Serge> confirmed!
+[09:47] <kimhd> ottonomy: shows verification via LD signatures, and Blockcerts specifically
+[09:47] <kimhd> ottonomy: validator is the key component to prototype
+[09:48] == cwebber2 [~cwebber2@public.cloak] has quit [Ping timeout: 180 seconds]
+[09:48] <kimhd> ottonomy: for issuing, the issuer needs a DID. for prototyping, we can work around. Hard part is to authorize an issuer to issue badges but not do other things. Out of scope for this paper, but comes up more in peer claims paper
+[09:49] <kimhd> ottonomy: above is the hard problem on the issuer side
+[09:49] <kimhd> ottonomy: host/backback needs to understand new vocabulary
+[09:50] <kimhd> ottonomy: hard parts are validator. understand new structure. look for holds, etc. Over the next month, Nate plans to prototype
+[09:50] <kimhd> q+
+[09:50] <kimhd> ottonomy: hope to have feedback soon thereafter regarding option 1 success
+[09:51] <kimhd> ottonomy: if we prove it's a good way to deliver OB, that opens up to other use cases e.g. workflows
+[09:51] <kimhd> ottonomy: displayer needs to understand new display. Probably easiest to transform into existing structure. This would make cost for existing implementations zero
+[09:52] <kimhd> ottonomy: next steps are prototyping validator support for option 1, issue blockcerts to verify, engage with RWot to verify other signature methods
+[09:53] <kimhd> ottonomy: we'll prototype in at least 1 backpack
+[09:53] <kimhd> ottonomy: did authenticator that uses 1+ method
+[09:54] <kimhd> ottonomy: gov of BC has authorized a project. Hired Markus Sabadello to build DID auth method
+[09:54] <kimhd> Val: being led by John Jordan
+[09:55] <kimhd> Val: called Von network
+[09:55] <kimhd> Val: using a developer exchange, using hyperledger
+[09:56] <kimhd> ottonomy: we might be able to collaborate and use their DID auth prototype
+[09:57] <ottonomy> kimhd: For next meeting, would it be worth going into the peer claims paper a bit?
+[09:57] <ottonomy> yes
+[09:57] <kimhd> ottonomy: next meeting, we'll talk about peer claims with Serge's additions
