@@ -1,0 +1,106 @@
+[2018-04-17T16:04:33.719Z]	<DavidC>	I will scribe
+[2018-04-17T16:04:40.879Z]	<manu>	scribe: DavidC
+[2018-04-17T16:04:47.098Z]	<manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2018Apr/0077.html
+[2018-04-17T16:06:49.271Z]	<DavidC>	Topic: Introductions
+[2018-04-17T16:06:54.520Z]	<manu>	voip: 387 is Arnaud
+[2018-04-17T16:07:12.730Z]	<DavidC>	Arnaud: I've been working on standards and open source development for over 25 years, both as a staff member of standards development organizations (SDO) such as W3C and the X Consortium, as well as a representative for IBM. I'm currently Senior Technical Staff Member (STSM) Web & Blockchain Open Technologies at IBM and part of Hyperledger's Technical Steering Committee (TSC).
+
+[2018-04-17T16:07:12.961Z]	<manu>	Topic: Announcements
+[2018-04-17T16:08:30.657Z]	<bigbluehat>	voip: 396 is bigbluehat
+[2018-04-17T16:08:30.889Z]	<DavidC>	Virtual hackathon and credentials outreach planned for this summer
+[2018-04-17T16:08:49.438Z]	<kimhd>	voip: connections?
+[2018-04-17T16:08:56.489Z]	<DavidC>	If you want to be involved tell ChristopherA when you are NOT available
+[2018-04-17T16:09:42.130Z]	<DavidC>	Decentralised conference is meeting first week of Aug, so outreach may be planned to mesh with this
+[2018-04-17T16:10:10.623Z]	<DavidC>	Midata conference is last week of August in Helsinki
+[2018-04-17T16:11:41.652Z]	<DavidC>	Topic: Issues List
+[2018-04-17T16:12:03.634Z]	<DavidC>	https://github.com/w3c-ccg/community/labels/action%20item
+[2018-04-17T16:13:28.657Z]	<DavidC>	Current work items are listed here https://github.com/w3c-ccg/community/blob/master/work_items.md
+[2018-04-17T16:14:16.962Z]	<ChristopherA>	https://goo.gl/ZeyJUS
+[2018-04-17T16:15:32.752Z]	<manu>	Topic: ZK Lang
+[2018-04-17T16:15:38.736Z]	<nage_>	voip: 3a2 is nage
+[2018-04-17T16:16:06.769Z]	<DavidC>	Slides available here https://w3c-ccg.github.io/meetings/2018-04-17/zklang.ccg-presentation.2018.04.17.pdf
+[2018-04-17T16:17:57.619Z]	<DavidC>	JanCamenisch gives a talk about the slides
+[2018-04-17T16:19:23.555Z]	<manu>	voip: noise?
+[2018-04-17T16:19:51.690Z]	<DavidC>	ZKLang is a language for mapping VCs to cryptographic algorithms
+[2018-04-17T16:22:28.913Z]	<manu>	q+ to comment on slide 11 - good direction, plug into linked data proofs... don't see things like tails list, counter, etc.
+[2018-04-17T16:23:23.224Z]	<ChristopherA>	q+
+[2018-04-17T16:23:44.523Z]	<DavidC>	Uses zero knowledge proof of knowledge statements
+[2018-04-17T16:25:10.425Z]	<kimhd>	q+
+[2018-04-17T16:26:18.313Z]	<DavidC>	So instead of prooving age is GT 21, because it is a hidden message in an anonymous credential then instead would ask if hidden message m1 contained an interger between 22 and 100
+[2018-04-17T16:26:23.990Z]	<manu>	ack manu
+[2018-04-17T16:26:58.335Z]	<drummond>	Manu, that makes sense to me: that any data external to a credential has a pointer and zklang would treat that pointer as data it describes.
+[2018-04-17T16:27:45.370Z]	<manu>	Drummond, yes... I'm trying to do a gap analysis between ZKLang and what we'd need to shove into the `proof` block in a Verifiable Presentation (which used to be called a Verifiable Profile).
+[2018-04-17T16:28:54.133Z]	<kimhd>	is it clear where the mappings to m1, m2, ... is happening?
+[2018-04-17T16:29:35.877Z]	<DavidC>	Or if hidden message contains date of birth, you would ask if the difference between this and today's date is greater than 21
+[2018-04-17T16:30:06.153Z]	<Lionel>	please repost updated link to presentation
+[2018-04-17T16:31:18.363Z]	<manu>	q?
+[2018-04-17T16:32:27.264Z]	<DavidC>	All fields in a VC have to mapped down to integers in ZKlang
+[2018-04-17T16:32:58.911Z]	<ChristopherA>	https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/final-documents/smarter-signatures.pdf
+[2018-04-17T16:33:01.982Z]	<DavidC>	Purpose is that the implementor does not need to have any knowledge of the crypto
+[2018-04-17T16:33:06.971Z]	<ChristopherA>	https://www.youtube.com/watch?v=E9sbWKbfyJU&t=5s
+[2018-04-17T16:33:50.991Z]	<DavidC>	By writing the validation in ZKLang, the result will return true or false to the questions being asked
+[2018-04-17T16:35:19.624Z]	<manu>	q+ to note that we did a pass of this here a long time ago: https://w3c-dvcg.github.io/lds-pseudonymous2016/#examples
+[2018-04-17T16:35:23.910Z]	<manu>	ack ChristopherA
+[2018-04-17T16:35:57.317Z]	<Lionel>	ChristopherA: Can we use bullet proofs?
+[2018-04-17T16:36:20.335Z]	<kimhd>	q-
+[2018-04-17T16:36:47.224Z]	<ChristopherA>	https://www.slideshare.net/ChristopherA/smart-signaturesexperiments-in-authentication-stanford-bpase-2018-final
+[2018-04-17T16:37:13.551Z]	<ChristopherA>	ack manu
+[2018-04-17T16:37:31.897Z]	<manu>	Previous attempt at mapping CL Signatures to LD Proofs: https://w3c-dvcg.github.io/lds-pseudonymous2016/#examples
+[2018-04-17T16:38:27.404Z]	<DavidC>	@Manu  At a previous RWOT we tried to map linked signatures to ??
+[2018-04-17T16:38:59.822Z]	<ChristopherA>	Christopher Webber also worked on a preliminary ideas on a predicate language for signatures: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/draft-documents/smarm.md
+[2018-04-17T16:39:21.691Z]	<nage>	A note that the issues around types and encodings that are are unaddressed in JSON-LD and the issues with mapping to proof of possession instead of disclosing the signature that we've talked about in the VCWG are relevant to why we have been helping pursue this approach
+[2018-04-17T16:39:53.260Z]	<manu>	q+ to ask nage or mike-lodder what they think will be implemented? Trying to get to a concrete example that he can wrap his head around.
+[2018-04-17T16:44:35.381Z]	<manu>	ack manu
+[2018-04-17T16:45:01.199Z]	<manu>	q+ to ask nage if our current modifications to Verifiable Presentation helps address "the differences in what goes in a signature"?
+[2018-04-17T16:45:06.097Z]	<DavidC>	Note in Slide 15, the prover is what we call the holder
+[2018-04-17T16:45:48.453Z]	<ChristopherA>	q?
+[2018-04-17T16:45:55.470Z]	<ChristopherA>	ack manu
+[2018-04-17T16:46:01.032Z]	<ChristopherA>	q+
+[2018-04-17T16:47:58.904Z]	<DavidC>	Manu: JanCamenisch, Nathan, are we doing anything in our VCWG work that would block ZKLang from working?
+[2018-04-17T16:48:16.516Z]	<drummond>	I like that term: "verifiable presentation object"
+[2018-04-17T16:48:38.815Z]	<cwebber2>	q+
+[2018-04-17T16:48:59.911Z]	<ChristopherA>	ack ChristopherA
+[2018-04-17T16:49:00.364Z]	<cwebber2>	q+ to ask about getting example proof mockups
+[2018-04-17T16:49:02.839Z]	<cwebber2>	q-
+[2018-04-17T16:49:03.961Z]	<cwebber2>	q-
+[2018-04-17T16:49:06.412Z]	<cwebber2>	q+ to ask about getting example proof mockups
+[2018-04-17T16:49:31.442Z]	<DavidC>	Ans: no, our current approach is facilitating it
+[2018-04-17T16:49:38.650Z]	<kimhd>	when we say "Verifiable Presentation" are we referring to the sort of thing discussed here: https://github.com/w3c/vc-data-model/issues/136
+[2018-04-17T16:49:49.204Z]	<nage>	agreed, that the "proof request" object is an important part of how our protocol works, but has been out of scope for the VC data model
+[2018-04-17T16:50:05.691Z]	<manu>	kimhd, no, nothing to do w/ that issue.
+[2018-04-17T16:50:24.038Z]	<nage>	we talk about the protocol negotiating between an offer->request->offer->request->return the object (for both credentials and proofs)
+[2018-04-17T16:50:27.599Z]	<kimhd>	I can't find anything on "Verifiable Presentation"
+[2018-04-17T16:50:28.171Z]	<manu>	kimhd, What we call "Verifiable Profile" now is going to change to "Verifiable Presentation" per the VCWG F2F discussion.
+[2018-04-17T16:50:29.084Z]	<dlongley>	seeing real examples in JSON-LD (exactly what Verifiable Presentation and Verifiable Credentials could look like with ZKLang) in an issue would be really helpful -- and if there are places where the mapping isn't clear those areas could be marked and others more steeped in the data model stuff could jump in and help
+[2018-04-17T16:50:36.863Z]	<kimhd>	ok
+[2018-04-17T16:50:42.284Z]	<manu>	kimhd, that's because we suck at writing down issues :)
+[2018-04-17T16:51:00.432Z]	<manu>	kimhd, I'm going to raise an issue now... and then do a PR.
+[2018-04-17T16:51:20.104Z]	<ChristopherA>	q?
+[2018-04-17T16:51:22.217Z]	<JanCamenisch>	q+
+[2018-04-17T16:51:32.876Z]	<ChristopherA>	ack cwebber2
+[2018-04-17T16:52:39.673Z]	<DavidC>	@cwebber2 would like more examples to see how this will work in our test suite
+[2018-04-17T16:52:56.201Z]	<kimhd>	+1 absolutely true; yes to examples
+[2018-04-17T16:53:09.424Z]	<Lionel>	q+
+[2018-04-17T16:53:24.296Z]	<manu>	kimhd, nage: https://github.com/w3c/vc-data-model/issues/163
+[2018-04-17T16:53:40.671Z]	<DavidC>	@JanCamenisch said he will do this after they have finished the coding and proved that it all works!
+[2018-04-17T16:53:45.752Z]	<drummond>	q+
+[2018-04-17T16:54:44.403Z]	<ChristopherA>	ack JanCamenisch
+[2018-04-17T16:54:51.870Z]	<ChristopherA>	ack Lionel
+[2018-04-17T16:55:00.430Z]	<drummond>	Yes, it feels to me like zklang is an ideal level of abstraction to enable developers to use ZKP.
+[2018-04-17T16:55:18.003Z]	<DavidC>	@JanCamenisch thinks that the level of ZKLang is about right for this group because it abstracts away all the cryptographic complexities
+[2018-04-17T16:55:44.299Z]	<ChristopherA>	q+
+[2018-04-17T16:56:06.140Z]	<kimhd>	One thing I like about the ZKLang approach is that I can actually envision building tooling to support these types of proofs
+[2018-04-17T16:56:34.933Z]	<drummond>	+1 to Kim's point - you can see how developers can build to this
+[2018-04-17T16:57:18.834Z]	<mike-lodder>	I like to think of those as parameters
+[2018-04-17T16:57:36.990Z]	<mike-lodder>	Which hashes to use, generators, moduli, primitives
+[2018-04-17T16:58:33.794Z]	<ChristopherA>	q?
+[2018-04-17T16:59:03.103Z]	<ChristopherA>	ack drummond
+[2018-04-17T16:59:19.671Z]	<DavidC>	@JamCamenisch all the publick paramters are shared between the holder and verifier, but things like private keys remain with the holder
+[2018-04-17T17:00:28.957Z]	<ChristopherA>	ack christophera
+[2018-04-17T17:00:33.610Z]	<ChristopherA>	q?
+[2018-04-17T17:00:37.891Z]	<ChristopherA>	ack ChristopherA
+[2018-04-17T17:00:52.836Z]	<DavidC>	@JanCamenisch we should have the spec finished by Q3 this year
+[2018-04-17T17:01:07.836Z]	<drummond>	Really excellent presentation, Jan. Great work!
+[2018-04-17T17:01:21.150Z]	<JanCamenisch>	Thanks a lot!
+[2018-04-17T17:01:48.769Z]	<DavidC>	Many thanks to  @JanCamenisch for his presentation
+[2018-04-17T17:02:14.793Z]	<manu>	present+ kam, longley, arnaud, sporny, davidc, vescent, tallted, lionel, lehn, balaz, kimhd, bigbluehat, lodder, nage, yancy, christophera, webber, jarlath, linklater
