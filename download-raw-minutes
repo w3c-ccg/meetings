@@ -50,8 +50,8 @@ else
 	done
 fi
 
-echo "..Downloading minutes for date=$DATE"
-echo "..Auto launch setting=$AUTO_LAUNCH"
+echo "....Downloading minutes for date=$DATE"
+echo "....Auto launch setting=$AUTO_LAUNCH"
 
 
 # Get the editor commands
@@ -61,11 +61,12 @@ echo "..Auto launch setting=$AUTO_LAUNCH"
 mkdir -p $DATE
 
 # Download raw logs and recordings
-echo "..Downloading IRC logs for $DATE..."
+echo "....Downloading IRC logs for $DATE..."
 curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $DATE/irc.log
-echo "..Downloading audio recording for $DATE..."
+echo "....Downloading audio recording for $DATE..."
 curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-audio.wav" > $DATE/audio-raw.wav
 
+echo "Download is finished! To finalize the minutes, clean up the minutes/audio and publish."
 
 if [ "$AUTO_LAUNCH" = true ]; then
   # Edit the IRC log
@@ -76,6 +77,8 @@ if [ "$AUTO_LAUNCH" = true ]; then
 fi
 
 # Print out directions on finalizing minutes
-echo "To finalize the minutes, follow these instructions:"
-echo "   https://github.com/w3c-ccg/w3c-ccg.github.io/blob/master/irc_ref.md#publishing"
+echo "  Instructions for editing minutes and audio:"
+echo "    https://github.com/w3c-ccg/w3c-ccg.github.io/blob/master/irc_ref.md#edit"
+echo "  Instructions for publishing:"
+echo "    https://github.com/w3c-ccg/w3c-ccg.github.io/blob/master/irc_ref.md#publishing"
 
