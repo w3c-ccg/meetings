@@ -1,34 +1,105 @@
 #!/bin/bash
 #
 # Generates minutes for the directory given
+
+#!/bin/sh
+#
+# Fetches the raw minutes for cleanup
+
+# TODO: I passed directory, not date!!
+
+display_usage() { 
+	echo "Publish CCG minutes via email and social media." 
+	echo ""
+	echo "Usage: ./publish [-bh] [-d date]" 
+	echo "  -d [YYYY-MM-DD]     pass date argument"
+    echo "  -b                  broadcast output"
+    echo "  -h                  display help"
+    echo ""
+    echo "Examples:"
+	echo ""
+    echo "  ./publish" 
+    echo "      previews today's dates minutes and audio in preview mode (does not broadcast results)"
+    echo ""
+    echo "  ./publish -d 2018-05-15" 
+    echo "      previews 2018-05-15 minutes and audio in preview mode (does not broadcast results)"
+    echo ""
+    echo "  ./download-raw-minutes -b -d 2018-05-15"
+    echo "      publishes 2018-05-15 minutes and audio in preview mode (broadcasts results)"
+} 
+
+BROADCAST=false
+
+if [ $# -eq 0 ]
+  then
+    echo "No date argument supplied; using current date"
+    DATE=`date +%Y-%m-%d`
+else
+	for i in "$@"
+	do
+	case $i in
+		--)
+	    display_usage
+	    exit 0
+	    ;;
+	    -h|--help)
+	    display_usage
+	    exit 0
+	    ;;
+	    -b|--broadcast)
+	    BROADCAST=true
+	    shift
+	    ;;
+	    -d|--date)
+		shift
+	    DATE=$1
+	    break
+	    ;;
+	esac
+	done
+fi
+
+echo "....Publishing minutes for date=$DATE"
+echo "....Broadcast setting=$BROADCAST"
+
+
 source ../publishing.cfg
 
 echo "Generating minutes and social media posts for $1"
-DATESTR=`echo $1 | cut -f2 -d/`
-MESSAGE="Add text minutes and audio logs for $DATESTR telecon."
+# TODO
+MESSAGE="Add text minutes and audio logs for $DATE telecon."
+
+
+if [ -z "$NODE_COMMAND" ]; then
+    NODE_COMMAND="nodejs"
+    exit 1
+fi 
+echo "Node command: $NODE_COMMAND"
 
 # Generate minutes
-nodejs index.js -d $1 -m -i
-git add $1/irc.log $1/index.html $1/audio.ogg
-git commit $1/irc.log $1/index.html $1/audio.ogg $1/../index.html -m "$MESSAGE"
-git push
-
-# Generate G+ post summary
-#nodejs index.js -d $1 -w
-nodejs index.js -d $1 -g
+$NODE_COMMAND index.js -d $DATE -m -i
 
 # Make sure we want to continue
-read -e -p "Check for problems, press 'y' when ready to tweet/email: " -i "n" BROADCAST
+read -r -p "Check for problems, press 'y' when ready to commit to git, tweet/email: " BROADCAST
+
+echo "Broadcast: $BROADCAST"
 
 if [ "$BROADCAST" != "y" ]
 then
-   echo "Aborting social media broadcast."
+   echo "Aborting git commit and social media broadcast."
    exit
 fi
 
+git add ../$DATE/irc.log ../$DATE/index.html ../$DATE/audio.ogg
+git commit ../$DATE/irc.log ../$DATE/index.html ../$DATE/audio.ogg ../$DATE/../index.html -m "$MESSAGE"
+git push
+
+# Generate G+ post summary
+$NODE_COMMAND index.js -d $1 -w
+
 # Email minutes
-nodejs index.js -d $1 -e
+$NODE_COMMAND index.js -d $1 -e
 
 # Tweet telecon results
-nodejs index.js -d $1 -t 
+$NODE_COMMAND index.js -d $1 -t 
 
