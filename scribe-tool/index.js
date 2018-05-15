@@ -38,6 +38,7 @@ var peopleJson = fs.readFileSync(
 var gLogData = '';
 var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
+console.log('gDate: ' + gDate);
 
 // configure scrawl
 scrawl.group = 'Credentials CG Telecon';
@@ -201,6 +202,12 @@ async.waterfall([ function(callback) {
               return callback(err);
             }
 
+            var isDateDir = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/);
+            if (!isDateDir) {
+              console.log("Skipping processing of " + item);
+              return callback();
+            }
+
             // generate summary items
             var summary = {
               topic: [],
@@ -218,7 +225,7 @@ async.waterfall([ function(callback) {
                 summary.resolution[j].replace(/resolved: /ig, '');
             }
 
-            var date = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/)[1];
+            var date = isDateDir[1];
             summaries[date] = summary;
             callback();
           });
