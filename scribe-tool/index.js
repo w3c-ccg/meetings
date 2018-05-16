@@ -107,7 +107,7 @@ function sendEmail(email, username, password, hostname, content, callback, port=
   if(password.length > 3) {
     connectionOptions.password = password;
   }
-  if (port) {
+  if(port) {
     connectionOptions.port = port;
   }
 
@@ -200,7 +200,7 @@ async.waterfall([ function(callback) {
             }
 
             var dateMatch = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/);
-            if (!dateMatch) {
+            if(!dateMatch) {
               // Skip processing
               return callback();
             }
