@@ -99,10 +99,6 @@ function postToWordpress(username, password, content, callback) {
 function sendEmail(email, username, password, hostname, content, callback, port=null, ssl=false, ) {
   var server = null;
 
-  //    self.host = host || self.host;
-  //  self.port = port || self.port;
-   // self.ssl = options.ssl || self.ssl;
-
   var connectionOptions = {
       user: username,
       host: hostname,
@@ -203,8 +199,8 @@ async.waterfall([ function(callback) {
               return callback(err);
             }
 
-            var isDateDir = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/);
-            if (!isDateDir) {
+            var dateMatch = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/);
+            if (!dateMatch) {
               // Skip processing
               return callback();
             }
@@ -226,7 +222,7 @@ async.waterfall([ function(callback) {
                 summary.resolution[j].replace(/resolved: /ig, '');
             }
 
-            var date = isDateDir[1];
+            var date = dateMatch[1];
             summaries[date] = summary;
             callback();
           });
