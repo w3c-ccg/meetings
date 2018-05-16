@@ -113,11 +113,14 @@ function sendEmail(email, username, password, hostname, content, callback, port=
 
   server = emailjs.server.connect(connectionOptions);
 
+  var toEmail = `Credentials CG <${process.env.SCRAWL_EMAIL_TO_ADDRESS}>`;
+  console.log(toEmail);
+
   // send the message
   server.send({
     text:    content,
     from:    email,
-    to:      `Credentials CG <${process.env.SCRAWL_TO_EMAIL_ADDRESS}>`,
+    to:      toEmail,
     subject: `[MINUTES] W3C Credentials CG Call - ${gDate} 12pm ET`
   }, function(err, message) {
     if(err) {
@@ -126,7 +129,7 @@ function sendEmail(email, username, password, hostname, content, callback, port=
     }
 
     if(!program.quiet) {
-      console.log(`scrawl: Sent minutes email to <${process.env.SCRAWL_TO_EMAIL_ADDRESS}>`);
+      console.log(`scrawl: Sent minutes email to <${process.env.SCRAWL_EMAIL_TO_ADDRESS}>`);
     }
     callback();
   });
@@ -290,10 +293,10 @@ async.waterfall([ function(callback) {
       '----------------------------------------------------------------\n' +
       content;
 
-    if(process.env.SCRAWL_EMAIL && process.env.SCRAWL_EMAIL_USERNAME && 
+    if(process.env.SCRAWL_EMAIL_FROM_ADDRESS && process.env.SCRAWL_EMAIL_USERNAME && 
       process.env.SCRAWL_EMAIL_PASSWORD && process.env.SCRAWL_EMAIL_SERVER) {
       sendEmail(
-        process.env.SCRAWL_EMAIL, 
+        process.env.SCRAWL_EMAIL_FROM_ADDRESS, 
         process.env.SCRAWL_EMAIL_USERNAME, process.env.SCRAWL_EMAIL_PASSWORD,
         process.env.SCRAWL_EMAIL_SERVER, content, callback, process.env.SCRAWL_EMAIL_PORT, process.env.SCRAWL_EMAIL_SSL);
     } else {
