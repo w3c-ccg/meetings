@@ -377,15 +377,19 @@
 
           // try to find the person by full name, last name, and then first name
           for(var i = 0; i < people.length; i++) {
-            var person = people[i].replace(/^\s/, '').replace(/\s$/, '');
-            var lastName = person.split(' ')[1];
-            var firstName = person.split(' ')[0];
-            if(person in aliases) {
-              scrawl.present(context, aliases[person]);
-            } else if(lastName in aliases) {
-              scrawl.present(context, aliases[lastName]);
+            if (!people[i]) {
+              scrawl.present(context, aliases[nick]);
             } else {
-              console.log('Could not find alias for', person);
+              var person = people[i].replace(/^\s/, '').replace(/\s$/, '');
+              var lastName = person.split(' ')[1];
+              var firstName = person.split(' ')[0];
+              if(person in aliases) {
+                scrawl.present(context, aliases[person]);
+              } else if(lastName in aliases) {
+                scrawl.present(context, aliases[lastName]);
+              } else {
+                console.log('Could not find alias for', person);
+              }
             }
           }
        }

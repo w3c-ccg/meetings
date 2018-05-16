@@ -38,7 +38,6 @@ var peopleJson = fs.readFileSync(
 var gLogData = '';
 var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
-console.log('gDate: ' + gDate);
 
 // configure scrawl
 scrawl.group = 'Credentials CG Telecon';
@@ -97,30 +96,33 @@ function postToWordpress(username, password, content, callback) {
   });
 }
 
-function sendEmail(email, username, password, hostname, content, callback) {
+function sendEmail(email, username, password, hostname, content, callback, port=null, ssl=false, ) {
   var server = null;
 
+  //    self.host = host || self.host;
+  //  self.port = port || self.port;
+   // self.ssl = options.ssl || self.ssl;
+
+  var connectionOptions = {
+      user: username,
+      host: hostname,
+      ssl: ssl
+  };
   if(password.length > 3) {
-    server = emailjs.server.connect({
-      user: username,
-      password: password,
-      host: hostname,
-      ssl: false
-    });
-  } else {
-    server = emailjs.server.connect({
-      user: username,
-      host: hostname,
-      ssl: false
-    });
+    connectionOptions.password = password;
   }
+  if (port) {
+    connectionOptions.port = port;
+  }
+
+  server = emailjs.server.connect(connectionOptions);
 
   // send the message
   server.send({
     text:    content,
     from:    email,
-    to:      'Credentials CG <public-credentials@w3.org>',
-    subject: '[MINUTES] W3C Credentials CG Call - ' + gDate + ' 12pm ET'
+    to:      `Credentials CG <${process.env.SCRAWL_TO_EMAIL_ADDRESS}>`,
+    subject: `[MINUTES] W3C Credentials CG Call - ${gDate} 12pm ET`
   }, function(err, message) {
     if(err) {
       console.log('scrawl:', err);
@@ -128,7 +130,7 @@ function sendEmail(email, username, password, hostname, content, callback) {
     }
 
     if(!program.quiet) {
-      console.log('scrawl: Sent minutes email to public-credentials@w3.org');
+      console.log(`scrawl: Sent minutes email to <${process.env.SCRAWL_TO_EMAIL_ADDRESS}>`);
     }
     callback();
   });
@@ -142,8 +144,7 @@ async.waterfall([ function(callback) {
     if(exists) {
       callback();
     } else {
-      callback('Error: ' + logFile +
-        ' does not exist, required for processing.');
+      callback(`Error: ${logFile} does not exist, required for processing.`);
     }
   });
 }, function(callback) {
@@ -204,7 +205,7 @@ async.waterfall([ function(callback) {
 
             var isDateDir = item.match(/([0-9]{4}-[0-9]{2}-[0-9]{2}-?[^\/]*)/);
             if (!isDateDir) {
-              console.log("Skipping processing of " + item);
+              // Skip processing
               return callback();
             }
 
@@ -298,7 +299,7 @@ async.waterfall([ function(callback) {
       sendEmail(
         process.env.SCRAWL_EMAIL, 
         process.env.SCRAWL_EMAIL_USERNAME, process.env.SCRAWL_EMAIL_PASSWORD,
-        process.env.SCRAWL_EMAIL_SERVER, content, callback);
+        process.env.SCRAWL_EMAIL_SERVER, content, callback, process.env.SCRAWL_EMAIL_PORT, process.env.SCRAWL_EMAIL_SSL);
     } else {
       var prompt = require('prompt');
       prompt.start();
