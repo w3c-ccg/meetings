@@ -6,34 +6,24 @@
 #
 # Fetches the raw minutes for cleanup
 
-# TODO: I passed directory, not date!!
-
 display_usage() { 
 	echo "Publish CCG minutes via email and social media." 
 	echo ""
-	echo "Usage: ./publish [-bh] [-d date]" 
-	echo "  -d [YYYY-MM-DD]     pass date argument"
-    echo "  -b                  broadcast output"
-    echo "  -h                  display help"
+	echo "Usage: ./publish [-h] [-d directory]" 
+	echo "  -d [/path/to/YYYY-MM-DD]     pass directory"
+    echo "  -h                           display help"
     echo ""
     echo "Examples:"
 	echo ""
-    echo "  ./publish" 
-    echo "      previews today's dates minutes and audio in preview mode (does not broadcast results)"
-    echo ""
-    echo "  ./publish -d 2018-05-15" 
+    echo "  ./publish -d /path/to/w3c-ccg-meeting/2018-05-15" 
     echo "      previews 2018-05-15 minutes and audio in preview mode (does not broadcast results)"
     echo ""
-    echo "  ./download-raw-minutes -b -d 2018-05-15"
-    echo "      publishes 2018-05-15 minutes and audio in preview mode (broadcasts results)"
 } 
-
-BROADCAST=false
 
 if [ $# -eq 0 ]
   then
-    echo "No date argument supplied; using current date"
-    DATE=`date +%Y-%m-%d`
+    display_usage
+    exit 1
 else
 	for i in "$@"
 	do
@@ -46,38 +36,36 @@ else
 	    display_usage
 	    exit 0
 	    ;;
-	    -b|--broadcast)
-	    BROADCAST=true
-	    shift
-	    ;;
-	    -d|--date)
+	    -d|--directory)
 		shift
-	    DATE=$1
+	    DIRECTORY=$1
 	    break
 	    ;;
 	esac
 	done
 fi
 
-echo "....Publishing minutes for date=$DATE"
-echo "....Broadcast setting=$BROADCAST"
+echo "....Publishing minutes for directory=$DIRECTORY"
 
+DATE="$(basename $DIRECTORY)"
 
 source ../publishing.cfg
 
-echo "Generating minutes and social media posts for $1"
-# TODO
+echo "Generating minutes and social media posts for $DATE"
 MESSAGE="Add text minutes and audio logs for $DATE telecon."
 
-
+# Add default values for missing env vars
 if [ -z "$NODE_COMMAND" ]; then
     NODE_COMMAND="nodejs"
-    exit 1
 fi 
-echo "Node command: $NODE_COMMAND"
+
+if [ -z "$SCRAWL_TO_EMAIL_ADDRESS" ]; then
+    SCRAWL_TO_EMAIL_ADDRESS="public-credentials@w3.org"
+fi 
+
 
 # Generate minutes
-$NODE_COMMAND index.js -d $DATE -m -i
+$NODE_COMMAND index.js -d $DIRECTORY -m -i
 
 # Make sure we want to continue
 read -r -p "Check for problems, press 'y' when ready to commit to git, tweet/email: " BROADCAST
@@ -90,16 +78,16 @@ then
    exit
 fi
 
-git add ../$DATE/irc.log ../$DATE/index.html ../$DATE/audio.ogg
-git commit ../$DATE/irc.log ../$DATE/index.html ../$DATE/audio.ogg ../$DATE/../index.html -m "$MESSAGE"
+git add $DIRECTORY/irc.log $DIRECTORY/index.html $DIRECTORY/audio.ogg
+git commit $DIRECTORY/irc.log $DIRECTORY/index.html $DIRECTORY/audio.ogg $DIRECTORY/../index.html -m "$MESSAGE"
 git push
 
 # Generate G+ post summary
-$NODE_COMMAND index.js -d $1 -w
+# $NODE_COMMAND index.js -d $1 -w
 
 # Email minutes
-$NODE_COMMAND index.js -d $1 -e
+$NODE_COMMAND index.js -d $DIRECTORY -e
 
 # Tweet telecon results
-$NODE_COMMAND index.js -d $1 -t 
+$NODE_COMMAND index.js -d $DIRECTORY -t 
 
