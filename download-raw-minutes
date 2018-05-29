@@ -2,57 +2,56 @@
 #
 # Fetches the raw minutes for cleanup
 
-display_usage() { 
-	echo "Downloads raw minutes and audio for CCG group meetings." 
+display_usage() {
+	echo "Downloads raw minutes and audio for CCG group meetings."
 	echo ""
-	echo "Usage: ./download-raw-minutes [-lh] [-d date]" 
+	echo "Usage: ./download-raw-minutes [-lh] [-d date]"
 	echo "  -d [YYYY-MM-DD]     pass date argument"
     echo "  -l                  launch audio and video editors programmatically"
     echo "  -h                  display help"
     echo ""
     echo "Examples:"
 	echo ""
-    echo "  ./download-raw-minutes" 
+    echo "  ./download-raw-minutes"
     echo "      downloads raw minutes and audio for the current date"
     echo ""
     echo "  ./download-raw-minutes -d 2018-05-15"
     echo "      downloads raw minutes and audio for 15 May 2018"
-} 
+}
 AUTO_LAUNCH=false
 CREATE_DIRECTORY=true
 
-if [ $# -eq 0 ]
-  then
-    echo "No date argument supplied; using current date"
-    DATE=`date +%Y-%m-%d`
-else
-	for i in "$@"
-	do
-	case $i in
-		--)
-	    display_usage
-	    exit 0
-	    ;;
-	    -h|--help)
-	    display_usage
-	    exit 0
-	    ;;
-	    -l|--autolaunch)
-	    AUTO_LAUNCH=true
-	    shift
-	    ;;
-	    -d|--date)
-		shift
-	    DATE=$1
-	    break
-	    ;;
-	esac
-	done
+for i in "$@"
+do
+case $i in
+	--)
+    display_usage
+    exit 0
+    ;;
+    -h|--help)
+    display_usage
+    exit 0
+    ;;
+    -l|--autolaunch)
+    AUTO_LAUNCH=true
+    shift
+    ;;
+    -d|--date)
+	shift
+    DATE=$1
+    break
+    ;;
+esac
+done
+
+# Guess
+if [ -z "$DATE" ]; then
+  DATE=`date +%Y-%m-%d`
+  echo "No date argument supplied; using $DATE"
 fi
 
 echo "....Downloading minutes for date=$DATE"
 echo "....Auto launch setting=$AUTO_LAUNCH"
-
 
 # Get the editor commands
 . ./publishing.cfg
