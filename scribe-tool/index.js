@@ -213,16 +213,24 @@ async.waterfall([ function(callback) {
               topic: [],
               resolution: []
             };
-            summary.topic = data.match(/topic: (.*)/ig);
-            summary.resolution = data.match(/resolved: (.*)/ig);
+            var topicMatch = data.match(/topic: (.*)/ig);
 
-            // strip extraneous information
-            for(var i in summary.topic) {
-              summary.topic[i] = summary.topic[i].replace(/topic: /ig, '');
+            if (topicMatch) {
+              summary.topic = topicMatch;
+
+              // strip extraneous information
+              for(var i in summary.topic) {
+                summary.topic[i] = summary.topic[i].replace(/topic: /ig, '');
+              }
             }
-            for(var j in summary.resolution) {
-              summary.resolution[j] =
-                summary.resolution[j].replace(/resolved: /ig, '');
+
+            var resolutionMatch = data.match(/resolved: (.*)/ig);
+            if (resolutionMatch) {
+              summary.resolution = resolutionMatch;
+              for(var j in summary.resolution) {
+                summary.resolution[j] =
+                  summary.resolution[j].replace(/resolved: /ig, '');
+              }
             }
 
             var date = dateMatch[1];
@@ -245,7 +253,7 @@ async.waterfall([ function(callback) {
         var key = summaryKeys[k];
         var summary = results.buildSummaries[key];
         summaryHtml += '<h3><a href="' + key + '/">Meeting for ' + key + '</a></h3>\n';
-        if(summary.topic.length > 0) {
+        if(summary.topic && summary.topic.length > 0) {
           summaryHtml += '<h4>Topics</h4><ol>\n';
           for(var t in summary.topic) {
             var tcounter = parseInt(t) + 1;
