@@ -102,7 +102,8 @@ function sendEmail(email, username, password, hostname, content, callback, port=
   var connectionOptions = {
       user: username,
       host: hostname,
-      ssl: ssl
+      ssl: ssl,
+      tls: tls
   };
   if(password.length > 3) {
     connectionOptions.password = password;
@@ -306,7 +307,7 @@ async.waterfall([ function(callback) {
       sendEmail(
         process.env.SCRAWL_EMAIL_FROM_ADDRESS, 
         process.env.SCRAWL_EMAIL_USERNAME, process.env.SCRAWL_EMAIL_PASSWORD,
-        process.env.SCRAWL_EMAIL_SERVER, content, callback, process.env.SCRAWL_EMAIL_PORT, process.env.SCRAWL_EMAIL_SSL);
+        process.env.SCRAWL_EMAIL_SERVER, content, callback, process.env.SCRAWL_EMAIL_PORT, process.env.SCRAWL_EMAIL_SSL, process.env.SCRAWL_EMAIL_TLS);
     } else {
       var prompt = require('prompt');
       prompt.start();
