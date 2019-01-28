@@ -96,7 +96,7 @@ function postToWordpress(username, password, content, callback) {
   });
 }
 
-function sendEmail(email, username, password, hostname, content, callback, port=null, ssl=false, ) {
+function sendEmail(email, username, password, hostname, content, callback, port=null, ssl=false, tls=false) {
   var server = null;
 
   var connectionOptions = {
