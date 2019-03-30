@@ -1,0 +1,149 @@
+[2019-03-28T21:01:56.557Z]	<rhiaro>	meeting: DID Resolution call
+[2019-03-28T21:04:44.004Z]	<drummond>	Yes, Amy, I'm happy to start scribing. THANK YOU!
+[2019-03-28T21:04:49.382Z]	<rhiaro>	scribenick: drummond
+[2019-03-28T21:06:46.152Z]	<drummond>	We began the second meeting on DID Resolution, chaired by Markus Sabadello
+[2019-03-28T21:06:52.218Z]	<drummond>	Drummond will scribe
+[2019-03-28T21:07:31.672Z]	<drummond>	markus_sabadello: Introduced the call and the agenda
+[2019-03-28T21:08:02.383Z]	<drummond>	The meeting page with the agenda: https://docs.google.com/document/d/1BKbwWCS9ZT1Aawxv2YVvGUUOv9WfPqMK9MiWh1s9dLo/
+[2019-03-28T21:08:55.180Z]	<drummond>	Markus began by talking about what was covered in the last call—the differences between DID resolution and dereferencing.
+[2019-03-28T21:09:23.616Z]	<drummond>	...so DID Resolution defines the operations, inputs, and outputs of the resolution process
+[2019-03-28T21:09:45.857Z]	<drummond>	...he begin by showing three examples of how resolvers have already been implemented
+[2019-03-28T21:10:03.630Z]	<drummond>	...the first one was the DIF Universal Resolver
+[2019-03-28T21:10:06.308Z]	<jonathan_holt>	q+
+[2019-03-28T21:10:23.407Z]	<drummond>	...the second was the uport-project/eth-did-resolver
+[2019-03-28T21:10:46.678Z]	<drummond>	...the third was indy-sdk/docs/design/
+[2019-03-28T21:11:10.643Z]	<drummond>	...the fourth was Digital Bazaar's resolver
+[2019-03-28T21:11:35.212Z]	<markus_sabadello>	q?
+[2019-03-28T21:11:39.101Z]	<markus_sabadello>	ack jonathan_holt
+[2019-03-28T21:12:07.665Z]	<drummond>	jonathan_holt: asked whether there are any issues with the encoding of the DID URL
+[2019-03-28T21:13:24.766Z]	<drummond>	markus_sabedello: Those depend on the specific binding of the DID Resolution spec. Each implements the same abstract resolution function, but has its own specific rules about identifier encoding.
+[2019-03-28T21:14:08.358Z]	<drummond>	...for example, an HTTP(S) binding would have one set of encoding rules, whereas a local library may have a different set of encoding rules
+[2019-03-28T21:14:59.661Z]	<drummond>	jonathan_holt: IPFS has an encoding that should work across multiple implementations
+[2019-03-28T21:15:37.325Z]	<drummond>	...asked if base 58 was okay or only base 32?
+[2019-03-28T21:16:02.392Z]	<drummond>	dmitri: He believes its base 58
+[2019-03-28T21:16:41.538Z]	<drummond>	jonathan_holt: there are multiple encodings required by different identifier schemes, e.g., URN vs. URL vs. URI
+[2019-03-28T21:18:10.610Z]	<drummond>	markus_sabadello: Always thinks about it as two layers—the abstract syntax, including the DID method-specific syntax, and then the DID resolver binding syntax, such as an HTTP(S) binding or a local library binding
+[2019-03-28T21:18:32.901Z]	<markus_sabadello>	q?
+[2019-03-28T21:19:38.195Z]	<drummond>	markus_sabadello: The next topic was to review different DID URLs and clarify the outcome of the dereferencing process
+[2019-03-28T21:19:59.645Z]	<JoeAndrieu>	1+
+[2019-03-28T21:20:02.007Z]	<JoeAndrieu>	q+
+[2019-03-28T21:20:37.811Z]	<markus_sabadello>	ack JoeAndrieu
+[2019-03-28T21:21:02.634Z]	<burn>	q+ to ask whether dereferencing (interaction) other than a fetch is possible
+[2019-03-28T21:21:37.949Z]	<drummond>	JoeAndrieu: pointed out that fragment resolution is done after the user agent does the initial resolution
+[2019-03-28T21:22:23.869Z]	<drummond>	markus_sabadello: was not sure that it mattered with the final output
+[2019-03-28T21:23:00.560Z]	<burn>	All fragment processing is done by local client
+[2019-03-28T21:23:15.322Z]	<markus_sabadello>	ack burn
+[2019-03-28T21:23:15.366Z]	<Zakim>	burn, you wanted to ask whether dereferencing (interaction) other than a fetch is possible
+[2019-03-28T21:23:26.086Z]	<drummond>	JoeAndrieu: the resource that is retrieved is different than the resource addressed by a fragment
+[2019-03-28T21:23:52.182Z]	<drummond>	burn: the fragment is stripped off before resolution, then applied after resolution
+[2019-03-28T21:24:04.266Z]	<jonathan_holt>	q+
+[2019-03-28T21:24:23.337Z]	<drummond>	...also, is retrieval the only action that can be taken?
+[2019-03-28T21:24:52.637Z]	<markus_sabadello>	ack jonathan_holt
+[2019-03-28T21:25:01.634Z]	<JoeAndrieu>	q+ to ask for service-based examples
+[2019-03-28T21:25:14.373Z]	<drummond>	markus_sabadello: resolution to a DID document is just obtaining the metadata, not deferencing. And other operations are possible.
+[2019-03-28T21:25:39.905Z]	<markus_sabadello>	ack JoeAndrieu
+[2019-03-28T21:25:39.942Z]	<Zakim>	JoeAndrieu, you wanted to ask for service-based examples
+[2019-03-28T21:25:53.441Z]	<drummond>	jonathan_holt: there are definitely other operations supported by systems like IPFS
+[2019-03-28T21:26:16.816Z]	<drummond>	JoeAndrieu: asked about path and query when you have a service endpoint?
+[2019-03-28T21:27:07.778Z]	<drummond>	markus_sabadello: the addition of a service name would address a service endpoint - and that would be the output
+[2019-03-28T21:27:57.839Z]	<drummond>	...he asked about the difference between a URI without a fragment and with a fragment
+[2019-03-28T21:27:59.543Z]	<drummond>	q+
+[2019-03-28T21:28:23.136Z]	<markus_sabadello>	ack drummond
+[2019-03-28T21:29:17.844Z]	<yancy>	q
+[2019-03-28T21:29:30.734Z]	<burn>	q+
+[2019-03-28T21:30:16.346Z]	<markus_sabadello>	ack burn
+[2019-03-28T21:30:19.242Z]	<drummond>	jonathan_holt: with a fragment, the dereferencing of a fragment should be done locally
+[2019-03-28T21:30:41.229Z]	<drummond>	burn: agrees with the answer - the process of fragment resolution occurs locally
+[2019-03-28T21:30:44.055Z]	<drummond>	q+
+[2019-03-28T21:31:17.140Z]	<chrisboscolo>	q+
+[2019-03-28T21:31:25.857Z]	<markus_sabadello>	ack drummond
+[2019-03-28T21:31:26.990Z]	<JoeAndrieu>	q+ to talk about fragments in the presence of service part
+[2019-03-28T21:32:28.665Z]	<yancy>	q
+[2019-03-28T21:32:31.016Z]	<burn>	RFC 3986, section 3.5:  "the fragment identifier is not used in the scheme-specific    processing of a URI; instead, the fragment identifier is separated    from the rest of the URI prior to a dereference, and thus the    identifying information within the fragment itself is dereferenced    solely by the user agent, regardless of the URI scheme."
+[2019-03-28T21:32:36.472Z]	<yancy>	q+
+[2019-03-28T21:33:47.338Z]	<drummond>	drummond pointed out the difference between using a fragment or using a syntax such as Michael Herman has suggested which uses a parameter passed in
+[2019-03-28T21:34:46.662Z]	<drummond>	markus_sabadello: two options for resolution: parameter based in a URL, or a parameter passed to a resolver API
+[2019-03-28T21:34:59.301Z]	<markus_sabadello>	q?
+[2019-03-28T21:35:05.730Z]	<markus_sabadello>	ack chrisboscolo
+[2019-03-28T21:35:18.928Z]	<drummond>	...this is similar to supporting URL-based parameters or HTTP header based parameters
+[2019-03-28T21:35:49.399Z]	<drummond>	chrisboscolo: to what extent do we need to follow the RFC 3986 specification?
+[2019-03-28T21:36:16.659Z]	<drummond>	...are we creating something that is hard for developers to implement securely?
+[2019-03-28T21:36:33.978Z]	<drummond>	...can we "tighten our desires a bit" to end out with a secure protocol?
+[2019-03-28T21:36:52.899Z]	<markus_sabadello>	a?
+[2019-03-28T21:36:54.270Z]	<markus_sabadello>	q,
+[2019-03-28T21:36:54.952Z]	<markus_sabadello>	q?
+[2019-03-28T21:36:56.002Z]	<drummond>	markus_sabadello: we are still at the discussion stage
+[2019-03-28T21:36:59.750Z]	<markus_sabadello>	ack JoeAndrieu
+[2019-03-28T21:36:59.787Z]	<Zakim>	JoeAndrieu, you wanted to talk about fragments in the presence of service part
+[2019-03-28T21:37:36.633Z]	<jonathan_holt>	q+
+[2019-03-28T21:37:39.972Z]	<drummond>	JoeAndrieu: Markus' examples don't yet show a fragment on a service endpoint
+[2019-03-28T21:38:15.194Z]	<drummond>	...the fragment should always be kept client-side
+[2019-03-28T21:38:19.203Z]	<ken>	q+
+[2019-03-28T21:38:40.735Z]	<drummond>	...RE syntax—it's hard to send secondary parameters within an anchor tag in HTML
+[2019-03-28T21:39:26.062Z]	<drummond>	...also, the current content referencing proposal does not need path and query syntax
+[2019-03-28T21:39:47.986Z]	<drummond>	...a query term could operate directly in the DID document
+[2019-03-28T21:39:49.904Z]	<drummond>	q+
+[2019-03-28T21:40:02.181Z]	<markus_sabadello>	ack yancy
+[2019-03-28T21:40:46.022Z]	<yancy>	one sec
+[2019-03-28T21:41:15.542Z]	<markus_sabadello>	q?
+[2019-03-28T21:41:29.822Z]	<markus_sabadello>	ack jonathan_holt
+[2019-03-28T21:41:55.093Z]	<drummond>	jonathan_holt: RE querying for the version of a DID document, that adds a lot of power to the resolver and thus could raise security issues
+[2019-03-28T21:42:16.533Z]	<drummond>	markus_sabadello: such an operation might be method-specific
+[2019-03-28T21:42:30.613Z]	<drummond>	...some DLTs could retrieve all earlier versions
+[2019-03-28T21:43:06.709Z]	<markus_sabadello>	ack yancy
+[2019-03-28T21:43:08.072Z]	<drummond>	jonathan_holt: yes, it can be done
+[2019-03-28T21:43:45.827Z]	<drummond>	yancy: everything in Markus' examples can be done client-side. The only thing that resolution needs to return is a service endpoint URI.
+[2019-03-28T21:43:54.803Z]	<drummond>	...so why are all these other operations needed?
+[2019-03-28T21:44:33.237Z]	<drummond>	...he has been thinking of it more like a DNS-style protocol. So an initial impelmentation could focus on staying that simple.
+[2019-03-28T21:44:43.689Z]	<JoeAndrieu>	+1 for resolution means returning the DID Document
+[2019-03-28T21:45:23.472Z]	<drummond>	markus_sabadello: feels there can be many different architectures that can perform different levels of resolution and dereferencing capabilities
+[2019-03-28T21:45:25.251Z]	<JoeAndrieu>	q+
+[2019-03-28T21:45:43.757Z]	<drummond>	yancy: could resolution return just an IP address
+[2019-03-28T21:46:23.703Z]	<drummond>	...the resolution process could return any kind of address inside the DID document
+[2019-03-28T21:47:22.670Z]	<drummond>	markus_sabadello: all the different examples allow a developer to choose what the resolver returns. These examples support a relatively "rich" resolver.
+[2019-03-28T21:47:45.185Z]	<markus_sabadello>	q?
+[2019-03-28T21:47:49.470Z]	<markus_sabadello>	ack ken
+[2019-03-28T21:48:24.155Z]	<drummond>	ken: One of the advantages to putting the content reference in the authority part of the DID URL is so that the resolver could help with content retreival.
+[2019-03-28T21:48:50.830Z]	<drummond>	yancy: he was just questioning whether that resolution should happen server-side or client-side
+[2019-03-28T21:49:26.535Z]	<drummond>	markus_sabadello: suggests that next week's call focus on the different configurations and deployment scenarios about what components are implemented where.
+[2019-03-28T21:49:49.997Z]	<drummond>	...calling a cloud service for resolution is different than calling a local Indy SDK library
+[2019-03-28T21:50:18.921Z]	<markus_sabadello>	q?
+[2019-03-28T21:50:22.100Z]	<drummond>	...some aspects of those different resolution scenarios are different and some must be the same to be standard.
+[2019-03-28T21:51:03.612Z]	<Justin_R>	q+ on DNS analogy
+[2019-03-28T21:51:06.737Z]	<markus_sabadello>	q?
+[2019-03-28T21:51:10.803Z]	<drummond>	...it's a little like dereferencing an HTTP URI—the process of resolving it may use different types of DNS resolution: local, server-side
+[2019-03-28T21:51:15.332Z]	<markus_sabadello>	ack drummond
+[2019-03-28T21:51:35.854Z]	<markus_sabadello>	ack JoeAndrieu
+[2019-03-28T21:52:37.299Z]	<drummond>	JoeAndrieu: wants to put on the table a "radical rescoping" to eliminate dereferencing, i.e., just keeping it to resolution.
+[2019-03-28T21:52:48.295Z]	<drummond>	q+ to talk about 3 levels of scope
+[2019-03-28T21:53:00.971Z]	<markus_sabadello>	ack Justin_R
+[2019-03-28T21:53:01.008Z]	<Zakim>	Justin_R, you wanted to comment on DNS analogy
+[2019-03-28T21:53:03.078Z]	<drummond>	...that would be simpler
+[2019-03-28T21:53:45.042Z]	<drummond>	Justin_R: RE the DNS analogy, it's important to differentiate between those portions of a URI are passed to a remote host and what parts are kept locally.
+[2019-03-28T21:53:57.524Z]	<drummond>	...much like we do with HTTP URLs today
+[2019-03-28T21:54:15.487Z]	<chrisboscolo>	what is the "remote host" in the context of looking up something on a blockchain?
+[2019-03-28T21:54:36.140Z]	<markus_sabadello>	q?
+[2019-03-28T21:54:48.121Z]	<drummond>	...another important difference with DNS is that all DNS names resolve with the same method, because with DID resolution, the actual protocol varies with every DID method
+[2019-03-28T21:55:05.851Z]	<drummond>	...each DID method involves its own client for that method
+[2019-03-28T21:55:07.649Z]	<chrisboscolo>	thx!
+[2019-03-28T21:55:19.418Z]	<markus_sabadello>	ack drummond
+[2019-03-28T21:55:19.453Z]	<Zakim>	drummond, you wanted to talk about 3 levels of scope
+[2019-03-28T21:56:39.053Z]	<chrisboscolo>	tiy have dev street cred, Drummond!
+[2019-03-28T21:56:51.436Z]	<chrisboscolo>	tiy->"you"
+[2019-03-28T21:58:33.868Z]	<markus_sabadello>	q?
+[2019-03-28T21:59:14.857Z]	<yancy>	+1 for the resolver not doing a secondary lookup
+[2019-03-28T21:59:26.866Z]	<drummond>	drummond: three scopes of resolution: 1) just DID document, 2) "internal" deref only, meaning to return a secondary resource from the DID document, 3) external dereferencing based on a service reference
+[2019-03-28T22:00:47.468Z]	<drummond>	...in #2 he includes resolving content references and transforming service references into concrete URLs
+[2019-03-28T22:01:00.914Z]	<markus_sabadello>	q?
+[2019-03-28T22:01:13.883Z]	<chrisboscolo>	is this "303" behavior that markus is describing method specific?
+[2019-03-28T22:01:31.154Z]	<Justin_R>	gotta drop, thanks all
+[2019-03-28T22:02:02.537Z]	<drummond>	markus_sabadello: used an analogy from the HTTP world of a 303 return code - it is similar to returning a service endpoint
+[2019-03-28T22:02:15.168Z]	<drummond>	...any specific suggestions for next week's call
+[2019-03-28T22:03:32.494Z]	<drummond>	chrisboscolo: RE the 303 question: if you do a resolution of a DID gets you back another DID, and the second DID is of a different method, it would be nice if all methods had a standard way of handling that
+[2019-03-28T22:03:48.240Z]	<drummond>	...could we make that universal?
+[2019-03-28T22:03:57.814Z]	<markus_sabadello>	https://github.com/w3c-ccg/did-resolution/issues/7
+[2019-03-28T22:04:01.466Z]	<drummond>	... in other words, could one DID "redirect" to another
+[2019-03-28T22:04:17.928Z]	<markus_sabadello>	q?
+[2019-03-28T22:04:19.293Z]	<drummond>	...Markus referenced that above
+[2019-03-28T22:05:42.604Z]	<yancy>	thanks
+[2019-03-28T22:05:51.902Z]	<drummond>	Suggestion for the next call: diagrams about the resolution scope as suggested (DID document, internal deref, external deref)
