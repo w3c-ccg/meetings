@@ -1,0 +1,439 @@
+[2019-04-11T20:07:24.091Z]	<ken>	present+ Ken_Ebert
+[2019-04-11T20:07:30.042Z]	<manu>	Meeting: DID Specification call
+[2019-04-11T20:08:11.339Z]	<dlongley>	manu: I'd like to review those PRs and they are stuck waiting for review. I'd like to see if they can get unstuck and into the spec. I hope we can have a quick discussion but if it turns into a longer one we can say it's stuck until resolved and move on.
+[2019-04-11T20:08:21.580Z]	<dlongley>	manu: If we do that first thing then I can scribe after that.
+[2019-04-11T20:08:34.895Z]	<dlongley>	drummond: I'm totally fine with that.
+[2019-04-11T20:08:48.829Z]	<dlongley>	drummond: Markus has a few new slides that are good for getting us on the same page for resolution.
+[2019-04-11T20:08:56.657Z]	<burn>	present+
+[2019-04-11T20:09:19.182Z]	<dlongley>	drummond: What we discussed last week is see if we can drive to consensus on the syntax stuff and then it's just issues. I spent the last hour categorizing, etc. I was looking at non-editorial issues.
+[2019-04-11T20:09:27.102Z]	<dlongley>	drummond: Stuck a few editorial ones there in the Google Doc.
+[2019-04-11T20:09:36.118Z]	<dlongley>	drummond: I love the suggestion to knock out whatever we've got that we can act on.
+[2019-04-11T20:09:39.696Z]	<dlongley>	drummond: Any other agenda thoughts?
+[2019-04-11T20:09:41.993Z]	<manu>	present+
+[2019-04-11T20:10:26.080Z]	<dlongley>	jonathan: The signature proofs in the DID document, which is a claim I guess or a credential, it's a matter of where that is as a priority. It may segue nicely from the CR exit candidate in the VCWG into deliverables or processes we have to figure through in the DID spec.
+[2019-04-11T20:10:29.430Z]	<manu>	q+ to note that at present, to my knowledge, there are no proofs in the DID spec...
+[2019-04-11T20:10:33.172Z]	<dlongley>	drummond: Is there an issue fieled on that?
+[2019-04-11T20:10:52.662Z]	<dlongley>	jonathan: Just something to talk through, no issue. But a natural segue in my mind.
+[2019-04-11T20:10:53.513Z]	<manu>	q-
+[2019-04-11T20:10:56.779Z]	<dlongley>	s/fieled/filed
+[2019-04-11T20:11:34.281Z]	<dlongley>	drummond: Anything else for the agenda?
+[2019-04-11T20:12:01.621Z]	<dlongley>	drummond: To clarify again, we've combined the two calls so we have one two hour block, we'll be going through the whole agenda, whether it's DID spec or DID resolution, but we're prioritizing the DID spec because we want to finish a CG final draft this month.
+[2019-04-11T20:12:33.336Z]	<dlongley>	drummond: I know there's a call next week but it appears things are moving.
+[2019-04-11T20:12:46.419Z]	<dlongley>	manu: Good progress happening.
+[2019-04-11T20:12:58.707Z]	<dlongley>	drummond: Manu, over to you.
+[2019-04-11T20:13:03.899Z]	<dlongley>	manu: I'll just share issues in the IRC chat.
+[2019-04-11T20:13:09.179Z]	<dlongley>	present+
+[2019-04-11T20:13:21.673Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/179
+[2019-04-11T20:13:23.918Z]	<drummond>	present+
+[2019-04-11T20:13:26.169Z]	<dlongley>	manu: I'm just going to cover the ones that are a bit stuck right now.
+[2019-04-11T20:13:32.800Z]	<dmitriz1>	present+
+[2019-04-11T20:13:39.378Z]	<markus_sabadello>	q+
+[2019-04-11T20:13:47.066Z]	<dlongley>	manu: This got quite a bit of discussion. I think with concern from Markus.
+[2019-04-11T20:13:59.452Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/179/files
+[2019-04-11T20:14:01.708Z]	<dlongley>	manu: Some concern from Christopher and maybe Drummond. This is the whole big tent discussion.
+[2019-04-11T20:14:37.217Z]	<dlongley>	manu: The change is DIDs are highly available and cryptographically verifiable and *additionally* if you use DHT/DLT then they are better decentralized.
+[2019-04-11T20:14:50.303Z]	<dmitriz1>	(facebook is certainly highly available : )
+[2019-04-11T20:15:16.351Z]	<dlongley>	manu: So there's concern around that. The thrust of what I'm trying to do is to open the tent up and bring in Solid and Inrupt and things like that -- where they want to do decentralized things but are building from the Web. While we said the `http` method isn't something we want to do, maybe we want to do DID method `web`.
+[2019-04-11T20:15:44.329Z]	<burn>	q+ to warn away from 'replacing the web'
+[2019-04-11T20:15:44.910Z]	<jonathan_holt>	q+,  not all DID resolve. ie peer
+[2019-04-11T20:15:47.905Z]	<dlongley>	manu: This is a philosophical disagreement over what the spec is and what's appropriate/inappropriate. This is a modification to the abstract to weaken the language a bit to allow us to work with orgs like Solid/Inrupt, etc.
+[2019-04-11T20:15:54.018Z]	<markus_sabadello>	q?
+[2019-04-11T20:15:59.977Z]	<markus_sabadello>	ack markus_sabadello
+[2019-04-11T20:16:19.519Z]	<drummond>	q+
+[2019-04-11T20:16:42.233Z]	<dlongley>	markus_sabadello: I've made my point on the github thread and one of the recent calls. My concern is that those identifiers that would be allowed after that change, whether they be domains or facebook user names. They aren't decentralized, they aren't self-sovereign. We talk about Zooko's triangle and these things are decentralized. We'd be calling things DIDs that aren't decentralized.
+[2019-04-11T20:17:14.973Z]	<dlongley>	markus_sabadello: I think that's also an essential difference between user-centric and self-sovereign. That's it. I understand the technical motivations and a desire for interop, etc.
+[2019-04-11T20:18:13.165Z]	<dlongley>	markus_sabadello: The only argument I heard that I understand a little bit from Joe Andrieu is that ... we could argue that the DID URL scheme as a whole would still be decentralized because you can argue to use which method you want. This would be a big change from how we use DIDs so far, but I could understand a little bit. If you don't want to use a facebook DID you can use Sovrin or Veres One. So the whole space decentralized though individual methods
+[2019-04-11T20:18:13.243Z]	<dlongley>	might not be.
+[2019-04-11T20:18:48.505Z]	<dlongley>	markus_sabadello: To be compatible with the Web ... I don't know, Web-based doesn't mean DNS based and IDs can work without that even with Solid, etc. If people think a big tent is a good idea I will not oppose it.
+[2019-04-11T20:19:02.875Z]	<drummond>	q?
+[2019-04-11T20:19:04.770Z]	<manu>	q+ to attempt to address markus' concerns with more explanatory text in the spec.
+[2019-04-11T20:19:07.986Z]	<drummond>	ack burn
+[2019-04-11T20:19:35.303Z]	<manu>	burn: Any time I've talked about DIDs, folks are concerned about replacing DNS, replacign the Web.
+[2019-04-11T20:19:54.624Z]	<dlongley>	burn: I agree with Markus's concerns but the one I wanted to raise was ... anytime I've talked about DIDs, I've invariably asked if our goal is to replace DNS and I say "No, absolutely not." And that's my only concern. Replacing the Web and DNS ... if we don't make the tent big enough, we'll have problems with that, we'll invite that.
+[2019-04-11T20:19:56.056Z]	<manu>	burn: If we make the tent big enough, that's what you're inviting... that's an absolute no-no... the replacing of the Web/DNS.
+[2019-04-11T20:19:58.478Z]	<manu>	scribe: manu
+[2019-04-11T20:20:09.426Z]	<manu>	burn: Any hint of doing an end-run around DNS at all, is a no-no.
+[2019-04-11T20:20:15.239Z]	<dlongley>	scribe: manu
+[2019-04-11T20:20:21.900Z]	<manu>	burn: I know there are people that will try to do that... people that try to replace web w/ DIDs.
+[2019-04-11T20:20:34.744Z]	<manu>	burn: So, let's just be careful of opening the tent too wide, we'll get shut down in that direction.
+[2019-04-11T20:20:35.863Z]	<manu>	q?
+[2019-04-11T20:20:59.243Z]	<manu>	drummond: Your concern is that if the tent is too wide open, it does what?
+[2019-04-11T20:21:06.878Z]	<dmitriz1>	q+
+[2019-04-11T20:21:07.046Z]	<manu>	burn: Replacing existing DNS w/ DIDs for all use cases.
+[2019-04-11T20:21:26.813Z]	<manu>	drummond: Do you think we should have a sentence in there about "it's not the intent of DIDs to replace DNS."
+[2019-04-11T20:21:33.648Z]	<manu>	burn: That's probably not a bad idea, something along those lines.
+[2019-04-11T20:21:36.666Z]	<manu>	ack jonathan_holt
+[2019-04-11T20:21:51.564Z]	<drummond>	ack jonathan_holt
+[2019-04-11T20:21:57.254Z]	<dlongley>	q+
+[2019-04-11T20:22:02.667Z]	<manu>	jonathan_holt: As far as DIDs resolve to a DID document... the peer DID method does not... ipid, pairwise, doesn't either... do all DIDs resolve to a DID Document?
+[2019-04-11T20:22:09.918Z]	<dmitriz1>	I think with pairwise, the key is that 'resolve' is very specific
+[2019-04-11T20:22:16.084Z]	<burn>	Thought we had agreement that all DIDs resolved to DID documents
+[2019-04-11T20:22:21.213Z]	<manu>	drummond: Confused by that... ?
+[2019-04-11T20:22:26.738Z]	<burn>	Not dereferencing, though
+[2019-04-11T20:22:41.716Z]	<manu>	jonathan_holt: I'm just nitpicking... do all DIDs resolve to a DID Document in a distributed ledger? vs. not on a distributed ledger.
+[2019-04-11T20:22:42.204Z]	<dlongley>	"resolve" doesn't mean in a ledger.
+[2019-04-11T20:22:45.308Z]	<dlongley>	"resolve" is abstract!
+[2019-04-11T20:22:59.138Z]	<dlongley>	"resolve" means "follow these instructions"
+[2019-04-11T20:23:09.856Z]	<manu>	drummond: Right, I've always taken resolution process to be any way to resolve to a DID Document...
+[2019-04-11T20:23:12.032Z]	<burn>	Jonny, DID doc does not have to physically live anywhere as that document.  BTCR generates it, for example
+[2019-04-11T20:23:17.520Z]	<drummond>	q?
+[2019-04-11T20:23:22.490Z]	<manu>	jonathan_holt: As long as "resolution" or "resolve" is open to discussion to how that is performed.
+[2019-04-11T20:23:39.835Z]	<manu>	ack drummond
+[2019-04-11T20:23:42.359Z]	<burn>	q+ to say that we should NOT re-open what DID resolution is (disagreeing with Jonny)
+[2019-04-11T20:24:28.397Z]	<manu>	drummond: I agree w/ Manu's sensibility, lightening up on the requirements... not true to the mission, however, a big believer in the big tent... and big tent doesn't mean "go around the Web"... those two are highly complimentary, not separate things... it's a new dimension of things that are possible on the Web/Internet.
+[2019-04-11T20:24:56.167Z]	<manu>	drummond: Studying the language, we could make it strong that intention of DIDs - we designed them to take advantage of a new capability, identifiers that do not require a centralized authority.
+[2019-04-11T20:25:08.158Z]	<manu>	drummond: It almost feels like it's too weak.
+[2019-04-11T20:25:53.375Z]	<dlongley>	manu: People have raised concern that some governance structures are centralized in nature, so it doesn't matter that you're on a DLT, it's run by one corp. If facebook made a DLT, would it really be a DID? That's a case where it's in a DLT but the governance is such that it's centralized still.
+[2019-04-11T20:25:58.426Z]	<drummond>	q?
+[2019-04-11T20:26:57.841Z]	<dlongley>	manu: I think there are ways to address the concerns Markus has -- and to be clear, I have the same concerns as everyone else on the call. I think we all agree that the point of DIDs is decentralized, etc. At the same time we're trying to build something. We can say what the ideal is, decentralized registry, decentralized governance. We did just this in the VC spec in the beginning.
+[2019-04-11T20:27:11.213Z]	<dlongley>	manu: We talked about expectations in the spec knowing that there would be some that wouldn't follow it.
+[2019-04-11T20:27:11.621Z]	<drummond>	+1 to adding a sentence that describes "the idealized implemention would..."
+[2019-04-11T20:27:46.750Z]	<dlongley>	manu: We could also, note that, in the DID spec, that some are centralized in nature. We could call out a class of identifier (not going to bike shed though)... and point out things like centralized registries that have some DID document capabilities.
+[2019-04-11T20:28:06.879Z]	<dlongley>	manu: We can say that all of the normative statements are met but some are more centralized than decentralized.
+[2019-04-11T20:28:16.654Z]	<dlongley>	manu: We can build a bigger tent without compromising on vision.
+[2019-04-11T20:28:17.780Z]	<jonathan_holt>	q+
+[2019-04-11T20:28:23.055Z]	<drummond>	+1 to also talking about "partial implementations" that do not offer all of the qualities of an ideal DID.
+[2019-04-11T20:28:36.341Z]	<dlongley>	manu: I think there's a way to achieve what Markus has highlighted as the default/ideal mode of operation and design.
+[2019-04-11T20:28:44.830Z]	<dlongley>	manu: It may not be in the abstract but later in the document.
+[2019-04-11T20:29:02.757Z]	<dlongley>	manu: So, given that, I feel like we can get alignment in philosophy around that, but if someone objects to that, please let us know.
+[2019-04-11T20:29:07.396Z]	<dlongley>	scribe: manu
+[2019-04-11T20:29:18.257Z]	<ken>	q+
+[2019-04-11T20:29:21.404Z]	<manu>	drummond: I agree with that, could go along w/ that
+[2019-04-11T20:29:40.312Z]	<manu>	dmitri: Wanting other methods, especially web-based methods to come into the tent is orthogonal to "replacing DNS" (which we don't want to do)
+[2019-04-11T20:30:16.552Z]	<burn>	q-
+[2019-04-11T20:30:18.260Z]	<manu>	dlongley: I think one way to address the issue is be forthright in the spec about the problem -- we could say "DIDs are intended to be X, but not all of those things are technically enforceable that does "these things"... we talk about the spirit of the specification.
+[2019-04-11T20:30:20.480Z]	<ken>	1+ to dlongley comments
+[2019-04-11T20:30:22.280Z]	<ken>	q-
+[2019-04-11T20:30:29.193Z]	<manu>	dlongley: They read the spec, they come to that, we should talk about that.
+[2019-04-11T20:31:10.538Z]	<burn>	q+
+[2019-04-11T20:31:10.647Z]	<drummond>	we'll keep you on it
+[2019-04-11T20:31:19.399Z]	<manu>	dlongley: Wrt. jonathan_holt - not all DIDs resolve to DID DOcuments... "resolve" is an abstraction... it doesn't mean you "go over the net and do something" - so, we could change text where "resolution is defined by a method"... DIDs should resolve to DID DOcuments, how that happens may not mean you're going over the net.
+[2019-04-11T20:31:21.867Z]	<manu>	ack manu
+[2019-04-11T20:31:23.322Z]	<manu>	ack dmitriz1
+[2019-04-11T20:31:24.852Z]	<manu>	ack dlongley
+[2019-04-11T20:31:27.338Z]	<manu>	q?
+[2019-04-11T20:31:40.725Z]	<manu>	drummond: be careful, we might have you write that if you're eloquent.
+[2019-04-11T20:31:44.186Z]	<markus_sabadello>	https://w3c-ccg.github.io/did-resolution/#introduction mentions that a DID method doesn't necessarily "store" an actual DID document, but may also dynamically construct it
+[2019-04-11T20:31:47.208Z]	<manu>	dlongley: bleh blah ble ble
+[2019-04-11T20:32:09.518Z]	<manu>	burn: I think we've been very clear about what DID Resolution is... DID does have to resolve to a document, but that doesn't mean document has to resolve to something.
+[2019-04-11T20:32:09.826Z]	<dlongley>	+1 to burn
+[2019-04-11T20:32:21.919Z]	<drummond>	q?
+[2019-04-11T20:32:24.870Z]	<manu>	s/something/bytes on the wire/
+[2019-04-11T20:32:28.895Z]	<manu>	ack jonathan_holt
+[2019-04-11T20:32:43.952Z]	<burn>	s/resolve to a document/resolve to a DID document/
+[2019-04-11T20:32:49.127Z]	<markus_sabadello>	q+
+[2019-04-11T20:32:59.135Z]	<manu>	jonathan_holt: There are identifiers that are unqiue to me - so, NPI number... National Provider Identifier -- there are centralized places, I do have a unique identifier in a centralized system...
+[2019-04-11T20:33:08.275Z]	<burn>	s/resolve to something/be stored in that form on a ledger/
+[2019-04-11T20:33:11.753Z]	<drummond>	q?
+[2019-04-11T20:33:14.266Z]	<burn>	q-
+[2019-04-11T20:33:15.742Z]	<manu>	jonathan_holt: I can take ownership of that somehow, would be nice to do that w/ existing centralized identifiers.
+[2019-04-11T20:33:22.576Z]	<manu>	ack markus_sabadello
+[2019-04-11T20:33:40.644Z]	<manu>	markus_sabadello: About the big tent idea, not too happy w/ it, but could live with it if we add spec text manu proposed.
+[2019-04-11T20:33:44.530Z]	<drummond>	q+
+[2019-04-11T20:34:06.348Z]	<manu>	markus_sabadello: There was also idea of DID rating system... 2 star, 3 star - so people can tell that did:centralized is less desirable that decentralized ones.
+[2019-04-11T20:34:15.783Z]	<manu>	markus_sabadello: I still would rather not do this, but could live with it.
+[2019-04-11T20:34:27.363Z]	<manu>	drummond: Is this feedback sufficient from an editorial standpoint?
+[2019-04-11T20:35:19.907Z]	<dlongley>	manu: I think we've recorded the desire of the group. I or anyone else can go off and create a section in the spec just like in the VC data model spec where we say we mean "decentralized" and talk about our intent.
+[2019-04-11T20:35:31.522Z]	<manu>	https://w3c.github.io/vc-data-model/#use-cases-and-requirements
+[2019-04-11T20:35:32.327Z]	<dlongley>	manu: I'm going to try and find a link to that.
+[2019-04-11T20:36:06.110Z]	<dlongley>	manu: That section talks in a non-normative way but we put this in the spec so it wouldn't get corrupted in the WG process, so people wouldn't be able to come in and say something like "You actually meant violation of privacy by design" when that was the opposite.
+[2019-04-11T20:36:50.772Z]	<dlongley>	manu: I think we can add that kind of section to the DID spec and given that that text is going to exist or has to exist, with that in mind, please look at the PR and make suggestions on how we can change things. I'll give it seven more days and if people have suggestions I'll pull those in, after seven days I'll merge the PR.
+[2019-04-11T20:37:04.241Z]	<dlongley>	manu: I'll try to start another PR in parallel to put the requirements stuff into the spec as well. Ok to proceed that way?
+[2019-04-11T20:37:12.891Z]	<dlongley>	drummond: No objection. Anyone else?
+[2019-04-11T20:37:33.051Z]	<dlongley>	none
+[2019-04-11T20:37:35.875Z]	<dlongley>	drummond: I like that way to proceed.
+[2019-04-11T20:37:57.112Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/180
+[2019-04-11T20:39:23.375Z]	<dlongley>	manu: So what this thing does -- this moves things around and moves chunks out of the intro. Primarily because a lot of this stuff is covered in the Primer. The idea is that anything covered elsewhere gets removed from the spec here. That's to remove duplication of text. This part of the text was written when we were justifying DIDs and explaining in deep detail, etc.
+[2019-04-11T20:39:41.301Z]	<dlongley>	manu: The Primer largely does that job at this point. The goal would be to point to the Primer, which I don't think this PR does, and hopefully that gives people a background.
+[2019-04-11T20:39:59.172Z]	<dlongley>	manu: So you can read the Primer and intro text and then jump into the spec (as a general order).
+[2019-04-11T20:40:03.408Z]	<dlongley>	manu: Here's the diff:
+[2019-04-11T20:40:04.127Z]	<manu>	https://pr-preview.s3.amazonaws.com/w3c-ccg/did-spec/180/61ccb7d...defc962.html
+[2019-04-11T20:40:08.186Z]	<manu>	https://pr-preview.s3.amazonaws.com/w3c-ccg/did-spec/pull/180.html
+[2019-04-11T20:40:08.255Z]	<dlongley>	manu: Here's the preview:
+[2019-04-11T20:40:36.763Z]	<manu>	https://pr-preview.s3.amazonaws.com/w3c-ccg/did-spec/pull/180.html
+[2019-04-11T20:40:42.484Z]	<manu>	https://pr-preview.s3.amazonaws.com/w3c-ccg/did-spec/pull/180.html#introduction
+[2019-04-11T20:41:04.952Z]	<dlongley>	manu: It's the introduction section, there's a new introduction section, which is effectively what was originally written but with large chunks chopped out and then a simple example and then right into design goals.
+[2019-04-11T20:41:18.024Z]	<dlongley>	manu: The design goals have been rewritten as imperative statements where we say what we're going to do.
+[2019-04-11T20:41:25.595Z]	<dlongley>	manu reads goals
+[2019-04-11T20:41:31.152Z]	<dlongley>	manu: This is a clean up of the intro, basically.
+[2019-04-11T20:41:34.840Z]	<dlongley>	manu: Any objections to that clean up?
+[2019-04-11T20:41:54.191Z]	<dlongley>	manu: It may take folks a read through ... I'd like to set a seven day limit and get it committed in seven days.
+[2019-04-11T20:42:04.551Z]	<dlongley>	manu: Thoughts, objections?
+[2019-04-11T20:42:05.684Z]	<drummond>	q?
+[2019-04-11T20:42:10.241Z]	<dlongley>	ack drummond
+[2019-04-11T20:42:25.573Z]	<markus_sabadello>	q+
+[2019-04-11T20:42:48.848Z]	<dlongley>	drummond: I like it. There's a lot of text from early versions of the spec, as you put it, were for explaining what DIDs were about ... there was more context setting than would be necessary with a more mature spec and there was no primer at the time.
+[2019-04-11T20:43:08.916Z]	<dlongley>	drummond: I'm good with a seven day limit on comments. Do you want comments on the PR or proposed changes?
+[2019-04-11T20:43:10.861Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/179/files
+[2019-04-11T20:43:11.094Z]	<dlongley>	manu: Either one is great.
+[2019-04-11T20:43:27.547Z]	<dlongley>	manu: You can click the `+` button next to any line and say what change you want. Sorry ... wrong PR.
+[2019-04-11T20:43:29.162Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/180/files
+[2019-04-11T20:43:34.167Z]	<dlongley>	manu: Fixed^.
+[2019-04-11T20:43:51.280Z]	<dlongley>	manu: For one line changes you can click the suggestion button as well.
+[2019-04-11T20:44:43.363Z]	<markus_sabadello>	q?
+[2019-04-11T20:45:16.716Z]	<dlongley>	markus_sabadello: Not objecting. This also has to do with the big tent, right? It removes some language that DIDs can be created and managed without a centralize authority such as DNS ... so that's being removed, but it keeps the language about Zooko's triangle.
+[2019-04-11T20:45:31.151Z]	<dlongley>	manu: It keeps the text about DIDs keeping uniqueness w/o a need for a centralized authority.
+[2019-04-11T20:45:37.578Z]	<dlongley>	s/manu/markus
+[2019-04-11T20:45:59.339Z]	<dlongley>	manu: I can take that out, so it's consistent, it's a mistake -- or we can add new text that talks about a preference for decentralization, etc.
+[2019-04-11T20:46:21.752Z]	<dlongley>	manu: I would feel better about the latter so we start injecting the text about our intent, knowing that there are some systems that deploy centralized versions of this thing.
+[2019-04-11T20:46:36.594Z]	<dlongley>	manu: I'd be very happy for you to author this so you're getting what you want in there, Markus.
+[2019-04-11T20:46:49.099Z]	<dlongley>	markus_sabadello: I'd like to try.
+[2019-04-11T20:47:08.335Z]	<dlongley>	ACTION: Markus will draft text to address inconsistent with decentralized language in PR 180.
+[2019-04-11T20:47:17.439Z]	<burn>	Not forever!
+[2019-04-11T20:47:21.272Z]	<drummond>	q?
+[2019-04-11T20:47:32.674Z]	<markus_sabadello>	ack markus_sabadello
+[2019-04-11T20:47:38.526Z]	<drummond>	ack markus_sabadello
+[2019-04-11T20:48:02.810Z]	<manu>	https://github.com/w3c-ccg/did-spec/pull/181/files
+[2019-04-11T20:48:47.750Z]	<dlongley>	manu: This cleans up the terminology section and by clean up ... it removes the discussion about the relationship between URIs, URNs, and URLs. Primarily, ... people at W3C and IETF know those distinctions and because we're going to be referencing that spec they can go and read about it there. The same thing with JSON and JSON-LD. Base specifications are referenced normatively.
+[2019-04-11T20:48:59.908Z]	<dlongley>	manu: You know what the base specs are because you can go to the end of the spec and read the normative references.
+[2019-04-11T20:49:05.568Z]	<drummond>	q+
+[2019-04-11T20:49:28.221Z]	<dlongley>	manu: We don't need that section anymore, the references will take care of it. You could care argue either way about the URI/URL specs -- but we reference those normatively and people can go read about them there.
+[2019-04-11T20:49:31.165Z]	<dlongley>	manu: That's all this PR does.
+[2019-04-11T20:49:44.125Z]	<dlongley>	manu: Any objections to merging this PR?
+[2019-04-11T20:49:44.608Z]	<dlongley>	q?
+[2019-04-11T20:49:48.465Z]	<markus_sabadello>	q+
+[2019-04-11T20:49:54.254Z]	<dlongley>	jonathan: What about IPLD?
+[2019-04-11T20:49:57.567Z]	<markus_sabadello>	q-
+[2019-04-11T20:50:00.921Z]	<dlongley>	manu: Yet.
+[2019-04-11T20:50:12.499Z]	<dlongley>	manu: I think the discussion we had is that it will be in time and it will fit in cleanly and fit cleanly.
+[2019-04-11T20:50:33.339Z]	<dlongley>	manu: Until then it's a work in progress. The DID spec and the IPLD thing is a work in progress and people won't ding you until you claim it's done.
+[2019-04-11T20:50:43.315Z]	<ken>	q+
+[2019-04-11T20:50:44.128Z]	<dlongley>	jonathan: Ok. I can work with that.
+[2019-04-11T20:50:54.598Z]	<burn>	ack drummond
+[2019-04-11T20:51:04.803Z]	<dlongley>	drummond: This again was explanatory text for people who would have been new to DIDs but now I'm fine with removing it.
+[2019-04-11T20:51:50.216Z]	<dlongley>	drummond: URNs ... they are still out there in broad usage, there's a small group of folks that are knowledgeable about them and I do expect some of those folks to say a DID is just a new type of URN. If we don't talk about DIDs and URNs some place in the spec then it may seem like we're ignoring URN space.
+[2019-04-11T20:52:07.261Z]	<markus_sabadello>	Instead of removing these URI/URL/URN definitions, we could leave that and write 5 additional pages explaining DIDs and httpRange-14... No just joking, +1 to merging #181.
+[2019-04-11T20:52:18.161Z]	<manu>	q+ don't feel that strongly, feel it's redundant, but we don't have to take it out.
+[2019-04-11T20:52:19.159Z]	<dlongley>	drummond: People saying "we have URNs for this" but they don't have everything here with DIDs, no standard for cryptographic verification, etc. Should we be talking about the relationship?
+[2019-04-11T20:52:34.827Z]	<drummond>	q?
+[2019-04-11T20:53:13.124Z]	<dlongley>	justin: I think it bears describing that DIDs are specifying additional functionality where there is presumed to be additional functionality with the processing of a DID where there isn't any with a URN. There's nothing you can't do with a DID you can't do with a URN but you're guaranteed to be able to do certain things with a DID that you can't do with any URN (or URL).
+[2019-04-11T20:53:14.702Z]	<manu>	present+ jricher
+[2019-04-11T20:53:27.984Z]	<dmitriz1>	+1, I like how jricher frames that
+[2019-04-11T20:53:32.783Z]	<dlongley>	justin: Calling that out with additional functionality, yes, do we need the definitions of all these things? Absolutely not. What's important is the difference.
+[2019-04-11T20:53:52.365Z]	<drummond>	q?
+[2019-04-11T20:54:03.750Z]	<yancy>	present+
+[2019-04-11T20:54:12.815Z]	<dlongley>	ken: I wanted to make sure that as we're taking out all of these references we make sure we have the references at the end.
+[2019-04-11T20:54:25.666Z]	<dlongley>	drummond: Yeah, Manu was saying we'd do that.
+[2019-04-11T20:54:39.890Z]	<dlongley>	manu: I'd expect that the answer is there is a reference there but we should double check.
+[2019-04-11T20:54:49.336Z]	<dlongley>	ken: I like highlighting the difference per Justin's comment.
+[2019-04-11T20:55:05.597Z]	<dlongley>	drummond: I volunteer Manu to work with you to draw up some text for that, if you can think of a place where that makes sense.
+[2019-04-11T20:55:39.475Z]	<dlongley>	manu: I don't have strong opinions about this section, so I'm fine with leaving it in until we find alternative language, given enough head scratching, I can take a cut at it but I can see it ping ponging back and forth.
+[2019-04-11T20:56:14.461Z]	<dlongley>	manu: So next step seems to just rework the PR and try and explain the differences. Justin, tell me if this would work: where we say DIDs are a new type of URL, they are different from typical Web-based URLs in that they... is that what you were thinking?
+[2019-04-11T20:56:43.909Z]	<burn>	__resolves__ to a DID document . . .
+[2019-04-11T20:56:56.892Z]	<dlongley>	Justin: Not exactly. I was thinking "a DID is a URI that can be dereferenced into a DID Document" and how exactly how to talk about the exact differentiation between DIDs and URNs/URLs is going to be difficult.
+[2019-04-11T20:57:04.582Z]	<drummond>	The specific point I think needs to be explained is the difference between DIDs and URNs.
+[2019-04-11T20:57:54.321Z]	<dlongley>	Justin: To be fair, we could, if we decided, start all DIDs with "urn" instead of "did" and all this stuff would still work. We would have higher overhead for registering DID methods and stuff like that, but you could process everything a DID can do with a "urn:" because it's a syntactic subset and functional superset of what a URN can do.
+[2019-04-11T20:58:01.318Z]	<dlongley>	drummond: Yes, it's closest to a URN.
+[2019-04-11T20:58:01.751Z]	<drummond>	I'm willing to help with much shorter language for this section—which doesn't even need to be a separate section.
+[2019-04-11T20:58:39.201Z]	<drummond>	q?
+[2019-04-11T20:58:43.619Z]	<dlongley>	Justin: I'm with you, and it is a URI as long as we don't screw up the grammar. It shall remain. So people might say, why can't I use "urn" for this? But, when you see "did" there's a set of functions and a syntax you can rely on. Just like when you see a URL there's a certain set of functions and syntax you can rely on.
+[2019-04-11T20:59:03.080Z]	<dlongley>	Justin: Couching it inside the URN family is going to be an important part of situating it in the overall landscape, all philosophy aside.
+[2019-04-11T20:59:11.142Z]	<burn>	+1 that DIDs are a type of URI and that must be kept clear
+[2019-04-11T20:59:12.108Z]	<dlongley>	manu: At this point I'm leaning towards not deleting the section.
+[2019-04-11T20:59:21.925Z]	<dlongley>	Justin: This section doesn't do that at all. No.
+[2019-04-11T20:59:29.897Z]	<dlongley>	drummond: I think we need to rewrite it.
+[2019-04-11T20:59:46.696Z]	<drummond>	q?
+[2019-04-11T20:59:47.018Z]	<markus_sabadello>	q+
+[2019-04-11T20:59:55.988Z]	<dlongley>	manu: Ok, that's it, I'm done, apologies for taking so long.
+[2019-04-11T21:00:12.844Z]	<drummond>	ack ken
+[2019-04-11T21:00:16.075Z]	<drummond>	ack manu
+[2019-04-11T21:00:39.237Z]	<ken>	scribe: ken
+[2019-04-11T21:00:55.422Z]	<drummond>	Thanks Dave!
+[2019-04-11T21:01:28.746Z]	<ken>	markus: It would be good to have consensus re: URI vs. URL. URL, yes or no?
+[2019-04-11T21:01:34.905Z]	<drummond>	q?
+[2019-04-11T21:01:39.881Z]	<markus_sabadello>	ack markus_sabadello
+[2019-04-11T21:01:44.100Z]	<ken>	drummond: Thoughts
+[2019-04-11T21:01:47.790Z]	<burn>	+1 on URL
+[2019-04-11T21:01:48.139Z]	<dmitriz1>	+1 to URL
+[2019-04-11T21:01:50.209Z]	<drummond>	ack markus_sabadello
+[2019-04-11T21:02:03.091Z]	<ken>	dlongley: It is a URL. bye.
+[2019-04-11T21:02:03.346Z]	<manu>	+1 to URL *aaaand, disappears*
+[2019-04-11T21:02:11.990Z]	<burn>	Maybe Markus can say what features of URLs he thinks come along for free by saying that
+[2019-04-11T21:02:35.890Z]	<burn>	or just call it good :)
+[2019-04-11T21:02:36.606Z]	<jonathan_holt>	"i am that i am"  I am a URI and a URL
+[2019-04-11T21:02:37.881Z]	<ken>	drummond: Should we say something about it in the spec?
+[2019-04-11T21:03:01.198Z]	<ken>	... Markus do you want to discuss this further now?
+[2019-04-11T21:03:11.139Z]	<ken>	markus: Not now.
+[2019-04-11T21:03:45.218Z]	<ken>	drummond: Markus has some updated slides. How long?
+[2019-04-11T21:03:53.075Z]	<ken>	markus: 10 minutes.
+[2019-04-11T21:04:17.920Z]	<ken>	... These are the same slides with expanded examples.
+[2019-04-11T21:04:43.071Z]	<ken>	... You start with a DID URL and by the end you get a service endpoint URI
+[2019-04-11T21:05:22.673Z]	<ken>	... Last time we reviewed the matrix parameters and how the resolver finds the service in the DID doc a.
+[2019-04-11T21:05:32.478Z]	<ken>	... I have a few new examples.
+[2019-04-11T21:05:52.212Z]	<ken>	... If you just have the bare DID, you get a did doc.
+[2019-04-11T21:06:18.330Z]	<ken>	... If you add a fragment you get that part of the did doc back.
+[2019-04-11T21:06:56.785Z]	<ken>	... If you have a matrix parameter with a version-time, then you get the did doc from that time.
+[2019-04-11T21:07:12.050Z]	<ken>	... It also works with fragments.
+[2019-04-11T21:07:30.120Z]	<ken>	... Some parameters influence the resolution; some not.
+[2019-04-11T21:08:51.580Z]	<ken>	... This brings up the question of matrix parameters being split between resolution and deferencing.
+[2019-04-11T21:09:00.894Z]	<jonathan_holt>	q+
+[2019-04-11T21:09:01.874Z]	<ken>	... Questions?
+[2019-04-11T21:09:10.303Z]	<burn>	q+
+[2019-04-11T21:09:10.921Z]	<drummond>	q?
+[2019-04-11T21:09:49.856Z]	<burn>	ack jonathan_holt
+[2019-04-11T21:09:59.470Z]	<ken>	jonny: The resovler may need to cache the timestamp in order to find the correct version of the did  doc.
+[2019-04-11T21:10:30.785Z]	<ken>	... Some of this results in the resolver performing some DLT related actions.
+[2019-04-11T21:11:28.593Z]	<ken>	... If the use case is that the VC has a time stamp, then the did doc may need to be resolved to the same point in time for verification.
+[2019-04-11T21:11:40.540Z]	<drummond>	Jonny is pointing out the need for DID document versioning.
+[2019-04-11T21:11:41.567Z]	<ken>	markus: Yes.
+[2019-04-11T21:11:58.634Z]	<drummond>	q?
+[2019-04-11T21:12:05.544Z]	<drummond>	ack burn
+[2019-04-11T21:12:09.569Z]	<ken>	burn: Thanks markus.
+[2019-04-11T21:12:57.097Z]	<ken>	... Clarifying question: When you have a bare did or did with a fragment, you will get back the did doc or did  doc frament.
+[2019-04-11T21:13:03.971Z]	<drummond>	q+
+[2019-04-11T21:13:26.500Z]	<ken>	... Is it the URI or the document.
+[2019-04-11T21:13:51.660Z]	<ken>	markus: It is similar to a 303 followed by the redirect.
+[2019-04-11T21:14:24.577Z]	<ken>	... Once you have the service endpoint URI that becomes a new resolution.
+[2019-04-11T21:14:47.184Z]	<ken>	burn: We need to make the distinction between the actions at each step.
+[2019-04-11T21:15:00.248Z]	<drummond>	q?
+[2019-04-11T21:15:05.592Z]	<ken>	... User developers need to have clear understanding.
+[2019-04-11T21:15:15.218Z]	<jonathan_holt>	q+
+[2019-04-11T21:15:24.991Z]	<ken>	drummond: I have been thinking along the lines markus expressed.
+[2019-04-11T21:16:10.128Z]	<ken>	... Until you have done the transformation, you then have something we can operate on.
+[2019-04-11T21:16:36.873Z]	<ken>	... The key point is to first arrive at the transformed URI.
+[2019-04-11T21:16:47.509Z]	<drummond>	q?
+[2019-04-11T21:16:54.349Z]	<drummond>	ack drummond
+[2019-04-11T21:17:24.732Z]	<ken>	markus: Michael Herman used language to invoke the service endpoint using the ? character.
+[2019-04-11T21:17:59.133Z]	<burn>	Just makes me wonder how decentralized this is if every process of interacting with the service endpoint requires a DNS process (which is not under the DID controller's direct control)
+[2019-04-11T21:18:02.572Z]	<drummond>	ack Jonathan
+[2019-04-11T21:18:13.852Z]	<drummond>	ack jonath
+[2019-04-11T21:18:22.337Z]	<drummond>	ack jonathan_holt
+[2019-04-11T21:18:46.232Z]	<ken>	jonny: The other issue I see is that when timestamps from 10 years ago and my provider is defunct, the did doc has moved.
+[2019-04-11T21:19:05.858Z]	<ken>	... Does it make sense to get the latest version of the endpoint?
+[2019-04-11T21:19:54.459Z]	<ken>	markus: I was trying to illustrate how the parameters could work. I don't think I addressed your use case.
+[2019-04-11T21:20:00.663Z]	<drummond>	q?
+[2019-04-11T21:20:13.089Z]	<ken>	jonny: What is the purpose of invoking a service endpoint
+[2019-04-11T21:20:17.389Z]	<ken>	...?
+[2019-04-11T21:20:27.691Z]	<ken>	drummond: That is only one option.
+[2019-04-11T21:20:40.664Z]	<ken>	... What about other actions?
+[2019-04-11T21:20:56.420Z]	<ken>	... I would put it out of scope.
+[2019-04-11T21:21:25.938Z]	<ken>	jonny: This seems heavily json-ld and how you need to expand the id, etc.
+[2019-04-11T21:21:54.054Z]	<ken>	... What is the end use of this to invoke an agent or service endpoint?
+[2019-04-11T21:22:18.617Z]	<ken>	drummond: I think this is to go from abstract DID URL to a service endpoint URI.
+[2019-04-11T21:22:58.412Z]	<ken>	... This is similar to DNS. Invocation of the other program is up to the developer. The job of the resolver is complete.
+[2019-04-11T21:23:05.979Z]	<ken>	... Other opinions?
+[2019-04-11T21:23:35.847Z]	<ken>	markus: One more example.
+[2019-04-11T21:24:06.432Z]	<ken>	... These examples are from the matrix parameters.
+[2019-04-11T21:24:28.725Z]	<ken>	... This is identifying a content reference like a schema or cred def.
+[2019-04-11T21:24:40.371Z]	<ken>	... This is what I thought it could look like.
+[2019-04-11T21:25:10.224Z]	<ken>	... There is a matrix parameter "type=schema"
+[2019-04-11T21:25:20.322Z]	<drummond>	q+
+[2019-04-11T21:25:28.847Z]	<ken>	... These could be many different types of content objects.
+[2019-04-11T21:25:54.171Z]	<ken>	drummond: You are correct in the use case.
+[2019-04-11T21:26:43.380Z]	<ken>	ken: markus, you have the use case modeled better than what I had proposed.
+[2019-04-11T21:27:20.373Z]	<ken>	drummond: Hashlinks have embedded colons, so that takes us to looking at how the syntax should appear.
+[2019-04-11T21:27:47.808Z]	<ken>	jonny: Was that valid json-ld?
+[2019-04-11T21:28:27.062Z]	<ken>	markus: My understanding was that it was any id. It would not have to be a json-ld @id.
+[2019-04-11T21:28:50.591Z]	<ken>	jonny: I was considering how this might affect IPLD.
+[2019-04-11T21:29:46.102Z]	<ken>	drummond: This allows the DID URL to specify an object on a method (sov, etc.)  allowing the resolver to still return the object.
+[2019-04-11T21:30:08.199Z]	<ken>	jonny: It could be a variety of formats.
+[2019-04-11T21:30:37.867Z]	<drummond>	q?
+[2019-04-11T21:30:42.302Z]	<drummond>	ack drummond
+[2019-04-11T21:30:43.303Z]	<ken>	... I could return a json-ld or xml. Is there a parameter to specify the mime type of the return type.
+[2019-04-11T21:31:01.447Z]	<ken>	markus: It should be an additional parameter to the resolver.
+[2019-04-11T21:31:36.809Z]	<ken>	... Whether json or whatever format. Additional parameters can specify that.
+[2019-04-11T21:32:00.723Z]	<ken>	jonny: You're setting it like in headers.
+[2019-04-11T21:32:22.965Z]	<ken>	... That would necessarily be in the ABNF syntax.
+[2019-04-11T21:32:45.101Z]	<ken>	markus: yes they would not be in the URI, but in parameters.
+[2019-04-11T21:33:12.729Z]	<ken>	Topic: DID Syntax
+[2019-04-11T21:33:44.424Z]	<ken>	drummond: Assignment from last week was to create use case examples.
+[2019-04-11T21:34:31.483Z]	<ken>	... The goal is to be able to compare in the three different formats. Colon delimited, split, and matrix.
+[2019-04-11T21:34:53.231Z]	<ken>	... I started with 8 examples.
+[2019-04-11T21:35:13.117Z]	<ken>	... People started adding to my list.
+[2019-04-11T21:35:37.497Z]	<ken>	... Yancy requested that we add problem statements to the examples.
+[2019-04-11T21:35:58.980Z]	<ken>	... Markus has addressed some of these in his resolver examples.
+[2019-04-11T21:36:24.994Z]	<ken>	... Daniel added the DID Peer example.
+[2019-04-11T21:36:54.232Z]	<ken>	https://docs.google.com/document/d/1VpYPvUw2o-01e727bCy2V-0MUEe0_NB-EqX677scQbI/edit#heading=h.9ybpyjy1awja
+[2019-04-11T21:36:54.591Z]	<drummond>	q?
+[2019-04-11T21:37:38.514Z]	<ken>	jonny: One thing about the timestamps: they created problems of with the colons.
+[2019-04-11T21:38:10.333Z]	<ken>	drummond: Base64 requires "_"
+[2019-04-11T21:38:20.026Z]	<ken>	... Can we agree on that?
+[2019-04-11T21:38:53.740Z]	<ken>	... And we left out the colon. I propose we add ":" in the matrix parameters.
+[2019-04-11T21:39:42.029Z]	<ken>	jonny: That happens when you separate the naked DID with the ";" and then ":" is allowed in the remainder.
+[2019-04-11T21:39:59.700Z]	<ken>	... Why not a path?
+[2019-04-11T21:40:12.331Z]	<burn>	Matrix is semicolon-delimited params (Drummond mistakenly said colon-delimited)
+[2019-04-11T21:40:31.221Z]	<Justin_R>	q+
+[2019-04-11T21:40:32.004Z]	<ken>	drummond: If the path was dedicated to that, we can't determine whether it should be passed to the service endpoint.
+[2019-04-11T21:40:32.741Z]	<drummond>	q?
+[2019-04-11T21:40:57.216Z]	<ken>	justin: It the DID always 3 fields?
+[2019-04-11T21:41:04.710Z]	<ken>	... subname space?
+[2019-04-11T21:41:19.878Z]	<ken>	drummond: Subname has been there from the start.
+[2019-04-11T21:41:36.650Z]	<ken>	justin: I agree we can't just use only ":"
+[2019-04-11T21:41:58.332Z]	<ken>	... If you read the original proposal, it was effectively a reaction to CGO
+[2019-04-11T21:42:03.516Z]	<ken>	CI
+[2019-04-11T21:42:19.448Z]	<ken>	CGI parameters that are well known.
+[2019-04-11T21:43:20.519Z]	<markus_sabadello>	https://www.w3.org/DesignIssues/MatrixURIs.html
+[2019-04-11T21:43:46.874Z]	<ken>	... CGI starts with ? and & inbetween key-value pairs. Matrix parameters as proposed by TBL, the goal was to get people away from ambiguous query parameters.
+[2019-04-11T21:44:11.476Z]	<ken>	... It is questionable whether this is a reasonable application of the syntax.
+[2019-04-11T21:44:15.533Z]	<markus_sabadello>	q+
+[2019-04-11T21:44:19.389Z]	<drummond>	q?
+[2019-04-11T21:44:21.873Z]	<ken>	... Why not just use query parameters?
+[2019-04-11T21:44:31.353Z]	<drummond>	ack Justin_R
+[2019-04-11T21:44:40.082Z]	<drummond>	ack markus_sabadello
+[2019-04-11T21:45:12.007Z]	<ken>	markus: When I read the matrix parameters, I understood them more as an attempt to organize a space according to a hierarchy.
+[2019-04-11T21:45:33.554Z]	<jonathan_holt>	q+
+[2019-04-11T21:45:39.345Z]	<ken>	... Matrix parameters are more about partioning the space and less about passing a parameter.
+[2019-04-11T21:46:18.169Z]	<ken>	... Dmitri brought up that the parameters could be scoped within the authority.
+[2019-04-11T21:46:42.599Z]	<ken>	... They can mean different things depending on the authority and they are not universal.
+[2019-04-11T21:46:51.986Z]	<burn>	So Matrix params are DID params, and query params are DID method params
+[2019-04-11T21:47:03.623Z]	<ken>	justin: I think it may be distinction without difference.
+[2019-04-11T21:47:08.536Z]	<drummond>	ack jonathan_holt
+[2019-04-11T21:47:27.268Z]	<burn>	q+ to say the distinction is important
+[2019-04-11T21:47:29.102Z]	<ken>	jonny: In the end, matrix parameters may be used to traverse the path.
+[2019-04-11T21:47:55.360Z]	<drummond>	q?
+[2019-04-11T21:48:05.506Z]	<ken>	... I understand the difference as performing an algorthim over the did doc to retrieve a segment.
+[2019-04-11T21:48:28.725Z]	<Justin_R>	q+ how to distinguish
+[2019-04-11T21:48:56.776Z]	<ken>	markus: If we use the query parameters for resoluion then how can we distinguish ones that are intetnded to be passed on.
+[2019-04-11T21:49:20.389Z]	<drummond>	ack burn
+[2019-04-11T21:49:47.771Z]	<ken>	burn: I was going to say that there is not an empty distinction. The method should decide.
+[2019-04-11T21:49:51.774Z]	<burn>	ack burn
+[2019-04-11T21:49:56.713Z]	<drummond>	q?
+[2019-04-11T21:50:36.458Z]	<ken>	justin: I think that a pattern that I'm hearing is that there are multiple parts that should be hanldeld by different components.
+[2019-04-11T21:50:46.911Z]	<drummond>	Yes, the multiple parts are: bare DID, matrix parameters, path, query, fragment
+[2019-04-11T21:50:48.155Z]	<ken>	... Could there be different buckets?
+[2019-04-11T21:51:17.237Z]	<ken>	... Host and port (authority bit) is used by the browser to make the socket connection.
+[2019-04-11T21:51:25.907Z]	<ken>	... missed some.
+[2019-04-11T21:51:35.716Z]	<burn>	Justin, this is exactly the model we have used to drive our thinking
+[2019-04-11T21:51:43.652Z]	<drummond>	In RFC 3986 terminology, the bare DID + matrix parameters are the authority portion, then the path, query, and fragment are handled just like they are defined in RFC 3986.
+[2019-04-11T21:52:00.830Z]	<ken>	... The pattern of buckets seems to be what people are asking for.
+[2019-04-11T21:52:04.912Z]	<burn>	q+
+[2019-04-11T21:52:09.537Z]	<drummond>	q+
+[2019-04-11T21:52:20.252Z]	<drummond>	ack Justin_R
+[2019-04-11T21:52:37.257Z]	<ken>	... Can we at the DID URL level create the buckets without including the separation char.
+[2019-04-11T21:52:54.505Z]	<ken>	... We can do many things within each bucket.
+[2019-04-11T21:52:58.244Z]	<yancy>	+1 to buckets
+[2019-04-11T21:53:07.415Z]	<burn>	This is what we are doing
+[2019-04-11T21:53:27.419Z]	<ken>	... Then we can deterministicaly assign things to each bucker.
+[2019-04-11T21:53:38.575Z]	<ken>	burn: This is exactly what we have been doing.
+[2019-04-11T21:54:10.325Z]	<ken>	justin: paths are the counter example in our discussion.
+[2019-04-11T21:54:15.417Z]	<ken>	burn:
+[2019-04-11T21:54:27.118Z]	<ken>	... This is the line of thinking we are following.
+[2019-04-11T21:54:48.523Z]	<ken>	... Pieces in the resolution, dereferencing; and after.
+[2019-04-11T21:54:56.793Z]	<ken>	... Path is the most problematic.
+[2019-04-11T21:55:01.403Z]	<drummond>	ack burn
+[2019-04-11T21:55:26.780Z]	<ken>	drummond: +1 to justin. I think this is the rationale for the matrix parameters.
+[2019-04-11T21:55:43.352Z]	<burn>	+1
+[2019-04-11T21:55:47.137Z]	<ken>	... Bare did, matrix, path, query, fragment without modifications.
+[2019-04-11T21:55:54.004Z]	<ken>	+1
+[2019-04-11T21:56:19.485Z]	<ken>	... The only two components we have to spec are bare did and authority.
+[2019-04-11T21:56:34.331Z]	<ken>	... This gives a clean dividing line.
+[2019-04-11T21:56:57.909Z]	<jonathan_holt>	q+
+[2019-04-11T21:57:06.478Z]	<ken>	... I think you have given a strong justification for the matrix parameter proposal.
+[2019-04-11T21:57:06.591Z]	<drummond>	ack drummond
+[2019-04-11T21:57:08.659Z]	<burn>	ack drummond
+[2019-04-11T21:57:11.647Z]	<burn>	ack jonathan_holt
+[2019-04-11T21:58:00.524Z]	<ken>	jonny: When trying to program this out, I experienced too much reliance on json-ld.
+[2019-04-11T21:58:51.212Z]	<ken>	drummond: The matching of id attribute seems to be
+[2019-04-11T21:59:35.254Z]	<ken>	jonny: I need it to be deterministic. Rather than linked data proofs I could avoid the json-ld.
+[2019-04-11T22:00:18.729Z]	<ken>	... If we do the path to the key in the did doc, there could be an easier way.
+[2019-04-11T22:00:44.628Z]	<ken>	drummond: I get the advantages of just straight pathing.
+[2019-04-11T22:01:31.715Z]	<ken>	jonny: I think once you get to the did doc and then concatentate to get to the service endpoint.
+[2019-04-11T22:01:54.202Z]	<ken>	... The TBL document is helping me understand the matrix parameters better.
+[2019-04-11T22:01:58.290Z]	<drummond>	q?
+[2019-04-11T22:02:25.953Z]	<ken>	drummond: Great discussion, we're out of time.
+[2019-04-11T22:02:56.764Z]	<ken>	... I'd like to propose to the list that consensus is arriving at the matrix parameters.
+[2019-04-11T22:03:20.294Z]	<ken>	... I'd like Markus to update his resolver sample to include the syntax changes.
+[2019-04-11T22:03:39.052Z]	<ken>	markus: I will upgrade the resolver.
+[2019-04-11T22:04:11.866Z]	<ken>	drummond: 4 different issues on the next call. Add items to the agenda.
+[2019-04-11T22:04:18.147Z]	<ken>	... Thanks.
+[2019-04-11T22:04:34.358Z]	<ken>	adjourn
