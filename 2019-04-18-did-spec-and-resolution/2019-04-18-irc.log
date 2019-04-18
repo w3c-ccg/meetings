@@ -1,0 +1,480 @@
+[2019-04-18T20:04:18.581Z]	<rhiaro>	MEETING: DID Spec call
+[2019-04-18T20:04:18.709Z]	<markus_sabadello>	q?
+[2019-04-18T20:04:24.978Z]	<rhiaro>	chair: drummond
+[2019-04-18T20:04:28.182Z]	<rhiaro>	scribenick: rhiaro
+[2019-04-18T20:04:36.620Z]	<rhiaro>	present+
+[2019-04-18T20:05:30.617Z]	<markus_sabadello>	present+ markus_sabadello
+[2019-04-18T20:05:35.714Z]	<burn>	present+
+[2019-04-18T20:07:24.449Z]	<rhiaro>	drummond: Welcome and intro...
+[2019-04-18T20:07:28.503Z]	<rhiaro>	... Anyone new?
+[2019-04-18T20:07:51.458Z]	<rhiaro>	Jane Wang: I'm kind of new, from ??
+[2019-04-18T20:08:01.666Z]	<mrinal>	present+ Introduction: I work for Ockam and I’m interested in Machine Identity
+[2019-04-18T20:08:30.406Z]	<drummond>	Jane is from Optum Health
+[2019-04-18T20:08:59.238Z]	<dlongley>	present+ Dave_Longley
+[2019-04-18T20:09:13.642Z]	<markus_sabadello>	Robert Mitwicki: From Lab10 collective, working on a DID lib for resolution and registration, will be used in their wallet
+[2019-04-18T20:09:41.814Z]	<ken>	present+ Ken_Ebert
+[2019-04-18T20:10:18.132Z]	<markus_sabadello>	Robert Mitwicki: In Indy WG, I'm interested in "DRI" (decentralized resource identifier) and how it relates to DID
+[2019-04-18T20:10:30.972Z]	<mrinal>	Thanks Drummond :)
+[2019-04-18T20:10:54.740Z]	<JoeAndrieu>	present+ Joe_Andrieu
+[2019-04-18T20:11:01.115Z]	<rhiaro>	drummond: this 2 hours is to talk about the DID spec where we're trying to get to the CG FInal draft, and the DID resolution spec which is still young and wants to get to the first complete draft
+[2019-04-18T20:11:05.812Z]	<drummond>	present+
+[2019-04-18T20:11:16.762Z]	<rhiaro>	TOPIC: Agenda
+[2019-04-18T20:11:19.871Z]	<Justin_R>	present+
+[2019-04-18T20:11:28.075Z]	<rhiaro>	drummond: what appears to be top priorities according to markus and I
+[2019-04-18T20:11:42.012Z]	<rhiaro>	... a proposal from the last couple of calls around the Decentralized Identifiers section in the spec which is mostly around syntax
+[2019-04-18T20:11:48.804Z]	<rhiaro>	... And then a set of issues
+[2019-04-18T20:11:49.755Z]	<yancy>	present+
+[2019-04-18T20:12:04.259Z]	<rhiaro>	... Looks like Markus chose the highest priority issues
+[2019-04-18T20:12:13.164Z]	<rhiaro>	markus_sabadello: these 4 issues are solved if that proposal is accepted
+[2019-04-18T20:12:18.369Z]	<chrisboscolo>	present+
+[2019-04-18T20:12:25.412Z]	<rhiaro>	drummond: and then section 4 is other issues for discussion
+[2019-04-18T20:12:33.363Z]	<rhiaro>	markus_sabadello: 4 and 5 are optional topics, and section 6 is a new issue
+[2019-04-18T20:12:44.840Z]	<rhiaro>	drummond: that's a pretty ambitious agenda
+[2019-04-18T20:12:52.315Z]	<rhiaro>	... anyone have anything new for the agenda, or repriortisation?
+[2019-04-18T20:13:18.045Z]	<rhiaro>	TOPIC: Proposal for update to Decentralized Identifiers section
+[2019-04-18T20:13:41.968Z]	<rhiaro>	drummond: Start out by walking through what's in the proposal
+[2019-04-18T20:13:45.515Z]	<rhiaro>	... then go through q&a
+[2019-04-18T20:14:03.175Z]	<rhiaro>	... This is the text we're proposing for the spec. We spent some time boiling down what we have been talking about
+[2019-04-18T20:14:23.936Z]	<rhiaro>	... There's a section on Decentralized Identifiers, followed by DID DOcuments and DID Methods, those are the major sections of the spec
+[2019-04-18T20:14:50.899Z]	<rhiaro>	... The last version the scheme got put down after DID Documents. I hadn't noticed that. You need to start with the identifiers, I believe this section should come first. That was how it was in the early editions of the spec
+[2019-04-18T20:14:57.154Z]	<rhiaro>	... Followed by the DID Document and the Data model definition
+[2019-04-18T20:15:43.343Z]	<markus_sabadello>	q?
+[2019-04-18T20:15:45.652Z]	<drummond>	q?
+[2019-04-18T20:15:48.502Z]	<rhiaro>	... Any questions?
+[2019-04-18T20:16:05.461Z]	<rhiaro>	... q in irc or just speak up
+[2019-04-18T20:16:23.603Z]	<Justin_R>	q+
+[2019-04-18T20:16:25.276Z]	<burn>	q+
+[2019-04-18T20:16:39.232Z]	<rhiaro>	... To get things going, in the evolution of identifier schemes that I've been involved with prior to this, I find it many times short abnf = something that's well thought through and elegant
+[2019-04-18T20:16:49.700Z]	<rhiaro>	... This is one of the shortest versions of the abnf that's more complete than earlier versions
+[2019-04-18T20:17:23.044Z]	<rhiaro>	... from an rfc3986 standpoint, the URI standard, we put text right up front to say that our architecture is very specifically to take the 5 major components of a URI schem, authority, path, query, fragment. The generic DID scheme does not redefine any of those. There are no new definitions, just referenced here
+[2019-04-18T20:17:34.323Z]	<rhiaro>	... anything not defined here is defined in rfc3986
+[2019-04-18T20:17:54.026Z]	<JoeAndrieu>	q+ to clarify the ABNF is the same as RFC3986
+[2019-04-18T20:17:58.132Z]	<rhiaro>	... The whole scheme just concentrates on the authority component of the DID. That's an architectural approach we've discussed for a long time, that's the cleanest
+[2019-04-18T20:18:08.614Z]	<rhiaro>	... the abnf divides into the definition of a DID and of a DID URL
+[2019-04-18T20:18:26.180Z]	<rhiaro>	... the DID is often referred to as the 'bare DID'..
+[2019-04-18T20:18:43.572Z]	<burn>	q+ to suggest distinguishing between did method name and did submethod name in ABNF
+[2019-04-18T20:19:56.910Z]	<drummond>	ack Justin_R
+[2019-04-18T20:19:58.463Z]	<rhiaro>	Justin_R: has anyone run this through a parser generator yet?
+[2019-04-18T20:20:19.764Z]	<rhiaro>	... has anybody taken this abnf and put it in a generic parser generator, then run the parser on all of our examples?
+[2019-04-18T20:20:30.371Z]	<rhiaro>	markus_sabadello: I have, but not run it on the examples for a comprehensive set of use cases
+[2019-04-18T20:20:34.582Z]	<rhiaro>	Justin_R: on this scheme?
+[2019-04-18T20:20:39.634Z]	<rhiaro>	markus_sabadello: this one yeah
+[2019-04-18T20:21:33.213Z]	<drummond>	Markus is showing https://parser.uniresolver.io/
+[2019-04-18T20:21:38.409Z]	<rhiaro>	https://i.amy.gy/did/bear-dids.jpg
+[2019-04-18T20:21:39.409Z]	<mrinal>	An official test set of DIDs and DID-URLs would be very helpful, I have an open source go parser (hand wirtten not generated)
+[2019-04-18T20:21:50.136Z]	<drummond>	+1
+[2019-04-18T20:22:02.595Z]	<rhiaro>	markus_sabadello: it works for the examples we have, but isn't a formal set of test cases. That's in scope of the DID resolution work item
+[2019-04-18T20:22:13.458Z]	<rhiaro>	Justin_R: the source is available?
+[2019-04-18T20:22:19.853Z]	<rhiaro>	markus_sabadello: yes
+[2019-04-18T20:22:20.201Z]	<drummond>	q?
+[2019-04-18T20:22:48.222Z]	<burn>	ack burn
+[2019-04-18T20:22:48.282Z]	<Zakim>	burn, you wanted to suggest distinguishing between did method name and did submethod name in ABNF
+[2019-04-18T20:23:39.254Z]	<rhiaro>	burn: Joe and I had a conversation earlier today. One of the things we came up with is that the method name in the abnf we think actually should, even though syntactically the method name and sub method name are the same, we think it'd be better to distinguish between them in the abnf
+[2019-04-18T20:23:51.535Z]	<rhiaro>	... instead of 1*:method-name you have :method-name*(sub-method-name)
+[2019-04-18T20:24:00.380Z]	<rhiaro>	... because there's a semantic difference between them
+[2019-04-18T20:24:04.045Z]	<rhiaro>	drummond: there is, that's simple enouogh
+[2019-04-18T20:24:23.822Z]	<rhiaro>	... it is an adjustment from the very early abnf, but method-specific-id lets you have : delimiters
+[2019-04-18T20:24:45.158Z]	<rhiaro>	... it wasn't clear from that, people were missing the fact you can have sub method names. But we lost that, anyone who objects to that? I think that's a good point
+[2019-04-18T20:24:57.380Z]	<rhiaro>	jonnycrunch: I'm not objecting, but we have to make sure the syntax works
+[2019-04-18T20:25:06.844Z]	<rhiaro>	... colon delineated but you can have multiple sub method names
+[2019-04-18T20:25:09.918Z]	<markus_sabadello>	Correction.. source code for parser.uniresolver.io is _not_ online yet, but I'll publish it under the DIF repository at https://github.com/decentralized-identity/ in the next few days.
+[2019-04-18T20:25:24.173Z]	<rhiaro>	drummond: it'll parse okay.. i've bcome a huge fan of writing abnf that is proper but also teaches, gives you the rule names you need to talk about it
+[2019-04-18T20:25:33.707Z]	<rhiaro>	... you can collapse all the abnf to a single statement
+[2019-04-18T20:25:49.720Z]	<chrisboscolo>	q+
+[2019-04-18T20:25:50.936Z]	<rhiaro>	jonnycrunch: to walk through what the abnf actually means, maybe in the comments, that DID plus the 1 or more method-name
+[2019-04-18T20:26:12.308Z]	<rhiaro>	drummond: the string 'did' followed by one or more method names, each of which has to be prefixed by a colon, and the method names have to have 1 or more characters
+[2019-04-18T20:26:22.229Z]	<rhiaro>	jonnycrunch: the method naem actually needs to be 3 or more characters?
+[2019-04-18T20:26:34.473Z]	<rhiaro>	drummond: in early version of the spec we suggested that, then manu has a 2 character name
+[2019-04-18T20:26:56.988Z]	<rhiaro>	jonnycrunch: I think I saw the text recently and it said 3 or more
+[2019-04-18T20:27:04.429Z]	<drummond>	q?
+[2019-04-18T20:27:09.843Z]	<Justin_R>	2 character method is "hl" specifically, yes?
+[2019-04-18T20:27:13.119Z]	<burn>	q-
+[2019-04-18T20:27:18.757Z]	<dlongley>	Veres One uses "v1"
+[2019-04-18T20:27:24.109Z]	<rhiaro>	"Since the method name is part of the DID, it SHOULD be as short as practical. A method name of five characters or less is RECOMMENDED."
+[2019-04-18T20:27:40.063Z]	<rhiaro>	Joe_Andrieu: the path, query and fragment components, the abnf rules are identical but the semantics are not
+[2019-04-18T20:27:48.759Z]	<rhiaro>	... limit the assertive identicalness to the syntax
+[2019-04-18T20:28:25.076Z]	<rhiaro>	drummond: we could make that point. We could also make it up here..
+[2019-04-18T20:28:34.649Z]	<rhiaro>	... syntactically identical
+[2019-04-18T20:28:47.199Z]	<rhiaro>	Joe_Andrieu: rfc3986 has a whole bunch of other stuff, the semantics of it are different
+[2019-04-18T20:29:00.132Z]	<rhiaro>	drummond: what would you say? just edit the doc
+[2019-04-18T20:29:08.049Z]	<rhiaro>	Joe_Andrieu: this addresses my concern (see google doc)
+[2019-04-18T20:29:16.903Z]	<rhiaro>	drummond: we can make that point in the following sections of the spec
+[2019-04-18T20:29:25.801Z]	<rhiaro>	Joe_Andrieu: I had a comment around the semantics of sub method name
+[2019-04-18T20:30:54.101Z]	<rhiaro>	... I know I've missed some of the consensus building around some of these ideas. I did talk with Dan earlier and I agree the distinction between method name and sub method name are semantically different so should be broken out. I'm no tsure the semantics of sub method name are right. I'd like to make a case that the requirements that drove to the proposal, the matrix stuff, the result of our conversations in barcelona about aggregation rules, I
+[2019-04-18T20:30:54.101Z]	<rhiaro>	understand the proposal for the sub method name was so you coudl specificy specific rules about you translated things like the path and query part when you're dealing with the service epndoint. So you could have appending rules or drop and forget rules
+[2019-04-18T20:31:39.007Z]	<rhiaro>	... to me the primarly value of breaking it out that way is that you can have a resolver which understands the method, returns a DID document, and the dereference can apply the algorithm, so there's a separation of  responsibilities. I think it should be not method specific. If the DID URL has path and query parts it's this section that explains how you aggregate those if you get the DID DOcument back
+[2019-04-18T20:31:44.185Z]	<rhiaro>	... that seems to be different to what's proposed here
+[2019-04-18T20:31:59.243Z]	<rhiaro>	drummond: method names would not be used to control resolution
+[2019-04-18T20:32:21.470Z]	<rhiaro>	... is the architectural approach markus is proosing. If there are things that control how dereferencing is happening they're not part of the DID URL
+[2019-04-18T20:32:22.805Z]	<drummond>	q?
+[2019-04-18T20:32:55.184Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T20:32:55.229Z]	<Zakim>	JoeAndrieu, you wanted to clarify the ABNF is the same as RFC3986
+[2019-04-18T20:33:08.696Z]	<JoeAndrieu>	ack chrisboscolo
+[2019-04-18T20:33:09.736Z]	<drummond>	ack chrisboscolo
+[2019-04-18T20:33:28.811Z]	<rhiaro>	chrisboscolo: I don't know where I missed the sub method discussion, this is new information for me. I want to clarify - by introducing the sub method, you can also have a colon down in the URL part of it, and I'm wondering will it still throw this abnf into a parser generator and generate a parser that will work?
+[2019-04-18T20:33:51.934Z]	<rhiaro>	drummond: we have examples down here to make it clear. We consolidated aroudn the matrix param proposal because .. here's an example of a DID method with a sub method name which has a method specific identifier
+[2019-04-18T20:33:56.466Z]	<rhiaro>	... split on the first ;
+[2019-04-18T20:34:04.404Z]	<markus_sabadello>	q+
+[2019-04-18T20:34:10.707Z]	<rhiaro>	chrisboscolo: terminology question - the naked DID, does it contain 'baz'?
+[2019-04-18T20:34:14.858Z]	<rhiaro>	drummond: it does, everything up to the ;
+[2019-04-18T20:34:36.861Z]	<rhiaro>	... sub method names have always been there, we just didnt' call it out specifically in the abnf
+[2019-04-18T20:34:53.116Z]	<rhiaro>	chrisboscolo: I would have argued it wasn't there, id-char doesn't contain : so : would have been illegal to the right of the method name
+[2019-04-18T20:35:06.504Z]	<rhiaro>	drummond: you could have multiple of these
+[2019-04-18T20:35:09.960Z]	<rhiaro>	chrisboscolo: I'm okay with it
+[2019-04-18T20:35:21.780Z]	<jonathan_holt>	q+
+[2019-04-18T20:35:39.071Z]	<rhiaro>	drummond: I'm reinforcing that, it's why I changed it to be explicit about nested method names, because there are multiple DID methods out there that do that today. Sovrin for example, uses the name of the ledger
+[2019-04-18T20:35:54.337Z]	<rhiaro>	... I think veres one, it's true there
+[2019-04-18T20:35:58.458Z]	<rhiaro>	... it's easy to miss becuase it wasn't called out in the abnf
+[2019-04-18T20:36:01.434Z]	<mrinal>	are the semantics of a sub method defined? …we have a use case where we’ve thought about using the submethod to switch between shards/partitions/zones of a network .. is that not acceptable semantics?
+[2019-04-18T20:36:01.863Z]	<drummond>	q?
+[2019-04-18T20:36:02.737Z]	<JoeAndrieu>	q+
+[2019-04-18T20:36:19.298Z]	<drummond>	ack markus_sabadello
+[2019-04-18T20:36:38.631Z]	<dlongley>	+1 to separation of concerns
+[2019-04-18T20:36:57.381Z]	<rhiaro>	markus_sabadello: Joe has talked several times about how the separatoin between resolving and dereferencing.. I also like what you just said about being a resolver and a dereferencer, separate components. THat kind of thinking has influenced the diagrams I've shown on some earlier calls
+[2019-04-18T20:36:57.608Z]	<mrinal>	q+
+[2019-04-18T20:37:10.206Z]	<rhiaro>	... in my mind everything that's in the bare DID is what's used for the resolving step including the sub method names
+[2019-04-18T20:37:15.982Z]	<rhiaro>	https://i.amy.gy/did/bear-dids.jpg
+[2019-04-18T20:37:49.661Z]	<rhiaro>	... if it's a blockchain or distributed ledger.. in btcr ther's a submethod for identifying whether you want to go to... well it's in the method specific identifier.. but that's up to the method, methods could use sub methods in any way they want to just identify where and how exactly to get the DID document
+[2019-04-18T20:38:07.183Z]	<rhiaro>	... that's method specific, everything that comes after the bare DID is part of the resolution process
+[2019-04-18T20:38:08.416Z]	<rhiaro>	https://i.amy.gy/did/bear-dids.jpg
+[2019-04-18T20:38:37.707Z]	<yancy>	lel
+[2019-04-18T20:39:25.958Z]	<JoeAndrieu>	q?
+[2019-04-18T20:39:38.771Z]	<drummond>	q?
+[2019-04-18T20:39:40.600Z]	<markus_sabadello>	rhiaro: I thought it's just called "DID", so perhaps there's no need to use terms "naked DID" or "bare DID"
+[2019-04-18T20:39:48.085Z]	<drummond>	q+
+[2019-04-18T20:40:16.538Z]	<rhiaro>	jonathan_holt: naming is important. the sub method names, Joe's point is that it might be an identifier. we're using it with a sub method network to describe as a CID to describe the ipfs network we're using, including version numbers
+[2019-04-18T20:40:28.102Z]	<rhiaro>	... which is ipld that resollves, has pointers to test code, it's self describing. That was my first point
+[2019-04-18T20:40:43.781Z]	<rhiaro>	... and then was distracted by the bears
+[2019-04-18T20:41:03.674Z]	<rhiaro>	drummond: really good point, the original abnf might have been better
+[2019-04-18T20:41:08.308Z]	<drummond>	ack jonathan_holt
+[2019-04-18T20:41:12.805Z]	<rhiaro>	jonathan_holt: is the 5 char restriction for the sub method names or can they be longer than 5?
+[2019-04-18T20:41:36.687Z]	<rhiaro>	drummond: there's no restriction other than it's got to be 1 or more. Subsantially there's no difference between what we had here and what we had before. We just changed the construction of the way it appears and the rules are named
+[2019-04-18T20:41:37.341Z]	<drummond>	q?
+[2019-04-18T20:41:56.301Z]	<chrisboscolo>	since talking about what to name it, "method-specific" should be in the name, ie. "method-specific sub identifier"
+[2019-04-18T20:42:20.467Z]	<rhiaro>	Joe_Andrieu: the current sub method is not quite what i thought it was. My comment earlier, I understand you said in sovrin you use it to identify the ledger. THat's different.. I think right now in this abnf we don't have th eresolution to the discussions we had in barcelona around arbitrarily appending a path and query will break service URLs
+[2019-04-18T20:42:31.331Z]	<rhiaro>	... that's an anti-pattern that will not survive the Web Architecture group
+[2019-04-18T20:42:36.030Z]	<markus_sabadello>	E.g. did:sov:stn:WRfXPg8dantKVubE3HX8pw means it's on the STN (sovrin test network)
+[2019-04-18T20:43:09.347Z]	<rhiaro>	... in barcelona through working with drummond and someone else... the file/folder you want to preserve with the same root DID but go to a different service provider is a valid use case that needs that aggregation mechanism so you don't rewrite all yoru DID URLs
+[2019-04-18T20:43:20.635Z]	<rhiaro>	... the conclusion I took was that we need a mechanism within the DID to say it's going to use one or another aggregation rule
+[2019-04-18T20:43:48.045Z]	<rhiaro>	... I thought that's where we were heading. That's not a sub method. I thought that solution was a sub method. how do we specify whether or not you sholud append the path and query or should you drop it? therew as also a content based mechanism that was a proposal that also came out of rwot
+[2019-04-18T20:44:24.378Z]	<rhiaro>	drummond: to the extent that it affects the resource being identified, the content based sollution, those are proposed generic parameter names in this table down here. THe question about whether you append or not would be something specified in the resolution spec, reolative to the service or serivec type params
+[2019-04-18T20:44:51.149Z]	<rhiaro>	... if you specify a service parameter or a service-type, either one which will get you a service endpoint url, the resolution spec would specify an dyou then if you have a path, query or fragment that follows one of these params you would append it to the servie endpoint url
+[2019-04-18T20:44:58.730Z]	<rhiaro>	... that's where the state of play is right now
+[2019-04-18T20:45:20.787Z]	<rhiaro>	Joe_Andrieu: you mapped it to DID parameter names, but there isn't a DID param that says don't append because your'e going to break all my service endpoints
+[2019-04-18T20:45:45.322Z]	<rhiaro>	drummond: I think that would fall into what markus has described down here as these are only parameters that would appear in the DID URL, but if there were other controls over dereferencing that would be something you could pass to a resolver but it wouldnt' be part of the DID URL
+[2019-04-18T20:45:47.270Z]	<drummond>	q?
+[2019-04-18T20:46:33.942Z]	<rhiaro>	Joe_Andrieu: the trick here is the web developer who wants to model their ulrs iwn a way that will be sustainable over time. I don't believe there is an effective way to do that. It hink it's going to confuse people who are trying to use DIDs in their web apps, because they don't understand that some service endpoints will often have path and query parts, and the person wirting the URL doens' thav econtrol over those serive endpoints, even the end
+[2019-04-18T20:46:33.943Z]	<rhiaro>	user doesn't have direct control over it
+[2019-04-18T20:46:41.606Z]	<rhiaro>	... the service endpoint chooses whether there's a path or query part
+[2019-04-18T20:46:58.562Z]	<rhiaro>	... the app developer says i want a url which isn't going to be fragile, or they know it's fragile but that's the use case I care about
+[2019-04-18T20:47:05.022Z]	<rhiaro>	... whether it's in the DID part or the URL part is still up for debate
+[2019-04-18T20:47:16.094Z]	<markus_sabadello>	q+
+[2019-04-18T20:47:18.964Z]	<rhiaro>	... The default for a service is something I think is likely to break existing service endpoints, is a huge problem
+[2019-04-18T20:47:45.845Z]	<dlongley>	it could also be done through the type of the service
+[2019-04-18T20:47:50.532Z]	<dlongley>	and a service could have multiple types
+[2019-04-18T20:47:54.385Z]	<rhiaro>	... I think if I've internalised this properly we can have a parameter name that means we're not going to aggregate. That sholud be the default but I don't need to argue that here. There's a framework here where we could make a paramter name
+[2019-04-18T20:47:56.209Z]	<drummond>	q?
+[2019-04-18T20:48:02.310Z]	<mrinal>	[no audio] Is the semantics of sub method names up to the methods? or are they defined by the spec? …we have a use case where we’ve thought about using the submethod to switch between shards/partitions/zones of a network .. is that not acceptable semantics?
+[2019-04-18T20:48:03.002Z]	<burn>	FYI, mrinal is not listed as a CCG member (https://www.w3.org/community/credentials/participants)
+[2019-04-18T20:48:06.797Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T20:48:22.573Z]	<JoeAndrieu>	ack mrinal
+[2019-04-18T20:48:40.381Z]	<rhiaro>	mrinal: Is the semantics of sub method names up to the methods? or are they defined by the spec? …we have a use case where we’ve thought about using the submethod to switch between shards/partitions/zones of a network .. is that not acceptable semantics?
+[2019-04-18T20:49:20.437Z]	<rhiaro>	burn: re non ccg participation - use cases are great, requirements can be iffy depending on what they are, proposing specific solutions are problematic
+[2019-04-18T20:49:43.026Z]	<rhiaro>	drummond: the semantics of sub method names are up to the methods, not definied by the spec
+[2019-04-18T20:49:53.322Z]	<rhiaro>	... that use case is acceptable, that's exactly what some methods are doing today
+[2019-04-18T20:49:55.625Z]	<mrinal>	pefect, thank you
+[2019-04-18T20:50:04.605Z]	<drummond>	q?
+[2019-04-18T20:50:05.787Z]	<JoeAndrieu>	q+ to suggest sub-methods should be in method-specific string
+[2019-04-18T20:50:15.427Z]	<dlongley>	ack drummond
+[2019-04-18T20:51:16.296Z]	<drummond>	ack drummond
+[2019-04-18T20:51:17.270Z]	<rhiaro>	... I think we already have an answer to joe's question
+[2019-04-18T20:51:21.990Z]	<dlongley>	ack markus_sabadello
+[2019-04-18T20:51:53.542Z]	<drummond>	q?
+[2019-04-18T20:53:03.672Z]	<rhiaro>	markus_sabadello: about the aggregation of the service endpoint url, I don't understand the problem. You have path, query and fragment in the DID URL and you select the service endpoint which may also have path, query and fragment, then you just append it, you wouldn't just add one string after the other, there would be some rules. If the input DID URL has a fragment and a service endpoint and the DID DOcument also has it then perhaps it's not
+[2019-04-18T20:53:03.673Z]	<rhiaro>	possible to aggregate it. Most of the time I don't think there's a problem if you want to avoid all conflicts in your DID Document you could just have service endpoint urls that don't have any path and query and fragment and then it would just be the ones from the DID URL that would be added to what's int he service endpoint
+[2019-04-18T20:53:11.822Z]	<dlongley>	q?
+[2019-04-18T20:53:12.185Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T20:53:13.246Z]	<Zakim>	JoeAndrieu, you wanted to suggest sub-methods should be in method-specific string
+[2019-04-18T20:53:43.383Z]	<rhiaro>	JoeAndrieu: neither the structure of the service endpoint nor the DID URL is under the control of the controller of the DID DOcument
+[2019-04-18T20:54:05.172Z]	<rhiaro>	... so when I choose to set twitter as my service endopint, I have to use twitter.com/joeandrieu. I have to include a path component or it won't find me at twitter
+[2019-04-18T20:54:38.424Z]	<rhiaro>	... similarly for the web developer who is writing the web pag,e they need to figure out what path and query they can use that will be consistent across all service endpoints that the indiviidual may choose. you're opening point was right on. There is no simple rule, and yet drummond asserted such. it's not and it can't be a simple append
+[2019-04-18T20:54:54.420Z]	<rhiaro>	... if it's /joeandrieu?picture=avatar you can't simply append an arbitrary path and query part as a string append
+[2019-04-18T20:55:01.664Z]	<drummond>	q+ to explain what Drummond meant by "simple rule"
+[2019-04-18T20:55:07.312Z]	<dlongley>	q+ to suggest that services may start supporting this idea as value-add once we make DIDs a reality
+[2019-04-18T20:55:22.650Z]	<jonathan_holt>	q+
+[2019-04-18T20:55:24.271Z]	<markus_sabadello>	q+
+[2019-04-18T20:55:31.325Z]	<rhiaro>	... I posit there is not a generic algorithm that works for the generic use case which I think is dominent, that the service endpoints are expected to change. THat's one of the most important foundations. I can change the servie endpoint out from behind the DID URL and it's supposed to work. I believe the arbitrary aggregation rule is going to break most of the time.
+[2019-04-18T20:56:04.485Z]	<rhiaro>	... the use case that the DID and DID URL together to define an arbitrary index of a file hierarchy. I want the urls to be consistent. You want to retain the path part from the DID URL but most service endpoints we don't control the structure of that as the individual
+[2019-04-18T20:56:05.473Z]	<drummond>	Drummond is going to talk about "DID-safe URLs"
+[2019-04-18T20:56:12.784Z]	<drummond>	Q?
+[2019-04-18T20:56:44.142Z]	<burn>	ack drummond
+[2019-04-18T20:56:44.188Z]	<Zakim>	drummond, you wanted to explain what Drummond meant by "simple rule"
+[2019-04-18T20:57:06.688Z]	<rhiaro>	drummond: the way I've been thinking about th eproblem vs the problem you' re trying to solve.. I agree with everything you said. Knowing that th ecomplex problem is all but unsolveable, although markus has proposed a set of rules, what I've been after is the concept of a DID safe url
+[2019-04-18T20:57:25.206Z]	<rhiaro>	... it's a service provider saying I want to support the portability ofyour content, therefore I will offer you serive endpoints that end in a path
+[2019-04-18T20:57:36.232Z]	<rhiaro>	... you could append your path to my path, and have htis new class of did safe url endpoints
+[2019-04-18T20:57:41.721Z]	<markus_sabadello>	example rules that could be used (just a quick draft, not well thought through): https://lists.w3.org/Archives/Public/public-credentials/2019Apr/0032.html
+[2019-04-18T20:58:03.113Z]	<drummond>	q?
+[2019-04-18T20:58:04.666Z]	<rhiaro>	... that's all I've been arguing for. If we make that simple and straightforward for everyone to do, now service providers can compete with a bunch of ways to design their urls, but if I want to get portability then I can make sure it's a DID safe url
+[2019-04-18T20:58:10.184Z]	<burn>	ack dlongley
+[2019-04-18T20:58:10.233Z]	<Zakim>	dlongley, you wanted to suggest that services may start supporting this idea as value-add once we make DIDs a reality
+[2019-04-18T20:58:23.758Z]	<Justin_R>	q+ won't this "simple rule" incentivize people to NOT make things portable but still pay lip-service to "did"?
+[2019-04-18T20:58:24.715Z]	<dlongley>	i guess no one can hear me scream
+[2019-04-18T20:58:34.710Z]	<dlongley>	so, i'll just type ... drummond said pretty much what i was going for
+[2019-04-18T20:58:35.305Z]	<Justin_R>	q+ to won't this "simple rule" incentivize people to NOT make things portable but still pay lip-service to "did"?
+[2019-04-18T20:58:42.665Z]	<dlongley>	+1 to what drummond said, i agree there's brittleness today
+[2019-04-18T20:58:43.179Z]	<Justin_R>	oops I did that twice
+[2019-04-18T20:58:57.241Z]	<dlongley>	with what Joe said, but +1 to making this a possibility for competition/value add tomorrow
+[2019-04-18T20:59:00.681Z]	<drummond>	q?
+[2019-04-18T20:59:06.073Z]	<dlongley>	and we can potentially deal with granularity via service types.
+[2019-04-18T20:59:08.919Z]	<burn>	ack jonathan_holt
+[2019-04-18T20:59:48.841Z]	<rhiaro>	jonathan_holt: running through the use cases in my head, if you have a VC and you're hitting to verify the signature of that credential. You get a DID Doc that could be 10 years in the past. I may have updated my DID Doc with different service endpoints. your'e not going to query the service endpoints form 10 years ago. You need to now look at the head of the DID Doc to see what my latest servce endpoint...
+[2019-04-18T21:00:07.020Z]	<rhiaro>	... I worry that that's the use case and how do we do that deterministically where those query paths and fragments will now be relevant
+[2019-04-18T21:00:13.404Z]	<rhiaro>	... is this obvious? is this what the real problem is over time?
+[2019-04-18T21:00:40.628Z]	<rhiaro>	... you really need to query the lates tDID Document. why wouldn't that just be inherant in the DID Document? Why do we needt o have the servie endopint smaintained?
+[2019-04-18T21:00:43.776Z]	<drummond>	q?
+[2019-04-18T21:01:05.561Z]	<burn>	ack markus_sabadello
+[2019-04-18T21:01:17.778Z]	<JoeAndrieu>	q+ to say I think that's a caching problem. the did spec says you should always get
+[2019-04-18T21:01:22.966Z]	<chrisboscolo>	yes, let Joe answer
+[2019-04-18T21:02:03.387Z]	<rhiaro>	JoeAndrieu: I think that's a caching problem. My understanding is the DID spec, theonly way you have the right DID Document is to execute the method today. Some methods are not signed. If you'v egot btcr for example, you need to query the nodes now or your resolver needs to figure it out. The process should result in the guaranteed most recent DID Document
+[2019-04-18T21:02:08.658Z]	<rhiaro>	... I don't know how you got one that's 10 years old
+[2019-04-18T21:02:39.442Z]	<rhiaro>	jonathan_holt: maybe because I swapped otu my keys every year. My keys in the DID Dcoument are going to rotate. But you need to validate the VC of my medical license or my diploma with the key from 10 years ago
+[2019-04-18T21:03:05.090Z]	<rhiaro>	... but once you have that, say I'm a physician, you need to now communicate with my agent to get my schedule, but the service endpoint I had for my schedule from 10 years ago is no longer valid
+[2019-04-18T21:03:08.288Z]	<drummond>	q+ to talk about old and current DID documents
+[2019-04-18T21:03:09.723Z]	<rhiaro>	... I have a new service endpoint
+[2019-04-18T21:03:26.482Z]	<rhiaro>	... so why wouldn't I include that in my latest DID Document. I'm just trying to understand the use case a little better, why this is an issue
+[2019-04-18T21:03:42.507Z]	<rhiaro>	JoeAndrieu: you would include the latest one. The challenge is if the syntax the old provider used is different from the new provider
+[2019-04-18T21:04:05.195Z]	<rhiaro>	jonathan_holt: I don't have any control over the restful api that the provider uses, I can specify the service endpoint that includes the syntax for the path and the query
+[2019-04-18T21:04:25.326Z]	<drummond>	q?
+[2019-04-18T21:04:43.028Z]	<rhiaro>	JoeAndrieu: yes but if in the google universe it suggested appending a path an dquery term to get what you want, but the new service doesn't use that append then it won't work
+[2019-04-18T21:05:06.183Z]	<rhiaro>	... if you have a path and query part in your serivce endpoint, and a DID URI, you have two paths and two queries, you have to aggregate them somehow. You need some rule about what you do with these duplicate pieces of data
+[2019-04-18T21:05:13.324Z]	<rhiaro>	jonathan_holt: can I just squash them into the service endpoint of my agent?
+[2019-04-18T21:05:19.433Z]	<rhiaro>	... I have control over my DID Document I can specify that
+[2019-04-18T21:06:02.000Z]	<drummond>	This makes me think even more that we need to cover the concept of "DID-safe URLs" in the spec.
+[2019-04-18T21:06:03.676Z]	<rhiaro>	JoeAndrieu: you don't have control over my blog post where I wrote your DID URL. The goal of the system is you should be able to change your service endpoint and the link doesn't break. You want the URL to be a path entry into your file folder. Other times you want something that doesn't hav epath information because the underlying service endpoint may have its own path and query part
+[2019-04-18T21:06:06.527Z]	<drummond>	q?
+[2019-04-18T21:06:38.084Z]	<rhiaro>	markus_sabadello: perhaps instead of making up our own aggregation and append rules in the URI spec there's soemthing called a relative URI reference, perhaps we could reuse that
+[2019-04-18T21:07:03.746Z]	<rhiaro>	... we select the URL from the DID Doc from the service endpoint, call it the base url, then we take the path query and fragment from the DID URL and consider it a relative URI reference, from which we can construct a target url from the standard URI merging algorithm
+[2019-04-18T21:07:09.944Z]	<rhiaro>	... just a thought, I havne't tried it
+[2019-04-18T21:07:15.496Z]	<drummond>	q?
+[2019-04-18T21:07:23.396Z]	<burn>	ack Justin_R
+[2019-04-18T21:07:23.456Z]	<Zakim>	Justin_R, you wanted to won't this "simple rule" incentivize people to NOT make things portable but still pay lip-service to "did"?
+[2019-04-18T21:07:55.572Z]	<drummond>	+1. That's what I'm calling a DID-safe URL.
+[2019-04-18T21:08:16.799Z]	<rhiaro>	Justin_R: similar to what markus said, there are existin gurl combination schemes out there. I do share jonny's concern about the notino of if I"m putting this extra pointer stuff in the DID URL and I still have to get the document and I still have to figure out from there where stuff is really pointing to, what's the point of having that additional specificity in the URL itself if we really want something to just reference inside the document?
+[2019-04-18T21:09:13.049Z]	<rhiaro>	... Second point - we as a group cannot assume the motivations to make things open or closed. drummond, a lot of yoru arguement hinged on the fact that people wanted to appeal to this open market. Well, no. if I can as a large data aggregation company, if I can pretend that I'm following a standard that makes it sound like I'm open and yet still keep everything completely closed and be entirely within the letter of the specification then there's
+[2019-04-18T21:09:13.050Z]	<rhiaro>	nothing motivating me to go open
+[2019-04-18T21:09:15.592Z]	<rhiaro>	... there is no marke tpressure
+[2019-04-18T21:09:21.021Z]	<rhiaro>	... that's an interesting fiction that is not going to hold up
+[2019-04-18T21:09:34.196Z]	<drummond>	q?
+[2019-04-18T21:09:36.170Z]	<rhiaro>	... we need to be really careful in cases where we say the market pressures will solve this piece, because I truly believe they won't.
+[2019-04-18T21:09:39.545Z]	<rhiaro>	drummond: that's a really good point
+[2019-04-18T21:09:44.477Z]	<burn>	ack JoeAndrieu
+[2019-04-18T21:09:44.525Z]	<Zakim>	JoeAndrieu, you wanted to say I think that's a caching problem. the did spec says you should always get
+[2019-04-18T21:09:53.399Z]	<burn>	no
+[2019-04-18T21:09:54.107Z]	<burn>	no
+[2019-04-18T21:09:57.507Z]	<burn>	I ack'd Joe
+[2019-04-18T21:09:59.726Z]	<JoeAndrieu>	ack drummond
+[2019-04-18T21:09:59.770Z]	<Zakim>	drummond, you wanted to talk about old and current DID documents
+[2019-04-18T21:10:12.182Z]	<burn>	q+ JoeAndrieu
+[2019-04-18T21:10:29.703Z]	<rhiaro>	drummond: not so much about market pressure, I agree with justin, but service providers
+[2019-04-18T21:10:43.827Z]	<burn>	q- Justin_R
+[2019-04-18T21:10:58.040Z]	<drummond>	q?
+[2019-04-18T21:11:08.609Z]	<rhiaro>	... if you have a way that allows portability of DIDs across service providers that allow did safe urls at least it becomes an option
+[2019-04-18T21:11:44.243Z]	<rhiaro>	JoeAndrieu: what I thought we had agreement.. if the DID can specify this is a DID safe DID or this is not a DID safe DID and what those mechanisms are then we both have our cake
+[2019-04-18T21:12:40.443Z]	<rhiaro>	... maybe the right way to do that is as a parameter name and we have a rule that says how to aggregate... in the base case where I'm saying I want to give you my business card with a DID on it that says here's how you reach me by SMS or social networks, and behind that i want to change the end urls. I want that to not be a DID safe URL because those services have their own schema. Appending anythign to this URL will be ignored cos it'll break it
+[2019-04-18T21:12:50.195Z]	<rhiaro>	... whereas if the rule is to append it I know that will break some stuff. I want to specify in the DID the difference
+[2019-04-18T21:13:36.739Z]	<rhiaro>	drummond: the did controller wants to specify any service endpoint for that service, and you don't know in the future if they'll be using DID safe urls, you want to say just use this, don't try and append anyting
+[2019-04-18T21:13:38.119Z]	<drummond>	So Joe is proposing a parameter for "do not append"
+[2019-04-18T21:13:49.107Z]	<rhiaro>	JoeAndrieu: I think there will be people who get it wrong if they think appending is safer than it actually is
+[2019-04-18T21:14:04.676Z]	<jonathan_holt>	q+
+[2019-04-18T21:14:11.298Z]	<rhiaro>	drummond: that's th eother side of the coin than what i've been after where you say hey only look for did safe urls. The inverse is saying put it right in the DID, don't try to append anything
+[2019-04-18T21:14:22.371Z]	<drummond>	q?
+[2019-04-18T21:14:27.639Z]	<rhiaro>	JoeAndrieu: this is not a did safe service provider but I still want to work with them
+[2019-04-18T21:14:36.556Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T21:14:37.652Z]	<burn>	ack jonathan_holt
+[2019-04-18T21:15:03.951Z]	<chrisboscolo>	minor nit, the term "DID safe URL" seems like the noun and adjective are backward
+[2019-04-18T21:15:09.762Z]	<rhiaro>	jonathan_holt: a good use case would be revocation lists. I fyou got revocation as a service endpoint, with a vc you need to validate the signature from an old key, you need to look at the HEAD of the DID Doc to find the service endpoint to an api for revocation
+[2019-04-18T21:15:16.017Z]	<drummond>	q+
+[2019-04-18T21:15:35.094Z]	<rhiaro>	... if I'm going to do that why wouldn't tha tbe completely spelled out service endpoint in the full string of the serviceEndpoint for a revocation list?
+[2019-04-18T21:15:42.079Z]	<burn>	ack drummond
+[2019-04-18T21:16:09.580Z]	<rhiaro>	drummond: in my mind it could be. The pattern we've referred to several times is a verifier that needs to verify an older signature and then talk to the most current service endpoint associated with some service
+[2019-04-18T21:16:13.480Z]	<rhiaro>	... it's a workflow thing for th everifier
+[2019-04-18T21:16:24.212Z]	<JoeAndrieu>	q+
+[2019-04-18T21:16:39.519Z]	<rhiaro>	... to meet whatever they've got to do they know they need to get 2 DID Docs - the specific version for the public key, and then they need to get the current service endpoitn to interact in a certain way
+[2019-04-18T21:16:52.303Z]	<rhiaro>	... that inherantly ends up being two different DID Doc resolutions even though you are starting with a single DID URL
+[2019-04-18T21:16:57.102Z]	<rhiaro>	JoeAndrieu: I don't agree
+[2019-04-18T21:17:00.442Z]	<drummond>	q?
+[2019-04-18T21:17:06.929Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T21:17:09.631Z]	<rhiaro>	... I think there are some assumptions in the flow that aren't valid and there's a different way to model it
+[2019-04-18T21:17:29.317Z]	<rhiaro>	... the spec says when you resolve a DID you get the current Doc. There should only ever be one. All DID DOcs could have keys that have been compromised
+[2019-04-18T21:17:56.580Z]	<rhiaro>	... what you're seeking I think jonny is a way to keep around old keys that were valid for a period of 5 years and are not. you want a way to say new stuff shouldn't be signed with these keys but old stuff was valid
+[2019-04-18T21:18:19.404Z]	<rhiaro>	... that's different from a key being compromised. The trick is modelling the evolution of the keys in the DID Documetn so someone who checks it right now has the information they need to check a VC is okay
+[2019-04-18T21:18:26.154Z]	<markus_sabadello>	q+
+[2019-04-18T21:18:28.145Z]	<rhiaro>	jonathan_holt: we can do that with a link to a previous verison of it
+[2019-04-18T21:18:35.760Z]	<rhiaro>	JoeAndrieu: how do you say it was compromised?
+[2019-04-18T21:18:42.803Z]	<rhiaro>	jonathan_holt: you could just rotate it, or you could say it was revoked
+[2019-04-18T21:18:48.112Z]	<drummond>	q?
+[2019-04-18T21:18:49.269Z]	<rhiaro>	... the issue is now this need for revocation lists
+[2019-04-18T21:18:58.962Z]	<rhiaro>	.... this gets into some details about how we handle key management
+[2019-04-18T21:19:28.512Z]	<rhiaro>	... I'm just trying to understand hte need for aggregation if I'm just going to state that service endoint in the latest version of my DID Document
+[2019-04-18T21:19:51.077Z]	<rhiaro>	... Trying to model these restful apis an din a p2p protocol there's nprobably better ways of modelling it
+[2019-04-18T21:19:58.312Z]	<drummond>	q?
+[2019-04-18T21:20:31.587Z]	<rhiaro>	JoeAndrieu: I think you're right, most of the time I think you're going to need it. None of the current use cases have this need for the file folder mechanism, the did safe url
+[2019-04-18T21:20:40.234Z]	<rhiaro>	... the idea is I have a bunch of stuff on dropbox, there is a path component to it
+[2019-04-18T21:20:57.358Z]	<drummond>	q+ to say that Drummond is willing to live with DID-safe URLs
+[2019-04-18T21:21:29.949Z]	<rhiaro>	... what I want to be able to do is have DID and a path component which points to my dropbox file directly and then I want to be able to swap out dropbox and put in box.com and move all my files over there and still get me to my resource in that URL, so the DID URL doesn't change but I"ve changed serivce provider under the hood
+[2019-04-18T21:21:40.354Z]	<rhiaro>	... I don't want to set a service endpoint for each file in there
+[2019-04-18T21:21:49.183Z]	<drummond>	Joe has just explained the canonical use case for DID service references.
+[2019-04-18T21:21:51.430Z]	<rhiaro>	... if it's buried in a file hierarchy without the append mechanism it's complicated to try and recreate that feature
+[2019-04-18T21:22:10.787Z]	<rhiaro>	... that's the use case where you have an arbitrary file hierarchy and you want references iwthin that hierarchy to work
+[2019-04-18T21:22:14.435Z]	<rhiaro>	jonathan_holt: so CIDs
+[2019-04-18T21:22:30.166Z]	<rhiaro>	JoeAndrieu: I thought that was what ken was proposing 3 weeks ago. I don't kno whow the CID proposal fro mken fits into this
+[2019-04-18T21:22:51.940Z]	<rhiaro>	ken: I think that captures it pretty well
+[2019-04-18T21:22:55.300Z]	<drummond>	q?
+[2019-04-18T21:23:12.467Z]	<drummond>	ack markus_sabadello
+[2019-04-18T21:23:43.744Z]	<rhiaro>	markus_sabadello: the example about dropbox and box.com, just occured to me another example is with personal data stores, like the hubs being developed at DIF also make use of path for pointing to VCs for attributes or parts of you personal data. With DID URls you could also have persistent URLs that are fully portable for certain pieces of data in your hub or perosnal data store
+[2019-04-18T21:24:26.157Z]	<rhiaro>	... The versioning - there are use cases where we want to be able to retrieve an earlier version of a DID Document. I fully agree to get the latest version you juts resolve the DID. I think there are some use cases for getting earlier versions like the one where a credential was signe with a key that isnt' valid any more but was valid when the credential was issued
+[2019-04-18T21:25:13.177Z]	<drummond>	q?
+[2019-04-18T21:25:28.787Z]	<rhiaro>	... There's a distinction between was the key rotated on purposes and was the DID Doc updated, and the key is not considered compromised, or do we know the key has been compromised and we do not trust it any more. Maybe that can be noted in the subsequent version fo the DID Document, that ells me what were my keys 2 weeks ago, the next version could tell why that previous key was changed and if it should still be trusted for a certain time period.
+[2019-04-18T21:25:28.787Z]	<rhiaro>	Just an idea. In general I think there would be use cases for versioning
+[2019-04-18T21:25:33.257Z]	<drummond>	ack drummond
+[2019-04-18T21:25:33.302Z]	<Zakim>	drummond, you wanted to say that Drummond is willing to live with DID-safe URLs
+[2019-04-18T21:27:09.803Z]	<rhiaro>	drummond: I agree with markus, there are cases where you do need to address previous version of DID Docs. I was going to reinforce when Joe was talkinga bout those cases where you do have the deep file references, one of the canonical one is blogs. If you're going to maintain a blog you're going to have long term portability of a blog, if you want portability with a domain name.. portable beyond your life time with DID safe urls, we enable that
+[2019-04-18T21:27:09.803Z]	<rhiaro>	possibility with service proivders that can allow that
+[2019-04-18T21:27:12.685Z]	<drummond>	Q?
+[2019-04-18T21:27:30.417Z]	<rhiaro>	drummond: we have half an hour left...
+[2019-04-18T21:28:02.580Z]	<rhiaro>	... Other than this question about what we should actually name ... method names, or sub method names, back to th eoriginal that says you can have one or more method specific identifiers
+[2019-04-18T21:28:18.029Z]	<rhiaro>	... you could use method specific identifiers to partition your id space
+[2019-04-18T21:28:24.664Z]	<rhiaro>	... is there a strong feeling as to which of those you prefer?
+[2019-04-18T21:28:29.828Z]	<JoeAndrieu>	q+ to add question
+[2019-04-18T21:28:33.512Z]	<rhiaro>	... the only place where we're actually having questions around this section of the abnf
+[2019-04-18T21:29:13.495Z]	<rhiaro>	JoeAndrieu: I don't know that there are no other questions. A DID URL doesn't have a path part. Which means I think the abnf rules for path part are not the same as for rfc3986
+[2019-04-18T21:29:20.380Z]	<rhiaro>	drummond: you're talkinga bout the fact the path is this rule..
+[2019-04-18T21:29:30.492Z]	<rhiaro>	JoeAndrieu: is not path as defined in rfc3986
+[2019-04-18T21:29:36.281Z]	<rhiaro>	drummond: the rule we need is path ab emtpy
+[2019-04-18T21:29:41.515Z]	<rhiaro>	JoeAndrieu: that would get rid of my concern
+[2019-04-18T21:30:02.152Z]	<rhiaro>	drummond: fixed
+[2019-04-18T21:30:24.337Z]	<rhiaro>	... We put the abnf down here from 3986 so you can work your way through and see what's used, everything in red, just a tiny bit of it
+[2019-04-18T21:31:03.460Z]	<rhiaro>	JoeAndrieu: I don't like did safe urls. You'v ejust made it so I can't do the dropbox use case. if it' sonly path abempty then can't do the drop box use case
+[2019-04-18T21:31:26.895Z]	<rhiaro>	... the dropbox use case is I have an arbitrary file path in my DID URI. BUt in this abnf I cna't have an arbitrary file path
+[2019-04-18T21:31:45.236Z]	<rhiaro>	drummond: abempty means it *can* be empty
+[2019-04-18T21:31:49.812Z]	<rhiaro>	... not that it has to be
+[2019-04-18T21:32:35.746Z]	<rhiaro>	... path abempty is the simplest production. A path that can be empty
+[2019-04-18T21:32:54.560Z]	<rhiaro>	JoeAndrieu: so it begins with a / or it's empty
+[2019-04-18T21:33:05.344Z]	<rhiaro>	drummond: right. Begins with a / and can have arbitrary number, or it's empty
+[2019-04-18T21:33:18.566Z]	<rhiaro>	... standard rfc3986
+[2019-04-18T21:33:47.871Z]	<drummond>	q?
+[2019-04-18T21:33:50.977Z]	<rhiaro>	... Just trying to see how close to consensus we are on this new abnf
+[2019-04-18T21:33:58.690Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T21:33:58.732Z]	<Zakim>	JoeAndrieu, you wanted to add question
+[2019-04-18T21:34:19.503Z]	<rhiaro>	JoeAndrieu: sub method names - semantically feel like they're part of the method specific id
+[2019-04-18T21:34:38.907Z]	<rhiaro>	... I'm not sure why they're part of.. in the current what's written here I know we're going to change it, shouldn't the method name be part of the method specific id?
+[2019-04-18T21:34:49.682Z]	<rhiaro>	drummond: that was the original grammar... maybe we should just go back?
+[2019-04-18T21:35:16.326Z]	<rhiaro>	markus: I agree, it would be cleaner to go back
+[2019-04-18T21:35:42.048Z]	<rhiaro>	JoeAndrieu: so you're resolver is going to use the method name to figure out what I use to go find the DID Document for this. Then it' sgoing to pass the sub method as part of the method specific id to the part of the resolver that handles it
+[2019-04-18T21:35:45.335Z]	<rhiaro>	markus_sabadello: right
+[2019-04-18T21:36:00.028Z]	<rhiaro>	... tha'ts how my resolver does it, doesn't mean they all have to
+[2019-04-18T21:36:09.143Z]	<rhiaro>	... it's a method name that really matters, that tells you how to process the rest
+[2019-04-18T21:36:25.011Z]	<rhiaro>	JoeAndrieu: the method specific ids has id-chars whereas the method name has method-chars
+[2019-04-18T21:36:35.628Z]	<rhiaro>	... I don't know what those character codes mean in method-chars
+[2019-04-18T21:36:38.665Z]	<rhiaro>	drummond: lowercase
+[2019-04-18T21:36:42.331Z]	<rhiaro>	... method names must be lowercase
+[2019-04-18T21:37:41.271Z]	<rhiaro>	... we had teh restriction, it was clear or easier to agree method names when you're just talkinga bot the top level method names, if folks are going to start using nested method names it would further convince me to go back to the original. The first one is lower case, then after that you can use colon delimted segments of any method specific id character. which is the original syntax which no-one has objected to. It doesn't make it clear about sub
+[2019-04-18T21:37:41.272Z]	<rhiaro>	method names, but we can do that in the text
+[2019-04-18T21:37:47.086Z]	<rhiaro>	... I'm personally convinced we should just revert now
+[2019-04-18T21:37:59.114Z]	<rhiaro>	... We sholud not be coming up with better ways to do it at 1am..
+[2019-04-18T21:38:28.032Z]	<rhiaro>	JoeAndrieu: the resolver is going to use the method name and send that system the sub method name
+[2019-04-18T21:38:41.050Z]	<rhiaro>	markus_sabadello: I agree
+[2019-04-18T21:39:08.701Z]	<rhiaro>	... another way to look at is not looking at implementation specific details of the resolver. could also look at it from the method spec requirements. That method spec covers everyting else, the method specific id including all these sub namespaces
+[2019-04-18T21:39:12.194Z]	<rhiaro>	drummond: I'm convinced
+[2019-04-18T21:39:18.227Z]	<rhiaro>	... that's a super easy change, we'll fix that
+[2019-04-18T21:39:19.220Z]	<drummond>	q?
+[2019-04-18T21:39:36.349Z]	<rhiaro>	jonathan_holt: could the sub method be blank if there's more than one colon? did:ipid::method-specific-identifier
+[2019-04-18T21:39:43.001Z]	<rhiaro>	drummond: that's a great question. method specific id is one or more
+[2019-04-18T21:39:56.702Z]	<rhiaro>	... I don't have any problem at that level with allowing sequential colons. Anyone else?
+[2019-04-18T21:40:04.541Z]	<rhiaro>	jonathan_holt: I think i've seen that syntax used elsewhere
+[2019-04-18T21:40:15.074Z]	<rhiaro>	... the method specific identifeir that is any char upper or lower case?
+[2019-04-18T21:40:17.177Z]	<rhiaro>	drummond: yes
+[2019-04-18T21:40:48.213Z]	<rhiaro>	JoeAndrieu: if the sub method name is now in the method specific id, that's now not going to be just idchars
+[2019-04-18T21:40:56.563Z]	<rhiaro>	drummond: yes that reverts it back to what we had before. I'll fix this
+[2019-04-18T21:41:06.121Z]	<drummond>	q?
+[2019-04-18T21:41:35.873Z]	<rhiaro>	drummond: there are questions in the doc about parameter names.. are we ready to move down into that or are there any outstanding questions on the abnf?
+[2019-04-18T21:42:23.010Z]	<drummond>	q?
+[2019-04-18T21:42:51.030Z]	<rhiaro>	drummond: markus and I worked on this proposal together tryign to pull in things from the last calls
+[2019-04-18T21:42:58.676Z]	<rhiaro>	JoeAndrieu: folks can jump on the queue if you want to comment
+[2019-04-18T21:43:43.227Z]	<rhiaro>	drummond: service is the one we all talked about, if you want to select a service by that id. service-type, this use case is specific to or the canonical example is hubs, the team at microsoft has said they want to be able to have individual have several hubs
+[2019-04-18T21:43:52.077Z]	<rhiaro>	... they plan on doing replication between those hubs
+[2019-04-18T21:44:22.676Z]	<rhiaro>	... so they don't care that it's necessary round robin or anything else, they just want to be able to pick for a individual user DID controller to be able to have several hub services listed, and for a DID URL to be able to select that service by type, not to have to care which one is there
+[2019-04-18T21:45:02.794Z]	<markus_sabadello>	q+
+[2019-04-18T21:45:11.129Z]	<jonathan_holt>	q+
+[2019-04-18T21:45:12.156Z]	<rhiaro>	... (scribed missed stuff)
+[2019-04-18T21:45:23.210Z]	<JoeAndrieu>	q+ to just return them all
+[2019-04-18T21:45:27.888Z]	<drummond>	ack markus_sabadello
+[2019-04-18T21:46:26.576Z]	<drummond>	q?
+[2019-04-18T21:47:22.774Z]	<markus_sabadello>	markus_sabadello: If we want to control how many or which service endpoints we return of a certain type, then that could be controlled by additional matrix parameters in addition to "service-type"
+[2019-04-18T21:47:37.256Z]	<drummond>	q?
+[2019-04-18T21:47:50.907Z]	<drummond>	ack jonathan_holt
+[2019-04-18T21:47:55.862Z]	<drummond>	ack JoeAndrieu
+[2019-04-18T21:47:55.904Z]	<Zakim>	JoeAndrieu, you wanted to just return them all
+[2019-04-18T21:48:06.528Z]	<rhiaro>	jonathan_holt: this is heavily reliant on jsonld parsing. I thought you take one type. Does that break json-ld? the algorithm for jsonld parsing is if you're referencing it by a fragment then you iterate through the array and find the one by name and you return that ifrst one. You can't have either the same id or the same type.. .maybe type is different
+[2019-04-18T21:48:09.101Z]	<rhiaro>	drummond: you're correct about id, type is different. You can have 4 service endpoitns of the same type
+[2019-04-18T21:48:12.656Z]	<drummond>	q?
+[2019-04-18T21:48:24.984Z]	<markus_sabadello>	JoeAndrieu: agree, just return all services selected by  a "service-type" matrix parameter
+[2019-04-18T21:48:51.954Z]	<rhiaro>	drummond: Dave said "Seems like doing the full key ID as `did:example:123123123#some-hash-for-the-key` is much simpler for this case ... and that we'd only need this if we were going to apply the path/query after retrieving the key document. I don't really understand this use case where as the service one makes sense."
+[2019-04-18T21:49:09.057Z]	<rhiaro>	... trying to remember why since public key can be selected with a fragment.. if you don't want to use a fragment because you've got ..
+[2019-04-18T21:49:30.218Z]	<rhiaro>	markus_sabadello: yeah you can select any part from a DID Doc by adding a fragment to the DID itself, that's how we said you can reference certain keys
+[2019-04-18T21:49:41.539Z]	<rhiaro>	... you could do the same thing with services, I can have a DID #service-1
+[2019-04-18T21:49:41.598Z]	<mrinal>	the frag aproch would fetch the whole doc … but this would fetch just the key
+[2019-04-18T21:49:56.091Z]	<rhiaro>	... as dave points out here this is problematic for services because you cannot use path, query and fragment for this whole aggregation
+[2019-04-18T21:50:12.082Z]	<rhiaro>	... he argues here the case of keys you're not doing any appending, so for keys why do we need to introduce this matrix parameter
+[2019-04-18T21:50:14.324Z]	<rhiaro>	... maybe we don't need it
+[2019-04-18T21:50:23.004Z]	<rhiaro>	... the reason I added it to the list is so that there's this parallel concstruct to services
+[2019-04-18T21:50:28.317Z]	<rhiaro>	... for completeness
+[2019-04-18T21:50:34.878Z]	<rhiaro>	... I thougth if there was one for service endpoint, there could also be one for key
+[2019-04-18T21:50:49.501Z]	<rhiaro>	... in my mind at least it does not remove the ability to select both services and keys and any other part of the did document with the fragment
+[2019-04-18T21:50:54.045Z]	<rhiaro>	... that i think always works
+[2019-04-18T21:51:13.392Z]	<rhiaro>	... whether or not it makes sense to have a second way of identifying keys I don't know
+[2019-04-18T21:51:16.722Z]	<rhiaro>	jonathan_holt: I think it does
+[2019-04-18T21:51:38.422Z]	<rhiaro>	... if you can iterate through and get the key type by preference, there is a use case there.
+[2019-04-18T21:51:50.716Z]	<drummond>	q?
+[2019-04-18T21:52:07.073Z]	<mrinal>	q+
+[2019-04-18T21:52:17.056Z]	<rhiaro>	drummond: selecting key by type... jonathan said he has the use case
+[2019-04-18T21:52:31.098Z]	<drummond>	ack mrinal
+[2019-04-18T21:52:45.425Z]	<rhiaro>	mrnial: wouldn't the matrix parameter just fetch the key, but derefencing with the fragment would fetch the document and get the key out of it?
+[2019-04-18T21:53:07.178Z]	<drummond>	q?
+[2019-04-18T21:53:14.639Z]	<rhiaro>	... the short answer is our assumption is resolution is always getting the DID document, but if there are systems that knew exactly what's needed the wouldn't have to return the whole thing
+[2019-04-18T21:53:59.804Z]	<rhiaro>	markus_sabadello: my answer would be that resolution and dereferencing process can certainly be optimised sometimes so a resolver would not have to retrieve the full DID document and then select soething from it if we know we only want the key of the DID DOcument, that could remove certain steps fro the resolution process so the DID Document is never fully retrieved or constructed. I think it's orthogonal to this question here
+[2019-04-18T21:54:09.427Z]	<rhiaro>	... whether we use a fragment or a matrix parameter to reference a certain key makes a difference
+[2019-04-18T21:54:28.599Z]	<rhiaro>	... maybe it does.. I guess what you're saying is in the case of the fragment all these semantics and assumptions about the fragment, that it is not that it is only used by a client
+[2019-04-18T21:54:43.448Z]	<rhiaro>	... at the end of the derefernecing process to select something from the DID DOcument which suggests you do need the complete DID Document
+[2019-04-18T21:54:58.758Z]	<rhiaro>	??: browsers only deal with browser on the clientside
+[2019-04-18T21:55:05.200Z]	<rhiaro>	markus_sabadello: yes
+[2019-04-18T21:55:20.429Z]	<rhiaro>	... we had this architecture on the agenda.. different components used during the resolution and dereferencing process
+[2019-04-18T21:55:33.757Z]	<mrinal>	browsers only deal with fragments on the clientside
+[2019-04-18T21:55:33.757Z]	<rhiaro>	... I think I agree there may be a differenc eon how that works internally if you use a fragment or a matrix parameter
+[2019-04-18T21:55:35.853Z]	<drummond>	q?
+[2019-04-18T21:55:39.811Z]	<rhiaro>	drummond: 5 minutes left
+[2019-04-18T21:55:59.435Z]	<rhiaro>	... this is really good discussion. We have two more subjects to talk about.. versions, and content addressing
+[2019-04-18T21:56:30.899Z]	<rhiaro>	... I want to point out for folks on the call who want, manu made the original suggestion... there was some discussion around prefixing method specific parameter names
+[2019-04-18T21:56:55.719Z]	<rhiaro>	... it was very early suggestion and was not semantically clean but once we were like okay if we're going with matrix parameters it hit me they can be completely qualified
+[2019-04-18T21:57:11.519Z]	<rhiaro>	... by method names and the support even down to multiple method names is syntactically clean
+[2019-04-18T21:57:31.893Z]	<rhiaro>	... say the generic parameter names do not contain colons but you can prefix with your method namespace and it's goign to be globally unique
+[2019-04-18T21:57:44.006Z]	<rhiaro>	... that provided a way tod o what he was suggesting. Any thoughts or ideas on that?
+[2019-04-18T21:57:59.382Z]	<rhiaro>	... One more thing.. we have one more call next week before we get to IIW
+[2019-04-18T21:58:03.431Z]	<drummond>	q?
+[2019-04-18T21:58:15.092Z]	<rhiaro>	... I'd love to get a general sense.. we're far enough to put together a PR on the abnf
+[2019-04-18T21:58:31.816Z]	<rhiaro>	... we're close enough to get to a next more mature state on these other sections
+[2019-04-18T21:58:45.436Z]	<rhiaro>	... what we haven't reached today is anything on the rest of the issues. there are a whole set of issues it'll cover
+[2019-04-18T21:58:54.969Z]	<rhiaro>	... there's only so much time..
+[2019-04-18T21:59:08.100Z]	<rhiaro>	... any particular thoughts about trying to adavnce as far as we can at IIW?
+[2019-04-18T21:59:16.661Z]	<drummond>	q?
+[2019-04-18T21:59:43.027Z]	<rhiaro>	JoeAndrieu: I'd like to find a friendly way to advance the debate markus and I had about the do we need to limit this to some notion of decentralised
+[2019-04-18T22:00:00.036Z]	<rhiaro>	... and there's another conversation in another github between kim and tony nadlin where ?? points out it doesn't need to be decentralised
+[2019-04-18T22:00:08.095Z]	<rhiaro>	... figureing out how to have that conversation is another thing we could put time into next week
+[2019-04-18T22:00:17.025Z]	<rhiaro>	drummond: we can make sure that's on the agenda
+[2019-04-18T22:00:23.147Z]	<rhiaro>	... I'll stick it down here as a note..
+[2019-04-18T22:01:42.151Z]	<rhiaro>	... Any other agenda items for next week's call?
+[2019-04-18T22:01:47.529Z]	<drummond>	q?
+[2019-04-18T22:02:49.431Z]	<rhiaro>	drummond: thanks everyone!
+[2019-04-18T22:03:18.189Z]	<rhiaro>	... one more of these next week before IIW
+[2019-04-18T22:03:24.204Z]	<rhiaro>	... FIN.
+[2019-04-18T22:03:39.174Z]	<mrinal>	thank you all :)
