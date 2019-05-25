@@ -1,0 +1,217 @@
+[2019-05-23T20:03:09.885Z]	<rhiaro>	Meeting in https://zoom.us/j/7077077007 for DID spec group is starting!
+[2019-05-23T20:03:11.704Z]	<rhiaro>	present+
+[2019-05-23T20:03:20.458Z]	<yancy>	presnet+
+[2019-05-23T20:03:27.344Z]	<dlongley>	present+
+[2019-05-23T20:03:59.526Z]	<yancy>	present+
+[2019-05-23T20:05:58.512Z]	<markus_sabadello>	present+
+[2019-05-23T20:06:40.530Z]	<oliver>	present+ oliver_terbu
+[2019-05-23T20:07:45.159Z]	<drummond>	Rhiaro, I can try to scribe today
+[2019-05-23T20:07:53.900Z]	<drummond>	if you will help me with scribe commands
+[2019-05-23T20:08:04.582Z]	<rhiaro>	scribenick: drummond
+[2019-05-23T20:08:21.666Z]	<drummond>	Markus began by reviewing the agenda
+[2019-05-23T20:08:54.876Z]	<rhiaro>	scribenick: rhiaro
+[2019-05-23T20:09:07.147Z]	<rhiaro>	drummond: we don't have joe so we'll skip the (rubrics?) agenda item. any other agenda proposals?
+[2019-05-23T20:09:18.759Z]	<rhiaro>	... markus, you have the first thing
+[2019-05-23T20:09:22.939Z]	<rhiaro>	topic: current state of did resolution spec
+[2019-05-23T20:09:25.354Z]	<rhiaro>	scribenick: drummond
+[2019-05-23T20:09:44.824Z]	<drummond>	We agreed on the agenda posted at https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/edit#
+[2019-05-23T20:10:47.786Z]	<drummond>	markus_sabadello: He has been working steadily on the DID Resolution space; has not made much progress but wants to share one high level point.
+[2019-05-23T20:11:27.811Z]	<drummond>	...Markus thinks it is important to separate between resolving of a DID and dereferencing a DID URL.
+[2019-05-23T20:11:59.744Z]	<dmitriz>	+1
+[2019-05-23T20:12:14.035Z]	<drummond>	...the latter includes dealing with matrix parameters, paths, queries, fragments, whereas resolution of a DID does not
+[2019-05-23T20:12:35.536Z]	<drummond>	...Markus reviewed the rest of the outline of the spec
+[2019-05-23T20:12:48.090Z]	<markus_sabadello>	q?
+[2019-05-23T20:14:35.062Z]	<drummond>	...Markus then talked about conformance profiles. They can be broken down to cover either just DID resolution or DID URL resolution.
+[2019-05-23T20:16:19.101Z]	<drummond>	...he is hoping to have a rough first draft by the end of May, i.e., by next week's call
+[2019-05-23T20:16:42.329Z]	<mrinal>	q+
+[2019-05-23T20:17:00.098Z]	<markus_sabadello>	ack mrinal
+[2019-05-23T20:17:03.951Z]	<drummond>	ack mrinal
+[2019-05-23T20:18:05.810Z]	<drummond>	mrinal: asked if there is a third stage of resolution that is dealing with fragments locally?
+[2019-05-23T20:18:18.461Z]	<drummond>	...should fragments be dealt with locally or not?
+[2019-05-23T20:18:58.879Z]	<drummond>	markus_sabadello: dereferencing a fragment is still a part of the dereferencing process.
+[2019-05-23T20:19:20.142Z]	<drummond>	...there are different architectures about where that dereferencing can take place
+[2019-05-23T20:20:15.158Z]	<drummond>	...for example, if you use a Web-based resolver, then that fragment resolution could still take place at the web resolver, but would be considered "local" from the standpoint of the DID network.
+[2019-05-23T20:20:35.535Z]	<jonathan_holt>	q+
+[2019-05-23T20:20:56.987Z]	<drummond>	...all of the different processes should in the end give the same result.
+[2019-05-23T20:21:10.640Z]	<markus_sabadello>	q+
+[2019-05-23T20:21:16.660Z]	<dlongley>	+1 "dereferencing" means "get the specific thing that you're pointing at" -- and when you add a hash to a DID, you're pointing at something different than the DID, so figuring out what that is is part of "dereferencing"
+[2019-05-23T20:21:22.128Z]	<markus_sabadello>	ack jonathan_holt
+[2019-05-23T20:21:35.359Z]	<drummond>	mrinal: browsers do take a firm stance on fragment resolution, so he worries than any other approach could confuse caching.
+[2019-05-23T20:22:20.658Z]	<drummond>	jonathan_holt: could you have multiple values for the fragment?
+[2019-05-23T20:22:32.843Z]	<drummond>	markus_sabadello: yes, you can do that
+[2019-05-23T20:22:38.275Z]	<brent>	present+ Brent_Zundel
+[2019-05-23T20:22:53.334Z]	<dmitriz>	q+
+[2019-05-23T20:22:59.031Z]	<drummond>	jonathan_holt: do matrix parameters allow for multiple fragments?
+[2019-05-23T20:23:19.749Z]	<drummond>	markus_sabadello: no, you still can have only one fragment
+[2019-05-23T20:23:56.652Z]	<drummond>	jonathan_holt: is worried about there being multiple ways to specify references inside a DID document, i.e., using either matrix parameters or fragments
+[2019-05-23T20:23:59.027Z]	<drummond>	q?
+[2019-05-23T20:24:11.036Z]	<drummond>	ack markus_sabadello
+[2019-05-23T20:25:07.218Z]	<drummond>	markus_sabadello: regarding the web browser analogy, yes, there is a clear line in the HTTP protocol that fragments are always processed on the client side. So it's tempting to treat a DID URL the same way.
+[2019-05-23T20:25:33.255Z]	<drummond>	...however processing of DID URLs does not necessarily use client/server communications, so resolution is not always "local".
+[2019-05-23T20:25:54.316Z]	<drummond>	...therefore the question of "Where the fragment gets processed" is different
+[2019-05-23T20:26:19.877Z]	<drummond>	...the answer needs to be abstracted so that it does not assume a client/server protocol
+[2019-05-23T20:26:22.465Z]	<drummond>	Q?
+[2019-05-23T20:26:29.423Z]	<drummond>	ack dmitriz
+[2019-05-23T20:27:04.430Z]	<drummond>	dmitriz: Asking Jonathan what's the motivation for multiple fragments in the same DID URL?
+[2019-05-23T20:27:33.564Z]	<dlongley>	q+ to say that fragments are for referring to things within a document as opposed to referring to a location
+[2019-05-23T20:27:37.967Z]	<drummond>	...examples of similar approaches are OpenID URLs that store multiple parameters in the fragment
+[2019-05-23T20:27:47.815Z]	<drummond>	...so there is precedent there
+[2019-05-23T20:27:57.078Z]	<drummond>	...but what is your motivation?
+[2019-05-23T20:28:45.350Z]	<drummond>	jonathan_holt: Yes, you may have multiple parameters in the fragment, including a decryption key. They are separated by a #
+[2019-05-23T20:29:02.991Z]	<Justin_R>	present+
+[2019-05-23T20:29:17.874Z]	<drummond>	dmitriz: In the OpenID approach, they use ampersands, more like typical URL parameters
+[2019-05-23T20:29:31.847Z]	<drummond>	ack dlongley
+[2019-05-23T20:29:48.815Z]	<burn>	+1 dlongley
+[2019-05-23T20:29:49.656Z]	<Justin_R>	To clarify: It is explicitly defined in OAuth2 as the HTTP Query String format within the fragment. That said the OAuth community is dropping the implicit style for a number of reasons.
+[2019-05-23T20:29:50.685Z]	<dmitriz>	(so for example, did:ex:123#key1=value1&key2=value2)
+[2019-05-23T20:30:33.187Z]	<drummond>	dlongley: Fragments are identifiers that reference within a resource, so it should not matter if they are used in client/server architecture
+[2019-05-23T20:31:09.748Z]	<drummond>	...if it is necessary to talk about two different things, then you could nest fragments if your local code understands it
+[2019-05-23T20:31:39.130Z]	<drummond>	dmitriz: how could you both reference a subresource with a fragment AND include a decryption key
+[2019-05-23T20:31:46.320Z]	<burn>	resolution is finding resource and allowed ways to access; deref is accessing the resource to do something; fragment is looking inside whatever is returned after a deref operation
+[2019-05-23T20:32:10.368Z]	<drummond>	dlongley: that's a different protocol, i.e., the decryption key doesn't actually reference something inside the DID document
+[2019-05-23T20:32:13.740Z]	<drummond>	q+
+[2019-05-23T20:32:52.334Z]	<drummond>	...not sure he fully understands the use case
+[2019-05-23T20:33:03.576Z]	<drummond>	...need to understand how it interacts with existing resolvers
+[2019-05-23T20:33:13.480Z]	<rhiaro>	scribenick: rhiaro
+[2019-05-23T20:33:50.902Z]	<rhiaro>	drummond: I understsand this challenge of wanting to in a component in the did url (not necessarily the fragment, can see the use case of being able to reference something inside the did doc, and pass something to somethinig processing tha t component) you need some combination fo parameters
+[2019-05-23T20:34:05.810Z]	<rhiaro>	... sounds like what jonathan is asking for is more typically done with query params. Matrix params are an alternative to query aparms
+[2019-05-23T20:34:22.718Z]	<rhiaro>	... dave said this portion of a fragment is referencing this subresource in the document and this othe rportion is a decryption keys
+[2019-05-23T20:34:30.612Z]	<dlongley>	q+ to say we need to spell out the use case and see if we're even using the right tools to solve it
+[2019-05-23T20:34:30.955Z]	<Justin_R>	q+ to talk about the format of fragments
+[2019-05-23T20:34:34.519Z]	<rhiaro>	... as long as it's processed locally the processing could follow another protocol to know what to do with a fragment
+[2019-05-23T20:34:38.842Z]	<rhiaro>	... tha tmight be something you would specify
+[2019-05-23T20:34:42.308Z]	<rhiaro>	... influences the ipld method
+[2019-05-23T20:34:57.397Z]	<rhiaro>	... says this is what we do with fragements. I dont think there's an architectural problem with doing that
+[2019-05-23T20:35:11.263Z]	<rhiaro>	... the total fragment could be addressing a resource tha tis th eprocessed version fo the resource in the document
+[2019-05-23T20:35:22.027Z]	<rhiaro>	... I think it's not an issue that if you put the fragment is processed locally the way the method suggests
+[2019-05-23T20:35:38.069Z]	<rhiaro>	jonathan_holt: i suppose there can only be one id field in the dom, at least there's supposed to be. it'll go to the last one
+[2019-05-23T20:35:43.736Z]	<rhiaro>	... that's the way a browser would do it
+[2019-05-23T20:36:01.730Z]	<rhiaro>	... the fragment is an anchor, the browser takes you to that part of the document. if there's two it's overriden
+[2019-05-23T20:36:05.906Z]	<rhiaro>	... i might just code that up and try that
+[2019-05-23T20:36:32.756Z]	<rhiaro>	... i'm struggling with the # being used for the fragment in jsonld for the key name for instance then I'm using it fo ra different purpose and I need to have a different reserved parameter to leverage for decryption
+[2019-05-23T20:36:39.433Z]	<rhiaro>	scribenick: drummond
+[2019-05-23T20:37:06.703Z]	<drummond>	...the DID method is called "IPID" and the fragment is used for multiple purposes
+[2019-05-23T20:37:19.516Z]	<drummond>	q?
+[2019-05-23T20:38:06.689Z]	<drummond>	ack drummond
+[2019-05-23T20:38:55.520Z]	<drummond>	jonathan_holt: the fragment is not passed to the server, so in HTTP, the browser is what will take you to the anchor that the fragment identifies.
+[2019-05-23T20:39:25.325Z]	<drummond>	...but IPID uses the fragment to also include an encryption key
+[2019-05-23T20:40:25.674Z]	<drummond>	Q?
+[2019-05-23T20:40:33.801Z]	<drummond>	ack dlongley
+[2019-05-23T20:41:18.841Z]	<drummond>	dlongley: we won't solve this use case on the call right now, but if Jonathan can give us the full use case, we can see what other options there might be.
+[2019-05-23T20:41:28.907Z]	<drummond>	q?
+[2019-05-23T20:41:43.248Z]	<drummond>	Jonathan is good with documenting the use case.
+[2019-05-23T20:41:51.282Z]	<dlongley>	+1 specific to the resource type
+[2019-05-23T20:42:26.942Z]	<dlongley>	s/specific/fragment processing is specific/
+[2019-05-23T20:42:34.064Z]	<drummond>	Justin_R: processing of a fragment is specific to a MIME type. So navigating to an anchor in an HTML document is specific to the HTML MIME type.
+[2019-05-23T20:43:10.749Z]	<drummond>	...the question that he is seeing is whether we should specify inside the main DID spec or another spec the syntax for a fragment and processing rules
+[2019-05-23T20:43:21.918Z]	<drummond>	...for HTTP, any URL-safe string can go into a fragment
+[2019-05-23T20:43:37.725Z]	<drummond>	...the question Dmitri raised where some protocols make use of a deeper syntax
+[2019-05-23T20:44:04.675Z]	<drummond>	...so we need to ask whether we want to create a special syntax for fragments, or leave it to DID methods
+[2019-05-23T20:44:07.631Z]	<drummond>	q+
+[2019-05-23T20:44:17.292Z]	<drummond>	...that's ultimately the question the group needs to answer
+[2019-05-23T20:44:23.545Z]	<drummond>	ack Justin_R
+[2019-05-23T20:44:28.338Z]	<drummond>	q?
+[2019-05-23T20:44:37.000Z]	<dlongley>	jonathan_holt: i suspect that the solution to your use case might involve yet another URL scheme or magnet URIs or something -- but we need to see the use case spelled out so we can figure that out.
+[2019-05-23T20:45:04.011Z]	<markus_sabadello>	q+
+[2019-05-23T20:45:20.758Z]	<dlongley>	or hashlinks.
+[2019-05-23T20:46:03.121Z]	<agropper_>	q?
+[2019-05-23T20:46:27.300Z]	<markus_sabadello>	ack drummond
+[2019-05-23T20:46:31.464Z]	<drummond>	q?
+[2019-05-23T20:47:03.609Z]	<drummond>	Justin_R: What Drummond is proposing is explicit delegation to a DID method
+[2019-05-23T20:47:06.200Z]	<dmitriz>	the intersection of what drummond and justin_R is saying has the implication that each different DID Method has to have a different MIME type. which is interesting.
+[2019-05-23T20:47:07.618Z]	<agropper_>	q+
+[2019-05-23T20:47:29.884Z]	<drummond>	q?
+[2019-05-23T20:47:42.155Z]	<burn>	In HTTP the fragment processing is definitely dependent on the returned resource type, but isn't it the same across schemes?  i.e. ftp, http, file will all do same fragment processing based on returned or determined MIME type
+[2019-05-23T20:47:46.805Z]	<drummond>	jonathan_holt: that approach would be okay with IPID
+[2019-05-23T20:48:05.011Z]	<dmitriz>	burn: I'm not sure that is the case..?
+[2019-05-23T20:48:17.418Z]	<markus_sabadello>	q-
+[2019-05-23T20:48:19.448Z]	<Justin_R>	@dmitriz: maybe or at least something analogous
+[2019-05-23T20:48:20.140Z]	<drummond>	Justin_R: there is also a well-storied history of abuse of the fragment of abuse of a fragment with passing fragments
+[2019-05-23T20:48:23.247Z]	<drummond>	q?
+[2019-05-23T20:49:02.233Z]	<burn>	dmitri: example?
+[2019-05-23T20:49:22.204Z]	<drummond>	agropper_: asks if this is relevant to how an identity hub would be referenced in a DID document. Would it affect that? Will it be compatible with an UMA server as a redirection point for an identity?
+[2019-05-23T20:49:24.290Z]	<drummond>	q?
+[2019-05-23T20:49:29.928Z]	<drummond>	ack agropper_
+[2019-05-23T20:49:32.380Z]	<markus_sabadello>	q+
+[2019-05-23T20:49:36.125Z]	<markus_sabadello>	ack markus_sabadello
+[2019-05-23T20:50:14.248Z]	<Justin_R>	to clarify, the abuse is around passing applicaiton state via a fragment, which was never intended but mostly worked; today's apps use the browser's "history API" instead, for the most part.
+[2019-05-23T20:50:30.669Z]	<drummond>	markus_sabadello: an identity hub would be one URL inside a DID document, and thus the "payload" of a DID URL could be passed to the identity hub endpoint
+[2019-05-23T20:50:59.534Z]	<drummond>	...fragments can be added to a DID that references an identity hub service
+[2019-05-23T20:51:24.162Z]	<drummond>	...that would preserve the path and query and fragment components for that service
+[2019-05-23T20:51:39.047Z]	<drummond>	...that should not affect what we are talking about here
+[2019-05-23T20:51:43.000Z]	<drummond>	q?
+[2019-05-23T20:52:55.935Z]	<rhiaro>	scribenick: rhiaro
+[2019-05-23T20:52:55.935Z]	<rhiaro>	TOPIC: open issues and prs on DID spec
+[2019-05-23T20:52:55.935Z]	<rhiaro>	scribenick: drummond
+[2019-05-23T20:53:09.816Z]	<drummond>	topic: Issue 186
+[2019-05-23T20:53:56.985Z]	<drummond>	markus_sabadello: give an overview of the rest of the issues on today's agenda
+[2019-05-23T20:54:43.120Z]	<drummond>	...the issues are organized in four groups (see item 5 at https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/edit#)
+[2019-05-23T20:55:09.545Z]	<drummond>	...the first two are issue 186 and 180, both of which we talked about last week
+[2019-05-23T20:55:36.671Z]	<drummond>	...on the last call two weeks ago we said we would merge 186 unless there was feedback
+[2019-05-23T20:55:46.803Z]	<drummond>	...and Drummond had two items of feedback
+[2019-05-23T20:55:59.294Z]	<drummond>	... the first was to add "DID controller" as a term
+[2019-05-23T20:56:23.494Z]	<drummond>	...the second one was to retain a section that compared the DID spec to the URI and URN specs
+[2019-05-23T20:59:12.711Z]	<drummond>	q?
+[2019-05-23T21:01:29.180Z]	<drummond>	drummond: explained that the section he felt should remain is more relevant than ever
+[2019-05-23T21:01:49.909Z]	<drummond>	...and that we also had a good opportunity to introduce the term "DID controller"
+[2019-05-23T21:02:49.045Z]	<drummond>	q?
+[2019-05-23T21:03:21.669Z]	<rhiaro>	scribenick: rhiaro
+[2019-05-23T21:03:21.669Z]	<rhiaro>	drummond: I'd rather get this pr merged with that paragraph added back (maybe with a note to say it's still up for discussion) because there's so much other stuff in there
+[2019-05-23T21:03:21.669Z]	<rhiaro>	scribenick: drummond
+[2019-05-23T21:03:39.836Z]	<rhiaro>	looks like 186 is waiting on joe, markus_sabadello
+[2019-05-23T21:03:58.881Z]	<drummond>	...so the proposal is to add a note to Manu to incorporate Drummond's two suggestions and then merge.
+[2019-05-23T21:04:17.951Z]	<drummond>	markus_sabadello: next we discussed 186
+[2019-05-23T21:04:49.617Z]	<drummond>	...on the last call we talked about 186 and there was broad support but Joe still wanted to review.
+[2019-05-23T21:05:40.144Z]	<drummond>	...the action item is for Markus to add another comment to bring Joe's attention to it
+[2019-05-23T21:06:15.490Z]	<drummond>	topic: issue 36
+[2019-05-23T21:08:17.718Z]	<drummond>	markus_sabadello: we will wait for Kyle on issue 36
+[2019-05-23T21:08:35.191Z]	<drummond>	topic: issue 201
+[2019-05-23T21:09:06.108Z]	<drummond>	...asked if Oliver wanted to talk about this issue
+[2019-05-23T21:09:31.666Z]	<oliver>	q+
+[2019-05-23T21:10:43.443Z]	<markus_sabadello>	ack oliver
+[2019-05-23T21:10:44.211Z]	<drummond>	oliver: the DID spec does not currently provide other options for public keys
+[2019-05-23T21:11:19.781Z]	<drummond>	...in the comments on this issue, others have said there could be other key types
+[2019-05-23T21:11:43.098Z]	<drummond>	...so the issue could be resolved by different key type definitions
+[2019-05-23T21:12:31.574Z]	<drummond>	...so the spec would need to change to say that the value of the public key property could be broader
+[2019-05-23T21:12:34.428Z]	<drummond>	q?
+[2019-05-23T21:13:02.722Z]	<drummond>	markus_sabadello: This came up about a year ago when we were working on the ERC 725 DID method
+[2019-05-23T21:13:09.178Z]	<mrinal>	q+ isn’t etherum address a fit for publicKeyHex?
+[2019-05-23T21:13:15.094Z]	<drummond>	q+
+[2019-05-23T21:13:45.787Z]	<drummond>	oliver: can everything under the public key entry be delegated to the cryptosuite?
+[2019-05-23T21:14:04.926Z]	<drummond>	...if they are separated completely, then this problem goes away
+[2019-05-23T21:14:20.417Z]	<mrinal>	q-
+[2019-05-23T21:14:52.858Z]	<drummond>	markus_sabadello: the primary purpose of the key registry was to specify what signatures and keys looked like
+[2019-05-23T21:15:13.535Z]	<dmitriz>	q+
+[2019-05-23T21:15:29.173Z]	<drummond>	...he completely agrees with Oliver that the cryptosuite specs should be able to specify the properties they support
+[2019-05-23T21:16:15.708Z]	<drummond>	oliver: any cryptosuite to be used with the DID spec could have a minimum set of properties, and then be able to specify the rest
+[2019-05-23T21:16:25.374Z]	<drummond>	...such as this case of needing the Ethereum address
+[2019-05-23T21:16:27.676Z]	<drummond>	q?
+[2019-05-23T21:17:23.315Z]	<markus_sabadello>	https://w3c-ccg.github.io/ld-cryptosuite-registry/
+[2019-05-23T21:17:56.412Z]	<drummond>	...these constraints are too tight
+[2019-05-23T21:18:04.872Z]	<drummond>	q?
+[2019-05-23T21:18:09.457Z]	<drummond>	ack drummond
+[2019-05-23T21:18:13.703Z]	<drummond>	ack dmitriz
+[2019-05-23T21:19:10.125Z]	<drummond>	dmitriz: Agrees the LD Cryptsuite Registry spec should not constrain the key definitions.
+[2019-05-23T21:19:17.933Z]	<drummond>	...+1 to kicking this to the other specs
+[2019-05-23T21:19:44.226Z]	<drummond>	oliver: what should be the next step? To provide a PR to the DID spec, or the Cryptosuite spec?
+[2019-05-23T21:20:28.503Z]	<drummond>	markus_sabadello: we could also add an infobox saying the LD Cryptosuite Spec is out of date and that other specs could be used
+[2019-05-23T21:21:17.560Z]	<drummond>	oliver: could we loosen the normative rules and turn the existing text of key types into informative?
+[2019-05-23T21:21:30.964Z]	<drummond>	...or add a wider set of key types?
+[2019-05-23T21:22:37.701Z]	<drummond>	drummond: since we have agreement, it looks like a matter of what precisely needs to change to address this issue
+[2019-05-23T21:22:54.935Z]	<drummond>	oliver: he could submit a PR that makes that change.
+[2019-05-23T21:23:12.598Z]	<drummond>	markus_sabadello: yes, let's do that. It would let us close both issues.
+[2019-05-23T21:23:27.507Z]	<drummond>	The second issue it could close is 56.
+[2019-05-23T21:24:27.646Z]	<jonathan_holt>	q+
+[2019-05-23T21:25:04.022Z]	<drummond>	ack jonathan_holt
+[2019-05-23T21:25:24.101Z]	<oliver>	q+
+[2019-05-23T21:25:50.725Z]	<drummond>	jonathan_holt: There may also be an issue with how to reference an Ethereum address when needed inside a DID document
+[2019-05-23T21:27:15.232Z]	<drummond>	oliver: Pelle has provided an example of how to reference an Ethereum address
+[2019-05-23T21:27:24.409Z]	<drummond>	..does Jonny have a proposal/
+[2019-05-23T21:28:02.406Z]	<drummond>	jonathan_holt: if the value is a string, can it be referenced in the same way as other keys?
+[2019-05-23T21:28:35.487Z]	<drummond>	dmitriz: this is a documentation issue
+[2019-05-23T21:28:51.815Z]	<drummond>	...the current text is unclear and needs to be fixed
+[2019-05-23T21:32:12.669Z]	<drummond>	markus_sabadello: the format inside the key object does not change how it is referenced
+[2019-05-23T21:33:17.039Z]	<oliver>	11:30 pm in berlin
+[2019-05-23T21:33:43.700Z]	<drummond>	We closed the meeting agreeing to continue this process of working down the issue on the next call.
+[2019-05-23T21:34:05.140Z]	<rhiaro>	11:30pm in herceg novi
+[2019-05-23T21:34:09.983Z]	<drummond>	Drummond and Markus will work to keep prioritizing open issues to help with this process.
