@@ -1,0 +1,363 @@
+[2019-05-30T20:02:10.401Z]	<rhiaro>	present+
+[2019-05-30T20:02:14.054Z]	<oliver>	present+ oliver_terbu
+[2019-05-30T20:02:33.986Z]	<rhiaro>	scribenick: rhiaro
+[2019-05-30T20:02:40.610Z]	<mpigott>	present+
+[2019-05-30T20:04:22.392Z]	<ken_>	present+
+[2019-05-30T20:04:53.149Z]	<drummond>	present+
+[2019-05-30T20:06:14.086Z]	<rhiaro>	drummond: reminder that people who want to make substantive contributions need to join the CCG to agree with the IPR requirements
+[2019-05-30T20:06:45.815Z]	<rhiaro>	Elliot: I'm new, excited to be here
+[2019-05-30T20:07:56.946Z]	<rhiaro>	Elliot: I'm on the product team at POET, a layer 2 proof of existence scaling solution built on bitcoin
+[2019-05-30T20:08:17.560Z]	<rhiaro>	Ned: Ned Smith from Intel
+[2019-05-30T20:08:53.239Z]	<rhiaro>	mpigott: I'm coming over from the Solid project, I'm from ??
+[2019-05-30T20:09:08.061Z]	<rhiaro>	drummond: we hope for huge synergy with the solid project, DIDs everywhere
+[2019-05-30T20:09:09.355Z]	<mpigott>	Iron Horse Software, LLC
+[2019-05-30T20:09:26.745Z]	<rhiaro>	s/??/Iron Horse Software, LLC
+[2019-05-30T20:10:06.085Z]	<rhiaro>	victorgrey: hi I'm the cto of jaylink labs, we have a DID spec we've published and we're in a beta project using DIDs with real users just beginning
+[2019-05-30T20:10:21.604Z]	<mpigott>	rhario: https://www.w3.org/users/114768 if it helps
+[2019-05-30T20:10:40.357Z]	<mpigott>	rhiaro*
+[2019-05-30T20:10:53.469Z]	<rhiaro>	drummond: we have rubrics discussion on the agenda but not sure if we have Joe
+[2019-05-30T20:11:28.708Z]	<rhiaro>	... We're continuing issues and PRs from the last call, and markus has nicely set up the matrix parameters discussion and different PRs set up for the specific matrix params
+[2019-05-30T20:11:35.589Z]	<rhiaro>	... and then there's a couple more, we've got a long list
+[2019-05-30T20:11:47.726Z]	<rhiaro>	... anything else for the agenda?
+[2019-05-30T20:12:17.279Z]	<rhiaro>	markus_sabadello: reminder that we use q+ in irc
+[2019-05-30T20:12:17.848Z]	<drummond>	q?
+[2019-05-30T20:12:27.582Z]	<markus_sabadello>	q+
+[2019-05-30T20:12:31.912Z]	<markus_sabadello>	ack markus_sabadello
+[2019-05-30T20:12:51.729Z]	<rhiaro>	TOPIC: Open issues
+[2019-05-30T20:13:44.146Z]	<rhiaro>	markus_sabadello: we talked about 186 last time, that's a PR that rhiaro raised about the DID Method registry. The question that comes up often is how are DID method names governed, is there an official list. This PR adds language explaining the informal list of known DID method that the CCG is maintaining but it's not an official list that everybody has to support
+[2019-05-30T20:14:01.859Z]	<rhiaro>	... We've talked about this a few times, we've had a lot of agreement on merging it, just waiting for review from Joe but he hasn't had time yet
+[2019-05-30T20:14:16.957Z]	<rhiaro>	... Unless there's any additional feedback I'll propose to merge it two days from now if there are no more comments
+[2019-05-30T20:14:18.784Z]	<drummond>	q+
+[2019-05-30T20:14:26.296Z]	<markus_sabadello>	ack drummond
+[2019-05-30T20:14:44.178Z]	<rhiaro>	drummond: I second that proposal that we merge 186 in two days unless there's any other feedback from joe or anyone else
+[2019-05-30T20:15:37.447Z]	<rhiaro>	markus_sabadello: 180 we also talked about last time, it's about rearranging several sections in the overview, examples, motivation, and the PR removes a few things
+[2019-05-30T20:16:04.051Z]	<rhiaro>	... one of the sections it removes is about how the DID spec and DID method specs are similar or parallel constructs to the generic URI spec and specific URI schemes
+[2019-05-30T20:16:11.354Z]	<rhiaro>	... some ongoing discussion
+[2019-05-30T20:16:28.117Z]	<rhiaro>	... drummond says to keep it because of how it helps understand how the DID and DID method specs relate to each other
+[2019-05-30T20:16:38.062Z]	<rhiaro>	... amy argues perhaps it could be in note section and perhaps it's not necessary or confusing
+[2019-05-30T20:16:43.670Z]	<drummond>	q+
+[2019-05-30T20:16:44.447Z]	<rhiaro>	... Can we get to some kind of conclusion there
+[2019-05-30T20:18:15.312Z]	<rhiaro>	drummond: amy had a specific suggestion which I remember I should have replied that I support her suggestion. It was that she's worried about it bringing in outside things people dont' need to understand the spec or thinking that there's actual dependencies on those which depending on the requirements we could say there are, this spec needs to be conformant with rfc3986 grammar period, but her suggestion is at this point in time putting it in a note.
+[2019-05-30T20:18:15.313Z]	<rhiaro>	 I would propse putting it in a note and be done with iht
+[2019-05-30T20:18:24.140Z]	<rhiaro>	<rhiaro> +1
+[2019-05-30T20:18:28.229Z]	<markus_sabadello>	ack drummond
+[2019-05-30T20:18:28.483Z]	<rhiaro>	markus_sabadello: I also think that's a good solution
+[2019-05-30T20:18:48.291Z]	<rhiaro>	... There was one other thing in that PR about the DID controller language
+[2019-05-30T20:19:18.892Z]	<rhiaro>	... Sentence that mentions the "entity" and drummond thought we could introduce the term DID controller
+[2019-05-30T20:19:33.251Z]	<rhiaro>	... amy says +1 to removing 'entity' but raise it as a new issue
+[2019-05-30T20:19:48.142Z]	<rhiaro>	drummond: we do actually have DID controller in the terminology section, we alreayd have a defintion
+[2019-05-30T20:20:09.140Z]	<rhiaro>	... I think it's fine, if it's not in the terminology section we need to add it anyway
+[2019-05-30T20:20:20.511Z]	<rhiaro>	markus_sabadello: I think it's not there in the terminology section
+[2019-05-30T20:20:59.328Z]	<rhiaro>	drummond: okay well then I still support, this section is right up front, I could see "the entity in control of the DID (DID controller)". It's also fine not to do that but if we need the term we should put it in the terminology section. That's a different PR right
+[2019-05-30T20:21:30.268Z]	<rhiaro>	markus_sabadello: This PR contains several changes in a number of different parts of the document maybe we can leave it the way it is and then in a new PR introduce the DID controller terminology section and in the introductory sentence and potentially any other place where it makes sense
+[2019-05-30T20:21:32.402Z]	<rhiaro>	<rhiaro> +1
+[2019-05-30T20:21:38.945Z]	<rhiaro>	drummond: I'm good with that
+[2019-05-30T20:21:40.162Z]	<drummond>	+1 to creating a new PR that add the term "DID controller" to the terminology section.
+[2019-05-30T20:22:05.932Z]	<rhiaro>	drummond: any other feedback?
+[2019-05-30T20:22:15.414Z]	<rhiaro>	... for people new to the call, feel free to ask questions, we're pretty deep in here
+[2019-05-30T20:22:39.738Z]	<rhiaro>	markus_sabadello: Next one something that oliver raised
+[2019-05-30T20:23:41.367Z]	<rhiaro>	... With some DID methods, eg ethereum based ones, you may not have actual public keys available to put in the DID Doc. You may have recoverable public keys or information that's somehow derived from a public key like an ethereum address which you may want to put in the Document rather than the actual public key
+[2019-05-30T20:23:46.277Z]	<drummond>	PR 201
+[2019-05-30T20:24:03.059Z]	<rhiaro>	... this has come up before, there was another issue 56 and also a RWOT paper about an ethereum based DID method
+[2019-05-30T20:24:25.432Z]	<rhiaro>	... where the community has explored having addresses which are derived from public keys in the DID Document as opposed to having actual public keys
+[2019-05-30T20:24:53.515Z]	<rhiaro>	... So the PR that oliver created was to change language in the public key section which enumerates a list of valid properties of the public key, eg publickeyhex
+[2019-05-30T20:25:00.596Z]	<rhiaro>	... those are the common ones we've seen so far
+[2019-05-30T20:25:09.903Z]	<rhiaro>	... but currently the DID spec says that the value property must be exactly one of those
+[2019-05-30T20:25:19.088Z]	<rhiaro>	... it's an exhaustive list. You cannot have a DID method that treats public keys in a different way
+[2019-05-30T20:25:32.908Z]	<rhiaro>	... So the proposal in this PR is to change it to a note and make it a list of examples
+[2019-05-30T20:25:50.188Z]	<rhiaro>	... these are publickey properties used by some DID methods, and also explicitly mentions the new one which is the ethereum address
+[2019-05-30T20:26:05.542Z]	<markus_sabadello>	q?
+[2019-05-30T20:26:41.376Z]	<rhiaro>	oliver: I raised this PR and it gets rid of teh MUST statements because formerly the publickey property had to be one of the values of the exhaustive list and I've just turned it into a note providing examples of public key properties that the community uses
+[2019-05-30T20:27:04.866Z]	<rhiaro>	... this also has the implication that there people can use any other public key property of course but I think it's also the outcome of the conversationw e had on our last call, that we don't want to exlcude anyone
+[2019-05-30T20:27:25.338Z]	<rhiaro>	... the summary is to get rid of the constraint to one of the explicitly mentioned publickey values and just give guidence
+[2019-05-30T20:27:37.750Z]	<drummond>	q+
+[2019-05-30T20:27:54.155Z]	<rhiaro>	I seem to remember we had an issue and a PR that turned this into an exhaustive list, just trying to find it
+[2019-05-30T20:28:00.498Z]	<rhiaro>	drummond: makes sense to me
+[2019-05-30T20:28:03.256Z]	<ken_>	q+
+[2019-05-30T20:28:16.589Z]	<drummond>	ack drummond
+[2019-05-30T20:28:21.368Z]	<drummond>	ack ken_
+[2019-05-30T20:28:42.101Z]	<rhiaro>	ken: how does another method or public key property get added to the list going forward? any qualifiactions on a publickey property to make it useful and secure
+[2019-05-30T20:28:53.269Z]	<rhiaro>	oliver: as far as I understood the intention was we will delegate the list of publickey properties to some registry
+[2019-05-30T20:29:05.451Z]	<rhiaro>	... the ld crypto suite registry was supposed to do this job but it's currently poorly maintained
+[2019-05-30T20:29:11.305Z]	<drummond>	+1 to delegating the list of public key properties to a registry activity
+[2019-05-30T20:29:13.560Z]	<rhiaro>	... I believe in the future it will be the registry's job to decide
+[2019-05-30T20:29:27.525Z]	<markus_sabadello>	Linked Data Cryptographic Suite Registry: https://w3c-ccg.github.io/ld-cryptosuite-registry/
+[2019-05-30T20:29:49.166Z]	<rhiaro>	ken: are there any notes or guidelines about risks associated with weak public keys?
+[2019-05-30T20:30:03.325Z]	<rhiaro>	oliver: the current PR changed a lot becuase it was alreayd possible ot use weak public keys
+[2019-05-30T20:30:19.449Z]	<drummond>	q+
+[2019-05-30T20:30:33.903Z]	<rhiaro>	... it makes sense to provide guidence on this, but it's another issue
+[2019-05-30T20:30:46.116Z]	<drummond>	ack drummond
+[2019-05-30T20:30:47.973Z]	<rhiaro>	ken: good idea, I don't object to current PR
+[2019-05-30T20:31:30.985Z]	<markus_sabadello>	q+
+[2019-05-30T20:31:42.827Z]	<rhiaro>	drummond: we should accept it as written to remove that restriction, then maybe add a note that covers the list of ones we use and that they should meet certain..
+[2019-05-30T20:31:55.762Z]	<rhiaro>	ken: I think the statement that oliver made its' not determined here, it'll be determined by the registry, that's a minimum bar
+[2019-05-30T20:32:03.261Z]	<rhiaro>	... if we put in some qualifications or recommendations that's also a good idea
+[2019-05-30T20:32:05.178Z]	<rhiaro>	q+
+[2019-05-30T20:32:14.367Z]	<rhiaro>	markus_sabadello: I agree with everything that has been said
+[2019-05-30T20:32:17.417Z]	<drummond>	ack markus_sabadello
+[2019-05-30T20:32:43.001Z]	<rhiaro>	... there is a link to the registry with the types of public keys in the DID spec
+[2019-05-30T20:32:49.039Z]	<rhiaro>	... the registry documents both signature formats and public key formats
+[2019-05-30T20:33:12.711Z]	<rhiaro>	... also the contents are not up to date
+[2019-05-30T20:34:09.636Z]	<rhiaro>	... in the DID spec I don't think we'd constrain the public keys, just point to the registry
+[2019-05-30T20:34:13.737Z]	<drummond>	ack rhiaro
+[2019-05-30T20:34:26.900Z]	<rhiaro>	the original PR that make this list concrete is here https://github.com/w3c-ccg/did-spec/pull/162
+[2019-05-30T20:34:38.508Z]	<rhiaro>	original problem was that the text was 'vague'
+[2019-05-30T20:34:43.952Z]	<rhiaro>	s/make/made
+[2019-05-30T20:34:53.632Z]	<rhiaro>	so we just need to make sure we don't re-replace it with more 'vague' text
+[2019-05-30T20:35:09.663Z]	<rhiaro>	or we get stuck in a loop :p
+[2019-05-30T20:35:23.351Z]	<rhiaro>	also there's an open issue on the cryptosuite registry https://github.com/w3c-ccg/ld-cryptosuite-registry/issues/10
+[2019-05-30T20:35:28.344Z]	<rhiaro>	about this
+[2019-05-30T20:35:38.158Z]	<Justin_R>	present+
+[2019-05-30T20:35:48.671Z]	<rhiaro>	I didn't read oliver's PR yet so I don't know if the text is as vague as last time
+[2019-05-30T20:35:57.536Z]	<rhiaro>	just wanted to point out that this was done after someone else raised an issue
+[2019-05-30T20:36:23.013Z]	<rhiaro>	no, it was merged before rwot
+[2019-05-30T20:36:38.579Z]	<rhiaro>	markus_sabadello: this is what introduced the current text that says it MUST be one of these properties
+[2019-05-30T20:37:15.019Z]	<drummond>	q+ to add Oliver to the queue
+[2019-05-30T20:37:23.200Z]	<rhiaro>	... there's some discussion about exactly that, the value must be one in the list and there's a comment that it should be MAY which is what I think we are in favour of now
+[2019-05-30T20:37:40.915Z]	<drummond>	ack drummond
+[2019-05-30T20:38:05.888Z]	<rhiaro>	oliver: what was the reason behind this PR why was it too vague? Would it help if we instead include the address as one of the potential values of the exhaustive list? Include it in the MUST statement?
+[2019-05-30T20:38:34.976Z]	<rhiaro>	markus_sabadello: I feel liek the reason of the MUST was for interoperability and to avoid implementers making up whatever random public keys they want
+[2019-05-30T20:38:55.275Z]	<rhiaro>	... but wouldn't that be addressed by having the commonly used properties in the infobox, and pointing to the registry, and if it were well maintained should still provide the same objectives
+[2019-05-30T20:39:03.259Z]	<rhiaro>	... of interoperability and guidence and avoiding people inventing new properties
+[2019-05-30T20:39:09.713Z]	<drummond>	q?
+[2019-05-30T20:39:44.875Z]	<rhiaro>	drummond: I'm really torn on this, because we've just gone through the first example of address that wasn't on the original list and someone saying it's valid to use this other form. One solution is to addi tto the list, and now we wait for the next one to come along
+[2019-05-30T20:39:47.803Z]	<burn>	present+
+[2019-05-30T20:40:01.954Z]	<rhiaro>	... some people feel that's good because it gives pressure on using well known vetted cryptosuites, but it does put the onus on this spec to be the place where those decisiosn are made
+[2019-05-30T20:40:15.813Z]	<rhiaro>	... my gut feel is that this is not the DID spec is not where we want to be adjudicating what is or isn't good public key signature format
+[2019-05-30T20:40:18.166Z]	<ken_>	q+
+[2019-05-30T20:40:34.935Z]	<rhiaro>	... so providing a list but saying MAY seems more appropriate
+[2019-05-30T20:40:36.581Z]	<drummond>	q?
+[2019-05-30T20:40:39.305Z]	<rhiaro>	q+
+[2019-05-30T20:40:56.521Z]	<rhiaro>	ken: you could change the language to say it MUST be in the registry and then you shift the burden and accomodate the growth
+[2019-05-30T20:41:06.864Z]	<drummond>	+1 to Ken's proposal
+[2019-05-30T20:41:10.289Z]	<Justin_R>	+1 to MUST be in registry
+[2019-05-30T20:41:11.180Z]	<rhiaro>	... I don't know if you have to set the bar very high on the registry, but it allows a place to say you have to document what you're doing in the registry before it's compliant with the spec
+[2019-05-30T20:41:13.585Z]	<drummond>	ack ken_
+[2019-05-30T20:41:15.178Z]	<rhiaro>	rhiaro: what ken said
+[2019-05-30T20:41:22.438Z]	<drummond>	q?
+[2019-05-30T20:41:25.385Z]	<rhiaro>	q-
+[2019-05-30T20:41:30.517Z]	<drummond>	ack rhiaro
+[2019-05-30T20:41:42.328Z]	<rhiaro>	drummond: anyone else?
+[2019-05-30T20:42:14.477Z]	<rhiaro>	... sounds like the recommendation is to update the language to say it needs to be something from the registry. Do we keep text that lists?
+[2019-05-30T20:42:23.629Z]	<rhiaro>	... or do we completely change it to just point to the registry?
+[2019-05-30T20:42:50.586Z]	<markus_sabadello>	q+
+[2019-05-30T20:42:58.053Z]	<rhiaro>	oliver: I would keep the text the way it is, keep the note, then change the text to point to the registry that it MUST be contained in the registry
+[2019-05-30T20:43:09.477Z]	<rhiaro>	... I'm in favour of keeping the note becuase it allows implementers who only are looking at the DID spec to see what is possible
+[2019-05-30T20:43:14.530Z]	<rhiaro>	... I don't believe that msot people will invent their own stuff
+[2019-05-30T20:43:17.549Z]	<drummond>	+1 to keeping the note and changing the text to point to the registry
+[2019-05-30T20:43:23.133Z]	<Justin_R>	q+ to talk about re-use
+[2019-05-30T20:43:24.114Z]	<drummond>	q?
+[2019-05-30T20:43:29.471Z]	<rhiaro>	+1 but with the caveat that the list needs to be things in the registry!
+[2019-05-30T20:43:31.496Z]	<ken_>	+1 to oliver's suggestion
+[2019-05-30T20:43:45.100Z]	<rhiaro>	markus_sabadello: I would also keep the note and point to the registry the way oliver said. It does already link in the appendix
+[2019-05-30T20:43:45.465Z]	<drummond>	ack markus_sabadello
+[2019-05-30T20:44:08.932Z]	<rhiaro>	... we can ping others who had an opinion on the original PR if they have anything to add, to give them a warning that we're going to update this
+[2019-05-30T20:44:12.460Z]	<rhiaro>	... for any objections
+[2019-05-30T20:44:16.855Z]	<drummond>	q?
+[2019-05-30T20:44:26.033Z]	<drummond>	ack Justin_R
+[2019-05-30T20:44:53.405Z]	<rhiaro>	Justin_R: +1 to this direction of keeping the note, keeping the list and saying it must be in the registry and by the way the current registry contents are the following. And to add on that we want to encourage people to reuse values instead of inventing their own. In the absence of a list people will invent their own even if they don't actually have to
+[2019-05-30T20:45:11.196Z]	<rhiaro>	... having them listed is a good idea, having a normative requirement of it being one value in a givne list is also a good idea. If it's easy to expand the list that's fine, as long as you can find the list
+[2019-05-30T20:45:20.274Z]	<rhiaro>	... so when you're making an implementation I know where to look
+[2019-05-30T20:45:26.685Z]	<drummond>	Proposed solution: a) pointer to the registry, b) have it be required to be listed in the registry
+[2019-05-30T20:45:28.736Z]	<rhiaro>	drummond: +1 to that
+[2019-05-30T20:45:29.805Z]	<drummond>	q?
+[2019-05-30T20:45:31.197Z]	<rhiaro>	q+
+[2019-05-30T20:45:41.398Z]	<rhiaro>	just to note we need to add oliver's new one to the registry before we can put it in the list :)
+[2019-05-30T20:46:03.045Z]	<rhiaro>	drummond: whatever is in the note needs to be added to the registry
+[2019-05-30T20:46:17.882Z]	<rhiaro>	... Who will actually take the action item to update this PR per what oliver was proposing? is it oliver's PR?
+[2019-05-30T20:46:32.257Z]	<rhiaro>	oliver: yes
+[2019-05-30T20:46:46.680Z]	<rhiaro>	drummond: any objections?
+[2019-05-30T20:48:27.442Z]	<rhiaro>	markus_sabadello: next I've been wondering should we address more of those older open issues, or perhaps we should spend time on the matrix parameters because not too long ago we accepted the PR that updates the grammar that introduces matrix params but we don't actually have any concrete matrix params
+[2019-05-30T20:48:35.118Z]	<drummond>	q?
+[2019-05-30T20:48:42.446Z]	<rhiaro>	q-
+[2019-05-30T20:48:47.651Z]	<drummond>	ack rhiaro
+[2019-05-30T20:48:48.901Z]	<rhiaro>	... we can review those
+[2019-05-30T20:49:19.027Z]	<rhiaro>	... the grammar we approved a few weeks ago says dids and did urls can contain key value pairs, but there's an empty table, and we have a list of proposed matrix parameters
+[2019-05-30T20:49:28.000Z]	<rhiaro>	... I would suggest we look at some of those, prioritise a little bit
+[2019-05-30T20:49:34.059Z]	<rhiaro>	... start with the least controversial one
+[2019-05-30T20:49:43.468Z]	<rhiaro>	... how do people feel about spending some time on the matrix params rather than looking at more open issues?
+[2019-05-30T20:49:51.953Z]	<rhiaro>	drummond: I'm in favour of looking at the matrix params discussion
+[2019-05-30T20:50:07.727Z]	<rhiaro>	... I had one request from someone who wants to use matrix params but there's nothing listed in the spec
+[2019-05-30T20:50:34.749Z]	<rhiaro>	... we could also say we're going to cover a couple of these, there are some long discussions in some of these, but maybe covering the first two on the list on today's call
+[2019-05-30T20:50:56.319Z]	<rhiaro>	markus_sabadello: I agree, I felt some interest in this recently, there have been new comments on some of these in the last few days
+[2019-05-30T20:52:01.850Z]	<rhiaro>	... service parameter seems to have some support
+[2019-05-30T20:52:31.258Z]	<drummond>	Amy is a git god :-)
+[2019-05-30T20:52:40.309Z]	<rhiaro>	... any comments or questions?
+[2019-05-30T20:53:45.703Z]	<rhiaro>	drummond: the question I'll raise, this has been the longest, in many ways it's the most straightforward, the quesetion is around how will we define the algorithm that's used, is the selection of the service exact match of the value of the parameter with the id element of the service block?
+[2019-05-30T20:54:29.722Z]	<rhiaro>	... since the id of the service block includes a fragment to identify that particular service is the fully qualified DID plus the fragment, then what precisely is the value of the service matrix param supposed to match?
+[2019-05-30T20:54:43.879Z]	<rhiaro>	markus_sabadello: my answer is it would have to match the fragment
+[2019-05-30T20:55:15.732Z]	<mtfk>	q+
+[2019-05-30T20:55:32.250Z]	<rhiaro>	... I can use the fragment to return the service
+[2019-05-30T20:55:53.914Z]	<rhiaro>	... the reason we have also the query param is so we can use path, query and fragment for the service URL
+[2019-05-30T20:56:01.468Z]	<drummond>	q+
+[2019-05-30T20:56:05.454Z]	<rhiaro>	... that's the whole process of DID resolution and dereferencing
+[2019-05-30T20:56:38.742Z]	<drummond>	ack mtfk
+[2019-05-30T20:56:45.703Z]	<rhiaro>	mtfk: a few questions.. is it possible to use regex for the names as well?
+[2019-05-30T20:56:59.215Z]	<rhiaro>	... another is if it's possible to query by specific name of the service, is it also possible to query it by a type?
+[2019-05-30T20:57:06.245Z]	<rhiaro>	... I can imagine I want the service type available for that DID without having a name
+[2019-05-30T20:57:14.710Z]	<rhiaro>	drummond: service-type is the second param on the list of open issues
+[2019-05-30T20:57:23.421Z]	<rhiaro>	... we'll get to that one
+[2019-05-30T20:57:26.076Z]	<drummond>	q?
+[2019-05-30T20:57:49.835Z]	<drummond>	ack drummond
+[2019-05-30T20:57:54.208Z]	<drummond>	q?
+[2019-05-30T20:58:30.756Z]	<rhiaro>	markus_sabadello: we're trying not to make it too complex. Originally we just had : and a service name in the spec for a long time. I think the assumption is it has to be an exact match on the name
+[2019-05-30T20:58:32.903Z]	<mtfk>	q+
+[2019-05-30T20:58:55.392Z]	<drummond>	ack mtfk
+[2019-05-30T20:59:20.580Z]	<rhiaro>	mtfk: are there rules about how to name services?
+[2019-05-30T20:59:20.994Z]	<drummond>	Great question about service names
+[2019-05-30T20:59:24.002Z]	<drummond>	q+
+[2019-05-30T20:59:29.147Z]	<drummond>	ack drummond
+[2019-05-30T20:59:40.467Z]	<Justin_R>	q+ to talk about string comparison
+[2019-05-30T21:00:25.501Z]	<rhiaro>	drummond: both public keys and service defintions were registiered so that you can use a registry and the name of a service could be well known via a registry but still extensible in the same way as public keys
+[2019-05-30T21:00:42.208Z]	<drummond>	ack Justin_R
+[2019-05-30T21:01:07.300Z]	<drummond>	+1 to be very specific about our definiton of "exact match"
+[2019-05-30T21:01:10.373Z]	<drummond>	q+
+[2019-05-30T21:01:10.968Z]	<rhiaro>	Justin_R: whenever we say exact match we have to be extraordinarly pedantic about what we mean by exact string match, especially as this is a syntactic specification we have to be clear we mean the decoded byte string is exact, or an internationally case insensitive comparison, we have to be really clear about that
+[2019-05-30T21:01:20.106Z]	<markus_sabadello>	q+
+[2019-05-30T21:01:23.205Z]	<rhiaro>	... it's not hard to be really clear, and there is an RFC somewhere that says how to do strings exactly to each other
+[2019-05-30T21:01:33.901Z]	<rhiaro>	... somewhere on the internet, we could reference it
+[2019-05-30T21:01:44.931Z]	<rhiaro>	drummond: totally
+[2019-05-30T21:01:45.477Z]	<drummond>	ack drummond
+[2019-05-30T21:02:19.966Z]	<rhiaro>	... +1 to what justin said. One of the things that makes it easier is that there is a constrained in the abnf character set for matrix param naming and value sets so we shouldn't have i18n issues for example
+[2019-05-30T21:02:33.327Z]	<rhiaro>	... the spec  that justin is pointing to, we shouldn't redefine that, we should refer to that spec
+[2019-05-30T21:02:37.147Z]	<drummond>	q?
+[2019-05-30T21:02:45.971Z]	<drummond>	ack markus_sabadello
+[2019-05-30T21:02:49.642Z]	<rhiaro>	markus_sabadello: thanks for the input, it's important
+[2019-05-30T21:03:15.538Z]	<rhiaro>	... one meta comment is that these PRs that propose to add the matrix params, all they do is add one line to a table. How exactly they work and are processed will be in the DID Resolution spec
+[2019-05-30T21:03:36.786Z]	<rhiaro>	... Right now we're just, it's related, question is what are we approving when we approve the PR
+[2019-05-30T21:03:40.887Z]	<drummond>	q?
+[2019-05-30T21:04:06.227Z]	<rhiaro>	... can we merge a PR and approve one of these before we have fully specified how they are handled in did resolution? on the other hand while working on the did resolution spec, it's not easy to write the DID resolution spec if we don't have some agreement of which parameters we want and don't want
+[2019-05-30T21:04:24.753Z]	<drummond>	q+
+[2019-05-30T21:04:28.022Z]	<rhiaro>	... my intention with these prs is to have a rough understanding of what the parameters do and if we think they are a good idea we merge them and specify them in the did resolution spec and then we can still iterate or remove the ones that odn't work
+[2019-05-30T21:04:30.896Z]	<drummond>	ack drummond
+[2019-05-30T21:05:05.204Z]	<rhiaro>	drummond: I get that approach but I do believe it's gonna be somewhat an iterative process, we have to make sure there's a clear enough path for defining the processing of a generic parameter
+[2019-05-30T21:05:11.161Z]	<rhiaro>	... in order to justify it's inclusion in the DID spec
+[2019-05-30T21:05:31.158Z]	<rhiaro>	... to accept a param depends on resolution we could defer altogether to list the table and the behaviour in the resolution spec
+[2019-05-30T21:05:37.528Z]	<rhiaro>	... but that would exclude anything that wasn't dependant on resolution
+[2019-05-30T21:05:59.637Z]	<rhiaro>	... I'm okay with that but I feel like we need to officially discuss each parameter to get to the point where we say the param makes sense becuase we have a good idea of what the matching/processing rules are
+[2019-05-30T21:06:03.237Z]	<drummond>	q?
+[2019-05-30T21:06:25.849Z]	<rhiaro>	markus_sabadello: maybe the process could be that we only merge these PRs once there's at least some initial content in the DID resolution spec that describes how it works
+[2019-05-30T21:06:40.462Z]	<mtfk>	q+
+[2019-05-30T21:06:46.413Z]	<rhiaro>	... if we now state that this param seems like a good idea we note that but we don't merge it yet until some language is also in the DID resolution spec that describes how it works
+[2019-05-30T21:06:53.813Z]	<drummond>	ack mtfk
+[2019-05-30T21:06:54.400Z]	<Justin_R>	q+ to say that we're making this too difficult
+[2019-05-30T21:07:05.172Z]	<rhiaro>	mtfk: maybe that will help. Maybe a decision about merging it or not should be based on a very strong use cases on that attribute
+[2019-05-30T21:07:13.564Z]	<rhiaro>	... if we have a good enough use case later we can figure out how it can be implemented
+[2019-05-30T21:07:17.584Z]	<rhiaro>	drummond: good point
+[2019-05-30T21:07:21.220Z]	<drummond>	ack Justin_R
+[2019-05-30T21:07:39.139Z]	<rhiaro>	Justin_R: Just want to remind everyone that this docs are early stage and are fairly malleable
+[2019-05-30T21:07:59.692Z]	<rhiaro>	... what we really need in this doc is a syntax and what we need in resolution is a set of semantics to apply that syntax. They're going to grow up hand in hand and are going to change
+[2019-05-30T21:08:06.938Z]	<rhiaro>	... my advice would be to embrace the wrong we have today
+[2019-05-30T21:08:09.721Z]	<rhiaro>	... and fix it as we go
+[2019-05-30T21:08:35.642Z]	<rhiaro>	drummond: I'm worrying too much, we can go much faster if we can just agree okay the parameters have use cases
+[2019-05-30T21:08:45.626Z]	<rhiaro>	... let's agree on if there's a use case for it, and fill out the table
+[2019-05-30T21:08:56.422Z]	<rhiaro>	... that means we can go work out the processing definition in the resolution spec
+[2019-05-30T21:09:09.375Z]	<drummond>	+1 to both Robert's points and Justin's points that we can faster just agreeing on the matrix parameter names
+[2019-05-30T21:09:11.871Z]	<drummond>	q?
+[2019-05-30T21:09:13.493Z]	<rhiaro>	Justin_R: the important thing is I get handed a string and I know how to break apart it's pieces, that's what the DID URI spec should be giving me
+[2019-05-30T21:09:46.739Z]	<rhiaro>	drummond: I propose that, unless we want to argue about the name, we need a service parameter for service selection, shall it be so?
+[2019-05-30T21:09:55.514Z]	<rhiaro>	markus_sabadello: sounds good to me, I'll merge this one after the call
+[2019-05-30T21:10:26.543Z]	<rhiaro>	drummond: continue with matrix params or go to the issue list?
+[2019-05-30T21:10:58.165Z]	<rhiaro>	... daniel buckner believes service-type is essential
+[2019-05-30T21:11:09.380Z]	<drummond>	q?
+[2019-05-30T21:11:23.234Z]	<rhiaro>	markus_sabadello: we can talk about service-type now, this is less trivial than it seems
+[2019-05-30T21:11:43.650Z]	<drummond>	PR 191
+[2019-05-30T21:12:09.093Z]	<rhiaro>	... there are some details to figure out because the type in the did document is actually a fully qualified URI not just a string
+[2019-05-30T21:12:18.034Z]	<rhiaro>	... so matching is more complex to take into accoutn some of the json ld data model features
+[2019-05-30T21:12:20.871Z]	<rhiaro>	... that's a small detail
+[2019-05-30T21:12:36.030Z]	<rhiaro>	... the bigger question raised on the PR is not so much whether we want to do service selection by type, that has broad support, there are many use cases
+[2019-05-30T21:12:56.455Z]	<rhiaro>	... but the question is do we want to do that as part of the DID URL and do we want to do that with matrix parameters
+[2019-05-30T21:13:14.986Z]	<rhiaro>	... manu has asked I don't understand the use case why can't you dereference the DID document search for the serive type you're looking for and just use that
+[2019-05-30T21:13:25.874Z]	<drummond>	q?
+[2019-05-30T21:13:31.134Z]	<rhiaro>	... why don't you just resolve the DID itself and call some additional functon in your code or tools so youc an select the serviec type
+[2019-05-30T21:13:46.903Z]	<rhiaro>	... there's always a question do we want this to be part of the DID URL
+[2019-05-30T21:13:48.491Z]	<mtfk>	q+
+[2019-05-30T21:13:54.940Z]	<markus_sabadello>	ack mtfk
+[2019-05-30T21:13:55.551Z]	<drummond>	q+
+[2019-05-30T21:14:05.173Z]	<drummond>	ack mtfk
+[2019-05-30T21:14:06.916Z]	<rhiaro>	mtfk: isn't that true for any type of the matrix param? you could always fetch the whole document and parse it and find what you need
+[2019-05-30T21:14:13.159Z]	<rhiaro>	... service is the same right?
+[2019-05-30T21:14:19.548Z]	<rhiaro>	drummond: you could
+[2019-05-30T21:14:41.597Z]	<rhiaro>	... if you want to pass a path/query/fragment on the same thing applies here
+[2019-05-30T21:14:54.488Z]	<rhiaro>	... we could say.. well.. actually you could still do that.. I take it back
+[2019-05-30T21:15:01.419Z]	<rhiaro>	q+
+[2019-05-30T21:15:21.351Z]	<rhiaro>	... if you want to make it clear they apply to a service of that type you need to add that parameter
+[2019-05-30T21:15:25.757Z]	<rhiaro>	... I don't see any way around it
+[2019-05-30T21:15:37.870Z]	<markus_sabadello>	ack drummond
+[2019-05-30T21:15:39.657Z]	<drummond>	q?
+[2019-05-30T21:15:51.738Z]	<rhiaro>	jonathan: selecting by type should return an array of serviec endpoitns where as name or id should be one
+[2019-05-30T21:16:08.293Z]	<rhiaro>	markus_sabadello: that has also been raised, it is a set of services
+[2019-05-30T21:16:24.065Z]	<rhiaro>	... I changed it after somebody else
+[2019-05-30T21:16:27.908Z]	<drummond>	ack rhiaro
+[2019-05-30T21:16:35.169Z]	<rhiaro>	I don't see how you can apply a path/query/fragment to a service if you're selecting by type and don't know what the outcome will be yet
+[2019-05-30T21:17:18.353Z]	<rhiaro>	drummond: if you compose a DID url that has a service-type parameter then the service that you're selecting has a definition of how you process that array
+[2019-05-30T21:17:35.570Z]	<rhiaro>	... with hubs they have a plan in mind that you list multiple hubs and there's an algorithm they'll use to select which hub is then called
+[2019-05-30T21:17:43.843Z]	<rhiaro>	... and the path/query/fragment are passed in the concrete url
+[2019-05-30T21:18:02.118Z]	<drummond>	q?
+[2019-05-30T21:18:04.776Z]	<markus_sabadello>	q+
+[2019-05-30T21:18:07.037Z]	<rhiaro>	... the service definition says how you will deal if you're selecting it by type
+[2019-05-30T21:18:21.680Z]	<rhiaro>	I guess if it's a list of the same type then the path/query/fragment can apply to all of them
+[2019-05-30T21:18:30.655Z]	<rhiaro>	okay I see
+[2019-05-30T21:18:41.910Z]	<markus_sabadello>	ack markus_sabadello
+[2019-05-30T21:19:05.218Z]	<rhiaro>	markus_sabadello: I also agree that manu has raised the same question, how do you use the list of services with the path. I'd also say the path/query/fragment are applied to all of them
+[2019-05-30T21:19:13.347Z]	<rhiaro>	... I don't see why it would be specific to the service-type
+[2019-05-30T21:19:26.149Z]	<rhiaro>	drummond: I stand correct. I'm realising that is the net effect of what I was saying
+[2019-05-30T21:19:43.023Z]	<rhiaro>	... What to do with the array, how to process it, that's what I meant should be determined by the service definition
+[2019-05-30T21:19:56.402Z]	<rhiaro>	... Myabe ther's some default we specify in the resolution spec, that a service can override if it iwants some other behaviour
+[2019-05-30T21:20:05.618Z]	<rhiaro>	... I only meant how you choose from the array vs I dind't mean you do something special with
+[2019-05-30T21:20:07.767Z]	<drummond>	q?
+[2019-05-30T21:22:08.401Z]	<rhiaro>	markus_sabadello: it's about whether specifying a service-type needs to be part of the DID URL or not. COuld also be a resolver function or option
+[2019-05-30T21:22:17.992Z]	<rhiaro>	... Another example is versioning
+[2019-05-30T21:22:28.234Z]	<rhiaro>	... without going into detail, there's a version-time parameter
+[2019-05-30T21:22:36.611Z]	<rhiaro>	... to get an earlier version of the DID Document
+[2019-05-30T21:22:53.238Z]	<rhiaro>	... it could also be a matrix paraemter but could also be an option you make to the resolver
+[2019-05-30T21:23:11.900Z]	<rhiaro>	... you could pass in additional options
+[2019-05-30T21:23:19.555Z]	<drummond>	q+
+[2019-05-30T21:23:20.661Z]	<rhiaro>	... some things would never be passed in the DID URL but as out of band options
+[2019-05-30T21:23:24.215Z]	<rhiaro>	... an example would be caching
+[2019-05-30T21:24:05.693Z]	<rhiaro>	... these options are like http headers as opposed to an http url
+[2019-05-30T21:24:18.112Z]	<rhiaro>	... there's some information in the url, the query for example, but i also pass http headers which control caching
+[2019-05-30T21:24:28.375Z]	<rhiaro>	... which are not part of the http url
+[2019-05-30T21:24:38.063Z]	<rhiaro>	... it's a bit like that here, I can pass additional parameters for controlling the did resolution process
+[2019-05-30T21:24:43.398Z]	<rhiaro>	... you could argue for versioning either way
+[2019-05-30T21:24:59.650Z]	<rhiaro>	... you coudl argue the version number is part of the DID URL but you could argue that if you want to resolve a certain DID URL it's an out of band param
+[2019-05-30T21:25:26.964Z]	<rhiaro>	some DIRs won't have the ability to return different versions, so they wouldn't be able to implement version-time I think
+[2019-05-30T21:25:38.663Z]	<yancy>	s/coudl/could
+[2019-05-30T21:25:40.491Z]	<rhiaro>	... manu meant you can pass this as an additional option for service-type this way
+[2019-05-30T21:25:44.997Z]	<mtfk>	q+
+[2019-05-30T21:25:48.360Z]	<rhiaro>	... the example would be the same but it's not part of the DID URL
+[2019-05-30T21:25:53.829Z]	<drummond>	Drummond added to the queue to say that the DID URL should always uniquely identify the target resource, i.e., it should contain any matrix parameters, path, query, or fragment that is needed for that resource identification. Anything not needed for that identification should not be in the DID URL but passed out of band.
+[2019-05-30T21:26:46.380Z]	<rhiaro>	drummond: with servie and service-type you could pass something out of band, but they are different identifiers
+[2019-05-30T21:27:06.641Z]	<rhiaro>	... with a specific service you're always selecting one service, if you have a path/query/fragment they're continuing the identification at the service endpoint
+[2019-05-30T21:27:16.778Z]	<rhiaro>	... if you have a service type you're identifying an array of URLs
+[2019-05-30T21:27:28.185Z]	<rhiaro>	... if it's part of the identification it needs to be able to go in the DID URL
+[2019-05-30T21:27:33.125Z]	<rhiaro>	... if it's not like caching
+[2019-05-30T21:27:57.978Z]	<rhiaro>	... I guess you could technically say you want to be able to identify a cached version.. if there's a case for uniquely identifying the cached version... but if it's not actually part of the identification then you want to pass it out of band
+[2019-05-30T21:27:59.486Z]	<drummond>	q?
+[2019-05-30T21:28:06.160Z]	<drummond>	ack drummond
+[2019-05-30T21:28:06.661Z]	<markus_sabadello>	ack drummond
+[2019-05-30T21:28:12.751Z]	<drummond>	ask mtfk
+[2019-05-30T21:28:18.161Z]	<drummond>	ack mtfk
+[2019-05-30T21:28:18.816Z]	<markus_sabadello>	q+
+[2019-05-30T21:28:39.358Z]	<rhiaro>	mtfk: if you're identifying the resource, that's the URL. Everything else, like markus compared with the headers with the http request, everythign related to the connection itself then you can use it as the options. Identifier resource everything goes into URL
+[2019-05-30T21:28:53.110Z]	<drummond>	ack markus_sabadello
+[2019-05-30T21:29:13.054Z]	<rhiaro>	markus_sabadello: I completely agree with both of you, another way of saying the same thing would be that whatever you put into a DID URL is used to identify what is being dereference as opposed to specifying how it is being dereferenced
+[2019-05-30T21:29:15.022Z]	<rhiaro>	... just another way of putting it
+[2019-05-30T21:29:24.032Z]	<rhiaro>	... I agree we should have the serivce type parameter, and also the version parameter
+[2019-05-30T21:29:35.597Z]	<rhiaro>	... it's possible to argue both ways sometimes
+[2019-05-30T21:29:49.308Z]	<rhiaro>	... you could aruge that earlier versions of the DID DOcument shoudl be considered differnet resources using web terminology
+[2019-05-30T21:30:01.719Z]	<rhiaro>	... then we should have a matrix param to make sure we have different URIs
+[2019-05-30T21:30:08.393Z]	<drummond>	I like how Markus puts it: what goes in the DID URL identifies *what* is being identified vs. what goes outside the DID URL defines *how* it is resolved/dereferenced.
+[2019-05-30T21:30:10.181Z]	<rhiaro>	... but you could aruge it's always the same resource and the content of that resource changes over time
+[2019-05-30T21:30:25.139Z]	<rhiaro>	... then you could argue the DID Document always has the same URI and it changes over time, is the arguement against having the version-time parameter
+[2019-05-30T21:30:29.608Z]	<rhiaro>	... I think service-type we should have
+[2019-05-30T21:30:34.171Z]	<drummond>	q?
+[2019-05-30T21:30:34.489Z]	<rhiaro>	drummond: good points
+[2019-05-30T21:30:39.368Z]	<rhiaro>	... we're out of time
+[2019-05-30T21:30:57.201Z]	<rhiaro>	... for that one we could say see if manu or anyone else has any reaction to that
+[2019-05-30T21:31:06.574Z]	<rhiaro>	... two or three days we should accept that PR and keep working down the list
+[2019-05-30T21:31:56.849Z]	<mtfk>	remember one PR can solve 10 issues ;)
+[2019-05-30T21:32:09.630Z]	<rhiaro>	drummond: we can agree to give some attention, maybe markus and I start using the list
+[2019-05-30T21:32:23.200Z]	<rhiaro>	... and promote the ones that require the in person discussions to these calls
+[2019-05-30T21:32:36.578Z]	<rhiaro>	... Anything else?
+[2019-05-30T21:33:25.558Z]	<rhiaro>	... see you all next week.
