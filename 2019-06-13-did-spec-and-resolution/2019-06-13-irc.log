@@ -1,0 +1,340 @@
+
+[22:03] == markus_sabadello [~markus_sabadello@public.cloak] has joined #ccg
+[22:03] == drummond [~drummond@public.cloak] has joined #ccg
+[22:03] == ken [~ken@public.cloak] has joined #ccg
+[22:03] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-0000036f] has joined the conference.
+[22:03] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-0000036f] has left the conference.
+[22:03] == voip-ccg1 [~voipbot@public.cloak] has joined #ccg
+[22:03] <dlongley> present+ Dave_Longley
+[22:03] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-00000370] has joined the conference.
+[22:03] == dmitriz [~Adium@public.cloak] has joined #ccg
+[22:03] == burn [~burn@public.cloak] has joined #ccg
+[22:03] <markus_sabadello> present+
+[22:03] <ken> present+ Ken_Ebert
+[22:03] <dmitriz> present+
+[22:03] == victorgrey [~victorgrey@public.cloak] has joined #ccg
+[22:04] <burn> present+ Dan_Burnett
+[22:05] * dlongley there are some call-in users to identify
+[22:05] * burn I am one of the dialin callers, don't know which
+[22:06] <drummond> Andrew Jones: joined Digital Bazaar in February, working on the DID test suite
+[22:06] <dlongley> scribe: drummond
+[22:07] <drummond> Bill Barnhill has done previous work on standards at OASIS and is now back to help. He has been working on AI and semantic technology in the defense consulting industry.
+[22:07] <drummond> ...and is also an active open source contributor.
+[22:10] <drummond> Drummond briefly reviewed the agenda and emphasized that today's goal is to see if we can get through the rest of the matrix parameter discussion and PRs.
+[22:12] <drummond> Topic: DID Resolution Spec draft
+[22:12] <drummond> markus_sabadello: Showed the revised structure of the DID Resolution spec.
+[22:12] == gannan_ [~gannan@public.cloak] has joined #ccg
+[22:13] <drummond> ...He has revised it into major sections: Resolving a DID and Deferencing a DID URL. This will help keep these two concepts and stages clear.
+[22:13] <drummond> The DID Resolution section covers resolving a DID to a DID document.
+[22:14] <drummond> The Dereferencing a DID URL section covers how the resolver acts on additional components in a DID URL to produce a final result.
+[22:15] <drummond> Another section, DID Resolution Result, defines the kinds of results that DID Resolution can provide.
+[22:15] <drummond> Another section, Service Endpoint Construction, specifies the algorithm for constructing a result URL when a DID URL includes a "service" parameter.
+[22:16] <drummond> ...Markus also worked on the Introduction and Terminology sections.
+[22:17] <drummond> ...He warned that there are still many uncompleted parts of the draft, and asks that contributors refrain from making PRs against the empty sections until they have been populated (or by checking with him).
+[22:17] == jonathan_holt [~jonnycrunch@public.cloak] has joined #ccg
+[22:17] <drummond> q?
+[22:17] <voip-ccg> The speaker queue is empty.
+[22:18] <drummond> jonathan_holt: Ask if the hash symbol is overloaded with JSON-LD, JSON Pointers, and possibly matrix parameters?
+[22:19] <drummond> markus_sabadello: There is a statement in the main DID spec that says that fragment usage SHOULD NOT prevent using JSON Pointers.
+[22:19] <drummond> q+
+[22:19] <voip-ccg> drummond has been added to the queue: drummond
+[22:19] <voip-ccg> The current speaker queue is: drummond
+[22:20] <drummond> jonathan_holt: Likes the way that JSON Pointer allows addressing inside the DID document, and wants to make sure it's protected.
+[22:20] <drummond> markus_sabadello: Agrees that JSON Pointer should be able to be used.
+[22:20] <drummond> ...Markus has so far only included content for items that have the broadest support.
+[22:21] <markus_sabadello> q?
+[22:21] <voip-ccg> The current speaker queue is: drummond
+[22:21] <markus_sabadello> ack drummond
+[22:21] <voip-ccg> drummond has the floor.
+[22:21] <markus_sabadello> drummond: Draft looks like a good step forward in terms of structure
+[22:21] <drummond> ack drummond
+[22:21] <voip-ccg> drummond isn't on the speaker queue.
+[22:21] <markus_sabadello> https://w3c-ccg.github.io/did-resolution/
+[22:22] == agropper [~agropper@public.cloak] has joined #ccg
+[22:22] <markus_sabadello> Topic: Matrix parameters
+[22:23] == kyle_denhartog [~kyle_denhartog@public.cloak] has joined #ccg
+[22:24] <markus_sabadello> drummond: Explaining the current ABNF of "did" and "did-url"..
+[22:24] <markus_sabadello> drummond: DID ABNF re-uses path, query, fragment from RFC3986 (URI spec)
+[22:24] <ken> q+
+[22:24] <voip-ccg> ken has been added to the queue: ken
+[22:24] <voip-ccg> The current speaker queue is: ken
+[22:24] <markus_sabadello> drummond: DID ABNF really only defines the "did" syntax and matrix parameter syntax
+[22:25] <rhiaro> regrets+
+[22:25] * rhiaro apologies, travelling and not able to make the call
+[22:25] <markus_sabadello> drummond: Pointing out that generic DID matrix parameters functions the same way across all DIDs and DID methods.
+[22:25] * markus_sabadello rhiaro: no problem, talk to you next time!
+[22:26] <markus_sabadello> drummond: Today, let's try to conclude on generic DID matrix parameters
+[22:26] <dlongley> ack ken
+[22:26] <voip-ccg> ken has the floor.
+[22:26] <aljones15> if I passed in a method-specific matrix parameter and the method it references is not the method-name of the did should I throw an error?
+[22:26] <markus_sabadello> ken: Are we not defining path, query, fragment in DID URL syntax?
+[22:27] <aljones15> did:urn:324234234234;uuid:example=1
+[22:27] <markus_sabadello> drummond: We are using them as part of DID URL syntax, but we are not redefining path, query, fragment themselves.
+[22:28] <dlongley> i said this in an email: "In my view, the purpose of a DID URL is to create a stable reference to existing information about a specific thing, where the precise location of that information may change over time because of changes in the DID Document. It's a pointer." -- matrix parameters assist with this
+[22:29] <markus_sabadello> drummond: There has been discussion whether matrix parameters like "service-type" are needed, since 1. you could just resolve a DID document and then search manually, and 2. you can always use #keys-1 fragment syntax to point to a part of a DID document.
+[22:29] <burn> q+ to ask about a logical resource
+[22:29] <voip-ccg> burn has been added to the queue: burn
+[22:29] <markus_sabadello> drummond: Going over https://docs.google.com/document/d/1-aHdUyhzUNWPU_kZ2ICnyBguZmN1jUidaRlIcqYgYuI/
+[22:30] <markus_sabadello> drummond: Explains that we want to reserve path, query, fragment for their original meaning, therefore we only have the DID and the matrix parameters to identify something that's unique to our spec.
+[22:31] <markus_sabadello> drummond: Distinguish between internal, adjacent, or external resources identified by a DID URL.
+[22:32] <markus_sabadello> q?
+[22:32] <voip-ccg> The current speaker queue is: burn
+[22:32] <markus_sabadello> ack burn
+[22:32] <voip-ccg> burn has the floor (to ask about a logical resource).
+[22:34] <markus_sabadello> drummond: in the main DID spec we say, a DID always identifies a DID subject (e.g. a person)
+[22:35] * markus_sabadello burn: sorry i wasn't able to scribe your comment/question :(
+[22:35] <markus_sabadello> drummond: we're trying to avoid the httprange14 problem
+[22:35] == Karen [Karen@public.cloak] has quit ["My MacBook has gone to sleep. ZZZzzz…"]
+[22:35] <markus_sabadello> drummond: DID document describes how you interact with the DID subject
+[22:36] == Karen [Karen@public.cloak] has joined #ccg
+[22:36] == burn [~burn@public.cloak] has quit [Ping timeout: 180 seconds]
+[22:37] <markus_sabadello> drummond: DID URLs can identify services, keys, and other things in the context of the person
+[22:37] <drummond> q?
+[22:37] <markus_sabadello> q?
+[22:37] <voip-ccg> The speaker queue is empty.
+[22:37] <dlongley> q?
+[22:37] <voip-ccg> The speaker queue is empty.
+[22:37] <voip-ccg> The speaker queue is empty.
+[22:39] <markus_sabadello> drummond: One new idea is that there can be an "id" matrix parameter that can identify any object inside a DID document by its id.. Similar to how "service" and "key" have already been proposed.
+[22:40] <dlongley> q+
+[22:40] <voip-ccg> dlongley has been added to the queue: dlongley
+[22:40] <voip-ccg> The current speaker queue is: dlongley
+[22:40] <drummond> ack dlongley
+[22:40] <voip-ccg> dlongley has the floor.
+[22:41] <dlongley> no audio
+[22:41] <dlongley> working on it.
+[22:41] == dmitriz [~Adium@public.cloak] has quit ["Leaving."]
+[22:41] <markus_sabadello> q+
+[22:41] <voip-ccg> markus_sabadello has been added to the queue: markus_sabadello
+[22:41] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:41] <markus_sabadello> ack markus_sabadello
+[22:41] <voip-ccg> markus_sabadello has the floor.
+[22:42] <drummond> markus_sabadello: We also need to discuss the proposed parameters for identifying/selection a service or key by type.
+[22:43] <drummond> ...the question is: is the use case strong enough for identifying a service or key by type using a matrix parameter, or should you just resolve to a DID document and then parse it.
+[22:44] <drummond> ...so the question is really one of whether identification of objects of a specific type is needed.
+[22:45] <drummond> ...The next parameter that seems to have support is version-id and version-time. These seem to be needed for identification. However there is a case that they could be selected using out-of-band resolution parameters.
+[22:46] <drummond> ...some of the matrix parameters apply to DID resolution and some to DID URL dereferencing.
+[22:46] <drummond> q?
+[22:46] <voip-ccg> The speaker queue is empty.
+[22:46] <dlongley> nope
+[22:46] <dlongley> still trying...
+[22:47] == brent [~brent@public.cloak] has joined #ccg
+[22:48] == gannan_ [~gannan@public.cloak] has quit [Ping timeout: 180 seconds]
+[22:48] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[22:48] <codenamedmitri> q+ dmitriz
+[22:48] <voip-ccg> codenamedmitri has been added to the queue: dmitriz
+[22:49] <markus_sabadello> drummond: version-id and version-time are "adjacent" parameters, they identify earlier DID document in the registry
+[22:49] <markus_sabadello> drummond: content-id and content-type can identify "adjacent" resources other than DID documents
+[22:50] <drummond> q?
+[22:50] <voip-ccg> The current speaker queue is: dmitriz
+[22:50] <jonathan_holt> q+ to discuss JSON-pointers
+[22:50] <markus_sabadello> drummond: hl (hashlink) is not really about identification, but about integrity protection
+[22:50] <voip-ccg> jonathan_holt has been added to the queue: dmitriz, jonathan_holt
+[22:50] <markus_sabadello> dmitriz: want to argue -1 on service-type and key-type
+[22:51] <ken> q+
+[22:51] <voip-ccg> ken has been added to the queue: dmitriz, jonathan_holt, ken
+[22:51] <voip-ccg> The current speaker queue is: dmitriz, jonathan_holt, ken
+[22:51] <markus_sabadello> dmitriz: i have not yet heard a compelling use case for _identifying_ a set of services/keys by type
+[22:51] <markus_sabadello> dmitriz: use case for retrieving, yes. use case for identifying, not yet.
+[22:52] <markus_sabadello> dmitriz: potentially useful analogy for "service" parameter: 303 redirect in HTTP
+[22:52] <markus_sabadello> dmitriz: i.e. you start with one URL, result of dereferencing = another URL
+[22:52] <drummond> q+
+[22:52] <voip-ccg> drummond has been added to the queue: dmitriz, jonathan_holt, ken, drummond
+[22:52] <voip-ccg> The current speaker queue is: dmitriz, jonathan_holt, ken, drummond
+[22:52] <markus_sabadello> dmitriz: service-type and key-type however identify a set of resources; there's no analogy for that in the HTTP world
+[22:52] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[22:53] <drummond> q-
+[22:53] <voip-ccg> drummond has been removed from the queue: dmitriz, jonathan_holt, ken
+[22:53] <voip-ccg> The current speaker queue is: dmitriz, jonathan_holt, ken
+[22:53] <drummond> q+ to talk about the option of type parameters only selecting one resource, not an array
+[22:53] <voip-ccg> drummond has been added to the queue: dmitriz, jonathan_holt, ken, drummond
+[22:53] <markus_sabadello> dmitriz: one analogy for that could be e.g. "all open github issues"... but is that identification, or retrieval?
+[22:53] <markus_sabadello> dmitriz: -1 to service-type and key-type, haven't heard use case, and they result in an _array_ of URLs, rather than a single rewritten/redirected resource
+[22:54] <drummond> q?
+[22:54] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[22:54] <voip-ccg> The current speaker queue is: dmitriz, jonathan_holt, ken, drummond
+[22:54] <drummond> ack dmitriz
+[22:54] <voip-ccg> dmitriz has the floor.
+[22:54] <jonathan_holt> ipfs dag get bafyreibkhfzdoxreqstpkyfgl4ujffd555xoefcqndier7yb2r7fv77qz4/service | jq
+[22:54] <drummond> ack jonathan_holt
+[22:54] <voip-ccg> jonathan_holt has the floor (to discuss JSON-pointers).
+[22:54] <markus_sabadello> q+
+[22:54] <voip-ccg> markus_sabadello has been added to the queue: ken, drummond, markus_sabadello
+[22:54] <voip-ccg> The current speaker queue is: ken, drummond, markus_sabadello
+[22:55] <markus_sabadello> jonathan_holt: on hyperledger aries call, discussed a use case of finding service types for push notifications and other protocols
+[22:55] * codenamedmitri jonathan_holt — that sounds like a perfect use case, but for retrieving/querying, not identifying
+[22:55] <kyle_denhartog> q+
+[22:55] <voip-ccg> kyle_denhartog has been added to the queue: ken, drummond, markus_sabadello, kyle_denhartog
+[22:55] <voip-ccg> The current speaker queue is: ken, drummond, markus_sabadello, kyle_denhartog
+[22:56] <markus_sabadello> jonathan_holt: in IPID/IPLD, we make heavy use of JSON pointers to query parts of a DID Document using paths
+[22:56] <jonathan_holt> ipfs dag get bafyreibkhfzdoxreqstpkyfgl4ujffd555xoefcqndier7yb2r7fv77qz4/service&id=messages
+[22:56] <dlongley> sounds like it doesn't be a DID URL, but a different URL that takes service type and DID as query parameters.
+[22:56] <dlongley> s/doesn't be/ doesn't need to be/
+[22:56] <dlongley> (it would also need another parameter for breaking ties when more than one service is returned)
+[22:57] <drummond> q?
+[22:57] <voip-ccg> The current speaker queue is: ken, drummond, markus_sabadello, kyle_denhartog
+[22:57] <jonathan_holt> ipfs dag get bafyreibkhfzdoxreqstpkyfgl4ujffd555xoefcqndier7yb2r7fv77qz4/service&type=pushnotifications
+[22:57] <markus_sabadello> jonathan_holt: in the "Algorithmic Construction" document, not sure of an "id" matrix parameter is useful. what exactly is being identified?
+[22:58] <drummond> ack ken
+[22:58] <voip-ccg> ken has the floor.
+[22:58] <dlongley> if you aren't using an `id` somewhere (which you don't know in this use case) then you can get more than one -- and you have to solve for that. ... and the algorithm for solving for that is application-specific, it shouldn't be a in DID URL.
+[22:58] <markus_sabadello> ken: regarding content-id and content-type, our use case was to identify objects like schemas on the Sovrin ledger
+[22:59] <markus_sabadello> ken: we have also considered using other identifiers that are not DIDs
+[22:59] <dlongley> might be breaking the principle of URL opacity by putting content-type in there (https://www.w3.org/TR/webarch/#uri-opacity)
+[22:59] <dlongley> (gray area)
+[22:59] <dlongley> no audio.
+[23:00] * dlongley i have to leave in just a couple minutes too ... regrets
+[23:01] <codenamedmitri> q+ dmitriz to answer the ‘what does the id param ide tof
+[23:01] <voip-ccg> codenamedmitri has been added to the queue: drummond, markus_sabadello, kyle_denhartog, codenamedmitri
+[23:01] <markus_sabadello> drummond: want to elaborate on "id" matrix parameter.. it would be the "matrix parameter equivalent" of a fragment, to address any part of the DID Document, just like a DID URL with a fragment would do it
+[23:01] <markus_sabadello> drummond: advantage is that your would still be free to use path, query, fragment in whatever way you want
+[23:02] <markus_sabadello> drummond: technically, in a JSON-LD document the same "id" can appear twice.. it would describe the same resource in multiple different places.
+[23:02] <codenamedmitri> q- dmitriz
+[23:02] <voip-ccg> dmitriz isn't on the speaker queue.
+[23:02] <codenamedmitri> q-
+[23:02] <voip-ccg> codenamedmitri has been removed from the queue: drummond, markus_sabadello, kyle_denhartog
+[23:02] <voip-ccg> The current speaker queue is: drummond, markus_sabadello, kyle_denhartog
+[23:02] <ken> Dave, do you have the same issue with content-id?
+[23:02] <dlongley> i don't know if it makes sense to do it -- there may be some use cases, perhaps it helps with  JSON pointer ... perhaps it would help with ...
+[23:03] <dlongley> a more general way to say "refer to this other thing" ... id="foo";endpoint=true ... would be the same meaning as "service"
+[23:03] <dlongley> which would allow you to deref something by `id` and then use the value of "endpoint"
+[23:03] <dlongley> and insert that into a URL then concat the path + query params + fragment
+[23:04] <dlongley> i don't know if we want to go that general.
+[23:04] <dlongley> anyway -- if i have other thoughts i'll send over email.
+[23:04] <dlongley> have to run, thanks all.
+[23:04] <jonathan_holt> q+
+[23:04] <voip-ccg> jonathan_holt has been added to the queue: drummond, markus_sabadello, kyle_denhartog, jonathan_holt
+[23:04] <voip-ccg> The current speaker queue is: drummond, markus_sabadello, kyle_denhartog, jonathan_holt
+[23:04] * markus_sabadello thx dlongley
+[23:04] <drummond> ack drummond
+[23:04] <voip-ccg> drummond has the floor (to talk about the option of type parameters only selecting one resource, not an array).
+[23:04] <markus_sabadello> drummond: want to respond to codenamedmitri's point about type
+[23:05] <markus_sabadello> drummond: agree that "-type" parameters would select an array rather than single resource
+[23:05] == chrisboscolo [~chrisboscolo@public.cloak] has joined #ccg
+[23:05] <markus_sabadello> drummond: we could say the "-type" doesn't identity a set, but rather the first object of that type
+[23:06] <markus_sabadello> drummond: that way e.g. "service-type" would work in a similar way as "service", but the advantage is you can algorithmically construct it
+[23:06] <codenamedmitri> q+
+[23:06] <voip-ccg> codenamedmitri has been added to the queue: markus_sabadello, kyle_denhartog, jonathan_holt, codenamedmitri
+[23:06] <voip-ccg> The current speaker queue is: markus_sabadello, kyle_denhartog, jonathan_holt, codenamedmitri
+[23:06] <markus_sabadello> drummond: in many use cases, you know the "type" you want, but you dont know the "id" you want
+[23:06] <drummond> ack markus_sabadello
+[23:06] <voip-ccg> markus_sabadello has the floor.
+[23:07] <drummond> markus_sabadello: also wanted to talk to the issue of a type parameter address a set of resources rather than one. This is the way many REST resources work—they frequently address a group of resources.
+[23:08] <drummond> ...having said that, Markus is still of two minds about type parameters
+[23:08] <codenamedmitri> and specifically, a usecase to /identify/, not just retrieve
+[23:08] <drummond> Agreed
+[23:09] <drummond> ...an example Markus cited is the webfinger protocol, where you can query a service by type as part of the protocol
+[23:09] <drummond> ...so it's not considered to be part of a URL itself
+[23:10] <drummond> ...OTOH, there are use cases for identifying a key by type, such as a challenge-response protocol that needs to use keys of a certain type.
+[23:10] <drummond> ...an example might be a protocol that needed an RSA key, but does not care which one
+[23:10] <drummond> Q?
+[23:10] <voip-ccg> The current speaker queue is: kyle_denhartog, jonathan_holt, codenamedmitri
+[23:10] <drummond> ack kyle_denhartog
+[23:10] <voip-ccg> kyle_denhartog has the floor.
+[23:11] <markus_sabadello> kyle_denhartog: use case i had in mind for "service-type" matrix parameter is a IoT device that is not able to pull and parse a DID document by itself
+[23:11] <codenamedmitri> that seems like the domain of a resolver though, not the did url
+[23:11] <drummond> kyle_denhartog: Has a use case for a service type: an IoT device that is not able to parse a DID doc itself
+[23:12] <markus_sabadello> kyle_denhartog: inside e.g. an identity hub, you'd be able to use DID URLs to refer to the set of service of a certain type
+[23:12] <drummond> ...as far as key types, the DID Comm protocol currently requires using one key type at a time
+[23:12] <drummond> q?
+[23:12] <voip-ccg> The current speaker queue is: jonathan_holt, codenamedmitri
+[23:12] <markus_sabadello> kyle_denhartog: in DIDComms protocol, it's too messy to encrypt messages using different key types, so it can be useful to pull keys of a certain type from another agent's key types. this could be handled by parsing, but a DID URL mechanism may also be useful.
+[23:12] <drummond> ack jonathan_holt
+[23:12] <voip-ccg> jonathan_holt has the floor.
+[23:13] <markus_sabadello> jonathan_holt: implementing the "version-id" matrix parameter could be labor intensive, might be hard to support for certain DID methods
+[23:13] <drummond> jonathan_holt: it would be very intensive to have to search a full DID doc for an ID
+[23:14] <drummond> q?
+[23:14] <voip-ccg> The current speaker queue is: codenamedmitri
+[23:14] <drummond> ack codenamedmitri
+[23:14] <voip-ccg> codenamedmitri has the floor.
+[23:15] <markus_sabadello> codenamedmitri: we're possibly overloading the DID URL mechanism. searching for multiple versions may go against the principle "identification, not retrieval"
+[23:15] <markus_sabadello> codenamedmitri: want to ask jonathan_holt , why not use hashlink?
+[23:15] <markus_sabadello> jonathan_holt: we use hashlink in IPLD
+[23:15] <markus_sabadello> codenamedmitri: can we use IETF hashlink, instead of IPLD hashlink?
+[23:15] <markus_sabadello> jonathan_holt: would take some coding effort to be interoperable
+[23:16] <markus_sabadello> codenamedmitri: in a JSON-LD DID document, an "id" matrix parameter identifies a node in the graph
+[23:17] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[23:17] <drummond> q?
+[23:17] <voip-ccg> The speaker queue is empty.
+[23:17] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[23:17] <markus_sabadello> codenamedmitri: again -1 on service-type and key-type, these should be resolver options for retrieval, not for identification
+[23:17] <rhiaro> +1 what dmitri said
+[23:17] * rhiaro reading though, not listening
+[23:17] <markus_sabadello> drummond: are we sure there may not be a need to _identify_ a set of services or keys by types
+[23:18] <markus_sabadello> kyle_denhartog: in signal protocol, they do "ratcheting", there's a need to identify a "depth" of ratchet
+[23:18] <markus_sabadello> kyle_denhartog: e.g. you need to identify the 8th key in the ratchet
+[23:19] <markus_sabadello> kyle_denhartog: you don't want to update your DID document every time you change the ratchet to a new key
+[23:19] <markus_sabadello> codenamedmitri: don't try to solve all levels of protocol/application use cases; let's stick to the core DID ABNF level
+[23:19] <drummond> q?
+[23:19] <voip-ccg> The speaker queue is empty.
+[23:19] <markus_sabadello> q+
+[23:19] <voip-ccg> markus_sabadello has been added to the queue: markus_sabadello
+[23:19] <voip-ccg> The current speaker queue is: markus_sabadello
+[23:20] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[23:20] <markus_sabadello> q-
+[23:20] <voip-ccg> markus_sabadello has been removed from the queue:
+[23:20] <voip-ccg> The speaker queue is empty.
+[23:20] <markus_sabadello> drummond: matrix parameters are for identification. use case for "key-type" may be stronger than "service-type"
+[23:21] <markus_sabadello> drummond: want to be able to create a DID URL that identifies a set of service in a DID document, you can then store that e.g. in a database
+[23:21] <drummond> q?
+[23:21] <voip-ccg> The speaker queue is empty.
+[23:21] <markus_sabadello> codenamedmitri: we'll end up stuffing a general graph traversal or query language into matrix parameters. that doesn't feel right design-wise.
+[23:22] <markus_sabadello> q+
+[23:22] <voip-ccg> markus_sabadello has been added to the queue: markus_sabadello
+[23:22] <voip-ccg> The current speaker queue is: markus_sabadello
+[23:23] <markus_sabadello> codenamedmitri: this kind of query language should be realized with resolver options, not matrix parameters
+[23:24] <markus_sabadello> codenamedmitri: the IoT use case can still be realized that way, no need for *-type matrix parameters
+[23:24] <kyle_denhartog> q+
+[23:24] <voip-ccg> kyle_denhartog has been added to the queue: markus_sabadello, kyle_denhartog
+[23:24] <voip-ccg> The current speaker queue is: markus_sabadello, kyle_denhartog
+[23:24] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[23:24] <drummond> q?
+[23:24] <voip-ccg> The current speaker queue is: markus_sabadello, kyle_denhartog
+[23:25] <drummond> ack markus_sabadello
+[23:25] <voip-ccg> markus_sabadello has the floor.
+[23:25] <codenamedmitri> drummond - how would you feel about a general ‘type’ matrix param, to go alongside the general ‘id’ param?
+[23:25] <drummond> markus_sabadello: still torn about the different use cases
+[23:25] <drummond> q+ to answer dmitri
+[23:25] <voip-ccg> drummond has been added to the queue: kyle_denhartog, drummond
+[23:26] <drummond> ...gave the example of more complex queries that could be expressed in matrix parameters, very much like many HTTP URL queries
+[23:27] <drummond> ...since it's still a URL, there is precedent for it
+[23:27] <drummond> ...he still comes back to, "Do we have a use case for identification?"
+[23:27] <drummond> ...do we want to be able to identify a node in an RDF document in a DID URL?
+[23:27] <drummond> q/
+[23:27] <voip-ccg> The current speaker queue is: kyle_denhartog, drummond
+[23:27] <drummond> q?
+[23:27] <voip-ccg> The current speaker queue is: kyle_denhartog, drummond
+[23:28] <drummond> ack kyle_denhartog
+[23:28] <voip-ccg> kyle_denhartog has the floor.
+[23:29] <markus_sabadello> kyle_denhartog: if i want to group my keys by all "ed25519*" verification types (whether it's ed25519-2017,  ed25519-2018,  ed25519-2019), how would that work?
+[23:29] == Karen [Karen@public.cloak] has quit ["My MacBook has gone to sleep. ZZZzzz…"]
+[23:29] * markus_sabadello kyle_denhartog sorry i missed some of that as well
+[23:29] <markus_sabadello> kyle_denhartog: for example in TLS, i may want to use a list of cypersuites... rather than providing a complete list, can i just use an identifier that can be dereferenced to a list?
+[23:30] <markus_sabadello> q+
+[23:30] <voip-ccg> markus_sabadello has been added to the queue: drummond, markus_sabadello
+[23:30] <voip-ccg> The current speaker queue is: drummond, markus_sabadello
+[23:30] <drummond> ack drummond
+[23:30] <voip-ccg> drummond has the floor (to answer dmitri).
+[23:30] <markus_sabadello> q-
+[23:30] <voip-ccg> markus_sabadello has been removed from the queue:
+[23:30] <voip-ccg> The speaker queue is empty.
+[23:31] <markus_sabadello> drummond: considering a generic "type" matrix parameter similar to a generic "id" parameter
+[23:31] <markus_sabadello> drummond: difference is that "id" is unique, but "type" is not
+[23:31] <markus_sabadello> codenamedmitri: but that's the same with "service-type" and "key-type", they're not unique
+[23:32] <markus_sabadello> drummond: sounds right, i guess generic "type" could work, let's think about it
+[23:32] <drummond> q?
+[23:32] <voip-ccg> The speaker queue is empty.
+[23:33] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[23:34] <markus_sabadello> drummond: let's continue to iterate on the list to get to a concrete proposal that we can accept next week, to achieve Community Final Draft
+[23:34] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[23:34] == brent [~brent@public.cloak] has quit ["Page closed"]
+[23:34] == victorgrey [~victorgrey@public.cloak] has quit ["Page closed"]
+[23:34] <markus_sabadello> https://github.com/w3c-ccg/did-spec/pull/191
+[23:35] <markus_sabadello> https://github.com/w3c-ccg/did-spec/pull/193
+[23:35] <markus_sabadello> https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/
+[23:36] == bbarnhill [~bbarnhill@public.cloak] has quit [bbarnhill]
+[23:37] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[23:37] == tzviya [~uid169503@public.cloak] has quit ["Connection closed for inactivity"]
+[23:38] == drummond [~drummond@public.cloak] has quit ["Page closed"]
+[23:39] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-00000370] has left the conference.
+
