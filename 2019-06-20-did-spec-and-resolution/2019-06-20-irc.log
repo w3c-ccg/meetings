@@ -1,0 +1,303 @@
+[21:58] == markus_sabadello [~markus_sabadello@public.cloak] has joined #ccg
+[21:59] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-000003de] has joined the conference.
+[21:59] == voip-ccg3 [~voipbot@public.cloak] has joined #ccg
+[21:59] <markus_sabadello> voip: markus_sabadello is 03de
+[21:59] <voip-ccg> Failed to associate "markus_sabadello"; unrecognized channel.
+[22:00] <markus_sabadello> voip: markus_sabadello is danubetech.onsip.com-000003de
+[22:00] <voip-ccg> Failed to associate "markus_sabadello"; unrecognized channel.
+[22:00] <markus_sabadello> present+
+[22:00] <dlongley> voip-ccg: 03de is markus_sabadello
+[22:00] <voip-ccg> Associated markus_sabadello with SIP/danubetech.onsip.com-000003de.
+[22:00] <markus_sabadello> ohh
+[22:01] * dlongley :)
+[22:01] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[22:01] == Justin_R [~Justin_R@public.cloak] has joined #ccg
+[22:02] <markus_sabadello> scribe: markus_sabadello
+[22:02] == gannan [~gannan@public.cloak] has joined #ccg
+[22:04] == ken [~ken@public.cloak] has joined #ccg
+[22:04] == mtfk_robert [~mtfk_robert@public.cloak] has joined #ccg
+[22:05] == Shivam_Sethi [~Shivam_Sethi@public.cloak] has joined #ccg
+[22:05] <markus_sabadello> https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/
+[22:09] <dlongley> scribe: dlongley
+[22:09] <dlongley> scribe: markus_sabadello
+[22:09] <markus_sabadello> drummond: at GS1 conference in denver, huge amount of interest in DIDs and their relevance for IoT
+[22:10] <markus_sabadello> drummond: GS1 is about barcodes, etc. for physical products
+[22:10] <Shivam_Sethi> I have seen a company using DID for windows server authentication
+[22:10] <markus_sabadello> drummond: government representatives (DHS) are represented at the conference as well
+[22:11] <markus_sabadello> drummond: also discussions about progress on the DID working group
+[22:13] <markus_sabadello> drummond: had several conversations on which matrix parameters are needed now, and which ones can be discussed later
+[22:13] <markus_sabadello> drummond: for now, not including *-type ones (service-type, key-type, content-type)
+[22:14] <markus_sabadello> drummond: "id" parameter would replace "key" parameter
+[22:14] <markus_sabadello> drummond: "service" has had strongest consensus. has specific processing when used in a DID URL
+[22:15] <markus_sabadello> drummond: "id" is for the generalized case for identifying something in a DID document, leaves path+query+fragment available for identifying something else
+[22:16] <markus_sabadello> drummond: behavior is identical to use a fragment, but this way it leaves fragment available for something else
+[22:16] <markus_sabadello> drummond: "content-id".... if "id" is for something internal i.e. part of the did document, then "content-id" is for something external, i.e. not part of the did document but still part of the decentralized identifier registry
+[22:17] <markus_sabadello> drummond: "version-id" and "version-time" are important... can be used for identifying a specific did document, but can also be used for "adjacent" resources.
+[22:17] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[22:18] <markus_sabadello> drummond: "hl" seems to have good consensus that this is useful.. this is only for content protection of the did document itself.. If you want to protect another resource, then standard hashlink ? syntax should be used
+[22:18] <markus_sabadello> ken: use case to identify resources on the ledger
+[22:18] <markus_sabadello> ken: sovrin can live with removing "content-type" and have only "content-id"
+[22:19] <dlongley> q+
+[22:19] <voip-ccg> dlongley has been added to the queue: dlongley
+[22:19] <voip-ccg> The current speaker queue is: dlongley
+[22:19] <mtfk_robert> q+
+[22:19] <voip-ccg> mtfk_robert has been added to the queue: dlongley, mtfk_robert
+[22:19] <voip-ccg> The current speaker queue is: dlongley, mtfk_robert
+[22:19] <markus_sabadello> ack dlongley
+[22:19] <voip-ccg> dlongley has the floor.
+[22:19] <markus_sabadello> dlongley: it would be helpful to have a very well defined use case for each one of the proposed matrix parameter; with example
+[22:20] <markus_sabadello> drummond: agree
+[22:20] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[22:21] <markus_sabadello> ken: happy to add an example
+[22:21] == gannan [~gannan@public.cloak] has quit [Client closed connection]
+[22:21] <codenamedmitri> q+
+[22:21] <voip-ccg> codenamedmitri has been added to the queue: mtfk_robert, codenamedmitri
+[22:21] <voip-ccg> The current speaker queue is: mtfk_robert, codenamedmitri
+[22:21] == gannan [~gannan@public.cloak] has joined #ccg
+[22:21] <markus_sabadello> q?
+[22:21] <voip-ccg> The current speaker queue is: mtfk_robert, codenamedmitri
+[22:22] <markus_sabadello> ack mtfk_robert
+[22:22] <voip-ccg> mtfk_robert has the floor.
+[22:22] <markus_sabadello> markus_sabadello: maybe add comments/examples to github PRs, not google doc ?
+[22:22] <markus_sabadello> mtfk_robert: like the idea of describing concrete use cases
+[22:23] <markus_sabadello> mtfk_robert: in our use case, we're interested in "content id" for schema overlays
+[22:24] <codenamedmitri> q-
+[22:24] <voip-ccg> codenamedmitri has been removed from the queue:
+[22:24] <voip-ccg> The speaker queue is empty.
+[22:24] <markus_sabadello> mtfk_robert: you can discover overlays from DIDs
+[22:24] <markus_sabadello> q?
+[22:24] <voip-ccg> The speaker queue is empty.
+[22:24] <markus_sabadello> codenamedmitri: some trouble imaging examples for "content id".. any more examples?
+[22:25] <markus_sabadello> q+
+[22:25] <voip-ccg> markus_sabadello has been added to the queue: markus_sabadello
+[22:25] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:25] <markus_sabadello> ken: in our case we want to identify e.g. schemas, encodings etc. on the ledger. this is needed for privacy-preserving credentials and ZKPs
+[22:25] <markus_sabadello> ken: this allows us to identify those objects in a way that is decentralized and stable
+[22:26] <markus_sabadello> ken: will add examples
+[22:26] * dlongley ha, ok everyone :P
+[22:26] <markus_sabadello> Shivam_Sethi: new on the call, from identity, 4-5 years experience in identity+blockchain
+[22:26] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[22:26] * markus_sabadello Shivam_Sethi is introducing himself
+[22:26] <markus_sabadello> Shivam_Sethi: currently exploring DID concept
+[22:27] <markus_sabadello> Shivam_Sethi: i have a question about "content id"
+[22:27] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[22:28] <markus_sabadello> Shivam_Sethi: at a DID we can have multiple sources, can we use "content id" to access the particular schema?
+[22:28] <markus_sabadello> drummond: right
+[22:29] <markus_sabadello> q?
+[22:29] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:29] == gannan [~gannan@public.cloak] has quit [Client closed connection]
+[22:33] == gannan [~gannan@public.cloak] has joined #ccg
+[22:33] <markus_sabadello> Shivam_Sethi: if two people want to access the same resource "abc", and a schema "def"... if i want to share content, how does the schema come in
+[22:34] <markus_sabadello> Shivam_Sethi: DID+path can reference a resource, fragment can reference the schema?
+[22:35] <markus_sabadello> markus_sabadello: use case for "content id" is clear, e.g. identify schema resource on the ledger, but why can't this be done with path, query, fragment? why do path, query, fragment need to be reserved?
+[22:35] <markus_sabadello> drummond: you can use "content id" to reference a schema, and then you want to be free to use path+query+fragement to address/query inside that resource
+[22:36] <markus_sabadello> Shivam_Sethi: can i just share a fragment?
+[22:36] <dlongley> q+
+[22:36] <voip-ccg> dlongley has been added to the queue: markus_sabadello, dlongley
+[22:36] <voip-ccg> The current speaker queue is: markus_sabadello, dlongley
+[22:36] <markus_sabadello> drummond: yes, that would work via relative dereferencing
+[22:36] <markus_sabadello> ack markus_sabadello
+[22:36] <voip-ccg> markus_sabadello has the floor.
+[22:36] <markus_sabadello> ack dlongley
+[22:36] <voip-ccg> dlongley has the floor.
+[22:37] <mtfk_robert> q+
+[22:37] <voip-ccg> mtfk_robert has been added to the queue: mtfk_robert
+[22:37] <voip-ccg> The current speaker queue is: mtfk_robert
+[22:37] <markus_sabadello> dlongley: my understanding is "content id" means the content is somehow bound to a certain DID. what does this mean for schemas, how is it connected to a DID?
+[22:38] <markus_sabadello> dlongley: "service" is clear; you can create a stable URL that can be shared; and swap out the location it resolves to
+[22:38] <markus_sabadello> dlongley: not sure i understand what "content id" means and how it's "bound" to a certain DID
+[22:38] <markus_sabadello> dlongley: why does the schema itself not have a DID, or why is not just a new kind of URL?
+[22:39] <markus_sabadello> ken: we could make a new kind of URL, e.g. "dct" (decentralized content)
+[22:39] <mtfk_robert> DRI -> Decentralize Resource Identifier :)
+[22:39] <markus_sabadello> ken: but we rejected this, would like to work with existing DID works
+[22:39] <codenamedmitri> q+
+[22:39] <voip-ccg> codenamedmitri has been added to the queue: mtfk_robert, codenamedmitri
+[22:39] <voip-ccg> The current speaker queue is: mtfk_robert, codenamedmitri
+[22:40] <markus_sabadello> Shivam_Sethi: if we have large numbers of schemas... e.g. windows server has a DID, many departments within active directory can have their own schemas
+[22:40] <markus_sabadello> Shivam_Sethi: can "content id" be used to refer to a certain department in that active directory?
+[22:41] <markus_sabadello> dlongley: Shivam_Sethi can you write down the use case with details
+[22:41] <markus_sabadello> dlongley: if you create a separate URI schema, would it include the DID in it, or just address of the schema itself?
+[22:42] <markus_sabadello> drummond: had offline discussions about "content-id".. it's not strictly speaking necessary to include a DID of the author of a schema.
+[22:42] <markus_sabadello> drummond: it's possible to have a DID just for a method, without method-specific identifier... you can have a content-id directly under that
+[22:43] <markus_sabadello> drummond: but using DID URL can provide provenance.. the subject of the DID document is the author of the schema!
+[22:43] <markus_sabadello> ken: each schema object is "owned" by its author, who is identified by a DID
+[22:43] <markus_sabadello> ken: each creator of a schema writes its own credential definition
+[22:44] <markus_sabadello> ken: another case is (in the future) where we want to share across different issuers
+[22:44] <markus_sabadello> q?
+[22:44] <voip-ccg> The current speaker queue is: mtfk_robert, codenamedmitri
+[22:44] <markus_sabadello> dlongley: would some of this be solved by having schemas themselves have DID documents, which have a "controller" property that points to author?
+[22:44] <markus_sabadello> drummond: could work
+[22:44] <markus_sabadello> dlongley: after "did:sov:" you can have something that differentiates between resources, e.g. "did:sov:schema:...."
+[22:45] <markus_sabadello> dlongley: e.g. in Veres One we do "did:v1:uuid:" to put documents on the ledger. they have "controller" fields that tell you who controls them (that's another DID)
+[22:45] <markus_sabadello> drummond: are those DID documents, or "content documents"
+[22:45] <markus_sabadello> dlongley: we can call them DID documents.
+[22:46] <markus_sabadello> drummond: sounds like a separate class of DID documents.. some would be about "control", others would be about something else
+[22:47] <markus_sabadello> ken: there's an important distinction between "control" type objects (DID documents) and "content" type object; we need to distinguish
+[22:47] <markus_sabadello> dlongley: you can address that by introducing sub-prefixes in your specific DID method
+[22:47] <markus_sabadello> drummond: but unless we come up with reserved words, there won't be any semantics
+[22:48] <markus_sabadello> dlongley: right now, you claim a did method  e.g. "sov", then you can put what you want after that
+[22:48] <markus_sabadello> drummond: there would be no enforement of semantic interoperability
+[22:48] <markus_sabadello> dlongley: not sure if "content-id" would provide that enforcement either
+[22:48] <markus_sabadello> q?
+[22:48] <voip-ccg> The current speaker queue is: mtfk_robert, codenamedmitri
+[22:49] <markus_sabadello> ack mtfk_robert
+[22:49] <voip-ccg> mtfk_robert has the floor.
+[22:49] <markus_sabadello> mtfk_robert: understand your point of view, sovrin use case
+[22:49] <markus_sabadello> mtfk_robert: in our case we want to prove that someone created certain content... e.g. government wants to prove they defined a "driver's license" schemas
+[22:49] == gannan [~gannan@public.cloak] has quit [Client closed connection]
+[22:50] == gannan [~gannan@public.cloak] has joined #ccg
+[22:50] <markus_sabadello> mtfk_robert: everyone else can verify who has defined a schema.. many use cases: schemas, credentials, documents, pictures, etc
+[22:50] <markus_sabadello> mtfk_robert: example dlongley gave about portability.. you can achieve the same thing for all resources
+[22:50] <markus_sabadello> mtfk_robert: use case: i want to get a schema from a trusted entity
+[22:52] <markus_sabadello> dlongley: please add such use case descriptions to (github? or google doc https://docs.google.com/document/d/1-aHdUyhzUNWPU_kZ2ICnyBguZmN1jUidaRlIcqYgYuI/) ?
+[22:52] <dlongley> q?
+[22:52] <voip-ccg> The current speaker queue is: codenamedmitri
+[22:53] <markus_sabadello> Shivam_Sethi: are we going to cover the "hl" parameter?
+[22:53] <markus_sabadello> drummond: yes we will cover it later
+[22:53] == codenamedmitri [~dmitriz@public.cloak] has quit ["Mutter: www.mutterirc.com"]
+[22:53] <markus_sabadello> codenamedmitri: for the "sov" use case, is a schema bound to only one DID, or can multiple DIDs reference the same schema
+[22:54] <markus_sabadello> ken: currently there's a 1:1 correspondence
+[22:54] <markus_sabadello> ken: we want to improve that so multiple DIDs can refer to the same schema
+[22:54] <dlongley> so schema IDs on sovrin are scoped to DIDs now?
+[22:54] <dlongley> (but there's a goal to move away from that)
+[22:54] <markus_sabadello> codenamedmitir: if that's a design goal, this indicates that it should NOT be a matrix parameter
+[22:55] <markus_sabadello> dlongley: this means it should have independent existence, not bound to a specific DID
+[22:55] <markus_sabadello> codenamedmitri: +1
+[22:56] <dlongley> so in the future: `did:sov:schema:1234` and for now `did:sov:schema-legacy:<encoded DID>:<content ID>` ... would this solve it?
+[22:56] <markus_sabadello> ken: there may or may not be a "relevant" DID associated with a schema
+[22:57] <Justin_R> doesn't provenance indicate a chain though?
+[22:57] <Justin_R> or, imply at least
+[22:57] <markus_sabadello> ken: trust framework requires information on who wrote an object.. therefore we want to use DID
+[22:58] <markus_sabadello> codenamedmitri: do we need a "provenance" field in a document, rather than implying that by using DID URL
+[22:58] <markus_sabadello> q+
+[22:58] <voip-ccg> markus_sabadello has been added to the queue: codenamedmitri, markus_sabadello
+[22:58] <voip-ccg> The current speaker queue is: codenamedmitri, markus_sabadello
+[22:58] <markus_sabadello> ack codenamedmitri
+[22:58] <voip-ccg> codenamedmitri has the floor.
+[22:59] <markus_sabadello> q-
+[22:59] <voip-ccg> markus_sabadello has been removed from the queue:
+[22:59] <voip-ccg> The speaker queue is empty.
+[22:59] <markus_sabadello> drummond: DID URL is one method of providing provenance
+[23:00] <mtfk_robert> q+
+[23:00] <voip-ccg> mtfk_robert has been added to the queue: mtfk_robert
+[23:00] <voip-ccg> The current speaker queue is: mtfk_robert
+[23:00] <markus_sabadello> q+
+[23:00] <voip-ccg> markus_sabadello has been added to the queue: mtfk_robert, markus_sabadello
+[23:00] <voip-ccg> The current speaker queue is: mtfk_robert, markus_sabadello
+[23:00] == codenamedmitri [~dmitriz@public.cloak] has joined #ccg
+[23:00] <markus_sabadello> Shivam_Sethi: in a "creator" section we describe the creator of a schema
+[23:01] == jonathan_holt [~jonnycrunch@public.cloak] has joined #ccg
+[23:01] <markus_sabadello> Shivam_Sethi: DID URL with "content-id" tells you who created something, why is there a need for a "creator" field
+[23:02] <markus_sabadello> q?
+[23:02] <voip-ccg> The current speaker queue is: mtfk_robert, markus_sabadello
+[23:02] <markus_sabadello> mtfk_robert: someone mentioned, schema is part of a DID document? schema = unit of language, did = unit of control
+[23:02] == gannan [~gannan@public.cloak] has quit [Client closed connection]
+[23:02] == gannan_ [~gannan@public.cloak] has joined #ccg
+[23:02] <markus_sabadello> mtfk_robert: schema should be unit of control
+[23:03] <dlongley> q+ to respond to that
+[23:03] <voip-ccg> dlongley has been added to the queue: mtfk_robert, markus_sabadello, dlongley
+[23:03] <markus_sabadello> mtfk_robert: if someone takes over a DID, they could compromise the schema
+[23:03] <markus_sabadello> mtfk_robert: DID URL should indicate who created it, not who controls it
+[23:04] <markus_sabadello> drummond: if "content-id" is independent, it could be combined with any DID into a DID URL? would a resolver "check" if the DID part is actually the creator of the content object
+[23:06] <markus_sabadello> q?
+[23:06] <voip-ccg> The current speaker queue is: mtfk_robert, markus_sabadello, dlongley
+[23:06] <markus_sabadello> ack mtfk_robert
+[23:06] <voip-ccg> mtfk_robert has the floor.
+[23:06] <mtfk_robert> +1 for taking discussion offline for content id
+[23:07] <mtfk_robert> there is too many confusions and use cases to go for.
+[23:07] <markus_sabadello> dlongley: if you want a did document to be immutable that is a schema, it should not have public keys or authentication
+[23:08] <dlongley> q+ drummond
+[23:08] <voip-ccg> dlongley has been added to the queue: markus_sabadello, dlongley, drummond
+[23:08] <dlongley> ack dlongley
+[23:08] <voip-ccg> dlongley has the floor (to respond to that).
+[23:08] <dlongley> ack markus_sabadello
+[23:08] <voip-ccg> markus_sabadello has the floor.
+[23:09] <mtfk_robert> dlongley: good point about having unit of language represented with did document. But I could imagine that not all type of the content you can fit into did document. Could I/Should I put image?
+[23:09] <markus_sabadello> q?
+[23:09] <voip-ccg> The current speaker queue is: drummond
+[23:10] <dlongley> mtfk_robert: i imagine "files"/arbitrary binary streams will need to reside elsewhere ... but descriptions about them could be DID documents.
+[23:10] == chrisboscolo [~chrisboscolo@public.cloak] has joined #ccg
+[23:10] <markus_sabadello> markus_sabadello: this should be compatible with RFC3986 and what it says about the "authority" portion of the DID URL
+[23:10] <mtfk_robert> I could imagine that some network could use did to track art or other type of the content. But not sure if that is the case for that parameter but I would like to see it as a unify way of doing that.
+[23:10] == gannan_ [~gannan@public.cloak] has quit [Client closed connection]
+[23:10] <chrisboscolo> q?
+[23:10] <voip-ccg> The current speaker queue is: drummond
+[23:10] <markus_sabadello> ack drummond
+[23:10] <voip-ccg> drummond has the floor.
+[23:11] <dlongley> q+
+[23:11] <voip-ccg> dlongley has been added to the queue: dlongley
+[23:11] <voip-ccg> The current speaker queue is: dlongley
+[23:11] <markus_sabadello> drummond: we have been saying; properties of a DID document, that's for "unit of control", since it has keys, authentication methods, etc
+[23:12] <markus_sabadello> drummond: i understand dlongley that we can have other content objects using the same DID + DID document mechanism
+[23:12] <mtfk_robert> q+
+[23:12] <voip-ccg> mtfk_robert has been added to the queue: dlongley, mtfk_robert
+[23:12] <voip-ccg> The current speaker queue is: dlongley, mtfk_robert
+[23:12] <markus_sabadello> drummond: the challenge i see is: if we call them "did document", and suddenly a "did document" is a very generic thing, seems like a big shift in scope
+[23:12] == gannan [~gannan@public.cloak] has joined #ccg
+[23:13] <markus_sabadello> drummond: so far the paradigm had been: did document is for "unit of control", then we can have arbitrary information space underneath
+[23:13] <markus_sabadello> ack dlongley
+[23:13] <voip-ccg> dlongley has the floor.
+[23:14] <markus_sabadello> dlongley: that has always been my undertstanding: giving identifiers to things that should have independent existence, as opposed to identifies created by service providers
+[23:14] <markus_sabadello> dlongley: DIDs give people a way to give an identifier to something that has independent existence, and control that identifier, and ways to prove that control
+[23:15] <markus_sabadello> dlongley: i create an identifier with a DID document, the standard tells me what i CAN put into the DID document (a vocabulary) that lets me establish control over the identifier
+[23:15] <markus_sabadello> dlongley: the fact that we list some of these properties (public keys) -> does NOT mean that you cannot put whatever you want there!
+[23:15] <chrisboscolo> could someone paste a link to the google doc we are viewing on zoom?
+[23:16] <markus_sabadello> https://docs.google.com/document/d/1-aHdUyhzUNWPU_kZ2ICnyBguZmN1jUidaRlIcqYgYuI/
+[23:16] <chrisboscolo> thx, markus_sabadello!
+[23:16] <markus_sabadello> dlongley: you get independent existence, persistence
+[23:16] <markus_sabadello> q?
+[23:16] <voip-ccg> The current speaker queue is: mtfk_robert
+[23:17] <markus_sabadello> drummond: dlongley has superpowers :) this may change/broaden my perception
+[23:18] <markus_sabadello> drummond: to ken, this may actually mean that schemas and other objects could really be identified simply by DIDs
+[23:18] <chrisboscolo> i joined late and don't bring up an old subject, have we talked at all about version-id or version-time?
+[23:18] <markus_sabadello> ken: we're standardizing how to prove control (a core base layer), but you can do many other things with it
+[23:18] * markus_sabadello chrisboscolo not yet
+[23:18] <markus_sabadello> q?
+[23:18] <voip-ccg> The current speaker queue is: mtfk_robert
+[23:19] <chrisboscolo> ok thx, I'll put my comment in the doc for when we do
+[23:19] <markus_sabadello> Shivam_Sethi: 1000 laptops would have their own DIDs? 1000 employees would control those DIDs? right?
+[23:19] * markus_sabadello chrisboscolo also feel free to comment here: https://github.com/w3c-ccg/did-spec/pull/194
+[23:20] <markus_sabadello> dlongley: to Shivam_Sethi you can certainly model a system like that
+[23:20] <ken> q+
+[23:20] <voip-ccg> ken has been added to the queue: mtfk_robert, ken
+[23:20] <voip-ccg> The current speaker queue is: mtfk_robert, ken
+[23:20] <markus_sabadello> ack mtfk_robert
+[23:20] <voip-ccg> mtfk_robert has the floor.
+[23:20] <markus_sabadello> mtfk_robert: i like dlongley 's way of thinking, but see some issues. questions:
+[23:21] <markus_sabadello> mtfk_robert: it's possible to create a DID that nobody controls, right?
+[23:21] <markus_sabadello> mtfk_robert: in a DID document, you can change @context and @type to use it for additional purposes?
+[23:22] <markus_sabadello> mtfk_robert: think about content-based addressing like IPFS. It doesn't matter on which network you put it, it can always be addresses no matter where it is
+[23:22] <markus_sabadello> mtfk_robert: but for DIDs this may be different across networks
+[23:22] <markus_sabadello> dlongley: we can still layer other technologies on top of DIDs such as IPFS
+[23:23] <markus_sabadello> dlongley: e.g. in your DID document you can have a service endpoint that points to storage which contains verifiable credentials
+[23:23] <markus_sabadello> dlongley: we're NOT specifying a limited data format; it's open and extensible
+[23:24] <markus_sabadello> dlongley: core feature: ability to create independent identifiers, and be able to assert control. but we're not saying that you can't put OTHER things into the DID document.
+[23:26] <markus_sabadello> drummond: difference between DID document that changes over time, vs. something that is written once and can never change
+[23:26] <markus_sabadello> mtfk_robert: exactly that's my use case
+[23:26] <markus_sabadello> mtfk_robert: e.g. government creates new DID document with keys/control
+[23:26] <markus_sabadello> s/with/without/
+[23:26] <markus_sabadello> q?
+[23:26] <voip-ccg> The current speaker queue is: ken
+[23:27] <markus_sabadello> dlongley: yes you can create a DID document that cannot be controlled
+[23:27] <markus_sabadello> q+
+[23:27] <voip-ccg> markus_sabadello has been added to the queue: ken, markus_sabadello
+[23:27] <voip-ccg> The current speaker queue is: ken, markus_sabadello
+[23:28] <markus_sabadello> codenamedmitri: i think robert's question was: how do you link an author to an immutable object that has no keys
+[23:28] <mtfk_robert> codenamedmitri: thanks exactly this is what I am looking for
+[23:28] <markus_sabadello> dlongley: in Veres One, you can create a DID with a UUID as method-specific identifier. when it is registered on the ledger, it's digitally signed by the author
+[23:29] <markus_sabadello> dlongley: this document is immutable, but you have the provenance on the ledger. it's currently metadata, but could also be included in the DID document.
+[23:29] <markus_sabadello> dlongley: this does NOT introduce control, just additional information about who created it
+[23:29] <Justin_R> present+
+[23:29] <Justin_R> (been here the whole time but forgot)
+[23:29] <markus_sabadello> drummond: do valid DID documents need the generic @context ?
+[23:30] <markus_sabadello> dlongley: yes, this is required for interop
+[23:30] <dlongley> q?
+[23:30] <voip-ccg> The current speaker queue is: ken, markus_sabadello
+[23:30] <jonathan_holt> so, if you use the signature to validate control, how do you discover the public key ?
+[23:30] <dlongley> (note that you could transform your DID document to include the DID context when retrieved, it doesn't have to be stored that way)
+[23:30] <markus_sabadello> ack ken
+[23:30] <voip-ccg> ken has the floor.
+[23:31] <dlongley> present+
+[23:31] <mtfk_robert> Dave: I would like to invite you to one of our call for semantic WG to discuss in details about our specific use case. Would you be interested?
+[23:31] <markus_sabadello> ken: dlongley 's suggestion to extend the role of the DID document beyond the traditional "id for person/place/thing", this is a new concept to me, will process if this can apply to our use case. will thin about pros/cons
+
