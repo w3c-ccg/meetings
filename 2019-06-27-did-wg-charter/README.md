@@ -1,4 +1,6 @@
-# DID Spec and DID Resolution Spec Weekly Meeting
+# DID Working Group Charter Meeting
+
+(Note: This call replaced the usual DID Spec and DID Resolution Spec meeting this week.)
 
 Meeting Page:
 
