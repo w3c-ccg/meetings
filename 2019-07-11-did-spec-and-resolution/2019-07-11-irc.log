@@ -1,0 +1,209 @@
+[2019-07-11T20:06:57.750Z]	<bbarnhill>	present+ Bill Barnhill
+[2019-07-11T20:07:04.142Z]	<dlongley>	present+ Dave_Longley
+[2019-07-11T20:07:13.324Z]	<dlongley>	present+ Bill_Barnhill
+[2019-07-11T20:07:16.216Z]	<dlongley>	present- Bill
+[2019-07-11T20:07:18.858Z]	<dlongley>	present- Barnhill
+[2019-07-11T20:07:36.600Z]	<bbarnhill>	@dlongley Thank you, I’ll remember the underscores in the future
+[2019-07-11T20:08:05.997Z]	<drummond>	present+
+[2019-07-11T20:08:23.648Z]	<markus_sabadello>	present+
+[2019-07-11T20:08:48.772Z]	<JoeAndrieu>	present+ Joe_Andrieu
+[2019-07-11T20:12:34.113Z]	<drummond>	markus_sabadello: Introduced our first agenda item, the Decentralized Identifier Resolution (DID Resolution) v0.1
+[2019-07-11T20:12:53.224Z]	<dlongley>	scribe: drummond
+[2019-07-11T20:13:13.294Z]	<drummond>	...he explained that this is still an early draft, with many TODOs and open questions, but that it's far enough that we can consider releasing it.
+[2019-07-11T20:13:43.720Z]	<drummond>	https://w3c-ccg.github.io/did-resolution/
+[2019-07-11T20:14:27.046Z]	<drummond>	After the introduction, section 2 on Terminology introduces just a few new terms beyond the DID spec, https://w3c-ccg.github.io/did-spec/
+[2019-07-11T20:14:40.465Z]	<drummond>	Section 3 covers DID Resolver Architectures
+[2019-07-11T20:15:01.577Z]	<drummond>	It covers both Method Architectures and Binding Architectures
+[2019-07-11T20:16:44.165Z]	<drummond>	It contains text explaining different architectural configurations, including notes and open issues.
+[2019-07-11T20:17:18.421Z]	<drummond>	...it also covers different "binding architectures" which cover how resolution and dereferencing can be configured
+[2019-07-11T20:18:18.064Z]	<drummond>	...another section later in the document describes an HTTP interface.
+[2019-07-11T20:18:45.390Z]	<drummond>	...it also covers configurations using both local and remote resolvers.
+[2019-07-11T20:19:25.200Z]	<drummond>	q?
+[2019-07-11T20:20:47.250Z]	<drummond>	There are separate sections for "Resolving a DID" and "Dereferencing a DID URL".
+[2019-07-11T20:22:20.136Z]	<drummond>	Both of these sections cover input options that change the actions the resolver will perform.
+[2019-07-11T20:23:33.995Z]	<JoeAndrieu>	q+ to ask about method discovery and also resolution result as the output of the algorithm
+[2019-07-11T20:23:52.342Z]	<drummond>	...the DID resolution spec specifies that the resolver defers to the DID method for the algorithm
+[2019-07-11T20:24:27.291Z]	<drummond>	ack JoeAndrieu
+[2019-07-11T20:25:03.756Z]	<drummond>	JoeAndrieu: Where do we talk about the meta-conversation about a DID method that the resolver does not support...
+[2019-07-11T20:25:23.920Z]	<drummond>	...or query a resolver about what method the resolver supports
+[2019-07-11T20:25:51.151Z]	<drummond>	markus_sabadello: It's in section 4.2. The resolver should error if it does not support the method.
+[2019-07-11T20:26:39.746Z]	<drummond>	...RE the second question, there is a proposal from Michael Herman about how a resolver could be queried for the DID methods it supports
+[2019-07-11T20:27:11.357Z]	<drummond>	...different DID methods may also support different bindings.
+[2019-07-11T20:28:09.881Z]	<drummond>	JoeAndrieu: there may also be security reasons for a resolver not disclosing all the methods and bindings it supports
+[2019-07-11T20:28:28.049Z]	<drummond>	...also, is there any support for authenticated access?
+[2019-07-11T20:28:38.683Z]	<drummond>	markus_sabadello: No, that's out of scope.
+[2019-07-11T20:28:53.887Z]	<bbarnhill>	q+ regarding authentication aspect
+[2019-07-11T20:28:58.156Z]	<drummond>	JoeAndrieu: Is it intended that a resolver can't support authentication?
+[2019-07-11T20:29:33.439Z]	<drummond>	...but the most important thing is to make it clear what stance the spec takes.
+[2019-07-11T20:31:23.203Z]	<drummond>	JoeAndrieu: makes the point about the difference between peer DIDs that are not widely resolvable and "public" DIDs that are widely resolvable.
+[2019-07-11T20:31:38.419Z]	<chrisboscolo>	present+
+[2019-07-11T20:32:38.688Z]	<drummond>	bbarnhill: Disclosure of some services can be sensitive. For example a service associated with a specific community, membership in which is private.
+[2019-07-11T20:32:53.532Z]	<drummond>	...it could authorized via a verifiable credential.
+[2019-07-11T20:33:10.315Z]	<dlongley>	q+
+[2019-07-11T20:33:36.844Z]	<drummond>	jonnycrunch: so different DID documents would be returned depending on the VC?
+[2019-07-11T20:33:43.298Z]	<drummond>	bbarnhill: yes
+[2019-07-11T20:33:52.142Z]	<drummond>	ack bbarnhill
+[2019-07-11T20:34:13.032Z]	<JoeAndrieu>	q+ for definitiveness of DID Documents
+[2019-07-11T20:34:15.276Z]	<drummond>	jonnycrunch: worries about security vulnerabilities and what it would take to implement
+[2019-07-11T20:34:40.471Z]	<drummond>	jonnycrunch: has been toying around with encrypting some service endpoints
+[2019-07-11T20:34:43.538Z]	<dlongley>	q?
+[2019-07-11T20:35:05.984Z]	<drummond>	bbarnhill: there can still be privacy leakage through the presence of a service
+[2019-07-11T20:35:14.686Z]	<drummond>	ack dlongley
+[2019-07-11T20:35:43.741Z]	<drummond>	dlongley: important to remember to build this infrastructure in a layered way.
+[2019-07-11T20:36:03.221Z]	<drummond>	...so a solution is to define a service for authenticated discovery.
+[2019-07-11T20:36:22.518Z]	<drummond>	q+ (to second Dave's layering)
+[2019-07-11T20:36:47.819Z]	<drummond>	...so we should be building a layer above that enables private discovery
+[2019-07-11T20:36:53.933Z]	<drummond>	ack JoeAndrieu
+[2019-07-11T20:37:08.056Z]	<rhiaro>	different DIDs for different contexts though, no?
+[2019-07-11T20:37:23.487Z]	<drummond>	JoeAndrieu: You should be able to get a single definitive DID document for a particular DID.
+[2019-07-11T20:37:30.613Z]	<drummond>	...and be able to authenticate it
+[2019-07-11T20:37:59.991Z]	<rhiaro>	right, bbarnhill's use case says different DIDs are needed, to me
+[2019-07-11T20:38:05.393Z]	<drummond>	...and Joe agrees that DIDs should be separate by contexts
+[2019-07-11T20:38:09.406Z]	<rhiaro>	just from that tiny description
+[2019-07-11T20:38:40.124Z]	<dlongley>	drummond: Yes, totally to contextual DIDs, all about that. What I mostly wanted to say as soon as the subject came up about private discovery, ten +1's to what Dave said, it should be a higher level protocol for that.
+[2019-07-11T20:39:16.079Z]	<dlongley>	drummond: Bill's concept for being able to use VCs to do that and OCAPs (object or "authorization" capabilities) are the way to go, love the idea. I can see so far as the DID resolution spec mentioning or recommending a service specification for that.
+[2019-07-11T20:39:27.002Z]	<dlongley>	drummond: It's outside the scope of DID resolution but recommending that as a capability.
+[2019-07-11T20:39:29.713Z]	<drummond>	q?
+[2019-07-11T20:39:36.330Z]	<drummond>	ack drummond
+[2019-07-11T20:40:13.925Z]	<drummond>	markus_sabadello: We could add a note that authenticated resolution and encrypting DID documents should be added as a note.
+[2019-07-11T20:41:08.432Z]	<drummond>	...the resolver defers to the implementation of the DID method specification to perform the resolution step.
+[2019-07-11T20:41:23.097Z]	<drummond>	...the resolver can also return additional metadata in the result.
+[2019-07-11T20:41:58.453Z]	<drummond>	...there are open questions about returning deactivated DID documents or how to respond to a deactivated DID.
+[2019-07-11T20:42:20.298Z]	<drummond>	...and can you or should you be able to tell the difference between that and the DID never existing.
+[2019-07-11T20:42:31.367Z]	<chrisboscolo>	q+
+[2019-07-11T20:43:15.664Z]	<drummond>	...processing of different matrix parameters has not been included in this draft yet.
+[2019-07-11T20:43:52.065Z]	<drummond>	...Markus included only the service parameter option
+[2019-07-11T20:44:22.152Z]	<drummond>	...if the resolution is just a DID, the result is just the DID document
+[2019-07-11T20:44:43.542Z]	<drummond>	...if the resolution is of a DID URL with a fragment, then the result is one JSON object with that id
+[2019-07-11T20:46:05.570Z]	<drummond>	...if the resolution includes a service matrix parameter, the result of dereferencing is also a URL—the result URL constructed according to the algorithm in the spec
+[2019-07-11T20:46:16.833Z]	<drummond>	ack chrisboscolo
+[2019-07-11T20:46:42.299Z]	<drummond>	chrisboscolo: asked about referencing different versions of DIDs
+[2019-07-11T20:47:04.357Z]	<drummond>	...does it open up a security issue if people can point to older DID documents
+[2019-07-11T20:47:42.120Z]	<drummond>	...are there good use cases?
+[2019-07-11T20:48:14.701Z]	<drummond>	markus_sabadello: the use case cited most often is when a verifiable credential is signed with a public key from a specific DID document
+[2019-07-11T20:48:39.206Z]	<JoeAndrieu>	q+
+[2019-07-11T20:48:53.116Z]	<drummond>	...the signature on that credential will not validate if you use a newer version of the key
+[2019-07-11T20:49:27.143Z]	<drummond>	chrisboscolo: it seems to beg security concerns
+[2019-07-11T20:49:40.626Z]	<JoeAndrieu>	thanks
+[2019-07-11T20:50:02.673Z]	<drummond>	markus_sabadello: the version-id and version-date parameter have not been added yet
+[2019-07-11T20:50:12.182Z]	<drummond>	ack JoeAndrieu
+[2019-07-11T20:50:44.535Z]	<drummond>	JoeAndrieu: for a given DID, there should be a given DID document that is returned for it
+[2019-07-11T20:50:47.239Z]	<drummond>	q+
+[2019-07-11T20:51:01.256Z]	<dlongley>	q+
+[2019-07-11T20:51:21.878Z]	<jonathan_holt>	q+
+[2019-07-11T20:51:49.037Z]	<drummond>	JoeAndrieu: it's good to be able to put it in DIDs, but it would be brittle to put it in DID-URLs
+[2019-07-11T20:52:06.546Z]	<drummond>	...it creates a broken URL
+[2019-07-11T20:52:34.238Z]	<dlongley>	drummond: I get exactly the question Chris and Joe and people are asking -- I'm seeking the solution. Let's say an issuer has a policy of rotating keys every month.
+[2019-07-11T20:52:51.569Z]	<markus_sabadello>	See https://github.com/w3c-ccg/did-spec/pull/194 in main DID spec
+[2019-07-11T20:53:02.055Z]	<dlongley>	drummond: Issuer issues 100,000 credentials over a month with a particular key and then it rotates that key and rotates 100,000 credentials, then those first set of credentials won't verify.
+[2019-07-11T20:53:03.353Z]	<JoeAndrieu>	q+
+[2019-07-11T20:53:13.083Z]	<dlongley>	drummond: Why shouldn't you be able to have a reference then?
+[2019-07-11T20:53:20.967Z]	<markus_sabadello>	ack drummond
+[2019-07-11T20:53:21.799Z]	<drummond>	q?
+[2019-07-11T20:53:24.181Z]	<markus_sabadello>	ack dlongley
+[2019-07-11T20:53:26.160Z]	<chrisboscolo>	q?
+[2019-07-11T20:53:27.533Z]	<drummond>	ack dlongley
+[2019-07-11T20:53:40.179Z]	<bbarnhill>	q+
+[2019-07-11T20:54:04.412Z]	<drummond>	dlongley: He believes there are a lot of easy attacks if the DID URL specifies the version.
+[2019-07-11T20:54:27.692Z]	<drummond>	...but there are other valid reasons for being able to reference versions
+[2019-07-11T20:54:47.630Z]	<drummond>	...so we do need a solution to this problem...but putting it into the URL may far too dangerous
+[2019-07-11T20:55:00.592Z]	<drummond>	ack jonathan_holt
+[2019-07-11T20:55:37.968Z]	<drummond>	jonathan_holt: having a key revoked should not negate the ability to use an older key that is still valid
+[2019-07-11T20:55:50.968Z]	<drummond>	...but there are other ways to independently verify a timestamp
+[2019-07-11T20:55:56.220Z]	<drummond>	q?
+[2019-07-11T20:56:29.126Z]	<dlongley>	You won't even look at that revocation information if you just use the URL with version-id blindly (which clients will do)
+[2019-07-11T20:56:43.830Z]	<drummond>	...the solution that they have implemented uses a vocabulary for describing why the change
+[2019-07-11T20:56:55.442Z]	<drummond>	ack JoeAndrieu
+[2019-07-11T20:57:38.571Z]	<drummond>	JoeAndrieu: feels the best answer is to provide descriptions of older keys and revocation in a DID document
+[2019-07-11T20:57:43.331Z]	<drummond>	ack bbarnhill
+[2019-07-11T20:58:12.440Z]	<drummond>	bbarnhill: would it make sense to provide a key service in the DID document rather than providing the keys itself
+[2019-07-11T20:58:22.950Z]	<drummond>	...similar to an OSCP protocol
+[2019-07-11T20:58:26.443Z]	<drummond>	q?
+[2019-07-11T20:58:29.482Z]	<bbarnhill>	Would it make sense to allow an optional capability to provide a KeyService service element instead of of the key directly the DID document itself, similar to a service that implements a self-sovereign version of the Online Certificate Status Protocol?
+[2019-07-11T20:59:22.172Z]	<drummond>	markus_sabadello: Versioning definitely needs more discussion.
+[2019-07-11T20:59:52.938Z]	<drummond>	...to continue the walk-through, the 0.1 spec gives several options for the return document.
+[2019-07-11T21:00:51.101Z]	<drummond>	...there is an example of how a service matrix parameter is processed to product a result URL
+[2019-07-11T21:01:30.759Z]	<drummond>	...there is a separate section on service endpoint construction
+[2019-07-11T21:01:59.192Z]	<drummond>	...section 7
+[2019-07-11T21:02:22.088Z]	<jonathan_holt>	q+
+[2019-07-11T21:02:32.848Z]	<drummond>	...section 5 also has a list of additional features that have been discussed but are not specified yet.
+[2019-07-11T21:03:08.319Z]	<drummond>	...one of them is Redirects—the idea that a service endpoint could be another DID, that triggers a child or secondary resolution process.
+[2019-07-11T21:03:08.671Z]	<dmitriz>	q+
+[2019-07-11T21:03:23.701Z]	<drummond>	...there is one example but it's not yet specified.
+[2019-07-11T21:04:01.890Z]	<drummond>	...there is also one for Proxy where a mapping needs to be followed to an external service to get the DID document
+[2019-07-11T21:04:11.505Z]	<drummond>	...as discussed earlier in this call.
+[2019-07-11T21:04:42.573Z]	<drummond>	...and also discussed by Bill B
+[2019-07-11T21:04:52.438Z]	<drummond>	ack jonathan_holt
+[2019-07-11T21:05:29.713Z]	<bbarnhill>	FYI, the below is in answer to an issue on RDF fragid refs within current version of DID resolution spec... Fragment identifier references relating to fragment identifier use in RDF resource URIs:
+[2019-07-11T21:05:30.285Z]	<bbarnhill>	* https://www.w3.org/TR/fragid-best-practices/#dfn-fragid-structure
+[2019-07-11T21:05:31.525Z]	<bbarnhill>	* https://www.w3.org/DesignIssues/Fragment.html
+[2019-07-11T21:05:32.622Z]	<bbarnhill>	* http://blog.iandavis.com/2007/11/its-ok-to-use-uris-with-fragments-in-rdf/
+[2019-07-11T21:05:33.632Z]	<bbarnhill>	* https://www.w3.org/TR/rdf-concepts/#section-fragID
+[2019-07-11T21:05:34.456Z]	<drummond>	jonathan_holt: notes that the URL should not have a fragment component—so how do you pass a fragment to a DID resolver if it's involved with that DID method
+[2019-07-11T21:06:17.688Z]	<drummond>	the second question is about multiple semi-colons - what if you need multiple fragments?
+[2019-07-11T21:07:21.105Z]	<dmitriz>	(I want to make my usual recommendation of looking at how OpenID Connect and OAuth2 use multiple hash fragment parameters, by using query-style strings but in hash. LIke so: url#key1=value1&key2=value2
+[2019-07-11T21:07:28.570Z]	<drummond>	markus_sabadello: on the second question, you can definitely have multiple
+[2019-07-11T21:08:44.956Z]	<drummond>	...as for passing fragments to a resolver, it depends on whether you are using a local or remote resolver
+[2019-07-11T21:09:04.902Z]	<drummond>	...or both. The fragment(s) could be applied to a local resolver only.
+[2019-07-11T21:09:11.555Z]	<drummond>	q?
+[2019-07-11T21:09:21.836Z]	<drummond>	agreed
+[2019-07-11T21:10:25.463Z]	<drummond>	jonathan_holt: is worried that if you pass shared secrets in fragments, you can't pass them
+[2019-07-11T21:10:32.676Z]	<drummond>	ack dmitriz
+[2019-07-11T21:10:45.139Z]	<drummond>	q+ to add Joe
+[2019-07-11T21:11:55.619Z]	<drummond>	dmitriz: it is still possible for both the DID URL to have a fragment to do resolution to get a result URL, and then you add the additional fragments to the result URL.
+[2019-07-11T21:12:23.053Z]	<drummond>	...the DID version of an HTTP 301 is important, and maybe it should have its own section.
+[2019-07-11T21:13:05.076Z]	<drummond>	...the CCG periodically touches on the subject of DID portability and this would be super important
+[2019-07-11T21:13:08.967Z]	<drummond>	ack drummond
+[2019-07-11T21:13:32.712Z]	<drummond>	JoeAndrieu: the handling of fragments should not be in the resolution spec.
+[2019-07-11T21:13:38.284Z]	<dlongley>	+1 to Joe
+[2019-07-11T21:13:51.182Z]	<drummond>	...and the same happens with redirection. It's two different resolution steps.
+[2019-07-11T21:14:02.614Z]	<drummond>	...it works the same way with DNS.
+[2019-07-11T21:14:04.996Z]	<drummond>	q?
+[2019-07-11T21:14:17.694Z]	<dlongley>	(we should be careful not to make a layering violation here either by trying to put too many things into a single DID URL ... use more URLs)
+[2019-07-11T21:14:51.628Z]	<drummond>	markus_sabadello: continued with the walk-through to talk about 5.3.1 Redirect.
+[2019-07-11T21:15:10.377Z]	<drummond>	...it can apply to the entire DID document. This works the same way as the XRDS ref element.
+[2019-07-11T21:16:06.174Z]	<drummond>	...next was using JSON pointer. This heading is to track the topic.
+[2019-07-11T21:17:11.382Z]	<drummond>	...it's important to keep in mind that with DID Resolution, it's not always a client-server model.
+[2019-07-11T21:17:35.618Z]	<drummond>	...some DID methods do not involve any kind of communication with a server, but they can still use valid DID URLs.
+[2019-07-11T21:17:39.925Z]	<drummond>	q?
+[2019-07-11T21:18:34.607Z]	<drummond>	JoeAndrieu: Believes there is confusion about having a DID URL and how you use a resolver with that DID URL.
+[2019-07-11T21:18:45.570Z]	<drummond>	...a resolver always has a client.
+[2019-07-11T21:19:16.117Z]	<drummond>	So the questions of where the fragment is processed depends on what is considered the client.
+[2019-07-11T21:19:22.384Z]	<drummond>	q?
+[2019-07-11T21:20:38.848Z]	<drummond>	markus_sabadello: Section 8 on Bindings talks about resolver interfaces, e.g., HTTP.
+[2019-07-11T21:20:51.902Z]	<drummond>	...Section 9 is on errors.
+[2019-07-11T21:21:16.065Z]	<drummond>	...so what Markus wants to ask: are we ready to publish this as v0.1?
+[2019-07-11T21:21:17.299Z]	<dlongley>	q+
+[2019-07-11T21:21:19.175Z]	<drummond>	q?
+[2019-07-11T21:21:27.688Z]	<drummond>	ack dlongley
+[2019-07-11T21:21:41.308Z]	<bbarnhill>	+1 for release early and often
+[2019-07-11T21:21:56.333Z]	<drummond>	dlongley: sees no disadvantages to publish this version. That's what brings out feedback.
+[2019-07-11T21:22:37.015Z]	<drummond>	q?
+[2019-07-11T21:22:42.232Z]	<dlongley>	drummond: The illustrations and work that's been done to get understanding out there to get feedback are good -- +1 to getting it out there.
+[2019-07-11T21:22:59.493Z]	<drummond>	drummond: +1 from Joe and ChrisB
+[2019-07-11T21:23:01.419Z]	<dlongley>	+1 to all the work put in!
+[2019-07-11T21:23:16.239Z]	<bbarnhill>	Agreed that Markus and Dmitri have done an amazing job with this version
+[2019-07-11T21:23:28.679Z]	<drummond>	chrisboscolo: Kudos to Markus for this work—it's awesome.
+[2019-07-11T21:24:02.619Z]	<drummond>	JoeAndrieu: Point of process. To release it all we need to do is a version tag in the github.
+[2019-07-11T21:24:23.195Z]	<drummond>	...for it to be a published work item in the CCG takes more work. Is that what we're talking about here?
+[2019-07-11T21:24:34.743Z]	<drummond>	markus_sabadello: is only proposing a release.
+[2019-07-11T21:24:38.376Z]	<dlongley>	+1 to a release
+[2019-07-11T21:25:31.213Z]	<dlongley>	drummond: It's a good thing to put this out there and get feedback and get people involved.
+[2019-07-11T21:27:17.071Z]	<dlongley>	drummond: In our last call we were talking about matrix parameters and Dave presented a viewpoint that a DID document can represent anything related to identity and not all of us are controllers. The things we were trying to use a content-id for ... a pointer to content on a verifiable data registry ... Dave was saying you could just give it a DID. It surfaced the question about it being a different kind of entity without keys and it's whatever you want to
+[2019-07-11T21:27:17.152Z]	<dlongley>	point to like a schema/thing/whatever.
+[2019-07-11T21:27:52.212Z]	<dlongley>	drummond: And Dave explained having a DID document with a `controller` property that can point to its controller opens up the world to letting anyone express what they want in JSON-LD.
+[2019-07-11T21:28:39.996Z]	<drummond>	dlongley: the overall data model could attach properties to anything that has identity, and DID documents can be used for all those other things too
+[2019-07-11T21:29:04.824Z]	<drummond>	...so you can have DID documents that has no keys, or that has a controller property that points to another DID document as a controller.
+[2019-07-11T21:30:04.283Z]	<dlongley>	drummond: The reason this becomes important is that it means, as I've been thinking about it -- I can still think of instances where people want to point at something that's not a DID document so you don't give it a DID, but a lot of the things that I know in Indy or Hyperledger Aries -- that need that persistent identification, we can use a DID for that.
+[2019-07-11T21:30:43.788Z]	<dlongley>	drummond: The take away was that we need to get serious about the DID spec defining a `controller` property. In fact, with Markus we talked about being about to in both directions, so we want DID docs to be able to say they are controlled and others to say they control things.
+[2019-07-11T21:31:03.811Z]	<dlongley>	drummond: These make a lot of sense and become tremendously important in this model. I want to put that on the next call's agenda.
+[2019-07-11T21:31:10.096Z]	<dlongley>	JoeAndrieu: I think it's wacky! Let's talk about it.
+[2019-07-11T21:31:55.588Z]	<dlongley>	drummond: Ok, a week from today. Summer coming and vacations, etc. To clarify one thing, Manu made it clear that we can separate out ... I thought we had to finish community final draft before the vote on the WG charter and he clarified we need it to be done before the first meeting of the WG.
+[2019-07-11T21:32:07.078Z]	<dlongley>	drummond: That's the last week of Sept at TPAC. So we have two months to work on that.
+[2019-07-11T21:32:32.886Z]	<dlongley>	drummond: Not sure anyone is jumping up and down for joy on this -- but the more mature we are the less chance the WG goes in another direction.
+[2019-07-11T21:32:46.153Z]	<dlongley>	drummond: Let's dive into that subject and try and complete matrix parameters and then process issues.
+[2019-07-11T21:32:53.405Z]	<dlongley>	drummond: With that, I know we're over time, anything else today?
+[2019-07-11T21:32:55.490Z]	<markus_sabadello>	q?
+[2019-07-11T21:33:08.243Z]	<dlongley>	drummond: Alright, we thank you all very much.
+[2019-07-11T21:33:27.937Z]	<dlongley>	drummond: Markus, fabulous work on the spec!
+[2019-07-11T21:33:31.906Z]	<dlongley>	+1
