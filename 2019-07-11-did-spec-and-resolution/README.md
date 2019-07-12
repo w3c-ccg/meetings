@@ -1,4 +1,4 @@
-# DID Working Group Charter Meeting
+# DID Spec and DID Resolution Spec Weekly Meeting
 
 * Recording: [recording.mp4](recording.mp4)
 * Log: [2019-07-11-irc.log](2019-07-11-irc.log)
