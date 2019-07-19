@@ -1,0 +1,326 @@
+[22:00] == markus_sabadello [~markus_sabadello@public.cloak] has joined #ccg
+[22:01] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-00000639] has joined the conference.
+[22:01] == voip-ccg1 [~voipbot@public.cloak] has joined #ccg
+[22:01] <rhiaro> present+
+[22:02] <markus_sabadello> present+
+[22:04] == ken [~ken@public.cloak] has joined #ccg
+[22:04] <dlongley> present+
+[22:04] * dlongley can only stay for ~1 hr today
+[22:05] <ken> present+
+[22:05] == mtfk_robert [~mtfk_robert@public.cloak] has joined #ccg
+[22:06] == JoeAndrieu [~JoeAndrieu@public.cloak] has joined #ccg
+[22:06] <JoeAndrieu> present+ Joe_Andrieu
+[22:06] == brent [~brent@public.cloak] has joined #ccg
+[22:06] <brent> present+ Brent_Zundel
+[22:06] * rhiaro anyone want to go half-half scribing?
+[22:06] == jonathan_holt [~jonnycrunch@public.cloak] has joined #ccg
+[22:06] * rhiaro 45 mins each?
+[22:06] == drummond [~drummond@public.cloak] has joined #ccg
+[22:06] <markus_sabadello> i can scribe when i'm not talking myself
+[22:06] <drummond> present+
+[22:07] == Shivam_sethi [~Shivam_sethi@public.cloak] has joined #ccg
+[22:07] == charlie [~charlie@public.cloak] has joined #ccg
+[22:07] == dmitriz [~Adium@public.cloak] has joined #ccg
+[22:07] <jonathan_holt> present+
+[22:07] <dmitriz> present+
+[22:07] <Shivam_sethi> present+
+[22:07] <rhiaro> scribenick: rhiaro
+[22:08] <rhiaro> scribenick: markus_sabadello
+[22:08] <markus_sabadello> topic: introductions
+[22:08] <yancy> present+
+[22:08] <charlie> present+
+[22:08] <markus_sabadello> charlie: Charlie Haviland part of a team implementing DID
+[22:08] == agropper [~agropper@public.cloak] has joined #ccg
+[22:08] <markus_sabadello> drummond: reviewing the agenda
+[22:09] <agropper> present+
+[22:09] == Harpreet [~Harpreet@public.cloak] has joined #ccg
+[22:10] <markus_sabadello> drummond: will review did resolution release, then discussion on immutability, then use of controller DID docs vs. controlled DID docs
+[22:11] <drummond> markus_sabadello: No need to show the new version of the DID Resolution spec.
+[22:11] <drummond> ...it has now been tagged 0.1.0
+[22:11] <drummond> ...so it is just called a "released" version
+[22:12] <drummond> ...and although it still has a lot of missing pieces and issues, issues and PRs can now be filed
+[22:12] <markus_sabadello> https://w3c-ccg.github.io/did-resolution/
+[22:13] <drummond> Meeting page (with links): https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/edit#
+[22:13] <markus_sabadello> topic: immutability
+[22:14] <markus_sabadello> drummond: while reading through github discussions about immutability, went back to review URN spec: https://tools.ietf.org/html/rfc8141
+[22:14] <markus_sabadello> drummond: there have been a lot of changes, a new architecture for URNs
+[22:15] <markus_sabadello> drummond: want to bring some new aspects from URN spec to our attention
+[22:15] <markus_sabadello> drummond: reviewing URN ABNF, e.g. rule assigned-name = "urn" ":" NID ":" NSS
+[22:15] <markus_sabadello> drummond: DID ABNF was inspired by this
+[22:16] <markus_sabadello> drummond: ABNF contains rules "rq-components" and "f-component". note that there is no path component.
+[22:17] <markus_sabadello> drummond: resolution components are like matrix parameters; they are passed to a resolver to guide resolution
+[22:18] <markus_sabadello> drummond: f-component is not used in resolution
+[22:18] <markus_sabadello> drummond: is anyone on the call aware of these changes in URN ?
+[22:18] <markus_sabadello> (apparently no one has been aware)
+[22:18] <markus_sabadello> drummond: r-components are not significant in evaluation of equivalence
+[22:19] <markus_sabadello> drummond: other question about URN: have they changed anything about the persistence property of URNs?
+[22:20] == agropper [~agropper@public.cloak] has quit [Ping timeout: 180 seconds]
+[22:20] <markus_sabadello> drummond: they changed the language a bit, but essentially it's the same
+[22:20] <markus_sabadello> daniel_hardman: now discussing https://github.com/w3c-ccg/did-spec/issues/238
+[22:21] <markus_sabadello> daniel_hardman: was studying the persistence property, realized that the DID spec allows some evolution that may be we didnt intend and perhaps want to eliminate
+[22:21] <markus_sabadello> daniel_hardman: point of the issue is to hardening the spec with respect to immutability
+[22:21] <markus_sabadello> daniel_hardman: claim 1: may be desirable for security to don't allow some things to be modified
+[22:22] <markus_sabadello> daniel_hardman: claim 2: maybe required for caching to not allow certain things to change
+[22:22] <markus_sabadello> daniel_hardman: i have a background in cybersecurity, some of the threats i describe in that issue are real
+[22:23] <markus_sabadello> daniel_hardman: possible outcomes: 1. we do nothing, 2. we add some language to the DID spec (e.g. type and value of public key cannot change, possbily also other objects), 3. introduce very strong rule about immutability (means we would have to achieve portability in a different way)
+[22:23] <dlongley> q+ to talk about the DID spec's limitations on normative language as a data model spec
+[22:23] <voip-ccg> dlongley has been added to the queue: dlongley
+[22:23] <drummond> q?
+[22:23] <voip-ccg> The current speaker queue is: dlongley
+[22:24] <markus_sabadello> dmitriz: could someone summarize the immutability topic?
+[22:24] <markus_sabadello> drummond: the topic is that certain objects in the DID document have better security and caching properties if we specify that the objects cannot change
+[22:25] <drummond> ack dlongley
+[22:25] <markus_sabadello> ack dlongley
+[22:25] <voip-ccg> dlongley has the floor (to talk about the DID spec's limitations on normative language as a data model spec).
+[22:25] <voip-ccg> dlongley isn't on the speaker queue.
+[22:25] == JoeAndrieu2 [~JoeAndrieu2@public.cloak] has joined #ccg
+[22:26] <JoeAndrieu> q+
+[22:26] <voip-ccg> JoeAndrieu has been added to the queue: JoeAndrieu
+[22:26] <voip-ccg> The current speaker queue is: JoeAndrieu
+[22:26] <markus_sabadello> dlongley: what daniel_hardman said should go into implementation guide or security document, but the DID spec is basically just a data model
+[22:26] <markus_sabadello> dlongley: in a data model spec, we are constrained to say what elements mean and what their intention is
+[22:27] <markus_sabadello> dlongley: the spec will define structure and semantics, but not normative statements on what is allowed on the protocol level
+[22:27] <drummond> q?
+[22:27] <voip-ccg> The current speaker queue is: JoeAndrieu
+[22:27] <markus_sabadello> daniel_hardman: does it HAVE to be a data model only spec?
+[22:27] <dmitriz> q+
+[22:27] <voip-ccg> dmitriz has been added to the queue: JoeAndrieu, dmitriz
+[22:27] <voip-ccg> The current speaker queue is: JoeAndrieu, dmitriz
+[22:27] <markus_sabadello> dlongley: yes that's in the charter, and that's a common structure for specs
+[22:27] <drummond> q?
+[22:27] <voip-ccg> The current speaker queue is: JoeAndrieu, dmitriz
+[22:27] <jonathan_holt> q+
+[22:27] <voip-ccg> jonathan_holt has been added to the queue: JoeAndrieu, dmitriz, jonathan_holt
+[22:27] <voip-ccg> The current speaker queue is: JoeAndrieu, dmitriz, jonathan_holt
+[22:27] <drummond> ack JoeAndrieu
+[22:27] <voip-ccg> JoeAndrieu has the floor.
+[22:28] <markus_sabadello> JoeAndrieu: daniel_hardman i'm not sure if this is achievable and desirable. immutability is a complex topic, not sure if all methods can achieve that
+[22:28] <markus_sabadello> JoeAndrieu: we have separation of identifier from cryptographic material
+[22:29] <markus_sabadello> JoeAndrieu: the whole point of DIDs is that i can change credentials, and the DID still works
+[22:29] <markus_sabadello> daniel_hardman: not suggesting any restrictions on changing cryptographic materials. i'm only suggesting that identifiers must change.
+[22:30] <markus_sabadello> JoeAndrieu: if a refer to a particular key by name, e.g. "joe's email key", then i want to rotate it but NOT change the name
+[22:30] <drummond> q?
+[22:30] <voip-ccg> The current speaker queue is: dmitriz, jonathan_holt
+[22:30] <drummond> ack dmitriz
+[22:30] <voip-ccg> dmitriz has the floor.
+[22:30] * dlongley different thread
+[22:30] <markus_sabadello> dmitriz: is this about immutability of keys or immutability of identifiers / URLs
+[22:31] <markus_sabadello> drummond: the DID inside a DID document never changes
+[22:32] <JoeAndrieu> q+ to say did id as base ref is just an explicit "base" specification
+[22:32] <voip-ccg> JoeAndrieu has been added to the queue: jonathan_holt, JoeAndrieu
+[22:32] <markus_sabadello> drummond: you can have absolute DID URLs with fragments that point into a DID document
+[22:32] <drummond> q?
+[22:32] <voip-ccg> The current speaker queue is: jonathan_holt, JoeAndrieu
+[22:32] == JoeAndrieu2 [~JoeAndrieu2@public.cloak] has quit [Ping timeout: 180 seconds]
+[22:32] <markus_sabadello> there's a related issue about absolute/relative identifiers: https://github.com/w3c-ccg/did-spec/issues/97
+[22:33] <markus_sabadello> dmitriz: want to remind people how key rotation relates to the data model. we probably can't make the entire key object immutable.
+[22:33] <markus_sabadello> dmitriz: some did methods use a hash of the key as key identifier
+[22:33] <markus_sabadello> dmitriz: to rotate and revoke we need to change the key obejct
+[22:34] <markus_sabadello> daniel_hardman: of course we cant to support rotate and revoke, but i propose that you need a new id for the key
+[22:34] <markus_sabadello> s/cant/want/
+[22:34] <drummond> ack jonathan_holt
+[22:34] <voip-ccg> jonathan_holt has the floor.
+[22:34] <drummond> q?
+[22:34] <voip-ccg> The current speaker queue is: JoeAndrieu
+[22:34] <markus_sabadello> jonathan_holt: i agree this sounds more like a protocol and method specific topic
+[22:34] <markus_sabadello> jonathan_holt: in our IPID method, we use the hash of the key
+[22:35] <markus_sabadello> q+
+[22:35] <voip-ccg> markus_sabadello has been added to the queue: JoeAndrieu, markus_sabadello
+[22:35] <voip-ccg> The current speaker queue is: JoeAndrieu, markus_sabadello
+[22:35] <drummond> ack JoeAndrieu
+[22:35] <voip-ccg> JoeAndrieu has the floor (to say did id as base ref is just an explicit "base" specification).
+[22:35] <markus_sabadello> jonathan_holt: this can be implemented easily in a DID method, to force only one key for a given identifier that doesn't get re-used
+[22:35] <drummond> q?
+[22:35] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:36] <markus_sabadello> JoeAndrieu: "peer" DIDs don't have a way to globally look up _the_ definitive DID document
+[22:36] <markus_sabadello> JoeAndrieu: with other globally resolvable DIDs you have a reliable way to look up _the_ definitive version of the DID document
+[22:37] <markus_sabadello> JoeAndrieu: regarding local references in DID documents, we say that the DID of the current DID document is the Base IRI.
+[22:37] <drummond> ack markus_sabadello
+[22:37] <voip-ccg> markus_sabadello has the floor.
+[22:38] <drummond> q?
+[22:38] <voip-ccg> The speaker queue is empty.
+[22:39] <JoeAndrieu> q+ to talk about /index.html
+[22:39] <voip-ccg> JoeAndrieu has been added to the queue: JoeAndrieu
+[22:39] <drummond> markus_sabadello: this raises a fascinating issue of Web architecture: is a new key a new resource or a change to an existing resource?
+[22:39] <drummond> ...that's a philosophical question
+[22:40] <drummond> ...on a practical basis, it would be nice to maintain the same identifier (DID URL) for a resource even if it changes.
+[22:40] <drummond> ...there are some other Web identifiers that work that way.
+[22:40] <drummond> q?
+[22:40] <voip-ccg> The current speaker queue is: JoeAndrieu
+[22:41] <drummond> ack JoeAndrieu
+[22:41] <voip-ccg> JoeAndrieu has the floor (to talk about /index.html).
+[22:42] <dlongley> use a hashlink :)
+[22:42] <markus_sabadello> JoeAndrieu: i understand daniel_hardman's concerns, believe this may be less of a problem in blockchain / public ledger based methods
+[22:43] <drummond> Daniel Hardman: this is not specific to the DID peer method
+[22:43] <markus_sabadello> daniel_hardman: this is not about did:peer, my concern is not specific to this one method
+[22:44] <drummond> Joe Andrieu: a long as you have global resolvability in a DID method, then you can find the definitive version
+[22:44] <drummond> q?
+[22:44] <voip-ccg> The speaker queue is empty.
+[22:44] <markus_sabadello> q+
+[22:44] <voip-ccg> markus_sabadello has been added to the queue: markus_sabadello
+[22:44] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:44] <drummond> Daniel Hardman: I think we're not being scared enough.
+[22:44] == Karen [Karen@public.cloak] has quit ["My MacBook has gone to sleep. ZZZzzz…"]
+[22:45] <dlongley> it can go into a security considerations section.
+[22:45] <drummond> ...a hacker will be able to convince someone that a DID doc means something that it doesn't
+[22:45] <dlongley> (just no normative statements)
+[22:46] <drummond> q?
+[22:46] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:47] <drummond> markus_sabadello: I have not read the latest comment on the thread, but would it raise a question about selection by type.
+[22:48] <drummond> ...this would apply if first one object had type "hub" and then a different object was given the type "hub" - both would be identified the same way.
+[22:49] <drummond> Daniel Hardman: If you have a service endpoint whose DID URL is "did:foo:1234#hub". A hacker could change the URI of the #hub service endpoint to point to a vulnerable URI. It's a classic "bait and switch".
+[22:50] <drummond> ...he was saying that for many objects, changing just one property would be reasonable, but changing all the properties is not reasonable.
+[22:50] <drummond> q?
+[22:50] <voip-ccg> The current speaker queue is: markus_sabadello
+[22:50] <drummond> ack markus_sabadello
+[22:50] <voip-ccg> markus_sabadello has the floor.
+[22:51] == Shivam_sethi [~Shivam_sethi@public.cloak] has quit [Ping timeout: 180 seconds]
+[22:51] <drummond> Daniel Hardman: The general picture in hacking it to violate people's expectations.
+[22:52] <drummond> ...one way of doing that is to take some data that people think is safe and then substitute it.
+[22:52] * dlongley if you've taken over the DID doc ... then i think the problem is much bigger (now expectations that the original controller is still in control is completely wrong ... for everything)
+[22:52] <drummond> markus_sabadello: I don't understand why this would apply only to id properties and not type properties.
+[22:53] <dmitriz> q+
+[22:53] <voip-ccg> dmitriz has been added to the queue: dmitriz
+[22:53] <voip-ccg> The current speaker queue is: dmitriz
+[22:54] <markus_sabadello> dmitriz: question about threat model, i thought our assumption was that security of DIDs assumes that keys are no compromised
+[22:54] <drummond> Daniel Hardman: There is a way to accomplish the indirection while keeping immutability. It's the same technique as using an association table to create a join between two other tables.
+[22:55] <drummond> ack dmitriz
+[22:55] <voip-ccg> dmitriz has the floor.
+[22:55] <markus_sabadello> daniel_hardman: i don't think control of somebody's identity should be binary; there should be degrees of authorization
+[22:55] <JoeAndrieu> q+ to talk about auditing as a sometimes available
+[22:55] <voip-ccg> JoeAndrieu has been added to the queue: JoeAndrieu
+[22:55] <markus_sabadello> daniel_hardman: taking over one aspect of a DID doesn't necessarily mean losing everything
+[22:55] <drummond> q?
+[22:55] <voip-ccg> The current speaker queue is: JoeAndrieu
+[22:55] <markus_sabadello> daniel_hardman: don't believe in the concept of there being one _definitive_ thing (e.g. key) that is all-powerful (e.g. a "root key")
+[22:56] <drummond> ack Joe_Andrieu
+[22:56] <voip-ccg> Joe_Andrieu isn't on the speaker queue.
+[22:56] <drummond> Joe_Andrieu: is more aligned on the issue of security and splitting control across multiple keys
+[22:57] <drummond> ...some methods provide public auditing of key rotation
+[22:57] <drummond> ...agree with Dmitri that defending against stolen keys is out of scope for the DID spec.
+[22:58] <drummond> ...what Ben Laurie is doing with certificate transparency is focused on auditability of public keys
+[22:58] <drummond> ...Joe is keen on the community having a way to view/have auditability on public keys
+[22:58] <drummond> q/
+[22:58] <voip-ccg> The current speaker queue is: JoeAndrieu
+[22:59] <drummond> ack JoeAndrieu
+[22:59] <voip-ccg> JoeAndrieu has the floor (to talk about auditing as a sometimes available).
+[23:00] <ken> +1
+[23:00] <dlongley> +1
+[23:00] <drummond> Daniel Hardman: suggests he close the issue and raise a PR against the Security Considerations
+[23:00] <dlongley> +1
+[23:00] <yancy> +1
+[23:00] <drummond> +1
+[23:01] <brent> should the issue be left open until the PR is raised?
+[23:01] <drummond> JoeAndrieu: It just clicked for him that security should be included in the Rubrics work
+[23:02] <markus_sabadello> JoeAndrieu's "DID Rubrics creative brief": https://docs.google.com/document/d/1O7KdMNz4toLcNi_lWfzkdSynRurRJhmvY0Cyt4U0prE/
+[23:03] <markus_sabadello> topic: content references
+[23:04] <markus_sabadello> drummond: should DID Document be able to describe anything with an identity? should there be a "controller" property?
+[23:04] <drummond> q?
+[23:04] <voip-ccg> The speaker queue is empty.
+[23:04] <JoeAndrieu> q?
+[23:04] <voip-ccg> The speaker queue is empty.
+[23:05] <drummond> JoeAndrieu: All DIDs are controlled. So all DIDs have controllers.
+[23:06] <dlongley> +1 to not requiring a back link
+[23:06] <dlongley> q+
+[23:06] <voip-ccg> dlongley has been added to the queue: dlongley
+[23:06] <voip-ccg> The current speaker queue is: dlongley
+[23:07] <drummond> ack dlongley
+[23:07] <voip-ccg> dlongley has the floor.
+[23:08] <drummond> dlongley: A DID doc could be controlled by having keys in it or by having a "controller" property that points to another DID.
+[23:08] <drummond> ...the only confusion might be if that property appeared in a static DID document
+[23:08] <JoeAndrieu> d
+[23:08] <drummond> q?
+[23:08] <voip-ccg> The speaker queue is empty.
+[23:09] <drummond> Daniel Hardman: Wants to ask a question about a "dead" DID document that has no keys.
+[23:09] <drummond> ...is that valid DID.
+[23:10] <markus_sabadello> q+
+[23:10] <voip-ccg> markus_sabadello has been added to the queue: markus_sabadello
+[23:10] <voip-ccg> The current speaker queue is: markus_sabadello
+[23:10] <dlongley> 3 states for DID docs: 1. is self-controlled by expressing keys in it, 2. is controlled by another DID, expressed by a "controller" property, 3. no control any more -- immutable.
+[23:10] <drummond> JoeAndrieu: A DID may not resolve to a DID document.
+[23:11] <dlongley> q+
+[23:11] <voip-ccg> dlongley has been added to the queue: markus_sabadello, dlongley
+[23:11] <voip-ccg> The current speaker queue is: markus_sabadello, dlongley
+[23:12] <drummond> JoeAndrieu: The controller of a DID document may not be the subject.
+[23:12] <drummond> ack markus_sabadello
+[23:12] <voip-ccg> markus_sabadello has the floor.
+[23:12] <drummond> markus_sabadello: Both the public key and service sections of a DID document could be empty.
+[23:13] <drummond> ...so if you deactivate a DID, do you get back: a) null, b) a special DID document, c) something else.
+[23:13] <JoeAndrieu> q?
+[23:13] <voip-ccg> The current speaker queue is: dlongley
+[23:13] <drummond> ...that is still an open issue.
+[23:13] <JoeAndrieu> q+ to ask about "publicKey" etymology
+[23:13] <voip-ccg> JoeAndrieu has been added to the queue: dlongley, JoeAndrieu
+[23:13] <jonathan_holt> q+
+[23:13] <voip-ccg> jonathan_holt has been added to the queue: dlongley, JoeAndrieu, jonathan_holt
+[23:13] <voip-ccg> The current speaker queue is: dlongley, JoeAndrieu, jonathan_holt
+[23:13] <drummond> dlongley: revocation is currently covered by the spec
+[23:13] == gannan [~gannan@public.cloak] has quit [Client closed connection]
+[23:13] <drummond> ack dlongley
+[23:13] <voip-ccg> dlongley has the floor.
+[23:13] <drummond> q?
+[23:13] <voip-ccg> The current speaker queue is: JoeAndrieu, jonathan_holt
+[23:14] <drummond> ack JoeAndrieu
+[23:14] <voip-ccg> JoeAndrieu has the floor (to ask about "publicKey" etymology).
+[23:15] <drummond> dlongley: Believes there is an issue or a PR about a controller property.
+[23:15] <drummond> ack jonathan_holt
+[23:15] <voip-ccg> jonathan_holt has the floor.
+[23:15] <dmitriz> (the DID equivalent to the Verifiable Credential's refreshService)
+[23:16] <JoeAndrieu> q+
+[23:16] <voip-ccg> JoeAndrieu has been added to the queue: JoeAndrieu
+[23:16] <voip-ccg> The current speaker queue is: JoeAndrieu
+[23:16] * dlongley i don't really hear any disagreement :)
+[23:16] <drummond> jonathan_holt: in Barcelona we talked about a "deadman switch", where a DID doc could revert to a revoked state after a period of disagreement.
+[23:16] <drummond> q?
+[23:16] <voip-ccg> The current speaker queue is: JoeAndrieu
+[23:16] * dlongley maybe not so wacky.
+[23:16] <drummond> ack JoeAndrieu
+[23:16] <voip-ccg> JoeAndrieu has the floor.
+[23:17] <ken> s/disagreement/non-use/
+[23:17] <drummond> JoeAndrieu: is seeing that "controller" is already a property of a key.
+[23:18] <drummond> dlongley: the idea is that the controller property is at the root level
+[23:19] <drummond> q?
+[23:19] <voip-ccg> The speaker queue is empty.
+[23:21] == Harpreet [~Harpreet@public.cloak] has quit [Ping timeout: 180 seconds]
+[23:21] <drummond> drummond: if there is both a "controller" property and a "publicKey" property in a DID document, what's the rule?
+[23:21] <drummond> dlongley: it would be up to a protocol or a DID method
+[23:22] <dlongley> q+
+[23:22] <voip-ccg> dlongley has been added to the queue: dlongley
+[23:22] <voip-ccg> The current speaker queue is: dlongley
+[23:22] == Karen [Karen@public.cloak] has joined #ccg
+[23:22] <drummond> Daniel Hardman: pointing to a single key as the controller is limiting
+[23:23] <drummond> dlongley: DID methods can specify a way to change only part of a DID document. The Veres One method does this with capabilities.
+[23:23] <drummond> Daniel Hardman: What part of a DID document should be used to express those authorization capabilities?
+[23:24] <drummond> dlongley: The Veres One method specifies capability invocation keys in a DID document, but other DID documents are used to specify the actual capabilities.
+[23:25] <drummond> drummond: Did we specify a property for any type of authorization?
+[23:26] <drummond> dlongley: We agreed not to include any specific property in the DID spec itself.
+[23:26] <drummond> JoeAndrieu: The BTCR method can only change the whole doc.
+[23:26] <drummond> q?
+[23:26] <voip-ccg> The current speaker queue is: dlongley
+[23:27] <drummond> ack dlongley
+[23:27] <voip-ccg> dlongley has the floor.
+[23:28] <jonathan_holt> q+
+[23:28] <voip-ccg> jonathan_holt has been added to the queue: jonathan_holt
+[23:28] <voip-ccg> The current speaker queue is: jonathan_holt
+[23:28] <drummond> ack jonathan_holt
+[23:28] <voip-ccg> jonathan_holt has the floor.
+[23:28] <markus_sabadello> drummond: how can we reference schemas, etc. (objects other than DID Document) in the Decentralized Identifier Registry ? do those also get DIDs ?
+[23:29] <ken> q+
+[23:29] <voip-ccg> ken has been added to the queue: ken
+[23:29] <voip-ccg> The current speaker queue is: ken
+[23:29] <drummond> jonathan_holt: we have been working with this. IPLD is not an approved IANA scheme name, so using a DID URL to do this
+[23:29] <drummond> drummond: could you post an example in the chat?
+[23:30] <drummond> ken: What would be inside the DID document?
+[23:30] <drummond> jonathan_holt: In IPLD, all content is referenced
+[23:31] <drummond> ...so it would be a content referenced by a DID via that specific DID method
+[23:31] <drummond> q?
+[23:31] <voip-ccg> The current speaker queue is: ken
+[23:31] <drummond> ack ken
+[23:31] <voip-ccg> ken has the floor.
+[23:34] <ken> Thank you!
+[23:35] <drummond> JoeAndrieu: thanks to Daniel Hardman for the dialog today.
+[23:37] == Karen [Karen@public.cloak] has quit ["My MacBook has gone to sleep. ZZZzzz…"]
+[23:37] <drummond> ...also, an update on the DID Working Group Charter process. The minutes of the meeting where it was approved had not been published yet, but they are trying to get it published to see if we can still get it done on time.
+[23:38] == drummond [~drummond@public.cloak] has quit ["Page closed"]
+[23:38] <voip-ccg> Markus Sabadello [SIP/danubetech.onsip.com-00000639] has left the conference.
+
