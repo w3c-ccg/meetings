@@ -1,0 +1,217 @@
+[2019-08-22T20:06:13.764Z]	<bbarnhill>	present+ Bill Barnhill
+[2019-08-22T20:07:27.192Z]	<bbarnhill>	trackbot, start telcon
+[2019-08-22T20:07:36.078Z]	<bbarnhill>	scribe: bbarnhill
+[2019-08-22T20:08:21.273Z]	<bbarnhill>	TOPIC: Are 1.5 hour calls useful, or too long?
+[2019-08-22T20:11:34.150Z]	<burn_>	q+
+[2019-08-22T20:12:09.831Z]	<bshambaugh>	Testing the Irc ... (have a 1 hour call. not much confidence with the DID spec, waiting on the working group, we will see what happens, lets think about shortening, productivity dropps off on the 45 minute call, justin supports hte shorter call, use the mailing list ... etc...more direct for calls .... mailing list for record) ...  helping bbarnhill :)
+[2019-08-22T20:12:11.830Z]	<bbarnhill>	Justin_R: Recommend substantive discussions be done over issues, mailing lists. In support of shorter calls.
+[2019-08-22T20:13:11.156Z]	<bbarnhill>	It is very unusual for W3C calls to do 2 hour calls. It will be good to get used to 1 hr, in preparation for regular teleconferences on call.
+[2019-08-22T20:13:38.880Z]	<bbarnhill>	markus_sabadello: Any objections to 1 hr calls starting next week, from now on?
+[2019-08-22T20:13:57.768Z]	<bbarnhill>	No objections, carried.
+[2019-08-22T20:15:02.796Z]	<bbarnhill>	markus_sabadello: Getting to topic: Dereferencing a DID URL
+[2019-08-22T20:16:21.585Z]	<bbarnhill>	markus_sabadello: We now have an ABNF for what a DID URL and a DID look like. We realized the DID is something that can be resolved. The DID URL, like any URL, is something that can be dereferenced. There have been many discussions of what exactly a DID URL would dereference to, i.e. how does path work, matrix parameters, etc. Fragments.
+[2019-08-22T20:19:12.970Z]	<bbarnhill>	markus_sabadello: In current version of the DID resolution spec there is a section on DID resolution. It is pretty simple. But DID dereferencing is more complex. A lot of discussions and different ideas. Right now the specification defines an algorithm for dereferencing a DID URL. It’s at a very early stage and there is room for improvement. THe output of an alg. when we dereference can be (1) a DID document (if no params, query), (2) a key or data e[CUT]
+[2019-08-22T20:19:13.534Z]	<bbarnhill>	(DID + fragment), or (3) a service endpoint URL (a service parameter(s))
+[2019-08-22T20:19:31.453Z]	<sam_smith>	q=
+[2019-08-22T20:19:31.497Z]	<bbarnhill>	markus_sabadello: There are diagrams and more explanation in the document.
+[2019-08-22T20:19:36.934Z]	<jonathan_holt>	q+
+[2019-08-22T20:19:43.349Z]	<burn_>	ack burn
+[2019-08-22T20:19:46.608Z]	<sam_smith>	Q+
+[2019-08-22T20:19:49.606Z]	<burn_>	ack burn_
+[2019-08-22T20:20:51.942Z]	<jonathan_holt>	he is back
+[2019-08-22T20:21:15.808Z]	<bbarnhill>	q+ about including non-HTTP service endpoints
+[2019-08-22T20:21:18.977Z]	<markus_sabadello>	q?
+[2019-08-22T20:22:29.409Z]	<burn_>	q+ to ask why we can't have the fragment be treated as a local operation on whatever is returned, whether it is the DID document or something else
+[2019-08-22T20:22:34.406Z]	<bbarnhill>	jonathan_holt: A question, in the service endpoints, we have discussed DIDs determine the spec (a thing Sovrin uses) or the location. Is that described in the resolution spec?
+[2019-08-22T20:23:10.830Z]	<bbarnhill>	markus_sabadello: I think that’s not in the spec right now. I think that’s one of the topics , one of many uses of DID URLs not in the spec, and could be interesting.
+[2019-08-22T20:23:49.970Z]	<bbarnhill>	name?: Are you referring to a version spec, i.e. [1.2+, 1.3-1.5]?
+[2019-08-22T20:24:06.200Z]	<bbarnhill>	jonathan_holt: Yes, but really the schema.
+[2019-08-22T20:24:09.805Z]	<markus_sabadello>	q?
+[2019-08-22T20:24:13.179Z]	<markus_sabadello>	ack jonathan_holt
+[2019-08-22T20:24:15.110Z]	<ken>	s/name?/ken/
+[2019-08-22T20:24:52.840Z]	<markus_sabadello>	q+
+[2019-08-22T20:25:58.828Z]	<markus_sabadello>	ack sam_smith
+[2019-08-22T20:26:47.823Z]	<bbarnhill>	sam_smith: The source of my confusion, in terms of DID URL vs DID dereferencing. The main purpose of a DID resolver is to return the DID document. The DID dereferencing allows, in some special cases, to return a narrowing of something within the DID document. DID URL dereferencing should always return a DID document if the special cases do not exist. However, currently it returns nothing if there is no special case.  That document needs to have a claus[CUT]
+[2019-08-22T20:26:48.398Z]	<bbarnhill>	says if it does not meet these special cases then it needs to return the DID document.
+[2019-08-22T20:27:06.835Z]	<bbarnhill>	markus_sabadello: I agree.
+[2019-08-22T20:27:17.063Z]	<markus_sabadello>	ack bbarnhill
+[2019-08-22T20:27:47.981Z]	<markus_sabadello>	bbarnhill: service endpoints may not be http(s)
+[2019-08-22T20:27:54.796Z]	<markus_sabadello>	bbarnhill: they may point to other URI schemes
+[2019-08-22T20:27:58.635Z]	<jonathan_holt>	here is an example of my previous question:  did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/did_resolution/0.1
+[2019-08-22T20:28:06.076Z]	<markus_sabadello>	bbarnhill: it's important to retain that capability
+[2019-08-22T20:28:17.305Z]	<markus_sabadello>	bbarnhill: e.g. you could have a service that's located via ipns
+[2019-08-22T20:28:31.170Z]	<burn_>	ack burn
+[2019-08-22T20:28:34.648Z]	<burn_>	uack burn_
+[2019-08-22T20:28:42.068Z]	<burn_>	ack burn_
+[2019-08-22T20:29:45.536Z]	<sam_smith>	q+
+[2019-08-22T20:30:04.501Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T20:30:11.836Z]	<bbarnhill>	burn_: I’ve been concerned for a while. I know it has been discussed before, but that we are treating the fragment as something special. If you look at the way most URLs are handled the fragment is treated as opaque, to be processed when you get something back. My concern is that if we treat fragments as a special case of dereferencing then we are missing the correct mental model for how fragments are supposed to work.
+[2019-08-22T20:30:45.252Z]	<burn_>	s/processed/processed locally/
+[2019-08-22T20:31:22.085Z]	<sam_smith>	@burn  I agree with you the special case of DID fragment inverts the normal parsing order or layer wrapper. As far as I know this is an artifact of the JS
+[2019-08-22T20:31:24.535Z]	<bbarnhill>	markus_sabadello: I’d like to share a flow diagram. {Link?}
+[2019-08-22T20:33:08.903Z]	<sam_smith>	ON-LD desire to be able to extract id witing the did document.  I never liked this but It seemed that there was too much momentum behind that to argue against it.  that is one reason I argued for son-pointer so at least the normal fragment processing could be applied. Its an ugly compromise iIMHO but if we are careful it can be workable.
+[2019-08-22T20:33:31.735Z]	<burn_>	So what happens if there is a matrix param and a fragment?  It should apply to whatever is returned from dereferencing and resolving the service endpoint URL, no?
+[2019-08-22T20:33:45.230Z]	<burn_>	s/It/The fragment/
+[2019-08-22T20:33:48.082Z]	<Justin_R>	q+
+[2019-08-22T20:33:59.771Z]	<sam_smith>	I suggest that this can be clarified by specifying that the DID fragment only applies when the path is empty. If the path is not empty then the fragment reverts to the normal processing
+[2019-08-22T20:35:02.471Z]	<bbarnhill>	markus_sabadello: Once we are done with DID resolution, here are the other three cases. Whether within the DID URL there is a matrix parameter called service. Then it jumps to service endpoint construction and returns the service endpoint URL. If no service, no query and no path but there is fragment, then select the part of the DID document by id  and return that part of the document. If we have no path, query or fragment then return the DID document in
+[2019-08-22T20:35:03.029Z]	<bbarnhill>	entirety. Otherwise behavior is method-specific or application specific?
+[2019-08-22T20:35:26.953Z]	<bbarnhill>	ack sam_smith
+[2019-08-22T20:36:22.955Z]	<dmitriz>	q+
+[2019-08-22T20:36:36.491Z]	<burn_>	Yes, Sam, exactly
+[2019-08-22T20:37:54.047Z]	<charlie>	q+
+[2019-08-22T20:37:57.238Z]	<burn_>	I have argued for "return of DID document" to be the default resolution of a bare DID (without path, matrix params).  Then by definition the fragment applies to the DID document in that case (since it is what is returned)
+[2019-08-22T20:38:07.222Z]	<bbarnhill>	sam_smith: This was added early in the DID spec, a method to use fragment to extract parts. It is grandfathered in sort of, and perhaps not ideal. I think we can clarify it though. We can say that if the path is empty the default resource is the DID document, which means the fragement would apply in that case, and only in that case.  We could clarify it even more. Right now it says DID fragment is a must and we should make it more limited than that. Lo[CUT]
+[2019-08-22T20:38:07.732Z]	<bbarnhill>	the checks, there’s 8 conditions and two are covered. It should be that those two conditions are special cases and all the other six return DID document.
+[2019-08-22T20:38:10.998Z]	<markus_sabadello>	q?
+[2019-08-22T20:38:21.848Z]	<bbarnhill>	markus_sabadello: Not sure those would return the DID document.
+[2019-08-22T20:39:16.849Z]	<markus_sabadello>	q?
+[2019-08-22T20:39:25.932Z]	<markus_sabadello>	q+
+[2019-08-22T20:39:31.520Z]	<bbarnhill>	sam_smith: What else would it return? Let the user decide how they want to interpret the DID URL. Right now were telling them you can’t interpret them any other way and we won’t resolve your DID, and we can’t do that because it violated the DID specification itself.
+[2019-08-22T20:39:46.102Z]	<bbarnhill>	markus_sabadello: I think we are saying the same thing.
+[2019-08-22T20:40:09.962Z]	<bbarnhill>	sam_smith: I think so so, maybe the way I am saying it…I am trying to clarify it.
+[2019-08-22T20:41:26.856Z]	<bbarnhill>	sam_smith: I’d like to minimize the difference between reasoning about a DID and a URL. One way is to define what a default path means except for a special case. The special case is the service matrix parameter. What happens if I have a service parameter and a missing path? As far as I can tell that is not defined behavior, an edge case to address. Actually that does work fine.
+[2019-08-22T20:41:37.392Z]	<bbarnhill>	q=
+[2019-08-22T20:41:37.570Z]	<markus_sabadello>	ack Justin_R
+[2019-08-22T20:42:29.404Z]	<sam_smith>	I think that local means the DID Document
+[2019-08-22T20:43:56.774Z]	<sam_smith>	the way to do did fragments that is more compliant would be to use an id matrix parameter and let the did fragment identifier be an id parameter
+[2019-08-22T20:44:07.712Z]	<markus_sabadello>	q?
+[2019-08-22T20:44:13.636Z]	<bbarnhill>	Justin_R: I agree that the fragment ought to mirror other URIs. I am not sure it’s clear how it means to be local. I think what it means to be local is at the root of what is confusing a lot of people. It really deeply worries me whenever someone says a thing is grandfathered into the way we do something. A standards group may break anything grandfathered, as it may be necessary to come up with a sensible deterministic model for what the parts are, h[CUT]
+[2019-08-22T20:44:14.227Z]	<bbarnhill>	come together, and what you get out the other end. Seeing Markus’s diagram makes me wonder if we are approaching that, and perhaps solving problems that we are making.
+[2019-08-22T20:45:32.903Z]	<bbarnhill>	dmitriz: I want to clarify the behavior of the hash fragments. I don’t think it has any special treatments, legacy or not. It is being treated the same as it would be in HTTP URLs. I am no sure: the most common use case is to return the key, but it could just as easily be used to return any other part, including a service endpoint. I think our use is fairly generic.
+[2019-08-22T20:45:44.096Z]	<markus_sabadello>	q?
+[2019-08-22T20:45:46.062Z]	<markus_sabadello>	ack dmitriz
+[2019-08-22T20:45:46.488Z]	<sam_smith>	As long as the fragment is relative to the did document. What gets confusing is DID URLs
+[2019-08-22T20:45:48.149Z]	<markus_sabadello>	ack charlie
+[2019-08-22T20:45:55.378Z]	<burn_>	Dmitri, I agree but don't believe it is described that way in the doc and that leads to confusion
+[2019-08-22T20:46:52.901Z]	<bbarnhill>	charlie: I wanted to piggyback off of one of Sam’s specific comments. The DID fragment, and the concept of a DID fragment always returns a part of a DID might need to change. A fragment that exists as part of the DID URL should be considered separately and not be considered a DID fragment.
+[2019-08-22T20:47:12.152Z]	<bbarnhill>	markus_sabadello: Yes, your emails were one of the reasons we had this topic on the call today.
+[2019-08-22T20:49:15.294Z]	<sam_smith>	back when DID fragments were added to the DID spec we did not have matrix parameters. Given that we now have matrix parameters, I wonder if a different design choice would be to use an id matrix parameter not special case the fragment
+[2019-08-22T20:50:28.199Z]	<markus_sabadello>	q?
+[2019-08-22T20:50:45.175Z]	<bbarnhill>	markus_sabadello: The resolution spec is an early work item so anything can be changed. There are a lot of things in there that may be saying the same or similar things. There are things that are works in progress. WRT Charlie, a fragment that refers to part of the DID document it should be called a DID Fragment, but if it identifies something else it should be called a URL fragment. That’s the way it used to be, but it has been changed, and I think [CUT]
+[2019-08-22T20:50:45.759Z]	<bbarnhill>	was the right change. If we start to distinguish between a DID fragment and URL fragment, that differentiation doesn’t really exist. There’s one type of fragment I think, and it is being used to reference a secondary resource related to the primary resource. Yes, it identifies something that is part of service endpoint, but it is always a URL and always a fragment, so I don’t think they are different concepts.
+[2019-08-22T20:51:43.367Z]	<charlie>	q+
+[2019-08-22T20:51:47.281Z]	<bbarnhill>	markus_sabadello: I also want to respond to something Dmitri said about fragment processing. He said our mental model may be used to what we know from web servers, that fragment is processed locally on the client side. In DID URL dereferencing I tried to work on the diagram for that.
+[2019-08-22T20:51:50.274Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T20:52:31.612Z]	<bbarnhill>	dmitriz: I meant code that was invoking the DID resolver, not necessarily code on the client side. There’s going to be some code that calls the resolver.
+[2019-08-22T20:53:15.137Z]	<bbarnhill>	Justin_R: In needs to be owned by a specific part of the process in order for its processing to be correct.
+[2019-08-22T20:53:20.585Z]	<bbarnhill>	s/In/It
+[2019-08-22T20:53:54.883Z]	<markus_sabadello>	q?
+[2019-08-22T20:53:57.478Z]	<markus_sabadello>	ack charlie
+[2019-08-22T20:54:05.828Z]	<bbarnhill>	markus_sabadello: So the point of both of you is that it’s that there is some piece of software that is taking in this string we are calling a DID URL and it’s handing back something else.
+[2019-08-22T20:54:50.115Z]	<markus_sabadello>	q+
+[2019-08-22T20:55:00.616Z]	<sam_smith>	q+
+[2019-08-22T20:55:01.737Z]	<bbarnhill>	charlie: Yes, Markus that’s correct. I can understand if a DID fragment is a fragment of the URL and that’s that. The issue came from the confusion of the different uses, but your comment clarified it.
+[2019-08-22T20:55:28.404Z]	<jonathan_holt>	the DID/VC wallet is the new browser, whether the resolver happens location to the wallet vs a 3rd party handling this on behalf of the end user
+[2019-08-22T20:55:42.007Z]	<bbarnhill>	markus_sabadello: I think it’s a mistake in spec to say that implementers are strongly discouraged from using a fragment id for anything other than a endpoint.
+[2019-08-22T20:55:49.294Z]	<markus_sabadello>	q?
+[2019-08-22T20:55:53.303Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T20:55:56.401Z]	<markus_sabadello>	ack sam_smith
+[2019-08-22T20:56:44.164Z]	<markus_sabadello>	q+
+[2019-08-22T20:56:51.255Z]	<Justin_R>	+1 to sam's point
+[2019-08-22T20:57:16.096Z]	<Justin_R>	(and it's never too late, we can rewrite the whole thing if we wanted to...)
+[2019-08-22T20:57:16.534Z]	<bbarnhill>	sam_smith: I suggest back when the DID fragment was added to the spec the DID did not have the concept of a matrix parameter, that came much later. I wonder if we were talking about the DID fragment as this case if it wouldn’t have made more sense o have a matrix parameter called id for that purpose. Then the fragment jsut becomes a fragment and this special case goes away.
+[2019-08-22T20:57:31.920Z]	<dmitriz>	q+
+[2019-08-22T20:57:35.652Z]	<burn_>	Yes, Sam, this was my point when I first got on queue.
+[2019-08-22T20:58:03.878Z]	<bbarnhill>	+1 to fragment matrix parameter, with support for both simple format or a xpath-like format
+[2019-08-22T20:58:20.398Z]	<markus_sabadello>	q?
+[2019-08-22T20:58:22.893Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T20:58:31.481Z]	<bbarnhill>	markus_sabadello: Right now that is a parameter under discussion, and we may still add it.
+[2019-08-22T20:58:33.100Z]	<dmitriz>	counterpoint: -1 to fragment matrix param, because it's just duplicating url fragment.
+[2019-08-22T20:58:45.224Z]	<markus_sabadello>	ack dmitriz
+[2019-08-22T20:59:20.759Z]	<jonathan_holt>	q+
+[2019-08-22T20:59:26.866Z]	<Justin_R>	q+ to respond to dmitry
+[2019-08-22T20:59:37.343Z]	<markus_sabadello>	ack jonathan_holt
+[2019-08-22T20:59:44.787Z]	<Justin_R>	(tldr: for one use case it's the same, for the other it's not)
+[2019-08-22T20:59:46.461Z]	<bbarnhill>	dmitri_z: I am not firmly against the id matrix parameter. A point against it though is that it is exactly the same thing as what the fragment id does. I think the question we may get asked as a group is why invent a parameter that does the same thing?
+[2019-08-22T21:00:02.439Z]	<burn_>	I'm fine with keeping a URL fragment.  Let's just make sure it works as URL fragments are supposed to.  That requires a definition of local, as Justin says, and a definition of the default resolution behavior of a bare DID to be returning a DID document
+[2019-08-22T21:00:41.659Z]	<markus_sabadello>	ack jonathan_holt
+[2019-08-22T21:00:45.237Z]	<markus_sabadello>	ack Justin_R
+[2019-08-22T21:00:47.901Z]	<bbarnhill>	jonathan_holt: I think it was because the HTTP fragment treatment was limiting and we have the opportunity to architect a broader use. I like Sam’s approach, which would solve my use case regarding parsing keys specific to our approach and or the wallet application.
+[2019-08-22T21:00:50.945Z]	<markus_sabadello>	q+
+[2019-08-22T21:02:59.567Z]	<dmitriz>	that's interesting! (re mime type not http scheme)
+[2019-08-22T21:02:59.648Z]	<burn_>	+1 Justin
+[2019-08-22T21:03:13.707Z]	<bbarnhill>	Justin_R: I’ll echo what Jonathan was just saying. In a lot of ways we have an opportunity to find something better here. The problem I see here is that there are two distinct and conflicting ways to what the fragment means. One is a URL style fragment addressing something related to service endpoint, the other is that it is a pointer to something  in the document. The second is more in line with the xpointer style path use.  Also keep in mind it is [CUT]
+[2019-08-22T21:03:14.224Z]	<bbarnhill>	side not the HTTP side that defines what the fragment means, it is the MIME-TYPE that defines fragment meaning.
+[2019-08-22T21:03:17.163Z]	<sam_smith>	@dmitri I think that only in one sense are the two the same.  the fact we are having this discussion means that there are other cases where they are not
+[2019-08-22T21:03:18.790Z]	<dmitriz>	that /does/ suggest that it's individual to each did method.
+[2019-08-22T21:03:26.135Z]	<burn_>	People have been conflating dereferencing and resolution
+[2019-08-22T21:03:58.543Z]	<bbarnhill>	Markus_Sabadello: Strictly speaking the spec is distinguishing between the data model and JSONLD is only one format of the data model. So the fragment may work a different way in that case.
+[2019-08-22T21:03:59.781Z]	<jonathan_holt>	+1 interesting re mime type
+[2019-08-22T21:04:14.528Z]	<bbarnhill>	+1 for burn_’s observation.
+[2019-08-22T21:05:15.401Z]	<bbarnhill>	markus_sabadello: I think it’s in line with how classic Linked Data works, such as with SOLID. For example Tim BL’s Cool URIs Don’t Change.
+[2019-08-22T21:05:17.239Z]	<dmitriz>	q+ to ask about what our conceptual equivalent of mime-types is.
+[2019-08-22T21:05:49.034Z]	<markus_sabadello>	https://docs.google.com/document/d/1-aHdUyhzUNWPU_kZ2ICnyBguZmN1jUidaRlIcqYgYuI/
+[2019-08-22T21:06:11.046Z]	<bbarnhill>	markus_sabadello: For example the RDF can select a resource from that DID document. On the other hand I can also see the advantages of the matrix parameter.  See link to Drummond Reed’s note on algorithm construction of DID parameters.
+[2019-08-22T21:06:22.862Z]	<burn_>	From https://tools.ietf.org/html/rfc3986#section-3.5 :  Fragment identifiers have a special role in information retrieval    systems as the primary form of client-side indirect referencing,    allowing an author to specifically identify aspects of an existing    resource that are only indirectly provided by the resource owner.  As    such, the fragment identifier is not used in the scheme-specific    processing of a URI; instead, the fragment identifier is separated
+[2019-08-22T21:06:27.156Z]	<markus_sabadello>	q?
+[2019-08-22T21:06:31.174Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T21:06:39.534Z]	<bbarnhill>	markus_sabadello: I am undecided as to which to choose.
+[2019-08-22T21:06:44.603Z]	<burn_>	from the rest of the URI prior to a dereference, and thus the    identifying information within the fragment itself is dereferenced    solely by the user agent, regardless of the URI scheme.
+[2019-08-22T21:06:45.121Z]	<sam_smith>	+1 to Drummand's analysis. I think th RDF interpretation is to special of a case.
+[2019-08-22T21:07:06.196Z]	<sam_smith>	Thats why I call it a grandfathered in ugly compromise
+[2019-08-22T21:08:24.479Z]	<bbarnhill>	dmitriz: Follownig Justin’s reminder. Since it is URL specific and not MIME-TYPE specific the way we treat it, then shouldn’t it be fragments should not be handled differently across the different methods. It does also elegantly solve the problem of the service endpoints, as it resolved to a different MIME-Type. My proposal is that we let the semantics in the document linked to help resolve that.
+[2019-08-22T21:08:52.080Z]	<bbarnhill>	burn_: The quote I dropped in above is the part that explains what a fragment is and how it works.
+[2019-08-22T21:09:24.466Z]	<bbarnhill>	q+ To answer whether we are doing 1 hr or 1.5 today?
+[2019-08-22T21:09:55.831Z]	<markus_sabadello>	q?
+[2019-08-22T21:09:58.494Z]	<markus_sabadello>	ack dmitriz
+[2019-08-22T21:10:01.752Z]	<bbarnhill>	burn_: Can I get an example from Sam?
+[2019-08-22T21:10:43.094Z]	<bbarnhill>	markus_sabadello: We are doing 1.5 hour call today.
+[2019-08-22T21:11:08.623Z]	<bbarnhill>	s/burn_: Can/Jonathan_Holt: Can
+[2019-08-22T21:12:01.088Z]	<bbarnhill>	sam_smith: The dereferencing step is where you figure out what kinds of access you have with the resource. The resolution is where you do something, actually doing the get or fetch of the resource.
+[2019-08-22T21:12:03.580Z]	<Justin_R>	q+ to talk about URI semantics
+[2019-08-22T21:14:10.092Z]	<Justin_R>	+1 to this call for precision
+[2019-08-22T21:14:30.671Z]	<sam_smith>	If we specify that an empty path means the default path is the did document then the mime type is that of the did document.  So using a DID fragment makes sense in that case but we have narrowly defined what a DID fragment means as a standard. This is too restrictive. There are many different ways it could be defined not merely an JSON-LD RDF ID component.  Whereas a matrix parameter allows us to special case the RDF component used case without constra[CUT]
+[2019-08-22T21:14:37.379Z]	<bbarnhill>	sam_smith: Actually, it is the other way. Resolution is the first part. Dereferencing is where you do op, e.g. a fetch. A fetch is not the only thing you can do with a document. I think we have effectively defined the dereferencing behavior for a bare DID to be returning the DID document for the DID. In all cases the fragment processing is a local operation on what is returned. In the case of a bare DID that is the document. In the case of a service en[CUT]
+[2019-08-22T21:14:37.904Z]	<bbarnhill>	that isn’t the DID document. I think we are kind of loose in how we get a DID document. I think we are clearer then it would be more in line with traditional fragment processing.
+[2019-08-22T21:14:40.181Z]	<sam_smith>	ways a fragment could be locally interpreted.
+[2019-08-22T21:14:52.826Z]	<markus_sabadello>	ack bbarnhill
+[2019-08-22T21:14:53.576Z]	<bbarnhill>	q-
+[2019-08-22T21:14:58.522Z]	<markus_sabadello>	ack Justin_R
+[2019-08-22T21:14:59.157Z]	<burn_>	s/sam_smith:/burn:/
+[2019-08-22T21:16:34.768Z]	<markus_sabadello>	q+
+[2019-08-22T21:17:05.300Z]	<burn_>	Thank you Justin.  I gave the general rules but only implied behavior in our DID case.  Justin is properly describing how this applies in our case.
+[2019-08-22T21:17:59.726Z]	<dmitriz>	markus: i think you have that diagram, no?
+[2019-08-22T21:17:59.837Z]	<bshambaugh>	q+
+[2019-08-22T21:18:33.608Z]	<sam_smith>	+1 +
+[2019-08-22T21:18:40.422Z]	<burn_>	Yes, +1 exactly
+[2019-08-22T21:18:41.857Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T21:18:46.227Z]	<bbarnhill>	Justin_R: Someone asked what it meant that fragment was not part of the scheme specific processing. You can have a http, gopher, or ftp URL with a fragment on it. In all three if the returned result is the same then all three clients are supposed to do the same thing. The fragment has nothing to do with how you get it across the wire. The DID scheme should say how to do with everything except the fragment, to comply with URL semantics. DID documents ca[CUT]
+[2019-08-22T21:18:46.862Z]	<bbarnhill>	things, DID service documents can define something special something, but DIDs really shouldn’t. This comes back to that we don’t have a single server and client model. It would help if someone drew a diagram of what all of those different parts look like. I think that would answer the question of whether something was a better fit for a matrix parameter. Am I asking for a DID on the far side, or am I fetching something on the far side and processi[CUT]
+[2019-08-22T21:18:47.541Z]	<bbarnhill>	return a result. The DID scheme does not get to say, or is not supposed to say, what the fragment does.
+[2019-08-22T21:19:06.121Z]	<burn_>	s/+1 exactly/+1 exactly, Justin/
+[2019-08-22T21:20:09.689Z]	<bbarnhill>	markus_sabadello: Would you agree that if you have an HTTP URL like this https://mydomain.me/profile.jsonld#keys-1 did:ex:123#keys-1 are to the same result.
+[2019-08-22T21:20:11.671Z]	<markus_sabadello>	q?
+[2019-08-22T21:20:14.375Z]	<bbarnhill>	Justin_R: Yes
+[2019-08-22T21:20:51.383Z]	<bbarnhill>	burn_: The root of the problem is that we have interpreted for the client how to interpret the fragment. Is that correct?
+[2019-08-22T21:21:19.306Z]	<markus_sabadello>	q+
+[2019-08-22T21:21:28.467Z]	<jonathan_holt>	i think we deferred MIME type back in Barcelona and now it is rearing it head
+[2019-08-22T21:21:40.152Z]	<bbarnhill>	Justin_R: If we are saying that we shouldn’t be. It’s not our business to say that in the MIME Type specification, but could in the DID document specification. We can’t be sloppy about where we are drawing those lines.
+[2019-08-22T21:22:11.831Z]	<sam_smith>	Quoting did spec:  Implementers are strongly discouraged from using a DID fragment for anything other than a method-independent reference into the DID Document to identify a component of a DID Document (e.g. a unique key description or service endpoint).
+[2019-08-22T21:22:22.344Z]	<jonathan_holt>	q+
+[2019-08-22T21:22:36.430Z]	<sam_smith>	This is the spec forcing a single interpretation of the fragment
+[2019-08-22T21:22:46.741Z]	<jonathan_holt>	q-
+[2019-08-22T21:22:56.852Z]	<bbarnhill>	ChristopherA: Yes, that’s more specific. The browser can scroll to that portion of the document and see that if it chooses to. The client software can always choose to display the result in a different way, but the semantics are clear.
+[2019-08-22T21:24:20.040Z]	<bshambaugh>	https://tools.ietf.org/html/rfc7686
+[2019-08-22T21:24:25.101Z]	<bshambaugh>	onion
+[2019-08-22T21:24:48.464Z]	<bshambaugh>	tor network
+[2019-08-22T21:25:05.128Z]	<bbarnhill>	Onion Router…usually will hear of it called TOR
+[2019-08-22T21:25:17.830Z]	<burn_>	Nice example, since the fragment is interpreted by my user agent regardless of whether we use Tor, http, ftp, etc.
+[2019-08-22T21:25:22.792Z]	<markus_sabadello>	q?
+[2019-08-22T21:25:26.331Z]	<markus_sabadello>	ack bshambaugh
+[2019-08-22T21:25:43.666Z]	<burn_>	Meaning it is in the domain of my user agent to process it
+[2019-08-22T21:26:03.594Z]	<bbarnhill>	markus_sabadello: We should be familiar with the dereferencing and how that is used for URLs vs DIDs. Not sure if we have a conclusion or consensus in relation to Sam’s concerns. I think we need to think it through a bit more.
+[2019-08-22T21:28:02.024Z]	<Justin_R>	+1
+[2019-08-22T21:28:14.115Z]	<Justin_R>	exactly, the important thing is who does what with which piece of the DID URL
+[2019-08-22T21:28:21.564Z]	<bbarnhill>	markus_sabadello: One other thing, related to Justin’s comment about an block-diagram of architecture, and what does it mean to do something locally, and what does it mean to be a client. In the current spec there is a section about how the resolver can be local or remote, etc. Also, how there can be different variations of all of that. I was thinking about that and the alg. processing of a DID URL and then I tried to imagine how that fits together w[CUT]
+[2019-08-22T21:28:22.115Z]	<bbarnhill>	architecture. So if we have a diagram that shows processing and then we could related that to an architecture diagram of the building blocks, I think that was what Justin was saying.
+[2019-08-22T21:28:22.911Z]	<Justin_R>	I think everyone's got a different idea
+[2019-08-22T21:29:27.232Z]	<burn_>	q+
+[2019-08-22T21:29:41.299Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-22T21:29:45.935Z]	<markus_sabadello>	ack burn_
+[2019-08-22T21:29:49.327Z]	<bbarnhill>	markus_sabadello: We can address that next time.
+[2019-08-22T21:30:24.301Z]	<bbarnhill>	q+
+[2019-08-22T21:31:39.671Z]	<bbarnhill>	bbarnhill: I recommend an issue to discuss, then someone can do a pull request.
+[2019-08-22T21:31:58.683Z]	<bbarnhill>	??: Someone can also start a thread on the mailing list.
+[2019-08-22T21:32:15.534Z]	<burn_>	s/??/sam_smith
+[2019-08-22T21:32:18.535Z]	<bbarnhill>	rrsagent, generate minutes
