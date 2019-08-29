@@ -1,0 +1,129 @@
+[2019-08-29T20:10:23.731Z]	<agropper>	markus: DDR dereferencing... DID URLs with paths, fragments, many discussions... to what extent to specify
+[2019-08-29T20:11:30.221Z]	<agropper>	...showed flow chart last time 1- Service endpoint selelction 2- select part of DID document as fragment 3 - DID just returns the document
+[2019-08-29T20:12:08.492Z]	<agropper>	... more ideas coming from the community Two ma
+[2019-08-29T20:12:52.949Z]	<agropper>	... Two major concerns: Way too complicated - DID resolutiuon should just be simple, DID doc returned only
+[2019-08-29T20:13:55.428Z]	<agropper>	... other main concern was the treatment of the fragments - looks like we're overdefining the scheme for fragments instead of using the spec or mime-types
+[2019-08-29T20:14:16.421Z]	<markus_sabadello>	q?
+[2019-08-29T20:15:49.789Z]	<agropper>	... Here's an updated version of the diagram - Separates the fragment only at the end
+[2019-08-29T20:16:46.165Z]	<agropper>	... if there's a matrix paramter called service, then ??? otherwise just return the DID document
+[2019-08-29T20:17:14.910Z]	<agropper>	.... Sam said what DID URL should be left to the user
+[2019-08-29T20:17:42.683Z]	<agropper>	Sam: Always return the DID Document if you don't know what else tp do
+[2019-08-29T20:18:39.863Z]	<agropper>	Markus: That's what the new diagram captures. Spec says how processing of the matrix parameter works. If the DID URL is just DID itsel just return the DID document
+[2019-08-29T20:19:09.666Z]	<agropper>	... curren writeup is misleading - we need to change it next week at RWoT
+[2019-08-29T20:19:43.480Z]	<Justin_R>	q+ to ask about fragment
+[2019-08-29T20:19:45.917Z]	<agropper>	curren > current
+[2019-08-29T20:19:50.385Z]	<Justin_R>	present+
+[2019-08-29T20:19:59.507Z]	<agropper>	presen t+
+[2019-08-29T20:20:07.380Z]	<agropper>	present+
+[2019-08-29T20:20:11.825Z]	<rhiaro>	present+
+[2019-08-29T20:21:23.787Z]	<agropper>	Markus: Justin has reminded us it depends what the primary resource and its mime type. Handling the fragment is being specified b the mime type of the DID document which in our case is JSON-LD
+[2019-08-29T20:21:38.048Z]	<markus_sabadello>	q?
+[2019-08-29T20:21:42.727Z]	<markus_sabadello>	ack Justin_R
+[2019-08-29T20:21:42.776Z]	<agropper>	... that gets us the secondary part like a key or service endpoint
+[2019-08-29T20:21:47.000Z]	<jonathan_holt>	q+
+[2019-08-29T20:21:51.457Z]	<jonathan_holt>	present+ jonathan_holt
+[2019-08-29T20:22:08.035Z]	<SamSmith>	q+
+[2019-08-29T20:22:41.385Z]	<agropper>	Justin: from this diagram, if I have a piece of sw that is managing and a separate module for the DID Document, then I sould get the same result if I give it with or without the fragment
+[2019-08-29T20:23:36.557Z]	<agropper>	... what happens where? If you look how browsers work, it seems that this would be the same kind of model, need clarity of the differencet pieces
+[2019-08-29T20:24:41.451Z]	<agropper>	markus: this doesn't show where things happen - in the past other diagrams show the building blocks - local SDK or comand line vs. other method ledgers
+[2019-08-29T20:25:08.338Z]	<markus_sabadello>	q?
+[2019-08-29T20:25:17.239Z]	<agropper>	... or could be remote via HTTP. We have not discussed how this reltes to the processing
+[2019-08-29T20:26:28.198Z]	<agropper>	Justin: If my browser talks to a reverse proxy server - I actually don't care - I expect to get back the same results because the back end system the DID resolver should or maybe MUST not rely on the fragment to make processing decisions
+[2019-08-29T20:26:30.735Z]	<markus_sabadello>	ack jonathan_holt
+[2019-08-29T20:27:17.862Z]	<agropper>	jonathan: the fragment in the current HTTP world goes to a DOM
+[2019-08-29T20:28:15.663Z]	<agropper>	justin: the processing should be separate from how you get the document - if I hand a URL with a fragment to a DID resolver, then maybe we should require the resolver to strip the fragment
+[2019-08-29T20:28:58.389Z]	<agropper>	jonathan: I agree - this is heavily reliant on JSON-LD so it is an opportunity to improve
+[2019-08-29T20:29:20.755Z]	<agropper>	justin: disagree - we can do better but the local vs. remote is to be avoided
+[2019-08-29T20:29:57.932Z]	<agropper>	jonathan: we've been trying to do IPLD and still having a lot of issues with JSON-LD parsers all agreeing
+[2019-08-29T20:30:23.039Z]	<Justin_R>	@agropper: clarification, the "local vs. remote" split is NOT to be avoided here
+[2019-08-29T20:30:37.814Z]	<agropper>	dmitri: this is regardless of JSON-LD What happens when fetcing the document is not related to the parser at all
+[2019-08-29T20:30:53.540Z]	<agropper>	justin: exactly - let's be c;ear about that
+[2019-08-29T20:31:13.022Z]	<agropper>	jonathan: discussion of mime-tipes has been shelved
+[2019-08-29T20:31:16.217Z]	<SamSmith>	I think an issue is that dereferencing
+[2019-08-29T20:31:38.377Z]	<markus_sabadello>	q?
+[2019-08-29T20:31:44.983Z]	<markus_sabadello>	ack SamSmith
+[2019-08-29T20:31:45.187Z]	<agropper>	markus: whatyou're doing is compatible butmaybe the fragment may work in a dig=fferent way
+[2019-08-29T20:32:48.906Z]	<agropper>	sams: to what Justin started - the diagram - historically the way the DID spec was written, fragment was added as a mechanism for extracting meant the resolver would also resove the fragment
+[2019-08-29T20:33:31.834Z]	<agropper>	... the source of it is the fact that the fragment was a syntactic hook for allowing a single-page app to use Ajax w/o requesting the whole DOM
+[2019-08-29T20:34:04.153Z]	<Justin_R>	+1, let's not bastardize things just because we're used to it
+[2019-08-29T20:34:15.504Z]	<agropper>	.... the push state was added in HTML5. I see the fragment here is overloaded so we can avoid doing the JSON-LD stuff locally
+[2019-08-29T20:34:57.034Z]	<agropper>	... do we allow the recipient to do local interpretation? I think that's where the problem comes from, like "push state".
+[2019-08-29T20:35:32.323Z]	<agropper>	...special case of dereferencing the fragment -
+[2019-08-29T20:36:03.600Z]	<markus_sabadello>	q?
+[2019-08-29T20:36:04.349Z]	<agropper>	... at least in your diagram you've added emty path empty query - not MUST in all cases
+[2019-08-29T20:36:08.544Z]	<dmitriz>	q+
+[2019-08-29T20:36:17.778Z]	<jonathan_holt>	+1 to not overload the fragment
+[2019-08-29T20:36:41.813Z]	<agropper>	markus: shares more diagrams where
+[2019-08-29T20:36:44.222Z]	<agropper>	https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/
+[2019-08-29T20:37:20.546Z]	<dmitriz>	q-
+[2019-08-29T20:37:59.958Z]	<agropper>	markus: Here's one example - executes inside the resolver - pass in entire DID URL including path and matrix parameter but not the fragment
+[2019-08-29T20:38:03.357Z]	<SamSmith>	What I am saying is that push state fixed the bastardization of fragment that single page apps introduced. And similarly the current did fragment is bastardizing fragment and we can fix it by doing the equivalent of push state but with a matrix parameter
+[2019-08-29T20:38:49.808Z]	<markus_sabadello>	q?
+[2019-08-29T20:38:59.617Z]	<agropper>	sass: I added a document with a lot of non-standard but often used patterns - we can make it work either way
+[2019-08-29T20:39:17.867Z]	<agropper>	.... follow Drummond's recommendation is not the current way
+[2019-08-29T20:40:15.596Z]	<agropper>	markus: this is jst a start, not a concrete proposal - still needs to be written down - to relate the processing rules to where things happen
+[2019-08-29T20:40:53.902Z]	<agropper>	... resolver can belocal or remote - I think this is the closest thing to how browsers work - does not pass the fragment to the server
+[2019-08-29T20:42:32.079Z]	<agropper>	... two more variations: 1) a very thin resolver - returns only DID Document and does rest locally inside the client - this is same as before
+[2019-08-29T20:43:16.078Z]	<Justin_R>	q+
+[2019-08-29T20:43:17.703Z]	<dmitriz>	q+
+[2019-08-29T20:43:27.328Z]	<agropper>	... in other cases we might want to pass only the DID to the resolver. Separately, a version with a very heavy-weight resolver that takes the fragment as well
+[2019-08-29T20:43:59.568Z]	<Justin_R>	q-
+[2019-08-29T20:44:05.622Z]	<agropper>	... very different from how HTTP and browsers work - do we want this for some cases? I don't know.
+[2019-08-29T20:44:05.845Z]	<markus_sabadello>	q?
+[2019-08-29T20:44:09.812Z]	<Justin_R>	q+
+[2019-08-29T20:44:24.694Z]	<markus_sabadello>	ack dmitriz
+[2019-08-29T20:44:25.778Z]	<drummond>	ack dmitriz
+[2019-08-29T20:44:45.120Z]	<drummond>	q?
+[2019-08-29T20:45:32.928Z]	<markus_sabadello>	q+
+[2019-08-29T20:45:36.871Z]	<SamSmith>	yes +1
+[2019-08-29T20:45:39.560Z]	<agropper>	dmitri: two things: would it help to differentiate client from resolver? second: questio has anyone encountered DID path outside the context of a sevice parameter
+[2019-08-29T20:45:39.607Z]	<drummond>	q+
+[2019-08-29T20:45:50.061Z]	<SamSmith>	Key management  Derived Dids
+[2019-08-29T20:46:07.466Z]	<agropper>	... some of our clients are using hash fragments - has anyone used the path for anything
+[2019-08-29T20:46:09.087Z]	<drummond>	Ah, Sam, that's what I put myself on the queue to say!
+[2019-08-29T20:46:13.481Z]	<drummond>	q-
+[2019-08-29T20:46:20.745Z]	<jonathan_holt>	q+ to propose "DID browser" vs "DID resolver"
+[2019-08-29T20:46:46.066Z]	<agropper>	sams: yes - for key management --- active dicussion in Aries on peer DIDs, DID key,
+[2019-08-29T20:47:01.598Z]	<agropper>	dmitri: are they passed to the resolver?
+[2019-08-29T20:47:19.241Z]	<agropper>	sams: sometimes, you don't want the resolver to strip them
+[2019-08-29T20:47:23.369Z]	<markus_sabadello>	q?
+[2019-08-29T20:47:46.285Z]	<agropper>	.... want to allow for those use cases because it makes for lighter DID uses
+[2019-08-29T20:47:52.032Z]	<markus_sabadello>	ack Justin_R
+[2019-08-29T20:48:07.625Z]	<drummond>	q?
+[2019-08-29T20:49:09.367Z]	<agropper>	justin: first 2 diagrams make sense because it draws the line - client doesthe same things in both cases - the third diagram does not make sens because it breaks the lines -
+[2019-08-29T20:49:52.730Z]	<agropper>	... furthermore, if your quandary is about complexity, you can accomplis this with another box in the middle that could be separate from the client itself
+[2019-08-29T20:49:52.820Z]	<SamSmith>	like ngnx
+[2019-08-29T20:51:03.654Z]	<agropper>	... the client effectively still encompasses the first or second diagram - here's a DID URL w/o a fragment - DID resolution + document processing
+[2019-08-29T20:52:05.069Z]	<agropper>	... to be deterministic, we need to be really clear about what I send and what I get back - I can do more processing locally but I don't care
+[2019-08-29T20:52:28.151Z]	<drummond>	+1 to "fragment processinging being a leaf node operation"
+[2019-08-29T20:52:43.157Z]	<agropper>	... important that fragment processin is a leaf-node operation. In other words, combine the first two diagrams
+[2019-08-29T20:53:02.768Z]	<markus_sabadello>	q?
+[2019-08-29T20:53:13.691Z]	<agropper>	drummond: you can have it both ways
+[2019-08-29T20:53:15.271Z]	<SamSmith>	q+
+[2019-08-29T20:53:52.335Z]	<markus_sabadello>	ack markus_sabadello
+[2019-08-29T20:53:54.620Z]	<SamSmith>	If we ban the third diagram then why do we need the middle Decision block
+[2019-08-29T20:54:03.906Z]	<agropper>	justin: third diagram is incompatible - fragment based operations only happen here - resolver must not depend on fragment
+[2019-08-29T20:54:52.713Z]	<agropper>	marku: agree first ansecond diagram can be combined / third diagram would not be called a resolver
+[2019-08-29T20:55:20.433Z]	<agropper>	markus: DID resolution is non-fragment dereferencing
+[2019-08-29T20:55:47.373Z]	<drummond>	+1 to trying to figuring the roles precisely
+[2019-08-29T20:56:06.308Z]	<drummond>	+1 to these diagrams being extremely helpful. Huge kudos to Markus.
+[2019-08-29T20:56:10.057Z]	<agropper>	justin: this is a good time to name pieces and have strict definitions - thanks markus for very helpful diagrams
+[2019-08-29T20:57:06.496Z]	<agropper>	markus: matrix parameters can influence dereferencing process also content references - how to define adjacent resources - may be spec or method specific
+[2019-08-29T20:57:14.200Z]	<markus_sabadello>	q?
+[2019-08-29T20:58:37.110Z]	<agropper>	SamS: to clarify: if we get rid of third diagram - it seems like the middle blog doesn't need to be there - otherwise just pass????
+[2019-08-29T20:59:12.528Z]	<agropper>	... if we don't pass the fragment to the resolver ---
+[2019-08-29T20:59:26.064Z]	<agropper>	justin: not my understanding
+[2019-08-29T20:59:38.514Z]	<markus_sabadello>	ack SamSmith
+[2019-08-29T20:59:58.370Z]	<markus_sabadello>	ack jonathan_holt
+[2019-08-29T21:00:37.830Z]	<Justin_R>	+1, a web browser includes an HTTP client
+[2019-08-29T21:00:46.202Z]	<agropper>	jonathan: maybe we should have the DID browser spec vs. DID resolver - or DID parsing dereferencing
+[2019-08-29T21:00:48.841Z]	<Justin_R>	(names are hard)
+[2019-08-29T21:02:06.711Z]	<agropper>	.... in IPID the entire DID graph used a JSON pointers ?
+[2019-08-29T21:02:25.726Z]	<agropper>	markus: versioning is a separate issue
+[2019-08-29T21:02:54.163Z]	<drummond>	I have to drop - sorry for the short visit today - my SSI Meetup webinar when waaaaay long
+[2019-08-29T21:03:15.570Z]	<agropper>	jonathan: some internal conflict because people want to do ?
+[2019-08-29T21:03:28.425Z]	<drummond>	+1 for spending a call looking at Jonny's DID method
+[2019-08-29T21:03:40.439Z]	<agropper>	markus: IPLD is not using JSON-LD and we should not assume
+[2019-08-29T21:03:43.112Z]	<SamSmith>	+1 to looking as Jonathan's usage
+[2019-08-29T21:04:14.867Z]	<markus_sabadello>	q?
+[2019-08-29T21:04:17.100Z]	<agropper>	bye
