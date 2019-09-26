@@ -1,0 +1,88 @@
+[23:01] == markus_sabadello [~markus_sabadello@public.cloak] has joined #ccg
+[23:06] == sethi_Shivam [~sethi_Shivam@public.cloak] has joined #ccg
+[23:06] <sethi_Shivam> present+
+[23:07] <markus_sabadello> present+
+[23:07] == burn [~burn@public.cloak] has joined #ccg
+[23:08] <burn> present+
+[23:08] == SamSmith [~SamSmith@public.cloak] has joined #ccg
+[23:09] * burn is having connection issues and my end up dropping
+[23:09] * burn may
+[23:09] == jonathan_holt [~jonnycrunch@public.cloak] has joined #ccg
+[23:09] == chrisboscolo [~chrisboscolo@public.cloak] has joined #ccg
+[23:11] <burn> scribe: SamSmith
+[23:11] <SamSmith> RWOT topics DID resolution and transforming DID documents by resolvers
+[23:11] <SamSmith> two topics proposed: DID Resolution and DID Doc transformation
+[23:12] <SamSmith> One more thing about W3C DID working group with first meeting in Japan
+[23:12] * burn Sam if you record what someone says preface with their nick, a colon, and a space.  For example, "markus_sabadello: blah blah"
+[23:13] * burn most irc clients support tab completion, where typing the first few characters of a nick and hitting <tab> will pop up the rest
+[23:13] <SamSmith> markus:  difference between DID resolution aegis and DID spec
+[23:13] <markus_sabadello> https://github.com/WebOfTrustInfo/rwot9-prague/blob/master/draft-documents/did-resolution-v2.md
+[23:13] * burn losing connection have to drop, sorry folks
+[23:13] <SamSmith> markus:  summary doc from RWOT on Did resolution
+[23:14] == burn [~burn@public.cloak] has quit ["Page closed"]
+[23:15] <SamSmith> markus: DID resolver architecture issues with local vs remote of DID resolver and ledger.  Suggested verifiable read and unverifiable read or DID registry.
+[23:16] <SamSmith> markus: so few attendees so no need to use queue
+[23:17] <SamSmith> jonathan:  presentation of did doc by resolver is a cryptographic attestation the resolver could sign the result
+[23:22] <SamSmith> sam smith: roots of trust  did controller private key, ledger and resolver. what is root of trust of a resolver.
+[23:25] <SamSmith> markus: section in document on security issues
+[23:25] <SamSmith> markus: pull request on verifiable and unverifiable read.
+[23:26] <SamSmith> jonathan:  analogy to SSL proxies  root of trust  for certificates  and understanding who controls an infrastrcuture.
+[23:27] <SamSmith> Jonathon: trust framework for root of trust signature
+[23:28] <SamSmith> Jonathon: DID browser does the resolving
+[23:29] <SamSmith> markus:  seque to where processing should occur alignment on dereferencing
+[23:30] <SamSmith> markus: fragment should be dereferenced locally just dependent on mime type and local scope
+[23:30] == Guest84 [~textual@public.cloak] has quit [Ping timeout: 180 seconds]
+[23:31] <SamSmith> markus:  Dereference process has a narrow set of cases that could short circuit the generic case. Otherwise by default rules  which is not a special case.
+[23:32] <markus_sabadello> SamSmith: we don't want to limit the ability of application developers to design path, query
+[23:33] <markus_sabadello> SamSmith: e.g. path, query should be handled by the client application; the resolver should not use it
+[23:33] == kyle_denhartog [~kyle_denhartog@public.cloak] has joined #ccg
+[23:35] <markus_sabadello> SamSmith: perhaps we should introduce an "id" matrix parameter instead of fragment
+[23:35] <markus_sabadello> SamSmith: to avoid special processing rules for fragment
+[23:36] <markus_sabadello> SamSmith: compare this with the use of fragment in certain HTML frameworks that (ab)use it for ajax/push state
+[23:36] <markus_sabadello> SamSmith: fragment should be used for what it was originally intended for
+[23:37] <markus_sabadello> SamSmith: the JSON-LD use of the fragment may be problematic in a similar way
+[23:40] <SamSmith> markus:  default is path or query is interpreted.
+[23:40] == Karen [Karen@public.cloak] has quit ["My MacBook has gone to sleep. ZZZzzz…"]
+[23:40] <SamSmith> jonathon:  concern about implementers doing it wrong or inconsistent
+[23:40] <markus_sabadello> jonathan_holt: in my experience JSON-LD parsers are not deterministic, they give different results
+[23:41] <SamSmith> jonathon: concern about DAG traversal and Sync by overloading use of the fragment keeping is elegantly simple to comprehend
+[23:42] <SamSmith> poll:  ?
+[23:42] <SamSmith> jonathan: question  key by id is just the current did document not all versions
+[23:42] <SamSmith> markus: just current DID document
+[23:43] <SamSmith> jonathan:  spec confustion
+[23:43] <SamSmith> Markus: dedicated call on versioning
+[23:45] <SamSmith> poll:  2 for id  1 more if support versioning. 1 either    abstain 3
+[23:45] <SamSmith> Kyle:  concern more about versioning and immutability of id parameter across versions
+[23:49] <SamSmith> Oliver: supports ID notation for service if there is a restriction on multiple ids
+[23:50] <SamSmith> jonathan: could add service-type to resolve the id to a given type which means restriction is limited to to one of each type in did doc.
+[23:50] <SamSmith> markus: service type discussions did not admit service-type into final did spec
+[23:51] <markus_sabadello> previous PR for service-type parameter: https://github.com/w3c-ccg/did-spec/pull/191
+[23:51] <SamSmith> markus: maybe could reopen discussion
+[23:52] <markus_sabadello> topic proposed by Oliver_Terbu: https://github.com/w3c-ccg/did-resolution/issues/46
+[23:52] <SamSmith> Oliver: JOSE stack compliance JWKs self issued URIs sets
+[23:52] <SamSmith> oliver: JWKS JSON WEB KEY SETS
+[23:54] <SamSmith> oliver: URIs open id connect parameters that come from JWKS  so allow better backward compatibility with open id connect.
+[23:54] <SamSmith> oliver; related to public key multi-codec proposal
+[23:56] <SamSmith> markus:  related to broader topic expanding relative URIs to absolute URIs  public keys referenced in one part of did doc to another part. Resolver could move it mutating did doc.
+[23:57] == Karen [Karen@public.cloak] has joined #ccg
+[00:02] <SamSmith> sam:  mutations should only be done in local infrastructure not core did resolution because they are not verifyabile
+[00:04] <SamSmith> markus:  did docs are generated dynamically by method not store as plain text.  so could be resolver option that are input to method so equally verifiable not untrusted transformations
+[00:05] == oliver [~oliver@public.cloak] has joined #ccg
+[00:05] <SamSmith> jonathan:  question is how to fetch JWKS via uri pointing to URI  so how to resolve to key
+[00:05] <oliver> { "keys": [   {     "alg": "RS256",     "kty": "RSA",     "use": "sig",     "x5c": [       "MIIC+DCCAeCgAwIBAgIJBIGjYW6hFpn2MA0GCSqGSIb3DQEBBQUAMCMxITAfBgNVBAMTGGN1c3RvbWVyLWRlbW9zLmF1dGgwLmNvbTAeFw0xNjExMjIyMjIyMDVaFw0zMDA4MDEyMjIyMDVaMCMxITAfBgNVBAMTGGN1c3RvbWVyLWRlbW9zLmF1dGgwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMnjZc5bm/eGIHq09N9HKHahM7Y31P0ul+A2wwP4lSpIwFrWHzxw88/7Dwk9QMc+orGXX95R6av4GF+Es/nG3uK45ooMVMa/hYCh0Mtx3gnSuoTavQEkLzCvSwTqVwzZ+5nouk[CUT]
+[00:05] <SamSmith> oliver: complication is querying for the key set not just the key
+[00:08] <SamSmith> oliver; unordered list of son web keys or dict with names.  Or some recoding to any
+[00:09] <SamSmith> chris:  challenge is there additional information if not then could just use existing formats and then let something else manipulate it. Left to the OPenid connect software after it reads the did.
+[00:09] <SamSmith> chris: if there is additional information then that is a problem
+[00:10] <SamSmith> chris:  D. Buckner pushing for way to reference public keys instead of including them in DID doc.
+[00:11] <SamSmith> oliver: what is the conclusion do we want to have the transformation
+[00:12] <SamSmith> markus:  could be options that resolver could support.  i don't know I would like to think about it.
+[00:16] <markus_sabadello> SamSmith: this may lead to many more parameters, for basically anything people would ever want to do with DID Documents
+[00:17] == sethi_Shivam [~sethi_Shivam@public.cloak] has quit ["Page closed"]
+[00:20] <SamSmith> chris: There software would have to know in advance which methods support which options and open id connect user would have to be able to detect which
+[00:22] <markus_sabadello> oliver: is there a way to discover a resolver's supported features?
+[00:22] <markus_sabadello> markus: this has come up before but hasn't been discussed in depth
+[00:23] <SamSmith> oliver: makes sense to have discussion at IIW how to make mutations and mutation verifiable such as supporting JWKS
+[00:24] == oliver [~oliver@public.cloak] has quit ["Page closed"]
+[00:24] == kyle_denhartog [~kyle_denhartog@public.cloak] has quit ["Page closed"]
+
