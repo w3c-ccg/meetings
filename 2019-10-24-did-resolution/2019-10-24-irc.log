@@ -1,0 +1,54 @@
+[2019-10-24T20:11:47.960Z]	<kdenhartog>	kdenhartog: still learning how to scribe
+[2019-10-24T20:12:47.886Z]	<kdenhartog>	markus_sabadello: last week we talked about pull request #47 which talks about dereferencing DID URLs
+[2019-10-24T20:13:51.315Z]	<kdenhartog>	markus_sabadello: The PR now takes into account how a DID URL works and matches URIs better
+[2019-10-24T20:14:58.194Z]	<kdenhartog>	markus_sabadello: It also explains in greater detail how resolution occurs with matrix parameters, query parameters, and fragments
+[2019-10-24T20:15:57.248Z]	<kdenhartog>	markus_sabadello: there was some updates about how dereferencing relates to resolving as well
+[2019-10-24T20:17:00.894Z]	<markus_sabadello>	kdenhartog: haven't had a chance to read through it, but will have a look
+[2019-10-24T20:17:17.841Z]	<markus_sabadello>	kdenhartog: makes sense to align with URL specs
+[2019-10-24T20:17:45.869Z]	<kdenhartog>	jonathan_holt: discussion regarding Sam's comment on the mailing list
+[2019-10-24T20:18:59.240Z]	<kdenhartog>	markus_sabadello: from the discussion the spec doesn't highlight what happens when the service is not found
+[2019-10-24T20:19:23.462Z]	<kdenhartog>	markus_sabadello: suggests that an error should be defined for this case
+[2019-10-24T20:20:04.800Z]	<kdenhartog>	SamS: yeah that makes sense
+[2019-10-24T20:21:22.385Z]	<kdenhartog>	jonathan_holt: thinking about how this could be abused - could an attacker crawl through to discover 404 errors
+[2019-10-24T20:22:19.437Z]	<kdenhartog>	markus_sabadello: we haven't talked much about the errors, you may be able to return the DID Document as well rather than the specific service
+[2019-10-24T20:22:53.094Z]	<kdenhartog>	markus_sabadello: this is still quite extensible with the new updates
+[2019-10-24T20:23:36.182Z]	<kdenhartog>	SamS: now it's clearer in this new PR what's happening in specific cases
+[2019-10-24T20:23:48.622Z]	<kdenhartog>	markus_sabadello: this specification doesn't say anything about what happens with path or query
+[2019-10-24T20:24:13.887Z]	<kdenhartog>	markus_sabadello: it could be left to the did method or it could be at the application
+[2019-10-24T20:24:27.021Z]	<kdenhartog>	SamS: it can't be the application unless the DID Document is returned
+[2019-10-24T20:25:19.446Z]	<kdenhartog>	SamS: proposes that step 3 and 4 can be combined in the PR
+[2019-10-24T20:25:45.065Z]	<kdenhartog>	markus_sabadello: Doesn't want the method to be able to override the logic in step 3
+[2019-10-24T20:26:19.319Z]	<kdenhartog>	jonathan_holt: this doesn't address the MIME type problem discussed last time
+[2019-10-24T20:27:53.362Z]	<kdenhartog>	markus_sabadello: nobody is using two plus in MIME types but it is legal to do this
+[2019-10-24T20:28:52.811Z]	<kdenhartog>	burn: likes these changes. It makes it much clearer
+[2019-10-24T20:31:14.871Z]	<kdenhartog>	markus_sabadello: leveraged a lot of how HTTP works to describe how fragements should be used
+[2019-10-24T20:31:51.712Z]	<kdenhartog>	markus_sabadello: the term "inherits" is found from the HTTP specifications
+[2019-10-24T20:33:23.237Z]	<kdenhartog>	markus_sabadello: the main takeaway is that resolution does not have to be a client server architecture
+[2019-10-24T20:34:09.022Z]	<kdenhartog>	markus_sabadello: Justin has been arguing that the fragment should be applied by the client outside the resolver
+[2019-10-24T20:34:23.906Z]	<kdenhartog>	markus_sabadello: Worked on some new diagrams to describe the architectures
+[2019-10-24T20:34:51.017Z]	<kdenhartog>	markus_sabadello: if they're no more comments about restructuring of the algorithm then he'll merge the PR
+[2019-10-24T20:35:28.635Z]	<kdenhartog>	markus_sabadello: walking through previous architectural diagrams
+[2019-10-24T20:35:47.772Z]	<kdenhartog>	markus_sabadello: showing some new diagrams for resolution
+[2019-10-24T20:36:26.964Z]	<kdenhartog>	markus_sabadello: there are different ways for a client to talk to a resolver
+[2019-10-24T20:36:45.372Z]	<kdenhartog>	then there are different options for how the resolver can talk to the did registry
+[2019-10-24T20:37:33.000Z]	<kdenhartog>	markus_sabadello: working to relate the architecture with the discussions on dereferencing and resolving
+[2019-10-24T20:38:18.087Z]	<kdenhartog>	markus_sabadello: first the client would call the resolver with the dereference of the primary resource
+[2019-10-24T20:38:39.663Z]	<kdenhartog>	markus_sabadello: then the resolver talks to the did registry and performs resolve of the did and the resolver gets back the did doc
+[2019-10-24T20:39:24.049Z]	<kdenhartog>	markus_sabadello: the the client provides the did document and the client dereferences the secondary resource
+[2019-10-24T20:41:50.397Z]	<kdenhartog>	markus_sabadello: shows a second diagram where the client tells the resolver to dereference all aspects - he recogonizes that this diagram is not accurate
+[2019-10-24T20:42:03.955Z]	<kdenhartog>	markus_sabadello: wanted to think about use cases that could be possible
+[2019-10-24T20:45:13.201Z]	<kdenhartog>	markus_sabadello: in these use cases we should be clear that to solve certain use cases we'll need to call out that the client in the architecture diagram can be split when the client can't dereference the fragments
+[2019-10-24T20:45:51.351Z]	<kdenhartog>	burn: one way we could try to talk about this is similar to HTTP where we're fetching the did and getting the key from the did document
+[2019-10-24T20:46:15.017Z]	<kdenhartog>	burn: suggests potential to stay away from discussion where everything ends up being called resolution
+[2019-10-24T20:46:50.417Z]	<kdenhartog>	markus_sabadello: I think that's a good idea, but I think it will be hard to set that. As long as we use it properly in the spec we're good
+[2019-10-24T20:48:13.007Z]	<kdenhartog>	burn: in the IoT use case we can use this in the same way - suggests it's like a proxy
+[2019-10-24T20:48:38.808Z]	<kdenhartog>	burn: the fragmenting part was done by the remote piece aka "proxy"
+[2019-10-24T20:49:56.661Z]	<kdenhartog>	markus_sabadello: showing another diagram where multiple resolvers could be in use
+[2019-10-24T20:50:12.644Z]	<kdenhartog>	markus_sabadello: for example when the client calls to a local resolver which then resolves to a remote resolver
+[2019-10-24T20:53:07.702Z]	<kdenhartog>	markus_sabadello: sharing last example where we're resolving a did with a service paramater and a fragment
+[2019-10-24T20:55:38.428Z]	<kdenhartog>	markus_sabadello: in this case the client provides the URL to the resolver the resolver gets the DID Document from the did registry, dereferences the serive endpoint url and provides that to the client where the client dereferences the fragment
+[2019-10-24T20:56:29.986Z]	<kdenhartog>	burn: points out this work can be done anywhere, but this architecture calls out the complexity quite well. Specifically how the resolver will require specific logic to dereference the service endpoint URL
+[2019-10-24T20:57:14.706Z]	<kdenhartog>	markus_sabadello: should we define a dereferencer in the spec?
+[2019-10-24T20:57:57.746Z]	<kdenhartog>	burn: this would be useful to call out the explicit use of a dereferencer, but we'll have to see how it will impact the spec
+[2019-10-24T20:59:48.706Z]	<kdenhartog>	markus_sabadello: points out that some people won't want to implement it all and will only want to be compliant with certain capabilities
+[2019-10-24T21:00:14.281Z]	<kdenhartog>	burn: this nearly convinces me that dereferencers and resolver capabilities should be different
