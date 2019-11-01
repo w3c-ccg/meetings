@@ -1,0 +1,76 @@
+[2019-10-31T20:07:03.288Z]	<markus_sabadello>	lucas: I will try to scribe today
+[2019-10-31T20:09:02.935Z]	<lucas>	marcus_sabadello: proposing two items to discuss for the call. 1. PR #44 from Kyle (though he may be unable to join) about how the resolver executes a read. Read operations can take different forms depending on the did method, etc.
+[2019-10-31T20:10:00.560Z]	<lucas>	marcus_sabadello: Resolution could happen e.g.: by hosting your own bitcoin full node or by relying on some 3rd party service that runs a node. Would be better to run your own full node so you don't have to trust a 3rd party.
+[2019-10-31T20:11:34.715Z]	<lucas>	marcus_sabadello: Kyle and Marcus worked on tidying up the language around local vs. remote reads at the last RWOT. Kyle has suggested new terminology: Unverifiable Read and Verifiable Read.
+[2019-10-31T20:13:48.604Z]	<lucas>	kyle: Hasn't really ran in to anything new during implementation. Thinks the architecture still makes sense. Going to come down to the metadata. Problem - what happens when you have a recursive read.
+[2019-10-31T20:14:28.054Z]	<lucas>	kyle: e.g. a client contacts a did resolver, and that did resolver contacts another did resolver...... metadata should still be verified all the way through
+[2019-10-31T20:14:44.329Z]	<lucas>	justin: doing something recursively should be the same process at each step
+[2019-10-31T20:15:07.147Z]	<lucas>	justin: same as identity broker or bridge pattern.
+[2019-10-31T20:17:03.442Z]	<lucas>	justin: figure 6 should be a dereferencer not a resolver.
+[2019-10-31T20:17:26.675Z]	<lucas>	marcus_sabadello: how does the first resolver trust that the second one didn't manipulate the did document?
+[2019-10-31T20:18:04.870Z]	<lucas>	justin: trust in the resolver and the signature over the did document itself. There are also possible scenarios where the 2nd resolver could be expected to manipulate the did document somehow. Integrity is built in to the did document data model
+[2019-10-31T20:19:05.450Z]	<lucas>	marcus_sabadello: the read operation itself is expected to be trusted, not just the document. How do we pass that back to the client?
+[2019-10-31T20:21:13.897Z]	<lucas>	lucas: two issues - did document integrity and proof from the did method
+[2019-10-31T20:22:12.494Z]	<lucas>	marcus_sabadello: e.g.: sovrin returns back some "state proofs" when reading the did document. Bitcoin satoshi audit trails. These can be passed as metadata along with the did document
+[2019-10-31T20:22:56.456Z]	<lucas>	marcus_sabadello: downstream resolvers might be able to independently verify the metadata
+[2019-10-31T20:23:25.965Z]	<lucas>	kyle: would like to have the metadata from each hop along the way. Could verify at each hop and not pass along the metadata. Not sure how to enforce that
+[2019-10-31T20:23:42.474Z]	<lucas>	marcus_sabadello: would need to trust each individual hop along the chain
+[2019-10-31T20:23:45.584Z]	<dmitriz>	present+
+[2019-10-31T20:24:17.195Z]	<lucas>	kyle: if you make a request to a resolver you trust, but it makes a call to another resolver that you don't necessarily trust... how do you verify the path?
+[2019-10-31T20:25:09.728Z]	<lucas>	marcus_sabadello: in the sovrin case, if we pass back the state proofs, we don't need to necessarily trust the intermediaries
+[2019-10-31T20:25:40.573Z]	<lucas>	kyle: DNSSEC is trying to achieve a similar property of verification... Has this pattern already been solved?
+[2019-10-31T20:26:34.359Z]	<lucas>	lucas: might be as simple as just a signature that comes along with the resolved dns entry.
+[2019-10-31T20:27:00.098Z]	<lucas>	kyle: will do some research in to DNSSEC and see if there's any learnings to be had
+[2019-10-31T20:28:18.441Z]	<burn>	present+
+[2019-10-31T20:28:55.844Z]	<lucas>	johnny: DNSSEC - zone operator signs the record
+[2019-10-31T20:29:32.041Z]	<lucas>	marcus_sabadello: it is the authoritative party for the domain that signs, not the dns servers in the middle
+[2019-10-31T20:30:03.024Z]	<lucas>	johnny: could run your own dns server
+[2019-10-31T20:30:16.200Z]	<lucas>	kyle: do we intend to have any kind of caching mechanism?
+[2019-10-31T20:30:26.533Z]	<lucas>	marcus_sabadello: that is an open issue
+[2019-10-31T20:31:14.473Z]	<lucas>	marcus_sabadello: resolvers could have a cache... different caches per did method, configurable, field in the did document, etc..
+[2019-10-31T20:31:41.247Z]	<lucas>	marcus_sabadello: could be an input parameter to the resolution request
+[2019-10-31T20:32:23.255Z]	<lucas>	kyle: curious how caching plays in to verification?
+[2019-10-31T20:32:33.951Z]	<lucas>	marcus_sabadello: it's probably related
+[2019-10-31T20:33:40.772Z]	<lucas>	lucas: how do state proofs work? are they verifiable without access to a full node?
+[2019-10-31T20:35:09.050Z]	<lucas>	marcus_sabadello: depends on the did method of course. Sovrin returns state proofs that are based on multiple signatures from nodes
+[2019-10-31T20:35:41.331Z]	<lucas>	marcus_sabadello: most likely verified by some kind of genesis document not by resolving another did
+[2019-10-31T20:37:03.077Z]	<lucas>	dmitri: for example, did:peer method where the did is generated from the document itself or did:web with hashlinks. The proof is built in to the resolution. Some ledger based methods provide strong binding and some non-ledger based methods provide strong binding as well.
+[2019-10-31T20:37:34.222Z]	<lucas>	marcus_sabadello: Sam Smith would probably advocate that all did methods should require some kind of self-certifying functionality
+[2019-10-31T20:39:28.354Z]	<lucas>	dmitriz: might be a need for a 3rd category local read, remote read, trusted remote read (something like that?)
+[2019-10-31T20:39:46.880Z]	<lucas>	kyle: remote doesn't necessarily mean unverifiable
+[2019-10-31T20:40:14.365Z]	<lucas>	marcus_sabadello: if remote read is done over trusted channel to a service you trust, e.g.: self hosted, then it could still be verifiable
+[2019-10-31T20:41:21.840Z]	<lucas>	marcus_sabadello: thinks it still needs some more work / thinking. Believes it is important to have this in the did resolution spec
+[2019-10-31T20:41:49.187Z]	<lucas>	kyle: what are some of the more pressing questions we should be looking at?
+[2019-10-31T20:42:45.023Z]	<lucas>	marcus_sabadello: dereferencing still needs some work. another topic that he was going to propose today was how resolution works with deactivated DIDs
+[2019-10-31T20:43:30.636Z]	<lucas>	marcus_sabadello: e.g.: do you get back a null document? or a special did document with an attribute "deactivated": true, or we could raise and error and define common error codes
+[2019-10-31T20:43:36.674Z]	<dmitriz>	q+
+[2019-10-31T20:44:34.637Z]	<lucas>	marcus_sabadello: need to keep resolution and binding separate. e.g.: a 404 over http makes sense but over other bindings doesn't work
+[2019-10-31T20:45:19.838Z]	<lucas>	kyle: will take a look at deactivation as well. Another issue that has come up is chain forking on the did registry
+[2019-10-31T20:45:39.906Z]	<lucas>	kyle: e.g.: if bitcoin forked, what is the authoritative identifier?
+[2019-10-31T20:46:16.510Z]	<lucas>	kyle: do we use the one before or after the fork? can run in to a different state
+[2019-10-31T20:46:34.682Z]	<lucas>	dmitriz: probably something that needs to be handled by each did method
+[2019-10-31T20:47:00.807Z]	<lucas>	kyle: issue could be that the method is not maintained and hasn't determined a method for handling forking
+[2019-10-31T20:47:35.267Z]	<burn>	q+ to talk about forking
+[2019-10-31T20:47:35.998Z]	<lucas>	dmitriz: in our template/recommendations for did methods, we should point out forking as something that should be handled
+[2019-10-31T20:49:20.594Z]	<lucas>	dmitriz: one of the proposed methods of deactivation is to call it deactivated when it no longer has valid keys. Not necessarily a specific flag, but actually a validation state. There could still be value in having a flag. Several did methods already use this strategy. Recommend against returning a 404, these should not just go away if immutability is an important property
+[2019-10-31T20:50:08.950Z]	<lucas>	marcus_sabadello: should this be defined in the did spec, or is it just something that did methods implement and that's a differentiator. Some did methods may choose to make it as if a did never existed
+[2019-10-31T20:51:34.923Z]	<lucas>	dmitriz: we should call it out in the implementation notes at the very least. Give some examples of common implementations. Ledger based vs. non-ledger will have different options, self-certifying are different in that they can't be expired/revoked per say
+[2019-10-31T20:52:24.779Z]	<lucas>	marcus_sabadello: update and deactivate are optional. Could in theory support different mechanisms for resolution
+[2019-10-31T20:53:39.644Z]	<lucas>	jonnycrunch: it depends on the reason it was deactivated. if it was because it was compromised vs. trying to disassociate from the did document.
+[2019-10-31T20:54:09.492Z]	<burn>	q?
+[2019-10-31T20:54:32.557Z]	<lucas>	marcus_sabadello: if a did document is deactivate you probably shouldn't be able to re-activate it.
+[2019-10-31T20:54:33.045Z]	<burn>	ack dmitriz
+[2019-10-31T20:55:01.127Z]	<burn>	q?
+[2019-10-31T20:55:51.697Z]	<lucas>	jonnycrunch: different methods might have different timeouts for when they return a null
+[2019-10-31T20:56:38.470Z]	<burn>	ack burn
+[2019-10-31T20:56:52.721Z]	<lucas>	johnnycrunch: demo'd something where there were wifi issues but if they were on the same network they still might be able to resolve the did
+[2019-10-31T20:57:08.331Z]	<burn>	file:///Users/dan/Downloads/IIWXXVIII_Book_of_Proceedings_2019A.pdf
+[2019-10-31T20:57:23.217Z]	<burn>	s;file:///Users/dan/Downloads/IIWXXVIII_Book_of_Proceedings_2019A.pdf;;
+[2019-10-31T20:57:58.310Z]	<burn>	https://github.com/windley/IIW_homepage/raw/gh-pages/assets/proceedings/IIWXXVIII_Book_of_Proceedings_2019A.pdf
+[2019-10-31T20:58:00.069Z]	<burn>	page 88
+[2019-10-31T20:58:12.356Z]	<lucas>	burn: re: forking - at IIW last spring, Andrew Hughes ran a session (struggles to paste a link haha) talking about what are the "failure modes" of DIDs
+[2019-10-31T20:58:40.333Z]	<lucas>	burn: no answers, but a good brainstorm of possible things that could go wrong and could be a good starting point
+[2019-10-31T20:59:24.148Z]	<lucas>	marcus_sabadello: will start a new issue to discuss failure modes
+[2019-10-31T20:59:51.911Z]	<lucas>	jonnycrunch: ethereum has an interesting way of handling forks
+[2019-10-31T21:00:02.739Z]	<lucas>	dmitriz: how do you get from an existing identifier to a forked one?
+[2019-10-31T21:00:46.779Z]	<lucas>	dmitriz: how do you go from did:btcr:123 before the fork to the new identifier after the fork
