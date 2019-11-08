@@ -1,0 +1,152 @@
+[2019-11-07T21:05:27.172Z]	<brent>	scribe: brent
+[2019-11-07T21:06:35.324Z]	<brent>	markus_sabadello: should we begin talking about trusted resolution?
+[2019-11-07T21:06:51.046Z]	<brent>	... we have a PR Kyle and I worked on at rebooting
+[2019-11-07T21:07:11.997Z]	<brent>	... we had ac onversation last week about dns lookup and how that may relate to did resolution
+[2019-11-07T21:07:27.229Z]	<brent>	s/ac onversation/a conversation
+[2019-11-07T21:07:53.300Z]	<brent>	sam_smith: peer did spec was also updated to be self certifying
+[2019-11-07T21:08:28.047Z]	<brent>	dmitry: is there a paper or essay you could point to for the self-certifying paper?
+[2019-11-07T21:08:55.938Z]	<brent>	sam_smith: there are three or four papers that are considered the originals
+[2019-11-07T21:09:17.953Z]	<brent>	self certifying paper: https://arxiv.org/abs/1907.02143
+[2019-11-07T21:09:53.479Z]	<brent>	sam_smith: there is now a single key in the did doc that can register the identifier.
+[2019-11-07T21:10:17.192Z]	<brent>	... which is a type of self-certifying. it is really a derived identifier
+[2019-11-07T21:12:12.325Z]	<burn>	present+
+[2019-11-07T21:13:01.315Z]	<brent>	markus_sabadello: what I've prepared today is based on the fact that not all DIDs are self-certifying.
+[2019-11-07T21:13:09.433Z]	<brent>	... maybe that's the direction we should head
+[2019-11-07T21:13:17.592Z]	<dmitriz>	present+
+[2019-11-07T21:13:31.480Z]	<dmitriz>	q+ to mention relationship between Self-Certified DIDs and revocation
+[2019-11-07T21:13:45.105Z]	<brent>	sam_smith: I'm fine if not all DIDs are self-certifying as long as that's called out. The root of trust is different for those that aren't.
+[2019-11-07T21:14:08.217Z]	<brent>	... this is why the peer did method was changed.
+[2019-11-07T21:14:35.833Z]	<brent>	... there's a race condition that exists unless the DID method is self-certifying.
+[2019-11-07T21:14:51.127Z]	<brent>	kdenhartog: Is this a problem with all hash-based DID methods?
+[2019-11-07T21:15:14.195Z]	<brent>	sam: yes.
+[2019-11-07T21:15:58.552Z]	<brent>	... for peer dids, there is a stored did doc and a resolved did doc. There is this notion of an inception event (see KERI paper).
+[2019-11-07T21:16:13.662Z]	<dmitriz>	q-
+[2019-11-07T21:16:21.324Z]	<brent>	... based on the peer did method, the stored did doc must be signed
+[2019-11-07T21:16:37.859Z]	<brent>	kdenhartog: we're trying to figure out how to reference a key using did urls
+[2019-11-07T21:16:51.885Z]	<Justin_R>	present+
+[2019-11-07T21:17:02.531Z]	<brent>	... you don't know the identifier before you generate the key
+[2019-11-07T21:17:14.157Z]	<brent>	... there is a weird chicken and egg problem
+[2019-11-07T21:18:20.356Z]	<brent>	dmitriz: I'm not sure if this fits your use case, but veres one and the did key method use a fingerprint, which is a better identifier than the hash
+[2019-11-07T21:18:59.968Z]	<brent>	kdenhartog: the did with the fragment identifier and the key identifier to reference the key in the did doc and putting that in the kid.
+[2019-11-07T21:19:50.372Z]	<brent>	john: reference it via did url and use it in JSOn schema. It is implied and referenced as a link in the document
+[2019-11-07T21:20:07.547Z]	<brent>	... you can infer the keys in the did doc
+[2019-11-07T21:20:13.482Z]	<brent>	... works for IPLD
+[2019-11-07T21:20:28.697Z]	<brent>	dmitriz: I have more questions for Kyle, but are we on topic?
+[2019-11-07T21:21:00.988Z]	<brent>	markus_sabadello: I think it is partially related to what I wanted to talk about. I don't mind talking about what people want to discuss.
+[2019-11-07T21:21:26.266Z]	<brent>	dmitriz: I was just writing the documentation for a VC library
+[2019-11-07T21:21:55.269Z]	<brent>	... you need to think about where you store your private keys and about your key id strategy.
+[2019-11-07T21:22:25.651Z]	<brent>	... I think listing the options would be really good: fingerprint-based, hash-based, path-based
+[2019-11-07T21:22:52.198Z]	<brent>	kdenhartog: key fingerprint actually solves the other problem of  did doc versioning.
+[2019-11-07T21:23:10.086Z]	<brent>	... maybe requiring that the key id is the fingerprint would help.
+[2019-11-07T21:23:57.722Z]	<brent>	Justin_R: A counterpoint to that, putting hash key one allows one to use whatever key that is found in the document, which is really powerful
+[2019-11-07T21:24:26.906Z]	<brent>	... I would be averse to having the key id be strictly defined as a hash or fingerprint or whatever in the general case.
+[2019-11-07T21:24:40.002Z]	<brent>	... having guidance for specific use cases does make sense.
+[2019-11-07T21:24:51.812Z]	<brent>	... that may fit better as part of the did doc spec
+[2019-11-07T21:25:27.908Z]	<brent>	dmitriz: first question: what are the actual use cases for that? you're talking about a modified path-based reference. you could have both.
+[2019-11-07T21:25:49.643Z]	<brent>	... this also gets into immutability of the did document
+[2019-11-07T21:26:06.879Z]	<brent>	... I would be very reluctant to use the key id as a path-based reference mechanism
+[2019-11-07T21:26:45.052Z]	<brent>	Justin_R: I hear you, but this goes against the notion of URLs
+[2019-11-07T21:27:11.080Z]	<brent>	... what we need ot be clear about as part of the resolution process is what processing that fragment means.
+[2019-11-07T21:27:24.728Z]	<brent>	... after paths and queries and all of that has been processed.
+[2019-11-07T21:27:42.069Z]	<brent>	... the fragment tells you what part of the document you are referring to.
+[2019-11-07T21:28:10.995Z]	<brent>	... I do think we need to be able to anchor a location whose contents refer to something different over time
+[2019-11-07T21:28:18.100Z]	<brent>	dmitriz: what is the use case for that?
+[2019-11-07T21:29:00.230Z]	<brent>	kdenhartog: open id connect uses this to make sure the reference identifier is signed.
+[2019-11-07T21:29:18.171Z]	<brent>	Justin_R: what's the peril in this?
+[2019-11-07T21:29:20.327Z]	<burn>	voip-ccg, who is here?
+[2019-11-07T21:29:37.724Z]	<brent>	dmitriz: if the key was rotated or expired, it doesn't make sense to refer to it by the same identifier
+[2019-11-07T21:29:43.547Z]	<brent>	... its a different key
+[2019-11-07T21:30:30.479Z]	<brent>	Justin_R: what I'm arguing is that identifiers should fully fully externalizable. I should be able to point to something in the document without it being semantically linked to that thing in any way.
+[2019-11-07T21:30:48.629Z]	<brent>	dmitriz: that is definitely one strategy, like using a path notation
+[2019-11-07T21:31:27.260Z]	<brent>	dmitriz: JSON pointer says element 0 key 1, whcih is orthogonal to the id
+[2019-11-07T21:32:15.246Z]	<brent>	Justin_R: right, if you wanted a JSON path style notation that was related to the field, that the client would need to parse and process. being able to reference a uniquely named element of the did document is important.
+[2019-11-07T21:32:32.819Z]	<brent>	dmitriz: the same discussion happened for service endpoints.
+[2019-11-07T21:32:57.039Z]	<brent>	Justin_R: the difference there is that could be input to the process that is creating the did document to be handed down.
+[2019-11-07T21:33:19.256Z]	<brent>	... I'm not against hash based names, but I think it a step too far to say that is the only way.
+[2019-11-07T21:34:00.144Z]	<brent>	SamSmith: I agree. the handoff from the keypair to a hash of some other data, you need to preserve colision resistance through the handoff
+[2019-11-07T21:34:05.834Z]	<brent>	... not trivial to get right.
+[2019-11-07T21:34:54.764Z]	<brent>	... I don't believe everyone is doing that. people are assuming that if you put it on the blockchain that is enough.
+[2019-11-07T21:35:11.008Z]	<brent>	kdenhartog: that was quite insightful, so thank you.
+[2019-11-07T21:35:51.705Z]	<brent>	markus_sabadello: me too. My opinion is that the specification shouldn't restrict which paths you want to use, but good guidance with security implications would be useful
+[2019-11-07T21:36:39.750Z]	<brent>	burn: this is basically saying that for the data type that is a did doc, we need to have various things that are referencable as fragments. we need todefine that did docs make portions of themselves available based on the type of the object
+[2019-11-07T21:36:53.293Z]	<brent>	dmitriz: which gets us into mime types for dids
+[2019-11-07T21:37:17.943Z]	<brent>	burn: right, that's what I meant. There are things that can be referred to by a fragment, they are defined.
+[2019-11-07T21:37:28.668Z]	<brent>	... we need to define the same thing for did docs
+[2019-11-07T21:38:04.916Z]	<brent>	dmitriz: this is interesting. we are in a bind here. if we're saying we fully comply with the url spec, the fragment is based on the mime type
+[2019-11-07T21:38:16.291Z]	<brent>	... base on the model now, all did docs are the same mime type.
+[2019-11-07T21:38:31.851Z]	<brent>	... the counterpressure is that each did method wants to do their own thing.
+[2019-11-07T21:38:57.134Z]	<brent>	... either we go away from the url spec, or we need to say all fragment handling must be the same
+[2019-11-07T21:39:17.419Z]	<brent>	markus_sabadello: I think we need to keep to the mime type functionality of the fragments
+[2019-11-07T21:39:42.184Z]	<brent>	... JSON LD already defines how to interpret the fragment. individual methods can't override that
+[2019-11-07T21:40:00.182Z]	<brent>	... unless did docs are defined as having a different mime type.
+[2019-11-07T21:40:31.968Z]	<brent>	dmitriz: in a wya that's even worse because with two different mime types there's incompatibility between did methods
+[2019-11-07T21:40:45.398Z]	<brent>	Justin_R: the processing is entirely dependent on the did method
+[2019-11-07T21:41:03.147Z]	<brent>	burn: you don't even need different did doc syntaxes for that.
+[2019-11-07T21:41:33.695Z]	<brent>	... resolving provides the did doc, dereferencing does some action on that object.
+[2019-11-07T21:41:48.000Z]	<brent>	... what the fragment means in that case depends on the mime type
+[2019-11-07T21:42:24.166Z]	<brent>	dmitriz: I think that's the point of contention: if we're trying to build interoperable things we need to return the smae thing
+[2019-11-07T21:42:40.489Z]	<brent>	burn: html can return a variety of things and that's a good thing
+[2019-11-07T21:42:58.078Z]	<brent>	dmitriz: but the data model ineeds to be interoperable
+[2019-11-07T21:43:23.878Z]	<SamSmith>	I haven't uploaded the revised version of the KERI paper but I added another earlier reference to self certifying identifiers I found since the original.
+[2019-11-07T21:43:32.889Z]	<SamSmith>	Girault, M., “Self-certified public keys,” EUROCRYPT 1991: Advances in Cryptology, pp. 490-497, 1991 
+[2019-11-07T21:44:04.406Z]	<brent>	burn: I think you're arguing against more than one format of a did doc to exist, but that is irrelevant to our ability to dereference whatever we get back after resolution, whether or not there is more than one did doc format
+[2019-11-07T21:44:27.089Z]	<brent>	kdenhartog: does that mean in the resolution spec we should be specifying how to resolve certian mime types?
+[2019-11-07T21:44:53.349Z]	<brent>	burn: we do. it says if the document returned is a did doc, then this is how you do fragment processing.
+[2019-11-07T21:45:02.934Z]	<brent>	markus_sabadello: yes, that's what we changed it to.
+[2019-11-07T21:45:41.022Z]	<brent>	... dereferencing the primary resource and you get what ever comes from that, the result of dereferencing the fragment resource depends on the mime type.
+[2019-11-07T21:45:52.456Z]	<brent>	... and that's how http works
+[2019-11-07T21:45:53.327Z]	<burn>	+1000
+[2019-11-07T21:46:28.788Z]	<brent>	dmitriz: I think we're agreed on that. that begs this further question of if we have more mime types for did docs
+[2019-11-07T21:46:47.028Z]	<burn>	@dmitri, apparently you need to be on the DID WG calls :)
+[2019-11-07T21:47:03.360Z]	<brent>	markus_sabadello: I don't think that chages how this works, but can the resoution of the primary resource possible give different mime types of different documents.
+[2019-11-07T21:47:06.617Z]	<dmitriz>	@burn uh oh, was this discussed during this week's call?
+[2019-11-07T21:47:42.398Z]	<brent>	... if there are different syntaxes for the data model, that would allow for different mime types for those documents.
+[2019-11-07T21:47:55.386Z]	<burn>	it came up when discussing key formats/representations on our separate call, but not as the primary topic
+[2019-11-07T21:48:10.991Z]	<brent>	... but nothing in this discussion changes how did resolution works.
+[2019-11-07T21:48:11.971Z]	<markus_sabadello>	q?
+[2019-11-07T21:48:13.745Z]	<kdenhartog>	q+
+[2019-11-07T21:48:25.551Z]	<markus_sabadello>	ack kdenhartog
+[2019-11-07T21:48:52.967Z]	<brent>	kdenhartog: do we have to require that any sort of communication protocol needs to include the mime type?
+[2019-11-07T21:48:59.544Z]	<markus_sabadello>	q+
+[2019-11-07T21:49:04.094Z]	<markus_sabadello>	ack markus_sabadello
+[2019-11-07T21:49:41.742Z]	<brent>	markus_sabadello: yes, I think that is a good point, the result of the dereferencing process shold include the mime type that is in the http binding. that may not be in the didcomm RFC. that should be added.
+[2019-11-07T21:50:00.947Z]	<brent>	kdenhartog: for something like NFC, do you just not include the mime type?
+[2019-11-07T21:50:33.343Z]	<brent>	markus_sabadello: I would say yes, if you want to support dereferencing did docs over a binding. you need to communicate the mime type.
+[2019-11-07T21:51:05.869Z]	<brent>	markus_sabadello: We have talked about really interesting things, that was valuable.
+[2019-11-07T21:51:29.999Z]	<brent>	... I have prepared a thing about trusted resolution. should I preview or just do it next time?
+[2019-11-07T21:51:36.215Z]	<brent>	SamSmith: do the preview
+[2019-11-07T21:51:48.470Z]	<brent>	markus_sabadello: any final thoughts on mime types and dereferencing?
+[2019-11-07T21:52:13.536Z]	<brent>	john: in html is there the opportunity to use an id to reference part of a script or a ink to a script?
+[2019-11-07T21:52:50.193Z]	<brent>	... that seems to parse okay, but whether or not jquery actuall gets that. is that a valid analogy to what we're working on?
+[2019-11-07T21:53:17.604Z]	<burn>	q?
+[2019-11-07T21:53:22.476Z]	<markus_sabadello>	q+
+[2019-11-07T21:53:23.605Z]	<brent>	... browsers determine how to handle that. I'm still struggling how we can have special use cases for the fragment
+[2019-11-07T21:53:24.377Z]	<markus_sabadello>	ack markus_sabadello
+[2019-11-07T21:53:44.877Z]	<burn>	q+
+[2019-11-07T21:53:56.703Z]	<brent>	markus_sabadello: that's a non-compliant html file if there are multiple ids, but that is probably something we need to define for did docs.
+[2019-11-07T21:54:35.807Z]	<brent>	... in JSON-LD it is valid for different parts of the object to have the same id, because they map to the same RDF node.
+[2019-11-07T21:55:05.134Z]	<brent>	... however, specifically for did docs we probably don't want to allow that the same id may be used in more than one place
+[2019-11-07T21:55:23.217Z]	<brent>	markus_sabadello: I will do a quick preview.
+[2019-11-07T21:55:26.456Z]	<burn>	q-
+[2019-11-07T21:55:41.107Z]	<brent>	how can you trust a resolver?
+[2019-11-07T21:56:03.920Z]	<brent>	markus_sabadello: how can you trust a resolver? dns resolvers vs did resolvers
+[2019-11-07T21:56:24.024Z]	<brent>	... started by looking at how a dns lookup process works.
+[2019-11-07T21:56:39.981Z]	<brent>	... first is the stub resolver, like the client of a did resolution process.
+[2019-11-07T21:57:02.718Z]	<brent>	... then there is a recursive resolver which has the dns resolvers in a hierarchical way
+[2019-11-07T21:57:21.580Z]	<brent>	s/has /talks to /
+[2019-11-07T21:57:46.853Z]	<brent>	... then I looked at how the recursive resolvers can know the answer they get are valid, and how the stub resolver knows
+[2019-11-07T21:58:03.085Z]	<brent>	dnssec adds different signatures to different parts of the process.
+[2019-11-07T21:58:22.470Z]	<brent>	s/dnssec/... dnssec/
+[2019-11-07T21:58:48.343Z]	<brent>	... then it returns the client resolver with a flag that shows it made sur it has the correct data.
+[2019-11-07T21:59:11.348Z]	<brent>	... the stub resolver must trust the recursive  resolver, it can't independently verify
+[2019-11-07T21:59:45.507Z]	<brent>	... there is a validating stub resolver, all the dnssec information gets passed to the client. so you get end to end verification of the signtures
+[2019-11-07T22:00:07.196Z]	<brent>	... and all of that works because there is a hard-coded root of trust in the system.
+[2019-11-07T22:00:22.269Z]	<brent>	... traditional PKI with the root included in these resolvers.
+[2019-11-07T22:00:55.924Z]	<brent>	... what I tried to do is compare dnssec resolvers with our did resolvers
+[2019-11-07T22:01:02.884Z]	<brent>	... we lack the central root of trust
+[2019-11-07T22:01:17.426Z]	<brent>	... it is difficult therefore for the client to verify
+[2019-11-07T22:01:45.953Z]	<brent>	SamSmith: It's good for the identifier, but the methods aren't self-certifying.
+[2019-11-07T22:02:11.605Z]	<brent>	... there are exploits and injection attacks which resolvers wouldn't know how to validate against
+[2019-11-07T22:02:35.571Z]	<brent>	markus_sabadello: we are out of time. I will share the slides and if you think it is interesting we will review next time.
+[2019-11-07T22:02:44.257Z]	<brent>	... to the meetings repo
+[2019-11-07T22:03:10.033Z]	<brent>	... love to discuss this in relation to the self-cerifying identifiers
