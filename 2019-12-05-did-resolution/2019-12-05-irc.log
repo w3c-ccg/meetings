@@ -1,0 +1,132 @@
+[2019-12-05T21:05:22.337Z]	<jonathan_holt>	present+ jonathan_holt
+[2019-12-05T21:09:24.624Z]	<burn>	present+
+[2019-12-05T21:09:25.436Z]	<Justin_R>	present+
+[2019-12-05T21:09:29.525Z]	<markus_sabadello>	present+
+[2019-12-05T21:10:15.558Z]	<jonathan_holt>	sorry :( I have ballet, rather driving daughter soon to ballet
+[2019-12-05T21:11:36.074Z]	<burn>	scribe: burn
+[2019-12-05T21:12:39.508Z]	<burn>	markus_sabadello: did work based on previous discussions
+[2019-12-05T21:13:08.989Z]	<burn>	... what happens in dereferencing and in which part of the architecture (and for resolution as well)
+[2019-12-05T21:13:21.918Z]	<burn>	... how to get from DID to DID doc
+[2019-12-05T21:13:40.583Z]	<burn>	... Kyle created PR based on conv at RWOT
+[2019-12-05T21:14:19.068Z]	<burn>	... section on method architectures has a Note clarifying read operation
+[2019-12-05T21:14:39.386Z]	<burn>	... used to have two diagrams to intro terms local and remote read
+[2019-12-05T21:15:01.756Z]	<burn>	... you can run your own local node (reliable) or a remote blockchain explorer from a 3rd party
+[2019-12-05T21:15:18.221Z]	<burn>	... Kyle's suggestion was to make it unverifiable and verifiable read instead
+[2019-12-05T21:15:53.305Z]	<burn>	... clarifies that Unverifiable Read doesn't have the guarantees that Verifiable does
+[2019-12-05T21:16:27.703Z]	<burn>	... points out that which read you have could vary even within a single DID method
+[2019-12-05T21:16:54.903Z]	<burn>	... new Note explains external environmental factors that can also have an effect
+[2019-12-05T21:17:34.910Z]	<burn>	... did:key very simple because no network, ledger, etc. but still entropy
+[2019-12-05T21:17:53.205Z]	<burn>	s/did work/did spec work/
+[2019-12-05T21:18:38.084Z]	<burn>	kdenhartog: what you added looks good
+[2019-12-05T21:18:58.263Z]	<burn>	jonathan_holt: regarding rubrics approach, it compares DID methods but not details of the methods
+[2019-12-05T21:19:12.287Z]	<burn>	markus_sabadello: some may be related.  rubric work is separate item in the DID WG.
+[2019-12-05T21:19:31.223Z]	<burn>	... idea is to come up with categories to determine what decentralized means
+[2019-12-05T21:19:38.380Z]	<burn>	... could be related to this
+[2019-12-05T21:20:19.929Z]	<burn>	... given a DID method controlled by one party, might not be considered very decentralized, and in that case perhaps only Unverifiable Reads are possible.
+[2019-12-05T21:20:32.727Z]	<burn>	... there is some relation to the categories in the rubric
+[2019-12-05T21:20:53.090Z]	<burn>	... also added the terms to the Terminology section
+[2019-12-05T21:21:14.518Z]	<burn>	... Verifiable => high confidence, Unverifiable => low confidence
+[2019-12-05T21:21:38.012Z]	<burn>	... in conversations around dnssec, if resolver supports that it can verify that resolution result is correct
+[2019-12-05T21:22:00.637Z]	<burn>	... dnssec, resolution, DID resolution are different, there is a relation
+[2019-12-05T21:22:14.620Z]	<burn>	... there is a flag in the resolver indicating that dnssec was used
+[2019-12-05T21:22:51.657Z]	<burn>	... we could say that if a DID resolver was able to do a Verifiable Read, say with no intermediary, resolver could set flag in resolution result indicating high confidence
+[2019-12-05T21:23:11.996Z]	<burn>	... just like a dns resolver can return whether dnssec was used
+[2019-12-05T21:24:08.844Z]	<burn>	... also worked on the Resolver Architectures section.
+[2019-12-05T21:24:22.184Z]	<burn>	... how a client talks to the resolver
+[2019-12-05T21:24:39.501Z]	<burn>	... adding local and remote binding concepts
+[2019-12-05T21:24:48.579Z]	<joel>	present+
+[2019-12-05T21:24:50.362Z]	<burn>	... could run resolver locally on phone, laptop, etc.
+[2019-12-05T21:25:30.777Z]	<burn>	... there are such resolvers.  Also, one running as a remote service would be a remote binding, say over HTTPS or some other protocol
+[2019-12-05T21:25:54.572Z]	<burn>	... discussed which part of the deref alg could happen in which part
+[2019-12-05T21:26:25.130Z]	<burn>	... section on architectures used to be at the front.  Moved the resolving and deref sections up front, then architectures
+[2019-12-05T21:26:49.240Z]	<Justin_R>	+q
+[2019-12-05T21:26:53.126Z]	<Justin_R>	q+
+[2019-12-05T21:26:58.877Z]	<burn>	... added two subsection under resolver architectures (delegated and partial dereferencing){
+[2019-12-05T21:27:31.825Z]	<burn>	... one resolver could invoke another one.  A client could invoke a local library that knows how to talk to a remote resolver for certain DID methods
+[2019-12-05T21:27:48.684Z]	<burn>	... this is similar to what we have for DNS in browsers
+[2019-12-05T21:28:14.876Z]	<burn>	... local resolver may delegate part of the resolution and/or deref to another resolver
+[2019-12-05T21:28:27.122Z]	<burn>	... haven't read through doc yet
+[2019-12-05T21:28:38.478Z]	<burn>	... like the organization
+[2019-12-05T21:29:32.670Z]	<burn>	... for delegation, want to say again that with dns query the same query gets sent by the dns proxy.  In our case the first resolver could be sending the URL without the fragment to the second resolver
+[2019-12-05T21:29:36.215Z]	<burn>	... so not quite the same
+[2019-12-05T21:30:15.302Z]	<burn>	... a tortured similarity is the browser's rendering engine (chrome calling HTTP library)
+[2019-12-05T21:30:27.502Z]	<burn>	... from the HTTP point onwards it could be talking to yet another proxy
+[2019-12-05T21:30:58.070Z]	<burn>	... the key is that for all of those steps you are not dealing with the fragment, just the portion relevant to the remote server
+[2019-12-05T21:31:14.131Z]	<burn>	... if we clarify at that level it will address the concerns I have had
+[2019-12-05T21:31:49.321Z]	<burn>	markus_sabadello: I pointed out this distinction in 5.2.1
+[2019-12-05T21:32:12.095Z]	<burn>	Justin_R: (missed)
+[2019-12-05T21:32:43.044Z]	<burn>	... you are heading in the rigth direction but need to still be more specific
+[2019-12-05T21:33:11.552Z]	<burn>	markus_sabadello: added partial deref section that is trying to do that.  maybe should all just be one section.
+[2019-12-05T21:33:50.970Z]	<burn>	... delegated deref needs to be described in a generic way
+[2019-12-05T21:34:10.498Z]	<burn>	Justin_R: is that delegation, or proxying?
+[2019-12-05T21:34:18.489Z]	<burn>	... if so, say you can proxy a DID query
+[2019-12-05T21:34:22.432Z]	<burn>	markus_sabadello: maybe
+[2019-12-05T21:34:53.906Z]	<burn>	Justin_R: partial gets more at the fact that different parts expect to see the whole URL and others expect to see it withour the fragment
+[2019-12-05T21:35:14.828Z]	<burn>	markus_sabadello: (reads 5.2.2 text)
+[2019-12-05T21:35:45.461Z]	<burn>	Justin_R: need to say which piece very precisely does which
+[2019-12-05T21:36:02.276Z]	<burn>	markus_sabadello: it can be improved.
+[2019-12-05T21:36:31.967Z]	<burn>	markus_sabadello: in original sections can talk about how to get the result, generically.
+[2019-12-05T21:36:40.787Z]	<burn>	... new sections attempt to say which parts of arch do which
+[2019-12-05T21:37:20.990Z]	<burn>	markus_sabadello: figure 8 shows the overall process
+[2019-12-05T21:38:04.028Z]	<burn>	... DID resolver over local binding.  Has DID w/out fragment.  Gets back the DID doc, then client derefs the secondary resource using the fragment
+[2019-12-05T21:39:09.260Z]	<burn>	... sometimes you want to handle everything to a library or service that does all of it.  But we would not call that the resolver.  A remote hosted service could do everything for you and just return the end result.
+[2019-12-05T21:39:24.313Z]	<burn>	... what we said is that that service would be considered a client+resolver
+[2019-12-05T21:39:40.159Z]	<burn>	... so resolver is only the non-fragment part
+[2019-12-05T21:39:58.492Z]	<burn>	Justin_R: that's what we need here.  The roles, regardless of how deployed
+[2019-12-05T21:40:16.515Z]	<burn>	... a service could fill several roles
+[2019-12-05T21:40:49.451Z]	<burn>	... if a service does all of that, have a name for that first input point
+[2019-12-05T21:41:07.044Z]	<burn>	... from DID res perspective, I am not a client, I am calling a service acting as a client
+[2019-12-05T21:41:29.284Z]	<burn>	... the answer is not then necessarily the resolver process
+[2019-12-05T21:41:59.803Z]	<burn>	(missed example, but has to do with content caches online)
+[2019-12-05T21:42:12.437Z]	<burn>	Justin_R: can't promise timing for a PR
+[2019-12-05T21:42:38.847Z]	<burn>	markus_sabadello: appreciate you being on the calls
+[2019-12-05T21:42:42.745Z]	<Justin_R>	example was with AMP, CDNs, and similar stuff that goes off and collects a bunch of HTTP requests and gives you back a tightly packaged bundle in a single HTTP call
+[2019-12-05T21:43:41.044Z]	<Justin_R>	+1 for more terms
+[2019-12-05T21:43:41.113Z]	<burn>	markus_sabadello: also added defs to terminology for Client and Binding
+[2019-12-05T21:44:26.820Z]	<burn>	... all the new defs don't say what we just talked about.  I will make that clearer (but maybe in other sections)
+[2019-12-05T21:44:52.790Z]	<burn>	Next example (after fig 8) is proxy deref.
+[2019-12-05T21:45:33.324Z]	<burn>	... local resolver can't talk to network, so talks to DID resolver over remote binding, which then resolves to DID doc
+[2019-12-05T21:45:53.921Z]	<burn>	... local resolver passes all but fragment to remote resolver
+[2019-12-05T21:46:11.584Z]	<burn>	s/Next/markus_sabadello: Next/
+[2019-12-05T21:46:25.428Z]	<Justin_R>	naming things is hard 🤷‍♀️
+[2019-12-05T21:46:40.871Z]	<burn>	markus_sabadello: next example has a matrix param selecting a service.
+[2019-12-05T21:47:15.891Z]	<burn>	... selects a specific service from DID doc, appends path, query, fragment after process to construct service endpoint URL
+[2019-12-05T21:48:37.839Z]	<burn>	... client sends all but fragment to resolver.  resolver gets DID document.  Then pulls the service out of the DID doc and returns that URL to the client, who adds the fragment
+[2019-12-05T21:50:12.089Z]	<burn>	... similar to how an HTTP 303 (redirect) works.  Not the same, of course, since no client/server interaction.  In HTTP if you need to retrieve a repr of the resource you may get back a 303 with a new URL that you can fetch.
+[2019-12-05T21:50:34.219Z]	<burn>	... with browsers today, the fragment would be appended to the new URL
+[2019-12-05T21:51:00.336Z]	<burn>	... server comes back with redirect URL, but browser with append fragment to redirected URL
+[2019-12-05T21:51:08.983Z]	<burn>	s/with/will/
+[2019-12-05T21:51:27.794Z]	<burn>	... this is like what we are trying to do.  The final endpoint URL gets the fragment
+[2019-12-05T21:52:14.828Z]	<burn>	... that's basically the changes
+[2019-12-05T21:53:21.899Z]	<burn>	jonathan_holt: we need a decision about fragment and maxtrix params like id
+[2019-12-05T21:53:26.649Z]	<burn>	... concerned with privacy
+[2019-12-05T21:53:41.078Z]	<burn>	... overloading use of fragment to use encryption on client side
+[2019-12-05T21:54:06.255Z]	<burn>	... analogous to DID browser.  Need to break down into smaller chunks
+[2019-12-05T21:54:18.499Z]	<burn>	markus_sabadello: you use the fragment to pass symmetric key, righ
+[2019-12-05T21:54:28.947Z]	<burn>	jonathan_holt: also parsing arguments in the hash
+[2019-12-05T21:54:35.589Z]	<burn>	s/righ/right
+[2019-12-05T21:54:48.631Z]	<burn>	markus_sabadello: technically this is an abuse of URI and web architecture
+[2019-12-05T21:55:03.900Z]	<burn>	... we don't define how fragments work.  It's defined by the media type what you get
+[2019-12-05T21:55:28.308Z]	<burn>	... fragment is supposed to be defined by media type
+[2019-12-05T21:55:47.387Z]	<burn>	... in the WG discussing whether standard format for id is plain JSON or JSON-LD
+[2019-12-05T21:56:01.110Z]	<burn>	... behavior is defined for JSON-LD but not for JSON
+[2019-12-05T21:56:15.256Z]	<burn>	... several different ideas for how the fragment could be used
+[2019-12-05T21:56:33.165Z]	<burn>	... what would not change is the architecture.
+[2019-12-05T21:57:11.375Z]	<burn>	... any feedback or other thoughts?
+[2019-12-05T21:57:35.486Z]	<burn>	... Planned to work on (soon) the metadata items.  How the resolver could return metadata
+[2019-12-05T21:58:02.482Z]	<burn>	... discussion in the WG on whether some info should be part of the DID document or resolver metadata.
+[2019-12-05T21:58:35.454Z]	<burn>	... e.g. time when DID controller says DID was created, could also be when registered on blockchain (may be different)
+[2019-12-05T21:58:39.618Z]	<burn>	... also proofs
+[2019-12-05T21:59:32.369Z]	<burn>	... different types of proofs could be added to each.  Sovrin state proofs, signatures on a DID doc, proofs added by a resolver (local/remote).
+[2019-12-05T21:59:41.936Z]	<burn>	... client could verify resolver proofs
+[2019-12-05T21:59:52.803Z]	<burn>	... we don't have a concrete understanding of that yet
+[2019-12-05T22:00:09.882Z]	<burn>	... other thoughts?
+[2019-12-05T22:00:27.903Z]	<burn>	jonathan_holt: maybe MIME type discusison shoud happen next
+[2019-12-05T22:00:48.014Z]	<burn>	... if DID doc is JSON-LD fragment is something inside, but with JSON maybe JSON pointers, etc.
+[2019-12-05T22:01:16.662Z]	<burn>	... having issues with JSON-LD.  Not much software out there so writing my own.
+[2019-12-05T22:01:29.431Z]	<burn>	... algs for expanding rdf model are draft and not finalized.
+[2019-12-05T22:01:46.629Z]	<burn>	... encodings discussion is happening in WG and will affect this.
+[2019-12-05T22:02:20.669Z]	<burn>	markus_sabadello: call next 2 weeks then take a 2 week break
+[2019-12-05T22:02:37.112Z]	<burn>	... bye all
+[2019-12-05T22:03:02.345Z]	<burn>	s/... encodings/markus_sabadello: encodings/
+[2019-12-05T22:03:47.892Z]	<burn>	s/... haven't read through doc yet/Justin_R: haven't read through doc yet/
