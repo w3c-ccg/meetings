@@ -10,6 +10,7 @@ display_usage() {
 	echo "Publish CCG minutes via email and social media." 
 	echo ""
 	echo "Usage: ./publish [-h] [-d directory]" 
+	echo "  -t                           tweet only"
 	echo "  -d [/path/to/YYYY-MM-DD]     pass directory"
     echo "  -h                           display help"
     echo ""
@@ -17,8 +18,12 @@ display_usage() {
 	echo ""
     echo "  ./publish -d /path/to/w3c-ccg-meeting/2018-05-15" 
     echo "      previews 2018-05-15 minutes and audio in preview mode (does not broadcast results)"
+    echo "  ./publish -t -d /path/to/w3c-ccg-meeting/2018-05-15" 
+    echo "      tweets link to May 15 2018 minutes"
     echo ""
 } 
+
+TWEET_ONLY="n"
 
 if [ $# -eq 0 ]
   then
@@ -36,6 +41,10 @@ else
 	    display_usage
 	    exit 0
 	    ;;
+	    -t|--tweet)
+		TWEET_ONLY="y"
+		shift
+	    ;;
 	    -d|--directory)
 		shift
 	    DIRECTORY=$1
@@ -45,14 +54,11 @@ else
 	done
 fi
 
-echo "....Publishing minutes for directory=$DIRECTORY"
+echo "....Running publishing script for directory=$DIRECTORY"
 
 DATE="$(basename $DIRECTORY)"
 
 source ../publishing.cfg
-
-echo "Generating minutes and social media posts for $DATE"
-MESSAGE="Add text minutes and audio logs for $DATE telecon."
 
 # Add default values for missing env vars
 if [ -z "$NODE_COMMAND" ]; then
@@ -64,11 +70,21 @@ if [ -z "$SCRAWL_TO_EMAIL_ADDRESS" ]; then
 fi 
 
 
+if [ "$TWEET_ONLY" == "y" ]
+then
+   echo "Tweeting link to minutes for $DATE"
+   $NODE_COMMAND index.js -d $DIRECTORY -t 
+   exit
+fi
+
+echo "Generating minutes and social media posts for $DATE"
+MESSAGE="Add text minutes and audio logs for $DATE telecon."
+
 # Generate minutes
 $NODE_COMMAND index.js -d $DIRECTORY -m -i
 
 # Make sure we want to continue
-read -r -p "Check for problems, press 'y' when ready to commit to git, tweet/email: " BROADCAST
+read -r -p "Check for problems, press 'y' when ready to commit to git, email: " BROADCAST
 
 echo "Broadcast: $BROADCAST"
 
@@ -77,6 +93,8 @@ then
    echo "Aborting git commit and social media broadcast."
    exit
 fi
+
+echo "Add text minutes and audio logs for $DATE telecon."
 
 git add $DIRECTORY/irc.log $DIRECTORY/index.html $DIRECTORY/audio.ogg
 git commit $DIRECTORY/irc.log $DIRECTORY/index.html $DIRECTORY/audio.ogg $DIRECTORY/../index.html -m "$MESSAGE"
@@ -88,6 +106,7 @@ git push
 # Email minutes
 $NODE_COMMAND index.js -d $DIRECTORY -e
 
+# kim: too many people complaining about dead link while waiting for github pages to publish...
 # Tweet telecon results
-$NODE_COMMAND index.js -d $DIRECTORY -t 
+# $NODE_COMMAND index.js -d $DIRECTORY -t 
 
