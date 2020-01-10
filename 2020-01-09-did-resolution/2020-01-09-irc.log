@@ -1,0 +1,62 @@
+[2020-01-09T21:03:20.405Z]	<markus_sabadello>	present+
+[2020-01-09T21:10:56.508Z]	<sumita>	present+
+[2020-01-09T21:12:18.616Z]	<sumita>	Markus: Topics -- DID resolver, matrix params (do we need them?)
+[2020-01-09T21:12:26.350Z]	<jonathan_holt>	present+ jonathan_holt
+[2020-01-09T21:12:51.245Z]	<jonathan_holt>	q+
+[2020-01-09T21:15:20.685Z]	<sumita>	... DID resolution : resolving a DID, what does it mean to ref a DID URL, DID resolution arch, how to talk to them/invoke, https://w3c-ccg.github.io/did-resolution/
+[2020-01-09T21:16:52.153Z]	<sumita>	... Sovrin v Veres One DID, thoughts on how you could resolve Bitcoin DID...how does DID resolver obtain DID doc
+[2020-01-09T21:17:01.485Z]	<burn>	present+
+[2020-01-09T21:17:56.492Z]	<sumita>	... if writing an app or web service, how does that sw talk to resolver, diff deployment scenarios, local lib, remote web svc, DID resolver invoked via binding
+[2020-01-09T21:19:15.267Z]	<sumita>	... renamed to Proxy Resolution (from delegated resolution)
+[2020-01-09T21:20:27.764Z]	<sumita>	... lib could call resolver over https; small term change to "proxy" being a better term, otherwise no change. similar to dns resolution.
+[2020-01-09T21:21:41.071Z]	<sumita>	Justin Richer: clarification - the URI passed over local binding ...is same as ..? binding and calling resolver. not expecting first resolver to act on DID itself
+[2020-01-09T21:23:20.637Z]	<sumita>	Markus: next one was called "partial resolution" or partial referencing ...had vague, broad way of expressing...certain parts of the ref'ing process can have diff components. not concrete enough. so instead of saying some parts of process can have diff components...
+[2020-01-09T21:24:25.599Z]	<sumita>	... that's how we understood it but wasn't actually written into text [now it is]
+[2020-01-09T21:26:19.123Z]	<sumita>	Jonnycrunch: ... adding query parameters after the fragment, compromise
+[2020-01-09T21:27:30.384Z]	<sumita>	... fragment with an identifier, which id's a resource, the JS has an ID field. overloading the use...ID as JS and query param is actually after the fragment as payload. reading Tim BL that is actually valid
+[2020-01-09T21:27:58.994Z]	<sumita>	Justin: web not running on Tim BL orig paper anymore
+[2020-01-09T21:28:22.446Z]	<sumita>	jonnycrunch: the html doc has an id field for http
+[2020-01-09T21:28:36.813Z]	<sumita>	Justin: ultimately up to MIME type
+[2020-01-09T21:29:42.232Z]	<sumita>	Markus: dereferencing a DID URL section
+[2020-01-09T21:30:48.443Z]	<sumita>	... this could change if the wg decides there will be 2 encodings
+[2020-01-09T21:31:02.832Z]	<sumita>	... but fragment depends on media type
+[2020-01-09T21:32:14.124Z]	<sumita>	Kyle Den Hartog: how is media type being passed? DID resolver not parsing out fragment....thinking of client as sep lib....client lib and did resolver lib. so how can client parse [media type]
+[2020-01-09T21:33:53.957Z]	<sumita>	Markus:  ...in generic URI RFC... can pass back metadata...http headers...here we don't have http but we can still define data structs in ways of passing input options into resolver and resolver can hand back doc + metadata
+[2020-01-09T21:34:07.694Z]	<sumita>	... could be a way of improving this diagram
+[2020-01-09T21:34:37.214Z]	<sumita>	... I remember you brought this up before Kyle so we should resolve
+[2020-01-09T21:35:51.861Z]	<sumita>	Kyle: we would like to see standardized data model being returned and standardized api...don't know if that's in scope. I don't want to implement a resolver that others can't call. anyone have an opinion on whether this is the right approach
+[2020-01-09T21:36:34.450Z]	<sumita>	Markus: DID URL is an abstract func....concrete ways of how it could be done, for ex over https
+[2020-01-09T21:36:59.069Z]	<sumita>	Markus: Hyperledger ares ...worked on ..how to invoke over cmd line...
+[2020-01-09T21:38:00.864Z]	<sumita>	Kyle: makes sense. spend some time on input options on how diff transports might affect. for ex, making request to ledger and it returns json-ld but may want (as client) that to be transformed to graph
+[2020-01-09T21:38:28.026Z]	<sumita>	Dmitri: header set aside [over http binding] ...
+[2020-01-09T21:39:10.876Z]	<sumita>	Kyle: if we're saying http is used, we need to specify how it's being used ...if return obj always remains same over diff bindings but it also breaks assumptions. prefer to rely on transport
+[2020-01-09T21:40:00.977Z]	<sumita>	Markus: how exactly would http binding work? here's something I just made up but it may not be right...open questions.
+[2020-01-09T21:40:11.948Z]	<sumita>	Markus: how do error codes work
+[2020-01-09T21:40:46.401Z]	<sumita>	Kyle: anyone else implementing? we are set on using http and libs. headers + data models. anyone approaching with rpc for ex or web socket ...essentially diff transport
+[2020-01-09T21:42:39.186Z]	<sumita>	Jonny: json-ld thread....fancy tech on existing tech with its own baggage, dns spoofing attack, redirect json-ld to diff content and validate sig as being true. vulnerability of relying on dns ...if not cached, relying on verifier to fetch it
+[2020-01-09T21:42:56.493Z]	<sumita>	Dmitri: separate convo...thought you said you wanted to use http-binding but not header
+[2020-01-09T21:43:06.580Z]	<sumita>	Jonny: would like to not use header
+[2020-01-09T21:44:11.095Z]	<sumita>	Kyle: main adv: easier to adopt new transports. have yet to see anyone use anything other than http. idea of nfc comes up but should it be allowed to be extensible...if we don't expect Peo to use much other than http, then [not needed]
+[2020-01-09T21:45:33.256Z]	<sumita>	Markus: DID resolution is simple interface...for some of bindings makes more sense to have ... rather than completely transport agnostic
+[2020-01-09T21:46:40.184Z]	<sumita>	... http binding could redirect you to another ref'd url ... DIDCOM binding could be diff. Ivan's new WOT paper ... thought it made sense for DID resoltion to not be so transport agnostic
+[2020-01-09T21:48:25.990Z]	<sumita>	Kyle: openID connect -- very integrated with http. started exploring over other transport protocols, quick ...is close ...becomes difficult when using different transports. find a place to stuff a payload... left ??s that could have been closed...like this approach ... someone could define how to use a new transport not used today...how to think about reqs
+[2020-01-09T21:49:06.343Z]	<sumita>	Dmitri: might be over-thinking - define http, api and data model...bindings, libs... after that using a new binding...start with a couple
+[2020-01-09T21:50:32.461Z]	<sumita>	jonnycrunch: IPFS... can layer socket ....run local resolver over http...high latency...vulnerability of what you're giving up with trust ping...metadata given up (response time, loc, are you online)
+[2020-01-09T21:51:13.026Z]	<sumita>	Kyle: idea of trust ping in general, fact of opening socket gives some info re port 80 running.
+[2020-01-09T21:51:41.831Z]	<sumita>	... p2p ... don't wanna close of innovation to only http
+[2020-01-09T21:52:34.904Z]	<sumita>	Jonny : example was SDR ... not sure how long to get response. http timeout, 200ms. libs depending on http would have to extend respond time...http not right protocol ...stateless
+[2020-01-09T21:53:09.955Z]	<sumita>	Kyle: don't wanna overthink....cognizant of other payloads...trying to balance. move fwd with http but not closing door on p2p
+[2020-01-09T21:54:03.772Z]	<sumita>	Markus: keep abstract...keep separate ... binding not a transport between sender/rx ...network tx not needed.
+[2020-01-09T21:54:28.397Z]	<sumita>	Markus: CLI invoke ..pass params...local binding v remote
+[2020-01-09T21:55:35.223Z]	<sumita>	Kyle: interesting. ares -- what bothers me most, we conflate layers for transport. send msg over tcp, operates diff from http. over-generalization... what is necessary req of binding
+[2020-01-09T21:56:04.736Z]	<sumita>	Markus: in this spec, it is not clear enough. how is the media type passed back from resolver to client -- not specified here
+[2020-01-09T21:56:56.041Z]	<sumita>	Kyle: I can submit a PR on how to define it...haven't had a need to define it more strictly yet. people in this group will provide wise advice on that PR and if it's proper way to write standard
+[2020-01-09T21:57:19.401Z]	<sumita>	Markus: as you know, in DIF we are working on universal resolver
+[2020-01-09T21:57:46.868Z]	<sumita>	Kyle: we are dependent on universal resolver .... need to get into deeper arch layers
+[2020-01-09T21:58:30.105Z]	<sumita>	Markus: topic - matrix v query params. want to write my RWOT paper on that.
+[2020-01-09T21:59:28.929Z]	<sumita>	... did resolver would pick out the svc from doc. over time did controller could change doc with new address which gives stable persistent url
+[2020-01-09T22:02:20.799Z]	<sumita>	... arguing that if we don't have matrix params we cannot do this. could have a query param that tries to do same thing....github discussion, but then you're using the query string construct to diff stages. resolver would have to extract path and the fragment + string would be appended later. basic idea: we don't want to tell Peo what to do with their path, query, param. left to app devs.
+[2020-01-09T22:02:56.303Z]	<sumita>	Dmitri: put on agenda for next call [matrix params]
+[2020-01-09T22:05:44.897Z]	<manu>	voip: disconnect all
+[2020-01-09T22:05:49.315Z]	<manu>	voip: connections?
+[2020-01-09T22:05:54.861Z]	<manu>	voip: disconnect 33b
