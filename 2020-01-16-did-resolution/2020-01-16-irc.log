@@ -1,0 +1,64 @@
+
+menu
+Status #ccgX
+#ccg: Credentials CG - 2020-01-14 Agenda: https://lists.w3.org/Archives/Public/public-credentials/2020Jan/0072.html
+[22:01] == markus_sabadello [~markus_sabadello@public.cloak] has joined #ccg
+[22:06] == jricher [~jricher@public.cloak] has joined #ccg
+[22:07] == samsmith [~samsmith@public.cloak] has joined #ccg
+[22:07] == Chad_P [~Chad_P@public.cloak] has joined #ccg
+[22:08] <samsmith> Take a look at matrix parameters and how they work.
+[22:08] <samsmith> Markus: talking
+[22:09] == jonathan_holt [~jonnycrunch@public.cloak] has joined #ccg
+[22:09] <jonathan_holt> present+ jonathan_holt
+[22:10] <samsmith> samsmith: added topic for security model for resolvers
+[22:11] <samsmith> markus: sharing screen
+[22:14] == burn [~burn@public.cloak] has joined #ccg
+[22:19] == burn_ [~burn@public.cloak] has joined #ccg
+[22:19] <burn_> present+
+[22:19] <samsmith> samsmith: why two mechanisms to do the same thing did doc and verifiable crediatial
+[22:21] <samsmith> Kyle hartog:  difference in DID doc vs service sign self host.  DID did doc to rely.
+[22:21] == burn [~burn@public.cloak] has quit [Ping timeout: 180 seconds]
+[22:21] <samsmith> kyle: force did to use VCs  using VCs is one way to do it. and preferable.  more private for VCs.
+[22:22] <samsmith> kyle: diddoc is lightweight way to do it without.  limit sizeof DID docs.
+[22:23] <samsmith> Markus:  Entire DIDDoc could be modeled as a self issued verifiable credential. Make the DID Document too heavy.  Extensibility could have an array of verifiable claims. Privacy.
+[22:25] <samsmith> Markus: don't want to go into detail on that topic
+[22:26] <samsmith> Markus: some argue like Nathan that should only put the minimum into DIDDoc such as 1 service endpoint and 1 key to minimize correlation and protect privacy
+[22:27] <markus_sabadello> https://identity.foundation/.well-known/resources/did-configuration/
+[22:28] <samsmith> Tobias: Use case DIF Well Known Configuration IANA to create assertion to link DID to domain name which allows a reverse correlation. DID service endpoint to substitute DID to well known or human friendly endpoint.
+[22:28] <samsmith> Markus: discovery is not new for DIDs.
+[22:32] <samsmith> markus: PURLs
+[22:32] <samsmith> Persistent URLS Wikipedia
+[22:33] <samsmith> Purl service provides redirection. but not self-soveriegn
+[22:37] <samsmith> Markus: motivation for matrix parameter is to enable partial redirection (PURL) without encumbering the path/query/or fragment which would conflict with the PURL
+[22:38] <samsmith> Markus: Indirection of the entire information space is enabled by not encumbering path fragment and query which a matrix parameter enables
+[22:39] <samsmith> jonny: this only works if the service endpoints manage the path etc the same way after the partial redirection.
+[22:40] <samsmith> Kyle: how to bind different transports?
+[22:41] <samsmith> Kyle: DID Url redirect http 302 or 303 redirect if using http
+[22:42] <samsmith> kyle: what happens in a 302 redirect does th resolver return the content or just the redirection.
+[22:43] <samsmith> markus: could do it either way but should be consistent with http redirect which does not fetch resource but returns new URL
+[22:44] <samsmith> jonny: walk through use case of redirection on screen
+[22:48] <samsmith> jonny: creates persistent urls that use a single self-certifying identifier.
+[22:52] <samsmith> kyle  DDNS is similar to how DIDDoc redirect service endpoint works
+[22:52] <samsmith> Sam: DDNS is closer to DID service redirect than a PURL because the identifier does not change
+[22:57] <samsmith> sam: mtg notes will include slides link
+[22:59] <samsmith> jonny: persistent url provides a way to avoid having @context because can have persistent storage of context information.
+[23:00] <samsmith> markus: we don't need @context just for matrix service parameters
+[23:01] == samsmith [~samsmith@public.cloak] has quit ["Page closed"]
+[23:01] == Chad_P [~Chad_P@public.cloak] has quit ["Page closed"]
+bigbluehat
+burn_
+ChristopherA
+chriswinc
+dlehn
+dlongley
+fr33domlover
+Gargron
+jonathan_holt
+jricher
+manu
+markus_sabadello
+rhiaro
+stonematt
+tzviya
+wayne
+
