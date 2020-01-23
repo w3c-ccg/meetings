@@ -1,0 +1,44 @@
+[2020-01-23T21:06:49.940Z]	<kdenhartog>	present+
+[2020-01-23T21:06:55.693Z]	<markus_sabadello>	present+
+[2020-01-23T21:08:46.497Z]	<tplooker>	present+
+[2020-01-23T21:10:47.236Z]	<markus_sabadello>	kdenhartog: presenting our architecture
+[2020-01-23T21:11:06.540Z]	<markus_sabadello>	kdenhartog: familiar architecture: resolver retrieves the did document, client dereferences the fragment
+[2020-01-23T21:11:37.290Z]	<markus_sabadello>	kdenhartog: when the client gets the identifier, it has to be aware of the ABNF rules of the DID URL in order to properly parse off the fragment identfier
+[2020-01-23T21:11:42.865Z]	<markus_sabadello>	kdenhartog: then resolution will happen as normal
+[2020-01-23T21:11:57.685Z]	<markus_sabadello>	kdenhartog: client receives the full resolution result including the did document
+[2020-01-23T21:12:30.273Z]	<markus_sabadello>	kdenhartog: tplooker and i have been talking about different thinking: how can you make the client unaware of what the DIDs look like?
+[2020-01-23T21:12:39.265Z]	<markus_sabadello>	kdenhartog: advantage would be that the client doesn't have to be DID aware
+[2020-01-23T21:12:59.218Z]	<markus_sabadello>	kdenhartog: client still has to be aware of DID documents, but processing of DID documents can be kept simple
+[2020-01-23T21:13:08.243Z]	<markus_sabadello>	kdenhartog: trying to reduce complexity in the clieng
+[2020-01-23T21:13:19.865Z]	<markus_sabadello>	kdenhartog: so you also parse the fragment to the resolver, which will handle the parsing logic
+[2020-01-23T21:13:35.563Z]	<markus_sabadello>	kdenhartog: feels counter-intuitive to how dereferencing normally works
+[2020-01-23T21:13:51.115Z]	<markus_sabadello>	kdenhartog: this pattern becomes quite interesting when you have matrix parameters
+[2020-01-23T21:14:12.323Z]	<markus_sabadello>	kdenhartog: (showing slide about partial redirection)
+[2020-01-23T21:14:30.439Z]	<markus_sabadello>	kdenhartog: in the "publicKey" section, there is a reference to another key
+[2020-01-23T21:15:29.109Z]	<markus_sabadello>	kdenhartog: one key can reference another, which in turn references yet another key
+[2020-01-23T21:15:42.863Z]	<markus_sabadello>	kdenhartog: resolver carries a heavy burder to be able to dereference this
+[2020-01-23T21:15:49.582Z]	<markus_sabadello>	s/burder/burden/
+[2020-01-23T21:16:28.262Z]	<markus_sabadello>	kdenhartog: possible use case: delegation chain
+[2020-01-23T21:16:58.617Z]	<markus_sabadello>	kdenhartog: e.g. a CEO's DID document can contain a reference to an assistant's DID, in order to delegate authority to them
+[2020-01-23T21:18:19.239Z]	<markus_sabadello>	jonnycrunch: normally fragments are used to identify a part of a document; we use fragments differently, they contain shared keys that stay on the client
+[2020-01-23T21:19:41.628Z]	<markus_sabadello>	kdenhartog: the difference between the architectures is where does the complexity lie
+[2020-01-23T21:20:15.380Z]	<markus_sabadello>	kdenhartog: another aspect is caching
+[2020-01-23T21:22:32.185Z]	<markus_sabadello>	jonnycrunch: our thinking is about DID browsers that use DID resolver
+[2020-01-23T21:24:45.951Z]	<markus_sabadello>	kdenhartog: the key ID can be the key fingerprint instead of e.g. #key-1, but this means that key IDs change and references to the key also have to change
+[2020-01-23T21:27:37.156Z]	<markus_sabadello>	tplooker: we should establish some really clear roles to define client, resolver, dereferencer
+[2020-01-23T21:29:50.132Z]	<markus_sabadello>	justin: yes we need clear definition, i'm in favor of distinguishing between resolver and dereferencer
+[2020-01-23T21:31:56.260Z]	<markus_sabadello>	tplooker: if you call a dereferncer, would it in turn include resolution?
+[2020-01-23T21:32:18.638Z]	<markus_sabadello>	justin: from a client's perspective, yes it would resolve and dereference together
+[2020-01-23T21:33:35.516Z]	<markus_sabadello>	tplooker: if you hand a DID URL to a resolver (not a dereferencer), would it throw an error, or would it just return the DID document?
+[2020-01-23T21:34:42.019Z]	<markus_sabadello>	kdenhartog: you can also pass in resolver options that are not part of the DID URL
+[2020-01-23T21:35:32.748Z]	<markus_sabadello>	justin: there is also a question about MIME types, what does the dereferencer do if it gets a MIME type from the resolver it doesn't understand?
+[2020-01-23T21:40:45.469Z]	<markus_sabadello>	tplooker: do you need a publicKeyRef field, or couldn't you just use the URI instead (JSON-LD)
+[2020-01-23T21:41:30.015Z]	<markus_sabadello>	dmitriz: this may be an excellent use case for hashlinks
+[2020-01-23T21:42:12.870Z]	<markus_sabadello>	dmitriz: there's also the concept of delegation capabilities
+[2020-01-23T21:43:08.896Z]	<markus_sabadello>	tplooker: this syntax in JSON-LD will automatically expand into an array: “authentication” : [ “did:example:def#key-1” ]
+[2020-01-23T21:51:44.657Z]	<markus_sabadello>	markus_sabadello: why are you using a matrix parameter
+[2020-01-23T21:52:03.473Z]	<markus_sabadello>	kdenhartog: the matrix parameter would instruct the resolver to follow the public key references to a final resource, which is returned
+[2020-01-23T21:56:22.707Z]	<markus_sabadello>	markus_sabadello: there were PRs and ideas for a "key" matrix parameter and "id" matrix parameter
+[2020-01-23T22:01:05.037Z]	<markus_sabadello>	kdenhartog: one of the main advantages of IDs is to change the data behind it, e.g. the data behind the identifier #key-1 can change.
+[2020-01-23T22:05:47.600Z]	<markus_sabadello>	tplooker: in the JOSE context, the idea of using DIDs with fragments as a "kid" has been discussed
+[2020-01-23T22:06:08.528Z]	<markus_sabadello>	tplooker: if the data behind the ID changes, this can lead to ambiguity and security problems
