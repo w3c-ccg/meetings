@@ -29,6 +29,7 @@ if(!program.directory) {
 var dstDir = path.resolve(path.join(program.directory));
 var logFile = path.resolve(path.join(program.directory, 'irc.log'));
 var indexFile = path.resolve(path.join(program.directory, 'index.html'));
+var emailContentsFile = path.resolve(path.join(program.directory, 'email.log'));
 var htmlHeader = fs.readFileSync(
   __dirname + '/header.html', {encoding: 'utf8'});
 var htmlFooter = fs.readFileSync(
@@ -42,6 +43,21 @@ gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
 // configure scrawl
 scrawl.group = 'Credentials CG Telecon';
 scrawl.people = JSON.parse(peopleJson);
+
+function generateEmailBody() {
+// generate the body of the email
+  var content = scrawl.generateMinutes(gLogData, 'text', gDate);
+  var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
+      .replace(/\n/g, '').replace('Scribe:  ', '');
+  content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
+      'for this week\'s Credentials CG telecon are now available:\n\n' +
+      'https://w3c-ccg.github.io/meetings/' + gDate + '/\n\n' +
+      'Full text of the discussion follows for W3C archival purposes.\n' +
+      'Audio from the meeting is available as well (link provided below).\n\n' +
+      '----------------------------------------------------------------\n' +
+      content;
+  return content;
+}
 
 /************************* Utility Functions *********************************/
 function postToWordpress(username, password, content, callback) {
@@ -115,7 +131,6 @@ function sendEmail(email, username, password, hostname, content, callback, port=
   server = emailjs.server.connect(connectionOptions);
 
   var toEmail = `Credentials CG <${process.env.SCRAWL_EMAIL_TO_ADDRESS}>`;
-  console.log(toEmail);
 
   // send the message
   server.send({
@@ -125,7 +140,7 @@ function sendEmail(email, username, password, hostname, content, callback, port=
     subject: `[MINUTES] W3C Credentials CG Call - ${gDate} 12pm ET`
   }, function(err, message) {
     if(err) {
-      console.log('scrawl:', err);
+      console.error('scrawl:', err);
       return callback();
     }
 
@@ -135,6 +150,7 @@ function sendEmail(email, username, password, hostname, content, callback, port=
     callback();
   });
 }
+
 /*************************** Main Functionality ******************************/
 
 async.waterfall([ function(callback) {
@@ -284,23 +300,15 @@ async.waterfall([ function(callback) {
     callback();
   }
 }, function(callback) {
+  var content = generateEmailBody();
+  fs.writeFileSync(emailContentsFile, content, 'utf-8');
+
   // send the email about the meeting
   if(program.email) {
     if(!program.quiet) {
       console.log('scrawl: Sending new minutes email.');
     }
 
-    // generate the body of the email
-    var content = scrawl.generateMinutes(gLogData, 'text', gDate);
-    var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
-      .replace(/\n/g, '').replace('Scribe:  ', '');
-    content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
-      'for this week\'s Credentials CG telecon are now available:\n\n' +
-      'https://w3c-ccg.github.io/meetings/'+ gDate + '/\n\n' +
-      'Full text of the discussion follows for W3C archival purposes.\n' +
-      'Audio from the meeting is available as well (link provided below).\n\n' +
-      '----------------------------------------------------------------\n' +
-      content;
 
     if(process.env.SCRAWL_EMAIL_FROM_ADDRESS && process.env.SCRAWL_EMAIL_USERNAME && 
       process.env.SCRAWL_EMAIL_PASSWORD && process.env.SCRAWL_EMAIL_SERVER) {
