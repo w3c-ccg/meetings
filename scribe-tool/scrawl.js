@@ -577,7 +577,8 @@
     // modify the time if it was specified
     if(context.date) {
       time = new Date(context.date)
-      time.setHours(35);
+      time.setHours(24);
+      console.log(time);
     }
 
     // zero-pad the month and day if necessary
@@ -767,7 +768,8 @@
 
     if(date) {
       context.date = new Date(date);
-      context.date.setHours(36);
+      context.date.setHours(24);
+      console.log(context.date);
     }
 
     // process each IRC log line
