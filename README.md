@@ -42,11 +42,9 @@ curl -H "Accept: application/vnd.github.everest-preview+json" \
 - Reducing number of steps:
     - This can be reduced to 1 step once we get into better scriibe hygiene habits. The separate cleanup won't be necessary
     - We could also try kicking this off on a schedule or using an s3 file watcher approach
-- Bug in meeting minute time (it adds 1 day -- possibly a time zone offset issue)
 - Use github caching action because this repo is large
 - Make multiple tos not bcc
 - Add wait before tweet
-- Still confirming bot email gets sent
 
 ### How it works
    
