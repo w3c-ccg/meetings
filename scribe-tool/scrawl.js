@@ -577,7 +577,7 @@
     // modify the time if it was specified
     if(context.date) {
       time = new Date(context.date)
-      time.setHours(24);
+      time.setHours(23);
       console.log(time);
     }
 
@@ -768,7 +768,7 @@
 
     if(date) {
       context.date = new Date(date);
-      context.date.setHours(24);
+      context.date.setHours(23);
       console.log(context.date);
     }
 
