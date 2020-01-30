@@ -398,12 +398,6 @@
        {
          context.audio = false;
        }
-       // check for date line
-       else if(msg.search(dateRx) != -1)
-       {
-         var date = msg.match(dateRx)[1];
-         context.date = new Date(date);
-       }
        // check for topic line
        else if(msg.search(topicRx) != -1)
        {
@@ -552,7 +546,7 @@
   scrawl.generateSummary = function(context, textMode)
   {
     var rval = '';
-    var time = context.date || new Date();
+    var time = context.date;
     var month = '' + (time.getMonth() + 1)
     var day = '' + time.getDate()
     var group = context.group;
@@ -572,12 +566,6 @@
       var person = scrawl.people[name]
       person['name'] = name;
       present.push(person)
-    }
-
-    // modify the time if it was specified
-    if(context.date) {
-      time = new Date(context.date)
-      time.setHours(35);
     }
 
     // zero-pad the month and day if necessary
@@ -766,8 +754,11 @@
     };
 
     if(date) {
+      console.log(date);
       context.date = new Date(date);
-      context.date.setHours(36);
+      console.log(context.date);
+      context.date.setHours(24);
+      console.log(context.date);
     }
 
     // process each IRC log line
