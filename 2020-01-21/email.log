@@ -1,0 +1,420 @@
+Thanks to Manu Sporny for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-01-21/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2020-01-22
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jan/0090.html
+Topics:
+  1. Introductions / Reintroductions
+  2. Announcements and Reminders
+  3. Updates
+  4. W3C CCG Election and Charter Update
+  5. Encrypted Data Vaults - Transmute Implementation
+Organizer:
+  Christopher Allen and Joe Andrieu and Kim Hamilton Duffy
+Scribe:
+  Manu Sporny
+Present:
+  Justin Richer, Joe Andrieu, Sumita Jonak, Jeff Orgel, Amy Guy, 
+  Adrian Gropper, Chris Winczewski, Orie Steele, Dave Longley, 
+  Drummond Reed, Moses Ma, Manu Sporny, Carl DiClementi, Markus 
+  Sabadello, Jonathan Holt, Kim Hamilton Duffy, Kaliya Young, 
+  Heather Vescent, Troy Ronda, Wayne Vaughn, Dmitri Zagidulin, 
+  Stephen Curran, Ken Ebert
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-01-22/audio.ogg
+
+Manu Sporny is scribing.
+
+Topic: Introductions / Reintroductions
+
+Joe Andrieu:  Anyone new today that hasn't been here before?
+No one pipes up.
+Let's ask Stephen
+Joe Andrieu:  Reintroductions... Kim?
+Kim Hamilton Duffy:  What about Stephen Curran?
+Justin Richer:  Hi,  Justin Richer, independent consultant in 
+  Boston, lot of work in OAuth and OpenID Protocol, lot of work in 
+  privacy, wrote vectors in trust, been involved with lots of 
+  different standards orgs. Here in this group and DID WG working 
+  on behalf of clients, SecureKey - bridge gaps between the 
+  traditional Web API space and the distributed DID identity space
+
+Topic: Announcements and Reminders
+
+Justin Richer: Also doing http signatures, txauth, a couple board 
+  games, etc ....
+Joe Andrieu:  Next week is a DID WG meeting, still an opportunity 
+  to go - not seeing either chair in IRC list - URL for that is in 
+  the Agenda.
+Joe Andrieu: http://rwot10.eventbrite.com/
+Joe Andrieu:  RWOT10 is March 16th-20th in Buenos Aires, 
+  Argentina - you can sign up above.
+Moses Ma: Do you have an agenda for RWOT 10?
+Joe Andrieu:  This Friday is deadline for early bird tickets, 
+  have another month to get topic paper discount for regular 
+  advanced sale.
+Joe Andrieu:  Yes, we have an Agenda for RWOT10 - same agenda as 
+  usual, ping me offline if you have specific questions.
+Moses Ma: Okay Joe
+Joe Andrieu:  DID Resolution calls have resumed in new year. 
+  Where are we with that? Who should join?
+Drummond Reed:  Markus is running those calls, he is the 
+  authoritiative guy there.
+Markus Sabadello:  Yes, we're having calls, recent topics include 
+  matrix parameters, how they're different from query parameters, 
+  another topic is security and trust aspects of DID Resolution and 
+  different requirements for DID Resolution architectures - local 
+  resolvers, remote services, what does that mean for how you can 
+  trust the result and what sort of proofs you should add? Ties 
+  into Sam Smith's work on self-certifying identifiers and proof of 
+  authority.
+Joe Andrieu: https://zoom.us/j/7077077007
+Joe Andrieu:  That meeting is Thursdays for 60 minutes, link 
+  above.
+Joe Andrieu:  1PM PT
+Markus Sabadello: DID Resolution spec weekly meeting: 
+  https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/
+Joe Andrieu:  Related to announcements -- next week, next week is 
+  DID WG face to face  meeting in Amsterdam. Plus one if you are 
+  going to be available and want to meet next week. There is no DID 
+  WG meeting.
+Joe Andrieu:  In consideration of canceling next week... +1 if 
+  you want to hav ethe meeting.
+Drummond Reed: -1
+Crickets... *chirp chirp chirp*
+Manu Sporny: -1 (To stand is solidarity with drummond)
+Markus Sabadello: -1 (Group pressure)
+Joe Andrieu:  Ok, we'll cancel next week and pick the meeting up 
+  in two weeks time.
+Joe Andrieu: 
+  https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+
+Topic: Updates
+
+Kim Hamilton Duffy:  We talked about this last week, no 
+  resolution. We didn't update the labels for review next. Same 
+  ones we reviewed last week.
+Carl DiClementi: Will there be a summary of some kind published 
+  regarding any conclusions from the in person meeting?
+Manu Sporny:  Update on the signatures stuff. There's been a lot 
+  of movement. Christopher and a group of implementers are updating 
+  a list of links to current implementations and specs, etc. Orie 
+  has done a great job at pushing the security vocab from DVCG to 
+  the CCG. [scribe assist by Dave Longley]
+Manu Sporny:  We're working on a strategy to get that updated; 
+  work on repos, etc.; another individual in this group has started 
+  working on a cryptosuite spec. There's movement to clean up and 
+  document and update things. Others working on people getting 
+  additional funding for making progress. [scribe assist by Dave 
+  Longley]
+Manu Sporny:  Multiple companies looking at funding there. 
+  [scribe assist by Dave Longley]
+Manu Sporny:  Just so everyone knows and is up to date. Hosting a 
+  schema is still vague and we'll need to work with Christopher to 
+  figure out what he'd like to see there. There are other non-big 
+  things that Orie and I and others are Digital Bazaar are working 
+  on. That's updates for LD signatures, contexts, etc. [scribe 
+  assist by Dave Longley]
+Carl DiClementi: We (Factom) are the org working on updating the 
+  RSA suite and we plan to communicate a plan WRT consolidating 
+  content for proofs that is spread across several specs.
+Joe Andrieu:  So issue #95, we should close that.
+Carl DiClementi:  If it's a small comment, I can mention it on 
+  queue?
+Joe Andrieu:  Yes.
+Carl DiClementi:  We will be working on updating RSA Signature 
+  Cryptosuite - also trying to consolidate cryptosuites across 
+  various locations, will come back with proposals around that 
+  soon.
+Carl DiClementi: Snark +1
+Joe Andrieu:  Closing #95, which is great.
+Joe Andrieu:  The Chairs would like to have a JSON-LD day where 
+  we can spend most of the topical points on where things are, 
+  where resources are, how we can support it, want to make sure 
+  it's moving forward. That's #88.
+Joe Andrieu:  Updating the CCG Process, we had a call on it last 
+  week, relates to next item on Agenda - going to move into that.
+
+Topic: W3C CCG Election and Charter Update
+
+Joe Andrieu:  We do need to have an election and do need to 
+  update the Charter.
+Joe Andrieu:  We are going to update the charter, provide details 
+  on election format - will propose new election process, will 
+  hopefully maintain a healthy succession of leadership.
+Joe Andrieu:  We're working on this, this sort of things don't 
+  spark joy, so it's taking longer than normal. We don't want to 
+  rush through this, just wanted to give an update on that. Happy 
+  to talk offline if folks want more detail.
+
+Topic: Encrypted Data Vaults - Transmute Implementation
+
+Yes, it's a work item
+Joe Andrieu:  We have an Encrypted Data Vault specification as a 
+  work item, I believe it's a work item, larger conversation on how 
+  to work w/ DIF and other communities on shared spec for this 
+  critical piece.
+Joe Andrieu:  Lots of people are working on this in lots of 
+  different ways, Medium post by Orie Steele, on how their EDV 
+  implementation went. Wanted to share that with the group.
+Orie Steele: +1 For update
+Present?
+Manu Sporny:  The conversation continues between W3C and DIF, 
+  Rouven will provide an update later this week.
+Joe Andrieu:  Thanks for the update, in that context - speaking 
+  as the Chairs - as a CG we're here to catalyze conversations that 
+  move work forward. We are having this conversation today about a 
+  particular implementation of a particular spec.
+Orie Steele: 
+  https://medium.com/transmute-techtalk/encrypted-data-vaults-c794055b170e
+Orie Steele:  There is the blog post ^
+Orie Steele:  I'd like this to be as interactive as possible. 
+  This work is of interest to a number of different communities. 
+  Transmute are members of W3C and DIF, we initially followed the 
+  initial into through Identity Hubs at DIF.
+Orie Steele:  Hubs was a spec was around facilitating storage on 
+  behalf of decentrlaized storage.
+Orie Steele:  Hubs might be available online, they might take a 
+  beating on the public Internet, they may serve content in 
+  encrypted or non-encrpted form, most DIF discussion on Hubs is 
+  non-encrypted.
+Orie Steele:  You would talk to a hub when you need data around 
+  DIDs. That was our first introduction to it, worked in DIF trying 
+  to move Hubs specification forward. Then there was this brilliant 
+  RWOT paper that summarized the entire ecosystem.
+Dave Longley: 
+  https://github.com/WebOfTrustInfo/rwot9-prague/blob/master/final-documents/encrypted-data-vaults.md
+Orie Steele:  That summarized Hubs, Solid, EDVs, etc... that 
+  document was the motivation of this collaboration between these 
+  various communities.
+Orie Steele:  What we've started with is with what we expect to 
+  be the W3C specification for Encrypted Data Vaults - 
+  client-server architecture for data that's encrypted in transit 
+  and encrypted at rest.
+Orie Steele:  It's related to some other things floating around 
+  on mailing list - HTTP Signatures, our implementation that's 
+  mentioned in the blog post uses HTTP Signatures and Authorization 
+  Capabilities (ZCAP-LD) - of interest for further discussion.
+Orie Steele:  You as a controller of a key of a DID Document 
+  express authorization around EDV documents - express 
+  authorizations as capabilities, and then invoke capabilities to 
+  get to your data and work with it.
+Orie Steele:  We use ZCAP-LD and HTTP Signatures from browser to 
+  server.
+Orie Steele:  I'll note that Authorization Capabilities are new, 
+  there are alternatives like OAuth and stuff like that, marrying 
+  that ecosystem, txauth is a primary interest to having WG to 
+  consolidate and share knowledge about how we interop, what plugs 
+  what doesn't.
+Orie Steele:  The Encrypted Data Document format - the one we're 
+  using today is a JWE - what that means is that is a reasonable 
+  encryptoin encoding format for these documents. Lots of support 
+  for JOSE, should be easy to move JWEs around - however, if we're 
+  talking about large datasets, vision to support that in the 
+  future, we're going to have to have a deeper discussion about 
+  that.
+Orie Steele:  That's another area we could talk about - what do 
+  we store in the vaults? Structured data, or more like file 
+  system? Large binaries?
+Orie Steele:  Why not TahoeLAFS? Other encrypted file system 
+  extensions to IPFS - don't want to read our blog post to you - I 
+  talk a lot abou tthe technology - probably should set business 
+  context.
+Orie Steele:  The reason we care about this, working with DHS 
+  SVIP on preventing forgery and particularly working with US 
+  Customs and Border Protection around certificates around raw 
+  materials imports. Want to store these certificates in some sort 
+  of interoperable data store. Digital Bazaar did this with CBP as 
+  well and we think that's a use case that applies to many things.
+Error: (IRC nickname 'kimhd_' not 
+  recognized)[2020-01-21T17:40:22.798Z]	<kimhd_>	new Wired article 
+  on Kaliya and SSI https://www.wired.co.uk/article/kaliya-young
+Orie Steele:  This also works with storing credential formats and 
+  digital wallet portability. One other point before opening up to 
+  questions - in EDV implementation - had to do a lot of magic to 
+  get keys to get used for authz. Another work item called WebKMS, 
+  we used that, want to see progress on that.
+Orie Steele:  One of the needs of an EDV system is you're using 
+  keys - would like to combine WebKMS ... also interested on 
+  credential exchange - CHAPI - extension for working w/b rowsers 
+  to exchange credentails... want to integrate CHAPI into our EDV 
+  demo in the future.
+Orie Steele:  I'm familiar with DIF company positions as well, 
+  could elaborate there.
+Joe Andrieu:  Are you using WebKMS in the implementation?
+Orie Steele:  Not today - how do we represent serialized 
+  keystores that have info about DIDs, we have a library that can 
+  do that today, but it's 90% JWKs - with some metadata.
+Orie Steele:  There might be some DID public key identifier 
+  associated with a DID - that's portability layer that enables us 
+  to use did:key, did:github, and did:elem.
+Orie Steele:  Signing and encrypting on behalf of DID Document is 
+  done with these keys... it's an area that we'd like to see an 
+  existing standard... JWKs w/ annotations - don't want alternate 
+  keystore format that we've created.
+Joe Andrieu:  Great, it's implementations like this that help us 
+  understand where we could put in effort.
+Dave Longley:  All of this is great, thanks for doing this work 
+  Orie. My expectation is that you're using the edv-client - that 
+  gives full interop w/ our EDV implementations. We're very 
+  interested in working out interop w/ Transmute.
+Dave Longley:  Interested in working on interop w/ streaming... 
+  also collaborating on WebKMS - we are using WebKMS + EDVs. Also 
+  interested in interop w/ CHAPI, this is all great, very 
+  interested in collaborating.
+Orie Steele:  We don't support streaming format yet, we support 
+  document create/update - thinnest wrapper around EDV that we 
+  could ... interop goals, I'd like to focus on a couple of 
+  different EDV implementation sout there, maybe more than one 
+  client app out there, some ability to create docs on one of them 
+  and then move docs from one to another and back again.
+Orie Steele:  We had some discussions - if you're running stuff 
+  on public internet, what are some concerns? There is an endpoint 
+  that'll delete everything -- it's a demo - don't use it for 
+  production.
+Orie Steele:  I'd like to think about whitelisting as a layer on 
+  top of this - whitelist DIDs for early integration w/ services. I 
+  see a natural place to do this - when we process capability 
+  invocations, we could extend to support generaic white list .
+Orie Steele: +1 To allow listing
+Joe Andrieu:  Wanted to point out Dave's suggestion to change 
+  "white list" to "allow list".
+Consensus!
+Manu Sporny:  One, underscore Dave's point that this is all great 
+  work, Orie. Wonderful to see another company pick up an 
+  implementation, implement and see it work. [scribe assist by Dave 
+  Longley]
+Manu Sporny:  Great that we're using the same client but 
+  different servers gives us a narrow point to demonstrate interop 
+  which is a good thing. [scribe assist by Dave Longley]
+Manu Sporny:  So what are the next highest priority things to 
+  demonstrate... everything you list is great. Collaborating on 
+  CHAPI, different server implementations, on ZCAPs, on allow lists 
+  and block lists and things of that nature. [scribe assist by Dave 
+  Longley]
+Manu Sporny:  I wanted to point out that DB's primary motivation 
+  has to do with wallet portability. What DB means by "wallet" is 
+  "where you store your stuff". Maybe your VCs, binary files, 
+  things that are sensitive to you. The digital version of your 
+  physical wallet, receipts, loyalty cards, you stuff lots of stuff 
+  like that in your wallet. [scribe assist by Dave Longley]
+Manu Sporny:  So in EDVs is where we intend to put all this 
+  stuff. And that you can move providers very easily, that's what 
+  we want. You should be able to change wallet/EDV providers 
+  without anyone stopping you from doing so. [scribe assist by Dave 
+  Longley]
+Manu Sporny:  So power to the people, making sure their data is 
+  theirs and they can move it. [scribe assist by Dave Longley]
+Manu Sporny:  The biggest win we can do, not the least amount of 
+  effort, would be to demonstrate that we can transfer wallet 
+  providers very easily. Focusing on multiple server 
+  implementations for EDV and working on CHAPI a little bit for 
+  moving VCs into a wallet and then migrating the wallet to another 
+  provider. Another key component is moving ZCAPs forward a bit. 
+  [scribe assist by Dave Longley]
+Orie Steele: +1 To simple cases first.
+Manu Sporny:  I think as an organization we're less concerned 
+  with advanced stuff like multiple updating and syncing EDVs 
+  across lots of devices, all legit use cases, but we'd like to 
+  focus on the crawling before running. [scribe assist by Dave 
+  Longley]
+Manu Sporny:  I think this is where the joint DIF/W3C/Aries/Solid 
+  stuff is about -- prioritizing these things and figuring out 
+  where as a community we want to go. We, as an organization, want 
+  to focus on portability, CHAPI, moving wallets, etc. simpler use 
+  cases. [scribe assist by Dave Longley]
+Joe Andrieu:  I put myself on the queue - to push back on 
+  language around wallet vs. vault that Manu used. Naming is hard, 
+  attempting to be constructive.
+Orie Steele: "Wallet" is a terrible name :( ... names are hard...
+Drummond Reed: The DIF Glossary Project is drilling deep into 
+  community definitions of "wallet", "agent", and "credential". 
+  It's amazing how diverse some of the responses are.
+Joe Andrieu:  ChristopherA and I wrote a topic for the last 
+  rebooting - spoke about how "Identity Wallets" and "Crypto 
+  Wallets" have similarities, trying to find similarities 
+  architecturally. Crypto wallets are not in your hardware 
+  wallet... a wallet is how you control access to your stuff, not 
+  the actual store that has it. A good crypto wallet could have 
+  Bitcoin, Ethereum, AltCoins, but the way that tech works is that 
+  the important stuff is not in the wallets.
+Adrian Gropper: +1 To Joe's and Drummond's comments on "wallet"
+Stephen Curran: "Wallet" in mainstream usage is the app you have 
+  on your phone. It's not the bit of the any "thingy" (agent, 
+  whatever) that stores things. Using that term is fighting a 
+  losing battle.
+Joe Andrieu:  The interfaces that we use to get access to stores 
+  vs the stores themselves are important. We also need a good 
+  separation between those so we can move EDVs around w/o changing 
+  front-end wallet.
+Dave Longley: There's probably also a naming issue here where the 
+  general public will understand "wallet" as all of the layers, but 
+  developers/technologists should understand there are more layers
+Orie Steele:  I agree with what Joe is saying about wallets - had 
+  a discussion w/ Christopher around overlap w/ concept of wallet 
+  and concept of HD wallet.
+Orie Steele:  Procedurally finding all tokens in an HD Wallet 
+  across all different ledgers is difficult... key to unlocking 
+  this is figuring out interfaces to cryptographic material for 
+  controlling data that's associated with an identifier. I don't 
+  like using wallet for that vs. keystore - either they are keys or 
+  a mnemonic - like that.
+Orie Steele:  The current library we use in the demo, we store 
+  mnemonics, symmetric keys, asymmetric keys, we don't store 
+  credentials. We use those things to connect to EDV, which we 
+  intend to store credentials. If you dump vault to JSON, you can 
+  serialize - you can have some level of portability with just 
+  that.
+Stephen Curran: +1 To Orie re: keystore + place for storing 
+  credentials
+Orie Steele:  In terms of interop, how do we as a community, 
+  represent a serialized keystore/wallet format. Hyperledger Indy 
+  has a serialization format for their wallet file structure, 
+  similar to what we have - string array tagged property, once you 
+  have something like that, you can abuse it to get any sort of 
+  linking you want. There is the JWKs format - representing keys - 
+  no metadata.
+Orie Steele:  There is a mirror image to DID Doc that we don't 
+  have for private keys - would love to see storage format for 
+  keys... blurry line between WebKMS, EDVs, - getting clarity 
+  around this is a high priority.
+Jonathan Holt:  Is there any parallel mechanism for 
+  importing/exporting in hardware wallets/ Are there standards for 
+  interop?
+Orie Steele:  Don't know if I can answer question perfectly - 
+  with Bitcoin, WIF  has structure to it - detect what network 
+  you're on, mnemonics - human readable version of entropy.
+Orie Steele:  There is a path, path let's you say "give me list 
+  of addresses on Ethereum network" - integer index - there is 
+  overlap between WIF and what we need. It's just an encoding for a 
+  specific single key, doesn't support wider use case of many key 
+  formats. I might use the same mnemonic for different paths for 
+  different IDs. Might use two different identifiers. You have to 
+  be careful how you map these things, can erode privacy. 
+  Annotating private key oriented
+Keystore info is important, w/o annotation  you might 
+  accidentally correlate yourself.
+Orie Steele:  You want software to warn users when they are about 
+  to do something dangerous?
+Jonathan Holt:  Yes, BIP39 - derive keys from algorithm, you have 
+  a state, derive key from that using an algorithm, BIP39 - similar 
+  to PKCS - all sorts of key cards that  use that... there is a 
+  standard there.
+Orie Steele: You obviously cannot export non exportable keys....
+Jonathan Holt: "With great. power, comes great responsibility!"
+Manu Sporny:  Exporting pirvate keys might be a very bad idea. 
+  Just keep that in mind, we may not want to do it.
+Orie Steele: Thanks!
+Manu Sporny:  But, this was great, loooking forward to more 
+  engagement!
+Moses Ma: Bye all
+Joe Andrieu:  Thanks Orie so much for that, we'll see everyone in 
+  two weeks!.
