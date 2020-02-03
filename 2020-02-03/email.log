@@ -1,0 +1,247 @@
+Thanks to  for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-02-03/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2020-02-03
+
+Agenda:
+  undefined
+Organizer:
+  Christopher Allen and Joe Andrieu and Kim Hamilton Duffy
+Scribe:
+  
+Present:
+  Uli Gallersdörfer, Kim Hamilton Duffy, Greg Nadeau, Adam Lemmon, 
+  Alan Davies, Steven Pattison, Matt Lisle, Bernhard Borges, Nate 
+  Otto, Kerri Lemoie, James Chartrand, Stuart Sutton, Hans Pongratz
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-02-03/audio.ogg
+
+Uli Gallersdörfer: Hi, can someone point me to an application I 
+  can use to join the call via pc?
+Hello everyone !
+Kim Hamilton Duffy: https://www.w3.org/community/credentials/join
+Kim Hamilton Duffy: https://www.w3.org/accounts/request
+Kim Hamilton Duffy: 
+  https://www.w3.org/community/about/agreements/cla/
+Kim Hamilton Duffy: https://w3c-ccg.github.io/meetings/
+Scribe+
+Kim Hamilton Duffy:  Describing how to do minutes [scribe assist 
+  by Kim Hamilton Duffy]
+... And some other stuff
+... About the early days
+Kim Hamilton Duffy: Charter: 
+  https://docs.google.com/document/d/1vjrvwmvHOYmJd_Dqwk_TfGjKLTiTe9fzX9J4QqCUcf0/edit#heading=h.iem8mwq6o4rn
+... Today we'll run through the charter as our main agenda item
+... Primarily adding and subtracting use cases and requirements
+... This work evolved out of the digital credentials consortium 
+  (14 north american universities)
+... All 14 had previously experimented on their own with their 
+  own pilots (some but not all blockchain anchored/hashed)
+... VC spec 1.0 is very new, despite over a decade of 
+  experimentation and incubation, primarily in the education space 
+  (openBadges, blockcerts, etc)
+... Hitting a wall on interop and cross-verification; for that 
+  reason, wanted this discussion to be more open and gather more 
+  requirements and feedback from outside
+Greg Nadeau: Could be either
+... In a way that fed into the standards track. IEEE is working 
+  on ??? cm4 ILR (i? learning record)
+... And w3c is of course pushing forward the VC spec itself
+Nate Otto: ILR = Interoperable Learning Record, in most 
+  formulations I've seen.
+Greg Nadeau: I am leaning towards Integrated Learner Record (ILR) 
+  but the White House and US Chamber/TX are using Interoperable 
+  Learner Record
+... We can version schemas that come out of this work, and start 
+  iterating and experiment together before standards are finalized
+Error: (IRC nickname 'juancaballero' not 
+  recognized)[2020-02-03T16:23:35.016Z]	<juancaballero>	PSA:
+Error: (IRC nickname 'juancaballero' not 
+  recognized)[2020-02-03T16:23:43.267Z]	<juancaballero>	RECENT 
+  JOINERS MUTE THEMSELVES :D
+Greg Nadeau: BTW - Kim referred to CM4LTS - that is the IEEE 
+  Conceptual Model for Learner Technology Systems (CM4LTS).  Kim, 
+  Nate, me, and others are working together on that.  Study Group 
+  meets this Fri
+Thanks greg!
+Kim Hamilton Duffy:  Lots of these pre-W3C credentials we're 
+  talking about use XML, whereas the W3C ones are so far almost 
+  entirely in JSON-LD
+... Since all the VC tooling so far has been very JSON-LD, most 
+  people have just been mapping or translating from XML to LD
+Hans Pongratz: Is there are good web way to join the voice call?
+... Understandably, lots of people are hesitant to shift to these 
+  new systems with untested/new security issues in the SSI world
+Greg Nadeau: Hans     US phone: +1.540.274.1034 x6306     EU 
+  phone: +33.9.74.59.31.06 x6306
+Nate Otto: @HansP You can use a SIP client (I signed up for 
+  OnSIP), though reports are the SIP gateway has been a bit finicky 
+  of late.
+... One middle ground is non-blockchain PKI via OIDC rather than 
+  DID-based SSI
+... Existing university authentication methods are one way to 
+  anchor, access, and sign VCs
+... The great thing about the VC data model is that it's very 
+  flexible on ToU, security and privacy considerations, allowing 
+  many different kinds of use cases, but
+... We have yet to really explore and stabilize the parameters of 
+  those use cases around sharing and semi-public contexts
+... But moving on to the agenda item here, we want to zoom in and 
+  clarify scope and focal use cases, particularly in these terms
+Hans Pongratz: Thx @ottonomy
+Greg Nadeau:  Introduces himself (public consulting group, 
+  boston)
+... Active in IMS global heading up use cases (ontology format)
+... Also worked in the IEEE on IRL recommended practices
+... Also the US Chamber of Commerce initiative
+... I queued myself when you mentioned making references 
+  sharable-- that's 1 of 3 main foci of the IEEE group
+... To be more precise, 1 SSI access control and trust network; 2 
+  open ontology references; 3 verifiable assertions
+... For these verifiable assertions to be valuable, they need to 
+  be cross-walkable and semi-public, i.e. as linked data
+... The mental model of the wallet is useful because the subject 
+  of those credentials need to be able to share
+... CASE network and other groups have been talking about open 
+  ontology metadirectories
+(Sorry everyone my connection is glitching out often!)
+Kim Hamilton Duffy:  Thanks greg for reminding us of what's being 
+  discussed there so that we can be aware of it
+Greg Nadeau: To be involved in monthly IEEE CM4LTS calls Fridays 
+  1P ET send e-mail to gnadeau@pcgus.com
+Greg Nadeau: To view current draft 
+  https://docs.google.com/document/d/10coLe1iBJ-zmzjl17GkN771JtdTKNIEZyPyCf4H4Y1o/edit#
+Kerri Lemoie:  Self-intro: openBadges for the last decade, been 
+  working on my dissertation, and working with Dept ED on 
+  blockchain verification for educational credentials
+Kim Hamilton Duffy: Thanks Nate, will call on you next. thanks 
+  for joining!
+Error: (IRC nickname 'juancaballero' not 
+  recognized)[2020-02-03T16:39:27.785Z]	<juancaballero>	... just to 
+  throw out a question for later/food for thought: LIBRARY use 
+  cases?
+... How libraries intersect with professional development
+... Does anyone have experience with library of congress 
+  standards or other library work?
+Kim Hamilton Duffy:  Reminder that march-ish, we'll be releasing 
+  Kerri's report, on blockchain (and other decentralized) 
+  innovations
+... That report is going to save all of us a lot of time
+Nate Otto:  Self-introduction: Badger platform at OpenSky : we 
+  are interested in coming together and finding the next path 
+  forward that will unite all our efforts over the last 5 years
+... In envelopes, digital signatures, and DID Auth  / recipient 
+  verification
+Kim Hamilton Duffy: Simone -- can I call on you next?
+Kerri Lemoie: Library standards: 
+  https://www.loc.gov/librarians/standards
+... There are usecases in education that are ready to go, 
+  well-documented and clarified, waiting to connect all the dots
+... And leave the "trials while we wait for parts to come 
+  together" stage in the evolution of this tech
+Nate Otto: Thanks, all! I'm going to have to drop off IRC to 
+  drive, but I'll stay on audio for a bit longer until the 
+  connection drops. Glad to get started. What I'm most excited 
+  about is coalescing some implementers on a well-chosen set of 
+  standards and schemas so that we have a working example that is 
+  complete for use cases we define. Verifiable Credentials, DIDs 
+  for recipient identity, claim structure, digital signature means, 
+  identifier authentication (DID Auth?).
+Error: (IRC nickname 'juancaballero' not 
+  recognized)[2020-02-03T16:42:59.675Z]	<juancaballero>	
+  Simone_Ravaioli: Self intro: based in Italy, work for
+... Digitary (Dublin, Ire), although lately we're working with 
+  lots of APAC universities
+... We've been trying to keep track of all the moving parts, 
+  including the European Commision work (most recently, EuroCat )
+... Also we've been working with North American efforts
+... We want to keep the perspective global
+Kerri Lemoie: +1 To global perspective
+Kim Hamilton Duffy: Juan -- can I call on you next? I can scribe 
+  for you. I'd like to hear about your interests
+Greg Nadeau: Simone - can you send links to best Europass 
+  references and your e-mail?
+Kim Hamilton Duffy:  We might ask you to present some week soon, 
+  particularly if you're at liberty to comment on these global 
+  projects
+https://ec.europa.eu/futurium/en/europass/new-europass
+Simone.ravaioli@digitary.net
+Kim Hamilton Duffy: Juancaballero: SSI company in Germany. 
+  Working on uni and gov projects
+Kim Hamilton Duffy: ...Was college professor, worked with 
+  registrar depts
+Greg Nadeau: In US, AACRAO recently endorsed IMS CLR
+Alan Davies:  Self intro: CredentialMaster
+... Salesforce technical architect for many years, building a VC 
+  management system on top of SF platform
+... In its first stage, it'll be dealing with educational 
+  credentials
+Kim Hamilton Duffy:  One question i did want to touch on (after 
+  Bernhard) is gathering claims
+Bernhard Borges: 
+Error: (IRC nickname 'juancaballero' not 
+  recognized)[2020-02-03T16:51:22.038Z]	<juancaballero>	... 
+  Self-intro: chief scientist at Dock (blockchain-based company), 
+  but i
+... Am more interested in privacy and selective disclosure, am 
+  joining this call as a "concerned citizen"
+... I am interested in DIDs to create indirection/redirection to 
+  aid privacy and lifetime access considerations
+... I hope we can all get to know each other over the next few 
+  weeks and happy to be here!
+Kim Hamilton Duffy:  Yes! lifecycle considerations and privacy 
+  concerns are of central concern to most or all of us
+... With VCs, the idea is that decentralization and user-centric 
+  control will be protected, although there is a lot of work left 
+  to do there
+Hans Pongratz:  Self intro: Senior VP/CIO of TUeM
+... In Munich, we are on the one hand issuer and, on the other, 
+  verifier of a lot of educational credentials
+... So we want to be ahead of the curve as all these systems go 
+  live
+Uli Gallersdörfer:  Self-intro: also from Muenchen
+... I'm a PhD student here, particularly interested in how 
+  realworld identities map to onchain/immutable/highly-public 
+  identities
+Steven Pattison:  Steven Pattison,
+... Here to connect dots and see what's happening
+Stuart Sutton:  (Sorry my audio dropped)
+Stuart Sutton:  Interested in education use cases [scribe assist 
+  by Kim Hamilton Duffy]
+Matt Lisle:  Georgia Tech, we have been piloting and doing UX 
+  research on digital credential through the DCC
+... Our focus lately has been on lifetime learning credentials 
+  (rather than traditional tertiary degrees)
+Kim Hamilton Duffy:  Yes, usability and user research will be 
+  useful here! We'll be linking to their study on BlockCerts 
+  interviewing users soon
+... Would be good to hear from others working with realworld user
+Matt Lisle: Report out from our previous UX research at 
+  http://c21u.gatech.edu/blog/understanding-student-experience-blockcerts-blockchain-powered-academic-credentials-through
+Kerri Lemoie: +1 User experience research
+Kim Hamilton Duffy: Juancaballero: Fraunhofer in Germany doing a 
+  usability study. would be good to sync
+Greg Nadeau:  Suggestion: some of the things coming out of the 
+  conceptual model guide might be useful
+... Particularly interesting where they don't map well to W3C VCs 
+  (terminologically, in particular)
+Kim Hamilton Duffy:  Greg may have a reference for CEDS, but I'm 
+  not sure if that's not publicly available yet
+... Project (lots of education data standards history and interop 
+  there)
+... Or in IMS Global
+Greg Nadeau:  The good news is that Jim Goddell is writing the 
+  IEEE, which will thus be well-synchronized with the CEDS 
+  terminology
+Bernhard Borges: Credential management/representation, aka 
+  wallet, may be another shared interest
+... CEDS is very US-centric, but this point of 
+  translation/integration is a good point for interjecting global 
+  awareness and counterexamples...
+Kerri Lemoie: Thanks!!
