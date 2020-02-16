@@ -1,7 +1,7 @@
 # DID Resolution Spec Weekly Meeting
 
 * Recording: [recording.mp4](recording.mp4)
-* Log: [2020-02-13-irc.log](2020-02-13-irc.log)
+* Log: [irc.log](irc.log)
 
 Meeting Page:
 
