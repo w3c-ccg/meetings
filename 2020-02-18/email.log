@@ -1,0 +1,403 @@
+Thanks to Dmitri Zagidulin for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-02-18/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2020-02-18
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Feb/0044.html
+Topics:
+  1. Introductions and Re-introductions
+  2. Announcements and Reminders
+  3. Progress on Action Items
+  4. Credentials vc Capabilities
+Organizer:
+  Christopher Allen and Joe Andrieu and Kim Hamilton Duffy
+Scribe:
+  Dmitri Zagidulin
+Present:
+  Christopher Allen, Joe Andrieu, Manu Sporny, Orie Steele, Adrian 
+  Gropper, Dmitri Zagidulin, Dave Longley, Sumita Jonak, Steven 
+  Pattison, Justin Richer, Nate Otto, Drummond Reed, Chris 
+  Winczewski, Jeff Orgel, Kim Hamilton Duffy, Ganesh Annan, Ken 
+  Ebert
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-02-18/audio.ogg
+
+Joe Andrieu: Shoot. My onsip isn't working. Trying a reboot. BRB
+Christopher Allen: Good morning everyone
+Christopher Allen: Anyone up for scribe?
+Orie Steele: Can someone share the sip web client url? I have a 
+  new computer...
+Dmitri Zagidulin is scribing.
+Christopher Allen:  <Opening IP notes>
+  … anyone new to the call?
+
+Topic: Introductions and Re-introductions
+
+  … re-introductions?
+Dmitri Zagidulin:  Working in decentralized identity spect with 
+  digital bazaar, also involved in other projects solid, did:web, 
+  and other other specs [scribe assist by Christopher Allen]
+
+Topic: Announcements and Reminders
+
+Joe Andrieu:  Reminder about the DID Resolution calls on 
+  Thursdays
+  … General reminder - please read and comment on this 
+  publication from NIST
+Adrian Gropper: Zero Trust Architecture 
+  https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207-draft2.pdf
+
+Topic: Progress on Action Items
+
+Joe Andrieu: 
+  https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+  … since it's likely of interest to the people in this group
+  … issue 1 - SIP is not working?
+Christopher Allen:  A number of us are having challenges on 
+  making SIP work on various platforms
+Kim Hamilton Duffy: Dmitri presented the did:web method during 
+  last week's VC for Education Task Force meeting. There's a lot of 
+  interest in hearing the recording for it (so I backfilled it), 
+  and it's available here: 
+  https://w3c-ccg.github.io/meetings/2020-02-10/
+  … it would be great if somebody could write up instructions / 
+  tips and tricks
+  … looking for volunteers
+Joe Andrieu:  Didn't we used to have a blurb, on SIP 
+  instructions?
+  … if we have one, I'll add a paragraph about Windows
+Dmitri Zagidulin:  Where would be a good place to put this 
+  instruction docs?
+Christopher Allen:  On our repo, ultimately. short term, Google 
+  Doc is fine
+Kim Hamilton Duffy: This: 
+  https://w3c-ccg.github.io/connecting.html
+Kim Hamilton Duffy:  Please feel free to add / edit this 
+  connecting document
+Joe Andrieu:  Second issue - Crypto Suite Specifications
+  … kimhd? or ChristopherA?
+Christopher Allen:  There was a suggestion to close it. But I 
+  didn't want Orie's comments on the issue to disappear, if we 
+  closed it
+  … so we should also add this to our repo's homepage
+Joe Andrieu:  Orie just closed this, and put a link to the 
+  CryptoSuite Registry
+Orie Steele: We should link to the registry, and the registry 
+  should link to implementations...
+Christopher Allen:  That helps, but I'd also love to have links 
+  to various implementations, as well
+Orie Steele: In this case it does
+  … it would be helpful to point newcomers to the CCG to the spec 
+  / implementations
+Manu Sporny:  I'd like to highlight that there's a lot of stuff 
+  happening with the CryptoSuite stuff, thanks to Orie's efforts
+  … as a related announcement to the group: There's a lot of work 
+  happening in this space; it's very active
+  … we're trying to figure out how the registries work with the 
+  DID Core spec
+  … so, if you're interested in this, please do track the DID 
+  Registry repo
+Manu Sporny: 
+  https://github.com/w3c/did-core-registry/pulls?q=is%3Apr+is%3Aclosed
+  … since a lot of activity will be done there
+Manu Sporny: https://github.com/w3c/did-core-registry/issues
+Joe Andrieu: Q
+  … which also relates to this specific issue
+Christopher Allen:  The work that's going on in the DID Core 
+  Registry is fabulous
+  … <garbled>
+  … I'd like to see volunteers for managing repos, registries, 
+  implementation lists
+  … to make this CCG more friendly for newcomers. So, we need an 
+  entry point
+Orie Steele: I really like the awesome github repo pattern: 
+  https://github.com/sindresorhus/awesome
+Orie Steele: For example
+Joe Andrieu:  Orie - does the CryptoSuite spec list 
+  implementations?
+Christopher Allen: Will do
+  … agree with Chris, it'd be great to have someone curate a list 
+  of implementations
+  … so, ACTION item for Chris - raise an issue requesting 
+  volunteers / implementation list
+Christopher Allen: Closed ok
+  … that's it for the front matter. Next up, technical talk
+  … on the difference between Capabilities and Credentials
+Joe Andrieu: 
+  https://github.com/w3c-ccg/meetings/blob/gh-pages/2020-02-20/credentials_and_capabilities.pptx
+  … before I go into the presentation, I believe we're scheduled 
+  next week to have a discussion on Capabilities, Lightning 
+  Networks and Macaroons
+Christopher Allen:  Yes
+  … we have someone who's done an interesting demo using the 
+  Lightning Network
+  … (it's a payment channel for microcurrency, leveraging 
+  Bitcoin)
+  … and there's new ability to use macaroons that provide bearer 
+  authority (to read content, etc) that can be tied to payment 
+  network
+  … macaroons being very similar to zCaps
+  … there's the ability to make it atomic (the payment gives you 
+  the capability)
+  … I think this may be relevant to our broader architecture
+  … either to the future architecture of zCaps, or in general
+
+Topic: Credentials vc Capabilities
+
+Kim Hamilton Duffy: 
+  https://github.com/w3c-ccg/meetings/blob/gh-pages/2020-02-18/credentials_and_capabilities.pptx?raw=true
+Kim Hamilton Duffy: See my link
+Ganesh Annan: The link kimhd worked
+Joe Andrieu:  So, both Credentials and Capabilities are digital 
+  objects
+  … transmittable over any comm channel, and both use 
+  cryptography for security assurance
+  … used to enhance service, customize features, etc
+  … Anyone can make a verifiable statement about anything, on any 
+  subject.
+  … a traditional use case is - digital credentials (Passports, 
+  licenses, etc)
+  … But VCs can be issued by anyone. Receipts, wills, business 
+  cards, notes to mom, school sick notes for children
+  … VCs democratize the ability to produce hard-to-forge 
+  credentials
+  … The key point to remember - they don't verify the _truth_ of 
+  the statement
+  … they don't say, for example, 'The Sky is Blue'. Instead, they 
+  verify 'Joe says: The Sky is Blue'
+  … so, they are statements
+  … so, what a verifier does is - go through various checks.
+  … do they trust the issuer of the statement?
+  … what privileges and services are appropriate for that 
+  presenter, based on that statement
+  … so, it's the verifier's business logic
+  … to see what actions can be taken as a result of VCs
+  … What I'm calling Directed Capabilities (previously I referred 
+  to them as Digital Capabilities)
+  … these are based on 1986 (?)'s Object Capabilities
+  … (currently also referred to Authorization Capabilities)
+  … there is no clear standard yet. One of the approaches is 
+  zCaps, a work item of this CCG,
+  … developed by Digital Bazaar,
+  … which implements capabilities on top of VCs
+  … for those familiar with CHAPI (Credential Handler API) — you 
+  can use zCaps through CHAPI, sort of what they were built for
+  … so, Directed Capabilities is a generalization of this concept
+.. DCs give the ability to perform privileged operations
+Manu Sporny: HTTP Signatures spec, which does use ZCAPs (in 
+  experiments): 
+  https://tools.ietf.org/html/draft-richanna-http-message-signatures-00
+Manu Sporny: ZCAP spec - https://w3c-ccg.github.io/zcap-ld/
+Manu Sporny: All based on object capabilities.
+  … the important thing about Directed Capabilities is - they are 
+  issued by the same authority that is accepting the credential
+  … the process of invoking the capability is what gives an actor 
+  the authority to take that action
+  … DCs can be set up also to have Delegation, Revocation
+  … because these are also digital objects, they can be managed 
+  alongside VCs, in digital wallets
+  … the idea being that in your wallet you'll have a mix of VCs 
+  and DCs
+  … so, you'll have credentials, and then capabilities to trigger 
+  various actions
+  … so, with DCs, the privileges are _explicit_
+  … which is a bit of a shift from most ACL-based paradigms
+  … the inspection of the capability can directly reveal what is 
+  invokable
+  … it's easy to audit "what does this let me do"
+  … and if the DC is valid, non-revoked, and you invoke it, the 
+  contract is that the provider makes the action happen
+  … important: these are completely independent of traditional 
+  forms of identity (DIDs, etc)
+  … so, the atomic manifestation is - the ability to invoke an 
+  individual capability
+  … so, the DCs are self-contained (not dependent on ambient 
+  context)
+  … the canonical example of a Directed Capability is a physical 
+  car key
+  … which is a capability that lets you open and start a car
+  … it does not depend on the identity of the user
+  … you don't have to register it with a registry, or anything 
+  like that
+  … so the possession of the key IS the embedded authorization
+  … so, for example, in court, if you accuse your child of 
+  stealing your car, but you gave them your key, the case won't 
+  work — the possession of the key is the authorization
+  … so another example of an Attenuated capability is a Valet Key
+  … so, it has a subset of permissions of a regular key
+  … DCs are Revokable
+  … you can revoke / disable the authorization remotely, without 
+  tracking down the actual capability
+  … and they are Losslessly Delegatable
+  … at low marginal cost
+  … thirdly, you can Attenuate these capabilities in any number 
+  of ways (as allowed by the Issuer)
+  … the issuer gets to set up the framework of attenuation 
+  privileges, but after that, it's completely under the holder's 
+  control
+  … so, issuer, when creating a DC, specifies the Scope of the 
+  capability
+  … and set up the rules fo rrevocation, delegation and 
+  attenuation
+Kim Hamilton Duffy: Should Capabilities have a type? (ref 
+  https://w3c.github.io/vc-data-model/) there's some commonality 
+  between this and VCs, and I see why you modeled it differently, 
+  but in a few years, will we end up with a range of Verifiable 
+  "Things
+  … so, if you wanted different actions based on day of the week 
+  or time of day, that's possible. But key thing is - the issuer 
+  has to support that action
+  … but once the issuer sets up the pattern, after that it's 
+  entirely under control of the DC holder, operationally
+  … all of that supported by cryptography
+  … so let's look at an example of a digital car key
+  … so now, we can attenuate it in interesting ways. For example, 
+  disable trunk access. Or, further, do not allow the car to start. 
+  (so, the key can only open the door and that's it)
+  … you can have limits on location (so valet can't take car on 
+  joyride)
+Kim Hamilton Duffy: Meant to link here: 
+  https://w3c-ccg.github.io/zcap-ld/. there are some elements of 
+  VCs that maybe are also needed in zcaps. Joe mentioned issuer...
+  … obviously this is limited by car features (like onboard GPS), 
+  so you can't arbitrarily make up limitations
+  … some architectures require 'phoning home' to the issuer. but 
+  other architectures do not
+  … So, imagine that a bank gives you a Directed Capability
+  … I can delegate them to my accountant, bookkeeper, controller, 
+  and so on. So they can have access to my account without me 
+  sharing my login & password to the actual account
+  … you can attenuate these delegations in interesting ways. 
+  Read-only. Or, read only a subset or a summary of my accounts 
+  (say, a monthly summary only)
+  … again, the issuer (bank) has to _support_ these capabilities
+  … and either the bank or the resource controller can revoke the 
+  capability at the same time
+  … another nice thing about DCs is - if I delegate one of these 
+  to my accountant, he can delegate it to his assistant
+  … so, I can either delegate access to a firm, or to a person, 
+  but then it's delegatable (without me getting involved)
+  … I could restrict it and not allow delegation, of course. but 
+  it's easier on me in many cases, if I don't have to be involved
+  … key is - upon invocation, the entire chain of delegation is 
+  presented
+  … again, unlike typical ACL architectures
+Orie Steele: I'm not sure its practically possible to restrict 
+  delegation.... technically....
+  … you could track the audit trail exactly who authorized these 
+  capabilities, and who delegated, and so on
+  … there's limitations on identifying people by keys and so on, 
+  but the auditability is there
+  … slide 21 - Credentials vs Capabilities
+  … how I think of these things
+  … so, Credentials - they're basically statements. you can 
+  present em anywhere, and the business rules of the verifier 
+  manage interpretation.
+  … Capabilities - the business rules are set up during creation, 
+  by the issuer
+  … and delegation mechanisms are also constructed at time of 
+  issuance
+  … both are revokable
+  … credentials are not delegatable or attenuatable
+  … like, 'Joe says sky is blue' is just a statement, you can't 
+  really delegate it
+  … whereas Capabilities - are delegatable etc
+  … the best use of Credentials is — authoritative credentials or 
+  identity proofing
+  … like, KYC (Know Your Customer) type of use cases
+  … Capabilities, on the other hand, are ideal for authorization 
+  and delegation
+Orie Steele:  It's not practically possible to stop delegation 
+  (you can share/proxy keys/proofs), but liability changes when you 
+  get caught (either you delegated in an authorized way or you 
+  didn't .. the latter being potentially more dangerous for you) 
+  [scribe assist by Dave Longley]
+  … so, once I'm onboarded onto a service (with credentials), 
+  then I can manage authorization, with delegations and so on, 
+  using capabilities
+  … so, that's the short summary. Questions?
+Orie Steele:  Awesome presentation, excellent job.
+  … one of the things I learned at IIW is that the concept of 
+  restricting delegation is tricky
+  … has there been additional knowledge / discussion since then?
+Joe Andrieu:  Great question. So, first, no keys are shared (in 
+  the delegation of capabilities)
+  … you could _simulate_ delegation by actually giving somebody a 
+  key. But capabilities allow you to delegate without that
+  … you're recording that you authorized another keyholder to do 
+  stuff
+  … so, a capability may say "my DID authorizes their DID to 
+  perform these actions"
+  … importantly, although it's not possible to prevent delegation 
+  at the time, I can state that the capability is marked 
+  non-delegatable
+  … which matters when you examine the audit trail
+  … so, if delegation is disabled on the third step, and the 
+  third party further delegates it, it makes the whole chain 
+  invalid
+Orie Steele:  I meant more about car keys — once you give a key, 
+  you can't really restrict its delegation after that
+  … as far as VCs and DCs, they don't prevent somebody willingly 
+  sharing their keys
+Joe Andrieu: Q
+Christopher Allen:  Of course, if keys are compromised, all 
+  guarantees are off. You can give away or share your private keys
+Kim Hamilton Duffy: I thought Orie's point is less about key 
+  sharing and more about further delegation
+  … the key is setting up incentives, so that it's against the 
+  interest of people to share their keys
+  … plus, legal liabilities after the fact
+  … preserving the relationship with the issuer.
+  … similar to how today, you can give your username & password 
+  to your accountant, even though the bank explicitly says not to 
+  share em
+  … although Capabilities are similar to VCs, in some of the 
+  details, they are definitely different
+  … but it's clear that all the work we put into the VC data 
+  model, we can use that, and build DCs on top of em
+  … also, the DC may not be the sole thing that you present. 
+  Instead, you could present a number of capabilities PLUS various 
+  VCs
+  … like proof of payment
+  … (and next week, we'll talk about atomically binding payment 
+  to capability)
+Adrian Gropper:  I'd like some clarity to — "it's only invoked at 
+  the issuer's service", and the other is "there's no phone-home 
+  requirement"
+  … the context is the Alice To Bob use case
+Adrian Gropper: 
+  https://github.com/WebOfTrustInfo/rwot10-buenosaires/blob/master/topics-and-advance-readings/delegated-authorization.md
+  … where the issuer is Alice, but the capability is going to be 
+  exercised at Alice's chosen service providre
+  … that she has chosen as a processor
+  … I put in a link to this four-way chain of agents
+  … that I use to describe this usecase
+Christopher Allen: An issuer can require that presentation of a 
+  capability can include a phone home or audit log home, etc. 
+  requirement. Remember, issuers consume their own capababilites.
+  … and we have a number of delegation steps in that use case, 
+  for an agent scenario, that I hope we can map into the 
+  Capabilities model
+  … and that includes this important ones, about different 
+  parties' wallets
+Joe Andrieu:  It's a slight misnomer that Alice is the issuer in 
+  your example. It would be the Processor that's the initial 
+  issuer. which gives a capability to Alice, who can then delegate 
+  to Bob
+  … the not phoning home is — Alice or Bob does not need to check 
+  with the processor during delegation or attenuation
+Adrian Gropper:  Got it
+Joe Andrieu: Q
+Joe Andrieu:  Next week, the Lightning Network!
+  … and that's all!
+Kim Hamilton Duffy: Presennt+ bernhaard, chriswinc, drummond, 
+  fr33domlover, gannan, Gargro, heathervescent, identitywoman, 
+  JeffO-Stl, joel_, jonathan_holt, justin, ken, kimhd, llorllale, 
+  rory, smagennis, SRPattison, sumita, Tom_S__USAA_, tzviya, wayne
