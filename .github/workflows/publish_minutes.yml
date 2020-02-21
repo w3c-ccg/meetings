@@ -31,6 +31,8 @@ jobs:
         output=${new_file:1:10}
         echo $output
         echo "##[set-output name=date;]${output}"
+        group=`cat $output/group.txt`
+        echo "##[set-output name=group;]${group}"
       shell: bash
     - name: Setup custom environment variables
       run: git config --global push.default simple && git config --global user.email "w3c.ccg@gmail.com" && git config --global user.name "W3C CCG"
@@ -60,15 +62,15 @@ jobs:
         server_port: 465
         username: w3c.ccg
         password: ${{ secrets.email_password }}
-        subject: ${{ format('[MINUTES] W3C Credentials CG Call - {0} 12pm ET', steps.generate_html_minutes.outputs.date) }}
+        subject: ${{ format('[MINUTES] W3C {0} Call - {1} 12pm ET', steps.generate_html_minutes.outputs.group, steps.generate_html_minutes.outputs.date) }}
         body: ${{ format('file://{0}/email.log', steps.generate_html_minutes.outputs.date) }}
-        to: public-credentials@w3.org
+        to: kimdhamilton@gmail.com
         from: W3C CCG Chairs
           
     - name: Twitter Action
       uses: ethomson/send-tweet-action@v1
       with:
-        status: ${{ format('Credentials CG Minutes Available https://w3c-ccg.github.io/meetings/{0}', steps.generate_html_minutes.outputs.date) }}
+        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.generate_html_minutes.outputs.group, steps.generate_html_minutes.outputs.date) }}
         consumer-key: ${{ secrets.twitter_api_key }}
         consumer-secret: ${{ secrets.twitter_api_secret }}
         access-token: ${{ secrets.twitter_access_token }}
