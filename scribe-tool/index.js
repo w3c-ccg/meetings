@@ -11,6 +11,7 @@ var wp = require('wporg');
 program
   .version('0.3.0')
   .option('-d, --directory <directory>', 'The directory to process.')
+  .option('-g, --group <group>', 'Group', 'Credentials CG')
   .option('-m, --html', 'If set, write the minutes to an index.html file')
   .option('-w, --wordpress', 'If set, publish the minutes to the blog')
   .option('-e, --email', 'If set, publish the minutes to the mailing list')
@@ -41,7 +42,7 @@ var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
 
 // configure scrawl
-scrawl.group = 'Credentials CG Telecon';
+scrawl.group = `${program.group} Telecon`;
 scrawl.people = JSON.parse(peopleJson);
 
 function generateEmailBody() {
@@ -50,7 +51,7 @@ function generateEmailBody() {
   var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
       .replace(/\n/g, '').replace('Scribe:  ', '');
   content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
-      'for this week\'s Credentials CG telecon are now available:\n\n' +
+      `for this week\'s ${program.group} telecon are now available:\n\n` +
       'https://w3c-ccg.github.io/meetings/' + gDate + '/\n\n' +
       'Full text of the discussion follows for W3C archival purposes.\n' +
       'Audio from the meeting is available as well (link provided below).\n\n' +
@@ -137,7 +138,7 @@ function sendEmail(email, username, password, hostname, content, callback, port=
     text:    content,
     from:    email,
     to:      toEmail,
-    subject: `[MINUTES] W3C Credentials CG Call - ${gDate} 12pm ET`
+    subject: `[MINUTES] W3C ${program.group} Call - ${gDate} 12pm ET`
   }, function(err, message) {
     if(err) {
       console.error('scrawl:', err);
