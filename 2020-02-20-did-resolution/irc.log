@@ -1,0 +1,105 @@
+[2020-02-20T21:13:17.003Z]	<markus_sabadello> Agenda: https://docs.google.com/document/d/1qYBaXQMUoB86Alquu7WBtWOxsS8SMhp1fioYKEGCabE/
+[2020-02-20T21:13:17.003Z]	<sumita>	present+
+[2020-02-20T21:16:07.752Z]	<jonathan_holt>	present+ jonathan_holt
+[2020-02-20T21:16:14.894Z]	<tplooker>	present+
+[2020-02-20T21:16:32.343Z]	<jonathan_holt>	scribe: jonathan_holt
+[2020-02-20T21:17:02.113Z]	<jonathan_holt>	markus_sabadello: discussion about did resolution and thought on bringing to did core spec
+[2020-02-20T21:17:41.796Z]	<jonathan_holt>	... what are the inputs and outputs and expect from dereference, etc.  continuing discussion from last time
+[2020-02-20T21:18:09.986Z]	<jonathan_holt>	dmitriz:  I'd love to discuss stuff about paths from WG.
+[2020-02-20T21:18:21.671Z]	<jonathan_holt>	... on origins of that discussion
+[2020-02-20T21:18:39.873Z]	<Tom_S__USAA_>	present+
+[2020-02-20T21:18:57.596Z]	<jonathan_holt>	markus_sabadello:  when did we discuss this last?
+[2020-02-20T21:19:34.487Z]	<jonathan_holt>	markus_sabadello: might have been on the CCG call.  what would you like to discuss?
+[2020-02-20T21:20:10.119Z]	<markus_sabadello> Topic: JSON Pointers in fragments
+[2020-02-20T21:20:10.119Z]	<jonathan_holt>	tobias:  concern about JSON pointers.  spec stated should not exclude.  what was the context?
+[2020-02-20T21:20:36.928Z]	<jonathan_holt>	... if you use json pointer, need a preceeding '/'
+[2020-02-20T21:20:51.895Z]	<jonathan_holt>	markus_sabadello:  we have two different thread.  paths and json pointers
+[2020-02-20T21:21:05.526Z]	<jonathan_holt>	dmitriz : strike that, let's come back to paths.
+[2020-02-20T21:21:29.816Z]	<jonathan_holt>	markus_sabadello: let's talk about tobias point first
+[2020-02-20T21:22:11.811Z]	<jonathan_holt>	tobias:  really just a point from F2F, we wanted a natural data model with lossless conversion between solution, and should not exclude json pointers
+[2020-02-20T21:23:19.219Z]	<jonathan_holt>	... my concern is that if i have an element in the DID doc that has a fully qualified URI, if i use json pointers, need the full '/' before and not by the position if it is in an array.  JSON-LD has a well-defined way to expand contract graphs.
+[2020-02-20T21:23:47.072Z]	<jonathan_holt>	... not sure how to have lossless conversion, any examples.
+[2020-02-20T21:24:34.882Z]	<jonathan_holt>	markus_sabadello: i don't think it is about lossless conversion, but even if you can covert, you are really asking about the nature of the fragment after you deref the url.
+[2020-02-20T21:24:49.720Z]	<jonathan_holt>	... and the nature of the frag is determined by the MIME type.
+[2020-02-20T21:25:24.488Z]	<jonathan_holt>	... if you have a DID URL in JSON-LD then it is well-defined.  and not conducive to JSON-pointers.
+[2020-02-20T21:26:17.060Z]	<jonathan_holt>	... not sure if the conversion will work.  if you use JSON application/json MIME type, there is something missing to imply semantics.
+[2020-02-20T21:26:57.618Z]	<jonathan_holt>	tobias: that is also my concern, standardized way across syntax and is quite different.
+[2020-02-20T21:27:32.591Z]	<jonathan_holt>	justin:  are links in the document, links across the DID.  reading the DID spec, not sure how that are intepreted.
+[2020-02-20T21:27:44.069Z]	<jonathan_holt>	tobias:  exactly my point.
+[2020-02-20T21:28:09.442Z]	<jonathan_holt>	dmitriz :  my comment as well. the format of the links are determined by the representation, i.e. JSON, CBOR etc
+[2020-02-20T21:28:26.810Z]	<jonathan_holt>	tobias: sharing screen with examples. JSON samples.
+[2020-02-20T21:28:36.700Z]	<jonathan_holt>	... first one is JSON-LD.
+[2020-02-20T21:29:02.465Z]	<jonathan_holt>	... are we going to use @id in the JSON example?
+[2020-02-20T21:29:40.375Z]	<jonathan_holt>	.. example in JSON pointer using #
+[2020-02-20T21:30:53.039Z]	<jonathan_holt>	... as compared to JSON-LD referenced.
+[2020-02-20T21:31:05.085Z]	<jonathan_holt>	jonathan:  we use json pointers in IPLD
+[2020-02-20T21:31:35.676Z]	<jonathan_holt>	dmitriz:  since other things other than JSON-LD not sure how to do it.
+[2020-02-20T21:32:15.489Z]	<jonathan_holt>	justin:  may be substantive contribution that needs discussing in WG of CCG?
+[2020-02-20T21:32:28.489Z]	<jonathan_holt>	tobias:  overlaying the namespace,
+[2020-02-20T21:33:14.050Z]	<jonathan_holt>	justin:  defrencing the fragment is defined by the resource type as determined by the URI, like html,  different in JSON, vs JSON-LD
+[2020-02-20T21:33:24.069Z]	<jonathan_holt>	... IPLD can do something else.
+[2020-02-20T21:33:46.108Z]	<jonathan_holt>	tobias: does that couple the identifier with the document?
+[2020-02-20T21:34:39.125Z]	<jonathan_holt>	justin:  yes, and we could (DID WG) could define as universal way to use fragments across all difference document representation as there is not defined MIME type.
+[2020-02-20T21:35:13.099Z]	<jonathan_holt>	tobias:  eventhough they represent same doc but in deferent syntax,  you could losslessly convert.
+[2020-02-20T21:35:46.992Z]	<jonathan_holt>	... i can see this turning into a mess
+[2020-02-20T21:36:08.141Z]	<jonathan_holt>	... just as a REST API expecting json
+[2020-02-20T21:38:52.102Z]	<jonathan_holt>	jonathan: not getting deterministic results
+[2020-02-20T21:39:37.294Z]	<jonathan_holt>	markus_sabadello:  agree with tobias, concern about @id interpretation, depends on representation and how those options are passed to the resolver
+[2020-02-20T21:41:23.405Z]	<jonathan_holt>	... even though in URI the MIME type, may require meta data.  this may rule out JSON pointer as it may not make sense in other syntax.  the abstract data model, with different syntax, have to define different @id and if they can be linked.
+[2020-02-20T21:41:34.312Z]	<jonathan_holt>	... they could be defined in each representations.
+[2020-02-20T21:41:51.533Z]	<jonathan_holt>	dmitriz :  this is interesting
+[2020-02-20T21:41:58.848Z]	<jonathan_holt>	tobias: i can raise an issue
+[2020-02-20T21:42:30.914Z]	<dmitriz>	scribe: dmitriz
+[2020-02-20T21:43:12.148Z]	<dmitriz>	markus_sabadello: So maybe each DID Document needs to encode the link format?
+[2020-02-20T21:43:40.881Z]	<dmitriz>	jricher: that would mess with parsers, though - you need to know the format before parsing the document
+[2020-02-20T21:44:06.831Z]	<dmitriz>	s/markus_sabadello: So/jonathan_holt: So/
+[2020-02-20T21:44:25.078Z]	<dmitriz>	jonathan_holt: IPLD uses multiformat etc, so that it's self-describing
+[2020-02-20T21:45:02.654Z]	<dmitriz>	markus_sabadello: so maybe some DID Methods will have strong opinions on the link format, but other methods, that don't have strong preferences, may negotiate with the DID Resolver for this
+[2020-02-20T21:45:12.462Z]	<markus_sabadello> Topic: DID Resolution contract
+[2020-02-20T21:45:12.462Z]	<dmitriz>	… I'd like to share some slides
+[2020-02-20T21:45:24.850Z]	<dmitriz>	… and I'd like some feedback
+[2020-02-20T21:45:52.791Z]	<dmitriz>	… Justin Richer has been talking about the contract (from the meeting notes of the DID face-to-face meeting)
+[2020-02-20T21:46:18.783Z]	<dmitriz>	… so, my understanding was - we want to define that when we have a DID (or DID URL), what are the operations that can be executed on that?
+[2020-02-20T21:46:27.349Z]	<dmitriz>	… what are the inputs/outputs of resolution?
+[2020-02-20T21:46:31.003Z]	<dmitriz>	… the current approach is -
+[2020-02-20T21:46:53.375Z]	<dmitriz>	… there are two abstract function, resolve() and dereference() (two corresponding chapters in the DID Resolution spec)
+[2020-02-20T21:47:02.550Z]	<dmitriz>	… and they talk about what the inputs to those functions are, and the results.
+[2020-02-20T21:47:22.857Z]	<dmitriz>	… the first slides summarize those in table form
+[2020-02-20T21:47:42.189Z]	<dmitriz>	… a DID is something that can be resolved - you can ask a Resolver to resolve a did.
+[2020-02-20T21:47:50.234Z]	<dmitriz>	… you pass in a DID url, and you get a DID and metadata
+[2020-02-20T21:48:05.467Z]	<dmitriz>	… similarly, you pass in a DID URL to dereference(), and you get back content and metadata
+[2020-02-20T21:49:09.853Z]	<dmitriz>	… So my question is - is this essentially what is meant by 'the contract'?
+[2020-02-20T21:49:21.507Z]	<dmitriz>	… that potentially will be included in the DID Core spec?
+[2020-02-20T21:49:42.939Z]	<dmitriz>	jricher: yes, this is exactly the kind of thing I was talking about
+[2020-02-20T21:49:58.299Z]	<dmitriz>	… and this goes to show some of the very important differences between resolve() and dereference()
+[2020-02-20T21:50:07.370Z]	<dmitriz>	… because the inputs are different, and the expected outputs are different
+[2020-02-20T21:51:29.124Z]	<dmitriz>	… then there's also the read() operation (that each DID Method spec needs to define)
+[2020-02-20T21:51:42.925Z]	<dmitriz>	… which seems to be the same contract (same i/o) that the resolve() function
+[2020-02-20T21:52:08.280Z]	<dmitriz>	markus_sabadello: so that may mean that they're not different, that they're the same operation?
+[2020-02-20T21:53:10.017Z]	<jonathan_holt>	dmitriz : the main deference is the read is basic and resolve is superset. the second output param is the diff
+[2020-02-20T21:53:17.173Z]	<dmitriz>	dmitriz: the main difference between read() and resolve() is the type of metadata
+[2020-02-20T21:53:42.908Z]	<dmitriz>	… read() returns method-specific meta, and resolve() returns method-specific metadata PLUS resolver-specific metadata
+[2020-02-20T21:54:05.789Z]	<dmitriz>	tplooker: so if that's the only difference, maybe that points to that they're essentially the same?
+[2020-02-20T21:54:46.056Z]	<dmitriz>	markus_sabadello: (discussion of DID Resolution spec section 3.2)
+[2020-02-20T21:56:30.306Z]	<dmitriz>	dmitriz: isn't the difference between read() and resolve() - the format of the did document? read() can return an intermediary format, and the Resolver transforms it into the DID Doc
+[2020-02-20T21:56:56.779Z]	<dmitriz>	markus_sabadello: I'm not sure I agree. I think the DID Core spec (or, each specific DID Method spec) requires that read() returns the canonical DID Doc
+[2020-02-20T21:57:48.934Z]	<dmitriz>	… (discusses the third slide, which is another summary table of dereference() inputs and outputs)
+[2020-02-20T21:59:16.300Z]	<dmitriz>	jonathan_holt: in my implementation, the path component is (in IPLD) what goes to the executable
+[2020-02-20T21:59:22.170Z]	<dmitriz>	… (that does the resolution spec inherently)
+[2020-02-20T21:59:34.929Z]	<dmitriz>	… and then the fragment contains local (non-resolver) parameters (like the decryption key)
+[2020-02-20T22:00:24.246Z]	<dmitriz>	… for example, the path goes to IPLD, which is a self-describing executable
+[2020-02-20T22:00:49.243Z]	<dmitriz>	… although I'm not sure everyone will want to execute random data on a path
+[2020-02-20T22:01:26.637Z]	<dmitriz>	markus_sabadello: I've always figured the path is defined by the did method (or controller)
+[2020-02-20T22:03:05.346Z]	<dmitriz>	dmitriz: I think the semantics of the path fragment is specified only by the DID Method. although an individual method can specify it further, and say - in our method, the path semantics differ from controller to controller (depends on the authority component)
+[2020-02-20T22:03:21.876Z]	<dmitriz>	markus_sabadello: justin, what were the other contracts in the meeting?
+[2020-02-20T22:03:37.769Z]	<dmitriz>	jricher: I vaguely recall a 3 part system, which defines the contracts between the two touch points in the system
+[2020-02-20T22:04:10.903Z]	<dmitriz>	… so, the contract into and out of a resolver is 1 contract, and then potentially, the contract between the resolver and downstream (to the method) is the 2nd contract
+[2020-02-20T22:04:33.168Z]	<dmitriz>	… the important thing is that the contract (when I call a de-referencer or a resolver) needs to specify the inputs and outputs
+[2020-02-20T22:04:54.773Z]	<dmitriz>	.. this /has/ to be common across different resolvers
+[2020-02-20T22:05:44.336Z]	<jonathan_holt>	markus_sabadello :  i understand now about these contracts, need to think about how to rewrite this for spec
+[2020-02-20T22:06:09.644Z]	<jonathan_holt>	.... but there is enough about these interfaces, what is convered in did core vs resolution.
+[2020-02-20T22:06:17.698Z]	<jonathan_holt>	.... this was helpful
+[2020-02-20T22:06:32.551Z]	<jonathan_holt>	ipld:  "<base64 of 'blob <size>\0<data>'>"
+[2020-02-20T22:07:39.493Z]	<jonathan_holt>	jonathan: example of ipld link for self-resolving software in git multicodec need to parse atributed.
+[2020-02-20T22:08:53.498Z]	<jonathan_holt>	zakim, end meeting
+
