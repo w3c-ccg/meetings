@@ -6,6 +6,8 @@ if [ ! -f "$DATE/irc-raw.log" ]; then
     curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $DATE/irc-raw.log
     ls -la $DATE
     git add $DATE/irc-raw.log
+    echo $GROUP > $DATE/group.txt
+    git add $DATE/group.txt
 else
   echo "nothing to do"
   exit 1
