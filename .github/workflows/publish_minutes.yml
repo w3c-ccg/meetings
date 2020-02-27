@@ -25,6 +25,9 @@ jobs:
         echo ${{ steps.file_changes.outputs.files_modified}}
         echo ${{ steps.file_changes.outputs.files_added }}
         arr=${{ steps.file_changes.outputs.files_added }}
+        if [ ${#arr[@]} -eq 0 ]; then
+          arr=${{ steps.file_changes.outputs.files_modified }}
+        fi  
         echo arr
         new_file=${arr[0]}
         echo $new_file
