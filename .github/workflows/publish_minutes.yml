@@ -28,9 +28,12 @@ jobs:
         echo arr
         new_file=${arr[0]}
         echo $new_file
-        output=${new_file:1:10}
-        echo $output
-        echo "##[set-output name=date;]${output}"
+        date=${new_file:1:10}
+        echo $date
+        dir=dirname ${new_file}
+        echo $date
+        echo "##[set-output name=date;]${date}"
+        echo "##[set-output name=dir;]${dir}"
         group=`cat $output/group.txt`
         echo "##[set-output name=group;]${group}"
       shell: bash
@@ -42,6 +45,7 @@ jobs:
         npm install
         bash ./generate-html.sh
         echo "##[set-output name=date;]${DATE}"
+        echo "##[set-output name=dir;]${DIR}"
       env:
         CI: true
         DATE: ${{ steps.detect_file.outputs.date }}
@@ -63,14 +67,14 @@ jobs:
         username: w3c.ccg
         password: ${{ secrets.email_password }}
         subject: ${{ format('[MINUTES] W3C {0} Call - {1} 12pm ET', steps.generate_html_minutes.outputs.group, steps.generate_html_minutes.outputs.date) }}
-        body: ${{ format('file://{0}/email.log', steps.generate_html_minutes.outputs.date) }}
+        body: ${{ format('file://{0}/email.log', steps.generate_html_minutes.outputs.dir) }}
         to: public-credentials@w3.org
         from: W3C CCG Chairs
           
     - name: Twitter Action
       uses: ethomson/send-tweet-action@v1
       with:
-        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.generate_html_minutes.outputs.group, steps.generate_html_minutes.outputs.date) }}
+        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.generate_html_minutes.outputs.group, steps.generate_html_minutes.outputs.dir) }}
         consumer-key: ${{ secrets.twitter_api_key }}
         consumer-secret: ${{ secrets.twitter_api_secret }}
         access-token: ${{ secrets.twitter_access_token }}
