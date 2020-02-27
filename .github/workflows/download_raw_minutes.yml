@@ -20,11 +20,12 @@ jobs:
       id: pull_raw_file
       env: 
         DATE: ${{ github.event.client_payload.date }}
-        GROUP: ${{ github.event.client_payload.group }}
+        GROUP_NAME: ${{ github.event.client_payload.groupName }}
+        GROUP_ALIAS: ${{ github.event.client_payload.groupAlias }}
       run: |
         bash ./download-minutes.sh
         echo "##[set-output name=date;]${DATE}"
-        echo "##[set-output name=group;]${GROUP}"
+        echo "##[set-output name=groupName;]${GROUP_NAME}"
 
     - uses: stefanzweifel/git-auto-commit-action@v2.5.0
       with:
@@ -41,7 +42,7 @@ jobs:
         server_port: 465
         username: w3c.ccg
         password: ${{ secrets.email_password }}
-        subject: ${{ format('[ACTION - clean up raw minutes] W3C {0} Call - {1} 12pm ET', steps.pull_raw_file.outputs.group, steps.pull_raw_file.outputs.date) }}
+        subject: ${{ format('[ACTION - clean up raw minutes] W3C {0} Call - {1} 12pm ET', steps.pull_raw_file.outputs.groupName, steps.pull_raw_file.outputs.date) }}
         body: ${{ format('Go to scribe-tool (https://w3c-ccg.github.io/meetings/scribe-tool/), paste in the contents of https://raw.githubusercontent.com/w3c-ccg/meetings/gh-pages/{0}/irc-raw.log, clean it up, save results in irc.log (same folder) and commit.', steps.pull_raw_file.outputs.date) }}
         to: kimdhamilton@gmail.com
         from: W3C CCG Chairs
