@@ -22,9 +22,12 @@ jobs:
     - name: detect_file
       id: detect_file
       run: |
-        the_file = ${steps.file_changes.outputs.files_added:1:-1}
-        if [ ${the_file} -le 1 ]; then 
-          the_file=${steps.file_changes.outputs.files_modified:1:-1}
+        files_added=${{steps.file_changes.outputs.files_added}}
+        if [ ${#files_added} -ge 3 ]; then
+          the_file=${files_added:1:-1}
+        else
+          files_modified=${{steps.file_changes.outputs.files_modified}}
+          the_file=${files_modified:1:-1}
         fi
         echo $the_file
         date=${the_file:0:10}
