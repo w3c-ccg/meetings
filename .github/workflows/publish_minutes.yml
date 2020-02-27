@@ -22,19 +22,16 @@ jobs:
     - name: detect_file
       id: detect_file
       run: |
-        echo ${{ steps.file_changes.outputs.files_modified}}
-        echo ${{ steps.file_changes.outputs.files_added }}
         arr=${{ steps.file_changes.outputs.files_added }}
         if [ ${#arr[@]} -eq 0 ]; then
           arr=${{ steps.file_changes.outputs.files_modified }}
         fi  
-        echo arr
         new_file=${arr[0]}
         echo $new_file
         date=${new_file:1:10}
         echo $date
         dir=dirname ${new_file}
-        echo $date
+        echo $dir
         echo "##[set-output name=date;]${date}"
         echo "##[set-output name=dir;]${dir}"
         group=`cat $output/group.txt`
