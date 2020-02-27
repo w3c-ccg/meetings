@@ -22,15 +22,14 @@ jobs:
     - name: detect_file
       id: detect_file
       run: |
-        arr=${{ steps.file_changes.outputs.files_added }}
-        if [ ${#arr[@]} -eq 0 ]; then
-          arr=${{ steps.file_changes.outputs.files_modified }}
-        fi  
-        new_file=${arr[0]}
-        echo $new_file
-        date=${new_file:1:10}
+        export the_file=`echo ${{ steps.file_changes.outputs.files_added }} | cut -d'-' -f 2`
+        if [ ${the_file} -le 3 ]; then 
+          export the_file=`echo ${{ steps.file_changes.outputs.files_modified }} | cut -d'-' -f 2`
+        fi
+        echo $the_file
+        date=${the_file:0:10}
         echo $date
-        dir=dirname ${new_file}
+        dir=dirname ${the_file}
         echo $dir
         echo "##[set-output name=date;]${date}"
         echo "##[set-output name=dir;]${dir}"
