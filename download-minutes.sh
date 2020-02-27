@@ -6,7 +6,7 @@ if [ ! -f "$OUTPUT_DIR/irc-raw.log" ]; then
     curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $OUTPUT_DIR/irc-raw.log
     ls -la $OUTPUT_DIR
     git add $OUTPUT_DIR/irc-raw.log
-    echo $GROUP > $OUTPUT_DIR/group.txt
+    echo $GROUP_NAME > $OUTPUT_DIR/group.txt
     git add $OUTPUT_DIR/group.txt
 else
   echo "nothing to do"
