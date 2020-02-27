@@ -22,9 +22,9 @@ jobs:
     - name: detect_file
       id: detect_file
       run: |
-        export the_file=`echo ${{ steps.file_changes.outputs.files_added }} | cut -d'-' -f 2`
-        if [ ${the_file} -le 3 ]; then 
-          export the_file=`echo ${{ steps.file_changes.outputs.files_modified }} | cut -d'-' -f 2`
+        the_file = ${steps.file_changes.outputs.files_added:1:-1}
+        if [ ${the_file} -le 1 ]; then 
+          the_file=${steps.file_changes.outputs.files_modified:1:-1}
         fi
         echo $the_file
         date=${the_file:0:10}
