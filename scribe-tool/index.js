@@ -13,10 +13,8 @@ program
   .option('-d, --directory <directory>', 'The directory to process.')
   .option('-g, --group <group>', 'Group', 'Credentials CG')
   .option('-m, --html', 'If set, write the minutes to an index.html file')
-  .option('-w, --wordpress', 'If set, publish the minutes to the blog')
   .option('-e, --email', 'If set, publish the minutes to the mailing list')
   .option('-t, --twitter', 'If set, publish the minutes to Twitter')
-  .option('-g, --google', 'If set, publish the minutes to G+')
   .option('-i, --index', 'Build meeting index')
   .option('-q, --quiet', 'Don\'t print status information to the console')
   .parse(process.argv);
@@ -61,57 +59,6 @@ function generateEmailBody() {
 }
 
 /************************* Utility Functions *********************************/
-function postToWordpress(username, password, content, callback) {
-  var client = wp.createClient({
-    username: username,
-    password: password,
-    url: ''
-  });
-  // Re-format the HTML for publication to a Wordpress blog
-  var datetime = new Date(gDate);
-  datetime.setHours(37);
-  var wpSummary = content.post_content;
-  wpSummary = wpSummary.substring(
-    wpSummary.indexOf('<dl>'), wpSummary.indexOf('</dl>') + 5);
-  wpSummary = wpSummary.replace(/href=\"#/g,
-    'href="https://w3c-ccg.github.io/meetings/' + gDate + '/#');
-  wpSummary = wpSummary.replace(/href=\"audio/g,
-    'href="https://w3c-ccg.github.io/meetings/' + gDate + '/audio');
-  wpSummary = wpSummary.replace(/<div><audio[\s\S]*\/audio><\/div>/g, '');
-  wpSummary += '<p>Detailed minutes and recorded audio for this call are ' +
-    '<a href="https://w3c-ccg.github.io/meetings/' + gDate +
-    '/">available in the archive</a>.</p>';
-
-  // calculate the proper post date
-  var gmtDate = datetime.toISOString();
-  gmtDate = gmtDate.replace('T', ' ');
-  gmtDate = gmtDate.replace(/\.[0-9]*Z/, '');
-
-  content.post_content = wpSummary;
-  content.post_date_gmt = gmtDate;
-  content.terms_names = ['Meetings'];
-  content.post_name = gDate + '-minutes';
-  content.custom_fields = [{
-    s2_meta_field: 'no'
-  }];
-
-  client.newPost(content, function(err, data) {
-    if(err) {
-      console.log(err);
-
-      console.log('scrawl: You may have to add this information manually:');
-
-      console.log('Title:\n' + content.post_title);
-      console.log('Content:\n' + content.post_content);
-      console.log('Slug:\n' + content.post_name);
-    }
-    else {
-      console.log(data);
-      // Do something.
-    }
-    callback();
-  });
-}
 
 function sendEmail(email, username, password, hostname, content, callback, port=null, ssl=false, tls=false) {
   var server = null;
@@ -357,43 +304,6 @@ async.waterfall([ function(callback) {
     callback();
   }
 }, function(callback) {
-  // format the G+ post for copy-paste
-  if(program.google) {
-    if(!program.quiet) {
-      console.log('scrawl: Composing new G+ message.');
-    }
-
-    // generate the body of the email
-    var content = scrawl.generateMinutes(gLogData, 'text', gDate);
-    content = content.match(/Agenda(.|\n)*Organizer:/)[0].replace('Organizer:', '');
-    var items = content.match(/Topics(.|\n)*(Action|Resolutions|.*)/)[0].match(/[0-9]{1,2}\. (.*)/g);
-    var formattedItems = '';
-
-    // create a brief description of what was discussed
-    for(var i = 0; i < items.length; i++) {
-       if(i > 0 && i < items.length - 1) {
-         formattedItems += ', ';
-       }
-       else if(i == items.length - 1) {
-         formattedItems += ', and ';
-       }
-       formattedItems += items[i].replace(/[0-9]{1,2}\. /, '').toLowerCase();
-    }
-
-    // format in a way that is readable on G+
-    content = '*Credentials CG Meeting Summary for ' + gDate + '*\n\n' +
-      'We discussed ' + formattedItems + '.\n\n' +
-      content + '\nFull transcript and audio logs are available here:\n\n' +
-      'https://w3c-ccg.github.io/meetings/' + gDate + '/\n\n' +
-      '#w3c #ccg';
-
-    console.log('scrawl: You will need to paste this to your G+ stream:\n');
-    console.log(content);
-    callback();
-  } else {
-    callback();
-  }
-}, function(callback) {
   // publish the minutes to Twitter
   if(program.twitter) {
     if(!process.env.SCRAWL_TWITTER_CONSUMER_KEY ||
@@ -438,47 +348,6 @@ async.waterfall([ function(callback) {
           callback();
         });
       });
-  } else {
-    callback();
-  }
-}, function(callback) {
-  // publish the wordpress blog post
-  if(program.wordpress) {
-    if(!program.quiet) {
-      console.log('scrawl: Creating new blog post.');
-    }
-    var content = {
-      post_title: 'Credentials CG Meeting Minutes for ' + gDate,
-      post_content: scrawl.generateMinutes(gLogData, 'html', gDate)
-    };
-
-    if(process.env.SCRAWL_WP_USERNAME && process.env.SCRAWL_WP_PASSWORD) {
-      postToWordpress(
-        process.env.SCRAWL_WP_USERNAME, process.env.SCRAWL_WP_PASSWORD,
-        content, callback);
-    } else {
-      var prompt = require('prompt');
-      prompt.start();
-      prompt.get({
-        properties: {
-          username: {
-            description: 'Enter the Credentials WordPress username',
-            pattern: /^.{4,}$/,
-            message: 'The username must be at least 4 characters.',
-            'default': 'msporny'
-          },
-          password: {
-            description: 'Enter the user\'s password',
-            pattern: /^.{4,}$/,
-            message: 'The password must be at least 4 characters.',
-            hidden: true,
-            'default': 'password'
-          }
-        }
-      }, function(err, results) {
-        postToWordpress(results.username, results.password, content, callback);
-      });
-    }
   } else {
     callback();
   }
