@@ -32,7 +32,7 @@ jobs:
         echo $the_file
         date=${the_file:0:10}
         echo $date
-        dir=dirname ${the_file}
+        dir="$(echo $the_file | cut -d'/' -f1)"
         echo $dir
         echo "##[set-output name=date;]${date}"
         echo "##[set-output name=dir;]${dir}"
