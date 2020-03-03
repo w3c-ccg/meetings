@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ ! -f "$OUTPUT_DIR/irc-raw.log" ]; then
-    mkdir -p $OUTPUT_DIR
+if [ ! -f "$DIR/irc-raw.log" ]; then
+    mkdir -p $DIR
     echo "....Downloading IRC logs for $DATE..."
-    curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $OUTPUT_DIR/irc-raw.log
-    ls -la $OUTPUT_DIR
-    git add $OUTPUT_DIR/irc-raw.log
-    echo $GROUP_NAME > $OUTPUT_DIR/group.txt
-    git add $OUTPUT_DIR/group.txt
+    curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $DIR/irc-raw.log
+    ls -la $DIR
+    git add $DIR/irc-raw.log
+    echo $GROUP > $DIR/group.txt
+    git add $DIR/group.txt
 else
   echo "nothing to do"
   exit 1

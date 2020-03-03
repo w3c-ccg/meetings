@@ -1,0 +1,67 @@
+name: Generate minutes
+
+on:
+  repository_dispatch:
+    types: download_minutes
+jobs:
+  download-minutes:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup custom environment variables
+      run: git config --global push.default simple && git config --global user.email "w3c.ccg@gmail.com" && git config --global user.name "W3C CCG"
+    - name: Pull raw meeting log file
+      id: pull_raw_file
+      env: 
+        DATE: ${{ github.event.client_payload.date }}
+        GROUP: ${{ github.event.client_payload.groupName }}
+        GROUP_ALIAS: ${{ github.event.client_payload.groupAlias }}
+      run: |
+        export DIR=${DATE}
+        if [ ! -z "$GROUP_ALIAS" ];then
+          export DIR=${DIR}-${GROUP_ALIAS}
+        fi
+        bash ./download-minutes.sh
+        echo "##[set-output name=date;]${DATE}"
+        echo "##[set-output name=group;]${GROUP}"
+        echo "##[set-output name=dir;]${DIR}"
+      shell: bash
+    - name: Generate html minutes
+      id: generate_html_minutes
+      run: |
+        npm install
+        bash ./generate-html.sh
+      env:
+        CI: true
+        DATE: ${{ steps.pull_raw_file.outputs.date }}
+        DIR: ${{ steps.pull_raw_file.outputs.dir}}
+        GROUP: ${{ steps.pull_raw_file.outputs.group }}  
+    - uses: stefanzweifel/git-auto-commit-action@v2.5.0
+      with:
+        commit_message: Add minutes for telecon [ci skip]
+        branch: gh-pages
+
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Send email
+      uses: dawidd6/action-send-mail@v1.3.0
+   
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: w3c.ccg
+        password: ${{ secrets.email_password }}
+        subject: ${{ format('[MINUTES] W3C {0} Call - {1} 12pm ET', steps.pull_raw_file.outputs.group, steps.pull_raw_file.outputs.date) }}
+        body: ${{ format('file://{0}/email.log', steps.pull_raw_file.outputs.dir) }}
+        to: public-credentials@w3.org
+        from: W3C CCG Chairs   
+    - name: Twitter Action
+      uses: ethomson/send-tweet-action@v1
+      with:
+        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.pull_raw_file.outputs.group, steps.pull_raw_file.outputs.dir) }}
+        consumer-key: ${{ secrets.twitter_api_key }}
+        consumer-secret: ${{ secrets.twitter_api_secret }}
+        access-token: ${{ secrets.twitter_access_token }}
+        access-token-secret: ${{ secrets.twitter_access_token_secret }}
