@@ -22,15 +22,12 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Send agenda to public-credentials@w3.org before each meeting
 * If there is a guest presentation, add it to the appropriate dated meeting archives folder https://github.com/w3c-ccg/meetings/ before the meeting.
 
-### During Meeting (All meetings)
+### During Meeting (All Meetings)
 
 * Make sure to link to the agenda at the beginning of the meeting ("Agenda: ...")
 * Make sure the scribe is identified ("Scribe: ...")
 * Make sure topics are labeled when the topic changes ("Topic: ...")
-
-### Add Action Items to Issues
-
-Review meeting log for any Action items, and add them to [community issues](https://github.com/w3c-ccg/community/issues) with appropriate tag and owner.
+* Make sure that action items are listed so that they can be added to issues later ("Action: ...")
 
 ### Generate the minutes (for CCG meetings, task forces and other recorded meetings)
 
@@ -99,6 +96,10 @@ If you're not happy with the minutes, you can update them
 - Delete all audio after the first person hangs up at the end of the call.
 - Save the new file as audio.wav or encode to .ogg (file name audio.ogg) at 32kbps
     - For example: `oggenc -b 32 audio.wav`
+
+### Add Action Items to Issues (All Meetings)
+
+Review [meeting log](#) for any Action items (conveniently added to top of minutes by script), and add them to [community issues](https://github.com/w3c-ccg/community/issues) with appropriate issue tag and owner. Work Item and Task Force leads are welcome to use their own tags.
 
 ### Comments/Bugs/Future Improvements
 - We don't have audio integrated into this process yet. [See details below for what needs to be done]((#cleaning-up-the-minutes))
