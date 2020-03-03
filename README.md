@@ -46,7 +46,7 @@ We use github actions to publish the minutes, and (optionally) to make updates
 
 ### To generate minutes for date
 
-- Trigger: currently a curl command (see below)
+- Trigger: run the curl command (see above)
 - Actions:
     - Download and generates minutes for <date>
     - Checks into github
