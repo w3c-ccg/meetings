@@ -28,6 +28,10 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Make sure the scribe is identified ("Scribe: ...")
 * Make sure topics are labeled when the topic changes ("Topic: ...")
 
+### Add Action Items to Issues
+
+Review meeting log for any Action items, and add them to [community issues](https://github.com/w3c-ccg/community/issues) with appropriate tag and owner.
+
 ### Generate the minutes (for CCG meetings, task forces and other recorded meetings)
 
 The chairs will need to give you access to the [script that launches it](https://script.google.com/d/16afjkO2wiKTHFBdM1-e4xqQ6YNX5LeqDpoSTB1Wrgqa8AlVD3GDjeqcf/edit).
@@ -50,7 +54,6 @@ And you're done!
     - Ensure aliases have matches (see people.json file)
 - Overwrite the `irc.log` with the edited file and commit the changes via github
 - The rest is handled for you; a github action will generate html and publish
-
 
 #### Details about how it works
    
