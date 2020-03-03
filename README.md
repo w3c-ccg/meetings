@@ -11,6 +11,8 @@ What it does:
 - Creates the html files and checks into github
 - Emails summary to ccg email group
 - Tweets with the w3c_ccg account
+
+And you're done!
   
 ## Not happy with the minutes? Clean them up
 
