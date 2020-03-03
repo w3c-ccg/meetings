@@ -42,9 +42,10 @@ At the end of every call, the raw IRC log and audio recording are uploaded to:
 * https://w3c-ccg.s3.digitalbazaar.com/minutes/YYYY-MM-DD-irc.log
 * https://w3c-ccg.s3.digitalbazaar.com/minutes/YYYY-MM-DD-audio.wav
 
-We use github actions to process the minutes. To publish minutes, do the following.
+We use github actions to publish the minutes, and (optionally) to make updates
 
-*To generate minutes for date*
+### To generate minutes for date
+
 - Trigger: currently a curl command (see below)
 - Actions:
     - Download and generates minutes for <date>
@@ -55,14 +56,15 @@ We use github actions to process the minutes. To publish minutes, do the followi
 
 If you're not happy with the minutes, you can update them
 
-*To update the minutes for date*
+### To update the minutes for date
+
 - Trigger: Kicks off when someone with access) checks in cleaned up irc.log file
 - Does the following:
     - Updates html minutes and checks into github
 - Github Action File: [update_minutes.yml](https://github.com/w3c-ccg/meetings/blob/gh-pages/.github/workflows/update_minutes.yml)
 
     
-### Comments/Bugs/Future Improvements
+## Comments/Bugs/Future Improvements
 - We don't have audio integrated into this process yet. [See details below for what needs to be done]((#cleaning-up-the-minutes))
 - Reducing number of steps:
     - This can be reduced to 1 step once we get into better scriibe hygiene habits. The separate cleanup won't be necessary
@@ -72,7 +74,7 @@ If you're not happy with the minutes, you can update them
 - Add wait before tweet
 
 
-### Cleaning up the Audio
+## Cleaning up the Audio
 
 - Open the audio-raw.wav file in an editor (see setup above):
 - Delete all audio before the Chair starts talking about the Agenda
