@@ -5,17 +5,7 @@ Below desribes how to publish CCG minutes.
 
 ## Generate the minutes
 
-Run the following curl command and you're done! 
-
-- Note you need to add the date value (e.g. 2020-01-07) and have a github API token with permissions to this repo.
-- This will download the raw minutes and ping the chairs (or TBD list) to clean it up (with instructions)
-```
-curl -H "Accept: application/vnd.github.everest-preview+json" \
-    -H "Authorization: token <token>" \
-    --request POST \
-    --data '{"event_type": "generate_minutes", "client_payload": { "date": "<date>"}}' \
-    https://api.github.com/repos/w3c-ccg/meetings/dispatches
-```
+The chairs will need to give you access to the [script that launches it](https://script.google.com/d/16afjkO2wiKTHFBdM1-e4xqQ6YNX5LeqDpoSTB1Wrgqa8AlVD3GDjeqcf/edit).
 
 What it does:
 - Creates the html files and checks into github
@@ -45,6 +35,15 @@ At the end of every call, the raw IRC log and audio recording are uploaded to:
 We use github actions to publish the minutes, and (optionally) to make updates
 
 ### To generate minutes for date
+
+The script runs the following command. Note the script adds the date value (e.g. 2020-01-07) and has the github API token with permissions to this repo.
+```
+curl -H "Accept: application/vnd.github.everest-preview+json" \
+    -H "Authorization: token <token>" \
+    --request POST \
+    --data '{"event_type": "generate_minutes", "client_payload": { "date": "<date>"}}' \
+    https://api.github.com/repos/w3c-ccg/meetings/dispatches
+```
 
 - Trigger: run the curl command (see above)
 - Actions:
