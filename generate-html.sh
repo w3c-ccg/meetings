@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Checking if there are minutes to publish for $DATE"
-if [[ -f "$DIR/irc.log" && ! -f "$DIR/index.html" ]]; then  
+if [[ -f "$DIR/irc.log" ]]; then  
 
     echo "Generating minutes for $DATE"
 
