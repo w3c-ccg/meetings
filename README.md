@@ -33,6 +33,11 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 
 The chairs will need to give you access to the [script that launches it](https://script.google.com/d/16afjkO2wiKTHFBdM1-e4xqQ6YNX5LeqDpoSTB1Wrgqa8AlVD3GDjeqcf/edit).
 
+What you need to do:
+- choose which function to trigger (GC call minutes=triggerMinutes)
+- change the date for that function, and save it (disk button saves).
+- click play button
+
 What it does:
 - Creates the html files and checks into github
 - Emails summary to ccg email group
