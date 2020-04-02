@@ -16,6 +16,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * If there is a guest presentation, add it to the appropriate dated meeting [archives folder](https://github.com/w3c-ccg/meetings/)  before the meeting.
 * Go to [CCG Email Send Agenda" Google Script](https://script.google.com/d/1QcV9INTap2Ke0gEkMTAovlZ-Cg3MIrYzxvU5h7SPKYvUrAuHnUCqgAHD/edit) - select function "sendAgenda" and click play. 
 * Confirm in the [CCG mail archives](https://lists.w3.org/Archives/Public/public-credentials/) that the agenda was sent correctly
+* Monthly - review Work Items https://github.com/w3c-ccg/community/blob/master/work_items.md
 
 ### Before Meeting (Task Force & Others)
 
