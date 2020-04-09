@@ -9,7 +9,8 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 ### Before Meeting (W3C-CCG Chairs)
 
 * Update Announcement GitHub page https://w3c-ccg.github.io/announcements/
-* Clear all old ["action: review next" issues](https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22) in CCG issues. 
+* Clear all old ["action: review next" issues](https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22) in CCG issues.
+* Check and review ["action: chairs" issues](https://github.com/w3c-ccg/community/labels/action%3A%20chairs).
 * Review all [community issues](https://github.com/w3c-ccg/community/issues)  and choose 1-3 and tag "action: review next"
 * Open the [W3C-CCG Planning & Agenda Email Draft](https://docs.google.com/document/d/1PbyZ0UtI6yzr5V_r-iseVyrZIWPm1BLXWsLeEV-mJvY/edit) in Google Docs 
 * Updated all the items highlighted in yellow, in particular adding new agenda items for week starting with item 7.
