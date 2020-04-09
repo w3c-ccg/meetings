@@ -6,7 +6,7 @@ This repo contains the meeting archives for the W3C-CCG (Credentials Community G
 
 This section descibes how the chairs archive W3C-CCG meetings, including sending the agenda, how to run the meetings, and how to publish CCG minutes transcript and audio after. This information is also use for leads and other facilitators archiving any alternative CCG meetings such as task forces and special meetings.
 
-### Before Meeting (W3C-CCG Chairs)
+### Before Meeting (Agenda for the weekly W3C-CCG Chairs meeting)
 
 * Update Announcement GitHub page https://w3c-ccg.github.io/announcements/
 * Clear all old ["action: review next" issues](https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22) in CCG issues.
@@ -18,6 +18,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Go to [CCG Email Send Agenda" Google Script](https://script.google.com/d/1QcV9INTap2Ke0gEkMTAovlZ-Cg3MIrYzxvU5h7SPKYvUrAuHnUCqgAHD/edit) - select function "sendAgenda" and click play. 
 * Confirm in the [CCG mail archives](https://lists.w3.org/Archives/Public/public-credentials/) that the agenda was sent correctly
 * Monthly - review Work Items https://github.com/w3c-ccg/community/blob/master/work_items.md
+* Suggest week +1 & +2 topics. Look to invite for future weeks at least one or two weeks out.
 
 ### Before Meeting (Task Force & Others)
 
