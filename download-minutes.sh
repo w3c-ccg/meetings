@@ -6,9 +6,9 @@ if [ ! -f "$DIR/irc-raw.log" ]; then
     curl -# "https://w3c-ccg.s3.digitalbazaar.com/minutes/$DATE-irc.log" > $DIR/irc-raw.log
     ls -la $DIR
     git add $DIR/irc-raw.log
+fi
+
+if [ ! -f "$DIR/group.txt" ]; then
     echo $GROUP > $DIR/group.txt
     git add $DIR/group.txt
-else
-  echo "nothing to do"
-  exit 1
 fi
