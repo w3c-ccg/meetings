@@ -12,5 +12,4 @@ if [[ -f "$DIR/irc.log" ]]; then
 
 else
     echo "nothing to do"
-    exit 1
 fi
