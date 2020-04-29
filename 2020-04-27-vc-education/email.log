@@ -1,0 +1,265 @@
+Thanks to Nate Otto for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-04-27/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2020-04-27
+
+Agenda:
+  undefined
+Topics:
+  1. Introductions & Reintroductions
+  2. Cryptographic accumulators for privacy-promoting credential 
+    verification
+Organizer:
+  Kim Hamilton Duffy and Joe Andrieu and Christopher Allen
+Scribe:
+  Nate Otto
+Present:
+  Mike Lodder, Shivam Sethi, Nate Otto, Eric Welton, Jim Goodell, 
+  Chris Winczewski, Kim Hamilton Duffy, Blaž Podgorelec, Uli 
+  Gallersdörfer, Allan Third, Simone Ravaoli, Adam Lemmon, James 
+  Chartrand, Pave, Hans Pongratz, Alan Davies, Ganesh Annan
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-04-27/audio.ogg
+
+Shivam Sethi: Present +
+Kim Hamilton Duffy: https://www.w3.org/community/credentials/join
+Kim Hamilton Duffy: https://www.w3.org/accounts/request
+Kim Hamilton Duffy: 
+  https://www.w3.org/community/about/agreements/cla/
+Kim Hamilton Duffy: https://w3c-ccg.github.io/meetings/
+Nate Otto is scribing.
+Nate Otto is scribing.
+
+Topic: Introductions & Reintroductions
+
+Alan Third: I work for the Open University on Blockchains and 
+  Credentials
+S/Alan/Allan_
+Kim Hamilton Duffy:  Welcome, we will invite you to present at a 
+  future call.
+
+Topic: Cryptographic accumulators for privacy-promoting credential verification
+
+Mike Lodder: 
+  https://docs.google.com/presentation/d/10RBfGIyjyKdbmEDkKuM3O1pU5p-UpkiOHlUnZGi8cF4/edit?usp=sharing
+Kim Hamilton Duffy:  We'll let Mike present and then turn over 
+  for Q&A. Mike implemented "cryptographic accumulators" for the 
+  Sovrin system. We're fortunate to have him join us.
+Blank is punk rock!
+Mike-lodder slide 2 a little bit about me. An independent 
+  consultant. Feel free to use these slides in the public domain.
+Mike-lodder slide 3. I'll cover the basics of cryptographic 
+  accumulators. I'll dive into the crypto, but not very deep. Then 
+  how we will apply these to verifiable credentials.
+Mike Lodder:  Slide 4. A fast and secure way to "prove set 
+  membership". The three types that people are using in production 
+  are merkle tree-based, RSA and ECC. The value of an accumulator 
+  is a fixed size. It doesn't grow with the more items that are in 
+  the set. Verification time is constant regardless of how big the 
+  list is.
+Mike Lodder:  We can use zero-knowledge proofs, you don't have to 
+  reveal what else is in the set. Some methods even allow you to 
+  check the position of the item in the set, but most of them you 
+  don't need to worry about that, because all you care about is 
+  presence of the element you're looking for.'
+Mike Lodder:  Slide 5. There are public parameters that everybody 
+  is entitled to see in order to create, update, do proofs against 
+  the accumulator.
+Mike Lodder:  If you think of a revocation list, you still have 
+  to have a list of all the elements that are in there
+Mike Lodder:  Slide 6: here's some basic math. First, the rule of 
+  exponents, remember how these rules work to understand how 
+  accumulation occurs.
+Mike Lodder:  Modular arithmetic. We create a "finite field" with 
+  a limit, so everything happens within the field. In this example, 
+  everything we do is mod17 (usually a prime). To do a division, 
+  instead you "do a modular inverse". Find a number when you 
+  multiply it by the mod is 1. You can think of it as "clock 
+  arithmetic". You go around the clock and it resets when you get 
+  to more than the mod.
+Mike Lodder:  Slide 8: Here are some examples of how cryptography 
+  uses modular arithmetic
+Mike Lodder:  Slide 9 when we have a finite field, we like to 
+  define a generator. A base that when raised to every number less 
+  than the mod, I can reach every number in the modulus (gen^n mod 
+  x). Generators are important in this work.
+Mike Lodder:  Slide 11: Diffie-Hellman example
+Mike Lodder:  Diffie-Hellman is used for website traffic 
+  encryption. Pick a big prime, then pick a good generator for it.
+Mike Lodder:  Diffie-Hellman is a basic computation, but it was a 
+  big breakthrough when it was discovered.
+Mike Lodder:  RSA works very similar. The person generating each 
+  key knows a prime. Find a modulus that is the product of two 
+  primes; then calculate modular inverse. You get an encrypt and a 
+  decrypt operation. Creating a generator is a bit harder in RSA 
+  land because there's an unknown order if you don't know the 
+  primes, but can be done.
+Alan Davies: Present
+Mike-lodder slide 14: I want to bet on a horse, but I don't want 
+  to tell people which horse I bet on unless I win, but if I do 
+  win, I want to be able to prove that's the horse I bet on. You 
+  can create a "blinded commitment", which has good "hiding 
+  properties" even if there are big computers working on it.
+Mike Lodder:  Slide 15: those are the basics. Now let's talk 
+  about accumulators.
+Mike-lodder slide 16: RSA Accumulator Example. All accumulators 
+  have public properties like RSA modulus (product of two primes of 
+  a certain size). Pick "hash to prime number" which converts an 
+  input into a prime number. Then there is a hash function like 
+  SHA256. Important to use primes because otherwise you could have 
+  duplicates in the math. Non-prime numbers used would fail 
+  verification checks fast.
+Mike Lodder:  The witness in this case is the "value of the 
+  accumulator with every other value in the set in there except for 
+  the one I'm adding"
+Mike Lodder:  Slide 17: what I want to prove is that if I combine 
+  my witness and my actual number you get the accumulator. In order 
+  to not reveal the value, the prover can add another random 
+  generator into the calculation.
+Mike Lodder:  Slide 18 and next few slides show you how it works
+Mike Lodder:  A verifier doesn't have to do that set of 
+  substitution steps through slide 32, they just do the calculation 
+  once.
+Mike Lodder:  Ok slide 33 why would I use RSA if it's slow? Well 
+  it's nice because it lets you do a fixed set of elements or a 
+  dynamic set of elements.
+Mike Lodder:  Ok slide 34 why use elliptic curves? Because you 
+  can use much smaller numbers. Instead of with RSA requiring a 
+  certain number of bits, elliptic curves let you use much smaller 
+  number of bits.
+Mike Lodder:  Slide 36: vocabulary for elliptic curves are 
+  scalars and points. Standard notation for these.
+Mike Lodder:  The same primitives work, with the operations we 
+  discussed before.
+Mike Lodder:  Some elliptic curves allow a new operation called 
+  "pairing". Those are "pairing-friendly curves".
+Mike Lodder:  Slide 38? Downside is it only works with a fixed 
+  set of elements. Sovrin has a very large "tails file". Everything 
+  else other than the public parameters are nice and quick.
+Mike-lodder slide 39: Elliptic curve accumulators accumulate 
+  signatures. Witness is really easy to compute, you just "add and 
+  subtract points". An attacker would go through a lot of 
+  computation to determine whether or not my value is in there.
+Mike Lodder:  Slide 41: merkle tree accumulators. Values in the 
+  set are "leaves" and then everything else is  a hash (or whatever 
+  you need it to be, as long as you're consistent). The "witness" 
+  is just "the path to the root" -- you don't have to care about 
+  anything else in the tree.
+Mike Lodder:  Slide 43: in order to do these in zero knowledge 
+  you need to use some proofs, such as "Bulletproofs, STAKRs or 
+  SNARKs". Merkle trees can be dynamic or fixed, so similar to RSA 
+  ones in that respect.
+Mike-lodder slide 44: how would I use an accumulator in a 
+  verifiable credential? You could say one or more attributes in a 
+  credential is in an accumulator. For instance, you can check 
+  whether a credential is revoked or not. Observer only sees which 
+  registry was checked, not which credential was checked for 
+  revocation.
+(This is also a capability of an HTTP hosted list of revoked IDs, 
+  except that clients don't get to see what the IDs of all the 
+  revoked items in the set are)
+Mike-lodder slide 45: This isn't just for revocation. It could be 
+  to check any attribute in a credential to see if it's in a set or 
+  not. The only limit is your imagination in terms of what you can 
+  do with set memberships.
+Mike Lodder:  Slide 46 some example deployments.
+Mike Lodder:  Slide 48 has links to papers, on how to do 
+  cryptographic accumulators.
+Kim Hamilton Duffy:  I'll ask the first question. I want to ask 
+  about when updates need to happen. I'm curious if you can walk me 
+  through about: say, what happens is you're using an accumulator 
+  to track which credentials have been revoked. Suppose you're 
+  using the credential ID. How does a revocation get pushed or 
+  queried? If you are the one whose credential was revoked, how do 
+  you learn?
+Mike Lodder:  A credential issuer doesn't compute the witness; 
+  the holder does. The issuer only cares about maintaining the list 
+  of issued or revoked credentials. Every time a credential is 
+  issued, a value is added, every time a credential is revoked, a 
+  value is removed (scribe note: does that mean added to a revoked 
+  accumulator?). As a holder, you don't want to leak either your 
+  witness or your actual value. If you didn't care about the 
+  privacy of those
+Things, you wouldn't need to use an accumulator.
+Mike Lodder:  The holder could observe the accumulator value and 
+  if something changes, they might need to update the witness.
+Kim Hamilton Duffy:  Another question, could you walk us through, 
+  in hyperledger implementations how ECC, RSA or Merkle were chosen 
+  for different implementations. Could you go into more details 
+  about the factors leading to that decision?
+Mike Lodder:  At the time that Hyperledger Indy 1.0 was written 
+  SNARKs were very new. We wanted to do zero knowledge proofs of 
+  set memberships and couldn't do it at the time in 2016 with 
+  merkle trees. So Indy chose to use Elliptic Curves to keep the 
+  values small, because every time the accumulator updated, we 
+  didn't want to be posting 2k or 4k accumulator values. It's 
+  smaller and faster to compute the proofs than RSA was.
+Mike Lodder:  There's two different ways you can do ... the 
+  accumulator. You can "add every time you issue" "remove every 
+  time you revoke". One way to do it is put a bunch of numbers in 
+  there originally and an issuer when they issued would just "grab" 
+  one of those IDs and not need to update the accumulator. Only 
+  update needed when revoked.
+Mike Lodder:  For something like device registrations (tracking 
+  laptops held by employees), we ... made an accumulator with a 
+  very large number of primes in it.
+Mike Lodder:  One other consideration with merkle trees, if you 
+  change your fanout (to avoid getting too deep of a tree) you have 
+  to recalculate everything. We're choosing Merkle Trees with 
+  SNARKs to now be able to cover 1000x the number of items in a 
+  set. With this approach you could calculate the revocation case 
+  in 1sec even if there are 4billion records in the set
+Kim Hamilton Duffy:  I had been thinking about revocation a lot, 
+  but it was good to hear these other use cases as well. For 
+  instance, revocation could be used on the individual attribute 
+  level
+Simone Ravaoli: +1 To Nate for an incredible scribing job...  
+  almost like a #NateBot
+Mike Lodder:  You could say "attribute3" corresponds to "labs you 
+  have access to in the facility". It doesn't reveal other things 
+  about the credential or the recipient. The reason to use an 
+  accumulator is usually because the sets are very large. It 
+  doesn't generally get slower to verify as the set grows.
+Nate Otto:  You made references to revocation case, i.e. 
+  removing. but often these are published to blockchains [scribe 
+  assist by Kim Hamilton Duffy]
+Kim Hamilton Duffy: ...Can you tell us what that looks like? are 
+  you posting a new value?
+Mike Lodder:  Most issuers will update once per day. verifer will 
+  need to say it's not revoked as of 24 hours ago [scribe assist by 
+  Kim Hamilton Duffy]
+Kim Hamilton Duffy: ...Issuers write new value with some 
+  regularity
+Kim Hamilton Duffy: ...Because timestamped, verifier can ensure 
+  not revoked within time interval
+Nate Otto:  Need a way to find where latest value is published 
+  [scribe assist by Kim Hamilton Duffy]
+Mike Lodder:  That can be in the credential through json-ld, etc 
+  [scribe assist by Kim Hamilton Duffy]
+Kim Hamilton Duffy: ...All that matters is parties know
+Kim Hamilton Duffy:  You talked about time "an accumulator value 
+  from the last 24 hours". Did you have to deal with the scenario 
+  where somebody is querying older copies of accumulators. Was this 
+  credential valid last year?
+Mike Lodder:  Yes, you can do a proof against any time or dated 
+  (accumulator value) that you could pull up (say, from a 
+  blockchain)
+By_caballero: [audio very choppy]. ...
+Hahaha sorry
+I was asking if anyone at aries is working on
+How to look up accumulators elsewhere than on indy?
+Awesome, thanks
+Mike Lodder:  As in is there open source code that does it. If 
+  you look at the https://cambrian.dev/accumulator/docs you'll see 
+  some code in Rust. There has been some work done with it outside 
+  of the Indy&Aries community.
+Kim Hamilton Duffy:  We're at time. Thank you for the 
+  presentation and for joining us.
+Thanks nate!
+What an ottoscribe
