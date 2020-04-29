@@ -1,0 +1,112 @@
+[2020-04-27T15:09:54.133Z]	<mike-lodder>	present+
+[2020-04-27T15:10:38.722Z]	<Shivam_Sethi>	present +
+[2020-04-27T15:11:07.231Z]	<ottonomy>	present+
+[2020-04-27T15:11:32.733Z]	<korsimoro>	present+
+[2020-04-27T15:11:43.315Z]	<Jim_Goodell>	present+
+[2020-04-27T15:11:55.582Z]	<Jim_Kelly>	present+
+[2020-04-27T15:12:30.944Z]	<chriswinc>	present+
+[2020-04-27T15:12:44.812Z]	<kimhd>	present+
+[2020-04-27T15:12:53.694Z]	<blazp>	present+
+[2020-04-27T15:13:35.210Z]	<Uli_Gallersdoerfer>	present+
+[2020-04-27T15:14:14.013Z]	<kimhd>	https://www.w3.org/community/credentials/join
+[2020-04-27T15:14:21.074Z]	<Shivam_Sethi>	present+
+[2020-04-27T15:14:23.944Z]	<kimhd>	https://www.w3.org/accounts/request
+[2020-04-27T15:14:36.650Z]	<kimhd>	https://www.w3.org/community/about/agreements/cla/
+[2020-04-27T15:14:54.313Z]	<kimhd>	https://w3c-ccg.github.io/meetings/
+[2020-04-27T15:15:37.341Z]	<Allan_Third>	present+
+[2020-04-27T15:15:51.937Z]	<kimhd>	q+ to mention DID spec needs better ...
+[2020-04-27T15:15:57.741Z]	<kimhd>	ack kimhd
+[2020-04-27T15:16:32.371Z]	<ottonomy>	scribe: ottonomy
+[2020-04-27T15:16:32.973Z]	<kimhd>	Scribe: ottonomy
+[2020-04-27T15:16:46.078Z]	<kimhd>	Topic: Introductions & Reintroductions
+[2020-04-27T15:16:51.231Z]	<Simone_Ravaioli>	present+
+[2020-04-27T15:17:17.670Z]	<ottonomy>	Alan Third: I work for the Open University on Blockchains and Credentials
+[2020-04-27T15:17:26.752Z]	<ottonomy>	s/Alan/Allan_
+[2020-04-27T15:17:44.053Z]	<ottonomy>	kimhd: Welcome, we will invite you to present at a future call.
+[2020-04-27T15:17:48.989Z]	<adamjlemmon>	present+
+[2020-04-27T15:18:14.236Z]	<kimhd>	Topic: Cryptographic accumulators for privacy-promoting credential verification
+[2020-04-27T15:18:30.391Z]	<mike-lodder>	https://docs.google.com/presentation/d/10RBfGIyjyKdbmEDkKuM3O1pU5p-UpkiOHlUnZGi8cF4/edit?usp=sharing
+[2020-04-27T15:18:58.943Z]	<ottonomy>	kimhd: We'll let Mike present and then turn over for Q&A. Mike implemented "cryptographic accumulators" for the Sovrin system. We're fortunate to have him join us.
+[2020-04-27T15:19:28.682Z]	<JamesChartrand>	present+
+[2020-04-27T15:19:55.938Z]	<by_caballero>	blank is punk rock!
+[2020-04-27T15:20:00.522Z]	<ottonomy>	mike-lodder slide 2 a little bit about me. An independent consultant. Feel free to use these slides in the public domain.
+[2020-04-27T15:20:03.188Z]	<pave>	present+
+[2020-04-27T15:20:23.039Z]	<by_caballero>	present+
+[2020-04-27T15:20:37.875Z]	<HansPongratz>	present+
+[2020-04-27T15:20:48.028Z]	<ottonomy>	mike-lodder slide 3. I'll cover the basics of cryptographic accumulators. I'll dive into the crypto, but not very deep. Then how we will apply these to verifiable credentials.
+[2020-04-27T15:22:05.562Z]	<ottonomy>	mike-lodder : slide 4. A fast and secure way to "prove set membership". The three types that people are using in production are merkle tree-based, RSA and ECC. The value of an accumulator is a fixed size. It doesn't grow with the more items that are in the set. Verification time is constant regardless of how big the list is.
+[2020-04-27T15:22:53.819Z]	<ottonomy>	mike-lodder: we can use zero-knowledge proofs, you don't have to reveal what else is in the set. Some methods even allow you to check the position of the item in the set, but most of them you don't need to worry about that, because all you care about is presence of the element you're looking for.'
+[2020-04-27T15:23:19.349Z]	<ottonomy>	mike-lodder: slide 5. There are public parameters that everybody is entitled to see in order to create, update, do proofs against the accumulator.
+[2020-04-27T15:24:22.794Z]	<ottonomy>	mike-lodder: if you think of a revocation list, you still have to have a list of all the elements that are in there
+[2020-04-27T15:24:59.808Z]	<ottonomy>	mike-lodder: slide 6: here's some basic math. First, the rule of exponents, remember how these rules work to understand how accumulation occurs.
+[2020-04-27T15:26:57.408Z]	<ottonomy>	mike-lodder: modular arithmetic. We create a "finite field" with a limit, so everything happens within the field. In this example, everything we do is mod17 (usually a prime). To do a division, instead you "do a modular inverse". Find a number when you multiply it by the mod is 1. You can think of it as "clock arithmetic". You go around the clock and it resets when you get to more than the mod.
+[2020-04-27T15:27:31.495Z]	<ottonomy>	mike-lodder: slide 8: Here are some examples of how cryptography uses modular arithmetic
+[2020-04-27T15:28:54.568Z]	<ottonomy>	mike-lodder: slide 9 when we have a finite field, we like to define a generator. A base that when raised to every number less than the mod, I can reach every number in the modulus (gen^n mod x). Generators are important in this work.
+[2020-04-27T15:29:13.444Z]	<ottonomy>	mike-lodder: slide 11: Diffie-Hellman example
+[2020-04-27T15:29:58.508Z]	<ottonomy>	mike-lodder: Diffie-Hellman is used for website traffic encryption. Pick a big prime, then pick a good generator for it.
+[2020-04-27T15:30:43.695Z]	<ottonomy>	mike-lodder: Diffie-Hellman is a basic computation, but it was a big breakthrough when it was discovered.
+[2020-04-27T15:32:08.790Z]	<ottonomy>	mike-lodder: RSA works very similar. The person generating each key knows a prime. Find a modulus that is the product of two primes; then calculate modular inverse. You get an encrypt and a decrypt operation. Creating a generator is a bit harder in RSA land because there's an unknown order if you don't know the primes, but can be done.
+[2020-04-27T15:33:03.837Z]	<AlanD>	present
+[2020-04-27T15:33:09.472Z]	<AlanD>	present+
+[2020-04-27T15:33:12.128Z]	<ottonomy>	mike-lodder slide 14: I want to bet on a horse, but I don't want to tell people which horse I bet on unless I win, but if I do win, I want to be able to prove that's the horse I bet on. You can create a "blinded commitment", which has good "hiding properties" even if there are big computers working on it.
+[2020-04-27T15:33:16.022Z]	<gannan>	present+
+[2020-04-27T15:33:23.578Z]	<ottonomy>	mike-lodder: slide 15: those are the basics. Now let's talk about accumulators.
+[2020-04-27T15:34:41.548Z]	<ottonomy>	mike-lodder slide 16: RSA Accumulator Example. All accumulators have public properties like RSA modulus (product of two primes of a certain size). Pick "hash to prime number" which converts an input into a prime number. Then there is a hash function like SHA256. Important to use primes because otherwise you could have duplicates in the math. Non-prime numbers used would fail verification checks fast.
+[2020-04-27T15:35:03.068Z]	<ottonomy>	mike-lodder: The witness in this case is the "value of the accumulator with every other value in the set in there except for the one I'm adding"
+[2020-04-27T15:36:26.791Z]	<ottonomy>	mike-lodder: slide 17: what I want to prove is that if I combine my witness and my actual number you get the accumulator. In order to not reveal the value, the prover can add another random generator into the calculation.
+[2020-04-27T15:37:27.228Z]	<ottonomy>	mike-lodder: slide 18 and next few slides show you how it works
+[2020-04-27T15:40:08.448Z]	<ottonomy>	mike-lodder: a verifier doesn't have to do that set of substitution steps through slide 32, they just do the calculation once.
+[2020-04-27T15:40:42.018Z]	<ottonomy>	mike-lodder: Ok slide 33 why would I use RSA if it's slow? Well it's nice because it lets you do a fixed set of elements or a dynamic set of elements.
+[2020-04-27T15:41:33.541Z]	<ottonomy>	mike-lodder: ok slide 34 why use elliptic curves? Because you can use much smaller numbers. Instead of with RSA requiring a certain number of bits, elliptic curves let you use much smaller number of bits.
+[2020-04-27T15:42:22.274Z]	<ottonomy>	mike-lodder: slide 36: vocabulary for elliptic curves are scalars and points. Standard notation for these.
+[2020-04-27T15:42:46.440Z]	<ottonomy>	mike-lodder: the same primitives work, with the operations we discussed before.
+[2020-04-27T15:43:14.140Z]	<ottonomy>	mike-lodder: Some elliptic curves allow a new operation called "pairing". Those are "pairing-friendly curves".
+[2020-04-27T15:44:29.419Z]	<ottonomy>	mike-lodder: slide 38? Downside is it only works with a fixed set of elements. Sovrin has a very large "tails file". Everything else other than the public parameters are nice and quick.
+[2020-04-27T15:45:21.238Z]	<ottonomy>	mike-lodder slide 39: Elliptic curve accumulators accumulate signatures. Witness is really easy to compute, you just "add and subtract points". An attacker would go through a lot of computation to determine whether or not my value is in there.
+[2020-04-27T15:47:06.209Z]	<ottonomy>	mike-lodder: slide 41: merkle tree accumulators. Values in the set are "leaves" and then everything else is  a hash (or whatever you need it to be, as long as you're consistent). The "witness" is just "the path to the root" -- you don't have to care about anything else in the tree.
+[2020-04-27T15:48:07.350Z]	<ottonomy>	mike-lodder: slide 43: in order to do these in zero knowledge you need to use some proofs, such as "Bulletproofs, STAKRs or SNARKs". Merkle trees can be dynamic or fixed, so similar to RSA ones in that respect.
+[2020-04-27T15:49:16.794Z]	<ottonomy>	mike-lodder slide 44: how would I use an accumulator in a verifiable credential? You could say one or more attributes in a credential is in an accumulator. For instance, you can check whether a credential is revoked or not. Observer only sees which registry was checked, not which credential was checked for revocation.
+[2020-04-27T15:50:09.300Z]	<ottonomy>	(this is also a capability of an HTTP hosted list of revoked IDs, except that clients don't get to see what the IDs of all the revoked items in the set are)
+[2020-04-27T15:51:10.048Z]	<ottonomy>	mike-lodder slide 45: This isn't just for revocation. It could be to check any attribute in a credential to see if it's in a set or not. The only limit is your imagination in terms of what you can do with set memberships.
+[2020-04-27T15:51:52.250Z]	<ottonomy>	mike-lodder: slide 46 some example deployments.
+[2020-04-27T15:52:36.174Z]	<kimhd>	q?
+[2020-04-27T15:52:39.149Z]	<kimhd>	q+
+[2020-04-27T15:53:01.489Z]	<ottonomy>	mike-lodder: slide 48 has links to papers, on how to do cryptographic accumulators.
+[2020-04-27T15:54:37.599Z]	<ottonomy>	kimhd: I'll ask the first question. I want to ask about when updates need to happen. I'm curious if you can walk me through about: say, what happens is you're using an accumulator to track which credentials have been revoked. Suppose you're using the credential ID. How does a revocation get pushed or queried? If you are the one whose credential was revoked, how do you learn?
+[2020-04-27T15:55:35.991Z]	<kimhd>	ack kimhd
+[2020-04-27T15:56:02.723Z]	<ottonomy>	mike-lodder: A credential issuer doesn't compute the witness; the holder does. The issuer only cares about maintaining the list of issued or revoked credentials. Every time a credential is issued, a value is added, every time a credential is revoked, a value is removed (scribe note: does that mean added to a revoked accumulator?). As a holder, you don't want to leak either your witness or your actual value. If you didn't care about the privacy of those
+[2020-04-27T15:56:02.860Z]	<ottonomy>	 things, you wouldn't need to use an accumulator.
+[2020-04-27T15:57:04.154Z]	<ottonomy>	mike-lodder: the holder could observe the accumulator value and if something changes, they might need to update the witness.
+[2020-04-27T15:57:48.599Z]	<ottonomy>	kimhd: Another question, could you walk us through, in hyperledger implementations how ECC, RSA or Merkle were chosen for different implementations. Could you go into more details about the factors leading to that decision?
+[2020-04-27T15:59:04.500Z]	<ottonomy>	mike-lodder: At the time that Hyperledger Indy 1.0 was written SNARKs were very new. We wanted to do zero knowledge proofs of set memberships and couldn't do it at the time in 2016 with merkle trees. So Indy chose to use Elliptic Curves to keep the values small, because every time the accumulator updated, we didn't want to be posting 2k or 4k accumulator values. It's smaller and faster to compute the proofs than RSA was.
+[2020-04-27T16:00:07.329Z]	<ottonomy>	mike-lodder: There's two different ways you can do ... the accumulator. You can "add every time you issue" "remove every time you revoke". One way to do it is put a bunch of numbers in there originally and an issuer when they issued would just "grab" one of those IDs and not need to update the accumulator. Only update needed when revoked.
+[2020-04-27T16:00:48.557Z]	<ottonomy>	mike-lodder: for something like device registrations (tracking laptops held by employees), we ... made an accumulator with a very large number of primes in it.
+[2020-04-27T16:02:02.621Z]	<kimhd>	q?
+[2020-04-27T16:02:05.010Z]	<ottonomy>	mike-lodder: one other consideration with merkle trees, if you change your fanout (to avoid getting too deep of a tree) you have to recalculate everything. We're choosing Merkle Trees with SNARKs to now be able to cover 1000x the number of items in a set. With this approach you could calculate the revocation case in 1sec even if there are 4billion records in the set
+[2020-04-27T16:02:22.579Z]	<ottonomy>	q+ to ask in a blockchain scenario what does it look like to "remove a record from the accumulator?"
+[2020-04-27T16:03:20.528Z]	<ottonomy>	kimhd: I had been thinking about revocation a lot, but it was good to hear these other use cases as well. For instance, revocation could be used on the individual attribute level
+[2020-04-27T16:04:31.019Z]	<Simone_Ravaioli>	+1 to Nate for an incredible scribing job...  almost like a #NateBot
+[2020-04-27T16:05:18.388Z]	<ottonomy>	mike-lodder: You could say "attribute3" corresponds to "labs you have access to in the facility". It doesn't reveal other things about the credential or the recipient. The reason to use an accumulator is usually because the sets are very large. It doesn't generally get slower to verify as the set grows.
+[2020-04-27T16:05:48.679Z]	<kimhd>	ottonomy: you made references to revocation case, i.e. removing. but often these are published to blockchains
+[2020-04-27T16:06:00.667Z]	<kimhd>	...can you tell us what that looks like? are you posting a new value?
+[2020-04-27T16:06:30.563Z]	<kimhd>	mike-lodder: most issuers will update once per day. verifer will need to say it's not revoked as of 24 hours ago
+[2020-04-27T16:06:47.257Z]	<kimhd>	...issuers write new value with some regularity
+[2020-04-27T16:07:16.537Z]	<kimhd>	...because timestamped, verifier can ensure not revoked within time interval
+[2020-04-27T16:07:29.897Z]	<kimhd>	ottonomy: need a way to find where latest value is published
+[2020-04-27T16:07:45.118Z]	<kimhd>	mike-lodder: that can be in the credential through json-ld, etc
+[2020-04-27T16:07:55.767Z]	<kimhd>	...all that matters is parties know
+[2020-04-27T16:08:09.710Z]	<by_caballero>	q+
+[2020-04-27T16:08:43.284Z]	<kimhd>	ack ottonomy
+[2020-04-27T16:08:49.820Z]	<ottonomy>	kimhd: You talked about time "an accumulator value from the last 24 hours". Did you have to deal with the scenario where somebody is querying older copies of accumulators. Was this credential valid last year?
+[2020-04-27T16:09:09.695Z]	<kimhd>	ack Cryptographic accumulators for privacy-promoting credential verification
+[2020-04-27T16:09:14.284Z]	<ottonomy>	mike-lodder: yes, you can do a proof against any time or dated (accumulator value) that you could pull up (say, from a blockchain)
+[2020-04-27T16:09:19.323Z]	<kimhd>	ack by_caballero
+[2020-04-27T16:09:32.284Z]	<ottonomy>	by_caballero: [audio very choppy]. ...
+[2020-04-27T16:09:41.779Z]	<by_caballero>	hahaha sorry
+[2020-04-27T16:09:47.803Z]	<by_caballero>	i was asking if anyone at aries is working on
+[2020-04-27T16:09:58.972Z]	<by_caballero>	how to look up accumulators elsewhere than on indy?
+[2020-04-27T16:10:48.274Z]	<by_caballero>	awesome, thanks
+[2020-04-27T16:10:51.441Z]	<ottonomy>	mike-lodder: as in is there open source code that does it. If you look at the https://cambrian.dev/accumulator/docs you'll see some code in Rust. There has been some work done with it outside of the Indy&Aries community.
+[2020-04-27T16:11:01.292Z]	<ottonomy>	kimhd: we're at time. Thank you for the presentation and for joining us.
+[2020-04-27T16:11:08.758Z]	<by_caballero>	thanks nate!
+[2020-04-27T16:11:17.758Z]	<by_caballero>	what an ottoscribe
