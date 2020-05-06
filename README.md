@@ -11,7 +11,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Update Announcement GitHub page https://w3c-ccg.github.io/announcements/
 * Clear all old ["action: review next" issues](https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22) in CCG issues.
 * Check and review ["action: chairs" issues](https://github.com/w3c-ccg/community/labels/action%3A%20chairs).
-* Review all [community issues](https://github.com/w3c-ccg/community/issues)  and choose 1-3 and tag "action: review next"
+* Review all [community issues](https://github.com/w3c-ccg/community/issues) and choose 1-3 and tag "action: review next"
 * Open the [W3C-CCG Planning & Agenda Email Draft](https://docs.google.com/document/d/1PbyZ0UtI6yzr5V_r-iseVyrZIWPm1BLXWsLeEV-mJvY/edit) in Google Docs 
 * Updated all the items highlighted in yellow, in particular adding new agenda items for week starting with item 7.
 * If there is a guest presentation, add it to the appropriate dated meeting [archives folder](https://github.com/w3c-ccg/meetings/)  before the meeting.
@@ -19,6 +19,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Confirm in the [CCG mail archives](https://lists.w3.org/Archives/Public/public-credentials/) that the agenda was sent correctly
 * Monthly - review Work Items https://github.com/w3c-ccg/community/blob/master/work_items.md
 * Suggest week +1 & +2 topics. Look to invite for future weeks at least one or two weeks out.
+* For any "approved" work items, ]create or update repo with necessary files](https://w3c-ccg.github.io/create_repo.html)
 
 ### Before Meeting (Task Force & Others)
 
@@ -31,6 +32,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Make sure the scribe is identified ("Scribe: ...")
 * Make sure topics are labeled when the topic changes ("Topic: ...")
 * Make sure that action items are listed so that they can be added to issues later ("Action: ...")
+* Mark approved work items with "approved" github label
 
 ### Generate the minutes (for CCG meetings, task forces and other recorded meetings)
 
@@ -111,9 +113,6 @@ Review [meeting log](#) for any Action items (conveniently added to top of minut
 
 ### Comments/Bugs/Future Improvements
 - We don't have audio integrated into this process yet. [See details below for what needs to be done]((#cleaning-up-the-minutes))
-- Reducing number of steps:
-    - This can be reduced to 1 step once we get into better scriibe hygiene habits. The separate cleanup won't be necessary
-    - We could also try kicking this off on a schedule or using an s3 file watcher approach
+- Instead of manually triggering the script, we could also try kicking this off on a schedule or using an s3 file watcher approach
 - Use github caching action because this repo is large
 - Make multiple tos not bcc
-- Add wait before tweet
