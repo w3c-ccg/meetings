@@ -19,7 +19,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Confirm in the [CCG mail archives](https://lists.w3.org/Archives/Public/public-credentials/) that the agenda was sent correctly
 * Monthly - review Work Items https://github.com/w3c-ccg/community/blob/master/work_items.md
 * Suggest week +1 & +2 topics. Look to invite for future weeks at least one or two weeks out.
-* For any "approved" work items, ]create or update repo with necessary files](https://w3c-ccg.github.io/create_repo.html)
+* For any "approved" work items, [create or update repo with necessary files](https://w3c-ccg.github.io/create_repo.html)
 
 ### Before Meeting (Task Force & Others)
 
