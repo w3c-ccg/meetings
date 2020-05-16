@@ -49,17 +49,28 @@ What it does:
 - Tweets with the w3c_ccg account
 
 And you're done!
-  
+
+#### Want to run in paranoid mode?
+
+If you're worried that the minutes need excessive cleaning up, you can run minute generation as a two-phase process. You can do this by changing the last parameter in the above script from `false` to `true`. Do this by uncommenting/commenting the appropriate line in the calling function as follows:
+
+```
+  //doTriggerMinutes(date, groupName, groupAlias, false);
+  doTriggerMinutes(date, groupName, groupAlias, true);
+```
+
+This will downlowd the irc-raw.log file. You'll need to clean up the minutes as described in the next step, and commit the file as irc.log. Remember to restore the comment/uncomment status to whatever it was before.
+
 #### Not happy with the minutes? Clean them up
 
-- Go to [the online scribe tool](https://w3c-ccg.github.io/meetings/scribe-tool/) and copy/paste irc.log into the text input box at the bottom. 
+- Go to [the online scribe tool](https://w3c-ccg.github.io/meetings/scribe-tool/) and copy/paste irc-raw.log into the text input box at the bottom. 
 - Things to check
     - Ensure there's a link to the agenda ("Agenda: ...")
     - Ensure the topics are labeled ("Topic: ...")
     - Ensure the scribe is identified ("Scribe: ...")
     - Look for any find/replace suggestions in irc.log and update them ("s/../..")
     - Ensure aliases have matches (see people.json file)
-- Overwrite the `irc.log` with the edited file and commit the changes via github
+- Add the edited file as `irc.log` (new or overwrite) and commit the changes via github
 - The rest is handled for you; a github action will generate html and publish
 
 #### Details about how it works
