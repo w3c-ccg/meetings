@@ -1,0 +1,35 @@
+name: Download raw minutes
+
+on:
+  repository_dispatch:
+    types: download_raw_minutes
+jobs:
+  download-minutes:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup custom environment variables
+      run: git config --global push.default simple && git config --global user.email "w3c.ccg@gmail.com" && git config --global user.name "W3C CCG"
+    - name: Pull raw meeting log file
+      id: pull_raw_file
+      env: 
+        DATE: ${{ github.event.client_payload.date }}
+        GROUP: ${{ github.event.client_payload.groupName }}
+        GROUP_ALIAS: ${{ github.event.client_payload.groupAlias }}
+      run: |
+        export DIR=${DATE}
+        if [ ! -z "$GROUP_ALIAS" ];then
+          export DIR=${DIR}-${GROUP_ALIAS}
+        fi
+        bash ./download-minutes.sh
+      shell: bash
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+    - uses: stefanzweifel/git-auto-commit-action@v2.5.0
+      with:
+        commit_message: Add raw log for telecon [ci skip]
+        branch: gh-pages
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
