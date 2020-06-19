@@ -756,7 +756,7 @@
     var context =
     {
       'group': scrawl.group,
-      'chair': ['Kim Hamilton Duffy', 'Joe Andrieu', 'Christopher Allen']
+      'chair': ['Kim Hamilton Duffy', 'Wayne Chang', 'Heather Vescent']
         .sort(function(){return (4*Math.random()>2)?1:-1}),
       'present': {},
       'scribe': [],
