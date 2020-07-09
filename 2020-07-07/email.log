@@ -1,0 +1,557 @@
+Thanks to Gregory Rocco for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-07-07/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2020-07-07
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jul/0002.html
+Topics:
+  1. Announcements & Reminders
+  2. Progress on Action Items
+  3. Roundtable: “What’s in a wallet?” Part 1
+Organizer:
+  Heather Vescent and Kim Hamilton Duffy and Wayne Chang
+Scribe:
+  Gregory Rocco
+Present:
+  Tyler Adams, Kim Hamilton Duffy, Heather Vescent, Kyle Kemper, 
+  Anil John, Wayne Chang, Simone Ravaoli, Ryan Grant, Christopher 
+  Allen, Gregory Rocco, Ganesh Annan, Erica Connell, Brent Zundel, 
+  James Chartrand, Orie Steele, Markus Sabadello, Manu Sporny, Andy 
+  Thomas, Kerri Lemoie, Mike Prorock, Jacksohne, Adrian Gropper, 
+  Kaliya Young, Dmitri Zagidulin, Joe Andrieu, Dave Longley, Stuart 
+  Freeman, Adam Lemmon, Taylor Kendall, Amy Guy, Yancy Ribbens, 
+  Jeff Orgel, Nate Otto, Moses Ma, Phil Long, Daniel Buchner, 
+  Drummond Reed, Tim Bouma
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-07-07/audio.ogg
+
+Tyler Adams: Hello everyone! :)
+Kyle Kemper: Great to be here! Hoping everyone is having a 
+  terrific day
+Heather Vescent: Great to have you here Kyle!
+Kim Hamilton Duffy: https://www.w3.org/accounts/request
+Kim Hamilton Duffy: https://www.w3.org/community/credentials/join
+Kim Hamilton Duffy: 
+  https://www.w3.org/community/about/agreements/cla/
+Kim Hamilton Duffy: https://w3c-ccg.github.io/meetings/
+Gregory Rocco is scribing.
+Kim Hamilton Duffy: Gregory Rocco works with Wayne on the Spruce 
+  team
+Kim Hamilton Duffy:  Anyone else new to the call that wants to 
+  introduce themselves
+Tyler Adams:  I work on moonlight and vivid SSI project
+Kyle Kemper:  Presenting a little bit - great to be here, founder 
+  of Swisskey, crypto since 2013. Technology will help us unlock 
+  golden age.
+Heather Vescent: Love it Kyle! New golden age, I am with you!
+Kim Hamilton Duffy:  We'll have another opportunity for intros 
+  next week - this is also where we ask for reintroductions. Will 
+  jump over the list. Joe Andrieu, Adrian Gropper are you here?
+Adrian Gropper:  Volunteer cto of a non-profit, I lead a project 
+  for many years trying to demonstrate self sov. technology, not 
+  just ID but how we use other standards to let people run their 
+  own authorization servers where we process VCs and DIDs
+
+Topic: Announcements & Reminders
+
+Kim Hamilton Duffy:  Next is Anil -
+Anil John:  Save it for the Q&A
+Kaliya Young:  John jordan was in a bad accident, I created a 
+  virtual card for folks to sign - will put the link in the chat
+Kaliya Young: https://miro.com/app/board/o9J_kp34wZs=/
+Kim Hamilton Duffy: https://w3c-ccg.github.io/announcements/
+Kim Hamilton Duffy: http://www.cvent.com/d/fhqnf3/4W
+Kim Hamilton Duffy:  Thank you, sorry to hear about that 
+  accident. For the other announcements and reminders, I'm 
+  including a link where we track - not a whole lot going on but we 
+  do have Identiverse which turned into a virtual conference and 
+  that series began in June and is going through the 6th of August. 
+  So in case you are still interested in participating, joining the 
+  link is here.
+Kim Hamilton Duffy:  Our other ongoing reminders: usual CCG 
+  timeslot, we do have a couple of taskforces associated but the 
+  first one is the VC for Education taskforce which is at mondays 
+  8am PST, 11 EST, DID resolution calls are at 1PM PST, 4PM EST.
+
+Topic: Progress on Action Items
+
+Kim Hamilton Duffy:  That's it for the announcements and 
+  reminders - next in the agenda, we have a bit on products and 
+  action items.
+Kim Hamilton Duffy: 
+  https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+Kim Hamilton Duffy:  So progress on action items - a couple we're 
+  working through. I'll include a link to it in IRC - there are two 
+  items and we're hoping to move through these quickly. Basically 
+  we don't need to resolve these, just identify blockers and figure 
+  out any steps.
+Kim Hamilton Duffy: 
+  https://github.com/w3c-ccg/community/issues/109
+Manu Sporny: +1 That item belongs to DID WG.
+Kim Hamilton Duffy:  Issue #109: closed out, issue there is that 
+  the CCG believes this is going to be passed over to the DID 
+  working group and so it looks like we just want confirmation that 
+  it belongs to that group and we can close it.
+Manu Sporny:  It's confirmed that it's on Dan B's plate from the 
+  DID working group and we'll be handing that over to the wg so 
+  they can finish that off to get the tech/architecture group 
+  input.
+Kim Hamilton Duffy: https://github.com/w3c-ccg/community/issues/3
+Kim Hamilton Duffy:  I've added a comment and will follow up. 
+  Next item: complete update to RSA signature suite. We had a bit 
+  of a discussion, what we wanted to do - no traction on the work 
+  item but we identified a related issue to create a new issue. 
+  Effectively what manu proposed: specific concerns around JWS 2020 
+  so the current proposal is to close this one and create a new one 
+  to track those concerns. Thoughts or objections?
+Kaliya Young:  I was on q for announcements for jj
+Orie Steele: Related: https://github.com/w3c-ccg/lds-jws2020
+Orie Steele: It covers the NIST curves and ed25519 and secp256k1
+Manu Sporny:  Right so the RSA sig suite discussion resulted in 
+  Orie proposing a JWS signature suite like a jose signature suite, 
+  that discussion will likely happen in a DID special topic call - 
+  we need to figure out how we're going to integrate that with --- 
+  used for expressing legacy signature suite, RSA, things like that 
+  b26r1, if anyone's interested in participating -- based on the 
+  outcome of that, we may want to discuss the outcome of that in 
+  the communit[CUT]
+Manu Sporny:  Not this week but next week we'll have a special 
+  topic announced - outcome of call will be made public, CCG will 
+  decide if they want to discuss the outcome.
+Kim Hamilton Duffy:  I will add an update to this issue and we 
+  will follow up.
+Kim Hamilton Duffy:  Okay great - that is it for action items
+Wayne Chang: 
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jun/0203.html
+Kim Hamilton Duffy: 
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jun/0203.html
+Wayne Chang: Call for objections sent almost 2 weeks ago
+Kim Hamilton Duffy:   Before we move into the meat of the call, 
+  want to talk about method registry - we moved it over to the DID 
+  working group and that means we're retiring it from CCG - so 
+  Wayne sent a call for objections two weeks ago. Wayne - what was 
+  the deadline?
+Wayne Chang:  I think it was almost two weeks - if there's no 
+  objections, we're clear.
+Kim Hamilton Duffy:  Last call for objections - we have not 
+  received anything so far so we can proceed with closing it out so 
+  we'll move forward.
+Kim Hamilton Duffy:  If you heard some choppy audio, in addition 
+  to our communication issues we had a gremlin muting speakers. We 
+  should remind everyone if you can speak clearly and slowly, that 
+  would help a lot. Now we are ready for the roundtable
+Kim Hamilton Duffy:  I'm going to ask Wayne to set up 
+  expectations for discussion
+
+Topic: Roundtable: “What’s in a wallet?” Part 1
+
+Wayne Chang:  Basically, we are growing as an ecosystem, whenever 
+  that happens you run the risk of people talking over each other - 
+  just going on guidelines will help us have productive discussions 
+  to get to outcomes we like instead of flame wars.
+Wayne Chang: https://github.com/w3c-ccg/community/issues/140
+Wayne Chang:  There's a bunch of emotional energy spent - how do 
+  we keep the conversation on track. We opened this communication 
+  culture issue and we captured 4 links so far - just some reading 
+  material, just some good social guidelines to follow rather than 
+  people showing off deep intellect and to be kind to one another.
+Wayne Chang:  Just to cherry pick: some social rules: no "well 
+  actually" - when you try to make a point and someone wants to nit 
+  pick that's tangential and serves no purpose. That doesn't move 
+  anything forward. No surprise - especially for newcomers, also 
+  subtleisms - avoid - if you're trying to make an example, think 
+  carefully and make sure the analogies are extensible and 
+  welcoming. These are some examples of behaviors to avoid as a 
+  community - no hard and[CUT]
+Wayne Chang:  Last of all, let's try to listen to listen - I hope 
+  that sets a pretty good headspace for everyone to be in this 
+  week.
+Kim Hamilton Duffy:  Thank you Wayne - we have 4 speakers today, 
+  Manu, Chris, Dan, Kyle K - each are scheduled for 5 minutes with 
+  the remainder for Q&A. So I'm going to kick off Manu - i'll be 
+  aggressively booting people off after 5 min.
+Manu Sporny:  Thanks Kim - and thanks to the chairs for the 
+  invitation. I apologize, the diagram I put together is overly 
+  technical so I'm going to ground the discussion a bit.
+Manu Sporny:  There are many different views - what it is, what 
+  it does, some people think of wallets like cryptocurrency and 
+  they deal with cryptographic material, others think of them in an 
+  analog to your physical wallet. You keep credit cards, loyalty 
+  cards, you know, pieces of paper that are important for you when 
+  interacting with the world.
+Kim Hamilton Duffy: Manu's diagram fyi: 
+  https://drive.google.com/file/d/1y6zKKm3hGVL6Z9cRfDGQvLXxHBE79ODw/view?usp=sharing
+Manu Sporny:  Many different variations in between - there's no 
+  clear understanding about what is, what isn't, and what a digital 
+  wallet should and shouldn't do. I'm going to outline standards 
+  that in pre-standards work that we've been doing here as well as 
+  work in the DIF storage working group in a tech architecture kind 
+  of way. Apologies to the non-technical or those not following the 
+  work.
+Manu Sporny:  What I'm getting to is a simple wallet 
+  architecture: from my perspective: a wallet is something that you 
+  use that is digital, on mobile phone/in web browser, holds 
+  digital things (pictures, your ID docs, your dependents 
+  healthcare certs,), it stores that for you, it's yours, you 
+  control access to the information, and basically you use it to 
+  manage critical parts of digital life.
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jul/att-0006/2020_W3C_CCG_Simple_Wallet_Architecture.pdf
+Manu Sporny:  At a high-level - one definition we can use - I'm 
+  sharing the link in the chat to a diagram I sent yesterday around 
+  what these things that make up a wallet look like. These are the 
+  technical bits and pieces that we've been working on and how 
+  they're used together to provide this digital wallet experience. 
+  To interact with issuers, verifiers, etc.
+Manu Sporny:  There are three components that we've identified - 
+  number of companies in this group that have done work around 
+  encrypted data vaults that have wallet front-end services and 
+  have some kind of key management - there are three pieces.
+Manu Sporny:  First - the one we all interact with - the wallet 
+  service. It's a website, an app, has buttons you click on and 
+  basically interact-with. This is the GUI to manage the digital 
+  things in your wallet. That's the lowest purple box - we use 
+  something called a credential handler API to move things in and 
+  out of your wallet -
+Dave Longley: Credential Handler API == "CHAPI"
+Manu Sporny:  The wallet is backed by two other things - the 
+  wallet facade is in the front, but behind the scenes: 1. key 
+  service - this is what deals with your pub priv keys and gives 
+  you the security you need around the wallet. Public private 
+  cryptography backed by hardware modules that are difficult to 
+  compromise so there's a digital signature aspect of the wallet 
+  and you get access via web kms service.
+Dmitri Zagidulin: For those interested in CHAPI - this repo has 
+  link to the CHAPI spec, as well as demo sites: 
+  https://github.com/digitalbazaar/credential-handler-polyfill
+Orie Steele: I wish WebAuthN supported raw signatures... and 
+  could be used for things other than authentication.
+Dmitri Zagidulin: Encrypted Data Vault spec (as part of the 
+  Secure Data Store spec) - 
+  https://identity.foundation/secure-data-store/
+Manu Sporny:  And then the other thing behind the scenes is the 
+  encrypted data vault: the thing that stores and protects the data 
+  from prying eyes and ensures consent. Those encrypted data vaults 
+  hold aspects of your life -credentials that you need for work, 
+  music that you listen to but you keep in another vault, and maybe 
+  one for family photos in another. We use the vault api to get to 
+  it
+Manu Sporny:  In it's most simplistic view, that is the 
+  fundamental technical part that goes into a wallet and 
+  more-or-less how we view the most basic form of wallet.
+Kim Hamilton Duffy:  Thank you so much - chris you're up
+Christopher Allen: 
+  https://github.com/WebOfTrustInfo/rwot9-prague/blob/master/topics-and-advance-readings/whats-wallet.md
+Christopher Allen: 
+  https://raw.githubusercontent.com/WebOfTrustInfo/rwot9-prague/master/topics-and-advance-readings/media/ExpandedDecentralizedIdentityNetworkComponents.png
+Christopher Allen:  So i'm sharing the general paper that this 
+  came from and I'm now sharing the very specific diagram in there.
+Christopher Allen:  Basically I wanted to walk folks through this 
+  diagram to explain what we're trying to do and say what we felt 
+  was missing - Joe and I initially took a look at a simplified 
+  diagram around digital ID wallets which is included in the paper, 
+  and then also we tried to do the same for digital currency 
+  wallets and basically developed a more advanced look at both of 
+  those because a lot of the things are common but areas where 
+  they're different.
+Christopher Allen:  What you see here: a lot of nodes and 
+  different aspects of what is in your wallet, clearly toward the 
+  center you see what people perceive as the wallet (going down - 
+  human interfaces, trusted interfaces to hardware - need to trust 
+  we're getting the right information) - upward we have various 
+  kinds of storage and relationships that the wallet needs to do
+Christopher Allen:  Then we have this red line: the trust line 
+  where the wallet has to trust cryptographic surfaces through API, 
+  airgapped, but that line needed to be marked as important that 
+  leads to cryptographic services under control of the wallet and 
+  then of course going right as we go toward network interface, we 
+  have a trust surface of the wallet's network interface to the 
+  broader network.
+Ryan Grant: Sorry, the dottet lines represent what?  the gremlin 
+  cut you off.
+Christopher Allen:  Dotted lines represent ---- API that there 
+  was state information or other information being conveyed whether 
+  or not it was a proof - or things that weren't strictly an API. 
+  Had hoped to take this to the next level, felt that a number of 
+  these nodes were named differently by different platforms in the 
+  self-sov community, some of these nodes should be 2-3 stacked 
+  items with different names as a stack.
+Christopher Allen:  I am also fairly certain and know that we're 
+  missing nodes and anything in here about 
+  recovery/revocation/delegation/reputation/onboarding/TOU, various 
+  kinds of evaluative components, and updates and pricing - if 
+  you're going to have a cryptocurrency thing in here. We had hoped 
+  we can get 1-each from the different wallet vendors on different 
+  SSI platforms to help us take this to the next level but also 
+  start naming the arrows. We didn't [CUT]
+Christopher Allen:   Was a mistake - we needed to name the arrows 
+  as well as defining the nodes - that's where we left the project.
+Kim Hamilton Duffy:  Thanks so much - now we have dan b
+Kim Hamilton Duffy:  Need to come back to him - kyle would you be 
+  ready to go
+Kyle Kemper:  Alright - thank you kim for having me and first 
+  off, want to say big thank-you to this community who is 
+  developing the core infrastructure on which this tech will play 
+  out. My name is Kyle Kemper - been in crypto since 2013, in 2015 
+  I had my wallet vision download around what will be truly 
+  possible when we have SSI and have self-custody wallets that are 
+  unified.
+Kyle Kemper:  I wrote a book called "unified wallet" - it's a 
+  vision on how we can unlock seamless experiences. Personally I'm 
+  not a deeply technical person, I am a developer - my journey has 
+  brought me to the point where I'm building a brand called 
+  SwissKey - problem in the ecosystem of trust.
+Kyle Kemper:  Closely aligned (digtial currency and ID), currency 
+  is the cash slip and the card slots are the verified claims, 
+  assets, objects in our super wallets. Been building swisskey for 
+  the last year being in switzerland and being impressed with their 
+  values and sensibilities - hallmarks of neutrality, and their 
+  strong and subliminal messages -
+Kim Hamilton Duffy: Daniel said he was muted fyi. Have we muted 
+  him here?
+Kyle Kemper:  It represents safety at the subliminal level - I'm 
+  seeking to build out a suite of wallet products to enable 
+  secure/simply operate in this new digital paradigm. We are going 
+  to be holding keys for different solutions be it money, identity, 
+  loyalty. I am grateful to be here to express this project that 
+  I'm working on and make myself available to everyone on the call. 
+  I feel we all share this transformational purpose.
+Kyle Kemper:  Make this all accessible to the masses.
+Wayne Chang:  Hey kyle - really quickly, the topic is what is a 
+  wallet - wanted to leave some room for that.
+Daniel Buchner: Hey Kim
+Daniel Buchner: On IRC now
+Kim Hamilton Duffy: Hi Daniel, we found the culprit. You 
+  shouldn't have to do anything to unmute. We unblocked you
+Manu Sporny: https://swisskey.io/
+Kyle Kemper:  In terms of the technical path, I'm working with 
+  edge wallet, and then we are working with Tangem who are the 
+  makers of a hardware wallet, NFC card, they're exploring into the 
+  ID space so we can have a physical card as well - the digital 
+  wallet is important but there's a need for hard cards. These 
+  represent the "DVDs" for netflix.
+Kyle Kemper:  That's basically kind of it from me in terms of 
+  this - thank you - I yield back my time.
+Kim Hamilton Duffy:  Thank you so much, now we figured out the 
+  root of the issue - we muted daniel - can you try to speak.
+Daniel Buchner:  Dan Buchner, work at Microsoft. We have a wallet 
+  in the market doing legacy identity things like logins, etc. 30M 
+  users on that current app and that's what we're delivering some 
+  of our stuff with (DID) - so users have keys
+Daniel Buchner:  Part of the aspiration is to create portability 
+  specs so you can re-instantiate it on other wallets. 3 
+  components: 1. encrypted outer envelope: data you need to encrypt 
+  needs multiple types of encryption strategies, shamir, whatever 
+  you want to do to secure it. 2. There's a lot of data over time 
+  in this payload - need to make it something that isn't 100s of 
+  MBs of JSON. Something that can be inflated and understood.
+Daniel Buchner:  What goes into that payload may include things 
+  like keys but context as well. Context to use your DIDs in - many 
+  people might think "well, good enough to have keys for DID and 
+  re-instantiate" but context is a sensitive security thing to 
+  protect, but if I had 1000 DIDs and didn't know what I used them 
+  for, I would be lost.
+Daniel Buchner:  If I just use random DIDs with people, I would 
+  slowly be leaking sensitive context and relationships with 
+  people. Whatever we do should be able to handle that goal. Those 
+  are the major pieces we hope to standardize and we're here to 
+  work with folks on that.
+Manu Sporny: +1 To what Daniel said! :)
+Kim Hamilton Duffy:  Fantastic, thank you so much -we've gone 
+  through our speakers and it's good time for Q&A
+Kyle Kemper: Kylejjkemper@gmail.com
+Kim Hamilton Duffy:  Any questions - just add yourself
+Kyle Kemper: http://swisskey.io
+Kyle Kemper: My mission: make crypto and DID accessible to the 
+  masses
+Wayne Chang:  So I wanted to summarize a bit and people feel free 
+  to type in the chat. We heard "what is a wallet" - we heard a 
+  bunch of different perspectives - interfaces to capabilities and 
+  mapping - what's that. Philosophically, what does a wallet make 
+  someone feel or how is it used by a person - and what are the 
+  technical requirements we have on scalability and security.
+Wayne Chang:  Common thread: interfaces and the ability to make 
+  components for these interfaces. Also mention what prompted this 
+  conversation was the recent presentation of what was called the 
+  universal wallet spec by Ori at Transmute - as we begin to see 
+  these emergent standards - that's all the comments I have.
+Kim Hamilton Duffy:  We have adrian
+Orie Steele: Good question :)
+Adrian Gropper:  Quick comment - I am certainly a user not a 
+  developer, I'm trying to figure out the business model as what 
+  are essential vs. optional. My question: how is a SSI wallet 
+  going to differ from my 1Password wallet which right now is the 
+  closest in terms of business models and functionality as far as I 
+  can tell - in other words, has a lot of characteristics plus APIs 
+  and it's self sov to a large extent because it doesn't share 
+  data.
+Kyle Kemper: If interested go to https://dl.edge.app/swisskey to 
+  download Edge Wallet; we are working with Edge to rebrand their 
+  wallet...
+Heather Vescent: Great question Adrian
+Kim Hamilton Duffy:  Did any speakers have a response to that? If 
+  more than one we'll let the first person go.
+Kyle Kemper:  In terms of the business model in the self 
+  sovereign wallet they all speak to our project and we are making 
+  revenues when people are buying and selling crypto, trading, 
+  redeeming - we're selling the physical cards as well - we're 
+  going to be utilizing the physical cards as recovery methods - 
+  comparing a 1Pass or a LastPass to the wallet, those are 
+  excellent examples of keychains but they're dumb. The assets 
+  can't speak to each other
+Daniel Buchner: We hope wallets are as free and open as browsers, 
+  and should cost users $0 to run (possibly with sane constraints 
+  for consumption, if there are any major cost incurrences)
+Kim Hamilton Duffy:  I'm talking with the chairs about 
+  key-management was going to call out Christopher and Manu or if 
+  they wanted to respond.
+Kyle Kemper: Wallets definitely need to be free
+Christopher Allen:  I'm actually fairly concerned about wallets - 
+  I feel that a lot of the business models for them are subtly 
+  corrupting in the cryptocurrency field or selling some hardware 
+  or you're making your money from accepting a particular 
+  cryptocurrency so you'll get 100-200k if you do some oddball 
+  currency.
+Manu Sporny: +1 To the corrupting influence of cryptocurrency 
+  wallets :)
+Dave Longley: "Free" has a cost :)
+Dave Longley: "Facebook" is "free"
+Daniel Buchner: Wallets, DID Networks, and other core infra/UA 
+  stuff should be so mind-numbingly commoditized as public 
+  utilities, it should cost you more to monetize them than you 
+  would make in doing so
+Christopher Allen:  Or you'll get a bunch of tokens from a 
+  company that you can speculate with and turn into a return. I 
+  worry about that trend happening in our environment - right now 
+  every platform developer has their own wallet to incentivize 
+  their own DIDs and VCs scenarios but people aren't going to want 
+  to have 8 of these wallets - people want 1 wallet that works with 
+  Sov, Ion, DIDWeb and whatever else that their vendors/issuers 
+  want them to use.
+Christopher Allen:  That makes for a difficult business model for 
+  the wallet vendor at the bottom - if you look at my diagram, 
+  there's a lot of pieces so it's not like a wallet is an easy 
+  thing to build.
+Moses Ma: Can someone compile a list of DID-friendly open source, 
+  templates and reference wallets that developers can review?
+Daniel Buchner: Just so freaking, absurdly open and cheap that 
+  it's not even something we consider trying to squeeze $ from
+Christopher Allen:  You're building 3 layers - trustable layer 
+  for security implications, --- i'm concerned.
+Kyle Kemper: Agree on all points...listing fees are definitely an 
+  issue and creates gatekeepers...how do we allow tokens and 
+  projects to freely list themselves vs paying to play
+Kim Hamilton Duffy:  So we can work through questions 30 second 
+  replies is the going-amount. What we'll do - we'll work through 
+  the q in order.
+Phil Long:  Thank you kim - curious about what the community 
+  thinks or what the presenter thinks are the minimum viable 
+  functions, and the distinction between OSS and value added 
+  services layer that take advantage of the contents of wallets 
+  with the consent of the owner.
+Dave Longley: Dbuc, just want to make sure we're wary of wallets 
+  becoming like facebook wrt data model (that would represent the 
+  antithesis of the work here, IMO)
+Kyle Kemper: Send, Receive, Request, Transaction History, 
+  Recoverability...
+Kim Hamilton Duffy:  Thank you phil -
+Daniel Buchner: Sure, definitely not surveillance wallets
+Daniel Buchner: That's a given
+Daniel Buchner: I just mean that it should be like Firefox
+Kerri Lemoie:  I'm doing tech research - dan can answer first as 
+  most active wallet. What are the most compelling reasons 
+  individuals will adopt wallets.
+Kim Hamilton Duffy:  Dan if you add to q
+Orie Steele:  Wanted to respond to adrian's question around 
+  password managers - they're the most familiar analogy for storing 
+  credentials (in this case logins) - I think structurally if you 
+  look at their business models, a lot of them have similar 
+  structures to Manu's diagrams with encrypted data vault - they 
+  rely on client-side encrypt, they have various different data 
+  model structures for storage and that's a point of 
+  differentiation - some of them support [CUT]
+Orie Steele:  Some structure data. A lot of them charge for 
+  multi-device replication, I think password managers are an 
+  excellent thing to consider when we think about what wallets are 
+  and how they integrate with other systems
+Manu Sporny: +1 To Orie's point on a good analog.
+Anil John:  My organization is investing in these things - 
+  standardized APIs, goodness of a wallet but what I didn't hear 
+  about is the user experience of a wallet. One of the things - we 
+  like putting time and pressure behind consent, we are having a 
+  competition for user interfaces for wallets. How do you interact 
+  with issuer, selective disclosure, presentations - so from UI 
+  perspective, focus is on that. Is that something that is going to 
+  be of value t[CUT]
+Anil John:  Confidence in transaction and user-comfort is 
+  important. Is there value in putting money where our mouth is.
+Kim Hamilton Duffy:  I'm excited that you're doing that, if you 
+  have comments add to q
+Orie Steele: Interesting to note that password manager have 
+  "autofill" feature... and CHAPI has a similar functionality for 
+  send credentials from the wallet to the websites.
+Christopher Allen: I'd like to see a formal information 
+  information lifecycle model created for wallets to start a UX 
+  requirements
+Moses Ma: Again, can the chairs arrange to have someone compile a 
+  list of DID-friendly open source, templates and reference wallets 
+  that developers can review? My belief aligns with Daniel's... a 
+  wallet is a feature, not a product.
+Daniel Buchner:  I think there's a variety of reasons re: use 
+  cases that identity is still a powerful - we don't charge for 
+  wallets or snoop on your stuff - we own a few properties like 
+  LinkedIn that would benefit from people creating credentials and 
+  exchanging them. Adding that level of trust helps those 
+  properties - imagine if recruiter tools said for $1 more we can 
+  scan trusted profiles that have the right credentials.
+Daniel Buchner:  That's valuable to microsoft - we don't care 
+  about monetize, we just want stuff that happens on top of it. 
+  This is why we do this for free and not do the thing that other 
+  companies do.
+Kim Hamilton Duffy:  Thanks daniel -
+Manu Sporny:  Wanted to add to dan and adrians question - what's 
+  the nearest analog? Password managers are very good analogies and 
+  that's good, the thing that makes what we're doing here different 
+  is the standards. No interop between password managers - can't 
+  move information between them. One key thing is the interop 
+  standards where you can move contents from one wallet to another 
+  without it being a disruption in your work life.
+Manu Sporny:  So again, not surprisingly standards are the key 
+  binding characteristic that makes this different.
+Orie Steele: +1 To standards and interoperability
+Drummond Reed: +1 To full portability between wallets from 
+  different vendors / projects
+Manu Sporny: +1 To rocco
+Kim Hamilton Duffy:  And I have a special callout - we want to 
+  thank Rocco for his excellent note-taking -
+Ryan Grant: +1
+Wayne Chang: +1 Rocco
+Heather Vescent: +1 Rocco thanks for scribing!
+Markus Sabadello: +1
+Mike Prorock: What is the best way to address wallet usage by non 
+  technical users? e.g. we work extensively with users that have 
+  limited access to tech and sometimes limited literacy rates, but 
+  they have smart phones.... have thoughts been put into those 
+  types of usability issues?
+Drummond Reed: +1
+Dave Longley: +1
+Christopher Allen: +1 To scribe
+Anil John: +1
+Phil Long: +1 Rocco
+Dmitri Zagidulin: +1 Thanks rocco!
+Kim Hamilton Duffy:  Thank you for all the speakers for this 
+  excellent conversation, thank you and ahve a good day.
+Kyle Kemper: +1 Rocco post your doge address
+Tim Bouma: +1 Rocco
+Moses Ma: Bye peeps
+Heather Vescent: Thanks Manu.
+Heather Vescent: We have another set of speakers for next week.
+Manu Sporny: +1 To that, expect turnout will be about the same, 
+  feels like we're just scratching the surface.
