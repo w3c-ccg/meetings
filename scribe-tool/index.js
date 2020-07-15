@@ -48,9 +48,9 @@ function generateEmailBody() {
   var content = scrawl.generateMinutes(gLogData, 'text', gDate);
   var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
       .replace(/\n/g, '').replace('Scribe:  ', '');
-  content = 'Thanks to ' + scribe + ' for scribing this week! The minutes\n' +
+  content = `Thanks to ${scribe} for scribing this week! The minutes\n` +
       `for this week\'s ${program.group} telecon are now available:\n\n` +
-      'https://w3c-ccg.github.io/meetings/' + ${program.directory} + '/\n\n' +
+      `https://w3c-ccg.github.io/meetings/ ${program.directory} \n\n` +
       'Full text of the discussion follows for W3C archival purposes.\n' +
       'Audio from the meeting is available as well (link provided below).\n\n' +
       '----------------------------------------------------------------\n' +
