@@ -1,0 +1,277 @@
+Thanks to James Chartrand for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-07-13/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2020-07-13
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jul/0009.html
+Topics:
+  1. Introductions & Reintroductions
+  2. Modeling Verifiable Credentials for Education
+  3. Open University, Solid, and Open Badges
+Organizer:
+  Heather Vescent and Wayne Chang and Kim Hamilton Duffy
+Scribe:
+  James Chartrand
+Present:
+  Kim Hamilton Duffy, James Chartrand, Laura Jaurequi, Chris 
+  Winczewski, Alexander Mikroyannidis, Nate Otto, Allan Third, Jim 
+  Kelly, John Domingue, Dmitri Zagidulin, David Mason, Stuart 
+  Freeman, J. Philipp Schmidt, Adam Lemmon, Jim Goodell, Simone 
+  Ravaoli, Andy Thomas, Irene Hernandez, Juan Caballero, Mano 
+  Ramachandran, Mike Sessa, Phil Long, Loïc Jeannin, Niaz 
+  Chowdhury, Benjamin Young, David Ward, Karen O'Donoghue, loveish, 
+  Matt Lisle, Steve Magennis
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-07-13/audio.ogg
+
+Kim Hamilton Duffy: https://www.w3.org/community/credentials/join
+Kim Hamilton Duffy: https://www.w3.org/accounts/request
+Kim Hamilton Duffy: 
+  https://www.w3.org/community/about/agreements/cla/
+Kim Hamilton Duffy: https://w3c-ccg.github.io/meetings/
+James Chartrand is scribing.
+
+Topic: Introductions & Reintroductions
+
+Kim Hamilton Duffy:  We are moving this meeting to every other 
+  week.  will update calendar invites.
+  ... want to move to work item focus in addition to speakers
+  ... want to work on deliverables and still have good slate of 
+  speakers
+  ... next meeting in two weeks will talk about Modelling VC 
+  document
+
+Topic: Modeling Verifiable Credentials for Education
+
+Kim Hamilton Duffy: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit
+Kim Hamilton Duffy:  We want to come up with working examples of 
+  VCs.  expressing well known credentials as VC.  using ILR 
+  wrapper.  come up with good set of recommendations
+  ... turn over to ILR group
+  ... we recommend standards, incubate
+  ... I will call on Jim Kelly and Nate Otto
+  ... in document two topics
+Kim Hamilton Duffy: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit#heading=h.pqaju4ey6s0b
+.. 1. Xml formatted credentials
+  ... do vc support XML as we thought they would, and does it 
+  make more sense to model this in json or json-ld
+  ... json-ld is an RDF serialization and so to can XML. assumed 
+  therefore xml was supported, but realize now there is a bit more 
+  work and not as straighforward, but is doable.
+  ... could be a solution for any standard expressed as XML to 
+  include those in VC.
+  ... if we went the XML path there is some tooling work for 
+  supporting signature screens.  we would be adding a new 
+  serialization.  total work is small - bookkeeping.
+Jim Kelly:  Pesc board chair and consultatnt
+  ... all in XML like high school transcripts
+  ... see need for move to JSON
+Mano Ramachandran: Guys, do you have any India and UK specific 
+  numbers?
+  ... we've been discussing for some time.  we have a json-ld 
+  task force in place for 2 or 3 years to discuss including 
+  geocode, edxchange
+  ... we have been discussing adding json versions of our xML 
+  standards.  xml will not disappear.
+Mano Ramachandran:  Sorry, we don't. But we are overhauling our 
+  connection infrastructure and will have something more 
+  modern/open by end of summer [scribe assist by Kim Hamilton 
+  Duffy]
+  ... not a small feat.  easy to create carbon copies.  easy to 
+  create carbon copies in theory,, but not sure that's what the 
+  community wants
+  ... Michael sessa is also on the line, and can answer quetions
+Mike Sessa: Good day all...can contact me at 
+  michael.sessa@pesc.org
+  ... there are tools that generate json from xml so creating a 
+  carbon copy is not difficult.  working on it.  working group is 
+  being put together to examine that as a standard
+  ... process to standard creation that requires review and 
+  approval.  steps are involved.
+  ... we would be able to add a json version of our pesc 
+  standards, but not clear when we could do json=ld
+Driven and developed by PESC Members stepping up (not PESC staff)
+  ... I have begun to realize the value of json=ld for our 
+  standards especially as a payload because the payload becomes 
+  semantically readable
+  ... is readable as json but more valuable as json-ld
+  ... I know there is a desire to have pesc formats in json but 
+  we don't have a timeframe but we are pulling the process to 
+  together to build a workgroup and gather the pieces to create a 
+  new standard
+Kim Hamilton Duffy:  The question of json vs json=ld is a good 
+  conversation to have in this group
+  ... efforts so far have assumed linked data but that has 
+  additional complexity
+  ... Even if we all like it it is still good to document
+Kim Hamilton Duffy: 
+  https://github.com/w3c-ccg/vc-examples/blob/master/docs/edu/university-degree-verifiable-credential.json
+  ... Example 1 - course program certificate - this example shows 
+  minimal education vc.  if you were designing the minimal thing 
+  today that's what it would look like
+  ... nate and I are teeing up discussion in a thread - what 
+  terminology do we want to use?  ILR LER?
+  ... how to model open badge as VC, etc.
+Nate Otto:  This issue here is how do we model a claim that a 
+  learner has gotten a certificate
+  ... scroll to page 5, working example 1
+  ... shows. a real world certificate and we want to put it in 
+  language of VC
+  ... VC allows any claim about someone, e.g., is someone over 
+  21, favourite colour is green
+  ... properties asserting about individual
+Nate Otto: See the degree claim: 
+  https://github.com/w3c-ccg/vc-examples/blob/master/docs/edu/university-degree-verifiable-credential.json#L17
+  ... line 17 - the claim is degree - this subject with DID has 
+  degree
+  ... claiming degree is not a common claim
+  ... of all the learning claims in your history very few are 
+  degrees
+  ... Is there a common claim type to represent achievement of 
+  educational goal
+  ... What is the core concept?
+  ... An achievement level that has criteria and an issuer.  like 
+  open badges class - as set of properties - criteria, image, 
+  assessed by issuer
+Phil Long: Is the problem Nate is discussing about a defined 
+  achievement represents a poverty of structured learning outcomes 
+  in the higher ed community?
+  ... What does this mean - open badges calls it a badge - this 
+  assertion is about this.  Idea is - 'has achieved'
+  ... Scroll to page 7 - 'holds' means learner holds credential
+  ... A term like hasAchieved should be used.
+  ... Working example 5 is same thing - hasAchieved.  same idea 
+  except competency is not necessarily defined by issuer of 
+  credential itself.  could be a shared def across issuers
+Allan Third: "HasDemonstrated" seems slightly more general?
+  ... What is this idea of a hasAchieved claim?
+  ... I think it has more power than something like 'degree'
+Kim Hamilton Duffy:  I agree.  should spend time.
+.. Time to turn to main topic.  People from Open University to 
+  talk about their deployment with solid and open badges
+
+Topic: Open University, Solid, and Open Badges
+
+John Domingue:  Joint presentation but colleagues having trouble 
+  getting on call.
+  ... Date is important - accreditation is almost like an event.
+Kim Hamilton Duffy: Voip noise
+  ... Certain credentials have a lifespan.
+  ... Now, to get into talk - going to overview our work at open 
+  u.  we have been looking at blockchain accreditation.
+  ... This is a set of highlights of our activities, especially 
+  around covid-19
+Phil Long: @John D's comment is important about a date as in most 
+  higher ed achievements they are in a defined context based on 
+  when they entered a degree pathway. The rules for achievements 
+  are bound by the contract at the time of their declared major.
+  ... Slide 1 - there is a URL to our main web site.
+Allan Third: 
+  https://docs.google.com/presentation/d/1q8mDa9QjSTirtZxiTVm6p83_6N3rYXKaT_drntzBTrs/
+John Domingue: 
+  https://docs.google.com/presentation/d/1q8mDa9QjSTirtZxiTVm6p83_6N3rYXKaT_drntzBTrs/edit?usp=sharing
+  ... Slide 2 - overview of content
+  ... We have a strong belief in social justice.  'open' means 
+  you don't need any existing quals.
+  ... Some students have studied for a decade.  Something like 
+  20K disabled.
+  ... Slide 3 - teaching at scale
+  ... We have a Free learning platform
+Phil Long: If you are not speaking (e.g., typing) please mute 
+  your mic.
+  ... we founded a mooc with 10 million registered learners.
+  ... we co-produce a lot of radio and tv programs with BSc.
+  ... Slide 4 - lifelong learning
+  ... small chunks of learning supported by accreditation
+  ... Slide 5 - handing to Allan third
+Allan Third:  Move to decentralization is important
+  ... solid is a linked data platform started by Tim Berners lee.
+  ... turns web applications into views on data
+  ... Data is held by individual
+  ... Slide 6
+  ... You keep your data in data pods.  you permit applications 
+  to access your data to support what you want rather than what the 
+  application wants
+  ... The linked data platform, solid concept, is linked data 
+  focused and friendly
+  ... See a lot of discussion about personal data.  go to slide 7
+  ... You can gain value from personal data but may have 
+  incentive to change it, to edit it.  if other people are going to 
+  give you value based on your personal data, you have to be able 
+  to verify it.
+  ... you should be able to access and host it but also prove 
+  that the qualifications you derive are valid
+  ... this is why we have been looking at blockchain to show your 
+  proofs haven't been edited
+  ... Quals and work history, cv - services can be built on top.
+  ... Can prove to others that you haven't tampered with vc.
+  ... slide 9 - generic architecture - all purpose personal data 
+  store.  using solid to store data, blockchains to prove with VCs. 
+   Implement VC model on top of solid architecture.
+  ... Pass to alex
+Alexander Mikroyannidis:  Will present one of our most recent 
+  projects
+Loïc Jeannin: @Kimhd: I'm already muted, that's interesting
+  ... slide 11 - creation, piloting and evaluation of 
+  decentralized solutions for quals.
+  ... ten partners - academic orgs and gov agencies.
+  ... slide 12 - pilots
+  ... slide 13 - lifelong learning pilot led by OU
+  ... slide 14 - main stakeholders
+  ... slide 15 main use case - personal portfolio of learner
+  ... slide 16 Recommendations based on learner's skills
+  ... Slide 18 Scoping landscape, understanding needs, 
+  consultation workshops
+  ... Slide 19 Findings
+Phil Long: +Q to mention is the personal eportfolio a generic 
+  analogy to a digital wallet?
+  ... We are now moving on to next phase.  Developing 
+  decentralized solutions for lifelong learner
+John Domingue:  Skills are important.  people study to improve 
+  job or get a job.
+  ... There is a new eurpean standard that represents set number 
+  of hours of learning.
+  ... Want to produce new accreditation for computing
+  ... There may be a mismatch in skills
+  ... Competence shows that a person can carry out work without 
+  supervision
+  ... Slide 21
+  ... Slide 22
+  ... Slide 23 Gateway Descriptions
+  ... slide 24 Site for Gateway Badges
+  ... Slide 25 Gateway Badge Alignments
+Niaz Chowdhury:  Presenting covid 19 system
+  ... Slide 26 Covid-19 Antibody test / vaccination certification
+  ... Builds on prior work, wanted to develop a smart phone app
+  ... Slide 27 Timeline of Antibody Test / Vac Certification
+Kim Hamilton Duffy: All: apologies that I got this session 
+  started late. Feel free to drop while we wrap up
+Kim Hamilton Duffy: I'm having a hard time hearing the current 
+  speaker
+  ... Slide 29
+  ... Slide 33 - Main contributions
+  ... We want to have a decentralized privacy preserving 
+  platform.
+  ... We have been using our system for real students in UK.
+  ... Our components are SOLID - to give learners control over 
+  data, including anayltics.
+  ... Started using open badges now using VC.
+  ... Use hashes on blockchain for verification
+Kim Hamilton Duffy:  Slide 19 - question from Phil Long, is 
+  portfolio like wallet?
+John Domingue:  Portfolio is layer over SOLID
+Phil Long: Sorry - hung up before I could get the question out. 
+  I'll follow up with John D. separately.
+  ... Slide 15 - semantic matching between skills you have and 
+  skills we are mining from jobs
+Laura Jaurequi: Thank you!
+Mano Ramachandran: @Kimhd thank you :)
