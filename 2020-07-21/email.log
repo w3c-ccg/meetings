@@ -1,0 +1,425 @@
+Thanks to Markus Sabadello for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/ 2020-07-21 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2020-07-21
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Jul/0062.html
+Topics:
+  1. Introductions and Re-Introductions?
+  2. Action Items
+  3. Credentials not in JSON
+  4. Updates on Secure Data Storage on DIDComm
+Organizer:
+  Kim Hamilton Duffy and Wayne Chang and Heather Vescent
+Scribe:
+  Markus Sabadello
+Present:
+  Wayne Chang, Markus Sabadello, Heather Vescent, Joe Andrieu, Sam 
+  Curren, Geun Hyung, Simone Ravaoli, Dmitri Zagidulin, Christopher 
+  Allen, Manu Sporny, Kim Hamilton Duffy, Dave Longley, James 
+  Chartrand, Brent Zundel, Nacho Alamillo, Juan Caballero, Kerri 
+  Lemoie, Lluís Alfons Ariño, Jonathan Holt, William OKeefe, 
+  Anthony Camilleri, William Claxton, Adam Lemmon, Ganesh Annan, 
+  Jeff Orgel, Nate Otto, Orie Steele, Anil John, Kaliya Young, 
+  Chris Winczewski, Erica Connell, Adrian Gropper
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-07-21/audio.ogg
+
+Manu Sporny: Also, Kim did all of the work.
+Heather Vescent: https://www.w3.org/community/credentials/join
+Heather Vescent: Scribes: 
+  https://docs.google.com/document/d/1LkqZ10z7FeV3EgMIQEJ9achEYMzy1d_2S90Q_lQ0y8M/edit#heading=h.ngyk8y939osi
+Juan Caballero: Big thanks to markus for scribing
+Markus Sabadello: Scribe+
+Heather Vescent:  Thanks to the scribe on last week's call 
+  [scribe assist by Markus Sabadello]
+
+Topic: Introductions and Re-Introductions?
+
+Juan Caballero: Nacho alamillo
+Nacho Alamillo:  I'm on a team working on eIDAS, now part of a 
+  legal team looking at signatures on VCs. [scribe assist by Markus 
+  Sabadello]
+Heather Vescent:  Jonathan_holt do you want to re-introduce 
+  yourself? [scribe assist by Markus Sabadello]
+Nacho Alamillo: Thanks, Chris
+Jonathan Holt:  I'm a physician by training, trained in clinical 
+  informatics. Worked on a series of companies. Now CMIO at 
+  Consensys Health. [scribe assist by Markus Sabadello]
+William Claxton:  William from Brussels, project manager on 
+  project EuroPass, run by the E.U. commission. Some of my 
+  colleagues are also on this call today. We are interested in 
+  cooperation between EuroPass and W3C [scribe assist by Markus 
+  Sabadello]
+Manu Sporny: So awesome to have Nacho and William here on the 
+  call today! :)
+William Claxton:  EuroPass is project related to skills and 
+  qualifications, building tools and standards to implement skills 
+  and qualifications across the E.U. [scribe assist by Markus 
+  Sabadello]
+William Claxton:  Our guiding principle is that what we do should 
+  be W3C compliant. [scribe assist by Markus Sabadello]
+William Claxton:  Thanks for inviting us to the call. [scribe 
+  assist by Markus Sabadello]
+Lluís Alfons Ariño: Lluís Ariño
+Lluís Alfons Ariño:  I am one of the two convenors of the diploma 
+  use case. Related to what William introduced, we will use 
+  EuroPass. [scribe assist by Markus Sabadello]
+Heather Vescent:  Topic: Announcements and reminders. [scribe 
+  assist by Markus Sabadello]
+Heather Vescent: https://w3c-ccg.github.io/announcements/
+Markus Sabadello is scribing.
+Heather Vescent:  This is the 6th weeks of Identiverse, I just 
+  recorded a video for that. It will go on for another 2 weeks. 
+  Registration is free. There are a lot of really cool sessions.
+Jeff Orgel: Amen to the Henry point of view!!
+Heather Vescent:  We have a few recurring CCG meetings. This here 
+  is our regular CCG call.
+Heather Vescent:  We also have a VC for Education Task Force 
+  call, headed by dmitriz and kimhd
+Heather Vescent:  We also have DID Resolution calls on Mondays.
+Dmitri Zagidulin: I think Heather means someone else - I am 
+  merely attending the VC Edu calls occasionally
+Heather Vescent:  And the third one is the Secure Data Storage 
+  call, on Thursdays.
+Dmitri Zagidulin: Yeah that's em!
+Dmitri Zagidulin: Me
+Heather Vescent:  Sorry dmitriz you are on the Secure Data 
+  Storage call, not VC for Education Task Force.
+Heather Vescent: 
+  https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+
+Topic: Action Items
+
+Heather Vescent:  Kimhd do you want to give an update on Action 
+  Items?
+Kim Hamilton Duffy:  Regarding 
+  https://github.com/w3c-ccg/community/issues/143, we closed that 
+  on last week's call, chairs will act on it this week.
+Heather Vescent: Issue 143: 
+  https://github.com/w3c-ccg/community/issues/143
+Kim Hamilton Duffy: 
+  https://github.com/w3c-ccg/community/issues/142
+Kim Hamilton Duffy:  Thanks to Orie_ , we got some insight into 
+  community group licenses.
+Kim Hamilton Duffy:  There are two take aways: 1. We have an 
+  increasing amount of work items related on sample 
+  implementations. The community license doesn't really cover work 
+  like this.
+Kim Hamilton Duffy:  This license is about specs and test suite, 
+  but may not be suitable for all implementations
+Kim Hamilton Duffy:  Orie_ suggested Apache2, the chairs need to 
+  follow up on this
+Kim Hamilton Duffy:  The default LICENSE.md we include in repos 
+  is missing the full text of the W3C's recommend CG license
+Kim Hamilton Duffy:  We need to update all the existing repos 
+  accordingly
+Kim Hamilton Duffy:  We will try to make it easier to do the 
+  right thing going forward, so things are set up correctly
+Orie Steele: Yes, thanks to Kim for tracking this down!
+Heather Vescent:  Thanks kimhd for your diligent follow-up on the 
+  licensing topic, this is hard work that gives clarity
+Kim Hamilton Duffy: 
+  https://docs.google.com/presentation/d/1R_vM55wQyJ5jiiD6ro3crCFIvC2TGxyZ8_B2t45RXFo/edit?usp=sharing
+Heather Vescent:  We will start now with the "Credentials not in 
+  JSON topic"
+
+Topic: Credentials not in JSON
+
+Kim Hamilton Duffy:  I will go through my slide deck quickly, so 
+  we can then get everyone to contribute their part
+Kim Hamilton Duffy:  Please open above link, I will walk through 
+  it
+Kim Hamilton Duffy:  We had subject matter expects Ignacio 
+  Alamillo and Anthony Camilleri who have been very active in this 
+  space.
+S/expects/experts/
+Manu Sporny: Slide 2
+Heather Vescent: Noise?
+Kim Hamilton Duffy:  We have the VC in Educations task force. One 
+  of our topics is to come up with examples that can be used in 
+  pilots.
+Heather Vescent: Voip noise?
+Kim Hamilton Duffy:  There is however a lot prior work on 
+  educational data standards.
+Kim Hamilton Duffy:  But for using these, one challenge is that 
+  we need to work with XML
+Kim Hamilton Duffy:  The goal is to try to find possible 
+  solutions
+Kim Hamilton Duffy:  In contrast to other use cases, in this are 
+  there is a lot of precedent of Linked Data use, e.g. for 
+  competencies definitions.
+Kim Hamilton Duffy:  All of this work enables alignment and 
+  transferability
+Kim Hamilton Duffy:  One example application is Credential Finder
+Kim Hamilton Duffy:  There is also a lot of precedent in the 
+  European Qualification Framework, there is a lot of work on 
+  alignment of different levels of achievements.
+Kim Hamilton Duffy:  There is also LER Hub, which is gathering 
+  resources.
+Kim Hamilton Duffy:  If your degree data is outdated, it limits 
+  your capabilities, so this is about empowering people.
+Kim Hamilton Duffy:  The idea that records need to be portable is 
+  becoming more important.
+Kim Hamilton Duffy:  There is a lot of existing work in XML, what 
+  do we do with it? Two examples.
+Kim Hamilton Duffy:  Example 1: EDCI... Mapped the VC data model 
+  to XML.
+Kim Hamilton Duffy:  Currently VC has two serializations, but it 
+  should be possible to support others.
+Manu Sporny: Very happy that EDCI authors are on the call today 
+  so we can talk about this... think there is a better solution.
+Manu Sporny: (That is just a slight change from what they're 
+  doing)
+Kim Hamilton Duffy:  Why did they do it? There are eIDAS digital 
+  signature requirements. There's a need to use XML.
+Kim Hamilton Duffy:  VC data model does not currently define an 
+  XML serialization.
+Manu Sporny: Noooo, XML jamming!
+Kim Hamilton Duffy:  Example 2: A common way to express 
+  transcripts on the college and high school level. Done in XML.
+Manu Sporny: I mean, XML Jamming works...
+Kim Hamilton Duffy:  In our VC for Education group, what guidance 
+  do we give? What's okay as a short time measure?
+Kim Hamilton Duffy:  Other options we have not seen yet are 
+  mapping XML to JSON or JSON-LD. We haven't seen this yet but it 
+  has been discussed. This needs discussion by the standards group.
+Kim Hamilton Duffy:  Given there are different requirements, e.g. 
+  in the case of eIDAS, this may support one solution over another.
+Kim Hamilton Duffy:  (Showing slide 8 now)
+Kim Hamilton Duffy:  Say that we did support XML as a VC 
+  serialization. Then what about the legal signature requirements?
+Kim Hamilton Duffy:  I'd like to invite our legal experts to give 
+  context.
+Kim Hamilton Duffy:  NachoAlamillo and larinyo ?
+Kaliya Young: Present_
+Lluís Alfons Ariño: Nacho speaking
+Kaliya Young: Can you please re-share the link to she slides :)
+Kim Hamilton Duffy: 
+  https://docs.google.com/presentation/d/1R_vM55wQyJ5jiiD6ro3crCFIvC2TGxyZ8_B2t45RXFo/edit#slide=id.g8c7bea63ca_0_68
+Heather Vescent: 
+  https://docs.google.com/presentation/d/1R_vM55wQyJ5jiiD6ro3crCFIvC2TGxyZ8_B2t45RXFo/edit#slide=id.g8c7bea63ca_0_68
+Nacho Alamillo:  In the EU we have the regulation that supports 
+  the movement of legal documents between member states. There is a 
+  regulation that define the syntax formats. There are 
+  specifications for advanced signatures. If you use any format in 
+  the E.U. decision, any member state will recognize it.
+Manu Sporny: XADES -- https://en.wikipedia.org/wiki/XAdES
+Nacho Alamillo:  Right now, we have 4 technical formats which are 
+  recognized.
+Lluís Alfons Ariño: CADES
+Lluís Alfons Ariño: PADES
+Manu Sporny: CADES -- 
+  https://en.wikipedia.org/wiki/CAdES_(computing)
+Manu Sporny: PADES - https://en.wikipedia.org/wiki/PAdES
+Lluís Alfons Ariño: I know Nacho ;-)
+Nacho Alamillo:  You have a lot of freedom to use these profiles 
+  with respect to content. You don't have to go through XML 
+  serialization.
+Nacho Alamillo:  (Discussing features of the different formats)
+Nacho Alamillo:  It doesn't preclude you from using non-XML 
+  formats for the signatures.
+Manu Sporny: JADES
+Nacho Alamillo:  We are also working in EBSI, inside the 
+  technical committee, we are working on a new technical 
+  specification (JADES - JSON Advanced Electronic Signatures)
+Juan Caballero: !!!
+Nacho Alamillo:  This specification is still non-public, but it 
+  may be possible to share it in a limited scope
+Manu Sporny: JADES 
+  https://www.sciencedirect.com/science/article/abs/pii/S0920548919300960
+Nacho Alamillo:  This is eIDAS in JSON format. We extends JSON 
+  Web Signatures by defining additional header parameters.
+Lluís Alfons Ariño: Jades is been work in ETSI (not in EBSI)
+Nacho Alamillo:  We are doing something similar for JWS as we 
+  have already done with XML.
+Orie Steele: You can use JWS in LD Proofs..
+Nacho Alamillo:  We can align JWS with eIDAS
+Orie Steele: https://github.com/w3c-ccg/lds-jws2020 ( this used 
+  detached JWS, which does support a JWS header)
+Nacho Alamillo:  You can use JADES to sign the VC, without 
+  transforming it to XML.
+Nacho Alamillo:  You can also use JADES with a special 
+  transformation method
+Nacho Alamillo:  We have to wait for JADES to get approved
+Nacho Alamillo:  Hopefully we will have a first version of it 
+  this year.
+Lluís Alfons Ariño: EBSI eIdas Bridge
+Nacho Alamillo:  In the regulation, it's also possible to support 
+  different methods to validate signatures. We have explored this 
+  in the EBSI project, there is work happening on an eIDAS bridge. 
+  I have written about this is in my legal report.
+Lluís Alfons Ariño: EIdas bridge: 
+  https://joinup.ec.europa.eu/collection/ssi-eidas-bridge/about
+Lluís Alfons Ariño: Anthony speaking now
+Lluís Alfons Ariño: EBSI: 
+  https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/ebsi
+Lluís Alfons Ariño:  There is a different between draft standards 
+  and it actually being available to public administrations. You 
+  would probably talk about 3-5 years of lag before this hits the 
+  type of production we are talking about.
+Lluís Alfons Ariño:  In the meantime, in the meantime, Europe has 
+  built its educational infrastructure on XML, e.g. for exchanging 
+  student data in XML.
+Lluís Alfons Ariño:  I've been heading one of those, trying to 
+  express VCs and XML
+Lluís Alfons Ariño: 4 Signature formats: Digital signature : 
+  XAdES, CAdES, PAdES and ASiC-S/ASiC-E
+Lluís Alfons Ariño:  The reason I'm giving this information, this 
+  is all standardization work. We are aiming for two things. We 
+  hope to have an XML recommendation from VC Task Force that would 
+  allow us to say that we can be in line using XML, but probably 
+  will want to change to JSON over time.
+Lluís Alfons Ariño:  We are talking about issuing credentials in 
+  the millions.
+Lluís Alfons Ariño:  We woud like an XML namespace dedicated to 
+  VCs.
+Lluís Alfons Ariño:  Second, it would be very very nice to be 
+  able to have a schema definition file that says this is a 
+  recommended implementation of VCs in XML.
+Lluís Alfons Ariño:  I'm not technical enough to talk about XML 
+  vs. RDF/XML, but a high level message is that it will be 
+  preferable to have a schema definition recommended by the CG.
+Kim Hamilton Duffy:  Back to you heathervescent for queue 
+  management
+Orie Steele:  This is really exciting work, I have done some 
+  experiments converting JSON-LD VCs to XML and back. Depending on 
+  your tolerance, there are mechanisms for converting. There are 
+  similar mechanisms for binary representations.
+Orie Steele:  We can rely on JSON-LD vocabularies, and then 
+  convert to other serializations. The advantage is that you don't 
+  have to repeat vocabularies in each seralization, but only have 
+  to do it once.
+@Orie we are seeing similar things dealing with conversions 
+  between xml and jsonld in particular for supply chain and retail 
+  legacy formats
+Manu Sporny:  First, thank you William NachoAlamillo larinyo for 
+  being here, this is very important and this group cares deeply. 
+  Second, this is the right place, there is a lot of experience in 
+  this group, please continue to engage with it.
+Manu Sporny:  Also, work that happens here (e.g. XML 
+  serialization of VCs) can then go into the VC Maintenance WG.
+Manu Sporny:  Regarding what to specifically work on, I heard 
+  each of you mention two primary thigns.
+Manu Sporny:  One is a requirement for a clean XML 
+  representation. The second has to do with digital signature 
+  formats that you just outlined.
+Manu Sporny:  Ideally we would provide a profile that matches 
+  well with XML. One failure scenario would be to try to support 
+  absolutely everything.
+Manu Sporny:  There would be too many options, we should reduce 
+  optionality.
+Manu Sporny:  The other important thing, as Orie_ mentioned, a 
+  few of us have been working on converting VCs into other formats, 
+  e.g. CBOR or XML.
+Nacho Alamillo: Agree. In fact, the idea of having advanced 
+  electronic signature "baseline" profiles is to reduce complexity, 
+  yes
+Manu Sporny:  There are some common design patterns we can use 
+  for full round-tripping.
+Manu Sporny:  What we would need to know is feedback on the XML 
+  format, what should it look like. And we need to understand the 
+  exact requirements for the digital signatures.
+Lluís Alfons Ariño: Europass EDCI Data model 0.9.0 
+  https://github.com/european-commission-europass/Europass-Learning-Model/tree/release/0.9.0
+Manu Sporny: Yes, let's keep it simple!
+Kim Hamilton Duffy: I don't have anything, I was just wanting to 
+  queue up Nacho and Anthony before they have to drop :)
+Lluís Alfons Ariño:  If there is openness to support XML, it may 
+  actually be quite simple.
+Manu Sporny: For example: Go to XML, use XADES.
+Lluís Alfons Ariño:  We have a lot of documentation on all of 
+  this
+Nacho Alamillo:  We should go for JADES for the baseline 
+  standard.
+Nacho Alamillo:  We don't believe in issuing VCs in PDF (using 
+  PADES)
+Xml .... lots of possibilities...
+Manu Sporny:  Thanks a lot to kimhd for putting the slide deck 
+  together
+Heather Vescent: +1 Thank you Kimhd!
+Juan Caballero: Baseline profiles here: 
+  https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature+standards?reload=true
+Manu Sporny:  If we can take PADES off the table, that's good 
+  since it's one option less we need to consider.
+Manu Sporny:  Did you say XADES or JADES are already a standard? 
+  If we can focus on of those, it should be achievable.
+Manu Sporny:  Potentially we could even get it on standard track.
+Juan Caballero: XADES = standard, JADES = coming soon
+Nacho Alamillo: Yes, today's solution should be based in XAdES
+Juan Caballero: If i understood currently
+Lluís Alfons Ariño: Right, today: XML+Xades
+Manu Sporny:  I'm hearing a strong requirement to encode in XML. 
+  If that's a hard requiement, then maybe what we should do is an 
+  XML serialization. I'm not sure if this is the preference
+Juan Caballero: (Also Manu's explicit pronunciation of X-ADES is 
+  helpful :D )
+Lluís Alfons Ariño:  This was my preference
+Nacho Alamillo:  Mine too
+Anil John:  I want to get a sense from you kimhd if there are any 
+  current examples of education credentials, e.g. a university 
+  degree.
+Kim Hamilton Duffy: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit
+Anil John:  We are about to come out with a prize competition for 
+  a digital wallet UI, I've been talking to U.S. Department of 
+  Education.
+Anil John:  I'm a student looking for an employer. The employer 
+  needs both a Permanent Resident Card, and a University degree.
+Anil John:  We have already worked on the Permanent Resident 
+  Card, but I'm looking for an example of a university degree.
+Kim Hamilton Duffy: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit
+Kim Hamilton Duffy:  Unfortunately no good examples exist yet, 
+  but see this document above.
+Kim Hamilton Duffy:  People from the relevant bodies are very 
+  supportive and are helping us going through the data modeling 
+  process. The understanding has to be that anything in here is a 
+  draft.
+Kim Hamilton Duffy:  The other goal is allow pilots to be 
+  unblocked and get started.
+Heather Vescent:  Also thank you from my part to everyone who 
+  spoke and contributed today.
+
+Topic: Updates on Secure Data Storage on DIDComm
+
+Sam Curren: Yes
+Orie Steele:  The SDS Working Group is a joint effort between W3C 
+  and DIF. The purpose is to support the concept of data storage 
+  that's associated with DIDs.
+Orie Steele:  The use cases are things like storing wallet 
+  contents, storing things associated with a DID, sharing access 
+  between DIDs.
+Orie Steele:  It's a generic data structure, not limited to DIDs.
+Orie Steele:  The work is ongoing, there have been two primary 
+  input documents. 1. Encrypted Data Vault spec at W3C CCG, 2. 
+  Identity Hub spec developed at DIF.
+Orie Steele:  Those are similar in some ways, different in other 
+  ways. The SDS Working Group is still working through the 
+  differences, the interfaces, etc.
+Orie Steele:  EDVs are for storing encrypted data. Identity Hubs 
+  have a lot of public data use cases.
+Orie Steele:  We will eventually see deeper integration between 
+  those interfaces and other standards happening out there.
+Sam Curren: 
+  https://docs.google.com/presentation/d/1YiL-A9YaNgQpFBraJJOLLUPyFfZ6uQ1uqtTCiDZxNqI/edit#slide=id.p
+Sam Curren:  See this link for a quick overview of the DIDComm 
+  Working Group
+Sam Curren:  Provide secure communication with trust rooted in 
+  DIDs. This originated in Hyperledger Aries.
+Sam Curren:  We've made good progress. See slide 4 for a layer 
+  map.
+Sam Curren:  Related work includes JWM, ECDH-1PU
+Sam Curren:  It's transport-agnostic, can work via HTTP, 
+  WebSocket, QR Code.
+Sam Curren:  Last slide, join us on our calls, we have 
+  recordings.
+Heather Vescent:  Thanks all for the call, next week we will have 
+  a presentation by GS1.
