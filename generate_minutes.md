@@ -10,8 +10,8 @@ The chairs will need to give you access to the [script that launches it](https:/
 - change the date for that function, and save it (disk button saves).
 - click play button
 
-What it does:
-- Calls a github action that downloads the raw minutes and checks into the [CCG "meetings" github repo](https://github.com/w3c-ccg/meetings), under the meeting date (e.g. https://github.com/w3c-ccg/meetings/2020-08-04)
+> What it does:
+> - Calls a github action that downloads the raw minutes and checks into the [CCG "meetings" github repo](https://github.com/w3c-ccg/meetings), under the meeting date (e.g. https://github.com/w3c-ccg/meetings/2020-08-04)
 
 ### Step 2: Fetch and clean audio
 - Fetch the audio file 
@@ -38,9 +38,9 @@ Step 1 fetched the raw log file into git as https://github.com/w3c-ccg/meetings/
 - Add the edited file as `irc.log` (new or overwrite) and commit the changes via github
 - The rest is handled for you; a github action will generate html and publish
 
-What it does:
-- Emails summary to ccg email group
-- Tweets with the w3c_ccg account
+> What it does:
+> - Emails summary to ccg email group
+> - Tweets with the w3c_ccg account
 
 
 ## Advanced details about how it works
