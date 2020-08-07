@@ -19,8 +19,7 @@ What it does:
 - Open the .wav file in an audio editor (such as audacity) and clean/save the audio:
     - Delete all audio before the Chair starts talking about the Agenda
     - Delete all audio after the first person hangs up at the end of the call.
-    - Save the new file as audio.wav or encode to .ogg (file name audio.ogg) at 32kbps
-        - For example: `oggenc -b 32 audio.wav`
+    - Save the new file as audio.wav or encode to .ogg (file name audio.ogg)
 - Add the cleaned up audio file to github under the meeting date
     - For example: https://github.com/w3c-ccg/meetings/2020-08-04/audio.ogg
 
