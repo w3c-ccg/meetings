@@ -35,5 +35,11 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Mark approved work items with "approved" github label
 
 ### Generate the minutes (for CCG meetings, task forces and other recorded meetings)
-[generate minutes instructions](generate_minutes.md)
+[How to generate the minutes](generate_minutes.md)
+
+
+### Add Action Items to Issues (All Meetings)
+
+Review [meeting log](#) for any Action items (conveniently added to top of minutes by script), and add them to [community issues](https://github.com/w3c-ccg/community/issues) with appropriate issue tag and owner. Work Item and Task Force leads are welcome to use their own tags.
+
 
