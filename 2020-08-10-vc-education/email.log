@@ -1,0 +1,207 @@
+Thanks to Stuart Freeman for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-08-10-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2020-08-10
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Aug/0031.html
+Topics:
+  1. Introductions & Reintroductions
+  2. Modeling VCs for education
+Organizer:
+  Kim Hamilton Duffy and Wayne Chang and Heather Vescent
+Scribe:
+  Stuart Freeman
+Present:
+  Kim Hamilton Duffy, James Chartrand, J. Philipp Schmidt, Stuart 
+  Freeman, Juan Caballero, George Artem, Robbie Jones, Dmitri 
+  Zagidulin, Kerri Lemoie, Jeanne Kitchens, Nate Otto, Nathan 
+  George, Jim Goodell, Adam Lemmon, Chris Winczewski, Simone 
+  Ravaoli, Taylor Kendall, Tzviya Siegman, Phil Archer
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-08-10/audio.ogg
+
+Kim Hamilton Duffy: https://www.w3.org/community/credentials/join
+Kim Hamilton Duffy: https://www.w3.org/accounts/request
+Kim Hamilton Duffy: 
+  https://www.w3.org/community/about/agreements/cla/
+Did we start to use jitsi?
+Kim Hamilton Duffy: https://w3c-ccg.github.io/meetings/
+Juan Caballero: Thanks stewart!
+Stuart Freeman is scribing.
+Kim Hamilton Duffy:  Introductions and re-intros
+
+Topic: Introductions & Reintroductions
+
+James_Dz: with blockchain group at kaiser permanente
+Nate Otto: Present 50% (double booked today not on audio)
+George Artem:  George Artem from Seatte, WA [scribe assist by Kim 
+  Hamilton Duffy]
+Nathan George:  UW grad student, trying to do a vc pilot
+Jeanne Kitchens:  With credential engine
+
+Topic: Modeling VCs for education
+
+Kim Hamilton Duffy: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit#
+  ... updates, context: building a document with the goal of 
+  clarifying fitting existing schemas to the vc format
+  ... document pulls together examples of best practices pilots
+  ... we're an incubation org not a standards org, but we work 
+  with the standards orgs to ensure we're going the correct 
+  direction
+  ... document outlines types of credentials people want to 
+  create
+  ... one interesting area is what to do with xml
+Kim Hamilton Duffy: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit#heading=h.t19npk98rich
+Kim Hamilton Duffy: Example: 
+  https://github.com/european-commission-europass/Europass-Learning-Model/blob/master/XML%20Examples/Ildiko%20Mazar_Certificate%20of%20Excellence.xml
+  ... example 4 shows transcribing to json, but is currently in 
+  xml
+  ... why not as easy as just mapping to json, xml format for 
+  conforming to European legal standards
+Kim Hamilton Duffy: 
+  https://w3c-ccg.github.io/meetings/2020-07-21/#topic-3
+Kim Hamilton Duffy: 
+  https://docs.google.com/presentation/d/1R_vM55wQyJ5jiiD6ro3crCFIvC2TGxyZ8_B2t45RXFo/edit#slide=id.g8c7bea63ca_0_68
+  ... may take months to year to get legal approval for json, 
+  could just do xml to conform to current legal reqs
+  ... we don't want to wait for legislature to allow other 
+  signature suites
+  ... extend vc data model to express support for xml mapping 
+  including any necessary context needed in w3c
+  ... credentials community group is the home for the vc data 
+  model
+  ... not a general recommendation for any group serializing xml
+  ... a case by case decision, to make it easier for ppl with 
+  strict xml requirements
+Kim Hamilton Duffy: https://en.wikipedia.org/wiki/XAdES
+  ... hoping that changes from w3c will allow edci to continue 
+  using xml formatted credentials
+  ... as well as other groups such as scholarly publishing
+  ... moving on to open discussion topics
+  ... generalization of vocab, discussion of issuance roles and 
+  impact,
+  ... ler wrapper standardization
+JimKelly_PESC: launched as ilr recommended practices, work is now 
+  underway
+Simone Ravaoli:  Ilr working group meeting thursday 11am eastern
+  ... beginning base document for the workstream, build on w3c 
+  work
+  ... wrapper doc and doc we're discussing today
+Nate Otto: @Kimhd I will join the audio stream for this meeting 
+  then
+  ... join call on thurs if you are interested
+  ... will go through base doc and governance issues
+Kim Hamilton Duffy:  Will assume ieee is home for ler going 
+  forward, and try to keep our docs up to date
+  ... we are standards integration and getting pilots off the 
+  ground
+  ... ieee is more a combination of standardization (taking our 
+  work as examples) as well as concerns around governance
+  ... next discuss generalization of vocab
+http://bit.ly/IEEE-ILR-WG
+  ... context, pilots want to work with the standard, but aren't 
+  familiar with the existing work
+Robbie Jones: I can see the agenda
+Simone Ravaoli: Correction Agenda link for IEEE ILR - 
+  https://docs.google.com/document/d/1tkcBk3qHEG5CnPXJp8c7Yt1KMdQ4Xx1tTl1LpFuRx5c/edit
+Nate Otto: Catching up, we're on page 2 of this document: 
+  https://docs.google.com/document/d/1pt-VNnjoYgl23Mlu0Tjyax5RgANPBfDijERz0SNYfSo/edit
+  ... want to integrate with existing standards groups like open 
+  badges
+Nate Otto:  There's a common pattern accross these groups
+  ... defined credential or badge can be issued to multiple 
+  people over time
+  ... can we use a property across use cases
+  ... "degree" seems limiting
+  ... could use something like "badge" or invent something new
+Kim Hamilton Duffy:  "Has achieved" seems like it fits well 
+  across standards
+  ... could compare ler
+Kerri Lemoie:  Is this to say "has achieved this type of 
+  credential"?
+Nate Otto:  Not type, you could say has acchieved bachelors, but 
+  we want to say has achieved bachelors of (subject) from 
+  (institution)
+  ... could also map to skills
+Kerri Lemoie: CTID info: 
+  https://credreg.net/registry/handbook#ctid
+Jeanne Kitchens:  Ctid does not indicate a cred has been issued, 
+  more like a unique product identifier
+Nate Otto: I asserted "A credential has been assigned an ID by 
+  Credential Engine" as the definition of "CTID"
+Kerri Lemoie: +1 To bridge
+Kim Hamilton Duffy:  Credential engine also has a registry of 
+  credential types, we're talking about helping bridge between 
+  these registries and actual degrees
+JimKelly_PESC: like "has achieved" as a generalization, but where 
+  does it live? in the wrapper?
+Kim Hamilton Duffy:  Vc itself is just the wrapper, ler/ilr is a 
+  lot like this
+  ... the terms and type definitions will likely live at the 
+  standards body, this is the bridge
+Nate Otto:  There's a separation of wrapper standard and payload 
+  standard
+  ... can use flexible range
+  ... can we come up with a consistent way to represent across 
+  standards
+  ... could start by trying pilots with "has achieved"
+  ... prove that this has value in the market then bring it to 
+  the standards body that we are bridging in the pilot
+  ... not forcing another standards body to adopt, but provide 
+  open standard so they can
+Kim Hamilton Duffy: Nate do you want to respond?
+Tzviya Siegman:  Sounds like you allow other standards to 
+  implement this so they can be compatible, that could be a heavy 
+  lift
+Nate Otto:  If we can prove the value of the approach the 
+  standards may follow
+  ... opportunity for standards bodies to align with wrapper and 
+  payload to prove interoperability
+  ... allow machine understanding of the credential
+  ... learn enough to be able to get to machine understanding
+Kim Hamilton Duffy: Nate I'll give you the floor to respond
+Phil Archer:  Clarification, looks to be proper use of the 
+  "extensions" property of badges
+Nate Otto:  Don't think this quite "extensions"
+  ... can duplicate data in properties to layer in w3c properties
+  ... not enough to meaningfully validate
+  ... probably could use the "extensions" but it's probably not 
+  enough to do this
+Kim Hamilton Duffy:  Defining "has achieved" in open badges, we 
+  could pass this along to them to see if they'd adopt
+Tzviya Siegman:  In badging, issuing organization may not be the 
+  same kind of organization as a credential, can we assert 
+  accreditation by university?
+Nate Otto:  Open badges infers that the definer of the achievment 
+  is the only one who can issue
+  ... there could be use cases for making more generic 
+  achievments that can be issued by someone other than the creator
+JimKelly_PESC: this feels like just one of many characteristics 
+  that may be required for true interop
+  ... could come up with a whole set that need to be shared 
+  across payload specs
+Kim Hamilton Duffy:  That's true, don't want to reinvent the 
+  wheel
+  ... use best practices from different standards bodies, would 
+  love to just use an existing set of terms if they exist
+  ... as a pilot group we have to id those and turn them over to 
+  standards groups
+  ... like proceeding with "has achieved"
+  ... proposal: these are using json-ld, maintain a set of 
+  work-in-progress schemas
+  ... dcc has a playground for experimenting with creds, would 
+  like to update that to point to examples from here
+Nate Otto: Glad to hear some good support for has achieved. 
+  Looking forward to working the action items. Action item could 
+  be: make recommendations of vocabularies where hasAchieved could 
+  be situated for good interoperability and community usage. 
+  Develop JSON-LD-schema/JSON-schema is a good action item
