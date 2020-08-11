@@ -10,8 +10,8 @@ The chairs will need to give you access to the [script that launches it](https:/
 - change the date for that function, and save it (disk button saves).
 - click play button
 
-> What it does:
-> - Calls a github action that downloads the raw minutes and checks into the [CCG "meetings" github repo](https://github.com/w3c-ccg/meetings), under the meeting date (e.g. https://github.com/w3c-ccg/meetings/2020-08-04)
+> - What it does: calls a github action that downloads the raw minutes and checks into the [CCG "meetings" github repo](https://github.com/w3c-ccg/meetings), under the meeting date (e.g. https://github.com/w3c-ccg/meetings/2020-08-04)
+> - How to ensure it's running: check the github action status at this location https://github.com/w3c-ccg/meetings/actions
 
 ### Step 2: Fetch and clean audio
 - Fetch the audio file 
