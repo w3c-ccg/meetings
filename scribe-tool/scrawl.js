@@ -533,16 +533,15 @@
            }
            else
            {
-             rval = scrawl.error(
-               '(IRC nickname \'' + nick + '\' not recognized)' + line,
-               textMode);
+             rval = scrawl.information('<'+nick+'> '+msg, textMode);
+             console.log('IRC nickname \'' + nick + '\' not recognized');
            }
          }
          else
          {
-           // the line is a scribe line by somebody else
+           // the line is an IRC line by somebody else
            scrawl.present(context, aliases[nick]);
-           rval = scrawl.scribe(msg, textMode, aliases[nick]);
+           rval = scrawl.information('<'+nick+'> '+msg, textMode);
          }
        }
        else
