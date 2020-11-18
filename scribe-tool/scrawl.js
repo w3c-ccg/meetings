@@ -528,9 +528,8 @@
            }
            else
            {
-             rval = scrawl.error(
-               '(IRC nickname \'' + nick + '\' not recognized)' + line,
-               textMode);
+             rval = scrawl.information('<'+nick+'> '+msg, textMode);
+             context.unrecognized.add(nick);
            }
          }
          else
@@ -763,7 +762,8 @@
       'topics': [],
       'resolutions': [],
       'actions': [],
-      'audio': true
+      'audio': true,
+      'unrecognized': new Set()
     };
 
     if(date) {
@@ -777,6 +777,13 @@
     {
       var line = ircLines[i];
       minutes += scrawl.processLine(context, aliases, line, textMode);
+    }
+
+    if(context.unrecognized.size > 0){
+      console.log('WARNING: Unrecognized nicks - please add to people.json\n');
+      context.unrecognized.forEach(function(value){
+        console.log('\t'+value+'\n');
+      });
     }
 
     // generate the meeting summary
