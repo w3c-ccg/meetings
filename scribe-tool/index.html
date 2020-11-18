@@ -33,13 +33,16 @@ fetchLog = function(dateString){
       console.error('Error:', err);
       $('#form-resp').addClass('error').text('No minutes on that date');
       $('#irc-log').val('');
+      $('#text-markup').val('');
+      $('#html-markup').val('');
+      $('#html-output').html('');
     });
 };
 
 // generates and outputs the minutes to the HTML output
 displayMinutes = function() {
   var ircLog = $('#irc-log').val()
-  minutes = scrawl.generateMinutes(ircLog, 'html');
+  minutes = scrawl.generateMinutes(ircLog, 'html', $('#date').val());
 
   $('#html-output').html(minutes);
 };
@@ -68,7 +71,7 @@ showMarkup = function(type) {
   // Display the appropriate markup text area based on the 'type'
   if(type == 'html')
   {
-    var html = scrawl.htmlHeader + scrawl.generateMinutes(ircLog, 'html') +
+    var html = scrawl.htmlHeader + scrawl.generateMinutes(ircLog, 'html', $('#date').val()) +
       scrawl.htmlFooter;
 
     $('#irc-log').hide();
@@ -78,7 +81,7 @@ showMarkup = function(type) {
   }
   else if(type == 'text')
   {
-    var text = scrawl.generateMinutes(ircLog, 'text')
+    var text = scrawl.generateMinutes(ircLog, 'text', $('#date').val())
 
     $('#html-markup').hide();
     $('#irc-log').hide();
