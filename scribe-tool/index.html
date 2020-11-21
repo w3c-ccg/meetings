@@ -19,10 +19,30 @@
 var updateCounter = 0;
 var updateCounterTimeout = null;
 
+// get irc log from URL
+fetchLog = function(dateString){
+  const url = "https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-"+dateString+"-irc.log";
+  fetch(url)
+    .then(res => res.text())
+    .then(res => {
+      $('#irc-log').val(res);
+      $('#form-resp').removeClass('error').text('');
+      displayMinutes();
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      $('#form-resp').addClass('error').text('No minutes on that date');
+      $('#irc-log').val('');
+      $('#text-markup').val('');
+      $('#html-markup').val('');
+      $('#html-output').html('');
+    });
+};
+
 // generates and outputs the minutes to the HTML output
 displayMinutes = function() {
   var ircLog = $('#irc-log').val()
-  minutes = scrawl.generateMinutes(ircLog, 'html');
+  minutes = scrawl.generateMinutes(ircLog, 'html', $('#date').val());
 
   $('#html-output').html(minutes);
 };
@@ -51,7 +71,7 @@ showMarkup = function(type) {
   // Display the appropriate markup text area based on the 'type'
   if(type == 'html')
   {
-    var html = scrawl.htmlHeader + scrawl.generateMinutes(ircLog, 'html') +
+    var html = scrawl.htmlHeader + scrawl.generateMinutes(ircLog, 'html', $('#date').val()) +
       scrawl.htmlFooter;
 
     $('#irc-log').hide();
@@ -61,7 +81,7 @@ showMarkup = function(type) {
   }
   else if(type == 'text')
   {
-    var text = scrawl.generateMinutes(ircLog, 'text')
+    var text = scrawl.generateMinutes(ircLog, 'text', $('#date').val())
 
     $('#html-markup').hide();
     $('#irc-log').hide();
@@ -76,10 +96,46 @@ showMarkup = function(type) {
   }
 }
 
+copyText = async function(){
+  if($('#irc-log').is(':visible')){
+    var toCopy = $('#irc-log').val();
+  }else if($('#text-markup').is(':visible')){
+    var toCopy = $('#text-markup').val();
+  }else if($('#html-markup').is(':visible')){
+    var toCopy = $('#html-markup').val();
+  }
+  try {
+    await navigator.clipboard.writeText(toCopy);
+    $('#btn-resp').text('copied').fadeIn('fast').delay(1000).fadeOut('slow');
+  } catch (error) {
+    console.error("copy failed", error);
+  }
+}
+
 // initialize scrawl
 $.getJSON( "people.json", function(people) {
   scrawl.group = "Credentials Community Group";
   scrawl.people = people;
+});
+
+$(function(){
+
+  // look for date in URL
+  let params = new URLSearchParams(location.search);
+  let date = params.get("date");
+  if(date == undefined || isNaN(Date.parse(date))){
+    // set default form date to today
+    let [month, date, year] = new Date().toLocaleDateString("en-US").split("/")
+    $('#date').val(year+'-'+month+'-'+date);
+  }else{
+    $('#date').val(date);
+    fetchLog(date);
+  }
+
+  $('#fetch-by-date').submit(function(e){
+    e.preventDefault();
+    fetchLog($('#date').val());
+  });
 });
   </script>
 </head>
@@ -104,6 +160,14 @@ $.getJSON( "people.json", function(people) {
       <div class="button" onclick="javascript:showMarkup('raw')">Show Raw Log</div>
       <div class="button" onclick="javascript:showMarkup('html')">Show HTML</div>
       <div class="button" onclick="javascript:showMarkup('text')">Show Text</div>
+
+      <form id="fetch-by-date">
+        <input type="date" name="date" id="date" />
+        <input type="submit" class="button" value="Fetch by date" />
+      </form>
+      <p id="form-resp"></p>
+      <span class="button" onclick="javascript:copyText()">Copy</span>
+      <span id="btn-resp"></span>
    </span>
 </section>
 
