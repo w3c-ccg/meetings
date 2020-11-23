@@ -335,19 +335,24 @@
        {
          var scribe = msg.split(':')[1].replace(' ', '');
          scribe = scribe.toLowerCase();
+         context.scribenick = scribe;
          if(scribe in aliases)
          {
             if(!context.hasOwnProperty('scribe')) {
               context.scribe = [];
             }
 
-            context.scribenick = scribe;
             context.scribe.push(aliases[scribe]);
             scrawl.present(context, aliases[scribe]);
-            rval = scrawl.information(
-              context.scribe[context.scribe.length-1] +
-              ' is scribing.', textMode);
          }
+         else
+         {
+            // If scribe name is not known just use alias
+            context.scribe.push(scribe);
+         }
+         rval = scrawl.information(
+          context.scribe[context.scribe.length-1] +
+          ' is scribing.', textMode);
        }
        else if(msg.search(chairRx) != -1)
        {
@@ -529,14 +534,15 @@
            else
            {
              rval = scrawl.information('<'+nick+'> '+msg, textMode);
+             console.log('IRC nickname \'' + nick + '\' not recognized');
              context.unrecognized.add(nick);
            }
          }
          else
          {
-           // the line is a scribe line by somebody else
+           // the line is an IRC line by somebody else
            scrawl.present(context, aliases[nick]);
-           rval = scrawl.scribe(msg, textMode, aliases[nick]);
+           rval = scrawl.information('<'+nick+'> '+msg, textMode);
          }
        }
        else
