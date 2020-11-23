@@ -10,6 +10,7 @@ display_usage() {
     echo "  -m [meeting]        pass meeting argument"
     echo "                      (default 'weekly', other option is 'education')"
     echo "  -l                  launch audio and video editors programmatically"
+    echo "  -a                  download audio only, no notes"
     echo "  -h                  display help"
     echo ""
     echo "Examples:"
@@ -20,10 +21,14 @@ display_usage() {
     echo "  ./download-raw-minutes -d 2020-09-29"
     echo "      downloads raw minutes and audio for 29 Sep 2020"
     echo ""
+    echo "  ./download-raw-minutes -a -d 2020-09-29"
+    echo "      downloads audio only for 29 Sep 2020"
+    echo ""
     echo "  ./download-raw-minutes -m education -d 2020-09-29"
     echo "      downloads raw minutes and audio for the education meeting on 29 Sep 2020"
 }
 AUTO_LAUNCH=false
+AUDIO_ONLY=false
 CREATE_DIRECTORY=true
 MEETING=weekly
 
@@ -40,6 +45,10 @@ for i in "$@"; do
         -l|--autolaunch)
             shift
             AUTO_LAUNCH=true
+        ;;
+        -a|--audio)
+            shift
+            AUDIO_ONLY=true
         ;;
         -d|--date)
             shift
@@ -77,12 +86,15 @@ esac
 
 echo "....Downloading minutes for meeting=$MEETING, date=$DATE"
 echo "....Auto launch setting=$AUTO_LAUNCH"
+echo "....Audio-only seeting=$AUDIO_ONLY"
 
 # Create the minutes directory if it doesn't already exist
 mkdir -p $DIRNAME
 # Download raw logs and recordings
-echo "....Downloading IRC logs for $MEETING meeting on $DATE..."
-curl -# "https://meet.w3c-ccg.org/archives/w3c-ccg-$MEETING-$DATE-irc.log" > $DIRNAME/irc.log
+if [ "$AUDIO_ONLY" == false ]; then
+    echo "....Downloading IRC logs for $MEETING meeting on $DATE..."
+    curl -# "https://meet.w3c-ccg.org/archives/w3c-ccg-$MEETING-$DATE-irc.log" > $DIRNAME/irc.log
+fi
 echo "....Downloading audio recording for $MEETING meeting on $DATE..."
 curl -# "https://meet.w3c-ccg.org/archives/w3c-ccg-$MEETING-$DATE.ogg" > $DIRNAME/audio.ogg
 
