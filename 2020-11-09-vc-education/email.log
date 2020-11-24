@@ -1,0 +1,641 @@
+Thanks to  for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-11-09-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2020-11-09
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2020Nov/0056.html
+Topics:
+  1. Introductions and reintroductions
+  2. working session modeling verifiable credentials for 
+    education
+Organizer:
+  Heather Vescent and Wayne Chang and Kim Hamilton Duffy
+Scribe:
+  
+Present:
+  Marty Reed, Kim Hamilton Duffy, Kerri Lemoie, Anthony Camilleri, 
+  Juan Caballero, Phil Long, Phil_Barker, Joshua Marks, Adam 
+  Lemmon, David Ward, Jim Kelly, Maarten Boender, Niaz Chowdhury, 
+  Robbie Jones, James Chartrand, Sharon Leu, Stuart Freeman, Simone 
+  Ravaoli, Jacksohne, Matt Lisle, Kostas Karasavvas, Keith Kowal, 
+  Jerry Ma, Chris Winczewski, Jeanne Kitchens
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-11-09/audio.ogg
+
+
+Topic: Introductions and reintroductions
+
+<marty_reed> Good morning, Marty Reed with Randa solutions.
+<kimhd> Kerri, can I call on you to reintroduce yourself.
+<kerri_lemoie> My name is Kerri Lemoie, and I'm from open works 
+  group and I've been working in an open badges and EdTech for a 
+  little bit over a decade. And now I'm transitioning from a 
+  technologist to do more research. So I need to know everything 
+  that's going on all the time about the standards so I can like 
+  understand it and do the best research.
+
+Topic: working session modeling verifiable credentials for education
+
+<kimhd> One thing I wanted to start with was
+<kimhd> As we progress further we're developing several 
+  artifacts. One of these is the VC EDU models spec. And I think, 
+  to the discussion last week, a lot of additional topics have 
+  gotten pulled into the draft spec that we can possibly move 
+  outside other work items of the task force and actually let me go 
+  ahead and include the direct link.
+<kimhd> First, there's a high level topic of scope. Representing 
+  skills, some more formal education, like a diploma and then 
+  informal education like webinar attendance.
+<kimhd> Within that there are several issues that would end up 
+  being maybe too low level. So for that work items -- possibly out 
+  of scope for that document. So some things might include the XML 
+  mapping work that we have to do to make verifiable credentials 
+  usable as XML and actually I can paste these in as up potentially 
+  out of scope.
+<kimhd> And it's possible Anthony's PR will address some of this. 
+  So maybe I'll come back to this. So I would possibly propose that 
+  out of scope for this document will include things like details 
+  of the XML mapping, because that's going to be a PR against the 
+  VC maintenance charter group.
+<kimhd> General solutions for things like image integrity. So 
+  this is something we talked about last week, which is people will 
+  be representing images in different ways, whether it's HTML, SVG, 
+  PDF, maybe links to an image that's hosted somewhere, but then 
+  also there's the concept of integrity of that image so general 
+  solutions for things like that might be out of scope. Oh, and 
+  then also PDF as a container I would recommend is out of scope. I 
+  think what I'm getting at here is that we might think of what 
+  we're focusing on in this initial document is more a descriptive 
+  versus some of these other things get into more prescriptive and 
+  then those are the things that will require their own efforts to 
+  iterate around like image integrity. How do we represent the 
+  general notion of that and we're not saying prescriptive.
+<kimhd> For a broad set of of people using verifiable 
+  credentials, just in terms of if you want to maximize 
+  interoperability for wallet users, things like that. These are 
+  our recommended practices. So I'm just going to add those next. 
+  Let me turn to	Anthony's PR
+<kimhd> Anthony, can I call on you to talk to this.
+<anthonycamilleri> So if you could just call it down a little bit 
+  more. So the green part can all be in there are sorry for getting 
+  this everyone so late.
+<anthonycamilleri> So what I tried to do
+<anthonycamilleri> To do was describe what at least from my point 
+  of view, are the basic concepts we need to include
+<anthonycamilleri> I very purposely didn't name the concepts, so 
+  that we wouldn't,for example, have problems about what does 
+  credential engine call a credential versus W3C calls a 
+  credential, etc. If we agree on the concepts we can name them 
+  anything under the sun.
+<anthonycamilleri> To my point of view, there are four concepts 
+  that we need in an educational space. The first concept describes 
+  an activity, somebody has done.
+<anthonycamilleri> They performed Beethoven's six symphony, they 
+  attended a conference, they spent six years working as a lion 
+  tamer
+<anthonycamilleri> Things they have done and it's really just 
+  things this person has done -- that's it.
+<anthonycamilleri> Secondly, the second concept.
+<anthonycamilleri> Would be a learning outcome or a skill and 
+  well you know how long people in education argue about difference 
+  between those two. And I really don't want to get into it.
+<anthonycamilleri> But examples of this concept would be piano 
+  playing, advanced woodworking, or if you imagine something in a 
+  more learning outcome Format, work in accordance with established 
+  sustainability. But these are all the learning outcomes skills, 
+  etc.
+<anthonycamilleri> Um, the third concept basically describes the 
+  outcome of a formal assessment process. And it's very much 
+  oriented toward formal education and examples of this bachelor's 
+  in sociology a Microsoft certification.
+<anthonycamilleri> A certificate that says you're a member of the 
+  bar. These kinds of things,
+<anthonycamilleri> And then the fourth one described a person's 
+  participation or membership in an educational activity. So an 
+  example might include that you are students of the University of 
+  Wine country, you're an apprentice lawyer with the California Bar 
+  Association, etc, etc. 
+<anthonycamilleri> Things to note about these concepts. First of 
+  all, all these concepts can be related to one another. So, for 
+  example, a bachelor's in sociology
+<anthonycamilleri> can include the acquisition of the skill of 
+  sociological research, it can have been performed after
+<anthonycamilleri> 500 hours of fieldwork practice while being a 
+  student of the University of Orlando. Ah, so let's say all of 
+  these concepts quoted as saying include relational fields to each 
+  other. 
+<anthonycamilleri> The second part of this is the approach to 
+  defining this and let's say this is kind of a mix. It's a bit of 
+  a hybrid of the examples that were provided below. So, what you 
+  find is that
+<anthonycamilleri> You could talk about all of these concepts 
+  being able to be described in terms of a definition and instance. 
+  So a definition is a standardized description of that concept.
+<anthonycamilleri> It's a link to a URI describing the concepts 
+  and a type field or framework URI to say where it's coming from.
+<anthonycamilleri> So a badge class would be a typical example of 
+  a definition for example and then because I felt some models 
+  needs things you would also have an instance
+<anthonycamilleri> Awesome and an instance would describe but 
+  data about the person's individual performance of that concept. 
+  So if you're talking about, I don't know, and Bachelor in 
+  Sociology. That's where you would put the person's grade or the 
+  dates the person that went to that course. And they all the stuff 
+  that is unique to the individual.
+<anthonycamilleri> And is associated with that concept. If you 
+  scroll a little bit more down. I put a very, very basic example 
+  in JSON, which you should see there. So here I put
+<anthonycamilleri> In line 19 you see schema hasConcept is like I 
+  just put hasConcept, so I don't get into the terminology and you 
+  see that the definition has an ID.
+<anthonycamilleri> And a framework and there would probably be 
+  several frameworks accepted globally. And then those are the only 
+  two you have
+<anthonycamilleri> We could have a whole descriptive, then 
+  probably want to include the name and description, but let's say
+<anthonycamilleri> What goes below the concept id and framework 
+  that's a discussion for another meeting. And then below that. 
+  There's the instance of that definition.
+<anthonycamilleri> I just invented a couple of fields here and 
+  send data performed or grades, but again, let's say what goes 
+  into the instance would depend on, let's say, which educational 
+  standards, you're using
+<anthonycamilleri> So those are, let's say the first high level 
+  thoughts I had about this. Again, this is really meant to just be 
+  a framework or template for discussion and to get the ball 
+  rolling.
+<kimhd> Fantastic. I really like this. There are a couple of 
+  things I wanted to... Okay, I don't see anyone's	hand raised.
+<kimhd> Wwe don't have that many people, so feel free to just 
+  interrupt me if I'm missing you, but one thing that I really like 
+  about this is this hasConcept definition/instance has. So one 
+  thing that I've been struggling with in modeling is the idea of
+Kim Hamilton Duffy: The instance of the credential award. So 
+  specifically, I'm talking about: I attended a course.
+<kimhd> And, you know,  I achieved some credential according to 
+  that framework, right. So this let's use this agency facilities 
+  management as an example. Then there are things specific to my 
+  instance of achieving or acquiring that
+Kim Hamilton Duffy: Which like the examples you include here: 
+  date performed, grade, but then also might include, you know, 
+  back to images. So something representing my attainment of that.
+<kimhd> Because the way I've seen a lot of them model. It is the 
+  images are being put under credential subject which doesn't seem 
+  right. It's not a picture of me the subject. It's a picture of my 
+  instance of award of that credentials. So images in here would be 
+  like a static, you know, something that every recipient of that 
+  credential of agency facilities management would get. Images here 
+  could have like my name embedded in it or whatever those specific 
+  to me. And so this is the first example I've seen that kind of 
+  tease that apart, independent of what we call them right now. I 
+  like this a lot.
+<kimhd> Let me see if we have a queue right now.
+<juan_caballero> I just had a quick question. If
+<juan_caballero> Maybe this is just following on the same lines, 
+  but I was just wondering is if there's any sense of like	PII goes 
+  here or like no PII go through like what the instance. Could it 
+  be some record systems for for student credentials would have, 
+  like, I don't know, a student identifier in there or
+<juan_caballero> Just wondering about that because Kim was saying 
+  the image that might contain PII or
+<juan_caballero> something specific to the student would would 
+  happen in the instance section is that sort of by design.
+<kimhd> That was just an example of how you could use instance in 
+  the API question. Is it big and it will be going on, we need to. 
+  So I'm thinking that for this job spec, a more complete survey of 
+  that may be out of scope but with that.
+<kimhd> We definitely need to include in the privacy, security 
+  concerns what's happening there. But I do think we need you know 
+  basically like the concerns like you don't want to put it on a 
+  blockchain or things like that. But we do need to
+<kimhd> I mean, that's a general problem with verifiable 
+  credentials. But I think that it would be useful for us to push 
+  forward on that specifically in the context of education. I'm 
+  curious, maybe I could ask
+<kimhd> Well, actually, I'll get to Phil first and then I was 
+  curious to ask and Anthony if what's happening in EDCI, for 
+  example, Phil your up first.
+<phil-t3> Thanks, Kim. I'm trying to get my head around the, the 
+  level of the conversation here because it sounds much to me at 
+  least, like what Anthony suggesting has many of the elements that 
+  are in, for example, the the data model for badges, an assessment 
+  pointer to the method by which a particular achievement or or 
+  capability was determined
+<phil-t3> Or evidence of that determination in terms of an array 
+  of things that a person might have done that they can be pointed 
+  to, so I'm just trying to understand how what we're talking about 
+  here differs from the description of other data models that have 
+  been put forward for carrying a credential.
+<kimhd> I can talk to that quickly and then I'll work through the 
+  queue.
+<kimhd> Which is that I think what we're talking about here is 
+  the more generalized notions. So I think that, you know, there 
+  are other say other non Open Badges type schemas. This one 
+  specifically we're trying to avoid use of certain terms. We're 
+  just talking about the concept of it and then those can be mapped 
+  to these other frameworks, but there's a mapping work in T3
+<kimhd> In you know this credential credential here means 
+  credential there, this field here means that field there, I think 
+  what we're talking about is slightly higher level than that we're 
+  talking about, you know, what are the the concepts we want to 
+  express, and what are the general categories we want for it. So 
+  like this idea of, the definition versus the instance	and then I 
+  don't think it will necessarily be saying like things have to 
+  comply with this structure like this isn't prescriptive for Open 
+  Badges to say adopt the structure is useful for understanding how 
+  what they have in Open Badges map to this. That's my personal 
+  take on it
+<kimhd> Add yourself to the queue if you have more. If you have 
+  additions carry your up
+<kerri_lemoie> Actually I don't have much more than Phil because 
+  I was thinking the same thing that we're talking about someone 
+  like an individual's assertion.
+<kerri_lemoie> And the corollary it Open Badges with like, you 
+  know, a baked badge, the badge image. What could have something 
+  that is personal and unique, whereas the badge image overall is 
+  something that you know all the recipients references. So, um, 
+  and also, I guess I should say that in the out of scope.
+<kerri_lemoie> Issue that you had up earlier because I was a bit 
+  late. Sorry, I am I added something about evidence and 
+  documentation. So I don't know, maybe if that fits in here in 
+  terms of like providing evidence of some kind.
+<kerri_lemoie> Of proof, visual, or audio or some kind of media 
+  reference or something like that. I was I'm probably too specific 
+  at the stage so
+<kimhd> Oh no, that's interesting. So for evidence are you seeing 
+  that would be out of scope.
+<kerri_lemoie> Well, I put it in the out of scope document ask 
+  that question to see if it is out of school. I wasn't sure if it 
+  come up yet, but it's a pretty critical aspect of matches that I 
+  think has been under utilized that could be more utilized
+<kimhd> Yeah, that's a good point. Putting it in the issue is a 
+  good start. I'd like to continue iterating on that I
+<kimhd> Think. Yeah. Actually, we'll come back to that. I was 
+  going to offer some opinions on that but I
+<kimhd> Yeah, we'll come back to that. Let me see what else I 
+  might be missing data ecosystem schema mapper is that the term 
+  that I was looking for earlier?
+<phil-t3> Basically yes, that's the link that you were talking 
+  about the T3 that use you pick a spine as a reference. And then 
+  you map directly to the elements of other representations
+Kim Hamilton Duffy: So, back to the PR. Where we are: so concepts 
+  requiring definition. So Anthony to get back to the PR, I think.
+<kimhd> So this is in sort of the intro section where we're 
+  talking about what is the scope of this documen, and then we have 
+  this concept example.
+<kimhd> Now, Anthony, can I ask you to comment on how you see the 
+  this informing the rest of the document so
+<kimhd> My read again is this is talking about conceptually the 
+  generalized structure. And then this specific examples we give 
+  you know may not necessarily comply with this, but this is a good 
+  generalized structure for things like where we're bridging the 
+  frameworks, like something defined in credential engine would be 
+  a really good example of that.
+<kimhd> That's Not trying to describe the instance; it's 
+  describing more what's in this definition part
+<kimhd> So, yes. Any other comments on, you know, sort of context 
+  and purpose of these additions.
+<anthonycamilleri> Maybe I will answer to as well here. So we're 
+  clearly not trying to build a empire edu standard here.
+<anthonycamilleri> Let's say, for example, 4 concepts was an 
+  attempt to say are these the concepts that can map across all the 
+  various educational standards. If an open badge could fit into a 
+  verifiable credential, the EUROPASS would fit and the credential 
+  engine would fit and that would at least be like a small base of 
+  concepts that can be carried over between them, and that was also 
+  the reason I put in definition and instance, is because if you 
+  look at the European ones are in particular EMREX and Europass 
+  this instance is a big deal mainly because they were built for 
+  formal education and by the way, the instance terminologies also 
+  stolen from there, but I'm not wedded to it in any way.
+<anthonycamilleri> But moving forward from here. The idea would 
+  be I think that first we would find the names for these concepts 
+  which we can agree on. And I'm very afraid of that process. 
+  Actually, I'm
+<anthonycamilleri> But then, secondly, we would need to, I think, 
+  agree, what is the minimum amount of data each concept should 
+  contain, which I think is the trickier one -- a name, we can all 
+  agree on beyond the name, it starts getting more complex. And I 
+  think we need to discuss
+<anthonycamilleri> In terms of what goes into the instance, I 
+  don't think we need to define anything at this stage that goes 
+  into an instance
+<anthonycamilleri> I think it would be lets say up to the 
+  framework to define what goes in the instance. There are a couple 
+  of things you might say, we would consider standardizing you 
+  could consider putting the grades there, you could consider 
+  putting an evidence there.
+<anthonycamilleri> But let's say for both of those are. I have a 
+  question mark in my own head, whether let's say something we 
+  should deal with here or if that should let say belong somewhere 
+  else in terms of standardizing and originating
+<anthonycamilleri> So those are my thoughts are so far. And to be 
+  honest, further thoughts will come. Basically what people say 
+  this cool
+<kimhd> Great Phil Barker, you're up.
+<philbarker> I'm looking at this and I'm trying to get my head 
+  around whether it fits with the current things that are already 
+  in schema.org
+<philbarker> And hasConcept I'm finding a bit confusing. And I'm 
+  wondering if there isn't some way of using the existing 
+  hasCredential. Measuring the sort of thing that's already in 
+  schema.org between a course and a courseinstance to have a 
+  credential and a credential instance and that perhaps skipping 
+  the definition thing because it, you know, it seems to me that 
+  the definition is what you already have for the range of 
+  hasCedential, which would be a credential described in JSON LD.
+<philbarker> Which sounds a bit rambling. I just wanted to say 
+  that if this seems confusing to me, given the background of 
+  what's already in schema.org
+<kimhd> I'll comment Anthony, but my impression is not that it's 
+  meant to replace that. I think this is just a kind of meta, meta 
+  model. I think right so hasConcept...
+<kimhd> He intentionally doesn't want to put word specific words 
+  in there, right, because there's discussion about like 
+  hasAchieved versus hasPerformed vs hasCredential. And I think 
+  that we're, we're all aligned that hasCredential is it's good 
+  that it's there, we can reuse that
+<kimhd> But the idea of what are we trying to describe in general 
+  before mapping to some specific things. So Anthony, can I	call on 
+  you to talk more about that.
+<anthonycamilleri> Though I think you covered it, the issue with 
+  hasCredential is, I don't know if hasCredential would apply 
+  equally to have four concepts I describe above
+<anthonycamilleri> If so, then you might use hasCredential and 
+  make those types or those could be four different high level 
+  concepts. So this isn't something I am clear on myself, either at 
+  this point.
+<philbarker> Okay, that's fine. That's fine. I was just getting a 
+  bit confused with the sort of the point where the way wording 
+  goes from this vague hasCredentials to the very specific example 
+  underneath that. But okay, I understand that the context. You've 
+  just explained
+<kimhd> So one actually. Other thing related to this is that we 
+  probably need to get editors so, my	comments on editors versus 
+  authors. So my understanding is for editors.
+<kimhd> That's more, the people that are editors are also 
+  authors, but then they're also taking responsibility for doing 
+  PRS and accepting commits to the spec and then also just sort of 
+  they are more owning the general direction of the spec.
+<kimhd> And then authors. I think that there's some heuristics 
+  that are used for that. But typically, I think.
+<kimhd> You know, it's something that self identified; if this 
+  spec is something you want to contribute to you see yourself 
+  making
+<kimhd> commits in the future, then we can add you as an author, 
+  and I think that there are few people that I've identified as, 
+  you know, sort of contributing to this already. And feel free to 
+  can can people just reach out to me directly. If you're 
+  interested in being an editor versus author, and what I'll do is 
+  get an initial set of names on the spec itself, because I think 
+  we do need to have some initial set of editors to approve PRs 
+  just so it's not rubber stamping this, but I think that my 
+  proposal would be that we accept this. And I do think possibly by 
+  the way I'm showing it on my screen like it's hard to keep the 
+  context like Phil was talking about, for example, like we don't 
+  want people to read this and think that we're proposing.
+<kimhd> That people write credentials, like with this hasConcept 
+  term, we want to make clear that
+<kimhd> The framing of what we're talking about here, but I think 
+  that's more editorial versus this content, which I think we now 
+  understand the context for, so
+<kimhd> I would like to propose that we merge it with those 
+  clarifications, if needed, but then also we should have editors 
+  and authors (and reach out to me if you're interested in that.)
+<kimhd> We have some discussion about K-12 assertions, Marty. Do 
+  you want to talk to that?
+<marty_reed> Yeah, so we've been we've been working on kind of 
+  the CLR JSON model and I was just wondering, were capable of 
+  assertions like GPA or even a know base64 encoded version of the 
+  transcripts might fall in these in these concepts, because those 
+  assertions seem to overlap these concepts. And so I was just kind 
+  of wondering if there was a specific one that that you thought 
+  about or is that separate
+<kimhd> It Anthony, you mentioned concept three. Do you have 
+  anything to add to that?
+<anthonycamilleri> Yes. So certainly are anything that's the 
+  result of some kind of assessment, generally we consider as 
+  concepts free for the moment. 
+<anthonycamilleri> Now, if the transcript makes references to 
+  learning outcomes achieved as well. You might say concept three 
+  with references to concept 2. But basically concept three is 
+  meant to be any type of diploma, transcript, or any other typical 
+  paper formal education institution.
+<marty_reed> So for me the language there is just a little 
+  confusing when you say formal assessment process because that I 
+  guess it could be considered a course is andassessment of skills, 
+  but just some way to clarify that language a little bit would be 
+  helpful.
+<marty_reed> A formal education process or I don't know how what 
+  the right terminology is but, the term assessment from a k-12 
+  perspective is very specific ersus you know, a course, per se.
+<marty_reed> Are we getting too granular here?
+<kimhd> No, no, that's good. There's two. So there's two paths to 
+  what I'm thinking right now. One is that so, so I think this 
+  framing of like what concepts we're trying to address is 
+  critical. I think then, within that, we're going to call out 
+  there's a few specific examples that we want to demonstrate. 
+<kimhd> We haven't yet locked down what those examples are. And 
+  so I think, you know, for example, if you want to propose this 
+  k-12 example, that might be a good one, especially if that's 
+  something that's happening in LER pilots.
+<kimhd> So there's there's one thing that we might actually take 
+  a stab at mapping that out in the context of this document, but 
+  at the same time, I think for, further refinement of that 
+  language. I'd like to land this PR and then keep iterating on 
+  that. So, for example,	we could either open issues or PRs and 
+  come back to it in and other discussions.
+<kimhd> I don't know if there's an easy change to that. But I 
+  think that we have some people here who could help refine that 
+  language. So I'd recommend opening an issue in on the VC-Ed 
+  models repo to sort of clarify how k-12 terminology fits in.
+<marty_reed> Makes sense. Thank you.
+<kimhd> Joshua was that I don't know if that was a comment. I'm 
+  not sure struck means
+<kimhd> Phil
+<phil-t3> I think what I what I think he's trying to do is is I 
+  described in the chat is lay out a sort of a superstructure for 
+  this conversation, within which more detailed things need to fit 
+  or for which, if they don't, the superstructure needs to be 
+  questioned and the one thing that I didn't notice in here is that 
+  Non formal or informal learning activities.
+<phil-t3> I'm not sure quite fit in the superstructure at this 
+  stage.
+<phil-t3> Because they can be every bit as
+<phil-t3> As evidence based as
+<phil-t3> A structured thing they're just not presented in the 
+  context of the learning outcome intended there. They're often 
+  occurring in work and various other learning focus structured 
+  activity.
+Joshua Marks: Yeah, and that's what I was about to elaborate on 
+  what Marty was saying there's a set of things that I wouldn't 
+  call our achievements, but our summary outcomes such as GPA.  
+  We're dealing with two or three different kinds of GPA: core GPA, 
+  total GPA, and sectional GPA kind of components of a transcript 
+  and those are not individually achievements, but the summaries of 
+  a bunch of achievements, I might argue that the credential itself 
+  is also a summary of a bunch of achievements.
+<joshua_marks> And then in addition, there's a bunch of 
+  information that occurs in the transcript that describes the 
+  context of the achievement, but not an achievement in and of 
+  itself.
+<joshua_marks> You know, like, what term in which the achievement 
+  was achieved or the time period that the credential was awarded, 
+  etc. So there's many things that I don't think fall into these 
+  concept buckets that are important to something like a 
+  transcript.
+<joshua_marks> And have been formalized in many transcript 
+  structures. And I think what Phil was saying also goes along with 
+  that, there's many things in job context that are contextual or 
+  summary that don't fall into these buckets.
+<kimhd> Anthony. You're on the queue.
+<anthonycamilleri> Okay. Ah, so what you're referring to Joshua.
+<anthonycamilleri> I fully agree, and I understand.
+<anthonycamilleri> I mean, I think this is something we could get 
+  in terms what Phil was saying I could, I asked you for a little 
+  more explanation in the sense that for me.
+<anthonycamilleri> In terms of an example because for me this is 
+  what concept one was for, to describe informal learning where you 
+  say, I just did something. It wasn't part of an educational 
+  program or so on. Here's something I did. Here's my work 
+  experience. It's just something I did.
+<anthonycamilleri> Or you could use conception to say I have this 
+  skill, I'm not telling you anything about this program, etc. So 
+  I'm not quite understanding what's missing is something is 
+  absolutely no issue, but I need a couple of examples to get where 
+  you're coming from.
+<kimhd> Yes, Phil.
+<phil-t3> Thanks, Anthony. I think the main crux of what Joshua 
+  was alluding to this is that the context. I think seems to 
+  matter. One might, for example, in the context of working on an 
+  accounting system in a job become facile with particular methods 
+  of calculation with that involve statistical calculations of one 
+  sort or another and learning it that way, as opposed to being in 
+  a course in accounting that specifically intended to build a 
+  structure for you to learn those sorts of things to me at least 
+  implies a different a different set of experiences that, on the 
+  one hand, both lead to the ability to do a particular thing.
+<phil-t3> But the non-structured approach conveys that that was 
+  done because the person brought to it's something that they were 
+  able to leverage to achieve that outcome as opposed to having 
+  that constructed in an intentional way for them to be able to 
+  build on.
+<phil-t3> Don't know if that helps you
+<anthonycamilleri> I know that sounds completely on what I would 
+  suggest is, either  you or I could do it, I would suggest that we 
+  open an issue for the GPA example and for this exam I will keep 
+  the other use case. So, and then, basically we can give it a shot 
+  and trying to break it down
+<kimhd> Yeah, that sounds good. Thank you for clarifying that.
+<kimhd> Okay I think PII might be too meaty to get into now.
+<kimhd> We might have that as a separate discussion with maybe 
+  with a little more preparation. Anyone have anything else to add, 
+  we might be able to end a little bit early. If not,
+<kimhd> Phil Barker?
+<philbarker> Yeah. Could you scroll down a wee bit on the screen, 
+  please.  So it's part of what I covered in my last ramble
+<philbarker> I think what I'd like to see in this and what, you 
+  know, if you like, I can you know if this is accepted as a public 
+  rest, I can build on that is that the the schema hasConcept 
+  shouldn't go to something that's got a definition, it should go 
+  straight to the definition of the thing.
+<philbarker> And the instance should be an instance of a thing. 
+  So if you have schema hasCredential.
+<philbarker> Then what you have underneath that is the idea of 
+  the credential and type credential, which is already a typing 
+  schema and then
+<philbarker> Consider adding to the credential class in 
+  schema.org a hasInstance property which goes to what's listed 
+  here as a separate property instance, because what I'm not seeing 
+  here you know types. I'm not seeing domains that match what's in 
+  schema.org at the moment.
+<philbarker> I can imagine a hasCompleted that goes to a course 
+  and then you can use the existing course instance to point to the 
+  particular instance of the course.
+<philbarker> So I don't think I want to try and explain that any 
+  further in words, but if this is accepted as a pull request. I 
+  can try editing it to show more clearly what I mean
+<kimhd> One thing I'm wondering is, maybe having the schema 
+  prefix is sending our heads in the wrong direction, because I 
+  think I'm seeing this, not necessarily as something that someone 
+  would express directly. So Phil B I definitely hear what you're 
+  saying. Like in terms of how schema org works.
+<kimhd> You would have some of this in the type; I think that 
+  this is just calling out a meta structure again and and i think 
+  one way we might do that is just expressing it more like in 
+  pseudo code, rather than in JSON; just making it clear, like this 
+  is this is not a thing that we're recommending you go off and do 
+  this is the, these are the high level elements.
+<kimhd> Then, in terms of how it how it's actually implemented, I 
+  think, is what I'd really like to get that from you because I 
+  think how that maps to schema.org --  what's in there right now. 
+  That would be very useful.
+<kimhd> But I could take a stab at that, if if Anthony is all 
+  right. Obviously I'll submitt as a PR. But Anthony What do you 
+  think about that, like if I sort of rework it into kind of more 
+  pseudo code kind of
+<kimhd> Less weight then JSON-LD. And then maybe the 
+  interpretations people are taking with it.
+<anthonycamilleri> No problem from my side, anything that makes 
+  it clear, and let's have some fun debating.
+<kimhd> Any other comments before we end the call.
+<kimhd> So I want to thank everyone. This was extremely useful 
+  for sort of start working through some of the issues we're going 
+  to continue having these working sessions and, you know, focusing 
+  on this and any related efforts. learner wallet discussions might 
+  come up more in the coming weeks as a separate issue, but it 
+  would be nice to get this thing closer to landed and finished off 
+  or at least at a stable point where we can continue iterating in 
+  the background.
+<kimhd> So Phil reiterate next steps. Good idea.
+<kimhd> We have a lot of them. First we need editors and authors 
+  and they don't have to be the final set but I'd appreciate if 
+  people could reach out to me directly. If you're interested in 
+  being an editor or author just email me.
+<kimhd> And so we need, we need some names on the spec. The 
+  editors are the people who should review the PRs as they come in. 
+  And so this will be a good forcing function.
+<kimhd> Let's see. Okay, so then we get editors, we merge this, 
+  and then we start reworking into some, something that captures 
+  this discussion. So, for example,
+<kimhd> It seemed like the framing of it, you know, describing as 
+  JSON-LD versus something more pseudo code type of thing was maybe 
+  confusing people. So I'll take a stab at that. There were a few 
+  other things that came up
+<kimhd> For example, Joshua Marks had a good term for it. Summary 
+  outcome or something, he was using GPA as an example.
+<kimhd> Were in our concepts we didn't quite have a category for 
+  that yet. So I think that I would appreciate it if we could get 
+  filled long in Joshua marks to hopefully add some details there. 
+  So we'll probably need to do that in a in a tracking issues. So I 
+  can send that out.
+<kimhd> Oh, thank you, Phil, you're writing them to me. So the 
+  the other one would be creating an issue around  summary 
+  outcomes, perhaps
+<joshua_marks> Yeah. Summary outcomes and outcomes context.
+<joshua_marks> So the two buckets or the outcome context is gonna 
+  be tricky because it occurs at all levels of the hierarchy.
+<kimhd> Great.
+<kimhd> And then there was one other thing that I just 
+  remembering from way further back in the discussion is Phil Long 
+  mentioned around recommendations about use of DIDs.
+<kimhd> There's several layers to it. But I do think that it will 
+  be useful for this document to have something around at least a 
+  descriptive definition of how DIDs can be used.
+<kimhd> Because I think I'll be able to provide that
+<kimhd> Any more thorough examination of which did are useful for 
+  which kind of context would be out of scope, but I think we could 
+  bring something like that in scope. So that's the last thing that 
+  we had privacy. PII will will definitely come up again. So I 
+  don't, I don't know if there's an issue we need to create right 
+  now. But we'll, we'll come back to that.
+<kimhd> Great. Thank you so much, Phil. Saved me some time.
+<phil-t3> Trying to help
+<kimhd> Okay, thank you, everyone.
