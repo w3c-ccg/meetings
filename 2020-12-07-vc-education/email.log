@@ -1,0 +1,557 @@
+Thanks to  for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-12-07-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2020-12-07
+
+Agenda:
+  undefined
+Topics:
+  1. Introductions and Reintroductions
+  2. DOE Wallet
+  3. Modeling EDU VCs
+Organizer:
+  Heather Vescent and Kim Hamilton Duffy and Wayne Chang
+Scribe:
+  
+Present:
+  Kim Hamilton Duffy, Timothy Ruff, Nate Otto, Juan Caballero, Phil 
+  Long, Phil_Barker, Dmitri Zagidulin, Simone Ravaoli, Niaz 
+  Chowdhury, Adam Lemmon, David Ward, Jim Kelly, Maarten Boender, 
+  Robbie Jones, James Chartrand, Sharon Leu, Stuart Freeman, Kerri 
+  Lemoie, Jacksohne, Matt Lisle, Kostas Karasavvas, Keith Kowal, 
+  Jerry Ma, Chris Winczewski, Jeanne Kitchens
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-12-07/audio.ogg
+
+
+Topic: Introductions and Reintroductions
+
+<kimhd> Okay, are there any new people that would like to 
+  introduce themselves, feel free to speak up
+<timothy_ruff> This is Timothy Ruff. I'm a first timer. I know a 
+  few of you. And really just excited to be here and hear what's 
+  going on. It seems like you guys have some good momentum and I 
+  have followed some of the
+<timothy_ruff> The notes from previous meetings going back look 
+  like several years so, excited to listen to what you guys are 
+  doing.
+<kimhd> Anyone else new to these calls
+<kimhd> Okay, reintroductions. This is the opportunity if you've 
+  switched focuses recently you're wanting to tell the group what 
+  you're now interested in you can reintroduce yourself.
+<kimhd> I think we can just go ahead and get started. We have a 
+  lot of lot to cover. First, let's get to the DOE wallet overview 
+  and then we'll talk about the modeling educational verifiable 
+  credentials open issues.
+
+Topic: DOE Wallet
+
+<kimhd> Other presentations we've talked about sort of the 
+  context of the DOE learner wallet. This one we're going to dive 
+  in pretty quickly into the approach.
+<kimhd> If you're interested in learning more about the context 
+  then just let me know. There's some other presentations, we can 
+  cover.
+<kimhd> DOE Learner wallet. It is a Department of Education 
+  funded effort and the original idea behind it was there's a set 
+  of at risk schools where it would be beneficial to use this kind 
+  of technology that we're building -- learner controlled records. 
+  So the idea was -- let's actually try this out on some real 
+  higher educational institutions.
+<kimhd> This is a joint work of MIT and DOE, still figuring out 
+  some pilot partners. There's a list of criteria, but it's 
+  basically we want to cover a broader set of scenarios and make 
+  sure that the learners really can use them in a verifiable 
+  credentials ecosystem.
+<kimhd> It's a very short, aggressive time span. So what are the 
+  deliverables -- it's a learner wallet standard, keeping in  mind 
+  that the word standard is used very loosely here. It's a draft 
+  standard that we are all familiar with that groups like this can 
+  come up with. And then over time we turn over to actual standards 
+  track groups, then an open source wallet code base and detailed 
+  documentation of that.
+<kimhd> Once the higher educational institution partners are 
+  identified, deploy the open source wallet as a reference 
+  implementation.
+<kimhd> And then evaluate the implementation efficacy and learner 
+  perception. This is supposed to be rolled out roughly by all next 
+  late next spring, early summeriish but there's phased 
+  deliverables in between.
+<kimhd> This is a lot of work for a short amount of time. And so, 
+  the good thing is that the Department of Education partner behind 
+  is Sharon Leu is working closely with our other, what I call, 
+  well-intentioned benevolent government contacts, like Anil John 
+  from DHS, who has done a lot of work to drive the verifiable 
+  credential interoperability test suite through the DHS SVIP fund. 
+  And so the way that we've been approaching this is what I call 
+  building a minimum spanning tree connecting the work that this 
+  group has done and the work of the CCG, decentralized identity 
+  foundation, T3 network.
+<kimhd> Getting things connected in terms of standards that 
+  actually build on existing efforts and complement them and make 
+  sure it's an ongoing, growing effort. With that in mind.
+<kimhd> I want to first talk to the foundations of the approach 
+  and then we'll get a little more specific. Two core foundations 
+  and then one core alignment
+<kimhd> You can view it as a draft standard and reference 
+  implementation, but
+<kimhd> There's it strongly based on on two items. One of these 
+  is the LER wallet / wrapper spec that people who are familiar 
+  with the T3 innovation network are probably familiar with.	Jim 
+  Goodell was a lead author on this in what he described is two 
+  things.
+<kimhd> One is a way to express a wide variety of educational 
+  learner/worker claims embedded into this LER wrapper, which is 
+  basically a verifiable credential. So that was really critical 
+  for bridging verifiable credentials to things like PESC XML 
+  transcripts, Open Badges, etc. So some of that work in terms of 
+  more detailed mapping we're continuing in this task force.
+<kimhd> But this is a really good foundation for just making 
+  things work out of the box. Now, in addition to the payload data 
+  models, it outlines a set of functional requirements which I 
+  realize is a really good set of requirements to base this effort 
+  om.
+<kimhd> It called out functional requirements, but out of scope 
+  was specifically how that's happening. So I see this effort as 
+  starting to chip away and talk about how.
+<kimhd> How to accomplish those functional requirements. The 
+  Second Foundation is the universal wallet interop spec and so
+<kimhd> We'll, talk a little bit about that. Basically the 
+  universal wallet interop spec. We've probably talked about many 
+  times, but it's a sort of a foundation for a wide variety of 
+  digital wallets. So this isn't the same thing as a learner 
+  wallet, rather learner wallet would be based on this universal 
+  wallet. But it basically allows interoperability across a 
+  bbroader array of wallet standards.
+<kimhd> So it's very important to align with that because it 
+  helps increase the way that learners can actually use their 
+  records.
+<kimhd> The universal wallet interop spec is both interface and 
+  an implementation. You don't have to use the implementation but 
+  you can. So the way that we're planning to use it is -- doing a 
+  lot all the work that can be done at that layer do that. And then 
+  lastly,
+<kimhd> The DHS SVIP interop test suites is a really useful model 
+  for helping improve interoperability across different approaches. 
+  So
+<kimhd> Before these test suites were developed it was really 
+  difficult to know -- say I'm a company that makes that that makes 
+  a product that issues verifiable credentials and and you do the 
+  same. But how do we really know all of our stuff works together 
+  so
+<kimhd> That was actually a lot of work to do, but through this 
+  program, there was developed a set of issuer API's and verify or 
+  API's that
+<kimhd> A broad array of issuers verify our libraries could 
+  actually test against to ensure that there is interoperability. 
+  So we see this as a really important foundation to use and 
+  continue
+<kimhd> Note that all of these efforts are really things that we 
+  want to invest in because independent of this particular project. 
+  These are the things that help ensure longevity for the overall 
+  effort.
+<kimhd> This is a more detailed list of standards and alignments, 
+  and it's not necessarily complete so feel free to mention things 
+  that may be missing.
+<kimhd> This is an area that there's a lot of work in progress 
+  draft exchange request protocols, we need to list. And that's 
+  going to be one of the most challenging parts of this or 
+  interesting parts of this
+<kimhd> We don't have to read this but I want to include just for 
+  reference in the LER wrapper wallet spec, what does it call as 
+  the functional requirements for the wallet. And so, it calls out 
+  very clearly receiving LERs, persists, select send, and then it 
+  says what it may be able to do
+<kimhd> So again, it says what it should do it doesn't say how. 
+  So what this effort can really where this effort can really 
+  benefit is starting to fill in details of that from an LER wallet 
+  perspective and mapping it on to verify credential, decentralized 
+  identifier, and related LER standards.
+<kimhd> On the identity side, it does call out relying on a proof 
+  of control identifier that allows a specific individual to 
+  positively assert the record is authentic and it's issued to that 
+  person.
+<kimhd> So I like that framing because that's very consistent 
+  with the fact that a verifiable credential.
+<kimhd> Is not restricted to taking a decentralized identifier as 
+  a subject -- it takes a URI which can be a decentralized 
+  identifier and we know a lot of efforts are very interested in 
+  decentralized identifier based approaches, but at the same time. 
+  It's interesting to explore other methods as well. And so I think 
+  the main thing of this calls out is the value of something that a 
+  learner can prove control over and so
+<kimhd> Let's look at this view over here first.
+<kimhd> One thing that, as I've been looking through the 
+  universal wallet spec. So the way I describe the wallet as 
+  described there is it's pretty generic and pretty dumb in a way
+<kimhd> It doesn't necessarily have a concept of, well, this is 
+  something we're still debating -- whether the wallet that we're 
+  describing there has a concept of verifiable credentials versus 
+  whether it's a separate layer that would allow it to switch 
+  between okay here's my verifiable credential wallet versus here's 
+  my digital currency wallet.
+<kimhd> This is universal wallet interop spec, we have a lot of 
+  discussion on the issues happening right now about, what's the 
+  right level of granularity.
+<kimhd> Notice that there's some operations that you would expect 
+  to be common to any sort of digital wallet like import, export, 
+  lock, unlock, query.
+<kimhd> But then there are some that are more specific to a 
+  verifiable credential wallet like issue, prove; whereas some are 
+  more specific to a digital currency wallet like transfers. So 
+  we're talking about the modeling of that and how that manifests 
+  to the spec. But basically what we're building is this very 
+  layered approach.
+<kimhd> But then in terms of actual storage like say when you add 
+  something to the wallet. How can you make sure that the storage 
+  can be to a wide array of backing stores so
+<kimhd> There's a lot of different approaches that people are 
+  using. And then there's a lot of different use cases. Sometimes 
+  you want it to be stored on device. Sometimes you want it to be 
+  in
+<kimhd> What's it called now confidential storage, which is the 
+  new name for identity hubs and encrypted data vaults.
+<kimhd> And so abstracting over that abstracting over identity, 
+  or rather identifier methods so that those can be pluggable
+<kimhd> The universal wallet already calls out a sort of layer of 
+  indirection there, but we need to make that more explicit as part 
+  of this work and then also demonstrate some appealing use cases 
+  for the examples and reference code for the use cases we come up 
+  with
+<kimhd> In the data model, there's additionally related concepts 
+  about, what would be in a universal wallet, but
+<kimhd> But so we're in the process of grouping/ categorizing 
+  those now.
+<kimhd> What I'm getting at is that the wallet will consist of 
+  some things that are  applicable to any wallet. So the concept of 
+  connections. They may be used differently in a verifiable 
+  credential wallet versus a currency wallet and profiles, which 
+  we're calling a way of grouping sets will this name won't 
+  necessarily be the final name, but it might be a way of like 
+  grouping for youracademic history versus your you know what you 
+  want to present in this social context.
+<kimhd> Then up here is sort of the layer that the universal 
+  wallet doesn't really talk about right now.
+<kimhd> Or rather, if it does, it's sort of not as cleanly 
+  defined. So this is going to be a really interesting area where 
+  the functional requirements of the LER wallet come in. So, and 
+  those have to do with interactions. So how do I get a credential 
+  frrom an issuer, how do I exchange it with a relying party.
+<kimhd> Other usage patterns that may be things like selective 
+  disclosure
+<kimhd> Again, this is the use case dependent, how, how much we 
+  get into it, but we want to start clarifying how this all fits 
+  into this effort.
+<kimhd> And then lastly schema. So the universal wallet. It's 
+  only awareness is a	Verifiable credential, but we know that as we 
+  develop you can do richer kinds of operations. If you know what's 
+  in that credential. So what are the kinds of things that people 
+  might want to do and how can you expose that functionality. Those 
+  are the kind of things that will be interesting to cover there. 
+  Now, in terms of the interactions, there's one thing I wanted to 
+  call out which the learning economy folks, especially Nathan and 
+  Jackson had started which is a data flow perspective.
+<kimhd> What the flows are from issuer to holder
+<kimhd> And then once the holder has a verifiable credential, how 
+  do they pass on that presentation to holders.
+<kimhd> We want to bring this effort back into scope, and these 
+  items up here are not necessarily in scope of the universal 
+  wallet layer. 
+<kimhd> There's influence; this layer will use or customize 
+  things from the, the lower layers, but these are the kinds of 
+  efforts that will be working on. S
+<kimhd> This one, I don't know what that's called, yet but that's 
+  really one of the focuses of the learner was like learner wallet 
+  that's not the universal wallet, if that makes sense. So with 
+  that, I'm going to stop there.
+<kimhd> And I wanted to see if there's any comments or discussion 
+  about the approach, let me bring up cat now.
+<kimhd> Probably important to include smaller might be 
+  interested, rather than yes. So that's a good point. Those facing 
+  imminent potential insolvency, obviously, that's the nightmare 
+  scenario that we're worried about. But yes, we should rephrase.
+<kimhd> What recipient identifier types are compatible. I think 
+  that what this effort where this effort can benefit the community 
+  is calling out what are good criteria, really. So we're going to 
+  have some reference implementations for the use cases. But 
+  there's other work that's happening. 
+<kimhd> In terms of you know what what makes a good learner 
+  identifier method. So the did rubric is an attempt to call out 
+  more general framework for aligning them.
+<kimhd> This link right here is the design decisions that the DCC 
+  came up with looking into	the learner identity method criteria. 
+  So things like for the learner you there are certain 
+  characteristics that you want that may not necessarily apply to 
+  the issuer
+<kimhd> You want it to be portable, cheap or free ideally, 
+  interoperable.
+<ottonomy> Yeah, I'm interested more in which identifiers and a 
+  proof of control protocols that partners in this work actually do 
+  want to use rather than the criteria by which we might assess one 
+  of these things, eventually, if we don't have any ideas. Yet, of 
+  which did methods are are interesting for people to try out the 
+  hard to even formulate criteria. Are there any personal control 
+  protocols or specific did methods that view here.
+Kim Hamilton Duffy: The easy one to do that offers proof of 
+  control, but does not offer the, the longer-lived options is just 
+  did:key.  It relies on re-issuance by the issuer if in case of 
+  identifier loss. So it's not ideal. But it can be used for 
+  demonstration or for cases where you can be guaranteed that the 
+  issuer can reissue to the learner. There's a few methods we're 
+  evaluating that are close to that -- very lightweight, but with 
+  some rotation ability. 
+<kimhd> And then the other thing that I want to call out is that 
+  there can be URI-based methods outside of decentralized 
+  identifiers, or KERI. So we won't have a list of recommended 
+  DIDs, but reference implementation, instructions for how to add a 
+  new identifier, and a set of criteria for evaluating learner DID 
+  methods.
+<juan_caballero> I was just gonna add to that that KERI works in 
+  a couple of different configurations and depending on how you 
+  build it, or how its installed in a given place ,could work with 
+  what you said previously about a sort of custodial reissue
+<juan_caballero> This sort of centralized recovery could be done 
+  with KERI quite well in terms of the way I know a lot of people 
+  that are using conventional identities for now with VCs have this 
+  idea of bootstrapping existing like account management instead of 
+  key management and so if someone needs to have their stuff 
+  re-issued
+<juan_caballero> They just call the existing one 800 number of 
+  the, you know, university or identity provider and get them to 
+  rotate, you know, send a new one that works really well with KERI 
+  base	Did.
+<juan_caballero> One thing that's a little one particularly 
+  important aspect in the did rubric that might be we're thinking 
+  about early on as a functional requirement is whether or not to 
+  support or  even ban methods that have historical verification 
+  and in the sense of being able to look up what the key material 
+  was for a. Did you know directly on a specific day in history. 
+  For the purposes of verification. I know that there's some debate 
+  about this and	Did methods vary a lot on this, but I, the reason 
+  I mentioned is that that creates drastically different 
+  architectural assumptions, whether or not that's present or not 
+  present so that that kind of verification might be a thing.
+<juan_caballero> That could rule out some methods.
+<kimhd> There's two points, like, one is that the historical 
+  verification. On the issuer side that is tremendously valuable 
+  because it can allow people to verify older issued credentials 
+  without reissuing. I'm assuming you're talking about the learner 
+  side right
+<juan_caballero> Yes
+<kimhd> So yes, there's a couple things going on there because 
+  KERI does outline a set of cryptographic key management best 
+  practices that other decentralized identifier methods are 
+  starting to
+<kimhd> Use now so pre rotation and things like that so
+<kimhd> And I think that there's a mix of, you know, there's the 
+  decentralized, I didn't. There's essentially identifiers, but 
+  then also they decentralized identifiers can have flexible 
+  methods of authentication, like say using a the university login. 
+  So I think that where this gets interesting is being able to talk 
+  about specifically for some learner use cases. What are some some 
+  valuable things that we can do and we can start implementing 
+  those
+<kimhd> P1, you're up
+<phil-t3> Up. Sorry. Thank you. I just wanted to clarify when you 
+  put up the diagram.
+<phil-t3> With the blurry text on the right.
+<phil-t3> Upper part is about creating the credential and the VC 
+  in the first place in the lower part is really about 
+  presentation, creating a presentation of those VCs
+<kimhd> Right.
+<phil-t3> When I read it. And so you're saying that yours is 
+  focused on that lower part
+<kimhd> Let me reshare that diagram.
+<kimhd> So one thing in terms of that diagram on the left.
+<kimhd> To the extent that we're layered on top of the universal 
+  wallet. There is some work of this effort that affects that lower 
+  layer.
+<kimhd> So some of the work does affect the lower layers. A lot. 
+  The one part of it is conceptual clarity that the universal 
+  wallet needs and we can help with
+<kimhd> But I think to a large exten, we will be able to get that 
+  to a point where we consider that kind of good enough for our 
+  purposes, and I really see most of the effort happening up here.
+<kimhd> Specifically what are good ways to achieve these 
+  interactions, but then, you know, accepting that we won't we're 
+  not building the one standard for all time. We want to make sure 
+  to be clear that it's an MVP
+<kimhd> On to the diagran, from holder to issuer, a holder might 
+  want to request verifiable credential. 
+<kimhd> What are the bits of information that the holder would 
+  need to exchange to the issuer in order to get the verifiable 
+  credential. What are the protocols and sort of work in progress 
+  standards at each step. So we're going to be filling this in with 
+  reference to where the work is happening
+<kimhd> I think that, in some cases, what we'll be doing is sort 
+  of a simpler version of of specs already underway, like we've 
+  like the DCC has done for the credential request progress.
+<kimhd> It's really breaking down some of the more complicated 
+  standards into the core of what we need to do.
+<kimhd> Here's the both in terms of the Protocol and the payloads 
+  that are relevant. So we want to use that to inform existing 
+  standards that you know
+<kimhd> Our draft standards that may allow more complicated 
+  functionality but but also making sure it's easier to just get 
+  started with these minimal scenarios.
+<kimhd> Credential exchange. There's a few
+<kimhd> Methods underway there, but I think we also want to 
+  understand how how this connects to things like badge connect
+<kimhd> So I think we're doing a couple things. We're,  getting 
+  the the pipeline flows going then understanding how these things 
+  relate to common use cases in the in the EDU space so
+<kimhd> I think combination like filling this end with greater 
+  depth with greater detail and getting the MVP is really critical 
+  for. Let me go back a slide for for this layer specifically
+<kimhd> But then, you know, for each of these layers. That's, 
+  that's basically a similar thing usage patterns and, you know, 
+  depending on how much we get into things like
+<kimhd> Minimal, minimal and selective disclosure as we talked 
+  about in last week CCG call
+<kimhd> Um, let me see if we had anyone else that I'm missing.
+<kimhd> Kerri, you're up.
+<kerri lemoie> There as a little bit late, so sorry if I missed 
+  this new and over it. Is it within the scope for learners to 
+  import their existing digital credentials.
+<kimhd> I think it will. At the beginning it was not necessarily 
+  in scope, but I think it will end up being by virtue of a use 
+  case that we're likely to demonstrate it with which is basically 
+  a CLR wrapped in an LER
+<kimhd> So thats related to one of the pilots we will likely be 
+  partnering with a vendor that is issuing CLR and so we'll want to 
+  demonstrate a round trip --  like existing CLR to LER CLR and 
+  then vice versa. So there's different characteristics that you 
+  can get each way. But I think that that will be a useful 
+  demonstration of how these can be sort of bootstrapped across.
+<kimhd> And then related to that, the different properties that 
+  you get with one vs the other -- the trust model, the means of 
+  authentication. There will be a lot of considerations that we can 
+  call out as next steps. So if we could improve decentralized 
+  verification of records that are currently centralized that could 
+  be really interesting.
+<kerri lemoie> Yeah, it would be a very juicy, right. Cool. Thank 
+  you. This
+<kimhd> I think we should probably get to the VC model issues. 
+
+Topic: Modeling EDU VCs
+
+<kimhd> One thing I wanted to get back to see if depending on who 
+  we have. Okay. First, were there any issues that that people 
+  wanted to talk to in the VCU models. So let me let me bring that 
+  over here.
+<kimhd> If we can figure out this one, this would really help us 
+  with a lot of the other a lot of the use cases that we're trying 
+  to demonstrate. So let me share my screen.
+<kimhd> the VC ED models document talks about a few use cases, 
+  but over time, we start adding different use cases and this issue 
+  was tracking like we want to be very clear up front. What are 
+  the, what's the scope and level of granularity so that we can 
+  kind of move forward with this and move any more difficult issues 
+  that may require special attention outside. So we started calling 
+  out what's in scope. What's out of scope.
+<kimhd> There was a PR to address this issue. So as PR number 18 
+  and that's where Anthony gave us a good idea of the concepts that 
+  we want to express in the context of that discussion, we came up 
+  with the idea of -- how do we reuse schema.org types which are 
+  educational occupational credential and educational educational 
+  program, etc
+<kimhd> So we were originally saying things like Person 
+  hasAchieved something or Person hasCredential, et 
+<kimhd> We were trying to reduce the number of terms that we that 
+  we had because we wanted to reuse certain types with minimal 
+  impact a schema.org
+<kimhd> Phil Barker proposed Action. In schema.org there is this 
+  Action type with a bunch of different subtypes, that we may use 
+  to relate the person to either the accomplishment or the 
+  credential, etc. 
+<kimhd> We might end up having to add all these different 
+  properties and so is there a generic property that could work for 
+  specific actions so you know person has executed or has executed 
+  action that might apply, no matter the Action subtype.
+<kimhd> This is the thing that I want to move forward. The most 
+  because I think we're still trying to land. What are the 
+  schema.org
+<kimhd> Terms that we need to add that will help a lock, you 
+  know, use of schema.org types which help us better bridge to 
+  things like credential engine.
+<kimhd> So I think that Phil isn't on the call.
+<kimhd> And I wanted to skip over. Oh, Phil is. great.
+<philbarker> Yeah, I think that's a reasonable approach.
+<philbarker> I think you were probably right. When you say that 
+  this app should be a separate issue.
+<philbarker> Because it would be useful to sort out what
+<philbarker> What the actual types of relationships are that we 
+  want.
+<philbarker> You know, if it is just three, then you know perhaps 
+  having three properties would be reasonable. If it's going to be 
+  more than that, then
+<philbarker> Having a generic property will perhaps would be 
+  better.
+<philbarker> Right, what, one other thing that I'd like to 
+  mention now is that this could be as well as the direct property 
+  that you mentioned. So, you know, we could
+<philbarker> We could have a property has credential has 
+  achieved.
+<philbarker> That links directly from the person to the 
+  credential the skill and we could use the achieve action to 
+  provide more information about when the tree happened.
+<kimhd> And Jim brings up a good point about person action versus 
+  organization action because I realized this credentialing action 
+  that's my reading of that is more of an organization action.
+<philbarker> Yes, the credentialing action is a little bit 
+  different. That comes from CT DL from credential engine. ACTING 
+  AGENT is slightly different in that one to the pattern from the 
+  others.
+<kimhd> Nate you're up.
+<ottonomy> Yeah, I was just wondering if we're thinking about 
+  general concepts is the idea of associating an action with a 
+  credential equivalent to associating evidence of achievement with 
+  a credential.
+<kimhd> Good question.
+<dmitriz> It sounds like in our use case that is the case. That's 
+  true.
+<philbarker> One of the things that you can associate with an 
+  action it is I forget the exact name of the term, but it's an 
+  outcome. You know, it's
+<philbarker> What the outcome was so if the action is writes an 
+  essay you can point to the essay that's been written that might 
+  be relevant.
+<kimhd> Right.
+<dmitriz> The other way to think about verifiable credential is 
+  that it's two parts. It's the record of the action or the claim. 
+  And then the proof is your signature.
+<dmitriz> So it's both.
+<dmitriz> Are the evidence is this is your signature.
+<kimhd> Well, I think they're using evidence in the sense of
+<kimhd> Evidence of like supporting work. 
+<kimhd> All right.
+<ottonomy> Right, we have this common concept of a defined 
+  achievement or a credential.
+<ottonomy> That is associated with a particular assessment regime 
+  that says specific set of criteria and the evidence in what, in 
+  many respects, is called the assertion is about what is the 
+  documentation that the recipient has met the various pieces of 
+  criteria required by the mind that you can
+<kimhd> So we're short on time. I think that
+<kimhd> I think that it would make sense to pull this out into a 
+  separate issue.
+<kimhd> So one, I think we have made progress on the original 
+  issue, and I think that can help inform what are those two things 
+  to Phil's question about what are the actions that that are that 
+  we still have remaining and then keep working through the sort of 
+  conceptual clarity.
+<kimhd> Yeah, I'm not seeing a clear answer right now. I just 
+  think we need to iterate more on it in the in the issue.
+<kimhd> I'm checking if anyone has hands raised. Okay. So I think 
+  with that, we can we can end tiny bit early. And so, thank you 
+  everyone.
+<phil-t3> Thanks, Kim.
+<juan_caballero> Thanks, all.
+<simone_ravaioli> Thanks. Bye bye.
+<niaz> Thank you.
