@@ -27,6 +27,7 @@ fetchLog = function(dateString){
     .then(res => {
       $('#irc-log').val(res);
       $('#form-resp').removeClass('error').text('');
+      $('#btn-audio').removeAttr('disabled');
       displayMinutes();
     })
     .catch(err => {
@@ -36,6 +37,7 @@ fetchLog = function(dateString){
       $('#text-markup').val('');
       $('#html-markup').val('');
       $('#html-output').html('');
+      $('#btn-audio').prop('disabled', true);
     });
 };
 
@@ -112,6 +114,13 @@ copyText = async function(){
   }
 }
 
+downloadAudio = function(){
+  var audioUrl = "https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-";
+  // get date from date input
+  audioUrl = audioUrl + $('#date').val() + ".ogg";
+  window.open(audioUrl, '_blank');
+}
+
 // initialize scrawl
 $.getJSON( "people.json", function(people) {
   scrawl.group = "Credentials Community Group";
@@ -168,6 +177,8 @@ $(function(){
       <p id="form-resp"></p>
       <span class="button" onclick="javascript:copyText()">Copy</span>
       <span id="btn-resp"></span>
+
+      <button id="btn-audio" disabled class="button" onclick="javascript:downloadAudio()">download audio</div>
    </span>
 </section>
 
