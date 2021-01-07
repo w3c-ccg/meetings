@@ -1,0 +1,886 @@
+Thanks to  for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2020-12-14-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2020-12-14
+
+Agenda:
+  undefined
+Organizer:
+  Kim Hamilton Duffy and Heather Vescent and Wayne Chang
+Scribe:
+  
+Present:
+  Kim Hamilton Duffy, Brent Shambaugh, Adrian Gropper, Anthony 
+  Camilleri, Kerri Lemoie, Lluís Alfons Ariño, Keith Kowal, 
+  Victoria Feng, Maarten Boender, Adam Lemmon, David Ward, Jim 
+  Kelly, Niaz Chowdhury, Robbie Jones, James Chartrand, Sharon Leu, 
+  Stuart Freeman, Simone Ravaoli, Jacksohne, Matt Lisle, Kostas 
+  Karasavvas, Juan Caballero, Jerry Ma, Chris Winczewski, Jeanne 
+  Kitchens
+Audio:
+  https://w3c-ccg.github.io/meetings/2020-12-14/audio.ogg
+
+<kimhd> Okay, let's get started. Today we're talking about 
+  accreditation and we'll start with the IP note, anyone can 
+  participate in these calls. However, all substantive contributors 
+  to any CC G work items must be members of the CCP with full IPR 
+  agreement signed
+<kimhd> And the link to join the credentials community group is 
+  available at this location and pasting into chat.
+<kimhd> And before that, you would need to create a W three Web 
+  Account and the link to do that is here. It's free to join 
+  community groups. And lastly, the text of the W three C community 
+  contributor license agreement is available at this link that I've 
+  pasted into IRC.
+<kimhd> Called it these minutes in an audio recording of 
+  everything said on this call are archived at the CG meetings 
+  repo.
+<kimhd> And we're not using the word, we're not using the IRC 
+  interface to queue and everything. And this call. Instead, you 
+  can you can use the raise hand feature.
+<kimhd> And will call on you and informally, you can definitely 
+  type q plus in the chat and we'll get to you. We don't have that 
+  many people. Well, we have a team, but in general we don't have 
+  enough activity to really cause
+<kimhd> Problems or Q backups.
+<kimhd> Okay, let's get to introductions in reintroductions
+<kimhd> We see if there's anyone new on the call. If there's 
+  anyone new on the call that would like to introduce themselves, 
+  please just speak up.
+<kimhd> And we could also. So, let me make sure I'm not is. Can 
+  people hear me.
+<kimhd> Yes. Okay, great.
+<kimhd> Sure. Perfect. I
+<kimhd> Would yeah and just wanted to make sure
+<kimhd> Okay, if no one knew I think let's move to 
+  reintroductions and Brent. I'm not sure if I've called on you yet 
+  for reintroductions, would you mind introducing yourself to the 
+  group.
+<bshambaugh> I'm sort of observing right now. I guess I've been 
+  around this community for a while in and out or past six, seven 
+  years. So I'm interested in learning a little bit more about what 
+  you're up to.
+<kimhd> Great, thank you. Brent.
+<kimhd> Okay, let's go on to next part of the agenda. I'm not 
+  sure if we have Anthony here yet. But I wanted to announce. We 
+  have a new co chair joining the group. And that's Anthony 
+  chemically airy.
+<kimhd> And we're excited to have him join. He's been bringing a 
+  lot of expertise from working in verifiable credentials in the 
+  EDC I
+<kimhd> Framework and so he's been really active in helping to 
+  drive the agenda so far and push push forward work items so very 
+  excited to have him join us.
+<kimhd> Okay, now let's move to the main topic which is 
+  accreditation and I want to start by saying that this is not any 
+  sort of very well researched presentation on it. I think the goal 
+  is that
+<kimhd> We would want to. Well, let me let me bring up the issue 
+  to start with. So, and I'll share my screen as well.
+<kimhd> So we had talked about
+<kimhd> The idea of dealing with accreditation.
+<kimhd> As part of
+<kimhd> As part of the modeling verifiable credentials for 
+  education spec.
+<kimhd> So Anthony called out a couple of approaches. So trusted 
+  issuer lists VCs issued to organizations authorizing them to 
+  issue educational credentials trusted accreditation organization 
+  list. So, oh, there's a frowny face.
+<kimhd> Huh oh that's a confused emoji. Okay. Um, let's see. So 
+  So Jeannie responded with some CD DL terms which were really 
+  useful.
+<kimhd> I did a little poking around as well to see what are some 
+  different approaches that are used, and I wanted to do a 
+  presentation on it and this is more to get feedback from the 
+  community. See if there's an other approaches that I'm not 
+  familiar with.
+<kimhd> And we can talk about how to move forward this issue in 
+  the modeling, Doc.
+<kimhd> So I'm going to switch
+<kimhd> To this presentation, I'm hoping that you can see this
+<kimhd> Accreditation screen, speak up and let me know if not, 
+  and I'll reshare
+<jim goodell> Looks good. Okay.
+<kimhd> Do you want to send the link again.
+<kimhd> So I did want to start with a non edu use case that I was 
+  familiar with in terms of accreditation and that's used in the 
+  barefoot, that is using verifiable credentials decentralized 
+  identifiers and all the standards that we're working on.
+<kimhd> And the example is is KYC or verification of individuals 
+  acting on behalf, an organization.
+<kimhd> So the use case comes from a pilot between consensus you 
+  port in life. And I understand, actually, that I think it was 
+  sovereign did did something similar. So I think the ideas are
+<kimhd> Are similar I just did these worked on this or wrote this 
+  up before I was aware of that pilot. So the global legal entity 
+  identifier foundation or life.
+<kimhd> They issue legal entity identifiers going to get 
+  increasingly awkward with acronyms. So I apologize.
+<kimhd> Which is a unique 20 digit identifier for companies and 
+  the idea is to use this to reduce costs complexity of business 
+  verification
+<kimhd> Specifically what this prototype focused on was the idea 
+  of combining these legal entity identifiers and verifiable 
+  credentials to centralize identifiers to enable
+<kimhd> Rapid verification of a person acting in an official 
+  role. So I have a link to the medium article that that this is 
+  based on
+<timothy ruff> You can
+<timothy ruff> Yeah so glad. I made a major announcement last 
+  Thursday, so that they're moving forward with the feeling I which 
+  is their verifiable LCI and starting in January.
+<timothy ruff> And it's going to be using verifiable credentials 
+  and they've got a big budget for it.
+<timothy ruff> A couple of us have been engaged bike life to push 
+  this forward and I put a little note in the in the thing here 
+  that
+<timothy ruff> The consensus you port PLC was one of five 
+  different PCs that they did under a partnership with Deloitte to 
+  help them basically explore the entire space.
+<timothy ruff> And then they just made their announcement on 
+  Thursday that they are going to move forward. They're not 
+  actually going to use any of those five networks, they did go
+<timothy ruff> Through the consensus report they did something 
+  with last year, which uses quorum, they did something on 
+  sovereign that a couple of others.
+<timothy ruff> In the end, they decided to use carry for the to 
+  become their own root of trust, but the beautiful thing is 
+  they're going to be using be using standard verifiable 
+  credentials and that all begins. They're about to embark on a big
+<timothy ruff> Open source development initiative.
+<timothy ruff> everything they're doing is going to be fully open 
+  source and they're going to start dumping a bunch of resources 
+  into it in a
+<timothy ruff> Few weeks, beginning in January.
+<kimhd> So the idea here. The, the general flow is is the same. 
+  And so this is, you know, this is just an example I you know I 
+  say
+<kimhd> This is an example of how verifiable credentials and 
+  decentralized identifiers and all of this can be used in that in 
+  that framework so
+<kimhd> The, the flow that was used in this prototype was that 
+  life accredits a local operating unit and then it that enables in 
+  that's a verifiable credential that allows it to issue le eyes so 
+  so these legal entities, then can issue role credentials to oh 
+  wait, let me see. Okay, sorry.
+<kimhd> Yeah, so, then those are issued to legal entities which 
+  are companies who then can issue role credentials to people 
+  acting and official roles. So that could be someone who is
+<kimhd> You know, a corporate officer who can use the role 
+  credential to Sign and Submit regular regulatory filings.
+<kimhd> So then regulators can view and verify the signatures of 
+  the submitted documents. So not only. I think the typical flow 
+  that we think are the typical like in game of verifiable 
+  credentials that we we sort of
+<kimhd> Show in use cases are just sort of focusing on this last 
+  verifiable credential but but these sorts of end and flows are 
+  really key to establishing the trust that we would need. And so 
+  this is sort of a good general accreditation example. Let me see 
+  if we ok so now coming on to CT DL.
+<kimhd> I wanted to start with an example that was that Jeannie 
+  link to in terms of the the sort of
+<kimhd> how you would approach accreditation and CCL so there's 
+  an example provided about a dental assisting certificate. And so 
+  what this is doing in most will see this in a friendlier 
+  graphical view, but it's basically saying
+<kimhd> You know Santa Rosa Junior College.
+<kimhd> Offers this dental assisting certificate and then it will 
+  we won't go to look at the graphical view, but we want to say 
+  various things about
+<kimhd> About the you know the accreditation of the junior 
+  college, etc. So let's look at this view. So we're saying Santa 
+  Rosa Junior College.
+<kimhd> Offers credential over here certificate rather we're 
+  calling it credential in our terms, but that's certificate and CT 
+  DL terms. This is the key lead here accredited by so there's a 
+  quality assurance organization, the name is American Dental 
+  Association and off over here as well. We have
+<kimhd> We have this you know competency that's required. So, in 
+  this is just spelling out the RDF triples, and, you know, in full 
+  detail I included this in case it wasn't readable just given our 
+  experience with tiny fonts last time.
+<kimhd> Um, let's see. The other thing that I wanted to
+<kimhd> To call out. So Jeannie listed here.
+<kimhd> Some terms from CT DL. So see terms of credits approves 
+  recognizes regulates revokes which seemed like a good
+<kimhd> List of the kinds of terms that we need an accreditation.
+<kimhd> And so this is actually this example this dental example 
+  is taken from here.
+<kimhd> Also these action classes looked really useful.
+<kimhd> accredited by is definitely the most pertinent one
+<kimhd> And I thought that there is some. Let me see. Let's look 
+  at these actions real fast. Just looking at at Lluis's comment.
+<kimhd> I'm not sure if I see suspend se vocal we can we can come 
+  back to that that comment. So let's see.
+<kimhd> So there's, there's that. The other example that I saw 
+  kind of in the wild, of what is being used is the Open Badges 
+  accreditation extension and this is an extension on the issuer
+<kimhd> And so this is the these cases that an issue wants to 
+  include detailed information about an accrediting organization as 
+  it pertains to the program or bad show
+<kimhd> The previous stencil example, example that we saw in the 
+  Open Badges case. I actually didn't tailor this example to that 
+  but but instead of the way it's model and see DDL, you know, it 
+  would be issuer and then effectively you add this under the 
+  issuer type, but the
+<kimhd> concepts are very similar. Um, let's see what else I 
+  think. Okay, so those are the main contact said I wanted to 
+  provide
+<kimhd> Um, any let me let me stop sharing for just a second. 
+  Come back to see if there's any comments or discussion if you do 
+  have comments.
+<kimhd> It's a good time to see pace. So we have a Q plus
+<kimhd> Okay, Adrian
+<agropper> I sorry I just came in a few minutes ago. But my 
+  question is, I'm familiar with notaries and vaccination cards, 
+  where the verifiable credential is link for audit purposes to an 
+  accredited other party.
+<agropper> Right, so the doctor that signs.
+<agropper> The doctor that signs of vaccination card has to have 
+  a number that's published somewhere, presumably saying they're 
+  credited to do vaccinations a notary has a stamp that has a 
+  number that says they are accredited to notarized
+<agropper> A credential and I'm curious whether either either of 
+  the two models you are talking about or both could be equally 
+  useful in those very common context, but they're not educational 
+  in any sense of the word.
+<kimhd> Yeah, that's a good question. I wonder if
+<kimhd> Let me see if we have a queue right now.
+<kimhd> Let's see any hands raised.
+<kimhd> Oh great, Nate. I was going to call on you to talk to 
+  your comment as well. So yes, Nate Europe.
+<nate otto (badgr/csky)> Yeah, so there's a couple different 
+  types of relationships in play. And then there's a few ways to 
+  describe those relationships in the life example we saw the 
+  relationship
+<nate otto (badgr/csky)> The accrediting relationship saying I 
+  have credit this organization to be able to do something, 
+  expressed as a verifiable credential.
+<nate otto (badgr/csky)> That record would be portable and 
+  verifiable in the using similar mechanisms to the verifiable 
+  credentials ultimately issued by say educational institution.
+<nate otto (badgr/csky)> In the Open Badges and seek Adele 
+  examples. We have a few different processes that we're looking 
+  at. One is that
+<nate otto (badgr/csky)> There's a organization college may be 
+  issuing verifiable credentials to students to recognize 
+  educational achievements, but this educational institution is 
+  accredited and they have an accredited, but that a creditor is 
+  not yet issuing verifiable portable
+<nate otto (badgr/csky)> Records of that accreditation. So what 
+  we have in the Open Badges extension and in the CTV L vocabulary 
+  is the ability for an organization to describe. It's a creditor
+<nate otto (badgr/csky)> This college is accredited by this, you 
+  know, Northwest body of
+<nate otto (badgr/csky)> You know, creditors that
+<nate otto (badgr/csky)> Has local trust within the system. And 
+  so as we think about accreditation. We need to make sure we don't 
+  mix up these two different types of things. And then also decide 
+  what we want to actually accomplish
+<nate otto (badgr/csky)> Do we want to just allow our issuers to 
+  describe what organizations they are accredited by in the real 
+  world, so that you can
+<nate otto (badgr/csky)> Phone up the creditor and ask them about 
+  it or do we want to provide the mechanisms for accreditation to 
+  also be represented as verifiable credential alongside the sort 
+  of core verifiable credentials representing degrees competencies, 
+  etc.
+<kimhd> Exactly. And I wonder if the
+<kimhd> Okay, so yeah. Anthony says ideally both. I was thinking 
+  that originally
+<kimhd> From the framing of it that only one of them, which is 
+  not necessarily the navigate ability, all the way back to the 
+  original source of trust. But yes, ideally it would be both.
+<kimhd> Asia. And you're right, we need to deal with audit. In 
+  either case, I think, you know, the using just the one, the idea 
+  of saying I am accredited by
+<kimhd> X where you know some relying party or verifying party 
+  knows they understand that.
+<kimhd> That they recognize it. That is valid accreditation body 
+  is fine. But then, I guess. The interesting thing here is that we 
+  can trace it back further so that
+<kimhd> You know, if there were entities acting on behalf of some 
+  other organization or even just individuals within an 
+  organization, it does provide sort of this more fine grained 
+  ability to audit.
+<kimhd> So, I mean, at the same time, assuming that those 
+  verifiable traceable verifiable credentials exist does sound like
+<kimhd> Possibly scope creep in something that we don't want to
+<kimhd> Have a dependency on. So I think that's important 
+  clarification, Anthony in Anthony's on the call. He missed the 
+  announcement in the excitement of of everyone acknowledging His 
+  co chair edition. So I wanted to welcome Anthony again and 
+  welcome him as Co chair.
+<kimhd> So Anthony. Oh, I was wondering if you could talk. You 
+  had mentioned the accreditation use case. I'm curious for your 
+  responses to this.
+<anthonyfcamilleri> Yeah, so I mean I'm just going to mention two 
+  things, for the moment, because actually I like to found quite a 
+  bit like Nate here in the sense that I have seen both model and 
+  the wild. So for example, the
+<anthonyfcamilleri> MC use case in Europe which Louise 
+  representing here is actually designing of the verifiable 
+  credential for accreditation standards and that's something which 
+  I assume they might be able to contribute to the group. On the 
+  other hand,
+<anthonyfcamilleri> On the other hand, we also have yeah all 
+  sorts of registries. They're ranging from national registries to 
+  private one such as let's say the triple accreditation of 
+  business degrees, etc, etc. And I think we would need a way to 
+  represent all of these
+<anthonyfcamilleri> Generally, I would say that we may be 
+  wouldn't want to do anything overly fancy where we would be 
+  saying, for example.
+<anthonyfcamilleri> Proving within a verifiable credential that 
+  an issue or has an accreditation that we might let the or at 
+  least up first always linked to a registry.
+<anthonyfcamilleri> But if that registry. Let's say it's a dumb 
+  registry, or is the registry or verifiable credentials. I think 
+  we probably could support that with the same metadata fields.
+<kimhd> With. With. I'm sorry, with what
+<anthonyfcamilleri> The metadata fields. Yeah. So basically i 
+  mean i i don't see this being too complicated in the sense that 
+  if you're thinking about accreditation, you're basically saying
+<anthonyfcamilleri> Institution or program is accredited by a is 
+  accredited for and you are I have proof of that registration from 
+  some registry.
+<kimhd> Right, and I think Carrie calls out a really good point 
+  here. The. Okay, so there's these two separate use cases, yes, 
+  we're seeing them both in the wild and Kerry mentioned, we need 
+  to make sure there's
+<kimhd> Issues and inspectors need to know the difference. That 
+  part is key. I think to call out in this document curious or 
+  anything as stuff you good comments for me. Is there anything 
+  else you want to speak to
+<kerri_lemoie> Know, no, but I do think there's a lot of there 
+  would be confusion about this and I was really glad that Nate 
+  brought this up because sometimes situations may need one. I mean 
+  both may need, you know, one or the other. Right. So we do want 
+  to be really clear. I think
+<kimhd> Yeah, I like that. I want to capture that in the issue 
+  and then actually Simone. A. Can I have you speak to the EBS 
+  silence that you added
+<kimhd> See, let me let me pull that up in the meantime.
+<kimhd> Well, it's not coming up. Okay. It's just taking a while 
+  to load.
+<kimhd> Okay, so we'll come back to that. I think those are 
+  important points to capture. I think I was also oh if she's a 
+  meeting.
+<kimhd> I understand.
+<kimhd> Let's see. I was also curious to find out.
+<kimhd> Yeah.
+<larinyo> Yeah, we may I
+<larinyo> Can share my screen. But now, not Commission my screen.
+<kimhd> Oh, yes. If not, let me know, because I have the site up 
+  as well.
+<larinyo> Okay, so I can you should give me some rights me
+<larinyo> I'm not sure if somebody was was going to talk about 
+  this, but
+<larinyo> Just what I can share is just what does one installed 
+  is what we are implementing a PCI
+<kimhd> Yeah, so be great. And actually, I don't know how to 
+  change permissions during the call. I might have to do it 
+  afterwards. But I'll share my screen, which is like this.
+<larinyo> Yeah, but they think that the
+<larinyo> Okay, this is a public public site. And this is a the 
+  documentation related to ABC and
+<larinyo> Disney ABC addition to that we have made.
+<larinyo> The greater impact about governance and about the 
+  points that D'Antoni also talk about about how
+<larinyo> The one legal entity and the concert or city. Sure, and 
+  how the, what we call the great session body that's the one that 
+  will prove the legal entity that question or issue which will 
+  request to be registered into the Jersey Shore.
+<larinyo> debilitation body will prove that on will issue, what 
+  you call the accreditation credential to the educational 
+  institution and all their correspondent the registry. So they 
+  trusted the issue registered the retention registered and also 
+  does a schema Registry will be involved into
+<larinyo> The into the brief about the spectrum to everyone could 
+  agree.
+<larinyo> If I can. So I think that it would be better to share a 
+  lattice commendation I can just make an export now and shared 
+  with you. Kim, or just we can apply it to today. We have, as you 
+  prefer.
+<larinyo> I can do it now. All right.
+<larinyo> Okay, so let me share my desktop.
+<larinyo> Yes. Okay. So let me just try go back. Okay. Because I 
+  think that the
+<larinyo> There are at least three
+<larinyo> Three sites are related to
+<larinyo> Do a B CI.
+<larinyo> The one that Simoni shirt is the one public available 
+  butter relates to the specifications of ABC restaurant one and 
+  there are also some medium space and that requires a free 
+  account. The fee will login account there and you can get access 
+  to some
+<larinyo> The specifications between the internal feature length 
+  that handles the public side, but this is what we have defined 
+  here in episode two, and here
+<larinyo> At the end, what would introduce its governance for 
+  academic credentials. So first of all, some what we call the 
+  accreditation body mass index is accreditation body is the one 
+  that will then
+<larinyo> Let education's delusions be registered into the tissue 
+  registry. And for that, after
+<larinyo> Check with Member States roles. If on success on 
+  completion, completion the accreditation body will be issued that 
+  accreditation credential and to the educational institution and 
+  all the register will be updated.
+<larinyo> Here he will have a more deeper view on how the use 
+  case governance relates to the sexual identity.
+<larinyo> Components or Trusted Registry and main actors. OK, so 
+  the yours. Is it an SEO service. That's the like the Trusted 
+  Registry accreditation. It's just a service that helps a natural 
+  vessels legal entities to onboard on separate entity.
+<larinyo> On here we have two different roles that are natural 
+  personal level entity can adopt on the use case on the on the 
+  inner workings from the promise use case medication.
+<larinyo> That band then also these main actors for governance 
+  are required and after that accreditation credential has been 
+  issued.
+<larinyo> And the educational institutions are and it to be, they 
+  become transitions and they are intended to issue the specific 
+  type of credentials, go to a concert. We can play with all these 
+  things. So you can be atrocity sure for
+<larinyo> Any kind of or specific level of integration or Justin.
+<larinyo> Good degree.
+<larinyo> On that. Okay.
+<larinyo> I can export all this information so we can share how 
+  all the details of how these things are done and how registered 
+  relates to the to the to the role to the actors and so on. He got 
+  help who can who can do it, of course.
+<kimhd> Yeah, this is great. I just had a couple of questions. 
+  Yeah. The, the schemas for this. Are they part of or they just 
+  some EBS I schemas, are they
+<kimhd> Sort of external
+<larinyo> These are, in fact, our Eastern Europe as learning data 
+  model.
+<larinyo> That as you know
+<larinyo> Today they are XML plus shadows shadows basis, but here 
+  in a PCI, we are want to share realize it to Geo JSON.
+<larinyo> Yeah yes project. So that's it, but it's it's not. 
+  There's no other schema is the euro pass learning data model 
+  things. The last name and phone him right
+<larinyo> Now the model, I think.
+<kimhd> Because I wanted to come back quickly to Adrian's earlier 
+  question about, you know, use outset. First, I was looking at it 
+  in several aspects of the model seemed
+<kimhd> Nice. In general, but it does seem like this one is also 
+  targeting education use cases, even if it can be
+<kimhd> Even if it looks model. Why is Apple more broadly.
+<kimhd> Are you, uh huh. Let's see. Well, that's something we can 
+  come back to in general, I saw a good so I do like this. I think 
+  we should capture this in, in, you know, sort of one of our 
+  options as well.
+<kimhd> Anthony. I like this proposal, the idea that we would say 
+  a must requirement of referencing an accreditation record or
+<kimhd> I didn't even know I think referencing accreditation 
+  record. Does that sound like even a stronger requirement then say 
+  what either CT DL or or Open Badges support because they're 
+  they're sort of self claimed, I guess it would the what I'm 
+  seeing there is that
+<kimhd> You would say, well, at least in the Open Badges case, 
+  you would say issuer make some claim about the issuer, but it's 
+  not clear that that has any sort of
+<kimhd> You know signature any sort of enforcement. Like, I think 
+  it would be expected for the relying party to independently 
+  verify that. So I think this must requirement might be even 
+  higher bar.
+<kimhd> Than what I'm seeing there.
+<anthonyfcamilleri> A little bit biased here because I did spend 
+  part of my professional career tracking down the poem it all 
+  found it.
+<anthonyfcamilleri> Kind of in after that exists. I mean, fake 
+  accreditation bodies, the whole lot of thought I would think that
+<anthonyfcamilleri> Accreditation records are only valuable if 
+  their order to make the Lord is the ball. I think it's all public 
+  registry, at least the URL for the accreditation record would it 
+  should we be good base. Level per entry. I mean, I don't know any 
+  reputable accreditation in public or private sector society, but 
+  the records. So who is accredited somewhere on the computer. I 
+  think you are is quite straightforward to do it, but I felt that 
+  way and opinion from combined with special experience.
+<kimhd> I wonder what the reality is, in the US, I should know 
+  this. Probably, but you know, I don't know if those are public. 
+  If anyone knows, be nice to add yourself to the queue.
+<kimhd> Adrian is on the queue to ask about privacy of the 
+  accreditation registry, which is probably related to what I'm 
+  getting at. Adrian
+<agropper> Yes, it's, it's exactly that and I have seen both. So 
+  in the US case you have, for instance.
+<agropper> The NPI number
+<agropper> For physicians, which is publicly available.
+<agropper> And you also have the DA number for physicians, which 
+  is not publicly available, not because it's not public 
+  information, but because it's part of a business model.
+<agropper> That the government used in order to publish the DA 
+  number registration. So I am extremely interested in, for 
+  instance, what goes on in the European context or any of these 
+  contexts as to this particular issue. It seems to be the same in 
+  education. And I'm just wondering
+<agropper> You know, the, the absence of Oracle's of public 
+  Oracle's
+<agropper> For accredited membership is a is a huge problem in 
+  general. And I'm wondering if in education. This is part of the 
+  problem. I'm sorry I don't attend these calls very often but
+<agropper> To me turning access to the registry into a business 
+  model seems suboptimal but maybe education is different than 
+  medicine.
+<kimhd> Yeah, these are good points. I mean,
+<kimhd> Let's see. So I think obviously ideally in in my world, 
+  these would all be public, I guess, worst case, even if it is 
+  part of the business model and and relying parties would be 
+  expected to have some relationship with the
+<kimhd> Entity that makes it available is long. It is as long as 
+  they're able to do that through link data, then that would 
+  satisfy the
+<kimhd> Requirements, you know, assuming that would, in that 
+  case, that would be, you know, linked data that they would have 
+  to then authenticate to get
+<kimhd> Which seems kind of counter to the goals of this, but 
+  maybe it works.
+<kimhd> But yeah, I don't know what I don't know what the cases.
+<kimhd> Kerri is the accreditation for the issue or the 
+  credential. I thought it was for the or I'm not sure if you're 
+  asking, in general, but I would think it's for the credit station 
+  for the issuer to issue a category of credentials are sort of, 
+  yeah. A type of setup type of credentials.
+<kerri_lemoie> You know I am. I want to clarify a little bit here 
+  is, um, the CT dl and the accreditation is
+<kerri_lemoie> Is for the credit accrediting organization, not 
+  necessarily the issuing organization because with CCL they can be 
+  separate.
+<kerri_lemoie> In Open Badges the accreditation the issuer and 
+  the program is the same right assumes that the issuer and the 
+  credential creator
+<kerri_lemoie> Is the same organization, there's no separation 
+  between the two. So I think there's a difference between 
+  accrediting who creates the credential who creates the school or 
+  the program music school to say there.
+<kerri_lemoie> Or is the actual issuer being accredited
+<kerri_lemoie> So for an example, there is I use this one quite a 
+  bit is the American Red Cross, but they have one CPR program.
+<kerri_lemoie> They
+<kerri_lemoie> Don't know if you would call it accredited, but 
+  they sort of endorsed right local deliver new educators on that 
+  program.
+<kerri_lemoie> And so, what would that be in this credential. If 
+  someone were to get a first aid credential or CPR credential from 
+  their local school, but it was an American Red Cross, what would 
+  the accreditation, be they may not be the best example but that's 
+  what I had at the top of my head.
+<kimhd> These are really good points. And I think that this is an 
+  example of, I think, with the accreditation are all this 
+  conversation is pointing to. We'll just have to be very specific 
+  about which use cases are in scope in
+<kimhd> Ideally, you know, not locked out certain use certain use 
+  cases as well.
+<kimhd> I think it's even more complicated than I had originally 
+  thought which I already knew is complicated. Let me see if 
+  there's any discussion to anyone else have anything to add. I see 
+  some conversations on the in the chat.
+<kimhd> Brent
+<brent shambaugh> seems like an obvious question, but
+<brent shambaugh> I'll ask it why
+<brent shambaugh> Why is there emphasis specific use cases over 
+  others. Are you trying to is it about the vocabulary that you're 
+  concerned with not the underlying mechanics.
+<kimhd> Right, I think it's less about the vocabulary. Then, so I 
+  think it's just a huge space to navigate and especially when we 
+  talk about certain framework, or like schema.org. For example, 
+  when we talk about using schema.org terms in some way versus the 
+  other.
+<kimhd> And then we talked about the idea of needing to add terms 
+  to it. We just have to be very specific to make sure we're 
+  sketching out which use cases, we want to address because that in 
+  some cases will argue for one approach versus the other. And it's 
+  basically like
+<kimhd> We don't want to over target one approach.
+<kimhd> And, you know, sort of make up a solution in the absence 
+  of requirements.
+<kimhd> You know data model mapped to the different you know 
+  frameworks that we're trying to use here most efficiently and 
+  ideally in the most forward looking way. And I think also 
+  capturing the use cases helps call out like if there's any you 
+  know if there are any shortcomings or oversights in the use 
+  cases, then it's easier for people to say like, Oh, you're 
+  overlooking this or that. So that's my take on it.
+<kimhd> Keith, you're up.
+<keith_kowal> Yeah, I guess I'm just trying to think through this 
+  conversation. I'm just trying to think more about the use case 
+  conversation like
+<keith_kowal> You know, I've handed I've shown them my degree or 
+  my education credentials and job context. Many times, but I don't 
+  think they ever check if they're accredited institution is 
+  accredited
+<keith_kowal> I've also applied for like masters degrees. I don't 
+  think they ever checked it my degrees were credit, I, I 
+  understand certain like if I was applying to be an engineer with 
+  the professional engineering association or something.
+<keith_kowal> They would check this accredited certain 
+  certifications, they would check it, maybe they would check if it 
+  was a credit or not, but I'm just trying to understand this use 
+  case in the US context about when
+<keith_kowal> When organizations really want to make sure that 
+  you're issuing institution is accredited. I just because I think 
+  that would help the conversation to kind of really lock down some 
+  different use cases.
+<kimhd> Yeah, I have some thoughts on that, please. Other people 
+  add yourself to the
+<kimhd> The idea of the you know the smaller credentials and 
+  competencies gained along the way. And, you know, maybe they 
+  should be checking the accreditation. So I when I lived in 
+  California. Okay, so this is an example where
+<kimhd> I probably shouldn't talk about this but I applied for a 
+  job because I lived in California. I was able to see the 
+  background check, Ronnie. They weren't able to confirm anything I 
+  said about myself, but I got the job anyway so
+<kimhd> You know, in this case, I, I like to think that I was, 
+  you know, I was honest about everything. I said, but it's just 
+  really, you know, there is a lot of fraud in
+<kimhd> You know, in education, like it happens. Someone at MIT. 
+  One of the MIT administrators
+<kimhd> Lied about having a doctorate like it happens all the 
+  time. So, the stakes are very different, but so there's the the 
+  negative impact side but then I think there's also the positive 
+  one of saying like, you know, if someone without
+<kimhd> You know, fancy degree claim can instead, you know, prove 
+  all these individual competencies that make them eligible for a 
+  job and if the relying parties have trust in that process, then 
+  we're opening up new pathways. So those are two
+<kimhd> Two paths. I was thinking of Adrian. I think you're up 
+  next.
+<agropper> Right, so this is this was kind of my point earlier 
+  about, it's easier to understand and pick between these models. 
+  If you do it from the point of view of audit.
+<agropper> Because the the audit makes the, the whole process 
+  work because the audits are statistical and so as long as the 
+  credential is expensive and, you know, education and 
+  credentialing is expensive, then the parties are loads to be 
+  audited.
+<agropper> Because if they're caught even once.
+<agropper> They, you know, they, they lose a lot of value, the 
+  signers, you know, the notary's the doctor. So, I think this is 
+  the general solution in the world is what I'm saying is to deal 
+  with it as a probabilistic audit.
+<agropper> Rather than trying to decide, in which case is 
+  something sensitive because you're going to be the
+<agropper> The admissions director at MIT and in other cases it 
+  doesn't matter.
+<kimhd> Everything Anthony, I think you're up next.
+<anthonyfcamilleri> I just wanted to share a few different 
+  examples of use cases since it was asked, are so a couple of 
+  different ones. So first of all, in Europe, if you take any 
+  degree us nationally, we actually need to verify accreditation. 
+  It's basically a I'm simplifying, but it's basically legislation.
+<anthonyfcamilleri> A second example, if you take an MBA, the 
+  gold standard of MBAs globally is something which is called the 
+  triple accredited, which means you're accredited by the atheists 
+  be accredited by acquisition. I'm forgetting what the third 
+  organization is
+<anthonyfcamilleri> That I think there's three or 400 MBA schools 
+  globally that are listed. And basically, if you're from a triple 
+  A credit in business school.
+<anthonyfcamilleri> You, you know, you get access to the top jobs 
+  now maybe the first 50 schools on that list are, you know, 
+  globally renowned browns.
+<anthonyfcamilleri> The 350 that are under it, you probably would 
+  be wanting to highlight to your employer that your school is 
+  triple accredited as you're going
+<anthonyfcamilleri> I'm a third example which is it's a 
+  completely different is what we come into the MOOC platforms and
+<anthonyfcamilleri> That there are various kinds of thing MOOC 
+  accreditation going around everything from inclusion within 
+  something like Coursera to
+<anthonyfcamilleri> Our the excellence type moves in Europe, and 
+  there's a few other they know about. And again, they would look 
+  at the big number of MOOCs out there.
+<anthonyfcamilleri> You also might want to show that. Listen, 
+  your movie came from some sort of accreditation on a local one 
+  very, very last example here, we also have plenty of examples of 
+  lengthy
+<anthonyfcamilleri> Employers for will accept to graduates was 
+  certainly a barely vocational qualifications, if it comes from 
+  school that have a credit have received certain types of 
+  accreditation.
+<anthonyfcamilleri> From business chambers. And again, if you're 
+  showing this all your then slowly just basic needs a lot of 
+  administration, all the way through to verify this stuff 
+  manually.
+<kimhd> Thank you. Anthony and I think to Keats point this 
+  probably does try to the idea of making sure our use cases are 
+  pushed through even further. So, you know, use cases in the sense 
+  of
+<kimhd> Instead of expressing it just, you know, relying party 
+  wants to verify
+<kimhd> A issuer has blah accreditation push it back even further 
+  to, you know, some of the precise scenarios Anthony's talking 
+  about Keith Europe.
+<keith_kowal> Yeah, I think those are great scenarios. And I 
+  think the question for me is then for whatever mechanism that we 
+  come up with for this.
+<keith_kowal> How you know I think I always look at it. How can 
+  it be ingested in a very automated way. So maybe to use your, 
+  your grading MBA example.
+<keith_kowal> You know I I submit a job with an i have my MBA as 
+  part of my resume.
+<keith_kowal> How can that just pop up in the recruiters window 
+  that this is an accredited institution because I would not expect 
+  to that recruiter who's looking at 50 applications that day.
+<keith_kowal> Is going to go digging into every institution or, 
+  you know, I think where I kind of stumbled on CD TL I don't know 
+  they're gonna go to CDs to page and read about the accreditation 
+  or phone the creditor
+<keith_kowal> I don't think. And if it's done through a 
+  verifiable credential, then I guess, also, like, how would we 
+  ingest that an automated way so it's it's displayed in a very 
+  transparent way to the recruiter, who, again, is looking at 50 
+  applications that day.
+<kimhd> If anyone wants to talk to that, please add yourself to 
+  the queue.
+<kimhd> I think, you know, my, my personal thoughts again. And is 
+  that you know what credential CT DL has right now is a lot of the 
+  raw material that we need. I think a lot of the pilots that T 
+  three, for example, are working towards
+<kimhd> Are sort of about, you know, so, so see HDL credential 
+  engine registry, the data is exposed in a machine readable way.
+<kimhd> I think that you're right like relying parties don't 
+  necessarily know that that's there are to look for that or you 
+  know someone with any other framework.
+<kimhd> But I think that what we're what some pilots are talking 
+  about is actually building the infrastructure to help make that 
+  more readily available. So it's not even that they would be able 
+  to
+<kimhd> Inspect or confirm everything, but at least if there's 
+  some amount of, you know, verification that they can get out of 
+  the way in deeply inspect then then that's providing some amount 
+  of verification
+<kimhd> I think that, so. So yeah, I think the general answers. 
+  What we're talking about more is building or not, not 
+  specifically in scope of this this task force, but we're talking 
+  about enabling people to build the tools that would allow them to 
+  do that.
+<kimhd> Let's see.
+<kimhd> I see a few things in chat. Does anyone have anything 
+  they want to add
+<kimhd> On record.
+<kimhd> Victoria verification process, time consuming complex. 
+  Yes.
+<kerri_lemoie> He cadences carry
+<kimhd> Good.
+<kerri_lemoie> Um, you know, I hear some great information coming 
+  from me dress. We all have like these experiences and the 
+  assumptions about what the use cases are
+<kerri_lemoie> I think we have found in the past with you. 
+  Education credentials that we come back ourselves into a corner 
+  by not thinking of the full scenarios like not getting a full 
+  scope.
+<kerri_lemoie> And getting stuck there which is problematic for 
+  adoption. Right. So I would suggest we try not to be an anecdotal 
+  about what we're trying to come up with in any of these 
+  discussions and that we actually try and do some research to 
+  support what what is needed and not rush through it.
+<kimhd> Yeah, and I think
+<kimhd> To your point, Kerri, the goal of this group is is two 
+  things, you know, we want to unblock pilots, so people can get 
+  started right now, so I think
+<kimhd> In some cases, I want to reflect that in the the modeling 
+  document that we're working on. So I think, you know, maybe there 
+  are certain use cases that are to comp too complex to put into 
+  that but
+<kimhd> In they would be follow up work, but I think, you know, 
+  we conversion are schemas here. I think we want to enable pilots, 
+  we want to test and learn, but we also want to set the 
+  expectation that
+<kimhd> You know, this is a task force in a community group. 
+  These aren't standards yet, but we're trying to build up to 
+  something that we might be able to recommend that group takes on 
+  so
+<kimhd> Let me see if we have any other comments or questions. I 
+  think we're getting pretty close to time there's a lot of 
+  information, a lot of ground that we covered that I wanted to 
+  still into the accreditation issue.
+<kimhd> That is going to take a little bit of time to sort of 
+  assimilate that feedback but
+<kimhd> I'll, I'll do that so that we can then kind of come up 
+  with a more refined approach Adrian Europe.
+<agropper> I have a question. As I understand it, schools, in 
+  general, treat their credentials is a form of toxic waste in the 
+  sense that they pay intermediaries in order to
+<agropper> Handle the verification process rather than doing it 
+  themselves. So to the extent that they're paying somebody else to 
+  do this. That's why I use that analogy is this common in 
+  education around the world, is it unique to the US and are we 
+  trying to change this in some way.
+<kimhd> I like this toxic waste.
+<kimhd> Thing. Yes, national National Student Clearinghouse.
+<kimhd> You know,
+<kimhd> My understanding is
+<kimhd> Is that. Well, definitely in the US that it that that 
+  perception is correct.
+<kimhd> I think that we are also trying to
+<kimhd> You know chip away, or sort of enable trust enable
+<kimhd> Visibility and audit stability into that Anthony, you're, 
+  you're up.
+<anthonyfcamilleri> Against all odds of that question from a 
+  European perspective. And to be honest, we have every model 
+  imaginable in Europe. So we've got some places like Norway to 
+  actually have National Student clearing houses.
+<anthonyfcamilleri> Are we've got other places like parts of the 
+  UK and Ireland that the common practices to Solstice out to break 
+  a company for verification
+<anthonyfcamilleri> And we have countries where the institution 
+  continues verifying on credentials and also where if the 
+  institution closes your credential physically move any value. So 
+  I think every model actually to send the while of the world.
+<kimhd> And Victoria. You're at
+<victoria_feng> Yeah, sure. So I want also share some experiences 
+  we we find out when we have pitching to the schools and are we 
+  talking to the dimensions. So like also back to the questions in 
+  China. The process is also the same.
+<victoria_feng> We always would like to have a third party acting 
+  as agency to verify all the credentials also verifying the 
+  schools. So the, the fact we find out is like
+<victoria_feng> Schools doesn't want to take that risk to saying 
+  I'm I am the issuer and also we're verifying that just take too 
+  much.
+<victoria_feng> Credibility of them as as a as a as a school so 
+  everybody agree on a third party to do verification process so 
+  they can get rid of this part of the credibility. I am just a 
+  school
+<victoria_feng> I'm capable of teaching I mission critical data. 
+  So if you want to verify everything that just curious, or 
+  parties, we do for everybody. So that is pretty much
+<victoria_feng> A fair game. At this point, and also for us as 
+  the service provider which add additional layer a party will be 
+  on the process, but I think just based on
+<victoria_feng> Our experiences. The third party at this point is 
+  very hard to get rid of because all the service providers.
+<victoria_feng> As a vendor is even us. We're not trusted by 
+  agency, at least at this point now chargeable
+<victoria_feng> By the government. So if even our technology 
+  right now is ready to provide the kind of service can bring the 
+  issuer's and verify our and also degree holders altogether.
+<victoria_feng> But still the same thing. Like one institution, 
+  trust your platform. But then another institution may not. So at 
+  this point, just get rid of agencies, very, very hard.
+<kimhd> Right, these are great points.
+<kimhd> We are one minute away from time and this is a fantastic 
+  conversation here today.
+<kimhd> Thank you everyone for joining. And I guess the next 
+  couple of weeks will be canceled for holidays, but it's been a 
+  great year. Thank you everyone for your great for your 
+  participation.
+<kimhd> And looking forward to starting the New Year with our new 
+  co chair Anthony and have a great holiday season, everyone.
+<kerri_lemoie> Thanks, Kim. Thanks everybody.
+<kerri_lemoie> Great holidays.
+<maarten> Thanks.
+<anthonyfcamilleri> Bye.
