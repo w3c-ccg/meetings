@@ -1,0 +1,581 @@
+Thanks to Amy Guy for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-01-13 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-01-13
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jan/0018.html
+Topics:
+  1. Intros
+  2. Open community items
+  3. Election charter
+  4. OCAPs/zCAPs
+Organizer:
+  Heather Vescent and Wayne Chang and Kim Hamilton Duffy
+Scribe:
+  Amy Guy
+Present:
+  Heather Vescent, Adrian Gropper, Amy Guy, Phil Archer, Kaliya 
+  Young, Manu Sporny, Alan Karp, Ryan Grant, Dave Longley, Justin 
+  Richer, Joe Andrieu, Wayne Chang, Dmitri Zagidulin, Marty Reed, 
+  Ted Thibodeau, Taylor Kendall, Drummond Reed, Daniel Hardman, 
+  Mandy Venebles, Erica Connell, Chris Webber, David Chadwick, Sam 
+  Smith
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-01-13/audio.ogg
+
+Amy Guy is scribing.
+
+Topic: Intros
+
+Heather Vescent:  Anyone new who would like to introduce 
+  themselves?
+Alan Karp:  I've been doing capabilities since I reinvented them 
+  in 1996 and I want to make sure we get it right, because when 
+  newbies start to use them there are plenty of mistakes that can 
+  be made
+Mandy Venebles:  I work at digital bazaar and I'm interested in 
+  getting to know what this group is all about
+Chris Webber:  I worked on the zcap-ld spec with mark miller, I'm 
+  currently independent, I have worked with digital bazaar in the 
+  past
+  ... I've been involved in this community since about 2017, and 
+  also had involvement in the work on DID stuff and the verifiable 
+  credentials spec, though not as heavily as others in this group
+Heather Vescent:  Great to see you back
+  ... anyone else?
+
+Topic: Open community items
+
+Heather Vescent: 
+  https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+Heather Vescent:  One I want to talk about
+Heather Vescent: #142: 
+  Https://github.com/w3c-ccg/community/issues/142
+  ... issue 142 which is updating the CCG licenses
+  ... part of some of the cleanup of making sure all of the repos 
+  in the ccg are using the official approved ccg license
+  ... ken did a lot of work earlier to make sure we knew exactly 
+  what those licenses needed to be and then before the end of the 
+  year i went through and manually updated many
+  ... all with a few exceptions
+  ... and tried to make a comment, you can see the exceptions
+Heather Vescent: License exceptions: 
+  https://github.com/w3c-ccg/community/issues/142#issuecomment-751925176
+  ... there are 5 repos that had other licenses associated with 
+  them so we're trying to clean those up
+  ... a lot are LDS ones
+  ... if you are working on those can you take a look at the 
+  issues list? I've put an issue in those repos to be able to get 
+  approval because they already have a license, we need to follow 
+  proper protocol that everyone working on the repo agrees to move 
+  over to CCG licenses
+  ... as I was doing this cleanup there were a lot of top level 
+  linked data repos and one of the things i'd like to have a 
+  conversation about moving forward is can we have general linked 
+  data folder and all these methods of doing them can go underneath 
+  them? to clean up the repo structure of the CCG
+Manu Sporny:  We should probably have a more in depth 
+  conversationa bout it, I understand the desire to organise 
+  everything under one repo, the issue has to do with IPR issues 
+  between the different methods
+  ... while they're all linked data security related, some crypto 
+  suites have very different maturity, timelines, and the IPR stuff 
+  around it gets potentially confusing. We should talk about it a 
+  bit more
+  ... I'm concerned about putting it all in one
+Heather Vescent:  That makes sense
+  ... we can put this up as an issue in an upcoming meeting. It's 
+  on my list, but after the election
+
+Topic: Election charter
+
+Wayne Chang:  We need to decide what constitutes membership and 
+  have better language to be more inclusive of people who 
+  contribute to work items but are busy for a few months
+  ... perhaps there is a requirement for meeting attendance, but 
+  you could do fewer meetings if you actively contribute to work 
+  items, we can have balance
+  ... will be ready by the end of the week
+Heather Vescent:  We'll have updated language to share, then 
+  leave a week for feedback and commentary, then after the 
+  community has accepted it we can kick off the election timeline
+  ... we should expect to get that charter data through email on 
+  the list?
+Wayne Chang:  Yep
+
+Topic: OCAPs/zCAPs
+
+Kaliya Young:  I'm excited that we're having this conversation
+  ... I knew that in starting the thread that it would go 
+  somewhere and it's great to see this is where it is
+  ... before we get going I want to say one of the things I do is 
+  listen to the conversaiton across a wide range of the community
+  ... I was worried that some folks were going to go off and 
+  invent / create something new to solve problems that another part 
+  of the community  had already been working on
+  ... I want to invite collaboration sooner rather than later
+  ... I want to start off by having Alan explain what an object 
+  capability is so we baseline for all those listening who dont' 
+  know
+Alan Karp:  A capability or an OCAP is an unforgeable, 
+  transferable, permission to use the thing it designates
+  ... it combines designation with authorization
+Kaliya Young:  Often it's contrasted with another security model 
+  known as an access control list (ACL)
+Alan Karp:  An ACL specifically separates designation from 
+  authorization. When you make a request you prove your 
+  identity/role/attributes and the system looks up among your 
+  permissions if one of them matches the request you're making and 
+  then it will allow it
+  ... searching over all of your permissions is the fatal flaw in 
+  ACLs
+Kaliya Young:  Questions related to understanding what we're 
+  talking about
+David Chadwick:  "The fatal flaw" - I would say it's a major 
+  benefit as well
+  ... it might be a flaw to some, but to others it's a benefit to 
+  have a level of indirection between the assignment and 
+  presentation and gaining access
+Chris Webber:  It might also be useful to frame how this has come 
+  up in this community
+  ... which is that at the time of the zcap-ld spec, there was 
+  already another spec in this space
+  ... it's come up whether there ought to be two specs. The other 
+  is the verifiable credentails spec
+  ... which is about claims that x says y about z
+  ... it's largely about information provenance
+  ... it's completely possible to build an authority system on 
+  top of claims about identities
+  ... and when you do that you'll notice it resembles strongly 
+  alan's description of the ACL system
+  ... there have been some, the concerns from the ocap 
+  perspective about why we want them separate, it is valuable ot be 
+  able to describe claims about what has happened, properties about 
+  identities, so VC makes sense
+  ... the risk is you want to have a couple of thing specifically 
+  separated
+  ... one is that you could accidentally end up building your 
+  system such that it has the vulnerabilities that ACLs have of 
+  ambient authority and confused deputies
+  ... the second thing is that there are the zcap-ld spec is very 
+  specific and limited in the kind of terminology it permits
+  ... it includes a way to hook into things like an arbiter 
+  deciding whether something should happen, but does not have the 
+  space for attaching some other information other than here is who 
+  we give it out to and here are the caveats on which it is valid
+  ... which can be viewed in a programmatic way
+  ... and here is an invocation making use of one of those 
+  capabilities
+  ... a reason to bring this up is that one of the debates is how 
+  would you encode something such as the ...
+Kaliya Young:  I was just trying to have people ask really basic 
+  questions about what are we talking about
+Alan Karp:  To respond to David, chris mentioned the real flaw 
+  with ACLs is the confused deputy vulnerability that is 
+  unavoidable
+  ... and you don't lose that separation, that feature you get 
+  with ACLs, because you can use the ACL to decide what capability 
+  to grant to someone
+  ... all your structure for role/attribute based access control 
+  is valid, it's when you use it that matters
+  ... you use it when you want to grant the authority, not when 
+  someone wants to use one
+Kaliya Young:  I hope folks have grasped the core aspects
+<manu> omg, I'm so happy this call is happening.
+Dave Longley: +1 And another way of putting it is that 
+  capabilities provide an *additional* abstraction on top of a 
+  role-based system, it doesn't take away
+Daniel Hardman:  We needed a general mechanism to explain how all 
+  vcs can explain where data came from
+  ... authorization data is one kind, and you can use it to 
+  construct a chain of delegation
+  ... which is a feature you need with ocap type things
+  ... and also use it to say, you're a small mom&pop employer 
+  with 5 employees but when you creeate an employee credential for 
+  them you insert the name of th employee in the credential and you 
+  want to say I got this data off their passport
+  ... so the name has a greater reputation associated with it 
+  than just your reputation as a mom&pop business that nobody has 
+  heard of
+  ... attaching provenance to that kind of claim, and about 
+  claims about authority, felt like the same problem
+Sam Smith:  I'm trying to solve the automated reasoning problem 
+  in a decentralized world where information flows between 
+  disparate entities
+  ... security guarantees about that information require cross 
+  entity flow
+  ... the mechanism for enabling that means i need to be able to 
+  securely attribute information thorughotu the system
+  ... when you use the term verifiable in VCs, people understand 
+  it means verify the authenticity, but most people think it means 
+  verify the accuracy or veracity of the data in the credential
+  ... but what we really want is secure attribution
+  ... if i think about automated reasoning, it's satisfaction, 
+  goals and constraints in order to make a decision, to take action
+  ... so I want to provenance all of the information that i use 
+  because the info comes from a sauce that is not authentic I can't 
+  trust it
+  ... so regardless of its accuracy, if i can't attribute it, i 
+  shouldn't include it in my decision making process
+  ... the whole idea of building security attributed provenance 
+  is a super semantic, a baseline for a decentralized world
+  ... it requires some form of chaining
+  ... if you're provanancing information and doing decision 
+  making you'll likely have not a chain but a tree or a graph
+  ... an attribution graph
+David Chadwick:  I think it's possible for confused deputy to 
+  apply to capabilities
+Kaliya Young:  We'll get to the middle of the conversation!
+  ... trying not to go into the weeds, trying to support folks 
+  not in the original conversation
+  ... a lot of people did not read 40,000 words and follow the 
+  whole thing
+Chris Webber:  I have a response to the checking of information 
+  and provenance chains.. it relates to one of the emails.. but it 
+  does go into the weeds
+Kaliya Young:  Let's wait for the weeds
+  ... I know manu didn't chime in much, so I'd love to hear from 
+  manu what you would like our audience to understand about it
+Manu Sporny:  Largely it's a conversation that has been going on 
+  for a very long time. nearing decades.
+  ... and there are various people here approaching a set of 
+  problems from different perspectives which is really good
+  ... I'm really happy we're talking about this together
+  ... i'm concerned about it's very easy to get lost in the weeds
+  ... and leave a whole bunch of people behind when you're 
+  talking about the intricacies about what's better and what allows 
+  you to do more
+  ... there are a whole bunch of different use case that need to 
+  be looked at an analysed
+  ... everyone here has good intentions and wants to solve these 
+  problems in the best way
+  ... everyone is operating from good faith
+  ... nobody sees this set of discussions as a we're going to 
+  pick A or B. like there's an epic struggle. it's not that
+  ... and that there are going to be people who win or lose
+  ... one of the strengths of the community is that you let many 
+  flowers bloom and see how that stuff happens in th emarket
+  ... the main thing here is to make sure that folks are well 
+  aware of the concerns in all approaches
+<alan_karp> Kaliya, I'd like to avoid discussing whether or not 
+  to use ocaps and focus on using VCs for ocaps.
+  ... before we go forward
+Alan Karp:  I think this meeting will do better if we avoid the 
+  question of whether or not to use ocaps, and focus on the thread 
+  which is whether VCs are the right vehicle for ocaps
+Kaliya Young:  I'd love to hear from the main protagonists in the 
+  thread talk about what the conversation was and where it got to
+Chris Webber:  I think it's worthwhile trying to be illustrative 
+  of the differences
+  ... the classic VC example is a drivers license
+  ... we can imagine those used in a car driving scenario
+  ... another way we can think about things is whether or not how 
+  we can tell how far a car has been driven and how much gas is in 
+  the car
+  ... you would look at the odometer and the fuel guage
+  ... that would be a VC type approach. the fuel guage says x the 
+  odometer says y
+  ... you're making a judgment about whether to trust the fuel 
+  guage and the odometer
+  ... they could be lying
+  ... it's now the person who has received the VC who has the 
+  information
+  ... one thing that is curios about certificate style 
+  capabilities is by encoding them as data we can replay time in a 
+  way that we can see what happened to find out what has occurred
+  ... a different way to find out the gas and mileage is take 
+  your timelord friends blue box, travel back to when the car rolls 
+  of the lot and watch every time th e person starts driving and 
+  refuels the tank
+  ... and calculate it up to that moment
+  ... you could use a playback to find out the current state of 
+  the car
+  ... ohmigosh you have this information about what has occurred 
+  anyway
+  ... that's another thing that contributes to the feeling that 
+  these are the same things
+  ... one of the things is reflective. one is about what they 
+  believe to be true, and one is about th ething is happening
+Alan Karp:  My view of the discussion
+  ... I understand the discussion it's whether to have a separate 
+  standard for ocaps or include ocaps in the vc standard
+  ... and the concerns that chris has raised are very valid
+  ... as the discussion went on the real point is there is a lot 
+  of boilerplate
+  ... how you sign, define namespaces
+  ... a lot of that can be reused
+  ... so the concern is that if we combine two things that may 
+  have very different primary use cases we'll ahve overlapping 
+  confusion
+  ... as the discussion went on we got down the point where we 
+  can have a type
+  ... and they use different feeds
+  ... as it got down the only discussion was is that difference a 
+  should or a must
+  ... I'm in favour of MUST
+Sam Smith:  I haven't been following the latest stuff
+  ... based on what alan just said, the discussion is about 
+  should ocaps be a separate spec or in VCs, that's a different 
+  quesiton than what started the discussion
+  ... I want to be clear that we may be on two different planes 
+  now
+  ... the original point of the discussion was is there a way to 
+  securely provenance data where the provanence uses a chaining 
+  semantic
+  ... it doesn't matter what the data is
+  ... as daniel said if I'm chaining things there is a tendency 
+  to chain authorizations as long as i can chain anything else
+  ... is there a home for a chaining semantic?
+  ... if we have a chaining semantic for credentials, where would 
+  that home be?
+  ... my hypothesis is the correct home for a chaining semantic, 
+  because there are many use cases that have nothing to do with 
+  authorization, where should that home be
+  ... if it's the VC spec, the discussion is over
+  ... and it's a different discussion to say what do we use that 
+  chaining semantic for?
+  ... something about open loops
+  ... what cwebber2 said is getting at the distinction
+  ... if' I'm doing open loop decision processes such as an event 
+  sourcing high volume application, I want to use a different 
+  sematnic than a closed loop reflective process
+  ... you say I have to be ocap like / closed loop like, then I 
+  can't do certain things when I'm doing an open loop decision 
+  making model
+  ... there are advantages to both but they're not the same and 
+  you can't make one be the other
+  ... they are fundamentally incompatible
+  ... I want to do open loop decision processes with VCs and i 
+  need a chaining semantic
+  ... is VC the right place to put a chaining semantic?
+  ... if not, VCs are uninteresting to me
+  ... has nothing to do with ocaps
+Adrian Gropper:  I cannot understand anything that is being said 
+  so far today
+  ... I see this discussion only in the discussion in the context 
+  of authorization
+  ... I've worked on a set of slides which kaliya and others have 
+  seen
+  ... to try and figure out the role of authorization in the 
+  broader context of what you're talking about
+  ... I cannot detach this conversation from the protocols 
+  involved in authorization
+  ... but I'll keep listening, even though I am completely lost
+<jim_stclair> Great point @agropper
+David Chadwick:  I can bring historical perspective
+  ... my feeling is that VCs are an evolution of the original 
+  ECMA attribute certificat model in the 1990s which was followed 
+  by x509
+  ... i had discussions with Alan in 2011 about this
+  ... when we implemented the x509 attribute cert infra
+  ... at that time we agreed they can act as capabilities as well
+  ... when alan started today he said an ocap is an unforgeable 
+  transferable permission
+  ... it is an authorization token
+  ... you can use VCs to do both
+  ... when he said we've got to the point of saying we should 
+  identify with the type, I agree
+  ... and it should be a MUST
+  ... and if we indicate in the type we've potentially solved the 
+  problem
+Dmitri Zagidulin:  Echo that one way to think about VCs vs 
+  capabilities is at least the way zcap spec is constructed, they 
+  are a profle of a VC
+  ... a specialised credential used for authorization
+  ... I am curious about the thing sam brought up, whether 
+  chaining semantics belong in VCs as a first class mechanism
+David Chadwick: +1 To specialised
+  ... I'd like to hear more about what open reasoning is
+Chris Webber:  Something alan said about it being a type issue
+  ... worthwhile noting that alan and orie were on a call, orie 
+  had put together a demonstration of how to layer zcaps to augment 
+  VCs
+  ... through that conversation part of the thing was a lot of 
+  these properties look very similar so could we reuse them
+  ... that's a positive conversation to have
+  ... if we can reuse properties if they are behaving the same 
+  across both i see no reason not to
+  ... if there's a way they are behaving differently we can use a 
+  different property
+  ... let's reuse the ones we can
+  ... sounded like increasing consensus on that
+  ... on what type is chosen?  I think the important thing is 
+  that since the use of verifiable credentials vs the use of zcaps 
+  or ocaps are very different, because zcaps have a specific 
+  algorithm that includes the caveats mechanism, whcih is different 
+  that VCs are
+  ... and that there are additional properties you may want to 
+  attach to a VC that should not apply to whether or not to accept 
+  a capability invocation as valid
+  ... this is important because you want to be able to reply 
+  everything and end up in the same state which might not happen 
+  otherwise
+  ... i agree there is an opportunity for collaboration where we 
+  can reduce the friction between to two
+  ... if we reuse properties, but have two types that are not 
+  included at the same time
+  ... and the mechanisms used for both are two different 
+  algorithms
+Alan Karp:  Chaining is absolutely critical for ocaps
+  ... there's a difference in the provenance
+  ... after the provenance that matters is the root of the 
+  delegation chain in ocaps
+  ... I expect the prov of each step matters in what sam is 
+  interested in
+  ... one difference is in revocation
+  ... in claims type vcs you don't know who is going to look at 
+  the thing to decide if it's important
+  ... in ocaps you do
+  ... revocation in ocaps is simply telling the resources, the 
+  verifier, don't honour this thing any more
+  ... you need something more like a CRL (Certificate Revocation 
+  List) for the claims
+  ... it's awful. If you don't know how is going to look at the 
+  cert you have to have some means to find out it's revoked
+<agropper> What Alan just said is an example why I can't see 
+  detaching the cap from the protocol.
+Manu Sporny:  Jumping high on the stack, people are seeing why 
+  it's so difficult to have this conversation
+  ... it's hard to outline the differences without getting into 
+  the weeds
+  ... you can do authorisation using both mechanisms, and you can 
+  chain using both mechanisms
+  ... the core issue is using a hammer to drive in a screw
+  ... that is the difference
+  ... it's basically wrong tool for the wrong job
+  ... the folks that are saying zcaps are really doing something 
+  different that what vcs are doing
+  ... there is an algorithmic difference
+  ... what is being said is I know you're holding a screw and 
+  you're trying to use a hammer to drive the screw in, you should 
+  use a screwdriver
+  ... you'll get the job done but that thing is not going to be 
+  very strong
+  ... you've damaged something by doing that
+  ... if there's one thing folks can take away, you can do all of 
+  these things using either tech
+  ... the debate is whether there's a better tool and a better 
+  way to protect developers from making the wrong decision
+Daniel Hardman: -1 To hammer and screw
+<dhh> I think this is a misleading metaphor
+David Chadwick: +1 To Daniel
+David Chadwick: -1 To hammer and screw
+Sam Smith:  Alan said I have no idea what manu just referred to 
+  because without making specific reference to what the hammer and 
+  screw is, it doesn't help
+  ... but what alan said about revocation is one of the core 
+  issues between what i'm calling open loop and closed loop models
+  ... are you going back to the source to verify whether or not
+Manu Sporny: The point is that "While you can use them together, 
+  they don't go well together" :)
+  ... in a token oauth model, if i issue something using a set of 
+  keys and sign with those keys
+  ... and the token is presented back to the issuer
+  ... if the keys have rotated, the token is automatically 
+  revoked
+  ... in an open loop model you need some registry, a verifiable 
+  data registry, of revocation
+  ... revocation isn't automatic, it requires a separate action 
+  from the issuer
+  ... things are valid until revoked
+  ... what the open model allows you to do is separate your key 
+  management chain from your issuance revocation chain
+  ... rotation of a key doesn't automatically imply revocation of 
+  a credential
+  ... you can separately rotate keys and credentials are still 
+  valid
+  ... that's a fundamental property
+Daniel Hardman:  To manu's metaphor, I find it very troubling and 
+  misleading
+  ... I'm not just trying to deal with nails and screws
+  ... I'm trying to deal with various other kinds of fasteners
+  ... there are many different things I"m trying to work with and 
+  screws (ocaps) is just one of many
+  ... if I have to pick one tool over all of them which tool will 
+  I use?
+  ... you could say you don't have to pick one tool for all
+  ... it's too early for us to introduce lots of different 
+  standards
+  ... at an early stage in an ecosystem you don't develop a whole 
+  bunch of specialised tooling
+  ... you use the tools you have to develop experience
+  ... in 2-5 years we might have more experience to make the 
+  finer distinction
+<manu> (VCs are the hammer) -- (Authorization is the screw)
+<agropper> I was hoping to hear from Justin
+Kaliya Young:  Vcs are the hammer and authorization is the screw
+Chris Webber:  As much as I'm concerned that it's critical to 
+  separate these things, the question should be what decision 
+  should this grop make?
+  ... a top down decision that we have to combine these things or 
+  not?
+  ... if the people working on zcaps would liek them to be 
+  separate but are interested in collaborating on trying to use the 
+  same properties? is there any harm in that? would we benefit if 
+  we end up taking that approach?
+<samsmith> @manu   The dictionary definition of credential is 
+  synonymous with authorization.  So using your metaphor means we 
+  are taking about phillips heads vs flat head screws
+Alan Karp:  On manu's analogy, i think it's driving a nail with a 
+  screwdriver, it works...
+<cwebber2> the CCG is walking into a 30 year old argument
+David Chadwick:  Capabilities are a subset and specialisation of 
+  VCs. The revocation further highlights that
+  ... in vcs when you're chaining properties, anybody in the 
+  chain can do a revocation. with capabilities only the root can. 
+  that's a specialisation
+Kaliya Young:  What should this group do next?
+  ... if folks were to use IRC to answer that question, we're not 
+  going to solve it in 3 minutes
+  ... I was given permission by the chairs to say we can have a 
+  part 2
+  ... that can be centered around the next action for this group, 
+  and if there's clarity in that starting to sketch out a charter
+  ... I feel like the conversation got to a place because some 
+  parts of the community have more mutual understanding, though I 
+  do hear there is still some confusion
+  ... I'm grateful for everybody's participation in the 
+  conversation and hope we can support the synergies
+<cwebber2> I'm not sure we're going to solve it over 1-hour 
+  meetings, so the real question is how to best collaborate
+<alan_karp> Anyone on the chain can revoke subsequent 
+  delegations.
+<tayken> Have to hop off...BIG thanks to @Kaliya + @Amy + 
+  Heather/chairs for managing the weeds (and doggos). Nothing worth 
+  doing comes easy!
+Manu Sporny: I believe the CCG process calls for a cage fight in 
+  a Roman-style arena next. :P
+<cwebber2> lol
+<agropper> We need to be talking about protocols before we return 
+  to data models.
+Heather Vescent:  From a chair perspective, for part 2 how can we 
+  structure this conversation
+  ... we knew it was going to be a bunch of different levels
+  ... how can we structure it to get some productive outcomes for 
+  the community?
+Manu Sporny:  What are folks afraid of?
+  ... write down what folks are concerned about if one path is 
+  taken over the other
+  ... and what problems are you trying to solve? could folks help 
+  walk through how that problem is solved using either approach
+Kaliya Young:  I had the impression from what Sam said, it may be 
+  worth starting another thread specifically about the question 
+  that you named
+  ... we're at the top of the hour. it's over!
+<cwebber2> I do have a suggestion but I guess I should throw it 
+  to the mailing list at this time
+Heather Vescent:  The chairs will circle back with kaliya and 
+  we'll figure out a process for moving forward
+  ... No call next week
+  ... Back on the 27th
+  ... about Verifiable Requests
+  ... the earliest we could pick this up is in February
+  ... and we'll have chair election details asap
+  ... thanks for coming!
