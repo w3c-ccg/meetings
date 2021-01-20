@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "Checking if there are minutes to publish for $DATE"
+echo "Checking if there are minutes to publish in $DIR"
 if [[ -f "$DIR/irc.log" ]]; then  
 
-    echo "Generating minutes for $DATE"
+    echo "Generating minutes for $DIR"
 
     export GROUP=`cat $DIR/group.txt`
     echo $GROUP

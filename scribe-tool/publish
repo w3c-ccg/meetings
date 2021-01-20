@@ -6,24 +6,16 @@ display_usage() {
 	echo "Publish CCG minutes via email and social media." 
 	echo ""
 	echo "Usage: ./publish [-h] [-d directory]" 
-	echo "  -t                           tweet only"
-	echo "  -e                           email only"
 	echo "  -d [/path/to/YYYY-MM-DD]     generate minutes for directory/date"
     echo "  -h                           display help"
     echo ""
     echo "Examples:"
 	echo ""
     echo "  ./publish -d /path/to/w3c-ccg-meeting/2018-05-15" 
-    echo "      generates minutes for specified date, commits to git, and emails"
-    echo "  ./publish -t -d /path/to/w3c-ccg-meeting/2018-05-15" 
-    echo "      tweets link to May 15 2018 minutes"
-    echo "  ./publish -e -d /path/to/w3c-ccg-meeting/2018-05-15" 
-    echo "      emails text of May 15 2018 minutes"    
+    echo "      generates minutes for specified date and commits to git"   
     echo ""
 } 
 
-TWEET_ONLY="n"
-EMAIL_ONLY="n"
 
 if [ $# -eq 0 ]
   then
@@ -40,14 +32,6 @@ else
 	    -h|--help)
 	    display_usage
 	    exit 0
-	    ;;
-	    -t|--tweet)
-		TWEET_ONLY="y"
-		shift
-	    ;;
-	    -e|--email)
-		EMAIL_ONLY="y"
-		shift
 	    ;;
 	    -d|--directory)
 		shift
@@ -69,33 +53,14 @@ if [ -z "$NODE_COMMAND" ]; then
     NODE_COMMAND="nodejs"
 fi 
 
-if [ -z "$SCRAWL_TO_EMAIL_ADDRESS" ]; then
-    SCRAWL_TO_EMAIL_ADDRESS="public-credentials@w3.org"
-fi 
-
-
-if [ "$TWEET_ONLY" == "y" ]
-then
-   echo "Tweeting link to minutes for $DATE"
-   $NODE_COMMAND index.js -d $DIRECTORY -t 
-   exit
-fi
-
-echo "Generating minutes and social media posts for $DATE"
+echo "Generating minutes for $DATE"
 MESSAGE="Add text minutes and audio logs for $DATE telecon."
 
 # Generate minutes
 $NODE_COMMAND index.js -d $DIRECTORY -m -i
 
-if [ "$EMAIL_ONLY" == "y" ]
-then
-   echo "Emailing text of minutes for $DATE"
-   $NODE_COMMAND index.js -d $DIRECTORY -e
-   exit
-fi
-
 # Make sure we want to continue
-read -r -p "Check for problems, press 'y' when ready to commit to git, email: " BROADCAST
+read -r -p "Check for problems, press 'y' when ready to commit to git: " BROADCAST
 
 echo "Broadcast: $BROADCAST"
 
@@ -111,13 +76,4 @@ git add $DIRECTORY/irc.log $DIRECTORY/index.html $DIRECTORY/audio.ogg
 git commit $DIRECTORY/irc.log $DIRECTORY/index.html $DIRECTORY/audio.ogg $DIRECTORY/../index.html -m "$MESSAGE"
 git push
 
-# Generate G+ post summary
-# $NODE_COMMAND index.js -d $1 -w
-
-# Email minutes
-$NODE_COMMAND index.js -d $DIRECTORY -e
-
-# kim: too many people complaining about dead link while waiting for github pages to publish...
-# Tweet telecon results
-# $NODE_COMMAND index.js -d $DIRECTORY -t 
 
