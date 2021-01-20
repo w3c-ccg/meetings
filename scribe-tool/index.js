@@ -4,7 +4,6 @@ var fs = require('fs');
 var path = require('path');
 var program = require('commander');
 var scrawl = require('./scrawl');
-var wp = require('wporg');
 
 program
   .version('0.3.0')
