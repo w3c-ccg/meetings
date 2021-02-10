@@ -1,0 +1,268 @@
+Thanks to Adrian Gropper for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-02-03 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-02-03
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Feb/0020.html
+Topics:
+  1. Introductions & Reintroductions
+  2. Updates from the ecosystem - DID Universal Resolver Task 
+    Force
+  3. DID Core progress
+  4. DIF F2F
+Organizer:
+  Kim Hamilton Duffy and Wayne Chang and Heather Vescent
+Scribe:
+  Adrian Gropper
+Present:
+  Amy Guy, Ted Thibodeau, Charles E. Lehner, Heather Vescent, Jeff 
+  Orgel, Mike Prorock, Erica Connell, Manu Sporny, Brent Zundel, 
+  Adrian Gropper, Chris Winczewski, Jim Goodell, Wayne Chang, Joe 
+  Andrieu, Markus Sabadello, Orie Steele, Ryan Grant, Dmitri 
+  Zagidulin, Juan Caballero, Balázs Némethi, Michael Herman, Kaliya 
+  Young
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-02-03/audio.ogg
+
+<manu> Wayne does standard intro to CCG, goes over how to queue, 
+  IPR agreement, meeting etiquette, etc.
+Adrian Gropper is scribing.
+
+Topic: Introductions & Reintroductions
+
+Michael_herman: founder of project Trusted Digital Web - 
+  initiated virtual credentials discussion - living in BC
+<michael_herman_(trusted_digital_web)> Alberta! :-)
+Joe_a Legendary requirements, involved with RWoTrust - doing a 
+  salon on Feb 25 - check it out
+Joe Andrieu: http://decentralizedprivacy2021.eventbrite.com
+Wayne Chang:  Change in the Advanced Biometrics conference date 
+  per Kaliya
+https://github.com/w3c-ccg/community/labels/action%3A%20review%20next
+Kaliya Young: 
+  https://twitter.com/digitalsista/status/1355870475902181382
+<michael_herman_(trusted_digital_web)> @joeandrieu does this work 
+  for personal messages?
+Wayne Chang:  Infrastructure Task force now, kickoff date still 
+  pending, sending Doodle today, NPM repository for test suites,
+<bumblefudge> @Michael i saw that, so i'm guessing no :D
+<joeandrieu> Kaliya, if you'd like to say something, please say 
+  it. Otherwise, I'd ask the chairs to remove that comment from the 
+  record.
+https://github.com/w3c-ccg/community/issues/136
+  ... revisit work item templates - want to review - election 
+  objections satisfied - simplified to having signed contributor 
+  agreement and joined the group - elapsing the two week period and 
+  will be able to proceed soon
+  ... changes discussed since Dec - please raise
+Heather Vescent:  About time? do we need to wait? when is this 
+  done?
+Wayne Chang:  Announced changes to mailinglust about two weeks 
+  ago - satisfied all - proceed
+Heather Vescent:  Have election stuff ready to go - how long 
+  should I wait?
+Wayne Chang:  Monday should be acceptable
+Heather Vescent:  To make sure: Monday Feb 8 EOD deadline for any 
+  feedback on changes - after the 8 Heather can do the election 
+  kickoff. - great TY
+
+Topic: Updates from the ecosystem - DID Universal Resolver Task Force
+
+Markus Sabadello:  DID resolution is a CCG work item - draft 
+  specification covers going from DID to DiD document - no calla in 
+  Dec or Jan - there's a strong dependency on DID Core - previously 
+  when work started scope was clear...
+  ... subsequently, some elements are now considered in DID  Core 
+  - so relationship between DID and DID URL, resolving vs. 
+  dereferencing - things are still changing in DID Core - impact 
+  resolution spec so we did not work much on this specification
+<bumblefudge> /me hehe DIF can cede a little time, I wanna see 
+  this :D
+  ... sharing screen: DID Core Spec section on DID Resolution - 
+  defines inputs and outputs now in DID Core. What remains for 
+  Resolution spec: Resolving a DID and Dereferencing a DID URL. DID 
+  Core does not define the algorithm on how you drive at outputs - 
+  e.g. what metadataa is returned
+<orie> /me did resolution can be whatever i want it to be <insert 
+  thanos meme>
+  ... another item is Architecture. DID resolution is not a 
+  single protocol. Can be a local library or a hosted service - 
+  concepts such as local or remote resolvers - how do you trust a 
+  resolver - how does the resolver access the DID document -
+<michael_herman_(trusted_digital_web)> A DID resolved can be 
+  implemented on a DNS server too: 
+  https://hyperonomy.com/2019/12/03/trusted-digital-web-first-trusted-web-page-delivered-today-dec-3-2019/
+<michael_herman_(trusted_digital_web)> A DID resolver can be...
+  ... rulnning local full node or relining on API - client-side 
+  dereferencing - if you want to dereference a fragment part could 
+  been a server and some local to a client.
+Orie Steele: /Me 
+  https://didme.me/did:meme:1zgsprnee48qhzq5yulgygcmanx8nmcv56nu4kpmcm4a2g4p4faqjmdst98l69
+  .... what are the implications for trust and security.
+Orie Steele: Somehow the most important part of DID Core is still 
+  a CCG work item :(
+  ... And then: the two sections bindings for JSON-LD resolution 
+  returns two types of metadata but the look is not defined in 
+  Core. HTTP bindings is also not defined E.G. if the DID does not 
+  exist but it's just an example
+  ... progress slow due to interdependency with DID Core. There's 
+  a meeting page - want to upgrade the infrastructure - plan 
+  bi-weekly meetings starting next Monday - will review this in a 
+  bit more detail - invite anyone - lots of things still to do -
+  ... work is still needed and relevant - will send email to list 
+  as invite
+Manu Sporny:  +1 Work is very relevant needed and necessary - i 
+  feel like the DID resolution spec is the next thing to go into 
+  the W3C process - a lot of people wanted to work on it in DID 
+  Core - expect that at some point the stuff in DID Core will move 
+  back to DID Resolution - work still needed - the next official WG
+Waybe: brent ack: DID Core progress - goals - what is CR and more
+
+Topic: DID Core progress
+
+<heathervescent> Marcus FYI, you are still sharing your screen...
+Markus Sabadello: I don't know how to turn off screenshare :)
+<wayne> i think it's ghost sharing, not actually sharing just the 
+  afterimage
+Manu Sporny: +1 ^^ Ghost sharing -- we're not seeing any updates.
+Brent Zundel:  DID Core specification incubated right here, 
+  worked on RWoT sessions, all of that work became the heart of the 
+  DID WG - have been trying to define a data model for DID 
+  Documents - DID URL - Additional Parameters - test suites - all 
+  according to W3C process
+  ... started with working draft which is fluid - noe in order to 
+  turn it into an official W3C Recommendation we need specified 
+  periods. CR is the first phase means it's to the point where 
+  implementers can use it - during CR no substantive changes 
+  allowed -
+  ... if there are errors we will need to enter another phase of 
+  CR - The LAST day to submit to this version of CR is FEB 9! - 
+  most of the big things have been resolved over time - structural 
+  things like an Abstract Data Model - introduced DID Spec Registry 
+  -
+  ... had many in -depth conversations on privacy - an 
+  outstanding Use Cases Documents ever -
+<orie> We have some awesome chairs and editors as well! Thanks to 
+  Brent, Dan, and the editors.
+Wayne Chang:  Questions for Brent?
+<dmitriz> thanks markus!!
+Markus Sabadello:  Forgot to say - need to acknowledge Dmitri who 
+  figured out the relationship between the two specs -
+Wayne Chang:  TY Dmitri -
+Manu Sporny:  Could Brent reiterate the timeline for WG
+Dmitri Zagidulin: (For those that are curious, since we were just 
+  talking about DIDs, and Solid was mentioned - here's the current 
+  proposal to the Solid community to use DIDs - 
+  https://github.com/solid/specification/issues/217 )
+<wayne> +1!
+<agropper>	brent: feb 9 deadline for pr >> editorial activity to 
+  resolve the pr >> by end of feb formal transition >> a couple of 
+  months for feedback from implementers >> editorial refinements >> 
+  transition to Proposed Recommendation which is the final stage
+Wayne Chang:  What are the biggest risks?
+Brent Zundel:  All the riskes and blockers have been raise - the 
+  most extensive conversations around privacy and security - DID 
+  resolution conversations have been done - I feel like most of the 
+  big issues handled - politics in W3C, DID is not on the same 
+  ground as VC - the view for
+  ... what we're doing is shifting - invited to present to FIDO 
+  Alliance today - not anticipating a lot of opposition - hopeful
+Wayne Chang:  Great how aligned the ecosystem - positive to hear
+Orie Steele: This time around Microsoft has a DID Method, so they 
+  don't want to see the spec killed.... nice :)
+Manu Sporny:  The CCG has been instrumental in helping to make 
+  this smoother than it was with VC - big community - many people 
+  watching - ton of thanks to the Chairs - Brent, Dan, Ivan, - 
+  incubate specs in CCG
+Brent Zundel: +1 Ccg has been vitally important
+  ... want to highlight - require proof you have done sufficient 
+  horizontal review - CCG has an opportunity to read the spec and 
+  raise issues - if you're waiting that date is late Feb or Early 
+  March
+Wayne Chang:  Any questions before we move on
+
+Topic: DIF F2F
+
+Balazs: Background started about two and a half years ago - goal 
+  to related work items across multiple WG - some misalignment 
+  across groups - was around IIW - first 3 were IPR-protected
+<bumblefudge> Link to overview document full of recording videos 
+  here: http://bit.ly/dif-f2f-jan2021
+<bumblefudge> wayne, i believe you're still screensharing as 
+  well?
+  ... since this year we switched to a virtual format and makes 
+  more sense to open the event from workshop to education - enable 
+  non-members too - there was a big upgrade to gather.town - 
+  extension to zoom - interaction space - 3 additional
+  ... rooms where gdocs could be used - har 122 people at peak + 
+  50 people in workshop rooms - gather.town 110 people with much 
+  overlap.
+Juan Caballero:  Content is my middle name - experiment with 
+  unconference format - more p2p sessions - speaking on behalf of 
+  work items or proposed work items - the main stage was report 
+  outs from the various groups -
+<rgrant> present-
+<phil.l> link to the article being referred to?
+  ... Medium article with a paragraph and video - check it out - 
+  highlight Markus graph of Universal Resolver adoption - also less 
+  technical WGs represented - recommend following the link and 
+  check out their GitHubs - Produc Managers produces a lot of 
+  useful materials -
+http://bit.ly/dif-f2f-jan2021
+  ... in terms of the highlight from Member Stage, many sessions 
+  on work items such as PoC at comprehensive learner records, ID 
+  Union governance problems, Eric Welton research on OSS tooling 
+  for DID rubrics - DID method comparisons -
+  ... use case for KERI - updates from OIDF -
+Wayne Chang:  TY - questions?
+Balázs Némethi: 
+  https://medium.com/decentralized-identity/dif-face-to-face-jan-2021-highlights-89e78cb80f54
+<bumblefudge> (the bitly link has no paywall :D )
+Balázs Némethi: Here is link with no paywall:
+<heathervescent> What's the link to the use case document that 
+  was mentioned?
+Manu Sporny:  What are the next 3-6-12 months for DIF? where's 
+  DID headed? a industry body that publishes interior 
+  recommendations - conformance testing - incubator for SDOs?
+Juan Caballero:  There was a meeting today - proposed new WG 
+  charter proposed - IPR protected group to do interior profile 
+  work - helping people navigate wallet gov standards - bridging 
+  role between inter- DIF not chartered as a trade association - up 
+  to the members
+  ... in terms of interior - test suite maintenance and education 
+  after the March plugathon. Filling in gaps in W3C
+Michael Herman:  At meta level - there's more and more overlap 
+  between organizations -
+<orie> monkaS ...TOIP / DIF / CCG
+<balazs_nemethi> Thanks, Manu, DIF has a 2021 focus on 
+  implementations of the technology and adjacent actions that make 
+  that happen
+<identitywoman> they all exist for different reasons. those 
+  reasons still exist.
+<manu_sporny> got it Balazs, thank you
+<michael_herman_(trusted_digital_web)> Maybe we need the 
+  comprehensive map/Venn diagram of what the entire landscape looks 
+  like today.
+Juan Caballero:  Agree but I don't have an answer
+<bumblefudge> /me heather on q, no?
+<michael_herman_(trusted_digital_web)> Know what we have today
+<bumblefudge> as per re-entering the space, this might be 
+  helpful: 
+<michael_herman_(trusted_digital_web)> Heather, that's not what 
+  I'm talking about ...i.e. collaboration
+Heather Vescent:  Everyone loves collaborating - but 
+  pragmatically it's not going to happen - a dream - always going 
+  to be different silos - this is a robust marketplace
+<michael_herman_(trusted_digital_web)> Something is needed today 
+  to simply understand the landscape
+Wayne Chang:  Diverse space is good
+<charles_lehner_(spruce)> Thanks
+<wayne> iniating kick of anyone remaining to alllw cgbot to do 
+  its thing...
