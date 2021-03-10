@@ -1,0 +1,747 @@
+Thanks to Amy Guy for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-03-10 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-03-10
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Mar/0027
+Topics:
+  1. Solid presentations
+  2. Tim Berners-Lee on Solid
+  3. Solid OIDC
+  4. Data in Solid
+  5. Q&A
+Organizer:
+  Kim Hamilton Duffy and Wayne Chang and Heather Vescent
+Scribe:
+  Amy Guy
+Present:
+  Heather Vescent, Matthias Evering, Amy Guy, Kjetil Kjernsmo, 
+  David Chadwick, Ivan Herman, Dan Burnett, Pat Adler, Justin 
+  Bingham, Dmitri Zagidulin, Aaron Coburn, Matthieu Bosquet, Sarven 
+  Capadisli, elf Pavlik, Ted Thibodeau, Mike Prorock, Jan 
+  Camenisch, Erica Connell, Ralph Swick, Adrian Gropper, Dave 
+  Longley, Manu Sporny, Liam Broza, Wayne Chang, Kristina Yasuda, 
+  Charles E. Lehner, Kayode Ezike, Tim Berners-Lee, Drummond Reed, 
+  Henry Story, Juan Caballero
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-03-10/audio.ogg
+
+<heathervescent> Welcome back!
+<davidc> present +
+<mprorock> presenmt+
+elf Pavlik: Elf Pavlik <https://elf-pavlik.hackers4peace.net/>
+<https://www.linkedin.com/in/kjekje/> 
+  <http://kjetil.kjernsmo.net/>
+Matthieu Bosquet: Matthieu Bosquet 
+  <https://github.com/matthieubosquet/>
+Justin Bingham: Justin Bingham 
+  <https://www.linkedin.com/in/justinwb/>
+Aaron Coburn: Aaron Coburn <https://github.com/acoburn>
+<bblfish_> present +
+https://bblfish.net/ or https://co-operating.systems/
+Jan Camenisch: https://janschill.net/profile/card#me or 
+  https://www.linkedin.com/in/jan-schill-161b66a4/
+<robbie.jones@forgerock.com> robbie jones, forgerock+
+Amy Guy is scribing.
+Matthias Evering: Matthias Evering https://github.com/ewingson 
+  https://testpro.solidweb.org/profile/card#me
+Heather Vescent: http://irc.w3.org/?channels=ccg
+
+Topic: Solid presentations
+
+<michael_herman_(trusted_digital_web)> Here's a Decentralized 
+  Twitter app scenario we're using to validate the Confidential 
+  Storage specification ...called Dewitter: 
+  https://hyperonomy.com/2021/03/05/trusted-content-storage-tcs-stack-decentralized-twitter-the-dewitter-use-case/
+<michael_herman_(trusted_digital_web)> Potentially useful for the 
+  SOLID folks as well
+Sarven Capadisli:  Thanks for the earlier session and sharing 
+  your work, the tip of all the great work that you have
+  ... and thanks again to the CCG for organising
+  ... on behalf of everyone I hope there will be a lot more of 
+  these meetings
+  ... a lot of shared interest
+  ... A brief intro.. I'm Sarven Capadisli, working in web 
+  standards for about 15 years mostly through w3c
+  ... over the years our paths have crossed multiple times
+  ... I've been focussing on the solid project since 2015 at MIT 
+  as part of my research
+  ... I worked with rhiaro, dmitriz and timbl
+  ... as part of the early incubation period of 'solid' that we 
+  know today
+  ... we've been focussing on research and developing servers and 
+  applications
+  ... we managed to transition some of the work, eg. Linked Data 
+  Notifications, through the w3c social web wg
+  ... LDN is quite central to the activitypub specification and 
+  the fediverse, as well as solid
+  ... the Solid CG.. it is relatively new, since 2018
+  ... the underlying work goes back further, 15+ years
+  ... there are about 200 members, we work through github and 
+  gitter
+  ... and have a forum
+  ... there are regular topical meetings covering authentication, 
+  authz, interoperability
+  ... and others
+  ... everyone is welcome to join the meetings
+  ... they happen throughout the week, there are three right now
+  ... I'll share the links
+  ... our technical reports, repos, work items are here
+Sarven Capadisli: https://solidproject.org/TR/
+  ... The CG emerged out of collaborations from many CGs and WGs
+  ... in line with the initiative on decentralising the web and 
+  empowering individuals to control their data
+  ... Solid draws a lot of background from the semantic web, 
+  linked data, read write web, webid, social web
+  ... a lot of existing work we're extending
+  ... the name for it is now 'solid'
+  ... one way of putting the work together in a meaningful way
+  ... in the group we thought it'd be best to share quick 
+  introductions to key components of the ecosystem
+  ... and use the second half of the session for open 
+  discussions, and identify areas to collaborate
+  ... timbl will give an overview on the solid vision
+  ... aaron will introduce solid oidc spec for auth
+  ... justin will follow on with solid apps and interop
+  ... bblfish will give us a perspective on key aspects and 
+  history of solid, touching on webid, authz and potential 
+  integration with the credentials stack
+  ... I'll hand over to timbl
+
+Topic: Tim Berners-Lee on Solid
+
+Tim Berners-Lee:  Good to see you all!
+  ... good to be at a meeting of two w3c groups
+  ... Solid comes from lots of places
+  ... when I explain it I tend to find I start off in different 
+  places depending on who I'm explaining to
+  ... you've heard lots of people talking about decentralising 
+  the web
+  ... its not about blockchain
+  ... its about going back.. the web was exciting when everyone 
+  could have their own website
+  ... if you were sufficiently geeky you buy a computer, plug it 
+  in, and you can blog and link to other peoples blogs
+  ... the excitement of the time was very much of being 
+  individually empowered
+  ... and the wider unintended consequences were generally good
+  ... you spend your time working on your blog, and link to other 
+  nice blogs
+  ... the result was the blogosphere became an amazing place you 
+  felt privileged to be a part, and you got more value out than  
+  you put in
+  ... the long tail has now gone
+  ... now a lot of people are not on the web, but one single 
+  social network
+  ... a bunch of projects which have always felt, and people, a 
+  spirit to get back to that virtuous circle, that feeling of 
+  empowerment
+  ... where I'm on the web not as an alternative to the tv
+  ... and infinite scroll my life
+  ... lets make it where i'm empowered, tackle problems, work 
+  with people on things, and have fun, and write music and whatever
+  ... and be empowered
+  ... solid to an extent is just Web
+  ... but it's not so much a website
+  ... everybody has got a database
+  ... you can do picture like things on it, and edit html files, 
+  but also any data file is regarded as a database
+  ... whereas with slower moving synchronising things like 
+  dropbox you can sync data files.. with solid, we split the world 
+  so we've got a fast protocol with apps on the top and the storage 
+  (pod) on the bottom
+  ... the solid protocol defines the boundary between them
+  ... the solid protocol allows fast interactions and 
+  collaborative interactions
+  ... If I'm typing something into a note or dragging something 
+  around a map, while I'm doing that every time I move the pointer 
+  on the map the app sends back to the solid pod every update
+  ... and if you're looking at the same app your app will connect 
+  to the server and get high speed notifications
+  ... so that we are in sync and can collaborate efficiently
+  ... with whichever solid app it is
+  ... we've filled in the blue sky folks, tried to think about 
+  what sort of app it was, and the trouble is it's not an app its' 
+  a platform
+  ... you can put lots of apps on top of it
+  ... we're aiming that the apps should be fast, compatible
+  ... for every type of app means we have to application 
+  standards for contacts, for photos, for metadata, for playlists, 
+  etc
+  ... a lot out there already
+  ... it's linked data
+  ... most files on a solid server are turtle
+  ... turtle is like json
+  ... the punctuation is different
+  ... it is natively rdf
+  ... easy to write rdf in turtle and hopefully to read
+  ... a lot of our apps .. you can also use jsonld
+  ... equivalent and compatible and interchangeable
+  ... the solid protocol first added single signon for the entire 
+  world
+  ... if you want to be able to collaborate with other people 
+  you've got to be able to share anything with anybody
+  ...t hats' the goal
+  ... at the moment you can only share facebook things with 
+  facebook people
+  ... the goal of solid is to be able to share anything with 
+  anybody
+  ... whenever someone has their id we can put them in any group
+  ... anyone can publish a group, just a list of people by their 
+  IDs
+  ... everybody's ID starts with https:
+  ... the fundamental principles like people and orgs have webids 
+  which are just https urls
+  ...everything else does too
+  ... a meeting
+  ... one message in a chat
+  ... the action of liking a message in a chat
+  ... all have urls that start with https
+  ... nice and simple
+  ... we started off historically with webid tls
+  ... you had to log in with a certificate in your browser
+  ... i like that, it was secure, no passwords
+  ... now we're oidc connect compatible
+  ... you can log into any solid server with an identity from any 
+  solid id provider
+  ... if you get a solid account you get an id and a pod at the 
+  same time, that's the simplest way
+  ... or you can have several ids, tell people or not tell people 
+  they're the same
+  ... two interesting cases are solid id which has an anon avatar 
+  and a pseudonym
+  ... you can mint a new id which is not linked to your existing 
+  id at all
+  ... all of the people on this call are professional, yours is 
+  going to be more like how people use linked in, you're proud of 
+  it, there's only one of them
+  ... you want people to know
+  ... we want people to give out their id
+  ... people can scan a qr code and be taken to their one 
+  professional id which has all their reputation, their papers, etc
+  ... when you comment then the public chat is tied to that 
+  reputation, so they're bound to be respectful
+  ... some people will have lots of ids
+  ... several pods as well
+  ... one for work, one for home, one for each of your works
+  ... I can't overestimate the lumpiness of the solid component
+  ... with blockhain all the nodes share the same stuff and you 
+  have to agree on running the system
+  ... put the same effort in to keeping it running, whether 
+  you're a bank or a script kiddie making a game or to buy a 
+  candybar or something
+  ... whereas solid, you have several pods yourself, some are 
+  free, some are not, maybe the bank will give you a solid lock box 
+  which is expensive because you got it from the bank but they take 
+  care of you and you store things and have agreed who will take 
+  over that pod when you die
+  ... pods of different shapes, different speeds, reliability, 
+  different servers, but all running the solid protocol
+  ... same login, same access control system
+  ... we have two versions of access control at the moment, one 
+  is WAC
+  ... been around for years
+  ... another called Access control policies, which are more 
+  powerful, eg. for if you're a healthcare system and want lots of 
+  control
+  ... the protocol is single signon, common access control, and 
+  the read-write web protocol
+  ... we have a roadmap
+<drummond> Any plans for supporting DIDs?
+Dmitri Zagidulin: @Drummond - there's interest, yeah. see 
+  https://github.com/solid/specification/issues/217
+<justinwb> yup
+Tim Berners-Lee: 
+  https://solidos.solidcommunity.net/public/Roadmap/Tasks/index.ttl#this
+  ... link to the roadmap ^
+  ... for the whole solid ecosystem
+  ... the ecosystem is designed into layers
+  ... apps is part of the whole ecosystem
+  ... developer tools should be another within the ecosystem
+  ... the core functionality, the extended functionality, are 
+  what we call the solid OS
+  ... my feeling is that when real people use this it's got all 
+  the functionality of a phone or a mac... the goal is that it's 
+  useable by real people
+  ... when you get a pod you get a beautiful OS which is easy to 
+  use and intuitive
+  ... easy to do simple things, and not to difficult to do more 
+  involved things
+  ... verifiable credentials is in there
+  ... we call it in progress because people have started playing 
+  with it
+  ... using VCs is really important
+  ... we'll use this tracker to keep track of our progress and 
+  link in attachments, documents, implementations
+  ... this tracker is a solid app
+  ... the office has a different version of this tracker
+  ... for triaging all the things people ask me to do
+  ... this is where we prioritize all the things inside the solid 
+  project
+  ... this is where VCs is currently in our roadmap
+  ... one other view which might be useful is the view by status
+  ... the part of the ecosystem it is, you see stuff about 
+  communities to be done this month
+  ... there's a huge amount to do
+  ... because we've now got the servers working we can turn 
+  attention building apps and operating system
+  ... a lot of the low hanging fruit for getting governments to 
+  give pods to their citizens work really nicely with verifiable 
+  credentails
+  ... if we have VCs we can use it for putting peoples driving 
+  licenses, VCs about age which don't reveal other thing, and 
+  digitally sign all the apps out there
+  ... nested and linked webs of trust where VCs are the 
+  technology for signing things
+  ... solid links are the way of managing my playlist of apps 
+  that I recommend, for example
+  ... then sign that playlist
+  ... and the playlist will contain a hash of the app or the id 
+  of the person who made the app and anyone loading the app can 
+  know it was signed by the author
+  ... lots of early apps, demonstrations with VCs for places 
+  where a benevolent organization like a health system or part of a 
+  government wants to give people apps or pods so they can be 
+  enabled
+  ... So VCs are a part, but we have a huge amount of stuff to do
+Sarven Capadisli: 
+  https://solidos.solidcommunity.net/public/Roadmap/Tasks/
+Justin Bingham: Re: agropper - in the practical real world use 
+  case, the health system can either host a pod for you, (i.e. 
+  making the data available to you through the solid protocol, and 
+  putting it in your control), or you could link it to one you 
+  control externally. you can have N physical pods as part of your 
+  "virtual pod" associated with a given identity
+
+Topic: Solid OIDC
+
+Aaron Coburn: Solid OIDC 
+  https://solid.github.io/authentication-panel/solid-oidc/
+Aaron Coburn:  I'm an engineer at inrupt where I spend time 
+  implementing the solid protocol
+  ... I work on the authentication panel where we're defining 
+  this auth protocol
+  ... thank you for letting us take over this meeting
+  ... and for the presentations this morning, there's a lot of 
+  overlap
+  ... especially things like DIDs
+  ... for solid, all of the things tim described rely on a 
+  globally unique authentication system such that you can have 
+  globally unique identifiers
+  ... you want to be able to log in through your own 
+  authourization system
+  ... what we have described is something that uses openid 
+  connect
+  ... at a high level what we want to do is build on oidc in a 
+  way that works with and builds on those existing implementations 
+  and protocols
+  ... rather than trying to depart from that and do something 
+  completely separate
+  ... theres a lot of tooling out there that is mature and 
+  robust, we want to work with that rather than building out a new 
+  auth system
+  ... solid oidc takes openid connect and builds a few additional 
+  pieces on top of that in ways that work with the current oidc 
+  spec
+  ... I'm not going to go into detail, you can read about it
+  ... but at a high level a couple of points are
+  ... access tokens are defines as jwts
+  ... a solid pod is going to interact with those access tokens 
+  as jwts
+  ... there's a webid claim
+  ... the claim tells your solid pod who you are and that claim 
+  is something that is an https url that dereferences to an rdf 
+  document, and that doc contains additional metadata that can be 
+  used for validation of the token itself
+  ... this is the key area of overlap with DIDs
+  ... lets continue conversation between our two groups
+  ... there are other parts of this related to proof of 
+  possession
+  ... one of the challenges with a really decentralised system 
+  that uses access tokens, especially bearer tokens, is if you send 
+  the token ot a malicious server it can be passed on and 
+  unwittingly give away access to your data
+  ... we use dpop at the application layer, which is a way of 
+  doing token binding for these access tokens
+  ... it's in a draft spec
+  ... we can go into more detail if there's need
+  ... at a high level that's really what we're doing with solid 
+  oidc
+  ... happy to take questions afterwards
+Drummond Reed: Any plans to support the DIDComm protocol being 
+  developed at DIF? 
+  https://identity.foundation/working-groups/did-comm.html
+elf Pavlik: 
+  https://datatracker.ietf.org/doc/draft-fett-oauth-dpop/
+
+Topic: Data in Solid
+
+Justin Bingham:  The current state of the world that we're all 
+  aware of ... the user uses applications on their device, 
+  interfacing with services that are little silos
+  ... your data is in those silos
+  ... its' very hard for that person to make use of that data 
+  because of all the walls between them. integration is unlikely
+  ... the vision of solid as tim said earlier is to give people 
+  control of their data, break all of those dots down into a 
+  personal online data stores so they can choose the apps and 
+  services they want to use
+  ... where is that physically stored? this view is a virtual 
+  pod. It could be made up of a number of physical pods that is 
+  transparent to the services and apps in use
+  ... ultimately we want to shift the equation
+  ... so different apps and services are reading and writing data 
+  from the store that's in control of the user
+  ... the user is ultimately in control of how that gets used
+  ... the services get the benefit of having overlaps in the data 
+  they're interfacing with
+<kristina> Have you looked at Self-Issued OpenID provider work at 
+  OpenID Foundation? wrt using DID/VCs with OIDC (it does not uses 
+  WebID tho)
+<dmitriz> @Kristina - we're tracking SIOP (and DID-related siop 
+  work) on the Solid authentication panel.
+  ... if they can make a strong proposition to the user about why 
+  they should have it, they can get access to more data
+  ... that immediately introduces some challenges you have to 
+  solve for to do this practically
+  ... the goals we've had in the interoperability panel is to 
+  seamless let apps read and write the same data
+  ... different apps written by people who aren't working 
+  together, who don't have knowledge of how the other apps work
+  ... just that they want to read and write the same data without 
+  breaking it
+  ... hard on its own
+  ... with security and collaborative use it becomes even harder
+  ... you want to make this easy for people to use
+  ... you want people to be able to safely share even complex 
+  data like health data or financial with other people and 
+  applications
+  ... in a very simple intuitive way
+  ... you don't want to require them to have to think about how 
+  to organise their data to be able to do that
+  ... if you're on your phone you don't want to be making those 
+  choices, just use the services and give access to the data 
+  transparently
+  ... and you should be able to grant exactly the right access 
+  that that app needs every time
+  ... a lot of the work towards this over the last couple of 
+  years is in a couple of specs
+  ... shape tree and app interoperability spec
+  ... shape trees is a way to model information so it can be 
+  interoperable
+  ... the interop spec is about providing patterns for actors in 
+  the ecosystem to do that exchange in a constructive way
+  ... easiest to explain this with a quick workflow
+  ... just a couple of things we're doing, you can join some of 
+  our meetings each week
+  ... I'll start joining confidential storage discussion
+  ... Bob has a bunch of data in his pod
+  ... the first thing that the interop spec tries to focus son is 
+  data registration
+  ... a pattern for how you store your data in a pod so you don't 
+  have to think about how to store it
+  ... we want to work towards flatter data organisation
+  ... you don't want to think about where to put things. You need 
+  some consistent pattern to apply in those cases
+  ... you want to make it as simple as possible
+  ... so store it based on what it is
+  ... you have instances of these things - calendars, events, 
+  projects, stored in collections or containers
+  ... these data, each one is a thing a person would understand
+  ... you understand 'project' even if you don't understand down 
+  below
+  ... and makes it easier to validate that something is 
+  conformant to a given schema or shape if you're just saying if 
+  you put something in here it's going to validate against this
+  ... this consistent organisation scheme makes it much easier to 
+  establish consistent authorization schemes
+  ... two issues to contend with
+  ... 1) some individual things are complex on their own
+  ... an instance of a task can be made up of multiple resources, 
+  shapes, schemas
+  ... 2) some things that are complex can be part of bigger 
+  complex things
+  ... a task is part of a project as well as issues and releases, 
+  we need to deal with that
+  ... this is where shape trees came in
+  ... a shape tree allows you to marry the graph into the way 
+  that its stored in a collection or nested hierarchies for machien 
+  to machine interop
+  ... it gives you structure and validation criteria or schemas
+  ... a shape tree helps you with the layout as well as how to 
+  validate what the thing is
+  ... each shape tree because its explaining a structure also 
+  gives you a boundary with which to auth that data
+  ... you can see a task made of multiple resources
+  ... virtual hierarchies, so we can talk about something like a 
+  project and be able to say issues tasks and resources can be made 
+  up of that, even if these things are stored flatly
+  ... this becomes really powerful when you start to get into 
+  consent
+  ... once you have those schemes, you can share it with other 
+  people and apps
+  ... the interop spec gives you schemes for data and app 
+  registration, and patterns you can use for consent
+  ... so that you can grant access to people or apps based one 
+  exactly what they need
+  ... an app is able to express its access needs to any agent 
+  that wants to use it
+  ... if you dereference the global id you get some metadata, 
+  this lines up with DIDs, that says the kind of access this app or 
+  service needs
+  ... this can be presented to the user dynamically, that allows 
+  them to specify or select exactly what access they want to grant
+  ... even getting down to related types
+  ... uses a virtual hierarchy to model complex asks in an 
+  intuitive way
+  ... at no pointing time does the app get access or knowledge to 
+  other data in the pod
+  ... we have these patterns in use using health data
+  ... which is complicated and complex
+  ... we're getting feedback from real patients and the thing 
+  that made me happiest was they said they were blown away by how 
+  easy it was to share their data with other people and 
+  applications and understand exactly what they were sharing and 
+  tune that easily
+  ... intuitive isn't usually the first thing people describe 
+  based on their experience
+  ... we see a lot of potential for these
+<heathervescent> Yes, we can plan to go 15 over the top of the 
+  hour, which will give us some Q&A time.
+Henry Story:  I'm going to focus on one aspect
+  ... what ties us to the ccg is the webid work that started in 
+  2008 under a different name
+  ... it works quite simply
+  ... very similar to the DID spec
+  ... two URLs in one
+  ... the hash url and the url that refers to a doc
+  ... the hash url refers to a person
+  ... you go to the document to ifnd out a description which can 
+  contain a public key
+  ... we can work out what ontologies for keys to use
+  ... the point is so that tim can link to his personal profile 
+  and all his friends and 200 of them can link to their friends
+  ... and the pods can be machines in your own home
+  ... around 2008 I presented an address book to read this type 
+  of stuff
+  ... its' a bad UI
+  ... now we have a lot of people working on the UI
+  ... the UI at the time could only read because we didn't have a 
+  read-write element
+  ... in order to do privacy you need access control and auth
+  ... in this blog post from 2008 after asking on ietf we 
+  discovered client side certs
+  ... now we have verifiable credentials 10 years later
+  ... in one simple connection we can go to a web server and 
+  connect, get a client cert request, fetch the public key on the 
+  personal user profile
+  ... we need this efficiency to connect to 200 different 
+  connects at the same time
+  ... one problem was if you connect to 200 websites 
+  simultaneously you get 200 cert popus....
+  ... we also want the apps to read and write
+  ... in 2015 the linked data platform came out, that's 
+  integrated into solid
+  ... built on atom, and on webdav
+  ... these things evolving
+<justinwb> @heathervescent - the shape tree is more like a schema 
+  model in a database
+<justinwb> it gives a template for a data type - like a project - 
+  made up of multiple resources / schemas. when applications read 
+  and write data for a project, the shape tree ensure that the data 
+  is well-formed, so they don't corrupt it when other applications 
+  want to use it
+<justinwb> it also acts as a natural data boundary for 
+  authorization / sharing
+  ... in order to understand access control you need each 
+  resource to point to an access control resource which describes 
+  who can access
+  ... one of the first ones is public
+  ... the server and client can use it
+  ... the client can find out if it has access and the server if 
+  it should give access
+  ... acl can say the protected access in is in read mode
+  ... can give access to a group, it's very flexible
+  ... this is evolving
+  ... some of the first work on access control in 2010-12
+  ... the webid tls work fell out
+  ... chrome removed the keygen part
+  ... manu showed us the credentials stuff very early on, before 
+  this was removed, so I was still hoping browsers would do the 
+  write thing
+  ... it was at the wrong layer of the tls stack
+  ... the nice thing was if we look at manu's work from 2019, the 
+  12th version of the http signatures spec
+  ... which is taken over by the ietf http wg
+  ... it has a way of signing messages and signing authenticating 
+  with that at the http layer
+  ... you can do a.. you could add a www-authenticate signature 
+  and use that to authenticate
+  ... this is at the ietf but they removed this piece which 
+  allows authentication
+  ... that's why I've been working on trying to see how we can 
+  get manu's work back in by signign http messages from the rfc
+  ... that gives us back the same efficient that we had with tls
+  ... so we can do a request on a resource
+  ... these clients can do requests on resources around the web, 
+  each resource can be protected, you have resources protected, 
+  this picture can be seen by my friends this other by my 
+  colleagues etc
+  ... you have this www-authenticate which can come back, and use 
+  http sig to sign a header, pass a key in there
+  ... the client can find out whether it wants to give access
+  ... you can use authorization http sig, do a request
+  ... sign some headers
+  ... have the efficiency of tls but now at the right level
+  ... you can add credentials too
+  ... you could have a credentials uri passed into the http sig
+  ... can be on the server, on the pod
+  ... also with peer to peer etension to http which is a draft 
+  (really cool)
+  ... it will allow you to place the cert on yoru client and have 
+  the server request it on the same connection
+  ... you can use OWL to describe the acls
+  ... eg. people over 21
+  ... you can say that all content that is adult content can be 
+  read by the class of over21
+  ... attribute based access control
+  ... just starting this work, and would like to work with the 
+  credentials group
+  ... if you think about how these credentials all fit together, 
+  I've thought about how you could build what the credentials 
+  people call governance
+  ... a key term in the SSI book
+  ... in order for that to work at the global level you need a 
+  web of nations, point out which can give out credentials for age, 
+  for drivers licenses and so on, so servers an dpods don't 
+  individually need to know which agency in japan, china, france, 
+  can give out drivers licenses
+  ... a lot of work to be done there
+
+Topic: Q&A
+
+Adrian Gropper:  In the model where there's a separation between 
+  a policy decision point and a policy enforcement point how have 
+  pods incorporated that
+  ... for privacy reasons
+  ... if I as a patient don't want to share my policies with that 
+  hospital?
+<by_caballero> have pods incorporated the model where there's a 
+  separation between policy decision pt and enforcement pt?
+Tim Berners-Lee:  If you don't trust the hospital then you can 
+  take a copy of the data on another pod which you run yourself 
+  which the hospital is not involved in running
+  ... and allow people to access it through there
+  ... to share with friends and family and don't want the 
+  hospital to know who your friends and family are
+  ... you can have things on more than one pod
+Henry Story:  You can also have access control rules, or a 
+  secured group
+  ... all members of this group can access this resource, but 
+  only members of the group can se members of the group
+  ... lots of ways of dealing with situations like this
+  ... and the credentials group might have new ways..
+Manu Sporny:  Thank you to each of you for joining us today, it's 
+  been great seeing where solid is these days
+  ... there are clearly many places where we overlap
+  ... the two communities, the core philosophy is very aligned, 
+  the technologies we're using are highly aligned
+  ... I can see pieces that one community is working on that the 
+  other might not be
+  ... or areas where we're working on the same thing and we 
+  should collaborate more
+  ... for next steps, useful for at least the people that have a 
+  good idea of the roadmap for each project to get together and 
+  decide what pieces overlap
+  ... what pieces one entity needs that the other may have
+  ... so we can triage all these technologies and figure out how 
+  they fit in
+  ... these are two very large communities, ideally we can 
+  accelerate the work by dividing and conquering
+Heather Vescent: +1 Manu
+  ... that's my ask to the leaders in both groups
+  ... lets sit down and figure out a way to do that triage and 
+  get more organised about who is working on what
+Tim Berners-Lee:  Sounds like a plan
+Heather Vescent:  I will happily do some followup with folks 
+  coordinating that
+Drummond Reed: +1 To Manu's suggestion
+<manu> +1, thank you heathervescent !
+<bblfish_> Some links to what I showed: 
+  https://github.com/solid/authentication-panel/blob/main/proposals/HttpSignature.md
+<drummond> I have to run, but thanks to Tim and team for all 
+  their great work
+elf Pavlik:  Across a few different panels, eg. authz panel, we 
+  have well documented use cases and requirements
+https://bblfish.net/work/AddressBook/
+  ... one of the interesting points to see the overlap
+http://web.archive.org/web/20080426014047/http://blogs.sun.com/bblfish/entry/foaf_ssl_creating_a_global
+  ... henry was describing one proposals, focusing on http 
+  signatures, but at this moment it's quite open and there are 
+  different proposals
+https://www.w3.org/TR/ldp/#ldpc-HTTP_POST
+.. Oauth, or gnap
+https://www.w3.org/wiki/WebAccessControl
+  ... we look at uma and how claims gathering work over there
+https://www.w3.org/2005/Incubator/webid/spec/tls/
+https://tools.ietf.org/html/draft-cavage-http-signatures-12
+  ... some things are still quite open and we explore different 
+  ways of approaching that
+  ... henry presented one, but it's not closed how we want to 
+  approach these
+  ... still flexible, options how to solve those problems
+Heather Vescent:  These meetings today have been a lot of food 
+  for thought for both sides
+  ... there are some clear places where it makes sense for us to 
+  start a potential collaboration
+  ... but that's just the known stuff
+  ... want to collaborate on the unknown stuff, that's still 
+  emerging, to see if the technologies and ideas and concepts can 
+  align
+Michael_herman: my interest is in fully decentralised platforms
+  ... for the past couple of weeks Ive been working on 
+  decentralised twitter
+  ... solid like the confidential storage spec is a server based 
+  secure storage solution
+  ... can you comment on if I want my pod running on my phone as 
+  a secure storage resource, do you see that in the future? or not 
+  in scope?
+  ... on device secure storage?
+Tim Berners-Lee:  Yes, we have a lot of early interest in giving 
+  people their pods on their phone
+  ... you have to back it up and so on
+  ... you can have various places to sync it
+  ... you might be interested to look at the work .. everything 
+  starts with https so you can follow links, but you can also put.. 
+  you can use other protocols as well like ipfs for example
+  ... there's a solid safe, the safe decentralised network, those 
+  folks have put in a version of solid which runs on a stack that 
+  accesses https or safe: URIs
+  ... so you can link between them
+  ... the SAFE world is decentralised
+  ... decentralised in the sense of being splattered everywhere, 
+  whereas solid is decentralised but lumpy
+  ... lots of ways of connecting together
+  ... decentralised file system
+  ... it has to support URLs, you have to be able to link to it
+Heather Vescent:  Thanks everyone!
+  ... we've been very interested about this for a while
+  ... we'll be back next week with a regular ccg meeting
+  ... I'll follow up on the list and connect with the solid side
+  ... I invite the solid folks to email the ccg list and let us 
+  know when you're meeting and how we can join
+  ... if you want to join our regular meeting or any of our task 
+  forces we have those notifications on our list
+  ... I'm also personally available if you need any help figuring 
+  out who to connect with or who to talk to
+  ... more thanks! meeting concluded
+<bblfish_> blog post on the web of nations 
+  https://medium.com/cybersoton/from-digital-sovereignty-to-the-web-of-nations-61fbc28d79cd
+<csarven> kewls, that was great
