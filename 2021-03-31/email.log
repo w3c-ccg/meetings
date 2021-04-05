@@ -1,0 +1,163 @@
+Thanks to Peter Mackinnon for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-03-31 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-03-31
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Mar/0281.html
+Organizer:
+  Wayne Chang and Kim Hamilton Duffy and Heather Vescent
+Scribe:
+  Peter Mackinnon
+Present:
+  Robbie Jones, Manu Sporny, Sarven Capadisli Heather Vescent,
+  Peter Mackinnon, Charles E. Lehner, Ted Thibodeau,
+  Juan Caballero, Wayne Change, Phil L., Dmitri Zagidulin,
+  Matthieu Collé, Jeff Orgel, Taylor Kendall, Kayode Ezike, Amy
+  Guy, Erica Connell
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-03-31/audio.ogg
+
+Wayne Chang: We've been having a lot of good engagements with Solid, identifying concrete next steps. [scribe assist by Manu Sporny]
+Wayne Chang: Agenda: Solid workgroup discussion and next steps [scribe assist by Peter Mackinnon]
+<pete_m> i can scribe
+Peter Mackinnon is scribing.
+Peter Mackinnon is scribing.
+Wayne_Chang: Topic: Introductions & Reintroductions
+Peter Mackinnon: Hi, Pete -- I'm new here -- a student, here to learn about this exciting new ecosystem. [scribe assist by Manu Sporny]
+Peter Mackinnon: Excited to learn, im a student, lets have fun
+Wayne_Chang: any reintroductions?
+Wayne_Chang: Topic: Announcements & Reminders
+https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+... moving to progress on action items
+Heather Vescent: Next week we are moving back to the old time Tues 9AM pacific
+Manu Sporny: Announcement about DID core change if we have time
+Wayne_Chang: action item review, is gimly_jack here? Anyone else can speak up
+Juan Caballero: Minutes are on github, link will be posted. This is a multi signature item
+Wayne_Chang: next items, CHAPI Interop
+... it meets criteria
+... SOLID's parallels with CCG, and next steps for both ecosystems
+Manu Sporny: Spoke with Sarven, spoke about potential overlaps
+Sarven Capadisli: Intro -- working on SOLID for 5+ years
+... committee group chair, busy working on tech specs and tech reports for SOLID
+Manu Sporny: Sarven's been around the the CG's for a while, great to have you here
+... ill go down the list, summarizing overlap
+... starting at the most basic layer moving upwards
+... solid is working on things that we're not but need, lots of mutual benefit
+... SOLID supports JSON-LD, which the CCG depends on quite a bit
+... JSON-LD is a global standard (v1.1), we are all using it
+... SOLID uses other stuff than JSON-LD. Any thoughts on JSON-LD Sarven?
+Sarven Capadisli: Its in the RDF family, i think its a thing that both groups agree on and work with
+Manu Sporny: SOLID uses stuff other than JSON-LD, maybe you could speak a bit to that?
+Sarven Capadisli: Fundamentally RDF 1.1 concepts we try to adhere to, min. requirements for SOLID servers to provide a representation for resources are JSON-LD and Turtle
+... content negotiation is open and on the table, thats possible if applications want to ask for it, thats it on the RDF end
+... SOLID servers are just generic HTTP servers with some understandings of linking, and JSON-LD happens to be one of the items we've got
+... just a note here, one reason we chose JSON-LD, it can conform with some other specs out of the box
+Manu Sporny: That basically means, everything that this community is doing, SOLID pods can understand it at a very low level
+... this is an example of what we're working on but SOLID isn't, but could use and build off of
+... data models like: VC specs, extensions to specs. (Status List, Auto Refresh), crypto stuff, SOLID can consume the VC's work from CCG
+... I think there's an expectation here that this community keeps working on the VC stuff, and the SOLID community is already/will use this work item coming up for the SOLID community
+... so thats a great example of something we're working on that is useful in the SOLID ecosystem
+... VC discussion: how to move things I/O of solid pods, or for our community: digital wallets. You can think of a Solid pods as a digital wallet, or a part of a digital wallet
+... Then the question is "how to get data I/O from Solid pods?" and CCG has some very specific protocols on how to do this, SOLID has general protocols for using a Solid Pod
+... both groups have a general awareness for data containers I/O
+... maybe Solid pod supports the credential handler API, or a Solid applicaiton might do that. Thoughts Sarven?
+<tallted> Digital Wallet has a fair number of requirements that I would not nnecessarily expect to be part of a Solid Pod.
+<tallted> Solid Pods are much more of a general storage space
+Sarven Capadisli: I dont see major conflicts
+... parts of the group depends on implementation
+... CHAPI and some of the other specs are not representing what is, or where it's implemented
+... we need to see if things will be optional, best-practices, etc
+... SOLID is working to see what's missing on our end, and what might work to remedy
+Wayne_Chang: question about SOLID pod, where can we find info?
+<tallted> A Digital Wallet *app* might target a Solid Pod as its storage space.
+Sarven Capadisli: Its the main protocol spec, an extension of the HTTP server, RFC 7230 and 7231 for more details
+... inteded to be compatible with LDP
+... HTTP server with some linking understanding in a nutshell
+Manu Sporny: https://solid.github.io/specification/
+Wayne_Chang: manu, credential handler API question. is there a way to go forward with CHAPI support if the browser API doesn't support the credential handling?
+Sarven Capadisli: Please refer to https://solidproject.org/TR/ for TR index.. and for Protocol: https://solidproject.org/TR/protocol
+Manu Sporny: Excellent question. CHAPI is currently a poly-fill (things you want to have eventually existing in the browser but dont yet)
+... getting browser vendors to adopt technology is a sensitive situation. Vendors want to see a broad ecosystem before they adopt it
+... CHAPI never needs to be built into the browser, so the ecosystem can exist if vendors dont support it
+... but ideally it is built into the browser, its an upgrade
+Dmitri Zagidulin: (Though it certainly will be great when it is :) )
+Sarven Capadisli: From SOLID, we dont need to wait for browser adoption if we adopt CHAPI
+... if it happens, great, but not a concern for now
+Manu Sporny: Moving on to other items, Decentralized Identifierss, built on DLTs and Blockchains
+... correct me if I'm wrong: SOLID is very much built on the web, has its own DID method built on top of DID web
+... the question is if SOLID will support more DID methods in the future, what are your thoughts sarven
+Sarven Capadisli: The DID is new-ish to SOLID, its a way for connecting different environments
+... we're looking into DIDkey, for example, to see how its being implemented, DIDs that are blockchaining on the end are a bit further away
+... DIDweb and DIDSolid is a jumping point for a DID environment to talk about later
+Sarven Capadisli: https://solid.github.io/did-method-solid/
+Wayne_Chang: thats a good opportunity to hear about DID Solid
+Sarven Capadisli: Its a work in progress with Amy Guy and Dimitri Zadidulin
+... DID web was too generalized/under-specified for SOLID
+... if it works against a SOLID server, it will work with HTTP servers
+... DIDSolid specifies the CRUD, more than the DID web, which is only "read" right now
+Wayne_Chang: are you saying SOLID will specify how you update or delete items?
+Sarven Capadisli: DID Web doesnt specify how you update/delete, could work with HTTP/FTP servers
+... DID Solid is on the other end, closer to HTTP
+Heather Vescent: I was curious about general feedback from others
+... practically, how can we work together CCG/SOLID?
+Manu Sporny: https://solid.github.io/did-method-solid/
+Sarven Capadisli: Some are looking for clarificaitons on specs and if SOLID can assist with them
+... and compared to CCG we are smaller group
+... I'm hoping people who are interested in VCs begin reading the specs and seeing overlap, starting to implement CCG work, providing more feedback to CCG
+... for specifications: we should notice any conflicts between the group's trajectory/focus, and how to coordinate better
+... bringing people together is starting to happen, I welcome more advice on what to do going forward
+Phil L.: I think this group is interested in SOLID as a repository for credentials in general
+... id like to see an overview of the VC model and how presentations would work with SOLID, what are the things SOLID might need to build out?
+Sarven Capadisli: Hard to respond, working on encryption is really important, its an area that we are not covering. Dimitri might chime in here, but to what extent that overlaps with a SOLID pod would be good information.
+Manu Sporny: "Is there anything that conflicts" is a really good question
+... we dont want to make things more complicated, or duplicate effort for any community
+... authorization capability / web access control stuff, I dont think they're in conflict, there are two ways to do different things
+... these are discussions that will take place naturally between communities
+... like sarven said, we cant really discuss until people start using the mechanisms
+... I'm not so concerned about web access control/ zcap, but more about wallets/hubs/SOLID protocol stuff, because both groups are working on similar issues in their own corners
+... SOLID has a bunch of higher-level concepts which is really useful for a wallet, but unsure if it will be used at the moment
+... Potential conflict might be higher up on the stack and this is where i think we will see very interesting discussions in the future
+<phil.l> Is it fair to say that Solid then isn't an initial target for credential storage for VCs, e.g., as a wallet credential store?
+Sarven Capadisli: Eg. https://github.com/solid/authorization-panel/issues/121
+Charles E. Lehner: https://github.com/w3c/did-spec-registries/pull/276 ← Conflict
+Heather Vescent: A way to break the ice for the two groups is have a hackathon
+... have a great way to work together on the same issues
+... looking for a fun way to focus and enjoy time spent working together
+... i love reading specs, but thinking of something different
+Heather Vescent: Hackathon/barcamp/Q&A sessions would be great [scribe assist by Sarven Capadisli]
+<by_caballero> IIW?
+<csarven> YES!!! +1 heathervescent
+Sarven Capadisli: PROPOSAL accepted :P
+Manu Sporny: +1 To being able to loosely coordinate
+Juan Caballero: https://internetidentityworkshop.com/
+Manu Sporny: A +1 to the IIW/Barcamp idea from heathervescent
+... sarven it might be good to look at overlap/workitems
+... moving on -- protecting data/ VCs
+... HTTP signatures might have overlap with SOLID, they have web access control stuff
+... CCG uses them for EDV and Zcaps, these are common connections making different products between CCG/SOLID
+... encrypted data vaults should be built in a way where the user knows their data is secure
+... you and the people you've authorized are the only ones able to view the data
+... EDVs are a potential for SOLID
+<dmitriz> (Henry is investigating using HTTP Sigs for user authentication (which it's not really for))
+Sarven Capadisli: Generally, what CCG has some very useful items for the SOLID group
+... if we are not using something now, we are still studying it, getting towards usage
+... im excited to see how we can adopt what CCG has to offer, less worried about conflicts, just working towards complete understanding on the specs
+Manu Sporny: A specification we have been working on is in the next phase towards adoption
+... DIDs are one of those standards, "a better type of identifier for you/businesses"
+... provides security and confidence with next-get cryptography
+... DIDs started in 2014, worked on it within CCG for a long time before proposing it to the membership group
+... launched DID working group in 2019
+... starting mid 2019, working group has been on this untill just recently
+... we are currently in the cadidate recommendation phase, hopefully done by April/May
+... we are testing non-stop, if all good we move onto a proposed recommendation phase
+... that means we are "done" and it then moves to an official vote
+... hopefully done around September 30th, back to you Wayne
+<heathervescent> WooT! Congrats!
+Wayne_Chang: thank you everyone for joining the call, things are looking good and progressing well
