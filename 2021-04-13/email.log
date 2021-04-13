@@ -1,0 +1,321 @@
+Thanks to Peter Mackinnon for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-04-13 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+https://w3c-ccg.github.io/meetings/ Minutes for 2021-04-13
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0099.html
+Topics:
+  1. Announcements & ReIntroductions
+  2. Work Item: Verifiable Condition
+  3. Work item: Traceability API	
+  4. CCG 101 Developer to Developer Intro
+  5. Linked Data Signatures Charter 
+Organizer:
+  Kim Hamilton Duffy and Heather Vescent and Wayne Chang
+Scribe:
+  Peter Mackinnon
+Present:
+  Mike Prorock, Ivan Herman, Orie Steele, Amy Guy, Peter Mackinnon, 
+  Charles E. Lehner, Markus Sabadello, Heather Vescent, Juan 
+  Caballero, Joe Andrieu, Matthieu Collé, Ryan Grant, Kim Hamilton 
+  Duffy, Erica Connell, Kayode Ezike, Manu Sporny, Ted Thibodeau, 
+  Kimberly Linson, Dave Longley
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-04-13/audio.ogg
+
+<jack_tanner_(gimly)> Hi everyone
+<orie> yep
+Peter Mackinnon is scribing.
+Heather Vescent:  Welcome to CCG meeting 4/13, we will start 
+  linked-data sigs, CCG 101, and several proposed work items:
+Heather Vescent:  Topic: IP Note
+Heather Vescent: Join the XXG: 
+  https://www.w3.org/community/credentials/join
+Heather Vescent: IRC: http://irc.w3.org/?channels=ccg
+<pchampin> Pierre-Antoine Champin present+
+Heather Vescent:  Topic: Introductions & Reintroductions
+Pchampin: new to VC groups, interested in JSON-LD, I'm a 
+  professor and W3 member
+Jack_Tanner_(Gimly): Hi, I'm Jack Tanner, here for new spec 
+  discussion
+Casper_Roleofs_(Gimly): exited to be here
+Robert_Long: also glad to be here
+<robert_long> Having some issues hearing certain people in 
+  Firefox.
+Heather Vescent:  Q? - brings up queue / q+ - joins the queue / 
+  q- - leaves the queue
+Heather Vescent:  Any Re-Introductions?
+
+Topic: Announcements & ReIntroductions
+
+Heather Vescent: Announcement & reminders: 
+  https://w3c-ccg.github.io/announcements/
+Heather Vescent:  Anyone want to speak to IIW?
+Juan Caballero:  Heres the link
+Juan Caballero: https://internetidentityworkshop.com/
+
+Topic: Work Item: Verifiable Condition
+
+Heather Vescent: https://github.com/w3c-ccg/community/issues/188
+  ... thanks to Jack Tanner, heres the floor
+Heather Vescent: Verification Methods New Work Item Proposal: 
+  https://github.com/w3c-ccg/community/issues/188
+<kimhd> Hi everyone, welcome back to the normal time!
+Jack_Tanner: current Verification methods have one key, this new 
+  type allows for multi signatures
+<orie_> big +1 to the work item
+  ... a new proposed verification method, also a way to show 
+  relationships between DID methods. More sophistication for secure 
+  identities
+<orie_> very much needed
+  ... welcoming any comments or questions. Lastly, this 
+  verification method type should support several Key 
+  Infrastructures and more advanced DIDs
+Kim Hamilton Duffy:  Hey guys, Heather's computer crashed, I'm 
+  taking over for now
+  ... manu youre up in the Q
+<heathervescent_> All - my system crashed, give me a moment to 
+  restart
+Manu Sporny:  There are a number of things I've been commenting 
+  on
+<heathervescent> All - I'm back. Thanks Kimhd for filling in.
+Jack_Tanner: the design is intentionally recursive
+  ... there are a few other considerations to subtypes not in 
+  this work proposal
+  ... some might lead to security concerns, and we didn't have 
+  clear use cases
+Markus Sabadello:  +1 To work item
+  ... also generally interested in new and creative verification 
+  methods. This seems generally applicable
+Ryan Grant:  One question i have is: is this a signature scheme 
+  or a DID method? What exactly is it?
+Jack_Tanner: this will specify specific conditions on how to fill 
+  a verification method
+  ... this will be on the verification method array, and also on 
+  the verification-method property
+Orie Steele:  Just a note, not all DID methods expose security in 
+  the documentation
+Orie Steele:  That was helpful [scribe assist by Ryan Grant]
+Jack_Tanner: this would allow to check for verifiable credential 
+  fulfillment
+  ... it has function higher up in the SSI chain
+Markus Sabadello:  Verification methods dont have to be based on 
+  cryptographic signatures
+  ... this method combines other verification methods without 
+  concern for what they are
+Heather Vescent:  Any comments or objections?
+  ... Jack, do you have a repo to transfer over
+  ... we can discuss the details after the meeting
+
+Topic: Work item: Traceability API	
+
+Heather Vescent: Traceability API: 
+  https://github.com/w3c-ccg/community/issues/191
+  ... moving on, Tracability API and general discussion
+Orie Steele:  Tracability Vocabulary conversation...
+Heather Vescent: Context thread for this request: 
+  https://github.com/w3c-ccg/vc-http-api/pull/168
+  ... credentials are not being exchanged. We need a new set of 
+  "holder" end-points (p2p)
+  ... We've been trying to define a usecase scenario for 
+  verifiable presentations
+  ... this new work item is an opportunity to deal with 
+  interoperability
+  ... we plan to build on top of CCG specs without breaking them
+  ... trying to get the API to work across different vendors
+<troy_ronda> Another example of a request for exchange APIs (so 
+  these scenarios go beyond supply chain): 
+  https://github.com/w3c-ccg/vc-http-api/issues/176
+Heather Vescent:  Generally, we need to try and work with a 
+  better understanding of the existing work being incorporated
+Manu Sporny:  +1 To heathers comment
+  ... the Tracability API seems like a fork to the specification 
+  without proper discussion
+  ... it shows we are working, but we should discuss the actions 
+  more
+Kim Hamilton Duffy: +1 To Heather and Manu. This move severely 
+  compounds my concerns I raised in the vc-http-api PR
+<orie> merging from forks is how progress is made
+Ted Thibodeau: +1 Fork of 
+  not-really-understood/described/discussed thing to 
+  even-less-understood/described/discussed thing is premature and 
+  likely to lead to less interop, not more
+<heathervescent> @TallTed, would you like to be on the queue?
+Orie Steele:  I agree with manu about wanting to work
+  ... there has been long conversation about VC-HTTP-API which 
+  has led us here
+  ... forks should not be seen as anything combative to the 
+  general process
+<kimhd> forks are not combative; the language in the work item is 
+  combative (as well as refusal to accept use case feedback)
+  ... there's been no consensus on what the Traceability API 
+  people have been trying to do
+<manu> I strongly disagree with what Orie is saying and the way 
+  he's presenting the information; what he is saying has not been 
+  my experience.
+<tallted> repeating the same words again and again is not 
+  productive use of time.
+  ... progress needs to be made to see if the changes are 
+  worthwhile
+Kim Hamilton Duffy: +1 Heather
+Manu Sporny: +1 Heather
+Juan Caballero: +1 But haven't checked IIW schedule :D
+<kimhd> or the week after
+Heather Vescent:  We might need to move this specific discussion 
+  to a more dedicated time/forum
+Juan Caballero:  There is a call in about an hour with 
+  Tracability Vocab folks where we can talk about this
+Manu Sporny: +1 To give it a call
+<manu> Meet next week anyway
+Heather Vescent:  Thoughts on meeting next week regardless of 
+  IIW? Regular time?
+Kim Hamilton Duffy: +1 To discuss next week at usual time
+  ... no objections, Kimhd might you be available to moderate 
+  next week?
+<troy_ronda> It would be good to expand the scope beyond 
+  traceability - generically, have HTTP APIs to facilitate 
+  exchanges including mediation and links to wallet selection and 
+  authorization.
+<heathervescent> -Juan_Caballero
+Orie Steele:  I support more time dedicated to this convo, and 
+  faster pace working
+Orie Steele:  Is there a 15m presentation on the traceability 
+  that you're working on? [scribe assist by Ryan Grant]
+<orie> rgrant links are in the propossal
+Heather Vescent:  Kimberly_Linson, CCG 101 introduction?
+
+Topic: CCG 101 Developer to Developer Intro
+
+<heathervescent> Thanks all for your agreement to discuss the 
+  work item at a call next week.
+Kimberly Linson:  Lets start with: "Why is there a CCG 101?" We 
+  want more people to contribute
+  ... working with RANDA Solutions, we are passionate and excited 
+  for VCs
+<juan_caballero> juan AND KALIYA'S
+  ... personally, I have a 101 level understanding of these 
+  conversation topics, and now I need to understand the "next 
+  level"
+  ... so in the 101 we have discussed how to handle that
+Juan Caballero: Medium.com doesn't allow co-author attribution, 
+  which is why we need VCs for IP ASAP... ( https://sourcecheck.org 
+  )
+George Lund: i personally want to understand this space outside 
+  of profession
+  ... lots of people coming into the ecosystem need an 
+  understanding of this technical space
+Juan Caballero: CCG101 is more than welcome to bang on the DIF's 
+  FAQ working draft here:
+Kimberly Linson:  CCG 101 has identified a few topics we need 
+  help with from the CCG group
+  ... "What is the path for first-time understanding?"
+  ... there should be a collection of quality 
+  instruction/explanation
+  ... "What does it mean to make a VC?"
+  ... can the CCG 101 group see one built to lead us into 
+  additional questions?
+<george_lund_(gds)> Just wanted to mention that we've already had 
+  great support from CCG members like Manu and Mike Prorock so 
+  thanks for that :-)
+Heather Vescent:  This community is built upon the collection of 
+  members/ people work
+  ... the CCG group's goal is not to overburden anyone with 
+  jargon/ confusion
+Juan Caballero: Raw materials that may help CCG101 efforts (sorry 
+  I can't contribute directly until 1July) can be found linked 
+  here: 
+  https://github.com/w3c-ccg/CCG101/issues/3#issuecomment-818887263
+  ... for the community, what feedback on how to proceed with 
+  possible Dev2Dev conversations?
+Orie Steele:  Followed some links, got stuck here: 
+  https://github.com/OR13/traceability-api/blob/main/docs/sections/api-spec.html 
+  [scribe assist by Ryan Grant]
+Mike Prorock:  I'd be willing to commit some of my time, 
+  concerned about having a limited perspective on information
+<juan_caballero> oh and anyone in the group is happy to crash my 
+  DIF "office hours" every week, they've been pretty dead lately 
+  anyways!
+Ryan Grant:  https://or13.github.io/traceability-api/#api-spec 
+  [scribe assist by Orie Steele]
+Ryan Grant:  https://w3c-ccg.github.io/traceability-vocab/ 
+  [scribe assist by Orie Steele]
+<juan_caballero> +100
+  ... developing specific parts to this technology keeps my 
+  focused on one part of this entire tech
+Orie Steele: +1 To noting that we are all biased
+<juan_caballero> recorded VC-HTTP-API special call sounds like a 
+  GREAT format for generating very urgently needed educational 
+  support for that project/family of projects
+<juan_caballero> the VC-EDU calls are a PARAGON of transparent, 
+  open schema design, fwiw
+<manu_sporny> You can't give people a 2 hour heads up and expect 
+  people to be able to shift their schedules around, Juan -- need 
+  at least a few days of heads up
+<juan_caballero> that's why I emailed last week
+Mike Prorock: +1 Building on a body of knowledge
+<juan_caballero> you responded to the email, remember? ;)
+<orie_> ^
+Kim Hamilton Duffy:  VCs are difficult to completely understand 
+  for anyone new. This attempt to work with the CCG 101 group can 
+  be a good move
+<mprorock> that would be perfect
+Heather Vescent:  Any CCG 101 concerns?
+  ... is there time to cover the next topic? Manu?
+Ivan Herman:  Theres an issue with losing a week for the 
+  work-items discussion. Just mentioning
+<dlongley> we just scheduled a different agenda item for next 
+  week anyway
+  ... prior scheduling makes next week difficult
+<dlongley> (the vc-http-api/traceability stuff)
+Manu Sporny:  Suggesting Friday, same time?
+<juan_caballero> deep apologies for dragging out the VC-HTTP-API 
+  stuff, Ivan and Manu!
+Ivan Herman:  Can keep on for additional time now to continue 
+  discussing
+<juan_caballero> /me 💪pete💪
+Ivan Herman: Proposed charter text to read: 
+  https://w3c.github.io/lds-wg-charter/
+Manu Sporny:  Topic: Linked Data Signatures
+
+Topic: Linked Data Signatures Charter 
+
+Heather Vescent: Linked Data Signatures: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Mar/0273.html
+Ivan Herman: Issues: https://github.com/w3c/lds-wg-charter/issues
+  ... in a VC, "proofs" are what we are talking about. Making an 
+  offical W3C WG to standardize the "proof" part of a VC
+<screenshare> the bottom part of a VC
+  ... this is not a specifically a VC, this is more commonly 
+  datascience
+  ... Ivan, thank you for the charter, the floor is yours
+Ivan Herman:  The plan is to have a very focused charter
+  ... important to understand, this is not solely designed for VC 
+  work. This deals with semantic issues also
+  ... we would like to organize the charter for the 
+  community-at-large, but the VC WG can benefit from the work
+Manu Sporny: https://w3c.github.io/lds-wg-charter/index.html
+  ... process-wise, the charter is a draft and is going through 
+  the W3C stages moving forward
+  ... maybe early May will have a vote on finalizing
+  ... we would need, from this and any other community, 
+  comments/feed back on the charter
+Manu Sporny: https://github.com/w3c/lds-wg-charter/issues
+  ... it would help to see community interest, the W3C loves 
+  seeing this
+  ... one last thing, we haven't identified potential WG 
+  co-chairs
+  ... we would like to have a co-chair from CCG, and one from the 
+  larger community
+Markus Sabadello:  Ivan, can you repeat where its best to voice 
+  support for the charter/workgroup
+Ivan Herman:  As much noise as possible is always good
+Heather Vescent:  Any final questions? comments?
+  ... thank you Ivan for pushing for that last conversation
+  ... that is the meeting! Thanks to everyone!
