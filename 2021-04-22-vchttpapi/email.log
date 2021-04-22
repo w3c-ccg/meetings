@@ -1,0 +1,598 @@
+Thanks to Heather Vescent for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-04-22-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+VC HTTP API Special Topic Call Minutes for 2021-04-22
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0120.html
+Topics:
+  1. VC HTTP API Proposals Under Consideration
+  2. Use Cases Document
+  3. Scope of VC HTTP API
+  4. VC HTTP API Specification Structure
+Resolutions:
+  1. Create a use cases and requirements document.
+  2. We will strive to assign one primary Editor and one 
+    secondary Editor (like peer programming) to the VC HTTP API Use 
+    Cases Document with well defined responsibilities associated with 
+    the position.
+Organizer:
+  Manu Sporny
+Scribe:
+  Heather Vescent
+Present:
+  Manu Sporny, Mike Prorock, Orie Steele, Anil John, Heather 
+  Vescent, Markus Sabadello, Dmitri Zagidulin, Aaron Coburn, Adrian 
+  Gropper, Dave Longley, Ted Thibodeau, Juan Caballero, Daniel 
+  Hardman, Daniel Buchner, Joe Andrieu, Kayode Ezike, Geun Hyung, 
+  Henry Story, Phil Long, Kaliya Young, Adrian Hope-Bailie
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-04-22/audio.ogg
+
+Heather Vescent is scribing.
+Manu Sporny:  Giving introduction about the call
+Heather Vescent:  I'm heather, co-chair of W3C Credentials CG - 
+  we normally meet at 9am PT, 12pm ET on Tuesday mornings -- we 
+  discuss pre-standards and tech topics associated with Verifiable 
+  Credentials, Decentralized Identifiers, Privacy concerns, [scribe 
+  assist by Manu Sporny]
+Heather Vescent:  Special call today is to discuss VC HTTP API -- 
+  community-driven work items -- multiple companies, multiple 
+  people work together, and work on repos, code, reports, use cases 
+  out there for broader community to use -- anyone can be a member 
+  of the CCG, you don't have to be a member of W3C to do so. 
+  [scribe assist by Manu Sporny]
+How to join the CCG: Anyone can participate in these calls. 
+  However, all substantive
+A. Ensure you have a W3 account: 
+  https://www.w3.org/accounts/request
+B. W3C COMMUNITY CONTRIBUTOR LICENSE AGREEMENT (CLA) - 
+  https://www.w3.org/community/about/agreements/cla/
+Manu Sporny:  This is a continuation of the Tuesday CCG call.
+<mprorock> if you are not used to jitsi and the slides are going 
+  off the edge of your screen, close and reopen the chat and then 
+  the screen share will fit
+Manu Sporny:  Going through presentation: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Apr/att-0120/2021-VC-HTTP-API.pdf
+Manu Sporny:  We are going to go through the API and address the 
+  challenges
+  ... currently only have a YAML file and missing a lot of other 
+  documentation. We are going to address these issues with the goal 
+  of concrete proposals the community can provide feedback on.
+Explaining the queue: to add to the queue type "q+"
+Use +1 if you agree -1 if not.
+
+Topic: VC HTTP API Proposals Under Consideration
+
+Manu Sporny:  We're going to be discussing these proposal today:
+
+PROPOSAL:  Create a use cases and requirements document.
+
+PROPOSAL:  Use Juan's Use Cases and requirements document as a 
+  starting point.
+
+PROPOSAL:  Create documented data flow diagrams and place them in 
+  the Use Case document.
+
+PROPOSAL:  Create 3 VC HTTP API ReSpec specifications (Issuing, 
+  Verification, Presenting) in addition to the existing OAS file.
+
+PROPOSAL:  Create 1 ReSpec specification with at least three 
+  sections (Issuing, Verification, Presenting) in addition to the 
+  existing OAS files.
+
+PROPOSAL:  Restructure the OAS into multiple json / yaml files, 
+  reusing JSON Schema and Tags
+
+PROPOSAL:  Identify a Lead Editor and 1-2 supporting Editors for 
+  each major section in the specification.
+
+PROPOSAL:  Identify a single Lead Editor for the work item, and 
+  define their responsibilities formally.
+
+<juan_caballero> /me mortified to have major connection issues 
+  while traveling. Plz no one call on me until I can actually hear 
+  what's happening
+Manu Sporny:  Going to start with these proposals
+
+Topic: Use Cases Document
+
+<daniel_hardman> Can someone add a link to Juan's use cases 
+  requirements doc
+<juan_caballero> Ack! (In the Kathy sense)
+Manu Sporny:  There are no use cases documents. Juan has put one 
+  together.
+https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit?ts=607f0499
+  ... do we want a use cases document
+<juan_caballero> I posted link to github issue in community
+<juan_caballero> Thanks!
+Heather Vescent: +1 To use cases document
+Michael_Herman: need to do some scoping. Would this protocol be 
+  like zCaps/Authorization enabled? just as an example? I think we 
+  need use cases form a scoping perspective.
+Orie Steele: +1 To uses cases help define scope, which blocks 
+  everything else.
+Manu Sporny:  Agree. that is the goal. Help the use cases drive 
+  the scope.
+<orie> Agree with Daniel, there are use cases for both inside and 
+  across trust domains, that have been discusseed
+<orie> in that document.
+Daniel Hardman:  The document looks to me to mix 2 concerns: 1: 
+  backend behavior (green lines on the diagram) 2: interactions at 
+  the front end, e.g. interacting with holders proving something. 
+  And I'm wondering the intention? To broaden the scope?
+Manu Sporny:  Yes that is the intention. There's a request to 
+  broaden scope, but we need a use cases doc to have a conversation 
+  about what hte scope is.
+Daniel Buchner:  Is the intent to take Juan's document and we 
+  just tweak it, or is it that everything is up for debate.
+Manu Sporny:  Yes, we everything is up for debate in Juan's 
+  document.
+<juan_caballero> Full disclosure I was trying to 
+  summarize.conversation up til.now in trace vocabulary
+<juan_caballero> I am not opinionated or even knowledgeable just 
+  tryna scribe
+Heather Vescent:  I think that use cases documents are great, not 
+  sure if Juan's document fits, I'm sure it has some good stuff, 
+  use/iterate on - Daniel's concern - if we start from that 
+  document, we can assume agreement on anything in it. [scribe 
+  assist by Manu Sporny]
+Orie Steele: Lets start by assuming we don't agree :)
+<orie> but that we don't to come to agreement in a document.
+Heather Vescent:  We could have an official use cases kick off 
+  and that could be one, and others could add use cases from there. 
+  Juan, don't feel like you're under the gun, you went above and 
+  beyond in trying to help community with documentation. I know 
+  your heart is in the right place, trying to help us work forward. 
+  [scribe assist by Manu Sporny]
+<orie> * want to
+Manu Sporny:  No argument about a use cases document. So going 
+  forward about this. We will have a separate discussion about 
+  using the content in Juan's document later.
+
+PROPOSAL:  Create a use cases and requirements document.
+
+Mike Prorock: +1
+Daniel Hardman: +1
+<joe_andrieu> 1
+Orie Steele: +1
+Markus Sabadello: +1
+Ted Thibodeau: +1
+  ... so now we are going to vote on Proposal. +1 you like -1 if 
+  disagree
+Manu Sporny: +1
+Heather Vescent: +1
+Dave Longley: +1
+Anil John: +1
+Kayode Ezike: +1
+Adrian Gropper: +1
+(You can also say "0" if you have no opinion)
+
+RESOLUTION: Create a use cases and requirements document.
+
+<mprorock> weeks?
+Manu Sporny:  Second proposal: use Juan's document as a starting 
+  point. We could give hte community a couple weeks to 
+  iterate/edit/comment. Then we can make the decision as use cases 
+  and requirements.
+Juan Caballero: Can commit to 3 hours in next week :)
+<orie> agree
+<mprorock> agree
+<orie> with joe
+<juan_caballero> Doesn't need to be me or only me if more 
+  interested parties have enough time
+Orie Steele: -1 To joint ownership, it causes tragedy of the 
+  commons
+Heather Vescent:  I'm concerned about deciding owner, would like 
+  broad/diverse ownership of use case document. Would like broader 
+  community to provide input. Don't want to slow things down, but 
+  not happy with way use cases have been done in the past, don't 
+  want that to repeat in that in this case. [scribe assist by Manu 
+  Sporny]
+<orie> but agree with heather, that we should choose carefully
+Orie Steele:  Don't want to see too many owners. and also 
+  concerned about picking from who is here today. Need to make sure 
+  this person is here to synthesize community consensus.
+Mike Prorock: +1 Orie
+Heather Vescent: +1 Orie - this is 100% my concern
+Joe Andrieu: +1 For someone taking on the responsibility (and 
+  that the best person may not be on this call)
+<mprorock> is nominations for this a terrible idea?
+Manu Sporny:  Ok to not pick the person today, but decide to pick 
+  a strong lead.
+Joe Andrieu: Also: co-editors can be productive, but I agree with 
+  Orie that larger numbers start to dissipate the work
+<orie> ^yep
+  ... there needs to be one lead editor to lead consensus 
+  quickly.
+<orie> agree with Ted
+Mike Prorock: +1 Ted
+Ted Thibodeau:  One editor is often too few, five is too many, 
+  two can be good. Sometimes things take longer for legit reason. 
+  I'm bristling at the suggestion that things took time, the people 
+  who agreed to do the work take time to do that.
+Heather Vescent: +1 Ted, totally agree.
+<juan_caballero> Thanks Ted
+Manu Sporny:  Synthesizing proposal, at least two editors for 
+  each document associated with the VC-HTTP-APi with well defined 
+  responsibilities associated with the position.
+<orie> There are always 2 Sith
+Heather Vescent:  I think this can be an opportunity for growing 
+  leadership -- one strong lead, one upcoming lead -- someone newer 
+  to the community. [scribe assist by Manu Sporny]
+Heather Vescent:  The lead knows how things work and can 
+  mentor/co-lead - kinda like pair programming. [scribe assist by 
+  Manu Sporny]
+<bblfish> Wondering if LDP/Solid could be used as an HTTP VC API 
+  base point. But I don't yet have a good idea as to what the API 
+  is meant to do. (I missed the beginning of the very short talk)
+Mike Prorock: +1 Heather - this is an excellent opportunity for 
+  that, especially as it is a content and consensus focused item
+Orie Steele: +1
+<juan_caballero> I could lead weakly
+Juan Caballero: But have weak arms and weak understanding of api 
+  politics :)
+<orie> navigator and driver typically... but not really  
+  appropriate for specss imo
+Heather Vescent:  One strong, one learning... pairs w/ one strong 
+  standards/W3C Editorial experience, and one that may not have 
+  strong W3C experience. [scribe assist by Manu Sporny]
+<michael_herman_(trusted_digital_web)> test
+<orie> primary, secondary workss for me
+<juan_caballero> Not sure.i understand the strong/weak analogy 
+  hehe. Happy to be one of 2 or 3 if at least one ccg vet is in the 
+  group
+<orie> hmm
+<mprorock> yes
+Manu Sporny:  Modifying language based on feedback
+<orie> we might take the same appraoch with other docs as well
++2
+
+PROPOSAL:  We will strive to assign one primary Editor and one 
+  secondary Editor (like peer programming) to the VC HTTP API Use 
+  Cases Document with well defined responsibilities associated with 
+  the position.
+
+Orie Steele: +1
+Heather Vescent: +1
+Mike Prorock: +1
+Daniel Hardman: +1
+Kayode Ezike: +1
+Manu Sporny: +1
+Joe Andrieu: +1
+Ted Thibodeau: +1
+Aaron Coburn: +1
+Adrian Gropper: +1
+Dmitri Zagidulin: +1
+Dave Longley: +1 (Peer and pair programming are different things, 
+  which did we mean?)
+Markus Sabadello: +1
+Good catch dlongley, I guess I mashed them together lol
+I kinda love peer programming lol
+
+RESOLUTION: We will strive to assign one primary Editor and one 
+  secondary Editor (like peer programming) to the VC HTTP API Use 
+  Cases Document with well defined responsibilities associated with 
+  the position.
+
+<mprorock> can we set a timeline on selection?
+<orie> yes
+<orie> deferred for forvever for now
+Manu Sporny:  We are defering hte responsibilities discussion to 
+  a later time.
+Manu Sporny:  Do you want to share use cases document
+<michael_herman_(trusted_digital_web)> What assumptions, if any, 
+  are there about where VCs are stored?
+<dmitriz> @Michael - aren't any. out of scope for this api
+<mprorock> @Michael Herman - at this moment that is pretty 
+  contentious
+Juan Caballero:  The conversation was about expanding the scope. 
+  I was expanding a couple situations that expanded broker 
+  situations. Many stakeholders who are not the subject of the 
+  claims.
+Juan's use case document: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit?ts=607f0499
+  ... was based on the architcture.md file
+Juan Caballero:  Just getting a starting point, no strong 
+  opinions
+<orie> No comment on UCR
+<juan_caballero> Yes
+Manu Sporny:  This is missing a number of use cases that other 
+  will also want. The suggestion is to work from the document. 
+  Juan, is your expectation that others will add their use cases to 
+  this document in say suggest mode?
+<orie> Hopefully the UCR Editor will own upgrading this document.
+<juan_caballero> Yes
+  ... is everyone on the call comfortable in this document?
+<juan_caballero> Troy had a diagram of some holder use cases and 
+  markus mentioned some.verifier use cases
+Manu Sporny:  Can we use this as a starting point?
+<michael_herman_(trusted_digital_web)> So the http endpoint could 
+  be an "agent" on top of a wallet ...or an EDV ...or whatever 
+  ...at least for now
+
+Topic: Scope of VC HTTP API
+
+Adrian Gropper:  Are we assuming this is a scope document? Or the 
+  scope doc comes after the use case doc.
+<michael_herman_(trusted_digital_web)> Suggest a scope document 
+  comes after
+Heather Vescent:  I've looked quickly at the document, what might 
+  be helpful is if we have a structured template, add a use case, 
+  can include appropriate parts of use case. [scribe assist by Manu 
+  Sporny]
+Heather Vescent:  I don't think we need to have a big discussion 
+  about template -- but maybe some of us who are used to this could 
+  just async throw down a template chunsk and iterate from there 
+  [scribe assist by Manu Sporny]
+<kayode_ezike> perhaps the lead(s) could create that template
+<michael_herman_(trusted_digital_web)> Use the use case document 
+  as the exploratory tool
+Manu Sporny:  +1 Heather, having a template would helpe people 
+  contiribute in a way that could help the editors.
+Mike Prorock:  Echo as well. I would like to see the scope come 
+  after the use cases are defined.
+  .... a number of real world use cases with JSON payloads with 
+  VCs weren't through through.Now we have real world use cases we 
+  would like to use VCs/documented API for this. Concerned if we 
+  scope first, will have current problem again.
+<michael_herman_(trusted_digital_web)> Link to the statement?
+Mike Prorock: +1 Joe
+Joe Andrieu:  We have a partial scope. don't want to propose a 
+  waterfall model. Have a statement in VC-HTTP-API for what that is 
+  for. That sounds like a charter statement. But that may be the 
+  right level of scoping to start from. The scope is going to 
+  evolve as people say this use case is important to me.
+Joe Andrieu: https://github.com/w3c-ccg/vc-http-api
+<joe_andrieu> a standard API specification for constructing and 
+  verifying objects which conform to the Verifiable Credential Data 
+  Model specification, along with documentation, integration and 
+  compatability tests, and related assets for the test and 
+  integration process.
+<adrian_gropper> Can we include the "charter statement" as part 
+  of the template?
+Daniel Hardman:  There is an aspect of the scope that is 
+  important and will color the use cases, whether the intention... 
+  /lost audio
+Daniel Hardman:  Concerned with the approach of let's put 
+  everything in. we will waste cycles. Would like to see if we 
+  agree scope on: internal parties or internal and external 
+  parties.
+  ... if we want to contemplate expanding that, we should address 
+  that early.
+<markus_sabadello> Original intention of VC HTTP API was 
+  internal-only (but this doesn't mean that the scope can't evolve 
+  from that)
+Can someone explain the pro/con of keeping it internal only vs 
+  internal and external?
+<orie> Speaking for Transmute, we want interoperable APIs for 
+  both internal and external use cases.
+<orie> and are will to compromise to get both.
+<adrian_gropper> I don't understand internal / external either
+<orie> Adrian (cross origin / trust domain)
+<daniel_hardman> right
+<mprorock> speaking for mesur.io we need interoperable apis for 
+  external usage (if internal, interoperability does not matter)
+<daniel_hardman> external = crosses trust boundary
+<orie> no such thing as "interop" built on internal APIs.... 
+  alone.
+<orie> at least for the strong version of interop.
+Mike Prorock: +1 Dmitri
+Adrian Gropper: +1 Heather
+Daniel Hardman: -1 For external
+<joe_andrieu> @mprorock interoperability is important for 
+  substitutability of the back end.
+<michael_herman_(trusted_digital_web)> Need zcap-style capability 
+  authorization over the set of methods associated with different 
+  types of VCs, for example ...e.g. lifecycle of a driver's license
+<dmitri_zagidulin> @Daniel - ok but like... "internal API" 
+  basically means "we don't care about security". which is not what 
+  we want to go for here...
+Henry Story: Agree with Orie. without understanding what this is 
+  about, internal only APIs don't make sense. If you control the 
+  client and the server you can pretty much make any API you want. 
+  There is nearly no need for consensus. (There is some use: in 
+  that library writers can built tools that work across silos)
+Heather Vescent:  I feel like I barely have enough knowledge to 
+  even have an opinion of this. There is a little of chicken and 
+  egg here -- DHS SVIP have a good idea of this, but there are 
+  others that don't know... chicken and egg, not helpful for those 
+  that are not familiar. [scribe assist by Manu Sporny]
+<tallted> internal/external feels more like 
+  default-trusted/default-untrusted -- which sort-of fits firewall 
+  delimiter, not necessarily enterprise delimiter.
+<orie> internal api interop is also referred to as usable 
+  software.
+<tallted> interop can absolutely be a concern within the 
+  firewall/enterprise.  just think about file-server and file-user.
+Markus Sabadello:  Internal apis: this work item would not over 
+  lap/compete with OpenID or CHAPI or DIDCom (external) this one is 
+  one we considered internal. But that's just how we understood 
+  originally.
+<orie> yeah, S3 interop is a good example of the value of 
+  standards based internal APIs
+Daniel Hardman: @Bblfish: the current API was defined to be 
+  internal only, and was justified because it would allow an 
+  enterprise who consumes VC tech to swap out vendors. That is a 
+  form of interop.
+<orie> yep both forms are valuable.
+Anil John:  +1 Heather's suggestion to need more information. I 
+  will provide a consumer perspective. THe internal/external 
+  framing that drove the original disctioning is at best 
+  incomplete. The intent from the enterprise perspective, we need a 
+  standard set of APIs implemented by a verifier/issues and used by 
+  holder to interact with all of them. There is an opportunity to 
+  switch providers without incuring a switching cost.
+<mprorock> speaking for mesur.io - we need to issue, verify, 
+  exchange, and retrieve VCs with third parties in a testable 
+  manner - we hope that that can be a w3c spec, hopefully aligned 
+  with the vc-http-api
+Ted Thibodeau: +1 Anil's API-lock-in points
+<bblfish> I hear about APIs, but is this really a question of 
+  APIs or about vocabularies/ontologies?
+  ... whatever ends up here, that we arrive at something that 
+  makes vendors happy but enterprises and customers happy.
+Henry Story:  No [scribe assist by Orie Steele]
+<orie> its just api HTTP OAS 3
+<dmitri_zagidulin> @bbl - it's really about the API
+Adrian Gropper:  Agree with Heather's concern, I think it was 
+  framed in a previous call, where the different of 
+  interoperability - substitutability of an internal provider vs 
+  one in the ecosystem.
+Manu Sporny:  Gonna run the poll.
+<anil_john> When speaking about APIs, we need to separate the 
+  pipe and the payload. This is about the pipe and not about the 
+  payload.
+Manu Sporny: POLL: Is the VC HTTP API for external parties, 
+  internal parties, both, or "I need more information to answer 
+  that question"?
+<mprorock> both
+<mike_varley> both
+<mahmoud> both
+<joe_andrieu> internal
+<acoburn> both
+<orie> both
+I need more information to answer that question
+<manu> both
+<phil.l> both
+<agropper> Need more info
+<daniel_hardman> emphatic "internal only"
+Henry Story: Need more info :-)
+<juan_caballero> Both
+<identitywoman> killer whale Jello salad
+<daniel_hardman> (Can I shout?)
+<jtwalker2000> both
+<anil_john> both
+<markus_sabadello> +0.75 to both
+<michael_herman_(trusted_digital_web)> More info
+<tallted> both; I'd need more info to know whether to -1 on 
+  either specific
+<xavier_vila> internal
+<juan_caballero> Haha can it be internal only with didcomm 
+  attachment/option? Hehe
+<joe_andrieu> Yep @juan, internal only is a policy rather than 
+  technical boundary
+Daniel Buchner:  I would like an opportunity to present on this. 
+  Request.
+<juan_caballero> That would work for me
+For scheduling reasons
+Orie Steele: +1 To regular meetings
+<anil_john> Yup..  Would love to hear Daniel's perspective!
+<orie> maybe the most important thing to have.
+Meeting same time / day for next week.
+
+Topic: VC HTTP API Specification Structure
+
+PROPOSAL:  1 ReSpec, multiple OAS 3.0 files.
+
+Manu Sporny:  Can we determine the structure of the 
+  specification?
+<identitywoman> we just had a conversation at IIW about how to 
+  align different/competing credential and presentation exchange - 
+  modalities - we had two good sessions - one yesterday a 2nd one 
+  today and a third one just after this to plan next steps - so 
+  would be great to see synergistic alignment. I will work to get 
+  notes from those sessions done and available next week.
+<markus_sabadello> Actually the very first version of the API did 
+  have some functionality that could be considered external (e.g. 
+  for refreshing a VC), but that functionality got removed in 
+  subsequent versions.
+<troy_ronda> We need a full credential exchange model that we can 
+  use in production systems. An internal API just isn't enough.
+<juan_caballero> ^ this was my understanding of scope
+<anil_john> I think the IIW Killer Whale discussion is relevant 
+  to this discussion, right?
+<dmitri_zagidulin> @Anil - very much so
+<juan_caballero> But also agree that scope needs r
+<orie> emphatic -1 to 3 repsec documents
+<identitywoman> yes @anil highly relevent
+Juan Caballero: To be hammered out before use cases :)
+<michael_herman_(trusted_digital_web)> Need a fully
+<adrian_gropper> 3 specs
+Manu Sporny:  Put yourself on the queue to provide input. 1 spec 
+  with sections, or 3 specs and an overview doc
+<juan_caballero> Thank you kaliya for managing that convo, will 
+  read those notes before next mtg!
+<daniel_hardman> Would the 3 specs be versioned together?
+<daniel_hardman> How much redundancy would there be in 3 specs?
+<manu> Daniel_Hardman, unknown right now
+Orie Steele:  Repeat proposal from IRC: 1 ReSpec, multiple OAS 
+  3.0 files. Markus already has a draft that looks great. Why 1 
+  ReSpec vs multiple, one place to get info, see how they relate to 
+  each other re: privacy concerns. If we split them up, could be 
+  hard to compare, and then address privacy/security in 1 doc, can 
+  provide better guidance to users as a whole.
+Markus Sabadello:  +1 To Orie. I would propose the same thing.
+Adrian Gropper:  Argue strongly for the 3 separate specs - not 
+  any particular format. There is great asymmetry btwn holder and 
+  issuer/verifier. If we don't force ourselves to separate, we will 
+  make privacy analysis difficult.
+<dmitri_zagidulin> I do want to point out that there is very much 
+  asymmetry between different sections of a spec document. 
+  like,that's expected
+<orie> I think we agree Adrian, but you can't actually seperate 
+  these things... you are making that problem worse, by splitting 
+  things up.
+Markus Sabadello: Draft PR to split open OpenAPI spec files: 
+  https://github.com/w3c-ccg/vc-http-api/pull/178
+
+PROPOSAL:  Create 1 ReSpec specification in addition to 
+  separating the existing OAS files into modular components.
+
+Orie Steele: +1
+Heather Vescent: +1
+Kayode Ezike: +1
+Manu Sporny: +1
+<daniel_hardman> 0
+Phil Long: +1
+Markus Sabadello: +1
+Dave Longley: +1
+Joe Andrieu: +1
+Adrian Gropper: -1
+Aaron Coburn: +1
+Mike Prorock: +1
+Kaliya Young: +1
+Ted Thibodeau: +1   Strongly favor one spec with multiple 
+  sections ... significantly but not only because any given 
+  individual is likely to flip between roles, and devs needing to 
+  flip between docs typically leads to problems when the user 
+  role-flip comes up. (having one or two specs pass muster and the 
+  other(s) fail would be worse than having the entire stack fail at 
+  TR)
+<juan_caballero> Joint privacy considerations and joint intro 
+  sound good to me
+<daniel_hardman> Can we do multiple html files even if it's one 
+  spec?
+<daniel_hardman> (using ReSpec's glue-together feature?)
+<dmitri_zagidulin> @Daniel - seems reasonable.
+<anil_john> We need unanious agreement at CCG?
+<orie> @DH yep
+<mprorock> @Daniel - yes - would be a fan
+<juan_caballero> Gnap?
+<orie> GNO
+<mprorock> @anil basically
+Adrian Hope-Bailie:  What I would like to see is the document 
+  speak to the prescription or referral use case that I often 
+  champion. If it can be done with one specification, fine.
+<anil_john> So unanimous agreement and not consensus?
+<identitywoman> consensus means unanimous agreement Anil
+Strong disagreement Anil.
+<juan_caballero> Adrian can u write that out ?
+<identitywoman> this was an issue with NSTIC and I told them that 
+  the word didn't mean what they thought it means.
+<juan_caballero> Scribe missed it
+<anil_john> No it DOES NOT! It just means that everyone can live 
+  w/ the decision
+Manu Sporny:  Next meeting: same time/same place.  Thank you all.
+<identitywoman> mmm...
+Manu Sporny:  Here is the W3C definition of consensus for those 
+  that are curious -- 
+  https://www.w3.org/2020/Process-20200915/#Consensus -- it's a 
+  critical read [scribe assist by Manu Sporny]
+<mike_varley> thanks all
