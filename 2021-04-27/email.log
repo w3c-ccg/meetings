@@ -1,0 +1,607 @@
+Thanks to Manu Sporny for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-04-27 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-04-27
+
+Agenda:
+  undefined
+Topics:
+  1. Introductions / Reintroductions
+  2. Announcements and Reminders
+  3. Action Items
+  4. Traceability API
+Organizer:
+  Kim Hamilton Duffy and Wayne Chang and Heather Vescent
+Scribe:
+  Manu Sporny
+Present:
+  Justin Richer, Heather Vescent, Manu Sporny, Mahmoud Alkhraishi, 
+  Chris Winczewski, Charles E. Lehner, Mike Prorock, Ted Thibodeau, 
+  Taylor Kendall, Wayne Chang, Adrian Gropper, Matthieu Collé, Kim 
+  Hamilton Duffy, Orie Steele, Ryan Grant, Juan Caballero, Dmitri 
+  Zagidulin, Kayode Ezike
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-04-27/audio.ogg
+
+Manu Sporny is scribing.
+Wayne Chang:  Welcome to the CCG weekly meeting. This is April 
+  27th - talking about IIW recap and Traceability API today.
+Wayne goes over standard IPR agreement language -- get W3C 
+  account - sign contributor license agreement -- all calls 
+  recorded and transcribed -- use the queue to speak.
+
+Topic: Introductions / Reintroductions
+
+Justin Richer:  Hi Justin Richer, independent consultant out of 
+  Boston area -- working with Secure Key - haven't been able to 
+  make it to CCG calls lately, but wanted to drop in and hear about 
+  IIW.
+Justin Richer:  I do a lot of work in IETF, OpenID Foundation, 
+  Kantara, W3C, on a bunch of different efforts, have my hands in 
+  lots of different things.
+Wayne Chang:  Any reintroductions?
+Wayne Chang:  None, so moving on.
+
+Topic: Announcements and Reminders
+
+Heather Vescent:  Today is the first CCG 101 session, Mike 
+  Prorock is doing intro to supply chain and VCs
+Heather Vescent:  This is the first of a set of 101 sessions.
+VC HTTP API inviation for this Thursday -- 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0166.html
+3Pm ET
+Heather Vescent: Mike Prorock does a CCG 101 Tuesday, April 17, 
+  2pm PDT / 5pm EDT / 22:00 BST / 23:00 CEST / 6am+1 KST / 9am+1 
+  NZST
+Manu Sporny:  We'll be discussing VC HTTP API -- please join if 
+  you're interested -- information on the mailing list.
+
+Topic: Action Items
+
+https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+Wayne Chang:  VC Maintenance Meeting -- we did make a PR with the 
+  process on how to make changes to the VC specification
+Wayne Chang:  Please review the PR -- will send it out to the 
+  mailing list.
+https://github.com/w3c/vc-data-model/pull/774
+Wayne Chang:  Just sent a PR on how to update the specs for the 
+  maintenance version -- maintenance mode -- not focused on adding 
+  new features at this time.
+Wayne Chang:  Would like new features to be housed in repo -- 
+  contributions, extensions, will happen later this year.
+Wayne Chang:  General process I can review quickly here...
+Wayne Chang:  Only focused on merging Errata PRs for now... then 
+  editors/chairs mark issues -- substantive, non-substantive, 
+  editorial, etc. New features will need rechartering of WG... W3C 
+  CCG will be notified, then PRs merged in 14 days.
+Wayne Chang:  VCWG will meet from time to time and merge PRs in 
+  branches to make formal recommendation for publishing new 
+  versions of the specifications.
+Wayne Chang:  If you're interested in making changes to VC spec, 
+  that's how you do it.
+Orie Steele: IIW also led to a new unification between aries and 
+  didcomm and vc http api / DIF presesentation exchange :)
+<by_caballero> ^ good first steps!
+<orie> which I'm really excited to see level us up in terms of 
+  wallet exchanges and interoperability
+Heather Vescent: (Scribe assist) manu: thank's Wayne, hopefully 
+  the process is straightforward with the right safeguards, but 
+  still enable people to innovate on the base. Item of note: a lot 
+  of peopel are spread between a lot of groups right now: DID Spec 
+  is in CR and getting finalized, LDS work starting, the VC HTTP 
+  API work, in general there is a lot of work going on. It is going 
+  to take a while for us to re-prioritize the right work is 
+  happening in the right place. People shouldn't expect the VC spec 
+  to move quickly. We should have a process that allows people to 
+  make request and get reviews. People should understanding 
+  everyone is really overworked and don't expect things to go 
+  quickly with any of this work.
+Orie Steele: Nobody expects the CCG to mvoe quickly :)
+Orie Steele:  I'd like to summarize some of the conversations w/ 
+  presentations wrt. IIW --
+Wayne Chang:  Going to cover that at the end
+
+Topic: Traceability API
+
+Wayne Chang:  What is the traceability API, who's involved, etc?
+Orie Steele:  For those not familiar with this work, CCG work 
+  item that's been active in community -- focused on JSON interop 
+  for Verifiable Credentials -- number of components to make that 
+  work at scale... additional tooling around JSON-LD and JSON 
+  Schema, to pull thsoe two things together... if you canre more 
+  about JSON Schema, you can lean more on it... if you want 
+  JSON-LD, you can focus on that
+Mike Prorock: Note: this will be getting discussed at a high 
+  level in the 101 call later on today
+<mprorock> the vocab and VC creation and Data Model aspects
+Orie Steele:  We've add a bunch of JSON-LD tooling, work item 
+  that has a use case requirements section -- use cases for 
+  describing VCs for supply chain traceability -- data model for 
+  supply chain, use GS1 vocab, INCHI/CHEBI for chemicals, broad set 
+  of vocab for traceability -- fairly useless just by itself.
+Orie Steele:  You need a set of APIs that need it's API -- 
+  Traceability vocabulary -- valid JSON Schema, valid JSON-LD, spec 
+  is built properly -- many of companies working on Traceability... 
+  working on VC HTTP API endpoints... supply chain traceability 
+  credentials.
+Orie Steele:  One of the challenges w/ that particular work items 
+  -- lack of use cases, lack of requirements, no support for Holder 
+  APIs -- representative of things wallets do -- present VCs, 
+  receive VCs... as of today, internal API -- tests in isolation 
+  that are powerful, but it can't actually show you any form of 
+  interop in end-to-end. It has no authorization, you can't expose 
+  it on public Internet.
+Orie Steele:  So, Traceability API is a level up for the VC HTTP 
+  API to make it something you can expose on public Internet, add 
+  APIs for direct wallet interactions over HTTP -- wallet 
+  interactions and wallet interaction protocols are a rough seas 
+  area -- everything from VP request spec, presentation request... 
+  to Presentation Request spec, which does data model for defining 
+  how stuff works over DID Comm... to Bloom spec about flows for 
+  HTTP and QR Code.
+Orie Steele:  The Traceability API will take approach to iterate, 
+  and drive toward consistent set of interfaces, enterprise grade 
+  authn, presentation exchange... purpose of work item is to think 
+  about traceability -- data model around vocab, businesses want to 
+  use today -- what are best tools to solve that problem, looking 
+  for more mature solutions... like DIDComm (IIW work) -- 
+  tremendous community alignment around businesses exchanging 
+  presentations around web
+Wallets, native apps, backend services.
+Orie Steele:  All of those use cases need to be 
+  supported/addressed to prove out interoperability -- not just web 
+  wallets, not just back end services, move presentations around 
+  trust boundaries, we need that today -- that's what Traceability 
+  API is meant to solve.
+Manu Sporny:  +1 To those needs in the ecosystem. The issue is 
+  that not all those things are about traceability. There are needs 
+  outside of traceability for that. +1 for getting together to move 
+  forward quickly, we need to make sure we need to align all these 
+  people. Some companies and people are frusterated by the rate of 
+  progress. [scribe assist by Heather Vescent]
+Manu Sporny:  It sounds like it's an implementation guide for 
+  traceability, it covers data models and how do you authenticate 
+  system, and wondering if that may be a better way to convey the 
+  language. It's fine to put experimental API in there, but calling 
+  it an API is misleading because it's an ecosystem thing. It's not 
+  just focused on APIs. [scribe assist by Heather Vescent]
+<orie> I agree its more than just an API
+<orie> its a useable ecosystem
+<wayne_chang> "Traceability System Overlay"
+Manu Sporny:  So wondering your thoughts Orie and other supply 
+  chain folks. For example, I can imagine having implementation 
+  guides for traceabilibity, citizen cards, education and enable 
+  each sector to move at their speed. Allow those that can move 
+  faster to move faster and feed those learnings back into the 
+  ecosystem. [scribe assist by Heather Vescent]
+Manu Sporny:  Without feeding that back into the foundational 
+  specification, we will diverge which will create more work in the 
+  future. [scribe assist by Heather Vescent]
+Manu Sporny:  What's the feedback loop for this work? [scribe 
+  assist by Heather Vescent]
+Orie Steele:  Yeah, I think in a word -- the word ecosystem feels 
+  good, Implementation Guide feels too narrow -- Traceability 
+  Ecosystem I'd be fine with.
+Ted Thibodeau: +1 To msporny's comments
+Orie Steele:  The non-negotiable is some ability to put a certain 
+  set of pieces together in a certain set of interop tests at a 
+  certain level of security. We need to be able to describe 
+  Authorization, capabilities, use cases together in an ecosystem. 
+  That unification is a continuous process, people are creating new 
+  serialization formats, CBOR-LD -- support it right out of the 
+  gate, probably not... does word API preclude you from doing that 
+  level of work... I don't know the answer to that quewstion, 
+  naming is hard.
+Orie Steele:  The Traceability issue right now is authorization, 
+  API -- solved by API -- but if you want to make it more broad, 
+  Traceability Ecosystem -- spanning multiple things -- that's true 
+  -- I'd be willing to expand scope to work on those items, as long 
+  as we don't lose sight of being able to do the thing we need to 
+  do.
+<tallted> "Traceability API" and what's been posted on github 
+  discussions suggests a much lower-level focus, than what's now 
+  being orally described by Orie
+Adrian Gropper:  This is the first I've heard of the Traceability 
+  API and it really raises a huge issue for me.
+https://github.com/w3c-ccg/community/issues/191
+<wayne_chang> ^ Traceability API proposal
+Adrian Gropper:  This was not discussed at IIW, which is 
+  authorization -- what I saw at IIW, particularly because Justin 
+  wasn't there, and no one seemed to care that much, is runaway 
+  train around messaging as the API layer on top of DIDs and VCs as 
+  opposed to authorization as the next most important thing on top 
+  of DIDs and VCs.
+Justin Richer: +1 To Adrian's comments on messaging vs other 
+  layers
+<orie> ... yeah... there is no authorization anywhere in the 
+  econsystem today... trace api is the first to add 1 mandatory to 
+  implement solution to authorization.
+<orie> I think Adrian would love it.
+Adrian Gropper:  I ran a session called "Agency By Design 
+  (Privacy is not enough)" -- as long as we continue to look at 
+  DIDComm and other messaging security as non-authorization layer 
+  on top of data models, this is doomed to go in circles for years.
+Ted Thibodeau:  What has just been vocally described has a much 
+  higher level focus than an API -- it's not just about naming; why 
+  is Provo not looked at here? Provenance Ontology, designed and 
+  built over years to cover most of what I understand to exist in 
+  Traceability API/Vocabulary/??? whatever name of the same thing 
+  that's being put out there.
+<orie> ontologies are for the vocab... no the api
+<rgrant> can someone post a link to the Provenance Ontology?
+https://www.w3.org/TR/prov-o/
+<wayne_chang> ^ PROV-O
+<orie> some people need interoperability now!
+<justin_r> +1, specs are for interop and stability, not for 
+  expedience
+Orie Steele: :)
+Dmitri Zagidulin: +1 To what Orie said -- prov-o is just the data 
+  model (which this group already has), has nothing to do with the 
+  API
+Ted Thibodeau:  I'm also particularly concerned about the "Need 
+  it now" attitude -- you don't need a spec/standard that the world 
+  needs... if you need it now, you just need to do your thing, if 
+  people join, that's great -- if you're doing something 
+  useful/valuable, people will benefit.
+https://www.w3.org/TR/prov-o/ ?
+<orie> I object to the passive aggressive tone of "take a 
+  breath".
+<mprorock> @brent +1 yes, that is the reference
+Orie Steele: I'm not telling anyone to do anything... I am 
+  offering folks a boat that moves faster. you are welcome to sit 
+  on the shore :)
+Ted Thibodeau:  If you're not ready to do it on your own, take a 
+  breath, this is not something that goes at racetrack speeds... 
+  developing these specs takes years, sometimes it takes decades, 
+  RFCs continue to progress... take a breath... you're telling us 
+  to race ahead, just OK the thing you want... you're not asking us 
+  to take our time, consider what is being put out. Accept what's 
+  being put out, I'm not going to... so, take a breath, think about 
+  what you're trying to do.
+Ted Thibodeau:  If you want to just create software, open source 
+  is great, break it, release early and often... will stop ranting 
+  now.
+Wayne Chang:  Thank you, appreciate the passion, we'll take the 
+  kindest interpretation of them.
+Dmitri Zagidulin: Hey authorization is hard :)
+Orie Steele:  There are many communities that work on this 
+  ecosystem, Adrian pointed out -- authz is a big blank, nobody 
+  things about authz -- people want to focus on data models, 
+  protocols, there is DIF, W3C, Hyperledger, everyone is working on 
+  their own version of this... everyone is going as fast as they 
+  can, holding their breath, etc.
+Juan Caballero: 
+  https://github.com/decentralized-identity/decentralized-identity.github.io/blob/master/assets/crosscommunity-architecture-survey-oct-2020.pdf
+<by_caballero> Authorization is HARD
+Orie Steele:  Everyone has their own way of doing these things... 
+  none of them are interoperable, none of them consider 
+  authorization, work on things on authorization, if you're 
+  passionate about that -- HTTP API, works at scale, you need to 
+  have an opprotunity to design and work on that. offering folks an 
+  ability to collaborate and work together, sometimes collaboration 
+  means duplication of work.
+Juan Caballero: The interop group put it in the "transversal" 
+  category partly because you can ignore it when designing a stack, 
+  but it has consequences at every level when you want to change it 
+  :D
+Orie Steele:  OpenID -- tremendous amount of work going on right 
+  now... I work on DIF, work on CCG, I'm committed to interop 
+  across large number of folks that don't want to work together, we 
+  need to have a place to work together, don't think everything 
+  needs to be under same work item... universal wallet, VP Request, 
+  all scrambling around same set of features/issues -- we already 
+  have fracture in community, that's healthy, certain amount of 
+  interplay that's expected.
+Orie Steele:  Folks are going to show up, speak their mind, will 
+  be at VC HTTP API -- also want to make sure concerns are being 
+  heard, have a place to move forward at approrpiate space... VC 
+  HTTP API and Traceability API is different... see them as 
+  different things, things change as people join...
+Orie Steele:  It's a mistake to think as everything as one work 
+  item and fit everyone into one world view, multiple world views 
+  can be supported in the community, Traceability API -- 
+  Traceability Ecosystem -- Traceability Guide for Enterprise 
+  Interop -- Traceability Authz -- different from what VC HTTP API 
+  is today
+Orie Steele:  We need to be supportive of differences in 
+  community and enable people to work on thigns they want to work 
+  on.
+Mike Prorock:  Want to roll it back to Manu's comment -- while 
+  this started with Supply Chain and Enterprise interop -- not 
+  burdened by IP -- we need to exchange, hold, present... the 
+  ecosystem aspects are well called out. I like the notion of 
+  calling it an Implementation Guide or something along those 
+  lines.
+Mike Prorock:  Some of the original motivation there, VC HTTP API 
+  did not have certain key methods or ability to get in methods 
+  that let us handle some of the issues we're dealing w/ on supply 
+  chain side of things.
+Mike Prorock:  If extensions are ok in Implementation Guides, and 
+  then if that moves bakc upstream, then cool -- but Implementation 
+  Guide on it's own doesn't scream definition of new APIs/endpoints 
+  on that -- Manu, don't know if you have thoughts on that.
+<tallted> "in the course of implementation and writing 
+  implementation guide, we found need for this extension, that 
+  clarification, this radical change" is all good
+<mprorock> I am glad to hear I am not the only person with 
+  chickens in the background
+Juan Caballero:  I was going to add something similar -- I don't 
+  know if Implementation Guide is the right thing -- don't mind if 
+  that's what it's called. Many to one relationship to vocabs to VC 
+  HTTP API -- could conceivably have extensions that might original 
+  from vocabulary efforts, ecosystem efforts, traceability 
+  ecosystem item of some kind, extends API spec in a branch, as 
+  long as extension doesn't require breaking changes, as long as 
+  groups are in dialog, multiple implementation guides by 
+  vocab/ecossytem/etc.
+<orie> agree with Juan... folks who come from a vertical need a 
+  softer landing spot.
+Juan Caballero:  VC HTTP API, would assume Vaccination / Good 
+  Health Pass / would have it's own input... and API spec more 
+  slowly itnegrates things that move faster. I like Manu's initial 
+  question, how do we make sure it's a sustainable feedback loop -- 
+  good redundancy, front-running, whatever flow works well for 
+  people I think is good.
+<by_caballero> "landing spot"
+<orie> I can live with implementation guide, as long as we can 
+  define API Endpoints and Authorization.
+<by_caballero> "traceability onramp"
+<kim> when does something need to be a CCG work item? What do the 
+  participants get out of it, and what does the CCG get out of it? 
+  There has been a touch of "move fast act questions later" 
+  attitude in discussions around this work item, which runs counter 
+  to the ability of others to contribute
+<orie> "traceability new world order"
+<kim> I think that IPR protection is what the participants get 
+  out of it, but that also puts a burden on the community to make 
+  sense of it
+<wayne_chang> Traceability Ecosystem Schematics
+Manu Sporny:  What I'm hearing is good. I heard Orie say, maybe 
+  calling it an API, we could call it something else, maybe not 
+  implementation guide, but we can re-name it. Orie: we are trying 
+  to give a realistic view of how to do this, when things are 
+  missing, we want to plug that gap quickly. We don't want to make 
+  this a 3-6 month effort, we want to document it quickly and work 
+  together to flow backwards into a foundational API or otherwise 
+  spec. The goal is to effectively be the tip of the spear, and 
+  blaze paths and do all those thigns and document it. So they can 
+  be rolled back into these APIs. This is a healthy thing to do. 
+  trying to balance these things [scribe assist by Heather Vescent]
+<wayne_chang> but less clumsy
+Manu Sporny:  Heard and agree with Ted, not agree to things 
+  blindly. Manu, I am not hearing they want that rubber stamp, they 
+  want to document and move these things back in. [scribe assist by 
+  Heather Vescent]
+<bengo> eg publishing a Note vs a CR
+<orie> Traceability API might become DIDComm + PE
+<orie> it might look radically different than VC HTTP API
+<orie> or not....
+Manu Sporny:  The name of the work item made people go down the 
+  path. Now that we have talked about it. It's clear the 
+  traceability folks want to innovation, talk about presentation, 
+  holder API, etc, which then hopefully get rolled back int eh 
+  general spec if they are broadly applicable. So, it may just be, 
+  we are working through the process. [scribe assist by Heather 
+  Vescent]
+<wayne_chang> Traceability Recipe Book
+Manu Sporny:  I think API is the wrong name and sending the wrong 
+  message. Ecosystem, implementation guide are better names. So we 
+  should figure that out. [scribe assist by Heather Vescent]
+<cel> Traceability Profile?
+<wayne_chang> ooh, profile
+<agropper> How many ways can we talk about APIs without using the 
+  word "authorization??
+<orie> authorization... not authentication.
+Manu Sporny:  Whatever they need to do to move that forward. 
+  [scribe assist by Heather Vescent]
+Orie Steele: +1 Adrian
+Mike Prorock: +1 Authorization more than authentication - still 
+  an elephant in the room, but it is starting to comeout into the 
+  open
+Heather Vescent: ... Suggestion: rename it to reflect what was 
+  said on the call today. To enable the traceability folks to 
+  innovate at the edges with the caveat there is a feedback loop to 
+  bring it back to the broader spec where applicable.
+Ryan Grant:  Technical question -- is OWL2 and provenance mapped 
+  into JSON-LD COntexts, do we have it available for VCs? If we 
+  wanted to encode Provenance ontology, but not mapped into JSON-LD 
+  Contexts, how would we do it?
+<dmitriz> the PROV-O provenance ontolgoy has to do with 
+  provenance of ideas/creative works. Not in the sense that the 
+  Traceability cohort is using it
+<mprorock> *prov-o
+Orie Steele:  The question of how to map existing ontologies and 
+  schema systems together to supply chain traceability is entire 
+  purpose of Traceability vocab -- already have some examples of 
+  this sort of thing -- introduction uses fancy integration for 
+  JSON Schema dn JSON-LD, if you're interested in that, that work 
+  item is wlel suited to taking in ecosystem ideas that have 
+  adoption.
+<tallted> PROV-O covers brick-and-mortar as well.  Speaking as 
+  one of those involved in that WG.
+<orie> We have touched Provenance
+<orie> regarding the VC topic of Evidence
+<orie> Spherity in particular
+<orie> has contributed to this
+<orie> significantly
+Mike Prorock:  I find PROVO very interesting, in Trace vocab 
+  itself, we haven't touched on actual provenance, not on trace 
+  side... it's very much focused on metadata about objects that are 
+  moving through traceability system... for very good reason -- 
+  there are well defined vocabs out there that we like to reference 
+  in, multiple parties in traceability side, GS1 is another example
+Orie Steele: See https://w3c.github.io/vc-data-model/#evidence
+Mike Prorock:  There are multiple definitions of change of 
+  control, provenance, not trying to bypass -- not trying to tackle 
+  that head-on yet.
+<orie> "don't ask us no not use DIDs and VCs"
+<orie> not "don't ask questions"
+Kim Hamilton Duffy:  There is still something, an aspect of this 
+  work item that we're missing, this has stretched the boundaries 
+  of CCG work items -- the way I think about it is in some ways -- 
+  in original issue -- there was a touch of "don't ask questions, 
+  don't give us feedback on use case". I, above anyone, get the 
+  idea of move fast ask question slater attitude around it, might 
+  be interesting, may be interesting to the group -- hard to give 
+  feedback in that capacity.
+Heather Vescent: +1 Kim
+Kim Hamilton Duffy:  This is interesting for Chairs to weigh in, 
+  why can't participants want to do open source anywhere? They do 
+  they IPR protection, it does put burden on community/Chairs  -- I 
+  am an outgoing chair, I do want to call out that this work item 
+  is more explicitly stressing limited Chairing resources that we 
+  have. That was not made explicity, I do think we can come up with 
+  some solutions here, have feedback loop, let's continue to think 
+  about this topic.
+<orie> There is a new DIF work item, which essentially covers the 
+  same space... APIs for Presentation Exchange... I'm trying to 
+  keep things aligned.
+<heathervescent> Wayne, we can kick the IIW conversation to next 
+  week if you like
+<wayne_chang> Sure, that sounds good heather, thanks
+<orie> IMO the IIW conversation is the same conversation... its 
+  about how to do interoperability
+<orie> in the open.
+<orie> we made significant progress on this topic.
+<orie> at IIW
+Adrian Gropper:  I put myself on the queue because, one thing 
+  that happened at IIW, relates to this discussion -- session w/ 
+  Dave Huseby and Sam Smith on variations on authentic data -- 
+  those sessions resuletd in post-IIW exchange between three of us 
+  -- five different things that are all the same thing 
+  udnerneath... how do you have an endorsed document. How do you 
+  have a notarized document (log access).. How do you have witness 
+  signature (no log). How do you have registry. How do you have 
+  revocation?
+<wayne_chang> @Orie there were some sessions at IIW not 
+  explicitly focused on technical interoperability that could be 
+  good to discuss too
+Adrian Gropper:  It was the most interesting part of IIW for me - 
+  to have this pulled out... interesting
+<by_caballero> I would add that authorization and AUDIT were key 
+  themes at IIW this time around-- and I was here for it!
+Adrian Gropper:  Can you list the five things again, in text 
+  here? [scribe assist by Ryan Grant]
+<kim> Manu - that's not why it's frustrating
+<kim> We are super comfortable with path blazing, I assure you
+<orie> CCG has process for having regular calls... and repos... 
+  same as DIF, and OIDF.
+Kim Hamilton Duffy:  I'm curious to hear more [scribe assist by 
+  Heather Vescent]
+<orie> the work isn't going anywhere else
+<orie> but the work will happen elsewhere for sure.
+Orie Steele: :)
+<orie> we can't avoid that.
+Adrian Gropper:  Oh, nevermind, Manu got them all: endorsement, 
+  notarizing, witness, registry, revocation. [scribe assist by Ryan 
+  Grant]
+<orie> the W3C isn't the only place where these topics are 
+  addressed.
+<tallted> (DRM = Digital Rights Management)
+Manu Sporny:  To try and propose a concrete path forward. Blazing 
+  a path forward might be a bit frustrating for some, but this is 
+  the next part of the evolution. Industries need to work together 
+  to adopt this work. I'd hate to see this work go somewhere else 
+  due to frustration. I'd like to see its home here, where things 
+  are well defined. Rough Analogy: W3C had a choice to allow DRM 
+  [scribe assist by Peter Mackinnon]
+<kim> "there was a choice" <-- can you give more context for that 
+  Manu?
+Manu Sporny:  There was a choice made at W3C that its better to 
+  have the work here rather than lose the work to somewhere else. 
+  There are issues, but its a healthy work item to have here 
+  [scribe assist by Peter Mackinnon]
+Heather Vescent:  I guess I'll weigh in in a Chair perspective, 
+  which I agree with to a degree and see a way through. We as a 
+  community are levelling up, this was by design, we had a vision 
+  of what we wanted this community to be - we worked hard -- ths is 
+  a growing pain.
+Heather Vescent:  One of the things I've been able to contribute 
+  is Heilmeier questions, we want to make the stuff we're working 
+  on here more accessible... we're in the deep end, pushing edge of 
+  innovation, people that are coming in... it's overwhelming, 
+  discombobulating, work doing w/ CCG 101 work items, build a 
+  bridge from bleeding edge of innovation to other folks that are 
+  coming in.
+<by_caballero> landing spot was a really good point Orie made-- i 
+  would love it if VC-HTTP-API's repo even pointed to more specific 
+  implementation guides and/or beginner's guides (including the 
+  CCG101 material, etc)
+<by_caballero> s/ even/just/
+Heather Vescent:  This is a pipeline strategy -- to have more 
+  people come into community whether or not they're technical, 
+  non-technical, poets, humanities, or developers -- the thing that 
+  really concerns/challenges me about Traceability thing is -- it's 
+  a good problem to have, Anil John and DHS has funded a lot of 
+  this work -- that has been built within a private 
+  group/community, so if you're not a fudned company, that's an 
+  even deeper end. We need to build a bridge from that back to 
+  general CCG.
+<orie> I object to what heather is saying... we have always done 
+  our traceability work in the open in github.
+<orie> we use the tools the working group provides
+Orie Steele: :)
+<justin_r> a huge +1 to Heather's point just now.
+Heather Vescent:  We are building that bridge, people new to 
+  community, not in that project has made it understandable and 
+  accessible. Orie, not saying you're not working in the open... 
+  there is a difference between working ing ithub vs. the work 
+  being easily accessible.
+Orie Steele: Strong agree heather :) need better W3C CCG process 
+  enforcement.
+<kim> She's correct -- whatever is in github is just a flattening 
+  of hours and hours of conversations that no one else is privy to. 
+  Also, private slack groups for those members
+Heather Vescent:  There needs to be a transition... work done at 
+  DHS transition to open community. Like, "we are transferring that 
+  to the community".
+<orie> ^ yep, need public meetings with minutes to solve that
+Adrian Gropper: +1 Heather
+Orie Steele:  "Process enforcement" == "slow down and take a 
+  breath" [scribe assist by Justin Richer]
+Justin Richer:  Not if its easy to use JITSI :) [scribe assist by 
+  Orie Steele]
+Wayne Chang:  We're nearing the end of the hour, we'll continue 
+  IIW discussion next week... a few timely reminders... Thursday at 
+  3pm VC HTTP API work.
+<mahmoud_alkhraishi> is there a traceability api ( or w.e we're 
+  calling it) call today?
+Wayne Chang:  On that topic, you had comments on DIF on VC HTTP 
+  API -- Orie, update there?
+Orie Steele:  That is both incorrect and dismissive... [scribe 
+  assist by Justin Richer]
+<kim> I tried to join that slack group to get more context and 
+  was rejected
+Orie Steele:  More related to IIW conversations that Adrian 
+  alluded to... is that what you're asking for?
+<heathervescent> Oh yeah, is there a traceability call today?
+<brent_shambauh> for inspiration, I like this link for ipfs 
+  concepts. https://proto.school/ .
+Orie Steele:  Yes, resulting work happening at DIF -- work 
+  happening elsewhere, IETF, DIF, Hyperledger -- and that's ok -- 
+  part of work happening at IIW is major coming together of folks 
+  wrt. BBS+ and VCs and alignment on using DID Comm to exchange 
+  those credentials.
+Orie Steele:  Presentation exchange over HTTP for DID Comm -- for 
+  presentation exchange, same kinda work that is happening here -- 
+  built on different set of standards/technology -- well 
+  documented, available for folks to use, things I'm most excited 
+  about -- Aries and DIDComm, focused on message-level security -- 
+  built on top of JOSE, coming together with people for HTTP APIs - 
+  tiny gap, people working together, DIF work item targeted at 
+  that... DIDComm and Presentation Exchange, DIF -- related to work 
+  in CCG or OpenID Foundation -- we'll see that evolve over time.
+Orie Steele:  If that's of interest, please reach out to get 
+  insight into what's happening there.
+Wayne Chang:  Would you mind sending an invtie to the mailing 
+  list, Orie?
+Wayne Chang:  Thanks, see you next week!
+<by_caballero> remember the CCG101 meeting today too
+<by_caballero> in 3 hours
+Heather Vescent: @Manu: all good in the jitsi?
