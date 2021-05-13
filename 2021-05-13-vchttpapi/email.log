@@ -1,0 +1,426 @@
+Thanks to Markus Sabadello for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-05-13-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+VC HTTP API Task Force Minutes for 2021-05-13
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021May/0057.html
+Topics:
+  1. Review of Pull Requests
+  2. Use Cases
+Resolutions:
+  1. Use Case initial timeline will be: 4 weeks gathering use 
+    cases & retro-documenting existing OAS filesâ€™ use-cases (June 
+    10 deadline) and then 4 weeks to distill with a goal of finishing 
+    that process by the July 8 meeting.
+Organizer:
+  Manu Sporny
+Scribe:
+  Markus Sabadello
+Present:
+  Manu Sporny, Mike Prorock, Adrian Gropper, Juan Caballero, Markus 
+  Sabadello, Orie Steele, Joe Andrieu, Anil John, Dmitri Zagidulin, 
+  Kyle Den Hartog
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-05-13/audio.ogg
+
+Markus Sabadello is scribing.
+Manu Sporny:  Agenda is PRs first, then talk about use cases
+Manu Sporny:  We have a number of use cases we want to go through
+Manu Sporny:  Any updates to the agenda?
+
+Topic: Review of Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pulls
+Manu Sporny:  We have 2 PRs, both are attempting to apply last 
+  week's resolutions
+Manu Sporny:  First one is by markus_sabadello
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/178
+Markus Sabadello:  Yes, this PR proposes to split up the OpenAPI 
+  specificationf ile into three separate OpenAPI specification 
+  files plus a few additional ones. The idea is to try and separate 
+  issuer, verifier, holder related APIs into separate files. To 
+  make it easier to manage different areas of functionality. 
+  [scribe assist by Manu Sporny]
+Markus Sabadello:  The file has been getting larger and larger, 
+  with the addition of potential holder APIs, it's become even more 
+  complex, so the idea was to split this up to separate areas. 
+  There are some shared schemas as well. [scribe assist by Manu 
+  Sporny]
+Orie Steele: There are also: "Internal Holder" and "External 
+  Holder / Exchange APIs"
+Markus Sabadello:  Verifiable Credential, Verifiable 
+  Presentation, for example. [scribe assist by Manu Sporny]
+<orie> this was part of the contention on the previous PR
+Markus Sabadello:  The goal was to make everything more modular, 
+  there was support for this, and resolution was done so this puts 
+  it into practice. [scribe assist by Manu Sporny]
+<orie> Markus' PR takes us in a good direction towards making 
+  this clearer
+Manu Sporny:  I agree, I have seen a lot of support and PR 
+  approvals
+Manu Sporny:  Suggestion is to merge immediately
+Mike Prorock:  Thanks to markus_sabadello , this will make future 
+  PRs much cleaner
+Manu Sporny:  YAML files are really helpful to be concise about 
+  endpoint inputs. Ideally we would fine a way to process those 
+  YAML files and inject them into Respec
+Orie Steele: Here is an example: 
+  https://or13.github.io/traceability-api/
+Manu Sporny:  Orie, any thoughts on this?
+Orie Steele: Example: 
+  https://github.com/OR13/traceability-api/blob/main/docs/index.html#L139
+Adrian Gropper:  I think it's worth putting in the minutes that I 
+  was a hold out from this decision process. There is an issue that 
+  I hope we are all aware of an issue.. As a self-sovereign 
+  resource holder, when I go to the issuer, I should have the 
+  choice to get either a VC or a capability.
+Adrian Gropper:  I should be able to do whatever I want with it.
+Adrian Gropper:  If the process prevents me from getting a 
+  capability (and only a VC), this will have major repercussions
+Mike Prorock:  In terms of pulling Respec in, Orie linked an 
+  example in the spec. There are two things
+Mrporock: One is interactive OpenAPI documentation. Those YAML 
+  file can be merged into a master YAML file and then sectioned out
+Mike Prorock:  This can then be pulled into Respec as shown by 
+  Orie's link
+Manu Sporny:  My concern is there are details here when pulling 
+  big chunks of Respec
+Manu Sporny:  My hope is we could do some pre-processing of a 
+  JSON structure and write a tiny Respec extension
+Manu Sporny:  Ensure we keep YAML and Respec in sync.
+Mike Prorock:  Sometimes there are benefits with using JSON. I 
+  might open an issue/PR
+Manu Sporny:  You outlined two things. First, you want to get a 
+  VC from the issuer; the API supports this today.
+Manu Sporny:  And, you as the caller can be an organization or an 
+  individual. You could be an individual with your own 
+  infastructure that is in full control of the API.
+Adrian Gropper:  Full sovereignty to me means when I get to 
+  delegate what happens relative to the issuer.
+Manu Sporny:  Currently, you can have full control over the 
+  entire infrastructure, you can run all of it.
+Manu Sporny:  Now let's talk about delegation
+Manu Sporny:  Delegation is part of the authorization framework, 
+  and we haven't had this discussion.
+<orie> can we agree not to pull in authorization capabilities 
+  into this API?... I feel like thats a huge can of worms and is 
+  incompatible with the "Internal Endpoints"....
+Manu Sporny:  My expectation is some companies will support 
+  delegation to the API; one way is GNAP, another is ZCAP.
+<orie> GNAP and ZCAPs are both drafts..... huge -1 to assuming 
+  them in any way.
+Manu Sporny:  We can allow this in the API. It may be an 
+  extension rather than first-class feature.
+<orie> but certainly GNAP and ZCaps are possible solutions to 
+  "External Holder" scenarios
+Manu Sporny:  To discuss those things are in scope. There are 
+  people working on it.
+Adrian Gropper:  I will voice strong objection to the idea that 
+  this will be an extension rather than core. The reason is 
+  asymmetry of power between issuers and subjects.
+Adrian Gropper:  If we make this an extension, the asymmetry will 
+  become regulatory capture.
+Adrian Gropper:  Since we are at the beginning, we don't have to 
+  go down that path. We have everything we need in the 
+  spec/protocol work that we could address (channelling Alan Karp) 
+  justice and good design, right now from the beginning.
+Orie Steele:  We have to be careful when talking about capability 
+  systems, and these APIs. There are two different meanings of 
+  APIs.
+Orie Steele:  There are "internal" holder APIs, that help you 
+  make a presentation using a web service.
+Orie Steele:  This is different from talking to an "external" 
+  party.
+Orie Steele:  To date, we have only had internal APIs. The PR 
+  that spawned this discussion was the first time an external API 
+  was proposed
+Orie Steele:  GNAP / ZCAP is probably not appropriate for 
+  internal APIs, since in an internal domain there is no 
+  sovereignty, it's just app infrastructure.
+Adrian Gropper: +1 Orie also GNAP will likely not discriminate 
+  between ZCAPS, biscuits, or macaroons
+Manu Sporny:  Markus' PR is going to go int.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/183
+Manu Sporny:  The other PR is to create the initial structure of 
+  the spec.
+Manu Sporny:  I will share screen to show what the spec looks 
+  like
+Manu Sporny:  The PR would create the spec, a large part is 
+  blank.
+Manu Sporny:  The PR just has some proposals what the sections 
+  are.
+Mike Prorock: +1 Initial structure to allow documentation
+Manu Sporny:  It is taking action on a recent resolution, so the 
+  suggestion is to merge it shortly.
+Manu Sporny:  Any questions/concerns about the PRs?
+
+Topic: Use Cases
+
+<juan_caballero> thanks for doing that manu!
+Manu Sporny: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+Manu Sporny:  Here is the use cases document
+Manu Sporny:  Juan has cleaned up the landing page, it has 
+  instructions and pointers on how to write use cases. Also has a 
+  proposed timeline.
+Juan Caballero:  I hope people put the emphasis on the right part 
+  of the use cases. Do not miss the link to Joe's email.
+Juan Caballero:  In the doc's version history, you can see a 
+  shorter use case, and then a longer one by Joe.
+Juan Caballero:  If anyone submits use cases, you can replay the 
+  process you see in the version history.
+Juan Caballero:  Use cases of the length of Adrian and Manu that 
+  really emphasize the real-world stakeholders and processes, 
+  rather than the technical steps.
+Juan Caballero:  The API is specifying a neutral cross-vendor 
+  general-purpose API.
+Juan Caballero:  I'd like to try emphasize incorporating some of 
+  the VC use cases, highlighting what is gained from vendors not 
+  having to invent their own bespoke APIs. This should be 
+  emphasized.
+Eric_Schuh: That was great Juan, we're in alignment.
+Eric_Schuh: I added a proposed timeline, would like to get some 
+  thoughts if 4 weeks seem like a reasonable amount of time.
+Manu Sporny:  I think the timeline is great, for a first pass. 
+  This doesn't mean you can't add more use cases after June 10th. 
+  Let's try to get the major use cases in by then.
+<juan_caballero> minimum viable usecase set to structure and 
+  facilitate manu's skeleton spec being fleshed out!
+<eric_schuh> timeline can always change if we feel like we need 
+  more time, of course
+Manu Sporny:  My experience is you only need 15-30 minutes to get 
+  something in.
+Manu Sporny:  +1 To the proposed timeline.
+Manu Sporny:  Happy to run a proposal
+Manu Sporny:  Any other comments on gathering use cases?
+Manu Sporny:  Let's try to spend some time talking about 
+  everybody's use cases, let's go in order
+Manu Sporny:  Agropper you wrote a digital vaccination use case? 
+  Can you introduce it and how it impacts the VC HTTP API?
+
+PROPOSAL:  Use Case initial timeline will be
+
+Adrian Gropper:  This is a real-world use case I am involved in. 
+  The use case points out the asymmetric relationship between the 
+  issuer (doing the vaccination) and the person receiving the 
+  vaccination (could be an undocumented person). That person wants 
+  to be sure there is no central registry. In some administrations, 
+  that could impact their immigrant status.
+Adrian Gropper:  The second aspect is how the privacy-preserving 
+  Verifiable Credential is delivered to Allie. That is her/his 
+  choice (e.g. take photo, or use email, text message, CHAPI, etc.)
+<orie> i guess this use case assume that the data model is not 
+  HL7/FHIR / attached to an existing patient record?
+Adrian Gropper:  From the self-sovereignty perspective, as far as 
+  the spec is concerned, all of those are in scope. Unless the 
+  issuer has a really good reason, they don't get to discriminate 
+  the way of receiving the credential is being used.
+Adrian Gropper:  This is not the same as the earlier issue 
+  regarding capabilities.
+Manu Sporny:  Any comments from anyone in the group?
+<orie> This use case belongs in the vaccnination vocab work item
+Manu Sporny:  It's a good use case, the value is clear. I 
+  couldn't draw a straight line from the use case to the VC HTTP 
+  API. This use case could also live in other documents. What makes 
+  this a VC HTTP API use case?
+Adrian Gropper:  Both the form how the credential is filled out, 
+  and the way how it gets delivered, that's HTTP.
+Adrian Gropper:  She should be able to do this entirely over 
+  HTTP.
+Orie Steele:  I think that is the connection. In my mind what's 
+  tricky about the use case is some assertions about the 
+  cross-trust domain aspect of the issuer/holder relationship.
+Orie Steele:  I think some parts of this is about presentation 
+  exchange, rather than VC HTTP API.
+Orie Steele:  This is in no way related to the Issuance API, 
+  which just produces credentials and is considered internal.
+Orie Steele:  The part of the use case that covers the VC HTTP 
+  API is that holders can see issuers that provide credentials with 
+  certain privacy characteristics.
+Orie Steele: So in summary: adrian's use case is relevant to 
+  external holder apis only.
+Manu Sporny:  Adrian, the HTTP form aspect has nothing to do with 
+  the VC HTTP API.
+Manu Sporny:  The second thing might be related to the VC HTTP 
+  API, but for me there is not enough data to understand what 
+  specific call of the VC HTTP API returns something to Allie.
+<orie> and the "internal issuance apis" in the sense that every 
+  VC is related to them.
+Mike Prorock:  You basically said my concern. Just because the 
+  user interaction is over the web, that doesn't necessarily imply 
+  it has anything to do with the VC HTTP API.
+Mike Prorock:  It's a totally valid use case, I'm not sure what 
+  is novel about it for the VC HTTP API itself.
+<adrian_gropper> I will respond to Manu in terms of requests and 
+  presentations.
+Orie Steele: +1 Adrian
+Adrian Gropper:  My perspective is in terms of presentation 
+  requests. In GNAP we call this requests. The subject Allie is 
+  making requests from the Issuer. Embedded is all sorts of stuff. 
+  This is exactly why authorization and delegation are first-class 
+  citizens in what we are doing here.
+Adrian Gropper:  GNAP cares about how you phrase a request. 
+  Someone shows up at an authorization server to get something that 
+  will be of use (e.g. access token, or capability, or VC).
+<orie> what you get back from VC HTTP API is a VC tho... this 
+  isn't the ask for anything api...
+<orie> this API supports the W3C VC Data Model
+<juan_caballero> ^^
+Adrian Gropper:  The fact that the request comes in to a form may 
+  be a stretch.
+Adrian Gropper:  The point I am making is that it is a request, 
+  and the result is the issuance of something.
+Orie Steele:  Adrian's use case is the same use cases as in the 
+  Traceability API.
+Adrian Gropper: +1 Orie
+Juan Caballero: +1
+Orie Steele:  Proposal that the VC HTTP API that the holder can 
+  request and receive a presentation. This is about presentation 
+  exchange. Verifiable presentations moving across trust boundaries 
+  between parties.
+<mprorock> thanks @orie - that is extremely helpful and makes it 
+  much more clear to me
+Orie Steele:  There were proposals to include this, but people 
+  asked for use cases. Now here is a use case.
+Orie Steele:  We've had a resolution to expand this work item to 
+  include cross trust domain contexts.
+<adrian_gropper> Presentation or capability... the result is the 
+  same
+<mprorock> i think the wording was throwing me off
+<orie> yea, stop saying capabilities
+Juan Caballero: :D
+<orie> probably would help
+<juan_caballero> names a specific solution-- maybe just call them 
+  authorizations, even if the vagueness offends you to the core?
+<orie> this API doesn't return objects that are not directly 
+  related to the W3C VC Data Model TR....
+<orie> we will hit a scope issue if we cross that line.
+<adrian_gropper> q
+Manu Sporny:  Trying to re-state Adrian's use case. Flow diagram 
+  would help. The idea is Allie says "I would like to start a 
+  presentation flow with you", they contact the Issuer, the issuer 
+  responds "you have to give me e.g. first name, last name, PIN 
+  code", and maybe Allie responds back with a self-issued VC with 
+  first name, last name, then the Issuer matches this against a 
+  file so it will respond with a VC (digital vaccination card).
+Juan Caballero: @Adrian a 5min way of making a swimlane is using 
+  this website:
+<juan_caballero> would be greatly appreciated!
+Manu Sporny:  I think this meets Adrian's requirement and 
+  illustrates how the use case is linked to the VC HTTP API.
+Manu Sporny:  This is one of the next use cases that we do have a 
+  flow diagram for.
+<orie> pretty sure we already have a flow diagram for this
+<orie> ...
+Manu Sporny: If we do, it's going to be easy :)
+Juan Caballero:  I think everyone's asking to shift the 
+  proportions of the use case to focus on the API part rather than 
+  the VC parts.
+Juan Caballero:  Adrian I get the sense you want certain 
+  architectures not to be blocked by the API work. A swimlane would 
+  help people edit with you.
+Orie Steele: -1 Adrian
+<orie> thats not how VC's work
+Manu Sporny: Yeah, big -1
+Adrian Gropper:  I use a lot of swimlanes, but here's the thing.. 
+  Orie put his finger on it. If the interaction between Allie and 
+  the Issuer is going to result in a presentation, then that 
+  verifiable presentation might as well go directly from the Issuer 
+  to the Verifier. That's how we use "presentation" in this world.
+<manu_sporny> that's definitely not how we think about things 
+  here -- scary phone home issues w/ issuer direct to verifier.
+Adrian Gropper:  Wheter we use capabilities and attenuations, or 
+  if it's done by going through a holder and PIN codes, is 
+  irrelevant.
+Joe Andrieu:  I think Adrian's perspective has a pretty big 
+  divergence from the work flow that I understand.
+Joe Andrieu:  I was surprised to hear you talk about the Issuer 
+  giving something directly to the Verifier.
+Joe Andrieu:  How to you ensure consent that way? That's why the 
+  holder is in the loop.
+Adrian Gropper:  If you read the use, it states that the VC 
+  includes a hash. There is absolutely no doubt on the Issuer and 
+  Verifier side that they are talking about Allie.
+S/use/use case/
+Manu Sporny:  I wanted to talk about the Permanent Resident Card 
+  use case.
+Manu Sporny:  There is a diagram about the flow.
+Manu Sporny:  There is a new presentation-based flow, I believe 
+  Orie added something;
+Orie Steele:  We are talking about the three roles that 
+  individuals can play in different situations (issuer, holder, 
+  verifier). One of the flows of the API is a presentation of 
+  credentials about a subject, to a holder.
+Orie Steele:  Typically the story is that an Issuer gives 
+  something to a Holder. Instead of making the use cases 
+  vertical-specific, I wrote the use cases in way that explains the 
+  operations you need to get credentials from issuer->holder, and 
+  holder->verifier. Both cross a trust domain.
+Orie Steele:  There are few points here. E.g. Subject binding in 
+  credential, and privacy implications. Something we talk about 
+  this in the sense of subject == holder.
+Juan Caballero: 
+  https://www.w3.org/TR/vc-data-model/#subject-is-the-holder
+Orie Steele:  Use case: Verifiable credential issued by a vet 
+  about my dog. I'm the holder but I'm not the subject.
+Orie Steele:  There is a presentation from someone who is holding 
+  it, to a verifier. This is external-facing.
+Adrian Gropper:  To Orie's use case, there are 3 cross domain 
+  relationships: issuer->holder, holder->verifier, 
+  issuer->verifier.
+Adrian Gropper:  I agree with Orie this is all about the 
+  externalization.
+<> verifier when a holder is not involved... unless I am talking 
+  about dystopian tracking futures.
+<manu_sporny>	q+ on issuer -> verifier
+Adrian Gropper:  I associate this with GNAP and delegation 
+  issues. One example is the difference of having someone also 
+  check your passport when they see your vaccination card.
+Adrian Gropper:  In the use case I propose, Allie doesn't need to 
+  have a passport at all.
+Adrian Gropper:  In the dog example, the assumption is that Allie 
+  presents a passport
+Adrian Gropper:  All three trust relationships always exist, we 
+  don't get to choose that in this group.
+<> verifier is supported by the W3C VC Data Model TR?
+Manu Sporny:  Adrian the third one is a very dangerous area. I 
+  think I share Orie's and Joe's concerns about Issuers talking 
+  directly to Verifiers. There are use cases for this, but it's 
+  dangerous and we have to be careful.
+<adrian_gropper> It's dangerous not to allow delegation from the 
+  satrt
+Manu Sporny:  Next steps, please add use cases to the document!
+<eric_schuh> I can hold it for next week
+<juan_caballero> run it!
+
+PROPOSAL:  Use Case initial timeline will be
+
+<mprorock> can we run that proposal now
+Adrian Gropper: +1
+Mike Prorock: +1
+Juan Caballero: +1
+Manu Sporny: +1
+Orie Steele: +1 To having timeliness
+Markus Sabadello: +1
+Joe Andrieu: +1
+
+RESOLUTION: Use Case initial timeline will be: 4 weeks gathering 
+  use cases & retro-documenting existing OAS filesâ€™ use-cases 
+  (June 10 deadline) and then 4 weeks to distill with a goal of 
+  finishing that process by the July 8 meeting.
+
+Orie Steele:  I think we should attack the challenge Adrian has 
+  put forward. I agree with everything he said, we can draw an 
+  arrow between Issuer and Verifier. We should review the relevant 
+  sections in the VC data model spec.
+Orie Steele:  Let's work on this on issues and spec text.
+<juan_caballero> thanks all
+Manu Sporny:  Thanks everyone, see everyone next week.
+Manu Sporny:  Will send out Doodle poll.
