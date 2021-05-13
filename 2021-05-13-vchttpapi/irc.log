@@ -1,0 +1,270 @@
+[2021-05-13T19:03:09.069Z]	<manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2021May/0057.html
+[2021-05-13T19:03:09.069Z]	<manu>	Meeting: VC HTTP API Task Force
+[2021-05-13T19:03:09.069Z]	<manu>	Chair: manu
+[2021-05-13T19:03:09.069Z]	<mprorock>	present+
+[2021-05-13T19:03:57.643Z]	<agropper>	present+
+[2021-05-13T19:05:38.748Z]	<Juan_Caballero>	present+
+[2021-05-13T19:06:02.890Z]	<markus_sabadello>	present+
+[2021-05-13T19:06:03.578Z]	<markus_sabadello>	scribe: markus_sabadello
+[2021-05-13T19:06:19.535Z]	<markus_sabadello>	manu: Agenda is PRs first, then talk about use cases
+[2021-05-13T19:06:28.087Z]	<markus_sabadello>	manu: We have a number of use cases we want to go through
+[2021-05-13T19:06:32.329Z]	<markus_sabadello>	manu: Any updates to the agenda?
+[2021-05-13T19:06:48.683Z]	<Manu_Sporny>	Topic: Review of Pull Requests
+[2021-05-13T19:06:50.582Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-http-api/pulls
+[2021-05-13T19:07:13.527Z]	<markus_sabadello>	manu: We have 2 PRs, both are attempting to apply last week's resolutions
+[2021-05-13T19:07:19.192Z]	<markus_sabadello>	manu: First one is by markus_sabadello
+[2021-05-13T19:07:21.807Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-http-api/pull/178
+[2021-05-13T19:08:14.408Z]	<manu>	markus_sabadello: Yes, this PR proposes to split up the OpenAPI specificationf ile into three separate OpenAPI specification files plus a few additional ones. The idea is to try and separate issuer, verifier, holder related APIs into separate files. To make it easier to manage different areas of functionality.
+[2021-05-13T19:08:44.043Z]	<manu>	markus_sabadello: The file has been getting larger and larger, with the addition of potential holder APIs, it's become even more complex, so the idea was to split this up to separate areas. There are some shared schemas as well.
+[2021-05-13T19:08:49.499Z]	<Orie>	There are also: "Internal Holder" and "External Holder / Exchange APIs"
+[2021-05-13T19:08:55.553Z]	<manu>	markus_sabadello: Verifiable Credential, Verifiable Presentation, for example.
+[2021-05-13T19:08:59.924Z]	<Orie>	this was part of the contention on the previous PR
+[2021-05-13T19:09:18.401Z]	<manu>	markus_sabadello: The goal was to make everything more modular, there was support for this, and resolution was done so this puts it into practice.
+[2021-05-13T19:09:29.207Z]	<Orie>	Markus' PR takes us in a good direction towards making this clearer
+[2021-05-13T19:09:39.528Z]	<mprorock>	q+ importance of this pr as building block
+[2021-05-13T19:09:40.605Z]	<markus_sabadello>	manu: I agree, I have seen a lot of support and PR approvals
+[2021-05-13T19:09:57.416Z]	<markus_sabadello>	manu: Suggestion is to merge immediately
+[2021-05-13T19:10:21.835Z]	<manu>	q+ to ask about how we integrate the YAML stuff into the ReSpec files?
+[2021-05-13T19:10:25.390Z]	<manu>	ack mpro
+[2021-05-13T19:10:32.827Z]	<markus_sabadello>	mprorock: Thanks to markus_sabadello , this will make future PRs much cleaner
+[2021-05-13T19:10:49.508Z]	<agropper>	q+
+[2021-05-13T19:11:19.774Z]	<markus_sabadello>	manu: YAML files are really helpful to be concise about endpoint inputs. Ideally we would fine a way to process those YAML files and inject them into Respec
+[2021-05-13T19:11:21.262Z]	<Orie>	Here is an example: https://or13.github.io/traceability-api/
+[2021-05-13T19:11:30.554Z]	<markus_sabadello>	manu: Orie, any thoughts on this?
+[2021-05-13T19:11:30.705Z]	<mprorock>	q+ process yaml into single yaml and respec
+[2021-05-13T19:11:40.932Z]	<manu>	ack manu
+[2021-05-13T19:11:41.301Z]	<Orie>	example: https://github.com/OR13/traceability-api/blob/main/docs/index.html#L139
+[2021-05-13T19:12:48.760Z]	<markus_sabadello>	agropper: I think it's worth putting in the minutes that I was a hold out from this decision process. There is an issue that I hope we are all aware of an issue.. As a self-sovereign resource holder, when I go to the issuer, I should have the choice to get either a VC or a capability.
+[2021-05-13T19:12:56.645Z]	<markus_sabadello>	agropper: I should be able to do whatever I want with it.
+[2021-05-13T19:13:28.123Z]	<markus_sabadello>	agropper: If the process prevents me from getting a capability (and only a VC), this will have major repercussions
+[2021-05-13T19:13:59.297Z]	<manu>	q+ to address agropper's concern.
+[2021-05-13T19:14:14.042Z]	<manu>	ack agropper
+[2021-05-13T19:14:15.898Z]	<manu>	ack mpro
+[2021-05-13T19:14:34.188Z]	<markus_sabadello>	mprorock: In terms of pulling Respec in, Orie linked an example in the spec. There are two things
+[2021-05-13T19:14:54.403Z]	<markus_sabadello>	mrporock: One is interactive OpenAPI documentation. Those YAML file can be merged into a master YAML file and then sectioned out
+[2021-05-13T19:15:18.851Z]	<markus_sabadello>	mprorock: This can then be pulled into Respec as shown by Orie's link
+[2021-05-13T19:15:36.098Z]	<markus_sabadello>	manu: My concern is there are details here when pulling big chunks of Respec
+[2021-05-13T19:15:52.302Z]	<markus_sabadello>	manu: My hope is we could do some pre-processing of a JSON structure and write a tiny Respec extension
+[2021-05-13T19:16:07.600Z]	<manu>	q?
+[2021-05-13T19:16:08.718Z]	<markus_sabadello>	manu: Ensure we keep YAML and Respec in sync.
+[2021-05-13T19:16:33.331Z]	<markus_sabadello>	mprorock: Sometimes there are benefits with using JSON. I might open an issue/PR
+[2021-05-13T19:17:00.639Z]	<markus_sabadello>	manu: You outlined two things. First, you want to get a VC from the issuer; the API supports this today.
+[2021-05-13T19:17:31.514Z]	<markus_sabadello>	manu: And, you as the caller can be an organization or an individual. You could be an individual with your own infastructure that is in full control of the API.
+[2021-05-13T19:17:44.249Z]	<markus_sabadello>	agropper: Full sovereignty to me means when I get to delegate what happens relative to the issuer.
+[2021-05-13T19:18:17.547Z]	<markus_sabadello>	manu: Currently, you can have full control over the entire infrastructure, you can run all of it.
+[2021-05-13T19:18:20.943Z]	<markus_sabadello>	manu: Now let's talk about delegation
+[2021-05-13T19:18:32.059Z]	<markus_sabadello>	manu: Delegation is part of the authorization framework, and we haven't had this discussion.
+[2021-05-13T19:18:43.322Z]	<Orie>	can we agree not to pull in authorization capabilities into this API?... I feel like thats a huge can of worms and is incompatible with the "Internal Endpoints"....
+[2021-05-13T19:18:46.950Z]	<markus_sabadello>	manu: My expectation is some companies will support delegation to the API; one way is GNAP, another is ZCAP.
+[2021-05-13T19:18:59.348Z]	<Orie>	GNAP and ZCAPs are both drafts..... huge -1 to assuming them in any way.
+[2021-05-13T19:19:04.494Z]	<markus_sabadello>	manu: We can allow this in the API. It may be an extension rather than first-class feature.
+[2021-05-13T19:19:04.593Z]	<agropper>	q+
+[2021-05-13T19:19:10.950Z]	<manu>	ack manu
+[2021-05-13T19:19:25.156Z]	<Orie>	but certainly GNAP and ZCaps are possible solutions to "External Holder" scenarios
+[2021-05-13T19:19:27.647Z]	<markus_sabadello>	manu: To discuss those things are in scope. There are people working on it.
+[2021-05-13T19:19:49.307Z]	<Orie>	q+ to cover internal holder vs external holder APIs
+[2021-05-13T19:19:54.382Z]	<markus_sabadello>	agropper: I will voice strong objection to the idea that this will be an extension rather than core. The reason is asymmetry of power between issuers and subjects.
+[2021-05-13T19:19:57.452Z]	<manu>	ack agropper
+[2021-05-13T19:20:09.901Z]	<markus_sabadello>	agropper: If we make this an extension, the asymmetry will become regulatory capture.
+[2021-05-13T19:20:11.183Z]	<manu>	q+ to note that we're going to get to this discussion when we discuss Authorization.
+[2021-05-13T19:20:44.431Z]	<markus_sabadello>	agropper: Since we are at the beginning, we don't have to go down that path. We have everything we need in the spec/protocol work that we could address (channelling Alan Karp) justice and good design, right now from the beginning.
+[2021-05-13T19:21:11.534Z]	<markus_sabadello>	Orie: We have to be careful when talking about capability systems, and these APIs. There are two different meanings of APIs.
+[2021-05-13T19:21:26.000Z]	<markus_sabadello>	Orie: There are "internal" holder APIs, that help you make a presentation using a web service.
+[2021-05-13T19:21:36.384Z]	<markus_sabadello>	Orie: This is different from talking to an "external" party.
+[2021-05-13T19:22:04.181Z]	<markus_sabadello>	Orie: To date, we have only had internal APIs. The PR that spawned this discussion was the first time an external API was proposed
+[2021-05-13T19:22:44.004Z]	<markus_sabadello>	Orie: GNAP / ZCAP is probably not appropriate for internal APIs, since in an internal domain there is no sovereignty, it's just app infrastructure.
+[2021-05-13T19:22:56.212Z]	<manu>	q?
+[2021-05-13T19:23:00.759Z]	<manu>	ack Orie
+[2021-05-13T19:23:01.956Z]	<Orie>	q-
+[2021-05-13T19:23:03.350Z]	<agropper>	+1 Orie also GNAP will likely not discriminate between ZCAPS, biscuits, or macaroons
+[2021-05-13T19:23:03.933Z]	<manu>	ack manu
+[2021-05-13T19:23:11.662Z]	<markus_sabadello>	manu: Markus' PR is going to go int.
+[2021-05-13T19:23:18.116Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-http-api/pull/183
+[2021-05-13T19:23:19.668Z]	<markus_sabadello>	manu: The other PR is to create the initial structure of the spec.
+[2021-05-13T19:23:31.329Z]	<markus_sabadello>	manu: I will share screen to show what the spec looks like
+[2021-05-13T19:23:45.718Z]	<markus_sabadello>	manu: The PR would create the spec, a large part is blank.
+[2021-05-13T19:24:06.173Z]	<markus_sabadello>	manu: The PR just has some proposals what the sections are.
+[2021-05-13T19:24:15.175Z]	<mprorock>	+1 initial structure to allow documentation
+[2021-05-13T19:24:21.541Z]	<markus_sabadello>	manu: It is taking action on a recent resolution, so the suggestion is to merge it shortly.
+[2021-05-13T19:24:36.366Z]	<markus_sabadello>	manu: Any questions/concerns about the PRs?
+[2021-05-13T19:24:50.326Z]	<manu>	Topic: Use Cases
+[2021-05-13T19:24:50.509Z]	<Juan_Caballero>	thanks for doing that manu!
+[2021-05-13T19:24:57.619Z]	<manu>	https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+[2021-05-13T19:25:00.599Z]	<markus_sabadello>	manu: Here is the use cases document
+[2021-05-13T19:25:24.104Z]	<markus_sabadello>	manu: Juan has cleaned up the landing page, it has instructions and pointers on how to write use cases. Also has a proposed timeline.
+[2021-05-13T19:26:02.496Z]	<markus_sabadello>	Juan_Caballero: I hope people put the emphasis on the right part of the use cases. Do not miss the link to Joe's email.
+[2021-05-13T19:26:23.505Z]	<markus_sabadello>	Juan_Caballero: In the doc's version history, you can see a shorter use case, and then a longer one by Joe.
+[2021-05-13T19:26:42.419Z]	<markus_sabadello>	Juan_Caballero: If anyone submits use cases, you can replay the process you see in the version history.
+[2021-05-13T19:27:12.528Z]	<markus_sabadello>	Juan_Caballero: Use cases of the length of Adrian and Manu that really emphasize the real-world stakeholders and processes, rather than the technical steps.
+[2021-05-13T19:27:39.304Z]	<markus_sabadello>	Juan_Caballero: The API is specifying a neutral cross-vendor general-purpose API.
+[2021-05-13T19:28:16.315Z]	<markus_sabadello>	Juan_Caballero: I'd like to try emphasize incorporating some of the VC use cases, highlighting what is gained from vendors not having to invent their own bespoke APIs. This should be emphasized.
+[2021-05-13T19:28:24.155Z]	<Eric_Schuh>	q+
+[2021-05-13T19:28:33.770Z]	<Juan_Caballero>	ack eric_schuh
+[2021-05-13T19:28:43.092Z]	<Manu_Sporny>	ack eric
+[2021-05-13T19:28:47.196Z]	<markus_sabadello>	Eric_Schuh: That was great Juan, we're in alignment.
+[2021-05-13T19:29:03.203Z]	<markus_sabadello>	Eric_Schuh: I added a proposed timeline, would like to get some thoughts if 4 weeks seem like a reasonable amount of time.
+[2021-05-13T19:29:05.724Z]	<Manu_Sporny>	q+
+[2021-05-13T19:29:12.902Z]	<Manu_Sporny>	ack manu
+[2021-05-13T19:29:35.081Z]	<markus_sabadello>	manu: I think the timeline is great, for a first pass. This doesn't mean you can't add more use cases after June 10th. Let's try to get the major use cases in by then.
+[2021-05-13T19:29:50.948Z]	<Juan_Caballero>	minimum viable usecase set to structure and facilitate manu's skeleton spec being fleshed out!
+[2021-05-13T19:29:52.469Z]	<Eric_Schuh>	timeline can always change if we feel like we need more time, of course
+[2021-05-13T19:30:00.593Z]	<markus_sabadello>	manu: My experience is you only need 15-30 minutes to get something in.
+[2021-05-13T19:30:04.232Z]	<markus_sabadello>	manu: +1 to the proposed timeline.
+[2021-05-13T19:30:21.501Z]	<markus_sabadello>	manu: Happy to run a proposal
+[2021-05-13T19:30:44.571Z]	<markus_sabadello>	manu: Any other comments on gathering use cases?
+[2021-05-13T19:31:07.060Z]	<markus_sabadello>	manu: Let's try to spend some time talking about everybody's use cases, let's go in order
+[2021-05-13T19:31:29.850Z]	<markus_sabadello>	manu: agropper you wrote a digital vaccination use case? Can you introduce it and how it impacts the VC HTTP API?
+[2021-05-13T19:31:36.842Z]	<Eric_Schuh>	PROPOSAL: Use Case initial timeline will be: 4 weeks gathering use cases & retro-documenting existing OAS filesâ€™ use-cases (June 10 deadline) and then 4 weeks to distill with a goal of finishing that process by the July 8 meeting
+[2021-05-13T19:33:05.074Z]	<markus_sabadello>	agropper: This is a real-world use case I am involved in. The use case points out the asymmetric relationship between the issuer (doing the vaccination) and the person receiving the vaccination (could be an undocumented person). That person wants to be sure there is no central registry. In some administrations, that could impact their immigrant status.
+[2021-05-13T19:33:44.754Z]	<markus_sabadello>	agropper: The second aspect is how the privacy-preserving Verifiable Credential is delivered to Allie. That is her/his choice (e.g. take photo, or use email, text message, CHAPI, etc.)
+[2021-05-13T19:33:57.905Z]	<Orie>	i guess this use case assume that the data model is not HL7/FHIR / attached to an existing patient record?
+[2021-05-13T19:34:21.557Z]	<markus_sabadello>	agropper: From the self-sovereignty perspective, as far as the spec is concerned, all of those are in scope. Unless the issuer has a really good reason, they don't get to discriminate the way of receiving the credential is being used.
+[2021-05-13T19:34:33.705Z]	<markus_sabadello>	agropper: This is not the same as the earlier issue regarding capabilities.
+[2021-05-13T19:34:36.136Z]	<Manu_Sporny>	q+
+[2021-05-13T19:34:38.013Z]	<markus_sabadello>	manu: Any comments from anyone in the group?
+[2021-05-13T19:34:42.118Z]	<Orie>	q+
+[2021-05-13T19:35:17.369Z]	<Orie>	This use case belongs in the vaccnination vocab work item
+[2021-05-13T19:35:23.034Z]	<markus_sabadello>	manu: It's a good use case, the value is clear. I couldn't draw a straight line from the use case to the VC HTTP API. This use case could also live in other documents. What makes this a VC HTTP API use case?
+[2021-05-13T19:35:44.621Z]	<Manu_Sporny>	q+ to note HTTP Form vs. delivery
+[2021-05-13T19:35:48.271Z]	<Manu_Sporny>	ack manu
+[2021-05-13T19:35:52.079Z]	<mprorock>	q+
+[2021-05-13T19:35:53.114Z]	<markus_sabadello>	agropper: Both the form how the credential is filled out, and the way how it gets delivered, that's HTTP.
+[2021-05-13T19:36:04.111Z]	<markus_sabadello>	agropper: She should be able to do this entirely over HTTP.
+[2021-05-13T19:36:04.901Z]	<Manu_Sporny>	ack orie
+[2021-05-13T19:36:10.483Z]	<Manu_Sporny>	q?
+[2021-05-13T19:36:33.991Z]	<markus_sabadello>	Orie: I think that is the connection. In my mind what's tricky about the use case is some assertions about the cross-trust domain aspect of the issuer/holder relationship.
+[2021-05-13T19:36:47.138Z]	<markus_sabadello>	Orie: I think some parts of this is about presentation exchange, rather than VC HTTP API.
+[2021-05-13T19:37:07.229Z]	<Adrian_Gropper>	q+
+[2021-05-13T19:37:09.650Z]	<markus_sabadello>	Orie: This is in no way related to the Issuance API, which just produces credentials and is considered internal.
+[2021-05-13T19:37:33.468Z]	<markus_sabadello>	Orie: The part of the use case that covers the VC HTTP API is that holders can see issuers that provide credentials with certain privacy characteristics.
+[2021-05-13T19:37:39.502Z]	<Manu_Sporny>	q?
+[2021-05-13T19:37:41.428Z]	<Manu_Sporny>	ack manu
+[2021-05-13T19:38:08.145Z]	<Orie>	so in summary: adrian's use case is relevant to external holder apis only.
+[2021-05-13T19:38:10.225Z]	<markus_sabadello>	manu: Adrian, the HTTP form aspect has nothing to do with the VC HTTP API.
+[2021-05-13T19:38:47.654Z]	<markus_sabadello>	manu: The second thing might be related to the VC HTTP API, but for me there is not enough data to understand what specific call of the VC HTTP API returns something to Allie.
+[2021-05-13T19:38:49.246Z]	<Orie>	and the "internal issuance apis" in the sense that every VC is related to them.
+[2021-05-13T19:39:01.268Z]	<Manu_Sporny>	q?
+[2021-05-13T19:39:04.709Z]	<Manu_Sporny>	ack mpro
+[2021-05-13T19:39:29.098Z]	<markus_sabadello>	mprorock: You basically said my concern. Just because the user interaction is over the web, that doesn't necessarily imply it has anything to do with the VC HTTP API.
+[2021-05-13T19:39:45.706Z]	<Orie>	q+ to note that adrian's use is the reason we  have the trace interop api
+[2021-05-13T19:39:47.692Z]	<markus_sabadello>	mprorock: It's a totally valid use case, I'm not sure what is novel about it for the VC HTTP API itself.
+[2021-05-13T19:39:49.472Z]	<Adrian_Gropper>	I will respond to Manu in terms of requests and presentations.
+[2021-05-13T19:39:52.164Z]	<Manu_Sporny>	ack adrian
+[2021-05-13T19:40:14.846Z]	<Orie>	+1 Adrian
+[2021-05-13T19:40:52.158Z]	<markus_sabadello>	agropper: My perspective is in terms of presentation requests. In GNAP we call this requests. The subject Allie is making requests from the Issuer. Embedded is all sorts of stuff. This is exactly why authorization and delegation are first-class citizens in what we are doing here.
+[2021-05-13T19:41:38.248Z]	<Manu_Sporny>	q+ to try to restate Adrian's requests to make sure I understand him.
+[2021-05-13T19:41:42.124Z]	<markus_sabadello>	agropper: GNAP cares about how you phrase a request. Someone shows up at an authorization server to get something that will be of use (e.g. access token, or capability, or VC).
+[2021-05-13T19:42:01.719Z]	<Orie>	what you get back from VC HTTP API is a VC tho... this isn't the ask for anything api...
+[2021-05-13T19:42:14.544Z]	<Orie>	this API supports the W3C VC Data Model
+[2021-05-13T19:42:15.058Z]	<Juan_Caballero>	^^
+[2021-05-13T19:42:15.533Z]	<markus_sabadello>	agropper: The fact that the request comes in to a form may be a stretch.
+[2021-05-13T19:42:31.923Z]	<markus_sabadello>	agropper: The point I am making is that it is a request, and the result is the issuance of something.
+[2021-05-13T19:42:33.684Z]	<Manu_Sporny>	ack orie
+[2021-05-13T19:42:51.152Z]	<markus_sabadello>	Orie: Adrian's use case is the same use cases as in the Traceability API.
+[2021-05-13T19:43:09.246Z]	<Adrian_Gropper>	+1 Orie
+[2021-05-13T19:43:14.776Z]	<Juan_Caballero>	+1
+[2021-05-13T19:43:16.239Z]	<markus_sabadello>	Orie: Proposal that the VC HTTP API that the holder can request and receive a presentation. This is about presentation exchange. Verifiable presentations moving across trust boundaries between parties.
+[2021-05-13T19:43:25.794Z]	<mprorock>	thanks @orie - that is extremely helpful and makes it much more clear to me
+[2021-05-13T19:43:32.447Z]	<markus_sabadello>	Orie: There were proposals to include this, but people asked for use cases. Now here is a use case.
+[2021-05-13T19:43:57.486Z]	<Juan_Caballero>	q+
+[2021-05-13T19:44:02.009Z]	<markus_sabadello>	Orie: We've had a resolution to expand this work item to include cross trust domain contexts.
+[2021-05-13T19:44:02.623Z]	<Adrian_Gropper>	Presentation or capability... the result is the same
+[2021-05-13T19:44:05.367Z]	<mprorock>	i think the wording was throwing me off
+[2021-05-13T19:44:16.442Z]	<Orie>	yea, stop saying capabilities
+[2021-05-13T19:44:21.528Z]	<Juan_Caballero>	:D
+[2021-05-13T19:44:22.651Z]	<Orie>	probably would help
+[2021-05-13T19:44:42.285Z]	<Juan_Caballero>	names a specific solution-- maybe just call them authorizations, even if the vagueness offends you to the core?
+[2021-05-13T19:44:57.016Z]	<Orie>	this API doesn't return objects that are not directly related to the W3C VC Data Model TR....
+[2021-05-13T19:45:14.566Z]	<Orie>	we will hit a scope issue if we cross that line.
+[2021-05-13T19:45:19.273Z]	<Adrian_Gropper>	q
+[2021-05-13T19:45:23.209Z]	<Adrian_Gropper>	q+
+[2021-05-13T19:45:39.216Z]	<markus_sabadello>	manu: Trying to re-state Adrian's use case. Flow diagram would help. The idea is Allie says "I would like to start a presentation flow with you", they contact the Issuer, the issuer responds "you have to give me e.g. first name, last name, PIN code", and maybe Allie responds back with a self-issued VC with first name, last name, then the Issuer matches this against a file so it will respond with a VC (digital vaccination card).
+[2021-05-13T19:45:45.640Z]	<Juan_Caballero>	@Adrian a 5min way of making a swimlane is using this website:
+https://swimlanes.io/
+[2021-05-13T19:45:50.985Z]	<Juan_Caballero>	would be greatly appreciated!
+[2021-05-13T19:45:51.753Z]	<markus_sabadello>	manu: I think this meets Adrian's requirement and illustrates how the use case is linked to the VC HTTP API.
+[2021-05-13T19:46:03.228Z]	<Manu_Sporny>	q?
+[2021-05-13T19:46:03.298Z]	<markus_sabadello>	manu: This is one of the next use cases that we do have a flow diagram for.
+[2021-05-13T19:46:06.629Z]	<Manu_Sporny>	ack manu
+[2021-05-13T19:46:07.769Z]	<Manu_Sporny>	ack juan
+[2021-05-13T19:46:18.901Z]	<Orie>	pretty sure we already have a flow diagram for this
+[2021-05-13T19:46:24.492Z]	<Orie>	...
+[2021-05-13T19:46:37.918Z]	<Manu_Sporny>	if we do, it's going to be easy :)
+[2021-05-13T19:46:41.180Z]	<markus_sabadello>	Juan_Caballero: I think everyone's asking to shift the proportions of the use case to focus on the API part rather than the VC parts.
+[2021-05-13T19:47:17.714Z]	<Manu_Sporny>	q+ to move to the next use case.
+[2021-05-13T19:47:22.553Z]	<markus_sabadello>	Juan_Caballero: Adrian I get the sense you want certain architectures not to be blocked by the API work. A swimlane would help people edit with you.
+[2021-05-13T19:48:30.241Z]	<Orie>	-1 Adrian
+[2021-05-13T19:48:33.409Z]	<Joe_Andrieu>	q+
+[2021-05-13T19:48:34.908Z]	<Orie>	thats not how VC's work
+[2021-05-13T19:48:36.289Z]	<Manu_Sporny>	yeah, big -1
+[2021-05-13T19:48:36.624Z]	<Orie>	q+
+[2021-05-13T19:48:39.377Z]	<markus_sabadello>	agropper: I use a lot of swimlanes, but here's the thing.. Orie put his finger on it. If the interaction between Allie and the Issuer is going to result in a presentation, then that verifiable presentation might as well go directly from the Issuer to the Verifier. That's how we use "presentation" in this world.
+[2021-05-13T19:48:56.346Z]	<Manu_Sporny>	that's definitely not how we think about things here -- scary phone home issues w/ issuer direct to verifier.
+[2021-05-13T19:48:59.580Z]	<Joe_Andrieu>	q+ to talk about proof-of-control as identity assurance
+[2021-05-13T19:49:07.567Z]	<Joe_Andrieu>	q+ and consent
+[2021-05-13T19:49:08.914Z]	<markus_sabadello>	agropper: Wheter we use capabilities and attenuations, or if it's done by going through a holder and PIN codes, is irrelevant.
+[2021-05-13T19:49:29.866Z]	<Manu_Sporny>	ack adrian
+[2021-05-13T19:49:30.948Z]	<Manu_Sporny>	ack manu
+[2021-05-13T19:49:32.015Z]	<Manu_Sporny>	ack joe
+[2021-05-13T19:49:33.877Z]	<Manu_Sporny>	q?
+[2021-05-13T19:49:48.107Z]	<markus_sabadello>	Joe_Andrieu: I think Adrian's perspective has a pretty big divergence from the work flow that I understand.
+[2021-05-13T19:50:02.136Z]	<markus_sabadello>	Joe_Andrieu: I was surprised to hear you talk about the Issuer giving something directly to the Verifier.
+[2021-05-13T19:50:15.755Z]	<Adrian_Gropper>	q+
+[2021-05-13T19:50:18.377Z]	<Orie>	q-
+[2021-05-13T19:50:19.008Z]	<markus_sabadello>	Joe_Andrieu: How to you ensure consent that way? That's why the holder is in the loop.
+[2021-05-13T19:50:28.544Z]	<Manu_Sporny>	ack joe
+[2021-05-13T19:50:30.318Z]	<Manu_Sporny>	ack joe
+[2021-05-13T19:50:36.700Z]	<Manu_Sporny>	ack adrian
+[2021-05-13T19:50:38.530Z]	<Manu_Sporny>	q?
+[2021-05-13T19:50:39.490Z]	<Manu_Sporny>	q+
+[2021-05-13T19:51:20.821Z]	<markus_sabadello>	agropper: If you read the use, it states that the VC includes a hash. There is absolutely no doubt on the Issuer and Verifier side that they are talking about Allie.
+[2021-05-13T19:51:27.219Z]	<markus_sabadello>	s/use/use case/
+[2021-05-13T19:51:42.203Z]	<markus_sabadello>	manu: I wanted to talk about the Permanent Resident Card use case.
+[2021-05-13T19:51:52.105Z]	<markus_sabadello>	manu: There is a diagram about the flow.
+[2021-05-13T19:52:03.513Z]	<Orie>	q+
+[2021-05-13T19:52:13.298Z]	<markus_sabadello>	manu: There is a new presentation-based flow, I believe Orie added something;
+[2021-05-13T19:52:21.473Z]	<Manu_Sporny>	ack manu
+[2021-05-13T19:52:22.414Z]	<Manu_Sporny>	ack orie
+[2021-05-13T19:53:08.622Z]	<markus_sabadello>	Orie: We are talking about the three roles that individuals can play in different situations (issuer, holder, verifier). One of the flows of the API is a presentation of credentials about a subject, to a holder.
+[2021-05-13T19:54:08.960Z]	<markus_sabadello>	Orie: Typically the story is that an Issuer gives something to a Holder. Instead of making the use cases vertical-specific, I wrote the use cases in way that explains the operations you need to get credentials from issuer->holder, and holder->verifier. Both cross a trust domain.
+[2021-05-13T19:54:17.072Z]	<agropper>	q+
+[2021-05-13T19:54:40.409Z]	<markus_sabadello>	Orie: There are few points here. E.g. Subject binding in credential, and privacy implications. Something we talk about this in the sense of subject == holder.
+[2021-05-13T19:54:56.011Z]	<Juan_Caballero>	https://www.w3.org/TR/vc-data-model/#subject-is-the-holder
+[2021-05-13T19:55:12.417Z]	<markus_sabadello>	Orie: Use case: Verifiable credential issued by a vet about my dog. I'm the holder but I'm not the subject.
+[2021-05-13T19:55:41.460Z]	<Manu_Sporny>	q?
+[2021-05-13T19:55:47.947Z]	<markus_sabadello>	Orie: There is a presentation from someone who is holding it, to a verifier. This is external-facing.
+[2021-05-13T19:55:49.939Z]	<Manu_Sporny>	ack agrop
+[2021-05-13T19:56:12.802Z]	<markus_sabadello>	agropper: To Orie's use case, there are 3 cross domain relationships: issuer->holder, holder->verifier, issuer->verifier.
+[2021-05-13T19:56:27.837Z]	<markus_sabadello>	agropper: I agree with Orie this is all about the externalization.
+[2021-05-13T19:56:35.508Z]	<Orie>	I never talk about issuer <> verifier when a holder is not involved... unless I am talking about dystopian tracking futures.
+[2021-05-13T19:56:37.822Z]	<Manu_Sporny>	q+ on issuer -> verifier
+[2021-05-13T19:57:16.736Z]	<markus_sabadello>	agropper: I associate this with GNAP and delegation issues. One example is the difference of having someone also check your passport when they see your vaccination card.
+[2021-05-13T19:57:26.769Z]	<markus_sabadello>	agropper: In the use case I propose, Allie doesn't need to have a passport at all.
+[2021-05-13T19:57:45.636Z]	<markus_sabadello>	agropper: In the dog example, the assumption is that Allie presents a passport
+[2021-05-13T19:57:56.962Z]	<Manu_Sporny>	q?
+[2021-05-13T19:58:00.368Z]	<markus_sabadello>	agropper: All three trust relationships always exist, we don't get to choose that in this group.
+[2021-05-13T19:58:22.651Z]	<Orie>	q+ to ask in issuer <> verifier is supported by the W3C VC Data Model TR?
+[2021-05-13T19:58:41.988Z]	<markus_sabadello>	manu: Adrian the third one is a very dangerous area. I think I share Orie's and Joe's concerns about Issuers talking directly to Verifiers. There are use cases for this, but it's dangerous and we have to be careful.
+[2021-05-13T19:58:49.606Z]	<Juan_Caballero>	q+
+[2021-05-13T19:58:49.951Z]	<Adrian_Gropper>	It's dangerous not to allow delegation from the satrt
+[2021-05-13T19:58:50.767Z]	<markus_sabadello>	manu: Next steps, please add use cases to the document!
+[2021-05-13T19:58:56.977Z]	<Eric_Schuh>	I can hold it for next week
+[2021-05-13T19:59:02.250Z]	<Juan_Caballero>	run it!
+[2021-05-13T19:59:02.321Z]	<Eric_Schuh>	PROPOSAL: Use Case initial timeline will be: 4 weeks gathering use cases & retro-documenting existing OAS filesâ€™ use-cases (June 10 deadline) and then 4 weeks to distill with a goal of finishing that process by the July 8 meeting
+[2021-05-13T19:59:03.261Z]	<mprorock>	can we run that proposal now
+[2021-05-13T19:59:13.689Z]	<Adrian_Gropper>	+1
+[2021-05-13T19:59:13.706Z]	<mprorock>	+1
+[2021-05-13T19:59:14.588Z]	<Juan_Caballero>	+1
+[2021-05-13T19:59:14.665Z]	<Manu_Sporny>	+1
+[2021-05-13T19:59:17.452Z]	<Orie>	+1 to having timeliness
+[2021-05-13T19:59:17.970Z]	<Mike_Varley>	+1
+[2021-05-13T19:59:18.255Z]	<Eric_Schuh>	+1
+[2021-05-13T19:59:20.380Z]	<markus_sabadello>	+1
+[2021-05-13T19:59:21.683Z]	<Joe_Andrieu>	+1
+[2021-05-13T19:59:44.276Z]	<manu>	RESOLVED: Use Case initial timeline will be: 4 weeks gathering use cases & retro-documenting existing OAS filesâ€™ use-cases (June 10 deadline) and then 4 weeks to distill with a goal of finishing that process by the July 8 meeting.
+[2021-05-13T20:00:17.162Z]	<markus_sabadello>	Orie: I think we should attack the challenge Adrian has put forward. I agree with everything he said, we can draw an arrow between Issuer and Verifier. We should review the relevant sections in the VC data model spec.
+[2021-05-13T20:00:37.675Z]	<markus_sabadello>	Orie: Let's work on this on issues and spec text.
+[2021-05-13T20:00:44.016Z]	<Juan_Caballero>	thanks all
+[2021-05-13T20:00:46.599Z]	<markus_sabadello>	manu: Thanks everyone, see everyone next week.
+[2021-05-13T20:00:51.082Z]	<markus_sabadello>	manu: Will send out Doodle poll.
+[2021-05-13T19:03:09.069Z]	<manu>	present+ anil, evan_tadesco, varley, dmitri, hartog, tobias, david_ward
