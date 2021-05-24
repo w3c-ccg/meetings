@@ -1,0 +1,424 @@
+[2021-04-22T18:58:21.492Z]	<Manu_Sporny>	Meeting: VC HTTP API Special Topic Call
+[2021-04-22T18:59:28.641Z]	<Manu_Sporny>	Chair: Manu
+[2021-04-22T18:59:28.641Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0120.html
+[2021-04-22T19:01:01.537Z]	<mprorock>	present+
+[2021-04-22T19:01:17.514Z]	<Orie>	present+
+[2021-04-22T19:01:25.987Z]	<Aaron_Coburn>	present+
+[2021-04-22T19:01:51.267Z]	<Anil_John>	present+
+[2021-04-22T19:02:44.402Z]	<HeatherVescent>	present+
+[2021-04-22T19:02:53.553Z]	<markus_sabadello>	present+
+[2021-04-22T19:03:10.018Z]	<Brian_Richter>	present+
+[2021-04-22T19:03:15.355Z]	<dmitriz>	present+
+[2021-04-22T19:03:18.104Z]	<HeatherVescent>	Scribe: heathervescent
+[2021-04-22T19:03:23.213Z]	<acoburn>	present+
+[2021-04-22T19:03:27.067Z]	<Mahmoud>	present+
+[2021-04-22T19:03:49.841Z]	<heathervescent>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0120.html
+[2021-04-22T19:03:58.582Z]	<heathervescent>	Manu: giving introduction about the call
+[2021-04-22T19:04:43.600Z]	<manu>	heathervescent: I'm heather, co-chair of W3C Credentials CG - we normally meet at 9am PT, 12pm ET on Tuesday mornings -- we discuss pre-standards and tech topics associated with Verifiable Credentials, Decentralized Identifiers, Privacy concerns,
+[2021-04-22T19:05:26.316Z]	<manu>	heathervescent: Special call today is to discuss VC HTTP API -- community-driven work items -- multiple companies, multiple people work together, and work on repos, code, reports, use cases out there for broader community to use -- anyone can be a member of the CCG, you don't have to be a member of W3C to do so.
+[2021-04-22T19:06:04.437Z]	<Adrian_Gropper>	present+
+[2021-04-22T19:06:29.077Z]	<HeatherVescent>	How to join the CCG: Anyone can participate in these calls. However, all substantive
+contributors to any CCG Work Items must be members of the CCG with full IPR
+agreements signed. https://www.w3.org/community/credentials/join
+[2021-04-22T19:06:29.077Z]	<HeatherVescent>	     a. Ensure you have a W3 account: https://www.w3.org/accounts/request
+[2021-04-22T19:06:29.077Z]	<HeatherVescent>	     b. W3C COMMUNITY CONTRIBUTOR LICENSE AGREEMENT (CLA) - https://www.w3.org/community/about/agreements/cla/
+[2021-04-22T19:06:42.860Z]	<HeatherVescent>	Manu: this is a continuation of the Tuesday CCG call.
+[2021-04-22T19:07:26.439Z]	<mprorock>	if you are not used to jitsi and the slides are going off the edge of your screen, close and reopen the chat and then the screen share will fit
+[2021-04-22T19:07:37.030Z]	<HeatherVescent>	Manu: going through presentation: https://lists.w3.org/Archives/Public/public-credentials/2021Apr/att-0120/2021-VC-HTTP-API.pdf
+[2021-04-22T19:07:47.785Z]	<dlongley>	present+
+[2021-04-22T19:08:01.988Z]	<HeatherVescent>	Manu: we are going to go through the API and address the challenges
+[2021-04-22T19:08:35.685Z]	<HeatherVescent>	... currently only have a YAML file and missing a lot of other documentation. We are going to address these issues with the goal of concrete proposals the community can provide feedback on.
+[2021-04-22T19:09:11.331Z]	<HeatherVescent>	Explaining the queue: to add to the queue type "q+"
+[2021-04-22T19:09:25.607Z]	<HeatherVescent>	Use +1 if you agree -1 if not.
+[2021-04-22T19:09:45.396Z]	<TallTed>	present+
+[2021-04-22T19:09:49.342Z]	<heathervescent>	present+
+[2021-04-22T19:10:07.639Z]	<HeatherVescent>	Topic: VC HTTP API Proposals Under Consideration
+[2021-04-22T19:10:07.639Z]	<HeatherVescent>	Manu: We're going to be discussing these proposal today:
+[2021-04-22T19:10:12.241Z]	<manu>	PROPOSAL: Create a use cases and requirements document.
+[2021-04-22T19:10:12.323Z]	<manu>	PROPOSAL: Use Juan's Use Cases and requirements document as a starting point.
+[2021-04-22T19:10:12.323Z]	<manu>	PROPOSAL: Create documented data flow diagrams and place them in the Use Case document.
+[2021-04-22T19:10:12.324Z]	<manu>	PROPOSAL: Create 3 VC HTTP API ReSpec specifications (Issuing, Verification, Presenting) in addition to the existing OAS file.
+[2021-04-22T19:10:14.227Z]	<manu>	PROPOSAL: Create 1 ReSpec specification with at least three sections (Issuing, Verification, Presenting) in addition to the existing OAS files.
+[2021-04-22T19:10:15.240Z]	<manu>	PROPOSAL: Restructure the OAS into multiple json / yaml files, reusing JSON Schema and Tags
+[2021-04-22T19:10:17.244Z]	<manu>	PROPOSAL: Identify a Lead Editor and 1-2 supporting Editors for each major section in the specification.
+[2021-04-22T19:10:19.247Z]	<manu>	PROPOSAL: Identify a single Lead Editor for the work item, and define their responsibilities formally.
+[2021-04-22T19:10:39.766Z]	<Juan_caballero>	/me mortified to have major connection issues while traveling. Plz no one call on me until I can actually hear what's happening
+[2021-04-22T19:10:47.138Z]	<HeatherVescent>	Manu: going to start with these proposals
+[2021-04-22T19:11:10.041Z]	<HeatherVescent>	Topic: Use Cases Document
+[2021-04-22T19:11:02.890Z]	<Daniel_Hardman>	Can someone add a link to Juan's use cases requirements doc
+[2021-04-22T19:11:26.366Z]	<Juan_caballero>	Ack! (In the Kathy sense)
+[2021-04-22T19:11:30.219Z]	<HeatherVescent>	Manu: there are no use cases documents. Juan has put one together.
+[2021-04-22T19:11:31.303Z]	<Mahmoud>	https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit?ts=607f0499
+[2021-04-22T19:11:37.279Z]	<HeatherVescent>	... do we want a use cases document
+[2021-04-22T19:11:39.079Z]	<Juan_caballero>	I posted link to github issue in community
+[2021-04-22T19:11:42.151Z]	<Juan_caballero>	Thanks!
+[2021-04-22T19:11:46.257Z]	<Michael_Herman_(Trusted_Digital_Web)>	q+
+[2021-04-22T19:11:52.961Z]	<HeatherVescent>	+1 to use cases document
+[2021-04-22T19:11:53.625Z]	<Manu_Sporny>	ack michael
+[2021-04-22T19:12:18.524Z]	<Manu_Sporny>	q+
+[2021-04-22T19:12:23.909Z]	<Manu_Sporny>	ack manu
+[2021-04-22T19:12:25.364Z]	<Daniel_Hardman>	q+
+[2021-04-22T19:12:27.121Z]	<HeatherVescent>	Michael_Herman: need to do some scoping. Would this protocol be like zCaps/Authorization enabled? just as an example? I think we need use cases form a scoping perspective.
+[2021-04-22T19:12:43.875Z]	<Orie>	+1 to uses cases help define scope, which blocks everything else.
+[2021-04-22T19:12:45.746Z]	<HeatherVescent>	Manu: agree. that is the goal. Help the use cases drive the scope.
+[2021-04-22T19:12:48.372Z]	<Manu_Sporny>	ack Dan
+[2021-04-22T19:13:26.444Z]	<Manu_Sporny>	q+
+[2021-04-22T19:13:33.396Z]	<Orie>	Agree with Daniel, there are use cases for both inside and across trust domains, that have been discusseed
+[2021-04-22T19:13:40.877Z]	<Orie>	in that document.
+[2021-04-22T19:13:43.350Z]	<HeatherVescent>	Daniel_Hardman: the document looks to me to mix 2 concerns: 1: backend behavior (green lines on the diagram) 2: interactions at the front end, e.g. interacting with holders proving something. And I'm wondering the intention? To broaden the scope?
+[2021-04-22T19:14:14.683Z]	<HeatherVescent>	Manu: yes that is the intention. There's a request to broaden scope, but we need a use cases doc to have a conversation about what hte scope is.
+[2021-04-22T19:14:41.821Z]	<HeatherVescent>	Daniel: Is the intent to take Juan's document and we just tweak it, or is it that everything is up for debate.
+[2021-04-22T19:14:55.609Z]	<HeatherVescent>	Manu: yes, we everything is up for debate in Juan's document.
+[2021-04-22T19:14:56.776Z]	<HeatherVescent>	q+
+[2021-04-22T19:15:04.048Z]	<Manu_Sporny>	ack manu
+[2021-04-22T19:15:06.574Z]	<Manu_Sporny>	ack heath
+[2021-04-22T19:15:16.004Z]	<Juan_caballero>	Full disclosure I was trying to summarize.conversation up til.now in trace vocabulary
+[2021-04-22T19:15:34.384Z]	<Juan_caballero>	I am not opinionated or even knowledgeable just tryna scribe
+[2021-04-22T19:15:40.089Z]	<manu>	heathervescent: I think that use cases documents are great, not sure if Juan's document fits, I'm sure it has some good stuff, use/iterate on - Daniel's concern - if we start from that document, we can assume agreement on anything in it.
+[2021-04-22T19:15:53.157Z]	<Orie>	Lets start by assuming we don't agree :)
+[2021-04-22T19:16:17.539Z]	<Orie>	but that we don't to come to agreement in a document.
+[2021-04-22T19:16:19.341Z]	<manu>	heathervescent: We could have an official use cases kick off and that could be one, and others could add use cases from there. Juan, don't feel like you're under the gun, you went above and beyond in trying to help community with documentation. I know your heart is in the right place, trying to help us work forward.
+[2021-04-22T19:16:23.894Z]	<Manu_Sporny>	q?
+[2021-04-22T19:16:25.228Z]	<Orie>	* want to
+[2021-04-22T19:17:11.664Z]	<HeatherVescent>	Manu: no argument about a use cases document. So going forward about this. We will have a separate discussion about using the content in Juan's document later.
+[2021-04-22T19:17:17.089Z]	<manu>	PROPOSAL: Create a use cases and requirements document.
+[2021-04-22T19:17:21.075Z]	<mprorock>	+1
+[2021-04-22T19:17:21.855Z]	<Daniel_Hardman>	+1
+[2021-04-22T19:17:22.927Z]	<MV>	+1
+[2021-04-22T19:17:23.024Z]	<Joe_Andrieu>	1
+[2021-04-22T19:17:23.765Z]	<Orie>	+1
+[2021-04-22T19:17:23.769Z]	<Brian_Richter>	+1
+[2021-04-22T19:17:23.778Z]	<markus_sabadello>	+1
+[2021-04-22T19:17:24.544Z]	<Mahmoud>	+1
+[2021-04-22T19:17:24.570Z]	<TallTed>	+1
+[2021-04-22T19:17:24.887Z]	<Michael_Herman_(Trusted_Digital_Web)>	+1
+[2021-04-22T19:17:25.441Z]	<Dmitri_Zagidulin>	+1
+[2021-04-22T19:17:26.533Z]	<jtwalker2000>	+1
+[2021-04-22T19:17:28.613Z]	<HeatherVescent>	... so now we are going to vote on Proposal. +1 you like -1 if disagree
+[2021-04-22T19:17:29.207Z]	<Manu_Sporny>	+1
+[2021-04-22T19:17:29.767Z]	<HeatherVescent>	+1
+[2021-04-22T19:17:35.251Z]	<dlongley>	+1
+[2021-04-22T19:17:35.264Z]	<Anil_John>	+1
+[2021-04-22T19:17:39.606Z]	<Kayode_Ezike>	+1
+[2021-04-22T19:17:41.306Z]	<Adrian_Gropper>	+1
+[2021-04-22T19:17:46.684Z]	<HeatherVescent>	(you can also say "0" if you have no opinion)
+[2021-04-22T19:17:47.758Z]	<Xavier_Vila>	+1
+[2021-04-22T19:17:54.570Z]	<Sanuja_(Diwala)>	+1
+[2021-04-22T19:18:03.965Z]	<manu>	RESOLVED: Create a use cases and requirements document.
+[2021-04-22T19:18:26.099Z]	<Joe_Andrieu>	q+ to talk about editor selection first
+[2021-04-22T19:18:51.076Z]	<mprorock>	weeks?
+[2021-04-22T19:19:00.523Z]	<HeatherVescent>	Manu: Second proposal: use Juan's document as a starting point. We could give hte community a couple weeks to iterate/edit/comment. Then we can make the decision as use cases and requirements.
+[2021-04-22T19:19:15.656Z]	<Juan_caballero>	Can commit to 3 hours in next week :)
+[2021-04-22T19:19:19.891Z]	<Orie>	agree
+[2021-04-22T19:19:22.672Z]	<HeatherVescent>	q+
+[2021-04-22T19:19:23.477Z]	<mprorock>	agree
+[2021-04-22T19:19:23.894Z]	<Orie>	with joe
+[2021-04-22T19:19:33.248Z]	<manu>	q?
+[2021-04-22T19:19:35.508Z]	<manu>	ack Joe
+[2021-04-22T19:19:37.432Z]	<manu>	ack heather
+[2021-04-22T19:19:37.964Z]	<Juan_caballero>	Doesn't need to be me or only me if more interested parties have enough time
+[2021-04-22T19:20:04.573Z]	<Dmitri_Zagidulin>	q+
+[2021-04-22T19:20:18.862Z]	<Orie>	-1 to joint ownership, it causes tragedy of the commons
+[2021-04-22T19:20:21.927Z]	<manu>	heathervescent: I'm concerned about deciding owner, would like broad/diverse ownership of use case document. Would like broader community to provide input. Don't want to slow things down, but not happy with way use cases have been done in the past, don't want that to repeat in that in this case.
+[2021-04-22T19:20:22.676Z]	<manu>	q+
+[2021-04-22T19:20:40.009Z]	<manu>	ack dmitri
+[2021-04-22T19:20:40.505Z]	<Orie>	but agree with heather, that we should choose carefully
+[2021-04-22T19:20:47.026Z]	<Orie>	q+
+[2021-04-22T19:20:54.972Z]	<manu>	ack orie
+[2021-04-22T19:21:37.531Z]	<HeatherVescent>	Orie: don't want to see too many owners. and also concerned about picking from who is here today. Need to make sure this person is here to synthesize community consensus.
+[2021-04-22T19:21:40.687Z]	<mprorock>	+1 orie
+[2021-04-22T19:21:44.031Z]	<HeatherVescent>	+1 Orie - this is 100% my concern
+[2021-04-22T19:21:48.446Z]	<Joe_Andrieu>	+1 for someone taking on the responsibility (and that the best person may not be on this call)
+[2021-04-22T19:21:49.485Z]	<GeunHyung_Kim>	present+
+[2021-04-22T19:21:50.197Z]	<manu>	q+
+[2021-04-22T19:21:53.248Z]	<manu>	ack manu
+[2021-04-22T19:21:54.360Z]	<manu>	ack manu
+[2021-04-22T19:22:22.262Z]	<mprorock>	is nominations for this a terrible idea?
+[2021-04-22T19:22:32.676Z]	<HeatherVescent>	Manu: ok to not pick the person today, but decide to pick a strong lead.
+[2021-04-22T19:22:34.176Z]	<Joe_Andrieu>	also: co-editors can be productive, but I agree with Orie that larger numbers start to dissipate the work
+[2021-04-22T19:22:41.861Z]	<Orie>	^yep
+[2021-04-22T19:22:49.571Z]	<TallTed>	q+ to say one editor is often too few.  five is certainly too many.  two editors is common and usually good.
+[2021-04-22T19:22:50.671Z]	<HeatherVescent>	... there needs to be one lead editor to lead consensus quickly.
+[2021-04-22T19:23:17.878Z]	<Orie>	agree with Ted
+[2021-04-22T19:23:20.842Z]	<mprorock>	+1 Ted
+[2021-04-22T19:23:57.172Z]	<HeatherVescent>	Tallted: one editor is often too few, five is too many, two can be good. Sometimes things take longer for legit reason. I'm bristling at the suggestion that things took time, the people who agreed to do the work take time to do that.
+[2021-04-22T19:23:59.232Z]	<manu>	q+
+[2021-04-22T19:24:04.609Z]	<HeatherVescent>	+1 Ted, totally agree.
+[2021-04-22T19:24:12.172Z]	<Juan_caballero>	Thanks Ted
+[2021-04-22T19:25:01.857Z]	<HeatherVescent>	Manu: synthesizing proposal, at least two editors for each document associated with the VC-HTTP-APi with well defined responsibilities associated with the position.
+[2021-04-22T19:25:05.538Z]	<HeatherVescent>	q+
+[2021-04-22T19:25:15.250Z]	<manu>	ack tall
+[2021-04-22T19:25:19.008Z]	<manu>	ack manu
+[2021-04-22T19:25:21.412Z]	<manu>	ack heather
+[2021-04-22T19:25:41.187Z]	<Orie>	There are always 2 Sith
+[2021-04-22T19:25:46.159Z]	<manu>	heather: I think this can be an opportunity for growing leadership -- one strong lead, one upcoming lead -- someone newer to the community.
+[2021-04-22T19:26:08.100Z]	<manu>	heathervescent: The lead knows how things work and can mentor/co-lead - kinda like pair programming.
+[2021-04-22T19:26:28.295Z]	<bblfish>	Wondering if LDP/Solid could be used as an HTTP VC API base point. But I don't yet have a good idea as to what the API is meant to do. (I missed the beginning of the very short talk)
+[2021-04-22T19:26:28.349Z]	<mprorock>	+1 heather - this is an excellent opportunity for that, especially as it is a content and consensus focused item
+[2021-04-22T19:26:33.373Z]	<Dmitri_Zagidulin>	+1
+[2021-04-22T19:26:37.350Z]	<Orie>	+1
+[2021-04-22T19:26:52.011Z]	<Juan_caballero>	I could lead weakly
+[2021-04-22T19:27:10.760Z]	<Juan_caballero>	But have weak arms and weak understanding of api politics :)
+[2021-04-22T19:27:14.904Z]	<Orie>	navigator and driver typically... but not really  appropriate for specss imo
+[2021-04-22T19:27:26.196Z]	<manu>	heather: one strong, one learning... pairs w/ one strong standards/W3C Editorial experience, and one that may not have strong W3C experience.
+[2021-04-22T19:27:26.543Z]	<Michael_Herman_(Trusted_Digital_Web)>	test
+[2021-04-22T19:27:41.934Z]	<Orie>	primary, secondary workss for me
+[2021-04-22T19:27:55.916Z]	<Juan_caballero>	Not sure.i understand the strong/weak analogy hehe. Happy to be one of 2 or 3 if at least one ccg vet is in the group
+[2021-04-22T19:28:27.499Z]	<Orie>	hmm
+[2021-04-22T19:28:29.682Z]	<Orie>	q+
+[2021-04-22T19:28:48.673Z]	<mprorock>	yes
+[2021-04-22T19:29:22.192Z]	<HeatherVescent>	Manu: modifying language based on feedback
+[2021-04-22T19:29:33.875Z]	<Orie>	we might take the same appraoch with other docs as well
+[2021-04-22T19:29:42.737Z]	<HeatherVescent>	+2
+[2021-04-22T19:29:49.089Z]	<manu>	PROPOSAL: We will strive to assign one primary Editor and one secondary Editor (like peer programming) to the VC HTTP API Use Cases Document with well defined responsibilities associated with the position.
+[2021-04-22T19:29:51.474Z]	<Orie>	+1
+[2021-04-22T19:29:52.536Z]	<HeatherVescent>	+1
+[2021-04-22T19:29:52.871Z]	<mprorock>	+1
+[2021-04-22T19:29:54.248Z]	<Daniel_Hardman>	+1
+[2021-04-22T19:29:54.880Z]	<Mahmoud>	+1
+[2021-04-22T19:29:56.356Z]	<Kayode_Ezike>	+1
+[2021-04-22T19:29:56.715Z]	<manu>	+1
+[2021-04-22T19:29:57.429Z]	<Joe_Andrieu>	+1
+[2021-04-22T19:29:58.208Z]	<jtwalker2000>	+1
+[2021-04-22T19:30:01.059Z]	<TallTed>	+1
+[2021-04-22T19:30:01.270Z]	<Michael_Herman_(Trusted_Digital_Web)>	+1
+[2021-04-22T19:30:01.550Z]	<Mike_Varley>	+1
+[2021-04-22T19:30:01.831Z]	<acoburn>	+1
+[2021-04-22T19:30:05.965Z]	<agropper>	+1
+[2021-04-22T19:30:07.779Z]	<Xavier_Vila>	+1
+[2021-04-22T19:30:08.146Z]	<dmitriz>	+1
+[2021-04-22T19:30:16.958Z]	<dlongley>	+1 (peer and pair programming are different things, which did we mean?)
+[2021-04-22T19:30:22.317Z]	<markus_sabadello>	+1
+[2021-04-22T19:30:34.866Z]	<HeatherVescent>	good catch dlongley, I guess I mashed them together lol
+[2021-04-22T19:30:43.063Z]	<HeatherVescent>	I kinda love peer programming lol
+[2021-04-22T19:30:50.531Z]	<manu>	RESOLVED: We will strive to assign one primary Editor and one secondary Editor (like peer programming) to the VC HTTP API Use Cases Document with well defined responsibilities associated with the position.
+[2021-04-22T19:31:13.109Z]	<mprorock>	can we set a timeline on selection?
+[2021-04-22T19:31:13.439Z]	<Orie>	yes
+[2021-04-22T19:31:30.539Z]	<Orie>	deferred for forvever for now
+[2021-04-22T19:31:33.168Z]	<Mahmoud>	+1 to timeline question
+[2021-04-22T19:31:35.400Z]	<HeatherVescent>	Manu: we are defering hte responsibilities discussion to a later time.
+[2021-04-22T19:32:07.314Z]	<HeatherVescent>	Manu: do you want to share use cases document
+[2021-04-22T19:32:13.418Z]	<Michael_Herman_(Trusted_Digital_Web)>	What assumptions, if any, are there about where VCs are stored?
+[2021-04-22T19:32:36.223Z]	<dmitriz>	@Michael - aren't any. out of scope for this api
+[2021-04-22T19:32:45.427Z]	<mprorock>	@Michael Herman - at this moment that is pretty contentious
+[2021-04-22T19:32:54.113Z]	<HeatherVescent>	Juan: the conversation was about expanding the scope. I was expanding a couple situations that expanded broker situations. Many stakeholders who are not the subject of the claims.
+[2021-04-22T19:33:08.442Z]	<HeatherVescent>	Juan's use case document: https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit?ts=607f0499
+[2021-04-22T19:33:20.797Z]	<Manu_Sporny>	q+
+[2021-04-22T19:33:22.303Z]	<HeatherVescent>	... was based on the architcture.md file
+[2021-04-22T19:33:26.131Z]	<Orie>	q-
+[2021-04-22T19:33:39.709Z]	<HeatherVescent>	Juan: just getting a starting point, no strong opinions
+[2021-04-22T19:33:42.955Z]	<Orie>	No comment on UCR
+[2021-04-22T19:34:16.401Z]	<Juan_caballero>	Yes
+[2021-04-22T19:34:25.651Z]	<HeatherVescent>	Manu: this is missing a number of use cases that other will also want. The suggestion is to work from the document. Juan, is your expectation that others will add their use cases to this document in say suggest mode?
+[2021-04-22T19:34:25.919Z]	<Orie>	Hopefully the UCR Editor will own upgrading this document.
+[2021-04-22T19:34:30.920Z]	<Juan_caballero>	Yes
+[2021-04-22T19:34:44.376Z]	<agropper>	q+
+[2021-04-22T19:34:49.909Z]	<HeatherVescent>	... is everyone on the call comfortable in this document?
+[2021-04-22T19:34:58.794Z]	<Juan_caballero>	Troy had a diagram of some holder use cases and markus mentioned some.verifier use cases
+[2021-04-22T19:35:18.337Z]	<manu>	ack manu
+[2021-04-22T19:35:20.210Z]	<manu>	ack agropper
+[2021-04-22T19:35:21.345Z]	<HeatherVescent>	Manu: can we use this as a starting point?
+[2021-04-22T19:35:35.181Z]	<Michael_Herman_(Trusted_Digital_Web)>	So the http endpoint could be an "agent" on top of a wallet ...or an EDV ...or whatever ...at least for now
+[2021-04-22T19:35:39.012Z]	<HeatherVescent>	Topic: Scope of VC HTTP API
+[2021-04-22T19:35:39.012Z]	<HeatherVescent>	Agropper: are we assuming this is a scope document? Or the scope doc comes after the use case doc.
+[2021-04-22T19:35:39.122Z]	<manu>	ack heather
+[2021-04-22T19:35:48.951Z]	<mprorock>	q+ scope document following use cases
+[2021-04-22T19:36:07.341Z]	<Michael_Herman_(Trusted_Digital_Web)>	Suggest a scope document comes after
+[2021-04-22T19:36:08.404Z]	<manu>	heathervescent: I've looked quickly at the document, what might be helpful is if we have a structured template, add a use case, can include appropriate parts of use case.
+[2021-04-22T19:36:16.131Z]	<manu>	q+ to agree with heather's process
+[2021-04-22T19:36:50.185Z]	<manu>	heathervescent: I don't think we need to have a big discussion about template -- but maybe some of us who are used to this could just async throw down a template chunsk and iterate from there
+[2021-04-22T19:36:52.351Z]	<Joe_Andrieu>	q+ to mention a charter statement
+[2021-04-22T19:36:54.696Z]	<manu>	ack mpro
+[2021-04-22T19:37:08.883Z]	<Kayode_Ezike>	perhaps the lead(s) could create that template
+[2021-04-22T19:37:11.580Z]	<Michael_Herman_(Trusted_Digital_Web)>	Use the use case document as the exploratory tool
+[2021-04-22T19:37:19.209Z]	<HeatherVescent>	manu: +1 heather, having a template would helpe people contiribute in a way that could help the editors.
+[2021-04-22T19:37:36.052Z]	<HeatherVescent>	mprorock: echo as well. I would like to see the scope come after the use cases are defined.
+[2021-04-22T19:38:18.144Z]	<Daniel_Hardman>	q+
+[2021-04-22T19:38:23.100Z]	<manu>	ack manu
+[2021-04-22T19:38:23.986Z]	<manu>	ack joe
+[2021-04-22T19:38:27.063Z]	<HeatherVescent>	.... a number of real world use cases with JSON payloads with VCs weren't through through.Now we have real world use cases we would like to use VCs/documented API for this. Concerned if we scope first, will have current problem again.
+[2021-04-22T19:39:25.604Z]	<Michael_Herman_(Trusted_Digital_Web)>	Link to the statement?
+[2021-04-22T19:39:26.673Z]	<mprorock>	+1 joe
+[2021-04-22T19:39:28.642Z]	<HeatherVescent>	Joe_Andrieu: we have a partial scope. don't want to propose a waterfall model. Have a statement in VC-HTTP-API for what that is for. That sounds like a charter statement. But that may be the right level of scoping to start from. The scope is going to evolve as people say this use case is important to me.
+[2021-04-22T19:39:32.277Z]	<manu>	q?
+[2021-04-22T19:39:34.588Z]	<manu>	ack daniel
+[2021-04-22T19:39:36.912Z]	<Joe_Andrieu>	https://github.com/w3c-ccg/vc-http-api
+[2021-04-22T19:39:45.885Z]	<Joe_Andrieu>	a standard API specification for constructing and verifying objects which conform to the Verifiable Credential Data Model specification, along with documentation, integration and compatability tests, and related assets for the test and integration process.
+[2021-04-22T19:39:53.367Z]	<Adrian_Gropper>	Can we include the "charter statement" as part of the template?
+[2021-04-22T19:40:00.633Z]	<HeatherVescent>	hardman: There is an aspect of the scope that is important and will color the use cases, whether the intention... /lost audio
+[2021-04-22T19:41:08.793Z]	<HeatherVescent>	hardman: concerned with the approach of let's put everything in. we will waste cycles. Would like to see if we agree scope on: internal parties or internal and external parties.
+[2021-04-22T19:41:21.452Z]	<manu>	q+
+[2021-04-22T19:41:28.935Z]	<HeatherVescent>	... if we want to contemplate expanding that, we should address that early.
+[2021-04-22T19:41:50.124Z]	<markus_sabadello>	Original intention of VC HTTP API was internal-only (but this doesn't mean that the scope can't evolve from that)
+[2021-04-22T19:41:58.975Z]	<HeatherVescent>	Can someone explain the pro/con of keeping it internal only vs internal and external?
+[2021-04-22T19:42:09.878Z]	<Orie>	Speaking for Transmute, we want interoperable APIs for both internal and external use cases.
+[2021-04-22T19:42:22.438Z]	<Orie>	and are will to compromise to get both.
+[2021-04-22T19:42:26.479Z]	<Adrian_Gropper>	I don't understand internal / external either
+[2021-04-22T19:42:41.170Z]	<Orie>	Adrian (cross origin / trust domain)
+[2021-04-22T19:42:41.823Z]	<HeatherVescent>	q?
+[2021-04-22T19:42:45.349Z]	<HeatherVescent>	q+
+[2021-04-22T19:42:47.844Z]	<Daniel_Hardman>	right
+[2021-04-22T19:42:48.435Z]	<mprorock>	speaking for mesur.io we need interoperable apis for external usage (if internal, interoperability does not matter)
+[2021-04-22T19:42:51.399Z]	<markus_sabadello>	q+
+[2021-04-22T19:43:05.482Z]	<Daniel_Hardman>	external = crosses trust boundary
+[2021-04-22T19:43:19.252Z]	<Orie>	no such thing as "interop" built on internal APIs.... alone.
+[2021-04-22T19:43:25.855Z]	<Dmitri_Zagidulin>	+1 for both. (because regardless, even internal APIs should be designed as if they're external.)
+[2021-04-22T19:43:30.835Z]	<manu>	ack manu
+[2021-04-22T19:43:37.449Z]	<Orie>	at least for the strong version of interop.
+[2021-04-22T19:43:38.203Z]	<mprorock>	+1 dmitri
+[2021-04-22T19:43:55.388Z]	<Adrian_Gropper>	+1 Heather
+[2021-04-22T19:44:07.015Z]	<Daniel_Hardman>	-1 for external
+[2021-04-22T19:44:09.572Z]	<Anil_John>	q+ RE: internal/external is probably the wrong framing
+[2021-04-22T19:44:12.487Z]	<Adrian_Gropper>	q+
+[2021-04-22T19:44:15.095Z]	<Joe_Andrieu>	@mprorock interoperability is important for substitutability of the back end.
+[2021-04-22T19:44:31.553Z]	<HeatherVescent>	ack heathervescent
+[2021-04-22T19:44:31.575Z]	<Michael_Herman_(Trusted_Digital_Web)>	Need zcap-style capability authorization over the set of methods associated with different types of VCs, for example ...e.g. lifecycle of a driver's license
+[2021-04-22T19:44:31.968Z]	<Dmitri_Zagidulin>	@Daniel - ok but like... "internal API" basically means "we don't care about security". which is not what we want to go for here...
+[2021-04-22T19:44:46.185Z]	<bblfish>	Agree with Orie. without understanding what this is about, internal only APIs don't make sense. If you control the client and the server you can pretty much make any API you want. There is nearly no need for consensus. (There is some use: in that library writers can built tools that work across silos)
+[2021-04-22T19:45:08.396Z]	<manu>	heathervescent: I feel like I barely have enough knowledge to even have an opinion of this. There is a little of chicken and egg here -- DHS SVIP have a good idea of this, but there are others that don't know... chicken and egg, not helpful for those that are not familiar.
+[2021-04-22T19:45:12.326Z]	<TallTed>	internal/external feels more like default-trusted/default-untrusted -- which sort-of fits firewall delimiter, not necessarily enterprise delimiter.
+[2021-04-22T19:45:26.280Z]	<Dmitri_Zagidulin>	+1 Ted
+[2021-04-22T19:45:31.907Z]	<Orie>	internal api interop is also referred to as usable software.
+[2021-04-22T19:45:45.717Z]	<TallTed>	interop can absolutely be a concern within the firewall/enterprise.  just think about file-server and file-user.
+[2021-04-22T19:46:05.713Z]	<HeatherVescent>	Markus: internal apis: this work item would not over lap/compete with OpenID or CHAPI or DIDCom (external) this one is one we considered internal. But that's just how we understood originally.
+[2021-04-22T19:46:08.561Z]	<manu>	q?
+[2021-04-22T19:46:11.059Z]	<manu>	ack markus
+[2021-04-22T19:46:12.236Z]	<manu>	ack anil
+[2021-04-22T19:46:15.995Z]	<Orie>	yeah, S3 interop is a good example of the value of standards based internal APIs
+[2021-04-22T19:46:26.226Z]	<Daniel_Hardman>	@bblfish: the current API was defined to be internal only, and was justified because it would allow an enterprise who consumes VC tech to swap out vendors. That is a form of interop.
+[2021-04-22T19:46:45.881Z]	<Orie>	yep both forms are valuable.
+[2021-04-22T19:46:52.614Z]	<manu>	q+ to run the question
+[2021-04-22T19:47:28.362Z]	<HeatherVescent>	Anil_John: +1 heather's suggestion to need more information. I will provide a consumer perspective. THe internal/external framing that drove the original disctioning is at best incomplete. The intent from the enterprise perspective, we need a standard set of APIs implemented by a verifier/issues and used by holder to interact with all of them. There is an opportunity to switch providers without incuring a switching cost.
+[2021-04-22T19:47:34.395Z]	<mprorock>	speaking for mesur.io - we need to issue, verify, exchange, and retrieve VCs with third parties in a testable manner - we hope that that can be a w3c spec, hopefully aligned with the vc-http-api
+[2021-04-22T19:47:46.015Z]	<TallTed>	+1 Anil's API-lock-in points
+[2021-04-22T19:47:46.566Z]	<bblfish>	I hear about APIs, but is this really a question of APIs or about vocabularies/ontologies?
+[2021-04-22T19:47:48.028Z]	<HeatherVescent>	... whatever ends up here, that we arrive at something that makes vendors happy but enterprises and customers happy.
+[2021-04-22T19:47:48.867Z]	<manu>	ack adrian
+[2021-04-22T19:47:51.151Z]	<manu>	q?
+[2021-04-22T19:48:01.292Z]	<Orie>	bblfish: no
+[2021-04-22T19:48:21.605Z]	<Orie>	its just api HTTP OAS 3
+[2021-04-22T19:48:28.836Z]	<Dmitri_Zagidulin>	@bbl - it's really about the API
+[2021-04-22T19:48:38.444Z]	<HeatherVescent>	Adrian_Gropper: agree with Heather's concern, I think it was framed in a previous call, where the different of interoperability - substitutability of an internal provider vs one in the ecosystem.
+[2021-04-22T19:48:44.555Z]	<Daniel_Hardman>	q+
+[2021-04-22T19:48:48.442Z]	<HeatherVescent>	Manu: gonna run the poll.
+[2021-04-22T19:48:49.522Z]	<Anil_John>	When speaking about APIs, we need to separate the pipe and the payload. This is about the pipe and not about the payload.
+[2021-04-22T19:49:05.264Z]	<manu>	POLL: Is the VC HTTP API for external parties, internal parties, both, or "I need more information to answer that question"?
+[2021-04-22T19:49:12.557Z]	<mprorock>	both
+[2021-04-22T19:49:13.412Z]	<Mike_Varley>	both
+[2021-04-22T19:49:13.564Z]	<Dmitri_Zagidulin>	+1 to both.
+[2021-04-22T19:49:14.890Z]	<Mahmoud>	both
+[2021-04-22T19:49:15.722Z]	<Joe_Andrieu>	internal
+[2021-04-22T19:49:15.798Z]	<acoburn>	both
+[2021-04-22T19:49:16.140Z]	<Orie>	both
+[2021-04-22T19:49:16.391Z]	<HeatherVescent>	I need more information to answer that question
+[2021-04-22T19:49:16.692Z]	<manu>	both
+[2021-04-22T19:49:16.881Z]	<Phil.L>	both
+[2021-04-22T19:49:17.193Z]	<agropper>	Need more info
+[2021-04-22T19:49:18.230Z]	<Daniel_Hardman>	emphatic "internal only"
+[2021-04-22T19:49:19.545Z]	<bblfish>	Need more info :-)
+[2021-04-22T19:49:20.573Z]	<Juan_caballero>	Both
+[2021-04-22T19:49:21.762Z]	<IdentityWoman>	killer whale Jello salad
+[2021-04-22T19:49:21.804Z]	<Daniel_Hardman>	(Can I shout?)
+[2021-04-22T19:49:22.272Z]	<jtwalker2000>	both
+[2021-04-22T19:49:25.258Z]	<Anil_John>	both
+[2021-04-22T19:49:25.935Z]	<markus_sabadello>	+0.75 to both
+[2021-04-22T19:49:26.949Z]	<Michael_Herman_(Trusted_Digital_Web)>	More info
+[2021-04-22T19:49:29.008Z]	<TallTed>	both; I'd need more info to know whether to -1 on either specific
+[2021-04-22T19:49:39.688Z]	<Xavier_Vila>	internal
+[2021-04-22T19:49:48.162Z]	<Daniel_Hardman>	q+
+[2021-04-22T19:49:49.590Z]	<Juan_caballero>	Haha can it be internal only with didcomm attachment/option? Hehe
+[2021-04-22T19:50:01.971Z]	<manu>	ack manu
+[2021-04-22T19:50:03.337Z]	<manu>	ack dan
+[2021-04-22T19:50:05.021Z]	<manu>	ack dan
+[2021-04-22T19:50:24.249Z]	<Joe_Andrieu>	Yep @juan, internal only is a policy rather than technical boundary
+[2021-04-22T19:50:30.501Z]	<HeatherVescent>	Daniel: I would like an opportunity to present on this. Request.
+[2021-04-22T19:50:37.189Z]	<HeatherVescent>	q+
+[2021-04-22T19:50:39.462Z]	<Juan_caballero>	That would work for me
+[2021-04-22T19:50:41.219Z]	<HeatherVescent>	for scheduling reasons
+[2021-04-22T19:50:42.986Z]	<Orie>	+1 to regular meetings
+[2021-04-22T19:50:43.046Z]	<Anil_John>	Yup..  Would love to hear Daniel's perspective!
+[2021-04-22T19:50:53.054Z]	<Orie>	maybe the most important thing to have.
+[2021-04-22T19:50:54.838Z]	<Dmitri_Zagidulin>	+1 to regular meetings. (and personal +1 to this time slot)
+[2021-04-22T19:51:16.138Z]	<HeatherVescent>	Meeting same time / day for next week.
+[2021-04-22T19:51:17.889Z]	<HeatherVescent>	q-
+[2021-04-22T19:51:49.135Z]	<HeatherVescent>	Topic: VC HTTP API Specification Structure
+[2021-04-22T19:51:47.500Z]	<Orie>	PROPOSAL: 1 ReSpec, multiple OAS 3.0 files.
+[2021-04-22T19:51:49.135Z]	<HeatherVescent>	Manu: can we determine the structure of the specification?
+[2021-04-22T19:51:56.511Z]	<IdentityWoman>	we just had a conversation at IIW about how to align different/competing credential and presentation exchange - modalities - we had two good sessions - one yesterday a 2nd one today and a third one just after this to plan next steps - so would be great to see synergistic alignment. I will work to get notes from those sessions done and available next week.
+[2021-04-22T19:52:01.876Z]	<Dmitri_Zagidulin>	+1 to Orie's suggestion.
+[2021-04-22T19:52:03.840Z]	<Orie>	q+
+[2021-04-22T19:52:05.238Z]	<markus_sabadello>	Actually the very first version of the API did have some functionality that could be considered external (e.g. for refreshing a VC), but that functionality got removed in subsequent versions.
+[2021-04-22T19:52:08.977Z]	<Troy_Ronda>	We need a full credential exchange model that we can use in production systems. An internal API just isn't enough.
+[2021-04-22T19:52:38.405Z]	<Juan_caballero>	^ this was my understanding of scope
+[2021-04-22T19:52:44.608Z]	<Anil_John>	I think the IIW Killer Whale discussion is relevant to this discussion, right?
+[2021-04-22T19:52:52.381Z]	<Dmitri_Zagidulin>	@Anil - very much so
+[2021-04-22T19:52:52.718Z]	<Juan_caballero>	But also agree that scope needs r
+[2021-04-22T19:52:53.369Z]	<Orie>	emphatic -1 to 3 repsec documents
+[2021-04-22T19:52:57.578Z]	<IdentityWoman>	yes @anil highly relevent
+[2021-04-22T19:53:01.846Z]	<Juan_caballero>	To be hammered out before use cases :)
+[2021-04-22T19:53:01.920Z]	<markus_sabadello>	q+
+[2021-04-22T19:53:04.126Z]	<manu>	q?
+[2021-04-22T19:53:11.752Z]	<Michael_Herman_(Trusted_Digital_Web)>	Need a fully
+ decentralized object model for VCs
+[2021-04-22T19:53:19.040Z]	<Adrian_Gropper>	3 specs
+[2021-04-22T19:53:21.526Z]	<HeatherVescent>	Manu: put yourself on the queue to provide input. 1 spec with sections, or 3 specs and an overview doc
+[2021-04-22T19:53:22.895Z]	<manu>	q?
+[2021-04-22T19:53:40.029Z]	<Juan_caballero>	Thank you kaliya for managing that convo, will read those notes before next mtg!
+[2021-04-22T19:54:10.130Z]	<Adrian_Gropper>	q+
+[2021-04-22T19:54:45.385Z]	<manu>	q+ to end with one proposal (which I expect to fail, but will be useful to get feedback on)
+[2021-04-22T19:54:51.010Z]	<Daniel_Hardman>	Would the 3 specs be versioned together?
+[2021-04-22T19:55:08.500Z]	<Daniel_Hardman>	How much redundancy would there be in 3 specs?
+[2021-04-22T19:55:10.864Z]	<manu>	Daniel_Hardman, unknown right now
+[2021-04-22T19:55:16.684Z]	<manu>	ack or
+[2021-04-22T19:55:17.816Z]	<manu>	ack mark
+[2021-04-22T19:55:19.034Z]	<HeatherVescent>	Orie: repeat proposal from IRC: 1 ReSpec, multiple OAS 3.0 files. Markus already has a draft that looks great. Why 1 ReSpec vs multiple, one place to get info, see how they relate to each other re: privacy concerns. If we split them up, could be hard to compare, and then address privacy/security in 1 doc, can provide better guidance to users as a whole.
+[2021-04-22T19:55:30.554Z]	<HeatherVescent>	Markus: +1 to Orie. I would propose the same thing.
+[2021-04-22T19:55:40.509Z]	<Dmitri_Zagidulin>	+1
+[2021-04-22T19:56:24.808Z]	<HeatherVescent>	agropper: Argue strongly for the 3 separate specs - not any particular format. There is great asymmetry btwn holder and issuer/verifier. If we don't force ourselves to separate, we will make privacy analysis difficult.
+[2021-04-22T19:56:27.192Z]	<Dmitri_Zagidulin>	I do want to point out that there is very much asymmetry between different sections of a spec document. like,that's expected
+[2021-04-22T19:56:29.848Z]	<manu>	q?
+[2021-04-22T19:56:30.848Z]	<Orie>	I think we agree Adrian, but you can't actually seperate these things... you are making that problem worse, by splitting things up.
+[2021-04-22T19:56:40.029Z]	<manu>	ack adria
+[2021-04-22T19:56:40.897Z]	<markus_sabadello>	Draft PR to split open OpenAPI spec files: https://github.com/w3c-ccg/vc-http-api/pull/178
+[2021-04-22T19:57:02.572Z]	<manu>	PROPOSAL: Create 1 ReSpec specification in addition to separating the existing OAS files into modular components.
+[2021-04-22T19:57:04.406Z]	<Orie>	+1
+[2021-04-22T19:57:06.451Z]	<Dmitri_Zagidulin>	+1
+[2021-04-22T19:57:06.998Z]	<HeatherVescent>	+1
+[2021-04-22T19:57:08.179Z]	<Kayode_Ezike>	+1
+[2021-04-22T19:57:09.878Z]	<manu>	+1
+[2021-04-22T19:57:10.910Z]	<Daniel_Hardman>	0
+[2021-04-22T19:57:11.036Z]	<Mahmoud>	+1
+[2021-04-22T19:57:11.166Z]	<Phil.L>	+1
+[2021-04-22T19:57:12.399Z]	<markus_sabadello>	+1
+[2021-04-22T19:57:13.197Z]	<dlongley>	+1
+[2021-04-22T19:57:13.577Z]	<Michael_Herman_(Trusted_Digital_Web)>	+1
+[2021-04-22T19:57:13.824Z]	<Joe_Andrieu>	+1
+[2021-04-22T19:57:15.973Z]	<Adrian_Gropper>	-1
+[2021-04-22T19:57:16.210Z]	<acoburn>	+1
+[2021-04-22T19:57:16.662Z]	<mprorock>	+1
+[2021-04-22T19:57:18.466Z]	<Xavier_Vila>	+1
+[2021-04-22T19:57:23.440Z]	<IdentityWoman>	+1
+[2021-04-22T19:57:31.094Z]	<TallTed>	+1   strongly favor one spec with multiple sections ... significantly but not only because any given individual is likely to flip between roles, and devs needing to flip between docs typically leads to problems when the user role-flip comes up. (having one or two specs pass muster and the other(s) fail would be worse than having the entire stack fail at TR)
+[2021-04-22T19:57:42.111Z]	<Juan_caballero>	Joint privacy considerations and joint intro sound good to me
+[2021-04-22T19:57:50.894Z]	<Mike_Varley>	+1 ...
+[2021-04-22T19:57:55.843Z]	<Daniel_Hardman>	Can we do multiple html files even if it's one spec?
+[2021-04-22T19:58:04.661Z]	<Daniel_Hardman>	(using ReSpec's glue-together feature?)
+[2021-04-22T19:58:14.555Z]	<Dmitri_Zagidulin>	@Daniel - seems reasonable.
+[2021-04-22T19:58:19.414Z]	<Anil_John>	We need unanious agreement at CCG?
+[2021-04-22T19:58:20.638Z]	<Orie>	@DH yep
+[2021-04-22T19:58:24.821Z]	<mprorock>	@Daniel - yes - would be a fan
+[2021-04-22T19:58:29.784Z]	<Juan_caballero>	Gnap?
+[2021-04-22T19:58:33.809Z]	<Orie>	GNO
+[2021-04-22T19:58:42.203Z]	<mprorock>	@anil basically
+[2021-04-22T19:59:01.316Z]	<HeatherVescent>	Adrian: What I would like to see is the document speak to the prescription or referral use case that I often champion. If it can be done with one specification, fine.
+[2021-04-22T19:59:11.141Z]	<Anil_John>	So unanimous agreement and not consensus?
+[2021-04-22T19:59:35.082Z]	<IdentityWoman>	consensus means unanimous agreement Anil
+[2021-04-22T19:59:38.240Z]	<HeatherVescent>	Strong disagreement Anil.
+[2021-04-22T19:59:39.350Z]	<Juan_caballero>	Adrian can u write that out ?
+[2021-04-22T19:59:48.980Z]	<IdentityWoman>	this was an issue with NSTIC and I told them that the word didn't mean what they thought it means.
+[2021-04-22T19:59:50.029Z]	<Juan_caballero>	Scribe missed it
+[2021-04-22T19:59:55.303Z]	<Anil_John>	No it DOES NOT! It just means that everyone can live w/ the decision
+[2021-04-22T19:59:57.065Z]	<HeatherVescent>	Manu: Next meeting: same time/same place.  Thank you all.
+[2021-04-22T20:00:03.371Z]	<IdentityWoman>	mmm...
+[2021-04-22T20:00:03.371Z]	<Manu_Sporny> Manu: Here is the W3C definition of consensus for those that are curious -- https://www.w3.org/2020/Process-20200915/#Consensus -- it's a critical read
+[2021-04-22T20:00:04.277Z]	<Mike_Varley>	thanks all

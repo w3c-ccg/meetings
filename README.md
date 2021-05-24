@@ -40,7 +40,9 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Mark approved work items with "approved" github label
 
 ### Publish the minutes (for CCG meetings, task forces and other recorded meetings)
-[How to publish the minutes](https://w3c-ccg.github.io/publish_minutes.html)
+* [How to publish the minutes](https://w3c-ccg.github.io/publish_minutes.html)
+* [How to publish the minutes - via github interface](https://docs.google.com/document/d/1xsFZ6GKOHLsYwIN8DGYnVZRtxvx9eVZ4QQ6WJF6zgcI/edit?usp=sharing)
+
 
 
 ### Add Action Items to Issues (All Meetings)
