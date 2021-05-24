@@ -1,0 +1,270 @@
+[2021-04-29T19:02:01.025Z]	<mprorock>	present+
+[2021-04-29T19:02:47.671Z]	<Orie>	present+
+[2021-04-29T19:02:58.186Z]	<manu>	scribe: Chris_Kelly
+[2021-04-29T19:03:06.770Z]	<Orie>	/me just ...
+[2021-04-29T19:03:07.836Z]	<dlongley>	present+
+[2021-04-29T19:03:15.363Z]	<Mahmoud_Alkhraishi>	present+
+[2021-04-29T19:03:20.779Z]	<TallTed>	present+
+[2021-04-29T19:03:22.255Z]	<Stuart_Freeman>	present+
+[2021-04-29T19:03:22.958Z]	<acoburn>	present+
+[2021-04-29T19:03:38.088Z]	<Anil_John>	present+
+[2021-04-29T19:03:46.093Z]	<justin_r>	present+
+[2021-04-29T19:03:54.791Z]	<Chris_Kelly>	Manu Sporny: Welcoming attendees
+[2021-04-29T19:04:23.173Z]	<Tobias_Looker>	present+
+[2021-04-29T19:05:19.272Z]	<Chris_Kelly>	... IPR disclaimer for non-CCG members
+[2021-04-29T19:05:38.555Z]	<HeatherVescent>	present+
+[2021-04-29T19:05:57.880Z]	<Manu_Sporny> Today's agenda is Daniel Hardman's presentation from the list https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0193.html and proposals for this work item
+[2021-04-29T19:06:16.909Z]	<markus_sabadello>	present+
+[2021-04-29T19:06:23.761Z]	<justin_r>	q+
+[2021-04-29T19:06:28.354Z]	<Chris_Kelly>	Manu: HTTP APIs for CredX as mailed to list
+[2021-04-29T19:07:15.889Z]	<manu>	Topic: GNAP and Relationship to VC HTTP API
+[2021-04-29T19:07:32.171Z]	<Chris_Kelly>	Justin: IADF Draft protocol, openID 0Auth proposal
+[2021-04-29T19:08:06.716Z]	<Mike_Varley>	https://datatracker.ietf.org/wg/gnap/documents/
+[2021-04-29T19:09:13.268Z]	<justin_r>	gnap: https://www.ietf.org/archive/id/draft-ietf-gnap-core-protocol-05.html
+[2021-04-29T19:09:28.928Z]	<Geun-Hyung>	present+
+[2021-04-29T19:09:35.453Z]	<Chris_Kelly>  justin_r: GNAP new work in IATF
+[2021-04-29T19:09:42.549Z]	<dmitriz>	present+
+[2021-04-29T19:10:04.910Z]	<Orie>	I would say GNAP is a great fit for holder interactions, but does not match map cleanly to "issuer" or "verifier" functionality in the current vc http api... though I could see the whole thing getting replaced by GNAP with enough effort.
+[2021-04-29T19:10:14.825Z]	<Chris_Kelly>	... expanding user inteaction possibilities, no longer assuming user is in browser
+[2021-04-29T19:10:58.100Z]	<Chris_Kelly>	... good fit with GNAP? signifcant overlap seen
+[2021-04-29T19:11:28.602Z]	<DavidC>	present+
+[2021-04-29T19:11:31.366Z]	<Tobias_Looker>	+1 justin I think GNAP is a good fit as an authz model
+[2021-04-29T19:11:57.948Z]	<Chris_Kelly>	... intention to attend further meetings if possible. IATF meeting next week, open invitation to channel to attend
+[2021-04-29T19:12:22.807Z]	<Chris_Kelly>	... newest GNAP spec, attention to section 4
+[2021-04-29T19:12:40.452Z]	<Mike_Varley>	GNAP is a re-engineering of patterns in OAuth and OIDC to enable dynamic and flexible user-to-server interactions and authorizations (enabling bring your own wallet and mobile interactions etc...) and overlaps on some of the objectives of this HTTP API in a broader sense (but focused on authorization)
+[2021-04-29T19:13:09.438Z]	<Chris_Kelly>	...so we really want to know, does the API fit as an extension of the protocol, and if so, how, what changes are needed etc. Call for feedback, suggestions. we encourage as many people as possible to track both conversations and keep them in line.
+[2021-04-29T19:13:21.081Z]	<manu>	Topic: HTTP APIs for CredX
+[2021-04-29T19:13:40.514Z]	<Chris_Kelly>	Daniel: HTTP APIs for Credential exchange 
+[2021-04-29T19:13:54.598Z]	<Chris_Kelly>	... dovetailing with GNAP dsiscussed previously
+[2021-04-29T19:14:15.241Z]	<Chris_Kelly>	... Issue 50 on VC HTTP API
+[2021-04-29T19:14:34.162Z]	<manu>	q?
+[2021-04-29T19:14:36.705Z]	<manu>	ack j
+[2021-04-29T19:14:56.829Z]	<Chris_Kelly>	... use cases under discussion include Didcomm, Daniel wrote a Medium article about this
+[2021-04-29T19:15:33.970Z]	<Chris_Kelly>	... framing credential exchange as HTTP problem is a false approach, and I would rather we expand the use cases beyond ones where HTTP is a bottleneck
+[2021-04-29T19:15:43.858Z]	<HeatherVescent>	LOL
+[2021-04-29T19:16:12.080Z]	<Chris_Kelly>	... Korean use case using verifiable credentials to monitor clocking in/out
+[2021-04-29T19:17:07.570Z]	<Chris_Kelly>	... Mobile device connecting to webserver to authenticate, concentration of operations in narrow time windows
+[2021-04-29T19:17:56.320Z]	<Chris_Kelly>	... this lead to a suggestion of having to massively scale server capabilities, prompting rethink of the authentication infrastructure
+[2021-04-29T19:18:09.753Z]	<Juan_Caballero>	wow direct NFC proofing
+[2021-04-29T19:18:12.732Z]	<Orie>	+1 to direct p2p support without the need for an http mediator.
+[2021-04-29T19:18:20.216Z]	<Orie>	:)
+[2021-04-29T19:18:25.133Z]	<Chris_Kelly>	... using NFC would allow us to avoid server connections altogether, making perfect horizontal scaleability if it can be enabled.
+[2021-04-29T19:18:55.610Z]	<Chris_Kelly>	... use case #2, the Uber example, taxi driver wisdom
+[2021-04-29T19:19:18.529Z]	<Orie>	https://github.com/transmute-industries/cbor-ld-web-transports (NFC and QR Code transports for VPs / VCs)
+[2021-04-29T19:19:23.177Z]	<mprorock>	+1 to looking at schemas and structures in multiple formats and not limiting to http only
+[2021-04-29T19:19:31.052Z]	<Chris_Kelly>	... plot twist: Uber driver has covid-19
+[2021-04-29T19:19:43.245Z]	<Juan_Caballero>	(asking uber drivers for their medical records is not currently legal or ethical)
+[2021-04-29T19:19:49.677Z]	<Chris_Kelly>	... idea = ordinary people as verifiers, horizontal verifications
+[2021-04-29T19:19:57.092Z]	<Juan_Caballero>	(but maybe "prove you work for uber" or "prove you can legally drive a car" would be simpler examples of the same use cases sidestepping health record privacy and ethics)
+[2021-04-29T19:20:45.912Z]	<Chris_Kelly>	... using verifiable identity to negotiate personal exchanges, reciprocity, not such a good fit with HTTP approaches
+[2021-04-29T19:20:54.677Z]	<Chris_Kelly>	... use case 3 Italian Visa
+[2021-04-29T19:21:12.614Z]	<Chris_Kelly>	... Delayed responses due to time difference, human processes
+[2021-04-29T19:21:37.565Z]	<Chris_Kelly>	... HTTP API could be a possible solution, but the Swiss government has no such infrastructure
+[2021-04-29T19:22:03.488Z]	<Orie>	most folks don't run webservers on their phone voluntarily :)
+[2021-04-29T19:22:15.815Z]	<Chris_Kelly>	... Swiss gov could sidestep HTTP to solve the issue
+[2021-04-29T19:22:20.061Z]	<Chris_Kelly>	... use case 4
+[2021-04-29T19:22:30.222Z]	<Chris_Kelly>	... digital cash -  FB Libra concerns triggered wave of interest in CBDCs
+[2021-04-29T19:23:07.219Z]	<Chris_Kelly>	... current global government projects investigating digital cash infrastructure, esp offline solutions
+[2021-04-29T19:23:53.406Z]	<Chris_Kelly>	... Bahamas mention, Sand Dollar, designed to distribute disaster aid relief, to remove internet connection requirement
+[2021-04-29T19:24:14.841Z]	<Chris_Kelly>	... VCs for KYC & AML
+[2021-04-29T19:25:03.647Z]	<Chris_Kelly>	... Gov requirements indicate that HTTP is not applicable in all cases, they need to be more generic and high level
+[2021-04-29T19:25:16.593Z]	<manu>	q+ to not focus on standardizing the HTTP API version of things -- as the center of the world.
+[2021-04-29T19:25:23.037Z]	<Chris_Kelly>	... Specificites of HTTP will keep edge cases like these on the margins, sucking up all the oxygen, funding, and momentum for institutional cases relying on client/server architectures
+[2021-04-29T19:25:39.584Z]	<TallTed>	big +1000
+[2021-04-29T19:25:40.319Z]	<Chris_Kelly>	... I want us to broaden the design spec, describe something HTTP specific as one implementation but not the only one
+[2021-04-29T19:26:08.942Z]	<Chris_Kelly>	... describe problems as "payloads" without fixing everything to web-based implementation details
+[2021-04-29T19:26:52.691Z]	<Orie>	in a world where vc-http-api is just a single endpoint for receiving post messages.
+[2021-04-29T19:27:15.212Z]	<Chris_Kelly>	... i also think we need to keep the issue of transport security separate, so that different implementations and use cases can apply security above or below this layer rather than having one security model fixed by assumptions we make now
+[2021-04-29T19:27:18.768Z]	<justin_r>	q+ to discuss the balance of abstraction levels and layers
+[2021-04-29T19:27:28.761Z]	<Chris_Kelly>	... 3 alternative paths for standardization
+[2021-04-29T19:27:42.105Z]	<markus_sabadello>	q+
+[2021-04-29T19:28:01.461Z]	<Juan_Caballero>	red is plan A, yellow and green are two acceptable plans B?
+[2021-04-29T19:28:08.648Z]	<Orie>	Thanks Daniel!
+[2021-04-29T19:28:13.073Z]	<mprorock>	thank you!
+[2021-04-29T19:28:14.694Z]	<Evan_Tedesco>	I think green is plan a
+[2021-04-29T19:28:17.942Z]	<Chris_Kelly>	... existing transport security - new standard, existing  transport security - coalescing stnadard for credx
+[2021-04-29T19:28:19.775Z]	<mprorock>	q+
+[2021-04-29T19:28:35.334Z]	<Chris_Kelly>	... standard for transport-agnostic encryption envelope
+[2021-04-29T19:29:12.339Z]	<Chris_Kelly>	Manu: We don't want to pitch HTTP as the only solution
+[2021-04-29T19:29:32.769Z]	<Chris_Kelly>	... can we look at the issue wholistically instead of narrowing the approach
+[2021-04-29T19:29:49.567Z]	<manu>	ack man
+[2021-04-29T19:29:51.269Z]	<manu>	ack justin_r
+[2021-04-29T19:30:36.146Z]	<Chris_Kelly>	Justin_r: I understand the desire for a broader more abstracted system that is more widely applicable, but I hold it to be a fiction. The last time we tried for a giant abstract system was SOAP
+[2021-04-29T19:30:44.368Z]	<Orie>	I happen to have liked working with SOAP : .
+[2021-04-29T19:30:51.874Z]	<Chris_Kelly>	... SOAP was a platform-agnostic solution
+[2021-04-29T19:30:56.497Z]	<Juan_Caballero>	^Some of my best friends are SOAP
+[2021-04-29T19:31:12.558Z]	<Anil_John>	Me too! WSDLs, Schemas' Oh My!
+[2021-04-29T19:31:21.246Z]	<mprorock>	sshhhh orie, don't tell people that (seriously, why would you want type safety and tooling)
+[2021-04-29T19:31:28.604Z]	<dlongley>	q?
+[2021-04-29T19:31:38.853Z]	<Chris_Kelly>	... these don't take advantage of any native aspects of the tech being used, writing to an assume common abstraction layer
+[2021-04-29T19:31:49.048Z]	<dmitriz>	q+
+[2021-04-29T19:31:51.131Z]	<dlongley>	q+
+[2021-04-29T19:32:00.201Z]	<dlongley>	+1000 to Justin
+[2021-04-29T19:32:12.780Z]	<Chris_Kelly>	... building an abstraction layer on top of HTTP that eventually rely on quirks or structure of the underlying tech, even if unintentional
+[2021-04-29T19:32:32.153Z]	<Chris_Kelly>	... note, this is not a request for niche counter-examples
+[2021-04-29T19:32:37.715Z]	<Tobias_Looker>	Yeap +1 to justin
+[2021-04-29T19:33:28.237Z]	<manu>	ack markus
+[2021-04-29T19:33:29.548Z]	<manu>	q?
+[2021-04-29T19:33:35.864Z]	<Chris_Kelly>	...´one appraoch that has been seen to work is to take the concepts from a concrete system which depends on a specific set of transpot, security layers etc and translating it, eg. TLS moving to somehting TLS-like, abstraction not being a one-size-fits-all solution
+[2021-04-29T19:33:54.586Z]	<justin_r>	apologies for being longwinded, this is something that I have cared about and talked about a LOT in my career....
+[2021-04-29T19:34:21.140Z]	<Chris_Kelly>	Markus: Ongoing discussion at VC HTTP 
+ whether APIs are for internal use or communication between holders and verifiers externally. Would it lessen your concerns to limit scope to knothat much of this was designed to be internal APIs within a trust boundary?
+[2021-04-29T19:34:29.210Z]	<justin_r>	Orie: I'm sorry that you have stockholm syndrome from SOAP
+[2021-04-29T19:34:51.754Z]	<Chris_Kelly>	... Referring back to issue 50, question of scope, internal vs external
+[2021-04-29T19:35:06.525Z]	<Orie>	justin_r: in fairness I only used SOAP over HTTP :)
+[2021-04-29T19:35:17.174Z]	<manu>	q?
+[2021-04-29T19:35:31.048Z]	<Chris_Kelly>	Daniel: HTTP is ideal for an internal insfrastructure, but there is little pressure to standardize there. I am not even certain the distinction holds very well.
+[2021-04-29T19:36:05.504Z]	<justin_r>	Orie: that's exactly my point! That's all anyone ever did! All the abstraction was smoke and mirrors.
+[2021-04-29T19:36:27.861Z]	<Chris_Kelly>	... abstraction would enable multiple platforms like bluetooth, and I think we need to be wary of sacrificing privacy of individuals for the conveneince of organizations by favoring their architectures in our design process
+[2021-04-29T19:36:59.525Z]	<Chris_Kelly>	Mike: Internal use case, thinking about the data structures rather than the protocol, eg GRPC
+[2021-04-29T19:37:06.190Z]	<Orie>	there is also DIDComm over grpc
+[2021-04-29T19:37:08.220Z]	<manu>	ack mpro
+[2021-04-29T19:37:09.652Z]	<manu>	ack dmi
+[2021-04-29T19:37:29.709Z]	<mprorock>	@orie yes, didcomm keeps looking better and better to me
+[2021-04-29T19:37:35.521Z]	<Orie>	https://github.com/trinsic-id/didcomm-v2
+[2021-04-29T19:37:38.351Z]	<TallTed>	q+ to say "it has always been/happened this way" is not a strong argument against trying to do something different.  OpenLink has achieved a number of things that were deemed impossible -- and many are still, where the live demo hasn't yet been seen, and/or where folks simply don't believe the demo.
+[2021-04-29T19:38:02.223Z]	<manu>	ack dlo
+[2021-04-29T19:38:08.586Z]	<Chris_Kelly>	Dmitri: +1 to Daniels points, also Justin, going too far with an abstract approach has been unsuccessful in the past but let's not assume things liek  QR code and bluetooth approaches cannot work
+[2021-04-29T19:38:16.712Z]	<Chris_Kelly>	... more of a 'design stance'
+[2021-04-29T19:38:48.776Z]	<Orie>	all didcomm needs is an abstract data model :)
+[2021-04-29T19:38:53.412Z]	<Orie>	/jk
+[2021-04-29T19:39:11.601Z]	<Daniel_Hardman>	q+
+[2021-04-29T19:39:14.920Z]	<Chris_Kelly> Dave: There are a variety of protocols available, constant uphill battle if we move too far from HTTP approaches, these edge cases may only get addressed if the whole idea moves forwad on an HTTP approach
+[2021-04-29T19:39:27.222Z]	<justin_r>	Orie: only if it has deterministic normative translation rules ;)
+[2021-04-29T19:39:36.543Z]	<Chris_Kelly>	... if these use cases are important then they will be adressed in time
+[2021-04-29T19:39:44.308Z]	<Orie>	justin_r: we can use CDDL!
+[2021-04-29T19:39:53.887Z]	<justin_r>	Orie: fine w/me
+[2021-04-29T19:39:56.100Z]	<Chris_Kelly>	Ted: this is a recurring argument
+[2021-04-29T19:40:10.682Z]	<justin_r>	-1 to TallTed, this isn't what I was saying at all 🤷‍♀️
+[2021-04-29T19:40:39.080Z]	<Chris_Kelly>	... significant achievements have been made, the generic design does not need to be a single abstraction layer to fit all use cases
+[2021-04-29T19:41:25.446Z]	<Chris_Kelly>	...HTTP and other protocols can play nice, it would be overly simple to narrow the choice to only HTTP
+[2021-04-29T19:41:52.171Z]	<Chris_Kelly>	Daniel:Arguing for two abstractions, security and transport
+[2021-04-29T19:42:07.934Z]	<Chris_Kelly>	... payloads also need to be addressed as an individual problem
+[2021-04-29T19:42:22.410Z]	<Chris_Kelly>	... concrete use cases have been given as examples
+[2021-04-29T19:42:25.981Z]	<Orie>	part of why the universal wallet interop spec calls "issue" / "present" abstract is specifically to allow for optimization at the transport / protocol layer.
+[2021-04-29T19:42:38.158Z]	<Chris_Kelly>	... SSI has a goal of helping people who are disenfranchised
+[2021-04-29T19:42:49.456Z]	<Juan_Caballero>	+1
+[2021-04-29T19:42:59.897Z]	<mprorock>	+1 Daniel - we are seeing this with vaccination credentials right now
+[2021-04-29T19:43:08.397Z]	<Phil.L>	+1 Daniel
+[2021-04-29T19:43:11.586Z]	<Juan_Caballero>	i see both sides, hopefully there's a middle ground
+[2021-04-29T19:43:15.858Z]	<Juan_Caballero>	+100 chris is a CHAMP
+[2021-04-29T19:43:29.263Z]	<Chris_Kelly>	... these issues should not just be addressed where lucrative on the assumption that the way they are being address will automatically benefit fringe cases collaterally
+[2021-04-29T19:43:34.420Z]	<Orie>	I can attest that crying doesn't to nearly as much as you might wish it did.
+[2021-04-29T19:43:35.461Z]	<manu>	Topic: Use Case Updates
+[2021-04-29T19:43:45.907Z]	<manu>	https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+[2021-04-29T19:43:46.121Z]	<Chris_Kelly>	Manu: Juan can you update us on use case news?
+[2021-04-29T19:43:53.332Z]	<manu>	https://github.com/w3c-ccg/vc-http-api/issues/180
+[2021-04-29T19:44:10.460Z]	<Chris_Kelly>	Juan: Posted google doc to incorrect repo, oops, now on this repo, 2 volunteers from legendary requirments stepped forward to assist editorially with use-cases and other supporting documentation.
+[2021-04-29T19:44:26.489Z]	<manu>	q+
+[2021-04-29T19:44:29.535Z]	<manu>	ack tall
+[2021-04-29T19:44:30.520Z]	<manu>	ack dan
+[2021-04-29T19:44:34.212Z]	<manu>	q?
+[2021-04-29T19:44:45.071Z]	<Chris_Kelly>	... google doc is getting a lot of chatter, happy to move to markdown/respec in the repo instead of gdoc, will wait for the green light from the current editors to move the work over
+[2021-04-29T19:45:21.132Z]	<Chris_Kelly>	Manu: that may happen in parallel, we don't want to discourage people contributing
+[2021-04-29T19:45:36.546Z]	<Chris_Kelly>	... task of the editors is to organise after the fact
+[2021-04-29T19:46:00.175Z]	<Chris_Kelly>	... screen share -  VC HTTP API Use Cases
+[2021-04-29T19:46:28.065Z]	<Chris_Kelly>	... showing a GH issue template for a use case submission, thanks to Ted for work on this
+[2021-04-29T19:46:46.668Z]	<HeatherVescent>	+1 manu
+[2021-04-29T19:46:53.853Z]	<Chris_Kelly>	... this will enable a threaded convo about them
+[2021-04-29T19:47:01.162Z]	<HeatherVescent>	q+
+[2021-04-29T19:47:06.032Z]	<Chris_Kelly>	... presented for your consideration
+[2021-04-29T19:47:26.333Z]	<justin_r>	q+
+[2021-04-29T19:47:27.091Z]	<Manu_Sporny>	q?
+[2021-04-29T19:47:31.130Z]	<Manu_Sporny>	ack man
+[2021-04-29T19:47:33.099Z]	<Manu_Sporny>	ack heath
+[2021-04-29T19:47:36.458Z]	<Chris_Kelly>	... we probably do need a repo for use cases, feedbakc appreciated on people's ideas for keeping that seperate
+[2021-04-29T19:47:37.408Z]	<Juan_Caballero>	3 separate repos or just 3 separate files in the repo to simplify gitflow and merge conflicts?
+[2021-04-29T19:47:57.654Z]	<Chris_Kelly>	Heather: likes use case template, question who are providing those use cases
+[2021-04-29T19:48:01.506Z]	<Manu_Sporny>	Agree, that's the downside -- so perhaps just Google Docs.
+[2021-04-29T19:48:15.478Z]	<Chris_Kelly>	... Git hub users are people eg familiar with writing documentation
+[2021-04-29T19:48:44.559Z]	<Chris_Kelly>	... this may be a barrier to entry / self-selecting out useful examples
+[2021-04-29T19:48:52.238Z]	<Manu_Sporny>	ack just
+[2021-04-29T19:49:06.341Z]	<Chris_Kelly>	Justin: use cases collected from a number of groups
+[2021-04-29T19:49:11.471Z]	<manu>	q?
+[2021-04-29T19:49:22.598Z]	<Chris_Kelly>	... best used to guide the beginning phases of work rather than shape output
+[2021-04-29T19:49:39.980Z]	<Chris_Kelly>	... suggestion for wiki structure or similar for managing this collection of data
+[2021-04-29T19:49:49.626Z]	<Charles_Edebiri>	I agree with Heather. I don't find Github user friendly.
+[2021-04-29T19:49:50.880Z]	<manu>	q?
+[2021-04-29T19:50:09.230Z]	<justin_r>	FWIW I disagree with Heather, I don't find Google Docs friendly
+[2021-04-29T19:50:13.355Z]	<Chris_Kelly>	... as opposed to an issue tracker, important to also ensure people are using the same terms of ref
+[2021-04-29T19:50:20.338Z]	<HeatherVescent>	ROTFL
+[2021-04-29T19:50:24.975Z]	<Orie>	well, as long as the people doing the work can use the tool.
+[2021-04-29T19:50:57.669Z]	<justin_r>	there is no perfect tool, the winning move is to have a dedicated curator that collects them from people "outside" the tool
+[2021-04-29T19:51:12.871Z]	<Orie>	like an "editor" ?
+[2021-04-29T19:51:14.291Z]	<justin_r>	it's more important that everything is readable, since writing can be overcome with help
+[2021-04-29T19:51:19.723Z]	<manu>	PROPOSAL: Use the use case template in Juan's Google Doc and Google Docs to collect use cases.
+[2021-04-29T19:51:22.338Z]	<Chris_Kelly>	Manu: Google doc appears to be working well for now, does anyone object to continuing using that for now, call for submissions from the group if people have objections/concrete suggestions
+[2021-04-29T19:51:25.189Z]	<Juan_Caballero>	+1
+[2021-04-29T19:51:27.605Z]	<HeatherVescent>	+1
+[2021-04-29T19:51:29.343Z]	<mprorock>	+1
+[2021-04-29T19:51:29.567Z]	<Evan_Tedesco>	+1
+[2021-04-29T19:51:29.956Z]	<Eric_Schuh>	+1
+[2021-04-29T19:51:32.999Z]	<Charles_Edebiri>	+1
+[2021-04-29T19:51:33.828Z]	<jtwalker2000>	+1
+[2021-04-29T19:51:36.037Z]	<manu>	+1
+[2021-04-29T19:51:37.700Z]	<Stuart_Freeman>	+1
+[2021-04-29T19:51:39.603Z]	<Phil.L>	+1
+[2021-04-29T19:51:43.786Z]	<TallTed>	+1
+[2021-04-29T19:51:44.310Z]	<markus_sabadello>	+1
+[2021-04-29T19:51:44.879Z]	<Mahmoud_Alkhraishi>	+1
+[2021-04-29T19:51:46.629Z]	<Daniel_Hardman>	+1
+[2021-04-29T19:51:48.937Z]	<dmitriz>	+1
+[2021-04-29T19:51:50.350Z]	<Tobias_Looker>	+1
+[2021-04-29T19:51:51.641Z]	<Orie>	+1
+[2021-04-29T19:51:53.946Z]	<DavidC>	+1
+[2021-04-29T19:51:54.037Z]	<Chris_Kelly>	+1
+[2021-04-29T19:52:03.938Z]	<acoburn>	+1
+[2021-04-29T19:52:11.510Z]	<manu>	RESOLVED: Use the use case template in Juan's Google Doc and Google Docs to collect use cases.
+[2021-04-29T19:52:35.509Z]	<Chris_Kelly>	Manu: google doc is established as primary input mechanism, mailed-in submissions can be added manually
+[2021-04-29T19:53:06.672Z]	<Chris_Kelly>	... almost got agreeement on VC HTTP API in one respec spec, braking into modular components. Concerns?
+[2021-04-29T19:53:29.771Z]	<Chris_Kelly>	... issue from last meeting, deferred discussion due to Adrian's absence
+[2021-04-29T19:53:59.683Z]	<Chris_Kelly>	Juan: 3vs1 issue tied up with if they have delegated responsibility
+[2021-04-29T19:54:32.029Z]	<manu>	q+
+[2021-04-29T19:54:33.661Z]	<Chris_Kelly>	... noted that people have a lot of feeling about holders, this is a big piece of work
+[2021-04-29T19:55:05.142Z]	<Chris_Kelly>	Manu: last time we discussed this, the 3 diff specs did not seemt o resonate, maybe we should ask for input now
+[2021-04-29T19:55:26.313Z]	<Chris_Kelly>	... most popular was the proposal of all in 1 solution
+[2021-04-29T19:55:28.652Z]	<markus_sabadello>	q+
+[2021-04-29T19:55:46.452Z]	<Chris_Kelly>	... we can also spplit the spec into 3 and ensure that each 3 gets a different editor and still pull them into one spec
+[2021-04-29T19:56:16.930Z]	<manu>	POLL: Create 3 VC HTTP API ReSpec specifications (e.g., Issuing, Verification, Presentation) in addition to the existing OAS file.
+[2021-04-29T19:56:21.593Z]	<Orie>	-1
+[2021-04-29T19:56:25.542Z]	<Juan_Caballero>	-1
+[2021-04-29T19:56:26.015Z]	<manu>	-1
+[2021-04-29T19:56:26.245Z]	<dmitriz>	+1
+[2021-04-29T19:56:30.517Z]	<dmitriz>	er wait
+[2021-04-29T19:56:30.594Z]	<Juan_Caballero>	so many work items as is :D
+[2021-04-29T19:56:31.978Z]	<dmitriz>	respec..
+[2021-04-29T19:56:32.159Z]	<TallTed>	-0.9
+[2021-04-29T19:56:33.354Z]	<dmitriz>	+1
+[2021-04-29T19:56:33.494Z]	<jtwalker2000>	-1
+[2021-04-29T19:56:36.679Z]	<dlongley>	-1
+[2021-04-29T19:56:39.718Z]	<dmitriz>	dammit. I meant -1
+[2021-04-29T19:56:45.906Z]	<markus_sabadello>	-1
+[2021-04-29T19:56:46.917Z]	<mprorock>	-1
+[2021-04-29T19:56:48.827Z]	<Juan_Caballero>	dmitri get it together man
+[2021-04-29T19:56:50.401Z]	<Juan_Caballero>	:D
+[2021-04-29T19:56:54.938Z]	<Mahmoud_Alkhraishi>	-1
+[2021-04-29T19:56:59.305Z]	<Phil.L>	-1
+[2021-04-29T19:57:01.266Z]	<DavidC>	+1
+[2021-04-29T19:57:06.316Z]	<Chris_Kelly>	... Poll do we create 3 differenc respec specs? Does not seem popular
+[2021-04-29T19:57:08.508Z]	<HeatherVescent>	-1
+[2021-04-29T19:57:18.870Z]	<Orie>	but its not 100% .... does that mean we can't resolve it?
+[2021-04-29T19:57:35.561Z]	<Tobias_Looker>	if we add dmitrizs votes up -1 +1 -1 there isnt a double vote :)
+[2021-04-29T19:57:37.181Z]	<markus_sabadello>	q-
+[2021-04-29T19:57:43.127Z]	<Chris_Kelly>	... fairly clear 3 diff spec is an unpopular idea, probly converging on one spec, possibly w 3 diff editors for each section
+[2021-04-29T19:58:10.819Z]	<manu>	ack manu
+[2021-04-29T19:58:11.437Z]	<Chris_Kelly>	... hopefully Adrian is present next week, proposal will run regardless next week
+[2021-04-29T19:58:25.344Z]	<Orie>	I am a fan of file splitting for OAS
+[2021-04-29T19:58:35.269Z]	<manu>	yes, +1 for splitting OAS files
+[2021-04-29T19:58:41.651Z]	<manu>	maybe we just split all of these things into pieces.
+[2021-04-29T19:58:43.301Z]	<Orie>	Pleases review: https://github.com/w3c-ccg/vc-http-api/pull/178
+[2021-04-29T19:59:02.189Z]	<Chris_Kelly>	Markus: note - if there is support for splitting into 3 files, there are likely shared components acress issuing and verifying, is overlap an issue for the editors
+[2021-04-29T19:59:03.396Z]	<mprorock>	Splitting OAS by functinoality, then merging into a master API doc set is a common best practice
+[2021-04-29T19:59:27.168Z]	<Chris_Kelly>	Manu: Looks like we are moving toward splitting the OAS files
+[2021-04-29T19:59:56.942Z]	<Chris_Kelly>	... thank you to all attendees for attention and input. Next week discuss use cases and new APIs in the spec
+[2021-04-29T20:00:07.604Z]	<Juan_Caballero>	q+
+[2021-04-29T20:00:13.953Z]	<Chris_Kelly>	... specifically the Holder APIs, please bring use cases for next week to discuss
+[2021-04-29T20:00:15.616Z]	<Orie>	can we use daniels use cases?
+[2021-04-29T20:00:21.663Z]	<Orie>	for holder interactions
+[2021-04-29T20:00:24.052Z]	<Chris_Kelly>	Juan: Daniel - slides?
+[2021-04-29T20:00:29.690Z]	<mprorock>	Daniel's use cases are solid
+[2021-04-29T20:00:30.984Z]	<Chris_Kelly>	Manu: on the mailing list

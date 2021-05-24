@@ -1,0 +1,374 @@
+Thanks to Juan Caballero for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-05-20-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-05-20
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021May/0091.html
+Topics:
+  1. VC HTTP API Architecture Diagrams
+  2. Authorization Tarpit
+  3. Issuer Architecture Diagram
+  4. Verifier Architecture Diagram
+  5. Holder Architecture Diagram
+Organizer:
+  Manu Sporny
+Scribe:
+  Juan Caballero
+Present:
+  Juan Caballero, Eric Schuh, Adrian Gropper, Heather Vescent, Mike 
+  Prorock, Manu Sporny, Mike Varley, Evan Tedesco, Brian Richter, 
+  Sanuja Wickramarathne, Ted Thibodeau, Orie Steele, Dmitri 
+  Zagidulin, Phil Long
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-05-20/audio.ogg
+
+Juan Caballero is scribing.
+Manu Sporny:  Today's agenda: primary focus is use cases, 
+  including discussion of diagrams submitted by the group
+  ... 2. architecture diagram upgrade from architecture.md file 
+  in the repo
+  ... proposals for 3rd item for agenda or 1 and 2 good?
+
+Topic: VC HTTP API Architecture Diagrams
+
+Adrian Gropper:  At a high level, breakdown of issuer verifier 
+  holder allows only 3 kinds of connections
+Issuer-->holder, holder-->verifier and ver-->iss
+<heathervescent> Can someone link to Adrian's diagram?
+Current architecture diagram: 
+  https://github.com/w3c-ccg/vc-http-api/blob/main/docs/architecture.md
+Manu Sporny: Link to Adrian's diagram: 
+  https://github.com/w3c-ccg/vc-http-api/issues/186#issuecomment-841873572
+Adrian Gropper:  Issuer shouldn't have any say on which relations 
+  holder can initiate
+Manu Sporny:  This diagram of I/H/V and VDR is a classic, central 
+  to the community for years now from the VC-Data-model spec
+  ... (this = figure 1 in VC data model spec under VDR in 
+  terminology section)
+  ... working from basis of architecture diagram from 
+  architecture.md and updating it/extending it
+Manu Sporny: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+  ... there are three diagrams here that provide more detail of 
+  this, and references other APIs that are out of scope
+  ... so some amount of discussion is needed before we can 
+  "incorporate" or map which parts of those additional diagrams can 
+  be incorporated
+  ... issuer detail diagram - breaking down issuer 
+  services/components shows what the internal API is conveying 
+  between them
+  ... application logic and business logic in that app service
+  ... which cannot and should not be standardized or 
+  overspecified; this API is standardizing the links between 
+  low-level VC operations
+  ... these three boxes back here on the left are what can be 
+  standardized loosely:
+  ... the "backing database" is well outside the scope here but 
+  can be generalized and its interface assumed/specified
+  ... we are calling all these interfaces internal because they 
+  are all under the control of a single issuer
+  ... pause for questions
+Orie Steele: Technically everyone in the internet can hit them 
+  today, since there is no authorization framework for them. :)
+Adrian Gropper:  So the VC-HTTP-API is invisible to the holder? 
+  it could be any of the above?
+Manu Sporny:  Almost-- for the internal APIs, that is accurate; 
+  the complexity comes in when we talk about externally-exposed or 
+  cross-boundary APIs and VPs
+<orie> internal ~= (same trust zone), external ~= (cross trust 
+  zone)
+<orie> you need authorization for both.
+"Presentation part" of what happens in this API specification is 
+  where that stuff will happen
+Orie Steele: +1 Adrian, the subject has no interfaction with 
+  internal systemss
+Orie Steele: How apple manages your biometrics is outside of your 
+  control :)
+Adrian Gropper:  I'm not sure how this technical clarification 
+  helps answer my human rights question; not sure how to evaluate 
+  this issuer/subject relationship in terms of rights
+Manu Sporny: Issuer diagram: 
+  https://docs.google.com/drawings/d/10IDaack2vKch-CZpGBm8o1nLodyBHeeUsQ7PubIL338/edit
+Manu Sporny:  We'll return to the holder in a minute, it's a set 
+  of questions i prefer to address separately
+<agropper> access is restricted
+  ... we are not just trying to levelset on terminology and 
+  architectures in scope at high level
+Orie Steele:  +1 To adrian's concern: we should address AuthZ in 
+  both internal and external situations
+  ... internal authZ = am i talking to the right component within 
+  my systems, external = am i talking to who I think I am in 
+  someone else's security perimeter
+  ... i think keeping those two sets of requirements explicit 
+  will be helpful throughout
+Manu Sporny:  Yes, +1, we should address authZ before getting 
+  consensus that these diagrams are good to go
+  ... hasn't been discussed in depth in this group but i am 
+  proposing we return to it soon by saying for now that authZ will 
+  be ASSUMED
+For all these endpoints and therefor in all these interfaces
+<orie> I don't feel like its necessary as long as folks 
+  understand that its required for secure operation
+<orie> and currently absent
+  ... unless people think exactly what kinds of authZ need to be 
+  discussed now
+Orie Steele:  I'm fine with it being an explicit but unspecified 
+  assumption
+  ... i just want to make sure the potential for impersonation is 
+  mentioned so readers are reminded it has to be addressed 
+  separately/before working on these API details
+Juan Caballero: Manu: +1
+  ... objections?
+Adrian Gropper:  I think we need to talk about the narrow waist 
+  again
+
+Topic: Authorization Tarpit
+
+  ... because it is a blocker to aligning with SDS work, 
+  authentication/SIOP work, the WACI-PEx/credential-exchange work
+  ... it is a cross-cutting issue and foregrounding it now will 
+  be a stitch in time
+  ... by "the narrow waist" i mean whether the messaging or the 
+  transport is the narrow waist
+Heather Vescent:  I am wondering if Alan Karp's use case could 
+  flesh this out
+<orie> I don't think "authorization standards innovation" should 
+  be in scope for this work item.
+  ... i am worried an abstract discussion in advance of authZ in 
+  general would slow us down, versus organically wortking through 
+  it in the use case considerations
+Manu Sporny:  I agree, there is lots of authZ in the use cases 
+  that are looking central
+<heathervescent> That all sounds good to me.
+Orie Steele:  I am worried it won't be succesful without a little 
+  agreement in advance
+  ... to me, the divide is between people who want to discuss and 
+  implement future authZ schemes and people who need authZ today
+  ... i do not think ZCaps or GNAP are appropriate for this scope 
+  and OAuth is because we need to descope draft specs and future 
+  implementations in favor of something already available, 
+  standardized, and implemented today
+Mike Prorock: +1 Orie - we know that at least OAuth will be in 
+  play
+Adrian Gropper: -1 OAuth
+Manu Sporny:  I don't see that as so controversial, we could run 
+  this as a proposal soon
+  ... using what's built today as one option among many should 
+  make sense for writing a spec today, but with strong statement on 
+  maintaining possibility of specs coming soon
+<agropper> OAuth has failed in the human right arena
+  ... would anyone object?
+<agropper> I would
+Orie Steele: -1 To the only usable standard for authorization is 
+  a great way to keep us from getting a useable api... if your goal 
+  is to be authorization philosphers I suggest we hold the door 
+  open for everything.
+<orie> an maybe we can change the work item title to "considering 
+  authorization drafts that have few implementations"
+Mike Prorock:  Strong +1, many existing implementations are 
+  already using OAuth tody
+Adrian Gropper:  I have been trying for a decade to profile OAuth 
+  and UMA to work in an SSI way, i do not think it is possible, i 
+  think OAuth is dead and its authors have moved on and want to 
+  work with this community on future specs
+That move forward together
+<orie> are we doing SSI? I thought we were doing a VC HTTP 
+  API.... seems like there is no consensus on what we are doing.
+Dmitri Zagidulin: ^ +1
+Mike Prorock:  My company and many others are using OAuth today 
+  to handle VCs, not because it's optimal or the best aligned with 
+  SSI long-term goals, but because it gets enterprises consuming 
+  VCs
+<orie> expect to keep getting derailed by authz until we define 
+  scope better.
+Manu Sporny:  OK i think there is a manageable amount of 
+  disagreement here but not on the core issues, let's get back to 
+  diagram alignment
+
+Topic: Issuer Architecture Diagram
+
+Juan Caballero:  On the contrary i'm grateful for this starting 
+  point
+Orie Steele:  Might be semantics, but I'm wondering if i 
+  understand correctly the issuer website caption in this diagram
+  ... would "web service" be more precise than "Website"?
+  ... are holders only interacting with websites or should it be 
+  more generalized to HTTP-based in general?
+<agropper> Is anyone else having trouble getting into the doc?
+Manu Sporny:  I think you're right that langauge could use a 
+  little work. proposals?
+<mike_varley> "web service" ?
+Orie Steele:  Unfortunately we already used "issuer service"
+<mprorock> "web gateway" "web service" "web service gateway"
+  ... ^^
+Mrprorock: i think "gateway" would help as a term here, because 
+  it can include a website and/or system-to-system REST-style APIs
+Orie Steele: +1 To moving on
+<dmitriz> "service" might be clearer
+<dmitriz> gateway may confuse people - into asking do they /have/ 
+  to use a gateway
+
+Topic: Verifier Architecture Diagram
+
+Manu Sporny: Verifier Detail: 
+  https://docs.google.com/drawings/d/19wJSXTVabVpYJIv1b2hXPPpJ2mPlDkhyYnHylQFwE0Q/edit
+^^ Privvies?
+<mprorock> fair point dmitriz - we have an opposite problem where 
+  our customers ask why isnt there a gateway on the diagram
+<orie> access denided ^
+<mprorock> "denided" not just denied
+Dmitri Zagidulin: @Mprorock - hahahah I see :) that makes sense 
+  too
+Manu Sporny:  Turning to verifier detail
+  ... most verifier perimeters would include issuer components 
+  from previous diagram, but doesnt need to be explicit here 
+  because it will look like a requirement
+  ... again, an app service box is an umbrella term for all kinds 
+  of business logic and validation
+Orie Steele:  I think the same nits are worth picking here, but 
+  the structure is great
+  ... one question i see in various VC exch contexts
+  ... is this: does the verifier have PKI requirements? does the 
+  verifier need to do anything more than *just* verifying a VC as 
+  per the spec and our API thus far?
+  ... many proposals I've seen require verifiers to have key 
+  material of their own
+  ... and impose requirements on verifiers that should be 
+  considered
+Manu Sporny:  Good, this is a topic worth discussing
+  ... your point about cryptographically-secured versus insecure 
+  challenges
+  ... are those challenges local to the application service, or 
+  should it be accessible to the verifier service?
+<dmitriz> ok so, step one, write down the challenge on a sticky 
+  note, stick to server rack. step two, point camera, apply machine 
+  learning to recognize the handwriting... piece of cake.
+  ... are challenges passed around between components before 
+  and/or after external interactions?
+  ... shoudl this API have opinions about the role of challenges?
+Orie Steele: I opened 
+  https://github.com/w3c-ccg/vc-http-api/issues/188
+<orie> Noting that a verifier who has keys, can also handle 
+  encryption
+Adrian Gropper:  Maintaining state and passing challenges are 
+  very much authZ questions that i think gnap specifies/has 
+  opinions about
+Manu Sporny:  Let's turn back to this diagram
+  ... other than the analogous language tweaks to the last one, 
+  what other changes does the group suggest?
+Dmitri Zagidulin: +1 To leaving out of diagram
+  ... should the API assume or specify a verifier DB?
+Orie Steele:  I think we should specify retention
+Of record/session/logging/etc
+  ... and that might bring in a DB assumption
+Orie Steele: Huge -1 to ambigious naming :)
+  ... Second question: is req creds and receive creds a typo or a 
+  deliberately odd way of expressing VP?
+<orie> i object to the diagram without this ambiguity resolved
+Manu Sporny:  I think this dates back to an earlier evolution of 
+  this API, when "presentation" was still underspecified and vague
+<dmitriz> agree with Orie. the spec language can be different 
+  from marketing language
+  ... and the did-core group went back and forth various times on 
+  "send creds" and "send presentation"
+<phil.l> I think everyone today is expecting the presentation is 
+  being sent.
+  ... but i agree that it really IS a VP we're talking about here
+Juan Caballero:  I'm with Phil.L
+<dmitriz> manu - think of it as an education opportunity! if 
+  somebody asks "huh what's a presentation?", you can be like WELL, 
+  let me tell you ALL ABOUT IT
+Mike Varley: +1 To "presentation"
+  ... i think there's a lot more consensus behind VPs these days
+Adrian Gropper:  Where exactly is VP in the scope of this API/
+?
+Manu Sporny:  I think it would be redundant to too many other 
+  groups to specify VPs
+  ... but we need to discuss it a bit
+Orie Steele:  We are specifying it at least a little just by 
+  talking about it; i think it is in scope and useful to have 
+  opinions about VP
+  ...specifics that this API assumes/requires
+<orie> noting that DIF PE supports other protocols
+Adrian Gropper:  May be off topic but where are audit 
+  requirements in this API's design?
+<orie> whereas vp request spec is currently only implemented in 
+  CHAPI.
+Manu Sporny:  That sounds like a good github issue
+<orie> we have an implementation of it in trace interop
+<orie> but are likely going to replace it
+<orie> eventually
+<orie> especially give the challenges with interop with the other 
+  protocols that are created by not using DIF PE
+<phil.l> many issuers are interested in the use of the 
+  credentials they create and holders then package and send as 
+  presentation.This is understandable, and at the same time 
+  problematic for privacy. A point to consider in the audit 
+  question.
+
+Topic: Holder Architecture Diagram
+
+Manu Sporny: Holder diagram is here: 
+  https://docs.google.com/drawings/d/1NhozgPLPWEB8Hyun8MfUBUAudrTIoQ-ONesnq8MncrM/edit
+Manu Sporny:  Ok if no more requests for changes moving on to 
+  third detail diagram to incorporate
+<dmitriz> I'm curious - has anyone ever encountered an API (or 
+  data model) spec where audit issues were in scope?
+Manu Sporny:  This holder detail might be the best place to 
+  address the rights concerns agropper mentioned earlier
+<orie> yikes to the scoping summary
+Orie Steele: -1 To that
+  ... lots of the "digital wallet" component here is out of scope 
+  but has lots of the consent and individual intervention 
+  capabilities
+Orie Steele:  I'm not sure you meant what you just said
+  ... about the univ wallet
+  ... i'd rather back up a little and address scope
+  ... If a use a wallet to manage keys
+  ... i need an API to reliably do these cryptographic exchanges 
+  with other parties
+  ... and a standardized API helps you trust the client's 
+  management of keys and secrets
+  ... i.e., it helps strengthen the gap between trusting client 
+  to hold a session/auth token and trusting client to manage a 
+  wallet's keys
+  ... calling it "create VP" and "derive proof" is great, but the 
+  arrows going to other parties (iss and ver) is a little confusing 
+  because former is internal and latter are external
+Adrian Gropper:  I think i'm going to repeat Orie, hopefully, but 
+  my objection to this diagram is that it combines credential 
+  storage and authZ mechanism/control of those credentials
+  ... whereas separating those two concerns helps privacy 
+  engineering
+  ... even if the two are separated as two boxes within the 
+  holder boundary that would help me express them as distinct
+<phil.l> There are use cases where the reason someone would do 
+  the presentation creation is external is that they are doing so 
+  from cloud-based client. This is an equity issue if a cloud 
+  service can't be used. I recognize the security & privacy 
+  implications...
+  ... speaking to KMS and EDV and AuthZ rather than 
+  over-abstracting or over-simplifying them
+<orie> if it helps I can speak to Universal Wallet Interop spec, 
+  and how I see it supporting the vc http api not replacing it
+Manu Sporny:  Maybe "holder DB"/EDV/storage mechanism should be a 
+  separate box again
+Juan Caballero: By_caballero: ^ +1
+Manu Sporny:  Other work needed here?
+<orie> the diagram does make it clear that holders have internal 
+  and external apis
+<orie> so at least we got that>
+<orie> ?
+We're still recording
+Btw
+<heathervescent> Would really love to see a variety of main ppl 
+  present in the main call.
+Thanks all
+<orie> thanks Juan

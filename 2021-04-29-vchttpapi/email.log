@@ -1,0 +1,395 @@
+Thanks to chris_kelly for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-04-29-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-04-29
+
+Agenda:
+  undefined
+Topics:
+  1. GNAP and Relationship to VC HTTP API
+  2. HTTP APIs for CredX
+  3. Use Case Updates
+Resolutions:
+  1. Use the use case template in Juan's Google Doc and Google 
+    Docs to collect use cases.
+Organizer:
+  Heather Vescent and Wayne Chang and Kim Hamilton Duffy
+Scribe:
+  chris_kelly
+Present:
+  Mike Prorock, Orie Steele, Dave Longley, Mahmoud Alkhraishi, Ted 
+  Thibodeau, Aaron Coburn, Anil John, Justin Richer, Heather 
+  Vescent, Manu Sporny, Markus Sabadello, Dmitri Zagidulin, David 
+  Chadwick, Daniel Buchner, Juan Caballero, Mike Schwartz, Ted 
+  O'Connor, Phil Long, Daniel Hardman
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-04-29/audio.ogg
+
+chris_kelly is scribing.
+<orie> /me just ...
+Manu Sporny: Welcoming attendees
+  ... IPR disclaimer for non-CCG members
+Manu Sporny: Today's agenda is Daniel Hardman's presentation from 
+  the list 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Apr/0193.html 
+  and proposals for this work item
+Manu Sporny:  HTTP APIs for CredX as mailed to list
+
+Topic: GNAP and Relationship to VC HTTP API
+
+Justin Richer:  IADF Draft protocol, openID 0Auth proposal
+https://datatracker.ietf.org/wg/gnap/documents/
+Justin Richer: Gnap: 
+  https://www.ietf.org/archive/id/draft-ietf-gnap-core-protocol-05.html
+Justin Richer:  GNAP new work in IATF
+<orie> I would say GNAP is a great fit for holder interactions, 
+  but does not match map cleanly to "issuer" or "verifier" 
+  functionality in the current vc http api... though I could see 
+  the whole thing getting replaced by GNAP with enough effort.
+  ... expanding user inteaction possibilities, no longer assuming 
+  user is in browser
+  ... good fit with GNAP? signifcant overlap seen
+  ... intention to attend further meetings if possible. IATF 
+  meeting next week, open invitation to channel to attend
+  ... newest GNAP spec, attention to section 4
+<mike_varley> GNAP is a re-engineering of patterns in OAuth and 
+  OIDC to enable dynamic and flexible user-to-server interactions 
+  and authorizations (enabling bring your own wallet and mobile 
+  interactions etc...) and overlaps on some of the objectives of 
+  this HTTP API in a broader sense (but focused on authorization)
+  ...so we really want to know, does the API fit as an extension 
+  of the protocol, and if so, how, what changes are needed etc. 
+  Call for feedback, suggestions. we encourage as many people as 
+  possible to track both conversations and keep them in line.
+
+Topic: HTTP APIs for CredX
+
+Daniel Buchner:  HTTP APIs for Credential exchange 
+  ... dovetailing with GNAP dsiscussed previously
+  ... Issue 50 on VC HTTP API
+  ... use cases under discussion include Didcomm, Daniel wrote a 
+  Medium article about this
+  ... framing credential exchange as HTTP problem is a false 
+  approach, and I would rather we expand the use cases beyond ones 
+  where HTTP is a bottleneck
+<heathervescent> LOL
+  ... Korean use case using verifiable credentials to monitor 
+  clocking in/out
+  ... Mobile device connecting to webserver to authenticate, 
+  concentration of operations in narrow time windows
+  ... this lead to a suggestion of having to massively scale 
+  server capabilities, prompting rethink of the authentication 
+  infrastructure
+<juan_caballero> wow direct NFC proofing
+Orie Steele: +1 To direct p2p support without the need for an 
+  http mediator.
+Orie Steele: :)
+  ... using NFC would allow us to avoid server connections 
+  altogether, making perfect horizontal scaleability if it can be 
+  enabled.
+  ... use case #2, the Uber example, taxi driver wisdom
+Orie Steele: 
+  https://github.com/transmute-industries/cbor-ld-web-transports 
+  (NFC and QR Code transports for VPs / VCs)
+Mike Prorock: +1 To looking at schemas and structures in multiple 
+  formats and not limiting to http only
+  ... plot twist: Uber driver has covid-19
+<juan_caballero> (asking uber drivers for their medical records 
+  is not currently legal or ethical)
+  ... idea = ordinary people as verifiers, horizontal 
+  verifications
+<juan_caballero> (but maybe "prove you work for uber" or "prove 
+  you can legally drive a car" would be simpler examples of the 
+  same use cases sidestepping health record privacy and ethics)
+  ... using verifiable identity to negotiate personal exchanges, 
+  reciprocity, not such a good fit with HTTP approaches
+  ... use case 3 Italian Visa
+  ... Delayed responses due to time difference, human processes
+  ... HTTP API could be a possible solution, but the Swiss 
+  government has no such infrastructure
+Orie Steele: Most folks don't run webservers on their phone 
+  voluntarily :)
+  ... Swiss gov could sidestep HTTP to solve the issue
+  ... use case 4
+  ... digital cash -  FB Libra concerns triggered wave of 
+  interest in CBDCs
+  ... current global government projects investigating digital 
+  cash infrastructure, esp offline solutions
+  ... Bahamas mention, Sand Dollar, designed to distribute 
+  disaster aid relief, to remove internet connection requirement
+  ... VCs for KYC & AML
+  ... Gov requirements indicate that HTTP is not applicable in 
+  all cases, they need to be more generic and high level
+  ... Specificites of HTTP will keep edge cases like these on the 
+  margins, sucking up all the oxygen, funding, and momentum for 
+  institutional cases relying on client/server architectures
+<tallted> big +1000
+  ... I want us to broaden the design spec, describe something 
+  HTTP specific as one implementation but not the only one
+  ... describe problems as "payloads" without fixing everything 
+  to web-based implementation details
+<orie> in a world where vc-http-api is just a single endpoint for 
+  receiving post messages.
+  ... i also think we need to keep the issue of transport 
+  security separate, so that different implementations and use 
+  cases can apply security above or below this layer rather than 
+  having one security model fixed by assumptions we make now
+  ... 3 alternative paths for standardization
+<juan_caballero> red is plan A, yellow and green are two 
+  acceptable plans B?
+<orie> Thanks Daniel!
+<mprorock> thank you!
+<evan_tedesco> I think green is plan a
+  ... existing transport security - new standard, existing  
+  transport security - coalescing stnadard for credx
+  ... standard for transport-agnostic encryption envelope
+Manu Sporny:  We don't want to pitch HTTP as the only solution
+  ... can we look at the issue wholistically instead of narrowing 
+  the approach
+Justin Richer:  I understand the desire for a broader more 
+  abstracted system that is more widely applicable, but I hold it 
+  to be a fiction. The last time we tried for a giant abstract 
+  system was SOAP
+Orie Steele: I happen to have liked working with SOAP : .
+  ... SOAP was a platform-agnostic solution
+<juan_caballero> ^Some of my best friends are SOAP
+<anil_john> Me too! WSDLs, Schemas' Oh My!
+<mprorock> sshhhh orie, don't tell people that (seriously, why 
+  would you want type safety and tooling)
+  ... these don't take advantage of any native aspects of the 
+  tech being used, writing to an assume common abstraction layer
+<dlongley> +1000 to Justin
+  ... building an abstraction layer on top of HTTP that 
+  eventually rely on quirks or structure of the underlying tech, 
+  even if unintentional
+  ... note, this is not a request for niche counter-examples
+<tobias_looker> Yeap +1 to justin
+  ...´one appraoch that has been seen to work is to take the 
+  concepts from a concrete system which depends on a specific set 
+  of transpot, security layers etc and translating it, eg. TLS 
+  moving to somehting TLS-like, abstraction not being a 
+  one-size-fits-all solution
+<justin_r> apologies for being longwinded, this is something that 
+  I have cared about and talked about a LOT in my career....
+Markus Sabadello:  Ongoing discussion at VC HTTP 
+Orie Steele:  I'm sorry that you have stockholm syndrome from 
+  SOAP [scribe assist by Justin Richer]
+  ... Referring back to issue 50, question of scope, internal vs 
+  external
+Justin Richer:  In fairness I only used SOAP over HTTP :) [scribe 
+  assist by Orie Steele]
+Daniel Buchner:  HTTP is ideal for an internal insfrastructure, 
+  but there is little pressure to standardize there. I am not even 
+  certain the distinction holds very well.
+Orie Steele:  That's exactly my point! That's all anyone ever 
+  did! All the abstraction was smoke and mirrors. [scribe assist by 
+  Justin Richer]
+  ... abstraction would enable multiple platforms like bluetooth, 
+  and I think we need to be wary of sacrificing privacy of 
+  individuals for the conveneince of organizations by favoring 
+  their architectures in our design process
+Mike Schwartz:  Internal use case, thinking about the data 
+  structures rather than the protocol, eg GRPC
+<orie> there is also DIDComm over grpc
+<mprorock> @orie yes, didcomm keeps looking better and better to 
+  me
+Orie Steele: https://github.com/trinsic-id/didcomm-v2
+Dmitri Zagidulin:  +1 To Daniels points, also Justin, going too 
+  far with an abstract approach has been unsuccessful in the past 
+  but let's not assume things liek  QR code and bluetooth 
+  approaches cannot work
+  ... more of a 'design stance'
+Orie Steele: All didcomm needs is an abstract data model :)
+<orie> /jk
+Dave Longley:  There are a variety of protocols available, 
+  constant uphill battle if we move too far from HTTP approaches, 
+  these edge cases may only get addressed if the whole idea moves 
+  forwad on an HTTP approach
+Orie Steele:  Only if it has deterministic normative translation 
+  rules ;) [scribe assist by Justin Richer]
+  ... if these use cases are important then they will be adressed 
+  in time
+Justin Richer:  We can use CDDL! [scribe assist by Orie Steele]
+Orie Steele:  Fine w/me [scribe assist by Justin Richer]
+Ted O'Connor:  This is a recurring argument
+Justin Richer: -1 To TallTed, this isn't what I was saying at all 
+  🤷‍♀️
+  ... significant achievements have been made, the generic design 
+  does not need to be a single abstraction layer to fit all use 
+  cases
+  ...HTTP and other protocols can play nice, it would be overly 
+  simple to narrow the choice to only HTTP
+Daniel Buchner: Arguing for two abstractions, security and 
+  transport
+  ... payloads also need to be addressed as an individual problem
+  ... concrete use cases have been given as examples
+<orie> part of why the universal wallet interop spec calls 
+  "issue" / "present" abstract is specifically to allow for 
+  optimization at the transport / protocol layer.
+  ... SSI has a goal of helping people who are disenfranchised
+Juan Caballero: +1
+Mike Prorock: +1 Daniel - we are seeing this with vaccination 
+  credentials right now
+Phil Long: +1 Daniel
+<juan_caballero> i see both sides, hopefully there's a middle 
+  ground
+<juan_caballero> +100 chris is a CHAMP
+  ... these issues should not just be addressed where lucrative 
+  on the assumption that the way they are being address will 
+  automatically benefit fringe cases collaterally
+<orie> I can attest that crying doesn't to nearly as much as you 
+  might wish it did.
+
+Topic: Use Case Updates
+
+Manu Sporny: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+Manu Sporny:  Juan can you update us on use case news?
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/180
+Juan Caballero:  Posted google doc to incorrect repo, oops, now 
+  on this repo, 2 volunteers from legendary requirments stepped 
+  forward to assist editorially with use-cases and other supporting 
+  documentation.
+  ... google doc is getting a lot of chatter, happy to move to 
+  markdown/respec in the repo instead of gdoc, will wait for the 
+  green light from the current editors to move the work over
+Manu Sporny:  That may happen in parallel, we don't want to 
+  discourage people contributing
+  ... task of the editors is to organise after the fact
+  ... screen share -  VC HTTP API Use Cases
+  ... showing a GH issue template for a use case submission, 
+  thanks to Ted for work on this
+Heather Vescent: +1 Manu
+  ... this will enable a threaded convo about them
+  ... presented for your consideration
+  ... we probably do need a repo for use cases, feedbakc 
+  appreciated on people's ideas for keeping that seperate
+<juan_caballero> 3 separate repos or just 3 separate files in the 
+  repo to simplify gitflow and merge conflicts?
+Heather Vescent:  Likes use case template, question who are 
+  providing those use cases
+<manu_sporny> Agree, that's the downside -- so perhaps just 
+  Google Docs.
+  ... Git hub users are people eg familiar with writing 
+  documentation
+  ... this may be a barrier to entry / self-selecting out useful 
+  examples
+Justin Richer:  Use cases collected from a number of groups
+  ... best used to guide the beginning phases of work rather than 
+  shape output
+  ... suggestion for wiki structure or similar for managing this 
+  collection of data
+<charles_edebiri> I agree with Heather. I don't find Github user 
+  friendly.
+<justin_r> FWIW I disagree with Heather, I don't find Google Docs 
+  friendly
+  ... as opposed to an issue tracker, important to also ensure 
+  people are using the same terms of ref
+<heathervescent> ROTFL
+<orie> well, as long as the people doing the work can use the 
+  tool.
+<justin_r> there is no perfect tool, the winning move is to have 
+  a dedicated curator that collects them from people "outside" the 
+  tool
+<orie> like an "editor" ?
+<justin_r> it's more important that everything is readable, since 
+  writing can be overcome with help
+
+PROPOSAL:  Use the use case template in Juan's Google Doc and 
+  Google Docs to collect use cases.
+
+Manu Sporny:  Google doc appears to be working well for now, does 
+  anyone object to continuing using that for now, call for 
+  submissions from the group if people have objections/concrete 
+  suggestions
+Juan Caballero: +1
+Heather Vescent: +1
+Mike Prorock: +1
+Manu Sporny: +1
+Phil Long: +1
+Ted Thibodeau: +1
+Markus Sabadello: +1
+Mahmoud Alkhraishi: +1
+Daniel Hardman: +1
+Dmitri Zagidulin: +1
+Orie Steele: +1
+David Chadwick: +1
+Aaron Coburn: +1
+
+RESOLUTION: Use the use case template in Juan's Google Doc and 
+  Google Docs to collect use cases.
+
+Manu Sporny:  Google doc is established as primary input 
+  mechanism, mailed-in submissions can be added manually
+  ... almost got agreeement on VC HTTP API in one respec spec, 
+  braking into modular components. Concerns?
+  ... issue from last meeting, deferred discussion due to 
+  Adrian's absence
+Juan Caballero:  3Vs1 issue tied up with if they have delegated 
+  responsibility
+  ... noted that people have a lot of feeling about holders, this 
+  is a big piece of work
+Manu Sporny:  Last time we discussed this, the 3 diff specs did 
+  not seemt o resonate, maybe we should ask for input now
+  ... most popular was the proposal of all in 1 solution
+  ... we can also spplit the spec into 3 and ensure that each 3 
+  gets a different editor and still pull them into one spec
+Manu Sporny: POLL: Create 3 VC HTTP API ReSpec specifications 
+  (e.g., Issuing, Verification, Presentation) in addition to the 
+  existing OAS file.
+Orie Steele: -1
+Juan Caballero: -1
+Manu Sporny: -1
+Dmitri Zagidulin: +1
+<dmitriz> er wait
+Juan Caballero: So many work items as is :D
+<dmitriz> respec..
+<tallted> -0.9
+Dmitri Zagidulin: +1
+Dave Longley: -1
+Dmitri Zagidulin: Dammit. I meant -1
+Markus Sabadello: -1
+Mike Prorock: -1
+<juan_caballero> dmitri get it together man
+Juan Caballero: :D
+Mahmoud Alkhraishi: -1
+Phil Long: -1
+David Chadwick: +1
+  ... Poll do we create 3 differenc respec specs? Does not seem 
+  popular
+Heather Vescent: -1
+<orie> but its not 100% .... does that mean we can't resolve it?
+<tobias_looker> if we add dmitrizs votes up -1 +1 -1 there isnt a 
+  double vote :)
+  ... fairly clear 3 diff spec is an unpopular idea, probly 
+  converging on one spec, possibly w 3 diff editors for each 
+  section
+  ... hopefully Adrian is present next week, proposal will run 
+  regardless next week
+<orie> I am a fan of file splitting for OAS
+<manu> yes, +1 for splitting OAS files
+<manu> maybe we just split all of these things into pieces.
+Orie Steele: Pleases review: 
+  https://github.com/w3c-ccg/vc-http-api/pull/178
+Markus Sabadello:  Note - if there is support for splitting into 
+  3 files, there are likely shared components acress issuing and 
+  verifying, is overlap an issue for the editors
+<mprorock> Splitting OAS by functinoality, then merging into a 
+  master API doc set is a common best practice
+Manu Sporny:  Looks like we are moving toward splitting the OAS 
+  files
+  ... thank you to all attendees for attention and input. Next 
+  week discuss use cases and new APIs in the spec
+  ... specifically the Holder APIs, please bring use cases for 
+  next week to discuss
+<orie> can we use daniels use cases?
+<orie> for holder interactions
+Juan Caballero:  Daniel - slides?
+<mprorock> Daniel's use cases are solid
+Manu Sporny:  On the mailing list

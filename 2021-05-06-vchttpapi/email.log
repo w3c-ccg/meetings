@@ -1,0 +1,560 @@
+Thanks to Charles E. Lehner for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-05-06-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-05-06
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021May/0030.html
+Topics:
+  1. Specification Structure Proposals
+  2. Use Cases
+Resolutions:
+  1. Create 1 ReSpec specification based on the OAS files, in 
+    addition to separating the existing OAS files into modular 
+    components.
+Organizer:
+  Manu Sporny
+Scribe:
+  Charles E. Lehner
+Present:
+  Orie Steele, Charles E. Lehner, Manu Sporny, Ted Thibodeau, 
+  Mahmoud Alkhraishi, Mike Prorock, Aaron Coburn, Adrian Gropper, 
+  Joe Andrieu, Kyle Den Hartog, Dave Longley, Henry Story, Markus 
+  Sabadello, Juan Caballero
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-05-06/audio.ogg
+
+<cel> scribe+
+<juan_caballero_(dif/spherity)> next week i can scribe!
+Charles E. Lehner is scribing.
+<juan_caballero_(dif/spherity)> i'm not at a good desk but at 
+  least i'm not driving this week
+Manu Sporny:  Welcome
+<juan_caballero_(dif/spherity)> i can screenshare the google doc 
+  of use cases, or joe or eric can, all good
+Manu Sporny:  ... This ian intellectually property protected 
+  call.
+Manu Sporny:  Everything you put in to the group you are okay 
+  with us using.
+  ... If you haven't done the release, please refrain from 
+  contributing anything substantive.
+  ... We use the queue. You can q+ to add yourself to the queue.
+Manu Sporny:  We are trying to establish a broader understanding 
+  of the VC HTTP API work.
+  ... Trying to focus on concrete things we can document, to get 
+  everyone on the same page on what the API is about.
+  ... There has been fruitful discussion on mailing list - we 
+  will not rehash.
+  ... We're here today to look at concrete proposals people have 
+  put forwards - concrete use cases we can analyze.
+  ... Trying to move faster to document these things and share 
+  knowledge.
+  ... Questions, concerns?
+
+Topic: Specification Structure Proposals
+
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-http-api/wiki/Task-Force-Proposals
+Manu Sporny:  All the proposals that anyone has ever raised ^ so 
+  we can track everything.
+  ... There have been new issues raised around some of these 
+  proposals.
+  ... 3 Proposals on table: 1 is to have three separate 
+  specifications.
+  ... That one got a lot of -1s on the last call.
+Adrian Gropper:  ... I kindof object to the introduction of the 
+  current status quo into the process... I can say why...
+Manu Sporny: DRAFT PROPOSAL: Create a VC HTTP API specification 
+  in ReSpec format so that we can document and iterate on the 
+  current client-server HTTP protocol for the purposes of issuing a 
+  Verifiable Credential.
+Adrian Gropper:  In the conversation we had in the thread, there 
+  was a desire to parallelize as much as possible - not to block on 
+  the use cases document while we start to work on a potential 
+  document specification or whatever.
+  ... By not introducing the current client-server framework, we 
+  can unblock, and introduce this parallelism, by not making 
+  assumptions. That is my proposal
+Manu Sporny:  Can you put forward a concrete proposal?
+Adrian Gropper:  Yes
+Adrian Gropper: DRAFT PROPOSAL: Create a VC HTTP API 
+  specification for HTTP protocol for the purposes of issuing a 
+  Verifiable Credential.
+Orie Steele:  While I agree with Adrian's intention... If the 
+  goal is to talk about scope for moving credentials between 
+  issuers, holders, and verifiers in general, then I do think it is 
+  a mistake to start with a client-server architecture.
+  ... However, this spec is ... client-server, and I find it ... 
+  a mistake to ... go back to the drawing board.
+<tallted_//_ted_thibodeau_(he/him)_(openlink_softwa> "We've all" 
+  is an overstatement, relative to current audience.
+  ... I'm willing to work on those issues, but asking to expand 
+  to non-HTTP protocols will result in a -1 from myself.
+  ...
+Jim_StClair: ... I support Adrian with his use case, Health care
+<orie> TallTed, folks on this call have been working on this item 
+  for a long time... I recognize there are new folks here... but we 
+  starting from scratch seems very dismissive of work that has 
+  already happened... we need to find some middle ground that isn't 
+  back to a blank slate.
+Mike Prorock:  Clarification: create a vc-http-api specification 
+  ... for purposes of issuing a verifiable credential... I'm just 
+  not sure the intent. It seems limited just to issuing. Seems odd 
+  to me compared to some of the other proposals we have saying we 
+  want a ReSpec specification for HTTP around verifiable 
+  credentials.
+  ... I just need some clarity on why it says issuing a 
+  credential.
+Manu Sporny:  The suggestion is to start with issuing and then 
+  expand scope later on when it gets obvious.
+  ... Just to start documenting the issuer API
+Manu Sporny: DRAFT PROPOSAL: Create a VC HTTP API specification 
+  for HTTP protocol for the purposes of issuing a Verifiable 
+  Credential (do not use the OAS file as inputs to the 
+  specification).
+Mike Prorock:  That's helpful.
+<orie> TallTed I agree with your asssertion that this has not 
+  been handled in the open correctly though.
+Adrian Gropper:  I'm concerned ... to move to delegation. Also 
+  the conversation of the "narrow waist" of the API stack in 
+  general, that we're working on at W3C and DIF - whether it 
+  represents a messaging protocol like DIDComm, or an authorization 
+  protocol, or both.
+  ... I took ReSpec out of my proposal ... just didn't 
+  understand.
+Manu Sporny:  I've rewritten your proposal... Your proposal says 
+  we would not use the OS files... that's what you intend?
+Adrian Gropper:  I didn't mention it one way or the other
+Adrian Gropper:  Sure
+
+PROPOSAL:  Create a VC HTTP API specification for HTTP protocol 
+  for the purposes of issuing a Verifiable Credential (do not use 
+  the OAS file as inputs to the specification).
+
+Manu Sporny: -1
+Mike Prorock: -1
+<juan_caballero_(dif/spherity)> the OAS (openAPI/Swagger doc) 
+  files are... the last year's work?
+Orie Steele: -1
+Mahmoud Alkhraishi: -1
+S/OS/OAS/
+Adrian Gropper: +1
+Charles E. Lehner: +0
+Joe Andrieu: -1
+Kyle Den Hartog: -1
+Manu Sporny:  Adrian, I hope you'll see that proposal won't pass. 
+  Do you want to run your other proposal, assuming we take the OAS 
+  files, use them as input into the specification?
+Adrian Gropper:  No, I haven't looked at what that would imply. I 
+  would then move to wanting to work on the use cases first, before 
+  working on the document.
+Manu Sporny:  Just a note: those OAS files have existed for 15 
+  months in the public. The group working on them, for while. That 
+  you haven't read them is unfortunate, but we can't allow not 
+  keeping up with the work to stop making decisions.
+<orie> well.... in fairness to folks, those files are the only 
+  thing you can read.... about the work item.
+  ... I don't think that's a reason to stop all proposals on the 
+  specification.
+  ... There has been discussion on this on the Mailing List.
+<orie> we don't have anything except those files and the 
+  readme...really.
+  ... We have two proposals: one is to do ...
+  ... The other is yours that says just start with Issuer.
+  ... Which would you prefer to run?
+Adrian Gropper:  I feel like I've made my case in the thread; I'm 
+  not sure it serves for me to revisit the issues discussed in the 
+  thread.
+  ... No reason for me to repeat what was discussed
+Manu Sporny: The discussion around this item is here: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021May/0000.html
+Mike Prorock: +1 Orie - that is why i would like to get on to 
+  proposal's 4 and 5 on the wiki - e.g. let us get a respec doc in 
+  place, and break the OAS into functional components
+Manu Sporny:  Do you have a preference on which one for us to 
+  run?
+Adrian Gropper:  I have an objection to your language on my 
+  participation style, and being railroaded...
+Adrian Gropper:  If need to move to W3C, steering committee...
+Manu Sporny:  Does anyone think we are not considering agropper's 
+  input?
+Ted Thibodeau:  Not specifically about agropper's input, but 
+  feeling to me like a broken piece of process.
+<orie> the work items has a commit history....
+<orie> "we all" refers to contributors
+  ... You referred to some files out for 15 months... I haven't 
+  looked at them. Some people on this call referred to "we all" or 
+  "all of us" - doesn't include me, Adrian, don't know how many 
+  others.
+<orie> in that history.
+  ... Commit history is immaterial. CCG is a branch of W3C 
+  efforts. yes, anyone can create a CG, but these are open and 
+  public. Work done on SVIP is not open/public, not part of CCG, to 
+  my knowledge.
+<mprorock> why is commit history irrelevant if it is in the open 
+  and as a ccg work item repo
+Manu Sporny:  It has, to be clear. Work item created last 
+  January(?). Has been a work item for a year/
+Ted Thibodeau:  Well, part my fault for being sick and out of 
+  commission for ? months
+<mahmoud_alkhraishi> I feel like we're losing the thread of what 
+  we're trying to do here
+<mahmoud_alkhraishi> we're trying to make it more accessible
+<mahmoud_alkhraishi> and explain what has been done
+Manu Sporny:  From a process perspective, the work item has 
+  existed. We understand people are new. We are trying to document 
+  stuff so people can understand.
+  ... Primary thing trying to do is to document - start writing 
+  this stuff down.
+Ted Thibodeau:  What is it that is trying to be written down?
+  ... The way it has been discussed in meetings I've been in, 
+  have not been limited to HTTP, API, and VCs. I have no hook on 
+  which to hang anything to consider it.
+Orie Steele:  I want to address the criticism directly. TallTed 
+  and Adrian are both correct that a GitHub history and group of 
+  contributors is a form of history that is not accessible to 
+  everyone.
+  ... Heather has done a great job trying to address this. This 
+  work item predates...
+  ... I think what Ted and Adrian are saying is that there is a 
+  style of contribution this API could have enjoyed, which would 
+  not have been git-oriented.
+  ... We welcome that kind of contribution... We're having it 
+  right now, a conversation, not async over pull requests.
+  ... We need to create space for non-git-oriented contribution.
+  ... But need to acknowledge the work has been. A failing, but 
+  it is the case.
+Adrian Gropper:  Unfriendly tone is unnecessary - I'm not 
+  blocking the learnings and work - Just asking us to zero-base our 
+  documentation going forward.
+<evan_tedesco> I didn't take it as unfriendly.  Orie just talks 
+  like that haha.
+  ... It is unfair as a process matter to interpret what I'm 
+  saying in that way. I'm doing the best I can to not block the 
+  process.
+Mprocock: My perspective may be unique: I jumped in and VC-HTTP 
+  was already a thing. I had a need to exchange credentials, issue 
+  and verify them over a REST Web service.
+  ... When I first looked at it, all that existed was an API spec 
+  with a swagger interface and no ...
+  ... As a developer it was not ... approachable.
+  ... My understanding of the proposals: there is a bunch of 
+  knowledge in people's heads that have been collaborating and 
+  committing on these - How can we document that in a specification 
+  file.
+  ... I'm not getting a sense that Adrian you are trying to 
+  block, just ... trying to understand.
+  ... My intention is for us to get to a point where we can say 
+  there is a need to do things with VCs ...  and put a document in 
+  place.
+  ... Multiple folks implementing... Get it on paper. Then adjust 
+  it, how can we make it better.
+<dlongley> If we just gave the spec that some people want to 
+  write down a different title -- that reflects it as an "input 
+  document" -- would that unstick all this?
+  ... How can we get this in a forward process, to the point 
+  where we are not repeating errors, falling into the trap that 
+  folks like Ted are rightfully calling out as serious issues on 
+  how this work has been done previously.
+Ted Thibodeau:  There is a need to transfer VCs and other related 
+  things over various protocols, including HTTP and REST-based 
+  stuff.
+<dlongley> it could later be renamed to VC HTTP API as the 
+  official spec ... or not, but at least it would be written down.
+  ... It would be better, in my opinion, to cover the general 
+  case, and have the specifics in HTTP as the "core exercise".
+  ... Typically in specs... multiple things, one discussed as ... 
+  an example core ... way.
+  ... But the de facto limitation to those things is problematic.
+Manu Sporny: DRAFT PROPOSAL: Create a VC HTTP API specification 
+  in ReSpec format so that we can document and iterate on the 
+  current Open API Specification client-server HTTP protocol for 
+  the purposes of issuing a Verifiable Credential.
+Manu Sporny:  Thanks. Just a reminder, if we are starting here 
+  doesn't mean we are limited to here.
+<mahmoud_alkhraishi> is this a single documetn?
+<mprorock> @ted is the VC spec not that in some ways? e.g. 
+  protocol agnostic what are vc's and what can you do with them? 
+  and then the vc-http-api being how do you do those things over 
+  http
+Manu Sporny:  Proposal... Start with a specificaion that is only 
+  going to do VC HTTP issuing. Later we may expand scope into a 
+  specification.
+  ... Mahmoud_Alkhraishi, yes, it's a single document.
+
+PROPOSAL:  Create a VC HTTP API specification in ReSpec format so 
+  that we can document and iterate on the current Open API 
+  Specification client-server HTTP protocol for the purposes of 
+  issuing a Verifiable Credential.
+
+<bblfish> where is that OpenAPI spec?
+Manu Sporny: +1
+Mahmoud Alkhraishi: +1
+Joe Andrieu: +1
+Adrian Gropper: -1
+Manu Sporny:  We'll run the other one that does all three, after 
+  this
+Aaron Coburn: +1
+Mike Prorock: +0
+Orie Steele: +1
+<markus_sabadello> +0.5
+Kyle Den Hartog: +0
+<juan_caballero_(dif/spherity)> (wait i will retract my +1 
+  because I'm not 100% clear on the "issuer first" timeline)
+Manu Sporny: DRAFT PROPOSAL: Create 1 ReSpec specification based 
+  on the OAS files, in addition to separating the existing OAS 
+  files into modular components.
+Mahmoud Alkhraishi: +1
+Mike Prorock: +1
+Manu Sporny:  Any modifications folks would like to see here?
+
+PROPOSAL:  Create 1 ReSpec specification based on the OAS files, 
+  in addition to separating the existing OAS files into modular 
+  components.
+
+Manu Sporny: +1
+Mahmoud Alkhraishi: +1
+Joe Andrieu: +1
+Orie Steele: +1
+Dave Longley: +1
+Adrian Gropper: -1
+Kyle Den Hartog: +0
+<mprorock> can we mute @bengo
+Aaron Coburn: +1
+Markus Sabadello: +1
+<bengo> Sry
+Mike Prorock: Np :)
++0.5
+Manu Sporny:  Seems to be getting more support, as far as I can 
+  tell
+
+RESOLUTION: Create 1 ReSpec specification based on the OAS files, 
+  in addition to separating the existing OAS files into modular 
+  components.
+
+Manu Sporny:  We will create a ReSpec specification and move the 
+  OAS files into it. That doesn't mean everything is locked in and 
+  done and not changing. All content in the specification is up to 
+  debate - as is any CCG item. It hasn't gone to a working group or 
+  official recommendation.
+<orie> wait you mean that get stores the version history and 
+  allows for non monotonic standards development?
+  ... New folks, you will have time to read up on the OAS files, 
+  raise issues, PRs, etc.
+Manu Sporny:  Thanks everyone, I know that was difficult.
+  ... Let's go to use cases. Folks have been wanting to figure 
+  out what the scope is for this work item. I thought we could look 
+  at the use case template and a couple of use cases.
+  ... Specifically, looking at use cases that are clearly in 
+  scope, hopefully, and one that is probably not in scope.
+
+Topic: Use Cases
+
+Manu Sporny: Here is the current use cases document: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit
+Adrian Gropper:  As we talk about the use cases, and I know I 
+  have only contributed informally, can someone explain why this 
+  API spec is concerned about persistence about the verifiable 
+  credential? Or is it just that I haven't read the OAS files.
+<orie> on q to answer adrian, as best we can
+<mike_varley> That is an excellent question agrropper!
+  ... If we're talking about an API from the issuer perspective 
+  (vs. holder), why we are we talking about persistence?
+Orie Steele:  Excellent question. The first versions of this API 
+  did not discuss persistence. Most of the endpoints are stateless. 
+  They are basically an operation that happens. A result is 
+  returned, and no persistence...
+  ... First violation is revocation lists. State needs to be 
+  updated. Tests are very limited. Those are the first set of 
+  endpoints that ask can I change the state of a credential... 
+  implies that they are stateful.
+  ... Not documented super-well. The updateStatus endpoint. The 
+  only example in the spec that is in any way stateful or 
+  comprehends persistence.
+Orie Steele: See this endpoint 
+  https://w3c-ccg.github.io/vc-http-api/#operation/updateCredentialStatus
+Adrian Gropper:  Does revocation imply persistence? From what I 
+  understand about it, there are many ways to do revocation. There 
+  may be one proposed which may be totally fine.
+  ... But I don't see, from the perspective of the issuer, that 
+  they have to persist a particular credential, in order to revoke 
+  it.
+<orie> hosted lists imply the issuer manages a persisted list on 
+  a web server.
+Manu Sporny:  There are some revocation use cases where the 
+  issuer must persist. For example, Revocation Status List 2021 
+  assumes... a bit string... has to update that bit string.
+  ... But that does not hold for all types of revocation, only a 
+  subset.
+Adrian Gropper:  In this case, it is an issuer persisting a copy 
+  of the credential they have issued, not anyone else.
+Manu Sporny:  In this case, yes.
+<orie> that form of revocation is the only currently document 
+  form of revocation in the api.
+<dlongley> i'd say -- it just depends on whether the holder is 
+  requesting revocation or the issuer wants to revoke 
+  independently.
+Adrian Gropper:  We don't have a use case for talking about the 
+  API that requires persistence - whether revocation is necessary 
+  or not...
+Kyle Den Hartog:  The case we've found most useful is when you 
+  are producing a registry.... The issuer is ... public 
+  credentials...
+  ... being able to recognize someone has been a graduate of a 
+  particular university. The ability to go to the issuer and ask...
+  ... Being able to use the issuer API, while at the same time 
+  publishing the fact that they've received that degreee. One use 
+  case we've found useful.
+Mike Prorock: +1 Similar use cases with historical records of 
+  agricultural activities
+<orie> ahh, i heard persistentence a question of if any of the 
+  http apis are stateful.
+Joe Andrieu:  ... Question about API... In order to have 
+  revocation, there needs to be persistence about the ... state. 
+  Doesn't mean the issuer needs to store the VC to store the fact 
+  that it's been revoked.
+  ... Does the API not handle a refresh endpoint?
+Manu Sporny:  It does not - have not documented that use case 
+  yet.
+Manu Sporny: This is the use case document: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit?pli=1#
+Manu Sporny:  Sharing screen. Template that can be filled out. 
+  I've added a couple use cases, and Alan Karp has added a number 
+  of use cases.
+  ... I thought we'd take a look at these use cases. The idea and 
+  hope is that the rest of the people on this call will start 
+  adding use cases.
+<kyle_den_hartog> Just realized Iâ€™ve not added that use case to 
+  this document. Iâ€™ll be sure to add it.
+  ... Ones we've brought up today are not yet documented.
+  ... Let's take a look - I've submitted a couple. Joe, thank 
+  you, went it and noted some are lacking in some areas.
+  ... I tried to rewrite to meet things Joe said to do.
+  ... Can we look through and get feedback... This one is a real 
+  use case... SVIP
+  ... Other thing is one out of scope.
+Manu Sporny:  This use case is a digital permanent resident card 
+  use case.
+  ... reading Get Digital Permanent Resident Card
+  ... I also took a shot at doing a really simple flow diagram, 
+  so folks can understand where calls are made, where the APIs are.
+<juan_caballero_(dif/spherity)> looks great to me!
+  ... Joe, is that closer to what you were looking for? Juan, 
+  anyone else, thoughts?
+<josh_mandel> Where / how is the "PIN" involved in this flow? An 
+  additional factor or the sole factor in the "Log in and..." step?
+Joe Andrieu:  Huge improvement. Part of what I hope to highlight 
+  to folks: when you get details of what an actual person is doing, 
+  it informs the work.
+  ... This helps a lot compared to the simpler version before.
+  ... All the items here I don't think will be hard to translate 
+  into real situations. They are all really good task-based use 
+  cases. Need to issue, revoke, present, etc.
+  ... A great start.
+Juan Caballero:  I think this is a really good paragon. People 
+  who want to convert other use cases should feel free to use this 
+  pattern. As long as...
+  ... I also think the term Industry-Standard API is doing a lot 
+  of work here.
+  ... Part of the ambiguity here is: one basic intention thing 
+  that has been hard to align on is the "Industry-Standard API" 
+  part. That's what this is trying to provide.
+  ... If there are multiple use cases / parties... This API is a 
+  neutral cross-vendor API, free of lock-in.
+  ... Assumption of what use cases are based in is a little 
+  orthogonal. This is trying to arrive at a maximally neutral API 
+  where HTTP is appropriate for vendors to pass things back and 
+  forth.
+  ... Any use case that has multiple vendors: good to emphasise 
+  the "Industry-standard" part.
+Adrian Gropper:  I think this is a beautiful example of my 
+  concerns of the process. In this nicely-described use case, we've 
+  introduced the idea that the permanent resident has not only all 
+  the credentials they need, but is also providing a DID associated 
+  with his digital wallet.
+<orie> maybe we should run a proposal to support DIDs or not?
+  ... If it is our express intent to introduce or bundle this 
+  fact (which we might not want to do for a covid credential) - 
+  that the subject has to meet certain requirements to receive the 
+  credential - like having a DID or DID wallet - then sure, it's a 
+  use case; I just don't know if it's useful to bundle these things 
+  together.
+Joe Andrieu:  Each of these use cases are simple illustrations of 
+  how we expect the technology to support solving real-world 
+  problems. They are not mandates that all use cases have these 
+  requirements. This particular flow is a real use case likely to 
+  be deployed.
+  ... Different situations have different requirements.
+  ... If you think it's important, let's get a use case in that 
+  doesn't have DIDs as a requirement.
+<juan_caballero_(dif/spherity)> but does have multiple 
+  (interchangeable, competitive) vendors passing VCs between each 
+  otehr :D
+Kyle Den Hartog:  Would it be useful to document ... about 
+  usernames and passwords...
+Adrian Gropper:  No...
+  ... If a government ... restricts ... a wallet... for example 
+  FIDO requiring ... token from manufacturer, then ... add to use 
+  case.
+  ... It's a badly documented use case if we don't include the 
+  reason why the DID and DID wallet are there.
+<orie> To be clear... there is no DID Wallet in these APIs
+  ... If those are added, it's a beautiful use case.
+Manu Sporny:  This is an example of a use case that is real and 
+  more than likely will be accepted as in-scope.
+  ... One I think we would agree is out of scope: "Obtain an 
+  Authorization". One issue is not a lot here.
+  ... Obtaining an authorization to use one of these endpoints is 
+  more than likely going to happen through some other 
+  interaction/standard/flow.
+  ... Using an authorization to make a call is in scope. But 
+  obtaining an authorization is probably out of scope.
+<mprorock> i have a hard stop in 5
+Juan Caballero:  I was just going to ask if a longer version of a 
+  use case is already documented elsewhere in another CCG repo 
+  (such as SDS or something), is it bad form to link to longer 
+  forms of use cases?
+  ... like why a use case vendors use DIDs
+Ted Thibodeau:  I saw a number of gaps and confusing points in 
+  the first use case. Is this doc staying, or going to GitHub?
+<juan_caballero_(dif/spherity)> TallTeditor!
+Manu Sporny:  It is going to stay as a Google doc for the 
+  forseeable future.
+  ... We decided last week...
+Ted Thibodeau:  I see obtaining an authorization... as in scope.
+Kyle Den Hartog:  To explain the difference betwen use and 
+  obtain. Obtain brings the API into a level where it has to be 
+  used as a protocol of sorts. Whereas Use allows it to stay in the 
+  backend.
+  ... That is why I think out of scope. One is elevating the 
+  architecture... may make messier.
+<orie> who can call the issuer api.... ? anybody? like it is 
+  today?
+Kyle Den Hartog: +1 Joe
+Joe Andrieu:  I think a good example about though well-intended, 
+  the lack of specificity about what authorization is for... If for 
+  some other trust domain, like getting into an apartment building, 
+  that starts to get weird. But if talking about authorization 
+  about the system itself - which can issue, etc. - then I think 
+  both need to be there.
+<orie> i think its a question of how are the http api's 
+  secured.... on the public internet.
+Manu Sporny:  Next steps... We have a use cases document. Please 
+  fill out the use cases you feel are important.
+  ... This will drive the scoping discussion.
+  ... In parallel, we will start the ReSpec document - without 
+  any coontent
+Orie Steele: We failed to review these PRs: 
+  https://github.com/w3c-ccg/vc-http-api/pulls
+  ... Next week, we will talk about any use cases added since 
+  now, then talk about the structure of ... the ReSpec document.
+  ... Thanks everyone
+<juan_caballero_(dif/spherity)> thanks all
+<jim_stclair> well done
+<mike_varley> thanks!
