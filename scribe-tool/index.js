@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var program = require('commander');
 var scrawl = require('./scrawl');
+var config = require('./config.json');
 
 program
   .version('0.3.0')
@@ -33,10 +34,13 @@ var peopleJson = fs.readFileSync(
 var gLogData = '';
 var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
+var groupConfig = _.find(config, c => c.name === program.group);
 
 // configure scrawl
 scrawl.group = `${program.group} Telecon`;
 scrawl.people = JSON.parse(peopleJson);
+scrawl.chairs = groupConfig.chairs;
+
 
 function generateEmailBody() {
 // generate the body of the email
