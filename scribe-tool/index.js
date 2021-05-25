@@ -9,7 +9,7 @@ var config = require('./config.json');
 program
   .version('0.3.0')
   .option('-d, --directory <directory>', 'The directory to process.')
-  .option('-g, --group <group>', 'Group', 'Credentials CG')
+  .option('-g, --group <group>', 'Group', 'Credentials Community Group')
   .option('-m, --html', 'If set, write the minutes to an index.html file')
   .option('-i, --index', 'Build meeting index')
   .option('-q, --quiet', 'Don\'t print status information to the console')
