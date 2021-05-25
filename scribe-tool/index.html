@@ -127,6 +127,11 @@ $.getJSON( "people.json", function(people) {
   scrawl.people = people;
 });
 
+$.getJSON( "config.json", function(config) {
+  var groupConfig = _.find(config, c => c.name === "Credentials Community Group");
+  scrawl.chair = groupConfig.chairs;
+});
+
 $(function(){
 
   // look for date in URL
