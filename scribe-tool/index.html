@@ -128,8 +128,8 @@ $.getJSON( "people.json", function(people) {
 });
 
 $.getJSON( "config.json", function(config) {
-  var groupConfig = _.find(config, c => c.name === "Credentials Community Group");
-  scrawl.chair = groupConfig.chairs;
+  // default to main CCG
+  scrawl.chair = config[0].chairs;
 });
 
 $(function(){
