@@ -39,7 +39,7 @@ var groupConfig = _.find(config, c => c.name === program.group);
 // configure scrawl
 scrawl.group = `${program.group} Telecon`;
 scrawl.people = JSON.parse(peopleJson);
-scrawl.chairs = groupConfig.chairs;
+scrawl.chair = groupConfig.chairs;
 
 
 function generateEmailBody() {

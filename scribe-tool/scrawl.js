@@ -761,7 +761,7 @@
     var context =
     {
       'group': scrawl.group,
-      'chair': scrawl.chairs,
+      'chair': scrawl.chair,
       'present': {},
       'scribe': [],
       'topics': [],
