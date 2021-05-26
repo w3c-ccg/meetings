@@ -35,6 +35,9 @@ var gLogData = '';
 var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
 var groupConfig = _.find(config, c => c.name === program.group);
+if(!groupConfig) {
+  groupConfig = config[0];
+}
 
 // configure scrawl
 scrawl.group = `${program.group} Telecon`;
