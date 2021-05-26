@@ -1,4 +1,5 @@
-// duplicate main entries for backcompat
+// duplicate main entries for backcompat. Warning: changing these values may risk
+// regenerating annoying diffs on old minutes. Just be careful.
 
 var config = [
   {
@@ -14,3 +15,5 @@ var config = [
     "chairs": ["Kim Hamilton Duffy", "Kerri Lemoie", "Anthony Camilleri"]
   }
 ];
+
+module.exports = config;
