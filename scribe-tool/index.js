@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var program = require('commander');
 var scrawl = require('./scrawl');
-var config = require('./config.json');
+var config = require('./config.js');
 
 program
   .version('0.3.0')
