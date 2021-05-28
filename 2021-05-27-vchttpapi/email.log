@@ -1,0 +1,337 @@
+Thanks to Juan Caballero for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-05-27-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-05-27
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021May/0157.html
+Topics:
+  1. Introductions
+  2. Change in Call Meeting Time
+  3. Review of Updated Architecture Diagrams
+  4. Start Authorization Discussion
+Resolutions:
+  1. Adopt the three diagrams (issuer, verifier, and holder) as 
+    initial diagrams to be placed into the specification. It is 
+    expected that these diagrams will be iterated upon.
+Organizer:
+  Manu Sporny
+Scribe:
+  Juan Caballero
+Present:
+  Manu Sporny, Mike Prorock, Mahmoud Alkhraishi, Juan Caballero, 
+  Aaron Coburn, David Ward, Butch Clark, Adrian Gropper, Ted 
+  Thibodeau, Henry Story, Muhamed Turkanović, Brent Zundel, Eric 
+  Schuh, Charles E. Lehner, Mike Varley, Charles Edebiri, Marty 
+  Reed
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-05-27/audio.ogg
+
+Juan Caballero is scribing.
+Manu Sporny:  IPR policy and announcements
+Today's agenda: 1.) shift to new call time, 2.) architecture.md 
+  review, first iteration into PR 3.) AuthZ talk
+Manu Sporny:  AuthZ discussion should be tentative, not trying 
+  for resolutions on the call
+  ... but rather to give people ideas for issues and resolutions
+Eric Schuh:  Reminder that Use Case submissions still very much 
+  welcome!
+Juan Caballero:  I would say a lot of people have submitted 
+  useful starting points that we've tried to iterate [scribe assist 
+  by Manu Sporny]
+Juan Caballero:  Feel free to expand on what's already written if 
+  you think you can contribute in that way [scribe assist by Manu 
+  Sporny]
+Juan Caballero:  There are a bunch of one-sentence ones that 
+  would make a good expanded use case. [scribe assist by Manu 
+  Sporny]
+<bblfish> worth popping in the URL for the use cases here again.
+Manu Sporny:  Other announcements?
+
+Topic: Introductions
+
+  ... self-intros?
+Damon Tindall (Rand): filling in for Marty Reed today
+Eric Schuh: Link to use cases doc: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc
+Muhamed: Univ of Slovenia blockchain projects
+Aaron Coburn (Inrupt): Inrupt researching VCs and the VHAPI for 
+  consent purposes
+Butch: DISH Network: working on initiative to investigate SSI and 
+  drinking from the firehose here
+David Ward: also new, work with Rand
+Henry Story (Babelfish / Solid): researching VCs
+Announcement to new people: There are great 
+  onboarding/map-building materials here:
+Charles E. Lehner:  Here researching and learning as well, from 
+  BCGob
+V
+Henry Story: The EU project that is sponsoring this 
+  implementation of Solid is Solid Control 
+  https://nlnet.nl/project/SolidControl/ for researching Access 
+  Control and Solid. And Verifiable Credentials is part of it.
+
+Topic: Change in Call Meeting Time
+
+Manu Sporny:  Topic #1 - call times
+Scribe would like the record to show AAWW
+Manu Sporny:  Clear winner is 4pm tuesdays EST
+  ...starting next week
+
+Topic: Review of Updated Architecture Diagrams
+
+  ... Topic #2 - architecture overview updates
+Manu Sporny: Issuer Architecture Detail diagram: 
+  https://docs.google.com/drawings/d/10IDaack2vKch-CZpGBm8o1nLodyBHeeUsQ7PubIL338/edit
+Manu Sporny: Verifier Detail Architecture Diagram: 
+  https://docs.google.com/drawings/d/19wJSXTVabVpYJIv1b2hXPPpJ2mPlDkhyYnHylQFwE0Q/edit
+Manu Sporny: Holder Architecture Detail Diagram: 
+  https://docs.google.com/drawings/d/1NhozgPLPWEB8Hyun8MfUBUAudrTIoQ-ONesnq8MncrM/edit
+Manu Sporny:  These diagrams reflect last week's feedback
+  ... and the hope is that by end of this call we can approve 
+  them as a tentative starting point
+Adrian Gropper:  Where it says "receive credentials" between 
+  issuer and holder, I'm curious where capabilities fit in.  can 
+  they also be issued between the same parts?
+Manu Sporny:  Good question, i'm not sure we have consensus on 
+  scope issue
+  ... CHAPI is one way of doing it in a way that has worked so 
+  far for many users of this API
+  ... i think we need to discuss this in topic #3 a bit
+Adrian Gropper:  Ok we'll come back to it, as long as the minutes 
+  show that it was proposed
+Manu Sporny:  Of course, this is just tentative agreement on a 
+  basis for future additions
+  ... blue outlines refer to components in scope/focus of this 
+  API spec
+  ... Reminder: Web Service was chosen here to name superset of 
+  websites and machine-to-machine interfaces
+  ... objections? none voiced
+  ... (resolution forthcoming after review)
+  ... Next up: Verifiers
+  ... app service added to reflect separation of concerns and 
+  order of operations between verification, validation, business 
+  logic, etc (but still out of scope of the API)
+  ... as in previous diagram, external APIs called out
+Aaron Coburn:  Arrows on holder-web service could be going the 
+  wrong way, no?
+Manu Sporny:  Actually you're right, the push/pull discussion on 
+  github is a little unresolved, there are both verifier- and 
+  holder-initiated ways of doing this
+  ... there might be a "step 0" missing that we should discuss in 
+  coming weeks
+  ... for now, we should maybe leave it as-is for simplicity's 
+  sake and make a note to return to the "start workflow"/step 0 
+  later
+Muhamed: authority agency implemented a "start workflow" step in 
+  our ministry, initiated by holder
+Manu Sporny:  That // CHAPI
+Adrian Gropper:  Again, capabilities could be passed here instead 
+  of VPs.
+Manu Sporny:  Yes, to be discussed in topic #3
+Henry Story:  In Solid, we have an OWL-style query
+  ... that we use before requesting presentations
+  ... is this analogous?
+Manu Sporny:  Yes, thru an RDF lens, you could say this is like a 
+  SPARQL query: server says "these are the tuples i want" and VP is 
+  answer to that shaped query
+Manu Sporny:  Returning to Adrian's question about Caps is 
+  whether the API should work the way CHAPI does or be more 
+  generalized/narrowly-scoped
+  ... CHAPI is agnostic about request/presentation formats
+  ... the question is whether VHAPI should also be a "dumb pipe", 
+  like CHAPI is
+  ... or whether it should constrain what passes over it (i.e., 
+  distinguishing between VPs and ZCaps and other payloads)
+  ... does anyone object to this diagram going into the spec as a 
+  starting point
+(None are voiced)
+Manu Sporny:  Third diagram about holders
+Manu Sporny:  Review of changes from last week: KMS as distinct 
+  component , "Wallet" Service
+Adrian Gropper:  Do we need this diagram?
+https://github.com/w3c-ccg/vc-http-api/issues/176
+Muhamed: why wasn't KMS in the issuer and verifier?
+  ... or for that matter wallet service
+Juan Caballero:  Pointing out that the issue 176 raised by 
+  contributors to spec shows a custodial holder / multi-party 
+  holder -- assuming architecture for holders is simple/direct -- 
+  is not necessarily something we should do. [scribe assist by Manu 
+  Sporny]
+Juan Caballero:  There is complexity around guardianship, 
+  enterprise, custodial, all of those things -- difficulty of 
+  mapping this API is why this process is getting complicated -- 
+  good to be segmented as holder/issuer/verifier are. [scribe 
+  assist by Manu Sporny]
+Juan Caballero:  Just to say that part of complexity here comes 
+  from use cases like that. [scribe assist by Manu Sporny]
+Mahmoud Alkhraishi: +1 We feel its very missing
+Mike Prorock: +1 Manu - you have hit the nail on the head
+<mahmoud_alkhraishi> and super important
+Manu Sporny:  Do we need this diagram? short answer is yes. this 
+  is one of the parts of the system that the tracevocab group came 
+  here to expand the holder options
+  ... particularly in cases where multiple legitimate holders 
+  pass VCs between them
+Juan Caballero: +1
+Manu Sporny:  Also want to address Muhamed's question about KMS 
+  in issuer/verifier diagrams
+  ... we could add KMS and storage to issuer/verifier for 
+  completeness
+  ... or we could leave it out for simplicity's sake, if it isn't 
+  determinant or important
+Mike Prorock:  I think that people coming from other contexts 
+  might appreciate the "best practices" nod
+  ... i.e., seeing it in one diagram and not others, they might 
+  assume that they don't need one or shouldn't use one
+  ... or get confused
+Muhamed: Want to add from experience (on Authority Agent) that 
+  issuers often NEED a KMS to be able to participate in VC flows
+Manu Sporny:  Question: add to issuer but not to verifier?
+<mprorock> verifier as well
+Manu Sporny:  Maybe it would help to be explicit: what does the 
+  issuer need KMS for, and how does it relate? what are the 
+  interfaces?
+Mike Prorock:  We tend to try to standardize the usage/reliance 
+  on KMS across use-cases and projects
+Mike Prorock:  What you're drawing on the screenshare looks like 
+  most of our usecases
+  ... even things like initiating a TLS require KMS, but maybe 
+  it's not worth including that
+Manu Sporny:  Caveat: boundaries/boxes a little inaccurate now, 
+  needs a tweak
+  ... just working on other semantic aspects for now
+Manu Sporny:  Any objections to this?
+<david_ward> Should the term be Presentations between Verifier 
+  and Holder?
+Juan Caballero:  My only question, there was a lot of talk for a 
+  while about multiple holders -- should we include some visual 
+  reference for that concept? [scribe assist by Manu Sporny]
+Juan Caballero:  Is another holder a verifier for the purposes of 
+  the interaction? [scribe assist by Manu Sporny]
+Manu Sporny:  You could stack all of these boxes-- there could be 
+  multiple of any of these
+  ... and because a realworld entity could occupy all three roles 
+  at one time or in one interactions
+  ... so if a holder is send to another holder, that 2nd holder 
+  is verifier
+<tallted>	holder -> Holder does *not* imply the recipient is a 
+  Verifier, and is a different situation than multiple Issuers (to 
+  one or many Holders) or multiple Verifiers (receiving from one or 
+  many Holders)
+  ... so let's keep the diagram simple and explain the 
+  variability in the text as how to interpret it
+Ted Thibodeau:  I think a holder-to-holder transfer will be 
+  distinct and have its own properties
+Manu Sporny:  New diagram probably better than adding that to 
+  these
+Ted Thibodeau:  Agreed
+Manu Sporny:  Proposal incoming
+David Ward: should "Credentials" be "Presentations" on the 
+  exchange arrow axis?
+Manu Sporny:  Yes, missed that! thanks, updating now
+
+PROPOSAL:  Adopt the three diagrams (issuer, verifier, and 
+  holder) as initial diagrams to be placed into the specification. 
+  It is expected that these diagrams will be iterated upon.
+
+Manu Sporny:  (Proposal)
+Mike Prorock: +1
+Mike Varley: +1
+Juan Caballero: +1
+Aaron Coburn: +1
+Mahmoud Alkhraishi: +1
+Eric Schuh: +1
+Ted Thibodeau: +1
+Charles Edebiri: +1
+Adrian Gropper: +0
+<muhamed_turkanoviä‡_(blockchain_lab:um)> 0
+Manu Sporny: +1
+Marty Reed: +1
+
+RESOLUTION: Adopt the three diagrams (issuer, verifier, and 
+  holder) as initial diagrams to be placed into the specification. 
+  It is expected that these diagrams will be iterated upon.
+
+Topic: Start Authorization Discussion
+
+Manu Sporny:  Overview of discussion to date: pros and cons of 
+  prior art and of ZCaps (W3C draft spec used by many involved 
+  companies)
+  ... would like to hear from companies involved
+Adrian Gropper:  Arguments against OAuth2 are mostly about 
+  delegation
+  ... I feel that OAuth2 has human rights issues and that 
+  specifying it would open a delegation can of worms
+  ... and my experiences with delegation problems in UMA are why 
+  i am so emphatic here
+Mike Varley:  SecureKey is supportive of GNAP and anchoring 
+  delegation in end-user
+  ... but I also think this spec could and should specify how VCs 
+  handle credentials (perhaps with ZCaps)
+Mike Prorock:  Oauth isn't perfect, but it is industry standard 
+  and it is what everyone who we want to use this API is currently 
+  using, including all of our customers
+  ... i cannot take GNAP today to any of my customers, to be 
+  blunt. it will get there but today, at a minimum, we have to find 
+  a way to meet people where they are
+Mike Varley: +1 Too GNAP being "early".
+Muhamed: I just want to ask if we are talking about authZ or 
+  authN too?
+Manu Sporny:  AuthN happens through other protocols, and is out 
+  of scope (this API assumes parties are already authN to each 
+  other)
+Henry Story:  I'm also trying to get a firmer grip on the 
+  language. I tend to think of authZ as a description of what 
+  attributes should be requested and sent.
+  ... you're thinking of every application jumping around along 
+  links and fetching data, as they do today in a browser; wallet 
+  has no idea where it will go next to fetch what it needs; OAuth 
+  is a problem here and VCs can help here
+  ... this makes for a very different AuthZ topology versus 
+  "loggin in and staying in" at each website
+Adrian Gropper:  I want to avoid framing zero-sum either/or 
+  argument. I want this spec to require GNAP either on top of or 
+  alongside OAuth
+  ... i think issuers and institutions will not adopt GNAP 
+  without the kind of pressure that would come from this spec 
+  requiring it or specifying it as the best way to get holder 
+  consent/involvement at a low level
+Mike Prorock: I would note we have a system to system use case 
+  primarily, not an end user facing system (typically at this 
+  stage), hence Authorization: Bearer ........
+Manu Sporny:  To address Henry's comment, i think there is a 
+  terminology mismatch
+  ... you mean the process of getting authorization to do 
+  somethign
+  ... but here we mean more like authZ check, i.e., "are you 
+  authorized to be checking this endpoint? "
+Manu Sporny:  To address Adrian, I think there is too much 
+  confusion around "who is on sovereign" and it should get clearer 
+  over time
+  ... no is against OAuth2, and it is minimum we can do.  
+  consensus seems to be "putting GNAP, ZCaps, and other upgrades 
+  alongside OAuth"
+Mike Prorock: +1 Allow others as they become adopted at a broader 
+  scale
+<bblfish> I guess I need to really understand what is meant here 
+  by authZ
+  ... we should think about how to make OAuth the 
+  minimum/basement and specify preferences for upgrade paths
+<muhamed_turkanoviä‡_(blockchain_lab:um)> few question for next 
+  time:
+<muhamed_turkanoviä‡_(blockchain_lab:um)> And what about 
+  authentication of the holder towards the issuer/verifier (maybe 
+  in terms of legacy PKI systems)?
+Eric Schuh: Use cases doc: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc
+<mprorock> thanks for facilitating manu!
+Manu Sporny:  Next week, please get in touch to add to the agenda 
+  and think about authZ
+Thanks all

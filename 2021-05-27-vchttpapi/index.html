@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/github-light.css" media="screen">
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Credentials Community Group</title>
+    <style>
+a {
+  color: #06A7CC;
+}
+
+div.comment {
+  font-family: 'Droid Serif', serif;
+  margin-top: 0.5em;
+  font-size: 1.25em;
+}
+
+.comment-continuation {
+  font-family: 'Droid Serif', serif;
+  font-size: 1.25em;
+  margin-left: 2em;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>The W3C Credentials Community Group</h1>
+      <h2>Verifiable Claims and Digital Verification</h2>
+      <h3><a href="../">Go Back</a></h3>
+
+      <hr>
+
+<div><div><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2"><h1>Verifiable Credentials HTTP API Telecon</h1>
+<h2>Minutes for 2021-05-27</h2>
+<div class="summary">
+<dl>
+<dt>Agenda</dt><dd><a href="https://lists.w3.org/Archives/Public/public-credentials/2021May/0157.html">https://lists.w3.org/Archives/Public/public-credentials/2021May/0157.html</a></dd>
+<dt>Topics</dt><dd><ol><li><a href="#topic-1">Introductions</a><li><a href="#topic-2">Change in Call Meeting Time</a><li><a href="#topic-3">Review of Updated Architecture Diagrams</a><li><a href="#topic-4">Start Authorization Discussion</a></ol></dd><dt>Resolutions</dt><dd><ol><li><a href="#resolution-1">Adopt the three diagrams (issuer, verifier, and holder) as initial diagrams to be placed into the specification. It is expected that these diagrams will be iterated upon.</a></ol></dd><dt>Organizer</dt><dd>Manu Sporny</dd>
+<dt>Scribe</dt><dd>Juan Caballero</dd>
+<dt>Present</dt><dd><a href="http://manu.sporny.org/about">Manu Sporny</a>, <a href="https://www.linkedin.com/in/mprorock/">Mike Prorock</a>, <a href="https://www.linkedin.com/in/mkhraishi/">Mahmoud Alkhraishi</a>, <a href="http://www.learningproof.xyz/">Juan Caballero</a>, <a href="https://github.com/acoburn">Aaron Coburn</a>, <a href="https://ca.linkedin.com/in/dward">David Ward</a>, <a href="https://w3c-ccg.github.io/">Butch Clark</a>, <a href="">Adrian Gropper</a>, <a href="https://www.linkedin.com/in/macted/">Ted Thibodeau</a>, <a href="http://bblfish.net/">Henry Story</a>, <a href="https://w3c-ccg.github.io/">Muhamed Turkanović</a>, <a href="https://www.linkedin.com/in/bzundel/">Brent Zundel</a>, <a href="https://www.linkedin.com/search/results/all/?keywords=Legendary%20Requirements">Eric Schuh</a>, <a href="https://celehner.com/">Charles E. Lehner</a>, <a href="https://www.linkedin.com/in/mavarley/">Mike Varley</a>, <a href="https://www.linkedin.com/in/charles-edebiri-3255641a9/">Charles Edebiri</a>, <a href="https://www.linkedin.com/in/marty-reed-b5b2352/">Marty Reed</a></dd>
+<dt>Audio Log</dt><dd><div><a href="audio.ogg">audio.ogg</a></div>
+<div><audio controls="controls" preload="none">
+<source src="audio.ogg" type="audio/ogg" />Warning: Your browser does not support the HTML5 audio element, please upgrade.</audio></div></dd>
+</dl>
+</div>
+<div class="information">Juan Caballero is scribing.</div>
+<div onmouseout="$('#link-1').hide()" onmouseover="$('#link-1').show()" id="1" class="comment"><span class="name">Manu Sporny</span>:  IPR policy and announcements <a id="link-1" style="display:none;" href="#1">✪</a></div>
+<div onmouseout="$('#link-2').hide()" onmouseover="$('#link-2').show()" id="2" class="information">Today&apos;s agenda: 1.) shift to new call time, 2.) architecture.md review, first iteration into PR 3.) AuthZ talk <a id="link-2" style="display:none;" href="#2">✪</a></div>
+<div onmouseout="$('#link-3').hide()" onmouseover="$('#link-3').show()" id="3" class="comment"><span class="name">Manu Sporny</span>:  AuthZ discussion should be tentative, not trying for resolutions on the call <a id="link-3" style="display:none;" href="#3">✪</a></div>
+<div class="comment-continuation">... but rather to give people ideas for issues and resolutions</div>
+<div onmouseout="$('#link-4').hide()" onmouseover="$('#link-4').show()" id="4" class="comment"><span class="name">Eric Schuh</span>:  Reminder that Use Case submissions still very much welcome! <a id="link-4" style="display:none;" href="#4">✪</a></div>
+<div onmouseout="$('#link-5').hide()" onmouseover="$('#link-5').show()" id="5" class="comment"><span class="name">Juan Caballero</span>:  I would say a lot of people have submitted useful starting points that we&apos;ve tried to iterate [scribe assist by Manu Sporny] <a id="link-5" style="display:none;" href="#5">✪</a></div>
+<div onmouseout="$('#link-6').hide()" onmouseover="$('#link-6').show()" id="6" class="comment"><span class="name">Juan Caballero</span>:  Feel free to expand on what&apos;s already written if you think you can contribute in that way [scribe assist by Manu Sporny] <a id="link-6" style="display:none;" href="#6">✪</a></div>
+<div onmouseout="$('#link-7').hide()" onmouseover="$('#link-7').show()" id="7" class="comment"><span class="name">Juan Caballero</span>:  There are a bunch of one-sentence ones that would make a good expanded use case. [scribe assist by Manu Sporny] <a id="link-7" style="display:none;" href="#7">✪</a></div>
+<div class="information">&lt;bblfish&gt; worth popping in the URL for the use cases here again.</div>
+<div onmouseout="$('#link-8').hide()" onmouseover="$('#link-8').show()" id="8" class="comment"><span class="name">Manu Sporny</span>:  Other announcements? <a id="link-8" style="display:none;" href="#8">✪</a></div>
+<h1 id="topic-1" class="topic">Topic: Introductions</h1>
+<div class="comment-continuation">... self-intros?</div>
+<div onmouseout="$('#link-9').hide()" onmouseover="$('#link-9').show()" id="9" class="information">Damon Tindall (Rand): filling in for Marty Reed today <a id="link-9" style="display:none;" href="#9">✪</a></div>
+<div onmouseout="$('#link-10').hide()" onmouseover="$('#link-10').show()" id="10" class="comment"><span class="name">Eric Schuh</span>: Link to use cases doc: <a href="https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc">https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc</a> <a id="link-10" style="display:none;" href="#10">✪</a></div>
+<div onmouseout="$('#link-11').hide()" onmouseover="$('#link-11').show()" id="11" class="information">Muhamed: Univ of Slovenia blockchain projects <a id="link-11" style="display:none;" href="#11">✪</a></div>
+<div onmouseout="$('#link-12').hide()" onmouseover="$('#link-12').show()" id="12" class="information">Aaron Coburn (Inrupt): Inrupt researching VCs and the VHAPI for consent purposes <a id="link-12" style="display:none;" href="#12">✪</a></div>
+<div onmouseout="$('#link-13').hide()" onmouseover="$('#link-13').show()" id="13" class="information">Butch: DISH Network: working on initiative to investigate SSI and drinking from the firehose here <a id="link-13" style="display:none;" href="#13">✪</a></div>
+<div onmouseout="$('#link-14').hide()" onmouseover="$('#link-14').show()" id="14" class="information">David Ward: also new, work with Rand <a id="link-14" style="display:none;" href="#14">✪</a></div>
+<div onmouseout="$('#link-15').hide()" onmouseover="$('#link-15').show()" id="15" class="information">Henry Story (Babelfish / Solid): researching VCs <a id="link-15" style="display:none;" href="#15">✪</a></div>
+<div onmouseout="$('#link-16').hide()" onmouseover="$('#link-16').show()" id="16" class="information">Announcement to new people: There are great onboarding/map-building materials here: <a id="link-16" style="display:none;" href="#16">✪</a></div>
+<div onmouseout="$('#link-17').hide()" onmouseover="$('#link-17').show()" id="17" class="comment"><span class="name">Charles E. Lehner</span>:  Here researching and learning as well, from BCGob <a id="link-17" style="display:none;" href="#17">✪</a></div>
+<div onmouseout="$('#link-18').hide()" onmouseover="$('#link-18').show()" id="18" class="information">V <a id="link-18" style="display:none;" href="#18">✪</a></div>
+<div onmouseout="$('#link-19').hide()" onmouseover="$('#link-19').show()" id="19" class="comment"><span class="name">Henry Story</span>: The EU project that is sponsoring this implementation of Solid is Solid Control <a href="https://nlnet.nl/project/SolidControl/">https://nlnet.nl/project/SolidControl/</a> for researching Access Control and Solid. And Verifiable Credentials is part of it. <a id="link-19" style="display:none;" href="#19">✪</a></div>
+<h1 id="topic-2" class="topic">Topic: Change in Call Meeting Time</h1>
+<div onmouseout="$('#link-20').hide()" onmouseover="$('#link-20').show()" id="20" class="comment"><span class="name">Manu Sporny</span>:  Topic #1 - call times <a id="link-20" style="display:none;" href="#20">✪</a></div>
+<div onmouseout="$('#link-21').hide()" onmouseover="$('#link-21').show()" id="21" class="information">Scribe would like the record to show AAWW <a id="link-21" style="display:none;" href="#21">✪</a></div>
+<div onmouseout="$('#link-22').hide()" onmouseover="$('#link-22').show()" id="22" class="comment"><span class="name">Manu Sporny</span>:  Clear winner is 4pm tuesdays EST <a id="link-22" style="display:none;" href="#22">✪</a></div>
+<div class="comment-continuation">...starting next week</div>
+<h1 id="topic-3" class="topic">Topic: Review of Updated Architecture Diagrams</h1>
+<div class="comment-continuation">... Topic #2 - architecture overview updates</div>
+<div onmouseout="$('#link-23').hide()" onmouseover="$('#link-23').show()" id="23" class="comment"><span class="name">Manu Sporny</span>: Issuer Architecture Detail diagram: <a href="https://docs.google.com/drawings/d/10IDaack2vKch-CZpGBm8o1nLodyBHeeUsQ7PubIL338/edit">https://docs.google.com/drawings/d/10IDaack2vKch-CZpGBm8o1nLodyBHeeUsQ7PubIL338/edit</a> <a id="link-23" style="display:none;" href="#23">✪</a></div>
+<div onmouseout="$('#link-24').hide()" onmouseover="$('#link-24').show()" id="24" class="comment"><span class="name">Manu Sporny</span>: Verifier Detail Architecture Diagram: <a href="https://docs.google.com/drawings/d/19wJSXTVabVpYJIv1b2hXPPpJ2mPlDkhyYnHylQFwE0Q/edit">https://docs.google.com/drawings/d/19wJSXTVabVpYJIv1b2hXPPpJ2mPlDkhyYnHylQFwE0Q/edit</a> <a id="link-24" style="display:none;" href="#24">✪</a></div>
+<div onmouseout="$('#link-25').hide()" onmouseover="$('#link-25').show()" id="25" class="comment"><span class="name">Manu Sporny</span>: Holder Architecture Detail Diagram: <a href="https://docs.google.com/drawings/d/1NhozgPLPWEB8Hyun8MfUBUAudrTIoQ-ONesnq8MncrM/edit">https://docs.google.com/drawings/d/1NhozgPLPWEB8Hyun8MfUBUAudrTIoQ-ONesnq8MncrM/edit</a> <a id="link-25" style="display:none;" href="#25">✪</a></div>
+<div onmouseout="$('#link-26').hide()" onmouseover="$('#link-26').show()" id="26" class="comment"><span class="name">Manu Sporny</span>:  These diagrams reflect last week&apos;s feedback <a id="link-26" style="display:none;" href="#26">✪</a></div>
+<div class="comment-continuation">... and the hope is that by end of this call we can approve them as a tentative starting point</div>
+<div onmouseout="$('#link-27').hide()" onmouseover="$('#link-27').show()" id="27" class="comment"><span class="name">Adrian Gropper</span>:  Where it says &quot;receive credentials&quot; between issuer and holder, I&apos;m curious where capabilities fit in.  can they also be issued between the same parts? <a id="link-27" style="display:none;" href="#27">✪</a></div>
+<div onmouseout="$('#link-28').hide()" onmouseover="$('#link-28').show()" id="28" class="comment"><span class="name">Manu Sporny</span>:  Good question, i&apos;m not sure we have consensus on scope issue <a id="link-28" style="display:none;" href="#28">✪</a></div>
+<div class="comment-continuation">... CHAPI is one way of doing it in a way that has worked so far for many users of this API</div>
+<div class="comment-continuation">... i think we need to discuss this in topic #3 a bit</div>
+<div onmouseout="$('#link-29').hide()" onmouseover="$('#link-29').show()" id="29" class="comment"><span class="name">Adrian Gropper</span>:  Ok we&apos;ll come back to it, as long as the minutes show that it was proposed <a id="link-29" style="display:none;" href="#29">✪</a></div>
+<div onmouseout="$('#link-30').hide()" onmouseover="$('#link-30').show()" id="30" class="comment"><span class="name">Manu Sporny</span>:  Of course, this is just tentative agreement on a basis for future additions <a id="link-30" style="display:none;" href="#30">✪</a></div>
+<div class="comment-continuation">... blue outlines refer to components in scope/focus of this API spec</div>
+<div class="comment-continuation">... Reminder: Web Service was chosen here to name superset of websites and machine-to-machine interfaces</div>
+<div class="comment-continuation">... objections? none voiced</div>
+<div class="comment-continuation">... (resolution forthcoming after review)</div>
+<div class="comment-continuation">... Next up: Verifiers</div>
+<div class="comment-continuation">... app service added to reflect separation of concerns and order of operations between verification, validation, business logic, etc (but still out of scope of the API)</div>
+<div class="comment-continuation">... as in previous diagram, external APIs called out</div>
+<div onmouseout="$('#link-31').hide()" onmouseover="$('#link-31').show()" id="31" class="comment"><span class="name">Aaron Coburn</span>:  Arrows on holder-web service could be going the wrong way, no? <a id="link-31" style="display:none;" href="#31">✪</a></div>
+<div onmouseout="$('#link-32').hide()" onmouseover="$('#link-32').show()" id="32" class="comment"><span class="name">Manu Sporny</span>:  Actually you&apos;re right, the push/pull discussion on github is a little unresolved, there are both verifier- and holder-initiated ways of doing this <a id="link-32" style="display:none;" href="#32">✪</a></div>
+<div class="comment-continuation">... there might be a &quot;step 0&quot; missing that we should discuss in coming weeks</div>
+<div class="comment-continuation">... for now, we should maybe leave it as-is for simplicity&apos;s sake and make a note to return to the &quot;start workflow&quot;/step 0 later</div>
+<div onmouseout="$('#link-33').hide()" onmouseover="$('#link-33').show()" id="33" class="information">Muhamed: authority agency implemented a &quot;start workflow&quot; step in our ministry, initiated by holder <a id="link-33" style="display:none;" href="#33">✪</a></div>
+<div onmouseout="$('#link-34').hide()" onmouseover="$('#link-34').show()" id="34" class="comment"><span class="name">Manu Sporny</span>:  That // CHAPI <a id="link-34" style="display:none;" href="#34">✪</a></div>
+<div onmouseout="$('#link-35').hide()" onmouseover="$('#link-35').show()" id="35" class="comment"><span class="name">Adrian Gropper</span>:  Again, capabilities could be passed here instead of VPs. <a id="link-35" style="display:none;" href="#35">✪</a></div>
+<div onmouseout="$('#link-36').hide()" onmouseover="$('#link-36').show()" id="36" class="comment"><span class="name">Manu Sporny</span>:  Yes, to be discussed in topic #3 <a id="link-36" style="display:none;" href="#36">✪</a></div>
+<div onmouseout="$('#link-37').hide()" onmouseover="$('#link-37').show()" id="37" class="comment"><span class="name">Henry Story</span>:  In Solid, we have an OWL-style query <a id="link-37" style="display:none;" href="#37">✪</a></div>
+<div class="comment-continuation">... that we use before requesting presentations</div>
+<div class="comment-continuation">... is this analogous?</div>
+<div onmouseout="$('#link-38').hide()" onmouseover="$('#link-38').show()" id="38" class="comment"><span class="name">Manu Sporny</span>:  Yes, thru an RDF lens, you could say this is like a SPARQL query: server says &quot;these are the tuples i want&quot; and VP is answer to that shaped query <a id="link-38" style="display:none;" href="#38">✪</a></div>
+<div onmouseout="$('#link-39').hide()" onmouseover="$('#link-39').show()" id="39" class="comment"><span class="name">Manu Sporny</span>:  Returning to Adrian&apos;s question about Caps is whether the API should work the way CHAPI does or be more generalized/narrowly-scoped <a id="link-39" style="display:none;" href="#39">✪</a></div>
+<div class="comment-continuation">... CHAPI is agnostic about request/presentation formats</div>
+<div class="comment-continuation">... the question is whether VHAPI should also be a &quot;dumb pipe&quot;, like CHAPI is</div>
+<div class="comment-continuation">... or whether it should constrain what passes over it (i.e., distinguishing between VPs and ZCaps and other payloads)</div>
+<div class="comment-continuation">... does anyone object to this diagram going into the spec as a starting point</div>
+<div onmouseout="$('#link-40').hide()" onmouseover="$('#link-40').show()" id="40" class="information">(None are voiced) <a id="link-40" style="display:none;" href="#40">✪</a></div>
+<div onmouseout="$('#link-41').hide()" onmouseover="$('#link-41').show()" id="41" class="comment"><span class="name">Manu Sporny</span>:  Third diagram about holders <a id="link-41" style="display:none;" href="#41">✪</a></div>
+<div onmouseout="$('#link-42').hide()" onmouseover="$('#link-42').show()" id="42" class="comment"><span class="name">Manu Sporny</span>:  Review of changes from last week: KMS as distinct component , &quot;Wallet&quot; Service <a id="link-42" style="display:none;" href="#42">✪</a></div>
+<div onmouseout="$('#link-43').hide()" onmouseover="$('#link-43').show()" id="43" class="comment"><span class="name">Adrian Gropper</span>:  Do we need this diagram? <a id="link-43" style="display:none;" href="#43">✪</a></div>
+<div onmouseout="$('#link-44').hide()" onmouseover="$('#link-44').show()" id="44" class="information"><a href="https://github.com/w3c-ccg/vc-http-api/issues/176">https://github.com/w3c-ccg/vc-http-api/issues/176</a> <a id="link-44" style="display:none;" href="#44">✪</a></div>
+<div onmouseout="$('#link-45').hide()" onmouseover="$('#link-45').show()" id="45" class="information">Muhamed: why wasn&apos;t KMS in the issuer and verifier? <a id="link-45" style="display:none;" href="#45">✪</a></div>
+<div class="comment-continuation">... or for that matter wallet service</div>
+<div onmouseout="$('#link-46').hide()" onmouseover="$('#link-46').show()" id="46" class="comment"><span class="name">Juan Caballero</span>:  Pointing out that the issue 176 raised by contributors to spec shows a custodial holder / multi-party holder -- assuming architecture for holders is simple/direct -- is not necessarily something we should do. [scribe assist by Manu Sporny] <a id="link-46" style="display:none;" href="#46">✪</a></div>
+<div onmouseout="$('#link-47').hide()" onmouseover="$('#link-47').show()" id="47" class="comment"><span class="name">Juan Caballero</span>:  There is complexity around guardianship, enterprise, custodial, all of those things -- difficulty of mapping this API is why this process is getting complicated -- good to be segmented as holder/issuer/verifier are. [scribe assist by Manu Sporny] <a id="link-47" style="display:none;" href="#47">✪</a></div>
+<div onmouseout="$('#link-48').hide()" onmouseover="$('#link-48').show()" id="48" class="comment"><span class="name">Juan Caballero</span>:  Just to say that part of complexity here comes from use cases like that. [scribe assist by Manu Sporny] <a id="link-48" style="display:none;" href="#48">✪</a></div>
+<div onmouseout="$('#link-49').hide()" onmouseover="$('#link-49').show()" id="49" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 We feel its very missing <a id="link-49" style="display:none;" href="#49">✪</a></div>
+<div onmouseout="$('#link-50').hide()" onmouseover="$('#link-50').show()" id="50" class="comment"><span class="name">Mike Prorock</span>: +1 Manu - you have hit the nail on the head <a id="link-50" style="display:none;" href="#50">✪</a></div>
+<div class="information">&lt;mahmoud_alkhraishi&gt; and super important</div>
+<div onmouseout="$('#link-51').hide()" onmouseover="$('#link-51').show()" id="51" class="comment"><span class="name">Manu Sporny</span>:  Do we need this diagram? short answer is yes. this is one of the parts of the system that the tracevocab group came here to expand the holder options <a id="link-51" style="display:none;" href="#51">✪</a></div>
+<div class="comment-continuation">... particularly in cases where multiple legitimate holders pass VCs between them</div>
+<div onmouseout="$('#link-52').hide()" onmouseover="$('#link-52').show()" id="52" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-52" style="display:none;" href="#52">✪</a></div>
+<div onmouseout="$('#link-53').hide()" onmouseover="$('#link-53').show()" id="53" class="comment"><span class="name">Manu Sporny</span>:  Also want to address Muhamed&apos;s question about KMS in issuer/verifier diagrams <a id="link-53" style="display:none;" href="#53">✪</a></div>
+<div class="comment-continuation">... we could add KMS and storage to issuer/verifier for completeness</div>
+<div class="comment-continuation">... or we could leave it out for simplicity&apos;s sake, if it isn&apos;t determinant or important</div>
+<div onmouseout="$('#link-54').hide()" onmouseover="$('#link-54').show()" id="54" class="comment"><span class="name">Mike Prorock</span>:  I think that people coming from other contexts might appreciate the &quot;best practices&quot; nod <a id="link-54" style="display:none;" href="#54">✪</a></div>
+<div class="comment-continuation">... i.e., seeing it in one diagram and not others, they might assume that they don&apos;t need one or shouldn&apos;t use one</div>
+<div class="comment-continuation">... or get confused</div>
+<div onmouseout="$('#link-55').hide()" onmouseover="$('#link-55').show()" id="55" class="information">Muhamed: Want to add from experience (on Authority Agent) that issuers often NEED a KMS to be able to participate in VC flows <a id="link-55" style="display:none;" href="#55">✪</a></div>
+<div onmouseout="$('#link-56').hide()" onmouseover="$('#link-56').show()" id="56" class="comment"><span class="name">Manu Sporny</span>:  Question: add to issuer but not to verifier? <a id="link-56" style="display:none;" href="#56">✪</a></div>
+<div class="information">&lt;mprorock&gt; verifier as well</div>
+<div onmouseout="$('#link-57').hide()" onmouseover="$('#link-57').show()" id="57" class="comment"><span class="name">Manu Sporny</span>:  Maybe it would help to be explicit: what does the issuer need KMS for, and how does it relate? what are the interfaces? <a id="link-57" style="display:none;" href="#57">✪</a></div>
+<div onmouseout="$('#link-58').hide()" onmouseover="$('#link-58').show()" id="58" class="comment"><span class="name">Mike Prorock</span>:  We tend to try to standardize the usage/reliance on KMS across use-cases and projects <a id="link-58" style="display:none;" href="#58">✪</a></div>
+<div onmouseout="$('#link-59').hide()" onmouseover="$('#link-59').show()" id="59" class="comment"><span class="name">Mike Prorock</span>:  What you&apos;re drawing on the screenshare looks like most of our usecases <a id="link-59" style="display:none;" href="#59">✪</a></div>
+<div class="comment-continuation">... even things like initiating a TLS require KMS, but maybe it&apos;s not worth including that</div>
+<div onmouseout="$('#link-60').hide()" onmouseover="$('#link-60').show()" id="60" class="comment"><span class="name">Manu Sporny</span>:  Caveat: boundaries/boxes a little inaccurate now, needs a tweak <a id="link-60" style="display:none;" href="#60">✪</a></div>
+<div class="comment-continuation">... just working on other semantic aspects for now</div>
+<div onmouseout="$('#link-61').hide()" onmouseover="$('#link-61').show()" id="61" class="comment"><span class="name">Manu Sporny</span>:  Any objections to this? <a id="link-61" style="display:none;" href="#61">✪</a></div>
+<div class="information">&lt;david_ward&gt; Should the term be Presentations between Verifier and Holder?</div>
+<div onmouseout="$('#link-62').hide()" onmouseover="$('#link-62').show()" id="62" class="comment"><span class="name">Juan Caballero</span>:  My only question, there was a lot of talk for a while about multiple holders -- should we include some visual reference for that concept? [scribe assist by Manu Sporny] <a id="link-62" style="display:none;" href="#62">✪</a></div>
+<div onmouseout="$('#link-63').hide()" onmouseover="$('#link-63').show()" id="63" class="comment"><span class="name">Juan Caballero</span>:  Is another holder a verifier for the purposes of the interaction? [scribe assist by Manu Sporny] <a id="link-63" style="display:none;" href="#63">✪</a></div>
+<div onmouseout="$('#link-64').hide()" onmouseover="$('#link-64').show()" id="64" class="comment"><span class="name">Manu Sporny</span>:  You could stack all of these boxes-- there could be multiple of any of these <a id="link-64" style="display:none;" href="#64">✪</a></div>
+<div class="comment-continuation">... and because a realworld entity could occupy all three roles at one time or in one interactions</div>
+<div class="comment-continuation">... so if a holder is send to another holder, that 2nd holder is verifier</div>
+<div class="information">&lt;tallted&gt;&#9;holder -&gt; Holder does *not* imply the recipient is a Verifier, and is a different situation than multiple Issuers (to one or many Holders) or multiple Verifiers (receiving from one or many Holders)</div>
+<div class="comment-continuation">... so let&apos;s keep the diagram simple and explain the variability in the text as how to interpret it</div>
+<div onmouseout="$('#link-65').hide()" onmouseover="$('#link-65').show()" id="65" class="comment"><span class="name">Ted Thibodeau</span>:  I think a holder-to-holder transfer will be distinct and have its own properties <a id="link-65" style="display:none;" href="#65">✪</a></div>
+<div onmouseout="$('#link-66').hide()" onmouseover="$('#link-66').show()" id="66" class="comment"><span class="name">Manu Sporny</span>:  New diagram probably better than adding that to these <a id="link-66" style="display:none;" href="#66">✪</a></div>
+<div onmouseout="$('#link-67').hide()" onmouseover="$('#link-67').show()" id="67" class="comment"><span class="name">Ted Thibodeau</span>:  Agreed <a id="link-67" style="display:none;" href="#67">✪</a></div>
+<div onmouseout="$('#link-68').hide()" onmouseover="$('#link-68').show()" id="68" class="comment"><span class="name">Manu Sporny</span>:  Proposal incoming <a id="link-68" style="display:none;" href="#68">✪</a></div>
+<div onmouseout="$('#link-69').hide()" onmouseover="$('#link-69').show()" id="69" class="information">David Ward: should &quot;Credentials&quot; be &quot;Presentations&quot; on the exchange arrow axis? <a id="link-69" style="display:none;" href="#69">✪</a></div>
+<div onmouseout="$('#link-70').hide()" onmouseover="$('#link-70').show()" id="70" class="comment"><span class="name">Manu Sporny</span>:  Yes, missed that! thanks, updating now <a id="link-70" style="display:none;" href="#70">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  Adopt the three diagrams (issuer, verifier, and holder) as initial diagrams to be placed into the specification. It is expected that these diagrams will be iterated upon.</div>
+<div onmouseout="$('#link-71').hide()" onmouseover="$('#link-71').show()" id="71" class="comment"><span class="name">Manu Sporny</span>:  (Proposal) <a id="link-71" style="display:none;" href="#71">✪</a></div>
+<div onmouseout="$('#link-72').hide()" onmouseover="$('#link-72').show()" id="72" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-72" style="display:none;" href="#72">✪</a></div>
+<div onmouseout="$('#link-73').hide()" onmouseover="$('#link-73').show()" id="73" class="comment"><span class="name">Mike Varley</span>: +1 <a id="link-73" style="display:none;" href="#73">✪</a></div>
+<div onmouseout="$('#link-74').hide()" onmouseover="$('#link-74').show()" id="74" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-74" style="display:none;" href="#74">✪</a></div>
+<div onmouseout="$('#link-75').hide()" onmouseover="$('#link-75').show()" id="75" class="comment"><span class="name">Aaron Coburn</span>: +1 <a id="link-75" style="display:none;" href="#75">✪</a></div>
+<div onmouseout="$('#link-76').hide()" onmouseover="$('#link-76').show()" id="76" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-76" style="display:none;" href="#76">✪</a></div>
+<div onmouseout="$('#link-77').hide()" onmouseover="$('#link-77').show()" id="77" class="comment"><span class="name">Eric Schuh</span>: +1 <a id="link-77" style="display:none;" href="#77">✪</a></div>
+<div onmouseout="$('#link-78').hide()" onmouseover="$('#link-78').show()" id="78" class="comment"><span class="name">Ted Thibodeau</span>: +1 <a id="link-78" style="display:none;" href="#78">✪</a></div>
+<div onmouseout="$('#link-79').hide()" onmouseover="$('#link-79').show()" id="79" class="comment"><span class="name">Charles Edebiri</span>: +1 <a id="link-79" style="display:none;" href="#79">✪</a></div>
+<div onmouseout="$('#link-80').hide()" onmouseover="$('#link-80').show()" id="80" class="comment"><span class="name">Adrian Gropper</span>: +0 <a id="link-80" style="display:none;" href="#80">✪</a></div>
+<div class="information">&lt;muhamed_turkanovi&#228;&#8225;_(blockchain_lab:um)&gt; 0</div>
+<div onmouseout="$('#link-81').hide()" onmouseover="$('#link-81').show()" id="81" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-81" style="display:none;" href="#81">✪</a></div>
+<div onmouseout="$('#link-82').hide()" onmouseover="$('#link-82').show()" id="82" class="comment"><span class="name">Marty Reed</span>: +1 <a id="link-82" style="display:none;" href="#82">✪</a></div>
+<div id="resolution-1" class="resolution"><strong>RESOLUTION:</strong> Adopt the three diagrams (issuer, verifier, and holder) as initial diagrams to be placed into the specification. It is expected that these diagrams will be iterated upon.</div>
+<h1 id="topic-4" class="topic">Topic: Start Authorization Discussion</h1>
+<div onmouseout="$('#link-83').hide()" onmouseover="$('#link-83').show()" id="83" class="comment"><span class="name">Manu Sporny</span>:  Overview of discussion to date: pros and cons of prior art and of ZCaps (W3C draft spec used by many involved companies) <a id="link-83" style="display:none;" href="#83">✪</a></div>
+<div class="comment-continuation">... would like to hear from companies involved</div>
+<div onmouseout="$('#link-84').hide()" onmouseover="$('#link-84').show()" id="84" class="comment"><span class="name">Adrian Gropper</span>:  Arguments against OAuth2 are mostly about delegation <a id="link-84" style="display:none;" href="#84">✪</a></div>
+<div class="comment-continuation">... I feel that OAuth2 has human rights issues and that specifying it would open a delegation can of worms</div>
+<div class="comment-continuation">... and my experiences with delegation problems in UMA are why i am so emphatic here</div>
+<div onmouseout="$('#link-85').hide()" onmouseover="$('#link-85').show()" id="85" class="comment"><span class="name">Mike Varley</span>:  SecureKey is supportive of GNAP and anchoring delegation in end-user <a id="link-85" style="display:none;" href="#85">✪</a></div>
+<div class="comment-continuation">... but I also think this spec could and should specify how VCs handle credentials (perhaps with ZCaps)</div>
+<div onmouseout="$('#link-86').hide()" onmouseover="$('#link-86').show()" id="86" class="comment"><span class="name">Mike Prorock</span>:  Oauth isn&apos;t perfect, but it is industry standard and it is what everyone who we want to use this API is currently using, including all of our customers <a id="link-86" style="display:none;" href="#86">✪</a></div>
+<div class="comment-continuation">... i cannot take GNAP today to any of my customers, to be blunt. it will get there but today, at a minimum, we have to find a way to meet people where they are</div>
+<div onmouseout="$('#link-87').hide()" onmouseover="$('#link-87').show()" id="87" class="comment"><span class="name">Mike Varley</span>: +1 Too GNAP being &quot;early&quot;. <a id="link-87" style="display:none;" href="#87">✪</a></div>
+<div onmouseout="$('#link-88').hide()" onmouseover="$('#link-88').show()" id="88" class="information">Muhamed: I just want to ask if we are talking about authZ or authN too? <a id="link-88" style="display:none;" href="#88">✪</a></div>
+<div onmouseout="$('#link-89').hide()" onmouseover="$('#link-89').show()" id="89" class="comment"><span class="name">Manu Sporny</span>:  AuthN happens through other protocols, and is out of scope (this API assumes parties are already authN to each other) <a id="link-89" style="display:none;" href="#89">✪</a></div>
+<div onmouseout="$('#link-90').hide()" onmouseover="$('#link-90').show()" id="90" class="comment"><span class="name">Henry Story</span>:  I&apos;m also trying to get a firmer grip on the language. I tend to think of authZ as a description of what attributes should be requested and sent. <a id="link-90" style="display:none;" href="#90">✪</a></div>
+<div class="comment-continuation">... you&apos;re thinking of every application jumping around along links and fetching data, as they do today in a browser; wallet has no idea where it will go next to fetch what it needs; OAuth is a problem here and VCs can help here</div>
+<div class="comment-continuation">... this makes for a very different AuthZ topology versus &quot;loggin in and staying in&quot; at each website</div>
+<div onmouseout="$('#link-91').hide()" onmouseover="$('#link-91').show()" id="91" class="comment"><span class="name">Adrian Gropper</span>:  I want to avoid framing zero-sum either/or argument. I want this spec to require GNAP either on top of or alongside OAuth <a id="link-91" style="display:none;" href="#91">✪</a></div>
+<div class="comment-continuation">... i think issuers and institutions will not adopt GNAP without the kind of pressure that would come from this spec requiring it or specifying it as the best way to get holder consent/involvement at a low level</div>
+<div onmouseout="$('#link-92').hide()" onmouseover="$('#link-92').show()" id="92" class="comment"><span class="name">Mike Prorock</span>: I would note we have a system to system use case primarily, not an end user facing system (typically at this stage), hence Authorization: Bearer ........ <a id="link-92" style="display:none;" href="#92">✪</a></div>
+<div onmouseout="$('#link-93').hide()" onmouseover="$('#link-93').show()" id="93" class="comment"><span class="name">Manu Sporny</span>:  To address Henry&apos;s comment, i think there is a terminology mismatch <a id="link-93" style="display:none;" href="#93">✪</a></div>
+<div class="comment-continuation">... you mean the process of getting authorization to do somethign</div>
+<div class="comment-continuation">... but here we mean more like authZ check, i.e., &quot;are you authorized to be checking this endpoint? &quot;</div>
+<div onmouseout="$('#link-94').hide()" onmouseover="$('#link-94').show()" id="94" class="comment"><span class="name">Manu Sporny</span>:  To address Adrian, I think there is too much confusion around &quot;who is on sovereign&quot; and it should get clearer over time <a id="link-94" style="display:none;" href="#94">✪</a></div>
+<div class="comment-continuation">... no is against OAuth2, and it is minimum we can do.  consensus seems to be &quot;putting GNAP, ZCaps, and other upgrades alongside OAuth&quot;</div>
+<div onmouseout="$('#link-95').hide()" onmouseover="$('#link-95').show()" id="95" class="comment"><span class="name">Mike Prorock</span>: +1 Allow others as they become adopted at a broader scale <a id="link-95" style="display:none;" href="#95">✪</a></div>
+<div class="information">&lt;bblfish&gt; I guess I need to really understand what is meant here by authZ</div>
+<div class="comment-continuation">... we should think about how to make OAuth the minimum/basement and specify preferences for upgrade paths</div>
+<div class="information">&lt;muhamed_turkanovi&#228;&#8225;_(blockchain_lab:um)&gt; few question for next time:</div>
+<div class="information">&lt;muhamed_turkanovi&#228;&#8225;_(blockchain_lab:um)&gt; And what about authentication of the holder towards the issuer/verifier (maybe in terms of legacy PKI systems)?</div>
+<div onmouseout="$('#link-96').hide()" onmouseover="$('#link-96').show()" id="96" class="comment"><span class="name">Eric Schuh</span>: Use cases doc: <a href="https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc">https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc</a> <a id="link-96" style="display:none;" href="#96">✪</a></div>
+<div class="information">&lt;mprorock&gt; thanks for facilitating manu!</div>
+<div onmouseout="$('#link-97').hide()" onmouseover="$('#link-97').show()" id="97" class="comment"><span class="name">Manu Sporny</span>:  Next week, please get in touch to add to the agenda and think about authZ <a id="link-97" style="display:none;" href="#97">✪</a></div>
+<div onmouseout="$('#link-98').hide()" onmouseover="$('#link-98').show()" id="98" class="information">Thanks all <a id="link-98" style="display:none;" href="#98">✪</a></div>
+</div></div></div></div></div>    </div>
+  </body>
+</html>
