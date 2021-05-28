@@ -379,6 +379,9 @@
        {
           var present = msg.match(presentRx)[1].toLowerCase();
           var people = present.split(',');
+          if(msg.includes('present+')) {
+            people = [nick];
+          }
 
           // try to find the person by full name, last name, and then first name
           for(var i = 0; i < people.length; i++) {
@@ -387,13 +390,19 @@
             } else {
               var person = people[i].replace(/^\s/, '').replace(/\s$/, '');
               var lastName = person.split(' ')[1];
-              var firstName = person.split(' ')[0];
+              if(lastName === undefined) {
+                lastName = person.split('_')[1];
+              }
               if(person in aliases) {
                 scrawl.present(context, aliases[person]);
               } else if(lastName in aliases) {
                 scrawl.present(context, aliases[lastName]);
               } else {
-                console.log('Could not find alias for', person);
+                if(msg.includes('present+')) {
+                  scrawl.present(context, match[2].replace('_', ' '));
+                } else {
+                  console.log('Could not find alias for', person);
+                }
               }
             }
           }
@@ -564,8 +573,8 @@
     var agenda = context.agenda;
     var audio = 'audio.ogg';
     var chair = context.chair;
-    var scribe = context.scribe.filter(function(item, i, arr) { 
-      return arr.indexOf(item) === i; 
+    var scribe = context.scribe.filter(function(item, i, arr) {
+      return arr.indexOf(item) === i;
     });
     var topics = context.topics;
     var resolutions = context.resolutions;
@@ -575,6 +584,11 @@
     // build the list of people present
     for(var name in context.present) {
       var person = scrawl.people[name]
+      if(person === undefined) {
+        person = {
+          homepage: 'https://w3c-ccg.github.io/'
+        };
+      }
       person['name'] = name;
       present.push(person)
     }
