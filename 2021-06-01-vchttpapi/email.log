@@ -1,0 +1,348 @@
+Thanks to aaron_coburn for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-01-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-06-01
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0000.html
+Topics:
+  1. Use Cases Update
+  2. Authorization Part Deux
+Organizer:
+  Manu Sporny
+Scribe:
+  aaron_coburn
+Present:
+  Manu Sporny, Mike Varley, Markus Sabadello, Eric Schuh, Aaron 
+  Coburn, Henry Story, Adrian Gropper, Andreas Freund, Sanuja, 
+  Diwala, Brent Shambauh, Juan Caballero, Ted Thibodeau, Anil John, 
+  Orie Steele, David Ward
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-01/audio.ogg
+
+aaron_coburn is scribing.
+Manu Sporny:  Welcome to the weekly HTTP API call. This is the 
+  new time for the call
+  ... today's agenda: continuation of authZ discussion
+  ... possibly some preliminary descisions if there is consensus
+<tallted> confirming -- delete repeating Thursday 3pm ET, 
+  effective this week?
+  ... are there any updates to the agenda?
+
+Topic: Use Cases Update
+
+Eric Schuh:  Update on use cases document
+  ... the new date is june 14, two weeks from today
+Eric Schuh: Deadline for new use cases: June 15
+<tallted> s/june 14/june 15/
+  ... more use cases have been added
+  ... many are single-sentence, so we are looking forward to 
+  expanding those
+Juan Caballero:  We have been leaving comments on some longer use 
+  cases
+  ... with clarifying questions
+Manu Sporny:  Please add more if you have interesting use cases
+  ... any other status updates?
+Juan Caballero:  One of Mike's use case: he already answered a 
+  clarifying question; it might be good to walk through one of his 
+  use cases at the end (Trust Agent)
+  ... whether the trust agent is an api detail
+Manu Sporny:  Any other use cases for the agenda?
+
+Topic: Authorization Part Deux
+
+  ... if not we will get started with Authorization
+Mike Varley: +1 To tackle the Trust Agent use case if there is 
+  time and determine if it is in scope.
+  ... to summarize last call: what is in scope / out of scope
+  ... don't put future authZ schemes out of scope (GNAP/ZCAP/etc)
+  ... one suggestion to put such things as GNAP out of scope 
+  initially
+  ... one suggestion to focus on OAuth2
+  ... today: see if we can get to a proposal
+  ... is this summary accurate?
+Adrian Gropper:  OAuth2 is about authorization but not delegation
+  ... how do we determine how delegation is in scope/out of scope
+  ... esp. w/r/t self-soverign
+  ... do we need to include UMA?
+Mike Varley:  Not about delegation
+  ... clarify: is this for system-to-system (e.g. 
+  client_credentials)
+  ... or both?
+  ... or personal interaction w.r.t consent?
+Manu Sporny:  Several layers to this. Most focus has been on 
+  client_credentials
+  ... for general access control (simple case) OAuth2 makes sense
+  ... for those endpoints that could be abused w/o an authZ layer
+  ... or: for those endpoints (such as presentation) one doesn't 
+  need authorization
+  ... those very much in scope
+  ... delegation is trickier: what are you delegating?
+  ... we need a concrete use case
+  .... how does one doe that w/ OAuth2
+  ... how does one do that with other mechanisms
+Andreas: pull vs. push use case
+Manu Sporny:  Is it assumed that authZ is required to do that?
+Andreas: assumption is that authZ is needed
+  ... e.g. I have a presentation to make
+  ... here is domain/endpoint/challenge
+Manu Sporny:  There is a "start workflow" use case like this
+  ... is there authZ required on this endpoint, or do you just 
+  start
+Andreas: is there something out of band in the communication?
+Henry Story: I was wondering how the Authorization fits with the 
+  Solid Authorization use cases we put together 
+  https://solid.github.io/authorization-panel/authorization-ucr/#uc-privacy
+<andreas_freund> @aaron ... there is the assumption of out of 
+  band communication to establish a trust relationship between 
+  requester and target systems
+Manu Sporny:  Delegation -- what use case affects the HTTP API?
+<andreas_freund> that is what i meant
+Thanks @andreas
+<bblfish> ok, changed browser
+Adrian Gropper:  Receive direct from the issuer or if the message 
+  needs to be encrypted so the holder cannot read the data
+  ... streaming of credentials -- could be discarded by the 
+  holder
+  ... cases where revocation mechanisms are not available
+Henry Story:  Solid authorization use cases -- these could be 
+  helpful
+  ... possibly the terminology is different
+Manu Sporny:  Could you send your message to the CCG mailing list
+  ... could you provide a summary now?
+Henry Story:  Read access / write access to a resource
+  ... use cases for credentials (over a certain age)
+  ... how a client would know what credentials it has to give
+  ... server doesn't want to leak too much information
+Manu Sporny:  Some folks see the HTTP API is an ecosystem API 
+  when in fact it is more focused on issuing VCs
+  ... the UCs provided by Henry might be more appropriate for 
+  confidential wallets
+  ... looking at the endpoints themselves, we need to ask whether 
+  certain endpoints need authZ or delegation
+  ... seems that @adrian's UCs relate to the content of the data
+Adrian Gropper:  The VC is a resource
+  ... what is manu asking? There is just the endpoint that will 
+  accept/produce the VC.
+Manu Sporny:  We need to be more specific about what these 
+  endpoints do if we want to talk about authZ
+  ... otherwise we'll keep going around in circles
+  ... one possiblity: we talk about each endpoint and discuss 
+  what the endpoitn needs
+Andreas: need to distinguish b/t authZ of the endpoint and authZ 
+  of the resource
+  ... can the target system be called by the requestor system?
+  ... I have SAP (A) on one side and Oracle (A)
+  ... if oracle (B) doesn't know that SAP (B) isn't delegated by 
+  SAP (A), it would reject that request
+  ... but we would want a delegation model that would allow these 
+  sorts of interactions
+Adrian Gropper:  We have HTTP in the specification name
+  ... one brings a token that allows one to call that resource
+  ... what is the issue about multiple endpoints? HTTP says it 
+  all
+Andreas: the different endpoints do different things: some are 
+  public some are not
+Adrian Gropper:  Does the resource owner have ability to delegate 
+  to another entity
+  ... difference b/t oauth2 and uma
+Andreas: e.g. SAP (A) delegates to SAP (B)
+Andreas: system a requests a resource (a presentation)
+Manu Sporny:  I think the kind of delegation adrian is talking 
+  about is out of scope
+  ... by "resource", the language adrian is using could be 
+  interpreted in several ways
+  ... if you're reasoning about the VC, that is out of scope
+Adrian Gropper:  Agreed
+Manu Sporny:  Can you hit the endpoint or not
+  ... if so, you can issue anything
+  ... unless we have a very fine-grained authZ framework
+  ... two levels: can we do the simple stuff (OAuth2)
+  ... e.g. direct system-to-system calls
+  ... after that, what kind of delegation do we want to support
+  ... keep the complex authZ mechanisms in mind
+  ... but keep the simple use cases front and center
+Adrian Gropper:  OAuth uses string to determine scope
+  ... in confidential storage WG: does the subject have the right 
+  to delegate access
+  ... not whether the subject has the ability to read/write
+  ... sees this as a human rights issue
+Manu Sporny:  I will try to pose the issue differently
+  ... I don't understand the human rights issue
+  ... can we talk about this as a priorities thing?
+  ... start with the simple tasks
+  ... move the complex items to later (while keeping them in 
+  mind)
+  ... would there be any objections to prioritizing the simple 
+  stuff
+<adrian_gropper> Yes - I would object.
+Adrian Gropper:  Object on the grounds of 10 years of experience 
+  of the disaster caused by oauth in the health care industry
+  ... colleagues have all moved from OAuth to GNAP
+  ... reduced to login with Google/FB
+  ... OAuth needs to go away
+Orie Steele: -1 To moving from an establshed standard to a DRAFT 
+  that is WIP.
+  ... serves B2B use cases
+  ... doesn't help self-soveign protocols
+Manu Sporny:  Anyone to speak to OAuth2 use cases
+Ted Thibodeau:  OAuth is not reduced to those two providers
+  ... we have an auth layer that allows dozens of providers to be 
+  used
+  ... argument is spurious
+  ... many have chosen to leave OAuth, but the reasoning is 
+  flawed
+Orie Steele:  As a standard, OAuth has been adopted by a large 
+  number of providers
+  ... it's not a draft or work item
+  ... it has flaws
+<bblfish> On the whole I am on Adrian's side, I don't think it 
+  OAuth for Solid is really the right tool for example.
+  ... many of the design decisions have caused trouble for OAuth
+  ... but it has also stood up over time
+  ... there isn't a better solution today for OAuth
+  ... there are social issues ("nascar problem") but that doesn't 
+  mean that OAuth isn't a foundation worth building on
+  ... starting with OAuth could, in fact, help this effort to 
+  take off
+  ... it has been very difficult to replace OAuth
+Manu Sporny:  I think we're conflating things
+<orie> sure OIDC is built on OAuth....
+  ... when we say OAuth2 means "login with Google/FB", that's 
+  OIDC
+  ... I have the same issue with that
+  ... that is not what we're talking about
+<tallted> OIDC is also not trapped in a G/FB coin-flip
+<orie> ^ bingo
+  ... when we mean applying auth to these endpoints
+  ... we are not talking about integrating OIDC into these 
+  endpoints
+  ... if people are objecting to SSO, that is not what we are 
+  talking about
+  ... we are talking about the underlying OAuth protocol
+Orie Steele: Take your objects to ODIC to the OIDF :) I hear they 
+  have their own way of doing SIOP / SSI :)
+Adrian Gropper:  The problem as manu stated, is not with OIDC. 
+  The problem is with registration
+<tallted> false.
+<orie> false
+Manu Sporny:  How is it incompatible?
+https://github.com/go-oauth2/redis
+Adrian Gropper:  The service provider needs a process by which 
+  they issue a client id and that process involves some sort of 
+  identity verification
+Ted Thibodeau: Proof of falsity: http://youid.openlinksw.com/
+  ... e.g. if you have a valid credit card, we will issue X to 
+  you
+<tallted> q
+<orie> there is a difference between "authenticating an 
+  application" and a "human being"....
+  ... the reason OAuth only works in B2B case is because of the 
+  client registration requirement
+Manu Sporny:  I do not agree
+  ... one can set up your own server without needing to use any 
+  of the stuff described
+  ... to get an oauth client_id and secret, all you need is a 
+  webpage
+  ... I do agree about the use of OIDC to force the use of large 
+  providers
+Ted Thibodeau:  The UID link above allows one to set up with 
+  sufficient crypto to publish the public portion of your sign-in 
+  material
+  ... there is no reason to have to use the big 2 or 3 providers
+Adrian Gropper:  To Orie's point: the reason for my objection 
+  (and the reason to do GNAP in parallel): safety is not the issue. 
+  The issue is about privacy
+  ... the barrier to client registration is a barrier to adoption
+  ... when client registration is introduced, you create a system 
+  that is unfair to the subjects
+<juan_caballero_(dif/spruce)> but what if all the subjects of the 
+  VCs in question are inanimate objects and batches of steel or 
+  coal?
+  ... the argument is based on privacy not security
+<juan_caballero_(dif/spruce)> OAuth is being used to authenticate 
+  servers which are passing between them VCs about rocks
+Ted Thibodeau:  You rejected my argument because of the last 
+  sentence.
+Adrian Gropper:  I provided an example that oauth is successful 
+  in B2B b/c of client registration
+Ted Thibodeau:  Dozens of instances where a verifiable identity 
+  does not require a B2B registration
+Manu Sporny:  Make sure no one gets too passionate and that there 
+  are no personal attacks
+  ... would like to collect some data (poll not a decision)
+  ... just a +1/-1 poll
+  ... start with adrian's proposal
+  ... to prioritize working with OAuth2 and GNAP simulaneously
+  ... just getting feedback
+  ... there will be several pos
+Manu Sporny: POLL: Prioritize working on OAuth2 and GNAP 
+  simultaneously when adding authorization to VC HTTP API 
+  endpoints.
+  ... polls
+Adrian Gropper: +1
+Orie Steele: -1
+Manu Sporny: -1
+<tallted> -.9
+<markus_sabadello> +0.5
+<mike_varley> -1; I do not feel GNAP is ready to be worked with 
+  yet. But I hope it gets there soon
+<eric_schuh> 0
+<bblfish> ISn't GNAP a 100 page proposal that is only just 
+  started being worked on at the IETF?
+<david_ward> -0.1
+Anil John: -1 As GNAP is still too immature
+<orie> my reason for -1 is that both GNAP is not stable enough  
+  to use in production today, and its additional complexity which 
+  is orthogonal to our mission
+Manu Sporny:  GNAP is in early days at IETF
+  ... counter proposal: to prioritize working with OAuth2
+Anil John: XACML :-)
+<markus_sabadello> XDI link contracts!
+Manu Sporny: POLL: Prioritize working on OAuth2 for authorization 
+  to VC HTTP API endpoints as a priority 1 item and enable the use 
+  of other authorization mechanisms like GNAP, ZCAPs, etc. as a 
+  priority 2 item.
+<adrian_gropper> - 1
+Orie Steele: -1 To getting tangled in lower priority work
+<tallted> wording bites me...
+Mike Varley: +1 To OAuth 2.0 client credentials, +0.1 for user 
+  authorization
+<markus_sabadello> 0
+<eric_schuh> 0
+<orie> "lower priority" means a license to distract and waste 
+  call time, but no commitment/
+Juan Caballero:  What do the priority numbers mean?
+Ted Thibodeau: +1 Presuming *enabling* other authz potential in 
+  future is not blocked, is actively worked toward
+<orie> at least to me
+Manu Sporny:  Very hand-wavy
+Juan Caballero:  Recalls concerns about how OAuth2 becomes 
+  possible but infeasable at scale
+<orie> I would be supportive of "not blocking future solutions" 
+  and "not spending time on them other than when they are at risk 
+  or having the door shut on them".
+Manu Sporny:  What we are seeing is that there is a preference 
+  for OAuth2
+  ... we are at the top of the hour
+<tallted> *nods*  yes, Orie
+  ... we will come back to this next week
+  ... adrian can you come up with a proposal that would get 
+  consensus?
+<orie> I suspect that HTTP headers are not going away anytime 
+  soon.
+  ... we can start with one endpoint
+  ... e.g. verify endpoint -- what authZ should it support?
+<david_ward> Can the technology used be kicked down the road a 
+  bit?  Is it actually important at this time until how the end 
+  points fit the use cases are worked out?
+  ... we will put aside time for use cases next wee
+  ... thank you everyone for your engagement
+<bblfish> ciao
+Ted Thibodeau: +1 David_Ward
