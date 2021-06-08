@@ -1,0 +1,388 @@
+Thanks to Manu Sporny for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-08-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Task Force Minutes for 2021-06-08
+
+Agenda:
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit
+Topics:
+  1. Report Out on Use Cases
+  2. GNAP, Bootstrapping, and Authentication
+  3. Trust Agent Discussion
+Organizer:
+  Manu Sporny
+Scribe:
+  Manu Sporny
+Present:
+  Manu Sporny, Vaishnavi, Sanuja (Diwala), Eric Schuh, Aaron 
+  Coburn, Matthieu Collé, Mike Varley, Juan Caballero, Butch Clark, 
+  Charles Edebiri, Orie Steele, Adrian Gropper, Muhamed 
+  Turkanović_(Blockchain_Lab:UM), Justin Richer, Heather Vescent, 
+  Troy Ronda, David Ward, TallTed 
+  //_Ted_Thibodeau_(he/him)_(openlinksw.com)
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-08/audio.ogg
+
+Manu Sporny is scribing.
+Manu goes over IPR statements.
+Manu provides Agenda: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0049.html
+Juan Caballero:  Wallet and Credential Interface -- WACIPex 
+  specification and profile will be readable by curious parties 
+  later this week. There are examples in there, text is more 
+  complete and useful for people in there. That might be a useful 
+  point of comparison wrt. bootstrapping later today.
+Juan Caballero: 
+  https://github.com/decentralized-identity/waci-presentation-exchange
+Eric Schuh:  Quick reminder to everyone, soft deadline for use 
+  cases for next week -- please get those written up -- let Juan or 
+  I know about it. Then we'll be moving into the distilling 
+  process.
+Manu Sporny:  Any other announcements or changes to the agenda.
+Manu Sporny:  Juan provided an agenda, we're going to follow it.
+
+Topic: Report Out on Use Cases
+
+Juan Caballero:  One thing came up when we met this last week -- 
+  we were thinking about how these diagrams map to the use cases, 
+  and we thought the trust agent use case was a good example, 
+  collectively thinking through terminology/mapping and how it 
+  relates to the different steps in the flow would help.
+Orie Steele: Unrelated announcement... Apple roles out support 
+  for SMART on FHIR health VCs.... 
+  https://developer.apple.com/videos/play/wwdc2021/10089/
+<eric_schuh> Joe unfortunately can't make it today due to a minor 
+  medical issue
+Juan Caballero:  One comment that Joe Andrieu had was that we 
+  were thinking about naming the gray metacategory here, and 
+  thinking of division into verifier/issuer/holder... and thinking 
+  through use cases where there are more than ... where that real 
+  world category of the issuer broke down into multiple real world 
+  parties.
+Juan Caballero:  ... And thinking about the relationships between 
+  them. If this described a shared incentive, shared interest, 
+  trust boundary, and we thought maybe one thing worth thinking 
+  about would be if these were categories were things we wanted to 
+  think about a little bit. That's a bit abstract... We want to 
+  think through how parts relate and whether or not the Holder box 
+  / Issuer box is part of the confusion.
+Juan Caballero:  When you're thinking about bootstrapping, 
+  authoring, it might be more helpful.
+Juan Caballero:  We're going to test it working through one use 
+  case. If it's useful, great, if it's not, sorry for wasting 
+  everyone's time, it was just a hypothesis.
+Juan Caballero:  Any questions?
+Juan Caballero:  Does anyone have any thoughts about 
+  authorization vs. bootstrapping.
+
+Topic: GNAP, Bootstrapping, and Authentication
+
+Manu Sporny:  I thought Adrian's comments were interesting... 
+  showing up with a token and then how did they get that token.
+Adrian Gropper:  The major point I'm trying to make, and I'm glad 
+  that Justin is here, he's been editing standards around this 
+  point for as long as I've known him. UMA, HEART, GNAP... my point 
+  is that it's inconsistent with SSI to presume that in order to 
+  control something, someone has to possess it.
+Adrian Gropper:  The question that Manu asked, is at what layer 
+  of DIF/W3C/SSI protocols discussion that we are involved in, 
+  where do we consider this linkage between the controller and the 
+  processor to use GDPR terminology, or alice-alice vs alice-bob 
+  flows which was the purpose of UMA.
+Adrian Gropper: 
+  https://docs.google.com/document/d/1MaS6Qs6g_dom_Y66jCWrcck6KJozAS3JZU1aLU6j598/edit#
+Adrian Gropper:  I just put a link to a document that I shared w/ 
+  CCG Chairs to try and get this conversation about the role of 
+  delegation, also talked w/ Christopher Allen, law of agency, 
+  again, this idea that the subject (hopefully Self Sovereign 
+  Subject), doctors, lawyers, etc. has the right to use those 
+  agents.
+Adrian Gropper:  If this discussion doesn't belong in VC HTTP 
+  API, then we need to go back to CCG and figure out where it does 
+  belong.
+Justin Richer:  If you could go back to the message that was on 
+  just a second ago... this captures something really important.
+<juan_caballero> VuHappy
+Justin Richer:  This is what Manu was talking about before... 
+  there are a few different places that VC HTTP API (which needs a 
+  shorter name), where authorization protocols come into play.
+Justin Richer:  How do you protect access to the VC HTTP API 
+  itself? How do you use the results of a VC HTTP API (use a VC and 
+  communicated efforts that come from that) in the process of 
+  deciding whether or not you're going to answer an API call from a 
+  different API
+Justin Richer:  And finally, how do you get one of these 
+  authorization elements, an access token in the first place... 
+  each of these aspects have compelling pieces to it, and they're 
+  all pretty different from each other.
+Justin Richer:  From my perspective, the modularity of these 
+  different pieces not get crossed with each other. You can solve 
+  these things in different ways with different combinations of 
+  these technologies.
+Justin Richer:  Some of these things can be used to solve some of 
+  these things... so using a VC as an access token format, GNAP 
+  doesn't care about format, that gives you some flexibility.
+Justin Richer:  The most compelling connections apply in the 
+  bootstrapping process... how do you get this access token in the 
+  first place... traditionally, with UMA, bring your own authz 
+  server... resource servers will just accept this... but that 
+  doesn't happen from all of the trust bootstrapping problems that 
+  the real world brings with it.
+Justin Richer:  One of the things that GNAP tries to work on is 
+  what sort of thing you can bring to an authorization server to 
+  get access to it. In OAuth2 there is some baked in assumption 
+  that someone logs into authorization server and gets token.
+Justin Richer:  GNAP tries to move away from that, that's one of 
+  the key places that VC HTTP API could use GNAP ... show up at 
+  authz server, using VC HTTP API, to determine whether to give 
+  them access token and what to put in access token... all 
+  decisions can stay inside that coupling between AS and RS and it 
+  doesn't have to leak in awkard cross domain ways.
+Justin Richer:  That is possible with UMA, but doesn't fly.
+Justin Richer:  There are three main aspects to this depending on 
+  where you are in the process wrt. connecting these things and 
+  how.
+Adrian Gropper:  If people have questions for what Justin just 
+  said, I'll step back -- I agree with what Justin said, having 
+  worked on UMA for a decade... another way of speaking about it, 
+  if people want to react to Justin's perspective... simply put, 
+  when that token is presented, to get VC, either token was signed 
+  by RS, could be holder, could be anybody, or it was signed by AS.
+Adrian Gropper:  As Justin pointed out, the AS is an entity that 
+  is trusted by the RS... in OAuth, it's typically the same, in 
+  GNAP/UMA it doesn't have to be. If you have that idea in mind, 
+  that the token is going to be signed one way or the other, you 
+  can layer on top attenuation, or layer scopes, on top of 
+  delegation/authz process. Those are secondary.
+Adrian Gropper:  Will the issuer accept tokens that only it has 
+  signed, or will it accept a token that is signed by an AS... 
+  where you bring identity claims and so on.
+Manu Sporny:  +1 To what Justin said and separation of concerns; 
+  what would this group like to focus on? the requirement for an 
+  auth token on the API, or the overall bootstrap [scribe assist by 
+  Mike Varley]
+Manu Sporny:  All that sounds good but segmentation and order of 
+  operations [scribe assist by Juan Caballero]
+<juan_caballero> ... is what we need to decide here
+<juan_caballero> /me embarassed that mike outscribed me
+Justin Richer:  Yes, I agree with the sentiment, that is the 
+  first of the three different scenarios that I pointed out, when 
+  you're making a call to the VC HTTP API, that API is or can be 
+  protected by access tokens and that access token is either 
+  contains/dereferencable to security aspects.
+Justin Richer:  My recommendation for that use case is to define 
+  things in terms of OAuth Rich Authorization Request, or GNAP 
+  mechanism -- multidimensional JSON structures, security profile 
+  for certain API, it makes sense that this is the group that would 
+  define what that would look like, and you can use it in both 
+  OAuth and GNAP and the notion of how you got the token is out of 
+  scope, and it should be there.
+Justin Richer:  It allows you to defer how exactly you get back 
+  those access structures... you could bake them into the token, or 
+  you can do introspection, or chuck it in a database and look it 
+  up -- that's all separable.
+Justin Richer:  Important that modules are well defined, you 
+  don't necessarily have to cross them all over the place.
+Justin Richer:  Now how does a VC HTTP API decides that it 
+  accepts a certain type of token, different question from how you 
+  get the token, that should remain separable questions.
+Adrian Gropper:  One question to both Manu and Justin, to what 
+  they were both saying -- the way I like to think about it -- 
+  there are no identity-based claims associated with Manu's 
+  proposal. The token itself has things related to scope, as Justin 
+  made clear, but not to identity.
+Justin Richer: Note: not scope, RAR. Analogous but different
+Adrian Gropper:  There will be corner cases, where nature of 
+  client, the bearer of the user attached to the client, the side 
+  cases that are not that important -- they need to be managed. 
+  Authorization server sees identity related claims, and issuer 
+  does not (as defined by Manu).
+Juan Caballero:  I'd like to time box this a bit, don't know that 
+  Mike can come every week and did show up to do his use case today 
+  -- unless someone is volunteering to do the PRs for making sure 
+  that everyone else's work doesn't preclude this sort of token -- 
+  feels like it's listing design goals/constraints... might not be 
+  right time to do that.
+Justin Richer:  I will be quick -- what I'm talking about is not 
+  just design goals, understanding what problem you're solving, 
+  what I'm seeing is that people talking about similar but 
+  fundamentally different problems, that's not a good thing wrt. 
+  making progress. That kind of stuff is important to 
+  resolve/address use cases.
+Justin Richer:  Identity claims -- that's what this group should 
+  be defining... that you get token, dereference... what kinds of 
+  things do you need to do that, how to serve that request... one 
+  of several ways that could fit together... becareful what you 
+  talk about.
+<orie> link
+<orie> to source
+Adrian Gropper:  I've started writing code on Github, I'm putting 
+  up a protected OAuth protected, JWT-protected VC -- then work 
+  done by Spruce, and goal is to show the delta between the OAuth 
+  as done in FAST API and the minimal implementation of GNAP to do 
+  the same thing (in the same FAST API) CouchDB as database... if 
+  someone woul dlike to play with this, please help and let's work 
+  together.
+Juan Caballero:  People that are interested in prototyping, 
+  please check out that repo and contribute.
+
+Topic: Trust Agent Discussion
+
+Adrian Gropper: https://github.com/agropper/OGNAP
+Mike Varley:  I'm happy to go through it, I do have a preface -- 
+  link it to conversation around authorization. I did write this 
+  use case with the hope that it's out of scope. We're able to 
+  design the API in a way that enables this use case w/o specific 
+  endpoints.
+Mike Varley:  Someone may layer in a trust agent, trust proxy, 
+  use case without specific API endpoints... because I wasn't sure, 
+  I wrote it down
+Mike Varley:  The use case is that, in an open world of SSI, the 
+  trust policy is up to the verifier to define.
+Mike Varley:  It may be beneficial for a verifier to outsource 
+  that trust, to a trust agent, imagine you have an entity -- small 
+  business, accept provincial ID documents, but don't have 
+  connections or IT staff to keep up proper identifiers, changing 
+  world that is decentralized identifier, so I want to hook up to 
+  trust agent service that is going to do that for me. if they tell 
+  me this DID is good, I trust them, good to go.
+Mike Varley:  I will continue processing the information. I have 
+  a sequence diagram that we can go through, to connect it to 
+  previous conversation.
+Mike Varley:  Holder has set up a connection with a verifier, in 
+  a session has obtained authorization to provide presentation to 
+  verifier. Holder now has permission to call an API, key to 
+  verifiers lockbox to drop off a message... content of that 
+  message, presentation of ID, still left to verifier to process, 
+  meet its trust policy,
+Mike Varley:  Is it from a provincial government, or from a 
+  library... there is an internal policy decision there.
+Juan Caballero: /Me can't chew gum, find the mute button, AND 
+  screenshare :(
+Adrian Gropper:  Listening to presentation, you're describing a 
+  health information exchange, federation, two jobs relative to 
+  verifiers... number 1, health information exchange does patient 
+  matching.
+Adrian Gropper:  Number 2, the health information exchange, acts 
+  as a federation, so in effect it limits the risk of the verifier, 
+  once verifier has accepted a contract to join the federation, 
+  they have a safe harbor, they can blame the HIE.
+Adrian Gropper:  Is that a fair summary?
+Muhamed: I wanted to ask a question, trust agent per-se, in 
+  europe we are using one service, European blockchain 
+  infrastructure, holds a trusted issuer registry -- DIDs of 
+  accreddited institutions are hold, and only used once authorized, 
+  using those services as a trust agent... there is a DID, we go to 
+  infrastructure, is this issuer in the trusted issuer registry, if 
+  it is, it's an accreddited registry, is this the principle here?
+Mike Varley:  Adrian, federation, yes the trust agent would 
+  represent a federation of trusted entities, verifiers could 
+  mix/match, but yes, similar to concept of relying on federation.
+Mike Varley:  With regards to registry, a trust agent would use 
+  registry to implement its policies, it would rely on registry... 
+  A trust agent could use registry, filter it, combine it, etc.
+Mike Varley:  That registry would play a key role there.
+<muhamed_turkanović_(blockchain_lab:um)> so as a orchestrator
+<muhamed_turkanović_(blockchain_lab:um)> ?
+Mike Varley:  Back to the API - yes, you characterized it, if we 
+  designed the API endpoints in a way, as a holder I can call 
+  present credential what as verifier describes as HTTP API 
+  endpoint, and that goes through trust agent first and then to 
+  verifier, the holder doesn't need to know it's calling trust 
+  agent or verifier directly, API is agnostic to that, 
+  authorizations that allow calls to go through, then we can focus 
+  on just what those API endpoints look like, and we don't have to 
+  build in extra logic for proxy, trust agent, etc.
+Mike Varley:  I don't have to go through extra authorization 
+  dance, that's what I'm hoping for...
+Mike Varley:  Can we keep this goal of using trust poxy in flow 
+  and trying to ensure it doesn't disrupt the API too much, cause 
+  extra endpoints to be created, or if they do, we keep them in the 
+  conversation.
+Adrian Gropper:  I think this is useful -- although, Mike didn't 
+  answer my other part of my question -- the patient matching... 
+  this is critical to us as a VC SSI community, we have made the 
+  assumption that knowing that issuer/verifier are both talking 
+  about same person, same subject, of VC is seen as technical 
+  thing, not as something that requires a Trust Agent.
+Adrian Gropper:  The Health Information Exchange allows the 
+  issuer/verifier symmetrical, outsources patient matching as best 
+  they can... not just a trust federation issue. It's an identity 
+  matching, ZKP, link secrets, I just wanted again to highlight the 
+  fact that Mike's trust agent case might or might not have both of 
+  these characteristics.
+Adrian Gropper:  They are two dimensions that are orthogonal.
+Juan Caballero: +1
+Adrian Gropper: An example of separation of identity match vs. 
+  trust federation 
+  https://github.com/agropper/OGNAP/blob/main/static/QFVC-QR.png
+Mike Varley:  So, Adrian, for your patient match question, I 
+  would say that is another function outside of this specific use 
+  case or APIs requirements.
+Mike Varley:  Two sets of data, name address date of birth, DID 
+  Presentations with link secrets, am I dealing with the same 
+  person -- it's another function that an identity network would 
+  have to build.
+Mike Varley:  Wrt. to Manu's comment, getting to the concrete for 
+  what we want to do for authorization is key -- I feel as though, 
+  we're getting to the point with the Trust Agent concept, good use 
+  case, keep it in mind, but let's focus on the core functions of 
+  the issuer/holder/verifier API and do our best to not code for 
+  special cases, even one as interesting as a Trust Agent.
+<orie> I would prefer to not see GNAP included in the respect for 
+  this API.
+<orie> respec *
+<orie> Nothing against GNAP, but I don't think thats what this 
+  call is about.
+<juan_caballero> or HTTP APIs?
+Adrian Gropper:  To clarify this for both Manu and Mike, the link 
+  I put in the chat is this orthogonality that I am talking about 
+  -- it's an example of it, this is a vaccine credential, issuer is 
+  someone that vaccinated someone, verifier needs to know w/o 
+  needing to know... vaccinator has checked -- in a standard QR 
+  Code, which is recognizable by the verifier, but because it's 
+  32x32x4 it can be hashed reliably into the VC, this works on 
+  paper w/o blockchains/central registry, this is orthogonality, 
+  once you introduce a trust agent, you can separate out these two 
+  roles.
+Adrian Gropper:  The Level of Assurance, as part of federation, 
+  what I'm doing here is a hack, admittedly, LOA of security chain 
+  is different from trust that vaccinator is using the right 
+  vaccine and so on.
+Justin Richer:  To add on to what Manu and Mike were saying, the 
+  separation of these bits is important, if there is a policy 
+  engine to make these decisions, or an if statement, that should 
+  all be totally ok.
+Justin Richer:  From an interop perspective, having a way to 
+  describe what it is that you're asking for an dallowing and how 
+  you process it can be handled in a bunch of separate ways.
+Justin Richer:  It would be useful for this group to define Rich 
+  Authorization Request objects, that's from GNAP... use that type 
+  of structure, define those as you define your API, and you're 
+  effectively defining a reasonable security layer w/ the API 
+  you're defining. This is separate from how you process VCs and 
+  everything else.
+Eric Schuh:  Reminder, get use cases in the more detailed the 
+  better.
+Orie Steele: -1 To "using GNAP" or "RAR"... I can live with OAuth 
+  2.0 for now... maybe when GNAP is finished it would be 
+  appropriate to use.
+<orie> I am a big fan of GNAP moving forward without this call 
+  tripping all over understanding it
+Manu Sporny:  We need to keep moving this conversation forward 
+  asynchronously. I have been getting a number of frustrated emails 
+  over the past several weeks wrt. the speed at which we're moving. 
+  Let's move things forward on the mailing list, talking more is 
+  the only way we understand where the other is coming from and is 
+  what enables us to focus and move forward. Try to focus on things 
+  that we can put out of scope, be concrete. We'll be running 
+  proposals and polls next time to try and constrain the 
+  focus/discussion in the group.
+<juan_caballero> +1, to manu
+<mike_varley> thanks all
