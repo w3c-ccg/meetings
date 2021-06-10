@@ -1,0 +1,190 @@
+Thanks to Kim Hamilton Duffy for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-07-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2021-06-07
+
+Agenda:
+  undefined
+Topics:
+  1. Introductions & Reintroductions
+  2. Announcements & Reminders
+  3. Switch to Jitsi
+  4. Open Credential Publisher and holder-to-holder use cases
+  5. Open Badge Assertions and Verifiable Credential Assertions
+Resolutions:
+  1. Switching to jitsi on upcoming call
+Organizer:
+  Kim Hamilton Duffy and Kerri Lemoie and Anthony Camilleri
+Scribe:
+  Kim Hamilton Duffy
+Present:
+  Kim Hamilton Duffy, Taylor Kendall, Phil Long, Eric Kuhn, Jim 
+  Goodell, Nate Otto, Keith Kowal, Kerri Lemoie
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-07/audio.ogg
+
+Kim Hamilton Duffy: Agenda: TODO
+Kim Hamilton Duffy is scribing.
+https://www.w3.org/community/credentials/join
+https://www.w3.org/community/about/agreements/cla/
+https://w3c-ccg.github.io/meetings/
+
+Topic: Introductions & Reintroductions
+
+Jarlath_O'Carroll
+Eric_Kuhn, Microsoft Decentralized ID, K-12, Microsoft EDU team 
+  on integrated
+
+Topic: Announcements & Reminders
+
+Taylor Kendall: June 15-17 - 
+  https://uto.asu.edu/events/digital-trust-summit
+<jarlath o'carroll> @Eric is that session recorded and published 
+  somewhere?
+<phil-t3> Thanks @Taylor
+<anthony_camilleri> One more, OECD is doing a digital education 
+  policy conference starting tomorrow. Free registration:
+Eric Kuhn: Looks like their youtube channel only had the main 
+  stage recorded https://www.youtube.com/c/BitcoinMagazine/videos
+<jarlath o'carroll> OK @Eric - thanks, would have liked to have 
+  seen/heard it
+Jim Goodell: Register to participate in the June T3 Network 
+  Charter Review sessions at: https://bit.ly/3owPmBy
+Jim Goodell: Officially JOIN the T3 Innovation Network through 
+  the T3 Network Resource Hub at: T3Networkhub.org
+
+Topic: Switch to Jitsi
+
+RESOLUTION: Switching to jitsi on upcoming call
+
+Topic: Open Credential Publisher and holder-to-holder use cases
+
+https://github.com/w3c-ccg/vc-ed-use-cases/issues/1
+Can we join any of the vc-http-api use cases?
+
+Topic: Open Badge Assertions and Verifiable Credential Assertions
+
+https://docs.google.com/presentation/d/1Oj0Gmqp0d_hVfRLmMOGIxOOVmwAV2lcTo04qyNxwiqM/edit#slide=id.p
+Nate Otto:  What does a validator need to know:
+1. Id from recipient, and validate
+2. Id from issuer and validate, can I trust?
+3. Does it recopgnize some kind of skill that's recognized in my 
+  system
+4. Timely (expired)
+5. Richness of badge meatdata
+Keith Kowal:  Why putting open badges in VCs? are they inteded 
+  for public consumption?
+https://github.com/w3c-ccg/vc-ed-use-cases/issues/1
+Phil Long: Direct link to Join the T3 Innovation Network 
+  https://app.t3networkhub.org/   - no cost and pre-req to get the 
+  invite to the open meetings for reviewing the new network 
+  charters.
+https://docs.google.com/presentation/d/1Oj0Gmqp0d_hVfRLmMOGIxOOVmwAV2lcTo04qyNxwiqM/edit#slide=id.p
+Kerri Lemoie: Example Open Badges 2.0 Assertion: 
+  https://hackmd.io/dqzBT2URTYiWS00OY6MbuQ?view
+Nate Otto: IMS Global Open Badges 2.0 Specification: 
+  https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/index.html
+Nate Otto: Example Open Badges with VC Assertion: 
+  https://hackmd.io/2PgmvWQlSeeCwi1mWFA5Eg?both
+Nate Otto: W3C Verifiable Credentials Data Model: 
+  https://www.w3.org/TR/vc-data-model/
+<brent_shambaugh> yes
+<phil-t3> Is everyone clear on what Kerri means by a ‘baked 
+  badge’?
+<eric_kuhn> no
+<phil-t3> @Eric - the image of the badge has the actual data for 
+  the image embedded in the image itsellf.
+Nate Otto: A "Baked badge" is a PNG or SVG image file that has 
+  the open badges metadata in it according to the OB Baking Spec 
+  https://openbadgespec.org/baking
+<ottonomy> For PNG and SVG there is a specific protocol for 
+  embedding this metadata in that file. The validator can then pull 
+  that data out of the file so your badge data can travel with you 
+  between file systems.
+Nate Otto: There are libraries in multiple languages. I maintain 
+  one in python for instance (openbadges_bakery). It's a pretty 
+  simple operation on top of a PNG chunk editor library or XML 
+  library. -- like 100 lines of code or so in the "bakery" layer. 
+  https://pypi.org/project/openbadges-bakery/
+Nate Otto: Any role *could* bake a badge, but typically the 
+  issuer does so in order to deliver it to the recipient/subject. 
+  Validation can start from a file (e.g. https://badgecheck.io ) -- 
+  the validator begins by extracting the assertion data from the 
+  PNG or SVG.
+I hoped Nate would use the term interloper
+<anthony-camilleri> I am missing badgeclass from the slides. 
+  Where has it gone?
+Nate Otto: I think hasCredential should be direct to a badge, not 
+  hasCredential: { badge: {} }
+<anthony-camilleri> strongly agree with self-contained.
+<david_ward> Being self-contained probably also means that the 
+  badge class also needs to be embedded.
+<anthony-camilleri> I tend to think of the badgeclass in a VC 
+  context as an externally hosted template, which then is written 
+  entirely into the credential.
+Phil Long: +1 @Anthony and @Eric on there is no dependence on the 
+  issuer being contacted for the verification to be done.
+Nate Otto: On baking: there's no need for baking in the VC 
+  ecosystem, but if any issuers wanted to use that method for data 
+  flows where users download as a file and upload to another open 
+  badges app as a file, it could easily be done. But if we can pull 
+  off good interoperability just within VC protocols for 
+  connections between issuers, wallets and verifiers, it would be 
+  great to stay in that realm.
+<eric_kuhn> spot on Keith
+<anthony-camilleri> @nate: I actually think we need to evolve the 
+  concept of baking in the VC context. Allowing the Issuer to 
+  specify displayproperties/visual representation rules for 
+  credentials is an essential part of many use cases. But maybe we 
+  should be able to bake to a variety of 
+  screensizes/formats/platforms depending on use case.
+<jim_goodell> I need to jump. Great conversation!
+<phil-t3> I like the idea of enabling the giving the holder the 
+  opportunity to decide what they want to share on any …’portal’… 
+  site of their choice, but the richer data that is hoped provides 
+  greater clarity about what the learner knows and can do something 
+  the individual presents
+<phil-t3> That is ‘presents’ in the VC sense.
+<ottonomy> That said... As Kerri is mentioning the VC .id 
+  property could be a hosted and shareable HTTP URL that represents 
+  the badge as opposed to using a learner-controlled presentation 
+  service.
+<anthony-camilleri> within VC logic, isn't any share supposed to 
+  be a VP, including a public share?
+<anthony-camilleri> or do I have a misconception here?
+<ottonomy> I think issuer sharing of the VC directly would be 
+  indeed thought by some to be an anti-pattern.
+<eric_kuhn> sharing from a user to an RP uses a VP
+Kim Hamilton Duffy: +1 Kerri
+<ottonomy> At some point, probably in a future call, if we want 
+  to address it directly, Keith's other point that "VC attributes 
+  could solve for" a bunch of use cases that we are thinking about 
+  using this Defined Achievement claim for..
+<phil-t3> @Anthony - great question. At the present time a VC is 
+  intended to be a direct to the RP exchange, as Eric notes, with 
+  the added feature of progressive disclosure up to simply saying 
+  yes or no to the presence of an attribute (a ZKP approach).
+<ottonomy> Having a claim schema that is actually implemented in 
+  an ecosystem where issuers are using it and verifiers are 
+  consuming it for some kind of business value is the real prize. 
+  That is better than having bespoke claim type attributes for each 
+  possible credential that could be issued.
+<phil-t3> One of the challenges we’re encountering is the notion 
+  of a layer of publicly shareable data vs. data that is private 
+  (it may contain PII, or could lead to identity discovery, etc.)
+<david_ward> The ability to use an Open Badges "backpack" as a 
+  publicly sharable "resume" can be useful to people.
+Keith Kowal: +1
+<eric_kuhn> David, another option is using the concept of an 
+  Identity Hub and including your VCs in your hub that other users 
+  could query to see your 'resume' or public profile
+<kate_giovacchini> Thanks all! An interesting conversation as 
+  always!
+<kerri_lemoie> klemoie@concentricsky.com
+<phil-t3> Cheers!
