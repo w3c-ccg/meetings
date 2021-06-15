@@ -1,0 +1,312 @@
+Thanks to kevin_[spruce_systems] for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-15-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-06-15
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0149.html
+Topics:
+  1. Introductions
+  2. Use Cases Update
+  3. Pull Request Processing
+  4. Issue Processing
+  5. Authorization Proposals
+Resolutions:
+  1. Split the current vc-http-api repository into a 
+    "specification" repository and a "test suite" repository. Provide 
+    a transition plan to the CCG if links are going to break.
+Organizer:
+  Manu Sporny
+Scribe:
+  kevin_[spruce_systems]
+Present:
+  Manu Sporny, Kevin [Spruce_Systems], Adrian Gropper, Justin 
+  Richer, Charles E._Lehner_[cel], Aaron Coburn, Mike Prorock, 
+  Michael Herman, Sanuja (Diwala), Orie Steele, Eric Schuh, Joe 
+  Andrieu, Mike Varley, Dmitri Z, Bumblefudge, Brian Sletten, 
+  Dmitri Zagidulin, TallTed 
+  //_Ted_Thibodeau_(he/him)_(openlinksw.com), Vaishnavi, David 
+  Ward, Brian Richter, Charles E. Lehner, Marty Reed, Butch Clark, 
+  Juan Caballero, Kaliya Young, Ted Thibodeau, Troy Ronda
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-15/audio.ogg
+
+kevin_[spruce_systems] is scribing.
+
+Topic: Introductions
+
+Brian Richter:  Hi, Brian Richter, I work at Aviary Tech, been 
+  involved in some of the conversations on the mailing list, 
+  interested in the VC HTTP API.
+Charles E. Lehner:  Hi, Charles Lerner, with Spruce, I haven't 
+  been here for a while, developer doing work on DIDs and the like.
+<bumblefudge> brian or whatever?
+
+Topic: Use Cases Update
+
+<bumblefudge> @Adrian, I just saw your new one-- love it, but 
+  could use more actors!
+Eric Schuh:  Today was deadline for new use cases. Ideally start 
+  reviewing on Thursday, and will do a first pass. Expected to have 
+  something for next week's call
+Juan Caballero:  Lot of use cases are there, some just need a few 
+  more "steps". Pay attention to Google inbox everyone
+<joe_andrieu> I do have an item to raise
+<joe_andrieu> We sometimes see people talking passed each other 
+  becuase "verifier" is used both for the *role* per VC spec as 
+  well as the software that is responding to the "verifier" api
+<joe_andrieu> "verifier" does xyz is sometimes confusing
+<joe_andrieu> not sure how to resolve. just wanted to anchor it 
+  as a thing to figure out
+<joe_andrieu> verifier (role) uses verifier (software) which 
+  becomes "verifier uses verifier"
+Juan Caballero:  Clarification on Joe: The mapping between 
+  software and real word verbiage is slippery (ex: Verifier)
+Manu Sporny:  Good start to the discussion, agree with Joe on 
+  specifying (role) or (software), let's take the discussion to the 
+  mailing list.
+Joe Andrieu: +1 To mailing list
+
+Topic: Pull Request Processing
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/197
+Charles E. Lehner:  PR 197 is useful when there's multiple proof 
+  types, and the type parameter can select one.
+Manu Sporny:  PR is ready to go, will be merged in day or two.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/195
+<mprorock> spec links
+Orie Steele:  Did not set up w3c redirects, causing HTML errors. 
+  Changes were reverted upon Manu's request. This PR has single 
+  respec document ...
+Orie Steele: I have already setup w3id.org: 
+  https://github.com/perma-id/w3id.org/pull/2211
+<bumblefudge> that was the resolution in the minutes, as i 
+  remember it
+Orie Steele:  We could begin the process for splitting the test 
+  suite. Concerned about the nature of the test repo. Concerned 
+  about breaking links, but we should announce the breaking and 
+  where new items are in the repos.
+Manu Sporny:  A new proposal: To split the current VC-HTTP-API 
+  repository to a specification repository and a test suite 
+  repository, provide transition plans to CCG, if links are going 
+  to break
+Mike Prorock: +1
+Orie Steele: +1
+
+PROPOSAL:  Split the current vc-http-api repository into a 
+  "specification" repository and a "test suite" repository. Provide 
+  a transition plan to the CCG if links are going to break.
+
+Orie Steele: +1
+Mike Prorock: +1
+Manu Sporny: +1
+Joe Andrieu: +1
+Dmitri Zagidulin: +1
+Mike Varley: +1
+<bumblefudge> oh sorry i was +1ing Kevin's summary :D
+Ted Thibodeau: +1
+Eric Schuh: +1
+Adrian Gropper: +1
+Brian Richter: +1
+
+RESOLUTION: Split the current vc-http-api repository into a 
+  "specification" repository and a "test suite" repository. Provide 
+  a transition plan to the CCG if links are going to break.
+
+Orie Steele: https://w3c-ccg.github.io/vc-http-api/
+Orie Steele:  My PR makes spec render properly, it's an interim 
+  step based on resolution above, should we merge it?
+Manu Sporny:  Fine to merge at this point, any objections?
+No objections, moving on.
+
+Topic: Issue Processing
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/130
+Manu Sporny:  I think we can close this, overtaken by events, any 
+  objections?
+Orie Steele:  Well, the title is wrong now, but the issue remains 
+  -- we want to agree to an interop profile.
+<mike_varley> sorry all have to drop.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/37
+Manu Sporny:  The spec now has the CCG as the contact person, so 
+  this issue can be closed. Any objections?
+No objections.
+Manu Sporny:  Ok, issue 37 will be closed.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/184
+Orie Steele:  The test suite does a lot, so it's more of an 
+  integration tests rather than unit tests. One of the tests that 
+  might resolve in a lot of errors is DID Resolution. The proposal 
+  proposes using DID Key instead to reduce that
+Orie Steele: +1 Justin, we are trying to do what you are 
+  proposing... we don't want you to need to run a blockchain or 
+  trust someone who does, to pass the tests.
+Manu Sporny: +1 To what Justin is saying as well.
+<justin_richer> mocks are 100% required for proper testing
+<justin_richer> anybody who says otherwise is kidding themselves
+<orie> I agree, but the way the tests are written today, they are 
+  "not mockable"
+Manu Sporny: PSEUDO PROPOSAL: Refactor the test suite so that 
+  resolution is factored out in a way that can be mocked and where, 
+  in the very least, did:key is supported as the only mandatory DID 
+  format for the test suite.
+Justin Richer:  Feels close enough. generally agrees with 
+  proposal
+Manu Sporny: PSEUDO PROPOSAL: Refactor the test suite to support 
+  did:key as the only mandatory DID format for the test suite.
+Justin Richer:  Don't think that its strong enough.
+<orie> I would be fine with Justin's proposal FWIIW
+<orie> I hope folks realize the developer cost for it, but its 
+  doable.
+<manu> It is a higher developer cost for the first item vs. the 
+  second one
+<manu> and it'll ultimately come down to people doing the work... 
+  both are doable.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> PSEUDO 
+  PROPOSAL: Refactor the test suite to isolate DID resolution in 
+  such a way that it can be mocked, and make did;key the only DID 
+  format that must be supported to run the test suite
+Justin Richer:  As part of the test definitions, "these are the 
+  things i'm going to send to you", and then you spit back the 
+  answers. If the test suite defines everything with DID Key and 
+  can do that, it's fine. It will be very useful for testing of 
+  values. First proposal is fine and run it
+Orie Steele: +1 Justin
+
+PROPOSAL:  Refactor the test suite to isolate DID resolution in 
+  such a way that it can be mocked, and make did;key the only DID 
+  format that must be supported to run the test suite.
+
+Justin Richer: +1
+<orie> +.8
+<mprorock> +.75
+<manu> +0.7 I think the other one is more straight forward to 
+  start with
+Brian Richter: +1
+<joeandrieu> +.7
+<butch_clark> +.8
+<agropper> +/-
+<cel> +0.5
+<aaron_coburn> +.75
+
+PROPOSAL:  Refactor the test suite to support did;key as the only 
+  mandatory DID format for the test suite.
+
+Orie Steele: +1
+Mike Prorock: +1
+Manu Sporny: +1
+<justin_richer> +0.5
+Brian Richter: +1
+<agropper> +.5
+<cel> +0.5
+<joeandrieu> +0.1
+Orie Steele: Yeah, we basically just voted to do lesss work :)
+<orie> unsurprising.
+Justin Richer: Just define it with did:key as required from the 
+  test suite harness and move on with life
+<manu> Ok, we have 9 minutes left in the call, do we want to keep 
+  going on this issue, or switch over to Authorization?
+<mprorock> auth please
+<bumblefudge> authZ
+<bumblefudge> mutli-proposal showdown plz
+
+Topic: Authorization Proposals
+
+Manu Sporny: We are going to process these concrete proposals 
+  sent to the mailing list: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0177.html
+Manu Sporny:  We are just going to run them since they've been 
+  discussed on the mailing list fairly extensively.
+
+PROPOSAL:  The W3C CCG VC-HTTPI-API TF and IETF-GNAP-WG agree to 
+  joint IPR protected development of the GNAP specification.
+
+Orie Steele: -1
+<justin_richer> -1, pretty sure that's not legal per IETF 
+  policies
+Manu Sporny: -1
+Adrian Gropper: +0
+Brian Richter: -1
+<justin_richer> (you can all join GNAP WG in IETF, it's free...)
+<joeandrieu> 0
+Manu Sporny:  This one isn't going to make it, moving on...
+
+PROPOSAL:  The W3C CCG VC-HTTPI-API DRAFT normatively recommends 
+  using IETF-GNAP-DRAFT.
+
+Orie Steele: -1
+Mike Prorock: -1
+Justin Richer: +0
+Joe Andrieu: -1
+Adrian Gropper: +1
+Brian Richter: -1
+Dmitri Zagidulin: -0
+<justin_richer> (depends on "normatively recommend")
+<manu> -1, but I do want to say something good non-normatively 
+  about GNAP
+<butch_clark> -.5
+<bumblefudge> ^ yes
+<bumblefudge> non-normative bring it on
+Manu Sporny:  This one isn't going to make it, moving on...
+
+PROPOSAL:  The W3C CCG VC-HTTPI-API DRAFT does not mention 
+  IETF-GNAP-DRAFT.
+
+Orie Steele: +1
+Justin Richer: -1
+Mike Prorock: +1
+Adrian Gropper: -1
+<manu> -0.5 -- I'd like to mention it in the spec.
+<bumblefudge> not even non-normatively?
+Dmitri Zagidulin: -1
+Joe Andrieu: +1
+<brian_richter> -0.5
+<cel> HTTPI?
+<bumblefudge> 0 because i like free reign in the non-normative 
+  sections :D
+
+PROPOSAL:  The W3C CCG VC-HTTPI-API DRAFT informally suggests not 
+  using IETF-GNAP-DRAFT.
+
+Justin Richer: -1
+Adrian Gropper: -1
+Orie Steele: +1 For now.
+Mike Prorock: +1
+Manu Sporny: -1 -- We should mention it
+<mprorock> given current state
+Joe Andrieu: -1
+Manu Sporny:  People are more on the fence about this one, but 
+  there are enough objections to move on to a better proposal.
+
+PROPOSAL:  The W3C CCG VC-HTTPI-API DRAFT normatively forbids 
+  using IETF-GNAP-DRAFT.
+
+Justin Richer: -1
+Brian Richter: -1
+Manu Sporny: -1 No, please
+Adrian Gropper: -1
+Orie Steele: +1 For now.
+Joe Andrieu: -1
+<justin_richer> Orie, forbid, really?
+Orie Steele:  I am good with forbidding it now and for the next 
+  couple of months... there is nothing solid there to base our 
+  specification on, my votes don't scale into the future, if GNAP 
+  becomes an RFC, that changes my votes.
+<mprorock> +.5
+Mike Prorock: +1 Orie
+<mprorock> highly nuanced topic
+Orie Steele: Hey neither are DIDs :)
+Justin Richer:  GNAP is an official IETF WG work item, it is more 
+  than just a draft, which is more than some of the other stuff 
+  this group depends on in their specifications.
+<orie> Thanks for the clarity Justin, that's helpful.
+<bumblefudge> some of my best friends are unstable community 
+  drafts
+<justin_richer> saying "it's just a draft" is not the whole story 
+  and misses a lot of what's there. The core is basically stable 
+  today, according to the editors and chairs.
