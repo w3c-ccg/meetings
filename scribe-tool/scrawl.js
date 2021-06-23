@@ -7,7 +7,7 @@
   var $ = (typeof jQuery !== 'undefined') ? jQuery : undefined;
   /* Standard regular expressions to use when matching lines */
   var commentRx = /^\[?(.*)\]?\s+\<(.*)\>\s+(.*)$/;
-  var scribeRx = /^(scribe|scribenick):.*$/i;
+  var scribeRx = /^(scribe|scribenick):.*$|scribe\+/i;
   var meetingRx = /^meeting:\s(.*)$/i;
   var totalPresentRx = /^total present:\s(.*)$/i;
   var dateRx = /^date:\s(.*)$/i;
@@ -333,7 +333,12 @@
        // check for a scribe line
        if(msg.search(scribeRx) != -1)
        {
-         var scribe = msg.split(':')[1].replace(' ', '');
+         var scribe;
+         if(msg.includes('scribe+')) {
+           scribe = nick;
+         } else {
+           scribe = msg.split(':')[1].replace(' ', '');
+         }
          scribe = scribe.toLowerCase();
          context.scribenick = scribe;
          if(scribe in aliases)
