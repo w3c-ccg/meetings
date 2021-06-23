@@ -404,7 +404,7 @@
                 scrawl.present(context, aliases[lastName]);
               } else {
                 if(msg.includes('present+')) {
-                  scrawl.present(context, match[2].replace('_', ' '));
+                  scrawl.present(context, match[2].replace(/_/g, ' '));
                 } else {
                   console.log('Could not find alias for', person);
                 }
