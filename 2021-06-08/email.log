@@ -1,0 +1,229 @@
+Thanks to Chris Winczewski for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-08 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-06-08
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0054.html
+Topics:
+  1. Eip712Signature2021
+  2. Announcements & Community Topics
+Organizer:
+  Wayne Chang and Heather Vescent
+Scribe:
+  Chris Winczewski
+Present:
+  Wayne Chang, Jeff Orgel, Adrian Gropper, Chris Winczewski, Dmitri 
+  Z, Erica Connell, Ryan Grant, Orie Steele, TallTed // Ted 
+  Thibodeau (he/him) (openlinksw.com), Phil Long, Heather Vescent, 
+  Julien Fraichot, Markus Sabadello, Charles E. Lehner, Jeff 
+  Stephens, Kaliya Young, Matthieu Collé, David I. Lehn, Manu 
+  Sporny
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-08/audio.ogg
+
+https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0054.html
+<chriswinc> I can scribe Wayne
+Chris Winczewski is scribing.
+
+Topic: Eip712Signature2021
+
+https://uport-project.github.io/ethereum-eip712-signature-2021-spec/
+https://github.com/w3c-ccg/community/issues/194
+Wayne Chang:  We will open it up after this topic to discuss 
+  other topics people want on the agenda
+  ...Goal is to issue LD credentials compliant with Ethereum 
+  signing requirements
+  ...This is an LD proof mechanism using a crypto wallet
+  ...and usable with Metamask
+<orie> I think their implementation uses JCS instead of URDNA2015
+  ...Oliver did most of the work but was unable to join so I am 
+  presenting on his behalf
+<orie> an approach similar to workday signature suite
+  ...Digest and Signature algorithm is the same that Ethereum 
+  uses
+<orie> signing arbitrary data is dangerous? I thought that was a 
+  feature of JWTs :)
+<orie> /s
+  ...Many wallets in the Ethereum ecosystem are compliant with 
+  this
+  ...Well timed with the LD Signature work to show the 
+  flexibility and usage
+<heather_vescent> Thanks Wayne, sorry I was late, previous call 
+  ran over.
+Adrian Gropper:  What is the relationship between Metamask and 
+  blockchain wallets?
+<orie> Adrian : 
+  https://w3c-ccg.github.io/universal-wallet-interop-spec/
+Orie Steele: Specifically: 
+  https://w3c-ccg.github.io/universal-wallet-interop-spec/#Address
+Wayne Chang:  Difficult to issue JWT with Metamask
+Adrian Gropper:  Under what circumstances do you use two wallets?
+  ...does non-repudiation require a third?
+<orie> yikes to everything that is being said about 
+  "non-repudiation"
+Adrian Gropper:  Healthcare normally requires hardware token
+<cel> cryptocurrency wallets may be used with hardware tokens
+Wayne Chang:  Need separate topic to look at healthcare
+<identitywoman> sorry I'm late - did we already do annoucements? 
+  I have one
+I can't hear Orie
+<rgrant> i can
+<heather_vescent> I can hear you Orie
+Orie Steele:  Part of the universal wallet interop spec was the 
+  relationship between cryptocurrencies, blockchain identifiers, 
+  VCs, etc. all of these things are related in that people use the 
+  words "wallet" to describe various aspects of this. keys are used 
+  to xfer cryptocurrencies
+Orie Steele:  Keys are used to sign VCs. the statements about 
+  non-repudiation are likely too technical to go to now, but you 
+  can do it without hardware-bound keys.
+Orie Steele:  We tried to go over this in the universal wallet 
+  specification, and we'd love to continue the conversation there 
+  to answer those questions.
+Orie Steele: 
+  https://w3c-ccg.github.io/universal-wallet-interop-spec/#Address
+Heather Vescent:  Thank you for answering the questions.
+  ...Are you making it so that Eth wallets can hold and issue 
+  VC's?
+Wayne Chang:  Issuance and signing, yes. Holding and verifying 
+  not the current focus
+<phil.l> When the wallet "issues a credential"  are you not 
+  creating a presentation in this case?
+Heather Vescent:  That was the "what," how is this accomplished?
+Wayne Chang:  The signature suite
+Heather Vescent:  There are many different signature suites. Is 
+  there a way to categorize what this does to aid in repo cleanup?
+Wayne Chang:  This may be part of the up and coming working group 
+  to handle
+Wayne Chang:  Would love to work with the working group members 
+  on structure
+<orie> I'm supportive of the work item (speaking for Transmute)
+Ryan Grant:  Question about eip712. What is the intent?
+Wayne Chang:  Looking at claim data standards into eip712 for use 
+  in Metamask
+  ...Signature then to be compliant with VC
+Ryan Grant:  Wallet is responsible for taking JSON-LD and 
+  presenting in an eip712 format?
+Wayne Chang:  Yes. Companion work should include an explainer.
+  ...Metamask supports multiple accounts and wallets.
+<orie> Linked Data Proof suites are used for both Verifiable 
+  Credentials and Verifiable Presentations
+<orie> Issuers Issue VCs, Holders Present VPs
+Wayne Chang:  Primarily relying on signature component vs holding 
+  within the wallet.
+Adrian Gropper:  This sounds like it has little to do with the 
+  signature suite but rather what is presented to you
+  ...Metamask has a vested interest to present accurately
+<orie> Similar examples of Linked Data Proof suites:
+<heather_vescent> Thanks for that questions agropper.
+Wayne Chang:  Not just Metamask but all wallets compliant with 
+  eip712
+<identitywoman> I made a comment up above about whether 
+  announcements already happened - I was late. I have one.
+<orie> nothing could be safer than javascript crypto in a web 
+  browser.
+<orie> /s
+<heather_vescent> (I also have an announcement and joined late 
+  too wayne)
+<heather_vescent> (But my q+ is not for that)
+Adrian Gropper:  The reason you are doing this in LD context is 
+  that this is easier to check, thus reliability?
+Wayne Chang:  Yes
+Wayne Chang:  This is possible with LD proofs and not JWT
+  ...Significant code changes to such a high security format is 
+  unlikely
+<cel> ethereum signing for JWT would need a new JWS algorithm 
+  registered
+<orie> another version of what wayne is saying is that IANA is 
+  unlikely to register an eip712 `alg` field any time soon :0
+Heather Vescent:  Thank you wayne for bringing this to the 
+  meeting
+<agropper> I'm happy to help on what Hearher's suggesting
+  ...this is a heavy lift to understand the excitement about what 
+  is being proposed. Can we summarize this or add a README to 
+  describe what is being accomplished here?
+Wayne Chang:  Should we start an issue to create an explainer?
+Heather Vescent:  Yes, and I am willing to edit if others prepare 
+  the work.
+
+Topic: Announcements & Community Topics
+
+Kaliya Young: 
+  https://wiki.trustoverip.org/display/HOME/GHP+Blueprint+Public+Review+Process
+Kaliya Young:  The good health pass has reached draft stage 
+  yesterday with 10 days of review
+Orie Steele: 
+  https://github.com/decentralized-identity/waci-presentation-exchange/
+  ...Specify formats and interop
+  ...how to we get credentials to be exchanged for international 
+  travel
+Heather Vescent:  Last Friday rgrant and I met on how to record 
+  minutes
+  ...It is recorded and details the process
+  ...Point 2, VC's for Ed will be added to the 101 series
+Wayne Chang:  Are there topics that the community would like to 
+  discuss?
+Adrian Gropper:  Would like to talk about how VCs go from the 
+  issuer to the verifier in the context of vaccine credentials
+<orie> verifiable credentials don't go from the issuer to the 
+  verifier, without the consent of the holder...
+  ...Topic would be called "Authorization"
+Wayne Chang:  Others? We should send a survey after this since 
+  this is a bit on the spot
+Adrian Gropper:  Geotrust architecture
+<wayne_chang> "Zero Trust"
+  ...as a result of the executive order for Zero Trust 
+  Architecture (not geotrust)
+Wayne Chang:  I would like to talk about normalization and 
+  growing privacy
+  ...Apple just released Identity on the phone
+Orie Steele: 
+  https://www.aclu.org/news/privacy-technology/digital-ids-might-sound-like-a-good-idea-but-they-could-be-a-privacy-nightmare/
+  ...We should assume this is coming and nations are moving to 
+  digital identity
+  ...what are the risks?
+Orie Steele:  Should we ask EFF or ACLU to come talk to us?
+<identitywoman> The ACLU just put out an anti mDL paper - but in 
+  that said nice things about VCs :)
+<identitywoman> I know the author.
+Adrian Gropper: +1 To ACLU or EFF on this
+  ...It would be great to hear from these groups
+<manu> Yes, let's please invite them in and have a discussion 
+  with them!
+Phil Long:  In Edu, the interest in the richness of metadata to 
+  represent achievements is growing
+<identitywoman> You might want to use an EDV :)
+  ...There is an issue about the structure of credentials
+Adrian Gropper: +1 Phil - it's all about authorization
+Wayne Chang:  I was personally interested in microcredentials
+  ...OpenBadges will supported
+Phil Long:  I am part of this group. A topic is an evidence array 
+  which can point to (URI) evidence that may be too big to pack 
+  into a credential.
+  ...Assertions related to the course curriculum or achievement 
+  is also requested.
+Kaliya Young:  If anyone is interested, I can talk about my book 
+  "The Domains of Identity"
+Wayne Chang:  The may be a chance of mandated interoperability
+  ...recent chatter at FCC
+  ...called Competitive Interoperability for anti-trust
+  ...Competitive Compatibility
+Ryan Grant: 
+  https://www.eff.org/deeplinks/2020/12/competitive-compatibility-year-review
+Adrian Gropper:  Is this like open banking?
+Wayne Chang:  Yes, possibly like PSD2
+  ...In the EU, one market that is competitive for all citizens, 
+  not just those locally
+Adrian Gropper:  Relates to authorization. Control is 
+  consolidated around processor. Therefore, we need regulations.
+Wayne Chang:  What about ESSIF?
+  ...Should we broaden to other regional initiatives (e.g. DHS, 
+  BC, Singapore)?
+<wayne_chang> kicking to stop meeting in 3 seonds...
