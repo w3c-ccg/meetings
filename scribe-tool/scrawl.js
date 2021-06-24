@@ -523,7 +523,7 @@
        // the line is a comment by somebody else
        else if(nick != context.scribenick)
        {
-         if(msg.indexOf(':') != -1)
+         if(/^\S+:/.test(msg))
          {
            var alias = msg.split(':', 1)[0].replace(' ', '').toLowerCase();
 
