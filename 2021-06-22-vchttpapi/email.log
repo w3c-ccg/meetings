@@ -1,0 +1,399 @@
+Thanks to Juan Caballero for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-22-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-06-22
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0194.html
+Topics:
+  1. Introductions and Reintroductions
+  2. Update on Use Cases
+  3. Pull Request
+  4. Issue Processing
+  5. Issue #33
+  6. Issue #35
+  7. Authorization Proposals
+Resolutions:
+  1. Refactor the conformance test suite to support did;key as 
+    the only mandatory DID format for the test suite.
+  2. In general, the VC HTTP API style will conform to 
+    restfulapi.net guidelines and specifically use a 'controller' 
+    style for endpoints and will use JSON Schema to define the 
+    acceptable inputs to the APIs. Any deviation from these 
+    guidelines will be discussed in the group.
+Organizer:
+  Wayne Chang and Heather Vescent
+Scribe:
+  Juan Caballero
+Present:
+  Adrian Gropper, Juan Caballero, Aaron Coburn, Mike Prorock, Manu 
+  Sporny, Justin Richer, Marty Reed, Eric Schuh, Markus Sabadello, 
+  Orie Steele, Butch Clark, Kevin [Spruce Systems], Brian Sletten, 
+  Mike Varley, Sanuja (Diwala), TallTed // Ted Thibodeau (he/him) 
+  (openlinksw.com), Dmitri Z, Eric Korb, David Ward, Ted Thibodeau, 
+  Michael Herman, Adrian Hope-Bailie
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-22/audio.ogg
+
+Juan Caballero is scribing.
+Manu Sporny:  Agenda (as per email)
+  ... intros and reintros
+
+Topic: Introductions and Reintroductions
+
+Topic: Update on Use Cases
+
+Eric Schuh: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+Eric Korb:  Use cases in google doc
+  ...sorted into categories: well-formed, partly-formed, and out 
+  of scope
+  ... we also tagged all the people in the "needs work" category 
+  asking for updates.  if we don't get feedback, we'll edit more 
+  aggressively but we strongly prefer more input from all of you
+  ... this was just a first pass, out-of-scope category
+Juan Caballero:  No other updates from me, it's never too late 
+  for input, please help. [scribe assist by Manu Sporny]
+Eric Korb:  Out-of-scope may change and up for debate, and 
+  today's discussion may help make those calls
+Manu Sporny:  2 More weeks, right?
+
+Topic: Pull Request
+
+Eric Korb:  Yes, we'll definitely have more to discuss two 
+  meetings from now, with or without additional feedback from the 
+  group in these two weeks
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-http-api/pull/200/files
+<marty_reed> sorry if I missed it, when copy and pasting for a 
+  new use case, should it go top/bottom/which section?
+Manu Sporny:  There were some changes back and forth, might need 
+  an updated review from orie...
+Orie Steele:  Approved
+Manu Sporny:  Fairly benign change, unless anyone has objections
+Eric Korb:  (Answering marty's question in chat): put it 
+  anywhere, and just tag us (me or juan) in a marginal comment
+<eric_schuh> eric@legreq.com if you want to ping someone to look 
+  at a use case
+
+Topic: Issue Processing
+
+Manu Sporny:  No more PRs, issues now
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/184
+<manu> This is a proposal to Restrict conformance and interop 
+  test suites to did:key only.
+Orie Steele:  Conformance tests require a tested system to 
+  support certain cryptographic capabilities and suites
+E.g. Ed25519; examples and test vectors that rely on outside 
+  servers, external resolution processes, etc can be quite 
+  difficult and add friction
+  ... we discussed "mocking" and "stubbing" on last week's call, 
+  and this sidesteps that issue by using DID:Key (which is 
+  memory-based and does not require external network calls, DID 
+  resolution, ledger availability, etc)
+Manu Sporny: 
+  https://w3c-ccg.github.io/meetings/2021-06-15-vchttpapi/#topic-4
+  ... this could be argued to be lazy but for better or for worse 
+  this allows us to focus on signature verification and ver methods
+Manu Sporny:  Last week, the resolution to mock up DID resolution 
+  got a fair amount of support, and the resolution to just use 
+  DID:Key seemed to get more
+<manu_sporny> PROPOSAL we could run: Refactor the test suite to 
+  support did;key as the only mandatory DID format for the test 
+  suite.
+  ... i would like to re-run the proposal today to make it a 
+  resolution
+Orie Steele:  The issue specifically limits this to CONFORMANCE 
+  tests
+  ... i.e. conformance to the API. 
+  ...I think interop tests we shouldn't limit to DID:KEY, just 
+  the API conformance tests
+/Me +1 to orie
+Markus Sabadello:  +1 To orie for the interop/conformance 
+  distinction
+Manu Sporny:  Sounds like no one queued to object, let's run the 
+  proposal to make it official
+
+PROPOSAL:  Refactor the conformance test suite to support did;key 
+  as the only mandatory DID format for the test suite.
+
+Orie Steele: +1
+Mike Varley: +1
+Manu Sporny: +1
+Markus Sabadello: +1
+Mike Prorock: +1
+Juan Caballero: +1
+Brian Sletten: +1
+Adrian Gropper: +1
+Ted Thibodeau: +1
+Marty Reed: +1
+Eric Schuh: +1
+
+RESOLUTION: Refactor the conformance test suite to support 
+  did;key as the only mandatory DID format for the test suite.
+
+<orie> :)
+Manu Sporny:  Remaining question about JWK vs multibase which i'd 
+  like to table for now
+<tallted> (Is it worth splitting #184 to split conformance from 
+  interop?)
+Orie Steele:  We've saved ourselves from having to talk too much 
+  about key representations by putting mocking out of scope
+  ... i'd support a new issue specifically about resolution
+  ...problems specifically
+Manu Sporny:  Close 184?
+  ...correction: about THE resolution WE JUST PASSED
+Ted Thibodeau:  But there was a lot about inteorp in that thread?
+Orie Steele: https://github.com/w3c-ccg/vc-http-api/issues/202
+Manu Sporny:  Let's just open a new issue for interop tests, and 
+  a new issue for
+  ... conformance testing based on did:key
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/33
+
+Topic: Issue #33
+
+<manu> Define schema for response of /credentials/issueCredential
+Manu Sporny:  Orie can you summarize for the group?
+Orie Steele:  I think this thread stems from the ongoing 
+  confusion about internal/external APIs and trust boundary 
+  assumptions
+  ... I think it's mostly outdated, not too many ongoing open 
+  questions here
+  ... I think there were some resolutions taken?
+/Me is there a quick way to overview the resolutions taken by the 
+  group since we started holding public calls without paging 
+  through all the minutes one by one?
+Mike Varley: +1 To marking it pending closed; not sure if George 
+  will be following up (he has moved on from SecureKey)
+  ... a good way to close would be to mark it pending closing and 
+  link to relevant commits and/or resolutions on scribed calls
+Juan Caballero: +1
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/35
+<manu> Agree to API Style Guide
+
+Topic: Issue #35
+
+Orie Steele:  Summary: RESTful API industry norms were the 
+  starting point (controller style)
+  ... complete consensus, as I remember it, that these terms were 
+  a good starting point and that RESTful APIs were what got us here
+  ... although I don't think we've taken official resolutions 
+  anywhere, and I worry we will keep relitigating these style guide 
+  decisions without some kind of resolutions to point to
+<orie> we also have this: 
+  https://github.com/w3c-ccg/vc-http-api/blob/main/docs/architecture.md
+Manu Sporny:  Orie, you seem to be saying we're using JSON Schema 
+  and `controller` as a design decision
+Orie Steele:  Likewise, I think we might need to update the 
+  arch.md file as well and document our decisions to date
+Manu Sporny:  Let's just run it as a proposal, then?
+Orie Steele: https://restfulapi.net/resource-naming/
+Orie Steele:  I'd say that the resolution should be best-practice 
+  conformance where deviation not resolved via GH Issues, and 
+  "controller"-oriented naming
+<manu> PROPOSAL we could run: In general, the VC HTTP API style 
+  will conform to restfulapi.net guidelines and specifically use a 
+  'controller' style for endpoints and will use JSON Schema to 
+  define the acceptable inputs to the APIs. Any deviation from 
+  these guidelines will be discussed in the group.
+Orie Steele:  Data modeling requirements versus RESTFul norms: 
+  revocation, for ex
+  ... collection-oriented RESTful APIs may require an issue for 
+  revocation
+Manu Sporny:  Sure, sounds like a good first issue
+  ...if it passes
+
+PROPOSAL:  In general, the VC HTTP API style will conform to 
+  restfulapi.net guidelines and specifically use a 'controller' 
+  style for endpoints and will use JSON Schema to define the 
+  acceptable inputs to the APIs. Any deviation from these 
+  guidelines will be discussed in the group.
+
+Orie Steele: +1
+Juan Caballero: +1
+Mike Varley: +1
+Manu Sporny: +1
+Ted Thibodeau: +1
+Eric Schuh: +1
+Marty Reed: +1
+Adrian Gropper: +0
+Markus Sabadello: +1
+Mike Prorock: +1
+
+RESOLUTION: In general, the VC HTTP API style will conform to 
+  restfulapi.net guidelines and specifically use a 'controller' 
+  style for endpoints and will use JSON Schema to define the 
+  acceptable inputs to the APIs. Any deviation from these 
+  guidelines will be discussed in the group.
+
+Manu Sporny:  Cool we can close the issue
+  ...i'll write a comment before closing
+Orie Steele: https://github.com/w3c-ccg/vc-http-api/issues/204
+Orie Steele:  I created an issue
+  ...#204 , named `Revocation List and Restful APIs`
+  ... I think it's important to note a few things about this 
+  example: `id` isn't strictly mandatory, and revocation methods 
+  that rely on `id` we're getting into terrain not covered by the 
+  core data model
+  ... and shaky assumptions like "all VCs have an `id`" or "all 
+  `id`s are collection-style URIs" can get us in trouble
+  ... so this is a potential conflict between collection-style 
+  and controller-style API design patterns
+  ... or at least, an illustrative example of a caveat to the 
+  RESTful design patterns that got us here
+
+Topic: Authorization Proposals
+
+Markus Sabadello:  I have thoughts and I'll put them in the issue 
+  but I just wanted to chime in to say that this has come up along 
+  the way and this sounds like a good discussion to have here
+Manu Sporny:  I want to get to proposals discussed over the CCG 
+  list
+(By Alan Karp and others)
+Manu Sporny:  Review of proposals from the email list
+
+PROPOSAL:  Implementations SHOULD support authorization 
+  delegation by using technologies such as GNAP and Authorization 
+  Capabilities.
+
+Orie Steele: -1
+Justin Richer: +1
+Adrian Gropper: +1
+Mike Varley: +1
+Marty Reed: +0
+<markus_sabadello> +0.5
+<david_ward> +0.5
+<butch_clark> 0
+<manu> -0.5 (only because it's not stronger, but to do that, we'd 
+  need something implementable)
+Juan Caballero:  How does SHOULD work? [scribe assist by Manu 
+  Sporny]
+Juan Caballero:  Can implementations assume, hard to vote. 
+  [scribe assist by Manu Sporny]
+Justin_Richter: by SHOULD i meant that supporting implementations
+Mike Prorock: -1
+  ... should be able to have delegated caps recognized and 
+  processed where present
+<tallted> +0.5 "when those technologies are properly fleshed out 
+  and vetted"
+<justin_richer> ^-- TallTed right, that's what I meant
+<justin_richer> oh wait, that's apparently not what I meant
+<orie> it would take time and adoption for me to change from a 
+  -1.
+Mike Prorock:  I think i'm in agreement with Tallted that 
+  assuming the commitment now before we know what form these 
+  technologies will have once they're mature and adopted in the 
+  market... I don't like the chronology of this commitment
+Orie Steele:  I have nothing against these technologies and where 
+  they're going, but not today, not in its current form and level 
+  of adoption
+<orie> lets reformat the proposal to limit it to RAR then
+Justin Richer:  I'm not saying to create a GNAP profile here, 
+  just for a specific application
+Orie Steele:  I agree that scopes are not a great fit
+<mprorock> ? https://oauth.net/2/rich-authorization-requests/ for 
+  clarity
+<justin_richer> +q
+  ... can we meet in the middle and limit the support to RAR?
+  ... because RAR, I agree, does have adoption (in british open 
+  banking)
+PSD2
+?
+Justin Richer:  The RAR work is in WG last call right now, will 
+  be an RFC soon
+<orie> much further along than publicKeyMultibase ; )
+<tallted> maybe rich-authorization-requests should be added to 
+  the list of `Such as`? ... and one or both the others removed? 
+  ... and we should come up with some kind of rubric by which to 
+  analyze and compare delegation "frameworks" (right term?)
+  ... and I think that is pretty mature by objective standards 
+  and adoption metrics
+  ... I think "scope strings" in OAuth is exactly what RAR is a 
+  great upgrade
+Manu Sporny: 
+  https://datatracker.ietf.org/doc/html/draft-lodderstedt-oauth-rar-03
+  ... and is what I've been lobbying for all along
+  ... (scribe gets lots in IETF acronyms :D )
+Lost*
+Manu Sporny:  So, to edit the resolution...
+Justin Richer:  Yes, the RAR is a way of describing the 
+  delegation of the authorization
+Justin Richer: 
+  https://mailarchive.ietf.org/arch/msg/oauth/FVtlyc2r76ycCdTB0xgkRmK8hoc/
+<mprorock> rar is very diff in my mind than gnap
+Adrian Hope-Bailie:  A big +1 to making sure the group is clear 
+  on what Justin means about RAR versus scopes (as opposed to 
+  adopting all of GNAP, for example)
+<orie> lets see how much of GNAP or RAR we can take in 
+  isolation... maybe with some better clarity, we can actually 
+  understand what we are voting on, but I'm a -1 right now, don't 
+  understand what this is going to do in terms of requirements for 
+  enterprises / banks
+<justin_richer> @mprorock RAR is a backport of GNAP's 
+  authorization model (ie, scope equivalent) to OAuth 2
+<mprorock> @justin - yes
+<justin_richer> again, it's on OBUK
+<justin_richer> and I don't represent the open banking community 
+  at large
+Orie Steele:  OpenBanking and RAR might be a good use-case 
+  walkthrough
+<mprorock> but in use via oauth - that is the key thing for me
+/Me would like to see the API docs or example calls that these 
+  open banking people are using?
+Orie Steele:  I think an open-ended commitment entails unbounded 
+  complexity, a scope-limiting conversation about how RAR could 
+  work (and is there a way to use RAR without GNAP, for example)
+  ... and I'd like to hear about how okta or auth0 configurations 
+  have to be modified
+  ...to do this
+Justin Richer:  I worry that I'm restating what I thought I'd 
+  already made clear?
+<orie> I would be more likely to support scope strings than RAR 
+  or GNAP.... based on my experience with the adoption and 
+  comprehension of scopes...
+  ...Strawman: if we were to say here is an API, if you have 
+  secured it with OAuth2, put "readvc" into the scope string so 
+  that everyone uses scope strings the same way.  no one would call 
+  that adding complexity, but simply pragmatic standardizing of an 
+  abritrary string
+<tallted> or! `use scope string http://example.org/readvc` which 
+  can be dereferenced to learn its meaning in or out of context
+  ... I am saying that there is a RAR form and a string-scope 
+  equivalent and we can write both into the spec without adding the 
+  kind of complexities you guys are worried about
+Manu Sporny:  None of us have implemented RAR APIs, tho, could 
+  you help us generate examples?
+Justin Richer:  Yes, I think I could take concrete wild stabs 
+  based on what I know about VCs?
+<mprorock> the proposal run was "PROPOSAL: Implementations SHOULD 
+  support authorization delegation by using technologies such as 
+  GNAP and Authorization Capabilities." - i have no interest at 
+  this point in implementing gnap at this point, that proposal 
+  implies that i should implement that - so how is that a misread
+  ... I think what people are worried about is not what I'm 
+  proposing
+Manu Sporny: PRE-PROPOSAL: Implementations MUST support OAuth2 
+  for the /credentials/verify endpoint. Implementations MAY support 
+  other authorization mechanisms for the /credentials/verify 
+  endpoint.
+Manu Sporny:  Separating OAuth2 and RAR questions
+  ...with a new proposal
+<mprorock> I am a big fan of separating these items
+Adrian Gropper: -1
+Justin Richer: -1
+Orie Steele: -1 To what Juan just said.
+Just checking!
+<justin_richer> RAR is used in OAuth instead of scopes. GNAP 
+  functionally has RAR built-in.
+Juan Caballero:  Implementations could do the same thing another 
+  way, but in RAR form? [scribe assist by Manu Sporny]
+Justin Richer: -1 Because it's MUST a specific technology
+Thanks all!
+<orie> thanks that what I was gonna ask
+<mike_varley> thanks all
