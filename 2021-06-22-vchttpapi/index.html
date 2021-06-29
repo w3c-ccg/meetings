@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/github-light.css" media="screen">
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Credentials Community Group</title>
+    <style>
+a {
+  color: #06A7CC;
+}
+
+div.comment {
+  font-family: 'Droid Serif', serif;
+  margin-top: 0.5em;
+  font-size: 1.25em;
+}
+
+.comment-continuation {
+  font-family: 'Droid Serif', serif;
+  font-size: 1.25em;
+  margin-left: 2em;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>The W3C Credentials Community Group</h1>
+      <h2>Verifiable Claims and Digital Verification</h2>
+      <h3><a href="../">Go Back</a></h3>
+
+      <hr>
+
+<div><div><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2"><h1>Verifiable Credentials HTTP API Telecon</h1>
+<h2>Minutes for 2021-06-22</h2>
+<div class="summary">
+<dl>
+<dt>Agenda</dt><dd><a href="https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0194.html">https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0194.html</a></dd>
+<dt>Topics</dt><dd><ol><li><a href="#topic-1">Introductions and Reintroductions</a><li><a href="#topic-2">Update on Use Cases</a><li><a href="#topic-3">Pull Request</a><li><a href="#topic-4">Issue Processing</a><li><a href="#topic-5">Issue #33</a><li><a href="#topic-6">Issue #35</a><li><a href="#topic-7">Authorization Proposals</a></ol></dd><dt>Resolutions</dt><dd><ol><li><a href="#resolution-1">Refactor the conformance test suite to support did;key as the only mandatory DID format for the test suite.</a><li><a href="#resolution-2">In general, the VC HTTP API style will conform to restfulapi.net guidelines and specifically use a 'controller' style for endpoints and will use JSON Schema to define the acceptable inputs to the APIs. Any deviation from these guidelines will be discussed in the group.</a></ol></dd><dt>Organizer</dt><dd>Wayne Chang, Heather Vescent</dd>
+<dt>Scribe</dt><dd>Juan Caballero</dd>
+<dt>Present</dt><dd><a href="">Adrian Gropper</a>, <a href="http://www.learningproof.xyz/">Juan Caballero</a>, <a href="https://github.com/acoburn">Aaron Coburn</a>, <a href="https://www.linkedin.com/in/mprorock/">Mike Prorock</a>, <a href="http://manu.sporny.org/about">Manu Sporny</a>, <a href="https://twitter.com/justin__richer">Justin Richer</a>, <a href="https://www.linkedin.com/in/marty-reed-b5b2352/">Marty Reed</a>, <a href="https://www.linkedin.com/search/results/all/?keywords=Legendary%20Requirements">Eric Schuh</a>, <a href="https://www.linkedin.com/in/markus-sabadello-353a0821/">Markus Sabadello</a>, <a href="https://www.linkedin.com/in/or13b">Orie Steele</a>, <a href="https://w3c-ccg.github.io/">Butch Clark</a>, <a href="https://w3c-ccg.github.io/">Kevin [Spruce Systems]</a>, <a href="https://www.linkedin.com/profile/view?id=23158801">Brian Sletten</a>, <a href="https://www.linkedin.com/in/mavarley/">Mike Varley</a>, <a href="https://w3c-ccg.github.io/">Sanuja (Diwala)</a>, <a href="https://w3c-ccg.github.io/">TallTed // Ted Thibodeau (he/him) (openlinksw.com)</a>, <a href="https://w3c-ccg.github.io/">Dmitri Z</a>, <a href="https://www.linkedin.com/in/erickorb">Eric Korb</a>, <a href="https://ca.linkedin.com/in/dward">David Ward</a>, <a href="https://www.linkedin.com/in/macted/">Ted Thibodeau</a>, <a href="https://twitter.com/mwherman2000">Michael Herman</a>, <a href="https://www.linkedin.com/in/adrianhopebailie">Adrian Hope-Bailie</a></dd>
+<dt>Audio Log</dt><dd><div><a href="audio.ogg">audio.ogg</a></div>
+<div><audio controls="controls" preload="none">
+<source src="audio.ogg" type="audio/ogg" />Warning: Your browser does not support the HTML5 audio element, please upgrade.</audio></div></dd>
+</dl>
+</div>
+<div class="information">Juan Caballero is scribing.</div>
+<div onmouseout="$('#link-1').hide()" onmouseover="$('#link-1').show()" id="1" class="comment"><span class="name">Manu Sporny</span>:  Agenda (as per email) <a id="link-1" style="display:none;" href="#1">✪</a></div>
+<div class="comment-continuation">... intros and reintros</div>
+<h1 id="topic-1" class="topic">Topic: Introductions and Reintroductions</h1>
+<h1 id="topic-2" class="topic">Topic: Update on Use Cases</h1>
+<div onmouseout="$('#link-2').hide()" onmouseover="$('#link-2').show()" id="2" class="comment"><span class="name">Eric Schuh</span>: <a href="https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#">https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#</a> <a id="link-2" style="display:none;" href="#2">✪</a></div>
+<div onmouseout="$('#link-3').hide()" onmouseover="$('#link-3').show()" id="3" class="comment"><span class="name">Eric Korb</span>:  Use cases in google doc <a id="link-3" style="display:none;" href="#3">✪</a></div>
+<div class="comment-continuation">...sorted into categories: well-formed, partly-formed, and out of scope</div>
+<div class="comment-continuation">... we also tagged all the people in the &quot;needs work&quot; category asking for updates.  if we don&apos;t get feedback, we&apos;ll edit more aggressively but we strongly prefer more input from all of you</div>
+<div class="comment-continuation">... this was just a first pass, out-of-scope category</div>
+<div onmouseout="$('#link-4').hide()" onmouseover="$('#link-4').show()" id="4" class="comment"><span class="name">Juan Caballero</span>:  No other updates from me, it&apos;s never too late for input, please help. [scribe assist by Manu Sporny] <a id="link-4" style="display:none;" href="#4">✪</a></div>
+<div onmouseout="$('#link-5').hide()" onmouseover="$('#link-5').show()" id="5" class="comment"><span class="name">Eric Korb</span>:  Out-of-scope may change and up for debate, and today&apos;s discussion may help make those calls <a id="link-5" style="display:none;" href="#5">✪</a></div>
+<div onmouseout="$('#link-6').hide()" onmouseover="$('#link-6').show()" id="6" class="comment"><span class="name">Manu Sporny</span>:  2 More weeks, right? <a id="link-6" style="display:none;" href="#6">✪</a></div>
+<h1 id="topic-3" class="topic">Topic: Pull Request</h1>
+<div onmouseout="$('#link-7').hide()" onmouseover="$('#link-7').show()" id="7" class="comment"><span class="name">Eric Korb</span>:  Yes, we&apos;ll definitely have more to discuss two meetings from now, with or without additional feedback from the group in these two weeks <a id="link-7" style="display:none;" href="#7">✪</a></div>
+<div onmouseout="$('#link-8').hide()" onmouseover="$('#link-8').show()" id="8" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/pull/200/files">https://github.com/w3c-ccg/vc-http-api/pull/200/files</a> <a id="link-8" style="display:none;" href="#8">✪</a></div>
+<div class="information">&lt;marty_reed&gt; sorry if I missed it, when copy and pasting for a new use case, should it go top/bottom/which section?</div>
+<div onmouseout="$('#link-9').hide()" onmouseover="$('#link-9').show()" id="9" class="comment"><span class="name">Manu Sporny</span>:  There were some changes back and forth, might need an updated review from orie... <a id="link-9" style="display:none;" href="#9">✪</a></div>
+<div onmouseout="$('#link-10').hide()" onmouseover="$('#link-10').show()" id="10" class="comment"><span class="name">Orie Steele</span>:  Approved <a id="link-10" style="display:none;" href="#10">✪</a></div>
+<div onmouseout="$('#link-11').hide()" onmouseover="$('#link-11').show()" id="11" class="comment"><span class="name">Manu Sporny</span>:  Fairly benign change, unless anyone has objections <a id="link-11" style="display:none;" href="#11">✪</a></div>
+<div onmouseout="$('#link-12').hide()" onmouseover="$('#link-12').show()" id="12" class="comment"><span class="name">Eric Korb</span>:  (Answering marty&apos;s question in chat): put it anywhere, and just tag us (me or juan) in a marginal comment <a id="link-12" style="display:none;" href="#12">✪</a></div>
+<div class="information">&lt;eric_schuh&gt; eric@legreq.com if you want to ping someone to look at a use case</div>
+<h1 id="topic-4" class="topic">Topic: Issue Processing</h1>
+<div onmouseout="$('#link-13').hide()" onmouseover="$('#link-13').show()" id="13" class="comment"><span class="name">Manu Sporny</span>:  No more PRs, issues now <a id="link-13" style="display:none;" href="#13">✪</a></div>
+<div onmouseout="$('#link-14').hide()" onmouseover="$('#link-14').show()" id="14" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/184">https://github.com/w3c-ccg/vc-http-api/issues/184</a> <a id="link-14" style="display:none;" href="#14">✪</a></div>
+<div class="information">&lt;manu&gt; This is a proposal to Restrict conformance and interop test suites to did:key only.</div>
+<div onmouseout="$('#link-15').hide()" onmouseover="$('#link-15').show()" id="15" class="comment"><span class="name">Orie Steele</span>:  Conformance tests require a tested system to support certain cryptographic capabilities and suites <a id="link-15" style="display:none;" href="#15">✪</a></div>
+<div onmouseout="$('#link-16').hide()" onmouseover="$('#link-16').show()" id="16" class="information">E.g. Ed25519; examples and test vectors that rely on outside servers, external resolution processes, etc can be quite difficult and add friction <a id="link-16" style="display:none;" href="#16">✪</a></div>
+<div class="comment-continuation">... we discussed &quot;mocking&quot; and &quot;stubbing&quot; on last week&apos;s call, and this sidesteps that issue by using DID:Key (which is memory-based and does not require external network calls, DID resolution, ledger availability, etc)</div>
+<div onmouseout="$('#link-17').hide()" onmouseover="$('#link-17').show()" id="17" class="comment"><span class="name">Manu Sporny</span>: <a href="https://w3c-ccg.github.io/meetings/2021-06-15-vchttpapi/#topic-4">https://w3c-ccg.github.io/meetings/2021-06-15-vchttpapi/#topic-4</a> <a id="link-17" style="display:none;" href="#17">✪</a></div>
+<div class="comment-continuation">... this could be argued to be lazy but for better or for worse this allows us to focus on signature verification and ver methods</div>
+<div onmouseout="$('#link-18').hide()" onmouseover="$('#link-18').show()" id="18" class="comment"><span class="name">Manu Sporny</span>:  Last week, the resolution to mock up DID resolution got a fair amount of support, and the resolution to just use DID:Key seemed to get more <a id="link-18" style="display:none;" href="#18">✪</a></div>
+<div class="information">&lt;manu_sporny&gt; PROPOSAL we could run: Refactor the test suite to support did;key as the only mandatory DID format for the test suite.</div>
+<div class="comment-continuation">... i would like to re-run the proposal today to make it a resolution</div>
+<div onmouseout="$('#link-19').hide()" onmouseover="$('#link-19').show()" id="19" class="comment"><span class="name">Orie Steele</span>:  The issue specifically limits this to CONFORMANCE tests <a id="link-19" style="display:none;" href="#19">✪</a></div>
+<div class="comment-continuation">... i.e. conformance to the API. </div>
+<div class="comment-continuation">...I think interop tests we shouldn&apos;t limit to DID:KEY, just the API conformance tests</div>
+<div onmouseout="$('#link-20').hide()" onmouseover="$('#link-20').show()" id="20" class="information">/Me +1 to orie <a id="link-20" style="display:none;" href="#20">✪</a></div>
+<div onmouseout="$('#link-21').hide()" onmouseover="$('#link-21').show()" id="21" class="comment"><span class="name">Markus Sabadello</span>:  +1 To orie for the interop/conformance distinction <a id="link-21" style="display:none;" href="#21">✪</a></div>
+<div onmouseout="$('#link-22').hide()" onmouseover="$('#link-22').show()" id="22" class="comment"><span class="name">Manu Sporny</span>:  Sounds like no one queued to object, let&apos;s run the proposal to make it official <a id="link-22" style="display:none;" href="#22">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  Refactor the conformance test suite to support did;key as the only mandatory DID format for the test suite.</div>
+<div onmouseout="$('#link-23').hide()" onmouseover="$('#link-23').show()" id="23" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-23" style="display:none;" href="#23">✪</a></div>
+<div onmouseout="$('#link-24').hide()" onmouseover="$('#link-24').show()" id="24" class="comment"><span class="name">Mike Varley</span>: +1 <a id="link-24" style="display:none;" href="#24">✪</a></div>
+<div onmouseout="$('#link-25').hide()" onmouseover="$('#link-25').show()" id="25" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-25" style="display:none;" href="#25">✪</a></div>
+<div onmouseout="$('#link-26').hide()" onmouseover="$('#link-26').show()" id="26" class="comment"><span class="name">Markus Sabadello</span>: +1 <a id="link-26" style="display:none;" href="#26">✪</a></div>
+<div onmouseout="$('#link-27').hide()" onmouseover="$('#link-27').show()" id="27" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-27" style="display:none;" href="#27">✪</a></div>
+<div onmouseout="$('#link-28').hide()" onmouseover="$('#link-28').show()" id="28" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-28" style="display:none;" href="#28">✪</a></div>
+<div onmouseout="$('#link-29').hide()" onmouseover="$('#link-29').show()" id="29" class="comment"><span class="name">Brian Sletten</span>: +1 <a id="link-29" style="display:none;" href="#29">✪</a></div>
+<div onmouseout="$('#link-30').hide()" onmouseover="$('#link-30').show()" id="30" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-30" style="display:none;" href="#30">✪</a></div>
+<div onmouseout="$('#link-31').hide()" onmouseover="$('#link-31').show()" id="31" class="comment"><span class="name">Ted Thibodeau</span>: +1 <a id="link-31" style="display:none;" href="#31">✪</a></div>
+<div onmouseout="$('#link-32').hide()" onmouseover="$('#link-32').show()" id="32" class="comment"><span class="name">Marty Reed</span>: +1 <a id="link-32" style="display:none;" href="#32">✪</a></div>
+<div onmouseout="$('#link-33').hide()" onmouseover="$('#link-33').show()" id="33" class="comment"><span class="name">Eric Schuh</span>: +1 <a id="link-33" style="display:none;" href="#33">✪</a></div>
+<div id="resolution-1" class="resolution"><strong>RESOLUTION:</strong> Refactor the conformance test suite to support did;key as the only mandatory DID format for the test suite.</div>
+<div class="information">&lt;orie&gt; :)</div>
+<div onmouseout="$('#link-34').hide()" onmouseover="$('#link-34').show()" id="34" class="comment"><span class="name">Manu Sporny</span>:  Remaining question about JWK vs multibase which i&apos;d like to table for now <a id="link-34" style="display:none;" href="#34">✪</a></div>
+<div class="information">&lt;tallted&gt; (Is it worth splitting #184 to split conformance from interop?)</div>
+<div onmouseout="$('#link-35').hide()" onmouseover="$('#link-35').show()" id="35" class="comment"><span class="name">Orie Steele</span>:  We&apos;ve saved ourselves from having to talk too much about key representations by putting mocking out of scope <a id="link-35" style="display:none;" href="#35">✪</a></div>
+<div class="comment-continuation">... i&apos;d support a new issue specifically about resolution</div>
+<div class="comment-continuation">...problems specifically</div>
+<div onmouseout="$('#link-36').hide()" onmouseover="$('#link-36').show()" id="36" class="comment"><span class="name">Manu Sporny</span>:  Close 184? <a id="link-36" style="display:none;" href="#36">✪</a></div>
+<div class="comment-continuation">...correction: about THE resolution WE JUST PASSED</div>
+<div onmouseout="$('#link-37').hide()" onmouseover="$('#link-37').show()" id="37" class="comment"><span class="name">Ted Thibodeau</span>:  But there was a lot about inteorp in that thread? <a id="link-37" style="display:none;" href="#37">✪</a></div>
+<div onmouseout="$('#link-38').hide()" onmouseover="$('#link-38').show()" id="38" class="comment"><span class="name">Orie Steele</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/202">https://github.com/w3c-ccg/vc-http-api/issues/202</a> <a id="link-38" style="display:none;" href="#38">✪</a></div>
+<div onmouseout="$('#link-39').hide()" onmouseover="$('#link-39').show()" id="39" class="comment"><span class="name">Manu Sporny</span>:  Let&apos;s just open a new issue for interop tests, and a new issue for <a id="link-39" style="display:none;" href="#39">✪</a></div>
+<div class="comment-continuation">... conformance testing based on did:key</div>
+<div onmouseout="$('#link-40').hide()" onmouseover="$('#link-40').show()" id="40" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/33">https://github.com/w3c-ccg/vc-http-api/issues/33</a> <a id="link-40" style="display:none;" href="#40">✪</a></div>
+<h1 id="topic-5" class="topic">Topic: Issue #33</h1>
+<div class="information">&lt;manu&gt; Define schema for response of /credentials/issueCredential</div>
+<div onmouseout="$('#link-41').hide()" onmouseover="$('#link-41').show()" id="41" class="comment"><span class="name">Manu Sporny</span>:  Orie can you summarize for the group? <a id="link-41" style="display:none;" href="#41">✪</a></div>
+<div onmouseout="$('#link-42').hide()" onmouseover="$('#link-42').show()" id="42" class="comment"><span class="name">Orie Steele</span>:  I think this thread stems from the ongoing confusion about internal/external APIs and trust boundary assumptions <a id="link-42" style="display:none;" href="#42">✪</a></div>
+<div class="comment-continuation">... I think it&apos;s mostly outdated, not too many ongoing open questions here</div>
+<div class="comment-continuation">... I think there were some resolutions taken?</div>
+<div onmouseout="$('#link-43').hide()" onmouseover="$('#link-43').show()" id="43" class="information">/Me is there a quick way to overview the resolutions taken by the group since we started holding public calls without paging through all the minutes one by one? <a id="link-43" style="display:none;" href="#43">✪</a></div>
+<div onmouseout="$('#link-44').hide()" onmouseover="$('#link-44').show()" id="44" class="comment"><span class="name">Mike Varley</span>: +1 To marking it pending closed; not sure if George will be following up (he has moved on from SecureKey) <a id="link-44" style="display:none;" href="#44">✪</a></div>
+<div class="comment-continuation">... a good way to close would be to mark it pending closing and link to relevant commits and/or resolutions on scribed calls</div>
+<div onmouseout="$('#link-45').hide()" onmouseover="$('#link-45').show()" id="45" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-45" style="display:none;" href="#45">✪</a></div>
+<div onmouseout="$('#link-46').hide()" onmouseover="$('#link-46').show()" id="46" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/35">https://github.com/w3c-ccg/vc-http-api/issues/35</a> <a id="link-46" style="display:none;" href="#46">✪</a></div>
+<div class="information">&lt;manu&gt; Agree to API Style Guide</div>
+<h1 id="topic-6" class="topic">Topic: Issue #35</h1>
+<div onmouseout="$('#link-47').hide()" onmouseover="$('#link-47').show()" id="47" class="comment"><span class="name">Orie Steele</span>:  Summary: RESTful API industry norms were the starting point (controller style) <a id="link-47" style="display:none;" href="#47">✪</a></div>
+<div class="comment-continuation">... complete consensus, as I remember it, that these terms were a good starting point and that RESTful APIs were what got us here</div>
+<div class="comment-continuation">... although I don&apos;t think we&apos;ve taken official resolutions anywhere, and I worry we will keep relitigating these style guide decisions without some kind of resolutions to point to</div>
+<div class="information">&lt;orie&gt; we also have this: <a href="https://github.com/w3c-ccg/vc-http-api/blob/main/docs/architecture.md">https://github.com/w3c-ccg/vc-http-api/blob/main/docs/architecture.md</a></div>
+<div onmouseout="$('#link-48').hide()" onmouseover="$('#link-48').show()" id="48" class="comment"><span class="name">Manu Sporny</span>:  Orie, you seem to be saying we&apos;re using JSON Schema and `controller` as a design decision <a id="link-48" style="display:none;" href="#48">✪</a></div>
+<div onmouseout="$('#link-49').hide()" onmouseover="$('#link-49').show()" id="49" class="comment"><span class="name">Orie Steele</span>:  Likewise, I think we might need to update the arch.md file as well and document our decisions to date <a id="link-49" style="display:none;" href="#49">✪</a></div>
+<div onmouseout="$('#link-50').hide()" onmouseover="$('#link-50').show()" id="50" class="comment"><span class="name">Manu Sporny</span>:  Let&apos;s just run it as a proposal, then? <a id="link-50" style="display:none;" href="#50">✪</a></div>
+<div onmouseout="$('#link-51').hide()" onmouseover="$('#link-51').show()" id="51" class="comment"><span class="name">Orie Steele</span>: <a href="https://restfulapi.net/resource-naming/">https://restfulapi.net/resource-naming/</a> <a id="link-51" style="display:none;" href="#51">✪</a></div>
+<div onmouseout="$('#link-52').hide()" onmouseover="$('#link-52').show()" id="52" class="comment"><span class="name">Orie Steele</span>:  I&apos;d say that the resolution should be best-practice conformance where deviation not resolved via GH Issues, and &quot;controller&quot;-oriented naming <a id="link-52" style="display:none;" href="#52">✪</a></div>
+<div class="information">&lt;manu&gt; PROPOSAL we could run: In general, the VC HTTP API style will conform to restfulapi.net guidelines and specifically use a &apos;controller&apos; style for endpoints and will use JSON Schema to define the acceptable inputs to the APIs. Any deviation from these guidelines will be discussed in the group.</div>
+<div onmouseout="$('#link-53').hide()" onmouseover="$('#link-53').show()" id="53" class="comment"><span class="name">Orie Steele</span>:  Data modeling requirements versus RESTFul norms: revocation, for ex <a id="link-53" style="display:none;" href="#53">✪</a></div>
+<div class="comment-continuation">... collection-oriented RESTful APIs may require an issue for revocation</div>
+<div onmouseout="$('#link-54').hide()" onmouseover="$('#link-54').show()" id="54" class="comment"><span class="name">Manu Sporny</span>:  Sure, sounds like a good first issue <a id="link-54" style="display:none;" href="#54">✪</a></div>
+<div class="comment-continuation">...if it passes</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  In general, the VC HTTP API style will conform to restfulapi.net guidelines and specifically use a &apos;controller&apos; style for endpoints and will use JSON Schema to define the acceptable inputs to the APIs. Any deviation from these guidelines will be discussed in the group.</div>
+<div onmouseout="$('#link-55').hide()" onmouseover="$('#link-55').show()" id="55" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-55" style="display:none;" href="#55">✪</a></div>
+<div onmouseout="$('#link-56').hide()" onmouseover="$('#link-56').show()" id="56" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-56" style="display:none;" href="#56">✪</a></div>
+<div onmouseout="$('#link-57').hide()" onmouseover="$('#link-57').show()" id="57" class="comment"><span class="name">Mike Varley</span>: +1 <a id="link-57" style="display:none;" href="#57">✪</a></div>
+<div onmouseout="$('#link-58').hide()" onmouseover="$('#link-58').show()" id="58" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-58" style="display:none;" href="#58">✪</a></div>
+<div onmouseout="$('#link-59').hide()" onmouseover="$('#link-59').show()" id="59" class="comment"><span class="name">Ted Thibodeau</span>: +1 <a id="link-59" style="display:none;" href="#59">✪</a></div>
+<div onmouseout="$('#link-60').hide()" onmouseover="$('#link-60').show()" id="60" class="comment"><span class="name">Eric Schuh</span>: +1 <a id="link-60" style="display:none;" href="#60">✪</a></div>
+<div onmouseout="$('#link-61').hide()" onmouseover="$('#link-61').show()" id="61" class="comment"><span class="name">Marty Reed</span>: +1 <a id="link-61" style="display:none;" href="#61">✪</a></div>
+<div onmouseout="$('#link-62').hide()" onmouseover="$('#link-62').show()" id="62" class="comment"><span class="name">Adrian Gropper</span>: +0 <a id="link-62" style="display:none;" href="#62">✪</a></div>
+<div onmouseout="$('#link-63').hide()" onmouseover="$('#link-63').show()" id="63" class="comment"><span class="name">Markus Sabadello</span>: +1 <a id="link-63" style="display:none;" href="#63">✪</a></div>
+<div onmouseout="$('#link-64').hide()" onmouseover="$('#link-64').show()" id="64" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-64" style="display:none;" href="#64">✪</a></div>
+<div id="resolution-2" class="resolution"><strong>RESOLUTION:</strong> In general, the VC HTTP API style will conform to restfulapi.net guidelines and specifically use a &apos;controller&apos; style for endpoints and will use JSON Schema to define the acceptable inputs to the APIs. Any deviation from these guidelines will be discussed in the group.</div>
+<div onmouseout="$('#link-65').hide()" onmouseover="$('#link-65').show()" id="65" class="comment"><span class="name">Manu Sporny</span>:  Cool we can close the issue <a id="link-65" style="display:none;" href="#65">✪</a></div>
+<div class="comment-continuation">...i&apos;ll write a comment before closing</div>
+<div onmouseout="$('#link-66').hide()" onmouseover="$('#link-66').show()" id="66" class="comment"><span class="name">Orie Steele</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/204">https://github.com/w3c-ccg/vc-http-api/issues/204</a> <a id="link-66" style="display:none;" href="#66">✪</a></div>
+<div onmouseout="$('#link-67').hide()" onmouseover="$('#link-67').show()" id="67" class="comment"><span class="name">Orie Steele</span>:  I created an issue <a id="link-67" style="display:none;" href="#67">✪</a></div>
+<div class="comment-continuation">...#204 , named `Revocation List and Restful APIs`</div>
+<div class="comment-continuation">... I think it&apos;s important to note a few things about this example: `id` isn&apos;t strictly mandatory, and revocation methods that rely on `id` we&apos;re getting into terrain not covered by the core data model</div>
+<div class="comment-continuation">... and shaky assumptions like &quot;all VCs have an `id`&quot; or &quot;all `id`s are collection-style URIs&quot; can get us in trouble</div>
+<div class="comment-continuation">... so this is a potential conflict between collection-style and controller-style API design patterns</div>
+<div class="comment-continuation">... or at least, an illustrative example of a caveat to the RESTful design patterns that got us here</div>
+<h1 id="topic-7" class="topic">Topic: Authorization Proposals</h1>
+<div onmouseout="$('#link-68').hide()" onmouseover="$('#link-68').show()" id="68" class="comment"><span class="name">Markus Sabadello</span>:  I have thoughts and I&apos;ll put them in the issue but I just wanted to chime in to say that this has come up along the way and this sounds like a good discussion to have here <a id="link-68" style="display:none;" href="#68">✪</a></div>
+<div onmouseout="$('#link-69').hide()" onmouseover="$('#link-69').show()" id="69" class="comment"><span class="name">Manu Sporny</span>:  I want to get to proposals discussed over the CCG list <a id="link-69" style="display:none;" href="#69">✪</a></div>
+<div onmouseout="$('#link-70').hide()" onmouseover="$('#link-70').show()" id="70" class="information">(By Alan Karp and others) <a id="link-70" style="display:none;" href="#70">✪</a></div>
+<div onmouseout="$('#link-71').hide()" onmouseover="$('#link-71').show()" id="71" class="comment"><span class="name">Manu Sporny</span>:  Review of proposals from the email list <a id="link-71" style="display:none;" href="#71">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  Implementations SHOULD support authorization delegation by using technologies such as GNAP and Authorization Capabilities.</div>
+<div onmouseout="$('#link-72').hide()" onmouseover="$('#link-72').show()" id="72" class="comment"><span class="name">Orie Steele</span>: -1 <a id="link-72" style="display:none;" href="#72">✪</a></div>
+<div onmouseout="$('#link-73').hide()" onmouseover="$('#link-73').show()" id="73" class="comment"><span class="name">Justin Richer</span>: +1 <a id="link-73" style="display:none;" href="#73">✪</a></div>
+<div onmouseout="$('#link-74').hide()" onmouseover="$('#link-74').show()" id="74" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-74" style="display:none;" href="#74">✪</a></div>
+<div onmouseout="$('#link-75').hide()" onmouseover="$('#link-75').show()" id="75" class="comment"><span class="name">Mike Varley</span>: +1 <a id="link-75" style="display:none;" href="#75">✪</a></div>
+<div onmouseout="$('#link-76').hide()" onmouseover="$('#link-76').show()" id="76" class="comment"><span class="name">Marty Reed</span>: +0 <a id="link-76" style="display:none;" href="#76">✪</a></div>
+<div class="information">&lt;markus_sabadello&gt; +0.5</div>
+<div class="information">&lt;david_ward&gt; +0.5</div>
+<div class="information">&lt;butch_clark&gt; 0</div>
+<div class="information">&lt;manu&gt; -0.5 (only because it&apos;s not stronger, but to do that, we&apos;d need something implementable)</div>
+<div onmouseout="$('#link-77').hide()" onmouseover="$('#link-77').show()" id="77" class="comment"><span class="name">Juan Caballero</span>:  How does SHOULD work? [scribe assist by Manu Sporny] <a id="link-77" style="display:none;" href="#77">✪</a></div>
+<div onmouseout="$('#link-78').hide()" onmouseover="$('#link-78').show()" id="78" class="comment"><span class="name">Juan Caballero</span>:  Can implementations assume, hard to vote. [scribe assist by Manu Sporny] <a id="link-78" style="display:none;" href="#78">✪</a></div>
+<div onmouseout="$('#link-79').hide()" onmouseover="$('#link-79').show()" id="79" class="information">Justin_Richter: by SHOULD i meant that supporting implementations <a id="link-79" style="display:none;" href="#79">✪</a></div>
+<div onmouseout="$('#link-80').hide()" onmouseover="$('#link-80').show()" id="80" class="comment"><span class="name">Mike Prorock</span>: -1 <a id="link-80" style="display:none;" href="#80">✪</a></div>
+<div class="comment-continuation">... should be able to have delegated caps recognized and processed where present</div>
+<div class="information">&lt;tallted&gt; +0.5 &quot;when those technologies are properly fleshed out and vetted&quot;</div>
+<div class="information">&lt;justin_richer&gt; ^-- TallTed right, that&apos;s what I meant</div>
+<div class="information">&lt;justin_richer&gt; oh wait, that&apos;s apparently not what I meant</div>
+<div class="information">&lt;orie&gt; it would take time and adoption for me to change from a -1.</div>
+<div onmouseout="$('#link-81').hide()" onmouseover="$('#link-81').show()" id="81" class="comment"><span class="name">Mike Prorock</span>:  I think i&apos;m in agreement with Tallted that assuming the commitment now before we know what form these technologies will have once they&apos;re mature and adopted in the market... I don&apos;t like the chronology of this commitment <a id="link-81" style="display:none;" href="#81">✪</a></div>
+<div onmouseout="$('#link-82').hide()" onmouseover="$('#link-82').show()" id="82" class="comment"><span class="name">Orie Steele</span>:  I have nothing against these technologies and where they&apos;re going, but not today, not in its current form and level of adoption <a id="link-82" style="display:none;" href="#82">✪</a></div>
+<div class="information">&lt;orie&gt; lets reformat the proposal to limit it to RAR then</div>
+<div onmouseout="$('#link-83').hide()" onmouseover="$('#link-83').show()" id="83" class="comment"><span class="name">Justin Richer</span>:  I&apos;m not saying to create a GNAP profile here, just for a specific application <a id="link-83" style="display:none;" href="#83">✪</a></div>
+<div onmouseout="$('#link-84').hide()" onmouseover="$('#link-84').show()" id="84" class="comment"><span class="name">Orie Steele</span>:  I agree that scopes are not a great fit <a id="link-84" style="display:none;" href="#84">✪</a></div>
+<div class="information">&lt;mprorock&gt; ? <a href="https://oauth.net/2/rich-authorization-requests/">https://oauth.net/2/rich-authorization-requests/</a> for clarity</div>
+<div class="information">&lt;justin_richer&gt; +q</div>
+<div class="comment-continuation">... can we meet in the middle and limit the support to RAR?</div>
+<div class="comment-continuation">... because RAR, I agree, does have adoption (in british open banking)</div>
+<div onmouseout="$('#link-85').hide()" onmouseover="$('#link-85').show()" id="85" class="information">PSD2 <a id="link-85" style="display:none;" href="#85">✪</a></div>
+<div onmouseout="$('#link-86').hide()" onmouseover="$('#link-86').show()" id="86" class="information">? <a id="link-86" style="display:none;" href="#86">✪</a></div>
+<div onmouseout="$('#link-87').hide()" onmouseover="$('#link-87').show()" id="87" class="comment"><span class="name">Justin Richer</span>:  The RAR work is in WG last call right now, will be an RFC soon <a id="link-87" style="display:none;" href="#87">✪</a></div>
+<div class="information">&lt;orie&gt; much further along than publicKeyMultibase ; )</div>
+<div class="information">&lt;tallted&gt; maybe rich-authorization-requests should be added to the list of `Such as`? ... and one or both the others removed? ... and we should come up with some kind of rubric by which to analyze and compare delegation &quot;frameworks&quot; (right term?)</div>
+<div class="comment-continuation">... and I think that is pretty mature by objective standards and adoption metrics</div>
+<div class="comment-continuation">... I think &quot;scope strings&quot; in OAuth is exactly what RAR is a great upgrade</div>
+<div onmouseout="$('#link-88').hide()" onmouseover="$('#link-88').show()" id="88" class="comment"><span class="name">Manu Sporny</span>: <a href="https://datatracker.ietf.org/doc/html/draft-lodderstedt-oauth-rar-03">https://datatracker.ietf.org/doc/html/draft-lodderstedt-oauth-rar-03</a> <a id="link-88" style="display:none;" href="#88">✪</a></div>
+<div class="comment-continuation">... and is what I&apos;ve been lobbying for all along</div>
+<div class="comment-continuation">... (scribe gets lots in IETF acronyms :D )</div>
+<div onmouseout="$('#link-89').hide()" onmouseover="$('#link-89').show()" id="89" class="information">Lost* <a id="link-89" style="display:none;" href="#89">✪</a></div>
+<div onmouseout="$('#link-90').hide()" onmouseover="$('#link-90').show()" id="90" class="comment"><span class="name">Manu Sporny</span>:  So, to edit the resolution... <a id="link-90" style="display:none;" href="#90">✪</a></div>
+<div onmouseout="$('#link-91').hide()" onmouseover="$('#link-91').show()" id="91" class="comment"><span class="name">Justin Richer</span>:  Yes, the RAR is a way of describing the delegation of the authorization <a id="link-91" style="display:none;" href="#91">✪</a></div>
+<div onmouseout="$('#link-92').hide()" onmouseover="$('#link-92').show()" id="92" class="comment"><span class="name">Justin Richer</span>: <a href="https://mailarchive.ietf.org/arch/msg/oauth/FVtlyc2r76ycCdTB0xgkRmK8hoc/">https://mailarchive.ietf.org/arch/msg/oauth/FVtlyc2r76ycCdTB0xgkRmK8hoc/</a> <a id="link-92" style="display:none;" href="#92">✪</a></div>
+<div class="information">&lt;mprorock&gt; rar is very diff in my mind than gnap</div>
+<div onmouseout="$('#link-93').hide()" onmouseover="$('#link-93').show()" id="93" class="comment"><span class="name">Adrian Hope-Bailie</span>:  A big +1 to making sure the group is clear on what Justin means about RAR versus scopes (as opposed to adopting all of GNAP, for example) <a id="link-93" style="display:none;" href="#93">✪</a></div>
+<div class="information">&lt;orie&gt; lets see how much of GNAP or RAR we can take in isolation... maybe with some better clarity, we can actually understand what we are voting on, but I&apos;m a -1 right now, don&apos;t understand what this is going to do in terms of requirements for enterprises / banks</div>
+<div class="information">&lt;justin_richer&gt; @mprorock RAR is a backport of GNAP&apos;s authorization model (ie, scope equivalent) to OAuth 2</div>
+<div class="information">&lt;mprorock&gt; @justin - yes</div>
+<div class="information">&lt;justin_richer&gt; again, it&apos;s on OBUK</div>
+<div class="information">&lt;justin_richer&gt; and I don&apos;t represent the open banking community at large</div>
+<div onmouseout="$('#link-94').hide()" onmouseover="$('#link-94').show()" id="94" class="comment"><span class="name">Orie Steele</span>:  OpenBanking and RAR might be a good use-case walkthrough <a id="link-94" style="display:none;" href="#94">✪</a></div>
+<div class="information">&lt;mprorock&gt; but in use via oauth - that is the key thing for me</div>
+<div onmouseout="$('#link-95').hide()" onmouseover="$('#link-95').show()" id="95" class="information">/Me would like to see the API docs or example calls that these open banking people are using? <a id="link-95" style="display:none;" href="#95">✪</a></div>
+<div onmouseout="$('#link-96').hide()" onmouseover="$('#link-96').show()" id="96" class="comment"><span class="name">Orie Steele</span>:  I think an open-ended commitment entails unbounded complexity, a scope-limiting conversation about how RAR could work (and is there a way to use RAR without GNAP, for example) <a id="link-96" style="display:none;" href="#96">✪</a></div>
+<div class="comment-continuation">... and I&apos;d like to hear about how okta or auth0 configurations have to be modified</div>
+<div class="comment-continuation">...to do this</div>
+<div onmouseout="$('#link-97').hide()" onmouseover="$('#link-97').show()" id="97" class="comment"><span class="name">Justin Richer</span>:  I worry that I&apos;m restating what I thought I&apos;d already made clear? <a id="link-97" style="display:none;" href="#97">✪</a></div>
+<div class="information">&lt;orie&gt; I would be more likely to support scope strings than RAR or GNAP.... based on my experience with the adoption and comprehension of scopes...</div>
+<div class="comment-continuation">...Strawman: if we were to say here is an API, if you have secured it with OAuth2, put &quot;readvc&quot; into the scope string so that everyone uses scope strings the same way.  no one would call that adding complexity, but simply pragmatic standardizing of an abritrary string</div>
+<div class="information">&lt;tallted&gt; or! `use scope string <a href="http://example.org/readvc`">http://example.org/readvc`</a> which can be dereferenced to learn its meaning in or out of context</div>
+<div class="comment-continuation">... I am saying that there is a RAR form and a string-scope equivalent and we can write both into the spec without adding the kind of complexities you guys are worried about</div>
+<div onmouseout="$('#link-98').hide()" onmouseover="$('#link-98').show()" id="98" class="comment"><span class="name">Manu Sporny</span>:  None of us have implemented RAR APIs, tho, could you help us generate examples? <a id="link-98" style="display:none;" href="#98">✪</a></div>
+<div onmouseout="$('#link-99').hide()" onmouseover="$('#link-99').show()" id="99" class="comment"><span class="name">Justin Richer</span>:  Yes, I think I could take concrete wild stabs based on what I know about VCs? <a id="link-99" style="display:none;" href="#99">✪</a></div>
+<div class="information">&lt;mprorock&gt; the proposal run was &quot;PROPOSAL: Implementations SHOULD support authorization delegation by using technologies such as GNAP and Authorization Capabilities.&quot; - i have no interest at this point in implementing gnap at this point, that proposal implies that i should implement that - so how is that a misread</div>
+<div class="comment-continuation">... I think what people are worried about is not what I&apos;m proposing</div>
+<div onmouseout="$('#link-100').hide()" onmouseover="$('#link-100').show()" id="100" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: Implementations MUST support OAuth2 for the /credentials/verify endpoint. Implementations MAY support other authorization mechanisms for the /credentials/verify endpoint. <a id="link-100" style="display:none;" href="#100">✪</a></div>
+<div onmouseout="$('#link-101').hide()" onmouseover="$('#link-101').show()" id="101" class="comment"><span class="name">Manu Sporny</span>:  Separating OAuth2 and RAR questions <a id="link-101" style="display:none;" href="#101">✪</a></div>
+<div class="comment-continuation">...with a new proposal</div>
+<div class="information">&lt;mprorock&gt; I am a big fan of separating these items</div>
+<div onmouseout="$('#link-102').hide()" onmouseover="$('#link-102').show()" id="102" class="comment"><span class="name">Adrian Gropper</span>: -1 <a id="link-102" style="display:none;" href="#102">✪</a></div>
+<div onmouseout="$('#link-103').hide()" onmouseover="$('#link-103').show()" id="103" class="comment"><span class="name">Justin Richer</span>: -1 <a id="link-103" style="display:none;" href="#103">✪</a></div>
+<div onmouseout="$('#link-104').hide()" onmouseover="$('#link-104').show()" id="104" class="comment"><span class="name">Orie Steele</span>: -1 To what Juan just said. <a id="link-104" style="display:none;" href="#104">✪</a></div>
+<div onmouseout="$('#link-105').hide()" onmouseover="$('#link-105').show()" id="105" class="information">Just checking! <a id="link-105" style="display:none;" href="#105">✪</a></div>
+<div class="information">&lt;justin_richer&gt; RAR is used in OAuth instead of scopes. GNAP functionally has RAR built-in.</div>
+<div onmouseout="$('#link-106').hide()" onmouseover="$('#link-106').show()" id="106" class="comment"><span class="name">Juan Caballero</span>:  Implementations could do the same thing another way, but in RAR form? [scribe assist by Manu Sporny] <a id="link-106" style="display:none;" href="#106">✪</a></div>
+<div onmouseout="$('#link-107').hide()" onmouseover="$('#link-107').show()" id="107" class="comment"><span class="name">Justin Richer</span>: -1 Because it&apos;s MUST a specific technology <a id="link-107" style="display:none;" href="#107">✪</a></div>
+<div onmouseout="$('#link-108').hide()" onmouseover="$('#link-108').show()" id="108" class="information">Thanks all! <a id="link-108" style="display:none;" href="#108">✪</a></div>
+<div class="information">&lt;orie&gt; thanks that what I was gonna ask</div>
+<div class="information">&lt;mike_varley&gt; thanks all</div>
+</div></div></div></div></div>    </div>
+  </body>
+</html>
