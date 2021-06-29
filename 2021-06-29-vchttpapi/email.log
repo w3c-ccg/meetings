@@ -1,0 +1,557 @@
+Thanks to Charles E. Lehner for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-06-29-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-06-29
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0287.html
+Topics:
+  1. Introductions and Reintroductions
+  2. Use Cases
+  3. Authorization and RAR Presentation
+  4. RAR Q&A
+Organizer:
+  Manu Sporny
+Scribe:
+  Charles E. Lehner
+Present:
+  Mike Prorock, Justin Richer, Andrew Hughes, Charles E. Lehner 
+  [cel], Mike Varley, Manu Sporny, Adrian Gropper, Mahmoud 
+  Alkhraishi, David Chadwick, Brian Sletten, Eric Schuh, Butch 
+  Clark, Juan Caballero, Aaron Coburn, Joe Andrieu, Orie Steele, 
+  Charles E. Lehner, Kaliya Young, Sanuja (Diwala), Anil John, 
+  Kevin [Spruce Systems], Ted Thibodeau, Nikos Fotiou, Marty Reed, 
+  Joe Kaplan
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-06-29/audio.ogg
+
+Charles E. Lehner is scribing.
+
+Topic: Introductions and Reintroductions
+
+<juan_caballero_(dif/spruce)> hey andrew!
+Andrew_Hughes: most of you know me already, i'm returning from 
+  distant shores of the internet, starting to pay more attention to 
+  the w3c work again, glad to hear today's topic
+<andrew_hughes> Hi everyone! Glad to be back and seeing what's 
+  been happening over the last year
+Kaliya Young:  Hi, I haven't come to this call before. My handle 
+  is IdentityWoman; I currently have a formal job role with Linux 
+  Foundation, ... also Good Health Group, Trusted Health Pass
+<orie> Hey David!
+David Chadwick:  I've had some change of jobs. Company bought out 
+  by Crosswords Cybersecurity, now working for them
+
+Topic: Use Cases
+
+Eric Schuh: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+Manu Sporny:  Any updates, Eric or Juan on use cases?
+EricSchuh: we are about half way through the scheduled initial 
+  triage. Expect to have initial set of use cases. If anyone wants 
+  to add anything new, feel free to. If adding something 
+  substantial, ping myself or Juan on the Google Doc or comment.
+<eric_schuh> contact me via eric@legreq.com
+Juan Caballero:  The two uses cases that might not make it into 
+  the Doc.... separation of concerns use case, different from 
+  others...
+  ... And I'm trying to fool around with a car identity one for 
+  fun. Please leave comments if interested
+Manu Sporny:  This is a first pass, It doesn't mean if not in 
+  then it won't get it, Just want to iterate over next couple of 
+  years
+  ... Other questions and concerns about use cases before main 
+  event?
+<orie> /me shudders at couple of years...
+
+Topic: Authorization and RAR Presentation
+
+Manu Sporny:  As many of you know, we've been having a long 
+  discussion about Authorization.
+  ... Last week Justin offered to take us through RAR and other 
+  technologies in the space.
+  ... We are hoping to get education for the group, in order to 
+  make concrete decisions about how to approach authorization in VC 
+  HTTP API over next few months or longer
+Justin Richer: 
+  https://www.ietf.org/archive/id/draft-ietf-gnap-core-protocol-05.html
+<manu> Slides for this presentation: 
+  https://www.slideshare.net/zeronine1/rar-and-gnap-for-vc-http-api
+<manu> Video recording for this presentation: 
+  https://meet.w3c-ccg.org/archives/w3c-ccg-vchttpapi-2021-06-29.mp4
+Justin Richer:  Thanks very much, I'll start by dropping some 
+  things in chat. ^
+Justin_r apologies to scribe for speed
+Justin Richer:  Hi, my name is Justin Richer, I'm in an 
+  independent consultant based in Boston, but not speaking on 
+  behalf of clients
+  ... I'm hear to speak about efforts I'm involved in that have 
+  overlap with vc-http-api: RAR and GNAP; i'm a co-editor on each, 
+  and a bunch of other things over last number of years in 
+  standards space.
+  ... A note about branding: the name of this WG is an absolute 
+  mouthful. Can we come up with a logo?
+<manu_sporny> I love the logo :)
+  ... shows VH logo
+<juan_caballero_(dif/spruce)> /me hums "panama" under his breath
+  ... GNAP: think about what you love about OAUTH2, throw out 
+  things we don't want, that's the idea of GNAP. Standard track
+  ... RAR: rich authoriation requests, backport of .... to OAuth2
+  ... Think of it like Scope in Oauth2... also a part of a ... 
+  working group, in last call right now
+  ... Interesting synergy: GNAP not compatible with Oath2, or 
+  intended to, but since GNAP uses same data structures, can use 
+  same descriptions if using RAR
+  ... Using either GNAP or OAuth2 does not require specific token 
+  format: separation of concerns
+  ... Where's RAR used today? Been in production for a while in a 
+  number of places. A small slice I was able to get...
+Slide 7
+Justin Richer:  Interesting that has momentum. People tried to 
+  add structures to OAuth scope strings; RAR gives you a way to do 
+  it without all the weird parsing and semantic layering of those 
+  systems.
+  ... Groups looking to switch to RAR to describe access to their 
+  APIs
+  ... Why we're here today: Fundamental question: where/how to 
+  use vc-http-api with auth delegation protocols
+  ... What authorization and delegation protocol looks like...
+  ... Three places with clear overlaps between these two efforts
+  ... Ability to present things about user without having to go 
+  through web page like Oauth does
+  ... Ongoing question: if presented with VC, how to figure out 
+  what it's for. How to validate?
+  ... Today: my proposal only relates to: the green box (slide 
+  10)
+  ... What is being requested.
+  ... Each of these puts the API in a different place. Reason why 
+  the conversation is confusing
+<joe_andrieu> yep. role confusion makes this hard.
+  ... People are talking about applications of the vc-http-api 
+  and delegation protocols, about using it in different ways; they 
+  are separate layers, separate places in the ecosystem
+  ... Need to solve, but not same answer everywhere all the time
+  ... What is being requested: how do you describe what you want 
+  to do at the API
+  ... OAuth 1: on or off: got access or not. No way to say run at 
+  configure time.
+  ... Oauth 2: list of on/off flags: scopes. Have scope or not. 
+  Then people invented different structures for scope values.
+  ... We collected and codified to make a rich object, core of 
+  GNAP, which has been backported to OAuth2 as RAR.
+  ... Turns out what people use scopes for go in different 
+  directions: read access, payments, ...: all get described as 
+  scopes
+  ... Combinatoric explosion when have single flat list.
+  ... RAR gives you a structure to describe these things. It's a 
+  JSON array (like in OAuth2) but filled with objects
+  ... Equivalent concept in GNAP is same object.
+Slide 16
+  ... This is a really good way to solve this with a low lift. 
+  Not that big.
+  ... Each part of this request means something different. The 
+  type: kind of API you are calling.
+  ... Authorization server may protect many APIs with different 
+  semantics. Even VC HTTP API is not a single API but a collection 
+  of different APIs for doing different things. That's why the type 
+  property.
+  ... Then we have what you are doing. But since JSON, can extend 
+  with whatever you want.
+  ... If you understand the string, you can understand it.
+  ... Has to lead back to human-layer semantic understanding of 
+  systems.
+  ... The RAR type is the key that determines what goes into the 
+  rest of the API
+  ... This is not @context or schema, do not need to fetch. Even 
+  though URL-based, that is for namespace purposes only. Either you 
+  recognize the string or not.
+Manu Sporny:  Is the expectation that if we use RAR, then this 
+  group ...
+Justin Richer:  That's the next slide
+Justin Richer:  Proposal is that this WG defines a set of 
+  types... how to access the API, in OAuth2 and GNAP.
+Slide 19
+Justin Richer:  This is the total of what I am proposing that 
+  this group do. Not that you have to use OAuth2 or GNAP or even 
+  have to use these; you could use your own scope values, just 
+  wouldn't be following the interop protocol.
+  ... It makes sense to define the API and security model 
+  side-by-side
+  ... It makes you define what you're accessing and how you're 
+  accessing it.
+  ... Better to grow them together, the security model while 
+  you're defining the API
+  ... Rather than trying to decide later ("what is is that we 
+  do?") - and has to be done eventually.
+<identitywoman> straw people!
+  ... Now for strawman proposals for a lite take on what this 
+  could look.
+  ... If you are going into field values, you're missing the 
+  point
+  ... Want to see how you could apply the RAR data structures to 
+  an API like this.
+Mike Prorock:  Question about "you all" this community defining 
+  and implementing this stuff. Are you proposing to lead this work 
+  defining this stuff, or what's your vision here?
+Justin Richer:  I'm not
+  ... I'm trying to connect the dots for this community. I can 
+  definitely contribute to this, but not that I am going to come in 
+  and insist that this group do or on a particular solution. Not 
+  the purpose of this presentation
+Mike Prorock:  Thank you
+Justin Richer:  Straw man (people) proposals. Try not to get tied 
+  up in the details.
+  ... Different parts of the ecosystems: Five main access types: 
+  I call them issue, verify, construct, fetch, and present.
+  ... Issuing a credential: want to differentiate between asking 
+  someone to create something, or take something and sign it.
+  ... There are already multiple dimensions for a type like this. 
+  The type that talks about vc-http-api's "issue" action; and then 
+  there are multiple actions: if something asks for both, I could 
+  limit; or limit to particular server location
+  ... Likely other dimensions to all of these, including some 
+  specific to VC HTTP API.
+  ... That is the type of stuff this group ought to be defininig.
+  ... Verification API: looking to verify something, the 
+  presentation and its content. May have different rights 
+  associated with them.
+  ... It's important to look at the API and slice up the 
+  different levels(?) of access people might ask for in different 
+  ways.
+  ... Construction: when asking people to do construction step, 
+  might ask someone to disclosure particular fields. Disclosures 
+  are not defined by GNAP but would be by this group. No need for a 
+  schema, but designed to be scoped to the particular API being 
+  protected. Lots of flexibility for how to describe access to 
+  things.
+  ... Presentation: what are the things I'm allowed to present; 
+  credential, presentation.
+<orie> here is an example of "older" style scopes...
+Orie Steele: 
+  https://developers.google.com/identity/protocols/oauth2/scopes
+  ... I'm not expecting details of this to be accurate, but 
+  expect you to see: VC HTTP API work: different things I want 
+  people to be able to do, and how to differentiate
+  ... Recmmending WG adopt this work, define types, say what are 
+  the dimensions needed and what do they mean. ... Add normative 
+  type definitions to the document.
+  ... Say e.g. the API must be protected by an authentication 
+  technology applicable to VC HTTP API - don't leave it open - if 
+  authorization is appropriate
+  ... Say recommend protocol like GNAP for specific endpoints; 
+  list out the fields and what they mean.
+  ... People understand OAuth, could use that to protect their 
+  thing.
+  ... Someone else could use MTLS: go ahead, that's still 
+  protected, perfectly legitimate.
+  ... This I think is the key limiting factor lost in the 
+  conversation before. Not saying you must use GNAP, nor that we 
+  should be solving the whole rest of the authorization problem.
+  ... Email to list earlier this week had questions like "what is 
+  the lifecycle of this token": put out of scope; not in the 
+  concern of the API being protected
+  ... But API should be able to describe how to ask for access to 
+  it, using standard technologies.
+  ... I believe it's a very light lift, as already describing 
+  anyway
+  ... And beneficial to people who would like an interoperabile 
+  security layer(?) on this API.
+  ... End of presentation
+<tallted> sorry; came in late; link to deck?
+Charles E. Lehner: Orie: I agree, especially about out of scope. 
+  Huge +1
+  ... Diagram showing people putting VC HTTP API in different 
+  places. It's worse as we we haven't really defined what this API 
+  is. My question for folks who successfully implemented RAR...
+  ... I wonder if you have an opinion on the best way it should 
+  play out
+  ... Should define a restful API and then define the RAR 
+  permissions scopes for it? Or define the scopes and then the API?
+  ... If scopes refer to API, can't you not define scopes before 
+  API?
+  ... I could see building both at same time, or API and then 
+  scopes later. Which yields better outcome?
+Justin Richer:  Defining them together. So you can refine both 
+  sides as they grow up.
+  ... As you said, this group is still getting its edges defined 
+  about what is the VC HTTP API
+  ... Good time to ask: is this a different... type of access, or 
+  is it subsumed by something else?
+  ... Allows you to take an iterative approach
+  ... Other reason: people will need to define it somewhere, to 
+  deploy
+  ... People would build different things slightly incompatible 
+  about actions. i.e. some may say issue and sign are the same 
+  thing, but it may be an important differentiation to someone else
+  ... Conversation might not happen until after people already 
+  put down stakes
+
+Topic: RAR Q&A
+
+Orie Steele: +1 I generally agree.
+  ... If you don't do it now, it will happen later
+  ... People will try to shuffle it out somehow, whether or not 
+  this group does it, but won't be as good if this group does not 
+  design the security layer.
+Manu Sporny:  Current slide (11): question to group: I think it's 
+  a really good way to frame what's in scope
+  ... Green box in scope, Yellow/purple out
+  ... I would like to see if we can pass those resolutions today
+  ... Question to rest of group: if we pass today saying yellow 
+  box out of scope, purple box out of scope, would anyone object?
+Joe Kaplan:  We need to define other than colors
+Orie Steele: +1 Joe
+<juan_caballero_(dif/spruce)> /me objects on behalf of the 
+  colorblind and blind listeners :D
+<tallted> I don't grok the boxes sufficiently to say yes or no
+Manu Sporny:  We will; basically interactions between 
+  authorization server and resource server - out of scope
+Justin Richer:  If I may try to categorize that: something I've 
+  been trying to convince this group of for a bit: the orange box 
+  represents VCs presented to an Authorization server.
+  ... Purple box represents VCs presented to an RS that the RS 
+  (Resource Server) needs to make sense of
+  ... Green box represents accessing the VC HTTP API, by 
+  something.
+<mprorock> I am going to point out that this is not really how we 
+  use VCs all on our side
+  ... Protection of access to the VC HTTP API itself ought to be 
+  in scope for this group to handle in an interoperable fashion
+<orie> green box is clearly in scope.... other boxes appear 
+  generally out of scope.
+Manu Sporny:  Got it. If you can figure out how to put that into 
+  concrete text for a proposal, that would be helpful
+Justin Richer:  Did scribe right it down? That's what I thought I 
+  was doing
+S/right/write/
+Ted Thibodeau:  I'm hoping to get a link to the deck
+Justin Richer:  Not hosted online, sorry
+Ted Thibodeau:  Could it be?
+Justin Richer:  Possible
+Kaliya Young:  You could watch the video
+Justin Richer:  I did not write this as a leave-behind artifact.
+  ... Without the audio, much is missing
+Ted Thibodeau:  Video will cover it.
+Mike Prorock: +1 Ted
+  ... I won't be able to vote, there is a lot of hand-wave
+Manu Sporny:  Objection to proposal?
+Ted Thibodeau:  At this point, yes. It would need to be better 
+  defined.
+Manu Sporny:  One thing we could do is put it to the mailing list
+<juan_caballero_(dif/spruce)> scribest with the mostest
+
+PROPOSAL:  another entire call dedicated ONLY to green box.
+
+Orie Steele: +1 Justin to keep talking about ONLY green box
+Justin Richer:  To follow on Orie's comment, I'm saying the green 
+  box should be the topic of a call and for the working group as 
+  many calls as it takes
+Manu Sporny:  We just need to get resolutions down
+  ... Trying to make sure we have everyone onboard so we don't 
+  just talk about the yellow/orange box and just talk about the 
+  green one, to put the debate to rest and move on.
+
+PROPOSAL:  It is in scope to define a means of describing access 
+  to the VC HTTP API, using RAR/GNAP.
+
+  ... Up to you, if you want to put a proposal, TallTed may 
+  object, but we could discuss on mailing list
+Manu Sporny:  There is one in there ^
+Ted Thibodeau: +1 To mailing list discussion. And to scope 
+  clarity! I just don't quite grok what's here.
+Mike Prorock:  Clarifying point, about banks using RAR, thinking 
+  about practical life and dealing with my customers... Of the 
+  major providers for Oauth2 - Okta, Ping(?), etc., who are using 
+  it out of the box?
+Justin Richer:  I don't have an answer, am not a salesman or an 
+  integrator
+
+PROPOSAL:  it is out of scope (for now) to define a means for an 
+  authorization server to request, accept, or process the VC HTTP 
+  API.
+
+<mprorock> What about:  "It is in scope to define a means of 
+  describing access to the VC HTTP API"
+Orie Steele:  Green box: initial proposal said RAR/GNAP. As I 
+  understand this green box, it's about using RAR to get an access 
+  token "scope" correctly, then passing the token to a resource 
+  server...
+Justin Richer:  Not that much; it's about describing how to get 
+  the access token, and how to access what's described in it
+Orie Steele:  Lower part...
+Justin Richer:  ... Not saying specify that...
+Orie Steele:  This is VC HTTP API, one place to put access token 
+  is in headers
+Justin Richer:  VC HTTP API could say that; there are a bunch of 
+  ways to present access tokens and their equivalents
+Orie Steele:  That area is probably less controversal. If trying 
+  to break it down for folks on call or mailing list... In my 
+  opinion, concern is about the top arrow, that's where all the 
+  pain and confusion is.
+
+PROPOSAL:  it is out of scope to define a mechanism to use the VC 
+  HTTP API to prove access to a given RS.
+
+  ... This bottom arrow is typically a standard thing; in HTTP, 
+  in DIDComm, how you use it is covered conventionally
+  ... How you get that is covered by RAR?
+Justin Richer:  Incorrect. The mechanism of getting the token and 
+  of using the token are defined by Oauth2 and by GNAP.
+  ... The mechanism of describing what you want that token to be 
+  able to do is the one small piece that I am suggesting this group 
+  work on.
+
+PROPOSAL:  The vc-http-api will use OAuth2.0 + RAR
+
+Justin Richer:  Then what's the format of the token? What's in 
+  the token? I don't care, and neither should the spec say anything 
+  about it. It should be deliberately opaque to this specification; 
+  obviously not to a particular deployment, but for this 
+  specification I don't care.
+  ... The only thing is that I have software that knows how to 
+  call VC HTTP API; it knows what it wants to do and wants to ask 
+  for permission to do that. How do you encode the rights in a set 
+  of actions in a request?
+<orie> There are 2 options here... OAuth2.0 + RAR or OAuth2.0 + 
+  Scopes
+  ... RAR does not tell you how to get an access token, but says 
+  a way to describe what it ought to be good for.
+<orie> we already resolved not to mention gnap iirc
+Justin Richer:  Does that clear things up? It's a very narrow 
+  thing I'm proposing
+Mike Prorock: +1 Orie - question is really around scopes or RAR
+<justin_richer> RAR == scopes
+<orie> correct, imo
+<justin_richer> I;'m trying to make that point!
+Juan_Caballero_(DIF/Spruce): I was wondering... in the examples 
+  you mentioned disclosures as an example of an API-specific 
+  object, you said it's in a registry but it wasn't clear... Are 
+  you proposing that per API this spec would include optional or 
+  mandatory definitions of what disclosures or other types of info 
+  specific to VC HTTP API that could optionally be in the token?
+  ... Is that something this group could say... if it's this kind 
+  of use case, use this kind of disclosure? Is there a table we 
+  could right?
+<tallted> Will this be OpenAPI spec'able? Or is this forcing 
+  human interpretation and no machine 
+  discoverability/operationality?
+Orie Steele: 
+  https://developers.google.com/identity/protocols/oauth2/scopes <- 
+  this isn't rar right?
+Justin Richer:  It could, that's what I'm trying to say.
+<orie> hence my point, not helpful to call "RAR" === "Scopes"
+<juan_caballero_(dif/spruce)> i DO love multidimensional giant 
+  tables!
+  ... When I've done work like this in the past, we had giant 
+  tables of OAuth2 scopes, about health sensitivities and other 
+  stuff we had to spell out... because we were writing to a 
+  specific API.
+  ... This group has the opportunity to try to write for a 
+  specific API rather than try to patch it in later. Much 
+  preferable.
+Mike Prorock: +1 Orie - 
+  https://developers.google.com/identity/protocols/oauth2/scopes is 
+  what most of us writing commercial software
+<orie> imagine a world where enterprises use OAuth2.0 + scopes 
+  today.
+Juan_Caballero_(DIF/Spruce): I find this all very interesting, 
+  just wondering if there some sort of fallback or equivalent for 
+  how a table written for RAR could be encoded in say scope strings 
+  or something else people don't like?
+Justin Richer:  Yes, lots of bad ways to do that, I've 
+  implemented and deployed pretty much all of them
+<mprorock> lol @orie
+<mike_varley> @orie the google ref; no, that looks like an 
+  implementation using rigid strings, that RAR looks ro address 
+  with an expression language. (my 3s interpretation)
+  ... I've seen people do fully articulated URLs as scoep 
+  strings, hierarchical scope strings, JSON objects as scope 
+  strings.
+  ... The question is whether you need the ... in the first place
+<orie> RAR = Fancy Scope Strings.
+  ... Every single object in RAR could be represnted by a scope; 
+  that's where the combinatorics blows up.
+  ... Say you want to be able to ask for read access in one 
+  location and read/write in another location. How to tie them 
+  together?
+  ... RAR gives you the framing structures to be able to say I 
+  want read here and read/write here.
+<orie> I try :)
+  ... Yes, RAR is fancy scope strings. That's the correct 
+  takeaway.
+<juan_caballero_(dif/spruce)> thanks for that answer! helpful
+<orie> what if we decide to use OAuth2.0 + Scopes
+<orie> but all our scopes
+<orie> are JSON.stringify(RAR)
+<justin_richer> Orie no
+<orie> :p
+<juan_caballero_(dif/spruce)> Orie stop it
+<mike_varley> lol
+Manu Sporny:  Adrian, what variation of this removes your 
+  objection? If we were to adopt something, e.g. Oauth2 and RAR, 
+  would you feel comfortable with us addressing the delegation and 
+  attenuate use cases?
+Adrian Gropper:  No, this has nothing to do with my objection.
+<tallted> "RAR = Fancy Scope Strings" -- are those *strings* or 
+  can they be URIs or whatever else?
+<mprorock> let's just json.stringify everything
+<orie> cut me :)
+  ... I think this is a fabulous idea. With the HART(?) WG (which 
+  UI was also in) - I know where the bodies are buried, maybe from 
+  a different perspective than Justin, but this does not address 
+  that
+Justin Richer:  Adrian, this is why I was trying to make it clear 
+  with the different boxes. I think the things you have brought up 
+  are firmly within the purple box.
+  ... I get this VC thing and want to use the API...
+  ... or... I want to take actions to get stuff. Separating these 
+  concerns is the first step to addressing them.
+  ... Whether in this WG or not is a separate question. But need 
+  to call these out and put boundaries around them so that people 
+  are not talking past eachother
+Adrian Gropper: +1 That my concerns could be addressed elsewhere 
+  if we keep OAuth out of VC HTTP API
+  ... I think all of these boxes are important. Personally think 
+  the orange box is far more interesting. But doesn't mean it's the 
+  right forum for solving this specific issue. That means we have 
+  to find that forum to have that conversation.
+Ted Thibodeau:  RAR is fancy scope strings: are those just 
+  strings or can be URIs?
+Justin Richer:  They are JSON objects.
+<orie> hence my joke about stringifying them :)
+  ... I was responding to ... glibness.
+<mprorock> agropper - oauth is in the real world - we have to use 
+  oauth and are using it already with the vc-http-api
+Ted Thibodeau:  Everything I saw had just keywords, not appearing 
+  to expand into URIs
+Justin Richer:  It doesn't, I didn't say it would
+Ted Thibodeau:  My concern: appears to not be machine-addressable
+Justin Richer:  Correct, that's a design goal; intentional
+<orie> Ted ask him if he likes linked data... :)
+<butch_clark> Thanks Justin - Very imformative
+Manu Sporny:  Thank you Justin for taking the time to put 
+  together this presentation for this group
+<justin_richer> thank you for the scribe! I know I am very quick
+<juan_caballero_(dif/spruce)> thanks! this really helps
+<mahmoud> Thanks justin that was great!
+<orie> Thanks justin, this was excellent.
+<mike_varley> Thanks scribe! well done. And thank-you Justin.
+<juan_caballero_(dif/spruce)> and CEL OMG
+Manu Sporny:  Thanks scribe. Thanks everyone.
+<brian> Thanks Justin
+  ... Let's take it to the mailing list. A number of concrete 
+  proposals we could put to the mailing list.
+  ... Hopefully folks got an idea of what using RAR could look 
+  like.
+  ... We'll make the video available; people can look through it 
+  again. Let's go ahead putting concrete proposals on the mailing 
+  list.
+  ... We'll run some of them on the next call
+<joe_andrieu> Cheers!
+  ... Have a great rest of week!

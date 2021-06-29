@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/github-light.css" media="screen">
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Credentials Community Group</title>
+    <style>
+a {
+  color: #06A7CC;
+}
+
+div.comment {
+  font-family: 'Droid Serif', serif;
+  margin-top: 0.5em;
+  font-size: 1.25em;
+}
+
+.comment-continuation {
+  font-family: 'Droid Serif', serif;
+  font-size: 1.25em;
+  margin-left: 2em;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>The W3C Credentials Community Group</h1>
+      <h2>Verifiable Claims and Digital Verification</h2>
+      <h3><a href="../">Go Back</a></h3>
+
+      <hr>
+
+<div><div><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2"><h1>Verifiable Credentials HTTP API Telecon</h1>
+<h2>Minutes for 2021-06-29</h2>
+<div class="summary">
+<dl>
+<dt>Agenda</dt><dd><a href="https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0287.html">https://lists.w3.org/Archives/Public/public-credentials/2021Jun/0287.html</a></dd>
+<dt>Topics</dt><dd><ol><li><a href="#topic-1">Introductions and Reintroductions</a><li><a href="#topic-2">Use Cases</a><li><a href="#topic-3">Authorization and RAR Presentation</a><li><a href="#topic-4">RAR Q&A</a></ol></dd><dt>Organizer</dt><dd>Manu Sporny</dd>
+<dt>Scribe</dt><dd>Charles E. Lehner</dd>
+<dt>Present</dt><dd><a href="https://www.linkedin.com/in/mprorock/">Mike Prorock</a>, <a href="https://twitter.com/justin__richer">Justin Richer</a>, <a href="https://www.linkedin.com/in/andrew-hughes-682058a/">Andrew Hughes</a>, <a href="https://w3c-ccg.github.io/">Charles E. Lehner [cel]</a>, <a href="https://www.linkedin.com/in/mavarley/">Mike Varley</a>, <a href="http://manu.sporny.org/about">Manu Sporny</a>, <a href="">Adrian Gropper</a>, <a href="https://www.linkedin.com/in/mkhraishi/">Mahmoud Alkhraishi</a>, <a href="https://www.linkedin.com/in/david-chadwick-36816395">David Chadwick</a>, <a href="https://www.linkedin.com/profile/view?id=23158801">Brian Sletten</a>, <a href="https://www.linkedin.com/search/results/all/?keywords=Legendary%20Requirements">Eric Schuh</a>, <a href="https://w3c-ccg.github.io/">Butch Clark</a>, <a href="http://www.learningproof.xyz/">Juan Caballero</a>, <a href="https://github.com/acoburn">Aaron Coburn</a>, <a href="https://www.linkedin.com/in/joe-andrieu-a0528">Joe Andrieu</a>, <a href="https://www.linkedin.com/in/or13b">Orie Steele</a>, <a href="https://celehner.com/">Charles E. Lehner</a>, <a href="https://identitywoman.net/about-kaliya/bio/">Kaliya Young</a>, <a href="https://w3c-ccg.github.io/">Sanuja (Diwala)</a>, <a href="https://www.aniljohn.com/about.html">Anil John</a>, <a href="https://w3c-ccg.github.io/">Kevin [Spruce Systems]</a>, <a href="https://www.linkedin.com/in/macted/">Ted Thibodeau</a>, <a href="https://www.fotiou.gr/">Nikos Fotiou</a>, <a href="https://www.linkedin.com/in/marty-reed-b5b2352/">Marty Reed</a>, <a href="https://www.linkedin.com/profile/view?id=395137">Joe Kaplan</a></dd>
+<dt>Audio Log</dt><dd><div><a href="audio.ogg">audio.ogg</a></div>
+<div><audio controls="controls" preload="none">
+<source src="audio.ogg" type="audio/ogg" />Warning: Your browser does not support the HTML5 audio element, please upgrade.</audio></div></dd>
+</dl>
+</div>
+<div class="information">Charles E. Lehner is scribing.</div>
+<h1 id="topic-1" class="topic">Topic: Introductions and Reintroductions</h1>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; hey andrew!</div>
+<div onmouseout="$('#link-1').hide()" onmouseover="$('#link-1').show()" id="1" class="information">Andrew_Hughes: most of you know me already, i&apos;m returning from distant shores of the internet, starting to pay more attention to the w3c work again, glad to hear today&apos;s topic <a id="link-1" style="display:none;" href="#1">✪</a></div>
+<div class="information">&lt;andrew_hughes&gt; Hi everyone! Glad to be back and seeing what&apos;s been happening over the last year</div>
+<div onmouseout="$('#link-2').hide()" onmouseover="$('#link-2').show()" id="2" class="comment"><span class="name">Kaliya Young</span>:  Hi, I haven&apos;t come to this call before. My handle is IdentityWoman; I currently have a formal job role with Linux Foundation, ... also Good Health Group, Trusted Health Pass <a id="link-2" style="display:none;" href="#2">✪</a></div>
+<div class="information">&lt;orie&gt; Hey David!</div>
+<div onmouseout="$('#link-3').hide()" onmouseover="$('#link-3').show()" id="3" class="comment"><span class="name">David Chadwick</span>:  I&apos;ve had some change of jobs. Company bought out by Crosswords Cybersecurity, now working for them <a id="link-3" style="display:none;" href="#3">✪</a></div>
+<h1 id="topic-2" class="topic">Topic: Use Cases</h1>
+<div onmouseout="$('#link-4').hide()" onmouseover="$('#link-4').show()" id="4" class="comment"><span class="name">Eric Schuh</span>: <a href="https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#">https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#</a> <a id="link-4" style="display:none;" href="#4">✪</a></div>
+<div onmouseout="$('#link-5').hide()" onmouseover="$('#link-5').show()" id="5" class="comment"><span class="name">Manu Sporny</span>:  Any updates, Eric or Juan on use cases? <a id="link-5" style="display:none;" href="#5">✪</a></div>
+<div onmouseout="$('#link-6').hide()" onmouseover="$('#link-6').show()" id="6" class="information">EricSchuh: we are about half way through the scheduled initial triage. Expect to have initial set of use cases. If anyone wants to add anything new, feel free to. If adding something substantial, ping myself or Juan on the Google Doc or comment. <a id="link-6" style="display:none;" href="#6">✪</a></div>
+<div class="information">&lt;eric_schuh&gt; contact me via eric@legreq.com</div>
+<div onmouseout="$('#link-7').hide()" onmouseover="$('#link-7').show()" id="7" class="comment"><span class="name">Juan Caballero</span>:  The two uses cases that might not make it into the Doc.... separation of concerns use case, different from others... <a id="link-7" style="display:none;" href="#7">✪</a></div>
+<div class="comment-continuation">... And I&apos;m trying to fool around with a car identity one for fun. Please leave comments if interested</div>
+<div onmouseout="$('#link-8').hide()" onmouseover="$('#link-8').show()" id="8" class="comment"><span class="name">Manu Sporny</span>:  This is a first pass, It doesn&apos;t mean if not in then it won&apos;t get it, Just want to iterate over next couple of years <a id="link-8" style="display:none;" href="#8">✪</a></div>
+<div class="comment-continuation">... Other questions and concerns about use cases before main event?</div>
+<div class="information">&lt;orie&gt; /me shudders at couple of years...</div>
+<h1 id="topic-3" class="topic">Topic: Authorization and RAR Presentation</h1>
+<div onmouseout="$('#link-9').hide()" onmouseover="$('#link-9').show()" id="9" class="comment"><span class="name">Manu Sporny</span>:  As many of you know, we&apos;ve been having a long discussion about Authorization. <a id="link-9" style="display:none;" href="#9">✪</a></div>
+<div class="comment-continuation">... Last week Justin offered to take us through RAR and other technologies in the space.</div>
+<div class="comment-continuation">... We are hoping to get education for the group, in order to make concrete decisions about how to approach authorization in VC HTTP API over next few months or longer</div>
+<div onmouseout="$('#link-10').hide()" onmouseover="$('#link-10').show()" id="10" class="comment"><span class="name">Justin Richer</span>: <a href="https://www.ietf.org/archive/id/draft-ietf-gnap-core-protocol-05.html">https://www.ietf.org/archive/id/draft-ietf-gnap-core-protocol-05.html</a> <a id="link-10" style="display:none;" href="#10">✪</a></div>
+<div class="information">&lt;manu&gt; Slides for this presentation: <a href="https://www.slideshare.net/zeronine1/rar-and-gnap-for-vc-http-api">https://www.slideshare.net/zeronine1/rar-and-gnap-for-vc-http-api</a></div>
+<div class="information">&lt;manu&gt; Video recording for this presentation: <a href="https://meet.w3c-ccg.org/archives/w3c-ccg-vchttpapi-2021-06-29.mp4">https://meet.w3c-ccg.org/archives/w3c-ccg-vchttpapi-2021-06-29.mp4</a></div>
+<div onmouseout="$('#link-11').hide()" onmouseover="$('#link-11').show()" id="11" class="comment"><span class="name">Justin Richer</span>:  Thanks very much, I&apos;ll start by dropping some things in chat. ^ <a id="link-11" style="display:none;" href="#11">✪</a></div>
+<div onmouseout="$('#link-12').hide()" onmouseover="$('#link-12').show()" id="12" class="information">Justin_r apologies to scribe for speed <a id="link-12" style="display:none;" href="#12">✪</a></div>
+<div onmouseout="$('#link-13').hide()" onmouseover="$('#link-13').show()" id="13" class="comment"><span class="name">Justin Richer</span>:  Hi, my name is Justin Richer, I&apos;m in an independent consultant based in Boston, but not speaking on behalf of clients <a id="link-13" style="display:none;" href="#13">✪</a></div>
+<div class="comment-continuation">... I&apos;m hear to speak about efforts I&apos;m involved in that have overlap with vc-http-api: RAR and GNAP; i&apos;m a co-editor on each, and a bunch of other things over last number of years in standards space.</div>
+<div class="comment-continuation">... A note about branding: the name of this WG is an absolute mouthful. Can we come up with a logo?</div>
+<div class="information">&lt;manu_sporny&gt; I love the logo :)</div>
+<div class="comment-continuation">... shows VH logo</div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; /me hums &quot;panama&quot; under his breath</div>
+<div class="comment-continuation">... GNAP: think about what you love about OAUTH2, throw out things we don&apos;t want, that&apos;s the idea of GNAP. Standard track</div>
+<div class="comment-continuation">... RAR: rich authoriation requests, backport of .... to OAuth2</div>
+<div class="comment-continuation">... Think of it like Scope in Oauth2... also a part of a ... working group, in last call right now</div>
+<div class="comment-continuation">... Interesting synergy: GNAP not compatible with Oath2, or intended to, but since GNAP uses same data structures, can use same descriptions if using RAR</div>
+<div class="comment-continuation">... Using either GNAP or OAuth2 does not require specific token format: separation of concerns</div>
+<div class="comment-continuation">... Where&apos;s RAR used today? Been in production for a while in a number of places. A small slice I was able to get...</div>
+<div onmouseout="$('#link-14').hide()" onmouseover="$('#link-14').show()" id="14" class="information">Slide 7 <a id="link-14" style="display:none;" href="#14">✪</a></div>
+<div onmouseout="$('#link-15').hide()" onmouseover="$('#link-15').show()" id="15" class="comment"><span class="name">Justin Richer</span>:  Interesting that has momentum. People tried to add structures to OAuth scope strings; RAR gives you a way to do it without all the weird parsing and semantic layering of those systems. <a id="link-15" style="display:none;" href="#15">✪</a></div>
+<div class="comment-continuation">... Groups looking to switch to RAR to describe access to their APIs</div>
+<div class="comment-continuation">... Why we&apos;re here today: Fundamental question: where/how to use vc-http-api with auth delegation protocols</div>
+<div class="comment-continuation">... What authorization and delegation protocol looks like...</div>
+<div class="comment-continuation">... Three places with clear overlaps between these two efforts</div>
+<div class="comment-continuation">... Ability to present things about user without having to go through web page like Oauth does</div>
+<div class="comment-continuation">... Ongoing question: if presented with VC, how to figure out what it&apos;s for. How to validate?</div>
+<div class="comment-continuation">... Today: my proposal only relates to: the green box (slide 10)</div>
+<div class="comment-continuation">... What is being requested.</div>
+<div class="comment-continuation">... Each of these puts the API in a different place. Reason why the conversation is confusing</div>
+<div class="information">&lt;joe_andrieu&gt; yep. role confusion makes this hard.</div>
+<div class="comment-continuation">... People are talking about applications of the vc-http-api and delegation protocols, about using it in different ways; they are separate layers, separate places in the ecosystem</div>
+<div class="comment-continuation">... Need to solve, but not same answer everywhere all the time</div>
+<div class="comment-continuation">... What is being requested: how do you describe what you want to do at the API</div>
+<div class="comment-continuation">... OAuth 1: on or off: got access or not. No way to say run at configure time.</div>
+<div class="comment-continuation">... Oauth 2: list of on/off flags: scopes. Have scope or not. Then people invented different structures for scope values.</div>
+<div class="comment-continuation">... We collected and codified to make a rich object, core of GNAP, which has been backported to OAuth2 as RAR.</div>
+<div class="comment-continuation">... Turns out what people use scopes for go in different directions: read access, payments, ...: all get described as scopes</div>
+<div class="comment-continuation">... Combinatoric explosion when have single flat list.</div>
+<div class="comment-continuation">... RAR gives you a structure to describe these things. It&apos;s a JSON array (like in OAuth2) but filled with objects</div>
+<div class="comment-continuation">... Equivalent concept in GNAP is same object.</div>
+<div onmouseout="$('#link-16').hide()" onmouseover="$('#link-16').show()" id="16" class="information">Slide 16 <a id="link-16" style="display:none;" href="#16">✪</a></div>
+<div class="comment-continuation">... This is a really good way to solve this with a low lift. Not that big.</div>
+<div class="comment-continuation">... Each part of this request means something different. The type: kind of API you are calling.</div>
+<div class="comment-continuation">... Authorization server may protect many APIs with different semantics. Even VC HTTP API is not a single API but a collection of different APIs for doing different things. That&apos;s why the type property.</div>
+<div class="comment-continuation">... Then we have what you are doing. But since JSON, can extend with whatever you want.</div>
+<div class="comment-continuation">... If you understand the string, you can understand it.</div>
+<div class="comment-continuation">... Has to lead back to human-layer semantic understanding of systems.</div>
+<div class="comment-continuation">... The RAR type is the key that determines what goes into the rest of the API</div>
+<div class="comment-continuation">... This is not @context or schema, do not need to fetch. Even though URL-based, that is for namespace purposes only. Either you recognize the string or not.</div>
+<div onmouseout="$('#link-17').hide()" onmouseover="$('#link-17').show()" id="17" class="comment"><span class="name">Manu Sporny</span>:  Is the expectation that if we use RAR, then this group ... <a id="link-17" style="display:none;" href="#17">✪</a></div>
+<div onmouseout="$('#link-18').hide()" onmouseover="$('#link-18').show()" id="18" class="comment"><span class="name">Justin Richer</span>:  That&apos;s the next slide <a id="link-18" style="display:none;" href="#18">✪</a></div>
+<div onmouseout="$('#link-19').hide()" onmouseover="$('#link-19').show()" id="19" class="comment"><span class="name">Justin Richer</span>:  Proposal is that this WG defines a set of types... how to access the API, in OAuth2 and GNAP. <a id="link-19" style="display:none;" href="#19">✪</a></div>
+<div onmouseout="$('#link-20').hide()" onmouseover="$('#link-20').show()" id="20" class="information">Slide 19 <a id="link-20" style="display:none;" href="#20">✪</a></div>
+<div onmouseout="$('#link-21').hide()" onmouseover="$('#link-21').show()" id="21" class="comment"><span class="name">Justin Richer</span>:  This is the total of what I am proposing that this group do. Not that you have to use OAuth2 or GNAP or even have to use these; you could use your own scope values, just wouldn&apos;t be following the interop protocol. <a id="link-21" style="display:none;" href="#21">✪</a></div>
+<div class="comment-continuation">... It makes sense to define the API and security model side-by-side</div>
+<div class="comment-continuation">... It makes you define what you&apos;re accessing and how you&apos;re accessing it.</div>
+<div class="comment-continuation">... Better to grow them together, the security model while you&apos;re defining the API</div>
+<div class="comment-continuation">... Rather than trying to decide later (&quot;what is is that we do?&quot;) - and has to be done eventually.</div>
+<div class="information">&lt;identitywoman&gt; straw people!</div>
+<div class="comment-continuation">... Now for strawman proposals for a lite take on what this could look.</div>
+<div class="comment-continuation">... If you are going into field values, you&apos;re missing the point</div>
+<div class="comment-continuation">... Want to see how you could apply the RAR data structures to an API like this.</div>
+<div onmouseout="$('#link-22').hide()" onmouseover="$('#link-22').show()" id="22" class="comment"><span class="name">Mike Prorock</span>:  Question about &quot;you all&quot; this community defining and implementing this stuff. Are you proposing to lead this work defining this stuff, or what&apos;s your vision here? <a id="link-22" style="display:none;" href="#22">✪</a></div>
+<div onmouseout="$('#link-23').hide()" onmouseover="$('#link-23').show()" id="23" class="comment"><span class="name">Justin Richer</span>:  I&apos;m not <a id="link-23" style="display:none;" href="#23">✪</a></div>
+<div class="comment-continuation">... I&apos;m trying to connect the dots for this community. I can definitely contribute to this, but not that I am going to come in and insist that this group do or on a particular solution. Not the purpose of this presentation</div>
+<div onmouseout="$('#link-24').hide()" onmouseover="$('#link-24').show()" id="24" class="comment"><span class="name">Mike Prorock</span>:  Thank you <a id="link-24" style="display:none;" href="#24">✪</a></div>
+<div onmouseout="$('#link-25').hide()" onmouseover="$('#link-25').show()" id="25" class="comment"><span class="name">Justin Richer</span>:  Straw man (people) proposals. Try not to get tied up in the details. <a id="link-25" style="display:none;" href="#25">✪</a></div>
+<div class="comment-continuation">... Different parts of the ecosystems: Five main access types: I call them issue, verify, construct, fetch, and present.</div>
+<div class="comment-continuation">... Issuing a credential: want to differentiate between asking someone to create something, or take something and sign it.</div>
+<div class="comment-continuation">... There are already multiple dimensions for a type like this. The type that talks about vc-http-api&apos;s &quot;issue&quot; action; and then there are multiple actions: if something asks for both, I could limit; or limit to particular server location</div>
+<div class="comment-continuation">... Likely other dimensions to all of these, including some specific to VC HTTP API.</div>
+<div class="comment-continuation">... That is the type of stuff this group ought to be defininig.</div>
+<div class="comment-continuation">... Verification API: looking to verify something, the presentation and its content. May have different rights associated with them.</div>
+<div class="comment-continuation">... It&apos;s important to look at the API and slice up the different levels(?) of access people might ask for in different ways.</div>
+<div class="comment-continuation">... Construction: when asking people to do construction step, might ask someone to disclosure particular fields. Disclosures are not defined by GNAP but would be by this group. No need for a schema, but designed to be scoped to the particular API being protected. Lots of flexibility for how to describe access to things.</div>
+<div class="comment-continuation">... Presentation: what are the things I&apos;m allowed to present; credential, presentation.</div>
+<div class="information">&lt;orie&gt; here is an example of &quot;older&quot; style scopes...</div>
+<div onmouseout="$('#link-26').hide()" onmouseover="$('#link-26').show()" id="26" class="comment"><span class="name">Orie Steele</span>: <a href="https://developers.google.com/identity/protocols/oauth2/scopes">https://developers.google.com/identity/protocols/oauth2/scopes</a> <a id="link-26" style="display:none;" href="#26">✪</a></div>
+<div class="comment-continuation">... I&apos;m not expecting details of this to be accurate, but expect you to see: VC HTTP API work: different things I want people to be able to do, and how to differentiate</div>
+<div class="comment-continuation">... Recmmending WG adopt this work, define types, say what are the dimensions needed and what do they mean. ... Add normative type definitions to the document.</div>
+<div class="comment-continuation">... Say e.g. the API must be protected by an authentication technology applicable to VC HTTP API - don&apos;t leave it open - if authorization is appropriate</div>
+<div class="comment-continuation">... Say recommend protocol like GNAP for specific endpoints; list out the fields and what they mean.</div>
+<div class="comment-continuation">... People understand OAuth, could use that to protect their thing.</div>
+<div class="comment-continuation">... Someone else could use MTLS: go ahead, that&apos;s still protected, perfectly legitimate.</div>
+<div class="comment-continuation">... This I think is the key limiting factor lost in the conversation before. Not saying you must use GNAP, nor that we should be solving the whole rest of the authorization problem.</div>
+<div class="comment-continuation">... Email to list earlier this week had questions like &quot;what is the lifecycle of this token&quot;: put out of scope; not in the concern of the API being protected</div>
+<div class="comment-continuation">... But API should be able to describe how to ask for access to it, using standard technologies.</div>
+<div class="comment-continuation">... I believe it&apos;s a very light lift, as already describing anyway</div>
+<div class="comment-continuation">... And beneficial to people who would like an interoperabile security layer(?) on this API.</div>
+<div class="comment-continuation">... End of presentation</div>
+<div class="information">&lt;tallted&gt; sorry; came in late; link to deck?</div>
+<div onmouseout="$('#link-27').hide()" onmouseover="$('#link-27').show()" id="27" class="comment"><span class="name">Charles E. Lehner</span>: Orie: I agree, especially about out of scope. Huge +1 <a id="link-27" style="display:none;" href="#27">✪</a></div>
+<div class="comment-continuation">... Diagram showing people putting VC HTTP API in different places. It&apos;s worse as we we haven&apos;t really defined what this API is. My question for folks who successfully implemented RAR...</div>
+<div class="comment-continuation">... I wonder if you have an opinion on the best way it should play out</div>
+<div class="comment-continuation">... Should define a restful API and then define the RAR permissions scopes for it? Or define the scopes and then the API?</div>
+<div class="comment-continuation">... If scopes refer to API, can&apos;t you not define scopes before API?</div>
+<div class="comment-continuation">... I could see building both at same time, or API and then scopes later. Which yields better outcome?</div>
+<div onmouseout="$('#link-28').hide()" onmouseover="$('#link-28').show()" id="28" class="comment"><span class="name">Justin Richer</span>:  Defining them together. So you can refine both sides as they grow up. <a id="link-28" style="display:none;" href="#28">✪</a></div>
+<div class="comment-continuation">... As you said, this group is still getting its edges defined about what is the VC HTTP API</div>
+<div class="comment-continuation">... Good time to ask: is this a different... type of access, or is it subsumed by something else?</div>
+<div class="comment-continuation">... Allows you to take an iterative approach</div>
+<div class="comment-continuation">... Other reason: people will need to define it somewhere, to deploy</div>
+<div class="comment-continuation">... People would build different things slightly incompatible about actions. i.e. some may say issue and sign are the same thing, but it may be an important differentiation to someone else</div>
+<div class="comment-continuation">... Conversation might not happen until after people already put down stakes</div>
+<h1 id="topic-4" class="topic">Topic: RAR Q&amp;A</h1>
+<div onmouseout="$('#link-29').hide()" onmouseover="$('#link-29').show()" id="29" class="comment"><span class="name">Orie Steele</span>: +1 I generally agree. <a id="link-29" style="display:none;" href="#29">✪</a></div>
+<div class="comment-continuation">... If you don&apos;t do it now, it will happen later</div>
+<div class="comment-continuation">... People will try to shuffle it out somehow, whether or not this group does it, but won&apos;t be as good if this group does not design the security layer.</div>
+<div onmouseout="$('#link-30').hide()" onmouseover="$('#link-30').show()" id="30" class="comment"><span class="name">Manu Sporny</span>:  Current slide (11): question to group: I think it&apos;s a really good way to frame what&apos;s in scope <a id="link-30" style="display:none;" href="#30">✪</a></div>
+<div class="comment-continuation">... Green box in scope, Yellow/purple out</div>
+<div class="comment-continuation">... I would like to see if we can pass those resolutions today</div>
+<div class="comment-continuation">... Question to rest of group: if we pass today saying yellow box out of scope, purple box out of scope, would anyone object?</div>
+<div onmouseout="$('#link-31').hide()" onmouseover="$('#link-31').show()" id="31" class="comment"><span class="name">Joe Kaplan</span>:  We need to define other than colors <a id="link-31" style="display:none;" href="#31">✪</a></div>
+<div onmouseout="$('#link-32').hide()" onmouseover="$('#link-32').show()" id="32" class="comment"><span class="name">Orie Steele</span>: +1 Joe <a id="link-32" style="display:none;" href="#32">✪</a></div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; /me objects on behalf of the colorblind and blind listeners :D</div>
+<div class="information">&lt;tallted&gt; I don&apos;t grok the boxes sufficiently to say yes or no</div>
+<div onmouseout="$('#link-33').hide()" onmouseover="$('#link-33').show()" id="33" class="comment"><span class="name">Manu Sporny</span>:  We will; basically interactions between authorization server and resource server - out of scope <a id="link-33" style="display:none;" href="#33">✪</a></div>
+<div onmouseout="$('#link-34').hide()" onmouseover="$('#link-34').show()" id="34" class="comment"><span class="name">Justin Richer</span>:  If I may try to categorize that: something I&apos;ve been trying to convince this group of for a bit: the orange box represents VCs presented to an Authorization server. <a id="link-34" style="display:none;" href="#34">✪</a></div>
+<div class="comment-continuation">... Purple box represents VCs presented to an RS that the RS (Resource Server) needs to make sense of</div>
+<div class="comment-continuation">... Green box represents accessing the VC HTTP API, by something.</div>
+<div class="information">&lt;mprorock&gt; I am going to point out that this is not really how we use VCs all on our side</div>
+<div class="comment-continuation">... Protection of access to the VC HTTP API itself ought to be in scope for this group to handle in an interoperable fashion</div>
+<div class="information">&lt;orie&gt; green box is clearly in scope.... other boxes appear generally out of scope.</div>
+<div onmouseout="$('#link-35').hide()" onmouseover="$('#link-35').show()" id="35" class="comment"><span class="name">Manu Sporny</span>:  Got it. If you can figure out how to put that into concrete text for a proposal, that would be helpful <a id="link-35" style="display:none;" href="#35">✪</a></div>
+<div onmouseout="$('#link-36').hide()" onmouseover="$('#link-36').show()" id="36" class="comment"><span class="name">Justin Richer</span>:  Did scribe right it down? That&apos;s what I thought I was doing <a id="link-36" style="display:none;" href="#36">✪</a></div>
+<div onmouseout="$('#link-37').hide()" onmouseover="$('#link-37').show()" id="37" class="information">S/right/write/ <a id="link-37" style="display:none;" href="#37">✪</a></div>
+<div onmouseout="$('#link-38').hide()" onmouseover="$('#link-38').show()" id="38" class="comment"><span class="name">Ted Thibodeau</span>:  I&apos;m hoping to get a link to the deck <a id="link-38" style="display:none;" href="#38">✪</a></div>
+<div onmouseout="$('#link-39').hide()" onmouseover="$('#link-39').show()" id="39" class="comment"><span class="name">Justin Richer</span>:  Not hosted online, sorry <a id="link-39" style="display:none;" href="#39">✪</a></div>
+<div onmouseout="$('#link-40').hide()" onmouseover="$('#link-40').show()" id="40" class="comment"><span class="name">Ted Thibodeau</span>:  Could it be? <a id="link-40" style="display:none;" href="#40">✪</a></div>
+<div onmouseout="$('#link-41').hide()" onmouseover="$('#link-41').show()" id="41" class="comment"><span class="name">Justin Richer</span>:  Possible <a id="link-41" style="display:none;" href="#41">✪</a></div>
+<div onmouseout="$('#link-42').hide()" onmouseover="$('#link-42').show()" id="42" class="comment"><span class="name">Kaliya Young</span>:  You could watch the video <a id="link-42" style="display:none;" href="#42">✪</a></div>
+<div onmouseout="$('#link-43').hide()" onmouseover="$('#link-43').show()" id="43" class="comment"><span class="name">Justin Richer</span>:  I did not write this as a leave-behind artifact. <a id="link-43" style="display:none;" href="#43">✪</a></div>
+<div class="comment-continuation">... Without the audio, much is missing</div>
+<div onmouseout="$('#link-44').hide()" onmouseover="$('#link-44').show()" id="44" class="comment"><span class="name">Ted Thibodeau</span>:  Video will cover it. <a id="link-44" style="display:none;" href="#44">✪</a></div>
+<div onmouseout="$('#link-45').hide()" onmouseover="$('#link-45').show()" id="45" class="comment"><span class="name">Mike Prorock</span>: +1 Ted <a id="link-45" style="display:none;" href="#45">✪</a></div>
+<div class="comment-continuation">... I won&apos;t be able to vote, there is a lot of hand-wave</div>
+<div onmouseout="$('#link-46').hide()" onmouseover="$('#link-46').show()" id="46" class="comment"><span class="name">Manu Sporny</span>:  Objection to proposal? <a id="link-46" style="display:none;" href="#46">✪</a></div>
+<div onmouseout="$('#link-47').hide()" onmouseover="$('#link-47').show()" id="47" class="comment"><span class="name">Ted Thibodeau</span>:  At this point, yes. It would need to be better defined. <a id="link-47" style="display:none;" href="#47">✪</a></div>
+<div onmouseout="$('#link-48').hide()" onmouseover="$('#link-48').show()" id="48" class="comment"><span class="name">Manu Sporny</span>:  One thing we could do is put it to the mailing list <a id="link-48" style="display:none;" href="#48">✪</a></div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; scribest with the mostest</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  another entire call dedicated ONLY to green box.</div>
+<div onmouseout="$('#link-49').hide()" onmouseover="$('#link-49').show()" id="49" class="comment"><span class="name">Orie Steele</span>: +1 Justin to keep talking about ONLY green box <a id="link-49" style="display:none;" href="#49">✪</a></div>
+<div onmouseout="$('#link-50').hide()" onmouseover="$('#link-50').show()" id="50" class="comment"><span class="name">Justin Richer</span>:  To follow on Orie&apos;s comment, I&apos;m saying the green box should be the topic of a call and for the working group as many calls as it takes <a id="link-50" style="display:none;" href="#50">✪</a></div>
+<div onmouseout="$('#link-51').hide()" onmouseover="$('#link-51').show()" id="51" class="comment"><span class="name">Manu Sporny</span>:  We just need to get resolutions down <a id="link-51" style="display:none;" href="#51">✪</a></div>
+<div class="comment-continuation">... Trying to make sure we have everyone onboard so we don&apos;t just talk about the yellow/orange box and just talk about the green one, to put the debate to rest and move on.</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  It is in scope to define a means of describing access to the VC HTTP API, using RAR/GNAP.</div>
+<div class="comment-continuation">... Up to you, if you want to put a proposal, TallTed may object, but we could discuss on mailing list</div>
+<div onmouseout="$('#link-52').hide()" onmouseover="$('#link-52').show()" id="52" class="comment"><span class="name">Manu Sporny</span>:  There is one in there ^ <a id="link-52" style="display:none;" href="#52">✪</a></div>
+<div onmouseout="$('#link-53').hide()" onmouseover="$('#link-53').show()" id="53" class="comment"><span class="name">Ted Thibodeau</span>: +1 To mailing list discussion. And to scope clarity! I just don&apos;t quite grok what&apos;s here. <a id="link-53" style="display:none;" href="#53">✪</a></div>
+<div onmouseout="$('#link-54').hide()" onmouseover="$('#link-54').show()" id="54" class="comment"><span class="name">Mike Prorock</span>:  Clarifying point, about banks using RAR, thinking about practical life and dealing with my customers... Of the major providers for Oauth2 - Okta, Ping(?), etc., who are using it out of the box? <a id="link-54" style="display:none;" href="#54">✪</a></div>
+<div onmouseout="$('#link-55').hide()" onmouseover="$('#link-55').show()" id="55" class="comment"><span class="name">Justin Richer</span>:  I don&apos;t have an answer, am not a salesman or an integrator <a id="link-55" style="display:none;" href="#55">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  it is out of scope (for now) to define a means for an authorization server to request, accept, or process the VC HTTP API.</div>
+<div class="information">&lt;mprorock&gt; What about:  &quot;It is in scope to define a means of describing access to the VC HTTP API&quot;</div>
+<div onmouseout="$('#link-56').hide()" onmouseover="$('#link-56').show()" id="56" class="comment"><span class="name">Orie Steele</span>:  Green box: initial proposal said RAR/GNAP. As I understand this green box, it&apos;s about using RAR to get an access token &quot;scope&quot; correctly, then passing the token to a resource server... <a id="link-56" style="display:none;" href="#56">✪</a></div>
+<div onmouseout="$('#link-57').hide()" onmouseover="$('#link-57').show()" id="57" class="comment"><span class="name">Justin Richer</span>:  Not that much; it&apos;s about describing how to get the access token, and how to access what&apos;s described in it <a id="link-57" style="display:none;" href="#57">✪</a></div>
+<div onmouseout="$('#link-58').hide()" onmouseover="$('#link-58').show()" id="58" class="comment"><span class="name">Orie Steele</span>:  Lower part... <a id="link-58" style="display:none;" href="#58">✪</a></div>
+<div onmouseout="$('#link-59').hide()" onmouseover="$('#link-59').show()" id="59" class="comment"><span class="name">Justin Richer</span>:  ... Not saying specify that... <a id="link-59" style="display:none;" href="#59">✪</a></div>
+<div onmouseout="$('#link-60').hide()" onmouseover="$('#link-60').show()" id="60" class="comment"><span class="name">Orie Steele</span>:  This is VC HTTP API, one place to put access token is in headers <a id="link-60" style="display:none;" href="#60">✪</a></div>
+<div onmouseout="$('#link-61').hide()" onmouseover="$('#link-61').show()" id="61" class="comment"><span class="name">Justin Richer</span>:  VC HTTP API could say that; there are a bunch of ways to present access tokens and their equivalents <a id="link-61" style="display:none;" href="#61">✪</a></div>
+<div onmouseout="$('#link-62').hide()" onmouseover="$('#link-62').show()" id="62" class="comment"><span class="name">Orie Steele</span>:  That area is probably less controversal. If trying to break it down for folks on call or mailing list... In my opinion, concern is about the top arrow, that&apos;s where all the pain and confusion is. <a id="link-62" style="display:none;" href="#62">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  it is out of scope to define a mechanism to use the VC HTTP API to prove access to a given RS.</div>
+<div class="comment-continuation">... This bottom arrow is typically a standard thing; in HTTP, in DIDComm, how you use it is covered conventionally</div>
+<div class="comment-continuation">... How you get that is covered by RAR?</div>
+<div onmouseout="$('#link-63').hide()" onmouseover="$('#link-63').show()" id="63" class="comment"><span class="name">Justin Richer</span>:  Incorrect. The mechanism of getting the token and of using the token are defined by Oauth2 and by GNAP. <a id="link-63" style="display:none;" href="#63">✪</a></div>
+<div class="comment-continuation">... The mechanism of describing what you want that token to be able to do is the one small piece that I am suggesting this group work on.</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  The vc-http-api will use OAuth2.0 + RAR</div>
+<div onmouseout="$('#link-64').hide()" onmouseover="$('#link-64').show()" id="64" class="comment"><span class="name">Justin Richer</span>:  Then what&apos;s the format of the token? What&apos;s in the token? I don&apos;t care, and neither should the spec say anything about it. It should be deliberately opaque to this specification; obviously not to a particular deployment, but for this specification I don&apos;t care. <a id="link-64" style="display:none;" href="#64">✪</a></div>
+<div class="comment-continuation">... The only thing is that I have software that knows how to call VC HTTP API; it knows what it wants to do and wants to ask for permission to do that. How do you encode the rights in a set of actions in a request?</div>
+<div class="information">&lt;orie&gt; There are 2 options here... OAuth2.0 + RAR or OAuth2.0 + Scopes</div>
+<div class="comment-continuation">... RAR does not tell you how to get an access token, but says a way to describe what it ought to be good for.</div>
+<div class="information">&lt;orie&gt; we already resolved not to mention gnap iirc</div>
+<div onmouseout="$('#link-65').hide()" onmouseover="$('#link-65').show()" id="65" class="comment"><span class="name">Justin Richer</span>:  Does that clear things up? It&apos;s a very narrow thing I&apos;m proposing <a id="link-65" style="display:none;" href="#65">✪</a></div>
+<div onmouseout="$('#link-66').hide()" onmouseover="$('#link-66').show()" id="66" class="comment"><span class="name">Mike Prorock</span>: +1 Orie - question is really around scopes or RAR <a id="link-66" style="display:none;" href="#66">✪</a></div>
+<div class="information">&lt;justin_richer&gt; RAR == scopes</div>
+<div class="information">&lt;orie&gt; correct, imo</div>
+<div class="information">&lt;justin_richer&gt; I;&apos;m trying to make that point!</div>
+<div onmouseout="$('#link-67').hide()" onmouseover="$('#link-67').show()" id="67" class="information">Juan_Caballero_(DIF/Spruce): I was wondering... in the examples you mentioned disclosures as an example of an API-specific object, you said it&apos;s in a registry but it wasn&apos;t clear... Are you proposing that per API this spec would include optional or mandatory definitions of what disclosures or other types of info specific to VC HTTP API that could optionally be in the token? <a id="link-67" style="display:none;" href="#67">✪</a></div>
+<div class="comment-continuation">... Is that something this group could say... if it&apos;s this kind of use case, use this kind of disclosure? Is there a table we could right?</div>
+<div class="information">&lt;tallted&gt; Will this be OpenAPI spec&apos;able? Or is this forcing human interpretation and no machine discoverability/operationality?</div>
+<div onmouseout="$('#link-68').hide()" onmouseover="$('#link-68').show()" id="68" class="comment"><span class="name">Orie Steele</span>: <a href="https://developers.google.com/identity/protocols/oauth2/scopes">https://developers.google.com/identity/protocols/oauth2/scopes</a> &lt;- this isn&apos;t rar right? <a id="link-68" style="display:none;" href="#68">✪</a></div>
+<div onmouseout="$('#link-69').hide()" onmouseover="$('#link-69').show()" id="69" class="comment"><span class="name">Justin Richer</span>:  It could, that&apos;s what I&apos;m trying to say. <a id="link-69" style="display:none;" href="#69">✪</a></div>
+<div class="information">&lt;orie&gt; hence my point, not helpful to call &quot;RAR&quot; === &quot;Scopes&quot;</div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; i DO love multidimensional giant tables!</div>
+<div class="comment-continuation">... When I&apos;ve done work like this in the past, we had giant tables of OAuth2 scopes, about health sensitivities and other stuff we had to spell out... because we were writing to a specific API.</div>
+<div class="comment-continuation">... This group has the opportunity to try to write for a specific API rather than try to patch it in later. Much preferable.</div>
+<div onmouseout="$('#link-70').hide()" onmouseover="$('#link-70').show()" id="70" class="comment"><span class="name">Mike Prorock</span>: +1 Orie - <a href="https://developers.google.com/identity/protocols/oauth2/scopes">https://developers.google.com/identity/protocols/oauth2/scopes</a> is what most of us writing commercial software <a id="link-70" style="display:none;" href="#70">✪</a></div>
+<div class="information">&lt;orie&gt; imagine a world where enterprises use OAuth2.0 + scopes today.</div>
+<div onmouseout="$('#link-71').hide()" onmouseover="$('#link-71').show()" id="71" class="information">Juan_Caballero_(DIF/Spruce): I find this all very interesting, just wondering if there some sort of fallback or equivalent for how a table written for RAR could be encoded in say scope strings or something else people don&apos;t like? <a id="link-71" style="display:none;" href="#71">✪</a></div>
+<div onmouseout="$('#link-72').hide()" onmouseover="$('#link-72').show()" id="72" class="comment"><span class="name">Justin Richer</span>:  Yes, lots of bad ways to do that, I&apos;ve implemented and deployed pretty much all of them <a id="link-72" style="display:none;" href="#72">✪</a></div>
+<div class="information">&lt;mprorock&gt; lol @orie</div>
+<div class="information">&lt;mike_varley&gt; @orie the google ref; no, that looks like an implementation using rigid strings, that RAR looks ro address with an expression language. (my 3s interpretation)</div>
+<div class="comment-continuation">... I&apos;ve seen people do fully articulated URLs as scoep strings, hierarchical scope strings, JSON objects as scope strings.</div>
+<div class="comment-continuation">... The question is whether you need the ... in the first place</div>
+<div class="information">&lt;orie&gt; RAR = Fancy Scope Strings.</div>
+<div class="comment-continuation">... Every single object in RAR could be represnted by a scope; that&apos;s where the combinatorics blows up.</div>
+<div class="comment-continuation">... Say you want to be able to ask for read access in one location and read/write in another location. How to tie them together?</div>
+<div class="comment-continuation">... RAR gives you the framing structures to be able to say I want read here and read/write here.</div>
+<div class="information">&lt;orie&gt; I try :)</div>
+<div class="comment-continuation">... Yes, RAR is fancy scope strings. That&apos;s the correct takeaway.</div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; thanks for that answer! helpful</div>
+<div class="information">&lt;orie&gt; what if we decide to use OAuth2.0 + Scopes</div>
+<div class="information">&lt;orie&gt; but all our scopes</div>
+<div class="information">&lt;orie&gt; are JSON.stringify(RAR)</div>
+<div class="information">&lt;justin_richer&gt; Orie no</div>
+<div class="information">&lt;orie&gt; :p</div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; Orie stop it</div>
+<div class="information">&lt;mike_varley&gt; lol</div>
+<div onmouseout="$('#link-73').hide()" onmouseover="$('#link-73').show()" id="73" class="comment"><span class="name">Manu Sporny</span>:  Adrian, what variation of this removes your objection? If we were to adopt something, e.g. Oauth2 and RAR, would you feel comfortable with us addressing the delegation and attenuate use cases? <a id="link-73" style="display:none;" href="#73">✪</a></div>
+<div onmouseout="$('#link-74').hide()" onmouseover="$('#link-74').show()" id="74" class="comment"><span class="name">Adrian Gropper</span>:  No, this has nothing to do with my objection. <a id="link-74" style="display:none;" href="#74">✪</a></div>
+<div class="information">&lt;tallted&gt; &quot;RAR = Fancy Scope Strings&quot; -- are those *strings* or can they be URIs or whatever else?</div>
+<div class="information">&lt;mprorock&gt; let&apos;s just json.stringify everything</div>
+<div class="information">&lt;orie&gt; cut me :)</div>
+<div class="comment-continuation">... I think this is a fabulous idea. With the HART(?) WG (which UI was also in) - I know where the bodies are buried, maybe from a different perspective than Justin, but this does not address that</div>
+<div onmouseout="$('#link-75').hide()" onmouseover="$('#link-75').show()" id="75" class="comment"><span class="name">Justin Richer</span>:  Adrian, this is why I was trying to make it clear with the different boxes. I think the things you have brought up are firmly within the purple box. <a id="link-75" style="display:none;" href="#75">✪</a></div>
+<div class="comment-continuation">... I get this VC thing and want to use the API...</div>
+<div class="comment-continuation">... or... I want to take actions to get stuff. Separating these concerns is the first step to addressing them.</div>
+<div class="comment-continuation">... Whether in this WG or not is a separate question. But need to call these out and put boundaries around them so that people are not talking past eachother</div>
+<div onmouseout="$('#link-76').hide()" onmouseover="$('#link-76').show()" id="76" class="comment"><span class="name">Adrian Gropper</span>: +1 That my concerns could be addressed elsewhere if we keep OAuth out of VC HTTP API <a id="link-76" style="display:none;" href="#76">✪</a></div>
+<div class="comment-continuation">... I think all of these boxes are important. Personally think the orange box is far more interesting. But doesn&apos;t mean it&apos;s the right forum for solving this specific issue. That means we have to find that forum to have that conversation.</div>
+<div onmouseout="$('#link-77').hide()" onmouseover="$('#link-77').show()" id="77" class="comment"><span class="name">Ted Thibodeau</span>:  RAR is fancy scope strings: are those just strings or can be URIs? <a id="link-77" style="display:none;" href="#77">✪</a></div>
+<div onmouseout="$('#link-78').hide()" onmouseover="$('#link-78').show()" id="78" class="comment"><span class="name">Justin Richer</span>:  They are JSON objects. <a id="link-78" style="display:none;" href="#78">✪</a></div>
+<div class="information">&lt;orie&gt; hence my joke about stringifying them :)</div>
+<div class="comment-continuation">... I was responding to ... glibness.</div>
+<div class="information">&lt;mprorock&gt; agropper - oauth is in the real world - we have to use oauth and are using it already with the vc-http-api</div>
+<div onmouseout="$('#link-79').hide()" onmouseover="$('#link-79').show()" id="79" class="comment"><span class="name">Ted Thibodeau</span>:  Everything I saw had just keywords, not appearing to expand into URIs <a id="link-79" style="display:none;" href="#79">✪</a></div>
+<div onmouseout="$('#link-80').hide()" onmouseover="$('#link-80').show()" id="80" class="comment"><span class="name">Justin Richer</span>:  It doesn&apos;t, I didn&apos;t say it would <a id="link-80" style="display:none;" href="#80">✪</a></div>
+<div onmouseout="$('#link-81').hide()" onmouseover="$('#link-81').show()" id="81" class="comment"><span class="name">Ted Thibodeau</span>:  My concern: appears to not be machine-addressable <a id="link-81" style="display:none;" href="#81">✪</a></div>
+<div onmouseout="$('#link-82').hide()" onmouseover="$('#link-82').show()" id="82" class="comment"><span class="name">Justin Richer</span>:  Correct, that&apos;s a design goal; intentional <a id="link-82" style="display:none;" href="#82">✪</a></div>
+<div class="information">&lt;orie&gt; Ted ask him if he likes linked data... :)</div>
+<div class="information">&lt;butch_clark&gt; Thanks Justin - Very imformative</div>
+<div onmouseout="$('#link-83').hide()" onmouseover="$('#link-83').show()" id="83" class="comment"><span class="name">Manu Sporny</span>:  Thank you Justin for taking the time to put together this presentation for this group <a id="link-83" style="display:none;" href="#83">✪</a></div>
+<div class="information">&lt;justin_richer&gt; thank you for the scribe! I know I am very quick</div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; thanks! this really helps</div>
+<div class="information">&lt;mahmoud&gt; Thanks justin that was great!</div>
+<div class="information">&lt;orie&gt; Thanks justin, this was excellent.</div>
+<div class="information">&lt;mike_varley&gt; Thanks scribe! well done. And thank-you Justin.</div>
+<div class="information">&lt;juan_caballero_(dif/spruce)&gt; and CEL OMG</div>
+<div onmouseout="$('#link-84').hide()" onmouseover="$('#link-84').show()" id="84" class="comment"><span class="name">Manu Sporny</span>:  Thanks scribe. Thanks everyone. <a id="link-84" style="display:none;" href="#84">✪</a></div>
+<div class="information">&lt;brian&gt; Thanks Justin</div>
+<div class="comment-continuation">... Let&apos;s take it to the mailing list. A number of concrete proposals we could put to the mailing list.</div>
+<div class="comment-continuation">... Hopefully folks got an idea of what using RAR could look like.</div>
+<div class="comment-continuation">... We&apos;ll make the video available; people can look through it again. Let&apos;s go ahead putting concrete proposals on the mailing list.</div>
+<div class="comment-continuation">... We&apos;ll run some of them on the next call</div>
+<div class="information">&lt;joe_andrieu&gt; Cheers!</div>
+<div class="comment-continuation">... Have a great rest of week!</div>
+</div></div></div></div></div>    </div>
+  </body>
+</html>
