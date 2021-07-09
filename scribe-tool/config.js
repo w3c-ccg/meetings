@@ -4,11 +4,11 @@
 var config = [
   {
     "name": "Credentials CG",
-    "chairs": ["Wayne Chang", "Heather Vescent"]
+    "chairs": ["Wayne Chang", "Heather Vescent", "Mike Prorock"]
   },
   {
     "name": "Credentials Community Group",
-    "chairs": ["Wayne Chang", "Heather Vescent"]
+    "chairs": ["Wayne Chang", "Heather Vescent", "Mike Prorock"]
   },
   {
     "name": "CCG Verifiable Credentials for Education Task Force",
