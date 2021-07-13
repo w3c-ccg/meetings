@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/github-light.css" media="screen">
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Credentials Community Group</title>
+    <style>
+a {
+  color: #06A7CC;
+}
+
+div.comment {
+  font-family: 'Droid Serif', serif;
+  margin-top: 0.5em;
+  font-size: 1.25em;
+}
+
+.comment-continuation {
+  font-family: 'Droid Serif', serif;
+  font-size: 1.25em;
+  margin-left: 2em;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>The W3C Credentials Community Group</h1>
+      <h2>Verifiable Claims and Digital Verification</h2>
+      <h3><a href="../">Go Back</a></h3>
+
+      <hr>
+
+<div><div><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2"><h1>Verifiable Credentials HTTP API Telecon</h1>
+<h2>Minutes for 2021-07-13</h2>
+<div class="summary">
+<dl>
+<dt>Agenda</dt><dd><a href="https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0067.html">https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0067.html</a></dd>
+<dt>Topics</dt><dd><ol><li><a href="#topic-1">Use Cases Update</a><li><a href="#topic-2">Pull Requests - Revocation API</a><li><a href="#topic-3">Issue Processing - Revocation API Proposal</a><li><a href="#topic-4">Authorization Proposals</a></ol></dd><dt>Resolutions</dt><dd><ol><li><a href="#resolution-1">The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification.</a><li><a href="#resolution-2">One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.</a><li><a href="#resolution-3">How a VC HTTP API server validates an authorization token is out of scope.</a><li><a href="#resolution-4">One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.</a><li><a href="#resolution-5">One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens.</a></ol></dd><dt>Organizer</dt><dd>Manu Sporny</dd>
+<dt>Scribe</dt><dd>Charles E. Lehner</dd>
+<dt>Present</dt><dd><a href="http://manu.sporny.org/about">Manu Sporny</a>, <a href="https://www.linkedin.com/in/charles-edebiri-3255641a9/">Charles Edebiri</a>, <a href="https://www.linkedin.com/in/mprorock/">Mike Prorock</a>, <a href="https://twitter.com/justin__richer">Justin Richer</a>, <a href="https://www.linkedin.com/profile/view?id=23158801">Brian Sletten</a>, <a href="https://www.linkedin.com/in/or13b">Orie Steele</a>, <a href="https://w3c-ccg.github.io/">Sanuja (Diwala)</a>, <a href="https://www.linkedin.com/in/mkhraishi/">Mahmoud Alkhraishi</a>, <a href="https://celehner.com/">Charles E. Lehner</a>, <a href="https://www.linkedin.com/in/bzundel/">Brent Zundel</a>, <a href="https://www.linkedin.com/in/markus-sabadello-353a0821/">Markus Sabadello</a>, <a href="https://www.linkedin.com/search/results/all/?keywords=Legendary%20Requirements">Eric Schuh</a>, <a href="http://www.learningproof.xyz/">Juan Caballero</a>, <a href="https://www.linkedin.com/in/joe-andrieu-a0528">Joe Andrieu</a>, <a href="https://github.com/acoburn">Aaron Coburn</a>, <a href="https://w3c-ccg.github.io/">Phil L (P1)</a>, <a href="">Adrian Gropper</a>, <a href="https://twitter.com/mwherman2000">Michael Herman</a>, <a href="https://www.linkedin.com/in/marty-reed-b5b2352/">Marty Reed</a>, <a href="https://www.linkedin.com/in/macted/">Ted Thibodeau</a></dd>
+<dt>Audio Log</dt><dd><div><a href="audio.ogg">audio.ogg</a></div>
+<div><audio controls="controls" preload="none">
+<source src="audio.ogg" type="audio/ogg" />Warning: Your browser does not support the HTML5 audio element, please upgrade.</audio></div></dd>
+</dl>
+</div>
+<div class="information">Charles E. Lehner is scribing.</div>
+<div onmouseout="$('#link-1').hide()" onmouseover="$('#link-1').show()" id="1" class="comment"><span class="name">Manu Sporny</span>:  Getting started <a id="link-1" style="display:none;" href="#1">✪</a></div>
+<div onmouseout="$('#link-2').hide()" onmouseover="$('#link-2').show()" id="2" class="comment"><span class="name">Manu Sporny</span>:  Welcome to the VC HTTP API call for ~June~ July 13, 2021 <a id="link-2" style="display:none;" href="#2">✪</a></div>
+<div onmouseout="$('#link-3').hide()" onmouseover="$('#link-3').show()" id="3" class="comment"><span class="name">Manu Sporny</span>:  Agenda: intros, updates on use cases, PR issue processing, authorization discussion <a id="link-3" style="display:none;" href="#3">✪</a></div>
+<div onmouseout="$('#link-4').hide()" onmouseover="$('#link-4').show()" id="4" class="comment"><span class="name">Manu Sporny</span>:  If anyone has Adrian&apos;s contact info, please ping him so he can be on the call <a id="link-4" style="display:none;" href="#4">✪</a></div>
+<div onmouseout="$('#link-5').hide()" onmouseover="$('#link-5').show()" id="5" class="comment"><span class="name">Manu Sporny</span>:  Most of call on authorization proposals. Any updates/changes to agenda? <a id="link-5" style="display:none;" href="#5">✪</a></div>
+<div class="comment-continuation">... Anyone new on the call today?</div>
+<div class="comment-continuation">... Anyone want to re-introduce themselves?</div>
+<div class="comment-continuation">... Changes in job, living situation, etc.</div>
+<div class="comment-continuation">... Moving on to Use Cases update.</div>
+<h1 id="topic-1" class="topic">Topic: Use Cases Update</h1>
+<div onmouseout="$('#link-6').hide()" onmouseover="$('#link-6').show()" id="6" class="comment"><span class="name">Eric Schuh</span>:  Reached end up initial use case triaging. have five in the well-formed category. general plan is to move from the google doc back into github to a document more like the did or vc use cases document, starting with those five. <a id="link-6" style="display:none;" href="#6">✪</a></div>
+<div class="comment-continuation">... We&apos;ll be working on putting that together through the next week or two. Still plenty of time for thoughts and feedback.</div>
+<div onmouseout="$('#link-7').hide()" onmouseover="$('#link-7').show()" id="7" class="comment"><span class="name">Juan Caballero</span>:  Sounds good. My only comment is that we have a bunch of well-formed ones that are currently usable, and a couple - not a really good spread yet of interesting holder use cases yet - that might just have to come with time; feel like that is the murkiest of the 3 scopes. Semantic fields... might have to proceed with less coverage for now. <a id="link-7" style="display:none;" href="#7">✪</a></div>
+<div class="comment-continuation">... Will present with more detail in 2 meetings.</div>
+<div onmouseout="$('#link-8').hide()" onmouseover="$('#link-8').show()" id="8" class="comment"><span class="name">Manu Sporny</span>:  Do you want to put aside time on agenda to go through it? <a id="link-8" style="display:none;" href="#8">✪</a></div>
+<div onmouseout="$('#link-9').hide()" onmouseover="$('#link-9').show()" id="9" class="comment"><span class="name">Juan Caballero</span>:  Maybe ten minutes next call, to do quick review of the ones we&apos;re more confident of - to scan them a minute each. Good this week not presenting <a id="link-9" style="display:none;" href="#9">✪</a></div>
+<div onmouseout="$('#link-10').hide()" onmouseover="$('#link-10').show()" id="10" class="comment"><span class="name">Manu Sporny</span>:  Thank you for the update. Really appreciate your work on tha document. Important to get it into shape for people to look at. <a id="link-10" style="display:none;" href="#10">✪</a></div>
+<h1 id="topic-2" class="topic">Topic: Pull Requests - Revocation API</h1>
+<div onmouseout="$('#link-11').hide()" onmouseover="$('#link-11').show()" id="11" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/pull/211">https://github.com/w3c-ccg/vc-http-api/pull/211</a> <a id="link-11" style="display:none;" href="#11">✪</a></div>
+<div onmouseout="$('#link-12').hide()" onmouseover="$('#link-12').show()" id="12" class="comment"><span class="name">Manu Sporny</span>:  Pull Request 211 is basically about a revocable indicator. It raises the question of how do we say that a VC should be revoked. <a id="link-12" style="display:none;" href="#12">✪</a></div>
+<div class="comment-continuation">... End result is the group needs to discuss it.</div>
+<div onmouseout="$('#link-13').hide()" onmouseover="$('#link-13').show()" id="13" class="comment"><span class="name">Orie Steele</span>:  To summarize one more time, the way the API works today, if you want to issue a revocable credential, you must construct a flawless credential to hand to the API. So the index must be handled by you when you call the issuer API. Putting a big burden on the caller, but keeps the API simple. <a id="link-13" style="display:none;" href="#13">✪</a></div>
+<div class="comment-continuation">... I think either we need to document that better, or change its behavior.</div>
+<div class="comment-continuation">... I&apos;m requesting changes since would rather document would have, and today you have to submit a credential with a credential status for revocation status</div>
+<div onmouseout="$('#link-14').hide()" onmouseover="$('#link-14').show()" id="14" class="comment"><span class="name">Manu Sporny</span>:  Two options... what do you want to do next? Raise another PR to do what you said, or have discussion and then raise PR? <a id="link-14" style="display:none;" href="#14">✪</a></div>
+<div onmouseout="$('#link-15').hide()" onmouseover="$('#link-15').show()" id="15" class="comment"><span class="name">Orie Steele</span>:  I want the changes I&apos;m requesting to be implemented on the PR that&apos;s open, instead of doing what it&apos;s doing now. I&apos;ll continue requesting changes until it has that behavior. <a id="link-15" style="display:none;" href="#15">✪</a></div>
+<div class="comment-continuation">... Full disclosure: he is on our team. He&apos;s on vacation now. When he gets back, I&apos;ll have him update it.</div>
+<div class="information">&lt;adrian_gropper&gt; Sorry to be late - family issues</div>
+<div onmouseout="$('#link-16').hide()" onmouseover="$('#link-16').show()" id="16" class="comment"><span class="name">Manu Sporny</span>:  Thank you, that covers that PR <a id="link-16" style="display:none;" href="#16">✪</a></div>
+<h1 id="topic-3" class="topic">Topic: Issue Processing - Revocation API Proposal</h1>
+<div onmouseout="$('#link-17').hide()" onmouseover="$('#link-17').show()" id="17" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/204">https://github.com/w3c-ccg/vc-http-api/issues/204</a> <a id="link-17" style="display:none;" href="#17">✪</a></div>
+<div onmouseout="$('#link-18').hide()" onmouseover="$('#link-18').show()" id="18" class="comment"><span class="name">Manu Sporny</span>:  Issue 204... has to do with the PR... Question about how we are doing revocation lists. Orie? <a id="link-18" style="display:none;" href="#18">✪</a></div>
+<div onmouseout="$('#link-19').hide()" onmouseover="$('#link-19').show()" id="19" class="comment"><span class="name">Orie Steele</span>:  If you want to use RevocationList2020 as a way of managing revocation list credentials, you can in fact do that with the current API. You just need to know how to construct your revocation credential to have it issued. Then have it hosted somewhere resolvable. Then consume indexes... <a id="link-19" style="display:none;" href="#19">✪</a></div>
+<div class="comment-continuation">... Comments before about issuer endpoint not describing... Issue is about are we are really testing revocation interoperably, or just that people can make well-formed JSON-LD.</div>
+<div class="comment-continuation">... There is a question here about how the interoperability tests could cover or not revocation. I&apos;m proposing we not until document how it currently works,</div>
+<div class="comment-continuation">... to say you can already, and how. Then decide if want tests to cover it.</div>
+<div onmouseout="$('#link-20').hide()" onmouseover="$('#link-20').show()" id="20" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/issues/204#issuecomment-877641360">https://github.com/w3c-ccg/vc-http-api/issues/204#issuecomment-877641360</a> <a id="link-20" style="display:none;" href="#20">✪</a></div>
+<div onmouseout="$('#link-21').hide()" onmouseover="$('#link-21').show()" id="21" class="comment"><span class="name">Manu Sporny</span>:  I&apos;ve added a comment that proposes part of what Orie... I think we&apos;re agreed the first step is document what&apos;s happening today. <a id="link-21" style="display:none;" href="#21">✪</a></div>
+<div class="comment-continuation">... We could provide an option. Issuer specifies type of revocation list, magic happens on issuer.</div>
+<div class="information">&lt;orie&gt; I am in favor of your proposal AFTER we complete documenting the current behavior :)</div>
+<div class="comment-continuation">... If they want to manage that list using some other mechanism, they can do that by putting a full-blown piece of data in the credential - basically what we&apos;re doing today - or have the issuer ... manage it</div>
+<div class="comment-continuation">... +1 to document current behavior. Expectation is updating PR to document current behavior; then discuss issue, update documentation to match the proposal</div>
+<div onmouseout="$('#link-22').hide()" onmouseover="$('#link-22').show()" id="22" class="comment"><span class="name">Markus Sabadello</span>:  In this issue, one point brought up is that credentials don&apos;t require an id. Is that relevant to this issue? I find the issue not generally very well described - don&apos;t understand from comment. Is it related to the topic of credentials having id? <a id="link-22" style="display:none;" href="#22">✪</a></div>
+<div onmouseout="$('#link-23').hide()" onmouseover="$('#link-23').show()" id="23" class="comment"><span class="name">Orie Steele</span>:  You can&apos;t revoke credentials by id if it doesn&apos;t have an ID. The current API assumes credentials that will be revocable will have an id. <a id="link-23" style="display:none;" href="#23">✪</a></div>
+<div onmouseout="$('#link-24').hide()" onmouseover="$('#link-24').show()" id="24" class="comment"><span class="name">Markus Sabadello</span>:  Is this what manu&apos;s suggestion is about or something else? <a id="link-24" style="display:none;" href="#24">✪</a></div>
+<div onmouseout="$('#link-25').hide()" onmouseover="$('#link-25').show()" id="25" class="comment"><span class="name">Orie Steele</span>:  I think not the same thing. Are you asking about a revocation system that works with credentials that don&apos;t have an id. <a id="link-25" style="display:none;" href="#25">✪</a></div>
+<div onmouseout="$('#link-26').hide()" onmouseover="$('#link-26').show()" id="26" class="comment"><span class="name">Markus Sabadello</span>:  I&apos;m not sure I understand issue 204. Starts with example... but no explanation. Then suggestion by Manu that I don&apos;t understand what has to do with the first comment... Maybe just me not understanding <a id="link-26" style="display:none;" href="#26">✪</a></div>
+<div onmouseout="$('#link-27').hide()" onmouseover="$('#link-27').show()" id="27" class="comment"><span class="name">Manu Sporny</span>:  My suggestion, Markus, is that you raise that question in the issue so that we can clarify and continue the discussion there <a id="link-27" style="display:none;" href="#27">✪</a></div>
+<div onmouseout="$('#link-28').hide()" onmouseover="$('#link-28').show()" id="28" class="comment"><span class="name">Markus Sabadello</span>:  I did that <a id="link-28" style="display:none;" href="#28">✪</a></div>
+<div onmouseout="$('#link-29').hide()" onmouseover="$('#link-29').show()" id="29" class="comment"><span class="name">Manu Sporny</span>:  It&apos;s clear that it&apos;s not clear. We&apos;ll have to clarify that later on. I don&apos;t think it&apos;s the same question, as Orie said, but wouldn&apos;t be surprised if others are also wondering the scope of the question. We&apos;ll put it on the agenda. <a id="link-29" style="display:none;" href="#29">✪</a></div>
+<div onmouseout="$('#link-30').hide()" onmouseover="$('#link-30').show()" id="30" class="comment"><span class="name">Manu Sporny</span>:  Noting that Adrian is here, let&apos;s switch to the topic of authorization. <a id="link-30" style="display:none;" href="#30">✪</a></div>
+<div class="comment-continuation">... Please folks provide feedback on 204 if you have a strong feeling on what the API should support.</div>
+<h1 id="topic-4" class="topic">Topic: Authorization Proposals</h1>
+<div onmouseout="$('#link-31').hide()" onmouseover="$('#link-31').show()" id="31" class="comment"><span class="name">Manu Sporny</span>:  These proposals were circulated on the mailing list and debated heavily. Have been having discussion for about a month now. <a id="link-31" style="display:none;" href="#31">✪</a></div>
+<div class="comment-continuation">... These are kindof the proposals that have resulted. I&apos;m going to put as pre-proposals here. Effectively the same as what was on the mailing list.</div>
+<div onmouseout="$('#link-32').hide()" onmouseover="$('#link-32').show()" id="32" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: The VC HTTP API work item group will not separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the VC-HTTP API specification once that scope is established by consensus. <a id="link-32" style="display:none;" href="#32">✪</a></div>
+<div onmouseout="$('#link-33').hide()" onmouseover="$('#link-33').show()" id="33" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification. <a id="link-33" style="display:none;" href="#33">✪</a></div>
+<div onmouseout="$('#link-34').hide()" onmouseover="$('#link-34').show()" id="34" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens. <a id="link-34" style="display:none;" href="#34">✪</a></div>
+<div onmouseout="$('#link-35').hide()" onmouseover="$('#link-35').show()" id="35" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: How a VC HTTP API server validates an authorization token is out of scope. <a id="link-35" style="display:none;" href="#35">✪</a></div>
+<div onmouseout="$('#link-36').hide()" onmouseover="$('#link-36').show()" id="36" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: One of the authorization protocols for the VC-HTTP-API MUST be OAuth 2 Client Credentials. <a id="link-36" style="display:none;" href="#36">✪</a></div>
+<div onmouseout="$('#link-37').hide()" onmouseover="$('#link-37').show()" id="37" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API SHOULD be GNAP key-bound access tokens. <a id="link-37" style="display:none;" href="#37">✪</a></div>
+<div class="comment-continuation">... Adrian, I&apos;ve modified yours to replace &quot;We&quot; with &quot;the VC HTTP API work item group&quot;</div>
+<div onmouseout="$('#link-38').hide()" onmouseover="$('#link-38').show()" id="38" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: How a VC HTTP API client gets an authorization token is out of scope. <a id="link-38" style="display:none;" href="#38">✪</a></div>
+<div onmouseout="$('#link-39').hide()" onmouseover="$('#link-39').show()" id="39" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: The VC HTTP API MUST define access actions in terms of OAuth 2 RAR structures. <a id="link-39" style="display:none;" href="#39">✪</a></div>
+<div onmouseout="$('#link-40').hide()" onmouseover="$('#link-40').show()" id="40" class="comment"><span class="name">Manu Sporny</span>:  I believe we&apos;ll try to take them in that order. <a id="link-40" style="display:none;" href="#40">✪</a></div>
+<div class="comment-continuation">... Adrian, I&apos;ve promised we would try to take your proposals up.</div>
+<div class="comment-continuation">... Because it has been so difficult to achieve unanimous consensus: on these proposals we are going to try for consensus; if we don&apos;t reach it, we are going to back up to a majority vote.</div>
+<div class="comment-continuation">... Folks are getting frustrated and want to see forward progress; this is one way to do it</div>
+<div class="comment-continuation">... Proposals with highest votes will go forward</div>
+<div class="comment-continuation">... Starting off with your proposal</div>
+<div onmouseout="$('#link-41').hide()" onmouseover="$('#link-41').show()" id="41" class="comment"><span class="name">Manu Sporny</span>:  We&apos;ll consider OAuth and GNAP together until it&apos;s clear that one is too much work <a id="link-41" style="display:none;" href="#41">✪</a></div>
+<div class="comment-continuation">... we&apos;ll have a counter-proposal afterwards that changes &quot;will not separate&quot; to &quot;will separate&quot;</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  The VC HTTP API work item group will not separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the VC-HTTP API specification once that scope is established by consensus.</div>
+<div onmouseout="$('#link-42').hide()" onmouseover="$('#link-42').show()" id="42" class="comment"><span class="name">Justin Richer</span>: -1 <a id="link-42" style="display:none;" href="#42">✪</a></div>
+<div onmouseout="$('#link-43').hide()" onmouseover="$('#link-43').show()" id="43" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-43" style="display:none;" href="#43">✪</a></div>
+<div onmouseout="$('#link-44').hide()" onmouseover="$('#link-44').show()" id="44" class="comment"><span class="name">Joe Andrieu</span>: -1 <a id="link-44" style="display:none;" href="#44">✪</a></div>
+<div onmouseout="$('#link-45').hide()" onmouseover="$('#link-45').show()" id="45" class="comment"><span class="name">Orie Steele</span>: -1 <a id="link-45" style="display:none;" href="#45">✪</a></div>
+<div class="information">&lt;marty_reed&gt; 0</div>
+<div onmouseout="$('#link-46').hide()" onmouseover="$('#link-46').show()" id="46" class="comment"><span class="name">Mahmoud Alkhraishi</span>: -1 <a id="link-46" style="display:none;" href="#46">✪</a></div>
+<div onmouseout="$('#link-47').hide()" onmouseover="$('#link-47').show()" id="47" class="comment"><span class="name">Mike Prorock</span>: -1 <a id="link-47" style="display:none;" href="#47">✪</a></div>
+<div onmouseout="$('#link-48').hide()" onmouseover="$('#link-48').show()" id="48" class="comment"><span class="name">Manu Sporny</span>: -1 <a id="link-48" style="display:none;" href="#48">✪</a></div>
+<div onmouseout="$('#link-49').hide()" onmouseover="$('#link-49').show()" id="49" class="comment"><span class="name">Charles Edebiri</span>: -1 <a id="link-49" style="display:none;" href="#49">✪</a></div>
+<div class="information">&lt;markus_sabadello&gt; 0</div>
+<div class="information">&lt;michael_herman_(trusted_digital_web)&gt; 0</div>
+<div onmouseout="$('#link-50').hide()" onmouseover="$('#link-50').show()" id="50" class="comment"><span class="name">Manu Sporny</span>:  Holding off a little longer... have 21 people on the call <a id="link-50" style="display:none;" href="#50">✪</a></div>
+<div class="information">&lt;phil_l_(p1)&gt; 0</div>
+<div class="information">&lt;eric_schuh&gt; 0</div>
+<div class="comment-continuation">... not a popular proposal; let&apos;s try the opposite</div>
+<div class="comment-continuation">... that we could make decisions on one and not tie them together</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification.</div>
+<div onmouseout="$('#link-51').hide()" onmouseover="$('#link-51').show()" id="51" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-51" style="display:none;" href="#51">✪</a></div>
+<div onmouseout="$('#link-52').hide()" onmouseover="$('#link-52').show()" id="52" class="comment"><span class="name">Justin Richer</span>: -1 (These aren&apos;t the right questions at all) <a id="link-52" style="display:none;" href="#52">✪</a></div>
+<div class="information">&lt;marty_reed&gt; 0</div>
+<div class="information">&lt;eric_schuh&gt; 0</div>
+<div onmouseout="$('#link-53').hide()" onmouseover="$('#link-53').show()" id="53" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-53" style="display:none;" href="#53">✪</a></div>
+<div onmouseout="$('#link-54').hide()" onmouseover="$('#link-54').show()" id="54" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-54" style="display:none;" href="#54">✪</a></div>
+<div onmouseout="$('#link-55').hide()" onmouseover="$('#link-55').show()" id="55" class="comment"><span class="name">Charles Edebiri</span>: +1 <a id="link-55" style="display:none;" href="#55">✪</a></div>
+<div class="information">&lt;aaron_coburn&gt; 0</div>
+<div class="information">&lt;markus_sabadello&gt; 0</div>
+<div onmouseout="$('#link-56').hide()" onmouseover="$('#link-56').show()" id="56" class="comment"><span class="name">Orie Steele</span>: -1 <a id="link-56" style="display:none;" href="#56">✪</a></div>
+<div onmouseout="$('#link-57').hide()" onmouseover="$('#link-57').show()" id="57" class="comment"><span class="name">Manu Sporny</span>:  Adrian, do you want to speak after or before the proposal <a id="link-57" style="display:none;" href="#57">✪</a></div>
+<div onmouseout="$('#link-58').hide()" onmouseover="$('#link-58').show()" id="58" class="comment"><span class="name">Adrian Gropper</span>:  Before. It&apos;s unclear, since you left the clause in there about &quot;until it&apos;s clear how much extra work it is&quot; which was the whole point of the first proposal <a id="link-58" style="display:none;" href="#58">✪</a></div>
+<div class="information">&lt;orie&gt; (reason being GNAP should be ruled 100% out of scope)</div>
+<div class="comment-continuation">... so as it is, it&apos;s unclear what we&apos;re voting on</div>
+<div class="information">&lt;justin_richer&gt; @Orie completely and wholeheartedly disagree with that argument</div>
+<div class="comment-continuation">... My point is if we don&apos;t have a scope in mind, and unsure about the work, why arguing</div>
+<div onmouseout="$('#link-59').hide()" onmouseover="$('#link-59').show()" id="59" class="comment"><span class="name">Manu Sporny</span>:  Proposal is to keep them separate until it&apos;s clear how much work GNAP would be, until it&apos;s clear the group wants to work on GNAP and OAuth2 together <a id="link-59" style="display:none;" href="#59">✪</a></div>
+<div onmouseout="$('#link-60').hide()" onmouseover="$('#link-60').show()" id="60" class="comment"><span class="name">Adrian Gropper</span>: +0 <a id="link-60" style="display:none;" href="#60">✪</a></div>
+<div onmouseout="$('#link-61').hide()" onmouseover="$('#link-61').show()" id="61" class="comment"><span class="name">Adrian Gropper</span>: -1 <a id="link-61" style="display:none;" href="#61">✪</a></div>
+<div class="information">&lt;michael_herman_(trusted_digital_web)&gt; 0</div>
+<div class="information">&lt;agropper&gt; CHANGED VOTE</div>
+<div class="comment-continuation">... waiting a bit more for people to weigh in</div>
+<div class="information">&lt;mprorock&gt; +.5</div>
+<div onmouseout="$('#link-62').hide()" onmouseover="$('#link-62').show()" id="62" class="comment"><span class="name">Orie Steele</span>: <a href="https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup">https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup</a> <a id="link-62" style="display:none;" href="#62">✪</a></div>
+<div onmouseout="$('#link-63').hide()" onmouseover="$('#link-63').show()" id="63" class="comment"><span class="name">Juan Caballero</span>:  Maybe would change the proposal a lot, but is the proposal to try to talk only about OAuth until the scope is clear enough to reconsider how much work GNAP is ...? <a id="link-63" style="display:none;" href="#63">✪</a></div>
+<div class="information">&lt;juan_caballero_(spruce)&gt; +.5</div>
+<div onmouseout="$('#link-64').hide()" onmouseover="$('#link-64').show()" id="64" class="comment"><span class="name">Manu Sporny</span>:  That is what the proposal is attempting to put out there. <a id="link-64" style="display:none;" href="#64">✪</a></div>
+<div onmouseout="$('#link-65').hide()" onmouseover="$('#link-65').show()" id="65" class="comment"><span class="name">Juan Caballero</span>:  That makes it easier, thanks. <a id="link-65" style="display:none;" href="#65">✪</a></div>
+<div class="information">&lt;justin_richer&gt; @Orie change &quot;scope&quot; to &quot;authorization_details&quot; and that&apos;s what I&apos;m saying ...</div>
+<div class="information">&lt;justin_richer&gt; or have been saying all along</div>
+<div class="information">&lt;justin_richer&gt; &lt;-- I&apos;m on the queue</div>
+<div onmouseout="$('#link-66').hide()" onmouseover="$('#link-66').show()" id="66" class="comment"><span class="name">Manu Sporny</span>:  There is more support for this proposal than the other one. Since these are two sides of the same coin, I&apos;m going to resolve this as the group&apos;s current position, at least as a majority vote. Other decisions may influence this. <a id="link-66" style="display:none;" href="#66">✪</a></div>
+<div onmouseout="$('#link-67').hide()" onmouseover="$('#link-67').show()" id="67" class="comment"><span class="name">Justin Richer</span>:  I wholeheartedly disagree with that. This hasn&apos;t been defined as to what &quot;more work is&quot;, &quot;separation&quot; is, any pieces of this. I cannot possibly agree to either of these proposals on any of these grounds <a id="link-67" style="display:none;" href="#67">✪</a></div>
+<div class="comment-continuation">... Furthermore I think they are not asking the right questions.</div>
+<div class="comment-continuation">... The differences here that I think people are talking about shouldn&apos;t even be in consideration of scope for this working group</div>
+<div class="comment-continuation">... I understand you want to lean back on majority work, but think it is a disservice to this group</div>
+<div onmouseout="$('#link-68').hide()" onmouseover="$('#link-68').show()" id="68" class="comment"><span class="name">Orie Steele</span>: PROPSAL: the vc-http-api will only define OAuth 2.0 scopes using the string and colon syntax. <a id="link-68" style="display:none;" href="#68">✪</a></div>
+<div onmouseout="$('#link-69').hide()" onmouseover="$('#link-69').show()" id="69" class="comment"><span class="name">Manu Sporny</span>:  Thank you; do you have a proposal that you think would gain majority vote on this topic? <a id="link-69" style="display:none;" href="#69">✪</a></div>
+<div onmouseout="$('#link-70').hide()" onmouseover="$('#link-70').show()" id="70" class="comment"><span class="name">Justin Richer</span>:  Proposals I would try to spitball over voice amount to: the working group must define RAR type values for each component; the API must define a means to accept OAuth2 bearer access tokens and a means to accept GNAP key-bound bearer tokens as defined in the specification <a id="link-70" style="display:none;" href="#70">✪</a></div>
+<div class="comment-continuation">... Don&apos;t say anything about ..... details where OAuth2 and GNAP differ - which should be clearly out of scope. This API should not care about any of that happening.</div>
+<div class="information">&lt;orie&gt; GNAP and RAR should be out of scope. OAuth 2.0 and string colon syntax should be in scope.</div>
+<div onmouseout="$('#link-71').hide()" onmouseover="$('#link-71').show()" id="71" class="comment"><span class="name">Adrian Gropper</span>: +1 Justin <a id="link-71" style="display:none;" href="#71">✪</a></div>
+<div class="comment-continuation">... Which is why I had such a visceral reaction to the client credentials proposals on the ML. This API shouldn&apos;t care how I got the token, just .... and that the token has ... rights</div>
+<div class="information">&lt;justin_richer&gt; what do you mean &quot;string-colon syntax&quot;?</div>
+<div id="resolution-1" class="resolution"><strong>RESOLUTION:</strong> The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification.</div>
+<div onmouseout="$('#link-72').hide()" onmouseover="$('#link-72').show()" id="72" class="comment"><span class="name">Manu Sporny</span>:  Thank you Justin. These proposals are in an order, and those are coming up. I understand you disagree with this one; noted <a id="link-72" style="display:none;" href="#72">✪</a></div>
+<div class="comment-continuation">... in scribing. Resolved and moving on</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.</div>
+<div class="comment-continuation">... Hopefully straightforward. Questions?</div>
+<div class="information">&lt;orie&gt; justin_r see <a href="https://petstore3.swagger.io/">https://petstore3.swagger.io/</a> or https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup for examples</div>
+<div onmouseout="$('#link-73').hide()" onmouseover="$('#link-73').show()" id="73" class="comment"><span class="name">Justin Richer</span>:  Is it mandatory to implement, or for the specification to define? <a id="link-73" style="display:none;" href="#73">✪</a></div>
+<div onmouseout="$('#link-74').hide()" onmouseover="$('#link-74').show()" id="74" class="comment"><span class="name">Manu Sporny</span>:  It is must implement. The specification must define it, and you must implement at least this. <a id="link-74" style="display:none;" href="#74">✪</a></div>
+<div onmouseout="$('#link-75').hide()" onmouseover="$('#link-75').show()" id="75" class="comment"><span class="name">Justin Richer</span>:  Thank you for the clarification <a id="link-75" style="display:none;" href="#75">✪</a></div>
+<div onmouseout="$('#link-76').hide()" onmouseover="$('#link-76').show()" id="76" class="comment"><span class="name">Manu Sporny</span>:  Do others in the group feel we should re-word this to make it clear? <a id="link-76" style="display:none;" href="#76">✪</a></div>
+<div onmouseout="$('#link-77').hide()" onmouseover="$('#link-77').show()" id="77" class="comment"><span class="name">Justin Richer</span>: @Orie: RAR was invented to get away from structured scopes because they are dangerous. <a id="link-77" style="display:none;" href="#77">✪</a></div>
+<div class="comment-continuation">... Is it clear what the question is asking based on Justin&apos;s clarification, or need to reword?</div>
+<div class="information">&lt;justin_richer&gt; @Orie I know because I invented colon-separated structured scopes over a decade ago and know my mistakes :P</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.</div>
+<div onmouseout="$('#link-78').hide()" onmouseover="$('#link-78').show()" id="78" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-78" style="display:none;" href="#78">✪</a></div>
+<div onmouseout="$('#link-79').hide()" onmouseover="$('#link-79').show()" id="79" class="comment"><span class="name">Justin Richer</span>: -1 <a id="link-79" style="display:none;" href="#79">✪</a></div>
+<div onmouseout="$('#link-80').hide()" onmouseover="$('#link-80').show()" id="80" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-80" style="display:none;" href="#80">✪</a></div>
+<div onmouseout="$('#link-81').hide()" onmouseover="$('#link-81').show()" id="81" class="comment"><span class="name">Adrian Gropper</span>: -1 <a id="link-81" style="display:none;" href="#81">✪</a></div>
+<div onmouseout="$('#link-82').hide()" onmouseover="$('#link-82').show()" id="82" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-82" style="display:none;" href="#82">✪</a></div>
+<div class="comment-continuation">... No change; the assumption is that one of the mechanisms defined in the specification is going to be OAuth2 bearer tokens, and an implementation must implement it. There&apos;s the proposal</div>
+<div class="information">&lt;eric_schuh&gt; 0</div>
+<div onmouseout="$('#link-83').hide()" onmouseover="$('#link-83').show()" id="83" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-83" style="display:none;" href="#83">✪</a></div>
+<div class="information">&lt;marty_reed&gt; 0</div>
+<div class="information">&lt;aaron_coburn&gt; 0</div>
+<div class="information">&lt;michael_herman_(trusted_digital_web)&gt; 0</div>
+<div class="information">&lt;justin_richer&gt; (reason for -1: MTI and mandatory-to-define are separate questions; API spec should define but not mandate use)</div>
+<div onmouseout="$('#link-84').hide()" onmouseover="$('#link-84').show()" id="84" class="comment"><span class="name">Markus Sabadello</span>: -1 <a id="link-84" style="display:none;" href="#84">✪</a></div>
+<div class="information">&lt;juan_caballero_(spruce)&gt; or @markus</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.</div>
+<div onmouseout="$('#link-85').hide()" onmouseover="$('#link-85').show()" id="85" class="comment"><span class="name">Manu Sporny</span>:  Is there a variation to this proposal, Justin, Markus, that would change your -1 to a +1? <a id="link-85" style="display:none;" href="#85">✪</a></div>
+<div class="information">&lt;justin_richer&gt; or more specifically:</div>
+<div onmouseout="$('#link-86').hide()" onmouseover="$('#link-86').show()" id="86" class="comment"><span class="name">Markus Sabadello</span>:  I have to admit I haven&apos;t fully thought through and followed the discussion on OAuth 2 and all that; but probably there are legitimate implementations of this API that don&apos;t do OAuth 2 bearer tokens. Don&apos;t feel it&apos;s right to make it a requirement to support it. Could change to SHOULD instead of MUST <a id="link-86" style="display:none;" href="#86">✪</a></div>
+<div class="information">&lt;justin_richer&gt; actually no:</div>
+<div onmouseout="$('#link-87').hide()" onmouseover="$('#link-87').show()" id="87" class="comment"><span class="name">Manu Sporny</span>:  Concern about the second proposal is it may get -1s. Could split apart to say the spec must define it <a id="link-87" style="display:none;" href="#87">✪</a></div>
+<div class="comment-continuation">... Proposal is to pick up Justin&apos;s proposal ...</div>
+<div class="information">&lt;mprorock&gt; why do we need RAR defined as a part of this proposal</div>
+<div class="information">&lt;justin_richer&gt; @mprorock because otherwise it&apos;s just &quot;get a token somehow&quot;</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.</div>
+<div onmouseout="$('#link-88').hide()" onmouseover="$('#link-88').show()" id="88" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-88" style="display:none;" href="#88">✪</a></div>
+<div class="information">&lt;justin_richer&gt; and not &quot;this kind of token can do these actions on this API&quot;</div>
+<div onmouseout="$('#link-89').hide()" onmouseover="$('#link-89').show()" id="89" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-89" style="display:none;" href="#89">✪</a></div>
+<div onmouseout="$('#link-90').hide()" onmouseover="$('#link-90').show()" id="90" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-90" style="display:none;" href="#90">✪</a></div>
+<div class="information">&lt;justin_richer&gt; +0.5 (should be RAR)</div>
+<div onmouseout="$('#link-91').hide()" onmouseover="$('#link-91').show()" id="91" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-91" style="display:none;" href="#91">✪</a></div>
+<div onmouseout="$('#link-92').hide()" onmouseover="$('#link-92').show()" id="92" class="comment"><span class="name">Manu Sporny</span>:  Basically saying the spec will define it; we haven&apos;t said about whether you have to implement it <a id="link-92" style="display:none;" href="#92">✪</a></div>
+<div onmouseout="$('#link-93').hide()" onmouseover="$('#link-93').show()" id="93" class="comment"><span class="name">Marty Reed</span>: +1 <a id="link-93" style="display:none;" href="#93">✪</a></div>
+<div onmouseout="$('#link-94').hide()" onmouseover="$('#link-94').show()" id="94" class="comment"><span class="name">Joe Andrieu</span>: +1 <a id="link-94" style="display:none;" href="#94">✪</a></div>
+<div class="information">&lt;markus_sabadello&gt; +0.5</div>
+<div onmouseout="$('#link-95').hide()" onmouseover="$('#link-95').show()" id="95" class="comment"><span class="name">Adrian Gropper</span>: -1 Must be RAR <a id="link-95" style="display:none;" href="#95">✪</a></div>
+<div onmouseout="$('#link-96').hide()" onmouseover="$('#link-96').show()" id="96" class="comment"><span class="name">Eric Schuh</span>: +1 <a id="link-96" style="display:none;" href="#96">✪</a></div>
+<div class="information">&lt;michael_herman_(trusted_digital_web)&gt; 0</div>
+<div class="information">&lt;justin_richer&gt; if it&apos;s not defined as RAR by the spec, you get people doing stupid ideas like colon-separated structure strings for scopes :)</div>
+<div onmouseout="$('#link-97').hide()" onmouseover="$('#link-97').show()" id="97" class="comment"><span class="name">Manu Sporny</span>:  This is looking better. Adrian, we&apos;ll pick up the RAR proposal later. Does that change your -1, or are you asking specifically to bind the decision to having to use OAuth + RAR? <a id="link-97" style="display:none;" href="#97">✪</a></div>
+<div class="information">&lt;orie&gt; yeah, i guess calling okta and auth 0 stupid is the kind of inclusive and enterprise security culture we are lookin for....</div>
+<div id="resolution-2" class="resolution"><strong>RESOLUTION:</strong> One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.</div>
+<div onmouseout="$('#link-98').hide()" onmouseover="$('#link-98').show()" id="98" class="comment"><span class="name">Adrian Gropper</span>:  I&apos;m still grappling with the issue to understand OAuth2 in our context. So don&apos;t worry... I can&apos;t speak to this decision. Justin says SHOULD... so I&apos;m happy with SHOULD. <a id="link-98" style="display:none;" href="#98">✪</a></div>
+<div class="information">&lt;justin_richer&gt; that&apos;s not a normative should I&apos;m arguing for, fwiw...</div>
+<div class="information">&lt;mprorock&gt; if it is not defined as RAR we can work with commercial implementations out in the wild that are already using our implementation of vc-http-api</div>
+<div class="information">&lt;juan_caballero_(spruce)&gt; /me what:an:embarassing:way:to:find:out:justin:thinks:i&apos;m:stupid:D</div>
+<div class="information">&lt;mprorock&gt; btw - i like RAR in principle</div>
+<div onmouseout="$('#link-99').hide()" onmouseover="$('#link-99').show()" id="99" class="comment"><span class="name">Manu Sporny</span>:  Moving on to whether implementations should implement this. Or release some pressure and delay that decision. This is a good position already. Unless people want to settle this now, whether an implementation MUST or SHOULD implement it. <a id="link-99" style="display:none;" href="#99">✪</a></div>
+<div class="comment-continuation">... Do people want to put that before the group?</div>
+<div onmouseout="$('#link-100').hide()" onmouseover="$('#link-100').show()" id="100" class="comment"><span class="name">Joe Andrieu</span>: +1 To defer <a id="link-100" style="display:none;" href="#100">✪</a></div>
+<div class="comment-continuation">... seeing no opposition to that approach, going on to the next proposal</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  How a VC HTTP API server validates an authorization token is out of scope.</div>
+<div class="comment-continuation">... Next proposal: to put how an authorization token is validated out of scope.</div>
+<div onmouseout="$('#link-101').hide()" onmouseover="$('#link-101').show()" id="101" class="comment"><span class="name">Justin Richer</span>: +1 <a id="link-101" style="display:none;" href="#101">✪</a></div>
+<div onmouseout="$('#link-102').hide()" onmouseover="$('#link-102').show()" id="102" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-102" style="display:none;" href="#102">✪</a></div>
+<div onmouseout="$('#link-103').hide()" onmouseover="$('#link-103').show()" id="103" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-103" style="display:none;" href="#103">✪</a></div>
+<div onmouseout="$('#link-104').hide()" onmouseover="$('#link-104').show()" id="104" class="comment"><span class="name">Markus Sabadello</span>: +1 <a id="link-104" style="display:none;" href="#104">✪</a></div>
+<div onmouseout="$('#link-105').hide()" onmouseover="$('#link-105').show()" id="105" class="comment"><span class="name">Marty Reed</span>: +1 <a id="link-105" style="display:none;" href="#105">✪</a></div>
+<div class="comment-continuation">... basically says the vc-http-api server is going to get an authorization token as input, and the spec is not going to define how that is a valid authorization token; it&apos;s out of scope; i believe Justin proposed this on a previous call</div>
+<div onmouseout="$('#link-106').hide()" onmouseover="$('#link-106').show()" id="106" class="comment"><span class="name">Eric Schuh</span>: +1 <a id="link-106" style="display:none;" href="#106">✪</a></div>
+<div onmouseout="$('#link-107').hide()" onmouseover="$('#link-107').show()" id="107" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-107" style="display:none;" href="#107">✪</a></div>
+<div onmouseout="$('#link-108').hide()" onmouseover="$('#link-108').show()" id="108" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-108" style="display:none;" href="#108">✪</a></div>
+<div onmouseout="$('#link-109').hide()" onmouseover="$('#link-109').show()" id="109" class="comment"><span class="name">Joe Andrieu</span>: +1 <a id="link-109" style="display:none;" href="#109">✪</a></div>
+<div onmouseout="$('#link-110').hide()" onmouseover="$('#link-110').show()" id="110" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-110" style="display:none;" href="#110">✪</a></div>
+<div class="comment-continuation">... holding a little longer... looking good</div>
+<div id="resolution-3" class="resolution"><strong>RESOLUTION:</strong> How a VC HTTP API server validates an authorization token is out of scope.</div>
+<div onmouseout="$('#link-111').hide()" onmouseover="$('#link-111').show()" id="111" class="comment"><span class="name">Manu Sporny</span>:  Good; my expectation is everyone already thought that was out of scope, but good to get that on the record. <a id="link-111" style="display:none;" href="#111">✪</a></div>
+<div class="comment-continuation">... Next proposals have to do withi GNAP key-bound access tokens and a protocol. request Orie had that one of the authorization protocols must be OAuth2 client credentials. We could change it in the same way Justin suggested we change the other proposal...</div>
+<div class="information">&lt;mprorock&gt; one of the possible... ?</div>
+<div class="comment-continuation">... Basically a &quot;spec will define&quot; thing.</div>
+<div class="information">&lt;orie&gt; going from 0 authorization to 1 is the hardest :)</div>
+<div class="information">&lt;justin_richer&gt; rewording won&apos;t make me like it more, fwiw...</div>
+<div class="comment-continuation">... One of the authorization protocols that would be defined for use in the VC HTTP API must be OAuth2 client credentials</div>
+<div onmouseout="$('#link-112').hide()" onmouseover="$('#link-112').show()" id="112" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials. <a id="link-112" style="display:none;" href="#112">✪</a></div>
+<div onmouseout="$('#link-113').hide()" onmouseover="$('#link-113').show()" id="113" class="comment"><span class="name">Adrian Gropper</span>:  Just to make sure how we are using Client Credentials: does that mean there can be no delegation? <a id="link-113" style="display:none;" href="#113">✪</a></div>
+<div class="information">&lt;justin_richer&gt; yes, that&apos;s exactly what that means</div>
+<div class="comment-continuation">... by the whoever is in control of the credential - whether the subject (typically)...</div>
+<div class="comment-continuation">... Is this making a statement on the ability to delegate?</div>
+<div onmouseout="$('#link-114').hide()" onmouseover="$('#link-114').show()" id="114" class="comment"><span class="name">Orie Steele</span>: <a href="https://oauth.net/2/grant-types/client-credentials/">https://oauth.net/2/grant-types/client-credentials/</a> <a id="link-114" style="display:none;" href="#114">✪</a></div>
+<div onmouseout="$('#link-115').hide()" onmouseover="$('#link-115').show()" id="115" class="comment"><span class="name">Manu Sporny</span>:  It is saying you cannot delegate if you are using OAuth2 Client Credentials, but not saying you can&apos;t use another protocol than Client Credentials <a id="link-115" style="display:none;" href="#115">✪</a></div>
+<div onmouseout="$('#link-116').hide()" onmouseover="$('#link-116').show()" id="116" class="comment"><span class="name">Orie Steele</span>: <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4">https://datatracker.ietf.org/doc/html/rfc6749#section-4.4</a> <a id="link-116" style="display:none;" href="#116">✪</a></div>
+<div class="comment-continuation">... Meaning you can use GNAP, ZCaps, other mechanisms, we just haven&apos;t all agreed to define that yet.</div>
+<div class="comment-continuation">... Does that help?</div>
+<div onmouseout="$('#link-117').hide()" onmouseover="$('#link-117').show()" id="117" class="comment"><span class="name">Adrian Gropper</span>:  I understand the explanation; I will vote against Client Credentials given the context <a id="link-117" style="display:none;" href="#117">✪</a></div>
+<div onmouseout="$('#link-118').hide()" onmouseover="$('#link-118').show()" id="118" class="comment"><span class="name">Mike Prorock</span>:  Adding context... Understand the need for delegation... There are tons of use cases, specifically in a system-to-system context (e.g. supply chain use cases) where delegation might not make sense, which is where the OAuth path well established in enterprise is simplist to go forward <a id="link-118" style="display:none;" href="#118">✪</a></div>
+<div class="comment-continuation">... Important to say this is not the only forward</div>
+<div class="comment-continuation">... Would not say is only path forward; important to say other more privacy-preserving use cases have paths, use cases other than my own</div>
+<div class="information">&lt;agropper&gt; Delegation is an essential human right - as the &quot;law of Agency&quot; - it cannot be optional</div>
+<div class="comment-continuation">... There are other use cases beyond the scenarios we are thinking of, that have broad adoption in the marketplace</div>
+<div class="information">&lt;justin_richer&gt; /me puts soapbox away...</div>
+<div onmouseout="$('#link-119').hide()" onmouseover="$('#link-119').show()" id="119" class="comment"><span class="name">Mike Prorock</span>: +1 Understand <a id="link-119" style="display:none;" href="#119">✪</a></div>
+<div onmouseout="$('#link-120').hide()" onmouseover="$('#link-120').show()" id="120" class="comment"><span class="name">Manu Sporny</span>:  I appreciate that statement. We don&apos;t want everyone to go on their soapbox. Have done that on the mailing list. <a id="link-120" style="display:none;" href="#120">✪</a></div>
+<div class="information">&lt;juan_caballero_(spruce)&gt; /me just realized there was soap in here</div>
+<div class="comment-continuation">... Want to get to proposals; don&apos;t have a lot of time.</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.</div>
+<div onmouseout="$('#link-121').hide()" onmouseover="$('#link-121').show()" id="121" class="comment"><span class="name">Manu Sporny</span>:  Let&apos;s go ahead and run the proposal. To Mike&apos;s point: this is saying that *one* of the protocols (not making others illegal) that will be defined will be OAuth2 Client Credentials <a id="link-121" style="display:none;" href="#121">✪</a></div>
+<div onmouseout="$('#link-122').hide()" onmouseover="$('#link-122').show()" id="122" class="comment"><span class="name">Justin Richer</span>: -1: The spec should have no say in the details of how the token was gotten, this is unnecessarily limiting and narrow for no benefit -- there&apos;s no need to call this out explicitly. I would go further negative on the scale if possible. <a id="link-122" style="display:none;" href="#122">✪</a></div>
+<div onmouseout="$('#link-123').hide()" onmouseover="$('#link-123').show()" id="123" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-123" style="display:none;" href="#123">✪</a></div>
+<div onmouseout="$('#link-124').hide()" onmouseover="$('#link-124').show()" id="124" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-124" style="display:none;" href="#124">✪</a></div>
+<div onmouseout="$('#link-125').hide()" onmouseover="$('#link-125').show()" id="125" class="comment"><span class="name">Adrian Gropper</span>: -1 Agency for the subject cannot be optional <a id="link-125" style="display:none;" href="#125">✪</a></div>
+<div onmouseout="$('#link-126').hide()" onmouseover="$('#link-126').show()" id="126" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-126" style="display:none;" href="#126">✪</a></div>
+<div onmouseout="$('#link-127').hide()" onmouseover="$('#link-127').show()" id="127" class="comment"><span class="name">Ted Thibodeau</span>: +1 <a id="link-127" style="display:none;" href="#127">✪</a></div>
+<div class="information">&lt;marty_reed&gt; 0</div>
+<div class="information">&lt;joe_andrieu&gt; 0</div>
+<div onmouseout="$('#link-128').hide()" onmouseover="$('#link-128').show()" id="128" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-128" style="display:none;" href="#128">✪</a></div>
+<div class="information">&lt;eric_schuh&gt; 0</div>
+<div class="information">&lt;justin_richer&gt; to me this isn&apos;t about closing a door, it&apos;s about defining a door we shouldn&apos;t</div>
+<div class="information">&lt;markus_sabadello&gt; -0.5</div>
+<div onmouseout="$('#link-129').hide()" onmouseover="$('#link-129').show()" id="129" class="comment"><span class="name">Ted Thibodeau</span>:  I&apos;m reaching an extreme level of frustration with the blockage that is unquestionably coming from Adrian. We are not closing doors to the other things he wants to do - which we think are good - But he is throwing out the baby with the bathwater. That&apos;s not okay here <a id="link-129" style="display:none;" href="#129">✪</a></div>
+<div onmouseout="$('#link-130').hide()" onmouseover="$('#link-130').show()" id="130" class="comment"><span class="name">Manu Sporny</span>:  Thanks for the input. That is the reason we have moved to majority vote rather than consensus. <a id="link-130" style="display:none;" href="#130">✪</a></div>
+<div class="comment-continuation">... The reason there is pushback is there are people in the group that feel this is a door we should not define - and legitimate reasons</div>
+<div class="comment-continuation">... Reminder to please not litigate; we&apos;ve done that over the past month</div>
+<div class="information">&lt;justin_richer&gt; This is a mistake and will hurt the interoperability of the specification.</div>
+<div onmouseout="$('#link-131').hide()" onmouseover="$('#link-131').show()" id="131" class="comment"><span class="name">Manu Sporny</span>:  Resolving this, moving to the next one. <a id="link-131" style="display:none;" href="#131">✪</a></div>
+<div id="resolution-4" class="resolution"><strong>RESOLUTION:</strong> One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.</div>
+<div class="comment-continuation">... The next item up is that one of the authorization mechanisms for the VC HTTP API should be GNAP key-bound access tokens</div>
+<div onmouseout="$('#link-132').hide()" onmouseover="$('#link-132').show()" id="132" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API SHOULD be GNAP key-bound access tokens. <a id="link-132" style="display:none;" href="#132">✪</a></div>
+<div class="comment-continuation">... Justin, do you want to modify this in any way</div>
+<div onmouseout="$('#link-133').hide()" onmouseover="$('#link-133').show()" id="133" class="comment"><span class="name">Justin Richer</span>:  Yes, use same language as before - mechanisms defined by the API - and MUST - talking about inclusion in the API, not mandatory for use <a id="link-133" style="display:none;" href="#133">✪</a></div>
+<div onmouseout="$('#link-134').hide()" onmouseover="$('#link-134').show()" id="134" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens. <a id="link-134" style="display:none;" href="#134">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens.</div>
+<div onmouseout="$('#link-135').hide()" onmouseover="$('#link-135').show()" id="135" class="comment"><span class="name">Justin Richer</span>:  That looks right to me <a id="link-135" style="display:none;" href="#135">✪</a></div>
+<div class="information">&lt;justin_richer&gt; +1, it&apos;s an option to define</div>
+<div onmouseout="$('#link-136').hide()" onmouseover="$('#link-136').show()" id="136" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-136" style="display:none;" href="#136">✪</a></div>
+<div onmouseout="$('#link-137').hide()" onmouseover="$('#link-137').show()" id="137" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-137" style="display:none;" href="#137">✪</a></div>
+<div class="information">&lt;mprorock&gt; +.25 (like it in principle, but can&apos;t find a good gnap impl anywhere)</div>
+<div onmouseout="$('#link-138').hide()" onmouseover="$('#link-138').show()" id="138" class="comment"><span class="name">Orie Steele</span>: -1 <a id="link-138" style="display:none;" href="#138">✪</a></div>
+<div onmouseout="$('#link-139').hide()" onmouseover="$('#link-139').show()" id="139" class="comment"><span class="name">Marty Reed</span>: +1 <a id="link-139" style="display:none;" href="#139">✪</a></div>
+<div onmouseout="$('#link-140').hide()" onmouseover="$('#link-140').show()" id="140" class="comment"><span class="name">Joe Andrieu</span>: -1 <a id="link-140" style="display:none;" href="#140">✪</a></div>
+<div class="information">&lt;manu&gt; -0.5 maybe later, want to focus on client credentials for now.</div>
+<div onmouseout="$('#link-141').hide()" onmouseover="$('#link-141').show()" id="141" class="comment"><span class="name">Markus Sabadello</span>: +1 <a id="link-141" style="display:none;" href="#141">✪</a></div>
+<div class="information">&lt;tallted&gt; -0.2 GNAP seems too immature to MUST</div>
+<div class="information">&lt;eric_schuh&gt; 0</div>
+<div onmouseout="$('#link-142').hide()" onmouseover="$('#link-142').show()" id="142" class="comment"><span class="name">Justin Richer</span>:  I just want to point out that if we limit the scope of the WG to what i have been proposing, then the definitions for OAuth2 and GNAP are effectively no different from one another, and do not rely on the inner workings of either protocol - which is why I am strongly against the definition of client credentials - think that is way too far for an API to define <a id="link-142" style="display:none;" href="#142">✪</a></div>
+<div class="comment-continuation">... For everyone saying this does not meet immediate commercial objectives: I cannot buy this API off the shelf either.</div>
+<div onmouseout="$('#link-143').hide()" onmouseover="$('#link-143').show()" id="143" class="comment"><span class="name">Manu Sporny</span>:  Given where we are with this, I&apos;m not going to run the counter proposal, as I think it would be damaging. <a id="link-143" style="display:none;" href="#143">✪</a></div>
+<div class="comment-continuation">... If we follow that line of reasoning, it should become obvious... Leaving the door open</div>
+<div class="information">&lt;justin_richer&gt; it becomes especially obvious if you use RAR to define access</div>
+<div class="information">&lt;mprorock&gt; @Justin there are commercial and open source implementations of the vc-http-api today fyi</div>
+<div class="information">&lt;juan_caballero_(spruce)&gt; +1, would love to see some examples of how hard/easy/deterministically a GNAP equivalent can be derived/generated with concrete examples</div>
+<div class="information">&lt;justin_richer&gt; @mprorock but the spec isn&apos;t finished yet, it&apos;s not mature :P</div>
+<div class="information">&lt;mprorock&gt; @justin ;)</div>
+<div onmouseout="$('#link-144').hide()" onmouseover="$('#link-144').show()" id="144" class="comment"><span class="name">Adrian Gropper</span>:  Buy the rules of majority voting today, I would say it resolved as much as the previous ones. <a id="link-144" style="display:none;" href="#144">✪</a></div>
+<div onmouseout="$('#link-145').hide()" onmouseover="$('#link-145').show()" id="145" class="comment"><span class="name">Justin Richer</span>:  I agree, for what it&apos;s worth <a id="link-145" style="display:none;" href="#145">✪</a></div>
+<div onmouseout="$('#link-146').hide()" onmouseover="$('#link-146').show()" id="146" class="comment"><span class="name">Manu Sporny</span>:  I&apos;m looking... <a id="link-146" style="display:none;" href="#146">✪</a></div>
+<div class="information">&lt;justin_richer&gt; (thank you scribe, sorry for jumping queue)</div>
+<div class="comment-continuation">... That&apos;s correct</div>
+<div class="comment-continuation">... We&apos;ll resolve it as majority-supported; apologies for that.</div>
+<div onmouseout="$('#link-147').hide()" onmouseover="$('#link-147').show()" id="147" class="comment"><span class="name">Joe Andrieu</span>:  I would not have consented that we went from consensus to bare majority. That&apos;s huge, like brexit. Is that the policy here? <a id="link-147" style="display:none;" href="#147">✪</a></div>
+<div onmouseout="$('#link-148').hide()" onmouseover="$('#link-148').show()" id="148" class="comment"><span class="name">Manu Sporny</span>:  Just for this call <a id="link-148" style="display:none;" href="#148">✪</a></div>
+<div class="information">&lt;mahmoud&gt; for future we should do supermajority</div>
+<div onmouseout="$('#link-149').hide()" onmouseover="$('#link-149').show()" id="149" class="comment"><span class="name">Joe Andrieu</span>:  Let&apos;s not do this again <a id="link-149" style="display:none;" href="#149">✪</a></div>
+<div class="comment-continuation">... I agree we don&apos;t have consensus... but disagree about it becoming policy</div>
+<div onmouseout="$('#link-150').hide()" onmouseover="$('#link-150').show()" id="150" class="comment"><span class="name">Mike Prorock</span>: +1 Mahmoud - supermajority would be much better <a id="link-150" style="display:none;" href="#150">✪</a></div>
+<div onmouseout="$('#link-151').hide()" onmouseover="$('#link-151').show()" id="151" class="comment"><span class="name">Manu Sporny</span>:  Agreed <a id="link-151" style="display:none;" href="#151">✪</a></div>
+<div onmouseout="$('#link-152').hide()" onmouseover="$('#link-152').show()" id="152" class="comment"><span class="name">Joe Andrieu</span>:  Appreciated trying to get through the bottlenecks <a id="link-152" style="display:none;" href="#152">✪</a></div>
+<div id="resolution-5" class="resolution"><strong>RESOLUTION:</strong> One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens.</div>
+<div onmouseout="$('#link-153').hide()" onmouseover="$('#link-153').show()" id="153" class="comment"><span class="name">Manu Sporny</span>:  Resolved, as the way we&apos;re running the call <a id="link-153" style="display:none;" href="#153">✪</a></div>
+<div class="comment-continuation">... Last proposal... think it&apos;s pretty straightforward</div>
+<div onmouseout="$('#link-154').hide()" onmouseover="$('#link-154').show()" id="154" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: The VC HTTP API MUST define access actions in terms of OAuth 2 RAR structures. <a id="link-154" style="display:none;" href="#154">✪</a></div>
+<div onmouseout="$('#link-155').hide()" onmouseover="$('#link-155').show()" id="155" class="comment"><span class="name">Justin Richer</span>:  Just to mirror point on previous ones: this is something the spec has to define. If you want to use horrible colon-delimited scope strings, go ahead; this is saying what the spec defines, not what is mandatory to use. Want the group to keep that in mind <a id="link-155" style="display:none;" href="#155">✪</a></div>
+<div onmouseout="$('#link-156').hide()" onmouseover="$('#link-156').show()" id="156" class="comment"><span class="name">Manu Sporny</span>:  Justin, are you ok with this wording? <a id="link-156" style="display:none;" href="#156">✪</a></div>
+<div onmouseout="$('#link-157').hide()" onmouseover="$('#link-157').show()" id="157" class="comment"><span class="name">Manu Sporny</span>: PRE-PROPOSAL: The VC HTTP API MUST define access actions (stuff you can do with the API) in terms of OAuth 2 RAR structures. <a id="link-157" style="display:none;" href="#157">✪</a></div>
+<div onmouseout="$('#link-158').hide()" onmouseover="$('#link-158').show()" id="158" class="comment"><span class="name">Justin Richer</span>:  As long as it&apos;s clear that access actions are &quot;stuff you can do with the API&quot; <a id="link-158" style="display:none;" href="#158">✪</a></div>
+<div onmouseout="$('#link-159').hide()" onmouseover="$('#link-159').show()" id="159" class="comment"><span class="name">Mike Prorock</span>: -1 Not well enough detined <a id="link-159" style="display:none;" href="#159">✪</a></div>
+<div class="comment-continuation">... That&apos;s fine Don&apos;t know how informal you want it to be. Thanks</div>
+<div onmouseout="$('#link-160').hide()" onmouseover="$('#link-160').show()" id="160" class="comment"><span class="name">Manu Sporny</span>:  Mike, not yet running proposal. -1 about wording of proposal? <a id="link-160" style="display:none;" href="#160">✪</a></div>
+<div class="comment-continuation">... How would you change the proposal to be better defined?</div>
+<div onmouseout="$('#link-161').hide()" onmouseover="$('#link-161').show()" id="161" class="comment"><span class="name">Mike Prorock</span>:  Something... to make clear that based on the previous proposals it&apos;s not just GNAP, OAuth2, then we should define access actions, and then what those structures are. <a id="link-161" style="display:none;" href="#161">✪</a></div>
+<div onmouseout="$('#link-162').hide()" onmouseover="$('#link-162').show()" id="162" class="comment"><span class="name">Manu Sporny</span>:  Makes sense, but doesn&apos;t help me write the proposal <a id="link-162" style="display:none;" href="#162">✪</a></div>
+<div onmouseout="$('#link-163').hide()" onmouseover="$('#link-163').show()" id="163" class="comment"><span class="name">Justin Richer</span>:  I hear you on the call for clarity, but the exceptions you are asking for are already incorporated into the looseness of the proposal text, at least how I read it <a id="link-163" style="display:none;" href="#163">✪</a></div>
+<div class="information">&lt;mprorock&gt; that helps justin</div>
+<div class="comment-continuation">... The spec says that for this action, you have a RAR type with fields... there for you to use if using ... access token.</div>
+<div class="information">&lt;mprorock&gt; thanks</div>
+<div class="comment-continuation">... Saying is there and available, not mandating particular use</div>
+<div onmouseout="$('#link-164').hide()" onmouseover="$('#link-164').show()" id="164" class="comment"><span class="name">Manu Sporny</span>:  Noting we are out of time. Will bring this up on the next call. <a id="link-164" style="display:none;" href="#164">✪</a></div>
+<div class="comment-continuation">... Thanks everyone for your feedback, I know this was a rough call, but I think we&apos;ve made progress, which is good, unsticks us.</div>
+<div class="information">&lt;justin_richer&gt; by e all</div>
+<div class="comment-continuation">... Have a wonderful week.</div>
+</div></div></div></div></div>    </div>
+  </body>
+</html>

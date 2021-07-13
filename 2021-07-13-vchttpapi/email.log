@@ -1,0 +1,682 @@
+Thanks to Charles E. Lehner for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-07-13-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-07-13
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0067.html
+Topics:
+  1. Use Cases Update
+  2. Pull Requests - Revocation API
+  3. Issue Processing - Revocation API Proposal
+  4. Authorization Proposals
+Resolutions:
+  1. The VC HTTP API work item group will separate GNAP from 
+    OAuth2 until it is clear how much extra work GNAP would add 
+    within the scope of the specification.
+  2. One of the authorization mechanisms defined for the 
+    VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+  3. How a VC HTTP API server validates an authorization token is 
+    out of scope.
+  4. One of the authorization protocols that will be defined for 
+    use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.
+  5. One of the authorization mechanisms defined for the VC HTTP 
+    API MUST be GNAP key-bound access tokens.
+Organizer:
+  Manu Sporny
+Scribe:
+  Charles E. Lehner
+Present:
+  Manu Sporny, Charles Edebiri, Mike Prorock, Justin Richer, Brian 
+  Sletten, Orie Steele, Sanuja (Diwala), Mahmoud Alkhraishi, 
+  Charles E. Lehner, Brent Zundel, Markus Sabadello, Eric Schuh, 
+  Juan Caballero, Joe Andrieu, Aaron Coburn, Phil L (P1), Adrian 
+  Gropper, Michael Herman, Marty Reed, Ted Thibodeau
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-07-13/audio.ogg
+
+Charles E. Lehner is scribing.
+Manu Sporny:  Getting started
+Manu Sporny:  Welcome to the VC HTTP API call for ~June~ July 13, 
+  2021
+Manu Sporny:  Agenda: intros, updates on use cases, PR issue 
+  processing, authorization discussion
+Manu Sporny:  If anyone has Adrian's contact info, please ping 
+  him so he can be on the call
+Manu Sporny:  Most of call on authorization proposals. Any 
+  updates/changes to agenda?
+  ... Anyone new on the call today?
+  ... Anyone want to re-introduce themselves?
+  ... Changes in job, living situation, etc.
+  ... Moving on to Use Cases update.
+
+Topic: Use Cases Update
+
+Eric Schuh:  Reached end up initial use case triaging. have five 
+  in the well-formed category. general plan is to move from the 
+  google doc back into github to a document more like the did or vc 
+  use cases document, starting with those five.
+  ... We'll be working on putting that together through the next 
+  week or two. Still plenty of time for thoughts and feedback.
+Juan Caballero:  Sounds good. My only comment is that we have a 
+  bunch of well-formed ones that are currently usable, and a couple 
+  - not a really good spread yet of interesting holder use cases 
+  yet - that might just have to come with time; feel like that is 
+  the murkiest of the 3 scopes. Semantic fields... might have to 
+  proceed with less coverage for now.
+  ... Will present with more detail in 2 meetings.
+Manu Sporny:  Do you want to put aside time on agenda to go 
+  through it?
+Juan Caballero:  Maybe ten minutes next call, to do quick review 
+  of the ones we're more confident of - to scan them a minute each. 
+  Good this week not presenting
+Manu Sporny:  Thank you for the update. Really appreciate your 
+  work on tha document. Important to get it into shape for people 
+  to look at.
+
+Topic: Pull Requests - Revocation API
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/211
+Manu Sporny:  Pull Request 211 is basically about a revocable 
+  indicator. It raises the question of how do we say that a VC 
+  should be revoked.
+  ... End result is the group needs to discuss it.
+Orie Steele:  To summarize one more time, the way the API works 
+  today, if you want to issue a revocable credential, you must 
+  construct a flawless credential to hand to the API. So the index 
+  must be handled by you when you call the issuer API. Putting a 
+  big burden on the caller, but keeps the API simple.
+  ... I think either we need to document that better, or change 
+  its behavior.
+  ... I'm requesting changes since would rather document would 
+  have, and today you have to submit a credential with a credential 
+  status for revocation status
+Manu Sporny:  Two options... what do you want to do next? Raise 
+  another PR to do what you said, or have discussion and then raise 
+  PR?
+Orie Steele:  I want the changes I'm requesting to be implemented 
+  on the PR that's open, instead of doing what it's doing now. I'll 
+  continue requesting changes until it has that behavior.
+  ... Full disclosure: he is on our team. He's on vacation now. 
+  When he gets back, I'll have him update it.
+<adrian_gropper> Sorry to be late - family issues
+Manu Sporny:  Thank you, that covers that PR
+
+Topic: Issue Processing - Revocation API Proposal
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/204
+Manu Sporny:  Issue 204... has to do with the PR... Question 
+  about how we are doing revocation lists. Orie?
+Orie Steele:  If you want to use RevocationList2020 as a way of 
+  managing revocation list credentials, you can in fact do that 
+  with the current API. You just need to know how to construct your 
+  revocation credential to have it issued. Then have it hosted 
+  somewhere resolvable. Then consume indexes...
+  ... Comments before about issuer endpoint not describing... 
+  Issue is about are we are really testing revocation 
+  interoperably, or just that people can make well-formed JSON-LD.
+  ... There is a question here about how the interoperability 
+  tests could cover or not revocation. I'm proposing we not until 
+  document how it currently works,
+  ... to say you can already, and how. Then decide if want tests 
+  to cover it.
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-http-api/issues/204#issuecomment-877641360
+Manu Sporny:  I've added a comment that proposes part of what 
+  Orie... I think we're agreed the first step is document what's 
+  happening today.
+  ... We could provide an option. Issuer specifies type of 
+  revocation list, magic happens on issuer.
+<orie> I am in favor of your proposal AFTER we complete 
+  documenting the current behavior :)
+  ... If they want to manage that list using some other 
+  mechanism, they can do that by putting a full-blown piece of data 
+  in the credential - basically what we're doing today - or have 
+  the issuer ... manage it
+  ... +1 to document current behavior. Expectation is updating PR 
+  to document current behavior; then discuss issue, update 
+  documentation to match the proposal
+Markus Sabadello:  In this issue, one point brought up is that 
+  credentials don't require an id. Is that relevant to this issue? 
+  I find the issue not generally very well described - don't 
+  understand from comment. Is it related to the topic of 
+  credentials having id?
+Orie Steele:  You can't revoke credentials by id if it doesn't 
+  have an ID. The current API assumes credentials that will be 
+  revocable will have an id.
+Markus Sabadello:  Is this what manu's suggestion is about or 
+  something else?
+Orie Steele:  I think not the same thing. Are you asking about a 
+  revocation system that works with credentials that don't have an 
+  id.
+Markus Sabadello:  I'm not sure I understand issue 204. Starts 
+  with example... but no explanation. Then suggestion by Manu that 
+  I don't understand what has to do with the first comment... Maybe 
+  just me not understanding
+Manu Sporny:  My suggestion, Markus, is that you raise that 
+  question in the issue so that we can clarify and continue the 
+  discussion there
+Markus Sabadello:  I did that
+Manu Sporny:  It's clear that it's not clear. We'll have to 
+  clarify that later on. I don't think it's the same question, as 
+  Orie said, but wouldn't be surprised if others are also wondering 
+  the scope of the question. We'll put it on the agenda.
+Manu Sporny:  Noting that Adrian is here, let's switch to the 
+  topic of authorization.
+  ... Please folks provide feedback on 204 if you have a strong 
+  feeling on what the API should support.
+
+Topic: Authorization Proposals
+
+Manu Sporny:  These proposals were circulated on the mailing list 
+  and debated heavily. Have been having discussion for about a 
+  month now.
+  ... These are kindof the proposals that have resulted. I'm 
+  going to put as pre-proposals here. Effectively the same as what 
+  was on the mailing list.
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API work item group will 
+  not separate GNAP from OAuth2 until it is clear how much extra 
+  work GNAP would add within the scope of the VC-HTTP API 
+  specification once that scope is established by consensus.
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API work item group will 
+  separate GNAP from OAuth2 until it is clear how much extra work 
+  GNAP would add within the scope of the specification.
+Manu Sporny: PRE-PROPOSAL: One of the authorization mechanisms 
+  for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+Manu Sporny: PRE-PROPOSAL: How a VC HTTP API server validates an 
+  authorization token is out of scope.
+Manu Sporny: PRE-PROPOSAL: One of the authorization protocols for 
+  the VC-HTTP-API MUST be OAuth 2 Client Credentials.
+Manu Sporny: PRE-PROPOSAL: One of the authorization mechanisms 
+  for the VC-HTTP-API SHOULD be GNAP key-bound access tokens.
+  ... Adrian, I've modified yours to replace "We" with "the VC 
+  HTTP API work item group"
+Manu Sporny: PRE-PROPOSAL: How a VC HTTP API client gets an 
+  authorization token is out of scope.
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API MUST define access 
+  actions in terms of OAuth 2 RAR structures.
+Manu Sporny:  I believe we'll try to take them in that order.
+  ... Adrian, I've promised we would try to take your proposals 
+  up.
+  ... Because it has been so difficult to achieve unanimous 
+  consensus: on these proposals we are going to try for consensus; 
+  if we don't reach it, we are going to back up to a majority vote.
+  ... Folks are getting frustrated and want to see forward 
+  progress; this is one way to do it
+  ... Proposals with highest votes will go forward
+  ... Starting off with your proposal
+Manu Sporny:  We'll consider OAuth and GNAP together until it's 
+  clear that one is too much work
+  ... we'll have a counter-proposal afterwards that changes "will 
+  not separate" to "will separate"
+
+PROPOSAL:  The VC HTTP API work item group will not separate GNAP 
+  from OAuth2 until it is clear how much extra work GNAP would add 
+  within the scope of the VC-HTTP API specification once that scope 
+  is established by consensus.
+
+Justin Richer: -1
+Adrian Gropper: +1
+Joe Andrieu: -1
+Orie Steele: -1
+<marty_reed> 0
+Mahmoud Alkhraishi: -1
+Mike Prorock: -1
+Manu Sporny: -1
+Charles Edebiri: -1
+<markus_sabadello> 0
+<michael_herman_(trusted_digital_web)> 0
+Manu Sporny:  Holding off a little longer... have 21 people on 
+  the call
+<phil_l_(p1)> 0
+<eric_schuh> 0
+  ... not a popular proposal; let's try the opposite
+  ... that we could make decisions on one and not tie them 
+  together
+
+PROPOSAL:  The VC HTTP API work item group will separate GNAP 
+  from OAuth2 until it is clear how much extra work GNAP would add 
+  within the scope of the specification.
+
+Manu Sporny: +1
+Justin Richer: -1 (These aren't the right questions at all)
+<marty_reed> 0
+<eric_schuh> 0
+Mike Prorock: +1
+Mahmoud Alkhraishi: +1
+Charles Edebiri: +1
+<aaron_coburn> 0
+<markus_sabadello> 0
+Orie Steele: -1
+Manu Sporny:  Adrian, do you want to speak after or before the 
+  proposal
+Adrian Gropper:  Before. It's unclear, since you left the clause 
+  in there about "until it's clear how much extra work it is" which 
+  was the whole point of the first proposal
+<orie> (reason being GNAP should be ruled 100% out of scope)
+  ... so as it is, it's unclear what we're voting on
+<justin_richer> @Orie completely and wholeheartedly disagree with 
+  that argument
+  ... My point is if we don't have a scope in mind, and unsure 
+  about the work, why arguing
+Manu Sporny:  Proposal is to keep them separate until it's clear 
+  how much work GNAP would be, until it's clear the group wants to 
+  work on GNAP and OAuth2 together
+Adrian Gropper: +0
+Adrian Gropper: -1
+<michael_herman_(trusted_digital_web)> 0
+<agropper> CHANGED VOTE
+  ... waiting a bit more for people to weigh in
+<mprorock> +.5
+Orie Steele: 
+  https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup
+Juan Caballero:  Maybe would change the proposal a lot, but is 
+  the proposal to try to talk only about OAuth until the scope is 
+  clear enough to reconsider how much work GNAP is ...?
+<juan_caballero_(spruce)> +.5
+Manu Sporny:  That is what the proposal is attempting to put out 
+  there.
+Juan Caballero:  That makes it easier, thanks.
+<justin_richer> @Orie change "scope" to "authorization_details" 
+  and that's what I'm saying ...
+<justin_richer> or have been saying all along
+<justin_richer> <-- I'm on the queue
+Manu Sporny:  There is more support for this proposal than the 
+  other one. Since these are two sides of the same coin, I'm going 
+  to resolve this as the group's current position, at least as a 
+  majority vote. Other decisions may influence this.
+Justin Richer:  I wholeheartedly disagree with that. This hasn't 
+  been defined as to what "more work is", "separation" is, any 
+  pieces of this. I cannot possibly agree to either of these 
+  proposals on any of these grounds
+  ... Furthermore I think they are not asking the right 
+  questions.
+  ... The differences here that I think people are talking about 
+  shouldn't even be in consideration of scope for this working 
+  group
+  ... I understand you want to lean back on majority work, but 
+  think it is a disservice to this group
+Orie Steele: PROPSAL: the vc-http-api will only define OAuth 2.0 
+  scopes using the string and colon syntax.
+Manu Sporny:  Thank you; do you have a proposal that you think 
+  would gain majority vote on this topic?
+Justin Richer:  Proposals I would try to spitball over voice 
+  amount to: the working group must define RAR type values for each 
+  component; the API must define a means to accept OAuth2 bearer 
+  access tokens and a means to accept GNAP key-bound bearer tokens 
+  as defined in the specification
+  ... Don't say anything about ..... details where OAuth2 and 
+  GNAP differ - which should be clearly out of scope. This API 
+  should not care about any of that happening.
+<orie> GNAP and RAR should be out of scope. OAuth 2.0 and string 
+  colon syntax should be in scope.
+Adrian Gropper: +1 Justin
+  ... Which is why I had such a visceral reaction to the client 
+  credentials proposals on the ML. This API shouldn't care how I 
+  got the token, just .... and that the token has ... rights
+<justin_richer> what do you mean "string-colon syntax"?
+
+RESOLUTION: The VC HTTP API work item group will separate GNAP 
+  from OAuth2 until it is clear how much extra work GNAP would add 
+  within the scope of the specification.
+
+Manu Sporny:  Thank you Justin. These proposals are in an order, 
+  and those are coming up. I understand you disagree with this one; 
+  noted
+  ... in scribing. Resolved and moving on
+
+PROPOSAL:  One of the authorization mechanisms for the 
+  VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+
+  ... Hopefully straightforward. Questions?
+<orie> justin_r see https://petstore3.swagger.io/ or 
+  https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup 
+  for examples
+Justin Richer:  Is it mandatory to implement, or for the 
+  specification to define?
+Manu Sporny:  It is must implement. The specification must define 
+  it, and you must implement at least this.
+Justin Richer:  Thank you for the clarification
+Manu Sporny:  Do others in the group feel we should re-word this 
+  to make it clear?
+Justin Richer: @Orie: RAR was invented to get away from 
+  structured scopes because they are dangerous.
+  ... Is it clear what the question is asking based on Justin's 
+  clarification, or need to reword?
+<justin_richer> @Orie I know because I invented colon-separated 
+  structured scopes over a decade ago and know my mistakes :P
+
+PROPOSAL:  One of the authorization mechanisms for the 
+  VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+
+Manu Sporny: +1
+Justin Richer: -1
+Orie Steele: +1
+Adrian Gropper: -1
+Mike Prorock: +1
+  ... No change; the assumption is that one of the mechanisms 
+  defined in the specification is going to be OAuth2 bearer tokens, 
+  and an implementation must implement it. There's the proposal
+<eric_schuh> 0
+Mahmoud Alkhraishi: +1
+<marty_reed> 0
+<aaron_coburn> 0
+<michael_herman_(trusted_digital_web)> 0
+<justin_richer> (reason for -1: MTI and mandatory-to-define are 
+  separate questions; API spec should define but not mandate use)
+Markus Sabadello: -1
+<juan_caballero_(spruce)> or @markus
+
+PROPOSAL:  One of the authorization mechanisms defined for the 
+  VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+
+Manu Sporny:  Is there a variation to this proposal, Justin, 
+  Markus, that would change your -1 to a +1?
+<justin_richer> or more specifically:
+Markus Sabadello:  I have to admit I haven't fully thought 
+  through and followed the discussion on OAuth 2 and all that; but 
+  probably there are legitimate implementations of this API that 
+  don't do OAuth 2 bearer tokens. Don't feel it's right to make it 
+  a requirement to support it. Could change to SHOULD instead of 
+  MUST
+<justin_richer> actually no:
+Manu Sporny:  Concern about the second proposal is it may get 
+  -1s. Could split apart to say the spec must define it
+  ... Proposal is to pick up Justin's proposal ...
+<mprorock> why do we need RAR defined as a part of this proposal
+<justin_richer> @mprorock because otherwise it's just "get a 
+  token somehow"
+
+PROPOSAL:  One of the authorization mechanisms defined for the 
+  VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+
+Manu Sporny: +1
+<justin_richer> and not "this kind of token can do these actions 
+  on this API"
+Mahmoud Alkhraishi: +1
+Mike Prorock: +1
+<justin_richer> +0.5 (should be RAR)
+Orie Steele: +1
+Manu Sporny:  Basically saying the spec will define it; we 
+  haven't said about whether you have to implement it
+Marty Reed: +1
+Joe Andrieu: +1
+<markus_sabadello> +0.5
+Adrian Gropper: -1 Must be RAR
+Eric Schuh: +1
+<michael_herman_(trusted_digital_web)> 0
+<justin_richer> if it's not defined as RAR by the spec, you get 
+  people doing stupid ideas like colon-separated structure strings 
+  for scopes :)
+Manu Sporny:  This is looking better. Adrian, we'll pick up the 
+  RAR proposal later. Does that change your -1, or are you asking 
+  specifically to bind the decision to having to use OAuth + RAR?
+<orie> yeah, i guess calling okta and auth 0 stupid is the kind 
+  of inclusive and enterprise security culture we are lookin 
+  for....
+
+RESOLUTION: One of the authorization mechanisms defined for the 
+  VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+
+Adrian Gropper:  I'm still grappling with the issue to understand 
+  OAuth2 in our context. So don't worry... I can't speak to this 
+  decision. Justin says SHOULD... so I'm happy with SHOULD.
+<justin_richer> that's not a normative should I'm arguing for, 
+  fwiw...
+<mprorock> if it is not defined as RAR we can work with 
+  commercial implementations out in the wild that are already using 
+  our implementation of vc-http-api
+<juan_caballero_(spruce)> /me 
+  what:an:embarassing:way:to:find:out:justin:thinks:i'm:stupid:D
+<mprorock> btw - i like RAR in principle
+Manu Sporny:  Moving on to whether implementations should 
+  implement this. Or release some pressure and delay that decision. 
+  This is a good position already. Unless people want to settle 
+  this now, whether an implementation MUST or SHOULD implement it.
+  ... Do people want to put that before the group?
+Joe Andrieu: +1 To defer
+  ... seeing no opposition to that approach, going on to the next 
+  proposal
+
+PROPOSAL:  How a VC HTTP API server validates an authorization 
+  token is out of scope.
+
+  ... Next proposal: to put how an authorization token is 
+  validated out of scope.
+Justin Richer: +1
+Adrian Gropper: +1
+Manu Sporny: +1
+Markus Sabadello: +1
+Marty Reed: +1
+  ... basically says the vc-http-api server is going to get an 
+  authorization token as input, and the spec is not going to define 
+  how that is a valid authorization token; it's out of scope; i 
+  believe Justin proposed this on a previous call
+Eric Schuh: +1
+Orie Steele: +1
+Mike Prorock: +1
+Joe Andrieu: +1
+Mahmoud Alkhraishi: +1
+  ... holding a little longer... looking good
+
+RESOLUTION: How a VC HTTP API server validates an authorization 
+  token is out of scope.
+
+Manu Sporny:  Good; my expectation is everyone already thought 
+  that was out of scope, but good to get that on the record.
+  ... Next proposals have to do withi GNAP key-bound access 
+  tokens and a protocol. request Orie had that one of the 
+  authorization protocols must be OAuth2 client credentials. We 
+  could change it in the same way Justin suggested we change the 
+  other proposal...
+<mprorock> one of the possible... ?
+  ... Basically a "spec will define" thing.
+<orie> going from 0 authorization to 1 is the hardest :)
+<justin_richer> rewording won't make me like it more, fwiw...
+  ... One of the authorization protocols that would be defined 
+  for use in the VC HTTP API must be OAuth2 client credentials
+Manu Sporny: PRE-PROPOSAL: One of the authorization protocols 
+  that will be defined for use in the VC-HTTP-API MUST be OAuth 2 
+  Client Credentials.
+Adrian Gropper:  Just to make sure how we are using Client 
+  Credentials: does that mean there can be no delegation?
+<justin_richer> yes, that's exactly what that means
+  ... by the whoever is in control of the credential - whether 
+  the subject (typically)...
+  ... Is this making a statement on the ability to delegate?
+Orie Steele: https://oauth.net/2/grant-types/client-credentials/
+Manu Sporny:  It is saying you cannot delegate if you are using 
+  OAuth2 Client Credentials, but not saying you can't use another 
+  protocol than Client Credentials
+Orie Steele: 
+  https://datatracker.ietf.org/doc/html/rfc6749#section-4.4
+  ... Meaning you can use GNAP, ZCaps, other mechanisms, we just 
+  haven't all agreed to define that yet.
+  ... Does that help?
+Adrian Gropper:  I understand the explanation; I will vote 
+  against Client Credentials given the context
+Mike Prorock:  Adding context... Understand the need for 
+  delegation... There are tons of use cases, specifically in a 
+  system-to-system context (e.g. supply chain use cases) where 
+  delegation might not make sense, which is where the OAuth path 
+  well established in enterprise is simplist to go forward
+  ... Important to say this is not the only forward
+  ... Would not say is only path forward; important to say other 
+  more privacy-preserving use cases have paths, use cases other 
+  than my own
+<agropper> Delegation is an essential human right - as the "law 
+  of Agency" - it cannot be optional
+  ... There are other use cases beyond the scenarios we are 
+  thinking of, that have broad adoption in the marketplace
+<justin_richer> /me puts soapbox away...
+Mike Prorock: +1 Understand
+Manu Sporny:  I appreciate that statement. We don't want everyone 
+  to go on their soapbox. Have done that on the mailing list.
+<juan_caballero_(spruce)> /me just realized there was soap in 
+  here
+  ... Want to get to proposals; don't have a lot of time.
+
+PROPOSAL:  One of the authorization protocols that will be 
+  defined for use in the VC-HTTP-API MUST be OAuth 2 Client 
+  Credentials.
+
+Manu Sporny:  Let's go ahead and run the proposal. To Mike's 
+  point: this is saying that *one* of the protocols (not making 
+  others illegal) that will be defined will be OAuth2 Client 
+  Credentials
+Justin Richer: -1: The spec should have no say in the details of 
+  how the token was gotten, this is unnecessarily limiting and 
+  narrow for no benefit -- there's no need to call this out 
+  explicitly. I would go further negative on the scale if possible.
+Orie Steele: +1
+Mike Prorock: +1
+Adrian Gropper: -1 Agency for the subject cannot be optional
+Manu Sporny: +1
+Ted Thibodeau: +1
+<marty_reed> 0
+<joe_andrieu> 0
+Mahmoud Alkhraishi: +1
+<eric_schuh> 0
+<justin_richer> to me this isn't about closing a door, it's about 
+  defining a door we shouldn't
+<markus_sabadello> -0.5
+Ted Thibodeau:  I'm reaching an extreme level of frustration with 
+  the blockage that is unquestionably coming from Adrian. We are 
+  not closing doors to the other things he wants to do - which we 
+  think are good - But he is throwing out the baby with the 
+  bathwater. That's not okay here
+Manu Sporny:  Thanks for the input. That is the reason we have 
+  moved to majority vote rather than consensus.
+  ... The reason there is pushback is there are people in the 
+  group that feel this is a door we should not define - and 
+  legitimate reasons
+  ... Reminder to please not litigate; we've done that over the 
+  past month
+<justin_richer> This is a mistake and will hurt the 
+  interoperability of the specification.
+Manu Sporny:  Resolving this, moving to the next one.
+
+RESOLUTION: One of the authorization protocols that will be 
+  defined for use in the VC-HTTP-API MUST be OAuth 2 Client 
+  Credentials.
+
+  ... The next item up is that one of the authorization 
+  mechanisms for the VC HTTP API should be GNAP key-bound access 
+  tokens
+Manu Sporny: PRE-PROPOSAL: One of the authorization mechanisms 
+  for the VC-HTTP-API SHOULD be GNAP key-bound access tokens.
+  ... Justin, do you want to modify this in any way
+Justin Richer:  Yes, use same language as before - mechanisms 
+  defined by the API - and MUST - talking about inclusion in the 
+  API, not mandatory for use
+Manu Sporny: PRE-PROPOSAL: One of the authorization mechanisms 
+  defined for the VC HTTP API MUST be GNAP key-bound access tokens.
+
+PROPOSAL:  One of the authorization mechanisms defined for the VC 
+  HTTP API MUST be GNAP key-bound access tokens.
+
+Justin Richer:  That looks right to me
+<justin_richer> +1, it's an option to define
+Adrian Gropper: +1
+Mahmoud Alkhraishi: +1
+<mprorock> +.25 (like it in principle, but can't find a good gnap 
+  impl anywhere)
+Orie Steele: -1
+Marty Reed: +1
+Joe Andrieu: -1
+<manu> -0.5 maybe later, want to focus on client credentials for 
+  now.
+Markus Sabadello: +1
+<tallted> -0.2 GNAP seems too immature to MUST
+<eric_schuh> 0
+Justin Richer:  I just want to point out that if we limit the 
+  scope of the WG to what i have been proposing, then the 
+  definitions for OAuth2 and GNAP are effectively no different from 
+  one another, and do not rely on the inner workings of either 
+  protocol - which is why I am strongly against the definition of 
+  client credentials - think that is way too far for an API to 
+  define
+  ... For everyone saying this does not meet immediate commercial 
+  objectives: I cannot buy this API off the shelf either.
+Manu Sporny:  Given where we are with this, I'm not going to run 
+  the counter proposal, as I think it would be damaging.
+  ... If we follow that line of reasoning, it should become 
+  obvious... Leaving the door open
+<justin_richer> it becomes especially obvious if you use RAR to 
+  define access
+<mprorock> @Justin there are commercial and open source 
+  implementations of the vc-http-api today fyi
+<juan_caballero_(spruce)> +1, would love to see some examples of 
+  how hard/easy/deterministically a GNAP equivalent can be 
+  derived/generated with concrete examples
+<justin_richer> @mprorock but the spec isn't finished yet, it's 
+  not mature :P
+<mprorock> @justin ;)
+Adrian Gropper:  Buy the rules of majority voting today, I would 
+  say it resolved as much as the previous ones.
+Justin Richer:  I agree, for what it's worth
+Manu Sporny:  I'm looking...
+<justin_richer> (thank you scribe, sorry for jumping queue)
+  ... That's correct
+  ... We'll resolve it as majority-supported; apologies for that.
+Joe Andrieu:  I would not have consented that we went from 
+  consensus to bare majority. That's huge, like brexit. Is that the 
+  policy here?
+Manu Sporny:  Just for this call
+<mahmoud> for future we should do supermajority
+Joe Andrieu:  Let's not do this again
+  ... I agree we don't have consensus... but disagree about it 
+  becoming policy
+Mike Prorock: +1 Mahmoud - supermajority would be much better
+Manu Sporny:  Agreed
+Joe Andrieu:  Appreciated trying to get through the bottlenecks
+
+RESOLUTION: One of the authorization mechanisms defined for the 
+  VC HTTP API MUST be GNAP key-bound access tokens.
+
+Manu Sporny:  Resolved, as the way we're running the call
+  ... Last proposal... think it's pretty straightforward
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API MUST define access 
+  actions in terms of OAuth 2 RAR structures.
+Justin Richer:  Just to mirror point on previous ones: this is 
+  something the spec has to define. If you want to use horrible 
+  colon-delimited scope strings, go ahead; this is saying what the 
+  spec defines, not what is mandatory to use. Want the group to 
+  keep that in mind
+Manu Sporny:  Justin, are you ok with this wording?
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API MUST define access 
+  actions (stuff you can do with the API) in terms of OAuth 2 RAR 
+  structures.
+Justin Richer:  As long as it's clear that access actions are 
+  "stuff you can do with the API"
+Mike Prorock: -1 Not well enough detined
+  ... That's fine Don't know how informal you want it to be. 
+  Thanks
+Manu Sporny:  Mike, not yet running proposal. -1 about wording of 
+  proposal?
+  ... How would you change the proposal to be better defined?
+Mike Prorock:  Something... to make clear that based on the 
+  previous proposals it's not just GNAP, OAuth2, then we should 
+  define access actions, and then what those structures are.
+Manu Sporny:  Makes sense, but doesn't help me write the proposal
+Justin Richer:  I hear you on the call for clarity, but the 
+  exceptions you are asking for are already incorporated into the 
+  looseness of the proposal text, at least how I read it
+<mprorock> that helps justin
+  ... The spec says that for this action, you have a RAR type 
+  with fields... there for you to use if using ... access token.
+<mprorock> thanks
+  ... Saying is there and available, not mandating particular use
+Manu Sporny:  Noting we are out of time. Will bring this up on 
+  the next call.
+  ... Thanks everyone for your feedback, I know this was a rough 
+  call, but I think we've made progress, which is good, unsticks 
+  us.
+<justin_richer> by e all
+  ... Have a wonderful week.
