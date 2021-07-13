@@ -1,0 +1,432 @@
+[2021-07-13T20:00:15.203Z]	<manu>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0067.html
+[2021-07-13T20:00:15.203Z]	<manu>	Chair: manu
+[2021-07-13T20:00:15.203Z]	<Charles_Edebiri>	present+
+[2021-07-13T20:00:15.204Z]	<mprorock>	present+
+[2021-07-13T20:00:15.205Z]	<Manu_Sporny>	present+
+[2021-07-13T20:00:15.205Z]	<Justin_Richer>	present+
+[2021-07-13T20:00:19.960Z]	<Brian>	present+
+[2021-07-13T20:00:33.094Z]	<Orie>	present+
+[2021-07-13T20:00:38.943Z]	<Sanuja_(Diwala)>	present+
+[2021-07-13T20:00:56.040Z]	<Mahmoud>	present+
+[2021-07-13T20:01:10.617Z]	<Charles_E._Lehner>	present+
+[2021-07-13T20:01:34.730Z]	<Brent>	present+
+[2021-07-13T20:01:44.159Z]	<Markus_Sabadello>	present+
+[2021-07-13T20:02:11.601Z]	<Eric_Schuh>	present+
+[2021-07-13T20:02:22.450Z]	<Juan_Caballero_(Spruce)>	present+
+[2021-07-13T20:02:51.614Z]	<Joe_Andrieu>	present+
+[2021-07-13T20:02:53.282Z]	<manu>	scribe: cel
+[2021-07-13T20:03:10.584Z]	<cel>	manu: Getting started
+[2021-07-13T20:03:38.593Z]	<cel>	manu: Welcome to the VC HTTP API call for ~June~ July 13, 2021
+[2021-07-13T20:03:56.545Z]	<cel>	manu: agenda: intros, updates on use cases, PR issue processing, authorization discussion
+[2021-07-13T20:04:07.798Z]	<Aaron_Coburn>	present+
+[2021-07-13T20:04:15.136Z]	<cel>	manu: If anyone has Adrian's contact info, please ping him so he can be on the call
+[2021-07-13T20:04:30.183Z]	<cel>	manu: Most of call on authorization proposals. Any updates/changes to agenda?
+[2021-07-13T20:04:36.920Z]	<Phil_L_(P1)>	present+
+[2021-07-13T20:04:38.086Z]	<cel>	... Anyone new on the call today?
+[2021-07-13T20:04:52.847Z]	<cel>	... Anyone want to re-introduce themselves?
+[2021-07-13T20:05:02.209Z]	<cel>	... Changes in job, living situation, etc.
+[2021-07-13T20:05:11.150Z]	<cel>	... Moving on to Use Cases update.
+[2021-07-13T20:05:12.615Z]	<manu>	Topic: Use Cases Update
+[2021-07-13T20:05:53.521Z]	<cel>	Schuh: reached end up initial use case triaging. have five in the well-formed category. general plan is to move from the google doc back into github to a document more like the did or vc use cases document, starting with those five.
+[2021-07-13T20:06:07.385Z]	<cel>	... We'll be working on putting that together through the next week or two. Still plenty of time for thoughts and feedback.
+[2021-07-13T20:07:21.252Z]	<cel>	Juan: Sounds good. My only comment is that we have a bunch of well-formed ones that are currently usable, and a couple - not a really good spread yet of interesting holder use cases yet - that might just have to come with time; feel like that is the murkiest of the 3 scopes. Semantic fields... might have to proceed with less coverage for now.
+[2021-07-13T20:07:26.863Z]	<cel>	... Will present with more detail in 2 meetings.
+[2021-07-13T20:07:35.399Z]	<cel>	manu: Do you want to put aside time on agenda to go through it?
+[2021-07-13T20:07:57.335Z]	<cel>	Juan: Maybe ten minutes next call, to do quick review of the ones we're more confident of - to scan them a minute each. Good this week not presenting
+[2021-07-13T20:08:15.505Z]	<cel>	manu: Thank you for the update. Really appreciate your work on tha document. Important to get it into shape for people to look at.
+[2021-07-13T20:08:17.545Z]	<manu>	Topic: Pull Requests - Revocation API
+[2021-07-13T20:08:23.176Z]	<manu>	https://github.com/w3c-ccg/vc-http-api/pull/211
+[2021-07-13T20:08:47.357Z]	<cel>	manu: Pull Request 211 is basically about a revocable indicator. It raises the question of how do we say that a VC should be revoked.
+[2021-07-13T20:08:50.290Z]	<Orie>	q+ to summarize
+[2021-07-13T20:08:57.967Z]	<cel>	... End result is the group needs to discuss it.
+[2021-07-13T20:09:49.514Z]	<cel>	Orie: To summarize one more time, the way the API works today, if you want to issue a revocable credential, you must construct a flawless credential to hand to the API. So the index must be handled by you when you call the issuer API. Putting a big burden on the caller, but keeps the API simple.
+[2021-07-13T20:09:57.114Z]	<cel>	... I think either we need to document that better, or change its behavior.
+[2021-07-13T20:10:14.065Z]	<manu>	q+ to ask about next steps
+[2021-07-13T20:10:17.926Z]	<Orie>	q-
+[2021-07-13T20:10:20.063Z]	<manu>	ack orie
+[2021-07-13T20:10:28.069Z]	<cel>	... I'm requesting changes since would rather document would have, and today you have to submit a credential with a credential status for revocation status
+[2021-07-13T20:10:51.497Z]	<Orie>	q+
+[2021-07-13T20:11:01.410Z]	<Adrian_Gropper>	present+
+[2021-07-13T20:11:02.784Z]	<manu>	ack manu
+[2021-07-13T20:11:02.939Z]	<cel>	manu: Two options... what do you want to do next? Raise another PR to do what you said, or have discussion and then raise PR?
+[2021-07-13T20:11:07.117Z]	<manu>	ack orie
+[2021-07-13T20:11:07.500Z]	<manu>	ack Orie
+[2021-07-13T20:11:26.347Z]	<cel>	Orie: I want the changes I'm requesting to be implemented on the PR that's open, instead of doing what it's doing now. I'll continue requesting changes until it has that behavior.
+[2021-07-13T20:11:44.235Z]	<cel>	... Full disclosure: he is on our team. He's on vacation now. When he gets back, I'll have him update it.
+[2021-07-13T20:11:47.162Z]	<Adrian_Gropper>	Sorry to be late - family issues
+[2021-07-13T20:11:52.564Z]	<Orie>	q-
+[2021-07-13T20:11:53.613Z]	<cel>	manu: Thank you, that covers that PR
+[2021-07-13T20:11:54.071Z]	<manu>	Topic: Issue Processing - Revocation API Proposal
+[2021-07-13T20:11:55.420Z]	<Michael_Herman_(Trusted_Digital_Web)>	present+
+[2021-07-13T20:12:11.291Z]	<manu>	https://github.com/w3c-ccg/vc-http-api/issues/204
+[2021-07-13T20:12:19.173Z]	<Orie>	q+
+[2021-07-13T20:12:23.024Z]	<cel>	manu: Issue 204... has to do with the PR... Question about how we are doing revocation lists. Orie?
+[2021-07-13T20:12:32.074Z]	<Phil_L_(P1)>	present+
+[2021-07-13T20:12:58.935Z]	<cel>	Orie: If you want to use RevocationList2020 as a way of managing revocation list credentials, you can in fact do that with the current API. You just need to know how to construct your revocation credential to have it issued. Then have it hosted somewhere resolvable. Then consume indexes...
+[2021-07-13T20:13:22.712Z]	<cel>	... Comments before about issuer endpoint not describing... Issue is about are we are really testing revocation interoperably, or just that people can make well-formed JSON-LD.
+[2021-07-13T20:13:30.727Z]	<manu>	q+ to propose next steps: https://github.com/w3c-ccg/vc-http-api/issues/204#issuecomment-877641360
+[2021-07-13T20:13:35.040Z]	<manu>	ack Orie
+[2021-07-13T20:13:37.127Z]	<Michael_Herman_(Trusted_Digital_Web)>	present+
+[2021-07-13T20:13:45.631Z]	<cel>	... There is a question here about how the interoperability tests could cover or not revocation. I'm proposing we not until document how it currently works,
+[2021-07-13T20:13:55.437Z]	<Orie>	q-
+[2021-07-13T20:13:56.733Z]	<cel>	... to say you can already, and how. Then decide if want tests to cover it.
+[2021-07-13T20:13:57.494Z]	<manu>	ack manu
+[2021-07-13T20:14:13.231Z]	<manu>	https://github.com/w3c-ccg/vc-http-api/issues/204#issuecomment-877641360
+[2021-07-13T20:14:24.359Z]	<cel>	manu: I've added a comment that proposes part of what Orie... I think we're agreed the first step is document what's happening today.
+[2021-07-13T20:14:39.049Z]	<cel>	... We could provide an option. Issuer specifies type of revocation list, magic happens on issuer.
+[2021-07-13T20:14:52.891Z]	<Orie>	I am in favor of your proposal AFTER we complete documenting the current behavior :)
+[2021-07-13T20:15:08.734Z]	<cel>	... If they want to manage that list using some other mechanism, they can do that by putting a full-blown piece of data in the credential - basically what we're doing today - or have the issuer ... manage it
+[2021-07-13T20:15:16.182Z]	<Michael_Herman_(Trusted_Digital_Web)>	present+
+[2021-07-13T20:15:40.675Z]	<cel>	... +1 to document current behavior. Expectation is updating PR to document current behavior; then discuss issue, update documentation to match the proposal
+[2021-07-13T20:15:43.250Z]	<markus_sabadello>	q+
+[2021-07-13T20:15:49.824Z]	<manu>	ack markus
+[2021-07-13T20:16:05.875Z]	<Orie>	q+ to note
+[2021-07-13T20:16:19.958Z]	<manu>	ack orie
+[2021-07-13T20:16:21.005Z]	<agropper>	present+
+[2021-07-13T20:16:24.421Z]	<cel>	markus_sabadello: In this issue, one point brought up is that credentials don't require an id. Is that relevant to this issue? I find the issue not generally very well described - don't understand from comment. Is it related to the topic of credentials having id?
+[2021-07-13T20:16:35.680Z]	<manu>	q+
+[2021-07-13T20:16:44.718Z]	<cel>	Orie: you can't revoke credentials by id if it doesn't have an ID. The current API assumes credentials that will be revocable will have an id.
+[2021-07-13T20:16:55.860Z]	<cel>	markus_sabadello: Is this what manu's suggestion is about or something else?
+[2021-07-13T20:17:11.924Z]	<cel>	Orie: I think not the same thing. Are you asking about a revocation system that works with credentials that don't have an id.
+[2021-07-13T20:17:36.858Z]	<cel>	markus_sabadello: I'm not sure I understand issue 204. Starts with example... but no explanation. Then suggestion by Manu that I don't understand what has to do with the first comment... Maybe just me not understanding
+[2021-07-13T20:17:48.642Z]	<manu>	ack manu
+[2021-07-13T20:17:50.410Z]	<cel>	manu: My suggestion, Markus, is that you raise that question in the issue so that we can clarify and continue the discussion there
+[2021-07-13T20:17:55.599Z]	<cel>	markus_sabadello: I did that
+[2021-07-13T20:18:28.171Z]	<cel>	manu: It's clear that it's not clear. We'll have to clarify that later on. I don't think it's the same question, as Orie said, but wouldn't be surprised if others are also wondering the scope of the question. We'll put it on the agenda.
+[2021-07-13T20:18:43.535Z]	<Marty_Reed>	present+
+[2021-07-13T20:18:45.216Z]	<cel>	manu: Noting that Adrian is here, let's switch to the topic of authorization.
+[2021-07-13T20:18:58.939Z]	<cel>	... Please folks provide feedback on 204 if you have a strong feeling on what the API should support.
+[2021-07-13T20:18:53.873Z]	<manu>	Topic: Authorization Proposals
+[2021-07-13T20:19:17.800Z]	<cel>	manu: These proposals were circulated on the mailing list and debated heavily. Have been having discussion for about a month now.
+[2021-07-13T20:19:41.075Z]	<cel>	... These are kindof the proposals that have resulted. I'm going to put as pre-proposals here. Effectively the same as what was on the mailing list.
+[2021-07-13T20:19:54.203Z]	<manu>	PRE-PROPOSAL: The VC HTTP API work item group will not separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the VC-HTTP API specification once that scope is established by consensus.
+[2021-07-13T20:19:54.280Z]	<manu>	PRE-PROPOSAL: The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification.
+[2021-07-13T20:19:54.280Z]	<manu>	PRE-PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+[2021-07-13T20:19:54.280Z]	<manu>	PRE-PROPOSAL: How a VC HTTP API server validates an authorization token is out of scope.
+[2021-07-13T20:19:55.201Z]	<manu>	PRE-PROPOSAL: One of the authorization protocols for the VC-HTTP-API MUST be OAuth 2 Client Credentials.
+[2021-07-13T20:19:57.209Z]	<manu>	PRE-PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API SHOULD be GNAP key-bound access tokens.
+[2021-07-13T20:19:58.338Z]	<cel>	... Adrian, I've modified yours to replace "We" with "the VC HTTP API work item group"
+[2021-07-13T20:19:59.207Z]	<manu>	PRE-PROPOSAL: How a VC HTTP API client gets an authorization token is out of scope.
+[2021-07-13T20:20:00.306Z]	<Michael_Herman_(Trusted_Digital_Web)>	present+
+[2021-07-13T20:20:01.212Z]	<manu>	PRE-PROPOSAL: The VC HTTP API MUST define access actions in terms of OAuth 2 RAR structures.
+[2021-07-13T20:20:08.882Z]	<cel>	manu: I believe we'll try to take them in that order.
+[2021-07-13T20:20:19.306Z]	<cel>	... Adrian, I've promised we would try to take your proposals up.
+[2021-07-13T20:20:42.227Z]	<cel>	... Because it has been so difficult to achieve unanimous consensus: on these proposals we are going to try for consensus; if we don't reach it, we are going to back up to a majority vote.
+[2021-07-13T20:20:59.036Z]	<cel>	... Folks are getting frustrated and want to see forward progress; this is one way to do it
+[2021-07-13T20:21:08.924Z]	<cel>	... Proposals with highest votes will go forward
+[2021-07-13T20:21:14.702Z]	<cel>	... Starting off with your proposal
+[2021-07-13T20:21:53.592Z]	<cel>	manu: we'll consider OAuth and GNAP together until it's clear that one is too much work
+[2021-07-13T20:22:26.905Z]	<cel>	... we'll have a counter-proposal afterwards that changes "will not separate" to "will separate"
+[2021-07-13T20:22:26.583Z]	<manu>	PROPOSAL: The VC HTTP API work item group will not separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the VC-HTTP API specification once that scope is established by consensus.
+[2021-07-13T20:22:29.352Z]	<Justin_Richer>	-1
+[2021-07-13T20:22:34.538Z]	<agropper>	+1
+[2021-07-13T20:22:35.226Z]	<Joe_Andrieu>	-1
+[2021-07-13T20:22:37.017Z]	<Orie>	-1
+[2021-07-13T20:22:37.062Z]	<Marty_Reed>	0
+[2021-07-13T20:22:38.045Z]	<Mahmoud>	-1
+[2021-07-13T20:22:38.448Z]	<mprorock>	-1
+[2021-07-13T20:22:40.180Z]	<manu>	-1
+[2021-07-13T20:22:42.234Z]	<Aaron_Coburn>	-1
+[2021-07-13T20:22:43.778Z]	<Juan_Caballero_(Spruce)>	-1
+[2021-07-13T20:22:49.390Z]	<Charles_Edebiri>	-1
+[2021-07-13T20:22:55.380Z]	<markus_sabadello>	0
+[2021-07-13T20:23:02.866Z]	<Michael_Herman_(Trusted_Digital_Web)>	0
+[2021-07-13T20:23:04.426Z]	<Phil_L_(P1)>	present+
+[2021-07-13T20:23:22.810Z]	<cel>	manu: holding off a little longer... have 21 people on the call
+[2021-07-13T20:23:32.319Z]	<Phil_L_(P1)>	0
+[2021-07-13T20:23:32.991Z]	<Eric_Schuh>	0
+[2021-07-13T20:24:01.514Z]	<cel>	... not a popular proposal; let's try the opposite
+[2021-07-13T20:24:17.672Z]	<cel>	... that we could make decisions on one and not tie them together
+[2021-07-13T20:24:13.063Z]	<manu>	PROPOSAL: The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification.
+[2021-07-13T20:24:25.966Z]	<manu>	+1
+[2021-07-13T20:24:26.867Z]	<Justin_Richer>	-1 (these aren't the right questions at all)
+[2021-07-13T20:24:27.124Z]	<agropper>	q+
+[2021-07-13T20:24:27.315Z]	<Marty_Reed>	0
+[2021-07-13T20:24:35.639Z]	<Eric_Schuh>	0
+[2021-07-13T20:24:35.922Z]	<mprorock>	+1
+[2021-07-13T20:24:38.832Z]	<Mahmoud>	+1
+[2021-07-13T20:24:39.052Z]	<Charles_Edebiri>	+1
+[2021-07-13T20:24:40.030Z]	<Aaron_Coburn>	0
+[2021-07-13T20:24:44.343Z]	<markus_sabadello>	0
+[2021-07-13T20:24:46.034Z]	<Phil_L_(P1)>	+1
+[2021-07-13T20:24:50.895Z]	<Orie>	-1
+[2021-07-13T20:24:52.826Z]	<cel>	manu: Adrian, do you want to speak after or before the proposal
+[2021-07-13T20:25:12.413Z]	<cel>	agropper: before. It's unclear, since you left the clause in there about "until it's clear how much extra work it is" which was the whole point of the first proposal
+[2021-07-13T20:25:14.919Z]	<Orie>	(reason being GNAP should be ruled 100% out of scope)
+[2021-07-13T20:25:20.789Z]	<cel>	... so as it is, it's unclear what we're voting on
+[2021-07-13T20:25:34.922Z]	<Justin_Richer>	@Orie completely and wholeheartedly disagree with that argument
+[2021-07-13T20:25:35.190Z]	<cel>	... My point is if we don't have a scope in mind, and unsure about the work, why arguing
+[2021-07-13T20:26:05.025Z]	<cel>	manu: Proposal is to keep them separate until it's clear how much work GNAP would be, until it's clear the group wants to work on GNAP and OAuth2 together
+[2021-07-13T20:26:09.769Z]	<agropper>	+0
+[2021-07-13T20:26:33.674Z]	<agropper>	-1
+[2021-07-13T20:26:37.809Z]	<Michael_Herman_(Trusted_Digital_Web)>	0
+[2021-07-13T20:26:38.498Z]	<agropper>	CHANGED VOTE
+[2021-07-13T20:26:38.660Z]	<cel>	... waiting a bit more for people to weigh in
+[2021-07-13T20:26:39.572Z]	<mprorock>	+.5
+[2021-07-13T20:26:54.326Z]	<Juan_Caballero_(Spruce)>	q+
+[2021-07-13T20:26:59.619Z]	<Justin_Richer>	q+
+[2021-07-13T20:27:00.197Z]	<manu>	ack agropper
+[2021-07-13T20:27:01.440Z]	<manu>	ack juan
+[2021-07-13T20:27:29.341Z]	<Orie>	https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup
+
+
+  const token = await auth0.getTokenWithPopup({
+    audience: 'https://mydomain/api/',
+    scope: 'read:rules'
+  });
+[2021-07-13T20:27:32.887Z]	<cel>	Juan: Maybe would change the proposal a lot, but is the proposal to try to talk only about OAuth until the scope is clear enough to reconsider how much work GNAP is ...?
+[2021-07-13T20:27:37.281Z]	<Juan_Caballero_(Spruce)>	+.5
+[2021-07-13T20:27:42.321Z]	<cel>	manu: That is what the proposal is attempting to put out there.
+[2021-07-13T20:27:48.030Z]	<cel>	Juan: That makes it easier, thanks.
+[2021-07-13T20:27:50.764Z]	<Justin_Richer>	@Orie change "scope" to "authorization_details" and that's what I'm saying ...
+[2021-07-13T20:27:57.055Z]	<Justin_Richer>	or have been saying all along
+[2021-07-13T20:28:06.257Z]	<Justin_Richer>	<-- I'm on the queue
+[2021-07-13T20:28:17.657Z]	<Orie>	q?
+[2021-07-13T20:28:33.910Z]	<cel>	manu: There is more support for this proposal than the other one. Since these are two sides of the same coin, I'm going to resolve this as the group's current position, at least as a majority vote. Other decisions may influence this.
+[2021-07-13T20:29:05.817Z]	<cel>	justin_r: I wholeheartedly disagree with that. This hasn't been defined as to what "more work is", "separation" is, any pieces of this. I cannot possibly agree to either of these proposals on any of these grounds
+[2021-07-13T20:29:12.099Z]	<cel>	... Furthermore I think they are not asking the right questions.
+[2021-07-13T20:29:29.543Z]	<cel>	... The differences here that I think people are talking about shouldn't even be in consideration of scope for this working group
+[2021-07-13T20:29:43.892Z]	<cel>	... I understand you want to lean back on majority work, but think it is a disservice to this group
+[2021-07-13T20:29:56.180Z]	<Orie>	PROPSAL: the vc-http-api will only define OAuth 2.0 scopes using the string and colon syntax.
+[2021-07-13T20:29:59.556Z]	<cel>	manu: Thank you; do you have a proposal that you think would gain majority vote on this topic?
+[2021-07-13T20:30:48.445Z]	<cel>	justin_r: Proposals I would try to spitball over voice amount to: the working group must define RAR type values for each component; the API must define a means to accept OAuth2 bearer access tokens and a means to accept GNAP key-bound bearer tokens as defined in the specification
+[2021-07-13T20:31:16.782Z]	<cel>	... Don't say anything about ..... details where OAuth2 and GNAP differ - which should be clearly out of scope. This API should not care about any of that happening.
+[2021-07-13T20:31:38.093Z]	<Orie>	GNAP and RAR should be out of scope. OAuth 2.0 and string colon syntax should be in scope.
+[2021-07-13T20:31:44.061Z]	<agropper>	+1 Justin
+[2021-07-13T20:31:52.536Z]	<cel>	... Which is why I had such a visceral reaction to the client credentials proposals on the ML. This API shouldn't care how I got the token, just .... and that the token has ... rights
+[2021-07-13T20:32:04.454Z]	<Justin_Richer>	what do you mean "string-colon syntax"?
+[2021-07-13T20:32:13.853Z]	<manu>	RESOLVED: The VC HTTP API work item group will separate GNAP from OAuth2 until it is clear how much extra work GNAP would add within the scope of the specification.
+[2021-07-13T20:32:19.107Z]	<cel>	manu: Thank you Justin. These proposals are in an order, and those are coming up. I understand you disagree with this one; noted
+[2021-07-13T20:32:27.955Z]	<cel>	... in scribing. Resolved and moving on
+[2021-07-13T20:32:28.682Z]	<manu>	PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+[2021-07-13T20:32:31.924Z]	<Justin_Richer>	q+
+[2021-07-13T20:32:38.077Z]	<manu>	ack justin
+[2021-07-13T20:32:39.403Z]	<manu>	ack justin
+[2021-07-13T20:32:40.618Z]	<cel>	... Hopefully straightforward. Questions?
+[2021-07-13T20:32:53.017Z]	<Orie>	justin_r see https://petstore3.swagger.io/ or https://auth0.com/docs/libraries/auth0-single-page-app-sdk#get-access-token-with-popup for examples
+[2021-07-13T20:32:53.236Z]	<cel>	justin_r: Is it mandatory to implement, or for the specification to define?
+[2021-07-13T20:33:06.218Z]	<cel>	manu: It is must implement. The specification must define it, and you must implement at least this.
+[2021-07-13T20:33:10.386Z]	<cel>	justin_r: Thank you for the clarification
+[2021-07-13T20:33:21.673Z]	<cel>	manu: Do others in the group feel we should re-word this to make it clear?
+[2021-07-13T20:33:40.843Z]	<Justin_Richer>	@Orie: RAR was invented to get away from structured scopes because they are dangerous.
+[2021-07-13T20:33:44.048Z]	<cel>	... Is it clear what the question is asking based on Justin's clarification, or need to reword?
+[2021-07-13T20:34:02.527Z]	<Justin_Richer>	@Orie I know because I invented colon-separated structured scopes over a decade ago and know my mistakes :P
+[2021-07-13T20:34:05.916Z]	<manu>	PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+[2021-07-13T20:34:09.661Z]	<manu>	+1
+[2021-07-13T20:34:09.742Z]	<Justin_Richer>	-1
+[2021-07-13T20:34:12.818Z]	<Orie>	+1
+[2021-07-13T20:34:14.713Z]	<agropper>	-1
+[2021-07-13T20:34:17.027Z]	<mprorock>	+1
+[2021-07-13T20:34:17.972Z]	<cel>	... No change; the assumption is that one of the mechanisms defined in the specification is going to be OAuth2 bearer tokens, and an implementation must implement it. There's the proposal
+[2021-07-13T20:34:25.778Z]	<Eric_Schuh>	0
+[2021-07-13T20:34:31.776Z]	<Mahmoud>	+1
+[2021-07-13T20:34:32.901Z]	<Marty_Reed>	0
+[2021-07-13T20:34:38.957Z]	<Phil_L_(P1)>	+1
+[2021-07-13T20:34:40.555Z]	<Aaron_Coburn>	0
+[2021-07-13T20:34:42.742Z]	<Michael_Herman_(Trusted_Digital_Web)>	0
+[2021-07-13T20:34:43.519Z]	<Justin_Richer>	(reason for -1: MTI and mandatory-to-define are separate questions; API spec should define but not mandate use)
+[2021-07-13T20:34:44.921Z]	<markus_sabadello>	-1
+[2021-07-13T20:35:16.004Z]	<Juan_Caballero_(Spruce)>	or @markus
+[2021-07-13T20:35:18.861Z]	<Justin_Richer>	PROPOSAL: One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+[2021-07-13T20:35:19.532Z]	<markus_sabadello>	q+
+[2021-07-13T20:35:23.087Z]	<cel>	manu: Is there a variation to this proposal, Justin, Markus, that would change your -1 to a +1?
+[2021-07-13T20:35:31.691Z]	<manu>	ack markus
+[2021-07-13T20:35:39.979Z]	<Justin_Richer>	or more specifically:
+
+PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API MUST be OAuth 2 Bearer tokens using RAR for access control.
+[2021-07-13T20:36:14.954Z]	<cel>	markus_sabadello: I have to admit I haven't fully thought through and followed the discussion on OAuth 2 and all that; but probably there are legitimate implementations of this API that don't do OAuth 2 bearer tokens. Don't feel it's right to make it a requirement to support it. Could change to SHOULD instead of MUST
+[2021-07-13T20:36:15.255Z]	<Justin_Richer>	actually no:
+
+PROPOSAL: One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens using RAR.
+[2021-07-13T20:36:29.882Z]	<cel>	manu: Concern about the second proposal is it may get -1s. Could split apart to say the spec must define it
+[2021-07-13T20:36:39.393Z]	<cel>	... Proposal is to pick up Justin's proposal ...
+[2021-07-13T20:36:54.894Z]	<mprorock>	why do we need RAR defined as a part of this proposal
+[2021-07-13T20:37:09.358Z]	<Justin_Richer>	@mprorock because otherwise it's just "get a token somehow"
+[2021-07-13T20:37:12.515Z]	<manu>	PROPOSAL: One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+[2021-07-13T20:37:21.840Z]	<manu>	+1
+[2021-07-13T20:37:22.138Z]	<Justin_Richer>	and not "this kind of token can do these actions on this API"
+[2021-07-13T20:37:25.059Z]	<Mahmoud>	+1
+[2021-07-13T20:37:26.544Z]	<mprorock>	+1
+[2021-07-13T20:37:27.871Z]	<Justin_Richer>	+0.5 (should be RAR)
+[2021-07-13T20:37:29.673Z]	<Phil_L_(P1)>	+1
+[2021-07-13T20:37:31.417Z]	<Orie>	+1
+[2021-07-13T20:37:31.845Z]	<cel>	manu: basically saying the spec will define it; we haven't said about whether you have to implement it
+[2021-07-13T20:37:33.859Z]	<Aaron_Coburn>	+1
+[2021-07-13T20:37:34.811Z]	<Marty_Reed>	+1
+[2021-07-13T20:37:35.793Z]	<Juan_Caballero_(Spruce)>	+1
+[2021-07-13T20:37:44.105Z]	<Joe_Andrieu>	+1
+[2021-07-13T20:37:48.113Z]	<markus_sabadello>	+0.5
+[2021-07-13T20:37:49.340Z]	<agropper>	-1 must be RAR
+[2021-07-13T20:37:54.394Z]	<Eric_Schuh>	+1
+[2021-07-13T20:37:56.730Z]	<Michael_Herman_(Trusted_Digital_Web)>	0
+[2021-07-13T20:38:20.093Z]	<Justin_Richer>	if it's not defined as RAR by the spec, you get people doing stupid ideas like colon-separated structure strings for scopes :)
+[2021-07-13T20:38:37.383Z]	<cel>	manu: this is looking better. Adrian, we'll pick up the RAR proposal later. Does that change your -1, or are you asking specifically to bind the decision to having to use OAuth + RAR?
+[2021-07-13T20:39:03.206Z]	<Orie>	yeah, i guess calling okta and auth 0 stupid is the kind of inclusive and enterprise security culture we are lookin for....
+[2021-07-13T20:39:07.530Z]	<manu>	RESOLVED: One of the authorization mechanisms defined for the VC-HTTP-API MUST be OAuth 2 Bearer tokens.
+[2021-07-13T20:39:08.174Z]	<cel>	agropper: I'm still grappling with the issue to understand OAuth2 in our context. So don't worry... I can't speak to this decision. Justin says SHOULD... so I'm happy with SHOULD.
+[2021-07-13T20:39:08.577Z]	<Justin_Richer>	that's not a normative should I'm arguing for, fwiw...
+[2021-07-13T20:39:08.868Z]	<mprorock>	if it is not defined as RAR we can work with commercial implementations out in the wild that are already using our implementation of vc-http-api
+[2021-07-13T20:39:15.856Z]	<Juan_Caballero_(Spruce)>	/me what:an:embarassing:way:to:find:out:justin:thinks:i'm:stupid:D
+[2021-07-13T20:39:44.101Z]	<mprorock>	btw - i like RAR in principle
+[2021-07-13T20:40:01.515Z]	<cel>	manu: Moving on to whether implementations should implement this. Or release some pressure and delay that decision. This is a good position already. Unless people want to settle this now, whether an implementation MUST or SHOULD implement it.
+[2021-07-13T20:40:08.063Z]	<cel>	... Do people want to put that before the group?
+[2021-07-13T20:40:16.728Z]	<TallTed>	present+
+[2021-07-13T20:40:23.985Z]	<Joe_Andrieu>	+1 to defer
+[2021-07-13T20:40:35.215Z]	<cel>	... seeing no opposition to that approach, going on to the next proposal
+[2021-07-13T20:40:46.203Z]	<manu>	PROPOSAL: How a VC HTTP API server validates an authorization token is out of scope.
+[2021-07-13T20:40:51.320Z]	<cel>	... Next proposal: to put how an authorization token is validated out of scope.
+[2021-07-13T20:40:55.621Z]	<Justin_Richer>	+1
+[2021-07-13T20:41:08.610Z]	<agropper>	+1
+[2021-07-13T20:41:11.220Z]	<manu>	+1
+[2021-07-13T20:41:17.316Z]	<Aaron_Coburn>	+1
+[2021-07-13T20:41:17.535Z]	<markus_sabadello>	+1
+[2021-07-13T20:41:20.337Z]	<Marty_Reed>	+1
+[2021-07-13T20:41:22.216Z]	<cel>	... basically says the vc-http-api server is going to get an authorization token as input, and the spec is not going to define how that is a valid authorization token; it's out of scope; i believe Justin proposed this on a previous call
+[2021-07-13T20:41:24.612Z]	<Eric_Schuh>	+1
+[2021-07-13T20:41:26.327Z]	<Orie>	+1
+[2021-07-13T20:41:27.603Z]	<mprorock>	+1
+[2021-07-13T20:41:28.946Z]	<Joe_Andrieu>	+1
+[2021-07-13T20:41:32.531Z]	<Mahmoud>	+1
+[2021-07-13T20:41:32.809Z]	<Juan_Caballero_(Spruce)>	+1
+[2021-07-13T20:41:36.289Z]	<Phil_L_(P1)>	+1
+[2021-07-13T20:41:59.179Z]	<cel>	... holding a little longer... looking good
+[2021-07-13T20:42:08.496Z]	<manu>	RESOLVED: How a VC HTTP API server validates an authorization token is out of scope.
+[2021-07-13T20:42:32.751Z]	<cel>	manu: good; my expectation is everyone already thought that was out of scope, but good to get that on the record.
+[2021-07-13T20:43:10.238Z]	<cel>	... Next proposals have to do withi GNAP key-bound access tokens and a protocol. request Orie had that one of the authorization protocols must be OAuth2 client credentials. We could change it in the same way Justin suggested we change the other proposal...
+[2021-07-13T20:43:13.485Z]	<mprorock>	one of the possible... ?
+[2021-07-13T20:43:24.158Z]	<cel>	... Basically a "spec will define" thing.
+[2021-07-13T20:43:30.187Z]	<Orie>	going from 0 authorization to 1 is the hardest :)
+[2021-07-13T20:43:35.822Z]	<Justin_Richer>	rewording won't make me like it more, fwiw...
+[2021-07-13T20:43:38.030Z]	<agropper>	q+
+[2021-07-13T20:43:41.462Z]	<cel>	... One of the authorization protocols that would be defined for use in the VC HTTP API must be OAuth2 client credentials
+[2021-07-13T20:43:41.743Z]	<manu>	PRE-PROPOSAL: One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.
+[2021-07-13T20:43:58.112Z]	<cel>	agropper: Just to make sure how we are using Client Credentials: does that mean there can be no delegation?
+[2021-07-13T20:44:09.952Z]	<Justin_Richer>	yes, that's exactly what that means
+[2021-07-13T20:44:17.772Z]	<cel>	... by the whoever is in control of the credential - whether the subject (typically)...
+[2021-07-13T20:44:26.832Z]	<cel>	... Is this making a statement on the ability to delegate?
+[2021-07-13T20:44:41.497Z]	<Orie>	https://oauth.net/2/grant-types/client-credentials/
+[2021-07-13T20:44:48.271Z]	<cel>	manu: It is saying you cannot delegate if you are using OAuth2 Client Credentials, but not saying you can't use another protocol than Client Credentials
+[2021-07-13T20:44:50.137Z]	<Orie>	https://datatracker.ietf.org/doc/html/rfc6749#section-4.4
+[2021-07-13T20:45:05.159Z]	<cel>	... Meaning you can use GNAP, ZCaps, other mechanisms, we just haven't all agreed to define that yet.
+[2021-07-13T20:45:07.740Z]	<cel>	... Does that help?
+[2021-07-13T20:45:13.764Z]	<mprorock>	q+
+[2021-07-13T20:45:19.088Z]	<manu>	ack agropper
+[2021-07-13T20:45:21.761Z]	<manu>	ack mprorock
+[2021-07-13T20:45:22.397Z]	<cel>	agropper: I understand the explanation; I will vote against Client Credentials given the context
+[2021-07-13T20:46:13.939Z]	<cel>	mprorock: Adding context... Understand the need for delegation... There are tons of use cases, specifically in a system-to-system context (e.g. supply chain use cases) where delegation might not make sense, which is where the OAuth path well established in enterprise is simplist to go forward
+[2021-07-13T20:46:22.489Z]	<cel>	... Important to say this is not the only forward
+[2021-07-13T20:46:42.740Z]	<manu>	q+ to make sure we focus on not making arguments, and voting on proposals :)
+[2021-07-13T20:46:44.008Z]	<cel>	... Would not say is only path forward; important to say other more privacy-preserving use cases have paths, use cases other than my own
+[2021-07-13T20:46:49.719Z]	<agropper>	Delegation is an essential human right - as the "law of Agency" - it cannot be optional
+[2021-07-13T20:46:58.161Z]	<cel>	... There are other use cases beyond the scenarios we are thinking of, that have broad adoption in the marketplace
+[2021-07-13T20:47:04.850Z]	<Justin_Richer>	/me puts soapbox away...
+[2021-07-13T20:47:09.965Z]	<mprorock>	+1 understand
+[2021-07-13T20:47:17.254Z]	<manu>	ack phil
+[2021-07-13T20:47:18.049Z]	<cel>	manu: I appreciate that statement. We don't want everyone to go on their soapbox. Have done that on the mailing list.
+[2021-07-13T20:47:18.389Z]	<Juan_Caballero_(Spruce)>	/me just realized there was soap in here
+[2021-07-13T20:47:18.445Z]	<manu>	ack manu
+[2021-07-13T20:47:24.684Z]	<cel>	... Want to get to proposals; don't have a lot of time.
+[2021-07-13T20:48:07.799Z]	<manu>	PROPOSAL: One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.
+[2021-07-13T20:48:09.621Z]	<cel>	manu: Let's go ahead and run the proposal. To Mike's point: this is saying that *one* of the protocols (not making others illegal) that will be defined will be OAuth2 Client Credentials
+[2021-07-13T20:48:09.829Z]	<Justin_Richer>	-1: the spec should have no say in the details of how the token was gotten, this is unnecessarily limiting and narrow for no benefit -- there's no need to call this out explicitly. I would go further negative on the scale if possible.
+[2021-07-13T20:48:10.755Z]	<TallTed>	q+ to ask Adrian why requiring support of OAuth2 Client Credentials (which does not support delegation), while allowing use of other mechanisms which do support delegation, is not acceptable
+[2021-07-13T20:48:13.270Z]	<Orie>	+1
+[2021-07-13T20:48:14.409Z]	<mprorock>	+1
+[2021-07-13T20:48:15.758Z]	<agropper>	-1 Agency for the subject cannot be optional
+[2021-07-13T20:48:16.946Z]	<manu>	+1
+[2021-07-13T20:48:19.273Z]	<TallTed>	+1
+[2021-07-13T20:48:24.629Z]	<Marty_Reed>	0
+[2021-07-13T20:48:29.643Z]	<Joe_Andrieu>	0
+[2021-07-13T20:48:31.112Z]	<Mahmoud>	+1
+[2021-07-13T20:48:32.959Z]	<Eric_Schuh>	0
+[2021-07-13T20:48:37.455Z]	<Phil_L_(P1)>	+1
+[2021-07-13T20:48:40.323Z]	<Juan_Caballero_(Spruce)>	+1
+[2021-07-13T20:49:01.935Z]	<Justin_Richer>	to me this isn't about closing a door, it's about defining a door we shouldn't
+[2021-07-13T20:49:13.896Z]	<markus_sabadello>	-0.5
+[2021-07-13T20:49:17.050Z]	<cel>	TallTed: I'm reaching an extreme level of frustration with the blockage that is unquestionably coming from Adrian. We are not closing doors to the other things he wants to do - which we think are good - But he is throwing out the baby with the bathwater. That's not okay here
+[2021-07-13T20:49:34.091Z]	<Aaron_Coburn>	+1
+[2021-07-13T20:49:45.750Z]	<cel>	manu: Thanks for the input. That is the reason we have moved to majority vote rather than consensus.
+[2021-07-13T20:49:56.117Z]	<Justin_Richer>	q+
+[2021-07-13T20:50:04.226Z]	<cel>	... The reason there is pushback is there are people in the group that feel this is a door we should not define - and legitimate reasons
+[2021-07-13T20:50:09.262Z]	<Justin_Richer>	q-
+[2021-07-13T20:50:18.633Z]	<cel>	... Reminder to please not litigate; we've done that over the past month
+[2021-07-13T20:50:31.211Z]	<TallTed>	q-
+[2021-07-13T20:50:43.056Z]	<Justin_Richer>	This is a mistake and will hurt the interoperability of the specification.
+[2021-07-13T20:50:43.433Z]	<cel>	manu: Resolving this, moving to the next one.
+[2021-07-13T20:50:53.624Z]	<manu>	RESOLVED: One of the authorization protocols that will be defined for use in the VC-HTTP-API MUST be OAuth 2 Client Credentials.
+[2021-07-13T20:51:17.009Z]	<cel>	... The next item up is that one of the authorization mechanisms for the VC HTTP API should be GNAP key-bound access tokens
+[2021-07-13T20:51:19.779Z]	<manu>	PRE-PROPOSAL: One of the authorization mechanisms for the VC-HTTP-API SHOULD be GNAP key-bound access tokens.
+[2021-07-13T20:51:23.652Z]	<cel>	... Justin, do you want to modify this in any way
+[2021-07-13T20:51:45.907Z]	<cel>	justin_r: Yes, use same language as before - mechanisms defined by the API - and MUST - talking about inclusion in the API, not mandatory for use
+[2021-07-13T20:51:47.183Z]	<manu>	PRE-PROPOSAL: One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens.
+[2021-07-13T20:51:58.219Z]	<manu>	PROPOSAL: One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens.
+[2021-07-13T20:51:59.027Z]	<cel>	justin_r: That looks right to me
+[2021-07-13T20:52:06.004Z]	<Justin_Richer>	+1, it's an option to define
+[2021-07-13T20:52:06.301Z]	<agropper>	+1
+[2021-07-13T20:52:09.018Z]	<Mahmoud>	+1
+[2021-07-13T20:52:16.053Z]	<mprorock>	+.25 (like it in principle, but can't find a good gnap impl anywhere)
+[2021-07-13T20:52:17.820Z]	<Orie>	-1
+[2021-07-13T20:52:22.245Z]	<Marty_Reed>	+1
+[2021-07-13T20:52:22.376Z]	<Joe_Andrieu>	-1
+[2021-07-13T20:52:23.635Z]	<Aaron_Coburn>	+1
+[2021-07-13T20:52:32.247Z]	<manu>	-0.5 maybe later, want to focus on client credentials for now.
+[2021-07-13T20:52:37.757Z]	<Juan_Caballero_(Spruce)>	-1 in this version, +1 in a future version :D
+[2021-07-13T20:52:44.429Z]	<markus_sabadello>	+1
+[2021-07-13T20:52:52.211Z]	<Phil_L_(P1)>	+1
+[2021-07-13T20:52:56.819Z]	<TallTed>	-0.2 GNAP seems too immature to MUST
+[2021-07-13T20:52:57.730Z]	<Eric_Schuh>	0
+[2021-07-13T20:53:07.752Z]	<Justin_Richer>	q+
+[2021-07-13T20:53:58.448Z]	<cel>	justin_r: I just want to point out that if we limit the scope of the WG to what i have been proposing, then the definitions for OAuth2 and GNAP are effectively no different from one another, and do not rely on the inner workings of either protocol - which is why I am strongly against the definition of client credentials - think that is way too far for an API to define
+[2021-07-13T20:54:18.990Z]	<cel>	... For everyone saying this does not meet immediate commercial objectives: I cannot buy this API off the shelf either.
+[2021-07-13T20:54:34.128Z]	<cel>	manu: Given where we are with this, I'm not going to run the counter proposal, as I think it would be damaging.
+[2021-07-13T20:54:47.401Z]	<agropper>	q+
+[2021-07-13T20:54:49.335Z]	<cel>	... If we follow that line of reasoning, it should become obvious... Leaving the door open
+[2021-07-13T20:54:53.853Z]	<Justin_Richer>	it becomes especially obvious if you use RAR to define access
+[2021-07-13T20:54:56.443Z]	<mprorock>	@Justin there are commercial and open source implementations of the vc-http-api today fyi
+[2021-07-13T20:55:13.080Z]	<manu>	ack justin
+[2021-07-13T20:55:16.142Z]	<manu>	ack agropper
+[2021-07-13T20:55:21.808Z]	<Juan_Caballero_(Spruce)>	+1, would love to see some examples of how hard/easy/deterministically a GNAP equivalent can be derived/generated with concrete examples
+[2021-07-13T20:55:22.406Z]	<Justin_Richer>	@mprorock but the spec isn't finished yet, it's not mature :P
+[2021-07-13T20:55:34.092Z]	<mprorock>	@justin ;)
+[2021-07-13T20:55:34.312Z]	<cel>	agropper: Buy the rules of majority voting today, I would say it resolved as much as the previous ones.
+[2021-07-13T20:55:39.852Z]	<cel>	justin_r: I agree, for what it's worth
+[2021-07-13T20:55:45.043Z]	<cel>	manu: I'm looking...
+[2021-07-13T20:55:50.277Z]	<Justin_Richer>	(thank you scribe, sorry for jumping queue)
+[2021-07-13T20:55:53.366Z]	<cel>	... That's correct
+[2021-07-13T20:56:08.072Z]	<cel>	... We'll resolve it as majority-supported; apologies for that.
+[2021-07-13T20:56:36.429Z]	<cel>	JoeAndrieu: I would not have consented that we went from consensus to bare majority. That's huge, like brexit. Is that the policy here?
+[2021-07-13T20:56:42.765Z]	<cel>	manu: Just for this call
+[2021-07-13T20:56:45.976Z]	<Mahmoud>	for future we should do supermajority
+[2021-07-13T20:56:47.995Z]	<cel>	JoeAndrieu: Let's not do this again
+[2021-07-13T20:57:05.403Z]	<cel>	... I agree we don't have consensus... but disagree about it becoming policy
+[2021-07-13T20:57:07.333Z]	<mprorock>	+1 mahmoud - supermajority would be much better
+[2021-07-13T20:57:08.765Z]	<cel>	manu: Agreed
+[2021-07-13T20:57:18.013Z]	<cel>	JoeAndrieu: Appreciated trying to get through the bottlenecks
+[2021-07-13T20:57:26.923Z]	<manu>	RESOLVED: One of the authorization mechanisms defined for the VC HTTP API MUST be GNAP key-bound access tokens.
+[2021-07-13T20:57:27.590Z]	<cel>	manu: Resolved, as the way we're running the call
+[2021-07-13T20:57:48.498Z]	<Justin_Richer>	q+
+[2021-07-13T20:57:56.342Z]	<cel>	... Last proposal... think it's pretty straightforward
+[2021-07-13T20:58:29.234Z]	<manu>	PRE-PROPOSAL: The VC HTTP API MUST define access actions in terms of OAuth 2 RAR structures.
+[2021-07-13T20:58:33.944Z]	<cel>	justin_r: Just to mirror point on previous ones: this is something the spec has to define. If you want to use horrible colon-delimited scope strings, go ahead; this is saying what the spec defines, not what is mandatory to use. Want the group to keep that in mind
+[2021-07-13T20:58:42.362Z]	<cel>	manu: Justin, are you ok with this wording?
+[2021-07-13T20:58:49.801Z]	<manu>	PRE-PROPOSAL: The VC HTTP API MUST define access actions (stuff you can do with the API) in terms of OAuth 2 RAR structures.
+[2021-07-13T20:58:52.389Z]	<cel>	justin_r: As long as it's clear that access actions are "stuff you can do with the API"
+[2021-07-13T20:58:59.255Z]	<mprorock>	-1 not well enough detined
+[2021-07-13T20:59:15.747Z]	<cel>	... That's fine Don't know how informal you want it to be. Thanks
+[2021-07-13T20:59:29.250Z]	<cel>	manu: Mike, not yet running proposal. -1 about wording of proposal?
+[2021-07-13T20:59:38.210Z]	<cel>	... How would you change the proposal to be better defined?
+[2021-07-13T20:59:48.550Z]	<Justin_Richer>	q+
+[2021-07-13T20:59:53.544Z]	<manu>	ack justin
+[2021-07-13T21:00:01.575Z]	<manu>	ack justin
+[2021-07-13T21:00:09.522Z]	<cel>	mprorock: Something... to make clear that based on the previous proposals it's not just GNAP, OAuth2, then we should define access actions, and then what those structures are.
+[2021-07-13T21:00:17.506Z]	<cel>	manu: Makes sense, but doesn't help me write the proposal
+[2021-07-13T21:00:40.008Z]	<cel>	justin_r: I hear you on the call for clarity, but the exceptions you are asking for are already incorporated into the looseness of the proposal text, at least how I read it
+[2021-07-13T21:00:59.862Z]	<mprorock>	that helps justin
+[2021-07-13T21:01:01.891Z]	<cel>	... The spec says that for this action, you have a RAR type with fields... there for you to use if using ... access token.
+[2021-07-13T21:01:02.842Z]	<mprorock>	thanks
+[2021-07-13T21:01:11.501Z]	<cel>	... Saying is there and available, not mandating particular use
+[2021-07-13T21:01:18.042Z]	<cel>	manu: Noting we are out of time. Will bring this up on the next call.
+[2021-07-13T21:01:40.644Z]	<cel>	... Thanks everyone for your feedback, I know this was a rough call, but I think we've made progress, which is good, unsticks us.
+[2021-07-13T21:01:43.170Z]	<Justin_Richer>	by e all
+[2021-07-13T21:01:43.754Z]	<cel>	... Have a wonderful week.
+[2021-07-13T21:02:05.447Z]	<Manu_Sporny>	present+
