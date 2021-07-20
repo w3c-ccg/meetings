@@ -1,0 +1,540 @@
+Thanks to Charles E. Lehner for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-07-20-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-07-20
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0151.html
+Topics:
+  1. Intros and Reintros
+  2. Use case update
+  3. Decision Making Method
+  4. Pull Requests
+  5. Issue Processing
+  6. OAuth2 RAR Proposal
+Resolutions:
+  1. Regarding issue 
+    https://github.com/w3c-ccg/vc-http-api/issues/34, if a caller 
+    desires to build a VC incrementally of from a template, the 
+    caller can use another API to do so and then send the fully 
+    formed VC to the VC HTTP API for processing.
+Organizer:
+  Wayne Chang and Heather Vescent and Mike Prorock
+Scribe:
+  Charles E. Lehner
+Present:
+  Mike Prorock, Justin Richer, Mike Varley, Adrian Gropper, Ted 
+  Thibodeau, Manu Sporny, Charles E. Lehner, Mahmoud Alkhraishi, 
+  Orie Steele, Markus Sabadello, Brian Richter, Phil L (P1), Juan 
+  Caballero, Eric Schuh, Brent Zundel, Tobias Looker, Kaliya Young, 
+  Marty Reed, Andrew Hughes
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-07-20/audio.ogg
+
+<cel> I could scribe
+Charles E. Lehner is scribing.
+Manu Sporny:  Welcome everyone to the VC HTTP API call.
+  ... Agenda Review, Intros, Use case updates, then mostly 
+  PR/issue processing, and the OAuth2 and RAR proposal, need to 
+  determine majority, super-majority, or back to consensus-based. 
+  Any updates/changes?
+Mahmoud Alkhraishi:  Quick note, I want to propose we use if 
+  switching to super-majority
+Manu Sporny:  Let's do that after intros and use case update
+
+Topic: Intros and Reintros
+
+  ... Anyone new to the call today?
+  ... Anyone hasn't been on the call in a while and wants to 
+  re-introduce?
+
+Topic: Use case update
+
+Eric Schuh: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.t03jb3hhyhc2
+Manu Sporny:  Eric, and Juan, can you give an update? I did not 
+  schedule you guys for an update till next week
+Eric Schuh:  Posted link, new heading, rev to github. title 
+  sections for DID use case document. we've started to fill out a 
+  few of them. also transitioned the five use cases we've 
+  identified as well-formed, to be in this new format.
+  ... Eventually this will get transferred to the markdown, etc. 
+  No big content changes
+  ... But if anyone wants to take a stab at writing an abstract 
+  or introduction, I wouldn't complain. Otherwise next week may see 
+  a first draft from us of those
+Manu Sporny:  Excellent, looks fantastic. Any other help needed?
+Eric Schuh:  It's pretty rough... If you think of something, take 
+  a shot...
+  ... We still have use case in the old format with the flow 
+  diagram... Adrian, I think we had a comment on one of yours... 
+  We're still accepting new use cases, and feel free to edit old 
+  ones
+Juan Caballero:  There's one we through together specifically 
+  with RAR in mind, as a sort of straw man for RAR, trying to 
+  imagine a situation that only works with some sort of 
+  authorization or policy enforcement
+  ... If useful, take a look.. Issuance of a VC to a human 
+  holder... two different flows... you may start by looking at the 
+  flows and then look at the text
+  ... This one not yet in the new format
+  ... If folks have strong opinions about RAR, please check it 
+  out, see if some step missing, to help make it useful. I say that 
+  because it's timely... it would be good to have authorization 
+  details right before its PR'd in
+Justin Richer: @Juan: where is that text? I don't see it in the 
+  linked document
+Manu Sporny:  Is next week a good week to put you guys on the 
+  agenda to go over what you have so far?
+https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#
+<juan_caballero_(spruce)> starts on page 17
+Eric Schuh:  Yeah, I think so. Our goal will essentially be to 
+  have a first draft of most of these sections. The requirements 
+  one may not be fully-formed of course. I think next week we 
+  should have enough
+Manu Sporny:  I'll put you guys on for 10-15 mins with some QA
+  ... I think we'll have a more relaxed meeting... pushing off 
+  some of the ... authorization discussions, to have a breather
+
+Topic: Decision Making Method
+
+Manu Sporny:  After quite a bit of discussion on authorization, 
+  we had decided to go into a majority vote. Nobody enjoyed that I 
+  don't think, but we were able to push forward on some things we 
+  had been unable to make progress on. Towards the end of the call, 
+  folks were like "let's not do this again, and if we do, it should 
+  be super-majority"
+  ... May I suggest we move back to consensus decision making...
+  ... when possible. Only if it fails for an extended period of 
+  time should we go to super-majority, and probably never do 
+  majority again.
+  ... Let's see if folks are into moving back to consensus until 
+  ~2 months of not moving forward
+Mahmoud Alkhraishi:  Procedural question: can we re-run last 
+  week's proposals as super-majority?
+  ... I know it would make last week a waste of time, but 
+  considering the amount of work put into the vc-http-api, don't 
+  think it makes sense to bind us to 51% proposals
+Justin Richer:  Any decision derailable by a single individual is 
+  not consensus
+  ... I would recommend the opposite of what Mahmoud was saying
+  ... Since there were many proposals brought which were 
+  evaluated as a set, I don't see the value of rehashing
+  ... So to be clear, I think we should run the same set of 
+  proposals, under super-majority rules as a group, and move on
+Manu Sporny:  If folks have thoughts, please put yourselves on 
+  the queue
+  ... This is not a typical W3C thing
+Justin Richer: @Cel: I said as a "simple majority" not a "super 
+  majority"
+<orie> my q is to ask about previous resolutions related to 
+  OAS3.0
+<orie> and the proposals that passed in the last meeting
+Manu Sporny:  I don't think we should re-run it... re-litigating 
+  is problematic, Justin has a point that it was a group, one of 
+  them we ran out of time, maybe for fairness sake we should give 
+  it a shot under the same position
+  ... I'm supportive of it even though I don't think I would like 
+  the outcome
+Orie Steele:  Previously we had resolved to use OpenAPI v3 
+  (Swagger) to define these APIs. I was looking at their support 
+  for ... these credentials, and it does support OAuth2 client 
+  credentials. That solution we could implement. I'm less familiar 
+  with GNAP/RAR. Since the previous call... I wonder if anyone 
+  could comment on whether it's possible they are compatible
+Adrian Gropper:  I think a lot of this might be a lot easier, if 
+  at some point, maybe not this week, we may make a resolution or 
+  decision... we only have one of three choices: 1 to reduce scope 
+  to not have authorization, 2 use GNAP with or without OAuth. 3rd 
+  option is to have group without me so you can have consensus
+  ... Over the past month, those are the 3 possibilities that 
+  have emerged. At some point we could decide which of those works 
+  best for the hard-working people getting things done here
+Manu Sporny:  Thank you Adrian. 2 comments... Groups sometimes 
+  make decisions that are slightly contradictory. That's okay, we 
+  just need to find a way through it.
+  ... Our decisions are not law... Yes we said we would write in 
+  OAS; if there are limitations, we can make up for it
+  ... I hesitate to say we can't do it if it can't be done in OAS
+<orie> part of picking OAS was to make sure our decisions were 
+  implementable using existing standards....
+<justin_richer> if you don't want to deal with opinions, get out 
+  of standards-making 😅
+<orie> but I can live with RAR being defined in ReSpec, if its 
+  not possible to define it in OAS
+  ... About those proposals... we do not ask people to leave 
+  groups, that is anti-social. Yes, it's a pain, but we're not here 
+  to exclude people.
+  ... Let me try to propose something... I think Justin is making 
+  the case for fairness in expectations. We were majority last 
+  week. We have one final proposal, about RAR, we would run as 
+  majority...
+<orie> remember you can always object to anything when the draft 
+  tries to graduate from a community draft....
+<justin_richer> @orie from a quick look, the OAuth support in 
+  OAS3 is all flow-based (grant type specific), which I believe is 
+  the wrong framing for this kind of API to begin with. So to 
+  support RAR types I would say use a simple extension for now. 
+  ReSpec would also be very simple to document this.
+  ... It is still up to people to implement this stuff... Just 
+  because people make a resolution, it doesn't mean an implementer 
+  has to implement it. I'm merely putting this forward so that we 
+  can make some progress.
+  ... Does anyone have strong objection such that they wouldn't 
+  want the group to operate that way?
+  ... Hearing no objections, we'll bring up that decision as 
+  majority, and then go back to consensus.
+
+Topic: Pull Requests
+
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0150.html
+  ... This group resolved to split the vc-http-api repo into a 
+  specification repo and a test suite repo. I've done the surgery 
+  to do that. There are two repos now, one with the spec with a 
+  clean history: preserved history - spec repo has no commits about 
+  test suite repo,
+  ... and test suite repo doesn't have commits about the spec.
+  ... Feedback, for/against?
+Orie Steele:  Now that these are split up, could they vary, 
+  super-widely?
+  ... Today we have some endpoints in spec not under test, or 
+  under test but not defined in the test.
+  ... Now that we're separating them out... can we move them 
+  faster, independently, without being bound together to the same 
+  degree
+Manu Sporny:  It's usually not a good idea, but ... ideally we 
+  try to have them converge, but maybe as a group we just 
+  understand that that might not happen for a while. It's okay, 
+  since we're in an experimental state.
+  ... Any other concerns with operating in that state for the 
+  time being?
+  ... Not hearing concerns, I'm reading it as they are separate. 
+  They're definitely not aligned today. The group is going to try 
+  to align them, that will be work.
+Orie Steele:  Related question for the spec. We have a couple 
+  other repositories that would like to link to the specification, 
+  ideally to sections of the specification.
+  ... Typically in a spec there would be informative and 
+  normative sections, but this is a CCG draft.
+  ... How legit is it to link to sections of this spec? e.g. in 
+  vaccination-vocab, universal-wallet-interop...
+<orie> so link to anchors, not section numbers
+Justin Richer:  Section stability in standards document is, 
+  believe it or not, a hotly debated topic in some circles. 
+  Basically, if the target is semantic in nature - if the anchor 
+  can be, something like "issuer endpoint" - human readable 
+  semantic anchor, that's fine for this state. ANything section 
+  number specific will be inherently fragile, and anyone linking 
+  should know that. What I would not
+Recommend this group to do is to focus on section number 
+  stability this early in the definition process... not that that 
+  was suggested.
+<dfn> etc...
+<orie> thanks justin
+  ... So yes, link to anchors - named anchors. Can still call out 
+  section numbers in the link, but know you may have to change that 
+  in the thing you are linking from.
+Manu Sporny:  Respec makes it easier. Not a dfn... create an 
+  anchor. If using respec on the spec referring to this spec (both 
+  sides), it's easier. If on e.g. traceability api, there's a way 
+  to... make it nice and pretty and work well. We have the 
+  capability, but I wouldn't start doing it anytime soon. But if 
+  you need to do it, we can.
+Manu Sporny:  Let me restate the splitting thing. The assumption 
+  is we will adopt the two split repos. It's acting on a 
+  resolution. We'll do it on the next call. Would anyone object to 
+  that?
+  ... I'm not hearing any objections. The vc-http-api repo is 
+  going to stay the same, just get a new main branch history. The 
+  test suite needs a new repo. Mike, do you have any opinion on us 
+  having to go through the whole work item progress? It's an 
+  existing work item we're splitting.
+Mike Prorock:  I say just move it, don't see a reason to slow it 
+  down.
+Manu Sporny:  Okay, we'll do that, that's easy.
+Manu Sporny:  JWT PR, voluntarily closed by Charles, thanks
+https://github.com/w3c-ccg/community/issues/198
+Orie Steele:  I'm in favor of that new work item. I've spent some 
+  time thinking about what the vc-http-api would look like if it 
+  did support multiple formats. I look forward to contributing to 
+  that work item.
+<markus_sabadello> Abstract data model!!
+  ... I expect that super quickly we will be sad that they are 
+  separate work items
+Mike Prorock: +1 Orie
+  ... Think we need that work item, but wish could ... just be 
+  credentials
+  ... And yes, the abstract data model is RDF in the VC Data 
+  Model
+Manu Sporny:  Agreed, we're in for a world of pain... but good to 
+  recognize that item needs to be put forward.
+  ... It may be a very helpful thing for the API long-term.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/211
+  ... Revocable indicator... my expectation is its still in 
+  progress...
+Orie Steele:  Right, he's out... Markus made a related issue?
+Orie Steele: https://github.com/w3c-ccg/vc-http-api/issues/204
+<juan_caballero_(spruce)> he was just chatting!
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/213
+<juan_caballero_(spruce)> he might be somewhere he can't go off 
+  mute (it's 10.30pm here)
+  ... 213 was merged, that's good... we need to make sure that's 
+  in the new history
+Manu Sporny: 
+
+Topic: Issue Processing
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/34
+  ... Those were all the PRs. Any questions/comments?
+  ... 34: atomicity ... Dave and Troy going back and forth
+<mprorock> "the before times"
+Orie Steele:  In the early days of the VC HTTP API, there was an 
+  issue of constructing issues over time. This issue would appear 
+  to hearken back to that... like constructing an object 
+  incrementally, then sign it at some point and its issued.
+  ... The current API assumes perfectly well-formed JSON on the 
+  client. You still have the ability to do that incremental 
+  building, just can't do it with this API - have to do it 
+  yourself, then pass it to the API, making sure the issuer URI is 
+  correct
+  ... This issue is about discussing the old world... like using 
+  templates... I would propose closing it, unless folks want to 
+  specifically resurrect that worldview
+Manu Sporny:  Proposal that if you want to do incremental or 
+  template-based building, that's cool but do it on your own and 
+  then send it to the API. Is that an alternate summary of what you 
+  said, Orie?
+Orie Steele:  Yes, I'm making a comment on the issue to that 
+  effect
+
+PROPOSAL:  Regarding issue 
+  https;//github.com/w3c-ccg/vc-http-api/issues/34, if a caller 
+  desires to build a VC incrementally of from a template, the 
+  caller can use another API to do so and then send the fully 
+  formed VC to the VC HTTP API for processing.
+
+Adrian Gropper: +1
+Mike Varley: +1
+Manu Sporny: +1
+Mike Prorock: +1
+Mahmoud Alkhraishi: +1
+Ted Thibodeau: +1
+Charles E. Lehner: +1
+Markus Sabadello: +1
+Eric Schuh: +1
+Orie Steele: +0 Noting the requirement is now that you must 
+  understand JSON-LD.
+<mike_varley> @orie - the constructor needs to know json-ld ;)
+Orie Steele:  This API will only understand well-formed JSON-LD 
+  if you send it something to be issued. So you are ... placing 
+  outside scope...
+<tallted> manu -- I think we want to be working from this list 
+  (sort by least recently updated) -- 
+  https://github.com/w3c-ccg/vc-http-api/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+
+RESOLUTION: Regarding issue 
+  https://github.com/w3c-ccg/vc-http-api/issues/34, if a caller 
+  desires to build a VC incrementally of from a template, the 
+  caller can use another API to do so and then send the fully 
+  formed VC to the VC HTTP API for processing.
+
+  ... Maybe people think it's a thing the API should help; with 
+  this resolution it would certainly not be helping
+Mike Prorock: +1 Ted
+Manu Sporny:  We can always change our mind...
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/36
+Manu Sporny:  This was raised by you, Orie, saying must provide a 
+  reference id... would you provide an overview?
+Orie Steele:  I couldn't make sense of the issue... I suspect 
+  it's related to the mechanics of credential revocation lists... I 
+  defer to Markus
+<orie> ahh, markus is right
+Markus Sabadello:  I think it's related more to the templating 
+  that we don't need anymore. In the original API we had reference 
+  id, so the API could automatically populate ... in credentials. 
+  So I think this is obsolete and can probably be closed.
+Manu Sporny:  Would anyone object to closing Issue 36, based on 
+  what Markus just said?
+  ... I'm adding that text and citing the resolution as the 
+  reason we are closing it.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/38
+  ... Issue 38 is about capturing requirements... Mike?
+Mike Varley:  A little related to the ZKP credential format...
+<mprorock> Doofenshmirtz is best github profile pic ever
+  ... looking if there were requirements from API... in a 
+  back-and-forth conversation to generate that credential. Since 
+  there was discussion with Daniel (whom I'm considering a 
+  subject-matter expert), brought up other issues
+<kaliya> in the medium term ZKP-CL that Indy uses is being 
+  depricated for JSON-LD ZKP with BBS+ at least this is my 
+  understanding.
+<orie> the API supports BBS+ today, but not ZKP CL
+<orie> we should run a resolution to NOT support ZKP CL
+  ... I think this issue by itself may spawn some other questions 
+  about do we need to commit to a particular schema for a VC before 
+  its issued (an issue Daniel raised)
+<orie> (a proposal)
+Kaliya Young: +1 Orie
+  ... And does this API need to support CL-signature-style 
+  zero-knowledge proof?
+  ... I'm going to go back to Daniel and ask for more guidance. 
+  If there are issues not related to ZKP, can split them out into 
+  other issues. Does that make sense / give context?
+<kaliya> Here is the paper about the different formats - 
+  https://www.lfph.io/2021/02/11/cci-verifiable-credentials-flavors-and-interoperability-paper/
+<kaliya> they are being depricated1
+<juan_caballero_(spruce)> for CL-ZKP VCs, not for BBS+ VCs
+Manu Sporny:  Just to be clear, you are taking an action to go 
+  back to Daniel to talk about it?
+Mike Varley:  Yes, about this... and maybe other issues
+Mike Prorock: +1 Orie: we should run a resolution to NOT support 
+  ZKP CL
+Tobias_Looker: ... In the context of CL, there is the notion of a 
+  credential definition, or a schema of a particular structure, a 
+  particular hosting of credentials... There is some complexity 
+  outside this API that would make it hard to issue CL credentials 
+  right now
+<mprorock> not that we can't revisit
+  ... Personally I think as a general convention for this group, 
+  when adding cryptographic schemes, we should be aiming to group 
+  them in common categories
+  ... When elliptic curves arrived, didn't redefine concepts like 
+  key and signing, just the primitives changed under the hood.
+  ... We've tried to do that with our work on BBS. Noting 
+  managing the complexity of that interface.
+  ... otherwise if we require pre-computed information before 
+  creating signature, I don't see how we'll be able to create 
+  enough standardization around this API.
+<orie> there are a number of cryptographic schemes that require 
+  "trusted setup"
+Mike Varley:  To follow up, I agree with the points Tobias 
+  raised. I'm wondering, for folks more familiar,
+<orie> and non of them are defined in VC Data Model, better than 
+  ZKP CL....
+  ... are there any other credentials using the ZKP type, or is 
+  it just reserved for the CL signature model?
+https://blog.identity.foundation/building-interoperable-zkp-credential-systems/
+Manu Sporny:  At the time the spec was put together, ZKP CL 
+  signature were the only thing considered.
+<juan_caballero_(spruce)> Early days, but there are additional 
+  options coming some day :D
+Mike Varley:  Ok. Don't want to run proposal today, but it may be 
+  the case that VC HTTP API, maybe that type of VC is not 
+  considered... But I will follow up with Daniel, and reply to the 
+  issue
+<orie> here is Microsoft's solution: 
+  https://github.com/decentralized-identity/snark-credentials
+Manu Sporny:  To be clear, we knew there would be many types of 
+  proof mechanisms, ZKP and traditional, etc.
+<orie> (from Juan's linked post)
+  ... VC Data Model said there would be many types of proofs. But 
+  were looking at it through the lens of CL signature, at least for 
+  ZKP. It looks kind of dated now. BBS+ wasn't a thing back then, 
+  and it is now: we need to take that into consideration.
+  ... Next time is you will go back to Daniel and gather input.
+  ... I don't know what you could write here, Tobias, but 
+  certainly BBS+ will be kind of the poster child for how we do 
+  this correctly in the VC HTTP API. So heads up, people may be 
+  picking your brain
+Tobias: I'll try to document it, and add to that issue.
+
+Topic: OAuth2 RAR Proposal
+
+Manu Sporny:  At the end of the call. Let's pick up the OAuth2 
+  RAR proposal. This is a majority vote...
+  ... We're doing this in the name of fairness, because of the 
+  expectation that all of those proposals (from last week) were 
+  done this way.
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API MUST define access 
+  actions in terms of OAuth 2 RAR structures.
+Justin Richer:  A lot of what I've proposed is not what's been 
+  proposed and translated.
+  ... Basically, as I've been saying, I am recommending and 
+  proposing that this working group treat the VC HTTP API as an 
+  API, what OAuth and GNAP would call a resource server, and define 
+  the means of access to both of those
+  ... I've already stated how [...] I think both should be out of 
+  scope.
+  ... What this proposal is saying, is every time there is 
+  something you can do in the API, you define a structure that says 
+  the things you can do. OAuth2 uses scopes, GNAP uses object-based 
+  language for describing in multiple dimensions - backported to 
+  OAuth2 as RAR.
+  ... This proposal is saying that we, in this group, when we 
+  define a part of the VC HTTP API, we have to define the kind of 
+  access that you would need to ask for, for using that API.
+  ... This is only for when you are using GNAP or OAuth2 to 
+  access the API. If you are not, if you are doing something else, 
+  you do something else.
+  ... Saying that API specification must define access in terms 
+  of these structures is not a requirement to implement and use 
+  them, it's a requirement on the specification to describe how to 
+  do these actions. Very much in line with the OpenAPI... 
+  describing all the things you can do...
+
+PROPOSAL:  The VC HTTP API MUST define access actions in terms of 
+  OAuth 2 RAR structures.
+
+Adrian Gropper: +1
+Justin Richer: +1
+  ... so can be neatly described for an authorization protocol 
+  like OAuth2/GNAP
+<andrew_hughes> abstain
+Mahmoud Alkhraishi: -1
+Mike Prorock: -1
+Orie Steele: -1
+<manu> -0.5, I'd like to see this as a series of PRs before 
+  making a decision.
+<eric_schuh> 0
+<mike_varley> 0
+Charles E. Lehner: +0
+<tallted> -0.3
+<markus_sabadello> +0.5
+<phil_l_(p1)> 0
+<justin_richer> @manu asking for a PR is strange if the group 
+  hasn't agreed to do it, tbh
+<tobias_looker> 0
+<orie> it looks like this
+Orie Steele: 
+  https://github.com/swagger-api/swagger-samples/blob/b8f3ca3f3c6a5a125f2835c417ed52b96bc94f13/java/inflector-springboot-jersey/src/main/swagger/swagger.yaml#L55
+<orie> but with objects.
+Manu Sporny:  It might not be clear to this group what it looks 
+  like
+Justin Richer:  Orie is right, it looks like that (link shared by 
+  Orie) but with objects.
+<orie> I can do the OAuth scopes
+<orie> side
+  ... I would work with it... If I can partner with someone who 
+  is willing to enumerate the actions possible in the APIs
+Orie Steele: Components:
+  ... I really think this is a much simpler thing than people are 
+  reacting to
+<orie> lol
+Manu Sporny:  I don't think we have agreement on what the actions 
+  are.
+Orie Steele: `:P`
+Justin Richer:  Agreeing to do this will help the group define 
+  what those actions are.
+Justin Richer:  I'm not harping on this because I'm invested in 
+  some piece of tech needing this group's permission
+  ... I think it's better for this group to do these things
+<justin_richer> @orie json and emoticons are not compatible :P
+Manu Sporny:  Not passing, but not a hard "not work on it", 
+  confusion about the actions... need to talk about it, let's take 
+  it to the mailing list.
+  ... You're right, Justin, it's a conversation we have to 
+  have... Maybe folks will be more comfortable...
+  ... It's inescapeable we'll have to talk about what actions the 
+  API performs
+<orie> justin here you go: 
+  https://gist.github.com/OR13/5c01814fb1cf929c4d0cc15ecca6a73d
+<orie> :)
+  ... Meeting next week will be a bit the same, use cases, 
+  issue/PR processing until done
