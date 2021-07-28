@@ -1,0 +1,483 @@
+Thanks to Mahmoud Alkhraishi and heather_vescent for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-07-27 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-07-27
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0236.html
+Topics:
+  1. Introductions & Reintroductions
+  2. Work Item: vc-jwt-interop
+  3. Work Items: did.tz & did.pkh
+  4. EDV 101
+  5. ID Hubs
+Organizer:
+  Wayne Chang and Heather Vescent and Mike Prorock
+Scribe:
+  Mahmoud Alkhraishi and heather_vescent
+Present:
+  Heather Vescent, Mike Prorock, Steve Gance, Manu Sporny, Mahmoud 
+  Alkhraishi, Charles E. Lehner, Dmitri Z, Kristina Yasuda, TallTed 
+  // Ted Thibodeau (he/him) (OpenLinkSw.com), Wayne Chang, Erica 
+  Connell, Phil L (P1), Kaliya Young, Juan Caballero, Ted 
+  Thibodeau, Dan Bachenheimer (Accenture), Balázs Némethi, Derek 
+  Trider, Dmitri Zagidulin, Orie Steele, James Chartrand, Derek 
+  Callaway, Nikos Fotiou, Taylor Kendall, Jeff Orgel, Mike 
+  Schwartz, Kayode Ezike, Brian Richter, Phil Archer
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-07-27/audio.ogg
+
+<heather_vescent> Minutes: https://w3c-ccg.github.io/meetings/
+<heather_vescent> Scribe Selection: 
+  https://docs.google.com/document/d/1LkqZ10z7FeV3EgMIQEJ9achEYMzy1d_2S90Q_lQ0y8M/edit#heading=h.ngyk8y939osi
+<mahmoud> i'll scribe
+Mahmoud Alkhraishi is scribing.
+No problem
+<by_caballero> thanks mahmoud!
+
+Topic: Introductions & Reintroductions
+
+Heather Vescent:  IP Note/Scribe/Selection/Communication Method 
+  jitsi etc.
+Heather Vescent:  Introductions?
+Manu Sporny:  Dan would you be able to intro?
+Derek Callaway:  Working on EDV spec as an editor, here to see 
+  Manu and Co present some updates to everyone. Pretty new to the 
+  whole thing and trying to learn!
+Heather Vescent:  Any reintroductions? Kristina?
+
+Topic: Work Item: vc-jwt-interop
+
+Kristina Yasuda:  Kristina, Identity Standards from Microsoft, 
+  looking for updates from EDVs and looking for vc-jwt-interop!
+<heather_vescent> New Work Items: 
+  https://github.com/w3c-ccg/community/issues?q=is%3Aopen+is%3Aissue+label%3A%22action%3A+review+next%22
+Heather Vescent:  Couple of different work items that have been 
+  submitted last week
+<heather_vescent> Issue 198: 
+  https://github.com/w3c-ccg/community/issues/198
+  ...: Starting with issue 198 first and if we don't have time 
+  we'll punt, just to confirm kristina you're here to talk about 
+  198 right?
+Kristina Yasuda:  Yes
+Heather Vescent:  Wanted to give opportunity to the folks on the 
+  thread and we'll timebox it to 10 minutes
+Juan Caballero:  Happy to contextualize it, the VC-HTTP-API group 
+  had a few discussions about this mostly on github/mailing list 
+  and we discussed it on this call and just for the sake of trying 
+  to parallelize work and to break apart some open questions and 
+  bring back a defined package to it, as a concrete proposal. The 
+  conversation on github has been about which spec/ how to use/ how 
+  to constrain/ different types of json-ld interop in/out of scope 
+  etc. In terms of the work item if theres volunteers who want to 
+  help define the normative areas, we're looking for examples test 
+  vectors and more. Charles and I are looking for input and are 
+  happy to drive as editors and we're open to negotiation and 
+  concensus
+Manu Sporny:  Huge +1 to this work its important that it gets 
+  done, for those without backgroudn the vc jot stuff was injected 
+  to the VC spec at the 11th hour which resulted in a bunch of 
+  non-interop work. and the other thing i wanted to suggest is to 
+  feel free to break the VC spec , i think some decisions made on 
+  the VC spec last minute have not been great, and i think that the 
+  people who care about the VC jots should get together and do the 
+  right thing rather than follow VC spec ot the letter
+<by_caballero> got it, will move fast and break everything, check
+<orie> as long as the "breaking differences" are externalized in 
+  a format that communicates why we are breaking from the spec.
+  ...: when the VC working group is recharted we can say we got 
+  it wrong and we have demonstratable interop now and lets fix it
+<by_caballero> yup fulltime for spruce
+<orie> I am happy to help support the work item as Transmute.
+<by_caballero> both of us
+<by_caballero> ^^
+<by_caballero> well that was easy
+Heather Vescent:  I had a question about the work item owners, it 
+  requires two different owners from different companies, are you 
+  both representing spruce or another org? is there a third owner ?
+  ...: orie is willing to join and that will satisfy the 
+  conditions
+<by_caballero> HARDEN that fluff
+Kristina Yasuda:  In the conversations theres a dif working group 
+  the  hope is not to break the vc data model sure theres some 
+  fluffy places that need to be cleared out, but we're trying to do 
+  it within the VC data model boundaries, atleast that is the ideal 
+  direction.
+<manu_sporny> Yes, agree with Kristina... break the JWT-VC 
+  portion of the spec... not the entire VC spec. :)
+<manu_sporny> (and ideally, just harden up the fluff)
+Juan Caballero: 
+  https://blog.identity.foundation/dif-grant-1-jws-test-suite/
+Heather Vescent:  Any other comments?
+Juan Caballero:  I just wanted to point out Kristina is referring 
+  to this work item in DIF, which is the detached signature proof 
+  spec
+<orie> DIF C&C announcement: 
+  https://blog.identity.foundation/dif-grant-1-jws-test-suite/
+<orie> JWS LD Proofs != VC-JWT :)
+Juan Caballero:  Many people are asking what is the division of 
+  labour, the DIF one is more of a conformance spec and this is 
+  more of an interop spec and it could include the JWS spec and 
+  others. and i think since a lot of us are participating in both 
+  we can keep the two aligned and non-redundant
+<kristina> thanks for the clarification, Juan!
+Charles E. Lehner:  I think everything important i wanted to said 
+  is covered and im looking forward to working with you all.
+<by_caballero> apologies to Orie for mangling that explanation 🙈
+Heather Vescent:  Haven't heard any issues or concerns, are there 
+  any issues? if so raise on the call or on github. if none within 
+  a week looks like we have support on this work item
+<orie> you DID fine Juan :)
+<by_caballero> i can be quick
+Heather Vescent:  Do you think we have time to go through the 
+  other work items?
+
+Topic: Work Items: did.tz & did.pkh
+
+https://github.com/w3c-ccg/community/issues/200
+https://github.com/w3c-ccg/community/issues/202
+Juan Caballero:  I think i can cover both in five minutes. the 
+  did:tz is specific to the tezos blockchain it has some sidetree 
+  bits attached and because theres two different teams in the tezos 
+  ecosystem we wanted to work on the spec together in the open, 
+  since we have two companies working together we thought it sbest 
+  to do it here.
+<orie> its a registry for blockchain account identifierrs
+<mprorock> StreamType right?
+Orie Steele: 
+  https://w3c-ccg.github.io/security-vocab/#blockchainAccountId
+Orie Steele: 
+  https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-10.md
+  ...: the PKH one is similar to did:key and it lets you generate 
+  it from a pk hash which is a hash of a public key. and all the 
+  pkh are indexed in an open source way to assume certain things 
+  like if its this kind of BC address tis a hash of this kind of 
+  key. Its a place to hadnle all those transformations in an open 
+  source library. Its not really a full featured did method but its 
+  more like a more fully featured did:key. Were working with Joel 
+  who is more active in DID and that community and we want this to 
+  be a public community so please feel free to drop in
+Orie Steele: Did:web + did:key only in CCG :) lol...
+<mprorock> lol
+Manu Sporny:  +1 Supportive of both items, we had a discussion 
+  about if we do did:methods in the CCG and we had a decent chunk 
+  of the community that didn't want that, its mostly from people 
+  who are opposed to DLTs in the credentials. I think tis great 
+  that we can do that, and we definitely want to talk about 
+  did:v1/did:web/did:key in here aswell
+  ...: its partially a question but im supportive of the 
+  direction and wouldnt want to send this work elsewhere, are we 
+  entering a new phase where we work on it in the CCG?
+<kristina> I thought Juan framed this as NOT being a DID method 
+  exactly?
+<manu_sporny> Well, it is, tho :) ... starts with did:...
+Orie Steele: https://github.com/w3c-ccg/did-method-key
+Orie Steele: https://github.com/w3c-ccg/did-method-web
+<manu_sporny> Yep, neither which are DLT-based DID Methods :)
+Charles E. Lehner: https://github.com/w3c-ccg/didm-btcr/
+<orie> ahh, yeah... lets keep the blockchain folks at DIF :)
+<orie> /s
+<orie> :)
+Heather Vescent:  Thats a great question, and perhaps this is 
+  also time for us to discuss what will be happening with the kind 
+  of work that was discussed in the DID working group. if its 
+  completing its work what happens to that work, do we want to take 
+  on some disucssions? my question to juan was are looking for an 
+  open meeting, are you looking for a new meeting or is this part 
+  of an existing meeting or is it part of ccg call?
+<manu_sporny> (BTCR was grand-parented-in... IIUC)
+Orie Steele: https://w3c-ccg.github.io/didm-btcr/
+Juan Caballero:  Let me just say the PKH one is much more 
+  important to get outside feedback and keep in the open, i really 
+  would like that to be a ccg item at some point maybe periodic but 
+  not weekly meetings.
+<manu_sporny> See comment above, Orie ^^^
+<manu_sporny> In other words, we've NOT been talking about Veres 
+  One in this group because we thought that would be bad form... 
+  but if form is changing... then :))))
+  ...: the tezos one i didn't know theres a boundary on DIDs and 
+  it doesn't necessary need to be public regular meetings, it was 
+  more like we want todo it on github and present a checkin in 8-10 
+  weeks and present to the group
+Heather Vescent:  My question is just we have so many 
+  meetings/task force and we don't want to add more, if theres a 
+  place to have them or to alternate or if you need some space we 
+  can talk to the chairs and figure something out
+<manu_sporny> (said in Orie voice) I look forward to 47+ DID 
+  Method task forces joining CCG :P
+<kristina> will did:pkh be registered as a did method by CCG?
+<heather_vescent> lol Manu
+Kristina Yasuda: ':P' in did:pkh turning into :p lol
+<orie> we could move the identity methods to DIF, and keep CCC 
+  "credentials" focused :)
+<manu_sporny> Kristina, did : pkh has already been registered... 
+  IIRC
+<by_caballero> ^^ it has!
+<cel> registered here: 
+  https://github.com/w3c/did-spec-registries/pull/319
+<kristina> from spruce?
+Mike Schwartz:  I think that on the PKH side of things one of the 
+  things is its not the same as did:key or did:web but it has more 
+  similar properties to that as its not explicitly tied to one 
+  ledger or another. I think theres broad benefits from the 
+  community but i think manu is raising interesting points, do we 
+  really want to open the floodgates? but i think some things are 
+  beneficial from a broader community perspective
+<kristina> thanks for catching me up!
+Juan Caballero:  I don't want to drag this out but the PKH is 
+  more like DID:KEY than a blockchain did method, and for that 
+  reason i assumed its more like specifying did:key in ccg than 
+  did:btcr
+<mprorock> it is a means of using did:key style stuff while 
+  pointing to external public keys - definitely interesting
+  ...: and it has already been registered this was more of a 
+  consultative thing and gather use-cases and it isnt being 
+  specified in a way that is restrictive
+Charles E. Lehner: Did:pkh could potentially support 
+  non-blockchain public key hashes.
+<manu_sporny> We're trying to hit 1,000 DID Methods by the end of 
+  the year! :P
+<kristina> why do we want even more did methods?
+Mike Prorock: +1 Multicodec might be an interesting path to take
+<manu_sporny> /me was joking, we definitely don't want more DID 
+  Methods unless the new ones provide utility.
+Orie Steele:  Regarding the CIAP table it is in a way reinventing 
+  aspects of the multi-codec table but in a world where we ant 
+  these things to be did:key whether its a hash of a key or 
+  something. We can just register them in the multi-codec table and 
+  we can jsut expand did:key to support keys that are hashes of 
+  keys, its really not tha thard to do but there might be a really 
+  good reason to not extend did:key to support that thing. I'll 
+  note did:key has some snowflake properties
+Orie Steele:  Similarly with BLS g1/g2 theres a key 
+  representation where you end up with 2 Public keys in one 
+  did:document
+Wayne Chang:  Initial approach was to increase did:key, the 
+  CAIP-10 isn't normative, there might not be a CAIP-10 entry due 
+  to the fact that some of them aren't blockchains. One of the 
+  requirements is we aren't encoding in base58 or multi-codec as it 
+  mangles the string and you can no longer visually scan. if we can 
+  keep that in we can continue discussions about fitting in 
+  did:key.
+<by_caballero> sorry i promised 5 minutes 🙈
+<by_caballero> apologies to dmitri and derek
+<by_caballero> and kaliya
+<manu_sporny> I would like us to have a deeper discussion on the 
+  topic at a later time... can see benefits and drawbacks.
+Heather Vescent:  This conversation got much deeper than we 
+  thought it would, do we need a  conversation about DID:methods 
+  being included?
+<kristina> me too
+<mprorock> i think community scope discussion in order at later 
+  time
+Heather Vescent:  Lets shelve the did:pkh and tz and talk about 
+  it in a future meeting
+Heather Vescent:  Onto the main event i'm passing it to kaliya 
+  who is presenting on the EDV activities
+
+Topic: EDV 101
+
+<heather_vescent> Fantastic Manu. Thank you
+Manu Sporny:  I approached this as a CCG 101 just to remind 
+  everyone on the use-cases we 're trying to identify here.
+  ...: EDV we're really looking at a number of use cases, how do 
+  we make storage providers a commodity and make it confidential so 
+  the provider does not see the data, how do we unified across 
+  devices and sharing across groups? how do we ensure continues 
+  backup mechanism? how do we store data off the DLT to protect 
+  from compromise? how do we do wallet data portability, and how do 
+  we use with ID hub?
+  ...: the suggestion is EDVs has a place in all the use cases. 
+<orie> Sounds more like standards compliant "last pass"
+  ...: the second case is Unified Storage, a lot of the cases 
+  sound like dropbox/gdrive/ondrive with a twist that its 
+  encrypted. The idea behind unified storage is you use multiple 
+  devices and the devices are available regardless of which device. 
+  The other important thing is if you lose your device you don't 
+  have to worry about data loss.
+  ...: i think this is like a standards compliant Last Pass.
+  ...: the other thing is they are trying to unify the way we 
+  share stuff, how do we have a vault where the 
+  doctor/patient/hospital access records and help them do the job 
+  they need to do while respective the patient's agency. This has 
+  lots to do with auth to access in a standards way. If you think 
+  now most apps that do sharing aren't standardized and thats what 
+  we're trying to do
+  ...: there's also a continuous backup use case where if you 
+  have zero-trust, either to always be there or to not snoop, i.e. 
+  if a company explodes for w.e reason. Because storage is cheap 
+  its easy to replicate things to your own home and devices. You 
+  cannot be held hostage to their TOS or being a perma-customer 
+  et.c
+  ...: automatic failover resync on recovery.
+  ...: theres also offdata storage, like in the case of supply 
+  chains, you don't really want to store encrypted data to a ledger 
+  as it always has a shelf life, what you want to do is point to 
+  where the data is stored off ledger.
+  ...: Finally when talking about VCs and credential 
+  repositories, one way is to give the individual to switch data 
+  providers, in theory, and we want this to be the ideal you should 
+  be able to change the provider and you can split the storage of 
+  credentials from teh entity giving you the digital wallet.
+  ...: theres an ID hub backing storage, to use EDV. We've spent 
+  a lot of time to align them
+  ...: What does an EDV actually do? EDVS are simple things: they 
+  let you store files in an encrypted fashio nin a vault: 5 
+  operations CREATe READ UPDATE DELETE QUERY. theres some share 
+  stuff as well but you can think of it as a folder.
+All operations between individual and EDV client is unencrypted 
+  but once it hits the EDV server it only sees encrypted data.
+  ...: and that in general is the design of the system and that 
+  basically it!
+  ...: maybe the chairs can go into status and where we are.
+Manu Sporny: https://identity.foundation/edv-spec/
+  ...; As Derek has mentioned He has joined as an editor, and 
+  here is a link to the spec, we have 5 implementations, and theyr 
+  estill experimentlal and trying to get to conformance test suite, 
+  as far as tech is concerned its moving forward and people are 
+  implementing it.
+  ...: and we're working on PRs and Issues every week.
+<derek_trider> Great, thanks Manu!
+Mahmoud Alkhraishi:  What's the current status of the spec, and 
+  what's the path forward, and what are the challenges for 
+  adoption?
+<by_caballero> not having did:pkh is a challenge to adoption ;)
+<by_caballero> (ducks)
+<mprorock> lol
+<manu_sporny> ha! *throws duck*
+<kristina> are there links to the implementations if available? 
+  don't see in the draft spec
+<manu_sporny> There are not :(
+<manu_sporny> I don't know if we have a list anywhere
+Dimitri: Current status is it is actively being worked on by a 
+  Joint working group by CCG and DIF, weekly calls and we have two 
+  specs, they are not chartered for work groups. Challenges to 
+  adoption: one of the challenges is that unlike other storage 
+  services which manage your encryption keys for you, one of the 
+  core goals is you and your client/software manage your keys. The 
+  storage provider don't have any access to your data. The reason 
+  is that managing encryption keys is still a very new and a 
+  challenge from both human UI, and from a tooling and library 
+  perspective. We feel its overcome-able with the usual array of 
+  tools, user education etc.
+<kristina> oh ok, I thought I heard there are in the question, 
+  thanks!
+<derek_trider> @manu Maybe we should add a list to the spec
+<manu_sporny> Kristina, there are implementations - we just don't 
+  have the list written down anywhere.
+<manu_sporny> Derek, I do think that would be a good idea.
+<kristina> thanks
+<orie> demo videos related to the universal wallet spec
+Orie Steele: 
+  https://github.com/w3c-ccg/universal-wallet-interop-spec/issues/56
+Phil Archer:  There seems like theres an implication of digital 
+  wallets or a spec of digital wallet, A has that entered design 
+  considerations here? and secondly how would this work within the 
+  context of the actual process of creating a VP from the wallet or 
+  does it not matter how the storage is abstracted?
+Dimitri: it is very much a part of the design consideration of 
+  the group, it was the primary use case we started with. we didn't 
+  want to presume people would use EDVs as backing stores, and most 
+  shouldn't assume EDVs behind the scenes, but EDVs have good 
+  stories to tell in data portability and not being locked into 
+  vendors etc.
+<orie> For example: 
+  https://github.com/transmute-industries/verifiable-data/tree/main/packages/universal-wallet-edv-plugin
+Orie Steele:  Theres a link to a video recording syncing wallet 
+  content presented to that working group over a year ago, i don't 
+  think EDVs should be exposed as a wallet interface, theres 
+  software libraries today that help you if you use edvs as a 
+  backing storage today
+Mahmoud Alkhraishi:  Conceptually speaking, the EDV is the bucket 
+  itself? a layer on top of it? is it the client talking to the 
+  bucket?
+heather_vescent is scribing.
+<orie> bucket = edv vault / bucket content = bucket file
+<orie> each file is encrypted
+Manu Sporny:  Its an interface layer on top of the storage 
+  mechanism [scribe assist by Mahmoud Alkhraishi]
+
+Topic: ID Hubs
+
+Mahmoud Alkhraishi: Dimitri: pluggable backend stores is one of 
+  the goals of this stores.
+<orie> our implementation uses mongo db as backing store, but the 
+  interface is pretty easy to implement.
+<by_caballero> very pluggable! semantics! it handles everything! 
+  all it cares about is JSON blobs!
+<by_caballero> (sorry trying to channel dan)
+<manu_sporny> MORE Dan Buchner (said to the tune of "More 
+  cowbell")
+Mahmoud Alkhraishi: Dimitri: ID hubs are another task force of 
+  the  Secure data storage working group, they're a higher level 
+  spec, if EDVS deal with low level crud ID hubs are more towards 
+  the higher ends, personal data store end of spectrum. it is not 
+  focused on encryption more on public data. it is IPFS based 
+  storage core, with a layer of application logic on top with an 
+  auth layer. one of the goals being transparent replication 
+  between a person's various hubs.
+Mahmoud Alkhraishi: ...: Hubs can be easy to use and convenient 
+  data storage applications for many clients, there's an intended 
+  level of interops with DIDs  you'll find ID hub section in your 
+  DID document in order to reference a file you'd use a DID:URL 
+  reference a did:resolver and fetch a file from it.
+<kristina> if you can access EDV using DID, will that make it 
+  also an ID Hub? probably a silly question
+Kaliya Young:  The storage will serve users if it has some 
+  understanding of the metadata around particular types of data for 
+  EX. my playlist, while the hub will not see the playlist it will 
+  know there is a playlist inside of it and share it on my behalf. 
+  [scribe assist by Mahmoud Alkhraishi]
+<manu_sporny> Kristina, not a silly question ... Hubs are a layer 
+  on top of EDVs (at least that's what's expected right now)
+<kristina> ok, so more like ID Hub be btw user and EDV like in 
+  EDV presentation
+Mahmoud Alkhraishi: Dimitri: what you're seeing here is public 
+  collections are the primary use case, to support to do lists 
+  music etc. this doesnt show the auth layer but there is one 
+  between you and your data.
+<manu_sporny> Kristina, yep, exactly.
+<by_caballero> daniel would be proud
+Manu Sporny: +1 To provide more time for Hub use cases.
+Heather Vescent:  Just wondering as we've gone a bit over on the 
+  discussions today and if we can have the time to go over them in 
+  depth in the future in the community. [scribe assist by Mahmoud 
+  Alkhraishi]
+<by_caballero> further info on the hotel travel plans can be 
+  found somewhere on the sprawling website of the hospitality and 
+  travel working group at DIF
+Mahmoud Alkhraishi: +1
+Mike Prorock: +1
+<kayode_ezike> Don't know of this was shared earlier, but can we 
+  have links to both presentations?
+Juan Caballero: 
+  https://www.notion.so/dif/HOSPITALITY-TRAVEL-SIG-242105321e1747f8bce776bf634a55b3
+Kaliya Young:  Theres now a weekly implementer call for ID hub 
+  and a biweekly spec discussion call, and i'm sure we'd love to 
+  come back to talk but the split is pretty recent and we should 
+  let them progress a little more especially on the hub side. 
+  [scribe assist by Mahmoud Alkhraishi]
+<manu_sporny> Kayode, EDV link: 
+  https://docs.google.com/presentation/d/1Ra55nRFMacSSBzhZ-Q-FbcEiUdSk2QTJk_avAv8bgzo/edit
+<kayode_ezike> Thanks Manu!
+<by_caballero> haha yeah answer is "it's complicated" :D
+<jeffo-stl> ya Manu, ditto!
+<manu_sporny> Hub + EDV relationship status: It's complicated.
+Heather Vescent:  Really excited to follow up behind the scenes 
+  so folks can join in one of your calls and do a chat, does that 
+  sound good? [scribe assist by Mahmoud Alkhraishi]
+Mahmoud Alkhraishi: Dimitri: juries still out on the interop 
+  between edvs and hbus but the current composition is fairly new
+<by_caballero> both seeing other people but still in love
+Dmitri Zagidulin:  This is the Thursday call, that alternates 
+  [scribe assist by Mahmoud Alkhraishi]
+<manu_sporny> Polyamorous Protocols.
+<tayken> Thanks all! Great stuff as always :)
+Heather Vescent:  Thanks for coming and thanks to everyone 
+  [scribe assist by Mahmoud Alkhraishi]
