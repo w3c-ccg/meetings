@@ -1,0 +1,277 @@
+Thanks to Phil Barker and Dmitri Zagidulin for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-07-26-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2021-07-26
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0251.html
+Topics:
+  1. Open Badges 3.0 Proposal Update
+  2. Complex Credentials Breakout Group
+Organizer:
+  Kerri Lemoie
+Scribe:
+  Phil Barker and Dmitri Zagidulin
+Present:
+  Kerri Lemoie, Phil Barker, Nate Otto, Stuart Freeman, Kimberly 
+  Linson, Colin, Matt Lisle, Dmitri Zagidulin, Colin Reynolds, 
+  Learning Economy, Steve Gance, Marty Reed, Phil L (P1), Ozgur Y, 
+  Simone Ravaioli (Digitary), Adam Lemmon, Jim Goodell, Taylor 
+  Kendall
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-07-26/audio.ogg
+
+<matt_lisle> fyi there were a couple of folks in the mit zoom
+<matt_lisle> i'll pop back in and let 'em know
+Kerri Lemoie: https://www.w3.org/community/credentials/join
+Kerri Lemoie: https://w3c-ccg.github.io/meetings/
+Kerri Lemoie: 
+  https://docs.google.com/document/d/1dxjsfu1MDPlfb5Q3Ry-KEDYX2gj5WNkFqw1esyki-sQ/edit#
+<phil_barker> phil_barker scribing
+Dmitri Zagidulin:  Here's how to scribe [scribe assist by Kerri 
+  Lemoie]
+Kerri Lemoie:  Any introductions? [scribe assist by Phil Barker]
+Dmitri Zagidulin:  Reintroduction. s/w engineering working creds 
+  and digital ID, with digital bazaar and MIT DCC, stepping in to 
+  some on Kim's roles [scribe assist by Phil Barker]
+Kerri Lemoie: https://osn21.e-attend.com/
+Kerri Lemoie:  Announcement OSN21 summit on rich skill 
+  descriptors this week [scribe assist by Phil Barker]
+
+Topic: Open Badges 3.0 Proposal Update
+
+<phil_barker> ... presentation last week to IMS. Will be meeting 
+  with IMS Open Badges & IMS CLR teams. More updates in couple of 
+  weeks
+
+Topic: Complex Credentials Breakout Group
+
+<phil_barker> ... Marty to give update on complex credentials 
+  work.
+<phil_barker> Marty Reed: Phil Long will do intro
+<phil_barker> ... Randa have been work on more complex 
+  credentials
+Phil Barker: Phil_L: problem statement: represent complexity of 
+  real-world credentials, in practical, pragmatic way
+<phil_barker> ... worked from examples, tried to break them down
+Phil Barker is scribing.
+  ... looked at what needs to be signed? where  do they need to 
+  "live"? how to preserve learner/worker agency? how to respect 
+  expectations of issuer?
+  ... two examples: licensure & EU Diploma Supplement
+  ... for diploma supplements existing solution could be CLR with 
+  OCP
+Marty Reed:  CLR more complex than Badge because has multiple 
+  layers. Has concept of acheivement, which in Diploma Supplement 
+  is diploma itself.
+  ... also includes Alignments to frameworks, Assertions, 
+  Evidence
+  ... diagram of how to map content of diploma supplement & 
+  JSON-LD strawman example
+  ... Assertions = Claims, i.e. that Diploma has been awarded
+  ... Open Credential Publisher shows this information as 
+  acheivement and assertions, from multiple institutions
+Nate Otto:  What use cases for bundling assertions that are 
+  independently verifiable? What does bundling/unbudnling do with 
+  respect to cryptographic signing?
+<nate_otto_(@ottonomy)_badgr/csky> Oh you got me already thx
+Marty Reed:  We package all assertions as a single credentials so 
+  that don't have to provide new definition everytime number of 
+  assertions are changed.
+Nate Otto:  So cannot embed multiple assertiosn into one 
+  credetnial
+Phil_L: no, you can, but forcing factor is economics of cost and 
+  fees of blockchain environment.
+  ... you can sign individual components but it gets really large
+<dmitri_zagidulin> @Phil_L - I can take over at any point
+Marty Reed:  BBS+(?) allows signing of whole and individual, but 
+  haven't seen that yet. Hasn't been flesged out
+@Dmitri, over to you
+Dmitri Zagidulin is scribing.
+Dmitri Zagidulin is scribing.
+Kerri Lemoie:  Can you compare your implementation to how LERs 
+  are implemented?
+  ... we talked about LERs in the spring a bit, but not everyone 
+  is familiar
+Marty Reed:  So, the entire assertion is signed, with LERs
+  ... what we've done is AND'd it -- both the CLR is signed, AND 
+  individual assertions are signed
+  ... and it's up to the holder wallet to decide how those 
+  assertions are sent to the verifier
+  ... if the OCP wants to repackage assertions, then it's 
+  actually a self-published assertion/credential
+Nate_Otto_(@ottonomy)_Badgr/CSky: you had an interesting point 
+  about BBS+
+  ... about selective disclosure of individual assertions
+Dmitri Zagidulin is scribing.
+  ... doesn't that require all assertions to be issued by the 
+  same issuer?
+  ... is a complex credential a bundle of creds from multiple 
+  issuers?
+  ... or can it have multiple issuers?
+Marty Reed:  That's still to be defined
+  ... this diploma use case was nice in that it has a single 
+  issuer.
+Marty Reed:  My hope, especially from perspective of licensure
+  ... is that we can use BBS+
+  ... there's always the last mile problem -- how does the 
+  verifier want that dat?
+  ... for example, as Orie mentions, you /always/ present it as a 
+  Verifiable Presentation (never a standalone VC)_
+  ... so, lots to be learned / figured out still
+  ... one thing to mention - in other implementations, we have 
+  samples of an Open Badge as an assertion
+  ... and so, the alignment of CLR and OB should align here, in 
+  VC Edu work
+Phil_L_(P1): in the EU, given the Bologna Accord, a transcript 
+  can have multiple issuers
+  ... so this use case has to be able to properly reflect that
+  ... part of the challenge here is that the CLR as a framework 
+  doesn't have the concept of a Presentation like VC/VP does
+  ... so, one of our challenges is to figure out how (or whether) 
+  we can have a Presentation concept. (which is important, 
+  particularly in terms of the agency of the Holder)
+  ... so, we need to figure out how to bring it together
+Ozgur_Y: a key component of the CLR is the Association, which 
+  defines rel'ship between Achievements
+  ... was that included in the model?
+Marty Reed:  No, but that's a good point
+Ozgur_Y: I think that last week we discussed how a single 
+  credential can be represented, in the Open Badges WG. Here, we're 
+  trying to represent multiple credentials
+  ... so, we should try to align the two, see how we can 
+  represent multiple VCs in the same structure
+  ... so then, the only component missing would be Associations
+Dmitri Zagidulin:  That's exactly what a Verifiable Presentation 
+  is for - to bundle multiple VCs in one package
+Phil Barker:  One way of dealing with the diploma use case, is 
+  that -- it is from a single issuer (whoever issued the Diploma 
+  Supplement)
+  ... but it also contains info from other issuers
+  ... we can represent the trust / attendance relationships with 
+  simple VCs
+  ... so, one approach to multiple issuers is to ask - are they 
+  actually issuers of the credential, or do they supplement or 
+  provide additional information? (without issuing it)
+Marty Reed:  Each assertion, in this context, is its own VC.
+  ... and then the entire package is a VC as well. that adds bulk 
+  / complexity, we recognize that
+  ... but it also solves these multiple problems
+Kerri Lemoie:  There's a concept, with CLRs, of Issuer, vs 
+  Publisher. Can you describe the difference?
+Ozgur_Y: The Issuer is basically to create the credential. The 
+  Publisher is just displaying it / providing the environment to 
+  present it online
+Kerri Lemoie:  So, for a VC version of a CLR, would you still 
+  have both a Publisher and Issuer roles?
+Ozgur_Y: Yes, you'd need both
+  ... for instance, Aphis (?) is a publisher software
+  ... as a learner, I receive credentials from multiple issuers
+  ... and they've all been gathered and moved to a specific 
+  environment where it's now published
+  ... so I can display all the credentials I've gathered in my 
+  lifetime
+Phil_L_(P1): I think one of the things to note here - in some 
+  sense, it's the way in which the concept of the Presentation has 
+  been interpreted, for the CLR
+  ... because anything that is assembled (other than directly 
+  from the issuer), in the CLR world, is a Self-Published 
+  Credential
+  ... in the context of a Presentation, the assembly of those 
+  different things is the work of the Holder and their wallet. They 
+  obviously retain the issuer signatures, to guarantee authenticity
+  ... in my view, it's kind of enabling the notion of 
+  presentations without necessarily the full notion of a wallet
+  ... so it may be just a historical decision
+  ... but there's a clarity, in the use of a VP, that is achieved 
+  by emerging wallet, so we may want to leverage
+Phil_L_(P1): the VP concept is interesting, I just haven't seen 
+  examples of it, so we just went without it in the moment
+  ... but I'm following with interest the work of the VC HTTP API 
+  group, to see how the VP is interpreted from the Verifier 
+  viewpoint
+  ... so, we want to meet the market where it's at, and then 
+  iterate forward
+Kerri Lemoie:  So what do you think is the next step, wrt complex 
+  credentials and VCs?
+Marty Reed:  From a WG standpoint, we want to explore more the 
+  relationship between VC and VP
+  ... my hope is that we continue with the Diploma Supplement 
+  usecase
+  ... because it's such a substantial use case, it brings 
+  international perspective (to what some have seen as  a very 
+  US-centric field)
+  ... so, the hope there is that - we have this perfect UC from 
+  an international perspective, and if we implement it, it'll 
+  fulfill the US use case too
+  ... we've had a lot of spirited debate around the multiple 
+  issuer problem of a complex credential. Also, the economics (of 
+  accumulator-based ledgers like Indy) or complex credentials, 
+  should not be dismissed
+Phil_L_(P1): The work that you and Nate have done, in terms of 
+  thinking through the credential, in the context of a 
+  single-assertion Badge,
+  ... and how that might be leveraged as a core element of a 
+  multiple assertion environment, is something we should take into 
+  equal account
+  ... it gives a good starting point for a majority of use cases
+  ... and then we can also reconcile it with multi-issuer use 
+  cases
+Kerri Lemoie: Ack: Ozgur_Y
+Ozgur_Y: I'd like to support Phil's idea. It's a natural path, to 
+  finalize a single credential, and then a multiple credential 
+  bundle can just be based on that structure
+  ... so, have a single pathway to adoption
+  ... once you handle the multiple credential use case, adding 
+  the Association notion will unite the two structures together
+Marty Reed:  I also want to third that support for the work that 
+  Concentric Sky, Nate, Kerri, have done with that structure
+  ... the workstreams inform each other well
+  ... there's 43 million badges issues. we have 19 million more 
+  complex credentials in our system, so there's definitely a market 
+  need
+  ... for both
+  ... but both of them aligning well, and informing each other, 
+  is really the way to go
+Kerri Lemoie:  Thank you, Marty, Phil, and everybody for all your 
+  questions. appreciated
+  ... I was wondering if folks have ideas for the next few calls' 
+  topics to be
+  ... we don't have anything queued up just yet. so, any 
+  requests?
+  ... feel free to put it in the chat, or email me
+<marty_reed> revisit the use cases list
+<kerri_lemoie> klemoie@concentricsky.com
+  ... also, we may want to change the meeting time. (not until 
+  mid- or end of August)
+  ... anybody else have other questions/items for today?
+Marty Reed:  When I first joined this VC Edu WG, Kim's work for 
+  defining use cases -- I think revisiting that would be super 
+  valuable
+<nate_otto_(@ottonomy)_badgr/csky> Thanks for the presentation 
+  today, Marty and Phil. +1 to understanding what the use cases are 
+  for complex credentials, specifically in terms of 
+  consumption-side use cases.
+  ... the entire group has done some work on this, and developed 
+  some examplars, so, revisiting would be very valluable
+Kerri Lemoie:  That would be great, I like that idea
+https://github.com/w3c-ccg/vc-ed-use-cases/issues
+Kerri Lemoie:  To submit a use case, either follow the GitHub 
+  issue template, or I have a Google Form somewhere, that makes it 
+  even easier
+Kerri Lemoie: 
+  https://docs.google.com/forms/d/15I9qzi-_F5G-ZjSJKLzgJZsJUv8JSvLlcxFNjE0uEcc/edit
+  ... so, next week, we'll revisit those use cases
+Phil_L_(P1): I think the UC notion is really important. and it's 
+  useful, in that context, to think about super-groups of Use Cases 
+  as types
+  ... since one of our challenges is providing rationales to 
+  institutions, for other things than a single-issuer blob
+Kerri Lemoie:  Thank you, all!
+<colin_reynolds,_learning_economy> Thanks Kerri!
