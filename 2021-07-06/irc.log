@@ -1,0 +1,273 @@
+[2021-07-06T16:00:36.508Z]	<Leo>	present+
+[2021-07-06T16:00:36.509Z]	<Phil_L_(P1)>	present+
+[2021-07-06T16:00:36.510Z]	<Bumblefudge>	present+
+[2021-07-06T16:00:36.510Z]	<Wayne_Chang>	present+
+[2021-07-06T16:00:36.833Z]	<Charles_E._Lehner_[cel]>	present+
+[2021-07-06T16:01:01.124Z]	<Manu_Sporny>	present+
+[2021-07-06T16:02:05.245Z]	<mprorock>	present+
+[2021-07-06T16:02:39.357Z]	<Oliver_Terbu>	present+
+[2021-07-06T16:03:22.820Z]	<Orie>	present+
+[2021-07-06T16:03:26.757Z]	<Bumblefudge>	present+
+[2021-07-06T16:03:38.588Z]	<Mahmoud>	present+
+[2021-07-06T16:03:43.436Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2021-07-06T16:03:45.065Z]	<Bumblefudge>	oh shucks audio probs
+[2021-07-06T16:03:46.069Z]	<Adrian_Gropper>	present+
+[2021-07-06T16:04:17.085Z]	<rgrant>	present+
+[2021-07-06T16:04:49.715Z]	<Bumblefudge>	i can scribe
+[2021-07-06T16:04:57.387Z]	<Bumblefudge>	as soon as i fix my audio :(
+[2021-07-06T16:05:27.869Z]	<Bumblefudge>	present+
+[2021-07-06T16:05:38.069Z]	<manu>	scribe: Bumblefudge
+[2021-07-06T16:06:00.150Z]	<bumblefudge>	Topic: introductions and reintros
+[2021-07-06T16:06:08.662Z]	<Wayne_Chang>	ack Oliver
+[2021-07-06T16:06:39.387Z]	<bumblefudge>	Oliver_Terbu: Reintro, I work for Consensys mEsH, cochairing DIDComm and DIDAuth at DIF, as well as OIDF work
+[2021-07-06T16:06:48.368Z]	<bumblefudge>	... basically bringing SSI features into the next OIDC spec
+[2021-07-06T16:07:06.428Z]	<JeffO-StL>	present+
+[2021-07-06T16:07:21.246Z]	<bumblefudge>	Topic: Announcements and Reminders
+[2021-07-06T16:07:36.306Z]	<bumblefudge>	wayne: Mike Prorock is now CCG co-chair!
+[2021-07-06T16:07:44.931Z]	<manu>	woo hoo, Long Live Mike Prorock!! (as Co-Chair, and in general)
+[2021-07-06T16:07:50.827Z]	<Dmitri_Z>	present+
+[2021-07-06T16:07:51.758Z]	<bumblefudge>	... unanimous applause and +1s across many channels
+[2021-07-06T16:08:04.855Z]	<IdentityWoman>	present+
+[2021-07-06T16:08:07.432Z]	<Kayode_Ezike>	present+
+[2021-07-06T16:08:08.991Z]	<bumblefudge>	mprorock: Looking forward, will take some work off your and Heather's plates going forward
+[2021-07-06T16:08:17.922Z]	<Phil_L_(P1)>	present+
+[2021-07-06T16:08:26.999Z]	<bumblefudge>	Topic: Progress and Action Items
+[2021-07-06T16:08:36.355Z]	<mprorock>	lol @manu
+[2021-07-06T16:08:38.220Z]	<bumblefudge>	wayne: one work item is ready for approval and will be open
+[2021-07-06T16:08:44.835Z]	<David_Lehn>	present+
+[2021-07-06T16:08:56.960Z]	<bumblefudge>	Topic: JWT-VC history and spec
+[2021-07-06T16:09:12.096Z]	<bumblefudge>	wayne: quick history by way of intro
+[2021-07-06T16:09:38.859Z]	<bumblefudge>	... open question of how to link signatures to JSON blobs-- LDP and JWT native signature properties
+[2021-07-06T16:09:52.588Z]	<Orie>	/me remind me to ask about unix timestamps vs XSD DateTime.
+[2021-07-06T16:09:54.303Z]	<Kayode_Ezike>	present+
+[2021-07-06T16:09:54.445Z]	<bumblefudge>	... and we'll address VC-HTTP-API PRs and next steps later
+[2021-07-06T16:10:18.092Z]	<bumblefudge>	Oliver: I'm sure I don't need to speak too authoritatively, and I look forward to Manu's contributions later
+[2021-07-06T16:10:47.956Z]	<bumblefudge>	...: When this spec started, there was a lot of support for legacy systems and using JWT-native signatures made OIDC easier to support
+[2021-07-06T16:11:20.367Z]	<bumblefudge>	... there was a deliberate strategy and design goal of not reinventing `issuer` and `subject id` and `expires` (already in IANA for JWT purposes)
+[2021-07-06T16:11:59.550Z]	<bumblefudge>	... and we wanted to minimize registration of every other property to IANA, which would have been a major problem
+[2021-07-06T16:12:09.456Z]	<Heather_Vescent>	present+
+[2021-07-06T16:12:18.726Z]	<bumblefudge>	... particularly if people wanted to ONLY support IANA-registered properties in the VCs they consumed
+[2021-07-06T16:12:36.652Z]	<bumblefudge>	... an early spec question was how to translate from standard JWTs to standard VCs
+[2021-07-06T16:12:39.077Z]	<Wayne_Chang>	q?
+[2021-07-06T16:12:57.958Z]	<bumblefudge>	... and at Consensys we implemented
+[2021-07-06T16:13:18.339Z]	<Orie>	what oliver is saying is that `vc` and `vp` need to be valid JSON-LD to benefit from the "not needing to register" but "still defining the claims" features of the VC Data Model... something which unfortunately does not appear to have been implemented consistently...
+[2021-07-06T16:13:23.541Z]	<bumblefudge>	... a lot of properties that match approximately between VC (nonce/challenge, for ex) and IANA
+[2021-07-06T16:14:03.300Z]	<bumblefudge>	... the `kid` was particularly hard to translate; in SSI land, most people use DID URL pointing to specific key/vm in doc
+[2021-07-06T16:14:37.133Z]	<bumblefudge>	... another major problem was whether repeating JWT claims as VC properties under credSubj was mandatory
+[2021-07-06T16:14:41.671Z]	<Orie>	the issuer vs iss issue is terrible.
+[2021-07-06T16:14:46.380Z]	<manu>	q+ to agree with Oliver's history and to speak to the number of implementations of VC-JWTs and challenges there.
+[2021-07-06T16:14:49.450Z]	<bumblefudge>	... honestly, implementation guide or normative decision on this would be great
+[2021-07-06T16:14:50.103Z]	<Wayne_Chang>	ack manu
+[2021-07-06T16:14:50.951Z]	<Orie>	`issuer` is required.
+[2021-07-06T16:15:04.040Z]	<bumblefudge>	... since many people went one way or the other for lack of guidance
+[2021-07-06T16:15:08.236Z]	<Orie>	same thing with issuanceDate and nbf
+[2021-07-06T16:15:11.385Z]	<bumblefudge>	Manu: Great summary, thanks for that
+[2021-07-06T16:15:29.958Z]	<bumblefudge>	... and yes, a VC-HTTP-API PR triggered this conversation.  there were red flags
+[2021-07-06T16:15:47.642Z]	<bumblefudge>	... for me, the variety of implementations relative to that spec is first and foremost
+[2021-07-06T16:16:15.482Z]	<bumblefudge>	... particularly a security bug that the VC-WG has on its to-do list for forthcoming maintenance-mode meetings
+[2021-07-06T16:16:34.574Z]	<Kim>	present+
+[2021-07-06T16:16:35.115Z]	<Orie>	different from Transmute's implementation.
+[2021-07-06T16:16:38.450Z]	<bumblefudge>	... lacking a test suite, it's hard to know who is affected by that bug... or even how interop the implementations are
+[2021-07-06T16:16:40.511Z]	<Orie>	as well.
+[2021-07-06T16:16:52.537Z]	<bumblefudge>	... as Oliver pointed out, there is diversity of interpretations of a few open questions
+[2021-07-06T16:17:08.616Z]	<bumblefudge>	... and it could be fixed, but I think it's telling that in 2.5 years no one has fixed it
+[2021-07-06T16:17:36.664Z]	<bumblefudge>	Manu: in VC-HTTP-API we have a kind of multi-party, V-H-I test suite using LDProofs
+[2021-07-06T16:17:57.565Z]	<bumblefudge>	... so it would not be too hard to expand the VC-HTTP-API testing regime to VC-JWTs with LDPs
+[2021-07-06T16:18:33.815Z]	<bumblefudge>	... and the target is BBS+ and other new LD-based technologies, so I think we need to take seriously the question of what signing mechanisms are appropriate to put into scope for that working group
+[2021-07-06T16:18:38.468Z]	<Kim>	q+ concern that VCs will be inextricable tied to LD proofs
+[2021-07-06T16:19:01.076Z]	<bumblefudge>	... I don't want that group to take on lots of extra work working on new signing mechanisms that make its scope very complicated
+[2021-07-06T16:19:20.765Z]	<Wayne_Chang>	ack Kim
+[2021-07-06T16:19:22.132Z]	<bumblefudge>	... it would be great to eventually address this issue, but doing so now might not be appropriate for that group
+[2021-07-06T16:20:02.633Z]	<bumblefudge>	Kim: this doesn't need to contradict Manu in any way, but I do think there is a risk of tying all of VCs adoption and future to LDproofs
+[2021-07-06T16:20:06.526Z]	<Orie>	There is a difference between "VCs are JSON-LD" vs "VCs are LD Proofs"
+[2021-07-06T16:20:17.794Z]	<Orie>	the first is required, the second is not
+[2021-07-06T16:20:22.102Z]	<mprorock>	+1 orie
+[2021-07-06T16:20:22.895Z]	<bumblefudge>	... I like the idea that VCs can be demonstrated with JWTs
+[2021-07-06T16:20:28.992Z]	<Orie>	the problem is that nobody has implemented the first properly for JWTs.
+[2021-07-06T16:20:41.051Z]	<manu>	I agree with what Kim is saying (for political reasons).
+[2021-07-06T16:20:45.142Z]	<bumblefudge>	... I don't want VCs to hang in draft-spec limbo
+[2021-07-06T16:20:45.971Z]	<manu>	q+ to note LD proofs support JCS + JWTs -- and agree with Kim.
+[2021-07-06T16:20:47.437Z]	<Orie>	q+ to complain about JWT
+[2021-07-06T16:20:51.928Z]	<bumblefudge>	... I see what Orie means in chat
+[2021-07-06T16:20:55.140Z]	<manu>	q-
+[2021-07-06T16:20:57.238Z]	<manu>	q+ to note LD proofs support JCS + JWTs -- and agree with Kim.
+[2021-07-06T16:21:06.794Z]	<bumblefudge>	... about the LDP signature versus the proof FORMAT
+[2021-07-06T16:21:20.838Z]	<Orie>	+1 kim, JWT is a standard, so is VC-JWT.
+[2021-07-06T16:21:34.417Z]	<Orie>	the problem is that we don't test for VC-JWT interop.
+[2021-07-06T16:21:34.489Z]	<Wayne_Chang>	q?
+[2021-07-06T16:21:36.834Z]	<bumblefudge>	... I need to attend to Percy now
+[2021-07-06T16:21:39.428Z]	<Wayne_Chang>	ack Orie
+[2021-07-06T16:22:19.009Z]	<bumblefudge>	Orie: I don't want to be interpreted as a VC-JWT hater, but I have critiques of how implementers treat LD
+[2021-07-06T16:22:50.571Z]	<bumblefudge>	... I think people are sometimes ignoring the LD aspects of the VC data models; they can ignore LDProofs and do other signatures, sure, but the PAYLOAD needs to parse succesfully as LD
+[2021-07-06T16:23:03.220Z]	<bumblefudge>	... and this is a major, but solveable, interop issue
+[2021-07-06T16:23:17.130Z]	<bumblefudge>	... basic validation of payloads would go quite far
+[2021-07-06T16:23:50.269Z]	<bumblefudge>	... another major issue is "issuance date" and timestamp mismatch-- the spec is a little confusing and open-ended here, making JWTs hard to implement
+[2021-07-06T16:24:08.998Z]	<Wayne_Chang>	q?
+[2021-07-06T16:24:12.483Z]	<bumblefudge>	... and the extensibility of LD can be another stumbling block
+[2021-07-06T16:24:33.705Z]	<bumblefudge>	... and people passing around something that looks like (but doesn't parse as) JSON-LD are a harmful problem
+[2021-07-06T16:24:45.921Z]	<Oliver_Terbu>	+1 orie
+[2021-07-06T16:24:48.589Z]	<manu>	q+ to note what I'd like to see with VC-JWT work.
+[2021-07-06T16:24:49.488Z]	<rgrant>	+1 to Orie
+[2021-07-06T16:24:51.458Z]	<bumblefudge>	... and a few constraints on VC-JWT would make it way easier to implement without footguns
+[2021-07-06T16:25:25.235Z]	<bumblefudge>	... LDProofs are hard to implement, and legacy support is important, so this should be a priority for our group, but it requires making the VC-JWT spec more explicit about LD constraints
+[2021-07-06T16:25:30.979Z]	<mprorock>	i wouldn't necessarily call jwt legacy...
+[2021-07-06T16:25:39.839Z]	<bumblefudge>	... it's just a gap in the spec that needs to be filled collectively
+[2021-07-06T16:25:43.606Z]	<bumblefudge>	+1
+[2021-07-06T16:26:00.764Z]	<bumblefudge>	... and i agree with mike's comment in chat
+[2021-07-06T16:26:04.050Z]	<Oliver_Terbu>	q+
+[2021-07-06T16:26:14.098Z]	<Kim>	Orie, can you point to Transumute's corrected implementation? is it in the vc library?
+[2021-07-06T16:26:15.341Z]	<bumblefudge>	... we definitely need to get the VC data model represented consistnetly in JWT since it is the law of the land today
+[2021-07-06T16:26:28.888Z]	<bumblefudge>	wayne: point of clarification
+[2021-07-06T16:26:39.605Z]	<bumblefudge>	... what do you mean about LD and JWT-VCs? should it be normative?
+[2021-07-06T16:27:13.703Z]	<bumblefudge>	orie: the VC spec (as i interpret it) is about reping claims in LD, and serializing them in JSON
+[2021-07-06T16:27:27.025Z]	<bumblefudge>	... but the JSON that you sign over could be valid or invalid JSON-LD when you sign it
+[2021-07-06T16:27:47.382Z]	<bumblefudge>	... if you sign bad LD with a JWA or JWS, you have conformed with the spec but footgunned LD VC exchange
+[2021-07-06T16:27:51.627Z]	<Wayne_Chang>	q?
+[2021-07-06T16:27:53.066Z]	<Orie>	https://github.com/transmute-industries/vc.js/tree/master/packages/vc.js/src/vc-jwt
+[2021-07-06T16:27:53.593Z]	<Wayne_Chang>	ack manu
+[2021-07-06T16:27:59.558Z]	<bumblefudge>	... and i will link to our implementation ebcause i believe our implementation validates this
+[2021-07-06T16:28:08.312Z]	<bumblefudge>	... in a way that closes this gap
+[2021-07-06T16:28:08.951Z]	<Orie>	+1 Manu, thats the problem.
+[2021-07-06T16:28:41.683Z]	<bumblefudge>	Manu: I want to +1 Orie's comment that invalid LD is invalid VCs, and people pass off invalid VCs as VCs which confuses everyone
+[2021-07-06T16:28:57.984Z]	<bumblefudge>	... MSFT smart card work is possibly a major example of this
+[2021-07-06T16:29:20.939Z]	<Orie>	the VC Data Model has `@context` as required... ignoring JSON-LD and calling your thing a VC is clearly a failure to respect the specification.
+[2021-07-06T16:29:45.920Z]	<bumblefudge>	... the "don't impose LDisms on me" worldview exists and we need to recognize it and work with it
+[2021-07-06T16:30:24.515Z]	<bumblefudge>	... I agree with Kim politically, in that LDPs shouldn't be mandatory... although DB is worried the lack of an adequate, workable alternative at the same time
+[2021-07-06T16:30:33.822Z]	<Orie>	The only problem with `VC-JWT` is that its not strict enough to be a benefit over vanilla JWT.
+[2021-07-06T16:30:35.006Z]	<bumblefudge>	... we think what's in the spec is dangerously wrong
+[2021-07-06T16:31:05.637Z]	<bumblefudge>	... I think we will need a breaking rev to the specification imposing LD-validation as a constraint
+[2021-07-06T16:31:43.182Z]	<bumblefudge>	... I think having both a LDP-version and a JWT-classic version in the ecosystem will effectively require all JWT systems to support both
+[2021-07-06T16:32:06.377Z]	<Kim>	q+
+[2021-07-06T16:32:21.063Z]	<bumblefudge>	... and this could have major complexity knock-on effects for all the protocols and wallet and everything throughout the stack
+[2021-07-06T16:32:44.665Z]	<bumblefudge>	... I don't know if I support giving people an alternative to LDPs, not sure it's a win
+[2021-07-06T16:32:52.290Z]	<bumblefudge>	... for the community in the long view
+[2021-07-06T16:32:54.565Z]	<Orie>	if you want to turn off LD, learn how to use `@vocab` :)
+[2021-07-06T16:33:00.412Z]	<bumblefudge>	... I think we should:
+[2021-07-06T16:33:05.023Z]	<bumblefudge>	... provide a test suite
+[2021-07-06T16:33:06.897Z]	<bumblefudge>	...fix bugs
+[2021-07-06T16:33:11.498Z]	<bumblefudge>	... take the proof section out
+[2021-07-06T16:33:17.036Z]	<bumblefudge>	... and constraint payloads to valid LD
+[2021-07-06T16:33:28.608Z]	<Wayne_Chang>	q?
+[2021-07-06T16:33:31.294Z]	<Wayne_Chang>	ack manu
+[2021-07-06T16:33:31.948Z]	<bumblefudge>	... I think committing to a timeline here would help
+[2021-07-06T16:33:35.854Z]	<Wayne_Chang>	ack Oliver
+[2021-07-06T16:33:39.579Z]	<Kim>	q-
+[2021-07-06T16:33:51.828Z]	<bumblefudge>	Oliver: I don't really know the implementations... what is the scope here?
+[2021-07-06T16:34:00.154Z]	<bumblefudge>	... are we talking to the revision of VC spec, or just VC-HTTP-API?
+[2021-07-06T16:34:15.995Z]	<bumblefudge>	... I would love to see some kind of laundry list before dropping JWT support from both
+[2021-07-06T16:34:26.699Z]	<bumblefudge>	... Orie has some laundry list items as well, I would imagine
+[2021-07-06T16:34:39.332Z]	<bumblefudge>	... and might some of the items be addressed by hotfixes to VC spec?
+[2021-07-06T16:34:53.073Z]	<manu>	Yes, agree with Oliver.
+[2021-07-06T16:34:54.192Z]	<bumblefudge>	... in any case, normative changes to the spec are worth considering
+[2021-07-06T16:35:01.954Z]	<Wayne_Chang>	q?
+[2021-07-06T16:35:09.737Z]	<Kim>	q+
+[2021-07-06T16:35:12.859Z]	<Wayne_Chang>	ack Kim
+[2021-07-06T16:35:30.661Z]	<manu>	q+ to say "not drop"... focus -- to note how this affects VC HTTP API and CHAPI (and any other protocol that moves VCs across the wire)
+[2021-07-06T16:35:53.357Z]	<Phil_L_(P1)>	+1 to two separate work groups - though it is among a community with limited resources to devote.
+[2021-07-06T16:35:53.401Z]	<IdentityWoman>	+1 to improving normativity
+[2021-07-06T16:36:07.648Z]	<bumblefudge>	kim: Maybe the word "drop" is misleading... one proposal would be to "split out" JWTs into a distinct spec or work item so that a "normative JWT" looks like
+[2021-07-06T16:36:08.865Z]	<manu>	-1 to "two separate work groups" :) -- VCWG
+[2021-07-06T16:36:18.098Z]	<Wayne_Chang>	q?
+[2021-07-06T16:36:19.861Z]	<Wayne_Chang>	manu
+[2021-07-06T16:36:19.970Z]	<bumblefudge>	... and I'm happy to contribute to that work
+[2021-07-06T16:36:21.618Z]	<Wayne_Chang>	ack manu
+[2021-07-06T16:36:23.304Z]	<IdentityWoman>	it would be great to have that clarity so JWT implementations can be held to account instead of them saying "they" are the standardized ones.
+[2021-07-06T16:36:34.118Z]	<bumblefudge>	Manu: To clarify, no one is saying "drop the work"-- just focus and priority/roadmaps
+[2021-07-06T16:36:56.800Z]	<bumblefudge>	... removing JWT stuff from VC Data Model would be a horizontal move-- everything would stay normative, but moved into a separate specification that progresses independently
+[2021-07-06T16:37:19.126Z]	<bumblefudge>	... the VC WG is in maintenance mode now (and i believe cannot split specs until recharter time comes)
+[2021-07-06T16:37:23.662Z]	<Kim>	not sure why we'd want to remove it vs fix it inline
+[2021-07-06T16:37:44.185Z]	<bumblefudge>	... and as i understand it, the upcoming recharter may include more focus on or restructure to support signature work
+[2021-07-06T16:37:56.209Z]	<Wayne_Chang>	q?
+[2021-07-06T16:38:00.033Z]	<Kim>	this sounds like a path to de-prioritize VC-JWT and say "it's not VC"
+[2021-07-06T16:38:13.206Z]	<Kim>	q+
+[2021-07-06T16:38:13.608Z]	<bumblefudge>	... i.e. selective disclosure.  i feel like it could distract or dissipate from selective disclosure work that the same set of people are otherwise doing soon as top priority
+[2021-07-06T16:38:24.606Z]	<bumblefudge>	wayne: Some concerns in chat: why move out to sep spec?
+[2021-07-06T16:38:47.177Z]	<bumblefudge>	manu: it never should've gone into core spec to begin with, it was a last-minute edit to get something normative into the spec in time for CR deadline
+[2021-07-06T16:39:06.766Z]	<bumblefudge>	... and Oliver did essentially ALL that work himself in record time (kudos to him for that), without as much support as he should've had
+[2021-07-06T16:39:18.448Z]	<bumblefudge>	... and i think the layering suffered a little because of that quirk of timing
+[2021-07-06T16:39:34.655Z]	<bumblefudge>	... if i may directly the "it's not a VC" thing, we are not trying to say VC-JWTs aren't VCs
+[2021-07-06T16:39:57.876Z]	<Wayne_Chang>	ack Kim
+[2021-07-06T16:40:02.463Z]	<bumblefudge>	... we are protecting the VC-JWT spec to *protect* a valid VC, but it's an outer layer around something that has to be a valid VC to begin with
+[2021-07-06T16:40:35.148Z]	<bumblefudge>	Kim: I have to say that maybe we need to consider more options rather than jumping to the "VC data model is LD period" conclusion, I worry about the impression
+[2021-07-06T16:40:41.770Z]	<manu>	It's already "official VC", no?
+[2021-07-06T16:41:01.357Z]	<bumblefudge>	... that the VC WG could be dividing and conquering
+[2021-07-06T16:41:01.532Z]	<Oliver_Terbu>	q+
+[2021-07-06T16:41:14.585Z]	<bumblefudge>	... I think that we have volunteers here offering to fix inline what's wrong with today's specs
+[2021-07-06T16:41:14.936Z]	<Wayne_Chang>	ack Oliver
+[2021-07-06T16:41:32.458Z]	<bumblefudge>	... and i'm not aligned with the assumption it's less work to split specs
+[2021-07-06T16:41:50.463Z]	<bumblefudge>	Oliver: I was wondering if there might be other options-- what about having separate specs for
+[2021-07-06T16:42:02.730Z]	<bumblefudge>	... serializing and deserializing the ADM in CBOR, in JWTs, etc
+[2021-07-06T16:42:08.991Z]	<Kim>	that's a good suggestion Oliver
+[2021-07-06T16:42:11.064Z]	<Wayne_Chang>	q?
+[2021-07-06T16:42:12.151Z]	<manu>	There is no "abstract data model" for VCs :) -- we didn't make that mistake there like we did in the DID WG :)
+[2021-07-06T16:42:16.666Z]	<bumblefudge>	... and future-proofing our work by making JWT one of a list of possible serializations to sign over
+[2021-07-06T16:42:21.955Z]	<Wayne_Chang>	q+
+[2021-07-06T16:42:24.536Z]	<Wayne_Chang>	ack Wayne_Chang
+[2021-07-06T16:42:36.185Z]	<bumblefudge>	wayne: recap
+[2021-07-06T16:43:15.928Z]	<bumblefudge>	... the VC-HTTP-API PR raised by CEL was about how a VC-HTTP-API issuer could issue JWT VCs
+[2021-07-06T16:43:34.992Z]	<Wayne_Chang>	q?
+[2021-07-06T16:43:44.491Z]	<bumblefudge>	... and the pushback was about making the specification narrow enough to really define a "proper VC-JWT"
+[2021-07-06T16:44:07.296Z]	<manu>	q+ to note how this impacts VC HTTP API -- assuming everything works, it makes the protocol more complex, will slow things down.
+[2021-07-06T16:44:09.522Z]	<Wayne_Chang>	ack manu
+[2021-07-06T16:44:10.174Z]	<Kim>	q+ to discuss path forward
+[2021-07-06T16:44:14.006Z]	<bumblefudge>	... and our conversation here is about defining the VC-JWT, and gathering community inputs on what that definition needs to include
+[2021-07-06T16:44:40.164Z]	<bumblefudge>	Manu: V-H-API is a good example of what I meant earlier about consequences rippling out to other protocol layers
+[2021-07-06T16:45:13.466Z]	<bumblefudge>	... the V-H-API needs to slow down to the tune of months if we're building on Jell-O
+[2021-07-06T16:45:15.671Z]	<Orie>	we can't possibly go any slower than we already are manu :)
+[2021-07-06T16:45:41.748Z]	<bumblefudge>	... without existing interop, we are going to get bogged down in interop details for months
+[2021-07-06T16:45:50.778Z]	<bumblefudge>	... we're already at a snail's pace
+[2021-07-06T16:46:36.720Z]	<bumblefudge>	... the V-H-API needs clarity and TBH i'm worried about implementers who are already worried about the timeline of V-H-API
+[2021-07-06T16:46:47.189Z]	<Wayne_Chang>	q?
+[2021-07-06T16:46:50.818Z]	<Wayne_Chang>	ack Kim
+[2021-07-06T16:46:52.546Z]	<bumblefudge>	... I want this group to consider that timeline
+[2021-07-06T16:46:54.456Z]	<Orie>	q+ to propose next steps
+[2021-07-06T16:47:05.224Z]	<manu>	Orie, oh, I bet you we can go /much/ slower :)
+[2021-07-06T16:47:05.644Z]	<bumblefudge>	Kim: I don't think anyone is saying "Stop V-H-API until this is resolved"
+[2021-07-06T16:47:15.451Z]	<bumblefudge>	... but I do think that this work is timely
+[2021-07-06T16:47:29.054Z]	<IdentityWoman>	it feels like the dedicated JWT folks need to get in alignment with each other and then with the community. I'm concerned cause it feels like other then Oliver none of those folks are on this call.
+[2021-07-06T16:47:31.482Z]	<bumblefudge>	... and I have a fundamental concern which I might address with a screenshare
+[2021-07-06T16:48:00.115Z]	<bumblefudge>	... (shows section 6 of VC data model spec)
+[2021-07-06T16:48:13.425Z]	<IdentityWoman>	yes - it would be very very good to have a clear blog post explaining why current implementations are not conformat.
+[2021-07-06T16:48:41.533Z]	<bumblefudge>	... I think that the way the spec is written, they'd be confused by the implication that without fully understanding LD and its corner cases they cannot work with VCs
+[2021-07-06T16:48:50.558Z]	<Orie>	imagine reading a spec seeing a normative requirement to include `@context` and then assuming you don't need to understand what it is....
+[2021-07-06T16:48:59.713Z]	<Orie>	X D
+[2021-07-06T16:49:01.810Z]	<Oliver_Terbu>	:)
+[2021-07-06T16:49:06.569Z]	<Oliver_Terbu>	but +1 kim
+[2021-07-06T16:49:08.357Z]	<Wayne_Chang>	q?
+[2021-07-06T16:49:08.764Z]	<Adrian_Gropper>	Given the unresolved issues around authorization, slowing the VC-HTTP API to deal with clear privacy issues might be a good thing.
+[2021-07-06T16:49:09.691Z]	<Wayne_Chang>	ack Orie
+[2021-07-06T16:49:37.434Z]	<bumblefudge>	Orie: I agree with Kim, it's unfortunate the way the VC data model spec was ratified.  It feels like a Solomonic solution to a major disagreement
+[2021-07-06T16:49:38.353Z]	<manu>	That's because it was a split the baby-bathwater scenario :P
+[2021-07-06T16:49:42.030Z]	<bumblefudge>	... that cuts a baby in half
+[2021-07-06T16:49:55.856Z]	<manu>	The compromise was to look the other way wrt. JSON :)
+[2021-07-06T16:50:09.010Z]	<bumblefudge>	... The concrete step forward would be to give the people who want interop a venue for proving it at CCG
+[2021-07-06T16:50:18.692Z]	<bumblefudge>	... i think requiring JWT in V-H-API today would be suicide
+[2021-07-06T16:50:27.182Z]	<manu>	+1 to agree with Orie on "adding VC-JWT to VC HTTP API at this point would be work item suicide"
+[2021-07-06T16:50:37.278Z]	<bumblefudge>	... and I think the hard part is JWT-specific, wherever it happens
+[2021-07-06T16:50:47.436Z]	<bumblefudge>	... it should've been happening all along but if it can happen now, we should accept it
+[2021-07-06T16:50:48.668Z]	<IdentityWoman>	is there a good resource that is "how to interpret this spec if you are JWT person"?
+[2021-07-06T16:50:49.043Z]	<manu>	+1 to other people doing work to move VC-JWT interop forward.
+[2021-07-06T16:50:58.553Z]	<Kim>	+1
+[2021-07-06T16:51:05.934Z]	<manu>	(and hoping that those same people aren't also moving LDP/VC-HTTP-API forward)
+[2021-07-06T16:51:08.434Z]	<bumblefudge>	... it boils down to giving them a clearly-defined goal
+[2021-07-06T16:51:19.441Z]	<Wayne_Chang>	ack Oliver
+[2021-07-06T16:51:20.083Z]	<bumblefudge>	... for what it would need to include to be merged into the V-H-API
+[2021-07-06T16:51:51.839Z]	<manu>	+1 to what Oliver just said.
+[2021-07-06T16:51:57.335Z]	<bumblefudge>	Oliver: I agree with Orie - V-H-API doesn't need to support JWTs in their current state, sure
+[2021-07-06T16:51:58.703Z]	<Wayne_Chang>	q?
+[2021-07-06T16:52:05.311Z]	<Orie>	proposed new work item title: vc-jwt-interop
+[2021-07-06T16:53:17.135Z]	<bumblefudge>	Wayne: I think the sooner this JWT work is done, the sooner it can be folded into related items
+[2021-07-06T16:53:26.937Z]	<bumblefudge>	... and i will issue a call for volunteers to the mailing list
+[2021-07-06T16:53:30.825Z]	<bumblefudge>	... any other questions?
+[2021-07-06T16:53:34.073Z]	<bumblefudge>	q+
+[2021-07-06T16:53:38.618Z]	<Kim>	+1 Orie, good name. that's half the battle
+[2021-07-06T16:53:45.405Z]	<Wayne_Chang>	scribe: wayne_chang
+[2021-07-06T16:54:04.010Z]	<Wayne_Chang>	bumblefudge: Clarification on points from discussion.
+[2021-07-06T16:54:12.693Z]	<Wayne_Chang>	q?
+[2021-07-06T16:54:16.039Z]	<Wayne_Chang>	ack bumble
+[2021-07-06T16:54:34.293Z]	<IdentityWoman>	+q
+[2021-07-06T16:54:34.549Z]	<Oliver_Terbu>	i'm tired of flame wars :)
+[2021-07-06T16:54:35.960Z]	<manu>	There's still time for a flame war, Wayne :P
+[2021-07-06T16:54:45.042Z]	<Wayne_Chang>	ack IdentityWoman
+[2021-07-06T16:55:48.035Z]	<Wayne_Chang>	q?
+[2021-07-06T16:55:48.894Z]	<IdentityWoman>	https://identitywoman.net/special-topic-iiw-1-2-day-virtual-events-ux-july-22nd-and-business-aug-4th/
