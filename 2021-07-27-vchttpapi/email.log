@@ -1,0 +1,398 @@
+Thanks to Brian Richter for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-07-27-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-07-27
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Jul/0270.html
+Topics:
+  1. Introductions
+  2. Pull Requests
+  3. Issue Processing
+Resolutions:
+  1. The VC HTTP API Work Item group will not define a "phone 
+    home" mechanism at present as it may create a privacy danger when 
+    a verifier contacts an issuer directly about a particular 
+    credential. Vendors are free to implement such a system, but we 
+    are not going to define it in the standard at present.
+Organizer:
+  Manu Sporny
+Scribe:
+  Brian Richter
+Present:
+  Ted Thibodeau, Mike Prorock, Eric Schuh, Manu Sporny, Justin 
+  Richer, Mahmoud Alkhraishi, Joe Andrieu, David Chadwick, Brent 
+  Zundel, Adrian Gropper, Dmitri Z, Brian Richter, Orie Steele, 
+  Juan Caballero, Kaliya Young, Tobias Looker, Phil L (P1)
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-07-27/audio.ogg
+
+Brian Richter is scribing.
+Manu Sporny:  Agenda is PR processing and issue processing
+
+Topic: Introductions
+
+Brian Richter:  Hi Brian Richter, Have a company Aviary 
+  Technologies Inc, we recently participated in Canadian UCVCDD 
+  Challenge... building with this technology, right now just 
+  bouncing around and get into multiple groups trying to see what's 
+  going on. [scribe assist by Manu Sporny]
+
+Topic: Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/commits/main
+Manu Sporny:  Announcements.. split test suite from the spec. new 
+  history is a part of the main branch
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-http-api-test-suite/commits/main
+Manu Sporny:  Other thing that's been done is the test suite has 
+  been moved to the ccg. confirmed with 2 chairs that what we did 
+  is fine
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-http-api/commit/cffd942b53ce92c9fb3d86ced62e6cb70e4f276a
+Manu Sporny:  Both histories should be clean and up to date
+Mahmoud Alkhraishi:  Ci/cd is removed?
+<orie> unless you build the spec or lint the spc
+<orie> you don't need CI/CD
+Manu Sporny:  Ci/cd for this spec - doesn't seem we need as 
+  latest github page publishes everything. don't need a process to 
+  generate. for the test suite don't know if i broke anything it's 
+  likely I did
+<orie> we do
+Orie Steele:  Current test suite allows for new report anytime by 
+  pressing a button. we will want that if it's been broken
+<manu> Agree, we don't want to lose that functionality... I 
+  almost certainly broke that...
+Orie Steele:  This allows for nightly, on demand, on PRs..
+Orie Steele:  One thing test suite doesn't have is any security 
+  so we need that
+Mike Prorock:  Orie said everything i had
+Manu Sporny:  I most certainly broke that
+Mahmoud Alkhraishi:  For the spec it doesn't lint and I believe 
+  we will need that. I would like to see it brought back
+<mprorock> linting and testing wherever possible good
+<orie> yes, OAS file linting
+<orie> most important
+Manu Sporny:  2 Types of linting.. respec does sweep for a few 
+  things. there's also the file linting we should be doing so we 
+  should do both of those things
+<orie> <3 PR previews! TallTed!
+Manu Sporny:  I also added PR previews across the ccg. As pointed 
+  out we don't get images as a part of that but it's useful to see 
+  what the PR looks like in the spec
+<tallted> *cheers*
+Manu Sporny:  Anyone please PR to add ci/cd
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/220
+<manu> Adds the diagrams that we agreed to add in 
+  https://w3c-ccg.github.io/meetings/2021-05-27-vchttpapi/#resolution-1 
+  .
+Manu Sporny:  PR 220.. adding the architecture diagrams we have 
+  as decided in a previous resolution
+
+Topic: Issue Processing
+
+Manu Sporny:  That's the only PR we have other than revocable 
+  which Nis will get to. That's it for PRs.. next up is issue 
+  processing
+<orie> /me sharpens issue processing knife
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/38
+Manu Sporny:  In order from least recently updated. Issue 38 is 
+  up first
+<mahmoud> its in the issue comments towards the end @manu
+Manu Sporny:  I got an update from Mike Varley who said he talked 
+  to Daniel Hardman and agrees we can close this issue and we may 
+  want to get more specific about ZKP things.. specifically BBS+ 
+  and how that impacts API
+<orie> we already have an endpoint, "deriveCredential" that only 
+  applies to BBS+... I agree to opening specific issues
+Manu Sporny:  Mike thinks we should open an issue to handle bad 
+  issuers.. I don't quite understand the issue
+<by_caballero> sorry?
+Manu Sporny:  Does anyone know what the bad issuer use case is?
+<orie>	bad issuer => Game Over
+<by_caballero> 38?
+<orie> in all cases likely
+<by_caballero> does he mean issuer collusion?
+Manu Sporny:  Action.. mike varley to open issue re: bad issuer 
+  use case. closing issue with no objections
+<mprorock> possibly, or issuing with weak pairings
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/39
+Manu Sporny:  Next issue is #39.. concern on external APIs for 
+  status checks
+Manu Sporny:  David do you know what's going on with this issue? 
+  daniel is concerned we're creating phone home issue.. thoughts?
+Manu Sporny:  Anyone else have thoughts on exposing a status 
+  check? this is a phone home API what's being proposed. would have 
+  a field in a VC that would call to get an active status
+David Chadwick:  There should be no possibility of calling home. 
+  if we have this phone home then the issuer knows who the verifier 
+  is
+Manu Sporny:  I agree, I would be a -1 to this issue
+<orie> maybe tracking is a feature of the web?
+<orie> /s :trolling: the W3C / adtech space
+Mike Prorock:  I think there is valid use cases.. where VCs are 
+  behind the scene but I think this would need big red flags in the 
+  spec.
+<manu> Agree... people can always define it elsewhere.
+Manu Sporny:  Anyone else have a thought? specification won't 
+  have phone home APIs
+David Chadwick:  Agreed.. that should be out the pure vc model. 
+  there shouldn't be a standard way of doing it
+Joe Andrieu:  As framed it would be a mistake to give guidance on 
+  something most of us don't want
+<manu> oooh, I do like that.
+<by_caballero> you mean like some kind of status list?
+Joe Andrieu:  Want to float a crazy idea, is there an opportunity 
+  to present some positive guidance to show how this should be done
+<by_caballero> hehe
+Mike Prorock:  Revocation list is what immediately comes to mind.
+<by_caballero> this old chestnut?
+Juan Caballero: https://w3c-ccg.github.io/vc-status-list-2021/
+<by_caballero> :D
+Joe Andrieu:  Ya that's right.. we have some approaches. api 
+  should give guidance on how to do revocation
+David Chadwick:  Holder goes to the RP and the RP sends its 
+  presentation exchange so it knows what the holder is going to get 
+  and it can then ping the verifiers
+Adrian Gropper:  Not sure I understand completely but I do see it 
+  as link to authz aspect.. fundamentally i'd like to put as much 
+  as possible to the authz server and as little in the issuer api 
+  as possible.
+<orie> my favorite place to send National Security Letters is to 
+  Authorization Server Providers :)
+<mprorock> what are those orie?
+Manu Sporny:  In general we do not want phone home APIs. might be 
+  some valid use cases but don't wanna spend time right now. would 
+  like to provide alternatives
+Manu Sporny:  Wondering if the proposal is: at this time we are 
+  not going to define API mechanisms that phone home directly from 
+  verifier to issuer
+Manu Sporny:  We will try to document better ways that don't 
+  violate privacy
+<justin_richer> it's only a signal if industry would listen to it
+<justin_richer> (which they will not)
+Manu Sporny:  Good signal to industry not defining phone home 
+  APIs
+<mprorock> i mean VC implies not phoning home as an advantage
+<orie> wait mDL phones home?
+<by_caballero> well
+Manu Sporny:  Relevant right now as mDL has phone home stuff that 
+  DHS is asking about
+<joe_andrieu> we should do a proposal to have it on record
+<mprorock> current mDL phones home
+<orie> so we can't support it unless we agree to support phone 
+  home?
+<by_caballero> an online door
+David Chadwick:  Mdl has a back door (optional) that is part of 
+  the model that user can contact RP saying i have drivers licence 
+  and you can go to the issuer to find it
+David Chadwick:  Mdl people don't like it and are moving to VCs 
+  in version 2 so that they can stop that backdoor
+<orie> I am trolling, maybe it would be helpful to highlight this 
+  problem.
+Mike Prorock: +1 David - VC extensions will help remove the phone 
+  home
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API Work Item group will 
+  not define a "phone home" mechanism at present as it creates a 
+  privacy danger when a verifier contacts an issuer directly.
+Mike Prorock: +1
+<by_caballero> sgtm
+Juan Caballero: +1
+<by_caballero> sorry
+<joe_andrieu> add "about a particular credential or subject"
+<orie> I am in favor of repetition when it comes to privacy / 
+  security
+Manu Sporny:  Would anyone object to that being run? not running 
+  it yet
+Brent Zundel:  Only thing i would add is it "may" create privacy 
+  issue
+Juan Caballero: Brent +1
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API Work Item group will 
+  not define a "phone home" mechanism at present as it may create a 
+  privacy danger when a verifier contacts an issuer directly.
+Joe Andrieu:  Appending about a particular credential
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API Work Item group will 
+  not define a "phone home" mechanism at present as it may create a 
+  privacy danger when a verifier contacts an issuer directly about 
+  a particular credential.
+<kaliya> Here is the DHS RFI re: mDL - it references many time 
+  that the DHS agencies will ping drivers licecne databasess and 
+  asks about the privacy implcations of this - 
+  https://www.federalregister.gov/documents/2021/04/19/2021-07957/minimum-standards-for-drivers-licenses-and-identification-cards-acceptable-by-federal-agencies-for
+Mike Prorock:  One use case around phone home is in cases of 
+  firearms background checks and there may need to be a manual sign 
+  off.. something to be aware of
+<kaliya> its due date was extended - 
+  https://www.federalregister.gov/documents/2021/06/16/2021-12616/public-meeting-and-extension-of-comment-period-on-request-for-information-minimum-standards-for
+Manu Sporny: PRE-PROPOSAL: The VC HTTP API Work Item group will 
+  not define a "phone home" mechanism at present as it may create a 
+  privacy danger when a verifier contacts an issuer directly about 
+  a particular credential. Vendors are free to implement such a 
+  system, but we are not going to define it in the standard at 
+  present.
+<by_caballero> at present
+
+PROPOSAL:  The VC HTTP API Work Item group will not define a 
+  "phone home" mechanism at present as it may create a privacy 
+  danger when a verifier contacts an issuer directly about a 
+  particular credential. Vendors are free to implement such a 
+  system, but we are not going to define it in the standard at 
+  present.
+
+<by_caballero> maybe when we have some gun-purchase/mental-health 
+  use cases we can reconsider :D
+Manu Sporny: +1
+Mike Prorock: +1
+Joe Andrieu: +1
+Orie Steele: +1
+Kaliya Young: +1
+Manu Sporny:  Running proposal
+Juan Caballero: +1
+Brian Richter: +1
+Brent Zundel: +1
+Ted Thibodeau: +1
+Justin Richer: +0 It's pointless signaling
+David Chadwick: +1
+<phil_l_(p1)> 1
+Mahmoud Alkhraishi: +1
+Adrian Gropper: -0 This issue should stay open until we 
+  understand the authorization protocols
+<joe_andrieu> /me @justin it is signalling to our future selves.
+<by_caballero> well if it's virtue signaling i'm changing my vote 
+  to +2 :D
+
+RESOLUTION: The VC HTTP API Work Item group will not define a 
+  "phone home" mechanism at present as it may create a privacy 
+  danger when a verifier contacts an issuer directly about a 
+  particular credential. Vendors are free to implement such a 
+  system, but we are not going to define it in the standard at 
+  present.
+
+Manu Sporny:  Adrian if you'd like to raise this issue in context 
+  of authz thats appropriate
+Manu Sporny:  That issue is closed.. next issue is #40
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/40
+Manu Sporny:  Raised by markus discussed by Kim.. title is: 
+  remove public facing API calls. this is meant to be an internal 
+  API calls this shouldn't have any operations public and those 
+  should be removed. remove credential status and refresh
+<mprorock> all apis are public, even internal ones from my 
+  opinion, adding auth is another path
+<orie>	> all apis are public, even internal ones from my opinion, 
+  adding auth is another path
+Orie Steele: +1
+Orie Steele:  This is stale and should be closed
+<by_caballero> close it
+Mike Prorock: +1 Close as stale
+Joe Andrieu: +1 Stale
+<adrian_gropper> again, this is an authorization issue
+<joe_andrieu> I was going to say "refresh" is necessarily public
+Justin Richer:  The idea of a public API. you need to 
+  differentiate using some system. we just had a long discussion 
+  about controlling APIs.. this is part and parcel with the authz 
+  discussion
+Adrian Gropper: +1 Justin
+Justin Richer:  If closing this as stale the group is admitting 
+  that the group is admitting they need to discuss this
+Joe Andrieu:  Confused as refresh is public
+<orie> all APIs should be secured
+Joe Andrieu:  Whoever is satisfying the refresh it is being 
+  called by the holder and i dont think the holder is calling it.. 
+  we don't have a good mental model for holders
+<orie> in a world where, we spent more time following security 
+  best practices and less time imagine a future without OAuth...
+Adrian Gropper: +1 To Ted's "all external as a ZTA issue
+TallTallTed: there can not be any thing as an internal API in a 
+  space that involves security and crypto. everything needs to be 
+  treated as external and the authorized agent needs to be known
+David Chadwick: +1 TallTed
+Orie Steele: +1 TallTed
+Mike Prorock: +1 TallTed
+TallTallTed: it might be stale but this isn't grounds for 
+  closing.. maybe a new issue but theres still discussion here
+Joe Andrieu:  Theres confusion here of internal/external vs 
+  internal/public. is the api intended to be used by the public?
+Manu Sporny:  Hearing close the issue as it doesn't cut to the 
+  point. open new issues for various points of debate
+Manu Sporny:  Hearing "there should be authz around these 
+  endpoints"
+Manu Sporny:  Hearing "don't presume internal v external.. not a 
+  good way to think about endpoints"
+<tallted> I would generally keep this and other bluntly directed 
+  issues open until the better-pointed issue(s) is/are created
+<orie> the issue discusses endpoints that don't exist.... in the 
+  current spec.... not closing it, invites confusion. maybe we 
+  should read the latest api definitions first next time.
+TallTallTed: should leave open with a note to create a new issue
+Joe Andrieu: +1 To TallTed's suggestion
+Mike Prorock: +1 Orie - API definitions in issue are no longer 
+  relevant
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-http-api/issues/40#issuecomment-887824499
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/42
+Manu Sporny:  Next issue up is #42.. jwt encoding of VCs. orie 
+  opened up and there is work item now
+Orie Steele:  Would like to close and cross link to new work 
+  item. doing that
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/43
+Manu Sporny:  Next issue is #43. design discussion is wondering 
+  whether we should be using service APIs vs RESTful APIs
+Manu Sporny:  James said maybe REST isn't the right approach. 
+  maybe POST or creating isn't the right level of abstraction
+Orie Steele:  We don't support any form of reading credentials.. 
+  not list no get by id. none of that is supported
+Manu Sporny:  Another note previous resolution: API style guide 
+  we are going to use is controller style w/ json schema. any 
+  deviations will be discussed by group
+<orie> please read the current API definitions
+<orie> before the next call.
+Adrian Gropper:  Curious about comment: API does not support GET? 
+  am i to assume this api only supports push
+Manu Sporny:  API is to issue VCs. as an authority you call the 
+  API to issue a VC and then you hand it off in external process. 
+  there is not get credential
+<orie> the current api spec does not render correctly either
+Ted Thibodeau: 
+  https://github.com/w3c-ccg/vc-http-api/issues/35#issuecomment-866314656 
+  says "RESOLVED: In general, the VC HTTP API style will conform to 
+  restfulapi.net guidelines ..."   Seems to answer issue#43 
+  directly
+Orie Steele: https://w3c-ccg.github.io/vc-http-api/issuer.html
+Orie Steele: https://w3c-ccg.github.io/vc-http-api/holder.html
+Orie Steele: https://w3c-ccg.github.io/vc-http-api/verifier.html
+Mike Prorock: +1 Orie - current specs are not
+Mike Prorock: +1 Ted
+<orie> thank you TallTed
+TallTallTed: resolution linked answers #43 directly
+Orie Steele:  Current API isn't included in respec but I pasted 
+  above. there is issuer/holder/verifier these are the current 
+  APIs. encourage people to take a look at these. these are the 
+  primary work that has been done
+Orie Steele:  Please take a look and you'll see there isn't a lot 
+  there. no querying
+<by_caballero> VeeeHAPPY
+<tallted> Are those linked from VC-HTTP-API repo README(s)?
+<orie> TallTed, no, folks keep moving things, breaking links, and 
+  not updating the readme.
+Mike Prorock:  This might be a history thing.. when i first came 
+  in was thinking we would be doing all of the restful things.. 
+  feels like a gap
+<orie> PRs welcome.
+<tallted> *sighs*  I spend more time on editing README(s)....
+<orie> example
+Orie Steele: 
+  https://w3c-ccg.github.io/traceability-interop/#issuer
+<by_caballero> "please update the readme" is the new "please 
+  address merge conflicts"
+Mike Prorock: +1 Orie
+Manu Sporny:  At the top of the hour. I'm trying to get the OAS 
+  files to render native in respec. trying to get it officially 
+  integrated. might need help from orie
+<mprorock> also useful to bundle all api endpoints into a single 
+  spec file
