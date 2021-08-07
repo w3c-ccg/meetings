@@ -1,0 +1,336 @@
+Thanks to Kaliya Young for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-08-03-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-08-03
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0003.html
+Topics:
+  1. Use Cases Update
+  2. Pull Requests
+  3. Issue Processing
+Organizer:
+  Manu Sporny
+Scribe:
+  Kaliya Young
+Present:
+  Manu Sporny, Kaliya Young, Justin Richer, Ted Thibodeau, Michael 
+  Herman, Mahmoud Alkhraishi, Mike Prorock, Brent Zundel, Aaron 
+  Coburn, Eric Schuh, Joe Andrieu, Juan Caballero, Tobias Looker, 
+  Dmitri Zagidulin, David Chadwick, Orie Steele, Adrian Gropper, 
+  David I. Lehn, Kristina Yasuda, Charles E. Lehner
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-08-03/audio.ogg
+
+Kaliya Young is scribing.
+<bumblefudge> thanks kaliya!
+Manu Sporny:  Welcome to VC-HTTP-API - name will be changed - 
+  vote soon
+<justin_richer> Call it VH 🤘
+Agenda - usecases, pull requests - fairly straightforward
+Michael Herman:  I would like some discussion about answers to my 
+  questions asked on list.
+Manu Sporny:  Very good questions
+<bumblefudge> ^ Eric and I were just talking about it at the 
+  use-case meeting with Joe
+Manu Sporny:  It keeps get narrowed own
+Eric Schuh:  Main topic of use-case update talking about scope 
+  differently then we have been.
+Manu Sporny:  Asking for new folks to call...doesn't appear to be 
+  any.
+
+Topic: Use Cases Update
+
+Manu Sporny:  Next use-cases update - Eric, juan, joe
+Eric Schuh: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.t03jb3hhyhc2
+Eric Schuh:  Document we are referencing page 34 - start of 
+  revision getting into github is goal.
+Eric Schuh:  We want to talk about the abstract sections - terms 
+  issuer role terms service
+Eric Schuh:  We tried to get a high level scope on the various 
+  APIs - one challenge with the use-cases not having a well defined 
+  scope and where the gaps are in the use-case.
+Joe Andrieu:  We had touched on this before - the party calling 
+  the verifier API not the verifier. we used role because that is 
+  in the spec.
+Joe Andrieu:  I think we have convergence - on issuer and 
+  verifier aPI
+Joe Andrieu:  Issuer role how it talks to Issuer service.
+Juan Caballero: Note: one pages 4-6, we have the diagrams of how 
+  these three "roles" map to various components and services
+<bumblefudge> on*
+<bumblefudge> s/one/on/*
+Joe Andrieu:  How the issuer role/service interacts with the 
+  holder's wallet - or the software that is particiapting as wallet 
+  (CHAPI/DIDComm right now).
+Issuer API is behind trust boundary.
+Joe Andrieu:  Question what is out of scope. Role issuer talking 
+  to verifier - not a thing.
+Joe Andrieu:  One caviate one verifier service talking to issuer 
+  service - may encompas status-check mechanism. While we don't 
+  want to put in the phone home mechanism - here is the privacy 
+  respecting way to have that use-case met. Kinda the issuer 
+  talking to verifer - as long as done indirectly.
+Juan Caballero:  Only add that the terminal logical moras - I've 
+  been following.  Holder-holder  service-holder finding a hard 
+  time finding common ground I hope you find this.
+Manu Sporny:  Clarifying question - what questions do you have 
+  for the group.
+Eric Schuh:  One that came up - speaking to holder-holder 
+  interaction ok to be modeled - recipient holder - and reciving a 
+  verification from the sending holder.
+Joe Andrieu:  Anyone can do any of these roles.
+Holder - can act as a verifier.
+Person in the middle in one part of the transaction is acting as 
+  a verifier.
+<orie> Verifier's that don't store content also are not holders.
+Mike Prorock: +1 Orie
+<justin_richer> +q
+<dmitriz> @DavidC - mentally translate RP to Verifier :)
+David I. Lehn:  [Missed some stuff] openID connect protocol.
+<bumblefudge> [bound] = VC; [unbound] = bearer tokens?
+Michael Herman:  Bound credentials - unbound credentials (no 
+  subject ID) both valid in VC spec. Michael is interested in 
+  unbound credentails - invoices and purchase orders. complex 
+  documetns are not just extension of subject.
+<orie> no juan, unbound credentials don't have a subject 
+  identifier.
+Michael differnet protocols for bound vs. unbound
+<bumblefudge> thx orie
+<davidc> @identitywoman. "When we are using the OIDC Protocol to 
+  pass a VP from a holder (and this has been defined now in the 
+  draft extension) then the recipient is the RP, and the RP will 
+  call the Verifier API
+Justin Richer:  There are a few ways that this family of APIs can 
+  plug in - who is going to be issuer or holder or veriifer or IdP 
+  and RP etc. not to contradict what David was saying - one of a 
+  number of different dimensions. how do you overlay these things 
+  with each other.
+Orie Steele: +1 To what Justin is saying,  VC-HTTP-API ... OIDC 
+  can be configured differently per use case / requirements
+<justin_richer> requesting party is not relying party! This is 
+  long established in the UMA space. (but naming is hard)
+<eric_schuh> "Requesting" implies that that role will always be 
+  the initiator and I don't think that is the case in many 
+  verification use cases. Is "Recipient" a better term?
+Manu Sporny:  In the VC spec we call this thing a requesting 
+  party - client is acting in a role and server is acting in a 
+  role.. useful to think of it in that way. I take ted's concern if 
+  you are recieivng something and not verifiying you are not a 
+  verifier.
+<justin_richer> and "relying party" is a very specific term from 
+  the IDAM space
+<orie> presentation "sender" and "receiver"
+Manu Sporny:  What kind of concrete decision was use-case team 
+  hoping to make.
+Mike Prorock: +1 Orie
+Eric Schuh:  The verifier role weather it becomes requesting 
+  recipient reciever. we went with it (but didn't like it) but went 
+  cause it went with the way the VC community does.
+<orie> I agree that the word "verifier" is problematic... if the 
+  verifier can store or not store, or verify or not verify
+Eric Schuh:  Can we get consesnsu of in scope vs. out of scope - 
+  under different api - issuer role to issuer software is in scope.
+<orie> currently there is no way for a "verifieir" to "request a 
+  presentation"
+<bumblefudge> maybe i'm being reductive, but if they store, they 
+  are a verifier-holder; if they don't, they're just a verifier; if 
+  they're not verifying, are they even conforming to this spec?
+<orie> there is a way for a "holder to submit a presentation to a 
+  verifier/holder"
+Eric Schuh:  More time to drill into use-cases that we are 
+  missing. we have some gaps in currently accepted usecases. they 
+  don't cover all teh interactions. but hard to tell we don't know 
+  what the scope is
+Orie Steele: +1 To what you said juan
+More tight scope around this work we need more time. Do folks 
+  want more time/30 min on next call to talk about specific scoping 
+  proposals.
+On the mailing list and on to next week  - make some scoping 
+  proposals.
+Joe Andrieu: +1 To feedback.
+Manu Sporny:  Using stuff already out of scope might be helpful 
+  to folks.
+<eric_schuh> Proposed out of scope at this point! If you have a 
+  good use case for something struck out let us know!
+Manu Sporny:  Concrete proposal - for people to put things in/out 
+  of scope
+Make a focused proposal in/out of scope.
+<bumblefudge> yes, scope proposals on CCG list using these terms 
+  and the diagrams on pages 4-6 would be VERY HELPFUL.  scope 
+  proposals NOT doing so would be NOT very helpful
+Joe Andrieu: :+1:
+<bumblefudge> nope
+Manu Sporny:  Light support for that next week
+<bumblefudge> just email us
+<bumblefudge> @joe maybe stop screensharing, sometimes it makes 
+  jitsi gobble up too much memory
+<bumblefudge> (or whoever is screensharing)
+
+Topic: Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/211
+Manu Sporny:  Pull requests - 211
+<joe_andrieu> (Right, someone else pulled it up)
+Manu Sporny:  Revocable indicator - nis agreed to this.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/224
+Manu Sporny:  Orie i will make sure he interprets what I'm 
+  talking about correctly.
+Manu Sporny:  Raise this PR with resolutions we have made so far.
+Manu Sporny:  224 Rather then leaving it blank - working group 
+  needs to write stuff to move resoultions into spec so things can 
+  go in a certain direction.
+Manu Sporny:  Feeback or concerns. spec editing perspective. 
+  putting things like this inside spec-tec vs an issue tracker - 
+  not as useful as it migth seem that said nothing specifically 
+  prohibitive of somethign like this
+Joe Andrieu:  Question is this PR the right place to challenge 
+  the resolution that happened in the session that was a majority 
+  decision. would like some other group review it. Things being 
+  recorded as consensus resolution- free to raise concerns/issues.
+Mike Prorock: +1 Joe
+Joe Andrieu:  Objected at the time - this isn't a task force - 
+  this isn't a working group - there isn't a chair.
+Manu Sporny:  I dno't want to end up in a meta discussoin
+Manu Sporny:  Would like broader working group to review.
+<mprorock> I will second a proposal to revisit decisions with 
+  either a consensus or supermajority vote
+Joe Andrieu:  Would like to see broader resolutoin
+Orie Steele:  Not sure what I'm saying is true. with CCG - you 
+  can raise issues with chairs of CCG.
+Orie Steele:  Any work on any work item that believe there is not 
+  consensus - can ping chairs and can request arbitration of teh 
+  chairs.
+<orie> 51% attacks strike again!
+Mike Prorock:  Welcome input from others - chair should mediate - 
+  I thought we should be doing a super majority - recall raised at 
+  tiem.
+<justin_richer> any process that can be stopped by a single 
+  participant is not "consensus", that's "unanimity".
+Mike Prorock:  I have some concerns about that
+<justin_richer> "consensus" needs to be robust against some 
+  number of -1's to survive
+((Consensus by the faciltiator definition - means everyone 
+  agrees))
+Joe Andrieu:  I am going to raise objections in the issues
+Joe Andrieu:  It was a can of worms and I'm upset about it being 
+  railroaded through - in appropriate and unfortuate.
+Brent Zundel:  Comments on process may apply on working group and 
+  what process those chairs have established - can those be applied 
+  to work item or community working gorup - looking at work item 
+  document this doesn't apply to
+<brent> that was my point exactly, thank you Joe
+Joe Andrieu:  I wrote the current charter - standard for 
+  consensus - principled objections - manu is not chair moderating 
+  these meetings. WE don't have a formal process we are operating 
+  processless.
+Manu Sporny:  You know how to do this make a concrete proposal
+Manu Sporny:  Hearing do not merge.
+Will not merge once we have clarity
+
+Topic: Issue Processing
+
+Manu Sporny:  Issue processing
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/44
+Manu Sporny:  Issue 44
+Should we link to implementations
+This should be in the VCHTTPAPI - test suite
+Orie Steele:  Sufficent to put into test suites. Orie is doing 
+  that.
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/46
+Manu Sporny:  Consider streetcred API -
+Orie Steele:  Would like to be discussed at call.
+<bumblefudge> should we invite Michael or Riley?
+Manu Sporny:  Trying to schedule for Aug 17th
+<bumblefudge> hehe the issue has been open for a while
+Manu Sporny:  Should invite trinsic folks to discuss
+Orie Steele:  Will reach out to them.
+<bumblefudge> i'll do it
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/48
+Manu Sporny:  Why believe important to return credentail to 
+  internal holder...lots of engagement.
+<orie> how to build an API 101...
+<mprorock> use of "internal" makes me think this is stale
+<mprorock> and that this pre-dates decision to follow restful 
+  practices
+<identitywoman>	orie: http -> client request from server - server 
+  returns to client.
+Manu Sporny:  What else would we do other then that.
+Dmitri Zagidulin:  Breaks out reqeust and respnose bundle. They 
+  are different.
+<bumblefudge> i think that Aries is trying to support non-HTTP, 
+  async, one-way transports, etc
+Dmitri Zagidulin:  That is kind of what we want to get out.
+<orie> guys, if we can just adopt DIDComm we can abandon REST and 
+  request response, and just implement aries RFCs :)
+<bumblefudge> "profile" sounds good to me
+Dmitri Zagidulin: +1 To what Juan said (re highly async, one-way 
+  type of protocol)
+<bumblefudge> thanks!
+Orie Steele: 
+  https://github.com/decentralized-identity/waci-presentation-exchange 
+  (solved this, for presentation exchange)
+Manu Sporny:  Dmitri and juan are going to help
+<bumblefudge> bumblefudge
+<bumblefudge> will it hurt?
+<dmitriz> @Orie - what's the rendered link for that, btw? 
+  (waci-pex)
+<mprorock> Juan - we try and maximize pain
+<orie> its broken 
+  https://github.com/decentralized-identity/waci-presentation-exchange/issues/78
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/issues/49
+Manu Sporny:  Next issue is issue 49
+Why do we believe the issuer retains a copy of all issued 
+  credentials.
+Orie Steele:  Current APIs don't assume statefulness
+Manu Sporny:  Maybe there is no assuption - they retain a copy.
+Manu Sporny:  Revocation lists imply status in issuer API
+<orie> ^ imply "statefulness and persistance"
+David I. Lehn:  You are saying you are making no assuptoins but 
+  in terms of the API you are making implicit assuptoins about what 
+  it can do. You are making implicit assuptoins that are not 
+  documented.
+<orie> lost audio
+Michael Herman:  Part of this process is mimicing real life - 
+  provicne issuing DL or country issuing passport.
+Michael Herman:  They do keep a copy - they have copies of them 
+  or ability to re-generate.
+Orie Steele: +1 To discussing "recommendations for retention, 
+  statefulness, and persistance"
+Michael Herman:  It is assumed it will retain information for it 
+  to maintain API - when maintaining revocation lists it will
+<orie> it is a much longer discussion
+Michael Herman:  We don't need to link with the revocation list 
+  api
+Orie Steele:  Reading what we have today it is undefined behavior 
+  - cases where you would like it to be defined positively from a 
+  negative perspective or positive perspective.
+Orie Steele:  Both valid use-cases it is undefined behavior today 
+  - we are planning to define some of that behavior.
+I heard concern about the issue being defined in a way for honey 
+  pot of credentails.
+Orie Steele:  I don't think we are planning on defining that 
+  behavior.
+<orie> for example, our prototype that passes all the tests, does 
+  not support persistance at all.
+Manu Sporny:  Writing issue out
+<orie> please closee this issu
+Manu Sporny:  Do we want to close this issue - or keep open as 
+  tracking issue
+<orie> and open a better issue without confusion
+<tallted> I'd hold open until new issue opens
+Ore: please close issue and create a new issue better 
+  articulated.
+<orie> agree with Ted
+<orie> only close if there is a better issue to track it
+Manu Sporny:  Writing in issue create better issue to track 
+  concern. group concerned it is vague.
+Manu Sporny:  Please put scoping on mailing list - and go through 
+  Joe's concrete proposal on PRs and issues.
