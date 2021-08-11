@@ -1,0 +1,290 @@
+Thanks to Juan Caballero for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-08-10-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-08-10
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0127.html
+Topics:
+  1. Intros
+  2. VC HTTP API Renaming Poll
+  3. Feature Scoping
+Organizer:
+  Manu Sporny
+Scribe:
+  Juan Caballero
+Present:
+  Mike Prorock, Manu Sporny, Bob Wyman, Markus Sabadello, Mike 
+  Varley, Andrew Hughes, David Chadwick, Mahmoud Alkhraishi, Brian 
+  Richter, Ted Thibodeau, Charles E. Lehner, Dmitri Zagidulin, 
+  Kaliya Young, Eric Schuh, Juan Caballero, Aaron Coburn, Joe 
+  Andrieu, Adrian Gropper, Brent Zundel, Orie Steele, Marty Reed, 
+  Andrew Rosen
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-08-10/audio.ogg
+
+Juan Caballero is scribing.
+
+Topic: Intros
+
+Andrew Hughes:  Getting back into the game and catch up on spec 
+  evolution in the meantime
+Bob Wyman:  Been following the conversations for a long time, 
+  getting more directly/seriously involved now
+<orie> 1969? are you a cobalt developer unicorn?
+  ... writing code since 1969 (💪), worked on early email 
+  systems, sold hypertext to the guys at CERN... infrastructure for 
+  information flows central to democracy
+<mprorock> *cobol  i assume orie?
+/Me cobalt lol
+Manu Sporny:  Glad to have you guys here, thanks
+
+Topic: VC HTTP API Renaming Poll
+
+<manu> Ideas for renaming: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0124.html
+Manu Sporny:  Poll based on email threads over many weeks
+  ... using fancy polling software
+<andrew_hughes> I think given Orie's text, we should call it the 
+  VC Cobalt Unicorn API now
+Bob Wyman: https://www.linkedin.com/in/bobwyman/
+Mike Prorock: +1 Cobalt Unicorn
+  ... will be run 2 days from now, open for a week
+  ... important to vote if you have skin in the game for this API 
+  specifically, even if not directly technical
+  ... there is also a blog post explaining some of the ins and 
+  outs of weighted voting
+Mike Prorock:  Clarifying question about "names you definitely 
+  don't want"-- that part was a tiny bit confusing
+Joe Andrieu: https://www.opavote.com/en/vote/6226340995923968?p=1
+Joe Andrieu:  Isn't the second list just the first in reverse?
+Manu Sporny:  No, opavote has fancy options
+Mike Prorock: Instructions: Use the buttons to add choices to the 
+  ballot, and then drag to arrange them in order of preference with 
+  your "most disliked" at the top to "moderately disliked" at the 
+  bottom
+<mprorock> second part of instructions note
+Joe Andrieu:  But can't you just fill out the second list as the 
+  exact reverse of the first?
+Manu Sporny:  Well, most people won't fill out all 17 in both 
+  lists... use the second list only for the ones you really DON'T 
+  want to see
+Manu Sporny:  Polling algorithms are very complicated... opavote 
+  let's us change algorithm after the fact, in some cases the lists 
+  are mirror opposites, in other cases they're not, we're running 
+  two data collection runs in case we pick a tallying mechanism 
+  that doesn't produce mirror opposites just to be safe so we don't 
+  have to run it all over again.
+(Scribe aside: +1 voting math is hard)
+
+Topic: Feature Scoping
+
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0122.html
+<manu> Email that went out to mailing list about this ^^^
+<manu> Attempt at summarizing current scope: 
+  https://docs.google.com/spreadsheets/d/1hlevKRxCXsJBWvJTkL30nZVp8cpF26aY3PJqzuHtIZE/edit
+Manu Sporny:  Email will help focus scope questions, based on 
+  various inputs from the group: use cases to date, new diagrams, 
+  and resolutions over last few months
+  ...screensharing now (spreadsheet from email above)
+  ... note link column where more details specs or spec drafts 
+  exist
+  ... expectation/hope is that discussion and resolutions can 
+  decide some of these open questions
+Adrian Gropper:  External trust issues
+  ... if holder application is external, is the request resulting 
+  from the presentation crossing an external boundary?
+  ... secondly, are "client credentials" involved in accepting 
+  the presentation?
+Joe Andrieu:  I'm still confused about the naming, mapping roles 
+  and software to the name of the API they use
+Manu Sporny:  Issuer may have a verifier backend they use to 
+  check or parse a VP...
+<dmitriz> I assumed what was meant by Issuer is - if the issuer 
+  is hosting a revocation list / bitmap
+Joe Andrieu:  But in that case, it's not ACTING AS an issuer, 
+  which is exactly my point
+  ... about roles and services
+  ... being manu: does the changes i'm making on screenshare 
+  address that?
+(Manu duplicates some rows to create distinctions based on client 
+  and server)
+Mike Varley:  Issuer deliver credential to holder doesn't seem to 
+  be a row here?
+  ... am I misreading or did I miss that being put out of scope 
+  by the group?
+Manu Sporny:  I think you mean rows 9, 10 and/or 11 but i'm not 
+  sure
+Joe Andrieu:  I doubt it
+<tallted> is that Issuance? (first item)
+Mike Prorock:  Want to clarify that some of these rows in out of 
+  scope divide labor with EDV spec
+  ... which is REST-based and get some clarity on how CRUD works 
+  there and if this spec should be explicit about what CRUD ops are 
+  possible there
+Manu Sporny:  That's a good point
+  ... of these three scope questions, which would be easiest to 
+  address?
+  ... for lack on input, i'll address mike prorock's concern 
+  first
+  ... EDV spec is a good reference for a neutral, open API for 
+  storing VCs, doing CRUD on them as objects over REST, etc
+Mike Prorock:  GET, PUT, etc are defined there, and we are 
+  leaning more towards controller APIs here, so the REST stuff can 
+  happen there.... but let's be more explicit
+  ... if we are putting it out of scope, we should point them 
+  there as a complementary spec for questions devs new to the space 
+  will naturally have upon reading this spec
+(Manu live-edits the notes column to be more explanatory about 
+  the link column as complementary to this being out of scope here)
+Joe Andrieu:  It's not clear to me if this a new issue or a 
+  non-issue, but what is this presentation service? is that new?
+Manu Sporny:  We were talking about a Holder Service, and it was 
+  confusing people... note the actions taken in the columns from 
+  the holder services above... i tried this neologism to clarify 
+  two diff things we've been calling holder services
+Joe Andrieu:  But aren't both beholden to the holder? Aren't 
+  these transports, not services in rows 9-10-11?
+<orie> See the breakdown here: https://gnarly.or13.io/
+Orie, q+ plz
+<orie> Holder same trust domain vs Holder cross trust domain.
+Orie Steele:  I think we should split up APIs that are 
+  internal-only from APIs that aren't-- i broke them up in my 
+  gnarly prototype/strawman
+  ... and i think we should call them exchange, not a service
+  ... because it obscures the boundary issues
+<mike_varley> "Presentation Service" - is this not a Verifer 
+  Service? Or is there no obligation to 'verify' ?
+<orie> I called them "Holder" and "Exchange"
+<orie> in the proposal above
+Joe Andrieu:  I'm down for exchange, or transport, just not 
+  service
+Adrian Gropper:  External clients necessarily entail client 
+  credentials, client censorship, client power relations...
+  ... if the request is an API rather than a form after you 
+  authenticate, then the API is now external... that's my question
+David Chadwick:  I'm going to repeat a comment i made 6 months 
+  ago
+  ... i still don't really understand the architecture, could we 
+  just map the services?
+Scribe aside: page 4 here is partial
+David Chadwick:  To put it another way, scope might be easier to 
+  decide after clarifying architectural assumptions a bit
+Mike Prorock: +1
+Andrew Rosen:  I want to clarify something about Adrian's 
+  question: the subject of a credential isn't the only party that 
+  has to authenticate, and non-interactive presentations are in 
+  scope, yes?
+Many: yes,
+Manu Sporny:  Yes, andrew, thanks for clarifying
+Manu Sporny:  Returning to adrian's question, I think that many 
+  of the rows in the Out-of-scope section are implicating directly 
+  in many of the use cases you have brought up; the cruise ship, 
+  for example, is mostly about EDV APIs, not the rows9-11 
+  (credential exchange) APIs
+  ... guardianship and delegation can happen at the 
+  holder/access/authZ level, and is better supported there
+<tallted> It seems to me that some of this might be made clearer 
+  by moving Action to come first.  It would also help to 
+  item-number these -- not in priority or action order, per se -- 
+  just so we can say things like "API calls 1-7"
+  ... rows 9-11 is where we get into more public-facing, 
+  client-credential-free APIs
+  ... at least, that is one way of further specifying 9-11
+Adrian Gropper:  The features out of scope I am not talking about 
+  here. What I don't understand is if there is an external request 
+  API
+Manu Sporny:  Yes, rows 9-11 are EXTERNAL APIs for pull-based or 
+  push-based VP flows (no authentication aside from DIDAuth, open 
+  APIs)
+Adrian Gropper:  So someone brings a request for a VC or VP to 
+  those APIs?
+Manu Sporny:  Row 9 is for initiating a  flow
+Orie Steele:  The current endpoints in trace-vocab  describe a 
+  holder asking the verifier for a challenge and domain
+  ... i.e., initiating a push-based flow with a verifier that 
+  knows you
+Mike Prorock: +1 Orie, well stated
+  ... what's confusing is that most use-cases we talk about is 
+  verifier-centric and pull-based, a verifier advertising an 
+  endpoint for holders to bring their credentials to (covid creds 
+  or discount coupons)
+Ted Thibodeau:  I'm thinking this would be clearer just 
+  reordering the columns
+Juan Caballero: +1
+(Scribe aside^)
+Orie Steele: +1 Ted
+Ted Thibodeau:  I would also recommend we number/order these a 
+  little more deliberately
+Joe Andrieu:  We've still not clarified the initiator of various 
+  flows, and Orie's explanation surprised me a bit
+<orie> please read
+Orie Steele: 
+  https://github.com/w3c-ccg/vc-http-api/blob/main/holder.yml#L61
+  ... Orie's example seemed to describe a valid use case 
+  initiated differently than I was assuming
+Orie Steele: 
+  https://github.com/w3c-ccg/vc-http-api/blob/main/holder.yml#L87
+Manu Sporny:  I have to confess that 7&8 have confused me 
+  persistently, I look forward to clarifying them
+Scribe aside: you are one of us use-case guys, Joe
+:D
+Joe Andrieu:  Use case guys could really help clarify this
+  ...whoever they may be
+Adrian Gropper:  I'm still confused
+  ... and I already explained what I'm confused about in email, 
+  which won't be resolved today
+Orie Steele:  Returning to exchange APIs as machine-to-machine 
+  services, regulated and acting according to the kinds of patterns 
+  they tend to do
+  ... in backend-backend data flows, which can be interactive or 
+  can be "fire and forget"/firehose-style
+  ... two SERVICES that know each other and 
+  communicate/sync/replicate according to policies
+  ... can use these APIs to do their thing; the push/pull thing 
+  maps to two major patterns in how backend-backend flows work 
+  generally
+Mike Varley:  These ??? service rows (7-8-9 in explicit numbers, 
+  9-10-11 in excel row#s)
+  ... seems to me an alternative to or equivalent to CHAPI 
+  "STORE" calls.  is that accurate?
+<orie> its push because it starts with a network request from the 
+  prover.
+Manu Sporny:  Yes, CHAPI could be used for line 8 (implicit 10), 
+  "push-based",
+<joe_andrieu> isn't the "prover" the "holder", Orie?
+<orie> the word holder is less helpful
+<orie> both sides are going to be holders.
+<joe_andrieu> perhaps, but it is the term in the VC spec
+  ... this row could link to CHAPI if the group found it adequate 
+  to the use-cases, or specify/identify something else if not
+<orie> the first guy is going to authenticate
+<orie> as part of the VP.
+<orie> hense push
+  ... it's called "start/continue presentation workflow" because 
+  it can redirect to a new channel, and can even loop or iterate in 
+  generative ways
+Orie Steele:  The endpoints and architectural assumptions here 
+  are informed by CHAPI precedent and VP Request spec
+  ... but pull/push here refers to who initiates and when the 
+  challenge/domain happen
+Mike Prorock: +1 Definitely right direction
+  ... so when a CHAPI website gives a CHAPI wallet a challenge, 
+  and gets back a VP signing over that challenge, that's one of the 
+  two patterns here, it could be more general but doesn't preclude 
+  CHAPI being an adequate way of doing this
+Scribe aside: this spreadsheet helps a lot, we use case guys will 
+  look at this with or without Joe
+Mike Varley: +1 Right direction
+<mprorock> this stuff is work in progress that will evolve over 
+  time, and this feels much more defined than we have had to date
+Manu Sporny:  Use case guys, please email the list with an update 
+  or some proposals to clarify or iterate
+Manu Sporny:  And that's a wrap
