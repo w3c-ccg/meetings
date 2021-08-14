@@ -1,6 +1,6 @@
 # W3C Credentials Community Group Meetings Archive
 
-This repo contains the meeting archives for the W3C-CCG (Credentials Community Group), including transcripts based on the IRC logs and audio files for our regular meetings, ancillary material such as slide presentations, etc.
+This repo contains the meeting archives for the W3C-CCG (Credentials Community Group), including transcripts based on the IRC logs and audio files for our regular meetings, ancillary material such as slide presentations, etc. The archives for 2014-2019 can be found [here](https://github.com/w3c-ccg/201x-meeting-archives).
 
 ## Notes on archive process
 
