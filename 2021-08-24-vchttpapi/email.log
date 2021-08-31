@@ -1,0 +1,511 @@
+Thanks to  for scribing this week! The minutes
+for this week's Verifiable Credentials HTTP API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-08-24-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials HTTP API Telecon Minutes for 2021-08-24
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0348.html
+Topics:
+  1. Authorization Requirements
+  2. Call next week
+  3. Trinsic API Presentation
+  4. VC HTTP API Renaming Poll Results
+Organizer:
+  Wayne Chang and Heather Vescent and Mike Prorock
+Scribe:
+  
+Present:
+  Mahmoud Alkhraishi, Joe Andrieu, Adrian Gropper, Michael Herman, 
+  Manu Sporny, Mike Prorock, Sudesh, Justin Richer, Michael Boyd, 
+  Sze Wong, Eric Schuh, Markus Sabadello, Rolson Quadras, Ted 
+  Thibodeau, Brent Zundel, David Chadwick, Juan Caballero, Marty 
+  Reed, Charles E. Lehner, Adrian Hope-Bailie
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-08-24/audio.ogg
+
+<justin_richer> Request to the chairs to add an item to the 
+  agenda about authorization language.
+Justin Richer: :+1:
+<michael_herman_(trusted_digital_web)> I might have been firsst
+Manu Sporny:  Welcome everyone to the VC HTTP API call, Markus is 
+  scribing.. Today on the agenda: [scribe assist by Markus 
+  Sabadello]
+<justin_richer> 5 min
+Manu Sporny:  Agenda review, introductions, request by Justin on 
+  authorization language, then presentation by Trinsic with 
+  walkthrough of their API [scribe assist by Markus Sabadello]
+Manu Sporny:  At the end of the call, we'll go over the renaming 
+  poll results (without making a final decision) [scribe assist by 
+  Markus Sabadello]
+Manu Sporny:  Any updates/changes to the agenda? [scribe assist 
+  by Markus Sabadello]
+Manu Sporny:  Let's do introductions.. Michael? Others? [scribe 
+  assist by Markus Sabadello]
+Michael Boyd:  I have been in decentralized identity for about 3 
+  years, first with Nathan George at Sovrin. Some of us met and 
+  founded Trinsic and have been building tools for developers to 
+  easily add SSI into their applications. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  I'm an engineer at Trinsic, I like bicyling and 
+  cooking. [scribe assist by Markus Sabadello]
+Manu Sporny:  Anyone else? [scribe assist by Markus Sabadello]
+Markus Sabadello: Sudesh: I'm from SecureKey, working on 
+  Trustbloc and Aries, been working in digital identity for 3 
+  years, interested in VC HTTP API, wallets, and Aries protocol.
+Markus Sabadello: Rolson_Quadras: Working on HL Aries Framework 
+  Go, I've used VC HTTP API, this is my first time in the call.
+Justin Richer: 
+  https://github.com/w3c-ccg/vc-http-api/compare/main...jricher:security-requirements
+Manu Sporny:  Let's get into the agenda, Justin what do you want 
+  to talk about? [scribe assist by Markus Sabadello]
+
+Topic: Authorization Requirements
+
+Justin Richer:  I dropped a link, I spend some time writing up 
+  text on resolutions that were being passed around, and people 
+  arguing about what MUST meant. [scribe assist by Markus 
+  Sabadello]
+Justin Richer:  It's always confusing when there is normative 
+  text for spec writers but not implementers [scribe assist by 
+  Markus Sabadello]
+Justin Richer:  If you read through the text, the top paragraph 
+  says since it's an HTTP API, you are allowed to use any 
+  technology that can protect such an API. It's recommended to use 
+  standard delegation technologies rather than direct 
+  authentication. [scribe assist by Markus Sabadello]
+Justin Richer:  Every endpoint would define a set of elements 
+  that describe the kinds of access. I talked about this when I 
+  introduced RAR/GNAP [scribe assist by Markus Sabadello]
+Justin Richer:  Neither of those are required to implement or 
+  deploy or use. But it says IF you are doing this or that, then 
+  you have to support a specific profile. [scribe assist by Markus 
+  Sabadello]
+Justin Richer:  In addition to text in that branch, I also looked 
+  into what it takes to add parameters to endpoint specifications. 
+  [scribe assist by Markus Sabadello]
+Justin Richer:  It turns out Redoc does not allow for 
+  extensibility. [scribe assist by Markus Sabadello]
+Justin Richer:  I found no way to put in extensions in the way 
+  that OpenAPI allows you to do it. [scribe assist by Markus 
+  Sabadello]
+Justin Richer:  If the group continues to use Redoc, this will be 
+  a limitation [scribe assist by Markus Sabadello]
+Justin Richer:  The text tells you, this is the authorization 
+  type field, these are the actions and what it means. [scribe 
+  assist by Markus Sabadello]
+Justin Richer:  This is the full extent that the specification 
+  should define, it does not talk about concrete technical details. 
+  [scribe assist by Markus Sabadello]
+Mike Prorock: NB: Redoc has limitations, there are multiple 
+  options for rendering openapi docs
+Justin Richer:  I've been arguing that this will really help 
+  interoperability [scribe assist by Markus Sabadello]
+Manu Sporny:  Thanks for writing up something concrete that the 
+  group can discuss. [scribe assist by Markus Sabadello]
+Manu Sporny:  My expectation is that the group will discuss this 
+  [scribe assist by Markus Sabadello]
+Manu Sporny:  We will be picking up the authorization discussion 
+  in the future, that should not stop people from talking about it 
+  e.g. in Github. [scribe assist by Markus Sabadello]
+Justin Richer:  I could turn it into a PR, but hesitated due to 
+  discussion [scribe assist by Markus Sabadello]
+<tallted> +1000 -- written text is awesome step in right 
+  direction
+<mprorock> DRAFT PR might be helpful
+Manu Sporny:  It would be helpful if people can comment directly 
+  on the lines [scribe assist by Markus Sabadello]
+Justin Richer: https://github.com/w3c-ccg/vc-http-api/pull/226
+<mprorock> Manu I can run it
+Manu Sporny:  Moving on to the next item.. I won't be able to run 
+  the call next week. Any volunteers to run the call next week? 
+  [scribe assist by Markus Sabadello]
+Mike Prorock: +1 Coordination - probably issues and PRs
+
+Topic: Call next week
+
+Justin Richer: @Mprorock: I noticed that. I actually hacked ReDoc 
+  to do the display of the additional fields so I know it's at 
+  least possible to represent in the data model.
+
+Topic: Trinsic API Presentation
+
+Manu Sporny:  Next topic is Trinsic API presentation. Michael you 
+  can screenshare, etc. however you want it. We should timebox 15 
+  min, then have Q&A. [scribe assist by Markus Sabadello]
+<mprorock> @Justin yeah, it is pretty slick but requires a bit of 
+  hacking for some things
+Michael Boyd:  I want to talk about our API and some decisions we 
+  have made. [scribe assist by Markus Sabadello]
+Michael Boyd:  Trinsic is a developer-focus company that has 
+  built a set of APIs and SDKs and a developer dashboard that we 
+  call "Credential Studio". People can create organizations that 
+  then can operate as Issuers and Verifiers. [scribe assist by 
+  Markus Sabadello]
+Michael Boyd:  We implement HL Aries .net framework to enable all 
+  of this, and we have also built a mobile wallet. [scribe assist 
+  by Markus Sabadello]
+Michael Boyd:  There is also a Trinsic Wallet API. [scribe assist 
+  by Markus Sabadello]
+Michael Boyd:  This technoloy enables a really easy way for 
+  Issuers, Verifiers and Holders to get up and running with 
+  credentials, without any configuration required. [scribe assist 
+  by Markus Sabadello]
+Michael Boyd:  E.g. I can create a connection invitation and then 
+  scan it with a mobile wallet. [scribe assist by Markus Sabadello]
+Michael Boyd:  I can create HL Indy credential definitions, on 
+  the Sovrin ledger. [scribe assist by Markus Sabadello]
+Michael Boyd:  I can create this, then issue it to a wallet. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  The whole interface was completely built using our 
+  own public APIs. [scribe assist by Markus Sabadello]
+Michael Boyd:  We're happy with our developer documentation. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  In our API, we have three main API concepts. 
+  Credential API, Wallet API, and Provider API. [scribe assist by 
+  Markus Sabadello]
+Michael Boyd:  Connections and credentials we use with 
+  organizations are all in the Credentials API. We made it 
+  specificially for Issuers and Verifiers. This is probably most 
+  aligned with the VC HTTP API. [scribe assist by Markus Sabadello]
+Michael Boyd:  For Holders, we defined a Wallet API, which gives 
+  you the functionality of a mobile wallet, but in a custodial 
+  cloud environment. [scribe assist by Markus Sabadello]
+Michael Boyd:  We had a lot of customers requesting this, 
+  especially in uses cases where there is no mobile wallet. [scribe 
+  assist by Markus Sabadello]
+Michael Boyd:  We used this in a project with farmers. [scribe 
+  assist by Markus Sabadello]
+Michael Boyd:  After working with 100s of developers and 10s of 
+  customers going in production, we realized a lot of our customers 
+  are "providers" that are helping others onboard into an 
+  ecosystem. [scribe assist by Markus Sabadello]
+Michael Boyd:  The Provider API allows a company to create 
+  organizations en masse, and each organization can have a 
+  custodial cloud wallet. [scribe assist by Markus Sabadello]
+<justin_richer> A note for the notes, I updated the PR with 
+  screenshots from the hacked version of ReDoc I threw together: 
+  https://github.com/w3c-ccg/vc-http-api/pull/226
+Michael Boyd:  Using this set of API endpoints, you can create a 
+  complete production ecosystem without any configuration needed. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  I wanted to spend time talking about some of our 
+  decisions, specifically regarding the Credentials API. [scribe 
+  assist by Markus Sabadello]
+Michael Boyd:  As I said, we're following the HL Aries protocols 
+  and using DIDComm. [scribe assist by Markus Sabadello]
+Michael Boyd:  All of our semantics are closely aligned with HL 
+  Aries. Most exchanges start with a "connection". This uses Aries 
+  connection invitation protocol. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  We found a lot of our customers like the 
+  "connections". It abstracts away the credential exchange from 
+  their infrastructure. [scribe assist by Markus Sabadello]
+Michael Boyd:  We are finding that customers want simple entry 
+  points, to make it easy to use. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  In general, as technologists we value flexibility 
+  and robustness of features. [scribe assist by Markus Sabadello]
+Michael Boyd:  This is also the case for some of our power users. 
+  People want "60 minites to Wow". [scribe assist by Markus 
+  Sabadello]
+<markus_sabadello> s/minites/minutes
+Michael Boyd:  I don't know where the VC HTTP API stops in terms 
+  of scope, but we found that connections are very valuable. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  We also enabled connection-less credentials, e.g. 
+  if organizations want send a QR code via email to send a 
+  credential, they could do that as well. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  In our Credentials endpoints, we abstracted a lot 
+  of the VC data model away from customers [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  We tried to find the right balance between 
+  abstraction and original data model. This is very tricky to 
+  figure out. [scribe assist by Markus Sabadello]
+Michael Boyd:  In our first API, we've chosen to be very 
+  "helpful" to our users, we abstract complexity away. [scribe 
+  assist by Markus Sabadello]
+Michael Boyd:  E.g. we define CRUD endpoints for all credentials, 
+  we enable organizations to store all credentials in a cloud 
+  wallet. [scribe assist by Markus Sabadello]
+Michael Boyd:  We have given users credential IDs to store on 
+  their end, if they want to have data self-hosted, they could 
+  choose to store all credentials in their own environment and 
+  delete them from the Trinsic backend. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  We chose to make things easy to use and abstracted 
+  [scribe assist by Markus Sabadello]
+<manu_sporny> mprorock, I see you... holding until 15 minutes is 
+  up and then I'll see if Michael wants to take questions.
+Mike Prorock: +1 Manu - it is an if we have time
+Michael Boyd:  E.g. for an offer, you supply a credential 
+  definition. You can create that and then offering a credential is 
+  as simple as putting a credential ID and connection ID, and then 
+  adding the values. [scribe assist by Markus Sabadello]
+Michael Boyd:  All values are text type, we don't have specific 
+  field types at this point. [scribe assist by Markus Sabadello]
+Michael Boyd:  For the audience here, let's make this based on 
+  questions. I'm also interested in what areas others find most 
+  interesting, then let's have a discussion on shared learnings to 
+  build better APIs. [scribe assist by Markus Sabadello]
+Manu Sporny:  This sounds great. Let's use our queuing system. 
+  Anyone who wants to ask questions, please add youself to the 
+  queue. [scribe assist by Markus Sabadello]
+Mike Prorock:  I'm also super impressed by this. We've done 
+  similar abstraction in our products to make it easy to onboard. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  Noone has asking for this [low-level access to 
+  semantics?], it wouldn't be complex to implement, but our 
+  organization users haven't really found this valuable yet. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  Your users should be able to export and import 
+  credentials, to avoid vendor lock-in [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  HL Aries/indy stack don't really use the VC data 
+  model behind the scenes. They don't use contexts and linked data. 
+  [scribe assist by Markus Sabadello]
+Markus Sabadello: Michael_Herman: I'm a client and developer 
+  using the Trinsic API, and it's easy to use.
+Markus Sabadello: Michael_Herman: If every store wanted to be 
+  enabled to do purchase orders and invoices, how would this scale 
+  to be pervasive across the work?
+Markus Sabadello: Michael_Herman: Does everybody have to become 
+  an Issuer?
+<justin_richer> . o O ( My Cabbages! )
+Markus Sabadello: Michael_Herman: If one store wants to send a 
+  purchase order to another store, do they have to become an 
+  Issuer? How do we make this scale for everyday business 
+  transactions?
+Michael Boyd:  It's useful to build the piping, the roads of an 
+  infrastructure, then let industry partners go and help provider 
+  more of a frontend experience to customers. [scribe assist by 
+  Markus Sabadello]
+Michael Boyd:  Would a grocery store have to be an Issuer? 
+  Depends, answer is probably yes, but they would probably be 
+  dealing with some frontend vendor software rather than VC data 
+  model directly. [scribe assist by Markus Sabadello]
+Michael Boyd:  I forsee APIs such as ours to be integrated with 
+  other systems across the world. This is why we mentioned the 
+  "Provider" concept. The majority of our customers want to "own" 
+  the experience, we're giving them the tools to suceed. [scribe 
+  assist by Markus Sabadello]
+Markus Sabadello: Michael_Herman: I imagine add-ons to existing 
+  software that can issue VCs
+Adrian Gropper:  You mentioned messaging-oriented design with 
+  credentials going through DIDComm or email [scribe assist by 
+  Markus Sabadello]
+Adrian Gropper:  Is there any authorization component in your 
+  stack (Studio), or are you assuming there will be a frontend that 
+  might or might not have authorization. When you do it the way you 
+  did, does it matter to the Issuer whether they talk to the Holder 
+  of the Verifier? [scribe assist by Markus Sabadello]
+Adrian Gropper:  If it's messaging-oriented, I imaging it makes 
+  no difference if they communicate with Holder or Verifier. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  Talking to you about authorization is a pleasure 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  We use bearer tokens for each organization as 
+  authorization. [scribe assist by Markus Sabadello]
+Michael Boyd:  For Aries/DIDComm that is done behind the scenes. 
+  We are talking about authorization to the API itself, and beyond 
+  that is DIDComm with mutually authenticated connections. [scribe 
+  assist by Markus Sabadello]
+Mike Prorock: +1 This is very standard for auth approach for api 
+  services
+Michael Boyd:  Our bearer tokens are using our own identity 
+  provider endpoint. [scribe assist by Markus Sabadello]
+Michael Boyd:  We are looking at ZCAP-LD for future 
+  implementations of our API; at this point though it's just the 
+  bearer token itself that enables a client or server-side caller 
+  to authenticate to our API [scribe assist by Markus Sabadello]
+Michael Boyd:  The same goes for verifying a credential; they 
+  will authenticate with bearer token and then use the API 
+  endpoints. [scribe assist by Markus Sabadello]
+Michael Boyd:  For the Holder, that is completely done using 
+  DIDComm. The wallet is standalone, no dependency on our backend 
+  services. They have a push notification service behind the 
+  scenes. [scribe assist by Markus Sabadello]
+Michael Boyd:  Those are authenticated in headers at the 
+  endpoints. [scribe assist by Markus Sabadello]
+<mprorock> "active"
+Manu Sporny:  Michael, there has been a heated discussion on 
+  authorization. I'm wondering if what Michael said is acceptable 
+  to you agropper, or if you are still concerned about sovereignty. 
+  [scribe assist by Markus Sabadello]
+Adrian Gropper:  I'm entirely focused on the ability of the 
+  subject to delegate. [scribe assist by Markus Sabadello]
+Adrian Gropper:  To the extent that Trinsic Studio doesn't force 
+  subjects to be holders, I'm completely aligned with that. [scribe 
+  assist by Markus Sabadello]
+Adrian Gropper:  In what I am proposing, I want to separate 
+  posession from control, and allow for delegation of the control 
+  component. [scribe assist by Markus Sabadello]
+Adrian Gropper:  The right to delegate as a human right is what 
+  ties together my insistence. [scribe assist by Markus Sabadello]
+Adrian Hope-Bailie:  Then why are you pushing back on VC-HTTP-API 
+  which has the exact same system to system needs as we see here 
+  [scribe assist by Mike Prorock]
+Joe Andrieu: +1 Organizations are not people
+Michael Boyd:  We've taked an approach of "organizations are not 
+  people", this has helped us move forward. Issuers and verifiers 
+  are different enties than Holders. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  With the Wallet API, this is a custodial 
+  relationship under an organization. An organization can have many 
+  wallets. [scribe assist by Markus Sabadello]
+<manu_sporny> Citizens United v. Federal Election Commission 
+  would like to have a few words with you, Joe. :P
+<mprorock> lol
+Michael Boyd:  For farmers authentication/authorization in one 
+  part of the world is probably not the same as for me in a 
+  different part of the world. [scribe assist by Markus Sabadello]
+Manu Sporny:  My question is about coordinating. Michael you 
+  asked how can we learn from each others. [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  In the Trinsic API, there are some endpoints that 
+  seem to map cleanly to VC HTTP API endpoints [scribe assist by 
+  Markus Sabadello]
+Manu Sporny:  The other discussion is about authorization. I 
+  think I heard you say you use bearer tokens for all endpoints 
+  module the wallet holder DIDComm part [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  Is is OAuth2 client credentials, is it some kind of 
+  OIDC based flow to the the bearer token? [scribe assist by Markus 
+  Sabadello]
+<mprorock> are you using auth0 or okta?
+Michael Boyd:  I believe they are just client credentials, signed 
+  tokens that have an expiration date of I think one year; they are 
+  stored in a secure location and sent alongside the request. I 
+  don't think it's OIDC. [scribe assist by Markus Sabadello]
+<justin_richer> one year token expiration? 🤯
+Manu Sporny:  The other question is maybe more important. I think 
+  I heard you say you focus on a simple, holistic product. [scribe 
+  assist by Markus Sabadello]
+Manu Sporny:  Is there any interest in Trinsic v2 API to align 
+  with VC HTTP API, or do you first focus on your customers and 
+  it's not necessarily a goal to align? [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  I'm interested in understanding the specific use 
+  cases, I didn't explore that before the call. I'd like Issuers 
+  and Verifiers to use open-source and use different vendors. 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  We'll likely see a dual approach where you can 
+  have an endpoint to issue a credential that is very abstracted 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  We're separating "Trinsic Core" and "Trinsic 
+  Ecosystems". Latter is a platform, former is a set of tools 
+  [scribe assist by Markus Sabadello]
+Michael Boyd:  We'll use the standardized specifications in our 
+  core side, and then we'll support more application-specific 
+  scenarios. [scribe assist by Markus Sabadello]
+Michael Boyd:  Yes we want to standardize and align with people, 
+  but we will have ecosystems products on top of that. [scribe 
+  assist by Markus Sabadello]
+Manu Sporny:  Interesting how you've broken up the APIs into 
+  those two groups. The Providers API seem really interesting. 
+  [scribe assist by Markus Sabadello]
+Manu Sporny:  Do you have any thoughts on which parts of those 
+  need to be standardized, and which parts don't? Maybe the 
+  ecosystems layer is value-add where vendors compete? The other 
+  approach is standardize everything [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  I resonate more with the first approach. I think 
+  having good tooling is a value-add for developers [scribe assist 
+  by Markus Sabadello]
+Michael Boyd:  With great tooling we achieve great adoption. 
+  [scribe assist by Markus Sabadello]
+<mprorock> default expire for a new provider key i am creating 
+  now was set to "08/24/2024"
+Michael Boyd:  Tools that actually work and are easy to use. I'm 
+  thinking about how Docker gained such a following (largely due to 
+  tools) [scribe assist by Markus Sabadello]
+Michael Boyd:  Trinsic and others can then provide more of a 
+  platform, analogous to DockerHub [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  Do we want people to be locked in? No. But we do 
+  want to achieve real-world adoption, for that we need a healthy 
+  ecosystem of vendors to serve customers. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  I like to solve customer products on a broad scale 
+  with products. [scribe assist by Markus Sabadello]
+Michael Boyd:  So I see this as a two-tiered approach [scribe 
+  assist by Markus Sabadello]
+<mprorock> this was great!
+<juan_caballero_(spruce)> thanks michael! this was great!
+<michael_herman_(trusted_digital_web)> +1000
+Manu Sporny:  This is an example of really great API 
+  documentation. Thank you for coming, hopefully we will see more 
+  from Trinsic in the coming years. [scribe assist by Markus 
+  Sabadello]
+Michael Boyd:  I would love to learn from everyone here, and I 
+  hope we can learn from each other. michael@trinsic.id feel free 
+  to reach out. [scribe assist by Markus Sabadello]
+
+Topic: VC HTTP API Renaming Poll Results
+
+<manu_sporny> Poll results are here: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0297.html
+Manu Sporny:  We sent a pool to the community to get some 
+  thoughts on what the name could be. [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  We have one objection on the poll, which means the 
+  editors will have to make a call, or the chairs and the CCG will 
+  have to make a call there. [scribe assist by Markus Sabadello]
+Manu Sporny:  But today we can go through the results so far 
+  [scribe assist by Markus Sabadello]
+Manu Sporny:  We went out to the community and asked what they 
+  wanted to rename the API to. There was good discussion on 
+  branding/marketing, with a number of suggestions on what we could 
+  do. [scribe assist by Markus Sabadello]
+Manu Sporny:  I'll share my secreen [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  26 People voted in the poll. [scribe assist by 
+  Markus Sabadello]
+Manu Sporny:  Top picks were VC-API, VCX, VC HAPI [scribe assist 
+  by Markus Sabadello]
+Manu Sporny:  Most disliked names were also voted on. [scribe 
+  assist by Markus Sabadello]
+<justin_richer> three cheers for Veri McCredentialFace
+Manu Sporny:  We used the Borda Count method (this is used 
+  whenever people are trying to pick their favorite option) [scribe 
+  assist by Markus Sabadello]
+Manu Sporny:  Pretty strong support for 3-5 items here, rest of 
+  them didn't get much support [scribe assist by Markus Sabadello]
+Manu Sporny:  It was good to get that data. The data has been 
+  uploaded to the mailing list. People can check the raw data. 
+  [scribe assist by Markus Sabadello]
+Manu Sporny:  Any thoughts on this? Surprises on what ended up 
+  being ranked highly, or anything interesting about the results? 
+  [scribe assist by Markus Sabadello]
+Manu Sporny:  I'm interested in how "VC API" got the highest 
+  results. [scribe assist by Markus Sabadello]
+Manu Sporny:  I was expecting other things that are more 
+  descriptive. [scribe assist by Markus Sabadello]
+<justin_richer> fwiw this is not a transport protocol: "transport 
+  protocol" means something very specific in the networking world
+Mike Prorock:  Sad that Veri McCredentialFace is not on top :) 
+  [scribe assist by Markus Sabadello]
+Mike Prorock:  Interesting to have this non-binding poll, it's 
+  really useful feedback. [scribe assist by Markus Sabadello]
+Mike Prorock:  Having 26 votes is quite in line with active 
+  engagement numbers in the community. [scribe assist by Markus 
+  Sabadello]
+Mike Prorock:  At the same time, VC API it does seem a bit 
+  descriptive, it does seem to kind of make sense. I wasn't sure 
+  how the "transport"ly names would do. [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  Any last minute thoughts? [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  Thank you everyone, thank you Markus for scribing 
+  and Michael for presenting Trinsic API. [scribe assist by Markus 
+  Sabadello]
+Manu Sporny:  Next week mprorock will be running the call. 
+  [scribe assist by Markus Sabadello]
+Manu Sporny:  Have a wonderful rest of the week, bye [scribe 
+  assist by Markus Sabadello]
