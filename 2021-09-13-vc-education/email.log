@@ -1,0 +1,278 @@
+Thanks to Phil Long for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-09-13-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2021-09-13
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0071.html
+Topics:
+  1. Agenda Review
+  2. IP Note
+  3. Call Notes
+  4. Scribe Selection
+  5. Introductions & Reintroductions
+  6. Announcements & Reminders
+  7. Dmitri Zagidulin from the Digital Credentials Consortium 
+    (DCC) update on the Learner Wallet
+Organizer:
+  Kerri Lemoie and Anthony Camilleri
+Scribe:
+  Phil Long
+Present:
+  Kerri Lemoie, Anthony Camilleri, Mark Miller, Thierry Thevenet, 
+  George Artem, Wes Teter, Kayode Ezike, Steve Gance, Phil Long, 
+  Dmitri Zagidulin, Phil Barker, Matt Lisle, Jim Goodell, Nate 
+  Otto, James Chartrand, David Chadwick, Simone Ravaioli 
+  (Digitary), David Ward, Hans Pongratz, Todd Albers
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-09-13/audio.ogg
+
+
+Topic: Agenda Review
+
+Topic: IP Note
+
+Kerri Lemoie: https://www.w3.org/community/credentials/join
+Kerri Lemoie: https://www.w3.org/accounts/request
+Kerri Lemoie: https://www.w3.org/community/about/agreements/cla/
+Kerri Lemoie: https://w3c-ccg.github.io/meetings/
+Kerri Lemoie: http://irc.w3.org/?channels=ccg
+Kerri Lemoie: https://w3c-ccg.github.io/irc_ref.html
+
+Topic: Call Notes
+
+Topic: Scribe Selection
+
+<phil_l_(p1)> Happy to scribe Kerri
+Phil Long is scribing.
+
+Topic: Introductions & Reintroductions
+
+Intros and re-intros?
+George Artem, not exactly new. Founded MetaCampus, the goal of 
+  which was to build a digital badging infrastructure and massively 
+  open administration. A tech summary recently published with the 
+  Founder of Nettherium (sp?).
+Wes asked for a re-intro
+https://georgeartem.com/metacampus/
+https://www.metacampus.us
+<kerri_lemoie> Thanks @George!
+<george_artem> georgeartem@protonmail.com
+Wes Teter - works for UNESCO and works with LEF re: recognition 
+  of learning.
+https://bangkok.unesco.org/theme/higher-education
+Kerri Lemoie: https://github.com/digitalcredentials
+Matt Lisle - works for Georgia Tech, and various ed tech 
+  projects. :-)
+
+Topic: Announcements & Reminders
+
+Topic: Dmitri Zagidulin from the Digital Credentials Consortium (DCC) update on the Learner Wallet
+
+Dimitri Zagaidulin, software engineer for DCC, heading up the 
+  mobile edu wallet project.  Updates will be given and data model 
+  questions.
+https://docs.google.com/presentation/d/1cJpmZKmNTTi_qQPT9FhVmULppYFDNe_YH4Cc5vUVlbI/edit
+Slides linked in Chat.
+This is the DCC headed by MIT and other universities across the 
+  world, doing an open source credential wallet aimed at 
+  learners/students
+Tightly focused MVP release about to go to pilot this fall in the 
+  next few months.
+In scope - general purpose learning wallet. Open source built in 
+  React using typical university use case.
+Institution issues completion of course completion with a URL or 
+  QR code you can scan. Can open email on a mobile device, or 
+  opened through Canvas, to use it add a credential to your mobile 
+  app.
+You can collect and share the credentials via the typical SM 
+  abilities, email, text etc. of Android and iOS devices.
+Credentials are stored only on the phone but can be backed up and 
+  restored to the phone.
+Example screen shot, but all is "in progress" based on 
+  student/uni feedback. Screenshot based on credential detail view. 
+  What fields will be displayed? How will it support any kind of 
+  credential the student wants to store/display?
+Questions so far?
+Phil Barker -availability of the early release?
+<kerri_lemoie> Wallet source is here: 
+  https://github.com/digitalcredentials/cred-wallet
+Will be available to anyone in the App Stores, and intend to roll 
+  out the compatible developer playgrounds for issuer and verifier 
+  apps for the unis in DCC and to the general public a few weeks 
+  later.
+<nate_otto> No audio queue for me, but I am interested to hear: 
+  how will self sovereign identifiers be exposed to would-be 
+  issuers? What does sharing a credential of this sort via text 
+  message mean?
+Phil Barker - would be nice to have some dummy credentials to 
+  test with.  Dimitri says we'll talk about that in the next part 
+  of the presentation (dummy credentials).
+Matt Lisle: FYI: Kerri's link might not be the right repo. Might 
+  want Dimitri to address this.
+George - How detailed is the credential?  Dimitri - Targeting the 
+  finer grained credentials at the moment rather than the full 
+  learner record to start with.
+Jim - is the competency metadata embedded or linked to somewhere 
+  else?
+Dimitri - in discussion with the dev team now. At the moment they 
+  are stand alone, simple and fine grained to start with.
+Nate - how will self-sovereign identifiers be shared? Especially 
+  how will this work via text messages?
+Dimitri - sharing via text message is sharing the JSON blob of 
+  the credential. More useful as an email attachment but more 
+  useful as a test method.
+Not targeting ZKP in the initial release.
+How the DID will be shared? The issuer is the interesting one.
+At the moment various unis are exploring DIDs the credentials 
+  issued today are tied to exiting enterprise systems in 
+  traditional infrastructures. As an on ramp to get to SSI, at the 
+  time of issuance they have to present to the issuer a bundle - 
+  Dimitri is a student at uni 123 but also has this DID and should 
+  be issued with that included.
+Does the issuer know the identity of the student? Yes because the 
+  student is 'known' by the current systems. But they need to have 
+  a mechanism to bridge to DID methods of identity referencing.
+Dimitri- quick look at the full data model of the example 
+  credential could look like.
+https://docs.google.com/document/d/1pHhQFD1bTUUxEZmX1661eWrEcYpDZo7r0vtAWSHUluE/edit
+Caveat - it's an on-going conversation in development.
+https://docs.google.com/document/d/1pHhQFD1bTUUxEZmX1661eWrEcYpDZo7r0vtAWSHUluE/edit
+Don't put too much stock in the fields presented as final 
+  choices.
+Optional credential ID.  Want a rich issuer field.  The person 
+  looking at UI wants to have a human readable name of the issuer, 
+  a logo and other ways to recognize the issuer
+Traditional spec requirements - when issued, when expires, other 
+  similar descriptors.  Has an optional Student Name, and 
+  hasCredential achievement style and cryptographic signature.
+What does this mean for display logic?  What do we do about 
+  credential that require unique display logic?
+Kerri - assuming Dimitri is saying the wallet will accept native 
+  VC credentials? Or will they take the XML approach accepting 
+  other non-native payload types? Not to start with. Going with 
+  JSON-LD based native credentials to start
+To clarify it will accept native OBv3 or CLR2 as VC credentials 
+  it will store.
+Answer to the question Kerri asked is "Yes"
+What about other W3C native style VC credentials. At the moment 
+  we don't have a way to dictate the display of a credential in a 
+  strict fashion.  Are approaches of using an image to display a 
+  credential, Or someone has shown a vector image SVG blog combined 
+  with a template approach. This was a SVG rendered display with 
+  the insertion of the actual values of the JSON-LD fields. But 
+  there is no standard out there yet for rendering displays.
+Instead, basic agreement of minimal field set to display.
+Should have Name ,optional description of the credential type 
+  (course completion credential type)
+Taking a page from the Universal Wallet, let's give the 
+  insitution issuer a human readable name a logo - if no logo a 
+  generic image
+Targeting example spec to render its fields, and if your 
+  credential contains these common fields the wallet will render 
+  something. If there are specific other fields, e.g., number of 
+  credits
+Under the hood there will be field credential types that can be 
+  called upon to display something for those specific credential 
+  metadata.
+Will target specific credential with their render logic and ask 
+  the community to contribute their render logic for the kinds of 
+  fields they want to see.
+Kerri - if something like aligned skills, or in the short term a 
+  URL for the description that could point to information that 
+  should be displayed.
+How does the university ID a student using the traditional 
+  student ID and its relation to a DID.
+Next steps - pilot deployment and invited contributions for 
+  display logic of fields in the credential.
+The community should start thinking about this, doing wire frames 
+  and talking to the designers.
+Linked data rendering  - assuming you mean and cue of the context 
+  of the schema to render them.  "Yes"  They weren't sure if a 
+  bulleted list of fields has value over debugging list in raw 
+  JSON. There are usability problems with this. There universal 
+  mechanism for displaying such field is not settled. Opened to the 
+  conversation.
+Goal to get get credential on the student's mobile. Requesting 
+  the issuing institution to issue that credential. Need to 
+  authenticate the student to the issuer, and let the issuer know 
+  the DID the credential should be issued to.   Combining OpenID 
+  connect, SAML, Shib, etct.
+Combining DID authentication and OpenID Connect flows to the 
+  issuer to allow issuer to authenticate on the back and have 
+  DIDkey or DIDweb used.
+A number of security and phishing concerns around deep links.  
+  The second gen of deep links are bound to a particular app.
+Have the either register a custom protocol handler (what happens 
+  when the use doesn't have the proper app installed?) No 
+  definition for what happens when a protocol is undefined.
+SIOP  working group has mentioned this problem of phishing.  
+  Community is aware of this trying to address it.
+Are looking at universal link deep links, a regular URL with a 
+  request, each domain can be linked to only a particular app. The 
+  user experience is much better, but the OS on a mobile device 
+  guides the user to download the app, but that's not really 
+  representative of a universal interoperability approach.
+The student receives a deep link via interacting with Canvas, 
+  email or QR code. The scan it and the deep link contains the 
+  universal protocol required, who the issuer is (open metadata to 
+  start the communication protocol) an invokes the trust framework 
+  required.
+What's the name of the API endpoint to receive the credential. 
+  Deep link contains a couple of fields and starts off the 
+  communication flow, the credential request to the issuer, the 
+  issuer returns the assigned credential with validation typical of 
+  VCs in general.
+Issuer must know who the student is, what credential to issue, &  
+  needs both DID auth and identity of the user from the 
+  enterprise's perspective.
+<nate_otto> The deep link approach sounds like a good plan.
+https://github.com/digitalcredentials/docs/blob/main/request/credential_request.md
+The deep link process verifies the learner, sends a verification 
+  token, the wallet sends back the bearer token and the DID, get 
+  the institution to issue the credential.
+For learners DIDkey and for issuers DIDkey will be used 
+  initially,
+For DIDkey if the learner loses the key they have to ask for a 
+  reissuance.
+<dmitri_zagidulin> the syntax is 'q+ to <topic>'
+Has any thought been given if a custodian is trying to get the 
+  credentials?
+This is a custodial use case, it's the parent or custodian who is 
+  requesting the authentication and that custodian is putting in 
+  the student's DID
+Can you walk through what it looks like for a relying party to 
+  connect to the wallet? What would happen if the system wanted to 
+  verify the credential?
+How 3rd party relying parties can request things from the wallet 
+  is a larger conversation
+Targeting a primitive universal layer for the initial phase.  
+  They are looking at the verifiable presentation request spec and 
+  looking to have an automated out of band way for 3rd parties to 
+  request a credential from a wallet.
+That's for the formal presentation
+That's it for the formal presentation.
+The cred wallet repo link initially in the text chat is not the 
+  right link and the link will be shared when the wallet is 
+  released in a couple of weeks.
+<nate_otto> Interested to work with Georgia Tech to implement 
+  that last flow so that users can present their credentials to 
+  relying parties from the wallet so developers can do stuff with 
+  them.
+Interested in producing an MVP but does the project extend beyond 
+  that?  Dimitri beleives that is the case but the current funding 
+  is for the MVP. Leadership of DCC needs to address on-going work.
+Thanks to Dimitri for presenting this!
+<kerri_lemoie> To stay updated on the DCC Learner Wallet keep an 
+  eye on the CCG mailing list and/or follow the 
+  https://github.com/digitalcredentials/docs repo
+That's it for today
+<phil_barker> thank you
+<george_artem> thanks all
+<nate_otto> Thanks!
