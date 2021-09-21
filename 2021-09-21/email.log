@@ -1,0 +1,422 @@
+Thanks to steve_gance and Ted Thibodeau for scribing this week! The minutes
+for this week's Credentials CG telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-09-21 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Credentials CG Telecon Minutes for 2021-09-21
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0074.html
+Topics:
+  1. Introductions & Reintroductions?
+  2. Announcements & Reminders
+  3. VC JWT Interop Test Artifact Repo
+  4. Drawing the line on DID Methods in/out of CCG Scope
+  5. did.pkh
+  6. did.tz
+  7. BBS+ signature scheme for LDP using JSON pointer 
+    normalization
+  8. VC Guide
+  9. Breakout use cases for VC HTTP API
+  10. Merkle Disclosure Proof 2021
+  11. Revisit scope for DID methods & did.pkh & did.tz
+Organizer:
+  Wayne Chang and Heather Vescent and Mike Prorock
+Scribe:
+  steve_gance and Ted Thibodeau
+Present:
+  Heather Vescent, Steve Gance, jakobp, Jakob Povsic, Markus 
+  Sabadello, Jeff Orgel, Wayne Chang, Charles E. Lehner, Erica 
+  Connell, Kerri Lemoie, Orie Steele, Tomislav Markovski, Ted 
+  Thibodeau, Dmitri Zagidulin, Geun-Hyung, Mike Prorock, Adrian 
+  Gropper, Kristina Yasuda, Geun-Hyung , Sharon Leu, Ryan Grant, 
+  Taylor Kendall, Kim Hamilton Duffy, Andrew Jones, Phil Long, 
+  selfissued, Juan Caballero, David I. Lehn, Brian Richter
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-09-21/audio.ogg
+
+<geun-hyung_> =
+<cel> /me 2021
+<tallted> 2021! :-)
+<heather_vescent> Join the CCG: 
+  https://www.w3.org/community/credentials/join
+<heather_vescent> Minutes archive: 
+  https://w3c-ccg.github.io/meetings/
+<kim> I am here but I've paid my dues maintaining the scribing 
+  infrastructure for years
+steve_gance is scribing.
+steve_gance is scribing.
+
+Topic: Introductions & Reintroductions?
+
+Topic: Announcements & Reminders
+
+Mike Prorock: 
+  https://www.regulations.gov/document/DHS-2020-0028-0001
+Mike Prorock:  Comment period for min standards for driver 
+  licenses for federal agencies (DHS) extended to Oct. 18, relevant 
+  to DIDS, etc. getting VCs out in broader usage.
+Oct. 12-14 is IIW, pay attention, anyone plan to speak?
+<heather_vescent> TPAC Breakouts: 
+  https://github.com/w3c-ccg/community/issues/210
+<heather_vescent> Details a TPAC breakout session: 
+  https://www.w3.org/wiki/TPAC/2021/SessionIdeas
+Announcement: tpac is coming up, Oct. 26 presentation, tpac put 
+  an announcement for breakouts, details at link, Oct. 18-22 is 
+  breakout week
+<markus_sabadello> Explain abbreviations for non-regular 
+  participants? E.g. DHS = Department of Homeland Security, IIW = 
+  Internet Identity Workshop, TPAC = Technical Plenary Advisory 
+  Committee.
+CCG chairs have discussed one-on-one Q&A sessions. Others 
+  interested in developing breakouts? comment on CG thread
+Mike Prorock: +1 Markus, thanks
+CCG have added item for consensus process....
+<heather_vescent> Consensus in community reports: 
+  https://github.com/w3c-ccg/community/issues/212
+In community reports (see link)
+Once deliverable report is in final stage, want people to review 
+  and have community response, both objections and support.
+Chairs believe this will help reports follow consensus process, 
+  but also allow more diverse viewpoints.
+Also allows more transparency and broader participation
+Mike Prorock: Nb: good final point to add sections that state 
+  "some members of the community...."
+
+Topic: VC JWT Interop Test Artifact Repo
+
+https://github.com/w3c-ccg/community/issues/198
+Six work items
+Discussion about VC data model, its compatibility with other data 
+  models. Talk of setting up repo but that's on hold for now as we 
+  discuss related aspects.
+Heather Vescent:  Should we note this as a proposed work item?
+Orio: Recommend leaving as proposed work item. Don't create a 
+  repo now if it will be empty, do it latter.
+Diff item is like a sprint, needs to be done in 3 months. New 
+  items will probably arise. Not on hold indefinitely, but 3 months 
+  max.
+Do we need to check in December or Jan? Yes
+
+Topic: Drawing the line on DID Methods in/out of CCG Scope
+
+Chairs have had discussion on in/out of scope: don't include 
+  every DID method in scope. What is criteria to include a DID 
+  method?
+A DID method that supports community goals, across community, or 
+  multiple people within community working on them, then these 
+  would be included in scope. But we still need more guidance on 
+  what is or is not in scope.
+Last time primary objection was whether it relied on blockchain. 
+  Two methods do not rely on blockchain. Suggest focusing attention 
+  on this aspect. These criteria should be applied equally: 
+  regardless of whether these rely on blockchain, these should be 
+  accepted.
+There is at least one method, maybe more, that rely on a 
+  particular blockchain, versus something that is agnostic to 
+  particular blockchains. For consistency sake, might want to 
+  clarify this.
+Markus Sabadello:  Agree with orie
+Orie Steele: +1 Ryan :)
+Ryan Grant:  Picking what is in the community or out for the 
+  technology is not the right approach. It should be out of the 
+  community to say why something should or should not be included.
+Orie Steele: +1 Blockchain / KERI / IPFS / etc... we should not 
+  discriminate against technologies in this community :)
+<markus_sabadello> +1, excluding specific technologies makes no 
+  sense
+<orie> ^ especially if such discrimination is part of blocking 
+  "standards track".... DIDs and VCs started as community work 
+  items...
+<mprorock> @markus exactly - we absolutely do NOT want to exclude 
+  ANY specific technologies
+Charles E. Lehner: Heather_Vescent: for DID methods to be 
+  developed in the CCG, they need to support community goals, and 
+  have multiple people who want to work on it
+Mike Prorock: +1 Orie - that is the key thing, we want to make 
+  sure that we are promoting items that can become standards track 
+  if possible
+<cel> ... If multiple people want to work in the community on a 
+  DID method that supports community goals but does use a work 
+  item, ... if approved it would be a legit work item.
+<cel> ... It is a scope question.
+Ted Thibodeau is scribing.
+Charles E. Lehner: Heather_Vescent: should have a separate 
+  conversation, or in a GitHub thread...
+<kim> I don't see any reason to modify the usual criteria -- if 
+  at least 2 people from different orgs offer to lead it, then it's 
+  good
+Mike Prorock:  To clarify, for potential clarification... How 
+  should we be thinking of work items as a community... We do not 
+  want to block specific techs... [scribe assist by Charles E. 
+  Lehner]
+<cel> ... If leveraging bitcoin, cool, seeing approaches apply to 
+  multiple things... that should be clear.
+<cel> ... Other thing to be careful about... when we are looking 
+  at specific work items... is it working on something that can 
+  ultimately become a standards item?
+<rgrant> I don't think that we want to "be careful" but that we 
+  want to foster innovation.
+<cel> ... Doesn't have to necessarily, but let's get the 
+  conversation going around the criteria, as a community.
+<cel> ... CCG is getting more active - more work item proposals - 
+  need to evaluate.
+
+Topic: did.pkh
+
+https://github.com/w3c-ccg/community/issues/200
+<orie> I think we want more did methods in the ccg, not less, 
+  especially if doing so, raises the bar for the method... 
+  https://w3c-ccg.github.io/didm-btcr/
+
+Topic: did.tz
+
+Charles E. Lehner: Heather_Vescent: Let's talk about these two 
+  DID methods, did:pkh and did:tz
+<heather_vescent> ttps://github.com/w3c-ccg/community/issues/202
+Orie Steele: https://github.com/w3c-ccg/community/issues/202
+<cel> ... I think I am kind of reiterating the obvious, based on 
+  the criteria stated, based on the criteria (we, chairs) agreed on 
+  as a guideline, these would be approved... and we would request 
+  did:tz to be withdrawn.
+<rgrant> Ahh, there it is, "rehome" my DID Method.
+Charles E. Lehner: Heather_Vescent: Need to know if we can 
+  re-home some items...
+Wayne Chang:  I would request that whatever is agreed upon is 
+  applied consistently upon work items, even if approved before. 
+  [scribe assist by Charles E. Lehner]
+Mike Prorock: +1
+<orie> moving community work out of the community seems pretty 
+  bad form....
+<cel> ... If accepted I would like to see the same kind of 
+  designation applied to previous ones... did:v1, did:btcr, maybe 
+  others.
+Charles E. Lehner: Heather_Vescent: Good points... we could take 
+  a "grandfathering" state, those are there and have been in the 
+  community for a long time, and not accepting the other ones...
+<orie> why are we considering "not accepting work items the 
+  community wants to work on" ?
+<cel> ... Wayne, did you have comments on the proposal to accept 
+  pkh as a work item and withdraw did:tz?
+<dmitriz> (incidentally, we should probably not use 'grandfather 
+  clause' terminology, and substitute with 'legacy')
+Charles E. Lehner: Heather_Vescent: To answer that... it has to 
+  do with scope.
+Juan Caballero:  How does one withdraw a work item? Just close 
+  the issue? [scribe assist by Charles E. Lehner]
+Heather Vescent:  You can make a comment, ask for withdrawal; it 
+  can be acknowledged by chairs and then closed. [scribe assist by 
+  Charles E. Lehner]
+
+Topic: BBS+ signature scheme for LDP using JSON pointer normalization
+
+Charles E. Lehner: Heather_Vescent: Moving forward. Next work 
+  item: BBS Signature Scheme
+https://github.com/w3c-ccg/community/issues/204
+Charles E. Lehner: Tomislav_Markovski: This proposal deals with 
+  extending the BBS signature scheme with an additional 
+  normalization algorithm, JSON pointer normalization.
+<cel> ... This is interesting because BBS uses a multi-message 
+  payload to sign documents, currently it is obtained using JSON-LD 
+  processing (URDNA2015). This proposal is to use JSON Pointer 
+  Normalization instead, to merge the document into a form usable 
+  in a multi-message format.
+<cel> ... JSON Pointer is on IETF standards track... looks 
+  similar to JSON Path... A complex JSON document can be flattened 
+  into a single JSON document.
+<cel> ... The POC document shows how a document can be 
+  converted... Whether it is JSON-LD compliant or not.
+<cel> ... The linked data proof specs specifies some terms around 
+  canonicalization algorithm, which can be used to specify how the 
+  document was canonicalized before signing, in addition to 
+  signature algorithm and other items.
+<cel> ... Thus far this has been the RDF canonicalization, with 
+  the exception of JCS...
+<cel> ... Using this, the signature suite could be extended...
+<cel> ... Because JSON Pointer operates on JSON documents, it 
+  works on both embedded and wrapped signatures.
+<cel> ... So it can be used with different signature suites.
+Charles E. Lehner: Heather_Vescent: Question: is this work in 
+  conjunction with DIF activities? How do you plan to coordinate?
+<cel> ... There are no work items in DIF right now that are 
+  relevant to this specific work item - the linked data proofs.
+<cel> ... However, there efforts to bring this... to JOSE. No 
+  dependency in required work.
+Charles E. Lehner: Heather_Vescent: Great. It looks like you have 
+  hit all of the requirements.
+<cel> ... Any other questions from the community?
+<cel> ... I think we'll give this the 7-day review and then can 
+  open it as a work item.
+<cel> ... Thanks for coming today, and for being brief and 
+  on-point.
+
+Topic: VC Guide
+
+<cel> ... Next: VC Guide. Are Michael Herman or David Chadwick on 
+  the call?
+<cel> ... Not seeing either; we'll skip this.
+
+Topic: Breakout use cases for VC HTTP API
+
+https://github.com/w3c-ccg/community/issues/207
+<cel> ... Juan, Eric?
+Juan Caballero:  I am here, and involved with those use cases. 
+  Eric couldn't make it. [scribe assist by Charles E. Lehner]
+<cel> ... Need a new repo. Trying to migrate to ReSpec.
+<cel> ... It's just to have a separate repo that can be linked 
+  from the VC HTTP API.
+<cel> ... It would still be discussed on those calls by that 
+  group, just need a separate repo.
+Heather Vescent:  Can you tell us what is the work item? [scribe 
+  assist by Charles E. Lehner]
+Juan Caballero:  The VC HTTP API Working Group started publishing 
+  more non-normative stuff. It was previously just a Swagger Doc 
+  that had been designed by some CCG companies and participants. 
+  [scribe assist by Charles E. Lehner]
+<cel> ... As part of trying to make it more intelligible... 
+  business partners needed more context...
+<cel> ... That weekly meeting is largely about technical stuff. 
+  There is a parallel work track, people working to make use cases 
+  supported by that API be explicit so you can point to use cases 
+  from the main meetings.
+<steve_gance> (scribe lost internet for 10 minutes)
+Heather Vescent:  What is deliverable going to be, Word, respec?
+<heather_vescent> Steve, Cel took over scribe for you.
+<steve_gance> Google doc now, will be moved to respec.
+Charles E. Lehner: +1
+<steve_gance> (thanks cel)
+<mprorock> Off Topic: added an issue to track and have discussion 
+  around scope for CCG work items, etc - e.g. anything related to 
+  credentials, etc - 
+  https://github.com/w3c-ccg/community/issues/214
+Heather Vescent:  Do you have a repo, or chairs need to create 
+  it? [scribe assist by Charles E. Lehner]
+Juan Caballero:  I think Eric had one... [scribe assist by 
+  Charles E. Lehner]
+<steve_gance> Is there a repo to transfer over, or do chairs need 
+  to create a new one?
+<juan_caballero_(spruce)> will do in 3 hours, thanks!
+<steve_gance> Not sure, will check whether a new repo is needed.
+
+Topic: Merkle Disclosure Proof 2021
+
+https://github.com/w3c-ccg/community/issues/209
+Orie Steele:  BBS+ JsonLD+ suite is the first, but concern was it 
+  was too much of a snowflake. This work item proposes another 
+  method based on Merkle proof, as well as JWS. Work item is there 
+  to help us clarify selective disclosure interfaces.
+Mike Prorock:  Part of motivation: we always want an alternative 
+  to being tied to one crytographic methods. Select disclosure is a 
+  big issue.
+Markus Sabadello:  How does this relate to previous work item?
+Mike Prorock: +1 Layer / interface compat with other selective 
+  disclosure methods
+<steve_gance> Its related because it allows swapping the 
+  cryptographic layer, while still doing the selective disclosure.
+<steve_gance> It is not related in the sense that this relies on 
+  boring Merkle or JWS
+Heather Vescent:  Looks like you have the requirements for a work 
+  item. Wait the 7 days and we can open a work item.
+
+Topic: Revisit scope for DID methods & did.pkh & did.tz
+
+Heather Vescent:  Let's pick up discussion of DID methods.
+Mike Prorock:  Let's make sure we are properly capturing the will 
+  of the community.
+Mike Prorock: https://github.com/w3c-ccg/community/issues/214
+<orie> probably not...
+Heather Vescent:  Can we decouple the score discussion from the 
+  discussion of the two DID methods?
+Mike Prorock: +1 Orie - tightly coupled
+<steve_gance> Scope question is being used to answer the DID 
+  question, so the scope question is critical to be addressed 
+  before we accept any more work items.
+<orie> Please leave your comments here: 
+  https://github.com/w3c-ccg/community/issues/214
+Heather Vescent:  I see it as being more flexible. I don't see 
+  the scope question being resolved easily. At a gut level it often 
+  seems what should be in scope and what shouldn't. Criteria for 
+  developing DID methods are generally what is supported by the 
+  community...
+<kim> who had the concern?
+<juan_caballero_(spruce)> ^
+<wayne_chang> manu, i think
+Heather Vescent:  The concerns usually have been raised in a 
+  previous calls. A concern that if we accept every DID method we 
+  would be overwhelmed.
+<kim> I think we should have that person write up their concern. 
+  this is a huge deviation from how we've accepted work items in 
+  the past
+Heather Vescent:  To me, the community goals can be addressed, 
+  maybe scope is irrelevant. Participation from multiple companies, 
+  is that a sufficient requirement for scope?
+<steve_gance> Jaun: Part of the problem is that businesses don't 
+  address the concern, e.g., goggle cloud wants to make something 
+  that doesn't work for anyone else. Concern that multiple 
+  companies can also do things that are too narrowly scoped to 
+  benefit the larger community...
+<heather_vescent> OK, so it's clear we need to decide on scope 
+  first, then review these work items.
+<mprorock> would like to yield time to wayne
+Juan Caballero:  The intention is to have something that would be 
+  generally useful. Proposers of (multiple technologies) have 
+  usually been trying to benefit entire community.
+<heather_vescent> I was wrong in thinking we could decide on 
+  these work items with the non-specific guidance at this time.
+<orie> playing games with "rehoming work" is a slippery slope 
+  that will fracture the community and cause needless pain... the 
+  scope of ccg work should be limited only by the tools we have at 
+  our disposal... not political or economic interests of companies 
+  or non profits or governments.
+<heather_vescent> it wasn't a concern about accepting work items.
+Mike Prorock: +1 Issue opened to track any concerns
+Kim Hamilton Duffy:  BTCR (?) should be retired, it was 
+  important, but there is a bigger concern: we should have the 
+  person who has a concern about how we accept work items should 
+  write a concrete proposal. Otherwise, this discussion tends to 
+  block the community work. I don't think it's clear that a 
+  substantial concern has been raised.
+Mike Prorock: https://github.com/w3c-ccg/community/issues/214
+<heather_vescent> Juan + Wayne, can you add your intent to the 
+  github thread?
+Mike Prorock:  DIDTC's implementation is formally verified, we 
+  wanted to bring that work to the group.
+<kim> Just to be clear, not saying btcr should be retired, just 
+  saying that if anything, it should be retired due to inactivity, 
+  NOT because it uses the bitcoin blockchain
+<kim> And Ryan's comment is addressing the inactivity concerns
+<steve_gance> BTCR has a 2.0 that we are working on. We are in 
+  the middle of scheduling additional work. Some of the people on 
+  this call are active on this DID method...
+<steve_gance> I don't think BTCR being here is a burden.
+<juan_caballero_(spruce)> i think that BTC might be quite 
+  different from ETH and TZ in that it doesn't have development 
+  funds, which make feel even further from the allegation of being 
+  specific to a bundle of shared economic interests
+Mike Prorock: +1 Heather
+Heather Vescent:  Sorry, I don't think that BTCR is under 
+  attack...
+Orie Steele: +1 To not doing anything that fractures the 
+  community.
+<juan_caballero_(spruce)> did:collusion
+Heather Vescent:  Maybe we don't need to do anything, just do the 
+  7-day on these two DID processes and let the process play out...
+Heather Vescent:  Then we can deal with any collusion of DID 
+  methods as they arise.
+<rgrant> Not just across companies, but across DID Methods!
+<orie> sorry gonna need to drop, please don't decide to exclude 
+  folks who want to work together while i'm gone ; )
+Mike Prorock:  An important note: One of the benefits of the CCG 
+  has been to foster inoperability in a IP-protected space. Let's 
+  continue to make this a place to move this work forward, across 
+  DID methods...
+<steve_gance> My inclination would be along an inclusivity path. 
+  There is a lot of discussion that could happen, let's move it to 
+  github and bring it up as needed.
+Heather Vescent:  I'll move these two issues to the 7-day 
+  process.
+<juan_caballero_(spruce)> thx steve! and charles!
