@@ -1,0 +1,419 @@
+Thanks to Juan Caballero for scribing this week! The minutes
+for this week's  telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-09-21-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+ Telecon Minutes for 2021-09-21
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0106.html
+Topics:
+  1. Introductions and Reintroductions
+  2. Merge Windows
+  3. Renaming VC HTTP API to VC API
+  4. Pull Request 224 - Resolutions in Spec
+  5. Pull Request 226 - RAR and GNAP
+  6. Pull Request 227 - Single Word Change
+  7. Pull Request 228 - Intro to Authz Section
+  8. Pull Request 229 - Forbidden Authorization
+  9. Pull Request 230 - Authorization Delegation
+  10. Pull Request 231 - OAuth 2.0 Bearer Tokens
+Resolutions:
+  1. Any editorial PR can be merged as soon as 2 code owners 
+    approve the PR.
+  2. Any non-editorial PR can be merged as soon as 2 code owners 
+    approve the PR, if it has been open for a minimum of 7 days and 
+    change requests have been addressed.
+  3. Rename the VC HTTP API to become the VC API.
+Organizer:
+  Manu Sporny
+Scribe:
+  Juan Caballero
+Present:
+  Manu Sporny, Mahmoud Alkhraishi, Juan Caballero, Eric Schuh, Joe 
+  Andrieu, Mike Prorock, Justin Richer, Orie Steele, David 
+  Chadwick, Kerri Lemoie, Brent Zundel, Brian Richter, Adrian 
+  Gropper, Heather Vescent, Dmitri Zagidulin, Marty Reed, Ted 
+  Thibodeau, Bob Wyman
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-09-21/audio.ogg
+
+Juan Caballero is scribing.
+Manu Sporny:  Agenda review
+  ... lots of PRs to review
+Mahmoud Alkhraishi: +1
+Mike Prorock: +1
+Joe Andrieu: +1
+Orie Steele:  Call times for PRs is fine, but could we come up 
+  with a codeowner independent merge consensus?
+  ... async work mode would be helpful
+Manu Sporny:  SGTM, lots of +1s in chat
+Juan Caballero: +1
+<mprorock> Whoo hoo!!!! thanks Joe
+Joe Andrieu:  Mike Proroclk and Orie Steele have worked with me 
+  and Eric to map out the flow of that use-case in more detail
+  ... the mapping exercise teased out some edits to the usecase 
+  and it's really helpful
+  ... to the editorial process
+  ... I will add that URL to the minutes shortly
+Mike Prorock: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0109.html
+Manu Sporny:  Intros and Reintros
+<joe_andrieu> the sequence diagram email in the archives: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0109.html
+
+Topic: Introductions and Reintroductions
+
+Kerri Lemoie:  Co-chairing VC-EDU and schedule just allowed me to 
+  attend these this week! Excited to be here
+Manu Sporny:  For those of you that don't know Kerri, she is 
+  awesome.
+<joe_andrieu> Hi Kerri!
+Juan Caballero: +1 To awesomeness
+<kerri_lemoie> Thanks Manu :)
+
+Topic: Merge Windows
+
+Orie Steele:  Since this isn't a formal WG, we should leverage 
+  that freedom and work faster, particularly since working fast 
+  increases chances of this going standards track later
+  ... aiming for faster PRs, more frequent PRs, and operate under 
+  the "UNSTABLE COMMUNITY DRAFT" banner
+  ... merging major changes with positive feedback and 1 or 2 
+  reviews could be merged on day 7 without discussion on call, and 
+  minor PRs even faster, is a policy i would support
+  ... I would recommend no PR stay open over a week if there are 
+  no changes requested by 2+ reviewers
+<orie> yes
+Manu Sporny:  To clarify, editorial and non-substantive at 
+  discretion of editors, for substantive feedback, leave open for 7 
+  or longer if it takes longer to resolve change requests
+<orie> PROPOSAL 1: Any editorial PR can be merged as soon as 2 
+  code owners approve the PR.
+<orie> PROPOSAL 2: Any none editorial PR can be merged as soon as 
+  2 code owners approve the PR, and its been open without change 
+  request for a minimum of 7 days.
+
+PROPOSAL:  Any editorial PR can be merged as soon as 2 code 
+  owners approve the PR.
+
+Manu Sporny: +1
+Joe Andrieu: +1
+Orie Steele: +1
+Mike Prorock: +1
+Mahmoud Alkhraishi: +1
+Adrian Gropper: +1
+Juan Caballero: +1
+
+RESOLUTION: Any editorial PR can be merged as soon as 2 code 
+  owners approve the PR.
+
+PROPOSAL:  Any none editorial PR can be merged as soon as 2 code 
+  owners approve the PR, and its been open without change request 
+  for a minimum of 7 days.
+
+Mike Prorock: +1 Lots of gaming on that kind of thing
+Mahmoud Alkhraishi:  7 Days since last change req?
+<orie> YES
+Manu Sporny:  But that opens the door to a lot of gaming
+Mahmoud Alkhraishi:  Would adding code owners req'd for approval 
+  help?
+Orie Steele:  I don't think that helps, 2 will tag the 3rd if 
+  there's a problem
+  ... and besides if our codeowners can't triage this many PRs in 
+  a timely manner we can get new ones
+  ... and we should use change request feature in github to be 
+  very clear and direct
+  ... even if the change request is "i will not support any form 
+  of this PR" (written into the CR window of the GH interface)
+Orie Steele: +1 To being early in the game... we should not be 
+  processing contributors to death...
+Mike Prorock: +1 Joe - it is also pretty easy to go put another 
+  PR in to adjust something as needed
+Joe Andrieu:  I think we should remind ourselves we're in 
+  INCUBATION MODE and other processes in incubation mode work in 
+  google docs and very quickly
+<brent> I think 7 days is fine, especially in view of the desired 
+  iterative process.
+  ... so we shouldn't let the GH format put us into a very 
+  deliberative process autopilot
+Manu Sporny:  I sympathize with both sides of this, we can't be 
+  too cautious but there are reasons to be cautious even though 
+  we're at such an early stage
+<mahmoud> happy 2 or 3
+  ... so we can go ahead with Brent's version, then, if Mahmoud 
+  is happy
+
+PROPOSAL:   Any non-editorial PR can be merged as soon as 2 code 
+  owners approve the PR, if it has been open for a minimum of 7 
+  days and change requests have been addressed.
+
+Mahmoud Alkhraishi: +1
+Manu Sporny: +1
+Brent Zundel: +1
+Mike Prorock: +1
+Orie Steele: +1
+Adrian Gropper: +1
+Joe Andrieu: +1
+Juan Caballero: +1
+Eric Schuh: +1
+
+RESOLUTION: Any non-editorial PR can be merged as soon as 2 code 
+  owners approve the PR, if it has been open for a minimum of 7 
+  days and change requests have been addressed.
+
+Manu Sporny:  That work for you, Orie?
+Orie Steele:  Yup, I might suggest we start using this 
+  immediately (like, the rest of this call)
+
+Topic: Renaming VC HTTP API to VC API
+
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0297.html
+Mike Prorock:  You can't object to non-resolutions
+  ...it was informative, so no action needs to be taken to the 
+  "formal" objection
+Manu Sporny:  Call for objections to renaming
+No objections raised
+
+PROPOSAL:  Rename the VC HTTP API to become the VC API.
+
+Orie Steele: +1
+Manu Sporny:  <Types proposal while reading it out loud>
+Manu Sporny: +1
+Mahmoud Alkhraishi: +1
+Juan Caballero: +1
+<joe_andrieu> +100
+Kerri Lemoie: +1
+Mike Prorock: +1
+Adrian Gropper: +1
+Juan Caballero:  I feel you, Joe
+Brent Zundel: -0
+<mprorock> lol
+<mprorock> yes
+<kerri_lemoie> HaH
+
+RESOLUTION: Rename the VC HTTP API to become the VC API.
+
+Joe Andrieu:  Just want to remark a famous remark of Tim 
+  Berners-Lee that he would never have named it HTTP if he'd known 
+  people would be saying URLs out loud every day
+<orie> its cool, some browser vendors hide it anyway...
+<manu> Just to clarify, the full name of the renamed 
+  specification should be "The Verifiable Credential API"
+<mprorock> i insist on RPC /s
+Justin Richer: Did:vc:soap
+Orie Steele: +1 To soap.
+<justin_richer> why does : vc : turn into :vc: here??
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/224
+<justin_richer> (jitsie has a flag, fwiw)
+^ 👀
+
+Topic: Pull Request 224 - Resolutions in Spec
+
+Mike Prorock: +1 To closing
+<orie> please close confusing and outdated PRs.
+<mahmoud> close
+Joe Andrieu: +1 To close
+<mprorock> we can cherry pick good language out to use in other 
+  PRs
+<orie> 9
+
+Topic: Pull Request 226 - RAR and GNAP
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/226
+Manu Sporny:  Thanks to Justin for writing this up, lots of 
+  discussion.  some of this content has been moved to other PRs
+Manu Sporny:  How should we move forward with this, workflow and 
+  order of operations a little confusing
+Justin Richer:  I marked this as a draft so as NOT to be merged. 
+  I put this in as a straw man/examples of the language the group 
+  *could* write
+  ... i think open or closed, this PR would be a good thing to 
+  cut and paste.  I wanted it in the repo because I felt words kept 
+  getting put in my mouth
+Mike Prorock: +1 Some very good language in here - note I think a 
+  lot has already been pulled out into other PRs
+  ... I think this group has been happy to do things like work 
+  with scope strings, and I think the comments in this thread are 
+  good questions about designing APIs with actions in mind
+<orie> I provided feedback on the PR, but it has not been 
+  addressed.
+Manu Sporny:  I would recommend we leave it open as a draft PR so 
+  that we keep referring to it
+<mprorock> @orie - this is a draft PR - have some of the other 
+  PRs covered your comments?
+  ... I think the AuthZ PRs that have been broken out of it 
+  already, and leaving it open keeps our options open if we add 
+  sections later that could also borrow from this
+<orie> possibly... Im not against the idea behind his PR...
+<orie> But it needs to graduate into a mergeable state.
+Adrian Gropper:  I'm glad to keep this open, and propose we not 
+  return to it until AuthZ sections have been substanciated a bit 
+  more
+<orie> Justin is correct
+<orie> we can't merge a draft.
+Draft status is fine
+<justin_richer> I marked it draft so it wouldn't be merged, it 
+  would be discussed.
+<orie> draft is fine, I won't approve it until it is mergeable 
+  and feedback is addressed.
+Manu Sporny:  A label would be technically redundant but help 
+  scanning a long list of PRs
+<justin_richer> I suggest "draft" because it has mechanical 
+  enforcement
+<orie> ^ i think Justin did the right thin.
+Mike Prorock: +1 Orie
+<justin_richer> I don't care if you label it
+<mahmoud> draft is fine
+Draft is displayed in faint grey on the list by default
+So it technically already displays it... just not in bright 
+  colors :D
+<orie> its called "request changes"
+<orie> ffs
+Justin Richer: +1 To orie
+I think repo admins can bump a PR from or to draft
+<justin_richer> we can't
+<justin_richer> ?
+<mprorock> there is a do not merge label in there
+Juan Caballero: +1
+<brent> sorry for jumping queue
+<justin_richer> labels don't block merge either
+Ted Thibodeau:  Yes you can merge with requested changes open, 
+  and yes, you can mark someone else's PR as draft
+<orie> they do in the ccgg
+  ... if you have admin rights
+<orie> we just agreed to that...
+<mprorock> there is a do not merge label
+Ted Thibodeau: +1 Create label, apply it to this PR.  it may be 
+  rarely used, but it's useful nonetheless.
+<orie> you ccan mere over the do not merge label too
+Mike Prorock: +1 Orie
+Orie Steele: +1 Justin!
+Manu Sporny:  I think you can only mark draft on a PR from a fork
+<mprorock> we need to trust the editors to read the comments for 
+  objections, changes requestd, etc
+Justin Richer:  I'm not a fan of "do not merge" because it can be 
+  used passive-aggressively
+<brent> on github repos where I have proper access I can convert 
+  any PR to draft.
+<tallted> draft theoretically means that its author doesn't think 
+  it's ready for others to review, it exits draft for others to 
+  review, and *then* the merge question comes up.
+Orie Steele:  These descriptive labels are kind of orthogonal to 
+  the behavior we're expecting in the code owners
+  ... i think we need to remember the editors have power and 
+  responsibility
+Manu Sporny:  No op and move on?
+<justin_richer> moving on is nice
+Mike Prorock: +1 Justin
+
+Topic: Pull Request 227 - Single Word Change
+
+https://github.com/w3c-ccg/vc-http-api/pull/227
+Manu Sporny:  Good example of new policy, SHIP IT
+
+Topic: Pull Request 228 - Intro to Authz Section
+
+https://github.com/w3c-ccg/vc-http-api/pull/228
+<justin_richer> as an aside, this group is absolutely killing 
+  itself with process, in my opinion
+Orie Steele: +1 Justin.
+Mike Prorock: +1 Justin
+<orie> The same applies to this PR.
+<orie> its been open for 10 days, no change requests
+<orie> it should be merged immediatly
+<orie> please merge it @manu.
+<orie> they had 10 days to review it....
+<orie> we just agreed to apply that policy.
+Mahmoud Alkhraishi: +1 To Orie's point, assuming adrian's new 
+  CR's regarding the new name are accepted
+Manu Sporny:  Here is a good test case where I'm worried about 
+  the new policy being applied literally
+<orie> just request changes if you want to block the PR... its 
+  trivial to do.
+<orie> thanks Justin!
+Justin Richer:  Here is an editorial hackjob that takes the 
+  letter of my comment and not the spirit. I do not like this PR
+<tallted> Multiple open change requests ... and says it's a 
+  partial substitute for #226, which also remains open, so what's 
+  the actual choice to be made?
+Mike Prorock: Note: Joe has good editorial changes requested
+Manu Sporny:  That sounds like no objection to merge to me
+Adrian Gropper:  I think this reflects a particular API AuthZ 
+  strategy and I'd rather this PR stay open
+<orie> there are no change requests, blocking the PR....
+Ted Thibodeau:  This opens with a confusing "Partial alternate to 
+  another open PR" disclaimer so it feels hedgey
+<orie> use the "request for change feature"
+  ... I think the 226 versus alternatives thing is hard to parse
+Mike Prorock:  But if 226 is in draft and it's intended as a 
+  reference, this isn't an alternative, it's an offshoot of!
+<orie> I requested changes
+<orie> now it can't be mergged
+😭
+
+Topic: Pull Request 229 - Forbidden Authorization
+
+https://github.com/w3c-ccg/vc-http-api/pull/229
+<orie> I have requested changes on this PR.
+
+Topic: Pull Request 230 - Authorization Delegation
+
+https://github.com/w3c-ccg/vc-http-api/pull/230
+<justin_richer> ZCAP and GNAP solve completely different 
+  problems, though ...
+<orie> a normative statemen in a community draft...
+Manu Sporny:  Adrian does this make you happy or sad?
+<orie> I suggest approving or requesting changes Adrian and 
+  Justin.
+<orie> I don't care about your feelings, but would love to see a 
+  PR review on this ;)
+<orie> ( I do care about your feelings )
+Adrian Gropper:  As I've said before, I am interested in 
+  consensus on ideological questions, not low-level spec language.
+<orie> :)
+Manu Sporny:  I don't know how to help, we are working on spec 
+  language here.  I keep trying to channel your comments as best I 
+  can in drafting these PRs
+Orie Steele: +1 David
+<orie> I will request changes
+<juan_caballero>	david_chadwick: i'm putting a comment in that 
+  should --> MAY because in some spec contexts, SHOULDs are 
+  interpreted as MUSTS
+Ted Thibodeau:  I strongly disagree, SHOULD means MUST UNLESS YOU 
+  KNOW WHAT YOU ARE DOING.  MAY is way too open/loose
+<orie> I agree with David, and I requested changes.
+<orie> it now can't be merged.
+Adrian Gropper:  In contexts I've worked on, SHOULD has to be 
+  tested by conformance tests even if at deployment it isn't 
+  required
+Adrian's comment on testing conforms with my understanding
+<dmitri_zagidulin>	orie: i'd be interested to know why (re should 
+  -> MAY), from you
+<orie> I don't think anyone SHOULD use GNAP or ZCAPs ; )
+<dmitri_zagidulin> thanks.
+
+Topic: Pull Request 231 - OAuth 2.0 Bearer Tokens
+
+https://github.com/w3c-ccg/vc-http-api/pull/231
+Manu Sporny:  I think these PRs parallelizes and 
+  compartmentalizes the options for AuthZ
+<mprorock> can we accept Ted's changes and merge it?
+Orie Steele:  Manu could you accept Ted's changes and merge on 
+  the call now?
+<orie> Thanks for the change request @TallTed!
+Justin Richer:  I think the language in this PR doesn't make 
+  sense to me, needs work
+<orie> Justin, try using the "PR Review feature" of GitHub : )
+Orie Steele:  Try using less snark :) [scribe assist by Justin 
+  Richer]
+<orie> I learned from the best
+Manu Sporny:  I think there is a new PR (233) that I'd love the 
+  group to review
+<mprorock> this call was all snark
+Thanks all
