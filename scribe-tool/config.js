@@ -16,4 +16,6 @@ var config = [
   }
 ];
 
-module.exports = config;
+try {
+  module.exports = config;
+} catch(e) {}
