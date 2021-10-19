@@ -1,0 +1,247 @@
+Thanks to Mike Prorock for scribing this week! The minutes
+for this week's Verifiable Credentials API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-10-19-vcapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials API Telecon Minutes for 2021-10-19
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Oct/0074.html
+Topics:
+  1. Introductions
+  2. Related News From IIW
+  3. VC API Renaming Complete
+  4. VC API Prioritization Kick-off
+  5. Authorization and Test Suite
+Organizer:
+  Manu Sporny
+Scribe:
+  Mike Prorock
+Present:
+  Manu Sporny, Mahmoud, Markus Sabadello, Joe Andrieu, Eric Schuh, 
+  Justin Richer, Mike Prorock, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Danielle, Adrian Gropper, Ted Thibodeau, Tobias 
+  Looker, Matthias Gottlieb, Brian Richter, Dmitri Zagidulin, Bob 
+  Wyman, Ganesh Annan
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-10-19/audio.ogg
+
+Mike Prorock is scribing.
+
+Topic: Introductions
+
+Danielle: I'm from LER, been working with T3 Innovation Network 
+  and others in education space - working on a playbook for digital 
+  credentialling, open skills network, interested in open 
+  standards, etc
+Manu calls on Tobias for a re-intro.
+Tobias Looker:  From mattr - working in and around VCs and DIDs 
+  for a while
+
+Topic: Related News From IIW
+
+Manu Sporny:  Call for an VC-API related news from IIW
+<brian_richter> would like to point out the ccg calendar invite 
+  has not been updated with new jitsi link
+Mprorock -- @brian - yes, noted that and will correct
+Adrian Gropper:  Many, 6+ session on KERI at IIW
+<manu_sporny> Key Event Receipt Infrastructure (KERI)
+  ... relevant because discussion of protocol impacts of security 
+  handling
+  ... would like to see discussion of capabilities at an API 
+  level, etc
+  ... will start a thread around overall security of protocols 
+  for issuance, verification, and other operations
+Manu Sporny:  Thread on CCG main related to KERI and attempt to 
+  bring in a preso broader on KERI and learnings that can be 
+  applied
+Adrian Gropper:  Highly interested in that topic, potential to 
+  avoid security issues and turn conversation to one of 
+  capabilities and availability rather than one of security
+Dimitri: iiw activity relate to WACI-PEX which can be 
+  complimentary to VC-API efforts
+<mahmoud> a comparison of both and where the edges are would be 
+  wonderful
+<brian_richter> I am a bit
+Manu Sporny:  Can we identify overlaps with WACI-PEX, etc
+<brian_richter> definitely Brent
+Dimitri: definitely engage with orie
+Mike Prorock: +1 Brent is solid on the topic
+  ... main diff is that PEX focuses on async model vs VC-API 
+  which assumes request response
+  ... everything else is at a data model level
+Adrian Gropper:  Overwhelming impression at IIW was that DIDCOMM 
+  was foundational to all SSI work
+https://identity.foundation/didcomm-messaging/spec/
+  ... is that a safe assumption, or should we think more broadly
+Mike Prorock:  One of the CCG Main calls, brought WACI/PeX folks 
+  in, if they continue down path they're on, large portions of VC 
+  API are 100% compatible w/ what's happening w/ possibly some 
+  DIDComm stuff in them mix, that would be an end goal. [scribe 
+  assist by Manu Sporny]
+Mike Prorock:  There is a goal toward preferably converging w/ VC 
+  API vs. diverging, good attitude to take. We do probably do need 
+  to think broadly about DIDcomm and understand how that 
+  interrelates with the work we're doing here. [scribe assist by 
+  Manu Sporny]
+Manu Sporny:  Moving on to main agenda
+
+Topic: VC API Renaming Complete
+
+<agropper> please send out updated calendar invites
+Manu Sporny:  Primary name changes are complete - no objections 
+  to name change in
+Mike Prorock: +1
+
+Topic: VC API Prioritization Kick-off
+
+<manu_sporny> * Focus on scenarios/flows?
+<eric_schuh> Orie and Mike have contributed a lot to the flows as 
+  well
+Manu Sporny:  Test driven approach can be very helpful in 
+  identifying gaps
+  ... revocation, refresh, auth, all key topics that can be 
+  discussed
+Mike Prorock:  Doing a quick reconciliation between work that Joe 
+  and Eric have been doing on use case side to then do gap analysis 
+  on what we're missing almost has to be first priority. We know 
+  there are certain use cases that are reasonably documented. 
+  [scribe assist by Manu Sporny]
+Mike Prorock:  Can we map them over to method calls? Seems highly 
+  important, otherwise we're wasting/deferring a lot of that work 
+  we've done. We could then line up tests that go along with that. 
+  [scribe assist by Manu Sporny]
+Joe Andrieu:  Flows in use cases, starting with chapi flow, then 
+  moving onto supply chain flow, then back to chapi - main output 
+  of that work is a shared vocab
+  ... gives us a common ground to move forward on
+Tobias Looker:  How does the end to end flow work
+  ... all the sec mechanisms for those flows starting witha user 
+  getting to a web site, getting issued a credential, etc work
+  ... making sure we have the right patterns identified
+Manu Sporny:  Flow work could be used as a shared basis for 
+  actual flow and shared vocab for discussion of those flows - talk 
+  through those and how they align or not with how people are 
+  building systems
+  ... look at a flow and the details involved and make concrete 
+  identifications from real systems to match how those align to the 
+  API as defined
+  ... and if there are gaps add those in
+Mike Prorock:  What I'd like to see wrt. implementer, I want to 
+  make sure we're covering real world use cases we're already 
+  interop'ing on... Like mesur.io, transmute, mavennet -- system to 
+  system flows, do want to make sure we don't lose sight of that, 
+  we do need to document that and get broader group feedback in. 
+  [scribe assist by Manu Sporny]
+<mahmoud> last i checked the usecases had one that covered it
+Mike Prorock:  Want to make sure that's covered. [scribe assist 
+  by Manu Sporny]
+Adrian Gropper:  Does zero trust architecture come into play as 
+  part of these flows and reviews
+Manu Sporny:  Likely zero trust will come up as a part of 
+  discussions
+  ... so question is what do we focus on first
+  ... could be machine to machine, as those are simple to start 
+  with, no browser in the mix, etc
+  ... then other flows such as chapi could flow out from that
+Tobias Looker:  Have had discussion in the past regarding self 
+  service use cases where issuance can occur based on a sites 
+  existing trust in an individual
+  ... and in one sense the VC-API can be viewed as a backend API
+  ... and then there is a layer possibly on top of that that is 
+  more user centric
+Joe Andrieu:  Trying to move beyond that framing where issuer 
+  controls issuance, verifier verification, etc, introduction of 
+  holder does bring user involved (in some capacity)
+  ... for each wired connection we should know auth involved
+https://github.com/w3c-ccg/vc-api/tree/main/diagrams link to 
+  diagrams
+Manu Sporny:  Newer diagrams break down each of the components 
+  involved, and getting everyone on the same page from a language 
+  standpoint gives us a starting point
+  ... question for joe is that do we have enough together to get 
+  started and all take a look at this stuff?
+Manu Sporny:  Making sure Tobias and others have theri concerns 
+  such as OIDC are covered by aflow diagram discussion
+Tobias Looker:  OIDC learnings could potentially apply to VC-API 
+  work
+Joe Andrieu:  Close to ready
+  ... can put a PR together for a proposal for an architecture 
+  update to the spec
+  ... think though that artifacts are ready enough to get 
+  engagement
+  ... need to make sure that everyone is on same page
+Joe Andrieu:  Will get PR by next tuesday
+Manu Sporny:  Group stating that we will take a look at those 
+  diagrams etc and review over next few weeks, then try and 
+  translate that to test suite, then match to make sure that API 
+  matches what is actually possible with API
+Joe Andrieu:  Once we get shared language, we can split test 
+  suite work with conversation that checks what auth applies on 
+  each leg of communication - this may be saying that auth is out 
+  of scope for certain operations
+Manu Sporny:  Any objections to this general path
+Mike Prorock:  It feels a little slow given certain operations 
+  have been described, have use cases, guidance regarding other PRs 
+  that fill in gaps? Over course of next several weeks... supply 
+  chain flow, some things that could be attacked pretty quickly 
+  there to cover hard gaps. [scribe assist by Manu Sporny]
+Mike Prorock:  But I don't want to push the group and cause 
+  confusion/difficulty. [scribe assist by Manu Sporny]
+Mahmoud: earlier idea around translating use case to methods and 
+  make those action items that can be tested against - does not see 
+  any reasons not to have parallel streams
+Joe Andrieu:  Should not hold back on PRs waiting for discussion, 
+  as PRs can clarify discussion and conversation on broader topics
+  ... struggle is that diagrams came out of confusing language - 
+  use cases as published may share some of that confusing langugage
+Manu Sporny:  By all means submit PRs to API and test cases, but 
+  be aware that that may change quite a bit
+Eric Schuh:  Status update for use case docs, moved to github 
+  repo, still work to be done
+Mahmoud: question for use case docs - do not currently have a way 
+  to map use cases to method calls
+  ... probably need to get a list of expected end points for each 
+  use case
+  ... so that we can map between API and use case discussion
+Joe Andrieu:  Interesting suggestion, but concerned bc use cases 
+  should define endpoints and not the other way around
+  ... current list of endpoints may or may not be correct
+Mahmoud: clarify - would like to identify by existing use case 
+  that existing end points apply, and here are gaps or new 
+  endpoints that need to be definied
+Joe Andrieu:  Think it is valuable to see that alignment, but 
+  might be a stylistic difference, worried about existing endpoints 
+  shaping use cases, rather than other way around
+Eric Schuh:  Requirements section in use cases is yet to be 
+  filled in, maybe add something similar related to end points
+<mahmoud> thats it
+Joe Andrieu: :+1:
+Manu Sporny:  Next steps - joe to prep PR on diagrams - main 
+  topic for next week - hope is that that drives discussion around 
+  alignment
+  ... open to folks adding to test suite
+Mike Prorock: +1 Mahmoud
+Manu Sporny:  Will make sure we are keeping things moving well
+
+Topic: Authorization and Test Suite
+
+Manu Sporny:  Random thought on authorization statements in spec 
+  - no current normative testable statement in spec - another 
+  approach that we could take in the test suite in endpoint provide 
+  type of auth that system understands
+Justin Richer:  Wants to separate test harness from specs, etc
+<justin_richer> I still say OpenAPI is a tool, not a standard 
+  model.
+Mike Prorock:  Agree with generation suggestion, I'm concerned 
+  about anything that deviates us from OpenAPI as a standard, need 
+  to make sure we can point people at specs. [scribe assist by Manu 
+  Sporny]
+<justin_richer> Specs are implemented by people not tools.
+Manu Sporny:  Thanks everyone for participating and looking 
+  forward to next week and diagrams and flows and all sorts of 
+  goodness
