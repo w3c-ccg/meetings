@@ -71,7 +71,7 @@ jobs:
       with:
         server_address: smtp.gmail.com
         server_port: 465
-        username: w3c.ccg
+        username: ${{ secrets.email_username }}
         password: ${{ secrets.email_password }}
         subject: ${{ format('[MINUTES] W3C {0} Call - {1} 12pm ET', steps.detect_file.outputs.group, steps.detect_file.outputs.date) }}
         body: ${{ format('file://{0}/email.log', steps.detect_file.outputs.dir) }}
