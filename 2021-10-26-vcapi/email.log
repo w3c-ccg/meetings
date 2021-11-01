@@ -1,0 +1,272 @@
+Thanks to Mike Varley for scribing this week! The minutes
+for this week's Verifiable Credentials API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-10-26-vcapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials API Telecon Minutes for 2021-10-26
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Oct/0084.html
+Topics:
+  1. Introductions
+  2. Relevant Community Updates
+  3. VC API Components
+Organizer:
+  Manu Sporny
+Scribe:
+  Mike Varley
+Present:
+  Mahmoud, Justin Richer, Manu Sporny, Vasilis K, Joe Andrieu, 
+  Brent Zundel, Kerri Lemoie, Eric Schuh, Mike Varley, Dmitri 
+  Zagidulin, Juan Caballero, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), David Chadwick, Ted Thibodeau, Brian Richter, 
+  Bob Wyman, Mike Prorock, Adrian, Phil Long
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-10-26/audio.ogg
+
+Mike Varley is scribing.
+Manu Sporny:  Agenda review, introductions, community updates, 
+  call focus on work Joe and Eric have been doing on VC API 
+  ecosystem
+  ... diagrams, naming, dataflows,
+  ... a PR is in for this content, this is background to future 
+  discussions.
+
+Topic: Introductions
+
+<vasilis_k> Hello, my name is Vasileis, I'm currently an MSC 
+  student at AUEB studying computer science. I'm interested in the 
+  domain of VC and SSI. Today I wanted to attend the meeting in 
+  order to find out more. Nice to meet you all.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  The Verifiable Creentials TPAC meetings are this 
+  week... if you are a w3c member and missed it there was charter 
+  discussion
+<mprorock> CCG t pac overlapped unfortunately along with WebML
+Brent Zundel: https://w3c.github.io/vc-wg-charter/
+<kerri_lemoie> Can give brief update-VC-EDU Task Force Charter 
+  Updated: 
+  https://docs.google.com/document/d/1fAdC1mBSP-p6zxXGRQNfSQNPe5MY6UZ6Tf676oY7BOk/edit#heading=h.iem8mwq6o4rn
+<manu> VCWG charter -- https://w3c.github.io/vc-wg-charter/
+  ... please read/review/comment for today or tomorrow for review 
+  so it can be locked down.
+  ... no VC API in the charter, but it could be added as a "note" 
+  if significant progress is made.
+  ... lots of work to be done and to be seen how fast consensus 
+  can be gained on the VC API spec to see if it can be made a note.
+  ...
+  ... conversation tomorrow will be on VC 1.1 and VC 2.0 spec 
+  before maintenance charter expires.
+<mprorock> yep - manu answered my questions
+Kerri Lemoie:  Verifiable education Tasklist charter added in 
+  chat
+  ... include training and achievement creds
+  ... question to the Edu group was how to include all the data 
+  standards for various types, consolidated now to focus on VC 
+  format.
+  ...
+  ... meeting Monday to continue EDU discussion
+Mike Prorock: +1 A few creds would be awesome
+Manu Sporny:  How can this group help? we have VC API - can EDU 
+  group provide a credential to demonstrate interop over? something 
+  more important?
+Kerri Lemoie:  Discussions around how API and unversal wallet can 
+  work... still discussing how this work can help.
+DmitryZ: VC API and recharted VC group are of interest to EDU 
+  group but still early to engage.
+Manu Sporny:  Over to Joe for next section; diagram overview and 
+  flow diagram... other format?
+
+Topic: VC API Components
+
+Joe Andrieu:  3 Things to cover: introduce High Level 
+  Architecture, go over supply chain flow which is a concrete use 
+  case, then go over learnings.
+Joe Andrieu: https://legreq.github.io/vc-api/
+Joe Andrieu:  Can also cover the CHAPI version if there is time.
+Joe Andrieu:  (Attaching materials)
+Joe Andrieu:  PR replaces architecture overview entirely...
+  ... defines issuer/verifier/holder and then described 
+  components, to clarify what is an "App" and what is a "service"
+  ... there are components/services that execute business rules 
+  on behalf of the actor
+  ... For example there is an Issuer web application that drives 
+  the VC API Issuer service.
+  ... storage services are included, question on this needs to be 
+  standardized (like an EDV) or just leave it as "internal DB".
+  ... There are Holder applications backed by a service, but the 
+  User Agent (browser) may still reach out to an EDV without 
+  contacting their service layer (needs to be accounted for)
+  ... some services may communicate directly with other services 
+  without an app layer.
+<mprorock> likely out of scope
+  ... There needs to be an 'Admin' interface for services, not 
+  considered here currently.
+<mprorock> at least for now
+  ... (does admin interfacee need standardization? we have enough 
+  to do)
+<david_chadwick> I cannot see the diagrams in my browsers
+<mprorock> i had to go to the PR to go see the diagrams
+<mprorock> not visible in link for me
+Joe Andrieu:  I think what most folks call wallets today is a 
+  combination of the "app" and "servoce"
+<by_caballero>	files changes --> ... menu --> view file
+Joe Andrieu: https://legreq.github.io/vc-api/
+<joe_andrieu> Does that work for you?
+David Chadwick:  (Diagrams are not viewable, is there a format 
+  problem?)
+<justin_richer> same no embedded images here either
+Mike Prorock:  Yes, there is an issue with viewing the image...
+<by_caballero> github propagation glitches
+<justin_richer> I'm getting a 404 on the image itself: 
+  https://legreq.github.io/vc-api/diagrams/vc-http-api-architecture.svg
+Mike Prorock: 
+  https://github.com/w3c-ccg/vc-api/pull/237/files#diff-f1e062c2314e98b0df6a8cf0918a955b5fcbb22ae0e86b2918ddd9e1a8d3f15e
+<mprorock> and the BIG diagram 
+  https://github.com/w3c-ccg/vc-api/blob/bedac5601dfccdc89aea05ff06a688478499c6c8/diagrams/roles.png
+Adrian: when it comes to authorization, is this a function of the 
+  App or the Service?
+<justin_richer> AS would be a function of whatever service is 
+  being protected
+<mprorock> anywhere there is a connection / api call there should 
+  be auth of some kind
+Joe Andrieu:  All the arrows in the digram need some conversation 
+  on how the connections are secured...
+Mike Prorock: +1 On storing VPs
+David Chadwick:  In our implementation the VP can also be stored 
+  (diagram only shows VCs being stored) - for verifiers audit 
+  trail.
+Joe Andrieu:  Switching to sequence diagram
+  ... This flow begins at the "Holder App"; the Holder actor is 
+  no longer involved, the have passed control to the App.
+<mprorock> more event triggered, but sure
+  ... the service is like a cron-job that can call the holder app 
+  for its business process
+<mprorock> one or more VCs btw
+Manu Sporny: +1
+  ... holder app executes business logic and calls the "holder 
+  service" to build the VP
+  ... Holder app calls back to Verifier App with the VP, and 
+  verifier App calls the Verifier Service for verification.
+  ... Verifier App then stores VP (as required) and then Holder 
+  App is informed that VP was accepted.
+  ... this is a supply-chain view on the flows, where the 
+  holder/actor is not really involved like a CHAPI flow
+<joe_andrieu> Please try again https://legreq.github.io/vc-api/
+Manu Sporny:  Steps 3,4,5,6: makes it seem there are 2 ways to 
+  execute this flow (push and pull) - now it seems like just a pull 
+  flow
+  ... "notify data ready" may be confusing terminology
+Mike Prorock: +1 Manu - you got it
+  ... when really its a "domain/challenge" etc challenge for the 
+  desired Presentation
+  ... if that is accurate then this is aligned with CHAPI flow.
+<mprorock> yes
+Joe Andrieu:  In supply chain flow, the Holder defines that data 
+  that is "ready" - as opposed to personal flow, the Holder wants 
+  to use a service, and the Verifier asks for credentials it wants.
+  ... (personal == CHAPI)
+Mike Prorock:  Some notes on current impl - whenever a system is 
+  called there are various levels of Authorization being executed 
+  at various points.
+  ... "I have data ready" is an initiation flow that defines the 
+  data / credential that is ready for submission that gets run 
+  through a business app flow/Queue.
+  ... eg a shipping manifest, or multiple manifests that are used 
+  in the business process.
+  ... services/apps have very extensive audit trails; the audit 
+  trail API is out of scope from the spec but still very important 
+  for the use case.
+<by_caballero> no idea
+Joe Andrieu: +1 That #6 should still specify the data type 
+  request
+David Chadwick:  Need some clarifiaction on the difference 
+  between supply chain "here is a presentation that is ready" vs. 
+  other flow where verifier is asking for specifics.
+<mprorock> btw - this is kindof the simple flow that lets us 
+  operate to start, there is the scaling big side of this that may 
+  go well beyond this (e.g. pub/sub, async fire and forget, 
+  streaming data between parties, etc)
+Joe Andrieu:  Is the question "sometimes you don't know the type 
+  of credential the verifier will accept" and (6) may be the right 
+  place for that negotiation...
+<by_caballero> presentation exchange?
+Mike Prorock:  Mostly there are pre-configured rules in place for 
+  various processes, so "negotiation" is likely already defined as 
+  a configured workflow that both sides understand.
+Mike Prorock:  From a scaling perspective, sometimes there are 
+  20,000 presentations "ready", which is where pre-configuratino is 
+  important.
+  ... with large scale / high volume system, sometimes even 
+  REST/HTTP gets tested and becomes more of a 'stream' of data
+David Chadwick:  Maybe this is a published meta-data type 
+  solution
+Adrian: I see calls to "an open endpoint" kicking off the flow... 
+  can we identify that call?
+<mprorock> none of our endpoints are open
+  ... by open it means unprotected and subject to spam/dos 
+  attacks. Like in OAuth, the initial OAuth request is an "open 
+  endppint"
+<manu_sporny> We (Digital Bazaar) does have open endpoints, fwiw
+<manu_sporny> like, CHAPI starts off w/ an open endpoint.. #3 is 
+  open.
+Joe Andrieu:  None of these endpoints are meant to be open - but 
+  there needs to be a conversation on each of these points on how 
+  they are secured.
+Mike Prorock:  Impl. has no open endpoints, clients are connected 
+  after contracts are signed.
+Kerri Lemoie:  Can a Verifier return a VC?
+<mprorock> 19 is an ACK and yes, could be a return of more data
+<mprorock> such as errors, warnings, or trigger another flow
+<by_caballero> ^  (In your system?)
+Mike Prorock: +1 Juan
+<by_caballero> (or in general?)
+Joe Andrieu:  Yes, the Verifier could provide a VC / consent 
+  receipt as part of (19).
+<by_caballero> (sweet just being explicit for the notes)
+Kerri Lemoie:  In terms of EDU use case, these are like 
+  "endorsement flows" where a Verified 'endorses' a credenital.
+<mprorock> that's what cloudflare is fore
+<mprorock> *for
+Manu Sporny:  For some use cases, there will be open endpoints 
+  (like a process to kick off authorization). In some cases there 
+  needs to be considerations for some open endpoints.
+  ... to Kerri's point; it could be a simple ACK (200 OK) or it 
+  could be a use case that is a continuation: like a "you have 
+  passed step one, let's continue to step 2".
+  ... for example, present driver's license, then present other 
+  qualification form and so on.
+  ... in (19) there could be a loop step (3) for some new 
+  credential types.
+<eric_schuh> Also could loop into the issuance flow (not shown 
+  here)
+Kerri Lemoie: +1 Manu - that's great
+Mike Prorock: +1 Manu - there is definite use for that
+Ted Thibodeau:  (20) Should be closer to (13) - because something 
+  was sent (ACK even before it is processed)
+  ... question about meaning of solid/dashed lines, and what is a 
+  response and what is a call out.
+<mprorock> Ted - we are logging all inbound / outbound / etc but 
+  i am not sure that is in scope outside of non-normative best 
+  practices for security and audit controls
+Joe Andrieu:  This flow has "normal English" to convey 
+  intent/logic/semantics, but then in later versions we can insert 
+  actual API endpoints and params.
+Manu Sporny:  Hopefully this was a great help to the group (this 
+  vas very valuable as concrete material)
+  ... there is a PR for this content, please review. Maybe next 
+  call cover CHAPI flow?
+Joe Andrieu:  Yes, let's look at CHAPI flow, but this diagram 
+  also has some controversial statements that need to be discussed; 
+  was something misunderstood or incorrect?
+<mprorock> as long as we don't drop years in names, cool
+  ... there are also places where we are "not" specifying 
+  standardization; like key management. Sso how to navigate thosee 
+  issues needs discussion
+<kerri_lemoie> This is great. Thank you!
