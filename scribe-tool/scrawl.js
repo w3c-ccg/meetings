@@ -73,14 +73,14 @@
       var fullLookupName = p.replace(' ', '_').toLowerCase();
       allPeople[lastName] = person;
       allPeople[fullLookupName] = person;
-      
+
       if('alias' in person) {
-        for(var alias of person.alias) {      
+        for(var alias of person.alias) {
           allPeople[alias.toLowerCase()] = person;
         }
       }
     }
-    
+
     // extract all names from present list
     var ircLines = ircLog.split('\n');
     var presentList = [];
@@ -115,7 +115,14 @@
       }
       if(person !== undefined) {
         // Add the aliases and names if they don't already exist in the aliases
-        for(var alias of names)
+        for(var name of names)
+        {
+          if(name.length > 2 && !(name in rval)) {
+            rval[name] = person.fullName;
+          }
+        }
+        var aliases = person.alias || [];
+        for(var alias of aliases)
         {
           if(alias.length > 2 && !(alias in rval)) {
             rval[alias] = person.fullName;
@@ -125,7 +132,7 @@
         console.log('Couldn\'t find alias for any of these names', names);
         console.log('Consider adding alias to people.json');
       }
-            
+
     }
 
     return rval;
