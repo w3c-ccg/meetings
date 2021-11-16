@@ -1,0 +1,305 @@
+Thanks to Markus Sabadello and Manu Sporny for scribing this week! The minutes
+for this week's Verifiable Credentials API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-11-16-vcapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials API Telecon Minutes for 2021-11-16
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0081.html
+Topics:
+  1. Relevant Community Updates
+  2. Issue Processing
+  3. Pull Request Review
+Organizer:
+  Manu Sporny
+Scribe:
+  Markus Sabadello and Manu Sporny
+Present:
+  Charles E. Lehner, Manu Sporny, Markus Sabadello, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Dmitri Zagidulin, Adrian 
+  Gropper, David Chadwick, Joe Andrieu, Brent Zundel, Eric Schuh, 
+  Phil L (P1), Mike Varley, Juan Caballero, Brian Richter, Orie 
+  Steele, Marty Reed, Ted Thibodeau
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-11-16/audio.ogg
+
+Markus Sabadello is scribing.
+Manu Sporny:  Welcome to VC API call, thanks to the scribe, 
+  agenda is here.
+Manu Sporny:  We'll be doing issue processing, currently 87 open 
+  issues.
+Manu Sporny:  Any updates or changes to the agenda?
+Manu Sporny:  Introductions, anyone new to the call?
+Manu Sporny:  Anyone would like to re-introduce?
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  Does anyone have relevant community updates?
+Manu Sporny:  One thing worth mentioning.. I'm expecting that the 
+  SVIP will have an interop plugfest, people may want to set new 
+  interop targets. There may be discussion around that.
+Manu Sporny:  Any other plugfests that will use the VC API?
+Manu Sporny:  Maybe from juancaballero ?
+Manu Sporny:  I know that Orie has said that he would like us to 
+  focus on did:key for use in VC API.
+Manu Sporny:  Digital Bazaar is interested in 
+  Ed25519Signature2020, also refresh list functionality for next 
+  plugfest.
+Charles E. Lehner:  I don't think "it" adds new requirements, but 
+  gets implementers to interop.
+Manu Sporny:  What is "it" ?
+Charles E. Lehner:  The interop in the test suite. There are 
+  different implementations being tested there.
+Dmitri Zagidulin:  One proposed requirement in one issue is for 
+  the VC API to support a use case of interactive issuer/verifier 
+  sessions.
+Dmitri Zagidulin: https://github.com/w3c-ccg/vc-api/issues/245
+Manu Sporny:  It's a really well written issue, we should add 
+  this as an agenda item.
+Dmitri Zagidulin:  Sounds great
+Manu Sporny:  Any other community related things before we move 
+  on?
+
+Topic: Issue Processing
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/71
+<phil_l_(p1)> @Dimitri, this is of equal importance and value for 
+  the verifier sent a batch of credentials in a presentation
+Manu Sporny:  Markus and Orie have commented. Joe_Andrieu do you 
+  have thoughts on this?
+<dmitriz> @Phil_L -- agreed
+Joe Andrieu:  This came up as a gap in the diagrams. The ability 
+  of a holder storage to be accessed by people other than a holder, 
+  this is up for conversation.
+Joe Andrieu:  I think it's a reasonable request
+<orie> there are currently no defined API for Issuer->Holder 
+  flows in this api.
+Adrian Gropper:  This falls in the category of what is the scope 
+  of VC API for an issuer. If we start with this being in scope, 
+  then it's clear that the request can indicate whatever. But I'm 
+  not clear how we are scoping the Issuer part of the API. I think 
+  of Issuer to be separate from Holder and Verifier.
+Adrian Gropper:  Is the request phase in scope for the VC API.
+Manu Sporny:  Yes it is, because we defined it in a flow
+Adrian Gropper:  Then how is this special?
+Joe Andrieu:  The conceptual challenge with this topic is we have 
+  currently envisioned most of these endpoints to be 
+  request-response, so we don't have good support for interactive 
+  flow.
+Joe Andrieu:  If we want to initiate flows and then have 
+  callbacks, then that callback should be in scope. That would 
+  allow an asynchronous flow.
+<orie> here is an example of issuer to holder flows using 
+  didcomm: 
+  https://identity.foundation/waci-presentation-exchange/#issuance-2
+<orie> this recently got added to the waci-pex scope.
+Manu Sporny:  Anyone wants to push this issue forward?
+<dmitriz> Orie -- oh interesting, thanks. (re the waci issuance 
+  link)
+Mike Varley:  If there's an issuer e.g. of a background check, 
+  this can take 24h to process. The human interaction with the 
+  issuer takes place, then there is a 24h period where the 
+  credential isn't available, then when the background check is 
+  complete you want to push it to the wallet.
+Mike Varley:  I think this can be solved in other ways, maybe 
+  outside of this API.
+<juancaballero> steep
+<orie> DIDComm is the solution! :)
+Mike Varley:  I work with Troy. I'm willing to let this issue sit 
+  until someone comes with a concrete use case that they want to 
+  see implemented. There may be better ways of implementing this 
+  use case that don't impact this API.
+Mike Varley:  E.g. the holder gets an out-of-band notification.
+Mike Varley:  I think it's okay for this issue to sit for now 
+  until we figure out if this is needed.
+Manu Sporny:  Suggestion that someone needs to come up with a 
+  concrete use case.
+Adrian Gropper:  Do we have a tag for "authorization"? I suggest 
+  this issue be tagged with it.
+Adrian Gropper:  I might be willing to be assigned this, because 
+  I think it is in part an authorization issue, and I'm available 
+  to try move all authorization issues forward.
+Manu Sporny:  Agree this is related to authorization, we have 
+  that tag, just added it to the issue.
+Manu Sporny:  (Changing Github settings to add agropper to the 
+  vc-api repo, so the issue can be assigned to him)
+Adrian Gropper:  I would be willing to work with other people on 
+  the previous issue 245 as well.
+<dmitriz> I'd also be willing to be assigned issue 245 :)
+Manu Sporny:  https://github.com/w3c-ccg/vc-api/issues/79
+Manu Sporny:  This is done, right?
+<dmitriz> (I don't think 245 is quite authorization related; 
+  orthogonal to authorization)
+Orie Steele:  Is the test suite published correctly? Is the NPM 
+  package published?
+<juancaballero> NO COMMENT
+Orie Steele:  CCG should not manage NPM packages
+Joe Andrieu: +1
+Manu Sporny:  Agree with Orie, CCG should not publish NPM 
+  packages. Any objections to this position?
+Manu Sporny:  Should we take it down from NPM?
+<orie> btw the test suite is still rendering properly...
+Orie Steele: 
+  https://w3c-ccg.github.io/vc-api-test-suite/test-suite/transmute/
+Joe Andrieu:  Should the "w3c-ccg" name be held so it doesn't get 
+  used by others?
+Manu Sporny:  Anyone disagree with this statement?
+<orie> but there is not "index.html" at root level
+Orie Steele: https://w3c-ccg.github.io/vc-api-test-suite
+Manu Sporny:  Next step is for CCG chairs to communicate this 
+  more broadly and ask for CCG consensus.
+Juan Caballero:  Orie mentioned in chat there is no index.html 
+  for the root.
+<orie> raise an issue.
+Manu Sporny:  Marked this as pending close.
+Manu Sporny: https://w3c-ccg.github.io/vc-api-test-suite
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/88
+Manu Sporny:  Orie, some background on this?
+Orie Steele:  We talked about what verifying a VC would mean. VP 
+  has certain requirements, but is loose in some ways. You can have 
+  a VP that has multiple VCs but doesn't itself have a proof. This 
+  was resolved in another PR.
+Orie Steele:  I propose we close this issue since this has been 
+  addressed in the test suite.
+Orie Steele:  This was resolved in test suite PR 113
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/80
+Orie Steele:  There are fixtures in the test suite repo which 
+  make verifying difficult. This is one of them.
+Manu Sporny:  I will move it to vc-api-test-suite
+Orie Steele:  Having it in a separate repo means we need to groom 
+  the issues here.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/81
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/82
+Manu Sporny:  I will transfer these as well to vc-api-test-suite
+Orie Steele:  Yep makes sense
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api-test-suite/issues/14
+Manu Sporny:  (Technical difficulties with moving issues)
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/41
+Manu Sporny:  Mike_Varley any comment on this one?
+Manu Sporny is scribing.
+<juancaballero> sorry technical difficulties here too
+Markus Sabadello:  This has to do with the earlier versions of 
+  the API where the API was also composing credentials, this 
+  particular issue is about scenario where API reaches out to 
+  datastore to get claim values.
+<orie>	in a world where issuer = (template, args) => Promise<vc>
+Markus Sabadello:  Instead of client composing credential, client 
+  only calls API w/ part of the information.
+Markus Sabadello is scribing.
+Manu Sporny:  Overtaken by events? We don't do this anymore?
+Manu Sporny:  We made the design decision that you call the API 
+  after you get all the information
+Mike Varley:  I think we made this out of scope.
+Manu Sporny:  Closed this issue.
+Manu Sporny:  https://github.com/w3c-ccg/vc-api/issues/87
+Orie Steele:  It's somehow related to templates. Ability to issue 
+  a batch of thousands of credentials.
+Orie Steele:  Community opinion seems to be to not support 
+  batches and call API separately for each credential.
+Orie Steele:  If we want to support this, many additional issues 
+  may come up (e.g. around revocation). Batching is complicated.
+Markus Sabadello:  The idea that there would be a template is 
+  similar to previous issue -- some sort of composing happens 
+  inside of implementations. This is out of scope for this reason, 
+  we don't want to do composing as well as reasons that Orie 
+  mentioned. [scribe assist by Manu Sporny]
+Manu Sporny:  Any objections to closing?
+Manu Sporny:  Closing that one
+Markus Sabadello:  I know we want to process issues in this 
+  order, can we do #51? It's a duplicate? [scribe assist by Manu 
+  Sporny]
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/51
+Manu Sporny:  Posting a comment that the group decided batching 
+  is out of scope for this version of the API.
+Manu Sporny:  Any objections to closing?
+Manu Sporny:  Closed that issue.
+Ted Thibodeau:  Do we have a label "defer to next version"? 
+  Batching is not an anti-pattern by itself. It's fine to not have 
+  it in this version, but maybe we should pick it up in future 
+  versions?
+Manu Sporny:  I think if it's important enough for people, new 
+  issues will be opened.
+Manu Sporny:  I tried to be careful with saying "out of scope for 
+  this version".
+<dmitriz> what if.. we tag it, but ALSO close it?
+Manu Sporny:  Do you want us to do something else?
+Ted Thibodeau:  I would prefer to have a tag so it's easy to 
+  search.
+Manu Sporny:  I'm happy if people want to revisit this in a 
+  future version.
+<dmitriz> yessssss +1, more memes.
+Orie Steele:  We should have more memes in the descriptoin.
+Manu Sporny:  Anyone else thinks we should re-open the batching 
+  topic and label it for v2.
+Ted Thibodeau:  It could remain closed but still have the label.
+Manu Sporny:  Okay
+Manu Sporny:  https://github.com/w3c-ccg/vc-api/issues/100
+Manu Sporny:  Also applying the same "v2" label and closing.
+Manu Sporny:  If there are no objections, I want to take a look 
+  at the architectural overview PR.
+Manu Sporny:  Any objections?
+
+Topic: Pull Request Review
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/237
+Manu Sporny:  Joe put together diagrams of the ecosystem, we 
+  discussed this quite a bit, there seemed to be buy-in. agropper 
+  objected and asked for explanatory text. You authored that text.
+Manu Sporny:  Some people pushed back, saying this is about the 
+  diagram, not about the introduction. Dmitri seemed to have some 
+  concerns, Joe responded.
+Manu Sporny:  Agropper you could agree that we create a new issue 
+  and new PR to talk about the introductory text and consider this 
+  orthogonal to the diagram; or you assert that you want to discuss 
+  the text as part of the PR and it has to go in together with the 
+  PR.
+Adrian Gropper:  IIRC, you asked me not to reference the diagram 
+  specifically. I then chose to move up to the introduction to 
+  further my goal. I don't have a strong feel. I think the issue of 
+  the introduction needs to be taken up, it's a scoping issue for 
+  everything that follows. I don't particularly care if we do it as 
+  part of this PR, or as an issue.
+<orie> seperate PRs are preferred.
+Manu Sporny:  How about we open a new issue that says we need to 
+  update the introduction to talk about the things you mention. 
+  agropper I would like you to copy your text into a new issue 
+  about updating the introduction to speak about delegation. You 
+  could raise this as a PR.
+Manu Sporny:  Separate this out from the diagram, this could 
+  remove the objection to merge the diagram, then we look at your 
+  PR. Does that work for you?
+Adrian Gropper:  Yes
+Manu Sporny:  (Creating new issue 252 with agropper 's text)
+Manu Sporny:  PR 237 should now be unblocked. dmitriz do you have 
+  concerns?
+Joe Andrieu:  Just wanted to see if my response addresses dmitriz 
+  's concerns
+Dmitri Zagidulin:  I think my main ask is it would be great to 
+  have a key to the shapes of the diagrams, to tell what the ovals, 
+  rectangles, etc. mean.
+Manu Sporny:  I will re-base and merge
+Manu Sporny:  Let's talk about next week. It's Thanksgiving in 
+  the US, many meetings are canceled, I propose we do the same. We 
+  can review PRs in the week after that.
+Manu Sporny:  Will this cause problems for cel or 
+  markus_sabadello ?
+Charles E. Lehner:  That's okay
+Markus Sabadello:  For me too
+Orie Steele: +1 To no meetings in december
+Manu Sporny:  Therefore no meeting next week, we will meet again 
+  after Thanksgiving, I suggest the we then have no meetings in 
+  December to give people a break.
+Manu Sporny:  Any last comments?
+<tallted> so next call is Jan 5 ?
+<mike_varley> thanks all!
+Manu Sporny:  Thanks to the scribe, thank you everyone, we were 
+  super productive. Happy Thanksgiving to those who celebrate it. 
+  bye
+TallTed, no, next meeting is Nov 29
+TallTed, sorry Nov 30
