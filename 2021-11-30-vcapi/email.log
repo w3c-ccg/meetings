@@ -1,0 +1,294 @@
+Thanks to Joe Andrieu for scribing this week! The minutes
+for this week's Verifiable Credentials API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-11-30-vcapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials API Telecon Minutes for 2021-11-30
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0103.html
+Topics:
+  1. Relevant Community Updates
+  2. Interactive Issue and Re-Issue VC API flow
+Organizer:
+  Manu Sporny
+Scribe:
+  Joe Andrieu
+Present:
+  Manu Sporny, Ted Thibodeau, Eric Schuh, Brent Zundel, Joe 
+  Andrieu, Dmitri Zagidulin, Juan Caballero, Adrian, Justin Richer, 
+  Orie Steele
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-11-30/audio.ogg
+
+Joe Andrieu is scribing.
+Manu Sporny:  We have some agenda options...
+Manu Sporny:  Welcome to the last call of the year.
+  ... main focus of today was going to be interop testing 
+  priorities
+  ... but we don't have a ton of implementers, so we may want to 
+  do issue processing, specifically with an issue that has some air 
+  time: the credential refresh issue
+  ... any other items to consider?
+
+Topic: Relevant Community Updates
+
+  ... People are planning the interop testing for 2022. One goal 
+  is to make it less of an "extreme sports" event
+  ... Probably discussions to figure how to do that and how to 
+  ensure the rest of the implementer community is able to 
+  participate as equals along with DHS cohort members
+  ... That's the plan.
+  ... Another item: timeline for DIDs were covered on the CCG 
+  call
+  ... One more worth mentioning, the Verifiable Driver's License 
+  announcement
+<manu_sporny> Verifiable Driver's License Announcement: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0105.html
+  ... people can add their implementations to the test suite
+  ... this is building on the work of this group
+  ... Any other updates / changes / questions?
+  ... Ok. Then to issue processing.
+
+Topic: Interactive Issue and Re-Issue VC API flow
+
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Dmitri Zagidulin: https://github.com/w3c-ccg/vc-api/issues/245
+Dmitri Zagidulin:  The background on this issue is that in 
+  implementing the VC-API, we came across a number of problems that 
+  could be solved with interactive issue requests.
+  ... 1. There are a lot of use cases where before issuing a 
+  credentials, the issuer needs evidence
+  .... How do we standardize that ask for prerequisites
+  ... 2. Cross-device issuing, e.g., combining legacy 
+  authentication schemes with the VC-API world
+  ... It is likely that enterprise and education world already 
+  know their users, they just don't know their DIDs.
+  ... So before issuing to a new ID, they need not only  
+  DID-Auth, they also need to satisfy their existing authentication 
+  systems
+  ... 3. The issuing. If we have expiring credentials, we need a 
+  way for a wallet or someone to ask for a fresh copy
+  ... The solution to #3 solves all 3 problems
+  ... This extends the flow to include the pre-requisite and a 
+  continuation
+  ... the issue provides examples
+  ... Take a look. Ask questions. Any red flags?
+Adrian: starting with this idea of continuation and 
+  cross-credentiallying. This is one of the things that is 
+  primarily tackled in the GNAP specification. Is there anyone 
+  looking at this process? Or standardizing this process of linking 
+  different phases of the API?
+  ... if so, are we going to be doing something different from 
+  GNAP? If so, why?
+Dmitri Zagidulin:  Great question. The examples in the proposal 
+  are directly taking from GNAP.
+  ... We look at CHAPI, WACI, SIOP, and GNAP
+  ... We also take the did core notion of service endpoints
+Adrian: so, why not taking GNAP itself instead of taking the 
+  intent or method of GNAP
+Dmitri Zagidulin:  GNAP itself is not ... it's a similar protocol 
+  to VC-API, but it's not concerned with issuing and presenting.
+  ... GNAP is great, just serving a slightly different cause
+Manu Sporny:  First, fantastic write up. Much appreciated.
+  ... a couple things jumped out. Tweaks on the idea. +1 to 
+  initiating with pre-requisites.
+  ... that seems consistently useful across many domains
+  ... Another is allowing different query mechanisms to exist.
+  ... Borrowing the interact service stuff seems good.
+  ... The continuation also seems like a good thing.
+  ... My questions had to deal with initiation (using the same 
+  endpoint as issuance)
+  ... my concern with using the issues endpoint is that it is 
+  designed to receive a fully formed credentials.
+  ... that endpoint requires explicit 
+  authorization/authentication (an internal endpoint, not a public 
+  one)
+Dmitri Zagidulin:  Good question. Do we extend the credential 
+  input or add a new one?
+  ... how does the client even know which credential to ask for?
+  ... either application-specific (the context makes it clear)
+  ... Or we can batch messages for available VCs
+  ... We can do either
+  ... the argument for reusing the endpoint is to allow for a 
+  rich set of use cases with pre-requisite
+Adrian: what do you see as the cause of the different with GNAP?
+Dmitri Zagidulin:  Need more time to consider that and given a 
+  better response
+Manu Sporny:  There seems to be confusion about what 
+  /presentationsAvailable means
+  ... What you said, Dmitri, is aligned with what you said, but I 
+  thought the work from Joe & Eric with Mike & Orie is different
+  ... not sure presentationsAvailable goes here
+Joe Andrieu:  What's not clear to me, I heard what you were 
+  proposing on where API goes -- on issuer service... Similar to 
+  same conflation on verifier app/service -- verifier app vs. 
+  service support functionality. App is where pre-reqs happen. 
+  Having API on issuer app is good, good place for it, don't think 
+  it goes in the service... issuer service driven by issuer app. 
+  Not sure if that's out of sync. [scribe assist by Manu Sporny]
+Dmitri Zagidulin:  Where does reissuance happen? [scribe assist 
+  by Manu Sporny]
+Joe Andrieu:  It happens on the app -- that's where business 
+  logic happens... either we need bespoke way to tell service, 
+  service receives requests from public...s ervices don't have 
+  public endpoints. [scribe assist by Manu Sporny]
+Dmitri Zagidulin:  You're right that this proposal doesn't make 
+  distinction between app and service -- put together before I saw 
+  that diagram, just building off of current iteration of vc api -- 
+  which doesn't distinguish, we should reintroduce, specify issuer 
+  app endpoint. [scribe assist by Manu Sporny]
+Joe Andrieu is scribing.
+Agropper: this is a question as much as for Joe and Dmitri. Since 
+  we are skirting around the various use cases here... I see VC-API 
+  as having to serve a spectrum of use cases
+  ... from a biometric diploma with stricte privacy
+  ... or a covid test
+  ... or a boardiing pass or prescription that is meant to be 
+  used only once
+  ... all four of those are within the scope of the VC-API
+  ... (correct me if I'm wrong)
+  ... How do we plan to deal with adoption?
+Dmitri Zagidulin:  That's a broad question.
+  ... a couple thoughts. yes, the VC-API is meant to cover all 
+  those use cases
+  ... This proposal is just about the refresh service of the VC 
+  API
+  ... Basically, if the VC has a refreshService entry, then it 
+  has an automated renewable mechanism. If not, it doesn't.
+Dmitri Zagidulin:  Not sure anyone has an answer to the adoption 
+  question
+Manu Sporny:  My read is similar to Joe's. The endpoint is 
+  rightfully on the App rather than the service.
+<dmitriz> just to clarify though: it's /not/ being treated as a 
+  public endpoint
+  ... 1. This new split is a useful distinction
+<dmitriz> it's an authenticated endpoint
+  ... 2. If we all agree it is on the App, then that makes it 
+  easier to talk about.
+  ... For example, it may not be authenticated in any particular 
+  way.
+  ... It could be a public endpoint with bearer tokens
+  ... So we need a conversation about presentationsAvailable and 
+  how do we expand it to cover this kind of use case
+Joe Andrieu:  A response for Adrian -- adoption is a really big 
+  question, we're all engaged at different levels, don't know what 
+  you're concerned about in technical spec that you're concerned 
+  about? [scribe assist by Manu Sporny]
+<dmitriz> @manu -- still not sure I agree. At least in the use 
+  cases in the proposal, the client is straight up using OAuth2 
+  authentication, on the /credentials/issue endpoint. not public at 
+  all
+<dmitriz> also, I think the '/presentations/available' endpoint 
+  was introduced into the conversation solely based on my 
+  misunderstanding of it. It's not actually related at all
+Manu Sporny: Agropper: Yes, I'm concerned about where delegation 
+  fits in -- some things are services, some things are apps, some 
+  things can/can't be delegated by subject -- tried to contribute a 
+  few cases -- cruise ship use case, relates to covid tests vaccine 
+  registries
+Manu Sporny: Agropper: With or without there being a biometric 
+  driver's license involved -- that's the point of my 
+  issue/question -- I do believe that delegation , whatever 
+  aspects, will make this all much more clear as we engineer the 
+  flows and endpoints. Not so much adoption, indirectly adoption 
+  because delegation is so closely tied to issuer/subject.
+Joe Andrieu:  Your concern is that adoption will be restricted 
+  unless there are particular forms of delegation available? 
+  [scribe assist by Manu Sporny]
+Manu Sporny: Agropper: Concern is that we'll be forced to use 
+  wallets that are "certified" by powerful issuers like governments 
+  in mDL example and lose ability to delegate other use cases... we 
+  end up being forced into using Apple Wallet.
+Manu Sporny: Agropper: Use it for boarding passes, driver's 
+  licenses, and everything in between... that's the concern that's 
+  driving what I'm driving at.
+Joe Andrieu:  I'm confused about how adoption, authorization, and 
+  restrictions to particular technical solutions are related to one 
+  another. I understand that there will be powerful players that 
+  try to get people to use their software... struggling to tie it 
+  back to... what technically could we do, not do that would 
+  address power dynamic that you're concerned about. I agree that 
+  the power dynamic is an issue, but don't know how we fix that 
+  technically. [scribe assist by Manu Sporny]
+Manu Sporny: Agropper: I think we let holder delegate just like 
+  issuer can delegate.
+Dmitri Zagidulin:  I want to echo what joe said, power dynamic is 
+  an important issue... not sure it's related to this issue. 
+  [scribe assist by Manu Sporny]
+Joe Andrieu:  Although I share this principle, Mark Miller, if 
+  they can do it, they will do it, they'll do delegation... there 
+  are use cases where that is not appropriate. It should be an 
+  exercise to let someone else pretend to be you w/ your drivers 
+  license -- there are a lot of those use cases, performing a 
+  surgery, speaking before bar, etc. Not sure we can consider a 
+  requirement that all things must be delegatable. There are use 
+  cases where delegation is not appropriate. [scribe assist by Manu 
+  Sporny]
+Manu Sporny: Agropper: This is the issue with biometrics -- have 
+  made some points on the issue tracker, probably right place to 
+  address joe.
+Happy to take the scribe pen up again
+Joe Andrieu is scribing.
+Manu Sporny:  Going back to the issue, where do we want to go 
+  from here
+  ... Dmitri, is there anything concrete we can do to help that 
+  discussion along
+  ... Would a concrete refresh spec with concrete examples help?
+Dmitri Zagidulin:  One thing that is becoming clear is that this 
+  is using oauth2
+  ... and I didn't make that clear
+  ... if we agree it shouldn't be the credentials endpoint, let's 
+  find another place.
+<orie>	there is no endpoit for (issuer -> holder)
+<orie>	`/credentials/issuer` is (issuer -> issuer)
+<orie> lol
+<dmitriz> Orie -- yeah, I think that's exactly it
+<dmitriz>	orie -- we do need an issuer -> holder endpoint
+<orie> do I thought that was omitted so that we could use CHAPI 
+  excclusively for that use case ?
+<orie> /s
+Joe Andrieu:  This pulls in Juan or Eric with regard to... how 
+  did we identify service/app for these endpoints? issuer service / 
+  credentials issuer -- we had found in use case discussion, would 
+  be valuable to identify component and route -- don't know what we 
+  ended up going with [scribe assist by Manu Sporny]
+Juan Caballero:  We tried but had too many question marks to 
+  commit
+Juan Caballero:  We tried doing that and there were too many 
+  questions marks to commit to github. [scribe assist by Manu 
+  Sporny]
+<dmitriz> Orie -- no, CHAPI doesn't fit this usecase either
+<orie>	chapi does address `issuer -> holder` where both are 
+  websites... and both have the polyfill installed.
+Eric Schuh:  We were supposed to meet last week this hour and 
+  didn't get to it. So it's on our plate, but we could use some 
+  help.
+Manu Sporny: Eschuh: We were supposed to meet last week to do 
+  what you said last time... juan and I got wrapped around axle 
+  looking at this a few weeks back. On our to-do list to wrap up 
+  what you just described.
+Joe Andrieu:  Ok, will try to do that [scribe assist by Manu 
+  Sporny]
+Joe Andrieu:  If we are going to move it over to issuer app -- 
+  figure out a way to represent that in the proposal would be good, 
+  not clear how we make it clear. [scribe assist by Manu Sporny]
+Joe Andrieu:  We might want to inject "issuer service" and 
+  "issuer app" in there. [scribe assist by Manu Sporny]
+<dmitriz> @joe - seems reasonable.
+Joe Andrieu is scribing.
+Manu Sporny:  Should we do more issues?
+  ... or end early?
+  ... I'm going to suggest we end early. We really should have 
+  more implementers on the call
+<orie> yay! happy december off!
+  ... That's it for today.
+  ... Thanks Joe. And Dmitri
+<juan_caballero_(spruce)> thanks all!
+Manu Sporny:  No more VCAPI meetings in 2021
+  ... Happy Holidays! See you in the new year

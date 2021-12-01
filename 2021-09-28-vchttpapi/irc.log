@@ -1,0 +1,298 @@
+[2021-09-28T19:58:05.317Z]	<mprorock>	present+
+[2021-09-28T19:58:06.717Z]	<Michael_Herman_(Trusted_Digital_Web)>	present+
+[2021-09-28T19:58:21.237Z]	<Manu_Sporny>	present+
+[2021-09-28T19:59:28.019Z]	<Manu_Sporny>	chair: manu
+[2021-09-28T20:00:02.925Z]	<Dmitri_Zagidulin>	present+
+[2021-09-28T20:00:26.499Z]	<Markus_Sabadello>	present+
+[2021-09-28T20:00:56.226Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2021-09-28T20:01:04.142Z]	<David_Chadwick>	present+
+[2021-09-28T20:01:05.419Z]	<TallTed>	present+
+[2021-09-28T20:01:47.380Z]	<DavidC>	present+
+[2021-09-28T20:01:58.880Z]	<Brian_Richter>	present+
+[2021-09-28T20:02:45.293Z]	<Adrian_Gropper>	present+
+[2021-09-28T20:03:03.559Z]	<Orie>	present+
+[2021-09-28T20:03:03.753Z]	<Juan_(Spherity_GmbH)>	present+
+[2021-09-28T20:03:06.848Z]	<Eric_Schuh>	present+
+[2021-09-28T20:03:07.742Z]	<Joe_Andrieu>	present+
+[2021-09-28T20:04:06.088Z]	<Justin_Richer>	present+
+[2021-09-28T20:04:32.075Z]	<Markus_Sabadello>	present+
+[2021-09-28T20:04:36.419Z]	<Brian_Richter>	scribe+
+[2021-09-28T20:04:36.467Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0124.html
+[2021-09-28T20:04:53.165Z]	<markus_sabadello>	present+
+[2021-09-28T20:05:28.867Z]	<Brian_Richter>	manu: agenda - data flow diagram, PRs, Issue processing
+[2021-09-28T20:06:24.440Z]	<Brian_Richter>	manu: I won't be here next tuesday. one of the codeowners will need to take lead for running the call
+[2021-09-28T20:06:55.126Z]	<mprorock>	Codeowners List: @peacekeeper @msporny @mavarley @OR13 @mkhraisha
+[2021-09-28T20:07:39.899Z]	<Brian_Richter>	markus: Its late for me but I can probably do it
+[2021-09-28T20:07:43.250Z]	<Orie>	its issue processing
+[2021-09-28T20:07:48.001Z]	<Brian_Richter>	manu: orie can you backup?
+[2021-09-28T20:07:51.822Z]	<Brian_Richter>	orie: yes I can
+[2021-09-28T20:09:15.741Z]	<Brian_Richter>	manu: next item up, michael herman you had concerns about naming poll, do you want to elevate your concern?
+[2021-09-28T20:09:19.667Z]	<mprorock>	q+ vote was not a time zone, the informative poll was timezone issue
+[2021-09-28T20:09:42.606Z]	<Brent>	present+
+[2021-09-28T20:09:49.616Z]	<Brian_Richter>	michael: to be clear my issue is I want to see a west coast timezone for future polls
+[2021-09-28T20:10:04.478Z]	<Orie>	lol
+[2021-09-28T20:10:07.020Z]	<Manu_Sporny>	ack mprorock
+[2021-09-28T20:10:37.329Z]	<Orie>	its amazing how hard elections have gotten since twitter was invented...
+[2021-09-28T20:10:38.097Z]	<Brian_Richter>	mike prorock: vote was not on timezone, was informational poll that timezone was not announced with
+[2021-09-28T20:11:05.729Z]	<Mike_Varley>	present+
+[2021-09-28T20:11:19.533Z]	<Brian_Richter>	manu: always issue with timezones, we'll take this to the mailing list to resolve timezone issues
+[2021-09-28T20:11:28.456Z]	<DavidC>	What is wrong with UTC?
+[2021-09-28T20:11:34.610Z]	<Markus_Sabadello>	Let's have a poll about which timezone to use :)
+[2021-09-28T20:12:01.107Z]	<Brian_Richter>	manu: we will do the name changes now
+[2021-09-28T20:12:21.012Z]	<Manu_Sporny>	Topic: New Data Flow Diagrams
+[2021-09-28T20:12:44.412Z]	<Brian_Richter>	manu: standard flow from supply chain folks when using VC API
+[2021-09-28T20:12:45.639Z]	<Joe_Andrieu>	Updated archive entry for today's Sequence Diagram https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0141.html
+[2021-09-28T20:13:12.324Z]	<mprorock>	big thanks to Eric and Joe on this
+[2021-09-28T20:13:15.932Z]	<Brian_Richter>	joe: i've noticed in last half hour theres a thing missing i'll get to
+[2021-09-28T20:13:41.150Z]	<Brian_Richter>	joe: each of the participants who are in a different trust domain have different colours
+[2021-09-28T20:13:56.241Z]	<Brian_Richter>	joe: messages that cross these boundaries need authz
+[2021-09-28T20:14:15.156Z]	<Brian_Richter>	joe: often these are "i only accept access from localhost"
+[2021-09-28T20:14:36.319Z]	<Brian_Richter>	joe: we are identifying where we need to talk about authz
+[2021-09-28T20:16:11.212Z]	<Brian_Richter>	joe: emerging definition for service and app. the distinction between server, app and role. roles: holder, verifier, issuer. different components: app is software or service that gives vc-enabling capability (often SaaS)
+[2021-09-28T20:16:25.319Z]	<Michael_Herman_(Trusted_Digital_Web)>	Role -> Actor
+[2021-09-28T20:16:52.981Z]	<Michael_Herman_(Trusted_Digital_Web)>	Roles are not actors in most formal modeling metamodels
+[2021-09-28T20:16:55.690Z]	<Brian_Richter>	... service is only accessable by the app
+[2021-09-28T20:17:15.549Z]	<Manu_Sporny>	I like this direction...
+[2021-09-28T20:17:27.597Z]	<Michael_Herman_(Trusted_Digital_Web)>	Actors are assigned to Roles but Actors are the only entities that perform actions.
+[2021-09-28T20:17:29.814Z]	<Brian_Richter>	... we have previously conflated the role and app and this is separated now
+[2021-09-28T20:17:53.065Z]	<Manu_Sporny>	ack michael
+[2021-09-28T20:17:53.523Z]	<Dmitri_Zagidulin>	it seems like the Verifier Storage Service doesn't add much to the diagram. (plus, many verifiers won't be storing the VC, etc)
+[2021-09-28T20:17:56.937Z]	<DavidC>	q+
+[2021-09-28T20:18:15.510Z]	<Orie>	Review terms here: https://www.w3.org/TR/vc-data-model/#ecosystem-overview
+[2021-09-28T20:18:19.309Z]	<Manu_Sporny>	ack DavidC
+[2021-09-28T20:18:20.845Z]	<Brian_Richter>	michael: role could be changed to actor? formal document should use formal definitions
+[2021-09-28T20:18:26.265Z]	<Orie>	> holder
+A role an entity might perform by possessing one or more verifiable credentials and generating verifiable presentations from them. Example holders include students, employees, and customers.
+[2021-09-28T20:18:55.897Z]	<Michael_Herman_(Trusted_Digital_Web)>	These are personas
+[2021-09-28T20:19:07.481Z]	<Brian_Richter>	david chadwick: in the model we've got we differentiate between application layer and VC layer. when we talk about app that could be browser on mobile phone or 3rd party banking app which talks to holder app. on relying party side we have service provider which will talk to the service
+[2021-09-28T20:19:09.707Z]	<mprorock>	orie is quoting the spec here https://www.w3.org/TR/vc-data-model/#dfn-holders
+[2021-09-28T20:19:11.190Z]	<Manu_Sporny>	q?
+[2021-09-28T20:19:14.545Z]	<mprorock>	q+
+[2021-09-28T20:19:34.828Z]	<Michael_Herman_(Trusted_Digital_Web)>	But role is not an appropriate use in this diagraam
+[2021-09-28T20:19:35.281Z]	<Brian_Richter>	joe: i would be happy to schedule call to go over that
+[2021-09-28T20:19:43.661Z]	<Orie>	I would happy to be on a call with you David!
+[2021-09-28T20:19:44.660Z]	<mprorock>	q-
+[2021-09-28T20:19:55.536Z]	<Dmitri_Zagidulin>	q+ to ask if the Verifier Storage Service is needed.
+[2021-09-28T20:20:17.580Z]	<Juan_(Spherity_GmbH)>	might be a good topic for the VC-GUIDE :D
+[2021-09-28T20:20:19.330Z]	<Brian_Richter>	joe: we're using the term "role" since it's in the vc data model
+[2021-09-28T20:20:31.705Z]	<Juan_(Spherity_GmbH)>	(and/or for issues for VC spec v2)
+[2021-09-28T20:20:38.955Z]	<Brent>	so, the "holder role" label should be understood to mean "an actor in a holder role?"
+[2021-09-28T20:20:39.782Z]	<agropper>	q+
+[2021-09-28T20:20:42.269Z]	<Brian_Richter>	michael: i don't disagree with that wording but in this diagram you need to depict an actor
+[2021-09-28T20:20:54.356Z]	<Manu_Sporny>	ack Dmitri
+[2021-09-28T20:20:54.713Z]	<Brian_Richter>	joe: we are indicating this role is the actor ie. holder
+[2021-09-28T20:21:17.270Z]	<Brian_Richter>	dmitri: would it simplify the diagram to remove verifier storage service?
+[2021-09-28T20:21:31.421Z]	<Michael_Herman_(Trusted_Digital_Web)>	What is an Actor: https://pubs.opengroup.org/architecture/archimate3-doc/chap08.html#_Toc10045368
+[2021-09-28T20:21:34.349Z]	<Brian_Richter>	joe: it would but the storage service and revocation service are both underrepresented right now
+[2021-09-28T20:21:47.136Z]	<Manu_Sporny>	q?
+[2021-09-28T20:21:55.249Z]	<Brian_Richter>	dmitri: that makes sense but i mention verifier since many won't store the vc at all
+[2021-09-28T20:22:08.166Z]	<Michael_Herman_(Trusted_Digital_Web)>	What is a Role: https://pubs.opengroup.org/architecture/archimate3-doc/chap08.html#_Toc10045369
+[2021-09-28T20:22:09.656Z]	<Manu_Sporny>	ack agropper
+[2021-09-28T20:22:19.210Z]	<DavidC>	+1 Dmitry
+[2021-09-28T20:23:06.448Z]	<Michael_Herman_(Trusted_Digital_Web)>	An example: https://pubs.opengroup.org/architecture/archimate3-doc/chap08.html#_Toc10045372
+[2021-09-28T20:23:12.768Z]	<Brian_Richter>	adrian: i understand the role of holder and issuer are separate roles but from authz perspective they could be combined in some instances. when we have distinction between device bound identity and biometric bound identity the opportunity arises for combining issuer and holder as theres no need for device bound identity
+[2021-09-28T20:23:33.613Z]	<Michael_Herman_(Trusted_Digital_Web)>	q-
+[2021-09-28T20:23:36.355Z]	<Brian_Richter>	... when liveness is required that can also fit into authz protocol
+[2021-09-28T20:24:11.508Z]	<Manu_Sporny>	q?
+[2021-09-28T20:24:15.030Z]	<Brian_Richter>	... where the resource owner needs to be in control of authz policies instead of storage that is where my perspective is
+[2021-09-28T20:24:31.056Z]	<Brian_Richter>	joe: slight shift in language might help me understand
+[2021-09-28T20:25:18.678Z]	<Orie>	this picture does not include Issuer... it assumes that the holder already has a VC... we don't care how that happened.
+[2021-09-28T20:25:37.092Z]	<Brian_Richter>	... any entity may be in any role at any time. that flexibility is innate. any of these services could be monolithic. reality is for our API important things are where do we provide APIs that can have substitutability
+[2021-09-28T20:25:46.574Z]	<agropper>	q+
+[2021-09-28T20:26:13.129Z]	<Brian_Richter>	... an entity can have multiple roles. trying to find API that enables substitutability
+[2021-09-28T20:26:16.203Z]	<Manu_Sporny>	ack DavidC
+[2021-09-28T20:26:18.766Z]	<Manu_Sporny>	q?
+[2021-09-28T20:26:24.912Z]	<Manu_Sporny>	ack agropper
+[2021-09-28T20:26:27.084Z]	<Manu_Sporny>	q?
+[2021-09-28T20:26:47.409Z]	<mprorock>	I would love for Joe to be able to walk through his and Eric's work on this use case, then have a discussion about it honestly
+[2021-09-28T20:27:02.728Z]	<Manu_Sporny>	ok, we can do that mprorock
+[2021-09-28T20:27:06.743Z]	<Michael_Herman_(Trusted_Digital_Web)>	q-
+[2021-09-28T20:27:09.128Z]	<mprorock>	with a big caveat that we are talking system to system use cases here
+[2021-09-28T20:27:38.016Z]	<Brian_Richter>	adrian: i understand substitutability give challenges across trust domains. when discussing issues around delegation it would be helpful to our conversation if we considered when substitutability is important from a human rights vs vendor lock in
+[2021-09-28T20:27:43.365Z]	<Orie>	i'm not sure why we are allowing the unrelated conversations to persist in this work...its confusing and harmful.
+[2021-09-28T20:27:51.360Z]	<mprorock>	+1 orie
+[2021-09-28T20:28:26.506Z]	<Brian_Richter>	manu: lets go through the whole flow
+[2021-09-28T20:29:03.798Z]	<Brian_Richter>	joe: from supply chain with no human being using the browser to drive the interaction
+[2021-09-28T20:29:34.734Z]	<Orie>	Imagine a CRON Job that shares data between 2 web servers...
+[2021-09-28T20:29:39.286Z]	<Manu_Sporny>	q+ to note that 1-6 feels like "Start Workflow" use case.
+[2021-09-28T20:29:51.198Z]	<Brian_Richter>	... 1. holder starts up their app, 2. app decides we need to send a VP, 3. notifies verifier data ready
+[2021-09-28T20:30:02.049Z]	<Brian_Richter>	... 4 evaluates what to do w/ that
+[2021-09-28T20:30:16.023Z]	<Brian_Richter>	5. constructs a data package (domain and challenge)
+[2021-09-28T20:30:41.439Z]	<mprorock>	+1 manu - that is a pretty good way of thinking about it
+[2021-09-28T20:30:42.761Z]	<Brian_Richter>	Holder gets VC
+[2021-09-28T20:30:54.739Z]	<Brian_Richter>	(from storage service)
+[2021-09-28T20:31:31.145Z]	<Brian_Richter>	... app needs some notion of its own keys to invoke their actions
+[2021-09-28T20:31:40.251Z]	<Orie>	not sure why we are talking about other CCG work items like web KMS... that work item is not required.
+[2021-09-28T20:31:47.033Z]	<Brian_Richter>	... signs vp, sends to verfier app
+[2021-09-28T20:32:00.209Z]	<Brian_Richter>	... verifier app talks to it's verifier service
+[2021-09-28T20:32:18.326Z]	<Brian_Richter>	... verification comes back, verifier app evaluates business rules
+[2021-09-28T20:32:21.468Z]	<Mike_Varley>	+1 to the Service abstracting key management
+[2021-09-28T20:32:37.423Z]	<Brian_Richter>	... stores the VC (may not be relevant but for symmetry)
+[2021-09-28T20:32:43.965Z]	<mprorock>	@orie - agreed, basically some key management - not a specific one or protocol
+[2021-09-28T20:32:53.705Z]	<Brian_Richter>	... holder app gets message back "we got presentation"
+[2021-09-28T20:32:58.922Z]	<Orie>	I like to model this as 2 network requests between 2 web servers, where they are started by a cron job.
+[2021-09-28T20:33:03.013Z]	<Brian_Richter>	... holder app records submission
+[2021-09-28T20:33:17.385Z]	<Orie>	revocation status is not relevant or needed.
+[2021-09-28T20:33:22.749Z]	<Brian_Richter>	... something that came up: who is doing revocation status check? i think should be verifier service
+[2021-09-28T20:33:30.093Z]	<Manu_Sporny>	@orie @mprorock -- I believe JoeA was just using WebKMS as an example of key management, not a requirement.
+[2021-09-28T20:33:49.629Z]	<Orie>	yes he was, its not required... nor is revocation.
+[2021-09-28T20:33:52.082Z]	<Brian_Richter>	... i think we need another loop in here to show who is going to check revocation status
+[2021-09-28T20:33:56.658Z]	<TallTed>	q+ to say both verifier service and holder service should be capable of checking revocation status
+[2021-09-28T20:34:03.472Z]	<Brian_Richter>	... no authz in here
+[2021-09-28T20:34:18.475Z]	<DavidC>	q+
+[2021-09-28T20:34:34.385Z]	<Manu_Sporny>	ack manu
+[2021-09-28T20:34:40.508Z]	<bobwyman>	present+
+[2021-09-28T20:35:06.462Z]	<agropper>	present+
+[2021-09-28T20:35:12.060Z]	<Orie>	link to use cases.
+[2021-09-28T20:35:17.660Z]	<Orie>	FFS
+[2021-09-28T20:35:20.649Z]	<Brian_Richter>	manu: steps 1 through 6 i believe is the start workflow use cases. if that's true this whole thing is chapi flow as well. thoughts?
+[2021-09-28T20:35:22.790Z]	<Orie>	this is the chapi flow.
+[2021-09-28T20:35:36.708Z]	<Orie>	we designed it to be like CHAPI flows...
+[2021-09-28T20:35:44.988Z]	<Manu_Sporny>	q?
+[2021-09-28T20:35:47.690Z]	<mprorock>	+1 orie
+[2021-09-28T20:35:49.832Z]	<Orie>	which are actually https://w3c-ccg.github.io/vp-request-spec/ flows...
+[2021-09-28T20:35:55.228Z]	<Orie>	6 months later...
+[2021-09-28T20:35:58.443Z]	<Brian_Richter>	joe: i think that's right. most of the difference was the idea of data ready going to the service where really that is clicking on jobs website in the chapi flow
+[2021-09-28T20:36:04.282Z]	<Manu_Sporny>	ack tallted
+[2021-09-28T20:36:05.613Z]	<Brian_Richter>	manu: if that's reality that's great
+[2021-09-28T20:36:09.054Z]	<Orie>	literally shaking..
+[2021-09-28T20:36:11.366Z]	<Orie>	lol
+[2021-09-28T20:36:22.382Z]	<Brian_Richter>	ted: on the flow for who checks status, both holder and verifier should do it
+[2021-09-28T20:36:57.720Z]	<Brian_Richter>	... i don't want to submit a revoked vc if i can get a new vc that i can submit instead
+[2021-09-28T20:36:59.259Z]	<Manu_Sporny>	ack agropper
+[2021-09-28T20:37:01.121Z]	<Manu_Sporny>	q?
+[2021-09-28T20:37:11.043Z]	<Manu_Sporny>	ack davidc
+[2021-09-28T20:37:13.859Z]	<Manu_Sporny>	q
+[2021-09-28T20:37:49.214Z]	<Orie>	thats because all VP flows require domain and challenge to be exchange prior to VP construction and communication.
+[2021-09-28T20:37:49.616Z]	<Brian_Richter>	DavidC: in openid connect: i can see how this maps into OIDC. message 3 would be the user talking to the resource to say i need access. message 6 would be the resource sending the presentation request which would detail the VCs it wanted
+[2021-09-28T20:38:07.476Z]	<Brian_Richter>	... the user would retrieve VCs and then 13 would submit VP. 19 would say you have access go ahead
+[2021-09-28T20:38:09.979Z]	<Orie>	+1 David
+[2021-09-28T20:38:16.235Z]	<Orie>	all the VP flows are similar
+[2021-09-28T20:38:29.525Z]	<Orie>	since they all require getting a domain and challenge from the verifier.
+[2021-09-28T20:38:30.298Z]	<Brian_Richter>	joe: one of the shifts here is notification data ready describes data to be required
+[2021-09-28T20:38:41.740Z]	<Manu_Sporny>	q?
+[2021-09-28T20:38:42.964Z]	<agropper>	q+
+[2021-09-28T20:38:54.400Z]	<Brian_Richter>	davidc: in oidc has nothing to do with the data has to do with VC claims
+[2021-09-28T20:39:09.046Z]	<Manu_Sporny>	ack agropper
+[2021-09-28T20:39:09.490Z]	<Brian_Richter>	joe: and step 3 in supply chain is saying here are the claims i have available
+[2021-09-28T20:39:17.092Z]	<Manu_Sporny>	q- DavidC
+[2021-09-28T20:39:28.819Z]	<Manu_Sporny>	/me ghost queue
+[2021-09-28T20:39:34.586Z]	<Orie>	No, its 2 apps talking to eachother... they are apps... not people.
+[2021-09-28T20:39:44.641Z]	<mprorock>	+1 orie
+[2021-09-28T20:39:50.452Z]	<Brian_Richter>	adrian: in supply chain flow, difference between VP and VC is liveness detection a concept or is it assumed that there is none but only detection of holder that is meant to be the difference
+[2021-09-28T20:40:08.707Z]	<Brian_Richter>	... you can sign a challenge w/ liveness or just by signing
+[2021-09-28T20:40:38.369Z]	<Brian_Richter>	joe: that is the primary difference, i wish the supply chain had anchored the VP to the current user but that is not how it has been fleshed out
+[2021-09-28T20:40:39.992Z]	<mprorock>	q+
+[2021-09-28T20:40:50.281Z]	<Brian_Richter>	joe: problem domain does not contain liveness detection
+[2021-09-28T20:40:50.309Z]	<Manu_Sporny>	ack mpro
+[2021-09-28T20:40:59.391Z]	<Orie>	it turns out that APIs exchange data... without people being detected as being alive, or involved.
+[2021-09-28T20:41:17.905Z]	<Brian_Richter>	mpro: that is the individual flow
+[2021-09-28T20:41:22.449Z]	<Dmitri_Zagidulin>	I think it might be worth clarifying that VPs only need challenge & domain when used for authentication. But not really for other purposes.
+[2021-09-28T20:41:36.730Z]	<Brian_Richter>	adrian: there is difference between supply chain and general VP use case
+[2021-09-28T20:41:45.968Z]	<Brian_Richter>	manu: what are next steps?
+[2021-09-28T20:42:16.318Z]	<Brian_Richter>	joe: there are some iterations. 1. revocation check. 2. refresh check
+[2021-09-28T20:42:32.639Z]	<Brian_Richter>	joe: our flows don't show where those things happen currently
+[2021-09-28T20:42:54.266Z]	<Brian_Richter>	... working through an updated CHAPI flow using this language. should give us an architectural diagram
+[2021-09-28T20:43:05.730Z]	<Brian_Richter>	... we are close to having something spec ready
+[2021-09-28T20:43:23.845Z]	<Brian_Richter>	manu: thanks to people who did this work
+[2021-09-28T20:43:47.409Z]	<Brian_Richter>	... is there anything to do w/ CHAPI flow?
+[2021-09-28T20:44:22.544Z]	<Orie>	here is the flow with lots of abstraction:
+
+(company 1 service) -> (company 2 service)
+(company 1 service)  <- (company 2 service)
+
+// holder has domain and challenge
+
+(company 1 service) -> (company 2 service)
+(company 1 service)  <- (company 2 service)
+
+// verifier has VP
+[2021-09-28T20:44:30.009Z]	<Brian_Richter>	joe: same sort of walkthrough and look at differences. how are we going to talk about authz at these levels. often holder authenticates to app using email
+[2021-09-28T20:44:47.873Z]	<Brian_Richter>	joe: lets do chapi and that can flow into how are these layers secured
+[2021-09-28T20:45:05.347Z]	<Brian_Richter>	manu: PRs is next item
+[2021-09-28T20:45:08.066Z]	<mprorock>	traditional enterprise API use cases for VCs is basically what we are dealing with to expand on Orie's comment
+[2021-09-28T20:45:13.967Z]	<Manu_Sporny>	Topic: Pull Request Review
+[2021-09-28T20:45:27.403Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-http-api/pull/229
+[2021-09-28T20:45:39.830Z]	<Brian_Richter>	manu: this has been merged, there was agreement
+[2021-09-28T20:45:57.024Z]	<Brian_Richter>	manu: specifically call out basic authentication don't use
+[2021-09-28T20:46:07.865Z]	<Brian_Richter>	... sets precedent things we don't want to use
+[2021-09-28T20:46:16.969Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-http-api/pull/230
+[2021-09-28T20:46:50.797Z]	<Brian_Richter>	manu: orie, you wanted language to a MAY and adrian wants MUST. proposed was SHOULD
+[2021-09-28T20:46:56.588Z]	<Orie>	Nobody SHOULD be required to implement something that is not possible to implement in their chosen programming language.
+[2021-09-28T20:47:20.102Z]	<Orie>	q+
+[2021-09-28T20:47:22.126Z]	<TallTed>	orie - that would be a justification to NOT do the thing!
+[2021-09-28T20:47:29.387Z]	<Brian_Richter>	manu: orie could you live with a SHOULD?
+[2021-09-28T20:47:30.823Z]	<TallTed>	q+
+[2021-09-28T20:47:32.621Z]	<agropper>	q+
+[2021-09-28T20:47:35.589Z]	<Manu_Sporny>	ack orie
+[2021-09-28T20:47:55.906Z]	<Brian_Richter>	orie: i will object to language that uses SHOULD to imply people will use something that's not possible to use
+[2021-09-28T20:48:21.108Z]	<Manu_Sporny>	ack orie
+[2021-09-28T20:48:23.151Z]	<Brian_Richter>	... this specific text: i will object to PR if it contains SHOULD or MUST
+[2021-09-28T20:48:23.261Z]	<Manu_Sporny>	ack tallted
+[2021-09-28T20:48:32.951Z]	<Manu_Sporny>	q+ to note that it is possible
+[2021-09-28T20:48:41.881Z]	<Brian_Richter>	ted: we are using SHOULD in the RFC explanation: do it unless you have a good reason not to
+[2021-09-28T20:49:04.944Z]	<Brian_Richter>	... MAY to warn the other side you might do something
+[2021-09-28T20:49:20.750Z]	<Orie>	MAY does nothing... exactly... better to do nothing... than to do something harmful.
+[2021-09-28T20:49:37.249Z]	<Manu_Sporny>	ack agropper
+[2021-09-28T20:49:39.889Z]	<Brian_Richter>	... SHOULD is a strong do it please but you're not in violation if you dont
+[2021-09-28T20:50:37.628Z]	<Orie>	it is impossible to render GNAP RAR in OAS3.0... its not supported.
+[2021-09-28T20:50:38.510Z]	<Brian_Richter>	adrian: i don't think we're ready to talk about this because: 1. we can not reply to a human rights argument using economic reasons. 2. not sure what is impossible, for example UMA we built delegation onto OAuth
+[2021-09-28T20:50:54.863Z]	<Justin_Richer>	Orie then you have bad tools 🤷‍♀️
+[2021-09-28T20:51:08.880Z]	<Brian_Richter>	... we need to have human rights conversation in regards to delegation
+[2021-09-28T20:51:09.540Z]	<mprorock>	that is fine, but let's take that to the mailing list, not this work item for now
+[2021-09-28T20:51:21.311Z]	<Justin_Richer>	Also, I adapted it to do just that, since it's open source. It just doesn't allow plugins because of the software design.
+[2021-09-28T20:51:26.329Z]	<Orie>	I have tools that enterprises are using... i think you might have a spec that nobody has adopted yet.
+[2021-09-28T20:51:38.893Z]	<DavidC>	q+
+[2021-09-28T20:51:40.764Z]	<Justin_Richer>	Orie you mean VC-HTTP-API? :)
+[2021-09-28T20:51:44.012Z]	<Brian_Richter>	... its premature to talk about this
+[2021-09-28T20:51:44.041Z]	<Orie>	yes
+[2021-09-28T20:51:52.761Z]	<Orie>	: )
+[2021-09-28T20:52:10.944Z]	<Brian_Richter>	manu: agreed impossible is a stretch
+[2021-09-28T20:52:25.312Z]	<Brian_Richter>	... the SHOULD is implementable
+[2021-09-28T20:52:33.926Z]	<TallTed>	"very difficult, very expensive" are sufficient arguments against doing a SHOULD. it need not be "impossible"
+[2021-09-28T20:52:33.959Z]	<Orie>	ZCAPs are also  not a standard and also not supported by OAS3.0.
+[2021-09-28T20:52:48.062Z]	<Brian_Richter>	... we are dealing with something incredibly prestandard now
+[2021-09-28T20:53:02.911Z]	<TallTed>	also, SHOULD is the historical compromise between MAY and MUST
+[2021-09-28T20:53:07.549Z]	<Brian_Richter>	... adrian, that goes beyond VC API
+[2021-09-28T20:53:08.134Z]	<Orie>	I'm a -1 to doing things that OAS3.0 does not support.
+[2021-09-28T20:53:17.979Z]	<Brian_Richter>	manu: keep discussion going in PR
+[2021-09-28T20:53:31.080Z]	<Manu_Sporny>	ack DavidC
+[2021-09-28T20:53:34.251Z]	<Justin_Richer>	I'm -1 to pegging an emerging standard to OAS3.0's capability set
+[2021-09-28T20:53:34.667Z]	<Manu_Sporny>	q?
+[2021-09-28T20:53:35.759Z]	<Orie>	if GNAP gets added to OAS3.0 we are good to use it.
+[2021-09-28T20:53:40.684Z]	<Justin_Richer>	like, any emerging standard
+[2021-09-28T20:53:56.162Z]	<Manu_Sporny>	q?
+[2021-09-28T20:53:58.715Z]	<Manu_Sporny>	ack manu
+[2021-09-28T20:54:05.598Z]	<Orie>	we agreed to use OAS3.0... if we want to take that back I am happy to start from scratch again :)
+[2021-09-28T20:54:21.393Z]	<mprorock>	+1 orie - i think OAS3 is a good measure for now
+[2021-09-28T20:54:28.815Z]	<Brian_Richter>	manu: editors will shift the authz delegation to a draft
+[2021-09-28T20:54:42.414Z]	<Manu_Sporny>	Topic: ReSpec OAS Autogenerator Plugin
+[2021-09-28T20:54:42.414Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-http-api/pull/233
+[2021-09-28T20:54:57.848Z]	<DavidC>	I wanted to say that we may have different authz delegation rules for the different APIs (verifier, issuer and holder) and the current text does not differentiate
+[2021-09-28T20:55:17.699Z]	<Brian_Richter>	... respec auto-generator from OAS file
+[2021-09-28T20:55:37.107Z]	<Justin_Richer>	OAS3 is a tool -- treating it like a requirement is putting shadow dependencies into the spec, and that's just bad design
+[2021-09-28T20:55:58.170Z]	<Brian_Richter>	... this thing existed as OAS files before this spec existed. desire to keep OAS
+[2021-09-28T20:56:07.168Z]	<Orie>	thanks for your opinion justin, but we agreed  to use OAS3.0, that point was already resolved.
+[2021-09-28T20:56:16.497Z]	<Brian_Richter>	... there was no mechanism to inject OAS into respec
+[2021-09-28T20:56:30.342Z]	<Justin_Richer>	Using it and depending on it are different things and you're hiding behind that to support your argument.
+[2021-09-28T20:56:36.870Z]	<Brian_Richter>	... code that pulls in OAS and renders into respec
+[2021-09-28T20:56:59.741Z]	<Brian_Richter>	... schema is rendered directly from OAS. it's json and hard to read. renderer needs to be updated
+[2021-09-28T20:57:00.129Z]	<Justin_Richer>	q+
+[2021-09-28T20:57:16.094Z]	<Orie>	Justin, i'm not hiding behind OAS3.0... i am using adopted industry standards to strengthen our work item, and its potential for adoption.
+[2021-09-28T20:57:19.338Z]	<mprorock>	@manu - this is great
+[2021-09-28T20:57:22.530Z]	<Brian_Richter>	... the hope is this a general solution that this will work for any REST api within CCG
+[2021-09-28T20:57:32.943Z]	<Orie>	@manu looks great!
+[2021-09-28T20:57:34.917Z]	<Brian_Richter>	... it would be awesome if folks would help me with the code
+[2021-09-28T20:57:44.183Z]	<Manu_Sporny>	ack Justin
+[2021-09-28T20:57:46.749Z]	<Manu_Sporny>	q?
+[2021-09-28T20:57:47.430Z]	<Mike_Varley>	very cool @manu !
+[2021-09-28T20:57:56.561Z]	<Brian_Richter>	justin: thanks for that its great work
+[2021-09-28T20:58:28.688Z]	<Brian_Richter>	... this negates any arguments against things that don't fit within OAS. we created our own renderer....
+[2021-09-28T20:58:39.873Z]	<Orie>	Justin, rendering a standard format is not the same as extending it too support new schemes... you should read the OAS3.0 spec.
+[2021-09-28T20:58:42.317Z]	<Justin_Richer>	@manu I wrote a renderer for OAS that handles RAR data structures and I'm happy to share it
+[2021-09-28T20:58:46.390Z]	<mprorock>	thanks all!
+[2021-09-28T20:58:49.621Z]	<Juan_(Spherity_GmbH)>	https://w3c-ccg.github.io/vc-api-use-cases/
+^ new use cases respec dropped
+[2021-09-28T20:58:52.954Z]	<Orie>	https://swagger.io/docs/specification/authentication/
+[2021-09-28T20:59:02.340Z]	<Brian_Richter>	manu: thats it for today, thank you joe and eric for diagram
+[2021-09-28T20:59:16.570Z]	<Brian_Richter>	.. reminder i won't be here next week markus will be doing issue processing

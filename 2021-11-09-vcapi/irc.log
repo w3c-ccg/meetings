@@ -1,0 +1,233 @@
+[2021-11-09T21:00:19.344Z]	<bobwyman>	present+
+[2021-11-09T21:00:19.345Z]	<Manu_Sporny>	present+
+[2021-11-09T21:00:21.157Z]	<Brent>	present+
+[2021-11-09T21:00:37.782Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2021-11-09T21:00:39.788Z]	<Charles_E._Lehner>	present+
+[2021-11-09T21:00:43.389Z]	<Manu_Sporny>	agenda: https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0039.html
+[2021-11-09T21:00:45.050Z]	<Manu_Sporny>	chair: manu
+[2021-11-09T21:00:49.726Z]	<TallTed>	present+
+[2021-11-09T21:00:57.709Z]	<Eric_Schuh>	present+
+[2021-11-09T21:01:32.893Z]	<Adrian_Gropper>	present+
+[2021-11-09T21:01:42.499Z]	<Juan_Caballero_(Spruce)>	present+
+[2021-11-09T21:01:48.226Z]	<Mahmoud>	present+
+[2021-11-09T21:01:53.770Z]	<David_Chadwick>	present+
+[2021-11-09T21:03:03.342Z]	<Dmitri_Z>	present+
+[2021-11-09T21:03:10.548Z]	<DavidC>	present+
+[2021-11-09T21:04:05.618Z]	<Dmitri_Z>	present+
+[2021-11-09T21:05:28.831Z]	<dmitriz>	scribe+
+[2021-11-09T21:05:48.393Z]	<dmitriz>	manu: (summarizes agenda -- mostly issue processing)
+[2021-11-09T21:06:06.875Z]	<dmitriz>	manu: the focus is on closing issues.
+[2021-11-09T21:06:11.303Z]	<dmitriz>	... any other updates or changes to agenda?
+[2021-11-09T21:06:27.047Z]	<dmitriz>	manu: let's start with Intros & Re-Intros
+[2021-11-09T21:06:47.241Z]	<Brian_Richter>	present+
+[2021-11-09T21:06:58.343Z]	<Manu_Sporny>	Topic: Relevant Community Updates
+[2021-11-09T21:07:04.553Z]	<brent>	present+
+[2021-11-09T21:07:10.868Z]	<dmitriz>	manu: first update - the VC v1.1 spec is out
+[2021-11-09T21:07:13.521Z]	<Manu_Sporny>	Verifiable Credentials v1.1 proposed corrections: https://www.w3.org/TR/2021/REC-vc-data-model-20211109/
+[2021-11-09T21:07:14.566Z]	<dmitriz>	... for review, right now
+[2021-11-09T21:07:23.762Z]	<dmitriz>	... Mike Prorock covered this earlier today, on the main weekly call
+[2021-11-09T21:07:57.136Z]	<dmitriz>	... this is version 1.1, fully backwards compatible. There's some substantive changes, but mostly about standardizing the Date Format, loosening some of the restrictions on ZKPs,
+[2021-11-09T21:08:00.591Z]	<dmitriz>	... stuff like that
+[2021-11-09T21:08:16.117Z]	<dmitriz>	... it's out for the Advisory Committee vote
+[2021-11-09T21:08:34.625Z]	<dmitriz>	... to accept, formally object, & everything in between.
+[2021-11-09T21:08:37.203Z]	<dmitriz>	... vote is open til Jan 18, 2022
+[2021-11-09T21:08:51.695Z]	<dmitriz>	... so if you're a W3C member, and you know who your AC representative is, please ask them to vote
+[2021-11-09T21:09:01.882Z]	<Manu_Sporny>	q?
+[2021-11-09T21:09:04.239Z]	<dmitriz>	... any questions?
+[2021-11-09T21:09:26.477Z]	<dmitriz>	... the only other kind of question (specifically for this group) -- there's a question about using VC API in places that
+[2021-11-09T21:09:47.277Z]	<dmitriz>	... could use better test coverage. Such as the VC Data Model spec, the DID Core spec
+[2021-11-09T21:10:07.837Z]	<dmitriz>	... for example, there was a demonstration of using the did:key spec for interop of signatures
+[2021-11-09T21:10:17.250Z]	<dmitriz>	... and it used VC API, to do DID interop testing
+[2021-11-09T21:10:34.627Z]	<dmitriz>	... of course, when we do the VC 2.0 work, we'll also be doing Linked Data Integrity testing
+[2021-11-09T21:10:40.368Z]	<dmitriz>	... the 1.0 test suite required you command-line things, to validate the VCs
+[2021-11-09T21:10:47.585Z]	<dmitriz>	... the 2.0 test suite, I'm suggesting, should use the VC API
+[2021-11-09T21:11:09.054Z]	<dmitriz>	... any objections to going down that path? (~2 years from now)
+[2021-11-09T21:11:31.212Z]	<brent>	q+ to say this is a decision for the VCWG
+[2021-11-09T21:11:38.209Z]	<dmitriz>	... any philosophical / principled objection to using the VC API, to test LD & JWT proofs, in the VC 2.0 work?
+[2021-11-09T21:11:59.281Z]	<dmitriz>	David_Chadwick: clarification question -- I thought the VC API was intended to be primarily internal, within one trust domain?
+[2021-11-09T21:12:02.484Z]	<Manu_Sporny>	q+ to not focus on "interworking"
+[2021-11-09T21:12:14.159Z]	<dmitriz>	... interop testing would necessarily require crossing trust zones, no?
+[2021-11-09T21:12:25.655Z]	<dmitriz>	... could we use OpenID Connect instead?
+[2021-11-09T21:12:48.804Z]	<dmitriz>	brent: the decision will ultimately be up to the VC WG
+[2021-11-09T21:13:11.737Z]	<dmitriz>	manu: yes, +1 to that, the decision is in the VC WG's hands. Just wanting to check if this group has objections though
+[2021-11-09T21:13:40.062Z]	<dmitriz>	... David, the question you raised -- the way I'd see it potentially working is that the test suite itself is making the call to the Issuer API and the Verifier API.
+[2021-11-09T21:13:48.371Z]	<dmitriz>	... so, the test suite IS a single trust zone
+[2021-11-09T21:13:56.765Z]	<dmitriz>	... so you can still consider it internal use
+[2021-11-09T21:14:24.364Z]	<dmitriz>	... (it would be given the appropriate credentials to invoke the Issuer & Verifier API)
+[2021-11-09T21:14:44.056Z]	<dmitriz>	... for example, see Charles's implementation for the did:key interop work
+[2021-11-09T21:14:58.390Z]	<dmitriz>	... any other relevant community updates / items?
+[2021-11-09T21:15:30.636Z]	<Manu_Sporny>	Topic: Pull Requests
+[2021-11-09T21:15:35.989Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pulls
+[2021-11-09T21:16:08.551Z]	<dmitriz>	manu: we're going to skip the two draft ones on the security framework, and my PR for authorization delegations
+[2021-11-09T21:16:13.622Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pull/237
+[2021-11-09T21:16:22.556Z]	<dmitriz>	... the new Architectural Overview, something that Joe put together & we presented the last 2 weeks
+[2021-11-09T21:16:48.177Z]	<agropper>	q+
+[2021-11-09T21:16:57.670Z]	<Manu_Sporny>	ack brent
+[2021-11-09T21:17:04.158Z]	<Manu_Sporny>	ack manu
+[2021-11-09T21:17:06.345Z]	<Manu_Sporny>	ack agropper
+[2021-11-09T21:17:09.009Z]	<Manu_Sporny>	q+ on merge
+[2021-11-09T21:17:16.069Z]	<dmitriz>	agropper: I have an objection to merging pr 237
+[2021-11-09T21:17:19.827Z]	<dmitriz>	... and I commented on the thread
+[2021-11-09T21:17:35.921Z]	<dmitriz>	manu: ah ok, it wasn't clear that it was an objection. Can you clarify, in the comment?
+[2021-11-09T21:17:37.952Z]	<dmitriz>	agropper: yes
+[2021-11-09T21:17:51.310Z]	<dmitriz>	manu: and please suggest a concrete change that would address the objection
+[2021-11-09T21:18:25.757Z]	<dmitriz>	agropper: I'm not sure I can propose spec test
+[2021-11-09T21:18:50.071Z]	<dmitriz>	... but these things are foundational, and need to be dealt with up front, in an overview doc
+[2021-11-09T21:18:56.722Z]	<dmitriz>	... right now, these things are buried, if there at all
+[2021-11-09T21:19:29.054Z]	<dmitriz>	manu: it sounds like you'd like the acknowledgement of the importance of delegation
+[2021-11-09T21:20:17.439Z]	<dmitriz>	agropper: not only delegation. but specifically the separation of concerns, for "zero trust architecture" designs
+[2021-11-09T21:20:49.110Z]	<dmitriz>	manu: Adrian, the easiest thing would be to suggest some phrasing. It doesn't have to be super technically accurate, but it's hard to guess what you're looking for
+[2021-11-09T21:21:05.031Z]	<dmitriz>	... and ideally, we don't couple that concern to the diagram itself. But it's up to you, if you feel that it's related to the diagram specifically
+[2021-11-09T21:21:36.186Z]	<dmitriz>	manu: ok, that's 237. Next up, Juan's global search & replace of VC HTTP API to VC API
+[2021-11-09T21:21:38.434Z]	<Andy_Miller>	present+
+[2021-11-09T21:21:39.834Z]	<dmitriz>	... looks like it's good to go
+[2021-11-09T21:21:50.596Z]	<dmitriz>	juancaballero: if anything breaks, just tag me
+[2021-11-09T21:21:59.945Z]	<dmitriz>	manu: I'd like to merge it asap, so we can get other PRs after it
+[2021-11-09T21:22:20.709Z]	<dmitriz>	manu: PR 241 (adding meeting info to README).
+[2021-11-09T21:22:55.797Z]	<dmitriz>	... looks like it may need to be re-targeted to the other PR
+[2021-11-09T21:23:17.090Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pull/241
+[2021-11-09T21:23:31.103Z]	<Manu_Sporny>	Next one is: https://github.com/w3c-ccg/vc-api/pull/242
+[2021-11-09T21:23:35.774Z]	<dmitriz>	... next one is 242 on regenerating the revocation list.
+[2021-11-09T21:23:45.764Z]	<dmitriz>	manu: Charles, would you like to give us some background?
+[2021-11-09T21:23:58.771Z]	<dmitriz>	cel: sure, there's a Revocation List in this repo, and it's used in the VC API test suite
+[2021-11-09T21:24:05.860Z]	<dmitriz>	... but since the repos were renamed, the URL no longer works
+[2021-11-09T21:24:12.654Z]	<dmitriz>	... so, the PR fixes the test suite to use the new (renamed) url
+[2021-11-09T21:24:23.723Z]	<dmitriz>	... fixes the revocation list's url specifically
+[2021-11-09T21:24:43.846Z]	<dmitriz>	manu: yes, let's fix the url
+[2021-11-09T21:25:02.908Z]	<dmitriz>	... brings up the question of -- do we want the revocation list example in this repo, or move it to the test suite?
+[2021-11-09T21:25:08.304Z]	<dmitriz>	... my suggestion is to move it to the test suite
+[2021-11-09T21:25:14.767Z]	<dmitriz>	cel: I can update the PR & test suite to add the credential there
+[2021-11-09T21:25:20.593Z]	<dmitriz>	manu: that would probably be the best
+[2021-11-09T21:25:29.351Z]	<dmitriz>	... but I'm fine with doing that in a separate PR
+[2021-11-09T21:25:44.546Z]	<dmitriz>	cel: the way these two PRs are set up, it should apply to both of them, and then changes could be made afterwards
+[2021-11-09T21:25:51.987Z]	<dmitriz>	manu: does that mean you'd like it  merged as-is?
+[2021-11-09T21:25:58.076Z]	<dmitriz>	cel: it would un-break the test suite, at least
+[2021-11-09T21:26:08.246Z]	<dmitriz>	manu: ok, ready for merge, then
+[2021-11-09T21:26:41.086Z]	<dmitriz>	... the other question that came up was -- would implementers be willing to move over to Ed25519Signature2020 suite, for the next round of interop testing?
+[2021-11-09T21:26:55.867Z]	<dmitriz>	... 2018 is a bit janky, and 2020 is a bit cleaner. I know a couple of implementers can use 2020...
+[2021-11-09T21:26:59.562Z]	<dmitriz>	... any thoughts on this?
+[2021-11-09T21:27:12.398Z]	<dmitriz>	cel: I'm prepared to change it to a 2020 test vector (Spruce has a 2020 impl.)
+[2021-11-09T21:27:22.718Z]	<dmitriz>	manu: we should ask at least 2 other implementers, to see if they're willing to make the jump
+[2021-11-09T21:27:30.593Z]	<dmitriz>	... it's a simple change, but we should ensure everyone's cool with that
+[2021-11-09T21:27:41.838Z]	<dmitriz>	cel: would we still want to keep the 2018 credential example?
+[2021-11-09T21:27:49.680Z]	<dmitriz>	manu: good question, let's check with everyone.
+[2021-11-09T21:28:05.691Z]	<dmitriz>	... we could demonstrate that you can use 2 crypto suites, that are two years apart, that you can switch between
+[2021-11-09T21:28:34.630Z]	<dmitriz>	... maybe the right question to ask in this repo is -- remember, we all made a decision that it's just did:key
+[2021-11-09T21:28:41.572Z]	<dmitriz>	... so the other thing we can do is decide on just one crypto suite.
+[2021-11-09T21:28:52.231Z]	<dmitriz>	... so, the VC API test suite will only work with did:key, and only one signature suite
+[2021-11-09T21:29:04.537Z]	<dmitriz>	... my suggestion would be the ed 2020 suite.
+[2021-11-09T21:29:17.011Z]	<dmitriz>	... and we can mention "and then there are these optional suites you can support"
+[2021-11-09T21:29:32.062Z]	<dmitriz>	...but the base tests can at least lock it to one did method & one suite
+[2021-11-09T21:29:42.934Z]	<dmitriz>	... but if we can't agree, then we can support all the variations people want
+[2021-11-09T21:29:49.761Z]	<dmitriz>	... ok, those are the PRs.
+[2021-11-09T21:29:55.984Z]	<dmitriz>	... I'm hearing that all but one of them can go in
+[2021-11-09T21:30:09.682Z]	<dmitriz>	... Juan, you're going to clean up the meeting info one, and the others will go in immediately
+[2021-11-09T21:30:22.458Z]	<dmitriz>	... re 237 - Adrian, you're going to try and propose some text
+[2021-11-09T21:30:34.710Z]	<dmitriz>	... anything else on PRs?
+[2021-11-09T21:30:41.055Z]	<Manu_Sporny>	Topic: Issue Processing
+[2021-11-09T21:30:53.229Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2021-11-09T21:31:11.929Z]	<dmitriz>	manu: our goal is to close old issues (mark them pending closed)
+[2021-11-09T21:31:23.487Z]	<dmitriz>	... trying to avoid a huge discussion. The other thing we'll want to do is assign people
+[2021-11-09T21:31:33.466Z]	<dmitriz>	... the assignment of a person means - you're willing to try and push the conversation forward
+[2021-11-09T21:31:45.559Z]	<dmitriz>	... doesn't mean you have the solution or the answer, just that you're willing to shepherd
+[2021-11-09T21:31:45.778Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/58
+[2021-11-09T21:32:01.941Z]	<dmitriz>	manu: first up, state proofs on crossing trust boundaries
+[2021-11-09T21:32:19.854Z]	<dmitriz>	... raised by Daniel H.
+[2021-11-09T21:32:45.138Z]	<dmitriz>	... does anybody have thoughts on this issue?
+[2021-11-09T21:33:16.627Z]	<dmitriz>	... ok, I think this is answered by having an Authorization -- you're making a call to a system you fundamentally trust
+[2021-11-09T21:33:33.783Z]	<dmitriz>	... so, we'd need to state which endpoints are trusted endpoints, and which ones are not
+[2021-11-09T21:33:43.384Z]	<dmitriz>	... which ones are within the trust boundary
+[2021-11-09T21:34:22.403Z]	<dmitriz>	DavidC: when we're talking about trust boundaries -- we still have to authenticate and authorize, no?
+[2021-11-09T21:34:28.069Z]	<dmitriz>	... is that what we're saying?
+[2021-11-09T21:34:29.070Z]	<agropper>	q+
+[2021-11-09T21:34:41.573Z]	<dmitriz>	manu: yeah, I think you're right, David. We'd need to write spec test that says,
+[2021-11-09T21:34:52.697Z]	<dmitriz>	... if you're calling one of these APIs, then you're trusting them to do what's in the spec.
+[2021-11-09T21:35:02.854Z]	<dmitriz>	... if you're calling the /issue endpoint, you'll authenticate & authorize as appropriate.
+[2021-11-09T21:35:10.302Z]	<dmitriz>	... and you're trusting the system to issue a valid VC
+[2021-11-09T21:35:17.606Z]	<dmitriz>	DavidC: I agree, I think that's the right approach
+[2021-11-09T21:36:01.204Z]	<Manu_Sporny>	q?
+[2021-11-09T21:36:04.614Z]	<Manu_Sporny>	ack manu
+[2021-11-09T21:36:06.388Z]	<Manu_Sporny>	ack agropper
+[2021-11-09T21:36:09.698Z]	<dmitriz>	agropper: quick question - what is a state proof?
+[2021-11-09T21:36:34.951Z]	<dmitriz>	manu: it's something where you don't have to trust the entity giving you the info, you can only trust the info itself
+[2021-11-09T21:37:28.246Z]	<dmitriz>	agropper: wouldn't that be entirely out of scope, for what we're talking about?
+[2021-11-09T21:37:42.306Z]	<dmitriz>	manu: my gut reaction says yes, but I'm sure there's some kind of way you could depend on a state proof for a VC
+[2021-11-09T21:37:48.378Z]	<dmitriz>	agropper: just seems like an extra complication
+[2021-11-09T21:38:03.521Z]	<dmitriz>	manu: I think we're going to address that, with the proposed text.
+[2021-11-09T21:38:16.198Z]	<dmitriz>	... maybe we can add an endpoint, that explicitly gives you a state proof in the future
+[2021-11-09T21:38:34.765Z]	<dmitriz>	... but our general suggestion here is - don't call an endpoint you don't trust to do the thing (to issue the VC)
+[2021-11-09T21:38:50.649Z]	<dmitriz>	... next up, issue 60, about swagger
+[2021-11-09T21:39:29.322Z]	<dmitriz>	... We already do this. so, my suggestion is -- we've implemented the source of truth Swagger/OAS format
+[2021-11-09T21:39:51.646Z]	<dmitriz>	... so, this is done. (we use it to generate ReSpec docs)
+[2021-11-09T21:40:17.121Z]	<Manu_Sporny>	q?
+[2021-11-09T21:40:26.662Z]	<Manu_Sporny>	That was https://github.com/w3c-ccg/vc-api/issues/60
+[2021-11-09T21:40:35.177Z]	<Manu_Sporny>	Next up is https://github.com/w3c-ccg/vc-api/issues/45
+[2021-11-09T21:40:45.191Z]	<dmitriz>	manu: next up, issue 45, distinguishing cred-issuer relationship in URI namespace
+[2021-11-09T21:41:55.575Z]	<Manu_Sporny>	dmitri: This seems to propose breaking up the issuer endpoint to multiple endpoints to cover various use cases.
+[2021-11-09T21:42:08.275Z]	<agropper>	q+
+[2021-11-09T21:42:16.267Z]	<dmitriz>	DavidC: I thought we got this already, in the latest design?
+[2021-11-09T21:42:24.869Z]	<dmitriz>	manu: not quite - we don't break it up like this proposes.
+[2021-11-09T21:42:40.831Z]	<dmitriz>	... we just say "any server can implement the Issuer and Verifier API all on one server"
+[2021-11-09T21:42:57.118Z]	<Manu_Sporny>	ack agropper
+[2021-11-09T21:43:09.310Z]	<dmitriz>	agropper: I recommend marking this with 'Authorization' tag as well.
+[2021-11-09T21:43:37.986Z]	<Manu_Sporny>	q+
+[2021-11-09T21:43:46.395Z]	<dmitriz>	... in general, if we adopt the model that GNAP uses (where we acknowledge that the protocol has a request component, and an access token component), then this becomes a lot easier to process
+[2021-11-09T21:43:54.581Z]	<dmitriz>	... I'd treat this as an authz issue
+[2021-11-09T21:44:10.224Z]	<dmitriz>	manu: looking at the last sentence (about the same party can play multiple roles)
+[2021-11-09T21:44:14.976Z]	<dmitriz>	... I think we already have this today
+[2021-11-09T21:44:27.102Z]	<dmitriz>	q+
+[2021-11-09T21:44:27.910Z]	<juancaballero>	q+
+[2021-11-09T21:44:33.753Z]	<Manu_Sporny>	ack manu
+[2021-11-09T21:44:36.770Z]	<agropper>	q+
+[2021-11-09T21:44:54.579Z]	<Manu_Sporny>	dmitriz: What if we reply that we request use cases -- some day in future we might want x, need concrete use cases.
+[2021-11-09T21:44:56.053Z]	<Manu_Sporny>	ack juan
+[2021-11-09T21:44:58.625Z]	<Manu_Sporny>	q?
+[2021-11-09T21:45:15.549Z]	<dmitriz>	juancaballero: we were already going to (ideally before next Tues) go through the use cases, and mark which app/service is hitting which
+[2021-11-09T21:45:32.184Z]	<dmitriz>	... if you look at the usecase doc now, it just lists which endpoints get hit, but not /whose/ endpoints.
+[2021-11-09T21:45:42.390Z]	<dmitriz>	... we tried to sort it out, on another call, and it was hard to figure out
+[2021-11-09T21:46:02.369Z]	<Manu_Sporny>	ack dmit
+[2021-11-09T21:46:16.182Z]	<Manu_Sporny>	q?
+[2021-11-09T21:46:20.217Z]	<Manu_Sporny>	ack agropper
+[2021-11-09T21:46:27.281Z]	<dmitriz>	agropper: this is exactly the problem that GNAP has worked on for a year
+[2021-11-09T21:46:38.481Z]	<dmitriz>	... in that, they separate out the requesting party from the role of the requesting party
+[2021-11-09T21:46:55.962Z]	<dmitriz>	manu: ok, so, what are we doing with the issue
+[2021-11-09T21:47:34.324Z]	<dmitriz>	... leaving comment, requesting concrete usecase related to the issue. also mentioned GNAP relevance to this issue
+[2021-11-09T21:48:06.979Z]	<dmitriz>	... also discussed that perhaps the API already supports this viewpoint
+[2021-11-09T21:49:03.874Z]	<Manu_Sporny>	q?
+[2021-11-09T21:49:06.846Z]	<dmitriz>	DavidC: I think I've got a use case for this. The power of attourney
+[2021-11-09T21:49:12.909Z]	<agropper>	q+
+[2021-11-09T21:49:23.257Z]	<dmitriz>	... where the holder wants to get a VC for their parent. and what they present is a PoA credential, to show they're authorized
+[2021-11-09T21:49:42.461Z]	<Manu_Sporny>	q?
+[2021-11-09T21:49:45.438Z]	<Manu_Sporny>	ack agropp
+[2021-11-09T21:49:50.164Z]	<dmitriz>	agropper: I'd be happy to also be assigned
+[2021-11-09T21:50:26.726Z]	<dmitriz>	manu: will do (I need to add you to the Assignees group), please remind me
+[2021-11-09T21:50:34.895Z]	<Manu_Sporny>	Next issue: https://github.com/w3c-ccg/vc-api/issues/68
+[2021-11-09T21:50:40.668Z]	<dmitriz>	... next up, issue 68, use of the 'created' option in verify request
+[2021-11-09T21:51:10.786Z]	<dmitriz>	cel: I'm wondering about - what does the 'created' option mean in the verification options param?
+[2021-11-09T21:51:27.073Z]	<dmitriz>	... I understand what it means in the context of issuance, but what does it mean wrt verification?
+[2021-11-09T21:52:34.650Z]	<dmitriz>	dmitriz: maybe it was a cut & paste from issuer options?
+[2021-11-09T21:52:43.343Z]	<dmitriz>	manu: yeah, probably. Charles, do you mind suggesting something, if we assign the issue to you?
+[2021-11-09T21:53:00.952Z]	<dmitriz>	cel: sure.
+[2021-11-09T21:53:42.587Z]	<dmitriz>	manu: so, the two options are -- 1) we take it out (if we don't know what it's for), until someone complains
+[2021-11-09T21:54:12.201Z]	<dmitriz>	... I forget, when we verify, do we pay any attention to 'created' at all? No, we just care about expires
+[2021-11-09T21:54:25.393Z]	<dmitriz>	cel: we probably care if the 'created' is in the future
+[2021-11-09T21:54:34.187Z]	<dmitriz>	manu: right, so if created is in the future, it should throw an error
+[2021-11-09T21:54:42.032Z]	<dmitriz>	... my suggestion is, we just remove this for now, for verification.
+[2021-11-09T21:54:51.080Z]	<dmitriz>	... and re-add it only if somebody has a concrete usecase
+[2021-11-09T21:54:55.178Z]	<dmitriz>	cel: +1
+[2021-11-09T21:55:32.397Z]	<dmitriz>	manu: next up, issue 67, default verificationMethod option
+[2021-11-09T21:55:52.159Z]	<dmitriz>	cel: I'd need to look at it again, not sure it's still relevant
+[2021-11-09T21:57:03.883Z]	<dmitriz>	cel: is there an expectation that there's a default verificationMethod, for an issuer?
+[2021-11-09T21:57:11.587Z]	<dmitriz>	manu: sure, I imagine you can configure that, on the issuer
+[2021-11-09T21:57:22.574Z]	<dmitriz>	... reasonable that there'd be a default (if you don't specify one)
+[2021-11-09T21:57:33.477Z]	<dmitriz>	cel: I'd also apply that to verification
+[2021-11-09T21:57:48.117Z]	<dmitriz>	manu: I'm not sure it makes sense for verification.
+[2021-11-09T21:58:00.695Z]	<dmitriz>	cel: what about requesting an allow-list (only permit VCs from these issuers)
+[2021-11-09T21:58:36.979Z]	<dmitriz>	manu: I think we need more discussion, then
+[2021-11-09T21:58:50.916Z]	<dmitriz>	... the issuer case is simple, the verifier case - potentially complicated
+[2021-11-09T21:59:09.997Z]	<dmitriz>	manu: ok, we're at the top of the hour.
+[2021-11-09T21:59:17.223Z]	<dmitriz>	... we're going to keep plugging away at issues like these.
+[2021-11-09T21:59:26.002Z]	<dmitriz>	... and PRs welcome, as always
+[2021-11-09T21:59:47.194Z]	<dmitriz>	... the other thing to raise, before we leave -- there are a lot of calls happening around all the standards work
+[2021-11-09T21:59:56.450Z]	<dmitriz>	... I wonder if we should pause the VC API calls for the month of December
+[2021-11-09T22:00:02.645Z]	<dmitriz>	... I'll raise the question again on next week's call

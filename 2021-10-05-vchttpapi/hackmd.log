@@ -1,0 +1,185 @@
+# CCG - VC API - 05 Oct 2021
+
+NOTE: Due to W3C service downtime, we used a HackMD at https://hackmd.io/x4wsZ7kwR66H9kq4EFceow for scribing.
+
+## Organizer
+Markus Sabadello
+
+## Scribe
+
+Orie Steele
+
+## Participants
+- Markus Sabadello
+- Ted Thibodeau
+- Joe Andrieu
+- Justin Richer
+- Mike Varley
+- Dmitri Zagidulin
+- David Chadwick
+- Orie Steele (scribe)
+- Brent Shambaugh
+- Adrian Gropper
+- mprorock
+
+## Agenda
+
+### Topic (time)
+1. Agenda Review, Introductions (5 minutes)
+2. Issue Processing (55 minutes)
+   * <https://github.com/w3c-ccg/vc-http-api/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc>
+
+## Minutes
+
+### Agenda Review, Introductions
+
+(take notes here)
+
+### Issue Processing
+
+(take notes here)
+
+Markus: how shall we handle Q?
+... if you want to Q, add yourself to hack md Q section.
+... looks like we are ready to go.
+
+Agenda: Issue Processing
+
+Markus: We have 84 open issues.
+... anyone want to introduce themselves?
+... ... ok issue processing.
+
+... Lets look at oldest issues first.
+... is https://github.com/w3c-ccg/vc-http-api/issues/50
+... I created this, to discuss didccomm / client server, etc...
+... seems related to WACI, etc...
+Mike: seems like we have addressed this in WACI, and its stale.
+
+Joe: we seem to have agreement to implement an http api.
+... there are choices we could make that might make it harder to switch transports.
+Orie: When you define an API, you can define an operation name, which can be made 
+... available over other endpoints; there may be e.g. message-oriented architectures using WebSocket
+
+Mike: basically what Orie said... we do need a way to define interfaces... we seem to have that.
+... we should be thinking about this independant of transports.
+
+Markus: seems like we might want to note something about operations over other transports.
+... we should add a comment and ask to close it.... please add comments to issues as we go.
+
+... Jumping to  https://github.com/w3c-ccg/vc-http-api/issues/53 and https://github.com/w3c-ccg/vc-http-api/issues/54
+... I think they are related... who talks to who?... David are these issuse still relevant?
+
+Joe: I'm on the Q...
+
+... maybe I can be assigned? we've made sequence diagrams... hoping to get them validated...
+
+Markus: we already have a diagram... David, we can't hear you.
+
+David: this issue can be closed.
+
+Joe: can we leave one open as a place holder for a PR.
+
+Markus: yes.
+
+... lets look at  https://github.com/w3c-ccg/vc-http-api/issues/52
+... allow setting status before issuance.
+... seems related to status changes...
+... should it be possible to change status of a credential before it is issued.
+... then discussion of didcomm...
+... do we want to explore pending / pre-registered credentials?
+
+Joe: not sure, but this feels like a race condition... between status and issuance.
+
+... not sure, this impacts state... feels weird to me that a VC would be in that state.
+
+
+Orie: Agree with Joe. Today if you want to issue a VC with a revocation status, you need to consume a status list index, craft a payload, and then get the credential issued.
+
+... And then you can change the status, but you can only do that after you have a credential ID.
+... There are other problems with describing credential status.
+... It feels wrong to change the status of something before it has been issued.
+
+Joe: we have not looked at issuance, we seem to need to look at flows related to issuance... there is ordering here...
+... the status check vc must be created first.
+
+Markus: David wrote that it seems wrong to publish the status of non existent things...
+
+Dmitry: I don't understand "pre-issuance status"... publishing the status of things before creating them is common in key value systems.
+... status does not matter until issuance.
+
+Markus: what do we do?... with the issue.
+
+Mike: seems like maybe this issue is not valid... maybe we can ask the issue participants to help?
+... unless a use case emerges for it, it should be closed.
+
+Markus: I don't remember folks talking about this recently.
+
+Dimitry: David said, it does not matter if credential is issued before status, it won't matter...
+... is checking for verification part of  verified... should credentials with broken links be valid? ... seems like a no.
+
+Orie: it's a failure today, in the test suite.
+
+Joe: seems to be odd that it would be a failure... I understood revocation to be a "deny list"... seems valid unless its revoked.
+
+Dimitry: the behavior depends on the revocation list type... so it depends.... its spec detail, based on type.
+
+Markus: do we want to keep this open?... if the verifier can't...
+
+Joe: If you can't get the list, assume its revoked... seems like we need to document that.
+
+Orie: Agree with Joe, revocation needs to be documented signficantly better, or removed from API. These questions should be clearly answerable.
+
+... If the API exposes revocation capabilities (debatable if we do that well enough), then we have a lot of work to do to get to interoperability.
+
+Adrian: one of the things I am strongly advocating for, is that the VC API apply just as much to the issuer as the holder... in other words, whatever authorization mechanism exists is the same... seems potentially useful to not worry about revocation.
+
+Markus: please add a note to the issue.
+
+... lets look at 55, 56, 57... they all ask questions about the verification process.
+
+... 55 is about what steps a verifier performs... checking the signature, but what about they other stuff?
+... does the verifier validate "business rules".
+
+... then there is issue 56... can you send the proof request associated with the credential?... then the verifier could check too make sure that VC1 is not presented for VC2 request.
+
+... issue 57, align the verifier API with DIF PE Spec....does the verifier enable specifying a presentation format?
+
+Joe: I think we would do well to follow the distinction the VC spec does... and leave validation to the App..
+... business rules that the verifier role are business specific on a claim by claim basis... ie, i accept dmv for age.
+... seems like we can't handle this, and the app exist to execute these rules.
+
+Markus: verification and validation are in the vc data model?... you are suggesting validation is out of scope
+
+Mike: I agree with joe, we had a similar question about how to construct a VC.... seems like this API is pretty basic, and validation is out of scope.
+
+Markus: <inaudible/>... thoughts on this?
+... I also agree with joe... one comment, there is a 4th issue... 62... document check algorithms in spec... we need to define the checks.
+... the test suite sends options when testing a verifier endpoint... most of the time its just the proof... but also credentialStatus.
+... does that change this discussion?
+
+Joe: seems bad that its variable... seems like a footgun.
+
+Orie: I didn't come up with that part though. I'm also frustrated with the variable nature (of the current mechanism). In our implementation of the test, we have to look at the options, and basically lie, wrt whether the credential status is checked or not. I've never understood the purpose of specifying what checks the verifier should run. I expect that when I pass a credential, it should check all the spec-dictated things (proof, expiration, etc.)
+
+Markus: I agree, i think the options are not even defined properly but the test suite does stuff the api spec does not describe....
+... validation should be out off scope, we should leave comments on issues.
+... regarding 62 "the check algorithm registry..."... seems like folks think its harmful to allow ignoring checks.
+
+... [issue ](https://github.com/w3c-ccg/vc-http-api/issues/58)
+
+Dimitry: why do we have standalone verifiers in the first place? why not have the app just verify things... some proof methods require resources that mobile apps don't have... but that only applies to certain things... like proof.... the spec should only require checks that apply to "all proof types".
+
+Markus: what check options do we need?
+
+Dimitry: none.
+
+Markus: Lets look at 59... need to define verify... what is in scope or out of scope.... some we do already...
+... is the presentation meeting some validation requirements (we think its out of scope)... can we address this issue?
+... we should look at all items that are verification, and only do those.
+
+... any thoughts on this?
+
+... one of the points in this list is checking if a presentation is expired....
+... checking roots of trust, seems like validation
+
+Markus: thats all for now.

@@ -59,31 +59,80 @@
     return str.match(RegExp(regex, 'g')).join(brk);
   };
 
-  scrawl.generateAliases = function()
+  scrawl.generateAliases = function(ircLog)
   {
     var rval = {};
 
-    for(var p in scrawl.people)
-    {
+    // build list of all people by full name, last name, and nicks
+    var allPeople = {};
+    for(var p in scrawl.people) {
       var person = scrawl.people[p];
+      person.fullName = p;
       var names = p.split(' ');
+      var lastName = names[names.length-1].toLowerCase();
+      var fullLookupName = p.replace(' ', '_').toLowerCase();
+      allPeople[lastName] = person;
+      allPeople[fullLookupName] = person;
 
-      // append any aliases to the list of known names
-      if('alias' in person)
-      {
-        names = names.concat(person.alias);
-      }
-
-      // Add the aliases and names if they don't already exist in the aliases
-      for(var n in names)
-      {
-        var alias = names[n];
-        alias = alias.toLowerCase();
-        if(alias.length > 2 && !(alias in rval))
-        {
-          rval[alias] = p;
+      if('alias' in person) {
+        for(var alias of person.alias) {
+          allPeople[alias.toLowerCase()] = person;
         }
       }
+    }
+
+    // extract all names from present list
+    var ircLines = ircLog.split('\n');
+    var presentList = [];
+    for(var line of ircLines) {
+      var match = commentRx.exec(line);
+      if(match) {
+        var time = match[1];
+        var nick = match[2].toLowerCase().replace(/\(.*\)/g, '');
+        var msg = match[3];
+        if(msg.includes('present+')) {
+          var names = [nick];
+          names = names.concat(nick.split('_'));
+          for(var i in names) {
+            if(names[i].endsWith('_')) {
+              names[i] = names[i].slice(0, names[i].length-1);
+            }
+          }
+          presentList.push(names);
+        }
+      }
+    }
+
+    // create mappings from all names and aliases to person
+    for(var names of presentList) {
+      var lastName = names[names.length-1];
+      var person = undefined;
+      for(var name of names) {
+         if(allPeople[name] !== undefined) {
+           person = allPeople[name];
+           break;
+         }
+      }
+      if(person !== undefined) {
+        // Add the aliases and names if they don't already exist in the aliases
+        for(var name of names)
+        {
+          if(name.length > 2 && !(name in rval)) {
+            rval[name] = person.fullName;
+          }
+        }
+        var aliases = person.alias || [];
+        for(var alias of aliases)
+        {
+          if(alias.length > 2 && !(alias in rval)) {
+            rval[alias] = person.fullName;
+          }
+        }
+      } else {
+        console.log('Couldn\'t find alias for any of these names', names);
+        console.log('Consider adding alias to people.json');
+      }
+
     }
 
     return rval;
@@ -773,7 +822,7 @@
     var minutes = '';
     var summary = '';
     var ircLines = ircLog.split('\n');
-    var aliases = scrawl.generateAliases();
+    var aliases = scrawl.generateAliases(ircLog);
     scrawl.counter = 0;
 
     // initialize the IRC log scanning context

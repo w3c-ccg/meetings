@@ -1,0 +1,253 @@
+Thanks to Marty Reed for scribing this week! The minutes
+for this week's CCG Verifiable Credentials for Education Task Force telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-08-30-vc-education 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+CCG Verifiable Credentials for Education Task Force Telecon Minutes for 2021-08-30
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0380.html
+Topics:
+  1. Agenda Review
+  2. IP Note
+  3. Call Notes
+  4. Scribe Selection
+  5. Introductions & Reintroductions
+  6. Announcements & Reminders
+  7. Anthony Camilleri - Europass as VCs
+Organizer:
+  Kerri Lemoie and Anthony Camilleri
+Scribe:
+  Marty Reed
+Present:
+  Kerri Lemoie, Anthony Ronning, Phil Long, Steve Traugott, Marty 
+  Reed, Wes Teter, Steve Gance, Anthony Camilleri, Thierry 
+  Thevenet, Mark Miller, Tzviya Siegman, Deb Everhart, Matt Lisle, 
+  Sheryl, Sharon Leu, Juan Caballero, Jim Goodell, Simone Ravaioli 
+  (Digitary), Dmitri Zagidulin, Stuart Freeman, Nate Otto, David 
+  Ward, Adam Lemmon, Simone Ravaoli, Taylor (LEF), Kayode Ezike, 
+  David Chadwick
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-08-30/audio.ogg
+
+
+Topic: Agenda Review
+
+<kerri_lemoie> jtKrs8BQAfWbXE4H*SNL
+
+Topic: IP Note
+
+Kerri Lemoie: https://www.w3.org/accounts/request
+Kerri Lemoie: https://www.w3.org/community/about/agreements/cla/
+
+Topic: Call Notes
+
+Kerri Lemoie: https://w3c-ccg.github.io/meetings/
+Kerri Lemoie: http://irc.w3.org/?channels=ccg
+
+Topic: Scribe Selection
+
+<phil_l_(p1)> I'll scribe
+<phil_l_(p1)> Ok - thanks Marty!
+Marty Reed is scribing.
+KL: introductions reintroductions
+
+Topic: Introductions & Reintroductions
+
+DE: intro of Credential Engine
+KL: Anthony is going to be introducing EuroPass
+
+Topic: Announcements & Reminders
+
+KL: Every Tuesday weekly CCG meeting
+<kerri_lemoie> Work item to write a VC Guide for Developers: 
+KL: October IIW 12th-14th
+Kerri Lemoie: 
+  https://www.eventbrite.com/e/internet-identity-workshop-iiwxxxiii-33-2021b-tickets-160257990965
+
+Topic: Anthony Camilleri - Europass as VCs
+
+KL: intro Anthony
+AC: introducing digital credentials part of EuroPasss
+AC: major policy project of the commission, approximately 2MM 
+  accounts and 10k new per day
+AC: european standard comes out of leg. 2018 mandating a Euro 
+  system for digitally signed qualifications
+AC: starting with design prinicipals and standards to address all 
+  levels of education Prek-University
+AC: align with Euro Recognition Instruments, harmonizing 
+  education systems in Europe
+AC: Capture Formal and Informal, learning is learning
+AC: applicable to the whole course lifecycle
+AC: interoperable, free, and open source
+AC: legal value across the EU
+AC: no standard fully reflected lifelong learning, therefore 
+  develop meta-model ELDM
+VC model was a good foundation to start with
+AC: something you have gained related to learning activitives
+AC: achievement is something you've earned, learning outcomes, 
+  knowledge, autonomy and responsibility
+AC: including entitlements
+AC: Lifecycle Concepts: specifications, learning opportunities, 
+  credentials describing a claim
+AC: specifications are interrelated, building on one another, 
+  occupation, course, lesson plan
+AC: Learning opportunity specification, add individual 
+  information to create a credential
+AC: Credential metadata- Issuer data and credential type, Claim - 
+  Person ID (10-15 different identifiers) set of legal identifiers 
+  defined by EU for signature, and action
+AC: VC XML currently moving toward an RDF/JSONLD model
+P1: question on entitlement
+AC: entitlement = right to study, membership of an org as an 
+  example
+AC: start from Open Badges V3 spec
+<juan_caballero_(spruce)> (sorry i was confused, was switching 
+  devices :D )
+<kerri_lemoie> All good @Juan :)
+AC: the majority of our credentials are highly complex 60-70 
+  claims per credential
+AC:things we can use - type, achievementType
+AC: TWCU - badgeclass and resultsDescription
+<nate_otto> When you say a credential has 60 claims in it, area 
+  these 60 described achievements, each of which might have 
+  entitlements etc? Packaged together like a transcript? (For next 
+  pause)
+AC: TWCU - no nesting relationship between badgeclass and 
+  resultdescription
+AC: TWCU - everything has a URI
+AC: the idea of creator inside credential subject is useful to 
+  reference entities outside the credential
+AC: Issues to Resolve - cannot support multiple claims
+AC: proposal to solve - keep structure and create an array of 
+  claims
+AC: includes multiple types of claims within the array
+AC: ITR - credential has a type at the top level
+AC: Proposal - ass a credential type as a property
+Add not ass
+<juan_caballero_(spruce)> credential title as arbitrary 
+  string/local alias or specified?
+AC: within VC there are no properties to describe the credential 
+  as a whole
+AC: intrinsic part has to be the visual representation
+AC: proposal - add displayproperties tag
+<juan_caballero_(spruce)> i'm assuming that 
+  `"id":"https://website-that-displays-credential.example.com"` 
+  really means 
+  `"id":"https://website-that-displays-credential.example.com/credential/{UUID}"`, 
+  right?
+AC: put the HTML directly in line within the credential
+JC: question around credential title
+AC: the credentialtitle is a simple text string
+JC: like an alias string
+JC: UUID in URL?
+AC: ID of the credential is a UUID, link to a visual 
+  representation can be a URL in the description
+P1: link pointing to an IPFS location or the like?
+<juan_caballero_(spruce)> CIDs not UUIDs :D
+AC: in our implementation the entire HTML will be in the 
+  credential
+<dmitri_zagidulin> (one could also use hashlinks, to that HTML)
+<juan_caballero_(spruce)> ^
+AC: adding the ability to add an outside reference link
+P1: alternative hashed link?
+<anthony> (this one I'm taking back with me :-))
+KL: your example shows a claim with an array of claims, how do 
+  you handle the multiple achievements in the claim?
+AC: description of diploma supplement
+<kerri_lemoie> Anthony's example: 
+  https://hackmd.io/D2b4lJTXTgOG1ss4B3payA
+AC: want to be able to represent single expresssions as well in 
+  the same model
+NO: separability of claims?
+<deb_everhart> Nate asked my question
+<phil_l_(p1)> Might the signature method be able to 'separate out 
+  a credential?
+AC: massively complex question, technically separating is on the 
+  roadmap, other part is to have individual claims and stackability 
+  of those claims
+P1: self-assertion of a credential?
+AC: self-assertion is not within the model
+<juan_caballero_(spruce)> "issuer": "did:example:some_random_guy"
+AC: use HROpen as a self-assertion model
+<deb_everhart> is that the resume portion of HR Open?
+KL: how will evidence be used?
+AC: evidence is quite controversial
+AC: current plan is for evidence to follow OpenBadges
+https://www.w3.org/TR/vc-data-model/#example-23-usage-of-the-evidence-property
+AC: actively talking about semi-universal wallet
+<juan_caballero_(spruce)> universal-ish
+AC: OpenBadges and EuroPass creds in the same wallet
+<dmitri_zagidulin> @Juan: +1 to 'universal-ish', great technical 
+  term!
+<phil_l_(p1)> Does that mean that there is in the current 
+  Europass wallet the only type of credential that can be held?
+JC: evidence is inside the credentialsubject?
+KL: evidence in an OB is different than VC
+<nate_otto> OB did intentionally model evidence as a claim about 
+  the recipient in our v3 proposal.
+<phil_l_(p1)> a video file
+KL: can be part of the achievement
+<simone> "Uni(contro)versial Wallet" ? (apologies, just trying to 
+  match Juan's sharp commentary ;-)
+AC: surprised no one has questions about multiple claims?
+AC: is this a valid way forward?
+DZ: recommend VCs should be short, but realizing there are 
+  legislative requrements
+<juan_caballero_(spruce)> or resignation
+<taylor_(lef)> @JC, Kerri is the antidote to willful OB 
+  ignorance. I'm guilty as well :)
+DZ: you're hearing acceptance
+KL: we're seeing alignment between OB and CLR
+<dmitri_zagidulin> I think everyone is hoping that the two 
+  approaches will be interchangeable
+KL: many cases the credential should be simple, but many that 
+  require more complexity
+DE: is it as simple as a both/and?
+<dmitri_zagidulin> meaning, if you have a bunch of short 
+  credentials, that you can bind them into a single larger one. Or, 
+  if you have a large multi-claim credential, you can split out 
+  claims (using BBS+ etc)
+DE: can it be simple and then referenced from the more complex?
+<dmitri_zagidulin> (or, if not able to use BBS+ or similar tech, 
+  it could be as simple as - ask your issuer for BOTH a large 
+  "transcript", and a specific skill credential.
+DE: OBv3 and CLR will both support multiple claims?
+Phil Long: +1 Dimitri
+<anthony> @dmitri that last one is what happens in pratice in 
+  many institutions
+KL: OBv3 is still a single achievement
+<dmitri_zagidulin> @Anthony - makes sense!
+AC: issue multiple small credentials and then combining them?
+DE: yes oversimplified
+<deb_everhart> one important value of that approach is to give 
+  people their achievements sooner, along the way to the larger 
+  credential
+AC: in the transcript you could do a number of small credentials, 
+  but there are many use cases that still require multiple claims 
+  in a single credential
+Kerri Lemoie: +1 Deb
+P1: OBv3 as a building block is a great value, complex 
+  credentials have a layering with relationships between those 
+  claims and sequence of those claims matter
+P1: metadata of the relationships is required in the more complex 
+  credentials
+P1: complex credentials work ahead is the metadata patterning
+AC: agreed
+<kerri_lemoie> :)
+AC: relationships between claims is a key issue, we must describe 
+  both approaches
+AC: issuer issuing a credential with other relationships and how 
+  do you do that?
+P1: some organizations wish to have a set of claims as a single 
+  package and allow those claims to be expressed as a new set of 
+  credentials
+AC: topics for next week, multiple languages, guidance on DIDs vs 
+  PII, Labeling Skills/learning Outcomes, Micro-credentials and 
+  stackability in a VC
+<juan_caballero_(spruce)> thanks anthony and marty!
+KL: close

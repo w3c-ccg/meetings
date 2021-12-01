@@ -1,0 +1,190 @@
+[2021-11-02T19:59:25.189Z]	<Manu_Sporny>	present+
+[2021-11-02T19:59:27.173Z]	<Justin_Richer>	present+
+[2021-11-02T19:59:28.276Z]	<David_Chadwick>	present+
+[2021-11-02T20:00:17.307Z]	<Joe_Andrieu>	present+
+[2021-11-02T20:00:31.646Z]	<Justin_Richer>	present+
+[2021-11-02T20:01:29.429Z]	<Brent>	present+
+[2021-11-02T20:02:45.141Z]	<Eric_Schuh>	present+
+[2021-11-02T20:03:01.162Z]	<Tobias_Looker>	present+
+[2021-11-02T20:03:02.485Z]	<Kerri_Lemoie>	present+
+[2021-11-02T20:03:10.271Z]	<Bumblefudge>	present+
+[2021-11-02T20:03:15.418Z]	<Tobias_Looker>	present+
+[2021-11-02T20:03:34.007Z]	<Justin_Richer>	present+
+[2021-11-02T20:04:00.162Z]	<Eric_Schuh>	present+
+[2021-11-02T20:04:10.146Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2021-11-02T20:04:31.219Z]	<Adrian_Gropper>	present+
+[2021-11-02T20:04:44.202Z]	<Brian_Richter>	present+
+[2021-11-02T20:06:02.505Z]	<mprorock>	present+
+[2021-11-02T20:06:24.038Z]	<Juan_Caballero_(Spruce)>	present+
+[2021-11-02T20:06:54.649Z]	<Juan_Caballero_(Spruce)>	present+
+[2021-11-02T20:07:44.742Z]	<Manu_Sporny>	agenda: https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0000.html
+[2021-11-02T20:07:46.631Z]	<Manu_Sporny>	chair: manu
+[2021-11-02T20:08:54.815Z]	<Eric_Schuh>	scribe+
+[2021-11-02T20:09:18.455Z]	<Manu_Sporny>	Topic: Relevant Community Updates
+[2021-11-02T20:09:31.492Z]	<Eric_Schuh>	manu:  if not lets go into relevant community updates. Are there any updates/things that are happing that we should be aware of
+[2021-11-02T20:09:53.941Z]	<Juan_Caballero_(Spruce)>	very minor update: https://github.com/w3c-ccg/vc-api-use-cases/pull/1
+[2021-11-02T20:10:52.807Z]	<Eric_Schuh>	manu: i've got one kind of thought as a part of getting the new VC 1.0 out, it has become a bit obvious that the test suite has become a bit old. Once there is a charter for the 2.0 working group we have ~2 months to do that work. Kind of an open question of "Do we want to use the VC API to update the test suite?"
+[2021-11-02T20:11:16.853Z]	<Eric_Schuh>	juan: VC API Use Cases updates will be pushed each week, have a PR in this week
+[2021-11-02T20:11:27.047Z]	<Eric_Schuh>	juan: thanks Mahmoud for the help on this week
+[2021-11-02T20:11:40.556Z]	<Eric_Schuh>	manu: Seems like there is an update, mind going over it
+[2021-11-02T20:12:14.242Z]	<Eric_Schuh>	juan: Added a list of specified endpoints that will be used based on the requirements. Went through and did a quick accounting. Next update will include who hosts each endpoint
+[2021-11-02T20:12:28.339Z]	<Eric_Schuh>	juan: This should make it obvious what endpoints and use cases we are missing
+[2021-11-02T20:12:48.609Z]	<Eric_Schuh>	manu: Thanks for the work, any other comments/concerns about the PR? Juan, you said you are trying to do a PR a week
+[2021-11-02T20:12:53.184Z]	<Eric_Schuh>	juan: ideally
+[2021-11-02T20:12:59.099Z]	<Eric_Schuh>	manu: any other updates before main topic?
+[2021-11-02T20:13:01.923Z]	<Manu_Sporny>	Topic: VC API Data Flow - CHAPI
+[2021-11-02T20:13:14.089Z]	<Eric_Schuh>	manu: Next up is VP API data flow, focused on a CHAPI like flow
+[2021-11-02T20:13:40.463Z]	<Eric_Schuh>	joe: Thanks Manu, I'm going to start out reconnecting to the achitecture diagram. Can we merge that in? Any requests for changes on the pr?
+[2021-11-02T20:14:07.970Z]	<Eric_Schuh>	manu: Haven't seen any requests but lets hold off on merging till the ned of the call and can re-evaluate
+[2021-11-02T20:14:19.700Z]	<Joe_Andrieu>	https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0007.html
+[2021-11-02T20:14:24.064Z]	<Eric_Schuh>	manu: I want to see the CHAPI flow before commenting
+[2021-11-02T20:14:51.425Z]	<Eric_Schuh>	joe: sounds good, that is why I wanted to anchor with this because it is the common bit.
+[2021-11-02T20:15:32.545Z]	<Eric_Schuh>	joe: We teased out last time this difference between apps and services. Where apps offload the business logic work from the service. Storage services and the services themselves are generally only exposed to the App
+[2021-11-02T20:15:53.201Z]	<manu>	q+
+[2021-11-02T20:16:04.231Z]	<Eric_Schuh>	joe: the one exception here is the Status Service which is directly accessed by the Verifier Service.
+[2021-11-02T20:17:02.046Z]	<Eric_Schuh>	manu: part of the feedback I have heard about the diagram from our engineering team is the "Issuer Admin" because it brings up the idea of standardizing admin services. We at Digital Bazaar do not want to go into that in the group because it is a distraction
+[2021-11-02T20:17:06.682Z]	<David_Chadwick>	q+
+[2021-11-02T20:17:15.674Z]	<manu>	ack manu
+[2021-11-02T20:17:22.648Z]	<Eric_Schuh>	joe: all of these components we will need to decide what goes into the API and how the authorization happens between the roles
+[2021-11-02T20:17:59.801Z]	<Eric_Schuh>	joe: the admin components, the reason its hashed, is to speak to the fact that it might be json, it might be something else. Also agrees it doesn't make sense to standardize but we know Admin configuration has to happen
+[2021-11-02T20:18:12.850Z]	<TallTed>	q+
+[2021-11-02T20:18:14.200Z]	<manu>	ack david
+[2021-11-02T20:18:15.507Z]	<manu>	ack david
+[2021-11-02T20:18:21.298Z]	<Eric_Schuh>	joe: and how does it get into the app, the Issuer admin must set rules for the Issuer App somehow
+[2021-11-02T20:18:49.573Z]	<tplooker>	present+
+[2021-11-02T20:18:55.917Z]	<Eric_Schuh>	David: it's about the holder app, and why it is singular. do you envision a browser talking to the Holder App?
+[2021-11-02T20:19:18.416Z]	<TallTed>	present+
+[2021-11-02T20:19:34.231Z]	<Eric_Schuh>	joe: Part of your question I am going to defer because CHAPI. This seperation between holder app and holder service is that I have only found one endpoint he service uses which is create/sign VP
+[2021-11-02T20:19:52.012Z]	<Eric_Schuh>	david: I would say there is another service which has to do with registation of the holder with the issuer
+[2021-11-02T20:19:55.526Z]	<Eric_Schuh>	joe: when does that happen?
+[2021-11-02T20:20:22.386Z]	<Eric_Schuh>	david: it happens before the holder can get VCs, so when the user installs the holder app they need to register
+[2021-11-02T20:20:28.859Z]	<Eric_Schuh>	joe: so you mean the onboarding?
+[2021-11-02T20:20:39.579Z]	<Eric_Schuh>	david: yes, you call it onboarding, I call it registration
+[2021-11-02T20:20:58.491Z]	<Eric_Schuh>	joe: it's not clear where this happens other then in the issuer app
+[2021-11-02T20:21:37.232Z]	<Eric_Schuh>	joe: the flows we've done with CHAPI we are just using the browser to go in to do that registration
+[2021-11-02T20:21:47.457Z]	<manu>	q?
+[2021-11-02T20:21:49.552Z]	<Eric_Schuh>	joe: i think thats right, it has to be in the holder app
+[2021-11-02T20:22:13.911Z]	<manu>	ack TallTed
+[2021-11-02T20:22:20.283Z]	<Eric_Schuh>	ted: there is nothing that gets a VC from the issuer to the holder
+[2021-11-02T20:22:24.712Z]	<Eric_Schuh>	joe: the holder app does
+[2021-11-02T20:22:36.524Z]	<Eric_Schuh>	ted: there is no arrow that procedes from an issuer block to a holder block
+[2021-11-02T20:22:59.167Z]	<Eric_Schuh>	joe: that's correct, the thought is that these arrows represent initiation flows and right now the holder initiates all flows between apps
+[2021-11-02T20:23:14.720Z]	<manu>	q+ to document "arrow direction expresses initiation"
+[2021-11-02T20:23:57.518Z]	<Eric_Schuh>	ted: this will be confusing, will try to read the email but it would help me in the flow to illustrate the directionality
+[2021-11-02T20:24:17.311Z]	<manu>	ack manu
+[2021-11-02T20:24:17.456Z]	<Eric_Schuh>	joe: there is not a flow here, the only thing being shown in who is starting the flow. the sequence diagram will detail the flow itself
+[2021-11-02T20:24:30.227Z]	<Eric_Schuh>	manu: we should probably just document that joe
+[2021-11-02T20:24:39.357Z]	<Eric_Schuh>	joe: it is documented in the RP
+[2021-11-02T20:25:07.658Z]	<Brent>	present+
+[2021-11-02T20:25:15.603Z]	<Eric_Schuh>	joe: this is our take, want to give credit Orie for doing a lot of the work, this was Orie and I figuring out how CHPI works
+[2021-11-02T20:25:17.733Z]	<Adrian_Gropper>	present+
+[2021-11-02T20:25:33.481Z]	<Eric_Schuh>	joe: we do have this issue that the Holder Application is a browser plus a web app
+[2021-11-02T20:26:00.544Z]	<Eric_Schuh>	joe: in CHAPI for those that don't know that is a browser based flow where CHAPI is a polyfill loaded in the browser that allows web apps to interface
+[2021-11-02T20:26:30.252Z]	<Eric_Schuh>	joe: so lets walk through this flow, we start with the holder asking for verification
+[2021-11-02T20:27:11.961Z]	<manu>	q+
+[2021-11-02T20:27:12.745Z]	<Eric_Schuh>	joe: the verifier app requests a VC, first javascript is loaded and then sperately that goes and gets the CHAPI polyfil from unpkg
+[2021-11-02T20:27:29.541Z]	<Eric_Schuh>	joe: after this everything have been loaded and the user clicks on the button to submit a credential
+[2021-11-02T20:27:47.795Z]	<Eric_Schuh>	joe: once we get into this web modality the clean boxes from the first diagram aren't so clean anymore
+[2021-11-02T20:28:14.352Z]	<Eric_Schuh>	joe: call chapi.getCredential that goes out to authn.io which tracks resource boundries so CHAPI can track through different sites you visit
+[2021-11-02T20:28:42.331Z]	<Eric_Schuh>	joe: after this the user gets a wallet selection, got ahead of myself lets backup
+[2021-11-02T20:29:03.717Z]	<Eric_Schuh>	joe: set the iframe source for the wallet selector, that pops up an iframe where you select the credential handler (wallet)
+[2021-11-02T20:29:19.149Z]	<Eric_Schuh>	joe: then y ou get a different iframe based on the wallet selection
+[2021-11-02T20:29:58.064Z]	<Eric_Schuh>	joe: now trying to get crendetial that was propagated from CHAPI.getCredential. This ends with wallet-ui-get.html being presented to the end user
+[2021-11-02T20:30:08.999Z]	<Brent>	present+
+[2021-11-02T20:30:27.807Z]	<David_Waite>	present+
+[2021-11-02T20:30:55.057Z]	<Eric_Schuh>	joe: when that html is loaded the wallet presents the credential selector to the end user who then selects the credentials they want to share. The selection is then sent to the client who gets a VP constructed by the Holder service. CHAPI is then closed
+[2021-11-02T20:31:28.117Z]	<Eric_Schuh>	the credential is then sent to the Verifier App and then to the Verifier service.
+[2021-11-02T20:31:50.577Z]	<Eric_Schuh>	joe: on return the verifier app takes verification result, applies business rules and upon finish shows the result to the user
+[2021-11-02T20:33:27.937Z]	<Eric_Schuh>	manu: couple comments, high level yes, good breakdown. Looks like you got everything. Up at the top with the unpkg site, that is an optional thing right. Might just want to say CDN and unpkg is just an example of a CDN that could be used. Could publish your own or just use the one that the polyfil will pick. Authn.io is a mediator site and the whole ecosystem kind of breaks down because "which mediator are you on" questions happen if people are using different ones. So want mediator at the top
+[2021-11-02T20:33:45.981Z]	<Eric_Schuh>	manu: rest looks right but want to pass it by dave longley for nitpicks but high level is great
+[2021-11-02T20:33:56.535Z]	<Eric_Schuh>	joe: still some confusing language to tease out but glad it looks good
+[2021-11-02T20:33:56.672Z]	<Joe_Andrieu>	q?
+[2021-11-02T20:34:00.189Z]	<Kerri_Lemoie>	q+
+[2021-11-02T20:34:01.949Z]	<manu>	ack manu
+[2021-11-02T20:34:31.989Z]	<Eric_Schuh>	manu: as far as how this maps onto the flow we talked about last week, it maps almost directly. Its essentially the same flow but in the one flow you go through this browser complexity because you have to have the browser
+[2021-11-02T20:34:45.155Z]	<Eric_Schuh>	manu: but fundamenatlly the flow is the same
+[2021-11-02T20:34:58.708Z]	<Kerri_Lemoie>	q-
+[2021-11-02T20:35:38.608Z]	<Eric_Schuh>	joe: we have not formalized in the request page what kind of data is known in that state because in the supply chain case the holder does likely know the credential that will be required whereas in the overage use case the holder might not realize they need the overage until they go to take an action
+[2021-11-02T20:35:51.974Z]	<manu>	q?
+[2021-11-02T20:35:58.596Z]	<Eric_Schuh>	joe: in the supply chain case the logic exists in the cron job or other busniess logic
+[2021-11-02T20:36:10.261Z]	<Eric_Schuh>	manu: where do we go next?
+[2021-11-02T20:36:23.131Z]	<Juan_Caballero_(Spruce)>	he's here!
+[2021-11-02T20:36:37.169Z]	<Manu_Sporny>	He /was/ here :)
+[2021-11-02T20:36:57.348Z]	<Juan_Caballero_(Spruce)>	🤦‍♀️
+[2021-11-02T20:36:37.653Z]	<Kerri_Lemoie>	q+
+[2021-11-02T20:36:37.841Z]	<Eric_Schuh>	joe: I want to check in with David Chadwick, not seeing Tobias. David does this seem aligned or do we need a dedicated call?
+[2021-11-02T20:37:21.421Z]	<Eric_Schuh>	david: our flow is a lot simpler, I'm not familiar with CHAPI. Would be nice to model an open IDC flow because that is a standardized flow.
+[2021-11-02T20:37:28.876Z]	<Eric_Schuh>	joe: will setup that meeting
+[2021-11-02T20:37:56.913Z]	<Eric_Schuh>	joe: if this holds together I'd like to get the version of this document that is in the PR pushed. Maybe we invite another week of comments before pushing
+[2021-11-02T20:38:10.175Z]	<Eric_Schuh>	joe: where we go from here is an open question
+[2021-11-02T20:38:13.711Z]	<Manu_Sporny>	q+ on call for objections.
+[2021-11-02T20:38:16.582Z]	<Joe_Andrieu>	https://github.com/w3c-ccg/vc-api/pull/237
+[2021-11-02T20:38:21.068Z]	<Eric_Schuh>	joe: pull request 247 linked above
+[2021-11-02T20:38:24.001Z]	<Kerri_Lemoie>	q-
+[2021-11-02T20:38:58.750Z]	<Eric_Schuh>	joe: there are some things that are not in this flow at all. Kerri had asked about concent receipt or other kinds of receipts which are not shown, so room for innovations
+[2021-11-02T20:39:12.729Z]	<Eric_Schuh>	joe: it may be worth also adding the sequence diagrams to the spec, how do folks feel about that
+[2021-11-02T20:39:36.418Z]	<Eric_Schuh>	manu: +1 for that, i'm on the queue to ask for objections. Kerri you have been on and off queue, do you ahve a questeion?
+[2021-11-02T20:40:00.540Z]	<Eric_Schuh>	Kerri: Awhile back I had heard CHAPI cannot run on an encrypted network (SSL) is that still true?
+[2021-11-02T20:40:19.096Z]	<Eric_Schuh>	manu: closed network that cannot get out to the internet that is true, solution is to act like a service worker
+[2021-11-02T20:40:36.229Z]	<Eric_Schuh>	manu: but today in a network where you cannot get out to teh authn site you cannot use CHAPI
+[2021-11-02T20:41:27.637Z]	<Eric_Schuh>	manu: that is a use case we do not want to support because you should not allow that to happen
+[2021-11-02T20:41:42.506Z]	<Eric_Schuh>	joe: running on an unencrypted site is wehre we would run into problems
+[2021-11-02T20:41:44.910Z]	<agropper>	q+
+[2021-11-02T20:41:53.504Z]	<Eric_Schuh>	kerri: i heard you cannot run on an SSL site
+[2021-11-02T20:42:23.901Z]	<Eric_Schuh>	manu: oh, no CHAPI is definitely supposed to run on SSL sites. it is expected that whatever is running CHAPI is an SSL enabled site and CHAPI is supposed to run on those
+[2021-11-02T20:42:23.967Z]	<manu>	q?
+[2021-11-02T20:42:28.038Z]	<juancaballero>	This may be useful to people wanting to experiment with CHAPI: https://spruceid.dev/docs/didkit-examples/svelte-chapi
+[2021-11-02T20:42:47.397Z]	<Eric_Schuh>	manu: question is are we ok with this high level diagram and the flow diagrams being put in the spec as a starting point
+[2021-11-02T20:43:06.729Z]	<Eric_Schuh>	manu: we have reviewed for 2 weeks and no one is complaining, we can give 48 hours to review
+[2021-11-02T20:43:17.857Z]	<Eric_Schuh>	manu: does anyone object to this content being added to the spec?
+[2021-11-02T20:43:31.393Z]	<Eric_Schuh>	joe: current PR is just the current diagram, the other two aren't quite ready
+[2021-11-02T20:43:42.897Z]	<Eric_Schuh>	manu: my suggestion is to get these into an appendix as a first step
+[2021-11-02T20:44:07.715Z]	<Eric_Schuh>	manu: can promote later to core part of spec if desired but these diagrams are very useful as a discussion tool
+[2021-11-02T20:44:25.853Z]	<Eric_Schuh>	joe: if that is how we go we also need to get the issuanace flows, currently only have verification
+[2021-11-02T20:44:32.759Z]	<Eric_Schuh>	joe: issuance might take to end of the year
+[2021-11-02T20:44:36.495Z]	<manu>	q?
+[2021-11-02T20:44:37.991Z]	<manu>	ack manu
+[2021-11-02T20:44:39.836Z]	<manu>	ack agropper
+[2021-11-02T20:44:52.270Z]	<Eric_Schuh>	adrian: what's the difference between the CHAPI flows and progressive web apps?
+[2021-11-02T20:45:16.931Z]	<manu>	q+ to note "web-based credential exchange" might be misunderstood
+[2021-11-02T20:45:22.848Z]	<Dmitri_Z>	present+
+[2021-11-02T20:45:35.199Z]	<Eric_Schuh>	joe: I think my answer is that CHAPI is one way to build a web based credential exchange system. On one hand they feel orthogonal. You can build a progress app w/CHAPI or without and you can have a non-progressive app with either
+[2021-11-02T20:45:40.446Z]	<Eric_Schuh>	joe: does that help
+[2021-11-02T20:45:42.174Z]	<juancaballero>	if my grandmother had wheels, she'd be a bicycle
+[2021-11-02T20:45:43.420Z]	<Eric_Schuh>	adrian: no
+[2021-11-02T20:45:53.244Z]	<juancaballero>	as the old saying goes
+[2021-11-02T20:46:06.652Z]	<Eric_Schuh>	manu: slight correction, if you have a progressive web app that has web access you can use CHAPI. if you don't have web access you can't use CHAPI
+[2021-11-02T20:46:22.202Z]	<David_Waite>	present+
+[2021-11-02T20:46:48.757Z]	<Eric_Schuh>	manu: want to modulate one thing you said joe, which is if you are doing a web based credential exchange. There is a way for CHAPI to work with native apps, theoretically. We have been looking to work with people to enable that because Digtial Bazaar does not build native apps
+[2021-11-02T20:47:21.097Z]	<Eric_Schuh>	manu: it has been a reason that people don't want to use CHAPI but there is a way for CHAPI to support it but currently that would need code and time
+[2021-11-02T20:47:27.216Z]	<manu>	q?
+[2021-11-02T20:47:29.412Z]	<manu>	ack manu
+[2021-11-02T20:47:31.663Z]	<Eric_Schuh>	manu: CHAPI could act as a bridge between native and web apps
+[2021-11-02T20:47:50.945Z]	<Eric_Schuh>	manu: no one else on queue and no objections so default is people can review PR
+[2021-11-02T20:48:07.709Z]	<Eric_Schuh>	manu: but if no comments in 7 days we will merge so going to merge this graphic as soon as Joe feels it is ready
+[2021-11-02T20:48:52.516Z]	<Eric_Schuh>	joe: Let me queue up juan, for the endpoint specifications we just created an issue today to use this language (from diagram)  in the endpoint references in the use cases document
+[2021-11-02T20:48:54.886Z]	<Juan_Caballero_(Spruce)>	VERIFIER-SERVICE/credentials/verify
+[2021-11-02T20:49:00.773Z]	<Juan_Caballero_(Spruce)>	/credentials/verify
+[2021-11-02T20:49:17.600Z]	<Eric_Schuh>	juan: would be useful to have (above) something like this instead of like this (second line above)
+[2021-11-02T20:49:24.234Z]	<Juan_Caballero_(Spruce)>	VERIFIER-{SERVICE?APP?}
+[2021-11-02T20:49:36.828Z]	<Justin_Richer>	q+
+[2021-11-02T20:49:39.241Z]	<Eric_Schuh>	juan: there will be some places where we have to add this, where we don't know
+[2021-11-02T20:49:52.785Z]	<Justin_Richer>	RFC7320, "Get Off My Lawn": https://datatracker.ietf.org/doc/html/rfc7320
+[2021-11-02T20:49:53.177Z]	<manu>	ack justin
+[2021-11-02T20:50:33.144Z]	<Eric_Schuh>	justin: quickly, wanted to make sure this group is aware of the RFC7320 that is whenever a specification is making a claim to part of URL space to make sure you aren't making a claim of the entire URL structure
+[2021-11-02T20:50:38.171Z]	<manu>	q+ to speak to "not assume you own the URL structure"
+[2021-11-02T20:50:56.589Z]	<Eric_Schuh>	justin: I haven't checked the VC API spec to make sure it isn't making claims but something we need to be aware of in this group
+[2021-11-02T20:51:43.103Z]	<Justin_Richer>	q+
+[2021-11-02T20:51:51.546Z]	<Eric_Schuh>	manu: strong agreement, right now I believe we do squat on the root namespace and need to make sure we have language about being able to have these endpoints anywhere in your URL structure. Might want to consider a wellknown file. There is a discovery question that is outstanding
+[2021-11-02T20:51:09.934Z]	<Justin_Richer>	ok yeah, then stop that right now
+[2021-11-02T20:51:26.211Z]	<Justin_Richer>	discovery: .well-known/ is for this
+[2021-11-02T20:51:54.528Z]	<manu>	ack manu
+[2021-11-02T20:51:57.511Z]	<manu>	ack justin
+[2021-11-02T20:52:02.106Z]	<Eric_Schuh>	manu: that we should think about before we go to far
+[2021-11-02T20:53:01.552Z]	<Eric_Schuh>	justin: part of the get off my lawn spec is that it is total fine to have a URL branch that is built off of a root URL. What you don't want to do is assume that everyone that is deploying this does so on the root URL. So don't assume <host_name>/whatever but you can say <root_url>/add_this
+[2021-11-02T20:53:14.420Z]	<Eric_Schuh>	justin: just not allowed to claim that your base is the root URL
+[2021-11-02T20:53:36.349Z]	<Eric_Schuh>	manu: need to raise an issue and noting we have 7 min left lets end early
+[2021-11-02T20:53:54.863Z]	<Eric_Schuh>	manu: anything else we should keep in mind? or anything people want to focus on? suggestion is to do issue processing
+[2021-11-02T20:54:05.339Z]	<Eric_Schuh>	manu: anyone else have a topic for next week?
+[2021-11-02T20:54:26.883Z]	<Eric_Schuh>	manu: ok that is the gameplan for next week then
+[2021-11-02T20:54:28.717Z]	<Kerri_Lemoie>	Thanks, Joe and all!

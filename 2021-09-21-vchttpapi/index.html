@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/github-light.css" media="screen">
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Credentials Community Group</title>
+    <style>
+a {
+  color: #06A7CC;
+}
+
+div.comment {
+  font-family: 'Droid Serif', serif;
+  margin-top: 0.5em;
+  font-size: 1.25em;
+}
+
+.comment-continuation {
+  font-family: 'Droid Serif', serif;
+  font-size: 1.25em;
+  margin-left: 2em;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>The W3C Credentials Community Group</h1>
+      <h2>Meeting Transcriptions and Audio Recordings (2014-today)</h2>
+      <h3><a href="/meetings/">Go Back</a></h3>
+
+      <hr>
+
+<div><div><div class="container"><div class="row"><div class="col-md-8 col-md-offset-2"><h1> Telecon</h1>
+<h2>Minutes for 2021-09-21</h2>
+<div class="summary">
+<dl>
+<dt>Agenda</dt><dd><a href="https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0106.html">https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0106.html</a></dd>
+<dt>Topics</dt><dd><ol><li><a href="#topic-1">Introductions and Reintroductions</a><li><a href="#topic-2">Merge Windows</a><li><a href="#topic-3">Renaming VC HTTP API to VC API</a><li><a href="#topic-4">Pull Request 224 - Resolutions in Spec</a><li><a href="#topic-5">Pull Request 226 - RAR and GNAP</a><li><a href="#topic-6">Pull Request 227 - Single Word Change</a><li><a href="#topic-7">Pull Request 228 - Intro to Authz Section</a><li><a href="#topic-8">Pull Request 229 - Forbidden Authorization</a><li><a href="#topic-9">Pull Request 230 - Authorization Delegation</a><li><a href="#topic-10">Pull Request 231 - OAuth 2.0 Bearer Tokens</a></ol></dd><dt>Resolutions</dt><dd><ol><li><a href="#resolution-1">Any editorial PR can be merged as soon as 2 code owners approve the PR.</a><li><a href="#resolution-2">Any non-editorial PR can be merged as soon as 2 code owners approve the PR, if it has been open for a minimum of 7 days and change requests have been addressed.</a><li><a href="#resolution-3">Rename the VC HTTP API to become the VC API.</a></ol></dd><dt>Organizer</dt><dd>Manu Sporny</dd>
+<dt>Scribe</dt><dd>Juan Caballero</dd>
+<dt>Present</dt><dd><a href="http://manu.sporny.org/about">Manu Sporny</a>, <a href="https://www.linkedin.com/in/mkhraishi/">Mahmoud Alkhraishi</a>, <a href="http://www.learningproof.xyz/">Juan Caballero</a>, <a href="https://www.linkedin.com/search/results/all/?keywords=Legendary%20Requirements">Eric Schuh</a>, <a href="https://www.linkedin.com/in/joe-andrieu-a0528">Joe Andrieu</a>, <a href="https://www.linkedin.com/in/mprorock/">Mike Prorock</a>, <a href="https://twitter.com/justin__richer">Justin Richer</a>, <a href="https://www.linkedin.com/in/or13b">Orie Steele</a>, <a href="https://www.linkedin.com/in/david-chadwick-36816395">David Chadwick</a>, <a href="http://kerrilemoie.net/">Kerri Lemoie</a>, <a href="https://www.linkedin.com/in/bzundel/">Brent Zundel</a>, <a href="https://www.linkedin.com/in/brianrichter3/">Brian Richter</a>, <a href="">Adrian Gropper</a>, <a href="http://www.heathervescent.com/">Heather Vescent</a>, <a href="https://www.linkedin.com/in/dzagidulin">Dmitri Zagidulin</a>, <a href="https://www.linkedin.com/in/marty-reed-b5b2352/">Marty Reed</a>, <a href="https://www.linkedin.com/in/macted/">Ted Thibodeau</a>, <a href="https://www.linkedin.com/in/bobwyman/">Bob Wyman</a></dd>
+<dt>Audio Log</dt><dd><div><a href="audio.ogg">audio.ogg</a></div>
+<div><audio controls="controls" preload="none">
+<source src="audio.ogg" type="audio/ogg" />Warning: Your browser does not support the HTML5 audio element, please upgrade.</audio></div></dd>
+</dl>
+</div>
+<div class="information">Juan Caballero is scribing.</div>
+<div onmouseout="$('#link-1').hide()" onmouseover="$('#link-1').show()" id="1" class="comment"><span class="name">Manu Sporny</span>:  Agenda review <a id="link-1" style="display:none;" href="#1">✪</a></div>
+<div class="comment-continuation">... lots of PRs to review</div>
+<div onmouseout="$('#link-2').hide()" onmouseover="$('#link-2').show()" id="2" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-2" style="display:none;" href="#2">✪</a></div>
+<div onmouseout="$('#link-3').hide()" onmouseover="$('#link-3').show()" id="3" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-3" style="display:none;" href="#3">✪</a></div>
+<div onmouseout="$('#link-4').hide()" onmouseover="$('#link-4').show()" id="4" class="comment"><span class="name">Joe Andrieu</span>: +1 <a id="link-4" style="display:none;" href="#4">✪</a></div>
+<div onmouseout="$('#link-5').hide()" onmouseover="$('#link-5').show()" id="5" class="comment"><span class="name">Orie Steele</span>:  Call times for PRs is fine, but could we come up with a codeowner independent merge consensus? <a id="link-5" style="display:none;" href="#5">✪</a></div>
+<div class="comment-continuation">... async work mode would be helpful</div>
+<div onmouseout="$('#link-6').hide()" onmouseover="$('#link-6').show()" id="6" class="comment"><span class="name">Manu Sporny</span>:  SGTM, lots of +1s in chat <a id="link-6" style="display:none;" href="#6">✪</a></div>
+<div onmouseout="$('#link-7').hide()" onmouseover="$('#link-7').show()" id="7" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-7" style="display:none;" href="#7">✪</a></div>
+<div class="information">&lt;mprorock&gt; Whoo hoo!!!! thanks Joe</div>
+<div onmouseout="$('#link-8').hide()" onmouseover="$('#link-8').show()" id="8" class="comment"><span class="name">Joe Andrieu</span>:  Mike Proroclk and Orie Steele have worked with me and Eric to map out the flow of that use-case in more detail <a id="link-8" style="display:none;" href="#8">✪</a></div>
+<div class="comment-continuation">... the mapping exercise teased out some edits to the usecase and it&apos;s really helpful</div>
+<div class="comment-continuation">... to the editorial process</div>
+<div class="comment-continuation">... I will add that URL to the minutes shortly</div>
+<div onmouseout="$('#link-9').hide()" onmouseover="$('#link-9').show()" id="9" class="comment"><span class="name">Mike Prorock</span>: <a href="https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0109.html">https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0109.html</a> <a id="link-9" style="display:none;" href="#9">✪</a></div>
+<div onmouseout="$('#link-10').hide()" onmouseover="$('#link-10').show()" id="10" class="comment"><span class="name">Manu Sporny</span>:  Intros and Reintros <a id="link-10" style="display:none;" href="#10">✪</a></div>
+<div class="information">&lt;joe_andrieu&gt; the sequence diagram email in the archives: <a href="https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0109.html">https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0109.html</a></div>
+<h1 id="topic-1" class="topic">Topic: Introductions and Reintroductions</h1>
+<div onmouseout="$('#link-11').hide()" onmouseover="$('#link-11').show()" id="11" class="comment"><span class="name">Kerri Lemoie</span>:  Co-chairing VC-EDU and schedule just allowed me to attend these this week! Excited to be here <a id="link-11" style="display:none;" href="#11">✪</a></div>
+<div onmouseout="$('#link-12').hide()" onmouseover="$('#link-12').show()" id="12" class="comment"><span class="name">Manu Sporny</span>:  For those of you that don&apos;t know Kerri, she is awesome. <a id="link-12" style="display:none;" href="#12">✪</a></div>
+<div class="information">&lt;joe_andrieu&gt; Hi Kerri!</div>
+<div onmouseout="$('#link-13').hide()" onmouseover="$('#link-13').show()" id="13" class="comment"><span class="name">Juan Caballero</span>: +1 To awesomeness <a id="link-13" style="display:none;" href="#13">✪</a></div>
+<div class="information">&lt;kerri_lemoie&gt; Thanks Manu :)</div>
+<h1 id="topic-2" class="topic">Topic: Merge Windows</h1>
+<div onmouseout="$('#link-14').hide()" onmouseover="$('#link-14').show()" id="14" class="comment"><span class="name">Orie Steele</span>:  Since this isn&apos;t a formal WG, we should leverage that freedom and work faster, particularly since working fast increases chances of this going standards track later <a id="link-14" style="display:none;" href="#14">✪</a></div>
+<div class="comment-continuation">... aiming for faster PRs, more frequent PRs, and operate under the &quot;UNSTABLE COMMUNITY DRAFT&quot; banner</div>
+<div class="comment-continuation">... merging major changes with positive feedback and 1 or 2 reviews could be merged on day 7 without discussion on call, and minor PRs even faster, is a policy i would support</div>
+<div class="comment-continuation">... I would recommend no PR stay open over a week if there are no changes requested by 2+ reviewers</div>
+<div class="information">&lt;orie&gt; yes</div>
+<div onmouseout="$('#link-15').hide()" onmouseover="$('#link-15').show()" id="15" class="comment"><span class="name">Manu Sporny</span>:  To clarify, editorial and non-substantive at discretion of editors, for substantive feedback, leave open for 7 or longer if it takes longer to resolve change requests <a id="link-15" style="display:none;" href="#15">✪</a></div>
+<div class="information">&lt;orie&gt; PROPOSAL 1: Any editorial PR can be merged as soon as 2 code owners approve the PR.</div>
+<div class="information">&lt;orie&gt; PROPOSAL 2: Any none editorial PR can be merged as soon as 2 code owners approve the PR, and its been open without change request for a minimum of 7 days.</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  Any editorial PR can be merged as soon as 2 code owners approve the PR.</div>
+<div onmouseout="$('#link-16').hide()" onmouseover="$('#link-16').show()" id="16" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-16" style="display:none;" href="#16">✪</a></div>
+<div onmouseout="$('#link-17').hide()" onmouseover="$('#link-17').show()" id="17" class="comment"><span class="name">Joe Andrieu</span>: +1 <a id="link-17" style="display:none;" href="#17">✪</a></div>
+<div onmouseout="$('#link-18').hide()" onmouseover="$('#link-18').show()" id="18" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-18" style="display:none;" href="#18">✪</a></div>
+<div onmouseout="$('#link-19').hide()" onmouseover="$('#link-19').show()" id="19" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-19" style="display:none;" href="#19">✪</a></div>
+<div onmouseout="$('#link-20').hide()" onmouseover="$('#link-20').show()" id="20" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-20" style="display:none;" href="#20">✪</a></div>
+<div onmouseout="$('#link-21').hide()" onmouseover="$('#link-21').show()" id="21" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-21" style="display:none;" href="#21">✪</a></div>
+<div onmouseout="$('#link-22').hide()" onmouseover="$('#link-22').show()" id="22" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-22" style="display:none;" href="#22">✪</a></div>
+<div id="resolution-1" class="resolution"><strong>RESOLUTION:</strong> Any editorial PR can be merged as soon as 2 code owners approve the PR.</div>
+<div class="proposal"><strong>PROPOSAL:</strong>  Any none editorial PR can be merged as soon as 2 code owners approve the PR, and its been open without change request for a minimum of 7 days.</div>
+<div onmouseout="$('#link-23').hide()" onmouseover="$('#link-23').show()" id="23" class="comment"><span class="name">Mike Prorock</span>: +1 Lots of gaming on that kind of thing <a id="link-23" style="display:none;" href="#23">✪</a></div>
+<div onmouseout="$('#link-24').hide()" onmouseover="$('#link-24').show()" id="24" class="comment"><span class="name">Mahmoud Alkhraishi</span>:  7 Days since last change req? <a id="link-24" style="display:none;" href="#24">✪</a></div>
+<div class="information">&lt;orie&gt; YES</div>
+<div onmouseout="$('#link-25').hide()" onmouseover="$('#link-25').show()" id="25" class="comment"><span class="name">Manu Sporny</span>:  But that opens the door to a lot of gaming <a id="link-25" style="display:none;" href="#25">✪</a></div>
+<div onmouseout="$('#link-26').hide()" onmouseover="$('#link-26').show()" id="26" class="comment"><span class="name">Mahmoud Alkhraishi</span>:  Would adding code owners req&apos;d for approval help? <a id="link-26" style="display:none;" href="#26">✪</a></div>
+<div onmouseout="$('#link-27').hide()" onmouseover="$('#link-27').show()" id="27" class="comment"><span class="name">Orie Steele</span>:  I don&apos;t think that helps, 2 will tag the 3rd if there&apos;s a problem <a id="link-27" style="display:none;" href="#27">✪</a></div>
+<div class="comment-continuation">... and besides if our codeowners can&apos;t triage this many PRs in a timely manner we can get new ones</div>
+<div class="comment-continuation">... and we should use change request feature in github to be very clear and direct</div>
+<div class="comment-continuation">... even if the change request is &quot;i will not support any form of this PR&quot; (written into the CR window of the GH interface)</div>
+<div onmouseout="$('#link-28').hide()" onmouseover="$('#link-28').show()" id="28" class="comment"><span class="name">Orie Steele</span>: +1 To being early in the game... we should not be processing contributors to death... <a id="link-28" style="display:none;" href="#28">✪</a></div>
+<div onmouseout="$('#link-29').hide()" onmouseover="$('#link-29').show()" id="29" class="comment"><span class="name">Mike Prorock</span>: +1 Joe - it is also pretty easy to go put another PR in to adjust something as needed <a id="link-29" style="display:none;" href="#29">✪</a></div>
+<div onmouseout="$('#link-30').hide()" onmouseover="$('#link-30').show()" id="30" class="comment"><span class="name">Joe Andrieu</span>:  I think we should remind ourselves we&apos;re in INCUBATION MODE and other processes in incubation mode work in google docs and very quickly <a id="link-30" style="display:none;" href="#30">✪</a></div>
+<div class="information">&lt;brent&gt; I think 7 days is fine, especially in view of the desired iterative process.</div>
+<div class="comment-continuation">... so we shouldn&apos;t let the GH format put us into a very deliberative process autopilot</div>
+<div onmouseout="$('#link-31').hide()" onmouseover="$('#link-31').show()" id="31" class="comment"><span class="name">Manu Sporny</span>:  I sympathize with both sides of this, we can&apos;t be too cautious but there are reasons to be cautious even though we&apos;re at such an early stage <a id="link-31" style="display:none;" href="#31">✪</a></div>
+<div class="information">&lt;mahmoud&gt; happy 2 or 3</div>
+<div class="comment-continuation">... so we can go ahead with Brent&apos;s version, then, if Mahmoud is happy</div>
+<div class="proposal"><strong>PROPOSAL:</strong>   Any non-editorial PR can be merged as soon as 2 code owners approve the PR, if it has been open for a minimum of 7 days and change requests have been addressed.</div>
+<div onmouseout="$('#link-32').hide()" onmouseover="$('#link-32').show()" id="32" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-32" style="display:none;" href="#32">✪</a></div>
+<div onmouseout="$('#link-33').hide()" onmouseover="$('#link-33').show()" id="33" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-33" style="display:none;" href="#33">✪</a></div>
+<div onmouseout="$('#link-34').hide()" onmouseover="$('#link-34').show()" id="34" class="comment"><span class="name">Brent Zundel</span>: +1 <a id="link-34" style="display:none;" href="#34">✪</a></div>
+<div onmouseout="$('#link-35').hide()" onmouseover="$('#link-35').show()" id="35" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-35" style="display:none;" href="#35">✪</a></div>
+<div onmouseout="$('#link-36').hide()" onmouseover="$('#link-36').show()" id="36" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-36" style="display:none;" href="#36">✪</a></div>
+<div onmouseout="$('#link-37').hide()" onmouseover="$('#link-37').show()" id="37" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-37" style="display:none;" href="#37">✪</a></div>
+<div onmouseout="$('#link-38').hide()" onmouseover="$('#link-38').show()" id="38" class="comment"><span class="name">Joe Andrieu</span>: +1 <a id="link-38" style="display:none;" href="#38">✪</a></div>
+<div onmouseout="$('#link-39').hide()" onmouseover="$('#link-39').show()" id="39" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-39" style="display:none;" href="#39">✪</a></div>
+<div onmouseout="$('#link-40').hide()" onmouseover="$('#link-40').show()" id="40" class="comment"><span class="name">Eric Schuh</span>: +1 <a id="link-40" style="display:none;" href="#40">✪</a></div>
+<div id="resolution-2" class="resolution"><strong>RESOLUTION:</strong> Any non-editorial PR can be merged as soon as 2 code owners approve the PR, if it has been open for a minimum of 7 days and change requests have been addressed.</div>
+<div onmouseout="$('#link-41').hide()" onmouseover="$('#link-41').show()" id="41" class="comment"><span class="name">Manu Sporny</span>:  That work for you, Orie? <a id="link-41" style="display:none;" href="#41">✪</a></div>
+<div onmouseout="$('#link-42').hide()" onmouseover="$('#link-42').show()" id="42" class="comment"><span class="name">Orie Steele</span>:  Yup, I might suggest we start using this immediately (like, the rest of this call) <a id="link-42" style="display:none;" href="#42">✪</a></div>
+<h1 id="topic-3" class="topic">Topic: Renaming VC HTTP API to VC API</h1>
+<div onmouseout="$('#link-43').hide()" onmouseover="$('#link-43').show()" id="43" class="comment"><span class="name">Manu Sporny</span>: <a href="https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0297.html">https://lists.w3.org/Archives/Public/public-credentials/2021Aug/0297.html</a> <a id="link-43" style="display:none;" href="#43">✪</a></div>
+<div onmouseout="$('#link-44').hide()" onmouseover="$('#link-44').show()" id="44" class="comment"><span class="name">Mike Prorock</span>:  You can&apos;t object to non-resolutions <a id="link-44" style="display:none;" href="#44">✪</a></div>
+<div class="comment-continuation">...it was informative, so no action needs to be taken to the &quot;formal&quot; objection</div>
+<div onmouseout="$('#link-45').hide()" onmouseover="$('#link-45').show()" id="45" class="comment"><span class="name">Manu Sporny</span>:  Call for objections to renaming <a id="link-45" style="display:none;" href="#45">✪</a></div>
+<div onmouseout="$('#link-46').hide()" onmouseover="$('#link-46').show()" id="46" class="information">No objections raised <a id="link-46" style="display:none;" href="#46">✪</a></div>
+<div class="proposal"><strong>PROPOSAL:</strong>  Rename the VC HTTP API to become the VC API.</div>
+<div onmouseout="$('#link-47').hide()" onmouseover="$('#link-47').show()" id="47" class="comment"><span class="name">Orie Steele</span>: +1 <a id="link-47" style="display:none;" href="#47">✪</a></div>
+<div onmouseout="$('#link-48').hide()" onmouseover="$('#link-48').show()" id="48" class="comment"><span class="name">Manu Sporny</span>:  &lt;Types proposal while reading it out loud&gt; <a id="link-48" style="display:none;" href="#48">✪</a></div>
+<div onmouseout="$('#link-49').hide()" onmouseover="$('#link-49').show()" id="49" class="comment"><span class="name">Manu Sporny</span>: +1 <a id="link-49" style="display:none;" href="#49">✪</a></div>
+<div onmouseout="$('#link-50').hide()" onmouseover="$('#link-50').show()" id="50" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 <a id="link-50" style="display:none;" href="#50">✪</a></div>
+<div onmouseout="$('#link-51').hide()" onmouseover="$('#link-51').show()" id="51" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-51" style="display:none;" href="#51">✪</a></div>
+<div class="information">&lt;joe_andrieu&gt; +100</div>
+<div onmouseout="$('#link-52').hide()" onmouseover="$('#link-52').show()" id="52" class="comment"><span class="name">Kerri Lemoie</span>: +1 <a id="link-52" style="display:none;" href="#52">✪</a></div>
+<div onmouseout="$('#link-53').hide()" onmouseover="$('#link-53').show()" id="53" class="comment"><span class="name">Mike Prorock</span>: +1 <a id="link-53" style="display:none;" href="#53">✪</a></div>
+<div onmouseout="$('#link-54').hide()" onmouseover="$('#link-54').show()" id="54" class="comment"><span class="name">Adrian Gropper</span>: +1 <a id="link-54" style="display:none;" href="#54">✪</a></div>
+<div onmouseout="$('#link-55').hide()" onmouseover="$('#link-55').show()" id="55" class="comment"><span class="name">Juan Caballero</span>:  I feel you, Joe <a id="link-55" style="display:none;" href="#55">✪</a></div>
+<div onmouseout="$('#link-56').hide()" onmouseover="$('#link-56').show()" id="56" class="comment"><span class="name">Brent Zundel</span>: -0 <a id="link-56" style="display:none;" href="#56">✪</a></div>
+<div class="information">&lt;mprorock&gt; lol</div>
+<div class="information">&lt;mprorock&gt; yes</div>
+<div class="information">&lt;kerri_lemoie&gt; HaH</div>
+<div id="resolution-3" class="resolution"><strong>RESOLUTION:</strong> Rename the VC HTTP API to become the VC API.</div>
+<div onmouseout="$('#link-57').hide()" onmouseover="$('#link-57').show()" id="57" class="comment"><span class="name">Joe Andrieu</span>:  Just want to remark a famous remark of Tim Berners-Lee that he would never have named it HTTP if he&apos;d known people would be saying URLs out loud every day <a id="link-57" style="display:none;" href="#57">✪</a></div>
+<div class="information">&lt;orie&gt; its cool, some browser vendors hide it anyway...</div>
+<div class="information">&lt;manu&gt; Just to clarify, the full name of the renamed specification should be &quot;The Verifiable Credential API&quot;</div>
+<div class="information">&lt;mprorock&gt; i insist on RPC /s</div>
+<div onmouseout="$('#link-58').hide()" onmouseover="$('#link-58').show()" id="58" class="comment"><span class="name">Justin Richer</span>: Did:vc:soap <a id="link-58" style="display:none;" href="#58">✪</a></div>
+<div onmouseout="$('#link-59').hide()" onmouseover="$('#link-59').show()" id="59" class="comment"><span class="name">Orie Steele</span>: +1 To soap. <a id="link-59" style="display:none;" href="#59">✪</a></div>
+<div class="information">&lt;justin_richer&gt; why does : vc : turn into :vc: here??</div>
+<div onmouseout="$('#link-60').hide()" onmouseover="$('#link-60').show()" id="60" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/pull/224">https://github.com/w3c-ccg/vc-http-api/pull/224</a> <a id="link-60" style="display:none;" href="#60">✪</a></div>
+<div class="information">&lt;justin_richer&gt; (jitsie has a flag, fwiw)</div>
+<div onmouseout="$('#link-61').hide()" onmouseover="$('#link-61').show()" id="61" class="information">^ &#55357;&#56384; <a id="link-61" style="display:none;" href="#61">✪</a></div>
+<h1 id="topic-4" class="topic">Topic: Pull Request 224 - Resolutions in Spec</h1>
+<div onmouseout="$('#link-62').hide()" onmouseover="$('#link-62').show()" id="62" class="comment"><span class="name">Mike Prorock</span>: +1 To closing <a id="link-62" style="display:none;" href="#62">✪</a></div>
+<div class="information">&lt;orie&gt; please close confusing and outdated PRs.</div>
+<div class="information">&lt;mahmoud&gt; close</div>
+<div onmouseout="$('#link-63').hide()" onmouseover="$('#link-63').show()" id="63" class="comment"><span class="name">Joe Andrieu</span>: +1 To close <a id="link-63" style="display:none;" href="#63">✪</a></div>
+<div class="information">&lt;mprorock&gt; we can cherry pick good language out to use in other PRs</div>
+<div class="information">&lt;orie&gt; 9</div>
+<h1 id="topic-5" class="topic">Topic: Pull Request 226 - RAR and GNAP</h1>
+<div onmouseout="$('#link-64').hide()" onmouseover="$('#link-64').show()" id="64" class="comment"><span class="name">Manu Sporny</span>: <a href="https://github.com/w3c-ccg/vc-http-api/pull/226">https://github.com/w3c-ccg/vc-http-api/pull/226</a> <a id="link-64" style="display:none;" href="#64">✪</a></div>
+<div onmouseout="$('#link-65').hide()" onmouseover="$('#link-65').show()" id="65" class="comment"><span class="name">Manu Sporny</span>:  Thanks to Justin for writing this up, lots of discussion.  some of this content has been moved to other PRs <a id="link-65" style="display:none;" href="#65">✪</a></div>
+<div onmouseout="$('#link-66').hide()" onmouseover="$('#link-66').show()" id="66" class="comment"><span class="name">Manu Sporny</span>:  How should we move forward with this, workflow and order of operations a little confusing <a id="link-66" style="display:none;" href="#66">✪</a></div>
+<div onmouseout="$('#link-67').hide()" onmouseover="$('#link-67').show()" id="67" class="comment"><span class="name">Justin Richer</span>:  I marked this as a draft so as NOT to be merged. I put this in as a straw man/examples of the language the group *could* write <a id="link-67" style="display:none;" href="#67">✪</a></div>
+<div class="comment-continuation">... i think open or closed, this PR would be a good thing to cut and paste.  I wanted it in the repo because I felt words kept getting put in my mouth</div>
+<div onmouseout="$('#link-68').hide()" onmouseover="$('#link-68').show()" id="68" class="comment"><span class="name">Mike Prorock</span>: +1 Some very good language in here - note I think a lot has already been pulled out into other PRs <a id="link-68" style="display:none;" href="#68">✪</a></div>
+<div class="comment-continuation">... I think this group has been happy to do things like work with scope strings, and I think the comments in this thread are good questions about designing APIs with actions in mind</div>
+<div class="information">&lt;orie&gt; I provided feedback on the PR, but it has not been addressed.</div>
+<div onmouseout="$('#link-69').hide()" onmouseover="$('#link-69').show()" id="69" class="comment"><span class="name">Manu Sporny</span>:  I would recommend we leave it open as a draft PR so that we keep referring to it <a id="link-69" style="display:none;" href="#69">✪</a></div>
+<div class="information">&lt;mprorock&gt; @orie - this is a draft PR - have some of the other PRs covered your comments?</div>
+<div class="comment-continuation">... I think the AuthZ PRs that have been broken out of it already, and leaving it open keeps our options open if we add sections later that could also borrow from this</div>
+<div class="information">&lt;orie&gt; possibly... Im not against the idea behind his PR...</div>
+<div class="information">&lt;orie&gt; But it needs to graduate into a mergeable state.</div>
+<div onmouseout="$('#link-70').hide()" onmouseover="$('#link-70').show()" id="70" class="comment"><span class="name">Adrian Gropper</span>:  I&apos;m glad to keep this open, and propose we not return to it until AuthZ sections have been substanciated a bit more <a id="link-70" style="display:none;" href="#70">✪</a></div>
+<div class="information">&lt;orie&gt; Justin is correct</div>
+<div class="information">&lt;orie&gt; we can&apos;t merge a draft.</div>
+<div onmouseout="$('#link-71').hide()" onmouseover="$('#link-71').show()" id="71" class="information">Draft status is fine <a id="link-71" style="display:none;" href="#71">✪</a></div>
+<div class="information">&lt;justin_richer&gt; I marked it draft so it wouldn&apos;t be merged, it would be discussed.</div>
+<div class="information">&lt;orie&gt; draft is fine, I won&apos;t approve it until it is mergeable and feedback is addressed.</div>
+<div onmouseout="$('#link-72').hide()" onmouseover="$('#link-72').show()" id="72" class="comment"><span class="name">Manu Sporny</span>:  A label would be technically redundant but help scanning a long list of PRs <a id="link-72" style="display:none;" href="#72">✪</a></div>
+<div class="information">&lt;justin_richer&gt; I suggest &quot;draft&quot; because it has mechanical enforcement</div>
+<div class="information">&lt;orie&gt; ^ i think Justin did the right thin.</div>
+<div onmouseout="$('#link-73').hide()" onmouseover="$('#link-73').show()" id="73" class="comment"><span class="name">Mike Prorock</span>: +1 Orie <a id="link-73" style="display:none;" href="#73">✪</a></div>
+<div class="information">&lt;justin_richer&gt; I don&apos;t care if you label it</div>
+<div class="information">&lt;mahmoud&gt; draft is fine</div>
+<div onmouseout="$('#link-74').hide()" onmouseover="$('#link-74').show()" id="74" class="information">Draft is displayed in faint grey on the list by default <a id="link-74" style="display:none;" href="#74">✪</a></div>
+<div onmouseout="$('#link-75').hide()" onmouseover="$('#link-75').show()" id="75" class="information">So it technically already displays it... just not in bright colors :D <a id="link-75" style="display:none;" href="#75">✪</a></div>
+<div class="information">&lt;orie&gt; its called &quot;request changes&quot;</div>
+<div class="information">&lt;orie&gt; ffs</div>
+<div onmouseout="$('#link-76').hide()" onmouseover="$('#link-76').show()" id="76" class="comment"><span class="name">Justin Richer</span>: +1 To orie <a id="link-76" style="display:none;" href="#76">✪</a></div>
+<div onmouseout="$('#link-77').hide()" onmouseover="$('#link-77').show()" id="77" class="information">I think repo admins can bump a PR from or to draft <a id="link-77" style="display:none;" href="#77">✪</a></div>
+<div class="information">&lt;justin_richer&gt; we can&apos;t</div>
+<div class="information">&lt;justin_richer&gt; ?</div>
+<div class="information">&lt;mprorock&gt; there is a do not merge label in there</div>
+<div onmouseout="$('#link-78').hide()" onmouseover="$('#link-78').show()" id="78" class="comment"><span class="name">Juan Caballero</span>: +1 <a id="link-78" style="display:none;" href="#78">✪</a></div>
+<div class="information">&lt;brent&gt; sorry for jumping queue</div>
+<div class="information">&lt;justin_richer&gt; labels don&apos;t block merge either</div>
+<div onmouseout="$('#link-79').hide()" onmouseover="$('#link-79').show()" id="79" class="comment"><span class="name">Ted Thibodeau</span>:  Yes you can merge with requested changes open, and yes, you can mark someone else&apos;s PR as draft <a id="link-79" style="display:none;" href="#79">✪</a></div>
+<div class="information">&lt;orie&gt; they do in the ccgg</div>
+<div class="comment-continuation">... if you have admin rights</div>
+<div class="information">&lt;orie&gt; we just agreed to that...</div>
+<div class="information">&lt;mprorock&gt; there is a do not merge label</div>
+<div onmouseout="$('#link-80').hide()" onmouseover="$('#link-80').show()" id="80" class="comment"><span class="name">Ted Thibodeau</span>: +1 Create label, apply it to this PR.  it may be rarely used, but it&apos;s useful nonetheless. <a id="link-80" style="display:none;" href="#80">✪</a></div>
+<div class="information">&lt;orie&gt; you ccan mere over the do not merge label too</div>
+<div onmouseout="$('#link-81').hide()" onmouseover="$('#link-81').show()" id="81" class="comment"><span class="name">Mike Prorock</span>: +1 Orie <a id="link-81" style="display:none;" href="#81">✪</a></div>
+<div onmouseout="$('#link-82').hide()" onmouseover="$('#link-82').show()" id="82" class="comment"><span class="name">Orie Steele</span>: +1 Justin! <a id="link-82" style="display:none;" href="#82">✪</a></div>
+<div onmouseout="$('#link-83').hide()" onmouseover="$('#link-83').show()" id="83" class="comment"><span class="name">Manu Sporny</span>:  I think you can only mark draft on a PR from a fork <a id="link-83" style="display:none;" href="#83">✪</a></div>
+<div class="information">&lt;mprorock&gt; we need to trust the editors to read the comments for objections, changes requestd, etc</div>
+<div onmouseout="$('#link-84').hide()" onmouseover="$('#link-84').show()" id="84" class="comment"><span class="name">Justin Richer</span>:  I&apos;m not a fan of &quot;do not merge&quot; because it can be used passive-aggressively <a id="link-84" style="display:none;" href="#84">✪</a></div>
+<div class="information">&lt;brent&gt; on github repos where I have proper access I can convert any PR to draft.</div>
+<div class="information">&lt;tallted&gt; draft theoretically means that its author doesn&apos;t think it&apos;s ready for others to review, it exits draft for others to review, and *then* the merge question comes up.</div>
+<div onmouseout="$('#link-85').hide()" onmouseover="$('#link-85').show()" id="85" class="comment"><span class="name">Orie Steele</span>:  These descriptive labels are kind of orthogonal to the behavior we&apos;re expecting in the code owners <a id="link-85" style="display:none;" href="#85">✪</a></div>
+<div class="comment-continuation">... i think we need to remember the editors have power and responsibility</div>
+<div onmouseout="$('#link-86').hide()" onmouseover="$('#link-86').show()" id="86" class="comment"><span class="name">Manu Sporny</span>:  No op and move on? <a id="link-86" style="display:none;" href="#86">✪</a></div>
+<div class="information">&lt;justin_richer&gt; moving on is nice</div>
+<div onmouseout="$('#link-87').hide()" onmouseover="$('#link-87').show()" id="87" class="comment"><span class="name">Mike Prorock</span>: +1 Justin <a id="link-87" style="display:none;" href="#87">✪</a></div>
+<h1 id="topic-6" class="topic">Topic: Pull Request 227 - Single Word Change</h1>
+<div onmouseout="$('#link-88').hide()" onmouseover="$('#link-88').show()" id="88" class="information"><a href="https://github.com/w3c-ccg/vc-http-api/pull/227">https://github.com/w3c-ccg/vc-http-api/pull/227</a> <a id="link-88" style="display:none;" href="#88">✪</a></div>
+<div onmouseout="$('#link-89').hide()" onmouseover="$('#link-89').show()" id="89" class="comment"><span class="name">Manu Sporny</span>:  Good example of new policy, SHIP IT <a id="link-89" style="display:none;" href="#89">✪</a></div>
+<h1 id="topic-7" class="topic">Topic: Pull Request 228 - Intro to Authz Section</h1>
+<div onmouseout="$('#link-90').hide()" onmouseover="$('#link-90').show()" id="90" class="information"><a href="https://github.com/w3c-ccg/vc-http-api/pull/228">https://github.com/w3c-ccg/vc-http-api/pull/228</a> <a id="link-90" style="display:none;" href="#90">✪</a></div>
+<div class="information">&lt;justin_richer&gt; as an aside, this group is absolutely killing itself with process, in my opinion</div>
+<div onmouseout="$('#link-91').hide()" onmouseover="$('#link-91').show()" id="91" class="comment"><span class="name">Orie Steele</span>: +1 Justin. <a id="link-91" style="display:none;" href="#91">✪</a></div>
+<div onmouseout="$('#link-92').hide()" onmouseover="$('#link-92').show()" id="92" class="comment"><span class="name">Mike Prorock</span>: +1 Justin <a id="link-92" style="display:none;" href="#92">✪</a></div>
+<div class="information">&lt;orie&gt; The same applies to this PR.</div>
+<div class="information">&lt;orie&gt; its been open for 10 days, no change requests</div>
+<div class="information">&lt;orie&gt; it should be merged immediatly</div>
+<div class="information">&lt;orie&gt; please merge it @manu.</div>
+<div class="information">&lt;orie&gt; they had 10 days to review it....</div>
+<div class="information">&lt;orie&gt; we just agreed to apply that policy.</div>
+<div onmouseout="$('#link-93').hide()" onmouseover="$('#link-93').show()" id="93" class="comment"><span class="name">Mahmoud Alkhraishi</span>: +1 To Orie&apos;s point, assuming adrian&apos;s new CR&apos;s regarding the new name are accepted <a id="link-93" style="display:none;" href="#93">✪</a></div>
+<div onmouseout="$('#link-94').hide()" onmouseover="$('#link-94').show()" id="94" class="comment"><span class="name">Manu Sporny</span>:  Here is a good test case where I&apos;m worried about the new policy being applied literally <a id="link-94" style="display:none;" href="#94">✪</a></div>
+<div class="information">&lt;orie&gt; just request changes if you want to block the PR... its trivial to do.</div>
+<div class="information">&lt;orie&gt; thanks Justin!</div>
+<div onmouseout="$('#link-95').hide()" onmouseover="$('#link-95').show()" id="95" class="comment"><span class="name">Justin Richer</span>:  Here is an editorial hackjob that takes the letter of my comment and not the spirit. I do not like this PR <a id="link-95" style="display:none;" href="#95">✪</a></div>
+<div class="information">&lt;tallted&gt; Multiple open change requests ... and says it&apos;s a partial substitute for #226, which also remains open, so what&apos;s the actual choice to be made?</div>
+<div onmouseout="$('#link-96').hide()" onmouseover="$('#link-96').show()" id="96" class="comment"><span class="name">Mike Prorock</span>: Note: Joe has good editorial changes requested <a id="link-96" style="display:none;" href="#96">✪</a></div>
+<div onmouseout="$('#link-97').hide()" onmouseover="$('#link-97').show()" id="97" class="comment"><span class="name">Manu Sporny</span>:  That sounds like no objection to merge to me <a id="link-97" style="display:none;" href="#97">✪</a></div>
+<div onmouseout="$('#link-98').hide()" onmouseover="$('#link-98').show()" id="98" class="comment"><span class="name">Adrian Gropper</span>:  I think this reflects a particular API AuthZ strategy and I&apos;d rather this PR stay open <a id="link-98" style="display:none;" href="#98">✪</a></div>
+<div class="information">&lt;orie&gt; there are no change requests, blocking the PR....</div>
+<div onmouseout="$('#link-99').hide()" onmouseover="$('#link-99').show()" id="99" class="comment"><span class="name">Ted Thibodeau</span>:  This opens with a confusing &quot;Partial alternate to another open PR&quot; disclaimer so it feels hedgey <a id="link-99" style="display:none;" href="#99">✪</a></div>
+<div class="information">&lt;orie&gt; use the &quot;request for change feature&quot;</div>
+<div class="comment-continuation">... I think the 226 versus alternatives thing is hard to parse</div>
+<div onmouseout="$('#link-100').hide()" onmouseover="$('#link-100').show()" id="100" class="comment"><span class="name">Mike Prorock</span>:  But if 226 is in draft and it&apos;s intended as a reference, this isn&apos;t an alternative, it&apos;s an offshoot of! <a id="link-100" style="display:none;" href="#100">✪</a></div>
+<div class="information">&lt;orie&gt; I requested changes</div>
+<div class="information">&lt;orie&gt; now it can&apos;t be mergged</div>
+<div onmouseout="$('#link-101').hide()" onmouseover="$('#link-101').show()" id="101" class="information">&#55357;&#56877; <a id="link-101" style="display:none;" href="#101">✪</a></div>
+<h1 id="topic-8" class="topic">Topic: Pull Request 229 - Forbidden Authorization</h1>
+<div onmouseout="$('#link-102').hide()" onmouseover="$('#link-102').show()" id="102" class="information"><a href="https://github.com/w3c-ccg/vc-http-api/pull/229">https://github.com/w3c-ccg/vc-http-api/pull/229</a> <a id="link-102" style="display:none;" href="#102">✪</a></div>
+<div class="information">&lt;orie&gt; I have requested changes on this PR.</div>
+<h1 id="topic-9" class="topic">Topic: Pull Request 230 - Authorization Delegation</h1>
+<div onmouseout="$('#link-103').hide()" onmouseover="$('#link-103').show()" id="103" class="information"><a href="https://github.com/w3c-ccg/vc-http-api/pull/230">https://github.com/w3c-ccg/vc-http-api/pull/230</a> <a id="link-103" style="display:none;" href="#103">✪</a></div>
+<div class="information">&lt;justin_richer&gt; ZCAP and GNAP solve completely different problems, though ...</div>
+<div class="information">&lt;orie&gt; a normative statemen in a community draft...</div>
+<div onmouseout="$('#link-104').hide()" onmouseover="$('#link-104').show()" id="104" class="comment"><span class="name">Manu Sporny</span>:  Adrian does this make you happy or sad? <a id="link-104" style="display:none;" href="#104">✪</a></div>
+<div class="information">&lt;orie&gt; I suggest approving or requesting changes Adrian and Justin.</div>
+<div class="information">&lt;orie&gt; I don&apos;t care about your feelings, but would love to see a PR review on this ;)</div>
+<div class="information">&lt;orie&gt; ( I do care about your feelings )</div>
+<div onmouseout="$('#link-105').hide()" onmouseover="$('#link-105').show()" id="105" class="comment"><span class="name">Adrian Gropper</span>:  As I&apos;ve said before, I am interested in consensus on ideological questions, not low-level spec language. <a id="link-105" style="display:none;" href="#105">✪</a></div>
+<div class="information">&lt;orie&gt; :)</div>
+<div onmouseout="$('#link-106').hide()" onmouseover="$('#link-106').show()" id="106" class="comment"><span class="name">Manu Sporny</span>:  I don&apos;t know how to help, we are working on spec language here.  I keep trying to channel your comments as best I can in drafting these PRs <a id="link-106" style="display:none;" href="#106">✪</a></div>
+<div onmouseout="$('#link-107').hide()" onmouseover="$('#link-107').show()" id="107" class="comment"><span class="name">Orie Steele</span>: +1 David <a id="link-107" style="display:none;" href="#107">✪</a></div>
+<div class="information">&lt;orie&gt; I will request changes</div>
+<div class="information">&lt;juan_caballero&gt;&#9;david_chadwick: i&apos;m putting a comment in that should --&gt; MAY because in some spec contexts, SHOULDs are interpreted as MUSTS</div>
+<div onmouseout="$('#link-108').hide()" onmouseover="$('#link-108').show()" id="108" class="comment"><span class="name">Ted Thibodeau</span>:  I strongly disagree, SHOULD means MUST UNLESS YOU KNOW WHAT YOU ARE DOING.  MAY is way too open/loose <a id="link-108" style="display:none;" href="#108">✪</a></div>
+<div class="information">&lt;orie&gt; I agree with David, and I requested changes.</div>
+<div class="information">&lt;orie&gt; it now can&apos;t be merged.</div>
+<div onmouseout="$('#link-109').hide()" onmouseover="$('#link-109').show()" id="109" class="comment"><span class="name">Adrian Gropper</span>:  In contexts I&apos;ve worked on, SHOULD has to be tested by conformance tests even if at deployment it isn&apos;t required <a id="link-109" style="display:none;" href="#109">✪</a></div>
+<div onmouseout="$('#link-110').hide()" onmouseover="$('#link-110').show()" id="110" class="information">Adrian&apos;s comment on testing conforms with my understanding <a id="link-110" style="display:none;" href="#110">✪</a></div>
+<div class="information">&lt;dmitri_zagidulin&gt;&#9;orie: i&apos;d be interested to know why (re should -&gt; MAY), from you</div>
+<div class="information">&lt;orie&gt; I don&apos;t think anyone SHOULD use GNAP or ZCAPs ; )</div>
+<div class="information">&lt;dmitri_zagidulin&gt; thanks.</div>
+<h1 id="topic-10" class="topic">Topic: Pull Request 231 - OAuth 2.0 Bearer Tokens</h1>
+<div onmouseout="$('#link-111').hide()" onmouseover="$('#link-111').show()" id="111" class="information"><a href="https://github.com/w3c-ccg/vc-http-api/pull/231">https://github.com/w3c-ccg/vc-http-api/pull/231</a> <a id="link-111" style="display:none;" href="#111">✪</a></div>
+<div onmouseout="$('#link-112').hide()" onmouseover="$('#link-112').show()" id="112" class="comment"><span class="name">Manu Sporny</span>:  I think these PRs parallelizes and compartmentalizes the options for AuthZ <a id="link-112" style="display:none;" href="#112">✪</a></div>
+<div class="information">&lt;mprorock&gt; can we accept Ted&apos;s changes and merge it?</div>
+<div onmouseout="$('#link-113').hide()" onmouseover="$('#link-113').show()" id="113" class="comment"><span class="name">Orie Steele</span>:  Manu could you accept Ted&apos;s changes and merge on the call now? <a id="link-113" style="display:none;" href="#113">✪</a></div>
+<div class="information">&lt;orie&gt; Thanks for the change request @TallTed!</div>
+<div onmouseout="$('#link-114').hide()" onmouseover="$('#link-114').show()" id="114" class="comment"><span class="name">Justin Richer</span>:  I think the language in this PR doesn&apos;t make sense to me, needs work <a id="link-114" style="display:none;" href="#114">✪</a></div>
+<div class="information">&lt;orie&gt; Justin, try using the &quot;PR Review feature&quot; of GitHub : )</div>
+<div onmouseout="$('#link-115').hide()" onmouseover="$('#link-115').show()" id="115" class="comment"><span class="name">Orie Steele</span>:  Try using less snark :) [scribe assist by Justin Richer] <a id="link-115" style="display:none;" href="#115">✪</a></div>
+<div class="information">&lt;orie&gt; I learned from the best</div>
+<div onmouseout="$('#link-116').hide()" onmouseover="$('#link-116').show()" id="116" class="comment"><span class="name">Manu Sporny</span>:  I think there is a new PR (233) that I&apos;d love the group to review <a id="link-116" style="display:none;" href="#116">✪</a></div>
+<div class="information">&lt;mprorock&gt; this call was all snark</div>
+<div onmouseout="$('#link-117').hide()" onmouseover="$('#link-117').show()" id="117" class="information">Thanks all <a id="link-117" style="display:none;" href="#117">✪</a></div>
+</div></div></div></div></div><h3><a href="/201x-meeting-archives/2019-12-17/">Meeting for 2019-12-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-12-17/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-12-17/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-12-17/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-12-17/#topic-4">WebKMS</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-12-10/">Meeting for 2019-12-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-12-10/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2019-12-10/#topic-2">Introductions / Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-12-10/#topic-3">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-12-10/#topic-4">Progress & Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-12-10/#topic-5">Verifiable Credentials for Education Task Force</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-12-03/">Meeting for 2019-12-03</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-12-03/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-12-03/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-12-03/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-12-03/#topic-4">did:key method</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-11-12/">Meeting for 2019-11-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-11-12/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-11-12/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-11-12/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-11-12/#topic-4">Personal Data Stores Comparison</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-11-05/">Meeting for 2019-11-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-11-05/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-11-05/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-11-05/#topic-3">Review action items and work items</a></li>
+<li><a href="/201x-meeting-archives/2019-11-05/#topic-4">CCG 2020 Scope of work</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-10-29/">Meeting for 2019-10-29</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-10-29/#topic-1">Introductions / Re-Introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-10-29/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-10-29/#topic-3">Work Items and Action Items Review</a></li>
+<li><a href="/201x-meeting-archives/2019-10-29/#topic-4">Year End Purge</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-10-22/">Meeting for 2019-10-22</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-10-22/#topic-1">Agenda review</a></li>
+<li><a href="/201x-meeting-archives/2019-10-22/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-10-22/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-10-22/#topic-4">Credential Schema Specification</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2019-10-22/#resolution-1">The W3C Credentials CG supports the rechartering of a Verifiable Credentials Maintenance Working Group.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-10-15/">Meeting for 2019-10-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-10-15/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-10-15/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-10-15/#topic-3">Progress on Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-10-15/#topic-4">DID handoff</a></li>
+<li><a href="/201x-meeting-archives/2019-10-15/#topic-5">VC WG Maintenance Charter</a></li>
+<li><a href="/201x-meeting-archives/2019-10-15/#topic-6">Contributing to JSON-LD Contexts</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-10-08/">Meeting for 2019-10-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-10-08/#topic-1">Introductions / Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-10-08/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-10-08/#topic-3">DIDs from a non-technical perspective</a></li>
+<li><a href="/201x-meeting-archives/2019-10-08/#topic-4">IIW Report out</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-09-10/">Meeting for 2019-09-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-09-10/#topic-1">Introductions and Reintroduction</a></li>
+<li><a href="/201x-meeting-archives/2019-09-10/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-09-10/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-09-10/#topic-4">Verifiable Credentials next steps</a></li>
+<li><a href="/201x-meeting-archives/2019-09-10/#topic-5">Decentralized Identity Working Group</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-08-27/">Meeting for 2019-08-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-08-27/#topic-1">Introductions and re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-08-27/#topic-2">DID working group charter / outreach</a></li>
+<li><a href="/201x-meeting-archives/2019-08-27/#topic-3">Datashards</a></li>
+<li><a href="/201x-meeting-archives/2019-08-27/#topic-4">Solid</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-08-20/">Meeting for 2019-08-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-08-20/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-08-20/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-08-20/#topic-3">Decentralized Topics at #RWOT9</a></li>
+<li><a href="/201x-meeting-archives/2019-08-20/#topic-4">BTCR hackathon</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-08-13/">Meeting for 2019-08-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-08-13/#topic-1">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-08-13/#topic-2">DID WG Charter and outreach</a></li>
+<li><a href="/201x-meeting-archives/2019-08-13/#topic-3">Agents, Hubs, and More</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-07-30/">Meeting for 2019-07-30</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-07-30/#topic-1">intros and reintros</a></li>
+<li><a href="/201x-meeting-archives/2019-07-30/#topic-2">announcements and reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-07-30/#topic-3">Progresson action items</a></li>
+<li><a href="/201x-meeting-archives/2019-07-30/#topic-4">Standards setting process</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-07-23/">Meeting for 2019-07-23</a></h3>
+<h3><a href="/201x-meeting-archives/2019-07-09/">Meeting for 2019-07-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-07-09/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-07-09/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-07-09/#topic-3">DID WG Charter Proposal</a></li>
+<li><a href="/201x-meeting-archives/2019-07-09/#topic-4">Non-Violent Communication</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-07-02/">Meeting for 2019-07-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-07-02/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-07-02/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-07-02/#topic-3">Progress on Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-07-02/#topic-4">Amira</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-06-25/">Meeting for 2019-06-25</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-06-25/#topic-1">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-06-25/#topic-2">Accouncements</a></li>
+<li><a href="/201x-meeting-archives/2019-06-25/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-06-25/#topic-4">Work Item Review, Fin</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-06-18/">Meeting for 2019-06-18</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-06-18/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-06-18/#topic-2">Announcements and reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-06-18/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-06-18/#topic-4">Work item repair</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-06-11/">Meeting for 2019-06-11</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-06-11/#topic-1">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-06-11/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-06-11/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-06-11/#topic-4">Rubrics Task Force</a></li>
+<li><a href="/201x-meeting-archives/2019-06-11/#topic-5">Credential CG Work Item Process Draft, simplified</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-05-28/">Meeting for 2019-05-28</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-05-28/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-05-28/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-05-28/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-05-28/#topic-4">Discuss New Work Item Process</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-05-14/">Meeting for 2019-05-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-05-14/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-05-14/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-05-14/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-05-14/#topic-4">Decentralized Identifier Rubrics</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-05-07/">Meeting for 2019-05-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-05-07/#topic-1">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-05-07/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-05-07/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-05-07/#topic-4">Message from the chairs and ensuring a positive work environment</a></li>
+<li><a href="/201x-meeting-archives/2019-05-07/#topic-5">IIW</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-04-23/">Meeting for 2019-04-23</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-04-23/#topic-1">Agenda review</a></li>
+<li><a href="/201x-meeting-archives/2019-04-23/#topic-2">IP Note, call notes</a></li>
+<li><a href="/201x-meeting-archives/2019-04-23/#topic-3">Introductions and re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-04-23/#topic-4">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-04-23/#topic-5">Open issues</a></li>
+<li><a href="/201x-meeting-archives/2019-04-23/#topic-6">ABNF Task Force</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-04-16/">Meeting for 2019-04-16</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-04-16/#topic-1">Introductions / Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-04-16/#topic-2">Annoucements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-04-16/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-04-16/#topic-4">Survey Results</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-04-02/">Meeting for 2019-04-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-04-02/#topic-1">IP notes, call notes,</a></li>
+<li><a href="/201x-meeting-archives/2019-04-02/#topic-2">Introductions & Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-04-02/#topic-3">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-04-02/#topic-4">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-04-02/#topic-5">DID Report out for AC Meeting</a></li>
+<li><a href="/201x-meeting-archives/2019-04-02/#topic-6">Survey results</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-03-26/">Meeting for 2019-03-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-03-26/#topic-1">Introductions / Reintoroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-03-26/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-03-26/#topic-3">Progress on Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-03-26/#topic-4">DIF Report Out</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-03-19/">Meeting for 2019-03-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-03-19/#topic-1">intros</a></li>
+<li><a href="/201x-meeting-archives/2019-03-19/#topic-2">announcements and reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-03-19/#topic-3">Action items</a></li>
+<li><a href="/201x-meeting-archives/2019-03-19/#topic-4">https DID method spec, and more</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-03-12/">Meeting for 2019-03-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-03-12/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-03-12/#topic-2">Annoucements and reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-03-12/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-03-12/#topic-4">RWOT8 Report Out</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-02-19/">Meeting for 2019-02-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-02-19/#topic-1">Introductions/Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2019-02-19/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-02-19/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-02-19/#topic-4">Review ABNF PR</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-02-12/">Meeting for 2019-02-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-02-12/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-02-12/#topic-2">announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-02-12/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-02-12/#topic-4">Use Cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-02-05/">Meeting for 2019-02-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-02-05/#topic-1">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-02-05/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-02-05/#topic-3">Work Item Review</a></li>
+<li><a href="/201x-meeting-archives/2019-02-05/#topic-4">DID Issue Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-01-29/">Meeting for 2019-01-29</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-01-29/#topic-1">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-01-29/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-01-29/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-01-29/#topic-4">DID Pull Requests</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-01-22/">Meeting for 2019-01-22</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-01-22/#topic-1">Intros</a></li>
+<li><a href="/201x-meeting-archives/2019-01-22/#topic-2">Announcements and reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-01-22/#topic-3">Progress on action items</a></li>
+<li><a href="/201x-meeting-archives/2019-01-22/#topic-4">New work items</a></li>
+<li><a href="/201x-meeting-archives/2019-01-22/#topic-5">Proposed work items</a></li>
+<li><a href="/201x-meeting-archives/2019-01-22/#topic-6">DID Spec PR Triage</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-01-15/">Meeting for 2019-01-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-01-15/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-01-15/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2019-01-15/#topic-3">Progress on Action Items</a></li>
+<li><a href="/201x-meeting-archives/2019-01-15/#topic-4">Work Item Status Review</a></li>
+<li><a href="/201x-meeting-archives/2019-01-15/#topic-5">New Work Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2019-01-08/">Meeting for 2019-01-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2019-01-08/#topic-1">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2019-01-08/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2019-01-08/#topic-3">Action items</a></li>
+<li><a href="/201x-meeting-archives/2019-01-08/#topic-4">Work items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-12-18/">Meeting for 2018-12-18</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-12-18/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-12-18/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-12-18/#topic-3">2018 Year in Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-12-04/">Meeting for 2018-12-04</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-12-04/#topic-1">introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-12-04/#topic-2">reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-12-04/#topic-3">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-12-04/#topic-4">DID resolver specification</a></li>
+<li><a href="/201x-meeting-archives/2018-12-04/#topic-5">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-12-04/#topic-6">TAG charter review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-11-27/">Meeting for 2018-11-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-2">Introductions / Reintroductions?</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-3">Reminders and Events</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-4">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-5">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-6">Review summary of previous DID stories, questions, painpoints meetings</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-7">DID Summary High Points</a></li>
+<li><a href="/201x-meeting-archives/2018-11-27/#topic-8">DID Explainer Template</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-11-20/">Meeting for 2018-11-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-11-20/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-11-20/#topic-2">Announcements, reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-11-20/#topic-3">Action items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-20/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-20/#topic-5">Pain points</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-11-13/">Meeting for 2018-11-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-11-13/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-11-13/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-11-13/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-13/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-13/#topic-5">DID Unique Selling Proposition</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-11-06/">Meeting for 2018-11-06</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-11-06/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-11-06/#topic-2">Update on Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-06/#topic-3">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-11-06/#topic-4">W3C TPAC 2018</a></li>
+<li><a href="/201x-meeting-archives/2018-11-06/#topic-5">IIW</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-10-16/">Meeting for 2018-10-16</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-10-16/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-10-16/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-10-16/#topic-3">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-10-16/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-10-16/#topic-5">TPAC Planning</a></li>
+<li><a href="/201x-meeting-archives/2018-10-16/#topic-6">Feedback on charter</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-10-09/">Meeting for 2018-10-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-10-09/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2018-10-09/#topic-2">Introductions / Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-10-09/#topic-3">Announcements / Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-10-09/#topic-4">Progress on Action/Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-10-09/#topic-5">W3C TPAC Planning.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-10-02/">Meeting for 2018-10-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-10-02/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-10-02/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-10-02/#topic-3">Review Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-10-02/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-10-02/#topic-5">New Business</a></li>
+<li><a href="/201x-meeting-archives/2018-10-02/#topic-6">RWoT7</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-09-18/">Meeting for 2018-09-18</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-09-18/#topic-1">Introductions & Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-09-18/#topic-2">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-09-18/#topic-3">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-09-18/#topic-4">Status of work items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-08-21/">Meeting for 2018-08-21</a></h3>
+<h3><a href="/201x-meeting-archives/2018-08-14/">Meeting for 2018-08-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-08-14/#topic-1">introductions and re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-08-14/#topic-2">announcements and reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-08-14/#topic-3">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-08-14/#topic-4">Progress on current action items</a></li>
+<li><a href="/201x-meeting-archives/2018-08-14/#topic-5">Work items</a></li>
+<li><a href="/201x-meeting-archives/2018-08-14/#topic-6">Jolocom</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-08-07/">Meeting for 2018-08-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-08-07/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-08-07/#topic-2">Review announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-08-07/#topic-3">Action items</a></li>
+<li><a href="/201x-meeting-archives/2018-08-07/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-08-07/#topic-5">proof of personhood</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-07-24/">Meeting for 2018-07-24</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-07-24/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-07-24/#topic-2">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2018-07-24/#topic-3">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-07-24/#topic-4">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-07-24/#topic-5">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-07-24/#topic-6">Amira Use Case</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-07-17/">Meeting for 2018-07-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-07-17/#topic-1">Agenda Review and Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-07-17/#topic-2">Roadmap</a></li>
+<li><a href="/201x-meeting-archives/2018-07-17/#topic-3">DID WG Charter</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-07-10/">Meeting for 2018-07-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-07-10/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-07-10/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-07-10/#topic-3">uPort Ethereum DID Method</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-07-03/">Meeting for 2018-07-03</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-2">Transparency</a></li>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-3">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-4">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-5">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-6">Focal Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2018-07-03/#topic-7">DID-Auth</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-06-26/">Meeting for 2018-06-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-2">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-3">Announcements & Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-4">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-5">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-6">Focal Use Cases for DID WG</a></li>
+<li><a href="/201x-meeting-archives/2018-06-26/#topic-7">Muscians and Influencers</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-06-19/">Meeting for 2018-06-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-06-19/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-06-19/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-06-19/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-19/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-19/#topic-5">Requirements for DIDs</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-06-12/">Meeting for 2018-06-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-1">Agenda review</a></li>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-2">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-3">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-4">Action items - https://github.com/w3c-ccg/community/issues?q=is%3Aissue+is%3Aopen+label%3A%22action+item%22_</a></li>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-5">Work items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-6">DID Method Requirements?</a></li>
+<li><a href="/201x-meeting-archives/2018-06-12/#topic-7">Focal use cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-06-05/">Meeting for 2018-06-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-06-05/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-06-05/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-06-05/#topic-3">Progress on current action items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-05/#topic-4">Status of Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-06-05/#topic-5">Focal Use Cases for DID WG</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-05-29/">Meeting for 2018-05-29</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-05-29/#topic-1">Introductions and Re-Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-05-29/#topic-2">Wyoming Blockchain Task Force Meeting</a></li>
+<li><a href="/201x-meeting-archives/2018-05-29/#topic-3">Summer Hackathon</a></li>
+<li><a href="/201x-meeting-archives/2018-05-29/#topic-4">Focal Use Cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-05-22/">Meeting for 2018-05-22</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-05-22/#topic-1">Introductions/Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-05-22/#topic-2">Announcements and Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-05-22/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-22/#topic-4">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-22/#topic-5">Update on Educational Task Force</a></li>
+<li><a href="/201x-meeting-archives/2018-05-22/#topic-6">Formation of a User Story Task Force</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-05-15/">Meeting for 2018-05-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-2">Reminders</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-3">Progress on Current Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-4"> Status of Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-5">Call for DID Focal Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-6">DID issues working session</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-7">DID service naming and identification</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-8">DID Document versioning</a></li>
+<li><a href="/201x-meeting-archives/2018-05-15/#topic-9">Extensibility</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-05-08/">Meeting for 2018-05-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-05-08/#topic-1">introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-05-08/#topic-2">action items update</a></li>
+<li><a href="/201x-meeting-archives/2018-05-08/#topic-3">work items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-08/#topic-4">digital verification github items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-08/#topic-5">Digital Verification community items and CCG people</a></li>
+<li><a href="/201x-meeting-archives/2018-05-08/#topic-6">DID Use Cases & Domains</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-05-01/">Meeting for 2018-05-01</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-05-01/#topic-1">Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-05-01/#topic-2">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-05-01/#topic-3">DID Working Group Transition</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-04-24/">Meeting for 2018-04-24</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-04-24/#topic-1">CCG Process</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-04-19/">Meeting for 2018-04-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-04-19/#topic-1">poll results</a></li>
+<li><a href="/201x-meeting-archives/2018-04-19/#topic-2">Peer claims https://hackmd.io/BYWqUeNDRimyKJL5xsSOiw</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-04-17/">Meeting for 2018-04-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-04-17/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-04-17/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-04-17/#topic-3">Issues List</a></li>
+<li><a href="/201x-meeting-archives/2018-04-17/#topic-4">ZK Lang</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-04-10/">Meeting for 2018-04-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-2">Next Week - Crypto Tuesdays - ZKLang</a></li>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-4">MyData Panel at Helsinki</a></li>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-5">Work items - DID Spec and DID Methods</a></li>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-6">IIW26 Report Out</a></li>
+<li><a href="/201x-meeting-archives/2018-04-10/#topic-7">Verifiable Claims WG Meeting</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-04-05/">Meeting for 2018-04-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-04-05/#topic-1">Occupational and Educational Credentials</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-03-27/">Meeting for 2018-03-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-03-27/#topic-1">Introductions / ReIntroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-03-27/#topic-2">Education Credentials Task Force</a></li>
+<li><a href="/201x-meeting-archives/2018-03-27/#topic-3">https://github.com/w3c-ccg/community</a></li>
+<li><a href="/201x-meeting-archives/2018-03-27/#topic-4">DID Auth Follow-up</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-03-22/">Meeting for 2018-03-22</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-03-22/#topic-1">Occupational/Educational Task Force</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-03-20/">Meeting for 2018-03-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-03-20/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-03-20/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-03-20/#topic-3">Current action items progress</a></li>
+<li><a href="/201x-meeting-archives/2018-03-20/#topic-4">Work items</a></li>
+<li><a href="/201x-meeting-archives/2018-03-20/#topic-5">DID-based Authentication (DID-Auth)</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-03-13/">Meeting for 2018-03-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-03-13/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-03-13/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-03-13/#topic-3">Report from Rebooting the Web of Trust 6</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-02-15/">Meeting for 2018-02-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-02-15/#topic-1">DID Service URLs</a></li>
+<li><a href="/201x-meeting-archives/2018-02-15/#topic-2">Other DID Spec Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-02-13/">Meeting for 2018-02-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-02-13/#topic-1">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-02-13/#topic-2">DID Authentication</a></li>
+<li><a href="/201x-meeting-archives/2018-02-13/#topic-3">Object Capabilities</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2018-02-13/#resolution-1">Create an Education and Occupational Credentials Task Force as described in https://lists.w3.org/Archives/Public/public-credentials/2018Feb/0013.html</a></li>
+<li><a href="/201x-meeting-archives/2018-02-13/#resolution-2">Adopt the Linked Data Object Capabilities specification as a work item.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-02-06/">Meeting for 2018-02-06</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-02-06/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2018-02-06/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-02-06/#topic-3">DID Specification Reconciliation</a></li>
+<li><a href="/201x-meeting-archives/2018-02-06/#topic-4">Crypto Tuesdays</a></li>
+<li><a href="/201x-meeting-archives/2018-02-06/#topic-5">Cryptography Suite Implementations</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-30/">Meeting for 2018-01-30</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-30/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-01-30/#topic-2">Agenda for Today</a></li>
+<li><a href="/201x-meeting-archives/2018-01-30/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2018-01-30/#topic-4">CG Process</a></li>
+<li><a href="/201x-meeting-archives/2018-01-30/#topic-5">Data Minimization</a></li>
+<li><a href="/201x-meeting-archives/2018-01-30/#topic-6">Education Task Force</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-30/#resolution-1">Merge PR 41 into the main specification based on no objections, we have achieved consensus on this PR.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-25/">Meeting for 2018-01-25</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-25/#topic-1">DID Harmonization PR</a></li>
+<li><a href="/201x-meeting-archives/2018-01-25/#topic-2">Encryption</a></li>
+<li><a href="/201x-meeting-archives/2018-01-25/#topic-3">DID Fragment Identifiers</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-23/">Meeting for 2018-01-23</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-23/#topic-1">Introduction to Akila</a></li>
+<li><a href="/201x-meeting-archives/2018-01-23/#topic-2">Announcements, Focus for 2018</a></li>
+<li><a href="/201x-meeting-archives/2018-01-23/#topic-3">DID Harmonization</a></li>
+<li><a href="/201x-meeting-archives/2018-01-23/#topic-4">DID Hackathon Outcomes</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-16/">Meeting for 2018-01-16</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-16/#topic-1">Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2018-01-16/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-01-16/#topic-3">Work Items</a></li>
+<li><a href="/201x-meeting-archives/2018-01-16/#topic-4">Outreach</a></li>
+<li><a href="/201x-meeting-archives/2018-01-16/#topic-5">Work Breakdown Structure (WBS) aka Roadmap Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-11/">Meeting for 2018-01-11</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-11/#topic-1">DID Harmonization</a></li>
+<li><a href="/201x-meeting-archives/2018-01-11/#topic-2">Spec Updates</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-09/">Meeting for 2018-01-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-09/#topic-1">Reintroduction for Kerri Lemoie</a></li>
+<li><a href="/201x-meeting-archives/2018-01-09/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2018-01-09/#topic-3">Progress on current action items</a></li>
+<li><a href="/201x-meeting-archives/2018-01-09/#topic-4">DID Harmonization Proposal #1</a></li>
+<li><a href="/201x-meeting-archives/2018-01-09/#topic-5">Outreach</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2018-01-04/">Meeting for 2018-01-04</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2018-01-04/#topic-1">Biometric Authentication</a></li>
+<li><a href="/201x-meeting-archives/2018-01-04/#topic-2">DID Spec Scope?</a></li>
+<li><a href="/201x-meeting-archives/2018-01-04/#topic-3">DID Document Extensibility</a></li>
+<li><a href="/201x-meeting-archives/2018-01-04/#topic-4">Fundamental DID Architecture</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-12-21/">Meeting for 2017-12-21</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-21/#topic-1">Cryptographic Key Material</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-12-19/">Meeting for 2017-12-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-19/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-12-19/#topic-2">Announcements and Status Updates</a></li>
+<li><a href="/201x-meeting-archives/2017-12-19/#topic-3">2017 Year in Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-12-14/">Meeting for 2017-12-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-14/#topic-1">Current Status of DID Hardening Discussions</a></li>
+<li><a href="/201x-meeting-archives/2017-12-14/#topic-2">Options for Keys / Authentication</a></li>
+<li><a href="/201x-meeting-archives/2017-12-14/#topic-3">Option #D</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-14/#resolution-1"><cut and paste></a></li>
+<li><a href="/201x-meeting-archives/2017-12-14/#resolution-2">Eliminate Option #3 from the discussion choices as described in this email: https://lists.w3.org/Archives/Public/public-credentials/2017Dec/0046.html</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-12-12/">Meeting for 2017-12-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-1">Introductions / Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-3">Status of Work Items</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-4">engagement model</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-5">browser api and polyfill</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-6">privacy and security requirements</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-7">DID Spec Change Requests</a></li>
+<li><a href="/201x-meeting-archives/2017-12-12/#topic-8">Other Topics</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-12-07/">Meeting for 2017-12-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-07/#topic-1">Intellectual Property Release</a></li>
+<li><a href="/201x-meeting-archives/2017-12-07/#topic-2">Two Stages of DID Document</a></li>
+<li><a href="/201x-meeting-archives/2017-12-07/#topic-3">Simple Arrays of Key Descriptions</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-12-05/">Meeting for 2017-12-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-12-05/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2017-12-05/#topic-2">Announcements</a></li>
+<li><a href="/201x-meeting-archives/2017-12-05/#topic-3">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-12-05/#topic-4">W3C CCG Process Document</a></li>
+<li><a href="/201x-meeting-archives/2017-12-05/#topic-5">W3C Intellectual Property Requirements & our CG Process</a></li>
+<li><a href="/201x-meeting-archives/2017-12-05/#topic-6">CCG Registries</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-11-30/">Meeting for 2017-11-30</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-11-30/#topic-1">DID Hardening Proposal v3</a></li>
+<li><a href="/201x-meeting-archives/2017-11-30/#topic-2">Format Independence</a></li>
+<li><a href="/201x-meeting-archives/2017-11-30/#topic-3">Optional ID Property for the DID</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-11-14/">Meeting for 2017-11-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-11-14/#topic-1">Introduction to Mark Miller (Google)</a></li>
+<li><a href="/201x-meeting-archives/2017-11-14/#topic-2">DID Spec Review</a></li>
+<li><a href="/201x-meeting-archives/2017-11-14/#topic-3">Capabilities in Verifiable Credentials</a></li>
+<li><a href="/201x-meeting-archives/2017-11-14/#topic-4">W3C TPAC 2017 Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-10-31/">Meeting for 2017-10-31</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-10-31/#topic-1">Status of Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-10-31/#topic-2">Credential Handler API</a></li>
+<li><a href="/201x-meeting-archives/2017-10-31/#topic-3">W3C TPAC Planning</a></li>
+<li><a href="/201x-meeting-archives/2017-10-31/#topic-4">Post RWoT DID Spec</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-10-24/">Meeting for 2017-10-24</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-1">Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-2">W3C TPAC</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-3">DID Specification</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-4">Digital Verification Cryptography</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-5">JSON-LD and LD Signature Updates</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-6">Credential Handler API</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-7">Lifecycle Model</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-8">Verifiable News</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-9">Other Work Items</a></li>
+<li><a href="/201x-meeting-archives/2017-10-24/#topic-10">Path for DID Spec Standardization</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-10-17/">Meeting for 2017-10-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-10-17/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-10-17/#topic-2">New DID Spec PR</a></li>
+<li><a href="/201x-meeting-archives/2017-10-17/#topic-3">Verifiable News</a></li>
+<li><a href="/201x-meeting-archives/2017-10-17/#topic-4">W3C TPAC Planning</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-09-26/">Meeting for 2017-09-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-09-26/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-09-26/#topic-2">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-09-26/#topic-3">Credential Handler Polyfill Video</a></li>
+<li><a href="/201x-meeting-archives/2017-09-26/#topic-4">Data Minimization & Selective Disclosure </a></li>
+<li><a href="/201x-meeting-archives/2017-09-26/#topic-5">DID Specification</a></li>
+<li><a href="/201x-meeting-archives/2017-09-26/#topic-6">Next week</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-09-19/">Meeting for 2017-09-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-09-19/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-09-19/#topic-2">Proposed changes to DID Spec Overview</a></li>
+<li><a href="/201x-meeting-archives/2017-09-19/#topic-3">DID Spec Discussion</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-09-12/">Meeting for 2017-09-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-09-12/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-09-12/#topic-2">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-09-12/#topic-3">Proofs vs. Signatures </a></li>
+<li><a href="/201x-meeting-archives/2017-09-12/#topic-4">Capabilities-based Security Model</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-09-05/">Meeting for 2017-09-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-09-05/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2017-09-05/#topic-2">Introductions / Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-09-05/#topic-3">Action Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-09-05/#topic-4">ActivityPub and Mastadon</a></li>
+<li><a href="/201x-meeting-archives/2017-09-05/#topic-5">DID Specification</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-08-29/">Meeting for 2017-08-29</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-08-29/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-08-29/#topic-2">Work Item Progress</a></li>
+<li><a href="/201x-meeting-archives/2017-08-29/#topic-3">Privacy and Security Requirements</a></li>
+<li><a href="/201x-meeting-archives/2017-08-29/#topic-4">DID Specification Progress</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-08-22/">Meeting for 2017-08-22</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-08-22/#topic-1">Administrivia - Dialing In</a></li>
+<li><a href="/201x-meeting-archives/2017-08-22/#topic-2">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-08-22/#topic-3">Mission Statement Review</a></li>
+<li><a href="/201x-meeting-archives/2017-08-22/#topic-4">Credential Handler API (and polyfill)</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-08-15/">Meeting for 2017-08-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-08-15/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-08-15/#topic-2">Fake News and Bots</a></li>
+<li><a href="/201x-meeting-archives/2017-08-15/#topic-3">Mission Statement</a></li>
+<li><a href="/201x-meeting-archives/2017-08-15/#topic-4">Administrative Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-08-08/">Meeting for 2017-08-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-08-08/#topic-1">Introductions and Reintroductions</a></li>
+<li><a href="/201x-meeting-archives/2017-08-08/#topic-2">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2017-08-08/#topic-3">Mission Statement</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-08-01/">Meeting for 2017-08-01</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-08-01/#topic-1">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-08-01/#topic-2">Introductions and Re-introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-08-01/#topic-3">Update on Community Group Name</a></li>
+<li><a href="/201x-meeting-archives/2017-08-01/#topic-4">Revising the Mission Statement</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-07-25/">Meeting for 2017-07-25</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-07-25/#topic-1">Re-Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-07-25/#topic-2">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-07-25/#topic-3">DID Specification Work Item</a></li>
+<li><a href="/201x-meeting-archives/2017-07-25/#topic-4">Lifecycle Deep Dive</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2017-07-25/#resolution-1">Accept the DID Specification as a Credentials CG work item.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-07-18/">Meeting for 2017-07-18</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-07-18/#topic-1">Introduction to Lionel Walberger</a></li>
+<li><a href="/201x-meeting-archives/2017-07-18/#topic-2">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-07-18/#topic-3">DID Specification update</a></li>
+<li><a href="/201x-meeting-archives/2017-07-18/#topic-4">Cryptography for Anonymous Credentials</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-06-27/">Meeting for 2017-06-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-06-27/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-06-27/#topic-2">Selective Disclosure and CL Signatures</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-06-20/">Meeting for 2017-06-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-06-20/#topic-1">Bitcoin DID Method (BTCR)</a></li>
+<li><a href="/201x-meeting-archives/2017-06-20/#topic-2">Chainpoint v3.0</a></li>
+<li><a href="/201x-meeting-archives/2017-06-20/#topic-3">Linked Data Signatures</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-06-13/">Meeting for 2017-06-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-2">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-3">Community Group Naming</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-4">Interaction with Banking/Finance Industry</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-5">Planning for W3C TPAC</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-6">Work Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-7">RDF Dataset Canonicalization</a></li>
+<li><a href="/201x-meeting-archives/2017-06-13/#topic-8">Privacy and Security Requirements</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-06-06/">Meeting for 2017-06-06</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-2">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-3">Action Items</a></li>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-4">Current Polls</a></li>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-5">Decentralized Identifiers</a></li>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-6">Reputation Systems</a></li>
+<li><a href="/201x-meeting-archives/2017-06-06/#topic-7">Next Meeting</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-05-30/">Meeting for 2017-05-30</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-05-30/#topic-1">Community Group Scope and Naming</a></li>
+<li><a href="/201x-meeting-archives/2017-05-30/#topic-2">Verifiable Claims Browser API and Browser Polyfill</a></li>
+<li><a href="/201x-meeting-archives/2017-05-30/#topic-3">Lifecycle of a Verifiable Claim</a></li>
+<li><a href="/201x-meeting-archives/2017-05-30/#topic-4">Data Minimization and Selective Disclosure Report</a></li>
+<li><a href="/201x-meeting-archives/2017-05-30/#topic-5">Decentralized Identifier Spec</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-05-23/">Meeting for 2017-05-23</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-05-23/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-05-23/#topic-2">Action Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-05-23/#topic-3">Future Work Items Discussion</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-05-16/">Meeting for 2017-05-16</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-05-16/#topic-1">Introduce New Chairs</a></li>
+<li><a href="/201x-meeting-archives/2017-05-16/#topic-2">New Members</a></li>
+<li><a href="/201x-meeting-archives/2017-05-16/#topic-3">Review of Credentails CG Mission Statement</a></li>
+<li><a href="/201x-meeting-archives/2017-05-16/#topic-4">Community Group Priorities</a></li>
+<li><a href="/201x-meeting-archives/2017-05-16/#topic-5">Potential Work Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-05-09/">Meeting for 2017-05-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-05-09/#topic-1">Agenda Review and Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-05-09/#topic-2">WG Document Handoff</a></li>
+<li><a href="/201x-meeting-archives/2017-05-09/#topic-3">Joining the VCWG</a></li>
+<li><a href="/201x-meeting-archives/2017-05-09/#topic-4">Reminder: this is last CG call at this time</a></li>
+<li><a href="/201x-meeting-archives/2017-05-09/#topic-5">Open Mic / Community Group Next Steps</a></li>
+<li><a href="/201x-meeting-archives/2017-05-09/#topic-6">CG and WG call next week</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-05-02/">Meeting for 2017-05-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-05-02/#topic-1">Finalize CG Reports, hand-off to WG</a></li>
+<li><a href="/201x-meeting-archives/2017-05-02/#topic-2">Trip Reports</a></li>
+<li><a href="/201x-meeting-archives/2017-05-02/#topic-3">Working Group Membership</a></li>
+<li><a href="/201x-meeting-archives/2017-05-02/#topic-4">Suggestions for next week</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2017-05-02/#resolution-1">Publish 2017-05-01 drafts as Final Reports. Gather feedback until this coming Friday, and publish final specifications if no objections.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-03-14/">Meeting for 2017-03-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-1">Agenda review and Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-2">Status of Verifiable Claims WG Creation</a></li>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-3">No meeting on 3/28 (reminder)</a></li>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-4">DO_NOT_CORRELATE flag discussion</a></li>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-5">WoT use case</a></li>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-6">Action Item Review (https://goo.gl/V4XTBT)</a></li>
+<li><a href="/201x-meeting-archives/2017-03-14/#topic-7">Suggestions for next week agenda</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-03-07/">Meeting for 2017-03-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-1">Status of VCWG Creation</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-2">Meeting for 2017-03-28 Cancelled</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-3">IMS Badge Summit Update</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-4">RWoT Demo Status</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-5">Prioritizing Pull Requests</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-6">Actions Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-7">amigus email re: privacy: https://lists.w3.org/Archives/Public/public-credentials/2017Mar/0002.html</a></li>
+<li><a href="/201x-meeting-archives/2017-03-07/#topic-8">Suggestions for Next Meeting Agenda</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-02-28/">Meeting for 2017-02-28</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-02-28/#topic-1">Introduction to Kim Duffy from BlockCerts</a></li>
+<li><a href="/201x-meeting-archives/2017-02-28/#topic-2">Status of Verifiable Claims WG Creation</a></li>
+<li><a href="/201x-meeting-archives/2017-02-28/#topic-3">Update on Verifiable Claims Playground</a></li>
+<li><a href="/201x-meeting-archives/2017-02-28/#topic-4">Action Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-02-28/#topic-5">Agenda for Next Week</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-02-21/">Meeting for 2017-02-21</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-1">Introduction to Sean Bohan</a></li>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-2">Status of WG Creation</a></li>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-3">Action Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-4">Face to Face Meetings</a></li>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-5">Requirements</a></li>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-6">Correlatability of Usage Patterns</a></li>
+<li><a href="/201x-meeting-archives/2017-02-21/#topic-7">Primary or Secondary Subject</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-02-14/">Meeting for 2017-02-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-02-14/#topic-1">Introduction to Abbas Ali from R3</a></li>
+<li><a href="/201x-meeting-archives/2017-02-14/#topic-2">Status of Verifiable Claims WG Creation</a></li>
+<li><a href="/201x-meeting-archives/2017-02-14/#topic-3">Sandbox for the implementers to work on</a></li>
+<li><a href="/201x-meeting-archives/2017-02-14/#topic-4"> Action Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-02-14/#topic-5">Face to Face Meeting Opportunities</a></li>
+<li><a href="/201x-meeting-archives/2017-02-14/#topic-6">Portable Reputation Kit</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-02-07/">Meeting for 2017-02-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-1">Agenda Review and Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-2">Status of Verifiable Claims WG Creation</a></li>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-3">Status of Face to Face in March</a></li>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-4">Action Item Review</a></li>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-5">Discuss work on requirements gathering</a></li>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-6">Use Case Issue 18: Holder Terminology</a></li>
+<li><a href="/201x-meeting-archives/2017-02-07/#topic-7">Use Case Issue 34: Lifecycle Engagement - next steps</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2017-02-07/#resolution-1">Do not close yet Issue 18 yet.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-01-31/">Meeting for 2017-01-31</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-01-31/#topic-1"> Agenda Review and Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-01-31/#topic-2">Status of Verifiable Claims WG creation</a></li>
+<li><a href="/201x-meeting-archives/2017-01-31/#topic-3">Possible VCWG F2F week of March 21st 2017</a></li>
+<li><a href="/201x-meeting-archives/2017-01-31/#topic-4">Use Cases Framework Discussion</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-01-24/">Meeting for 2017-01-24</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-01-24/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2017-01-24/#topic-2">Status of Verifiable Claims WG Vote</a></li>
+<li><a href="/201x-meeting-archives/2017-01-24/#topic-3">Use Cases Narratives and Revocation/Privacy</a></li>
+<li><a href="/201x-meeting-archives/2017-01-24/#topic-4">Correlation Analysis and Prevention</a></li>
+<li><a href="/201x-meeting-archives/2017-01-24/#topic-5">Filtering, Focusing use cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-01-17/">Meeting for 2017-01-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-01-17/#topic-1">Agenda review and Introductions</a></li>
+<li><a href="/201x-meeting-archives/2017-01-17/#topic-2">Status of Verifiable Claims WG Vote</a></li>
+<li><a href="/201x-meeting-archives/2017-01-17/#topic-3">Web of Trust Use Case</a></li>
+<li><a href="/201x-meeting-archives/2017-01-17/#topic-4">Prioritization of/response to privacy concerns</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2017-01-10/">Meeting for 2017-01-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2017-01-10/#topic-1">Vote for Verifiable Claims WG</a></li>
+<li><a href="/201x-meeting-archives/2017-01-10/#topic-2">Use Cases Document Update</a></li>
+<li><a href="/201x-meeting-archives/2017-01-10/#topic-3">Agenda Items for Next Week</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-12-20/">Meeting for 2016-12-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-12-20/#topic-1">Introduction to Pari, from Intuit</a></li>
+<li><a href="/201x-meeting-archives/2016-12-20/#topic-2">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2016-12-20/#topic-3">Verifiable Claims WG Vote</a></li>
+<li><a href="/201x-meeting-archives/2016-12-20/#topic-4">Discussion on Github</a></li>
+<li><a href="/201x-meeting-archives/2016-12-20/#topic-5">Intro to Github Pull Requests</a></li>
+<li><a href="/201x-meeting-archives/2016-12-20/#topic-6">Use of WebIDL in the Spec</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-12-13/">Meeting for 2016-12-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-12-13/#topic-1">Vote for Verifiable Claims WG is Open</a></li>
+<li><a href="/201x-meeting-archives/2016-12-13/#topic-2">Reference Libraries</a></li>
+<li><a href="/201x-meeting-archives/2016-12-13/#topic-3">Use of JSON/JSON-LD in spec</a></li>
+<li><a href="/201x-meeting-archives/2016-12-13/#topic-4">Next Meeting</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-12-06/">Meeting for 2016-12-06</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-12-06/#topic-1">Introduction to John Koshy</a></li>
+<li><a href="/201x-meeting-archives/2016-12-06/#topic-2">Rebooting Web of Trust, Paris</a></li>
+<li><a href="/201x-meeting-archives/2016-12-06/#topic-3">Issue Prioritization</a></li>
+<li><a href="/201x-meeting-archives/2016-12-06/#topic-4">Use of JSON/JSON-LD in spec</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-11-29/">Meeting for 2016-11-29</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-1">Agenda review</a></li>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-2">New Participants</a></li>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-3">New Location for Specs</a></li>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-4">Status of W3M Charter Review</a></li>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-5">Call for review</a></li>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-6">Brief review of adding issues in GitHub</a></li>
+<li><a href="/201x-meeting-archives/2016-11-29/#topic-7">Nesting Signatures with JWT</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-11-15/">Meeting for 2016-11-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-11-15/#topic-1">W3C AB Feedback</a></li>
+<li><a href="/201x-meeting-archives/2016-11-15/#topic-2">Specific Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-11-15/#topic-3">Age Verification Use Case</a></li>
+<li><a href="/201x-meeting-archives/2016-11-15/#topic-4">Spec Issues</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-11-08/">Meeting for 2016-11-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-11-08/#topic-1">Gathering More Use Case Data</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-11-01/">Meeting for 2016-11-01</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-11-01/#topic-1">Rebooting Web of Trust</a></li>
+<li><a href="/201x-meeting-archives/2016-11-01/#topic-2">Internet Identity Workshop #23</a></li>
+<li><a href="/201x-meeting-archives/2016-11-01/#topic-3">Verifiable Claims Face-to-Face</a></li>
+<li><a href="/201x-meeting-archives/2016-11-01/#topic-4">Intro to Phil Archer from W3C</a></li>
+<li><a href="/201x-meeting-archives/2016-11-01/#topic-5">Responses to VC Concerns</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-10-28/">Meeting for 2016-10-28</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-1">Agenda Review</a></li>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-2">Long-term Architectural Concerns</a></li>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-3">Decentralized Identifiers</a></li>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-4">Start of Data Model Deep Dive</a></li>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-5">Data Model Deep Dive</a></li>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-6">Digital Signatures</a></li>
+<li><a href="/201x-meeting-archives/2016-10-28/#topic-7">Responding to Charter Review Comments</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-10-27/">Meeting for 2016-10-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-1">Welcome and Administrivia</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-2">Introduction to Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-3">Good Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-4">Education Industry Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-5">Healthcare Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-6">Payments Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-7">Verifiable Claims Proposed Architecture / Goals</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-8">Data model and Representation Overview</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-9">The W3C Process</a></li>
+<li><a href="/201x-meeting-archives/2016-10-27/#topic-10">VCF2F Day Two Agenda Bash</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-10-11/">Meeting for 2016-10-11</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-10-11/#topic-1">Verifiable Claims Face-to-Face Agenda</a></li>
+<li><a href="/201x-meeting-archives/2016-10-11/#topic-2">architecture (shane)</a></li>
+<li><a href="/201x-meeting-archives/2016-10-11/#topic-3">data model, representations (manu) - day 1 will feel repetitive b/c there will be ~50% newcomers</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-10-04/">Meeting for 2016-10-04</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-10-04/#topic-1">After Action Report - W3C TPAC</a></li>
+<li><a href="/201x-meeting-archives/2016-10-04/#topic-2">Registering for VC Face-to-Face</a></li>
+<li><a href="/201x-meeting-archives/2016-10-04/#topic-3">Verifiable Claims Face-to-Face Agenda</a></li>
+<li><a href="/201x-meeting-archives/2016-10-04/#topic-4">Feedback on W3C Verifiable Claims Announcement</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-09-06/">Meeting for 2016-09-06</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-1">Quick introduction from Pindar Wong</a></li>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-2">F2F Meeting at IIW</a></li>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-3">Verifiable Claims Implementations to Demo</a></li>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-4">Verifiable Claims RC-2 Draft Charter Feedback</a></li>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-5">Estonian E-Residency Face-to-Face</a></li>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-6">Planning for W3C TPAC</a></li>
+<li><a href="/201x-meeting-archives/2016-09-06/#topic-7">Interplanetary File System and Verifiable Claims</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-08-16/">Meeting for 2016-08-16</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-08-16/#topic-1">Introduction to Bob Burke, Koupon Media</a></li>
+<li><a href="/201x-meeting-archives/2016-08-16/#topic-2">Introduction to Adrian Gropper, HealthURL</a></li>
+<li><a href="/201x-meeting-archives/2016-08-16/#topic-3">Verifiable Claims Face-to-Face at IIW</a></li>
+<li><a href="/201x-meeting-archives/2016-08-16/#topic-4">Verifiable Claims RC-2 Draft Charter</a></li>
+<li><a href="/201x-meeting-archives/2016-08-16/#topic-5">IPFS and Verifiable Claims</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-08-02/">Meeting for 2016-08-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-08-02/#topic-1">Feedback on Charter from W3C Management</a></li>
+<li><a href="/201x-meeting-archives/2016-08-02/#topic-2">Verifiable Claims Face-to-Face Agenda</a></li>
+<li><a href="/201x-meeting-archives/2016-08-02/#topic-3">Terminology and Expiration</a></li>
+<li><a href="/201x-meeting-archives/2016-08-02/#topic-4">Linked Data Encrypted Signatures</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-07-19/">Meeting for 2016-07-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-07-19/#topic-1">Review All Dissenting Opinions</a></li>
+<li><a href="/201x-meeting-archives/2016-07-19/#topic-2">JOSE / JWT Clarification/Analysis</a></li>
+<li><a href="/201x-meeting-archives/2016-07-19/#topic-3">Verifiable Claims Face-to-Face Agenda</a></li>
+<li><a href="/201x-meeting-archives/2016-07-19/#topic-4">Coordinating with Other Workshops</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-07-12/">Meeting for 2016-07-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-07-12/#topic-1">Verifiable Claims Presentation at WPIG face-to-face</a></li>
+<li><a href="/201x-meeting-archives/2016-07-12/#topic-2">Identified Verifiable Claims "Weak Points"</a></li>
+<li><a href="/201x-meeting-archives/2016-07-12/#topic-3">Next Steps</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-06-21/">Meeting for 2016-06-21</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-06-21/#topic-1">Verifiable Claims Working Group Proposal</a></li>
+<li><a href="/201x-meeting-archives/2016-06-21/#topic-2">Terminology Results</a></li>
+<li><a href="/201x-meeting-archives/2016-06-21/#topic-3">Data Model Specification</a></li>
+<li><a href="/201x-meeting-archives/2016-06-21/#topic-4">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-06-21/#topic-5">Next Steps</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-06-14/">Meeting for 2016-06-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-1">Terminology Poll</a></li>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-2">Implementer Commitment Summary</a></li>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-3">Verifiable Claims Architecture</a></li>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-4">Primer</a></li>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-5">Data Model Specification</a></li>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-6">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2016-06-14/#topic-7">Items that are "Good Enough" for Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-06-08/">Meeting for 2016-06-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-06-08/#topic-1"> Discuss purpose of architecture proposal</a></li>
+<li><a href="/201x-meeting-archives/2016-06-08/#topic-2">Analysis of current document</a></li>
+<li><a href="/201x-meeting-archives/2016-06-08/#topic-3">Identifier registry</a></li>
+<li><a href="/201x-meeting-archives/2016-06-08/#topic-4">Repository</a></li>
+<li><a href="/201x-meeting-archives/2016-06-08/#topic-5">Simplifying Diagram</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-06-07/">Meeting for 2016-06-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-1">VCTF Deliverables</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-2">Verifiable Claims Use Cases Review</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-3">Verifiable Claims Charter</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-4">Verifiable Claims Charter FAQ</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-5">Architecture Summary</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-6">Verifiable Claims Data Model Specification</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-7">Terminology Conflicts</a></li>
+<li><a href="/201x-meeting-archives/2016-06-07/#topic-8">Other items</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2016-06-07/#resolution-1">Adopt self-sovereign terminology over user-centric terminology.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-05-31/">Meeting for 2016-05-31</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-05-31/#topic-1">Introduction to New Participants</a></li>
+<li><a href="/201x-meeting-archives/2016-05-31/#topic-2">Self-Sovereign Identity Architecture</a></li>
+<li><a href="/201x-meeting-archives/2016-05-31/#topic-3">Decentralized Identifiers</a></li>
+<li><a href="/201x-meeting-archives/2016-05-31/#topic-4">Verifiable Claims Use Cases Review</a></li>
+<li><a href="/201x-meeting-archives/2016-05-31/#topic-5">Update on Work Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-05-24/">Meeting for 2016-05-24</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-1">Introductions to New Participants</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-2">Agenda Bashing</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-3">Introduction to Anil John and DHS Blockchain R&D</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-4">Other Introductions</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-5">United Nations ID2020 Summit Recap</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-6">Rebooting Web of Trust Design Workshop Recap</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-7">Recent Vermont Legal Finding</a></li>
+<li><a href="/201x-meeting-archives/2016-05-24/#topic-8">Update on Work Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-05-17/">Meeting for 2016-05-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-05-17/#topic-1">Introduction to Alka Gupta from GlobalID</a></li>
+<li><a href="/201x-meeting-archives/2016-05-17/#topic-2">Blockchain and Identity </a></li>
+<li><a href="/201x-meeting-archives/2016-05-17/#topic-3">Verifiable Claims Data Model Specification</a></li>
+<li><a href="/201x-meeting-archives/2016-05-17/#topic-4">Credentials Transparency Initiative Terminology</a></li>
+<li><a href="/201x-meeting-archives/2016-05-17/#topic-5">Target Date Web Payments IG Hand-off</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2016-05-17/#resolution-1">Augment the "Credential" terminology in the specification with a modifier like "OpenCredential" or "IdentityCredential" or "VerifiableCredential".</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-05-10/">Meeting for 2016-05-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-1">Introduction to Alok from Cambridge Blockchain</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-2">Review of Survey Status</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-3">Work on Existing Docs</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-4">Verifiable Claims Data Model Specification</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-5">Survey Results/Overview</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-6">One page W3C AC Rep Summary</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-7">Architecture Summary</a></li>
+<li><a href="/201x-meeting-archives/2016-05-10/#topic-8">Implementers Summary</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-04-26/">Meeting for 2016-04-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-04-26/#topic-1">Credentials Transparency Initiative Alignment</a></li>
+<li><a href="/201x-meeting-archives/2016-04-26/#topic-2">Review of Questionnaire Status</a></li>
+<li><a href="/201x-meeting-archives/2016-04-26/#topic-3">Verifiable Claims Data Model Specification</a></li>
+<li><a href="/201x-meeting-archives/2016-04-26/#topic-4">One page W3C AC Rep Summary</a></li>
+<li><a href="/201x-meeting-archives/2016-04-26/#topic-5">Charter Cleanup</a></li>
+<li><a href="/201x-meeting-archives/2016-04-26/#topic-6">Use Case Reviews</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-04-19/">Meeting for 2016-04-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-04-19/#topic-1">Introductions to New Participants</a></li>
+<li><a href="/201x-meeting-archives/2016-04-19/#topic-2">United Nations ID2020 Initiative</a></li>
+<li><a href="/201x-meeting-archives/2016-04-19/#topic-3">Review of Questionnaire Responses</a></li>
+<li><a href="/201x-meeting-archives/2016-04-19/#topic-4">Work Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-04-05/">Meeting for 2016-04-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-04-05/#topic-1">Introduction to Christopher Allen</a></li>
+<li><a href="/201x-meeting-archives/2016-04-05/#topic-2">Blockchain Interest in Identity Credentials</a></li>
+<li><a href="/201x-meeting-archives/2016-04-05/#topic-3">Review of Questionnaire</a></li>
+<li><a href="/201x-meeting-archives/2016-04-05/#topic-4">Charter Review To Date</a></li>
+<li><a href="/201x-meeting-archives/2016-04-05/#topic-5">Options Moving Forward</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-03-29/">Meeting for 2016-03-29</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-03-29/#topic-1">Introduction to Todd Albers</a></li>
+<li><a href="/201x-meeting-archives/2016-03-29/#topic-2">W3C Advisory Committee Summary</a></li>
+<li><a href="/201x-meeting-archives/2016-03-29/#topic-3">Next Steps (in the next 4-6 weeks)</a></li>
+<li><a href="/201x-meeting-archives/2016-03-29/#topic-4">Spec Ops</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-03-15/">Meeting for 2016-03-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-03-15/#topic-1">Draft Charter Proposal</a></li>
+<li><a href="/201x-meeting-archives/2016-03-15/#topic-2">Use Cases Document</a></li>
+<li><a href="/201x-meeting-archives/2016-03-15/#topic-3">Card for AC Meeting</a></li>
+<li><a href="/201x-meeting-archives/2016-03-15/#topic-4">Vocabulary changes - Issuer, Curator, Inspector</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2016-03-15/#resolution-1">Integrate as much feedback as possible before 3pm today and send the editor's draft charter and use cases out for informal review to the interviewees, the survey respondents, and the W3C Advisory Committee.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-03-08/">Meeting for 2016-03-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-03-08/#topic-1">Draft Charter Proposal</a></li>
+<li><a href="/201x-meeting-archives/2016-03-08/#topic-2">Material for W3C Advisory Committe Meeting at MIT</a></li>
+<li><a href="/201x-meeting-archives/2016-03-08/#topic-3">Use Cases Document</a></li>
+<li><a href="/201x-meeting-archives/2016-03-08/#topic-4">Expected Timeline for VCTF Charter Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-03-01/">Meeting for 2016-03-01</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-03-01/#topic-1">Review Web Payments IG Vote on VCTF</a></li>
+<li><a href="/201x-meeting-archives/2016-03-01/#topic-2">Next Steps (W3C AC Meeting)</a></li>
+<li><a href="/201x-meeting-archives/2016-03-01/#topic-3">Draft Charter Proposal</a></li>
+<li><a href="/201x-meeting-archives/2016-03-01/#topic-4">Use Cases Document</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-02-19/">Meeting for 2016-02-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-02-19/#topic-1">Current Status</a></li>
+<li><a href="/201x-meeting-archives/2016-02-19/#topic-2">Use Cases Document</a></li>
+<li><a href="/201x-meeting-archives/2016-02-19/#topic-3">Verifiable Claims Task Force Presentation</a></li>
+<li><a href="/201x-meeting-archives/2016-02-19/#topic-4">Verifiable Claims Task Force Final Report</a></li>
+<li><a href="/201x-meeting-archives/2016-02-19/#topic-5">Draft Charter Proposal</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-02-12/">Meeting for 2016-02-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-02-12/#topic-1">Background on Jeanne, Bob, and the Credentials Transparency Initiative</a></li>
+<li><a href="/201x-meeting-archives/2016-02-12/#topic-2">Problem Statement</a></li>
+<li><a href="/201x-meeting-archives/2016-02-12/#topic-3">Data Format</a></li>
+<li><a href="/201x-meeting-archives/2016-02-12/#topic-4">Technical Advisory Committee on Metadata</a></li>
+<li><a href="/201x-meeting-archives/2016-02-12/#topic-5">Need for Credentials Technology</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-02-09/">Meeting for 2016-02-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-02-09/#topic-1">Plan to Finishing up Interviews</a></li>
+<li><a href="/201x-meeting-archives/2016-02-09/#topic-2">Verifiable Claims Task Force Final Report</a></li>
+<li><a href="/201x-meeting-archives/2016-02-09/#topic-3">Use Cases Document</a></li>
+<li><a href="/201x-meeting-archives/2016-02-09/#topic-4">Draft Charter Proposal</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-02-02/">Meeting for 2016-02-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-02-02/#topic-1">Summary of Interviews So Far</a></li>
+<li><a href="/201x-meeting-archives/2016-02-02/#topic-2">Documents Needed By Web Payments Face-to-Face</a></li>
+<li><a href="/201x-meeting-archives/2016-02-02/#topic-3">Verifiable Claims Task Force Final Report</a></li>
+<li><a href="/201x-meeting-archives/2016-02-02/#topic-4">Use Cases Document</a></li>
+<li><a href="/201x-meeting-archives/2016-02-02/#topic-5">Draft Charter Proposal</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-29-2/">Meeting for 2016-01-29-2</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-1">Introduction</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-2">Problem Statement</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-3">Level of assurance, Level of protection, and Level of control</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-4">The Problem with User-Centric</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-5">Important Trust Models</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-6">OpenID, SAML, and Privacy</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-7">Potential Standardization Opportunities</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-2/#topic-8">Best Place for Standardization Work</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-29-1/">Meeting for 2016-01-29-1</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-29-1/#topic-1">Problem Statement</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-1/#topic-2">User-centric Design vs Privacy-centric Design</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-1/#topic-3">OpenID Connect, SAML, and OAuth</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-1/#topic-4">Useful Technology Pieces</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-1/#topic-5">The Work on OpenID</a></li>
+<li><a href="/201x-meeting-archives/2016-01-29-1/#topic-6">The Best Mode for a Solution</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-28/">Meeting for 2016-01-28</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-28/#topic-1">Problem Statement</a></li>
+<li><a href="/201x-meeting-archives/2016-01-28/#topic-2">Stakeholders and Benefits</a></li>
+<li><a href="/201x-meeting-archives/2016-01-28/#topic-3">SAML, Oauth, OpenID Connect, and JOSE</a></li>
+<li><a href="/201x-meeting-archives/2016-01-28/#topic-4">Important Work Items</a></li>
+<li><a href="/201x-meeting-archives/2016-01-28/#topic-5">Best Location for Standards Work</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-27/">Meeting for 2016-01-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-27/#topic-1">Problem Statement</a></li>
+<li><a href="/201x-meeting-archives/2016-01-27/#topic-2">OpenID Connect</a></li>
+<li><a href="/201x-meeting-archives/2016-01-27/#topic-3">Definitions and User-Centric vs. Service-Centric</a></li>
+<li><a href="/201x-meeting-archives/2016-01-27/#topic-4">Respect Network</a></li>
+<li><a href="/201x-meeting-archives/2016-01-27/#topic-5">Portable Identifiers</a></li>
+<li><a href="/201x-meeting-archives/2016-01-27/#topic-6">Ideal Place for Work</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-26/">Meeting for 2016-01-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-26/#topic-1">Interview Narratives So Far</a></li>
+<li><a href="/201x-meeting-archives/2016-01-26/#topic-2">Responding to Identified Narratives</a></li>
+<li><a href="/201x-meeting-archives/2016-01-26/#topic-3">Draft Charter Proposal</a></li>
+<li><a href="/201x-meeting-archives/2016-01-26/#topic-4">Use Cases Document</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-19/">Meeting for 2016-01-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-19/#topic-1">Update on Past and Upcoming Interviews</a></li>
+<li><a href="/201x-meeting-archives/2016-01-19/#topic-2">Plan (or lack thereof) for Face-to-Face in February</a></li>
+<li><a href="/201x-meeting-archives/2016-01-19/#topic-3">Stalled Work</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-08/">Meeting for 2016-01-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-08/#topic-1">Verifiable Claims Problem Statement</a></li>
+<li><a href="/201x-meeting-archives/2016-01-08/#topic-2">Anti-Fraud / Anti-Abuse</a></li>
+<li><a href="/201x-meeting-archives/2016-01-08/#topic-3">Revocation / Status Checking</a></li>
+<li><a href="/201x-meeting-archives/2016-01-08/#topic-4">Slow Evolution of Agent-Centric Protocols</a></li>
+<li><a href="/201x-meeting-archives/2016-01-08/#topic-5">Trust and Semantics</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2016-01-05/">Meeting for 2016-01-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2016-01-05/#topic-1">Background on Verifiable Claims work</a></li>
+<li><a href="/201x-meeting-archives/2016-01-05/#topic-2"> Problem Statement and Scope</a></li>
+<li><a href="/201x-meeting-archives/2016-01-05/#topic-3">Key Questions</a></li>
+<li><a href="/201x-meeting-archives/2016-01-05/#topic-4">The Interviews</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-12-15/">Meeting for 2015-12-15</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-12-15/#topic-1">Introduction of New Participants</a></li>
+<li><a href="/201x-meeting-archives/2015-12-15/#topic-2">Review Deliverables</a></li>
+<li><a href="/201x-meeting-archives/2015-12-15/#topic-3">Review Milestones / Timelines</a></li>
+<li><a href="/201x-meeting-archives/2015-12-15/#topic-4">Review Benefits for Stakeholders</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2015-12-15/#resolution-1">Request that the Web Payments Interest Group approve the Verifiable Claims Task Force with the caveat that we still need to do interviews before finalizing work and problem statement.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-15/#resolution-2">Adopt the Deliverables in the VCTF wiki as they stand today.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-15/#resolution-3">Adopt the Milestones / Timeline as it stands today in the wiki.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-15/#resolution-4">Adopt the benefits as they stand now in the wiki with the understanding that we may come back and revise the list as we learn more over the next couple of months.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-12-08/">Meeting for 2015-12-08</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-12-08/#topic-1">Introductions to New Participants</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#topic-2">Review of Scope</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#topic-3">Review Stakeholders</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#topic-4">Review Task Force Operation</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#topic-5">Review Success Criteria</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#topic-6">Next Steps</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2015-12-08/#resolution-1">Adopt the Scope statement as it exists in the Task Force Proposal wiki.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#resolution-2">Adopt the Stakeholders section as it stands in the wiki.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#resolution-3">Adopt the Task Force Operation section as it stands in the wiki.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-08/#resolution-4">Adopt the success criteria as it stands in the wiki.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-12-01/">Meeting for 2015-12-01</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-12-01/#topic-1">Introduction of Participants</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#topic-2">Review the purpose of the call</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#topic-3">Review Goals</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#topic-4">Review Weekly Meetings</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#topic-5">Review Definitions</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#topic-6">Review Problem Statement</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2015-12-01/#resolution-1">Adopt the goals statement as it exists in the Verifiable Claims Task Force Proposal.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#resolution-2">Adopt the weekly telecon format, tools, and time listed here http://w3c.github.io/vctf/#telecons with fixes to the URLs pointed out by Dave Longley.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#resolution-3">There is a significant difference between user-centric and service-centric architectures when it comes to verifiable claims.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#resolution-4">Adopt the definitions as they stand in the Verifiable Claims Task Force Proposal.</a></li>
+<li><a href="/201x-meeting-archives/2015-12-01/#resolution-5">Adopt the Problem Statement in the Verifiable Claims Task Force Proposal with the changes made during the call today.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-11-24/">Meeting for 2015-11-24</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-11-24/#topic-1">Introduction to Dan Burnett</a></li>
+<li><a href="/201x-meeting-archives/2015-11-24/#topic-2">WPIG / Verifiable Claims After Action Review</a></li>
+<li><a href="/201x-meeting-archives/2015-11-24/#topic-3">Goals for Next Week's Meeting</a></li>
+<li><a href="/201x-meeting-archives/2015-11-24/#topic-4">Administrivia for Next Week's Meeting</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-11-17/">Meeting for 2015-11-17</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-11-17/#topic-1">Current Status of Task Force Proposal</a></li>
+<li><a href="/201x-meeting-archives/2015-11-17/#topic-2">Focus on Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-11-17/#topic-3">ToDo Items</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-11-10/">Meeting for 2015-11-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-11-10/#topic-1">Credentials Task Force in WPIG Update</a></li>
+<li><a href="/201x-meeting-archives/2015-11-10/#topic-2">Tasks for Credentials CG</a></li>
+<li><a href="/201x-meeting-archives/2015-11-10/#topic-3">Linked Data Fast Track WG Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-11-03/">Meeting for 2015-11-03</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-11-03/#topic-1">Introductions to New Participants</a></li>
+<li><a href="/201x-meeting-archives/2015-11-03/#topic-2">Work Generated as a Result of W3C TPAC</a></li>
+<li><a href="/201x-meeting-archives/2015-11-03/#topic-3">WebDHT Spec Released</a></li>
+<li><a href="/201x-meeting-archives/2015-11-03/#topic-4">Reorganizing this group around new Task Force</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-10-20/">Meeting for 2015-10-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-10-20/#topic-1">W3C TPAC Credentials Presentation</a></li>
+<li><a href="/201x-meeting-archives/2015-10-20/#topic-2">Introduction to Rebecca Simmons</a></li>
+<li><a href="/201x-meeting-archives/2015-10-20/#topic-3">Introduction to Deb Everhart</a></li>
+<li><a href="/201x-meeting-archives/2015-10-20/#topic-4">Linked Data Signatures Update</a></li>
+<li><a href="/201x-meeting-archives/2015-10-20/#topic-5">HTTP Signatures Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-10-13/">Meeting for 2015-10-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-10-13/#topic-1">NACS Show</a></li>
+<li><a href="/201x-meeting-archives/2015-10-13/#topic-2">HTTP Signatures</a></li>
+<li><a href="/201x-meeting-archives/2015-10-13/#topic-3">Introductions to New Members</a></li>
+<li><a href="/201x-meeting-archives/2015-10-13/#topic-4">W3C TPAC Credentials DRAFT Presentation</a></li>
+<li><a href="/201x-meeting-archives/2015-10-13/#topic-5">Credentials Reference Implementation Demo</a></li>
+<li><a href="/201x-meeting-archives/2015-10-13/#topic-6">Post-meeting Discussion</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-10-06/">Meeting for 2015-10-06</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-10-06/#topic-1">Current state of Credentials Survey</a></li>
+<li><a href="/201x-meeting-archives/2015-10-06/#topic-2">Survey Outreach</a></li>
+<li><a href="/201x-meeting-archives/2015-10-06/#topic-3">Upcoming Demos</a></li>
+<li><a href="/201x-meeting-archives/2015-10-06/#topic-4">Lumina Meeting Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-08-25/">Meeting for 2015-08-25</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-08-25/#topic-1">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-08-25/#topic-2">Standards Implementation Foundation</a></li>
+<li><a href="/201x-meeting-archives/2015-08-25/#topic-3">Update from IMS Global</a></li>
+<li><a href="/201x-meeting-archives/2015-08-25/#topic-4">Capabilities Wrap-up</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-08-18/">Meeting for 2015-08-18</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-08-18/#topic-1">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-08-18/#topic-2">IMS Global Update</a></li>
+<li><a href="/201x-meeting-archives/2015-08-18/#topic-3">Capabilities Document</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-08-11/">Meeting for 2015-08-11</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-08-11/#topic-1">Introduction to Annie Jenssen</a></li>
+<li><a href="/201x-meeting-archives/2015-08-11/#topic-2">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-08-11/#topic-3">Roadmap</a></li>
+<li><a href="/201x-meeting-archives/2015-08-11/#topic-4">Credentialing Capabilities and Current Proposal</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-08-04/">Meeting for 2015-08-04</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-08-04/#topic-1">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-08-04/#topic-2">Glossary Document</a></li>
+<li><a href="/201x-meeting-archives/2015-08-04/#topic-3">Vision document</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-07-28/">Meeting for 2015-07-28</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-07-28/#topic-1">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-07-28/#topic-2">Glossary Document</a></li>
+<li><a href="/201x-meeting-archives/2015-07-28/#topic-3">Vision Document</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-07-21/">Meeting for 2015-07-21</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-1">Introduction to Andrew</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-2">Introduction to John Tibbetts</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-3">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-4">Vision</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-5">Glossary</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-6">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-7">Capabilities</a></li>
+<li><a href="/201x-meeting-archives/2015-07-21/#topic-8">Roadmap</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-07-14/">Meeting for 2015-07-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-1">Introduction to Brendan Benshoof</a></li>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-2">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-3">Producing Documents</a></li>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-4">Vision document</a></li>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-5">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-6">Capabilities</a></li>
+<li><a href="/201x-meeting-archives/2015-07-14/#topic-7">Roadmap</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-07-07/">Meeting for 2015-07-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-07-07/#topic-1">Recruiting</a></li>
+<li><a href="/201x-meeting-archives/2015-07-07/#topic-2">authorization.io</a></li>
+<li><a href="/201x-meeting-archives/2015-07-07/#topic-3">Decentralized Identifiers</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-06-30/">Meeting for 2015-06-30</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-06-30/#topic-1">Credentials WG Plan</a></li>
+<li><a href="/201x-meeting-archives/2015-06-30/#topic-2">Introductions of New Members</a></li>
+<li><a href="/201x-meeting-archives/2015-06-30/#topic-3">Recruiting</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-06-23/">Meeting for 2015-06-23</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-06-23/#topic-1">Web Payments IG face-to-face in NYC</a></li>
+<li><a href="/201x-meeting-archives/2015-06-23/#topic-2">Introduction to Matt Stone</a></li>
+<li><a href="/201x-meeting-archives/2015-06-23/#topic-3">Current Status of Credentials at W3C</a></li>
+<li><a href="/201x-meeting-archives/2015-06-23/#topic-4">Badge Alliance updates</a></li>
+<li><a href="/201x-meeting-archives/2015-06-23/#topic-5">Focus on Recruiting New Members</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-06-09/">Meeting for 2015-06-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-06-09/#topic-1">Web Payments IG and Credentials</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-06-02/">Meeting for 2015-06-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-06-02/#topic-1">Credentials WG Charter and WPIG</a></li>
+<li><a href="/201x-meeting-archives/2015-06-02/#topic-2">Recruiting document</a></li>
+<li><a href="/201x-meeting-archives/2015-06-02/#topic-3">Credential Management API update</a></li>
+<li><a href="/201x-meeting-archives/2015-06-02/#topic-4">Use Cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-05-26/">Meeting for 2015-05-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-05-26/#topic-1">Recruiting document (non-W3C member)</a></li>
+<li><a href="/201x-meeting-archives/2015-05-26/#topic-2">Introduction to James and Arto</a></li>
+<li><a href="/201x-meeting-archives/2015-05-26/#topic-3">Graph Normalization Update</a></li>
+<li><a href="/201x-meeting-archives/2015-05-26/#topic-4">Recruiting W3C Members</a></li>
+<li><a href="/201x-meeting-archives/2015-05-26/#topic-5">Credential Management API Extension (update)</a></li>
+<li><a href="/201x-meeting-archives/2015-05-26/#topic-6">Use Cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-05-19/">Meeting for 2015-05-19</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-05-19/#topic-1">Introduction to Jordan Windsor</a></li>
+<li><a href="/201x-meeting-archives/2015-05-19/#topic-2">Open Badges xsd:string issue</a></li>
+<li><a href="/201x-meeting-archives/2015-05-19/#topic-3">WebAppSec Credential Management API</a></li>
+<li><a href="/201x-meeting-archives/2015-05-19/#topic-4">Graph Normalization Test Suite</a></li>
+<li><a href="/201x-meeting-archives/2015-05-19/#topic-5">Community Group Focus</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-05-12/">Meeting for 2015-05-12</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-05-12/#topic-1">Recap of 2015 Groningen Declaration Meeting</a></li>
+<li><a href="/201x-meeting-archives/2015-05-12/#topic-2">OBI JSON-LD Context</a></li>
+<li><a href="/201x-meeting-archives/2015-05-12/#topic-3">RDF Graph Normalization</a></li>
+<li><a href="/201x-meeting-archives/2015-05-12/#topic-4">Credentials WG Charter on Web Payments Agenda</a></li>
+<li><a href="/201x-meeting-archives/2015-05-12/#topic-5">Credentials WG support questionnaire</a></li>
+<li><a href="/201x-meeting-archives/2015-05-12/#topic-6">Recruiting co-chair from Pearson</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-05-05/">Meeting for 2015-05-05</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-1">Introduction to Richard Varn</a></li>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-2">Open Badges 1.1 Release</a></li>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-3">2015 Groningen Declaration Meeting</a></li>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-4">WebAppSec Credential Management API Status Update</a></li>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-5">Level One Project</a></li>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-6">Credentials WG Charter on Web Payments Agenda</a></li>
+<li><a href="/201x-meeting-archives/2015-05-05/#topic-7">Next Steps</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-04-14/">Meeting for 2015-04-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-04-14/#topic-1">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-04-14/#topic-2">WebAppSec Credential Management API</a></li>
+<li><a href="/201x-meeting-archives/2015-04-14/#topic-3">Credentials/Badges Vocabulary Update</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2015-04-14/#resolution-1">Switch the primary use cases document over to the micro-use cases approach, concentrate all future use case work into that document.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-04-07/">Meeting for 2015-04-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-04-07/#topic-1">Executive Summary</a></li>
+<li><a href="/201x-meeting-archives/2015-04-07/#topic-2">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-04-07/#topic-3">Credentials/Badges Vocabulary Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-03-31/">Meeting for 2015-03-31</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-03-31/#topic-1">W3C Interest in Credentials WG</a></li>
+<li><a href="/201x-meeting-archives/2015-03-31/#topic-2">Executive Summary</a></li>
+<li><a href="/201x-meeting-archives/2015-03-31/#topic-3">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-03-31/#topic-4">Credentials/Badges Vocabulary Update</a></li>
+<li><a href="/201x-meeting-archives/2015-03-31/#topic-5">Roadmap</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-03-10/">Meeting for 2015-03-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-03-10/#topic-1">Teleconference Bridge</a></li>
+<li><a href="/201x-meeting-archives/2015-03-10/#topic-2">Credentials Working Group Charter</a></li>
+<li><a href="/201x-meeting-archives/2015-03-10/#topic-3">Use Cases / Linked Data Signatures</a></li>
+<li><a href="/201x-meeting-archives/2015-03-10/#topic-4">Credentials/Badges Vocabulary Update</a></li>
+<li><a href="/201x-meeting-archives/2015-03-10/#topic-5">Roadmap Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-03-03/">Meeting for 2015-03-03</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-03-03/#topic-1">Credentials Working Group Charter</a></li>
+<li><a href="/201x-meeting-archives/2015-03-03/#topic-2">Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-03-03/#topic-3">Profile Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2015-03-03/#topic-4">Linked Data Signatures spec</a></li>
+<li><a href="/201x-meeting-archives/2015-03-03/#topic-5">Credentials/Badges Vocabulary Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-02-10/">Meeting for 2015-02-10</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-1">Introduction to Laura Fowler</a></li>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-2">Introduction to Brent Shambaugh</a></li>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-3">Web Payments IG Face-to-Face</a></li>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-4">Decentralized Identifiers for Credentials/Badges</a></li>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-5">Signatures Update</a></li>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-6">Badge Alliance Context/Vocabulary Update</a></li>
+<li><a href="/201x-meeting-archives/2015-02-10/#topic-7">Roadmap Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-01-27/">Meeting for 2015-01-27</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-01-27/#topic-1">Signatures Update</a></li>
+<li><a href="/201x-meeting-archives/2015-01-27/#topic-2">Badges/Credentials Vocabulary and Context</a></li>
+<li><a href="/201x-meeting-archives/2015-01-27/#topic-3">Digital Promise Summit for Workforce</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-01-20/">Meeting for 2015-01-20</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-01-20/#topic-1">Bedrock / P3 Release</a></li>
+<li><a href="/201x-meeting-archives/2015-01-20/#topic-2">Credentials / Web Payments IG Agenda</a></li>
+<li><a href="/201x-meeting-archives/2015-01-20/#topic-3">Signatures Update</a></li>
+<li><a href="/201x-meeting-archives/2015-01-20/#topic-4">Badge Alliance Vocabulary/Context Update</a></li>
+<li><a href="/201x-meeting-archives/2015-01-20/#topic-5">Roadmap</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2015-01-13/">Meeting for 2015-01-13</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2015-01-13/#topic-1">Web Payments Face-to-Face</a></li>
+<li><a href="/201x-meeting-archives/2015-01-13/#topic-2">Linked Data Signatures</a></li>
+<li><a href="/201x-meeting-archives/2015-01-13/#topic-3">JSON-LD Credentials Context/Vocabulary Update</a></li>
+<li><a href="/201x-meeting-archives/2015-01-13/#topic-4">Roadmap Update</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-12-09/">Meeting for 2014-12-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-12-09/#topic-1">Introduction to elf Pavlik</a></li>
+<li><a href="/201x-meeting-archives/2014-12-09/#topic-2">Signatures Update</a></li>
+<li><a href="/201x-meeting-archives/2014-12-09/#topic-3">Context Work Stream Update</a></li>
+<li><a href="/201x-meeting-archives/2014-12-09/#topic-4">Roadmap Work Stream update</a></li>
+<li><a href="/201x-meeting-archives/2014-12-09/#topic-5">Hosted vs. Signed</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-12-02/">Meeting for 2014-12-02</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-12-02/#topic-1">Coordination Plan for Next Few Months</a></li>
+<li><a href="/201x-meeting-archives/2014-12-02/#topic-2">Path Forward for Digital Signatures</a></li>
+<li><a href="/201x-meeting-archives/2014-12-02/#topic-3">Moving CG Documents onto REC-track at W3C</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-11-25/">Meeting for 2014-11-25</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-11-25/#topic-1">Digital Signatures - Pushback from Social Web / Harry Halpin</a></li>
+<li><a href="/201x-meeting-archives/2014-11-25/#topic-2">Introduction to Dale McCrory</a></li>
+<li><a href="/201x-meeting-archives/2014-11-25/#topic-3">Digital Signature Strategy</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-11-18/">Meeting for 2014-11-18</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-11-18/#topic-1">Groningen Declaration</a></li>
+<li><a href="/201x-meeting-archives/2014-11-18/#topic-2">Digital Signatures for Credentials</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-11-11/">Meeting for 2014-11-11</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-11-11/#topic-1">Review W3C TPAC Meeting</a></li>
+<li><a href="/201x-meeting-archives/2014-11-11/#topic-2">Web Payments IG Meeting</a></li>
+<li><a href="/201x-meeting-archives/2014-11-11/#topic-3">W3C TPAC Credentials Hallway Discussions</a></li>
+<li><a href="/201x-meeting-archives/2014-11-11/#topic-4">Planning for next 2 months</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-10-28/">Meeting for 2014-10-28</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-10-28/#topic-1">Introduction</a></li>
+<li><a href="/201x-meeting-archives/2014-10-28/#topic-2">Identity Proofing</a></li>
+<li><a href="/201x-meeting-archives/2014-10-28/#topic-3">Scope of CG Work</a></li>
+<li><a href="/201x-meeting-archives/2014-10-28/#topic-4">Use Cases / Future Work</a></li>
+<li><a href="/201x-meeting-archives/2014-10-28/#topic-5">Identifier Portability</a></li>
+<li><a href="/201x-meeting-archives/2014-10-28/#topic-6">Data Rights, Legacy Support</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-10-21/">Meeting for 2014-10-21</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-10-21/#topic-1">Intro from Dale McCrory from Courseload</a></li>
+<li><a href="/201x-meeting-archives/2014-10-21/#topic-2">Introduction to Nate Otto from Concentric Sky</a></li>
+<li><a href="/201x-meeting-archives/2014-10-21/#topic-3">Review Credentials CG Presentation to Web Payments IG</a></li>
+<li><a href="/201x-meeting-archives/2014-10-21/#topic-4">Review Credentials CG F2F Agenda</a></li>
+<li><a href="/201x-meeting-archives/2014-10-21/#topic-5">Review Credentials Use Cases vote status</a></li>
+<li><a href="/201x-meeting-archives/2014-10-21/#topic-6">Open Badges and JSON-LD</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-10-14/">Meeting for 2014-10-14</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-10-14/#topic-1">W3C TPAC and Credentials CG</a></li>
+<li><a href="/201x-meeting-archives/2014-10-14/#topic-2">Credentials CG Use Cases Review</a></li>
+<li><a href="/201x-meeting-archives/2014-10-14/#topic-3">Start Discussing Roadmap Document</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2014-10-14/#resolution-1">Publish a preliminary Credentials Use Cases document and vote on publishing it as a first public working draft before W3C TPAC. Start the vote at 5pm ET on Tuesday October 14th 2014 and keep it open for 7 days.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-10-07/">Meeting for 2014-10-07</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-1">Voting Process on Credentials Use Case Document</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-2">Web Payments Agenda on CG call last week</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-3">Comments on Use Cases Document</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-4">Remaining Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-5">Verifiable Claims</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-6">Media Rights</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-7">Data Rights</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-8">Proof of Pseudo-anonymity</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-9">Data Rights Agreement Before Transmission of Data</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-10">Access Revocation</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-11">Access Audit</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-12">Access Credential Audit Information</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-13">Education Use Cases</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-14">Access to Transcripts</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-15">Online Transcript</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-16">Continuing Education</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-17">University Credits</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-18">Bachelor's Degree</a></li>
+<li><a href="/201x-meeting-archives/2014-10-07/#topic-19">Any other use cases?</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2014-10-07/#resolution-1">Create and publish a preliminary Credentials Use Cases document and vote on publishing it as a first public working draft before W3C TPAC. Give fair notice of the vote immediately, start the vote at the end of the day on Tuesday October 14th 2014 and keep it open for 7 days.</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-09-30/">Meeting for 2014-09-30</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-1">Web Payments Use Cases Vote</a></li>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-2">Register Now for W3C TPAC</a></li>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-3">Advanced Use Cases (Tim Holborn)</a></li>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-4">Offer use case</a></li>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-5">Proof of Contribution Use Case</a></li>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-6">Proof of Invention Use Case</a></li>
+<li><a href="/201x-meeting-archives/2014-09-30/#topic-7">Wrapping up Use Cases</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-09-23/">Meeting for 2014-09-23</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-1">Complete Web Payments Use Case Review</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-2">Identity Recovery</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-3">Use Cases from Tim Holborn</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-4">Generalized Credentials</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-5">Read/Write Permissions</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-6">Proof of Delivery</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-7">Sharing Private Data</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-8">Credential-based Access</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-9">Confidential Sharing/Agreement</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-10">Advertising and Data Rights</a></li>
+<li><a href="/201x-meeting-archives/2014-09-23/#topic-11">Credentials for Internet of Things</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-09-16/">Meeting for 2014-09-16</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-09-16/#topic-1">W3C TPAC Preparation</a></li>
+<li><a href="/201x-meeting-archives/2014-09-16/#topic-2">Mark as Liason to IMS Global and PESC</a></li>
+<li><a href="/201x-meeting-archives/2014-09-16/#topic-3">Charter Vote Result</a></li>
+<li><a href="/201x-meeting-archives/2014-09-16/#topic-4">Web Payments Use Case Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-09-09/">Meeting for 2014-09-09</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-09-09/#topic-1">Introduction of new Members</a></li>
+<li><a href="/201x-meeting-archives/2014-09-09/#topic-2">Quick IGF 2014 Review</a></li>
+<li><a href="/201x-meeting-archives/2014-09-09/#topic-3">Badge Alliance and JSON-LD Discussion</a></li>
+<li><a href="/201x-meeting-archives/2014-09-09/#topic-4">Charter Vote Status</a></li>
+<li><a href="/201x-meeting-archives/2014-09-09/#topic-5">Use Case Review</a></li>
+</ol>
+<h3><a href="/201x-meeting-archives/2014-08-26/">Meeting for 2014-08-26</a></h3>
+<h4>Topics</h4><ol>
+<li><a href="/201x-meeting-archives/2014-08-26/#topic-1">Introductions</a></li>
+<li><a href="/201x-meeting-archives/2014-08-26/#topic-2">Overview of W3C Community Group Process</a></li>
+<li><a href="/201x-meeting-archives/2014-08-26/#topic-3">Charter Review</a></li>
+<li><a href="/201x-meeting-archives/2014-08-26/#topic-4">Questions Related to CG Operation</a></li>
+<li><a href="/201x-meeting-archives/2014-08-26/#topic-5">Use Case Review</a></li>
+</ol>
+<h4>Resolutions</h4><ol>
+<li><a href="/201x-meeting-archives/2014-08-26/#resolution-1">Hold a vote on the Credentials CG Charter starting Friday, August 29th 2014 with the vote open for 2 weeks. Accept the charter if 2/3rds majority of votes cast are in favor.</a></li>
+</ol>
+    </div>
+  </body>
+</html>

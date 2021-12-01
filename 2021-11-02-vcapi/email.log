@@ -1,0 +1,317 @@
+Thanks to Eric Schuh for scribing this week! The minutes
+for this week's Verifiable Credentials API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-11-02-vcapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials API Telecon Minutes for 2021-11-02
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0000.html
+Topics:
+  1. Relevant Community Updates
+  2. VC API Data Flow - CHAPI
+Organizer:
+  Manu Sporny
+Scribe:
+  Eric Schuh
+Present:
+  Manu Sporny, Justin Richer, David Chadwick, Joe Andrieu, Brent 
+  Zundel, Eric Schuh, Tobias Looker, Kerri Lemoie, Juan Caballero, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Adrian 
+  Gropper, Brian Richter, Mike Prorock, Ted Thibodeau, David Waite, 
+  Dmitri Zagidulin
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-11-02/audio.ogg
+
+Eric Schuh is scribing.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:   If not lets go into relevant community updates. 
+  Are there any updates/things that are happing that we should be 
+  aware of
+<juan_caballero_(spruce)> very minor update: 
+  https://github.com/w3c-ccg/vc-api-use-cases/pull/1
+Manu Sporny:  I've got one kind of thought as a part of getting 
+  the new VC 1.0 out, it has become a bit obvious that the test 
+  suite has become a bit old. Once there is a charter for the 2.0 
+  working group we have ~2 months to do that work. Kind of an open 
+  question of "Do we want to use the VC API to update the test 
+  suite?"
+Juan Caballero:  VC API Use Cases updates will be pushed each 
+  week, have a PR in this week
+Juan Caballero:  Thanks Mahmoud for the help on this week
+Manu Sporny:  Seems like there is an update, mind going over it
+Juan Caballero:  Added a list of specified endpoints that will be 
+  used based on the requirements. Went through and did a quick 
+  accounting. Next update will include who hosts each endpoint
+Juan Caballero:  This should make it obvious what endpoints and 
+  use cases we are missing
+Manu Sporny:  Thanks for the work, any other comments/concerns 
+  about the PR? Juan, you said you are trying to do a PR a week
+Juan Caballero:  Ideally
+Manu Sporny:  Any other updates before main topic?
+
+Topic: VC API Data Flow - CHAPI
+
+Manu Sporny:  Next up is VP API data flow, focused on a CHAPI 
+  like flow
+Joe Andrieu:  Thanks Manu, I'm going to start out reconnecting to 
+  the achitecture diagram. Can we merge that in? Any requests for 
+  changes on the pr?
+Manu Sporny:  Haven't seen any requests but lets hold off on 
+  merging till the ned of the call and can re-evaluate
+Joe Andrieu: 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0007.html
+Manu Sporny:  I want to see the CHAPI flow before commenting
+Joe Andrieu:  Sounds good, that is why I wanted to anchor with 
+  this because it is the common bit.
+Joe Andrieu:  We teased out last time this difference between 
+  apps and services. Where apps offload the business logic work 
+  from the service. Storage services and the services themselves 
+  are generally only exposed to the App
+Joe Andrieu:  The one exception here is the Status Service which 
+  is directly accessed by the Verifier Service.
+Manu Sporny:  Part of the feedback I have heard about the diagram 
+  from our engineering team is the "Issuer Admin" because it brings 
+  up the idea of standardizing admin services. We at Digital Bazaar 
+  do not want to go into that in the group because it is a 
+  distraction
+Joe Andrieu:  All of these components we will need to decide what 
+  goes into the API and how the authorization happens between the 
+  roles
+Joe Andrieu:  The admin components, the reason its hashed, is to 
+  speak to the fact that it might be json, it might be something 
+  else. Also agrees it doesn't make sense to standardize but we 
+  know Admin configuration has to happen
+Joe Andrieu:  And how does it get into the app, the Issuer admin 
+  must set rules for the Issuer App somehow
+David Chadwick:  It's about the holder app, and why it is 
+  singular. do you envision a browser talking to the Holder App?
+Joe Andrieu:  Part of your question I am going to defer because 
+  CHAPI. This seperation between holder app and holder service is 
+  that I have only found one endpoint he service uses which is 
+  create/sign VP
+David Chadwick:  I would say there is another service which has 
+  to do with registation of the holder with the issuer
+Joe Andrieu:  When does that happen?
+David Chadwick:  It happens before the holder can get VCs, so 
+  when the user installs the holder app they need to register
+Joe Andrieu:  So you mean the onboarding?
+David Chadwick:  Yes, you call it onboarding, I call it 
+  registration
+Joe Andrieu:  It's not clear where this happens other then in the 
+  issuer app
+Joe Andrieu:  The flows we've done with CHAPI we are just using 
+  the browser to go in to do that registration
+Joe Andrieu:  I think thats right, it has to be in the holder app
+Ted Thibodeau:  There is nothing that gets a VC from the issuer 
+  to the holder
+Joe Andrieu:  The holder app does
+Ted Thibodeau:  There is no arrow that procedes from an issuer 
+  block to a holder block
+Joe Andrieu:  That's correct, the thought is that these arrows 
+  represent initiation flows and right now the holder initiates all 
+  flows between apps
+Ted Thibodeau:  This will be confusing, will try to read the 
+  email but it would help me in the flow to illustrate the 
+  directionality
+Joe Andrieu:  There is not a flow here, the only thing being 
+  shown in who is starting the flow. the sequence diagram will 
+  detail the flow itself
+Manu Sporny:  We should probably just document that joe
+Joe Andrieu:  It is documented in the RP
+Joe Andrieu:  This is our take, want to give credit Orie for 
+  doing a lot of the work, this was Orie and I figuring out how 
+  CHPI works
+Joe Andrieu:  We do have this issue that the Holder Application 
+  is a browser plus a web app
+Joe Andrieu:  In CHAPI for those that don't know that is a 
+  browser based flow where CHAPI is a polyfill loaded in the 
+  browser that allows web apps to interface
+Joe Andrieu:  So lets walk through this flow, we start with the 
+  holder asking for verification
+Joe Andrieu:  The verifier app requests a VC, first javascript is 
+  loaded and then sperately that goes and gets the CHAPI polyfil 
+  from unpkg
+Joe Andrieu:  After this everything have been loaded and the user 
+  clicks on the button to submit a credential
+Joe Andrieu:  Once we get into this web modality the clean boxes 
+  from the first diagram aren't so clean anymore
+Joe Andrieu:  Call chapi.getCredential that goes out to authn.io 
+  which tracks resource boundries so CHAPI can track through 
+  different sites you visit
+Joe Andrieu:  After this the user gets a wallet selection, got 
+  ahead of myself lets backup
+Joe Andrieu:  Set the iframe source for the wallet selector, that 
+  pops up an iframe where you select the credential handler 
+  (wallet)
+Joe Andrieu:  Then y ou get a different iframe based on the 
+  wallet selection
+Joe Andrieu:  Now trying to get crendetial that was propagated 
+  from CHAPI.getCredential. This ends with wallet-ui-get.html being 
+  presented to the end user
+Joe Andrieu:  When that html is loaded the wallet presents the 
+  credential selector to the end user who then selects the 
+  credentials they want to share. The selection is then sent to the 
+  client who gets a VP constructed by the Holder service. CHAPI is 
+  then closed
+The credential is then sent to the Verifier App and then to the 
+  Verifier service.
+Joe Andrieu:  On return the verifier app takes verification 
+  result, applies business rules and upon finish shows the result 
+  to the user
+Manu Sporny:  Couple comments, high level yes, good breakdown. 
+  Looks like you got everything. Up at the top with the unpkg site, 
+  that is an optional thing right. Might just want to say CDN and 
+  unpkg is just an example of a CDN that could be used. Could 
+  publish your own or just use the one that the polyfil will pick. 
+  Authn.io is a mediator site and the whole ecosystem kind of 
+  breaks down because "which mediator are you on" questions happen 
+  if people are using different ones. So want mediator at the top
+Manu Sporny:  Rest looks right but want to pass it by dave 
+  longley for nitpicks but high level is great
+Joe Andrieu:  Still some confusing language to tease out but glad 
+  it looks good
+Manu Sporny:  As far as how this maps onto the flow we talked 
+  about last week, it maps almost directly. Its essentially the 
+  same flow but in the one flow you go through this browser 
+  complexity because you have to have the browser
+Manu Sporny:  But fundamenatlly the flow is the same
+Joe Andrieu:  We have not formalized in the request page what 
+  kind of data is known in that state because in the supply chain 
+  case the holder does likely know the credential that will be 
+  required whereas in the overage use case the holder might not 
+  realize they need the overage until they go to take an action
+Joe Andrieu:  In the supply chain case the logic exists in the 
+  cron job or other busniess logic
+Manu Sporny:  Where do we go next?
+<juan_caballero_(spruce)> he's here!
+<manu_sporny> He /was/ here :)
+<juan_caballero_(spruce)> 🤦‍♀️
+Joe Andrieu:  I want to check in with David Chadwick, not seeing 
+  Tobias. David does this seem aligned or do we need a dedicated 
+  call?
+David Chadwick:  Our flow is a lot simpler, I'm not familiar with 
+  CHAPI. Would be nice to model an open IDC flow because that is a 
+  standardized flow.
+Joe Andrieu:  Will setup that meeting
+Joe Andrieu:  If this holds together I'd like to get the version 
+  of this document that is in the PR pushed. Maybe we invite 
+  another week of comments before pushing
+Joe Andrieu:  Where we go from here is an open question
+Joe Andrieu: https://github.com/w3c-ccg/vc-api/pull/237
+Joe Andrieu:  Pull request 247 linked above
+Joe Andrieu:  There are some things that are not in this flow at 
+  all. Kerri had asked about concent receipt or other kinds of 
+  receipts which are not shown, so room for innovations
+Joe Andrieu:  It may be worth also adding the sequence diagrams 
+  to the spec, how do folks feel about that
+Manu Sporny:  +1 For that, i'm on the queue to ask for 
+  objections. Kerri you have been on and off queue, do you ahve a 
+  questeion?
+Kerri Lemoie:  Awhile back I had heard CHAPI cannot run on an 
+  encrypted network (SSL) is that still true?
+Manu Sporny:  Closed network that cannot get out to the internet 
+  that is true, solution is to act like a service worker
+Manu Sporny:  But today in a network where you cannot get out to 
+  teh authn site you cannot use CHAPI
+Manu Sporny:  That is a use case we do not want to support 
+  because you should not allow that to happen
+Joe Andrieu:  Running on an unencrypted site is wehre we would 
+  run into problems
+Kerri Lemoie:  I heard you cannot run on an SSL site
+Manu Sporny:  Oh, no CHAPI is definitely supposed to run on SSL 
+  sites. it is expected that whatever is running CHAPI is an SSL 
+  enabled site and CHAPI is supposed to run on those
+<juancaballero> This may be useful to people wanting to 
+  experiment with CHAPI: 
+  https://spruceid.dev/docs/didkit-examples/svelte-chapi
+Manu Sporny:  Question is are we ok with this high level diagram 
+  and the flow diagrams being put in the spec as a starting point
+Manu Sporny:  We have reviewed for 2 weeks and no one is 
+  complaining, we can give 48 hours to review
+Manu Sporny:  Does anyone object to this content being added to 
+  the spec?
+Joe Andrieu:  Current PR is just the current diagram, the other 
+  two aren't quite ready
+Manu Sporny:  My suggestion is to get these into an appendix as a 
+  first step
+Manu Sporny:  Can promote later to core part of spec if desired 
+  but these diagrams are very useful as a discussion tool
+Joe Andrieu:  If that is how we go we also need to get the 
+  issuanace flows, currently only have verification
+Joe Andrieu:  Issuance might take to end of the year
+Adrian Gropper:  What's the difference between the CHAPI flows 
+  and progressive web apps?
+Joe Andrieu:  I think my answer is that CHAPI is one way to build 
+  a web based credential exchange system. On one hand they feel 
+  orthogonal. You can build a progress app w/CHAPI or without and 
+  you can have a non-progressive app with either
+Joe Andrieu:  Does that help
+<juancaballero> if my grandmother had wheels, she'd be a bicycle
+Adrian Gropper:  No
+<juancaballero> as the old saying goes
+Manu Sporny:  Slight correction, if you have a progressive web 
+  app that has web access you can use CHAPI. if you don't have web 
+  access you can't use CHAPI
+Manu Sporny:  Want to modulate one thing you said joe, which is 
+  if you are doing a web based credential exchange. There is a way 
+  for CHAPI to work with native apps, theoretically. We have been 
+  looking to work with people to enable that because Digtial Bazaar 
+  does not build native apps
+Manu Sporny:  It has been a reason that people don't want to use 
+  CHAPI but there is a way for CHAPI to support it but currently 
+  that would need code and time
+Manu Sporny:  CHAPI could act as a bridge between native and web 
+  apps
+Manu Sporny:  No one else on queue and no objections so default 
+  is people can review PR
+Manu Sporny:  But if no comments in 7 days we will merge so going 
+  to merge this graphic as soon as Joe feels it is ready
+Joe Andrieu:  Let me queue up juan, for the endpoint 
+  specifications we just created an issue today to use this 
+  language (from diagram)  in the endpoint references in the use 
+  cases document
+<juan_caballero_(spruce)> VERIFIER-SERVICE/credentials/verify
+<juan_caballero_(spruce)> /credentials/verify
+Juan Caballero:  Would be useful to have (above) something like 
+  this instead of like this (second line above)
+<juan_caballero_(spruce)> VERIFIER-{SERVICE?APP?}
+Juan Caballero:  There will be some places where we have to add 
+  this, where we don't know
+<justin_richer> RFC7320, "Get Off My Lawn": 
+  https://datatracker.ietf.org/doc/html/rfc7320
+Justin Richer:  Quickly, wanted to make sure this group is aware 
+  of the RFC7320 that is whenever a specification is making a claim 
+  to part of URL space to make sure you aren't making a claim of 
+  the entire URL structure
+Justin Richer:  I haven't checked the VC API spec to make sure it 
+  isn't making claims but something we need to be aware of in this 
+  group
+Manu Sporny:  Strong agreement, right now I believe we do squat 
+  on the root namespace and need to make sure we have language 
+  about being able to have these endpoints anywhere in your URL 
+  structure. Might want to consider a wellknown file. There is a 
+  discovery question that is outstanding
+<justin_richer> ok yeah, then stop that right now
+Justin Richer: Discovery: .well-known/ is for this
+Manu Sporny:  That we should think about before we go to far
+Justin Richer:  Part of the get off my lawn spec is that it is 
+  total fine to have a URL branch that is built off of a root URL. 
+  What you don't want to do is assume that everyone that is 
+  deploying this does so on the root URL. So don't assume 
+  <host_name>/whatever but you can say <root_url>/add_this
+Justin Richer:  Just not allowed to claim that your base is the 
+  root URL
+Manu Sporny:  Need to raise an issue and noting we have 7 min 
+  left lets end early
+Manu Sporny:  Anything else we should keep in mind? or anything 
+  people want to focus on? suggestion is to do issue processing
+Manu Sporny:  Anyone else have a topic for next week?
+Manu Sporny:  Ok that is the gameplan for next week then
+<kerri_lemoie> Thanks, Joe and all!

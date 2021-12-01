@@ -29,6 +29,8 @@ var htmlHeader = fs.readFileSync(
   __dirname + '/header.html', {encoding: 'utf8'});
 var htmlFooter = fs.readFileSync(
   __dirname + '/footer.html', {encoding: 'utf8'});
+var htmlMeetingIndexFooter = fs.readFileSync(
+  __dirname + '/meeting_index_footer.html', {encoding: 'utf8'});
 var peopleJson = fs.readFileSync(
   __dirname + '/people.json', {encoding: 'utf8'});
 var gLogData = '';
@@ -200,7 +202,7 @@ async.waterfall([ function(callback) {
           summaryHtml += '</ol>\n';
         }
       }
-      summaryHtml += htmlFooter;
+      summaryHtml += htmlMeetingIndexFooter;
 
       fs.writeFileSync(__dirname + '/../index.html', summaryHtml, 'utf-8');
       callback();

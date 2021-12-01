@@ -1,0 +1,336 @@
+Thanks to Dmitri Zagidulin for scribing this week! The minutes
+for this week's Verifiable Credentials API telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-11-09-vcapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+Verifiable Credentials API Telecon Minutes for 2021-11-09
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Nov/0039.html
+Topics:
+  1. Relevant Community Updates
+  2. Pull Requests
+  3. Issue Processing
+Organizer:
+  Manu Sporny
+Scribe:
+  Dmitri Zagidulin
+Present:
+  Bob Wyman, Manu Sporny, Brent Zundel, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), Charles E. Lehner, Ted Thibodeau, Eric 
+  Schuh, Adrian Gropper, Juan Caballero, Mahmoud Alkhraishi, David 
+  Chadwick, Dmitri Zagidulin, Brian Richter, Andy Miller
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-11-09/audio.ogg
+
+Dmitri Zagidulin is scribing.
+Manu Sporny:  (Summarizes agenda -- mostly issue processing)
+Manu Sporny:  The focus is on closing issues.
+  ... any other updates or changes to agenda?
+Manu Sporny:  Let's start with Intros & Re-Intros
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  First update - the VC v1.1 spec is out
+<manu_sporny> Verifiable Credentials v1.1 proposed corrections: 
+  https://www.w3.org/TR/2021/REC-vc-data-model-20211109/
+  ... for review, right now
+  ... Mike Prorock covered this earlier today, on the main weekly 
+  call
+  ... this is version 1.1, fully backwards compatible. There's 
+  some substantive changes, but mostly about standardizing the Date 
+  Format, loosening some of the restrictions on ZKPs,
+  ... stuff like that
+  ... it's out for the Advisory Committee vote
+  ... to accept, formally object, & everything in between.
+  ... vote is open til Jan 18, 2022
+  ... so if you're a W3C member, and you know who your AC 
+  representative is, please ask them to vote
+  ... any questions?
+  ... the only other kind of question (specifically for this 
+  group) -- there's a question about using VC API in places that
+  ... could use better test coverage. Such as the VC Data Model 
+  spec, the DID Core spec
+  ... for example, there was a demonstration of using the did:key 
+  spec for interop of signatures
+  ... and it used VC API, to do DID interop testing
+  ... of course, when we do the VC 2.0 work, we'll also be doing 
+  Linked Data Integrity testing
+  ... the 1.0 test suite required you command-line things, to 
+  validate the VCs
+  ... the 2.0 test suite, I'm suggesting, should use the VC API
+  ... any objections to going down that path? (~2 years from now)
+  ... any philosophical / principled objection to using the VC 
+  API, to test LD & JWT proofs, in the VC 2.0 work?
+David Chadwick:  Clarification question -- I thought the VC API 
+  was intended to be primarily internal, within one trust domain?
+  ... interop testing would necessarily require crossing trust 
+  zones, no?
+  ... could we use OpenID Connect instead?
+Brent Zundel:  The decision will ultimately be up to the VC WG
+Manu Sporny:  Yes, +1 to that, the decision is in the VC WG's 
+  hands. Just wanting to check if this group has objections though
+  ... David, the question you raised -- the way I'd see it 
+  potentially working is that the test suite itself is making the 
+  call to the Issuer API and the Verifier API.
+  ... so, the test suite IS a single trust zone
+  ... so you can still consider it internal use
+  ... (it would be given the appropriate credentials to invoke 
+  the Issuer & Verifier API)
+  ... for example, see Charles's implementation for the did:key 
+  interop work
+  ... any other relevant community updates / items?
+
+Topic: Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pulls
+Manu Sporny:  We're going to skip the two draft ones on the 
+  security framework, and my PR for authorization delegations
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/237
+  ... the new Architectural Overview, something that Joe put 
+  together & we presented the last 2 weeks
+Adrian Gropper:  I have an objection to merging pr 237
+  ... and I commented on the thread
+Manu Sporny:  Ah ok, it wasn't clear that it was an objection. 
+  Can you clarify, in the comment?
+Adrian Gropper:  Yes
+Manu Sporny:  And please suggest a concrete change that would 
+  address the objection
+Adrian Gropper:  I'm not sure I can propose spec test
+  ... but these things are foundational, and need to be dealt 
+  with up front, in an overview doc
+  ... right now, these things are buried, if there at all
+Manu Sporny:  It sounds like you'd like the acknowledgement of 
+  the importance of delegation
+Adrian Gropper:  Not only delegation. but specifically the 
+  separation of concerns, for "zero trust architecture" designs
+Manu Sporny:  Adrian, the easiest thing would be to suggest some 
+  phrasing. It doesn't have to be super technically accurate, but 
+  it's hard to guess what you're looking for
+  ... and ideally, we don't couple that concern to the diagram 
+  itself. But it's up to you, if you feel that it's related to the 
+  diagram specifically
+Manu Sporny:  Ok, that's 237. Next up, Juan's global search & 
+  replace of VC HTTP API to VC API
+  ... looks like it's good to go
+Juan Caballero:  If anything breaks, just tag me
+Manu Sporny:  I'd like to merge it asap, so we can get other PRs 
+  after it
+Manu Sporny:  PR 241 (adding meeting info to README).
+  ... looks like it may need to be re-targeted to the other PR
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/241
+<manu_sporny> Next one is: 
+  https://github.com/w3c-ccg/vc-api/pull/242
+  ... next one is 242 on regenerating the revocation list.
+Manu Sporny:  Charles, would you like to give us some background?
+Charles E. Lehner:  Sure, there's a Revocation List in this repo, 
+  and it's used in the VC API test suite
+  ... but since the repos were renamed, the URL no longer works
+  ... so, the PR fixes the test suite to use the new (renamed) 
+  url
+  ... fixes the revocation list's url specifically
+Manu Sporny:  Yes, let's fix the url
+  ... brings up the question of -- do we want the revocation list 
+  example in this repo, or move it to the test suite?
+  ... my suggestion is to move it to the test suite
+Charles E. Lehner:  I can update the PR & test suite to add the 
+  credential there
+Manu Sporny:  That would probably be the best
+  ... but I'm fine with doing that in a separate PR
+Charles E. Lehner:  The way these two PRs are set up, it should 
+  apply to both of them, and then changes could be made afterwards
+Manu Sporny:  Does that mean you'd like it  merged as-is?
+Charles E. Lehner:  It would un-break the test suite, at least
+Manu Sporny:  Ok, ready for merge, then
+  ... the other question that came up was -- would implementers 
+  be willing to move over to Ed25519Signature2020 suite, for the 
+  next round of interop testing?
+  ... 2018 is a bit janky, and 2020 is a bit cleaner. I know a 
+  couple of implementers can use 2020...
+  ... any thoughts on this?
+Charles E. Lehner:  I'm prepared to change it to a 2020 test 
+  vector (Spruce has a 2020 impl.)
+Manu Sporny:  We should ask at least 2 other implementers, to see 
+  if they're willing to make the jump
+  ... it's a simple change, but we should ensure everyone's cool 
+  with that
+Charles E. Lehner:  Would we still want to keep the 2018 
+  credential example?
+Manu Sporny:  Good question, let's check with everyone.
+  ... we could demonstrate that you can use 2 crypto suites, that 
+  are two years apart, that you can switch between
+  ... maybe the right question to ask in this repo is -- 
+  remember, we all made a decision that it's just did:key
+  ... so the other thing we can do is decide on just one crypto 
+  suite.
+  ... so, the VC API test suite will only work with did:key, and 
+  only one signature suite
+  ... my suggestion would be the ed 2020 suite.
+  ... and we can mention "and then there are these optional 
+  suites you can support"
+  ...but the base tests can at least lock it to one did method & 
+  one suite
+  ... but if we can't agree, then we can support all the 
+  variations people want
+  ... ok, those are the PRs.
+  ... I'm hearing that all but one of them can go in
+  ... Juan, you're going to clean up the meeting info one, and 
+  the others will go in immediately
+  ... re 237 - Adrian, you're going to try and propose some text
+  ... anything else on PRs?
+
+Topic: Issue Processing
+
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Manu Sporny:  Our goal is to close old issues (mark them pending 
+  closed)
+  ... trying to avoid a huge discussion. The other thing we'll 
+  want to do is assign people
+  ... the assignment of a person means - you're willing to try 
+  and push the conversation forward
+  ... doesn't mean you have the solution or the answer, just that 
+  you're willing to shepherd
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/58
+Manu Sporny:  First up, state proofs on crossing trust boundaries
+  ... raised by Daniel H.
+  ... does anybody have thoughts on this issue?
+  ... ok, I think this is answered by having an Authorization -- 
+  you're making a call to a system you fundamentally trust
+  ... so, we'd need to state which endpoints are trusted 
+  endpoints, and which ones are not
+  ... which ones are within the trust boundary
+David Chadwick:  When we're talking about trust boundaries -- we 
+  still have to authenticate and authorize, no?
+  ... is that what we're saying?
+Manu Sporny:  Yeah, I think you're right, David. We'd need to 
+  write spec test that says,
+  ... if you're calling one of these APIs, then you're trusting 
+  them to do what's in the spec.
+  ... if you're calling the /issue endpoint, you'll authenticate 
+  & authorize as appropriate.
+  ... and you're trusting the system to issue a valid VC
+David Chadwick:  I agree, I think that's the right approach
+Adrian Gropper:  Quick question - what is a state proof?
+Manu Sporny:  It's something where you don't have to trust the 
+  entity giving you the info, you can only trust the info itself
+Adrian Gropper:  Wouldn't that be entirely out of scope, for what 
+  we're talking about?
+Manu Sporny:  My gut reaction says yes, but I'm sure there's some 
+  kind of way you could depend on a state proof for a VC
+Adrian Gropper:  Just seems like an extra complication
+Manu Sporny:  I think we're going to address that, with the 
+  proposed text.
+  ... maybe we can add an endpoint, that explicitly gives you a 
+  state proof in the future
+  ... but our general suggestion here is - don't call an endpoint 
+  you don't trust to do the thing (to issue the VC)
+  ... next up, issue 60, about swagger
+  ... We already do this. so, my suggestion is -- we've 
+  implemented the source of truth Swagger/OAS format
+  ... so, this is done. (we use it to generate ReSpec docs)
+<manu_sporny> That was 
+  https://github.com/w3c-ccg/vc-api/issues/60
+<manu_sporny> Next up is 
+  https://github.com/w3c-ccg/vc-api/issues/45
+Manu Sporny:  Next up, issue 45, distinguishing cred-issuer 
+  relationship in URI namespace
+Dmitri Zagidulin:  This seems to propose breaking up the issuer 
+  endpoint to multiple endpoints to cover various use cases. 
+  [scribe assist by Manu Sporny]
+David Chadwick:  I thought we got this already, in the latest 
+  design?
+Manu Sporny:  Not quite - we don't break it up like this 
+  proposes.
+  ... we just say "any server can implement the Issuer and 
+  Verifier API all on one server"
+Adrian Gropper:  I recommend marking this with 'Authorization' 
+  tag as well.
+  ... in general, if we adopt the model that GNAP uses (where we 
+  acknowledge that the protocol has a request component, and an 
+  access token component), then this becomes a lot easier to 
+  process
+  ... I'd treat this as an authz issue
+Manu Sporny:  Looking at the last sentence (about the same party 
+  can play multiple roles)
+  ... I think we already have this today
+Dmitri Zagidulin:  What if we reply that we request use cases -- 
+  some day in future we might want x, need concrete use cases. 
+  [scribe assist by Manu Sporny]
+Juan Caballero:  We were already going to (ideally before next 
+  Tues) go through the use cases, and mark which app/service is 
+  hitting which
+  ... if you look at the usecase doc now, it just lists which 
+  endpoints get hit, but not /whose/ endpoints.
+  ... we tried to sort it out, on another call, and it was hard 
+  to figure out
+Adrian Gropper:  This is exactly the problem that GNAP has worked 
+  on for a year
+  ... in that, they separate out the requesting party from the 
+  role of the requesting party
+Manu Sporny:  Ok, so, what are we doing with the issue
+  ... leaving comment, requesting concrete usecase related to the 
+  issue. also mentioned GNAP relevance to this issue
+  ... also discussed that perhaps the API already supports this 
+  viewpoint
+David Chadwick:  I think I've got a use case for this. The power 
+  of attourney
+  ... where the holder wants to get a VC for their parent. and 
+  what they present is a PoA credential, to show they're authorized
+Adrian Gropper:  I'd be happy to also be assigned
+Manu Sporny:  Will do (I need to add you to the Assignees group), 
+  please remind me
+<manu_sporny> Next issue: 
+  https://github.com/w3c-ccg/vc-api/issues/68
+  ... next up, issue 68, use of the 'created' option in verify 
+  request
+Charles E. Lehner:  I'm wondering about - what does the 'created' 
+  option mean in the verification options param?
+  ... I understand what it means in the context of issuance, but 
+  what does it mean wrt verification?
+Dmitri Zagidulin:  Maybe it was a cut & paste from issuer 
+  options?
+Manu Sporny:  Yeah, probably. Charles, do you mind suggesting 
+  something, if we assign the issue to you?
+Charles E. Lehner:  Sure.
+Manu Sporny:  So, the two options are -- 1) we take it out (if we 
+  don't know what it's for), until someone complains
+  ... I forget, when we verify, do we pay any attention to 
+  'created' at all? No, we just care about expires
+Charles E. Lehner:  We probably care if the 'created' is in the 
+  future
+Manu Sporny:  Right, so if created is in the future, it should 
+  throw an error
+  ... my suggestion is, we just remove this for now, for 
+  verification.
+  ... and re-add it only if somebody has a concrete usecase
+Dmitri Zagidulin: Cel: +1
+Manu Sporny:  Next up, issue 67, default verificationMethod 
+  option
+Charles E. Lehner:  I'd need to look at it again, not sure it's 
+  still relevant
+Charles E. Lehner:  Is there an expectation that there's a 
+  default verificationMethod, for an issuer?
+Manu Sporny:  Sure, I imagine you can configure that, on the 
+  issuer
+  ... reasonable that there'd be a default (if you don't specify 
+  one)
+Charles E. Lehner:  I'd also apply that to verification
+Manu Sporny:  I'm not sure it makes sense for verification.
+Charles E. Lehner:  What about requesting an allow-list (only 
+  permit VCs from these issuers)
+Manu Sporny:  I think we need more discussion, then
+  ... the issuer case is simple, the verifier case - potentially 
+  complicated
+Manu Sporny:  Ok, we're at the top of the hour.
+  ... we're going to keep plugging away at issues like these.
+  ... and PRs welcome, as always
+  ... the other thing to raise, before we leave -- there are a 
+  lot of calls happening around all the standards work
+  ... I wonder if we should pause the VC API calls for the month 
+  of December
+  ... I'll raise the question again on next week's call

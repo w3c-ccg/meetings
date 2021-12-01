@@ -1,0 +1,392 @@
+Thanks to Brian Richter for scribing this week! The minutes
+for this week's  telecon are now available:
+
+https://w3c-ccg.github.io/meetings/2021-09-28-vchttpapi 
+
+Full text of the discussion follows for W3C archival purposes.
+Audio from the meeting is available as well (link provided below).
+
+----------------------------------------------------------------
+ Telecon Minutes for 2021-09-28
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0124.html
+Topics:
+  1. New Data Flow Diagrams
+  2. Pull Request Review
+  3. ReSpec OAS Autogenerator Plugin
+Organizer:
+  Manu Sporny
+Scribe:
+  Brian Richter
+Present:
+  Mike Prorock, Michael Herman, Manu Sporny, Dmitri Zagidulin, 
+  Markus Sabadello, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), David Chadwick, Ted Thibodeau, Brian Richter, 
+  Adrian Gropper, Orie Steele, Juan (Spherity GmbH), Eric Schuh, 
+  Joe Andrieu, Justin Richer, Brent Zundel, Mike Varley, Bob Wyman
+Audio:
+  https://w3c-ccg.github.io/meetings/2021-09-28/audio.ogg
+
+Brian Richter is scribing.
+Manu Sporny:  Agenda - data flow diagram, PRs, Issue processing
+Manu Sporny:  I won't be here next tuesday. one of the codeowners 
+  will need to take lead for running the call
+<mprorock> Codeowners List: @peacekeeper @msporny @mavarley @OR13 
+  @mkhraisha
+Markus Sabadello:  Its late for me but I can probably do it
+<orie> its issue processing
+Manu Sporny:  Orie can you backup?
+Orie Steele:  Yes I can
+Manu Sporny:  Next item up, michael herman you had concerns about 
+  naming poll, do you want to elevate your concern?
+Michael Herman:  To be clear my issue is I want to see a west 
+  coast timezone for future polls
+<orie> lol
+<orie> its amazing how hard elections have gotten since twitter 
+  was invented...
+Mike prorock: vote was not on timezone, was informational poll 
+  that timezone was not announced with
+Manu Sporny:  Always issue with timezones, we'll take this to the 
+  mailing list to resolve timezone issues
+<davidc> What is wrong with UTC?
+<markus_sabadello> Let's have a poll about which timezone to use 
+  :)
+Manu Sporny:  We will do the name changes now
+
+Topic: New Data Flow Diagrams
+
+Manu Sporny:  Standard flow from supply chain folks when using VC 
+  API
+<joe_andrieu> Updated archive entry for today's Sequence Diagram 
+  https://lists.w3.org/Archives/Public/public-credentials/2021Sep/0141.html
+<mprorock> big thanks to Eric and Joe on this
+Joe Andrieu:  I've noticed in last half hour theres a thing 
+  missing i'll get to
+Joe Andrieu:  Each of the participants who are in a different 
+  trust domain have different colours
+Joe Andrieu:  Messages that cross these boundaries need authz
+Joe Andrieu:  Often these are "i only accept access from 
+  localhost"
+Joe Andrieu:  We are identifying where we need to talk about 
+  authz
+Joe Andrieu:  Emerging definition for service and app. the 
+  distinction between server, app and role. roles: holder, 
+  verifier, issuer. different components: app is software or 
+  service that gives vc-enabling capability (often SaaS)
+<michael_herman_(trusted_digital_web)>	role -> Actor
+<michael_herman_(trusted_digital_web)> Roles are not actors in 
+  most formal modeling metamodels
+  ... service is only accessable by the app
+<manu_sporny> I like this direction...
+<michael_herman_(trusted_digital_web)> Actors are assigned to 
+  Roles but Actors are the only entities that perform actions.
+  ... we have previously conflated the role and app and this is 
+  separated now
+<dmitri_zagidulin> it seems like the Verifier Storage Service 
+  doesn't add much to the diagram. (plus, many verifiers won't be 
+  storing the VC, etc)
+<orie> Review terms here: 
+  https://www.w3.org/TR/vc-data-model/#ecosystem-overview
+Michael Herman:  Role could be changed to actor? formal document 
+  should use formal definitions
+<orie>	> holder
+<michael_herman_(trusted_digital_web)> These are personas
+David chadwick: in the model we've got we differentiate between 
+  application layer and VC layer. when we talk about app that could 
+  be browser on mobile phone or 3rd party banking app which talks 
+  to holder app. on relying party side we have service provider 
+  which will talk to the service
+<mprorock> orie is quoting the spec here 
+  https://www.w3.org/TR/vc-data-model/#dfn-holders
+<michael_herman_(trusted_digital_web)> But role is not an 
+  appropriate use in this diagraam
+Joe Andrieu:  I would be happy to schedule call to go over that
+<orie> I would happy to be on a call with you David!
+<juan_(spherity_gmbh)> might be a good topic for the VC-GUIDE :D
+Joe Andrieu:  We're using the term "role" since it's in the vc 
+  data model
+<juan_(spherity_gmbh)> (and/or for issues for VC spec v2)
+<brent> so, the "holder role" label should be understood to mean 
+  "an actor in a holder role?"
+Michael Herman:  I don't disagree with that wording but in this 
+  diagram you need to depict an actor
+Joe Andrieu:  We are indicating this role is the actor ie. holder
+Dmitri Zagidulin:  Would it simplify the diagram to remove 
+  verifier storage service?
+<michael_herman_(trusted_digital_web)> What is an Actor: 
+  https://pubs.opengroup.org/architecture/archimate3-doc/chap08.html#_Toc10045368
+Joe Andrieu:  It would but the storage service and revocation 
+  service are both underrepresented right now
+Dmitri Zagidulin:  That makes sense but i mention verifier since 
+  many won't store the vc at all
+<michael_herman_(trusted_digital_web)> What is a Role: 
+  https://pubs.opengroup.org/architecture/archimate3-doc/chap08.html#_Toc10045369
+David Chadwick: +1 Dmitry
+<michael_herman_(trusted_digital_web)> An example: 
+  https://pubs.opengroup.org/architecture/archimate3-doc/chap08.html#_Toc10045372
+Adrian Gropper:  I understand the role of holder and issuer are 
+  separate roles but from authz perspective they could be combined 
+  in some instances. when we have distinction between device bound 
+  identity and biometric bound identity the opportunity arises for 
+  combining issuer and holder as theres no need for device bound 
+  identity
+  ... when liveness is required that can also fit into authz 
+  protocol
+  ... where the resource owner needs to be in control of authz 
+  policies instead of storage that is where my perspective is
+Joe Andrieu:  Slight shift in language might help me understand
+<orie> this picture does not include Issuer... it assumes that 
+  the holder already has a VC... we don't care how that happened.
+  ... any entity may be in any role at any time. that flexibility 
+  is innate. any of these services could be monolithic. reality is 
+  for our API important things are where do we provide APIs that 
+  can have substitutability
+  ... an entity can have multiple roles. trying to find API that 
+  enables substitutability
+<mprorock> I would love for Joe to be able to walk through his 
+  and Eric's work on this use case, then have a discussion about it 
+  honestly
+<manu_sporny> ok, we can do that mprorock
+<mprorock> with a big caveat that we are talking system to system 
+  use cases here
+Adrian Gropper:  I understand substitutability give challenges 
+  across trust domains. when discussing issues around delegation it 
+  would be helpful to our conversation if we considered when 
+  substitutability is important from a human rights vs vendor lock 
+  in
+<orie> i'm not sure why we are allowing the unrelated 
+  conversations to persist in this work...its confusing and 
+  harmful.
+Mike Prorock: +1 Orie
+Manu Sporny:  Lets go through the whole flow
+Joe Andrieu:  From supply chain with no human being using the 
+  browser to drive the interaction
+<orie> Imagine a CRON Job that shares data between 2 web 
+  servers...
+  ... 1. holder starts up their app, 2. app decides we need to 
+  send a VP, 3. notifies verifier data ready
+  ... 4 evaluates what to do w/ that
+5. Constructs a data package (domain and challenge)
+Mike Prorock: +1 Manu - that is a pretty good way of thinking 
+  about it
+Holder gets VC
+(From storage service)
+  ... app needs some notion of its own keys to invoke their 
+  actions
+<orie> not sure why we are talking about other CCG work items 
+  like web KMS... that work item is not required.
+  ... signs vp, sends to verfier app
+  ... verifier app talks to it's verifier service
+  ... verification comes back, verifier app evaluates business 
+  rules
+Mike Varley: +1 To the Service abstracting key management
+  ... stores the VC (may not be relevant but for symmetry)
+<mprorock> @orie - agreed, basically some key management - not a 
+  specific one or protocol
+  ... holder app gets message back "we got presentation"
+<orie> I like to model this as 2 network requests between 2 web 
+  servers, where they are started by a cron job.
+  ... holder app records submission
+<orie> revocation status is not relevant or needed.
+  ... something that came up: who is doing revocation status 
+  check? i think should be verifier service
+<manu_sporny> @orie @mprorock -- I believe JoeA was just using 
+  WebKMS as an example of key management, not a requirement.
+<orie> yes he was, its not required... nor is revocation.
+  ... i think we need another loop in here to show who is going 
+  to check revocation status
+  ... no authz in here
+<orie> link to use cases.
+<orie> FFS
+Manu Sporny:  Steps 1 through 6 i believe is the start workflow 
+  use cases. if that's true this whole thing is chapi flow as well. 
+  thoughts?
+<orie> this is the chapi flow.
+<orie> we designed it to be like CHAPI flows...
+Mike Prorock: +1 Orie
+<orie> which are actually 
+  https://w3c-ccg.github.io/vp-request-spec/ flows...
+<orie> 6 months later...
+Joe Andrieu:  I think that's right. most of the difference was 
+  the idea of data ready going to the service where really that is 
+  clicking on jobs website in the chapi flow
+Manu Sporny:  If that's reality that's great
+<orie> literally shaking..
+<orie> lol
+Ted Thibodeau:  On the flow for who checks status, both holder 
+  and verifier should do it
+  ... i don't want to submit a revoked vc if i can get a new vc 
+  that i can submit instead
+<manu_sporny> q
+<orie> thats because all VP flows require domain and challenge to 
+  be exchange prior to VP construction and communication.
+David Chadwick:  In openid connect: i can see how this maps into 
+  OIDC. message 3 would be the user talking to the resource to say 
+  i need access. message 6 would be the resource sending the 
+  presentation request which would detail the VCs it wanted
+  ... the user would retrieve VCs and then 13 would submit VP. 19 
+  would say you have access go ahead
+Orie Steele: +1 David
+<orie> all the VP flows are similar
+<orie> since they all require getting a domain and challenge from 
+  the verifier.
+Joe Andrieu:  One of the shifts here is notification data ready 
+  describes data to be required
+David Chadwick:  In oidc has nothing to do with the data has to 
+  do with VC claims
+Joe Andrieu:  And step 3 in supply chain is saying here are the 
+  claims i have available
+<manu_sporny> /me ghost queue
+<orie> No, its 2 apps talking to eachother... they are apps... 
+  not people.
+Mike Prorock: +1 Orie
+Adrian Gropper:  In supply chain flow, difference between VP and 
+  VC is liveness detection a concept or is it assumed that there is 
+  none but only detection of holder that is meant to be the 
+  difference
+  ... you can sign a challenge w/ liveness or just by signing
+Joe Andrieu:  That is the primary difference, i wish the supply 
+  chain had anchored the VP to the current user but that is not how 
+  it has been fleshed out
+Joe Andrieu:  Problem domain does not contain liveness detection
+<orie> it turns out that APIs exchange data... without people 
+  being detected as being alive, or involved.
+Mpro: that is the individual flow
+<dmitri_zagidulin> I think it might be worth clarifying that VPs 
+  only need challenge & domain when used for authentication. But 
+  not really for other purposes.
+Adrian Gropper:  There is difference between supply chain and 
+  general VP use case
+Manu Sporny:  What are next steps?
+Joe Andrieu:  There are some iterations. 1. revocation check. 2. 
+  refresh check
+Joe Andrieu:  Our flows don't show where those things happen 
+  currently
+  ... working through an updated CHAPI flow using this language. 
+  should give us an architectural diagram
+  ... we are close to having something spec ready
+Manu Sporny:  Thanks to people who did this work
+  ... is there anything to do w/ CHAPI flow?
+<orie> here is the flow with lots of abstraction:
+Joe Andrieu:  Same sort of walkthrough and look at differences. 
+  how are we going to talk about authz at these levels. often 
+  holder authenticates to app using email
+Joe Andrieu:  Lets do chapi and that can flow into how are these 
+  layers secured
+Manu Sporny:  PRs is next item
+<mprorock> traditional enterprise API use cases for VCs is 
+  basically what we are dealing with to expand on Orie's comment
+
+Topic: Pull Request Review
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/229
+Manu Sporny:  This has been merged, there was agreement
+Manu Sporny:  Specifically call out basic authentication don't 
+  use
+  ... sets precedent things we don't want to use
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/230
+Manu Sporny:  Orie, you wanted language to a MAY and adrian wants 
+  MUST. proposed was SHOULD
+<orie> Nobody SHOULD be required to implement something that is 
+  not possible to implement in their chosen programming language.
+<tallted> orie - that would be a justification to NOT do the 
+  thing!
+Manu Sporny:  Orie could you live with a SHOULD?
+Orie Steele:  I will object to language that uses SHOULD to imply 
+  people will use something that's not possible to use
+  ... this specific text: i will object to PR if it contains 
+  SHOULD or MUST
+Ted Thibodeau:  We are using SHOULD in the RFC explanation: do it 
+  unless you have a good reason not to
+  ... MAY to warn the other side you might do something
+<orie> MAY does nothing... exactly... better to do nothing... 
+  than to do something harmful.
+  ... SHOULD is a strong do it please but you're not in violation 
+  if you dont
+<orie> it is impossible to render GNAP RAR in OAS3.0... its not 
+  supported.
+Adrian Gropper:  I don't think we're ready to talk about this 
+  because: 1. we can not reply to a human rights argument using 
+  economic reasons. 2. not sure what is impossible, for example UMA 
+  we built delegation onto OAuth
+<justin_richer> Orie then you have bad tools 🤷‍♀️
+  ... we need to have human rights conversation in regards to 
+  delegation
+<mprorock> that is fine, but let's take that to the mailing list, 
+  not this work item for now
+<justin_richer> Also, I adapted it to do just that, since it's 
+  open source. It just doesn't allow plugins because of the 
+  software design.
+<orie> I have tools that enterprises are using... i think you 
+  might have a spec that nobody has adopted yet.
+<justin_richer> Orie you mean VC-HTTP-API? :)
+  ... its premature to talk about this
+<orie> yes
+<orie> : )
+Manu Sporny:  Agreed impossible is a stretch
+  ... the SHOULD is implementable
+<tallted> "very difficult, very expensive" are sufficient 
+  arguments against doing a SHOULD. it need not be "impossible"
+<orie> ZCAPs are also  not a standard and also not supported by 
+  OAS3.0.
+  ... we are dealing with something incredibly prestandard now
+<tallted> also, SHOULD is the historical compromise between MAY 
+  and MUST
+  ... adrian, that goes beyond VC API
+<orie> I'm a -1 to doing things that OAS3.0 does not support.
+Manu Sporny:  Keep discussion going in PR
+<justin_richer> I'm -1 to pegging an emerging standard to 
+  OAS3.0's capability set
+<orie> if GNAP gets added to OAS3.0 we are good to use it.
+<justin_richer> like, any emerging standard
+<orie> we agreed to use OAS3.0... if we want to take that back I 
+  am happy to start from scratch again :)
+Mike Prorock: +1 Orie - i think OAS3 is a good measure for now
+Manu Sporny:  Editors will shift the authz delegation to a draft
+
+Topic: ReSpec OAS Autogenerator Plugin
+
+Manu Sporny: https://github.com/w3c-ccg/vc-http-api/pull/233
+<davidc> I wanted to say that we may have different authz 
+  delegation rules for the different APIs (verifier, issuer and 
+  holder) and the current text does not differentiate
+  ... respec auto-generator from OAS file
+<justin_richer> OAS3 is a tool -- treating it like a requirement 
+  is putting shadow dependencies into the spec, and that's just bad 
+  design
+  ... this thing existed as OAS files before this spec existed. 
+  desire to keep OAS
+<orie> thanks for your opinion justin, but we agreed  to use 
+  OAS3.0, that point was already resolved.
+  ... there was no mechanism to inject OAS into respec
+<justin_richer> Using it and depending on it are different things 
+  and you're hiding behind that to support your argument.
+  ... code that pulls in OAS and renders into respec
+  ... schema is rendered directly from OAS. it's json and hard to 
+  read. renderer needs to be updated
+<orie> Justin, i'm not hiding behind OAS3.0... i am using adopted 
+  industry standards to strengthen our work item, and its potential 
+  for adoption.
+<mprorock> @manu - this is great
+  ... the hope is this a general solution that this will work for 
+  any REST api within CCG
+<orie> @manu looks great!
+  ... it would be awesome if folks would help me with the code
+<mike_varley> very cool @manu !
+Justin Richer:  Thanks for that its great work
+  ... this negates any arguments against things that don't fit 
+  within OAS. we created our own renderer....
+<orie> Justin, rendering a standard format is not the same as 
+  extending it too support new schemes... you should read the 
+  OAS3.0 spec.
+<justin_richer> @manu I wrote a renderer for OAS that handles RAR 
+  data structures and I'm happy to share it
+<mprorock> thanks all!
+https://w3c-ccg.github.io/vc-api-use-cases/
+Orie Steele: 
+  https://swagger.io/docs/specification/authentication/
+Manu Sporny:  Thats it for today, thank you joe and eric for 
+  diagram
+.. Reminder i won't be here next week markus will be doing issue 
+  processing
