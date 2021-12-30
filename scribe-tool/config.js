@@ -3,16 +3,54 @@
 
 var config = [
   {
-    "name": "Credentials CG",
-    "chairs": ["Wayne Chang", "Heather Vescent", "Mike Prorock"]
+    "id": "weekly",
+    "name": "W3C CCG Weekly Teleconference",
+    "chairs": ["Heather Vescent", "Mike Prorock", "Wayne Chang"]
   },
   {
-    "name": "Credentials Community Group",
-    "chairs": ["Wayne Chang", "Heather Vescent", "Mike Prorock"]
+    "id": "vcapi",
+    "name": "VC API Task Force",
+    "chairs": ["Manu Sporny", "Orie Steele", "Markus Sabadello", "Mike Varley", "Mahmoud Alkhraishi"]
   },
   {
-    "name": "CCG Verifiable Credentials for Education Task Force",
-    "chairs": ["Kim Hamilton Duffy", "Kerri Lemoie", "Anthony Camilleri"]
+    "id": "education",
+    "name": "VC for Education Task Force",
+    "chairs": ["Kerri Lemoie", "Anthony Camilleri"]
+  },
+  {
+    "id": "traceability",
+    "name": "Verifiable Traceability Task Force",
+    "chairs": ["Orie Steele", "Mike Prorock", "Mahmoud Alkhraishi"]
+  },
+  {
+    "id": "resolution",
+    "name": "DID Resolution Task Force",
+    "chairs": ["Markus Sabadello"]
+  },
+  {
+    "id": "vc",
+    "name": "VC Maintenance Task Force",
+    "chairs": ["Brent Zundel", "Manu Sporny"]
+  },
+  {
+    "id": "interop",
+    "name": "VC Interoperability Task Force",
+    "chairs": ["Orie Steele"]
+  },
+  {
+    "id": "security",
+    "name": "VC Security Task Force",
+    "chairs": ["Manu Sporny", "Orie Steele"]
+  },
+  {
+    "id": "didpkh",
+    "name": "did:pkh DID Method Task Force",
+    "chairs": ["Wayne Chang"]
+  },
+  {
+    "id": "test",
+    "name": "W3C CCG Infrastructure Testing",
+    "chairs": ["Manu Sporny", "Charles Lehner", "Ryan Grant"]
   }
 ];
 
