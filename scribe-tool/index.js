@@ -42,21 +42,40 @@ if(!groupConfig) {
 }
 
 // configure scrawl
-scrawl.group = `${program.group} Telecon`;
 scrawl.people = JSON.parse(peopleJson);
-scrawl.chair = groupConfig.chairs;
 
+// configure scrawl - scan the log file for a group name
+var ircLog = fs.readFileSync(logFile, {encoding: 'utf8'});
+var meetingRx = /\[.*\]\s\<.*\>\sMeeting: (.*)/gm;
+var matches = [...ircLog.matchAll(meetingRx)];
+if(matches.length > 0) {
+  const lastMatch = matches[matches.length-1][1];
+  for(const cfg of config) {
+    if(cfg.id === lastMatch) {
+      scrawl.group = cfg.name;
+      scrawl.chair = cfg.chairs;
+    }
+  }
+} else {
+  scrawl.group = config[0].name;
+  scrawl.chair = config[0].chairs;
+}
 
 function generateEmailBody() {
 // generate the body of the email
   var content = scrawl.generateMinutes(gLogData, 'text', gDate);
   var scribe = content.match(/Scribe:\n\s(.*)\n/g)[0]
       .replace(/\n/g, '').replace('Scribe:  ', '');
-  content = `Thanks to ${scribe} for scribing this week! The minutes\n` +
-      `for this week\'s ${program.group} telecon are now available:\n\n` +
-      `https://w3c-ccg.github.io/meetings/${program.directory} \n\n` +
+
+  if(scribe === 'transcriber') {
+    scribe = 'Our Robot Overlords';
+  }
+  content = `Thanks to ${scribe} for scribing this week!\n\n` +
+      `The transcript for the call is now available here:\n\n` +
+      `https://w3c-ccg.github.io/meetings/${program.directory}/\n\n` +
       'Full text of the discussion follows for W3C archival purposes.\n' +
-      'Audio from the meeting is available as well (link provided below).\n\n' +
+      'Audio of the meeting is available at the following location:\n\n' +
+      `https://w3c-ccg.github.io/meetings/${program.directory}/audio.ogg\n\n` +
       '----------------------------------------------------------------\n' +
       content;
   return content;
@@ -212,6 +231,9 @@ async.waterfall([ function(callback) {
   }
 }, function(callback) {
   var content = generateEmailBody();
+  if(!program.quiet) {
+    console.log('scrawl: Writing', emailContentsFile);
+  }
   fs.writeFileSync(emailContentsFile, content, 'utf-8');
   callback();
 }], function(err) {
@@ -220,4 +242,3 @@ async.waterfall([ function(callback) {
     console.log('Error:', err);
   }
 });
-
