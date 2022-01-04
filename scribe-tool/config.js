@@ -15,7 +15,7 @@ var config = [
   {
     "id": "education",
     "name": "VC for Education Task Force",
-    "chairs": ["Kerri Lemoie", "Anthony Camilleri"]
+    "chairs": ["Kerri Lemoie", "Simone Ravaioli", "Dmitri Zagidulin"]
   },
   {
     "id": "traceability",
