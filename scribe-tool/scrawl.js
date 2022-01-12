@@ -27,6 +27,9 @@
   var agendaRx = /^agenda:\s*((https?):.*)$/i;
   var urlRx = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/;
 
+  // Based on https://github.com/w3c/scribe2/blob/51a2e428fb1d6edf1fe1d1eba756c81d9b109cdd/scribe.perl#L820
+  var replaceRx = /^ *(s|i)(\/|\|)(.*?)\2(.*?)(?:\2([gG*])? *)?$/;
+
   // Compatability code to make this work in both node.js and the browser
   var scrawl = {};
   var nodejs = false;
@@ -367,6 +370,47 @@
   scrawl.setHtmlFooter = function(footer) {
     scrawl.htmlFooter = footer;
   };
+
+  scrawl.preprocessLine = function(context, lines, lineI)
+  {
+    const line = lines[lineI];
+    const match = commentRx.exec(line);
+    if(!match)
+    {
+      return;
+    }
+    const [_, time, nick, msg] = match;
+
+    // check for a substitution
+    const replaceMatch = replaceRx.exec(msg);
+    if(replaceMatch)
+    {
+      const [_, cmd, delim, old, New, modifier] = replaceMatch;
+      if (cmd !== 's')
+      {
+        console.error(`command not supported on line ${lineI}: ${line}`);
+        return;
+      }
+      const maxReplaces = modifier === 'g' || modifier === 'G' ? Infinity : 1;
+      const endLineN = modifier === 'G' ? lines.length-1 : lineI-1;
+      let numReplaces = 0;
+      for(let i = endLineN; i >= 0; i--)
+      {
+        const line = lines[i];
+        const newLine = line.replace(old, New);
+        if(line !== newLine)
+        {
+          lines[i] = newLine;
+          console.log('Replacing', JSON.stringify(old), 'with', JSON.stringify(New), ' on line', i)
+          if(++numReplaces >= maxReplaces)
+          {
+            break;
+          }
+        }
+      }
+      lines[lineI] = '';
+    }
+  }
 
   scrawl.processLine = function(context, aliases, line, textMode)
   {
@@ -848,6 +892,12 @@
     if(date) {
       context.date = new Date(date);
       context.date.setHours(23);
+    }
+
+    // pre-process each IRC log line
+    for(var i = 0; i < ircLines.length; i++)
+    {
+      scrawl.preprocessLine(context, ircLines, i);
     }
 
     // process each IRC log line
