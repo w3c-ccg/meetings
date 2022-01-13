@@ -371,9 +371,9 @@
     scrawl.htmlFooter = footer;
   };
 
-  scrawl.preprocessLine = function(context, lines, lineI)
+  scrawl.preprocessLine = function(context, lines, lineNumber)
   {
-    const line = lines[lineI];
+    const line = lines[lineNumber];
     const match = commentRx.exec(line);
     if(!match)
     {
@@ -385,30 +385,30 @@
     const replaceMatch = replaceRx.exec(msg);
     if(replaceMatch)
     {
-      const [_, cmd, delim, old, New, modifier] = replaceMatch;
+      const [_, cmd, delim, old, replacement, modifier] = replaceMatch;
       if (cmd !== 's')
       {
-        console.error(`command not supported on line ${lineI}: ${line}`);
+        console.error(`command not supported on line ${lineNumber}: ${line}`);
         return;
       }
       const maxReplaces = modifier === 'g' || modifier === 'G' ? Infinity : 1;
-      const endLineN = modifier === 'G' ? lines.length-1 : lineI-1;
+      const endLineN = modifier === 'G' ? lines.length-1 : lineNumber-1;
       let numReplaces = 0;
       for(let i = endLineN; i >= 0; i--)
       {
         const line = lines[i];
-        const newLine = line.replace(old, New);
+        const newLine = line.replace(old, replacement);
         if(line !== newLine)
         {
           lines[i] = newLine;
-          console.log('Replacing', JSON.stringify(old), 'with', JSON.stringify(New), ' on line', i)
+          console.log('Replacing', JSON.stringify(old), 'with', JSON.stringify(replacement), ' on line', i)
           if(++numReplaces >= maxReplaces)
           {
             break;
           }
         }
       }
-      lines[lineI] = '';
+      lines[lineNumber] = '';
     }
   }
 
