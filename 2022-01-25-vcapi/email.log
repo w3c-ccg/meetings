@@ -1,0 +1,289 @@
+Thanks to Mike Prorock and juan_caballero_(spruce) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-01-25-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-01-25-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-01-25
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jan/0188.html
+Topics:
+  1. Agenda Review
+  2. Introductions, Relevant Community Updates
+  3. Interoperability Testing Plan 2022
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Mike Prorock and juan_caballero_(spruce)
+Present:
+  Manu Sporny, Dmitri Zagidulin, Mike Prorock, Markus Sabadello, 
+  Kerri Lemoie, Rolson Quadras, Brian Richter, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Phil L (P1), Eric Schuh, Joe 
+  Andrieu, BrentZ, Juan Caballero, Phil (T3), Tobias Looker, Adrian 
+  Gropper, Andy Miller, Troy Ronda, Marty Reed
+
+Mike Prorock is scribing.
+
+Topic: Agenda Review
+
+Manu Sporny:  Review, intros, interop testing plan for 2022
+  ... extension of main call, but obviously focused on VC-API 
+  directly
+  ... any updates or changes to agenda?
+  ... none - getting started
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  Any relevant updates?
+Joe Andrieu:  Can you hear me now?
+  ... rebooting web of trust feb 17
+  ... visioning exercise - life in 2052
+Manu Sporny:  Note that VC 1.1 passed and is now official updated 
+  rec
+<phil_(t3)> Woohoo!
+  ... comments, but no FOs
+<joe_andrieu> Rebooting Salon: 
+  https://outofthebox2052.eventbrite.com
+Manu Sporny:  Brent what is timeline on VC WG - waiting on FOs, 
+  etc
+Mike Prorock:  Questions on VCWG 2.0 WG? What's happening there? 
+  [scribe assist by Manu Sporny]
+Brentz: moving ahead, tidying up draft charter, then will be 
+  moving forward once feedback is in
+  ... were waiting on FOs, but since no movement there, pressing 
+  ahead
+
+Topic: Interoperability Testing Plan 2022
+
+Manu Sporny:  VC-API focused test plan for demonstrating interop
+  ... call this morning covered trace approach for test and 
+  interop, full business flows, etc
+  ... using postman against the VC-API
+  ... DHS SVIP will be running interop tests focused on 
+  requirements there
+  ... movement by vendors to implement test and test suites to 
+  test other capabilites and interop via the VC-API
+  ... one type of testing is type of credential focused
+  ... also end to end testing such as in trace
+  ... and testing using VC-API on / or with crypto suites as 
+  under discussion for VC 2.0 WG
+  ... one area that will be added to by DB
+  ... focused on ed25519 from DB, others may pick up other crypto 
+  suites
+  ... other side is features such as status list 2021
+  ... finally credential refresh using VC-API
+Mike Prorock:  One thing I wanted to note, in interest of not 
+  duplicating work, we'll (on the Trace Side) as we clarify 
+  requirements from broader Trade community... GS1, etc... we'll 
+  likely want to use VC API to test [scribe assist by Manu Sporny]
+Mike Prorock:  Like testing cryptosuites, expected inputs, 
+  expected response, etc. Here's something that doesn't conform, 
+  etc. Likewise for testing stuff like status list and making sure 
+  things behave as expected. [scribe assist by Manu Sporny]
+<phil_(t3)> To what extent is the test suites used by the SVIP 
+  PlugFest code that can be used for at least credential interop 
+  testing?
+Mike Prorock:  I expect those to come in as individual modules 
+  for those features? Is there a way to agree on "test module 
+  entry" "test module exist" "test outputs", etc? To help one 
+  deduplicate something else. Roll up test results across test 
+  suites. [scribe assist by Manu Sporny]
+Manu Sporny:  SVIP stuff should be built fairly generic with some 
+  overlap
+<phil_(t3)> Understood
+Manu Sporny:  Unknown at moment
+Manu Sporny:  Crux of this issue is identify a common path
+  ... wish there was a common reporting format that met our needs
+  ... not sure that EARL will meet our needs here
+  ... test the web reporting is very browser centric
+  ... mocha test, postman test output now
+  ... need to look and see if we can align outputs
+Mike Prorock:  Yeah, I think it's helpful, kinda way I'm 
+  thinking, based on test reference implementations, we're going to 
+  see tests written in mocha/jest/junit -- can we agree on output 
+  format where you want to cross-compare, here's the format we want 
+  to map formats to? [scribe assist by Manu Sporny]
+<markus_sabadello> <-- We're going to work on a DID Resolution 
+  test suite in SVIP, but I don't think I can talk about it since I 
+  get kicked out of the meeting all the time..
+Mike Prorock:  Depending on framework for testing, that might be 
+  easier/harder -- having audio issues for main call today -- 
+  timeliness of CSV output format, for privacy, those related 
+  issues for testing/assurance -- self attestation, kinda 
+  generalized format, using that as a model might not be the worst 
+  model -- or maybe JSON vocab that maps? Might not be perfect, but 
+  as you said, iteration towards some kind of common format. 
+  [scribe assist by Manu Sporny]
+Manu Sporny:  Markus - can you speak to did test format
+Markus Sabadello:  Did resolution test suite in progress to 
+  extend beyond syntax and data model testing
+<juan_caballero_(spruce)> vc TS: vcapi TS :: did TS: did-resol TS
+  ... similar to VC and VC-API test suite will try and follow a 
+  similar pattern
+NIST spec I was referring to: 
+  https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+@Markus - is that being done in junit?
+Manu Sporny:  Broad ecosystem interop test vs. now what can you 
+  do once you have implemented that
+Manu Sporny:  Types of test have been basically against the VC 
+  spec and the DID spec - running those is testing against spec, 
+  not against vendor
+  ... vendor to vendor is very diff than spec testing
+  ... even browser tests are very browser specific
+  ... this is much more complicated - which is output of one 
+  vendor as input to another
+  ... a lot of these test langugages don't focus on that
+  ... does postman work with that kind of NxN matrix stuff?
+Is there a format for that in ... postman
+Mike Prorock:  I think you're calling out an important thing -- 
+  testing in general, a couple of things that go on -- unit 
+  testing, core function testing, sometimes related, sometimes 
+  not... spec testing -- VC API in some way, simplifies some 
+  aspects of that. [scribe assist by Manu Sporny]
+Mike Prorock:  We're defining VC API as Open API Specification, 
+  postman is built so that you have open API specification, 
+  generate those tests against that API if it's defined, run it so 
+  it's automated, from conformance standpoint, do it across 
+  collection of information. [scribe assist by Manu Sporny]
+Mike Prorock:  Could be a list of servers, loop through vendors, 
+  run tests against all vendors. So, that's item 1 [scribe assist 
+  by Manu Sporny]
+Mike Prorock:  From an API conformance testing perspective, 
+  postman/newman really shines best there. Document and test APIs 
+  and conformance to APIs. [scribe assist by Manu Sporny]
+Mike Prorock:  The second piece, the NxN side, the moment you do 
+  that, you introduce somewhere, on test runner side, some notion 
+  of state -- cache information in some scope, use output from one 
+  API call against another. [scribe assist by Manu Sporny]
+Mike Prorock:  In case of NxN testing, take output of one REST 
+  call, input to next REST call -- what should it have done -- 
+  postman gives you ability to define that you may want to execute 
+  second call, third, whatever you happen to be on in test set.... 
+  what server or vendor you're testing against. [scribe assist by 
+  Manu Sporny]
+Mike Prorock:  In one test run, walk through practical example, 
+  issue VC against DB, then go sign presentation against Transmute 
+  or Spruce, do appropriate call with that VC against other API, 
+  what's happening behind the scenes, variables defined in 
+  postman... what is server/baseURL -- but not API endpoint,d 
+  efined as part of API -- so you can't fake the test. We saw this 
+  happen last year with VC API tests -- issue at different path, 
+  test allows you to specify [scribe assist by Manu Sporny]
+<manu> path... wasn't checking conformance w/ API itself
+Mike Prorock:  It was just saying -- take data, pass it into 
+  endpoint, you have to make sure test suite you're doing, that it 
+  accounts for those sorts of issues -- one of benefits for test 
+  framework that is API oriented. [scribe assist by Manu Sporny]
+Mike Prorock:  When we think about profiles on top of this stuff 
+  -- postman will not test well some things -- separate test suite, 
+  testing compliance with TLS profiles for how you're exposing your 
+  REST services. Sure, you can fake that in postman, but right way 
+  to test is via other approach -- guides via NIST/NSA to test -- 
+  look at type of testing being done. If it's API, known input, 
+  known output, that's where postman is good, even if it's a NxN 
+  workflow... [scribe assist by Manu Sporny]
+Mike Prorock:  Reporter format is important when logging stuff 
+  out -- there are a number of out of the box reporters, you can 
+  change output -- can adopt conventions in logging -- provider A 
+  logging against provider B -- specify that against logging 
+  format. We will probably adopt custom report format, ensure 
+  credentials or key material get into logs of test run. [scribe 
+  assist by Manu Sporny]
+Mike Prorock:  We don't want that to leak info, so a bit of 
+  legwork, but not a terrible amount of work, fairly minimal. Once 
+  that's logged out, on trace side, we're logging out to JSOn and 
+  HTML. [scribe assist by Manu Sporny]
+Mike Prorock:  We also support logging to CSV and command line 
+  output live [scribe assist by Manu Sporny]
+Mike Prorock:  So, we have optionality in CI, output JSON, do 
+  nice HTML wrapper... but if we want to pull it into an analysis 
+  toolkit... is API slowing down when accessing private key 
+  material, look at response times, analyze -- but from system 
+  behavior standpoint, how did v1 compare to v2... how did that 
+  behave? [scribe assist by Manu Sporny]
+Manu Sporny:  Do you have an example of output? [scribe assist by 
+  Manu Sporny]
+https://www.youtube.com/watch?v=hy4GKO5mIoA
+Manu Sporny:  Important to get to the deep level of detail and 
+  roll up as needed
+https://youtu.be/hy4GKO5mIoA?t=157
+  ... ideally we want to see a matrix that shows vendors across 
+  top with yellow green red, as well as details
+  ... don't know what the general pattern is yet
+  ... maybe the lesson is that there is no silver bullet
+Mike Prorock:  In this video that i linked to above, you can see 
+  three different report-out formats
+juan_caballero_(spruce) is scribing.
+Mike Prorock:  In this video that i linked to above, you can see 
+  three different report-out formats
+  ... first there's the output of the console log
+  ... then there's the pie-chart that shows per-vendor passes and 
+  fails
+  ... then there's this NxN circle diagram (the circle showing 
+  each NxN) and the e2e/"BI"-style flow diagram
+  ... fundamentally, the contents of the console log generated 
+  all the others deterministically; furthermore, since we were 
+  using postman, there was also some logging and metrics about 
+  response times and HTTP header dumps, etc
+  ... matrix-style can be made from what i believe were MOCHA 
+  tests just to make an apples-to-apples across vendors (shown at 
+  min4sec11)
+  ... X-axis on this slide was % but didn't need to be, could've 
+  been labelling each test by name or number
+Manu Sporny:  How automatable is all this, tho?
+Mike Prorock:  I think I commited the code that generated all 
+  this somewhere... it's 100% automatable if you're logging all the 
+  req'd inputs in a parseable format
+  ... i believe this was built from postman log files (CSVs?)
+  ... min4sec25 - this slide was set up as a workflow 2 weeks 
+  before the plugathon and left it re-running chron-ologically
+Manu Sporny:  Next steps - how coordinate? how to do this in the 
+  next SVIP plugathon?
+Manu Sporny:  How do we coordinate this stuff [scribe assist by 
+  Mike Prorock]
+<mprorock> ... would be a real shame if we had a bunch of diff 
+  ways of showing capabilities
+<mprorock> ... seems like matrix type testing shoudl be trivial 
+  with postman
+Manu Sporny:  Seems like a commitment from DB to work with mesur 
+  to line up an output format [scribe assist by Mike Prorock]
+<mprorock> ... then try to generate smae kind of output
+<mprorock> ... if we can do that , then we can generate NxN style 
+  reports and include them as needed elsewhere such as in respec
+<mprorock> ... not sure how we get to the fancy stuff, aside from 
+  collecting enough data
+<mprorock> ... hearing that you (mesur) also want to get to a 
+  common format
+<mprorock> ... and if we can do that we should be able to get to 
+  a common roll up
+Mike Prorock:  Yes, 100% commitment onour side -- Chris is our 
+  test person - can put them in touch w/ you. [scribe assist by 
+  Manu Sporny]
+Mike Prorock:  Getting common format defined, we have good models 
+  -- EARL isn't perfect, good indicator of what kinds of data are 
+  collected and typical labels. For example, postman, had to add 
+  stuff to logger to get it to handle how we wanted. [scribe assist 
+  by Manu Sporny]
+Mike Prorock:  Report writer for mocha, jest, junit -- as long as 
+  you feed into report writer, then it's works, then you can throw 
+  plotly at it or something else to visualize. Flow/blockage type 
+  analysis -- collecting this stuff over time. There's a lot of 
+  good benefits for collecting that data over that time w/ that 
+  granularity. [scribe assist by Manu Sporny]
+Manu Sporny:  Ok, cool - anyone else interesting in coordinating 
+  on modular testing for VC-API? [scribe assist by Mike Prorock]
+Tobias Looker: +1 We are for VC API also
+<mprorock> ... markus - are you interested for did resolution 
+  tests as well
+<mprorock> ... Tobias - are you interested in that common output?
+Tobias Looker:  Seems like a good idea vs bespoke [scribe assist 
+  by Mike Prorock]
+Manu Sporny:  2Min warning - any other thoughts? [scribe assist 
+  by Mike Prorock]
