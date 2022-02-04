@@ -1,0 +1,942 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-02-01-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-02-01-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-02-01
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jan/0245.html
+Topics:
+  1. Introductions and Community Updates
+  2. Start Workflow - Presentation Availability Convergence
+Action Items:
+  1. Update Presentation Availability to 
+    "/exchanges/initiate/{exchange-type-id}/{?exchange-uuid}" and you 
+    have to POST data to the endpoints.
+  2. Update POST body to accept a JSON object, where the 
+    Traceability spec will further define exactly the type of object 
+    they're looking for (a VPR?)
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Mike Prorock, Manu Sporny, Mahmoud Alkhraishi, Markus Sabadello, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Andy Miller, 
+  Dmitri Zagidulin, Joe Andrieu, Juan Caballero, Kerri Lemoie, Phil 
+  L (P1), PL (T3), Eric Schuh, Kaliya Young
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone to the February 1st 2022 
+  verifiable credentials API call we have our agenda in the chat 
+  Channel right now on the agenda today we have an agenda review 
+  introductions relevant Community updates.
+Manu Sporny:  We have a discussion on workflow so the the kind of 
+  one of the goals of this call is to try and align two calls in 
+  the VC API with what the traceability folks are doing and so 
+  we're going to attempt the whole call today is going to be 
+  focused on getting that kind of alignment so that has to do with 
+  the start workflow and then the presentation availability.
+Manu Sporny:  With either workflow interaction or the submit 
+  presentation call so they're just two calls therefore calls now 
+  we're going to try and boil them down into two calls if possible 
+  or just get a plan together and how to do that there's also some 
+  issue processing that we need to do Mike I think you raised the 
+  concern about controller style and point the pattern that we're 
+  using for the API and so maybe we want to change that and then 
+  there's this.
+Manu Sporny:  Flo IDs and names should they be in the URL or 
+  should they be in the post body so those are the items that we 
+  have for discussion today and then we'll do issue processing if 
+  we have any time left over which I doubt we're going to have any 
+  updates or changes to the agenda anything else folks want to 
+  discuss today.
+Manu Sporny:  Okay is there anyone new to the call or anyone that 
+  would like to reintroduce themselves.
+
+Topic: Introductions and Community Updates
+
+Manu Sporny:  All right is there are there any Community updates 
+  specifically relevant to be Capi.
+Manu Sporny:  I do think it's probably relevant mentioning the 
+  chartering.
+<manu_sporny> VC APIs "out of scope": 
+  https://github.com/w3c/vc-wg-charter/pull/43
+Manu Sporny:  Disagreements that are happening right now for 
+  those of you that are not aware BC apis there's a suggestion by 
+  Microsoft that any kind of protocol work any kind of API work in 
+  the VC 2.
+Manu Sporny:   Co-working.
+<pl_(t3)> Why is MS saying that?
+Manu Sporny:  Escape completely don't want to talk about 
+  protocols none of that stuff there are a couple of us that are 
+  engaging in that thread we would appreciate others chiming in one 
+  of the concerns here is that we want to.
+Manu Sporny:  One of the concerns there is that we want to 
+  publish a note around the work that we're doing in this group 
+  just to set it up so that we can take it standards track during 
+  the next recharter which would be in 2 years or whenever the work 
+  you know when of the working group finishes its work there.
+Manu Sporny:  Yourself seems to be pushing back pretty hard on 
+  that Phil you asked why currently Microsoft is trying to get open 
+  IDC the protocol in as the protocol to move mobile driver's 
+  licenses around there has been a decent bit of pushback on mdl as 
+  it's currently formed because it doesn't take into account 
+  verifiable credentials and verifiable presentations.
+Manu Sporny:  And this is just my opinion my expectation is 
+  Microsoft would like to see that happen over open I DC connect 
+  and having another protocol out there that moves verifiable 
+  credentials around places that approach into question.
+Manu Sporny:  I will pause and other people that you know other 
+  people may want to speak to that as well anyone want to put 
+  themselves on the Queue to speak to that.
+<juancaballero> or at least, into competition :)
+<pl_(t3)> Understood. The revenue impact is now getting clearer 
+  :-(
+Mike Prorock:  Yeah and II think that there's definitely some 
+  folks working pretty hard on going down like you know open ID can 
+  act as a path for exchanging credentials right and I don't think 
+  that's going to change right when we look at the way you know 
+  who's involved Etc I do think that there is a potential path 
+  forward to do so and in fact I opened a PR for it man oh I don't 
+  know if you saw that all.
+Mike Prorock:  I think 66 all lengths.
+Mike Prorock: https://github.com/w3c/vc-wg-charter/pull/66
+Mike Prorock:  But basically this a look let's go ahead and very 
+  explicitly in the non-normative side of things from a developer 
+  you know be able to give developer documentation guidance 
+  etcetera put up possibly as an extension or set of extensions on 
+  top of the existing implementation guide for a rest API 
+  definition such as we're talking about here but also not to rule 
+  out guidance on how to handle you know if you're going to 
+  exchange credentials via open it.
+Mike Prorock:   Eid connect we should be able as working group to 
+  discuss that.
+Mike Prorock:  His well basically right because I don't it's 
+  gonna take a little while to get to some consensus on that and I 
+  think the danger that I see is that if we try to push back hard 
+  on open ID connect or push back hard on something else that they 
+  you know we may see what more resistance to saying look any 
+  protocols you know for exchanger discussion of that even in a non 
+  normative ways out the.
+Mike Prorock:   Window and that's that's.
+Mike Prorock:  More dangerous I think from an adoption 
+  standpoint.
+Mike Prorock: +1 Be able to discuss REST APIs
+Manu Sporny:  Sure and in the suggestion isn't to say you can't 
+  do open ID connect it's it's yeah absolutely if you want to do 
+  open ID connect and move these around on it that's great we 
+  should be able to talk about that in the group and if the folks 
+  in this group want to see the VC API as a part of that discussion 
+  we need to put it in scope so the concern here is that if we 
+  don't put the document we're working on right now squarely in.
+Manu Sporny:  From a non-normative standpoint there will be.
+Manu Sporny:  About it right so that is that is the concern that 
+  I have is that if we do not make it very clear that we can talk 
+  about VC API and publish it as node and all that kind of stuff 
+  there will be objections to doing that once the working group 
+  starts up go ahead Joe your.
+Joe Andrieu:  I think you mean stop talking about it in that 
+  working group which is not the context we're talking about that 
+  now so it still wouldn't prevent us from continuing the ccg work 
+  on it or charger in another working group to actually standardize 
+  it all right.
+<mprorock> we will move on from it and not dedicate resources if 
+  it is not in the WG
+Manu Sporny:  That is partially correct remember this is now 
+  somewhat of a race in open ID has its own foundation and you know 
+  these participants are active there in all they have to do is 
+  stamp something as a standard of they're done it's a it's a 
+  global standard and then all of a sudden the VC API is a why do 
+  we need that when we already have this other standard out there 
+  right so.
+Manu Sporny:   From a strategic.
+Manu Sporny:  They think it's a bit concerning if we just 
+  continue to work on this as a community group and it continues to 
+  be referred to as a yeah but that's just some random group of 
+  people on the Internet working on it rather than it being 
+  actually discussed the spec itself in published as a note in the 
+  verifiable credential working group so that we can take it 
+  standards track.
+Manu Sporny:  I'm sorry I think I jumped the cute and I might go 
+  ahead apologies.
+Mike Prorock:  Yeah I think I was going to say some of what you 
+  were saying there but I will clarify like for instance just 
+  because of limited resources and having to pick our battles like 
+  if honestly like if some kind of a rest API and I think putting a 
+  reference in directly to the VC API as it stands today is not the 
+  worst idea but it you know if that's not as part of that working 
+  group honestly we're going to probably.
+Mike Prorock:  Have to move on.
+Mike Prorock:  Try we just have limited resources to go dedicate 
+  to it especially if there's a clear path to like an open ID 
+  connect path right so that's the that's the difficulty I see I 
+  vastly prefer arrest for all of these interactions right so 
+  that's part of the reason I'm making the effort here and you know 
+  opening PRS I and you know discussing on the issues over on the 
+  work group you know Charter discussion because I think it's 
+  important to have a clear restful.
+Mike Prorock:   Path to exchange this kind of the.
+Manu Sporny:  All right thanks for that Mike no one else is on 
+  the Queue will move on we've just you know this was just 
+  highlight that that conversation is happening there.
+Manu Sporny:  Okay happy to do that.
+Mike Prorock:  Yeah let's think I was going to say Manu if if you 
+  want to suggest on that PR you know like a such as and then a 
+  link to the VC API or something I'm happy to I think that'd be a 
+  good way to at least get the conversation going in one place on 
+  that yeah cool thanks.
+
+Topic: Start Workflow - Presentation Availability Convergence
+
+Manu Sporny:  All right so let's go ahead and move into our first 
+  topic then which is the start workflow presentation availability 
+  convergence discussion so let me go ahead and share my screen 
+  here one second.
+Manu Sporny:  There are currently two calls in the VC API that 
+  effectively do the same thing one of them has been in there for a 
+  while and that is the presentation availability availability and 
+  point in the purpose of this endpoint please correct me if I'm 
+  wrong here Mike is to basically kind of.
+Manu Sporny:   Say that you.
+Manu Sporny:  Have some presentations available to the server so 
+  you're the client and you're contacting the server and you're 
+  like I've got some stuff that I'd like to send you the server 
+  then responds with potentially be PRI VPR a verifiable 
+  presentation request and it's like okay well if you want to send 
+  those things to me here's some here's some instructions on how 
+  you do it the start workflow.
+<mprorock> yep, Query By example, Challenge, etc
+Manu Sporny:  As opposed to end point in when you post data to it 
+  the workflows kind of encoded as a in the URL and it says okay if 
+  you want to start that workflow with me here's a verifiable 
+  presentation request so the only thing that differs between these 
+  two endpoints is the data that you post to it the start workflow 
+  call just takes any object it's just like just send me it's.
+Manu Sporny:   It's not very specific.
+Manu Sporny:  In the expectation here is that the server once it 
+  receives the object will understand oh you want to do that kind 
+  of workflow with me and you gave me the data to kind of kick it 
+  off and here's your presentation request and then you go back and 
+  forth on that the presentation availability and point is a little 
+  more specific in that you actually I think Mike you send it a VPR 
+  but it's effectively an.
+Manu Sporny:   Checked you send it an object and it responds back 
+  with a.
+Manu Sporny:  Want to send me that information here the things 
+  that you need to hear the things you really need to send me and 
+  the thing that's usually returned in both cases is like a domain 
+  and a nonce and a challenge and they like that kind of stuff like 
+  the credentials it wants to see that sort of thing so there was a 
+  lot of effort put into this to try and make this call to start 
+  workflow call a superset of the presentation availability.
+Manu Sporny:   All so you.
+Manu Sporny:  Do both with with start workflow.
+Manu Sporny:  So the I think the proposal here is can we merge 
+  these both down into one thing the suggestion is can we do the 
+  start workflow one and then the trace folks specify in the 
+  traceability spec that they want this object to be a VPR.
+Manu Sporny:   So let me let me start.
+Manu Sporny:  And see Mike if you have any questions concerns 
+  Mahmud or anyone else that would like to comment on this should 
+  these be merged under what circumstances that kind of thing go 
+  ahead Mike Europe.
+Mike Prorock:  I'll defer to Joe first so.
+Manu Sporny:  Go ahead Joe.
+Joe Andrieu:  Okay yeah I'd like to see the merge in part because 
+  I think the semantics of presentations available is that the 
+  wrong layer like I think it's data is available or claims 
+  available the presentation isn't created until the nonce is sent 
+  right so I think there's just a little bit of impedance mismatch 
+  there and I think we can clean that up with a start workflow as 
+  an alternative.
+Manu Sporny:  Okay thanks Jill Mike Europe.
+Mike Prorock:  Yeah I have a little bit of some similar to 
+  concern to what Joe just said in the sense that the presentation 
+  is not created yet obviously because what you're saying is hey 
+  give me the stuff I need in order to you know create a 
+  presentation and send it to you where I the the only way were 
+  exchanging data on the supply chain side is via presentations 
+  right it's a presentation with an array.
+Mike Prorock:  Credentials in it.
+Mike Prorock:  The concerns I have is that there's a bit of 
+  overloading of the term workflow right so from a supply chain 
+  context and especially from like a USC Customs Border Protection 
+  context when we use the term workflow we're referring to a very 
+  explicit like import workflow or you know set of regulatory rules 
+  and stages and inspections and things that actually have to 
+  occur.
+Mike Prorock:   To a physical good so.
+Mike Prorock:  The same you know we have the same term applying 
+  you know being used in it you know supply chain context as 
+  opposed to kind of more of like a broader digital context so that 
+  is one concern I have a bit over the notion of saying yep we're 
+  going to have you know an endpoint that just arbitrary workflow I 
+  think it might work I'm not sure I would love Mike moods thoughts 
+  on this but that's a little that kind of overloading their I 
+  could see cause.
+Mike Prorock:   And confusion for some folks.
+Manu Sporny:  Go ahead and Mahmud if you've got some thoughts.
+Mahmoud Alkhraishi:  So one of the things that Mike and Joe both 
+  mentioned that really resonates is the idea that presentation 
+  isn't actually available when you say position available I think 
+  everybody's on board with that that makes you know all the sense 
+  in the world to at least semantically change what we're saying 
+  there.
+Mahmoud Alkhraishi:  I think the two flows makes a lot of sense 
+  to me but the word workflow is like ridiculous that overloaded 
+  now I know you've mentioned that this is a working title and then 
+  we're going to change that and I'm happy to you know do that 
+  change so I'm going to only talk about it from a conceptual level 
+  for getting the word workflow right let's just talk about it from 
+  a concept of can I merge the two different.
+Mahmoud Alkhraishi:   Calls that we're going to do.
+<joe_andrieu> perhaps "initiateExchange"?
+Mike Prorock: +1 Joe - something like that might work
+Mahmoud Alkhraishi:  And to me the answer to that is yes as long 
+  as I have a way of saying I need one two three credentials from 
+  you please provide it to me in a presentation and.
+Mahmoud Alkhraishi:  That's like a hard requirement for me I 
+  think everything else just you know as long as we're able to do 
+  that it makes sense.
+Manu Sporny:  Got it all right so I'm on the Queue I think the 
+  respond to both of those things so yeah makes total sense 
+  speaking to the workflow term I just I just used that term like 
+  he was just like a placeholder right so if we want to call it 
+  Sally or you know snowboard or whatever like we should totally 
+  buy shed it and call it 11 potential there is just to call it 
+  present.
+<mprorock> or notify
+Manu Sporny:  And flow or something like that but I feel like we 
+  can bike shed that later Mike the way that you use the word 
+  workflow though when you specify traceability is exactly what I 
+  was thinking it with respect to the word workflow so a workflow 
+  is a predetermined kind of set of steps that you want to execute 
+  and in some cases when you enter a workflow you don't necessarily 
+  know what steps.
+Manu Sporny:   Soooo 34.
+Manu Sporny:  And seven are going to be you know that you're 
+  going to start with something but then the server might ask you 
+  for something different depending on this the type of you know 
+  when you start a workflow the server is going to ask you the same 
+  thing in return I need to see X y&z from you but that verifiable 
+  presentation request that that it asks for me so this is speaking 
+  to what you said Mahmood that that VPR that you get back that's 
+  like I want to see items one two and three that can.
+Manu Sporny:   Have some optional things in it and based on what 
+  you give back to the server.
+Manu Sporny:  Oh oh now I need these other things from you right 
+  so there's the ability to kind of float fork in a workflow and do 
+  that kind of thing but the the semantics of the word workflow 
+  Mike was exactly what you described that's what I what I meant 
+  but at the same time I completely understand if it's overloaded 
+  and people don't feel comfortable with it that's fine we can 
+  rename it I think the key thing here is.
+Manu Sporny:  You in can the trace folks continue to do what 
+  they're currently doing I think the answer to that's yes so let 
+  me stop there and see if any one kind of wants to react to that 
+  oh sorry go ahead Joe I think you're back in the queue.
+Joe Andrieu:  Yeah I know we can buy said this later I agree with 
+  that I had proposed initiate Exchange in the chat and just wanted 
+  a bubble that up that may offer the same affordances without the 
+  overloading of the term workflow.
+<mprorock> or presentation/notify
+Manu Sporny:  Cool plus one of that go ahead mama.
+Mahmoud Alkhraishi:  So one of the things that I want to surface 
+  up is that on the traceability side we've been talking about 
+  workflows as an amalgamation of multiple different actors doing 
+  different things in a long-term process right so what Mike was 
+  saying with import is includes the person who is growing the 
+  product the person who is transporting the products the person 
+  who's filling out the input declaration etcetera etcetera.
+<mprorock> it won't happen all in one api call or set of calls 
+  back and forth even
+Mahmoud Alkhraishi:  I'm hearing from you about the word workflow 
+  is more about I am talking to a single server and I am initiate 
+  and I'm doing an exchange of VCS once I give you to VCS you come 
+  back to me and you say hey can you give me a third VC that's a 
+  little bit different right so to me you're talking about an 
+  exchange with a single party whereas what Mike is talking about 
+  and what we can talk about disability side.
+<mprorock> two weeks later a workflow gets picked up and 
+  continued
+<mprorock> etc
+Mahmoud Alkhraishi:  Multiple instances of that exchange with 
+  multiple different parties that need to be all relatable to each 
+  other I hope I made that clear yeah.
+Manu Sporny:  Got it yeah I don't know that's crystal clear so 
+  conceptually the way at least I'm looking at that is that your 
+  multi-party workflows are just a bunch of mini workflows chained 
+  together is that a wrong way to look at it so like you know there 
+  can be the the whole workflow like the total end and multi-party 
+  workflow with Bunches of people you know.
+Manu Sporny:   Sending and receiving.
+Manu Sporny:  Kind of stuff but each one of those individual 
+  actors in the traceability whole workflow is is doing their own 
+  mini workflow they're just providing their bit of their 
+  particular workflow that point in time thoughts on that go ahead 
+  Mike.
+Mike Prorock:  Yeah I think that's not a terrible way of thinking 
+  of it but you can't always guarantee that you're going to have 
+  clean segmentation so like in the egg case like in a layout just 
+  like a physical example because sometimes it's easier to think 
+  about right so you'll have a credential comes come in that 
+  represents the Harvest data right so such was harvested packaged 
+  up in a box at the actual Farm itself right cool.
+Mike Prorock:   Oh great one actor.
+Mike Prorock:  Yep that was my part of it and I moved it to Cold 
+  Storage great there was my second part right so then though you 
+  might or might not have someone that picks up part of that and 
+  goes down a different path that's like a may go down a certain 
+  path branching case right that may not have been Divine defined 
+  to begin with right so there's just not really clear segmentation 
+  as far as which actors are taking part in which aspects of the 
+  workflow or.
+Mike Prorock:   Even segments of that workflow and.
+Mike Prorock:  Us it's a lot easier to just say look I've got 
+  this arbitrary async batch of data ready go ahead and you know 
+  let me know when you're ready to receive it and I'll start 
+  sending it over because that stuff's coming very very 
+  intermittently and in you know not necessarily predictably and we 
+  are linking that stuff very actively via use of like a 
+  correlation ID between presentations right this.
+Mike Prorock:   Presentation has credentials.
+Mike Prorock:  Linked up to this particular workflow or 
+  potentially this credential is linked to another one via 
+  correlation ID and we're looking at ways of associating an IED to 
+  associate a specific like regulatory workflow that that 
+  correlation ID applies to as an instance of but that's still 
+  being hashed out so it's does that does that help give a little 
+  Clarity there because it's not like it's going to be oh I start a 
+  workflow.
+Mike Prorock:  Done with even my portion of the workflow that may 
+  change day-to-day or instance to instance even within the same 
+  product leaving the same location going to the same destination 
+  for the same importer.
+Manu Sporny:  Yeah so let me check the queue yes that makes sense 
+  I think we're still talking about bit past each other but that's 
+  okay the workflows here at least the definition that I was 
+  thinking of don't need to be synchronous and they don't need to 
+  be known because it before ahead of time and they can change from 
+  day to day and I think all of that meets matches what you just 
+  said.
+Manu Sporny:  But I'll note that like I don't want us to get like 
+  caught up on the word workflow I think success here is like going 
+  oh we can merge these two because they're effectively the same 
+  thing and we you know go with Joe suggestion of like this is 
+  really about initiating a presentation and kind of go from there.
+Manu Sporny:   Go ahead mama.
+Mahmoud Alkhraishi:  To me when we're talking I think we are 
+  talking past each other and that's very valid I think in general 
+  I'm on board with saying we need a way to merge the two apis into 
+  something that's essentially an exchange API the mechanics of 
+  which we can easily hash out over a PR where we go oh actually I 
+  need to Define X first I first that's straightforward to me what 
+  I want to make.
+<mprorock> presentation/initiate or something
+Mahmoud Alkhraishi:  Super clear is that there is a necessity to 
+  link multiple exchanges to each other and that's something that 
+  we've defined on the trade side as a workflow now we can call 
+  that an end-to-end flow whatever you want to call it but the 
+  point is I need to be able to point to separate instances of 
+  exchange and say these exchanges are all.
+<mprorock> and to link subsets or incomplete groups as well as 
+  the end to end
+Mahmoud Alkhraishi:  In some way and I need to be able to point 
+  to what are these exchanges were made by me or by some other 
+  party right it doesn't need to be like I shouldn't only need to 
+  point to an exchange of that I made with a server I could point 
+  to an exchange that somebody else made with you know a different 
+  server and say these are.
+Manu Sporny:  We do have this bit around so workflows have IDs 
+  the around workflow interactions so that might have to do with 
+  that might speak to your ability to link these things together 
+  that is certainly contemplated here in the workflow interaction.
+<mprorock> it is more a UUID to represent a type of workflow, and 
+  another UUID for the specific instance of that type of workflow
+Manu Sporny:  But I'm wondering if that's where we should take 
+  the conversation because one thing we could just ask is like if 
+  we renamed presentation availability to something like start 
+  interaction or something like that and we made this thing more 
+  generic so it doesn't have to be a VPR it can be any Json object.
+<mprorock> but, yes
+<mprorock> bc i would like to use this for cred refresh as well
+Manu Sporny:  That I think just those two things would allow us 
+  to merge the two together and then that would allow us to 
+  initiate like credential refresh using this kind of unified API 
+  and it should allow the trace folks to just continue doing what 
+  they're doing with like a small renamed of the endpoint.
+Mahmoud Alkhraishi:  So I've been simplifying how we use work 
+  clothes a little bit just for the sake of you know making it 
+  clear but what Mike put in chat is absolutely important to the 
+  Limit right and that's basically when we talk about end-to-end 
+  flows we're talking about a process and we have to separate 
+  identifiers that were associating with those bosses right one is 
+  an identifier.
+Mahmoud Alkhraishi:   That says this is the it.
+Mahmoud Alkhraishi:  Pace of what are the possible paths that 
+  this process can take which were using as a way to define hey I 
+  can do X Y or Z separate actions and all of these actions will 
+  generate a VC or won't generate a VC or whatever but it this is 
+  the whole problem space so to speak right the second identifier 
+  is an identified were using for an instance of a workflow now.
+Mahmoud Alkhraishi:   If I'm able.
+Mahmoud Alkhraishi:  To link multiple exchanges to a single 
+  instance of an end-to-end flow via the ID that you pointed out 
+  then that would be a very reasonable solution in my money right.
+Manu Sporny:  Could you could you repeat that again my mood 
+  because I almost got it but but didn't so you're saying if we 
+  could.
+Manu Sporny:  Link this ID.
+Manu Sporny:  To the information that you're talking about okay.
+Mahmoud Alkhraishi:  Heidi I'm going to call an exchange ID right 
+  this exchange ID I want to link it to three other exchanges that 
+  have occurred all by pointing to a end-to-end flow ID right so I 
+  want to say this end-to-end flow ID is associated with 
+  interactions XY and z and this end-to-end flow ID is of type.
+Mahmoud Alkhraishi:  Or avocados to you.
+<identitywoman> isn't this what DIDComm does?
+Mahmoud Alkhraishi:  All right and so if we satisfy that 
+  requirement then I think we're happy on the trade side.
+Mahmoud Alkhraishi:  I'm saying as long as we have that ability 
+  then.
+Manu Sporny:  Yeah I mean I eat that shouldn't I use that that 
+  should be possible with this are you saying you wanted to find in 
+  the VC API like doing that like oh yeah I mean you certainly have 
+  that ability right because well I guess the question is where 
+  where are where the trace folks doing that today like how how you 
+  doing that link today in the traceability APA.
+Mike Prorock:  Yeah so we we actually defined a credential that 
+  represents like a traceable presentation right or a type that 
+  represents a traceable presentation so that we can have in the 
+  message body itself right here there's two uuids at play one is a 
+  uuid representing the actual type of workflow itself what is this 
+  end-to-end workflow which is all possible maybe some review no 
+  required items you know.
+Mike Prorock:  Nigel's I could be looking at tote right then 
+  there's the uid that represents the actual instance of that 
+  workflow that we're talking about here and we're so as long as we 
+  have the ability to refer to both at like if we're thinking about 
+  this from a restful standpoint ideally we would like to be able 
+  to in any of these flows you know even if it's a post with like a 
+  you know containing a presentation.
+Mike Prorock:  If it's referencing you know both the workflow ID 
+  name in this case right so the actual type of workflow that is 
+  plus the ID of the you know the actual instance that it's 
+  applying to I think that gets a lot of it right there and I will 
+  note because I think you said something important man in which is 
+  we also have a credential refresh you know flow that I think 
+  mirrors very closely to yours that we would like to.
+Mike Prorock:   To be able to.
+Mike Prorock:  You use the same you know set of end points for 
+  right so I think it's worth it's a little bit painful because we 
+  have to you know kind of a line on terms Etc but it's I think it 
+  feel like this is heading the right direction.
+Manu Sporny:  Okay I mean you should be able to do that with this 
+  this API I mean they both do the same thing after the first.
+<mahmoud_alkhraishi> yeah im not hearing any real blockers
+Mike Prorock:  Yeah after that kick off right and.
+Mike Prorock:  The now a question for you would you ever be 
+  exchanging data outside of a presentation like crossing a trust 
+  boundary outside of a verifiable presentation for some reason.
+Manu Sporny:  You mean in this start workflow thing it's possible 
+  in the future but I don't think we should even like go there 
+  until there's like the solid use case yeah.
+Mike Prorock:  Yeah it just feels like an out of scope thing 
+  because I'm almost wondering if we just have because like if we 
+  just do some naming adjustments right because like instead of 
+  saying like you know presentation you know available because the 
+  presentation isn't ready yet do something like presentation 
+  initiate and then presentation exchange and as long as the rest 
+  URI allows us to specify both a workflow ID of some kind 
+  preferably you know in our case.
+Mike Prorock:  At least you know probably a uid.
+Mike Prorock:  An instance ID in the path I think it's fine like.
+Manu Sporny:  So you want to put that in the path like it's here.
+Mike Prorock:  Yeah to be typically from a risk standpoint you 
+  want to try to get both right you would like workflow the type of 
+  the workflow then the ID if it exists if not then it doesn't 
+  create on it right and returns back the new idea I mean that's 
+  just kind of like a rest best practice thing because you have 
+  that cross check between the payload and the URI itself.
+Manu Sporny:  Yeah got it okay that's that's interesting.
+Mike Prorock:  That good rolls back to that controller comment 
+  earlier right that's part of the reason so much like that they've 
+  clarified so much about that because so many issues have Arisen 
+  from that not being clear early on when rest was you know people 
+  not reading the paper basically right just going off the web.
+Manu Sporny:  Yeah and I think that that was largely pushed by 
+  Ori I think right so let me let me try and rattle off a list of 
+  changes to either one of these that I think would bring alignment 
+  so one of them is rename this from availability to something 
+  else.
+<mprorock> @Joe - is this making sense and seeming sane?
+Manu Sporny:  The other one would be adding something into the 
+  URL that allows you to give it an ID of some kind so it's 
+  something here / in ID / maybe something or maybe nothing so it's 
+  either presentation / in a presentation you know exchange numbers 
+  or something like that that's a uid and you post to it.
+Manu Sporny:   I think that's what my.
+<mprorock> +1, and maybe a few types as examples
+Manu Sporny:  Or and I would be totally on board with that and 
+  then the only other difference here is replacing this with the 
+  ability to just post an arbitrary Json object because for the 
+  credential refresh case we don't need post a VPR and in fact 
+  there's some other use cases we have where we do want to post 
+  some different type of Jason it doesn't it's not a VPR it's 
+  something else.
+Manu Sporny:   And you know if the server.
+<mprorock> i like json
+<mprorock> or a refresh, etc
+Manu Sporny:  And that it can just replace pain back with the 
+  like I don't know what you're talking about like you know you 
+  sent me something to initiate a presentation exchange that I 
+  don't know what it is so you know error so the changes would be 
+  widened this the acceptable thing here to just be a Json object 
+  and in traceability you guys can in your specs say no it needs to 
+  be a VPR or whatever you want to make it and then add an ID.
+Manu Sporny:   D up here and then rename.
+Manu Sporny:  Initiate or something.
+Manu Sporny:  Is that go ahead like you're on the Queue and then 
+  my mood.
+Mahmoud Alkhraishi:  One quick question on that you're basically 
+  saying each server would Define on that end point the kind of 
+  Json that it would understand and if it gets something that it 
+  does understand it or respond with sorry I have no idea what this 
+  is please provide it please provide XYZ is that roughly what 
+  you're saying.
+<mprorock> close
+<mprorock> more that our profile can specify what that type of 
+  JSON is
+Manu Sporny:  Roughly I except for the last little bit that you 
+  said the server I mean it works like any kind of HTTP server 
+  right I mean you send it garbage and it's like I don't know what 
+  you're talking about error right 400 works malformed right but 
+  for the things that it does understand it can basically be like 
+  oh you're starting to you're trying to initiate a trace thing 
+  with me like a traceability API.
+Manu Sporny:   I thing with me I know what that means here you 
+  go.
+Manu Sporny:  Here's a.
+Manu Sporny:  PR I want to see these things from you.
+Manu Sporny:  That makes sense.
+Manu Sporny:  Okay and then I think Mike you're on the queue.
+Mike Prorock:  Yeah I thought I'd let my food go first so the 
+  clarification there my mood is we can specify and this is exactly 
+  the way I've been looking at like the trace profile versus the VC 
+  API is that the trace profile is going in and saying yep we've 
+  got this kind of broad common set of capabilities you know like 
+  your bare minimum common MVP capabilities so to speak in the VC 
+  API we can go in and say hey if you're going to support the new 
+  presentation.
+<mahmoud_alkhraishi> yeah im on board
+Mike Prorock:  Y'see method we only in that trace it you know if 
+  you're complying with the trace profile you would have to accept 
+  like a you know VP request for sending a presentation right or 
+  you would have to accept a credential refresh right you know so 
+  we can specify exactly what data must be accepted or it could 
+  only be accepted right we have that flexibility there especially 
+  if it's defined broadly.
+Mike Prorock:   Only to say that the endpoint is.
+Mike Prorock:  At the VC API level is yep its way to initiate or 
+  exchange presentations there's some additional parameters that 
+  you can leverage and oh by the way it can be just Json right 
+  that's that's the way I'm kind of reading it manner because that 
+  gives us both kind of the flexibility to say yep we've got these 
+  specific you know like credential refresh type scenarios that 
+  apply to like citizenship use cases or credential refresh that I 
+  think overlap right for like an AG inspection and.
+Mike Prorock:   By the way this is also a way that you can 
+  initiate a.
+Mike Prorock:  Presentation of data.
+Manu Sporny:  Yep I think we're I think we're on the same page 
+  there Mahmud what are your thoughts on putting an ID in this URL 
+  so well hold on let's go by these one by one I think we all agree 
+  that we're going to rename and availability to be like something 
+  else like presentation initiation is there agreement on that.
+Mahmoud Alkhraishi:  Yeah on my own.
+Manu Sporny:  Okay alright I'm hearing anyone.
+Mike Prorock:  My mood if we if you we do that I'm putting you on 
+  the spot to open the pr to change it all on our side I got your 
+  back but.
+
+PROPOSAL:  Rename "Presentation Availability" to something else, 
+  the current proposal is "Initiate Presentation".
+
+Joe Andrieu:  I think presentation also has semantic issues that 
+  several people chimed in.
+Manu Sporny:  Well here let's put it down as a proposal renamed 
+  presentation availability to something else the current proposal 
+  is initiate presentation how does that work for folks just okay 
+  what would you like.
+Joe Andrieu:  It suggested initiate exchange that seem to have 
+  some residence.
+Manu Sporny:  I should exchange okay all right so.
+Mahmoud Alkhraishi:  Sorry man I think this is probably something 
+  that's almost definitely better when you see it in the pr and 
+  it's a lot harder to resolve it over phone.
+<mprorock> presentation/initiate ?
+<mprorock> or exchange/initiate
+Manu Sporny:  So let me just put some actions down then so 
+  renamed presentation availability to Joe you said initiate 
+  Exchange.
+Manu Sporny: ACTIONS: Rename "Presentation Availability" to 
+  "Initiate Exchange".
+Joe Andrieu:  As a candidate like I don't know that we need to 
+  buy set of now but.
+Manu Sporny:  Okay I'll just you know I can I can do a PR for 
+  that okay the second one Mike you said that you would be okay 
+  with having an ID here so I don't know what is this become / 
+  exchanges.
+Manu Sporny:   Let's go.
+Manu Sporny:  Run with it and say it's / exchange is update and 
+  Tatian availability to / present or sorry exchange it is / uid 
+  well I'll just I'll just put identifier.
+<mprorock> /exchanges/{TYPE_ID}/{INSTANCE_ID}
+Manu Sporny:  You have you have to post.
+Manu Sporny:  By the instance ID could you clarify what type ID 
+  and instance ideas like.
+<joe_andrieu> I had forgot the noun/verb pattern begs for nouns.
+Mike Prorock:  Yeah so the more and I missed a thing in there but 
+  it would be like exchanges initiate and then an exchange of a 
+  specific type right so you know or a specific workflow by uuid 
+  depending on how it's being used and then the instance ID if it's 
+  available would be if the if you already have a known you know 
+  uuid for correlation right between presentations.
+Manu Sporny:  Okay so then you have to post data to those 
+  endpoints.
+Manu Sporny:  So we're keeping the post post to the endpoints we 
+  do use case where we need to get.
+
+ACTION: Update Presentation Availability to 
+  "/exchanges/initiate/{exchange-type-id}/{?exchange-uuid}" and you 
+  have to POST data to the endpoints.
+
+<mprorock> POST 
+  /presentations/initiate/{TYPE_UUID}/{INSTANCE_UUID}
+Manu Sporny:  I think we can talk about that later like people we 
+  have to submit we have to support post and maybe only a couple 
+  people support kit but I don't want to complicate the discussion 
+  while we're making progress okay and then the last and final 
+  thing is generalized the post body to accept any Json object 
+  where trace of the trace folks will specify that they require a 
+  VPR for certain types of things.
+Manu Sporny:  Update post body to accept a Json object where the 
+  traceability spec will further Define exactly the type of object 
+  object here looking for it's a VPR right now isn't it.
+
+ACTION: Update POST body to accept a JSON object, where the 
+  Traceability spec will further define exactly the type of object 
+  they're looking for (a VPR?)
+
+<mprorock> or POST/GET/PUT 
+  /presentations/exchange/{TYPE_UUID}/{INSTANCE_UUID}
+Manu Sporny:  Is that right okay alright okay so and that's the 
+  final one and if we do that then I think we are aligned we can 
+  merge these into one and then we can bike shed bit more Mike I'm 
+  expecting or E2 object to structure of the URL I don't know if 
+  you're expecting the same thing.
+Mike Prorock:  I am we need to get the stuff more in line with 
+  the way things are done broadly so I'm willing to kind of argue 
+  that one out in and by the way if we go this route of like oh 
+  it's a presentations / exchange / like a uuid to the type of 
+  exchange to the instance itself or something similar to that then 
+  your post get put you know delete Etc all works right you we can 
+  Define this stuff very cleanly.
+Mike Prorock:  Rest and point because we're not abstract to get.
+Mahmoud Alkhraishi: +1
+Mike Prorock:  Who like we're doing rest properly right we're 
+  letting the actual HTTP method call Define the type of operation 
+  going on my mood I expect full arguments from you with my favor 
+  on this again story.
+Mahmoud Alkhraishi:  Yeah definitely it's going to be a fun 
+  friend.
+Manu Sporny:  Okay okay great so you two are aligned on that 
+  there's a huge plus one from digital bizarre as well we always 
+  wanted to take this path we just you know it seemed like 
+  everybody else wanted to go the different a different route so 
+  totally agree with both of you well we would rather see the API 
+  structured in that way and follow good restful design principles.
+Manu Sporny:  That is a bigger discussion that was actually one 
+  of the issues towards the end that we had but I think this is we 
+  should declare Victory and move on because from my reading that's 
+  alignment my mom would do you guys disagree like does it seem 
+  like we just align the two.
+Mahmoud Alkhraishi:  I think it makes the most sense to me.
+Mike Prorock:  Yeah it gives us a really clean path forward it 
+  doesn't mean that it's set in stone and of the day everything 
+  right that's kind of the beauty what we have here but it gives us 
+  a way to put something out test it and see how it works right.
+Manu Sporny:  Beautiful okay awesome okay that's that's the first 
+  item and that was not as difficult as I thought it was going to 
+  be so that's great okay so the second one is workflow interaction 
+  this is very much this is very much kind of see the submit 
+  presentation thing the difference between these two endpoints is 
+  with the workflow interaction thing.
+Manu Sporny:  MIT a you're expected to submit a presentation here 
+  and the only difference is that in this submit presentation 
+  they're all kinds of things that are returned back like payment 
+  required is a is a potential here in the presentation didn't 
+  contain a proof and all that kind of stuff in what we needed at 
+  least for the refresh you.
+Manu Sporny:   Has case is the ability.
+<mprorock> PUT or POST right?
+<mprorock> if we are gonna due this right
+Manu Sporny:  To respond back with another VPR right so I think 
+  the way the tray stuff is defined right now it's just like a you 
+  know you start the exchange and then and then you send the 
+  presentation and that's it you can do anything more than that in 
+  what at least we'd like on the the refresh side of it is the 
+  ability to like say well thank you for that presentation you 
+  just.
+<mprorock> upsert or create
+<mprorock> and possibly defined by a correlation id
+Manu Sporny:  I need this other thing from you and so what you 
+  get back is a VPR and so I think a lot of this alignment has to 
+  do with making it so that it is possible to respond back with a v 
+  p so the first one was having an ID to post to that's an active 
+  kind of ID where you're in process and it's got an ID on the 
+  server and then the second part of it is being able to respond 
+  back with.
+Manu Sporny:  Got your presentation that's the traceability use 
+  case but for the credential refresh one we'd like to be ability 
+  to be able to be like actually we need more information from you 
+  and here's another VPR or well yeah you here's another VPR 
+  thoughts on that.
+Mahmoud Alkhraishi:  I think the idea of sorry that my trunk.
+Mike Prorock:  Beat you to the formal Q I think if we change this 
+  to put or post right depending on whether or not you're creating 
+  or observing and we say presentations and then it's an IED of you 
+  know potentially write that kind of a thing then we're getting 
+  this a little bit more in line and then allows potential 
+  responses that say yep I'm not accepting this here's why and 
+  here's this.
+Mike Prorock:  Response that says I need more information.
+Mike Prorock:  Something else I think the way Direction you're 
+  heading that at least that's kind of how kind of feeling about it 
+  I'm in submission I'm a little bit okay with right it just feels 
+  a little bit weird but I mean obviously we've got it in there 
+  that way now but.
+Mike Prorock:  But I think that notion of being able to specify 
+  like it's a presentation with an ID potentially with like abroad 
+  you know like a tighter group of presentations right you know so 
+  you know like a type of like overthink it relate it back to the 
+  workflow side it's very very similar very very related the trick 
+  is are we defining and giving ourself enough flexibility in the 
+  response or the method call right.
+Mike Prorock:   Is that is that.
+Mike Prorock:  Struggle is plus the ability to you know specify 
+  ID and or put right as opposed to post.
+Mike Prorock:  Yeah presentations The Exchange initiate bright.
+Manu Sporny:  Yeah I think the the first so if we had to get a 
+  list of changes here it's insert an ID in here just like we 
+  agreed to for whatever we were calling this thing initiate 
+  something or another yep yep yep and so so put put an ID in the 
+  URL and then we can have a debate about post versus put in what 
+  that means but the.
+Manu Sporny:   So that's item one.
+Manu Sporny:  In the URL item 2 is allow us to respond back with.
+Manu Sporny:  CPR meaning like either like cool everything looks 
+  great presentation accepted or you know we can also do malformed 
+  and didn't contain proof in that kind of time think we're okay 
+  with that but we need to be able to respond back with a VPR to 
+  say.
+Mike Prorock:  Potentially could you just request a reject it 
+  though and indicate that they need to request an exchange if you 
+  need a.
+Mike Prorock:  You know an actual like VPR.
+Manu Sporny:  Yep that's right yeah you can you know because the 
+  way VP are structured you can respond back with like a now go 
+  back to go back and start over right or go to this other URL and 
+  continue the workflow they're like you're done here but you need 
+  to go over there now.
+Manu Sporny:  Abilities if we enable a VPR to beerus sent back so 
+  when they posted this endpoint we're able to send the VP are back 
+  that's like you you're not done yet all right.
+Mike Prorock:  Yeah and I'm not sure that a 400 is the right 
+  error for that but it would be something like that right where 
+  you're throwing a response code back along with the message that 
+  happens to be like either you know a VP are back or some Json 
+  object in response right.
+<mahmoud_alkhraishi> 418 im a teapot is always the correct 
+  response
+Manu Sporny:  Yeah I'm less concerned about the response codes 
+  than I am with the ability to respond back with a VPR as like a 
+  continuation of you know the the flow yep exactly.
+Mike Prorock:  Go into go do this next.
+<manu> haha HTTP 418
+Mike Prorock:  Question because right now what is the is it does 
+  it allow you to give an error message back or what's the.
+Mike Prorock:  Don't.
+Manu Sporny:  We should probably also allow that as well I don't 
+  think that's allowed is either.
+Mike Prorock:  Yeah yeah because I think that's some of the issue 
+  is that we need to specify and honestly we should consider 
+  specifying if the accept type is application Json right that it 
+  should return Json back period so then that use case is covered 
+  plus proper are handlings covered right.
+Manu Sporny:  Yep yep yep yep yeah I think is so right now we 
+  don't support oh yeah so here's what we support like accepting 
+  like everything's cool we support sending back a verifiable 
+  presentation we do not support sending back a VPR and we don't 
+  support sending back an error message.
+Manu Sporny:   So we should.
+Mike Prorock:  Oh yeah so if we just change 400 and that if 
+  accept Json is in the headers that you can send back a saint to 
+  whoever posted we've solved the problem right and that's the 
+  right way in quotes to do it from a rest standpoint anyways.
+<mahmoud_alkhraishi> i think we're there
+Manu Sporny:  Yep yep yep yeah I think I think that that works I 
+  mean I think the only all the implementers of just implemented 
+  application Chase and I don't think well I shouldn't say that 
+  okay so I don't think we have complete resolution yet but would 
+  my mood you know or Mike would either of you object if I put 
+  together PR that like suggests the other return types that should 
+  I want to try and get this done in one go and.
+Manu Sporny:  Didn't what.
+Manu Sporny:  Maybe that's maybe that's asking too much.
+Mahmoud Alkhraishi:  I think there were at is next up is 
+  absolutely waiting up there because there's just no way to like 
+  we're going to get lost in the weeds unless we actually get a PR 
+  where we get to go into the weeds and figure out how to solve it 
+  so yes absolutely and I think if you can get it with responsible 
+  that would be perfect.
+<mprorock> yep, PR or openAPI is good
+Manu Sporny:  Okay alright let me do them one at a time so I'll 
+  try and collapse start workflow in presentation availability in 
+  one PR and then I'll try and collapse workflow interaction and 
+  submit presentation in one go I just wanted to make sure that 
+  before I did that PR that both of you weren't like immediate I'm 
+  going to immediately subject to it I'm hearing that both of you 
+  are willing to have a discussion around a PR and it seems like 
+  we're.
+Manu Sporny:   Converging so that's good.
+Manu Sporny:  Did I misread any of that.
+Mike Prorock:  No I think where you could potentially see 
+  objections from some folks in and I'm not saying I would have 
+  ejected to it is if you try to make it to specific like if you 
+  keep it General and just say ah yeah if a method has an error and 
+  you're following the right rules and sending the server back text 
+  or Json depending on what they asked for you could send back 
+  anything conformant with that right because a VPR is just Json so 
+  that way we're not painting ourselves into a corner there and 
+  then we're still giving.
+Mike Prorock:  The ability for a profile to say oh it could only 
+  be a.
+Mike Prorock:  Are or an X in this case right you know so.
+<mahmoud_alkhraishi> thank you all
+<mprorock> rock on
+Manu Sporny:  Yep okay I've got enough direction to put together 
+  some PR's that I'm fairly certain won't get immediate objections 
+  all right this was a very productive call thank you everyone for 
+  participating thank you Mike and my mood for engaging I'm feeling 
+  upbeat about where this is going all right that's it for the call 
+  today thanks everyone we will meet again next week ciao.
