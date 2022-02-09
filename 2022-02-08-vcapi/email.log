@@ -1,0 +1,768 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-02-08-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-02-08-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-02-08
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Feb/0027.html
+Topics:
+  1. Introductions and Community Updates
+  2. VC API - Workflow-Holder Convergence
+  3. Controller-style Endpoint Pattern
+  4. Workflow IDs and names
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Mahmoud Alkhraishi, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), Justin Richer, Brian Richter, Mike 
+  Prorock, Adrian Gropper, Dmitri Zagidulin, Kayode Ezike, Mike 
+  Varley, Troy Ronda, mike.varley, Kerri Lemoie, Orie Steele, 
+  Markus Sabadello, Eric Schuh, TallTed // Ted Thibodeau Jr (via 
+  iPhone), Kaliya Young
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone this is February 8 2022 
+  this is the verifiable credentials API call let me get our agenda 
+  in here.
+Manu Sporny:  So our today on our agenda is just this agenda 
+  review introductions and any relevant Community updates the next 
+  item up is a continuation of our discussion last week which is 
+  the VC API trying to converge on the workflow and hold your 
+  presentation proposals and then if we have time that's expected 
+  to be the majority of the call.
+Manu Sporny:  We will spend the remainder on issue processing 
+  specifically the controller style endpoint pattern we've been 
+  using and if that was bad idea or not or if we want to change it 
+  and then workflow IDs and names and anything else that comes up 
+  is there anything else that folks would like to cover today on 
+  the call.
+
+Topic: Introductions and Community Updates
+
+Manu Sporny:  Okay if not introductions and reintroductions do we 
+  have anyone new on the call today I know that at least coyote 
+  Troy you guys haven't been here for a while would you mind doing 
+  a quick re intro.
+Kayode Ezike:  Sure thanks man oh yeah my name is Kyle Diaz EK I 
+  have kind of been in this space for maybe two three years now I 
+  first kind of got my foray into it the worked out doing with 
+  solid while I was in school and then recently started to work on 
+  as a species are to support the DCC know what they're doing 
+  alongside Dimitri and others and been involved with VCs... 
+  thought I'd see that we're doing here and so I figured it would 
+  be good to keep abreast with the developments here can promise 
+  that I'll be able to take all of these but I'll try my best to 
+  and also to follow the issues that are submitted so that's a bit 
+  here thinking.
+Manu Sporny:  Wonderful welcome as always wonderful to have you 
+  here... Troy, you're up.
+<dmitri_z> really great to have you here, Kayode!
+Troy Ronda:  Yeah I'll just be quick my name is Troy Ronda I work 
+  at secure key I lead one of our development teams working on our 
+  platform called trust block dealing with verifiable credentials 
+  and decentralized identifiers.
+<kayode_ezike> thanks for the warm welcome!
+Manu Sporny:  Wonderful and welcome always always great to have 
+  you here next up our community updates any updates that the 
+  community should know about be aware of anything of that nature.
+Manu Sporny:  All right I don't have anything for today.
+Manu Sporny:  Go ahead and jump into the main topic then.
+
+Topic: VC API - Workflow-Holder Convergence
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/258
+Manu Sporny:  So the topics VC API workflow and holder 
+  convergence we have had a pull request out for about a week now 
+  that has been getting a decent amount of discussion and I think 
+  we're going to try and do today is spend the majority of the call 
+  trying to converge on what needs to be changed what we can merge 
+  things of that nature with this PR.
+Manu Sporny:  Let me kind of do a quick intro to the pr on the 
+  last VC API call there was a desire to try and converge the 
+  workflow proposal that was in the spec with the presentation 
+  exchange flows that have been in there for a while the 
+  traceability folks have been using the presentation exchange 
+  flows for the traceability work there is a desire to use some.
+Manu Sporny:  Points just converts them into two so that we can 
+  so one the traceability folks can continue to use those those 
+  apis the same shape of those apis for their use cases but we also 
+  are in able to do things like credential refresh in other kind of 
+  flows through a a converged API so the purpose of the pr is to 
+  merge these two kind of approaches which are very close.
+Manu Sporny:   Those one of them is a superset of the.
+Manu Sporny:  Into one thing so that we can all you know have 
+  basically two end points that we can run all of these 
+  interactions off of one of the big things that we mentioned last 
+  week was the language around it's probably wrong and we want to 
+  use the word exchanges that was suggested by Joe so that wording 
+  has gone in there there was a.
+Manu Sporny:  I believe micro Croc and my mood that we use you 
+  know transaction identifiers and exchange identifier so that has 
+  been put in there as well in in there's been a lot of lot of 
+  review over the past couple of days there are some misalignments 
+  and disagreements still and so I think what we're going to try 
+  and do on the call is figure out.
+Manu Sporny:   What needs to change.
+Manu Sporny:  Are or what needs to come out of the pr for it to 
+  be merged let me pause here and see if Mike might pee my mood or 
+  or t if y'all want to provide any analysis on the pr before we 
+  kind of dive into it.
+Mike Prorock:  I can go first and then hand the ball to Horry the 
+  I think this is a great in the right direction one and I think 
+  there's a lot in there like things like error handling and stuff 
+  that we know we already kind of one in across the board so 
+  there's stuff like that that I think we could kind of almost take 
+  in as is and I think I've noticed that some of the stuff there 
+  seems to be broad agreement on in the pr there are still some.
+Mike Prorock:  Areas for improvement though right.
+Mike Prorock:  For extension so I think if we can get it to where 
+  hey here's this common stuff we're ready to go pull in and then 
+  you know either myself or someone else can go in and you know 
+  issue a second PR to then start hashing out some of the details 
+  on some of the other things might you know might be a good path 
+  I'm not sure orry I know you've got some direct thoughts you know 
+  probably more.
+Mike Prorock:  Or is your audio can.
+Orie Steele:  All right take me a second to find the browser that 
+  I never use make a Firefox I think at this point the fastest most 
+  effective way of moving forward would be to merge the pr with its 
+  current problems and to have either Mike or mood do a follow-up 
+  PR that addresses their specific concerns it seems like we're 
+  sort of asking Manu to.
+Orie Steele:  What exactly your meaning which he's doing his best 
+  at but I'm probably faster if you guys just did a follow up here 
+  that would be my recommendation.
+Manu Sporny:  I mean I'm good with that Ori my concern was that 
+  there was I think your biggest concern was this transaction ID 
+  thing or transaction uuid thing I just want to make sure that you 
+  don't have like it's okay so let me try and summarize what I 
+  think is being suggested so or you're saying just murders the 
+  whole thing in Mike you are saying Hey I want.
+Manu Sporny:  Let me let me let me.
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api/pull/258/files#r801639710
+Manu Sporny:  Fleet of the comments so that other people can see 
+  it.
+<orie> the current endpoints are broken, but Mike et al can 
+  probably fix them faster.
+Manu Sporny:  If everyone goes to that link there so Mike you're 
+  saying I want the post on Exchange ID transaction uuid to be 
+  changed to a point and so I totally get that I can do that in 
+  this PR but then Mike you're saying I also want gets to exchange 
+  ID / transaction ID and delete.
+Mike Prorock:  Yeah I get it in this and actually I think this is 
+  worth while speaking about a little bit because I think there may 
+  have been just for communications and reading through comments 
+  and stuff I think there may be some misunderstandings at least in 
+  the while I was looking at this so what I look at like as a path 
+  that is an exchanges collection right a collection of exchanges / 
+  some type of thing.
+Mike Prorock:  Flash than the actual entity that's being.
+Mike Prorock:  For to that.
+Mike Prorock:  Of key that type of exchange was key in my mind 
+  right that I want to go initiate some you know type of exchange 
+  around like a reef a credential refresh or a past this a lot this 
+  data along someone else or start some kind of a defined flow 
+  based on an ID and then the individual elements of that would be 
+  referenced by that transaction uid and so that was in my brain 
+  the way things were going and I'm not sure that came across.
+Mike Prorock:   Ross fully there.
+Mike Prorock:  Like if we want to go create an exchange of some 
+  type we would do that with a post we may not need that second ID 
+  there though depending on how we do this right so and so but 
+  basically as a rule of thumb like we're going to want to post if 
+  we're creating it and if we're specifying the type of thing 
+  that's going to create it we probably want to do that in the URI 
+  as well as in the body right and so that was my comment in there 
+  that I think you linked to but then if you're updating a.
+Mike Prorock:  An absurd or.
+Mike Prorock:  Also you have an own ID that's where the put comes 
+  into play those kind of implied that you may want to once again 
+  write like request to get her off of this right it is this some 
+  stateful thing that's being stored on the server and or not and 
+  or delete it and that's where you get into things like gets and 
+  deletes by an ID right or or to get all types of exchanges 
+  matching some known pattern right.
+Mike Prorock:   One other note of.
+Mike Prorock:  Is that my little edit to note about putting the 
+  query in the path like I'm totally good with putting aquarium 
+  path like I'm actually a fan of that some folks do like to try to 
+  put queries in bodies but I what I'm doing gets I generally like 
+  a get does not necessarily imply a body to me right and back 
+  usually doesn't imply some kind of request body so that's just 
+  philosophically how I think about that stuff and we look at other 
+  apis that deal with some kinds of State.
+Mike Prorock:   A full data that tends to be a pattern that we 
+  see.
+Justin Richer: +1
+<justin_richer> +q rather
+Manu Sporny:  Got it Dimitri Europe.
+<brian_richter> I'm confused why transaction id is transaction 
+  uuid throughout the PR. even in this discussion it has been 
+  called transaction id. can it be id instead of uuid?
+Dmitri Zagidulin:  But I wanted to clarify is is transaction ID 
+  required.
+Dmitri Zagidulin:  Or to put it another way is it possible to 
+  use.
+Dmitri Zagidulin:  For client to use.
+Dmitri Zagidulin:  The Exchange ID and point I would know another 
+  action.
+Manu Sporny:  It's a good question Justin I think you're up is 
+  that you rather.
+Justin Richer:  I yes so I just wanted to make a quick point for 
+  those that don't that are following it the HTTP working group is 
+  actually currently working on a new definition for a new verb 
+  type which would be a get with a message body because get does 
+  not have a message entity body as per HTTP it.
+Mike Prorock: +1 Justin - that is a good note - it is not defined 
+  yet
+<manu_sporny> Finally! (might be terrible, but it's come up so 
+  many times)
+<mprorock> but we should be aware of
+Justin Richer:  So that is something to consider when when 
+  looking at the application of put and post to do get like 
+  operations this is a known limitation of HTTP and it's something 
+  that this as a new API might want to you know earmark for for 
+  future use and compare compatibility and potentially join the.
+Justin Richer:  Join the conversation in the HTTP working group 
+  the current name of that method is query I suggested it be named 
+  get fat but that was not accepted.
+<mahmoud_alkhraishi> lol
+Manu Sporny:  Thank you Justin that's super helpful I'd certainly 
+  didn't know that was going on.
+<justin_richer> HTTP GET_FAT /foo
+Manu Sporny:  Why did I put myself thank you um.
+<justin_richer> ;)
+<orie> so we can just switch to POST /messages ?
+Manu Sporny:  I totally forget okay so just to just to be clear I 
+  think so Mike I think what you're all everything you're saying is 
+  not a surprise to me so at least I understood that oh I put 
+  myself on the queue for do you have to use transaction ID Dimitri 
+  I think unknown right now I think I mean take a look at the the 
+  OAS file transaction ID.
+Dmitri Zagidulin:  Okay just wanted to clarify that got it 
+  understood.
+Justin Richer: 
+  https://httpwg.org/http-extensions/draft-ietf-httpbis-safe-method-w-body.html
+Manu Sporny:  That you have done a post here and have been given 
+  a transaction ID to use or you got it out of band yeah so when 
+  you put when you post to exchanges exchange ID you will be given 
+  a transaction ID to use for the next step in the process.
+Dmitri Zagidulin:  Got it thank you.
+Manu Sporny:  That's the that's what yeah I think that's where 
+  folks are right now and to be clear the only thing the pr defines 
+  are these two things Mike you're suggesting we should do a get 
+  you know potentially get here potentially create these are other 
+  PRS let me let me just State I think Mike these are other PRS 
+  that you're going to write and we will look at.
+Mike Prorock:  Correct those would be follow-ons I just wanted to 
+  note that like hey if we're talking about things that may have 
+  stayed on the server somewhere we've got to go deal with those 
+  things because there's a gap on the credential side as well right 
+  if we think about credentials as a collection of things right.
+Manu Sporny:  Okay good so I'm so I I'm hearing that we have 
+  agreements I will I will update this to a put that needs to be 
+  done the pr do a put and then I will merge everything and then 
+  Mike you're going to follow up with PR's for these endpoint 
+  definitions.
+Mike Prorock:  Yeah forget errs deletes and I will likely do that 
+  PR across the board anywhere we have a collection that may be 
+  stapled because we kind of need that so.
+Manu Sporny:  Um can you please do those as separate PR's and not 
+  one massive PR.
+Mike Prorock:  Yes I will do it by the path so it'll be like 
+  here's a getting to put you know anywhere like we're missing an 
+  implied method that's blocking functionality right I would do so 
+  it's a credential thing so it's here's the credential stuff as 
+  one PR oh here's this exchange is thing like here's you know some 
+  corrections all that and then a follow on PR that adds any 
+  Getters or deletes etcetera.
+Manu Sporny:  Okay alright okay so I think that's the path 
+  forward for this PR I should be able to do those things by the 
+  end of tomorrow and put it in there and then Mike you can start 
+  basing yours off of that with this PR in I think we have 
+  everything that we would need to do the credential refresh stuff 
+  and in a couple of other things that are needed.
+Manu Sporny:   Brian you're on.
+Brian Richter:  Sorry I'll be brief I got a dog barking I'm just 
+  wondering how come we're going with uuid I think that specific 
+  and say this tidy.
+Manu Sporny:  That is an excellent question there was some amount 
+  of discussion in here over that I think Cory you suggested look 
+  if we're going to do these types of IDs we should Define a type 
+  and use it across the entire API where it makes sense to do so 
+  like a transaction ID I then suggested well I know that we want 
+  to use the multi base encoded 128-bit values and some people want 
+  to use uuids so if we're going to have a universal type.
+Manu Sporny:   It might contain both of those things.
+Manu Sporny:  And I think that there are I mean and then we need 
+  to hear from everybody else if people are like no that's too 
+  restrictive or like that's really weird why are you doing two 
+  different types of ID formats we need to hear from everyone my 
+  expectation is someone would have to do a PR I can volunteer to 
+  do that PR and then the group would need to jump in and and 
+  comment on the pr Brian does that give you at least some amount 
+  of that.
+Manu Sporny:   It's I think we're we're.
+Brian Richter:  Yep doesn't make sense.
+Manu Sporny:  Where we're headed let's see Mahmoud you're here go 
+  ahead.
+Mahmoud Alkhraishi:  I had a quick point so to me transaction ID 
+  being a uid or something similar that makes a lot of sense just 
+  because this is an instance of a thing the types sorry the 
+  exchange ID I'm not sure if that needs to be a uuid or somewhere 
+  that could just be like a type of some sort right like one of the 
+  examples that I gave was this is an exchange.
+Mahmoud Alkhraishi:  Credentials and so would just be a named 
+  thing or we would need a way to translate that ID to a name like 
+  I think there's an implied endpoint of what are all the 
+  transaction IDs that you support as an API that would be 
+  basically a get and point and then you can translate those IDs to 
+  what that means.
+Manu Sporny:  Great thank you Mohammed Mike you're on the queue.
+Mike Prorock:  Yeah I that's actually kind of what I queued to 
+  ask about because there's a there's kind of two ways we can go 
+  here right one is to say hey we've got these exchanges we want to 
+  specify the type explicitly in the past so like exchanges you 
+  know AG path or ID age verification / then the ID of the actual 
+  instance of that thing the other way is if you're just posting to 
+  create.
+Mike Prorock:  Two exchanges and you're not.
+Mike Prorock:  You know perhaps that type is specified by you 
+  know VP requests Etc into that like nope nope here's my posting 
+  and VP request in there and the type is in handled entirely by 
+  that VP request and then in that case that exchange ID just goes 
+  away right all we're dealing with this once an exchange created 
+  with an ID that ID then gets reference so it simplifies things 
+  down a little bit from a passing standpoint but those are the two 
+  ways.
+Mike Prorock:   Ways we could go there and I would.
+Mike Prorock:  Feedback on that you know from Orion my mood as to 
+  thoughts on that because like I have soft preferences One Way 
+  versus the other obviously leaning a little bit towards like 
+  specify the type in the path because that's what I think I 
+  suggested in the last meeting or the meeting before that.
+Manu Sporny:  All right I yeah so I just put myself on the cube 
+  The Exchange ideas Mahmood the current reg EX for it the only 
+  thing that we require is it starts with a through z r 0 through 9 
+  and then you have at least three characters so the the suggestion 
+  is that.
+Manu Sporny:   At least digit.
+<orie> POST /exchanges
+<orie> with some type for defining id.
+<orie> its called a "slug"
+Manu Sporny:  Our would like the possibility of putting a human 
+  readable string in there of some kind where the ID can be human 
+  readable it is possible for that to be a legal thing so for like 
+  credential Dash refresh we want to be able to do like exchanges / 
+  credential refresh or exchanges / credential refresh stat / some 
+  kind of transaction ID anyway that's our use case.
+Manu Sporny:  Going to your like you should be able to post to 
+  exchanges that gives me a little bit of heartburn but you know it 
+  would be good to kind of understand what the use case is and in 
+  detail there so I don't want to say like no let's not do that but 
+  I'm a bit you know concerned about that anyway the Mahmood the 
+  point you're making about like yeah their transaction IDs and 
+  those are like 128-bit numbers map to some kind of scheme 
+  representation.
+Manu Sporny:   Dior multi base encoded 128.
+<orie> you can use "anyOf"
+Manu Sporny:  Those are transaction IDs but the exchange IDs 
+  can't be those things or we also need the option of them being 
+  human readable strings or you're on the Queue next.
+Orie Steele:  Yeah so you can use a nanny of representation and 
+  open API specification you know 3 that would cover your slug 
+  human-readable possibility it would also cover patterns for 
+  recognizing uid V4 or whatever other types you wanted to make 
+  valid for that parameter Beyond just specifying a string so you 
+  can do all of those things and provide good examples.
+Orie Steele:   In the API documentation for all.
+Manu Sporny:  Yeah plus one are doing that and I tried to do that 
+  in this PR mic Pro Rocky on the queue.
+Mike Prorock:  Yeah I guess the agree with what we just said I 
+  guess the question is because I saw Orion the chat suggested just 
+  having it as like exchanges as kind of the root path and then ID 
+  to refer to the instance I think Manu the way that that would be 
+  like if you wanted to get exchanges of a certain type like 
+  credential refresh you would do a get with a query that says I.
+Mike Prorock:  Need things that match this particular.
+Mike Prorock:  Json example that I just gave you that happens to 
+  include the specification of credential refresh right in you 
+  would get back all those credential refresh items so I think 
+  that's the philosophical question is do we want the ability to 
+  specify that type you know of exchange that's occurring in the 
+  URI in the path itself or do we want a more generic system that 
+  says I it's just we're handling exchange data.
+Mike Prorock:   Data and type.
+Mike Prorock:  Find as you know a subtype of the VP request back 
+  or whatever is getting passed through so in the SI I know get is 
+  not but yeah creating one right there so if you're posting and 
+  saying yep I want to fire starting exchange instead of saying I 
+  want to start an exchange / credential refresh and therefore I'm 
+  posting to that I create a credential refresh path that starting 
+  up basically is that is that fact that it's credential refresh is 
+  that specified in the body of the post.
+Mike Prorock:   Store is that specified in the path and that's.
+Mike Prorock:  Philosophical question there and I saw Orion the 
+  chat like I said just say no it's basically we want to specify 
+  that typing in the body whereas what was initially proposed and 
+  it is in this PR right now is to say oh that type is specified by 
+  an exchange ID in the way that PR is now in the path itself and 
+  then you're getting an ID back does that does that make sense or 
+  did I just model things.
+<orie> your exchange-id has no example... which would probably 
+  make it clearer.
+Manu Sporny:  I think I and I think I understand what you're 
+  saying Mike but only because I have read all the comments in PR 
+  258 just to be clear that the one of the use cases we gave so 
+  digital Bazaar has a use case where we're processing these things 
+  you know at scale so the true age program it's you know 60 
+  million you know of these types of calls per day in the way.
+Manu Sporny:  A lot of load balancer.
+<mprorock> POST /exchanges/credential-refresh
+<orie> ^yep
+Mike Prorock: +1 Manu
+<mprorock> which is why i wanted it in the path
+Manu Sporny:  You know as your gcp and AWS work is that if you 
+  can look at the URL to do the load balancing that is way more 
+  effective than if you have to go and look into the body meaning 
+  that if you have to invoke a jsonparser to go and find something 
+  in a Json thing figure out where you're going to direct this 
+  request many.
+Manu Sporny:   Balancing Frameworks do.
+<orie> good reason, but you can still define the URL parameters 
+  fully.
+Manu Sporny:  Or that they just support it based on the URL I 
+  will also note that get in query parameter style stuff is not a 
+  use case for us you know we just have this fairly simple 
+  collections thing you've got exchanges it's a collection of the 
+  types of exchanges so you have types of exchanges in there and 
+  then you know we want to be able to post to the that a certain 
+  type of exchange to initiate a very specific.
+Manu Sporny:  Okay just a close this PR out though I think we 
+  have a clear path forward I haven't heard anyone object to kind 
+  of merging in the pr modifying that post to a put and then Mike 
+  working on top of that so let's go ahead and do that and then 
+  move on to our next next item let me pause for maybe.
+Manu Sporny:  15 Seconds for someone to object and then we'll 
+  move on.
+Manu Sporny:  All right we are on to issue processing 10 minutes 
+  ahead of schedule.
+
+Topic: Controller-style Endpoint Pattern
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/257
+Manu Sporny:  Just great means we actually agreed to something 
+  issued to 57 is the next item up I will put this in.
+Manu Sporny:  Okay so this this one's kind of a bigger 
+  conversation that we're going to get to any kind of resolution on 
+  it on the call today but a while ago like a year and a half ago 
+  we had decided on this control style and point naming pattern and 
+  so you know basically what that means is we have try and pull up 
+  the BC API just to provide an example.
+Manu Sporny:  So in the spec today.
+Manu Sporny:  What's it what's a good example of this.
+Manu Sporny:  Let me find a different one.
+Manu Sporny:  Maybe it's the maybe this right so correct me if 
+  I'm wrong my Quarry my mood but this is the controller style and 
+  point naming its kind of got a verb so you've got your kind of 
+  collection and you've kind of got a verb at the end of it and 
+  that's viewed as a legitimate way of doing some of doing this.
+Orie Steele:  It maps to function invocation logically the verb 
+  as a function and its post body as their arguments its Network 
+  responses the output of the function and you can have side 
+  effects or no side effects that that's the idea behind the 
+  controller style naming convention.
+<mprorock> it is not an either or - it is more method specific
+Manu Sporny:  Yep so this is what we picked the the first time 
+  through and you know we had consensus and we've marked the whole 
+  whole thing up like this but one of the things that I think has 
+  been brought up lately was do we want to do that like isn't 
+  credentials the collection and do we want to give credentials 
+  specific IDs in that collection so do we want to go that route 
+  and if we do.
+Manu Sporny:   How do we map.
+<orie> you can mix controller and collection style endpoints
+Manu Sporny:  All of the endpoints over to that right so this is 
+  this is just a conversation about that do we want to keep the 
+  controller style in point naming or do you want to at least look 
+  at proposals for what it would look like to do the the other 
+  pattern Mike go ahead you're on the queue.
+Mike Prorock:  Yeah I think it and I think or e note of this as 
+  well in the chat but it's not a it's not an either/or it's more 
+  of a which for which right so when we look at a method like you 
+  know credentials derive right and you're posting that you're 
+  saying here's this body that says I want to go create a new thing 
+  that's derived from some other credential right cool that makes 
+  sense for controller style and point but if I want to go get a 
+  credential right from a collection of credentials to.
+Mike Prorock:  See if it was revoked.
+Mike Prorock:  You're not.
+<orie> or you can use a POST and wait for the HTTP WG to 
+  implement QUERY :)
+Mike Prorock:  Then I want to get credentials / the ID of the 
+  credential I'm trying to get in order to go retrieve that exact 
+  credential and say yeah let me look at some things about this 
+  right assuming I'm authorized to do that and so I think that's 
+  the thing is it's not so much that it's an either/or it's a you 
+  know are we using the right things appropriately in the right 
+  places does that make sense so like for instance post credentials 
+  issue makes sense to me because it creates.
+<mahmoud_alkhraishi> i think post credential makes more sense 
+  than post/credential/issue
+Mike Prorock:  Whereas in the case of credential post credential 
+  status there it's already issued it probably has an ID so we 
+  probably want it to be a put there right um you know potentially 
+  right it depends there's arguments on this right but those are 
+  things that we need to be thinking about.
+Manu Sporny:  Go ahead Orie you're up.
+<mprorock> and good note on privacy manu
+<mprorock> that is why we have to be careful with this
+Orie Steele:  Yeah so you know with respect to using path 
+  parameters right you need to think about what is the domain of 
+  the path parameter you know are you going to do you have IDs that 
+  are URLs in which case you're sort of nesting a URL inside of 
+  another URL that happens a lot with linked data and really nasty.
+Orie Steele:  Oftentimes you want you know to you know encode 
+  that kind of thing with a query parameter or do some other kind 
+  of approach so I think the thing you know if you're going to mix 
+  collection first of all I would say collection style and points 
+  are generally only work when you are the resource server operator 
+  and you are assigning the ID if you need to build an API that 
+  handles things that are identified with IDs that you didn't 
+  create the ID.
+Orie Steele:   D the collection style naming.
+Orie Steele:  Will get in your way all over the place because 
+  you'll be trying to take an ID that somebody else made and put it 
+  into your path but they made their idea URL.
+<mprorock> e.g. a GET /credentials/{id} might specify that the id 
+  MUST not be derived from sensitive data, but people will get lazy
+Orie Steele:  So like you have to think about what is the 
+  structure of the data that you're going to be building this API 
+  around and I didn't you know my experience with the controller 
+  style naming convention is very flexible because you're dealing 
+  with Json arguments you know so you can you can handle things 
+  like you know URL reserved character collisions really really 
+  easily but it does sort of make the entire endpoints sort of look 
+  like a function function sort of method style interface instead 
+  of like.
+Orie Steele:  In oriented interfaces that's it.
+Manu Sporny:  Yep so like all all good points.
+<orie> GET /credentials?id=http://...
+Manu Sporny:  So we digital sorry I had tried collection style in 
+  points for credentials and quickly hit up against what Ori is 
+  mentioning meaning that the second we had an ID that was not you 
+  know issued by us all of a sudden we had really ugly ugly URL 
+  encoded things being put into the collection so that's certainly 
+  a concern the other concern.
+Manu Sporny:   I had to do.
+Manu Sporny:  Privacy so you know in some cases URLs are logged 
+  pretty aggressively in server logs and you kind of leak what's 
+  happening you know when you do that there's an upside to that 
+  right which is the whole like load balancing Frameworks not 
+  having to reach deep into the HTTP message to pull out you know 
+  where to load balance to if they even have that capability so 
+  there are benefits.
+Manu Sporny:   Drawbacks there's night.
+<orie> what mime types will the api support?
+Manu Sporny:  Like to I think all of us know there's no clean 
+  there's there's no clean decision we can make right now unless we 
+  know every single endpoint that we're going to have in the API 
+  and that none of them are going to fall victim to you know one 
+  one one downside of the other so you know I but I think I'm not 
+  hearing people objected leasing some proposals.
+Manu Sporny:  And then just kind of going from there right 
+  because we already I think if we pull this PR in this merge PR 
+  the workflow holder API or holder exchanged workflow PRN we have 
+  we have a demonstration of a collection now where the server is 
+  in control of the naming and maybe that can be the rule that we 
+  use.
+Manu Sporny:  All the end points.
+<orie> the server assigns the ID?
+Manu Sporny:  We're if it is something that the server is control 
+  has control over maybe at that point of collection based endpoint 
+  makes sense.
+<mahmoud_alkhraishi> i think that makes sense, if server is 
+  responsible of generating id then it uses collection otherwise it 
+  doesnt
+Manu Sporny:  And if it is something where the server does not 
+  have control over that URL meaning it's just could be another URL 
+  that may be a good argument for the kind of object function style 
+  interfaces.
+Manu Sporny:  Thoughts go ahead Ori.
+Orie Steele:  So we added get credentials to the trace in our own 
+  profile because you can't actually test revocation without them 
+  and point so we support you know a get style interface which is 
+  of the form credentials / credential ID and it returns a json-ld 
+  verifiable credential that is a revocation list or 50 credential 
+  and this is sort of required to actually test end to end.
+Orie Steele:  The concept of the.
+Orie Steele:  Status feature which is in the current API that 
+  we're looking at here so I'm just sort of saying stating the 
+  obvious like you can't really use revocation lists if you can't 
+  get them and if you're using a URL to identify them then you need 
+  to get them by that URL.
+Manu Sporny:  Yeah I think that's an excellent point Ori.
+Manu Sporny:  Go ahead Mike Pro Rock.
+<justin_richer> that's not a url for the credential, right? the 
+  CRL has a separate URL?
+<manu_sporny> yes, true Justin, but it's also a VC...
+Mike Prorock:  Yeah and I was going to note because I think the 
+  there's a couple of things like I think it's easy to think that 
+  were like you know ABS few kading potential privacy leakage by 
+  hiding stuff out of the URI you know as far as URLs go and stuff 
+  like that or IDs the reality is I think anyone that we would 
+  really be concerned about is looking at far more than just the 
+  URI logs and scanning through a lot more than that we also can do 
+  sane.
+Mike Prorock:  Things like specify that it might.
+Mike Prorock:  An ID that you're getting an issue and you know 
+  when you issue a credential and you hand back some ID that you're 
+  going to go look up there are ways to specify that that's not 
+  leaking information etcetera right so I think there are things 
+  that we have to think through cleanly here we also do reliably 
+  need a way even if it's just defined for internal use or 
+  authenticated use only you know to be able to check the 
+  replication status stuff as already mentioned.
+Manu Sporny:  All right so Justin would you mind vocalizing what 
+  you said in the chat Channel because I think it's important and 
+  then we can go into next steps here.
+Manu Sporny:  If you want to.
+<orie> GET /credentials/{id} makes sense when the issuer hosts a 
+  revocation list at that URL.
+Manu Sporny:  Let's go in the next steps then.
+<orie> but its not to say its the only solution to that problem
+Manu Sporny:  So it sounds like the next step is the group is 
+  open to the possibility of having collection style and points and 
+  if someone feels strongly about having a collection style and 
+  point or changing one of the endpoints we have right now to a 
+  collection style and point they should make a proposal.
+<orie> its just the only one documented in the CCG work items for 
+  revocation lists.
+Manu Sporny:  Would anyone object to that characterization.
+<mahmoud_alkhraishi> sounds correct to me
+Manu Sporny:  All right I will make a note of that.
+<mprorock> that could also be GET /credentials/status/{ID} where 
+  ID is the id of the revocation list
+<orie> justin_r here is an example from the spec: 
+  https://w3c-ccg.github.io/vc-status-rl-2020/#example-2-example-revocationlist2020-credential
+Manu Sporny:  Okay so with that should we close the issue.
+<mprorock> if we are strictly limiting to status checks, but that 
+  breaks some of the flexibility of current approaches there
+Manu Sporny:  Many objections for closing the issue because 
+  that's kind of the resolution there.
+Manu Sporny:  If folks want to do collection style naming 
+  conventions submit a PR and we'll think about it any objections 
+  to closing.
+Manu Sporny:  Hearing none closing the issue.
+
+Topic: Workflow IDs and names
+
+Manu Sporny:  All right next item up is workflow IDs and names we 
+  might have actually made some progress on this bike.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/256
+Manu Sporny:  The link is in our see this is PR 256 or sorry 
+  issue 256 should workflow IDs and names to be provided in the URL 
+  or the post body there's been quite a bit of back and forth here 
+  I think we already kind of sort of talked about this and the 
+  conclusion seems to be that we're okay with allowing.
+Manu Sporny:  But we need PR's with concrete suggestions let me 
+  pause there or you were involved in this discussion you know Mike 
+  so were you what thoughts on this one.
+Mike Prorock:  Yeah I think we kind of hashed it out and the 
+  review of that last PR right which is that we kind of want the 
+  IDS and whatnot or at least especially the idea both you know / 
+  kind of normal conventions there and so subsequent PRS to clean 
+  things up might refine this but that when we're representing a 
+  core ID that you know we're doing some kind of 128 bit you know 
+  conforming to a scheme etcetera right there are.
+Mike Prorock:  Ways to attack that.
+Mike Prorock:  That seemed to be amenable to folks and when there 
+  are items that may we may want like a human readable for in some 
+  cases like / credential refresh you know off of exchanges that 
+  there may be others who might say yeah but I want that explicitly 
+  not human readable or based on some uid and that's also okay 
+  right so depending on what it is I think we've got some 
+  flexibility to not paint ourselves into a corner here I see or 
+  you just commented.
+Mike Prorock:   But so I don't know if he has further comments 
+  but I think as long.
+Mike Prorock:  Specifying the types in the open ID specification 
+  were okay.
+Manu Sporny:  You're on the case.
+Manu Sporny:  And I think you meant OAS specification yeah okay 
+  Ori thoughts.
+Orie Steele:  I think my covered it you know we're defining an 
+  HTTP API the post potty Json structures the endpoint definitions 
+  We should strive to be as precise as we can so that we can rely 
+  on good validation tools you know pero Los so when we say it's a 
+  string it's not very helpful because you know there's lots of 
+  valid strings out there right is it allowed to be a script tag.
+Orie Steele:   No let's be clear right so I think.
+Orie Steele:  That's them.
+Orie Steele:  In the point I'm trying to make is we should try 
+  and be as clear as we can but when we reach the edge of consensus 
+  when somebody wants human readable and somebody wants definitely 
+  not human readable we can sort of support both of those things 
+  with schemas that we Define concretely.
+<mprorock> @mahmod - types of exchanges you accept would 
+  typically be returned by a GET to /exchanges
+Manu Sporny:  Okay and I'm I'm I'm hearing us all agree I type 
+  something up so the group discussed this on the February telecon 
+  the group is open to placing IDs and names in a URL but require 
+  PRS to explore the specific use of ID or name for particular use 
+  case it is expected that any path parameters need to be very 
+  clearly defined with generous examples in the PRS.
+Manu Sporny:  Making that are finding in closing the issue.
+Orie Steele:  I mean I think my moods comment here probably 
+  deserves a separate issue but I think I think he should open a 
+  separate issue then we should close this this particular issue.
+Manu Sporny:  Plus 12 that Mahmood would you mind opening an 
+  issue.
+Mike Prorock: +1 Separate issue, but I think i will handle in my 
+  follow on PR
+<mprorock> so tag me please ;)
+Manu Sporny:  Some thank you all right I'm commenting on this one 
+  and then closing this one and then my moods opening a new one to 
+  address his.
+Manu Sporny:  All right let's see.
+Manu Sporny:  That exhaust the issues that we had scheduled we 
+  have 10 minutes left looking at.
+Manu Sporny:  Are there any other issues that folks feel are high 
+  priority like we should definitely talk about them today 
+  otherwise I'm just going to hunt and hunt for something that 
+  looks.
+Mike Prorock:  The only request I would have would be a five 
+  minute break between now and five o'clock Eastern time or 
+  functionality reasons it's been a long day.
+Manu Sporny:  Okay so yeah yeah now got it um how about let's 
+  queue up a discussion for next week we really should talk about 
+  the credential status thing I think like I are the traits folks 
+  concerned about this endpoint.
+Manu Sporny:  Or does it okay all right so let's put that on the 
+  agenda for next week and then Mike if you have your PRS ready we 
+  can talk about those on next week as well.
+Mike Prorock:  Yeah and your you said you're planning on merging 
+  what like tomorrow Thursday sometimes something like that.
+Manu Sporny:  When's yeah I'm going to try for tomorrow.
+Mike Prorock:  Okay I should be able to knock them out over the 
+  weekend I think so.
+Manu Sporny:  Okay all right I'll try try early in the day 
+  Wednesday but we'll see how that goes okay then with that that's 
+  it for the call today any last words before we end the call.
+Manu Sporny:  All right thanks everyone again great progress 
+  we've been making a lot of progress over the last two weeks 
+  appreciate that let's keep up the pace and get those PRS and all 
+  right thanks everyone and have a great rest of the day chat with 
+  you all later in the week and if not next week bye.
