@@ -1,0 +1,984 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-02-15/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-02-15/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2022-02-15
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Feb/0033.html
+Topics:
+  1. Introductions and Reintroductions
+  2. Progress on Action Items
+  3. Cryptographic Debrief of DIDs and VCs by SRI
+Organizer:
+  Heather Vescent, Mike Prorock, Wayne Chang
+Scribe:
+  Our Robot Overlords
+Present:
+  Heather Vescent, David Balenson (SRI), Mike Prorock, Jeff Orgel, 
+  Chris Abernethy (mesur.io), Kimberly Linson, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Manu Sporny, James 
+  Chartrand, Erica Connell, Lucy Yang, Will Abramson, Anil John, 
+  Marty Reed, Kerri Lemoie, Nick Meyne, Andy Miller, PL, Mahmoud 
+  Alkhraishi, Orie Steele, Dmitri Zagidulin, Kayode Ezike, Brian, 
+  rgrant (ryan grant), Bob Wyman, rgrant (ryan grant) take2, Brent 
+  Zundel, Ryan Grant, Charles E. Lehner, rgrant (ryan grant) take3 
+  - works!, Markus Sabadello
+
+<heather_vescent> Hi David are you able to hear me?
+Heather Vescent: 
+  https://drive.google.com/drive/u/0/folders/1myzrZbVtAXltfuzO9JwuQ322elm9XQQM
+<heather_vescent> David, here's the presentation decks: 
+  https://drive.google.com/drive/u/0/folders/1myzrZbVtAXltfuzO9JwuQ322elm9XQQM
+Our Robot Overlords are scribing.
+Heather Vescent:  Good morning everyone today is the February 
+  15th 2020 credentials community group meeting today our agenda is 
+  to have an overview of the did VC cryptographic debrief by David 
+  bailenson from esri and we're also going to get an introduction 
+  from camera day Linson who has self nominated for the open ccg 
+  chair roll.
+Heather Vescent:  .
+Heather Vescent: CEPC: https://www.w3.org/Consortium/cepc/
+Heather Vescent:  So I would just like to remind everyone that as 
+  part of participation in the ccg which includes the mailing list 
+  and all participation including on GitHub are under the code of 
+  ethics and professional conduct we're just going to start 
+  reminding everyone of this at the beginning of the meetings so 
+  that we just remember that sometimes things can get heated.
+Heather Vescent:   And we do it.
+Heather Vescent:  Appreciate having passionate discussion that is 
+  also polite and respectful.
+Heather Vescent: Join: 
+  https://www.w3.org/community/credentials/join
+Heather Vescent:  IP note anyone can participate in these calls 
+  however all substantive contributors to any ccg work items must 
+  be members of the ccg with full IP our agreement sign it's free 
+  to join but you will need to have a ccg w3c account and you can 
+  join here.
+Heather Vescent:  .
+Heather Vescent: Minutes: https://w3c-ccg.github.io/meetings/
+Heather Vescent:  Call notes these minutes and an audio recording 
+  of everything set on this call are archived at the ccg minutes I 
+  know that we do have some gaps in that and it's been on my to do 
+  to fix those gaps and if anyone is interested in helping fix the 
+  gaps in archived minutes please let me know we use IRC and it's 
+  each a2q speakers during the call all attendees if you've used it 
+  C and you put your name in.
+Heather Vescent:   You will automatically be.
+<manu_sporny> I can help with fixing some minutes gaps, Heather.
+<mprorock> minutes gaps are likely my fault
+<manu_sporny> *shakes fist at MikeP* :P
+Heather Vescent:  The CG bot will present plus you and that will 
+  show that you were a member of the attendant attack you attended 
+  this meeting if you would like to make a comment add yourself to 
+  the queue you can type Q Plus sign + and if you want to add a 
+  little note what you want to make your comment just you can say Q 
+  Plus sign the comment you want to make if you want to remove 
+  yourself from the.
+Heather Vescent:   EQ you can.
+<mprorock> :)
+Heather Vescent:  - You might see the chairs doing other commands 
+  or other folks you don't need to worry about that this meeting is 
+  held by voice not IRC off-topic IRC comments are subject to 
+  deletion from the record okay scribe selection since we are using 
+  the auto transcription I don't believe we need an official 
+  scribes that correct amount and we just shifted this this process 
+  a bit.
+Heather Vescent:  .
+Manu Sporny:  That's correct yep I can I can back up scribe and 
+  fix things.
+Heather Vescent:  It's if you know how to fix things using the 
+  search replace feel free to fix things on the Fly.
+Heather Vescent:  .
+<manu> example of how to fix things: s/OLD_TEXT/NEW_TEXT/
+Heather Vescent:  Okay introductions and reintroductions is there 
+  anyone new on the call who's not presenting who would like to 
+  introduce themselves you can either just speak up or do q+ and 
+  add yourself to the.
+
+Topic: Introductions and Reintroductions
+
+Heather Vescent:  You okay I don't see any any one volunteering 
+  of be introductions is anyone not reintroduce themselves for a 
+  while.
+Heather Vescent:  Okay no takers on that either next up is 
+  announcements and reminders does anyone have any announcements or 
+  reminders Mike you're on the Q over.
+<manu_sporny> woo hooo! Welcome Kimberly!
+Mike Prorock:  Awesome so we actually have a great announcement 
+  today as you hinted at which is Kimberly is joining us as a 
+  co-chair so she self-nominated a little while ago sufficient time 
+  has passed there have been no objections in fact quite the 
+  opposite and I am ecstatic to have her joining you in myself as a 
+  co-chair here I think she brings a lot to the table so with that 
+  wanted to pass it over for a quick intro and welcome aboard and 
+  thanks again.
+Mike Prorock:  .
+<pl> Congratulations Kimberly!
+<heather_vescent> yay! So excited to have you Kimberly!
+Kimberly Linson:  Thank you I'll come off mute and camera for a 
+  second mike and heather asked me to just kind of give a little 
+  brief introduction and sort of what I'm thinking about as I step 
+  into this exciting Adventure I'm really excited to to be a part 
+  of this team and hopefully I can I can bring some good 
+  Administration and help with some of the back back office stuff.
+Kimberly Linson:  By way of sort of an introduction I spent the 
+  first 20 years of my career in education management focused on a 
+  company that treats kids and adults with comprehension disorders 
+  and then in 2017 I left to start my own professional Learning 
+  Company with with kind of that idea in mind that that I really am 
+  fascinated by how it is that we humans come to understand things 
+  and then when I.
+Kimberly Linson:   Charted at Randa.
+Kimberly Linson:  Got sort of a baptism by fire and how humans 
+  understand things because I didn't come from a technology 
+  background and all of a sudden I was trying to to make sense out 
+  of what I was reading and I felt very much like I had that 
+  comprehension difficulty and so really the ccg was a landing 
+  place for me and gave me lots of really good.
+Kimberly Linson:  .
+<pl> Wow - in Safari the chat seems to now be self-scrolling. 
+  Well done Jitsi devs!
+Kimberly Linson:  Short and and an easily digestible.
+Kimberly Linson:  .
+Kimberly Linson:  Bite-sized pieces of information for me to kind 
+  of grab ahold of and so that's sort of where I come from is 
+  bringing and trying to understand all that that we're doing here 
+  and I think I sit and kind of a hopefully a unique spot to to be 
+  able to help us with some of that communication and that matching 
+  up of language and mental representation.
+Kimberly Linson:   This is important to me.
+Kimberly Linson:  Because I actually really want my own 
+  credentials to be digital and verifiable and I want it to be 
+  seamless and secure and but I don't want to be a sheep who sort 
+  of just assumes that y'all did that for me without me 
+  understanding how it happened because I also want to be a part of 
+  helping to build these products for for the world which is very 
+  exciting so I'm hoping that I can really help us get from where 
+  we are today to to not just a.
+Kimberly Linson:   Place where there's adoption.
+Kimberly Linson:  Carrie and I've had lots of conversations every 
+  conversation I feel like always comes back to adoption but I 
+  actually want it to be just an expectation so I bring to the 
+  chair position I think some organization and management skills 
+  and I also bring a lot of curiosity my favorite Einstein quote 
+  that you can't see but it's right here in my office is if you 
+  can't explain it simply you don't understand it well enough so 
+  I'm I will ask lots of questions and.
+Kimberly Linson:  By doing that I can help the ccg to onboard 
+  more more voices faster that in order for them to be active 
+  voices and not passive voices they we have to feel confident in 
+  the knowledge that we have in the material so I'm hoping that I 
+  can continue what we've done with the ccg 101 and other tools 
+  that we can build on to help folks get get up to speed faster so 
+  that's kind of my my goals as I.
+Kimberly Linson:   Step into this role.
+<manu_sporny> Super excited about Kimberly stepping up to 
+  co-chair! Hooray!
+Heather Vescent:  You thanks Kimberly and I'll just share with 
+  everyone like I met Kimberly through the ccg 101 project I don't 
+  really know her very well prior to that and I was so impressed 
+  with how she well just how she just asked great questions and 
+  helped us clarify and document some of the new things which was 
+  my goals for this ECG 101 and as we had this open co-chair you 
+  know I think I've been pretty clear it's been really.
+Heather Vescent:   Important for me to use.
+Heather Vescent:  Leadership of the ccg as succession planning so 
+  that folks can have different experiences and I was just so 
+  impressed with Kimberly and so when she was amenable to the 
+  co-chair role I was very excited I think she's going to be a 
+  great coach are really complementing both what Mike and I bring 
+  to the table so very excited for the ccg to have three solid 
+  co-chairs it's been.
+Heather Vescent:   A long long haul for me.
+<mprorock> big +1 Heather, and very excited to be joined by 
+  Kimberly ;)
+<kerri_lemoie> Thanks, Kim! Appreciate that you're dedicating 
+  time to this initiative. Great to have you as a co-chair to help 
+  shepherd the work of this group.
+Heather Vescent:  And I'm very active and excited that we're 
+  going to be able to create more things for the community and more 
+  structure for the community so with that let's see any comments 
+  or questions from the community for Kimberlyberly or what this 
+  what this means for the TCG menu your.
+Manu Sporny:  I just wanted to welcome Kimberly and and you know 
+  add to the excitement I think Heather you stated it well really 
+  happy Kimberly that that you started when in ccg you know 102 101 
+  in our now co-chairing I think your backgrounds you know 
+  fantastically suited to the position have never really had a 
+  chance to work with you but.
+Manu Sporny:  To the next couple of months to years with you at 
+  the helm so just just wanted to vocalize my appreciation for you 
+  stepping up to co-chair and in taking this on that's it.
+Heather Vescent:  You thanks Manu.
+
+Topic: Progress on Action Items
+
+<heather_vescent> CCG Issues: 
+  https://github.com/w3c-ccg/community/issues
+Heather Vescent:  What else know okay great the next item on our 
+  agenda is to check in on progress on action items we don't really 
+  have much going on on the issues right now I will just make a 
+  note yesterday I walked Kimberly through creating some work items 
+  so there were a couple open work items they were approved that 
+  have been officially.
+Heather Vescent:  And the verifiable.
+Heather Vescent:  Fresh 2021 and the verifiable driver's license 
+  vocabulary so both of those are accepted work items and they 
+  should have their repos ready to go otherwise we've got a couple 
+  open work items that are looking for coach co-owners and then we 
+  have the vcj which interrupts test artifact which I think we've 
+  still got on hold until.
+Heather Vescent:   Till end of.
+Heather Vescent:  So we don't really have anything present 
+  burning going on those oh man oh you're on the cue or is that 
+  from previous.
+Heather Vescent: https://github.com/w3c-ccg/community/issues/228
+<rgrant> i'm being dropped from the telephone line, and neither 
+  Chrome nor Firefox offer me audio.  any hints?
+Manu Sporny:  Now this is a new one just wanted to mention that 
+  the one of the crypto suites at least I feel is really important 
+  to very firmly put in scope in the new verifiable credentials 20 
+  working group this is the this is the one that all major 
+  Enterprises and governments use right we already have support for 
+  it through the Json web signature stuff.
+Manu Sporny:  Which is good.
+<chris_abernethy_(mesur.io)> @rgrant - try visiting the URL 
+  directly, that's what worked for me in chrome: 
+  https://meet.w3c-ccg.org/weekly
+<mprorock> @rgrant - try going on chrome to 
+  https://meet.w3c-ccg.org/ and then select weekly from there
+Manu Sporny:  That but this profile said in a different way so in 
+  order to cover all of our bases and ensure that the new working 
+  group has all of the tooling that it needs to really push you 
+  know the verifiable part of verifiable presentations Ford we 
+  really need a second coat or for this work item I know there's a 
+  decent bit of people saying that they support it but yet.
+Manu Sporny:   There's no no cone or.
+<pl> @rgrant  I'm finding Safari works well these days, if that's 
+  an option for you.
+Manu Sporny:  We don't get a cold enough for the item it doesn't 
+  get rolled into the VC 20 working group so it's pretty 
+  time-sensitive if you haven't well I mean you know if you're 
+  supporting it please consider becoming a calendar for it and 
+  helping us to get that into the BC 20 working group that's it.
+<mprorock> I would note, I think it can go into the VC WG without 
+  a co-owner
+Heather Vescent:  Many what's a requirement to be a Kono co-owner 
+  like what kind of commitment is that.
+<mprorock> just needs an IPR sign off
+<orie> it can go into the VC WG without a co-owner.
+Manu Sporny:  It's really not a huge commitment it's a 
+  cryptography sweet and I mean it's a it's a fairly light lifts 
+  out of all the specks we do these crypto sweets are supposed to 
+  be the lightest lift from a technology perspective so you know 
+  like a day every two weeks maybe.
+<mprorock> Orie i belive confirmed that with Ivan as well
+Heather Vescent:  So I'm seeing here in the chat that both make 
+  an Oreo saying it can go into the vis-a-vis he's working group of 
+  the out of co-owner.
+Manu Sporny:  I disagree with that viewpoint.
+Manu Sporny:  But you know maybe it's it makes it much easier if 
+  it's the ccg work item and there's a clear path that's ECG 
+  adopted it in where you know and it was here and then we're 
+  moving it to the working group the other way into a working group 
+  is you pick a random document off the internet that somebody 
+  wrote and there's always the chance that a w3c member is going to 
+  look at that and go why in the world are you picking that you 
+  know pulling that in verses the the incubation path.
+Manu Sporny:   That we've set up which is.
+Manu Sporny:  CG first and then into the working group.
+Heather Vescent:  Okay I hear you and Mike your own cue.
+<dmitri_zagidulin> me says:s/cryptography sweet/crypto suite/
+Ryan Grant: PL: thanks for the Safari tip, it did work!
+Mike Prorock:  Yeah just a quick clarification because I think 
+  it's important before we get into the meat of David's talk today 
+  which I'm looking forward to the man is correct right that 
+  incubation in one sense right the incubation path from ccg to the 
+  working group is easier more from a this is why we should 
+  consider this as a working group right standpoint right it just 
+  makes it easier but there's not a technical blockage it just it 
+  does make easier.
+Mike Prorock:  Someone's willing to.
+Mike Prorock:  Up and co-owned all that that would be great 
+  because I know it's important for managers perspective especially 
+  and I think it is important broadly.
+Heather Vescent:  Thanks Manny what's the do we have like a the 
+  deadline I'm a I don't think the ccg will put a deadline on this.
+Manu Sporny:  It's the verifiable credentials working group 
+  Charter when that Charter goes out to vote if this is not 
+  included in it it will not be in the charter.
+<mprorock> WG charter - likely 30days tops
+Heather Vescent:  And do you have any idea when that is 
+  occurring.
+<marty_reed> manu can you share the link to the work item?
+Manu Sporny:  They yeah I mean I think what Mike saying 30 days 
+  tops but they've been wanting this they've been wanting to do it 
+  by the end of the month which is two weeks away.
+Manu Sporny:  .
+Heather Vescent: https://github.com/w3c-ccg/community/issues/228
+Heather Vescent:  Got it Mario's all here's the here's the item 
+  right there.
+Heather Vescent:  .
+Heather Vescent:  So if you want to be a co-owner of a work item 
+  in ccg that's going to move to the VC working group verify your 
+  credentials working group and this is interesting to you and you 
+  support it talk to menu or just volunteer make a note on the 
+  thread that I just put in there to be a co-chair or not co-chair 
+  to be a co-owner.
+Heather Vescent:  .
+Heather Vescent:  Okay so I think we're finally ready for the 
+  main event this is this was a request from Anil John to have a.
+
+Topic: Cryptographic Debrief of DIDs and VCs by SRI
+
+Heather Vescent:  Have enough time for us to go into the details 
+  of cryptographic debrief of did NBC's so I'm really excited that 
+  David bailenson from Sr is here and so David I'll pass it over to 
+  you and I'm happy to put the link of the PDF in whenever you want 
+  me to.
+<heather_vescent> Link to the presentation: 
+  https://drive.google.com/file/d/1lT01WGf8iOnEurSBr97dYM2NVI0lUE6G/view?usp=sharing
+David_Balenson_(SRI): Yeah why don't you go ahead and do that 
+  thank you very much Heather and thank you all for having me here 
+  thank you to anneal for suggesting that I provide this debrief I 
+  recognize a lot of the names here and I'm pleased to see some new 
+  names as well I do want to emphasize I'm here at the sort of the 
+  request and behalf of the Department of.
+David_Balenson_(SRI): And security side.
+David_Balenson_(SRI): Oh Chief directorate where Anil John is a 
+  program manager for the Silicon Valley Innovation program and in 
+  particular one of their portfolios on blockchain and distributed 
+  Ledger technology research and development and we'll talk about 
+  that a little bit more in just a few minutes what I'm here to do 
+  is tell you a little bit.
+<dmitri_zagidulin> Heather -- the presentation's needs public 
+  permission
+David_Balenson_(SRI): Work that I and my colleague and SRA 
+  International did reviewing use of cryptography in the w3c 
+  verifiable credentials data model or be CDM and the w3c 
+  decentralized identifiers or dids standards as a part of this 
+  review we provided some constructive feedback and recommendations 
+  for technology developers and the w3c standards developers to 
+  help increase their level of compliance with.
+<pl> ditto for me Heather
+<heather_vescent> You should have access... it says it's open to 
+  all: 
+  https://drive.google.com/file/d/1lT01WGf8iOnEurSBr97dYM2NVI0lUE6G/view?usp=sharing
+David_Balenson_(SRI): Standards we should have I'm not going to 
+  present the slides I'm not going to share them you should have 
+  the link that Heather shared in the chat and you should be able 
+  to follow along so I'll try to give you a mile post letting you 
+  know which slide I'm going I'm going to start with slide 12 the 
+  title slide I do real quick when a just briefly introduce myself 
+  and my colleague.
+David_Balenson_(SRI):  briefly come off.
+<pl> That now works Heather
+<heather_vescent> Are you able to access it now?
+David_Balenson_(SRI): Put a face to the name and the voice but 
+  myself I'm a senior computer scientist with independent nonprofit 
+  Research Center s RI International actually going to be 
+  celebrating my 10-year anniversary next month on the 12th of 
+  March I've spent most of my time providing technical programmatic 
+  support for the Department of Homeland Security science and 
+  technology directorate and a number of different programs.
+David_Balenson_(SRI): Being some of the programs that Anil has 
+  guided just by way of background my research interest include 
+  cyber security for critical infrastructure and cyber-physical 
+  systems I've done quite a bit of work of late in Automotive 
+  Systems which is very interesting I'm also interested in 
+  experimentation and test technology transition 
+  multi-disciplinarian research cyber risk economics and usable 
+  security if you're interested in learning.
+http://www.csl.sri.com/people/balenson/
+David_Balenson_(SRI): You can either Google my name and Sr i-- 
+  it'll take you to this page which I just dropped the link in 
+  there my colleague Nick Jenice unfortunately he recently left s 
+  RI he's now with a company called Duality which is working in 
+  privacy enhancing Technologies it's an incredible opportunity for 
+  him he's going to be working there with Shafi Goldwasser.
+David_Balenson_(SRI):  from u c Berkeley who some of you in.
+David_Balenson_(SRI): The community may be familiar with she's 
+  very renowned and so I'm really excited that Nick is there but I 
+  do want to point out I'm I'm more of the applied cryptography 
+  Nick is the more theoretical and he Bridges the theoretical and 
+  applied aspects of cryptography and he did a bulk the bulk of the 
+  work that I'm going to be presenting here so I want to make sure 
+  that credit where credit is due and if you're interested in 
+  getting.
+David_Balenson_(SRI):  more information about knit you can also.
+https://ngenise.github.io/site/
+David_Balenson_(SRI): Google his name or I'll so paste the link 
+  to his website here.
+David_Balenson_(SRI): All right so with.
+Manu Sporny:  Real quick interrupts David sorry do you want me to 
+  share the slides Heather or I mean I can try it's that or are we 
+  trying to not do that.
+Heather Vescent:  If you want to try sharing them anyway I'm just 
+  hesitant since we've had issues with the system stopping the 
+  recording and transcription halfway through so.
+Heather Vescent:  Or is it easier for me to share and you keep an 
+  eye on things I don't know.
+Manu Sporny:  I got you let me let me try and share I'll keep an 
+  eye on everything if that's okay let me share from my machine 
+  just because I'm fairly I we've done that on other calls and it's 
+  worked out okay so I'll I'll I'll share.
+Heather Vescent:  Great okay thanks Manu.
+David_Balenson_(SRI): All right so I'm ready to move on to slide 
+  to title this VIP blockchain and DLT portfolio.
+David_Balenson_(SRI): There you go so for those of you who aren't 
+  familiar with the Silicon Valley Innovation program or S VIP they 
+  work to leverage commercial Rd Technologies in government 
+  applications and co-invest and accelerate their transition to the 
+  market one of the portfolio's that they've worked on in among 
+  many that they've had over the years is one on blockchain and 
+  distributed Ledger Technologies this is intended.
+David_Balenson_(SRI): Many different uses and applications as you 
+  see here there is a really strong emphasis as I'm sure and you'll 
+  John has shared with you on architecture standards and 
+  interoperability his intent is to Overlay any solution with 
+  global openly develop standards based data models in API hence 
+  the solutions are based in part on w3c's be CDM and did 
+  standards.
+David_Balenson_(SRI): .
+David_Balenson_(SRI): Stop real quick and just ask Anil if he has 
+  anything further he wants to say to introduce either as qualia or 
+  this talk before I continue.
+David_Balenson_(SRI): .
+Anil John:  Further he wants to say to introduce the either at 
+  the probably 0 or this talk before I continue thank you Dave no 
+  I'm good I think I will just answer the question that I was asked 
+  on Lincoln about this particular work whether what is The Next 
+  Step Beyond you're doing this work I think that is up to the 
+  community from the government perspective I think it is really 
+  important to realize that if you want to be using the Republican.
+Anil John:   Angels and decentralized identifier BAE Systems.
+<orie> audio is a bit low
+Anil John:  Government The cryptographic Primitives need to be 
+  set up in a manner that actually meets the federal information 
+  processing requirements and this Chris cryptographic standards so 
+  we wanted to make sure that we did a deep dive you know by the 
+  funding that we you know provided to you know you know Dave and 
+  Nick at esri to understand The cryptographic Primitives that are 
+  currently usable cryptographic agility that is possible within 
+  the standard such.
+Anil John:   It's that you.
+<pl> @Orie audio is fine at my end.
+Anil John:  You know swapping that I live in crypto or not and 
+  that is sort of the intent and we obviously will be using the 
+  results of this in order to ensure that whatever profile that we 
+  are going to be using of the verifiable credentials and 
+  decentralized and fire in our work actually supports 
+  fips-compliant cryptography it cryptography going forward so on 
+  that note Dave back to you.
+David_Balenson_(SRI): Perfect and that's a perfect segue into the 
+  next slide Manu.
+David_Balenson_(SRI): So as Daniel said US government use of the 
+  Technologies must conform to relevant federal government 
+  standards and requirements and in particular the federal 
+  information security management act or fisma and that in turn 
+  requires use of National Institute of Technology or nist 
+  standards for use of cryptography so on the next slide say a few 
+  more words about fisma this is a rather word.
+David_Balenson_(SRI): That's the nature of government regulations 
+  but the key things to note here is that federal agencies have to 
+  provide information security for the information and systems that 
+  support operations and assets of the agencies they approach this 
+  by applying risk management trying to understand the potential 
+  threats and risks and harm that could happen and.
+David_Balenson_(SRI): Those are appropriately and they need to 
+  comply with information security standards and guidelines as well 
+  as mandatory required standards developed by nist and so in the 
+  next slide nest promulgates what are called federal information 
+  processing standards Publications or fist pumps they're the 
+  official series of Publications relating to standards and 
+  guidelines that are promulgated.
+David_Balenson_(SRI): The provisions of bhisma are issued by nist 
+  after their approved by the Secretary of Commerce and where is in 
+  early days agencies could get waivers fisma does not allow 
+  waivers to mandatory Phipps pumps so these are required for any 
+  federal government agency and it's required for protection of 
+  sensitive unclassified information so it's important to note that 
+  this does not pertain to.
+David_Balenson_(SRI): It's covered either by National Security or 
+  national security systems that's a whole domain of its own and 
+  even though these are primarily required in intended for federal 
+  government use the fact is they may be and frankly often are used 
+  by non federal government organizations such as private and 
+  Commercial organizations in fact there's many benefits to 
+  commercial organizations taking advantage of fisma.
+David_Balenson_(SRI): It's in their commercial product they 
+  benefit not just their government customers but they can sort of 
+  help raise the bar and and benefit any and all customers that use 
+  their products next slide please.
+David_Balenson_(SRI): So the work that we did is to review the 
+  w3c vcd m and did standards and their use of cryptographic 
+  operations for conformance to the nest cryptographic standards we 
+  did this in two phases we reviewed the relevant standards and 
+  came up with an initial set of recommendations and then in the 
+  second phase we reviewed those recommendations with the community 
+  including many of you who are here today and then updated.
+David_Balenson_(SRI):  David the recommendations based on the 
+  feedback that.
+David_Balenson_(SRI): These recommendations have now been 
+  officially published they are still what's there in a final form 
+  there not a draft but the fact is these types of requirements and 
+  recommendations are never static always Dynamic and I believe 
+  part as an eel said when he commented earlier the intent here is 
+  to introduce this to you and to the community and to eliminate.
+David_Balenson_(SRI): And one can Envision that as we move 
+  forward over time either DHS S&T or Sr i-- or some part of the 
+  community perhaps some of you may update these to reflect 
+  situation is as things evolved finally I want to point out that 
+  we primarily focused on the cryptographic algorithm used in the 
+  w3c standards we did not actually look at a portfolio.
+Mike Prorock: +1 There will definitely be updates needed post 
+  NIST feedback on PQC
+David_Balenson_(SRI): Or their use and operating operational 
+  systems we really just looked at the be CDM and did specs and 
+  their use of cryptography next slide please.
+David_Balenson_(SRI): A little bit more background the primary 
+  fits pubs related to cryptographic standards and hopefully many 
+  if not all of you are familiar with these are those for secure 
+  hash for keyed message authentication code for digital signatures 
+  Advanced encryption and also security requirements for 
+  cryptographic modules so these were the.
+David_Balenson_(SRI): Phipps pubs that were of interest to Nick 
+  and myself however there are quite a few other nist special 
+  Publications ittf standards and informational documents even some 
+  research papers that are out there on archives and other other 
+  platforms and there are other documents that were very relevant 
+  and so I would encourage you to see the references section in our 
+  report there are a total of.
+David_Balenson_(SRI): That provide a really good sort of 
+  bibliography of all the relevant standards and and other 
+  documents that relate to the use of cryptography in support of be 
+  CDM and and ID's next please.
+David_Balenson_(SRI): I probably don't need to spend a lot of 
+  time getting in to what are verifiable credentials and dids just 
+  just in case a verifiable credential is at a evidence that of 
+  claims made by an issuer that can be cryptographically verified 
+  the vcd m-spec provides a standard way to express them that is 
+  cryptographically secure privacy respecting and machine 
+  verifiable and a classic example.
+David_Balenson_(SRI):  ample that I think is used in the spec in.
+David_Balenson_(SRI): Necklaces here in this briefing is an 
+  issuer such as the Department of Motor Vehicles issues a 
+  credential to a holder driver sends verification information in 
+  the form of a digital signature to a verifiable data registry 
+  which could be a for example some government website and then a 
+  verifier such as Highway Patrol can verify that credential that 
+  digital signature by checking the registry and that's sort of 
+  very quick high-level idea of.
+David_Balenson_(SRI):  of what is meant here by verifiable.
+<anil_john> Not exactly .. but OK :-)
+David_Balenson_(SRI): On the next slide we talked about 
+  distributed identifiers these are globally unique persistent 
+  identifiers that don't require a centralized registration 
+  Authority and are often generated in a registered cryptographic 
+  cryptographically and examples of these might be a street address 
+  or an online user name.
+David_Balenson_(SRI): Next slide please.
+David_Balenson_(SRI): There are a number of different ways in 
+  which these verifiable credentials may be distributed through 
+  different data Registries examples here are trusted databases 
+  decentralized databases government identity databases distributed 
+  ledger so the technology is somewhat agnostic to how these 
+  credentials are stored and accessed for verification purposes and 
+  in many cases there could be more.
+David_Balenson_(SRI):  more than one.
+David_Balenson_(SRI): Street that's utilized in a particular 
+  ecosystem next please.
+David_Balenson_(SRI): So one of the first things that Nick and I 
+  had to do when we started tackling this was to understand the VC 
+  DM and dids standards and any references they made to 
+  cryptography and we quickly found that it was a little bit of a 
+  maze of twisty passages all different than anybody is familiar 
+  with the old Adventure game so we put together we found it was 
+  extremely helpful.
+David_Balenson_(SRI): .
+David_Balenson_(SRI): Together a graph representing how the specs 
+  reference existing cryptography and so if you if you look at the 
+  chart here it's not critical to see the exact words but the dark 
+  circles represent w3c standards or specifications the green 
+  Square in the upper left hand corner that's actually an Especial 
+  Pub the yellow Square in the upper right hand corner is a Mist 
+  Phipps.
+David_Balenson_(SRI):  and some of the gray.
+David_Balenson_(SRI): Simon's that you see here are ietf RFC s so 
+  if I'm not mistaken the VC DM standard is let me see I got a 
+  squint a little bit here.
+David_Balenson_(SRI): It's in the lower left the large black 
+  circle and so you can see there's a somewhat indirect and 
+  circuitous path it gets from BC D em all the way to the nist Fit 
+  sport for secure hash and then the upper left hand corner you can 
+  see that there's a large black circle that represents the did 
+  specification and it connects directly to a nest special public 
+  so.
+David_Balenson_(SRI):  it was very helpful.
+David_Balenson_(SRI): To lay this out understand the landscape 
+  this serves as a visual aid as well as a summary of what's being 
+  referenced in the did the CDM and did specs and hence what you 
+  need to pay attention to when you're implementing those 
+  specifications so now the next slide I'll give an overview of the 
+  recommendations that Nick and I made you'll see that there is a.
+David_Balenson_(SRI):  a number of.
+David_Balenson_(SRI): Series of recommendations that we made 
+  General recommendations pertaining to security strength or B 
+  security and keying material a number of areas of algorithms and 
+  protocols including hash functions block ciphers Max signatures 
+  key agreement and transport layer security and then just another 
+  set of miscellaneous recommendations involving crypto validation 
+  programs crypto agility documentation in a few.
+David_Balenson_(SRI):  other factors that you see there.
+David_Balenson_(SRI): And what I'm going to do in the short time 
+  remaining is I'm just going to briefly touch on each of these 
+  just sort of give you an idea as to what are the primary 
+  recommendations that we've made we don't have time to go into a 
+  lot of detail into any of them if you've got questions certainly 
+  entertain those at the end and ultimately what I recommend you do 
+  is take a look at the document itself it is accessible I will 
+  provide.
+<heather_vescent> We will also dedicate next week for more 
+  discussion.
+David_Balenson_(SRI): Thanks for that later and you'll be able to 
+  take a look in more detail at the recommendations but for now I 
+  just want to give you an idea as to the types of things that Nick 
+  and I are recommending need to be implemented in order to help 
+  facilitate compliance with government requirements and standards 
+  so let's go ahead and Jump Right In leave the first slide is set 
+  of General recommendations and so this includes things such as 
+  tracking the security.
+David_Balenson_(SRI):  evil as provided by.
+David_Balenson_(SRI): Nest of each individual component as well 
+  as the overall bit security of the scheme so anytime you're 
+  making reference to a crypto scheme you've got to think about and 
+  consider the overall level of security or B security for that 
+  scheme implementation should use approved cryptographic modules 
+  whenever possible the use of each cryptographic key and the 
+  randomness that's used to generate that key.
+David_Balenson_(SRI): Should be used for a single.
+David_Balenson_(SRI): At the graphics team so nest and and 
+  various other documents recommend that keys that are used for 
+  example for digital signature or only used for digital signature 
+  and are not also used for for key exchange and then it's also 
+  recommended that you delete all Randomness that's used to encrypt 
+  and used to generate Keys as soon as possible within an 
+  implementation so you don't want it to be lying around in memory 
+  as soon as it's been used it should be.
+David_Balenson_(SRI): So these are some of the general 
+  recommendations that we made now getting into the algorithms and 
+  protocols first and.
+David_Balenson_(SRI): Guard 2 hash functions you should be 
+  familiar with hash functions we don't the document talks a little 
+  bit about what they're used for and how they're constructed here 
+  just note to very important security properties preimage 
+  resistance and collision resistance the former is important for 
+  message authentication codes the ladder for digital signatures 
+  since usually signed the has hash of a message so these are 
+  obviously things that one needs.
+David_Balenson_(SRI):  is to consider and take into account and.
+David_Balenson_(SRI): Choosing an implementing hash algorithms on 
+  the next slide.
+David_Balenson_(SRI): Make some specific recommendations for 
+  government compliance purposes one should only use the algorithm 
+  specified in either the secure hash standard or secure hash 
+  algorithm three or secure hash algorithm three derived functions 
+  you should Implement all hash functions using approved 
+  cryptographic modules that's going to be a recurring theme and 
+  I'll talk later a little bit about this crypto.
+David_Balenson_(SRI): Algorithm and module validation programs 
+  and then finally tracked the security strength of each hash 
+  function as well as the type of security specify and describe the 
+  security strengthened the type of security in the standards and 
+  other specifications themselves.
+David_Balenson_(SRI): They going to General block ciphers and Max 
+  should transition all block ciphers to the advanced encryption 
+  standard or AES and one should avoid using Mac's that are built 
+  on TV EA and use at least 112 bit key lengths the chart pitch you 
+  see here is taken from nist special publication hundred 131 on 
+  transitioning the use of cryptographic.
+David_Balenson_(SRI):  rooms in Kiel.
+<mprorock> Ma, I haven't seen skipjack in a while
+David_Balenson_(SRI): So it shows the approval status of 
+  different symmetric algorithms used for encryption and decryption 
+  and so one needs to be keenly aware of that and at this point 
+  it's time for everything to transition to from from the old T DEA 
+  and skipjack to using AES.
+David_Balenson_(SRI): The next slide we get into digital 
+  signatures I'm going to send that most of you are familiar with 
+  digital signatures and not going to go into a lot of detail here 
+  but generally we apply a hash function to the message or data and 
+  then we will use an asymmetric or digital signature algorithm the 
+  private key to generate the signature and then the public key to 
+  validate that signature.
+David_Balenson_(SRI):  on the next slide.
+David_Balenson_(SRI): We show a number of recommendations the 
+  most relevant standards here include the digital signature 
+  standard which specifies a number of different algorithms that 
+  can be used as well as the use of hash functions within the 
+  secure hash standard and secure hash algorithm three additional 
+  recommendations include using approved random number generators 
+  to generate the random keys and to treat all Randomness or seed 
+  material as.
+David_Balenson_(SRI): Protected as one would in the nist 
+  recommendations for Key Management and to use approved random 
+  number generators to generate Randomness for signatures and to 
+  delete that Randomness as soon as possible after it's been 
+  generated and used to generate the necessary keys.
+David_Balenson_(SRI): The next slide talks a little bit about 
+  Kiri use in applications you should recall one of the general 
+  requirements was that King material be used for only one scheme 
+  and not from multiple schemes there apparently is some work on 
+  doing key reuse between these two particular standards the x.25 
+  519 in the Ed to 5519 by DHS DSS.
+David_Balenson_(SRI): And other Phipps forbid.
+Orie Steele: Related: 
+  https://libsodium.gitbook.io/doc/advanced/ed25519-curve25519
+David_Balenson_(SRI): Using keying material between cryptographic 
+  schemes we are aware that there has been some some work there's 
+  an ie CR e print article that claims to have proved that there 
+  this is secure and that we don't question that and we don't 
+  really evaluate that that may well be the case but the fact is 
+  the required Phipps pubs from this do do forbid that and as part 
+  of our.
+David_Balenson_(SRI):  work Nick and I did Reach Out.
+David_Balenson_(SRI): Talk with a number of the subject matter 
+  experts and key people at nist and they're aware of all this but 
+  until they make any changes in the standards any federal 
+  government organizations that wish to make use of these 
+  algorithms have to abide by the Phipps and they have to ensure 
+  that there's no reuse of the king material between the two 
+  schemes.
+David_Balenson_(SRI): We talked about key agreement number of 
+  recommendations here treating Randomness intermediate values is 
+  King materials removing those values from memory as soon as the 
+  application or algorithm allows generating all the random values 
+  with approved random number generators with a security strength 
+  at least as high as the key agreement scheme itself and then when 
+  feasible a nonce is random string should be twice the length of 
+  the targeted security strength.
+David_Balenson_(SRI):  for the key agreement scheme and if you're 
+  curious.
+David_Balenson_(SRI): Learning more about that again you can look 
+  at the report and the reference to tubs and other documents and 
+  they can tell you more about why that is and then finally in the 
+  the last area under algorithms and protocols transport layer 
+  security all TLS protocol implementations currently have to be 
+  versions 1.2 and 1.3 and there's a plan to transition that to all 
+  1.3 and as the last time Nick and I look at this.
+David_Balenson_(SRI): The requirement is that requirement was 
+  that that transition occur by 2024 you're hearing a little bit of 
+  a recurring theme use this approved Cipher Suites and the servers 
+  and clients and TLS must use mr. Krug cryptographic modules so 
+  now let's go ahead and move on to the final set of 
+  recommendations this is.
+David_Balenson_(SRI): .
+David_Balenson_(SRI): About mish-mosh of a number of different 
+  categories but I'll start out by talking about the this 
+  cryptographic validation programs you've heard Us site 
+  recommendations talk about recommendations that require using 
+  validated modules so if you look at the actual missteps pubs for 
+  the different cryptographic algorithms they specify they may be 
+  implemented as modules comprised of software firmware Hardware.
+David_Balenson_(SRI): There are and they also missed his 
+  established this cryptographic algorithm validation program or 
+  tabs p and a cryptographic module validation program or see MVP 
+  to validate modules for conforming to the nest security 
+  requirements for cryptographic modules and other fifth standards 
+  there's a full series of fips 140 standards that talk about 
+  cryptographic modules and.
+David_Balenson_(SRI): Recommendations is that implementations 
+  should use validated cryptographic algorithms and modules 
+  whenever possible and you can learn more about those if you're 
+  not already familiar with them through the through the fips 140 
+  series and the other Phipps documents the next recommendation 
+  relates to crypto agility and given different algorithm Suites 
+  that are out there the fact that algorithms.
+David_Balenson_(SRI):  evolved over time.
+David_Balenson_(SRI): As new developments as new systems are 
+  adopted and standardized it's important that systems provide 
+  cryptographic agility that allows them to swap out different 
+  algorithms that can achieve the same cryptographic goals and and 
+  this is now especially important considering future use of post 
+  Quantum cryptography.
+David_Balenson_(SRI): If you're not yet tracking nests work on 
+  post Quantum cryptography and I know many of you are in fact 
+  doing that which is wonderful but if you're not we strongly 
+  encourage you to do so because this is something that is going to 
+  be required in future standards Nick and I as I mentioned did 
+  talk with the folks at Nest they have a multi-year program where 
+  they're developing standards.
+David_Balenson_(SRI): Geography in both the digital signature and 
+  key exchange spaces and in coming years anticipate issuing fits 
+  pubs that will require standardized use of those algorithms if 
+  you want to learn more if you're not familiar with them there are 
+  a number of useful resources that are out there DHS has an entire 
+  site on it at the link that you see here they're partnering and 
+  working very closely with nest and there are two nests.
+David_Balenson_(SRI):  sites that are especially useful in.
+David_Balenson_(SRI): You'll see.
+David_Balenson_(SRI): Explore here including one on the whole 
+  public post Quantum crypto standardization effort and another on 
+  a crypto agility project.
+David_Balenson_(SRI): The next slide just summarizes the 
+  anticipated impact of quantum Computing on common algorithms and 
+  what the future needs are going to be in the bottom line is that 
+  the asymmetric algorithms for digital signatures and key exchange 
+  are no longer going to be secure the other algorithms for doing 
+  block ciphers and hash will be okay however larger key sizes and 
+  larger output are going to be needed so one not only.
+David_Balenson_(SRI):  Ed's when thinking about.
+David_Balenson_(SRI): To agility not only needs to think about 
+  swapping in different algorithms but the different parameters and 
+  sizes of those parameters that are associated with the different 
+  algorithms.
+<orie> See also https://en.wikipedia.org/wiki/Shor%27s_algorithm
+<mprorock> assume that SPHINCS+ and or a lattice based approach 
+  will come into play (e.g. DILITHIUM)
+David_Balenson_(SRI): The next slide is a DHS infographic on 
+  preparing public key cryptography and it just talks about steps 
+  that different implementers developers and standards 
+  organizations should be taking into account as they work toward 
+  and prepared for eventual incorporation of public key 
+  cryptography I want to wrap up I realize that we're nearing the 
+  top of the hour the next.
+David_Balenson_(SRI): .
+David_Balenson_(SRI): Stations are around random number 
+  Generation all entropy Source output should be single-use don't 
+  don't use an output for multiple uses treat the entropy sources 
+  is keying material we've alluded to this earlier if a 
+  deterministic random bit generator uses a hash of block Cipher 
+  security strength should be larger than the desired security 
+  strength of the whole system and of course use approved validated 
+  entropy sources.
+<mprorock> to note that this discussion will continue next week 
+  from an implementation standpoint
+David_Balenson_(SRI): Final set of recommendations involve w3c 
+  documentation we strongly encourage you to write all of your 
+  standard documents with crypto agility in mind we also recommend 
+  that you take into account the fact that government organizations 
+  that are going to use implementations based on your standards 
+  need to use government required mandated.
+David_Balenson_(SRI):  crypto algorithms and.
+David_Balenson_(SRI): The more you can do to help facilitate the 
+  developers implementers and using those algorithms the better and 
+  it's also helpful to include block diagrams that describe the 
+  algorithms and systems input output Behavior especially given the 
+  large number of different parameters including you know random 
+  number seeds other parameters that can be input or output from 
+  from the algorithms.
+David_Balenson_(SRI):  because all of.
+David_Balenson_(SRI): Who's that need to be considered when it 
+  comes to cryptographic security so final slide ssris 
+  recommendation report the good news is our recommendation report 
+  is approved for public release so it is available to you it does 
+  describe all of our recommendations in more detail than what I've 
+  been able to share here as I mentioned earlier it also contains 
+  an extensive set of references to relevant standards guidelines 
+  and document so.
+David_Balenson_(SRI):  obviously I think.
+<heather_vescent> Link to report: 
+  https://docs.google.com/document/d/1EdCBSACtlBv2DxNZM67qi9F15Iv5uWOW/edit
+<heather_vescent> CCG post: 
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jan/0209.html
+David_Balenson_(SRI): Is is valuable it does include license 
+  terms that allows Open Access and use and there are a couple of 
+  links here and I see Heather's already dropped those in the chat 
+  and one of them is to a forum posting that anneal made and the 
+  other is to a link to the Google Doc and I believe a nail is also 
+  working to get the document posted on a DHS site and I also have 
+  it posted under my.
+David_Balenson_(SRI): Our eyesight so multiple different paths by 
+  which you can get the recommendation report so I'll stop there 
+  and fortunately I've left a little bit of time for questions 
+  unfortunately it's not a lot of time so I'll go ahead and stop 
+  there and see if we have any comments or questions that I can 
+  answer before we wrap up.
+Heather Vescent:  Thanks David also want to let everyone know 
+  that we are going to dedicate the full ccg called next week to 
+  discussing what's been presented here as well okay Mike you're on 
+  the Queue I think we'll just take one or maybe two questions to 
+  really end at the top of the hour so Mike.
+Mike Prorock:  Yeah exactly and thanks Heather and I did want to 
+  note as you did that will be continuing the conversation next 
+  week in particular from an implementer standpoint so going to be 
+  looking at folks like Orie, Manu, Charles you know anyone from 
+  the Spruce team etcetera right anyone that's touching at the 
+  underlying side of some of the stuff to make sure that we're 
+  being mindful of some of these potential security issues that 
+  could exist if.
+Mike Prorock:   We adopt some of these.
+Mike Prorock:  Some of this type the wrong way so that's going to 
+  be kind of the topic for next week is a preview before I send 
+  that email out you know tomorrow or something so.
+David_Balenson_(SRI): And I'll mention that Mike did invite me to 
+  join next week and I am available and I do plan to join so I'll 
+  be able to participate in that discussion and help answer any 
+  questions that might come up at that time.
+Heather Vescent:  Thanks David I think that these recommendations 
+  are really great I think one of the challenges that a lot of 
+  private sector companies that don't have experience working with 
+  or creating technology with government use cases in mind is 
+  really understanding the government use case and and 
+  understanding why you know these recommendations are so important 
+  so I hope that were able to help support.
+<mprorock> and in some of these items, like PQC they go far 
+  beyond gov
+Heather Vescent:  Getting the word out about these things.
+<pl> Fantastic presentation - Thank you.
+David_Balenson_(SRI): Thank you for having us.
+Heather Vescent:  Okay we don't have anyone on the Queue we're 
+  almost at the top of the hour and so we'll conclude for today 
+  we'll continue our conversation next week thanks everyone thinks 
+  it's a man who's and everyone for subbing thank you for the 
+  transcriber for transcribing thank you David and Daniel for 
+  presenting and thank you Kimberly for stepping up and joining as 
+  co-chair.
+<manu_sporny> Yes, wonderful presentation, thank you David!
+Manu Sporny:  All right looks like everything happened just fine 
+  Heather this time around so we got a full recording all audio 
+  everything should be there.
+Heather Vescent:  Great great thanks I'm planning to spend a 
+  little bit of time cleaning up some of the minutes are not 
+  cleaning up putting putting putting them in its up I know we've 
+  got some pretty big gaps in there so now that we've got the 
+  co-chair role filled I can spend a little bit time on some of 
+  that backlog.
+David_Balenson_(SRI): .
+Manu Sporny:  Some a Heather just a note on the the transcriber 
+  from today if you want I can pre-process it there times where the 
+  speech-to-text stuff just injects to random words as a sentence 
+  in the middle of everything I have a script that can just rip all 
+  that out so that you get a really clean version to work from if 
+  you're interested in that.
+Manu Sporny:  .
+Heather Vescent:  Yeah that would be that would be great I mean 
+  you and just send it to me is like a textile or upload it 
+  somewhere or I mean you don't have to do it today I'm just happy 
+  to be able to add some additional like like housekeeping with 
+  some of the ccg stuff now so.
+Manu Sporny:  How about this I'll do the weekly minutes from this 
+  week and last week because I scribe last week and this week I've 
+  if they're really clean so it should be pretty quick.
+Manu Sporny:  .
+Manu Sporny:  That work for you Heather.
+Heather Vescent:  Yeah but I mean also you do so much already.
+Manu Sporny:  No it's okay this is this shouldn't be a this this 
+  it shouldn't be difficult I've been doing the VCH API minutes and 
+  it's been starting to take like 10 15 minutes now with the new 
+  transcriber and everything.
+Heather Vescent:  Okay okay that's great I have a lot of backlog 
+  I think we have from last year I know I used to be pretty good 
+  with minutes but there was there was a time when I did kind of 
+  dropped the ball a bit so I'm trying to clean that up and just 
+  want to you know just want to clean house and make it tidy and 
+  dollar eyes and cross all our T's.
