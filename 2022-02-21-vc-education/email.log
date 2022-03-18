@@ -1,0 +1,285 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-02-21-vc-education//
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-02-21-vc-education//audio.ogg
+
+----------------------------------------------------------------
+VC for Education Task Force Transcript for 2022-02-20
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-vc-edu/2022Feb/0005.html
+Topics:
+  1. IP Note
+  2. Call Notes
+  3. Introductions and Reintroductions
+  4. Announcements and Reminders
+  5. Handling of Duplicate Credentials (Issuer and Wallet 
+    Considerations)
+Organizer:
+  Dmitri Zagidulin
+Scribe:
+  Our Robot Overlords
+Present:
+  PL, Kerri Lemoie, Marty Reed, Uli Gallersdörfer, Kimberly Linson, 
+  Dmitri Zagidulin, Stuart Freeman, Timothy Summers, John Kuo, Phil 
+  Barker, David Ward, Matt Lisle, Matthias Gottlieb, Deb Everhart, 
+  Tim Bouma, Simone Ravaoli, Nate Otto, Phil L (P1)
+
+<kerri_lemoie> Can you hear me?
+Our Robot Overlords are scribing.
+<pl> Can someone say something so we can tell if audio is working 
+  for us?
+Dmitri Zagidulin:  Hello Phil I guess audio should be working let 
+  us know if it's not as usual if you can't hear one or more of the 
+  person speaking please try a different browser Firefox Safari try 
+  shift refreshing.
+Dmitri Zagidulin:   All.
+Dmitri Zagidulin:  So Carrie.
+<kerri_lemoie> The new entry screen should help with audio
+<kerri_lemoie> Hah! Phil
+Dmitri Zagidulin:  Right exactly exactly I'm counting on the on 
+  the transcriber all right Kari is is the audio being recorded.
+Kerri Lemoie:  It is recording a started and transcription and 
+  started to.
+Dmitri Zagidulin:  Okay fantastic fantastic all right so I'm 
+  going to I'm going to share screen before we get started actually 
+  wait let's do the IP notifications.
+Dmitri Zagidulin:  .
+<pl> Thanks - had to restart bluetooth
+
+Topic: IP Note
+
+Dmitri Zagidulin:  Okay so for those of you just joining again 
+  welcome to the VCU task force call Quick IP restriction notes 
+  anybody can participate in these calls overall substantive 
+  contributors to any ccg work items and this is a task for Club 
+  task force of the CCG must be members of the credentials 
+  community group with full IP our agreements signed let us know if 
+  you need the link meaning you can join you can listen.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  Fibbing to the fact you have to be a member 
+  you have to sign the agreement.
+
+Topic: Call Notes
+
+Dmitri Zagidulin:  Ze calls recorded the auto transcribe minutes 
+  and the audio recording is available on GitHub let us know if you 
+  need the link we use IRC Channel ccg and which is bridge to the 
+  jitsi chat here so we use the chat for queue management please 
+  type Q Plus like Q the letter and the sign + to add yourself to 
+  the queue.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  And.
+Dmitri Zagidulin:  If you can't access chat and speak up will add 
+  you to the queue.
+
+Topic: Introductions and Reintroductions
+
+Dmitri Zagidulin:  Quick introductions reintroductions do we have 
+  anybody new to the call the 12 student reduce themselves.
+Dmitri Zagidulin:  Speak up or mention something on the chat or 
+  raise your hand.
+
+Topic: Announcements and Reminders
+
+Dmitri Zagidulin:  Okay announcement send reminders as usual.
+Dmitri Zagidulin:  The iiw internet identity Workshop is is 
+  coming up in a couple months it'll be held in person in the 
+  computer science museum in the Bay Area as usual so please 
+  consider attending if you haven't yet anybody else any other 
+  events or announcements to add.
+Dmitri Zagidulin: 
+  https://docs.google.com/presentation/d/1oqcosuceS4Rc_OLQQkeOVKsWWDgz9H1aU0l8QBlvSxQ/edit#slide=id.p
+Dmitri Zagidulin:  All right then let's let's jump into its let's 
+  talk about handling of duplicate credentials here in GT Chad is 
+  the link to the slide deck for those who want to follow along and 
+  I'll also share screen.
+Kerri Lemoie:  Sure I'll keep an eye on it.
+Dmitri Zagidulin:  I've also carry or Simone a or somebody else 
+  if I miss a cue place in chat please please let me know as I'm 
+  presenting okay here we go thank you so much appreciate it all 
+  right.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  So everybody can see the.
+Dmitri Zagidulin:   Mice.
+Dmitri Zagidulin:   Okay.
+Dmitri Zagidulin:  So topic of the call today is a seemingly 
+  simple question of what do we do about duplicate credentials.
+
+Topic: Handling of Duplicate Credentials (Issuer and Wallet Considerations)
+
+Dmitri Zagidulin:  So we're going to talk about what is actually 
+  duplicate credential it's more complicated than initially hoped 
+  for we can talk about several scenarios that we've encountered in 
+  deploying educational credentials to wallets we can talk about 
+  the various ways to think about an educational credential and 
+  we'll discuss so what does this mean for our data models for 
+  issuing API and also how should wallets.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  We as.
+Dmitri Zagidulin:  Unity agree on common ui/ux patterns when 
+  dealing with duplicate credentials.
+Dmitri Zagidulin:  Okay so here's a here's a trivial scenario for 
+  you.
+Dmitri Zagidulin:  A learner has a verifiable credentials saved 
+  to their wallet.
+Dmitri Zagidulin:  They're now adding an identical VC for example 
+  real real easy scenario to encounter example the DCC wallet 
+  allows you to add credentials by scanning a QR code which 
+  contains a full embedded credential in it right so for 
+  credentials under 4,000 characters long.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  Thousand bytes you can fit the whole 
+  credential in QR code so students scans the QR code it adds the 
+  credential they now either accidentally or because they forgot 
+  what the QR code contains scan it again.
+Dmitri Zagidulin:   So.
+Dmitri Zagidulin:  The incoming credential it's from the same 
+  static QR code it is byte for byte identical to the one already 
+  saved.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  Should the wallet do.
+Dmitri Zagidulin:  And we as a community as well as implementers 
+  we all have to decide this question because it's it happens 
+  fairly frequently.
+Dmitri Zagidulin:  For example the decision we went with the DCCC 
+  wallet is.
+Dmitri Zagidulin:  Because it's identical.
+<pl> the downside of having identical credentials in the wallet?
+Dmitri Zagidulin:  You don't add it there's a message to the to 
+  the learner that says hey not adding the credential you already 
+  have one here to have one exactly like it.
+Dmitri Zagidulin:  Question to think about for the group is.
+Dmitri Zagidulin:  Are there any situations where.
+Dmitri Zagidulin:  You explicitly wants to add an identical 
+  verify book or natural like by 4 B identical so that two copies 
+  appear on the user's screen when they list the credentials.
+Dmitri Zagidulin:  My personal guess is now but it's worth 
+  thinking about.
+<pl> Multiple different backups?
+Dmitri Zagidulin:  Okay so this one's easy because the 
+  credentials are identical now what about and this is what.
+Dmitri Zagidulin:   What.
+Dmitri Zagidulin:  Did a lot of discussion among several Dev 
+  teams and inspired to the topic of today's call.
+Dmitri Zagidulin:  What about if it's.
+Dmitri Zagidulin:  And mostly the same crew verifiable credential 
+  but the dates are different so specifically we've got two or 
+  three dates that are required by the VC data model so each 
+  credentials verifiable credential will have one or more of these 
+  days so each one has to be has to have an issuance date which for 
+  those following along on the.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  VC working group.
+Dmitri Zagidulin:  1.0 And 1.1.
+Dmitri Zagidulin:  Call the field issuance date in 2.0 it will be 
+  replaced it will be deprecated issuance date and it will be 
+  replaced with a combination of valid from and date issued an 
+  issue date.
+Dmitri Zagidulin:  Similarly VC data model.
+Dmitri Zagidulin:  Proposes and specifies an optional expiration 
+  date.
+Dmitri Zagidulin:  And again in the VC 2.0 spec and working group 
+  the intention is to rename to deprecate expiration date and 
+  rename it valid until.
+Dmitri Zagidulin:  To prevent various ambiguous cases that have 
+  come up.
+Dmitri Zagidulin:  In addition we have the proof section of 
+  credentials and many proof mechanisms require a timestamp of when 
+  that group proof was created so if you're doing BBS Plus or 
+  LinkedIn proofs.
+Dmitri Zagidulin:  They often have a created timestamp so.
+Dmitri Zagidulin:  All right so this is just a different 
+  definition of the current spec issuance date meaning.
+Dmitri Zagidulin:  It represents the date and the time the 
+  credential becomes valid.
+Dmitri Zagidulin:  So.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  Firstly as far as I attack as far as it 
+  effects the educational use case think about a diploma think 
+  about a course completion credential.
+Dmitri Zagidulin:  We now have the sort of semantic question of.
+Dmitri Zagidulin:  What should they show issuance date is it.
+Dmitri Zagidulin:  The year that the you know the exact month or 
+  day that the student graduated.
+Dmitri Zagidulin:  Or is it.
+Dmitri Zagidulin:  When the.
+Dmitri Zagidulin:  When the diploma is valid from right and those 
+  could be slightly different that there could be a gap between 
+  when the students graduated and the diploma is valid or perhaps 
+  there's backdating such as those situations right so we need to 
+  think about the semantics of the issuance date field.
+Dmitri Zagidulin:  .
+Dmitri Zagidulin:  Renamed valid from.
+Dmitri Zagidulin:  Similarly what does the proof that create a 
+  timestamp mean so one way to think about.
+Dmitri Zagidulin:  Issuance date is the.
+Dmitri Zagidulin:  Exact day time the learner graduated and proof 
+  created can be thought of as a different time that the registrar 
+  signed their diploma and again there could be about a gap student 
+  graduate one day the registrar signed the diploma a week after.
+Dmitri Zagidulin:  So back to our topic what happens when a 
+  learner has a verifiable credential in the wallet.
+<kerri_lemoie> Unfortunately I think the transcriber has failed 
+  because the recording stopped (and was restarted).
+<kerri_lemoie> Is anyone able to transcribe the rest of the call?
+<kerri_lemoie> Will let Dmitri finish thoughts and then open up 
+  queue
+<pl> I'll do it after I ask my questions
+<pl> Kerri - existing open badges has an issued on field which 
+  would be replaced by issuance date.
+<pl> Dmitri - may want to consider using 2.0 changes in the OBv3 
+  and CLRv2
+<nate_otto_(badgr/csky)> OB issuedOn is equivalenet to the new VC 
+  validFrom (rather than a created date)
+<pl> Kerri - issued and awarded are often used interchangably. 
+  Awarded may be when the transfers it to the recipieint.   Should 
+  we add the phrase "duplicate" on an reissued credential that 
+  isssued as an identical replacement. Used with Driver's Licenses
+<pl> Messaging approach (dupllcate signifier)
+<pl> What happens when email addresses change? Or DIDs change. 
+  Should consider  guardianship.
+<pl> I'm not getting audio connecte
+<pl> Will rejoin
+<kerri_lemoie> Good point Marty
+<kerri_lemoie> Can they ever be truly identical since the proof 
+  will always be different?
+<pl> Dmitri - downside of multiple identical credentials?  
+  Downside from storage perspective is nothing.
+<pl> Dmitri - downside on the wallet is in the UI/UX and the user 
+  sees multiple credentials in their inventory
+<pl> Multiple issued credentials - issuers should keep track of 
+  the issuance.
+<pl> Previous comment was Uli's
+<pl> David - what is the difference in the way credentials are 
+  treated?  Are they considered the same or not? How does that 
+  interact with processes that treat credentials.
+<pl> Dmitri - next steps
+<pl> Dmitri - we want to add these situations to our use cases 
+  documents.  We want to mention in notiifications;  we want to 
+  consider new information needed to be added to an existing 
+  credential
+<pl> Phil L. - get data from registrars on the true frequency of 
+  issued credentials are changed or edited.
+<pl> What are the reasons for reissuance in the DCC pilot? Dmitri 
+  - narrow scope of pilot doesn't give a good representation of the 
+  problem. It's very easy to reissue which may be a bad thing.
+<pl> Kerri - we have a topic for credential refresh which will 
+  allow us to return to this.
+<kerri_lemoie> use cases doc: 
+  https://docs.google.com/document/d/1O98lt85PS8ozyMtKQMPdZPLnzpNI30bEgYH1Dq-C-IQ/edit#heading=h.a4epu7z5cx2z
+Kerri Lemoie: https://github.com/w3c-ccg/vc-ed/issues
+<pl> Use Cases Doc link - good recommendation to add platform to 
+  the use case template.
+<pl> Issues in github have been updated - some new information 
+  present
+<pl> Take a look at the issues and add your notes, comments and 
+  perspectives on the one's your interested in.
+<pl> End
+<kerri_lemoie> Thanks!
