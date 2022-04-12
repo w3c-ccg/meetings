@@ -1,0 +1,755 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-04-12-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-04-12-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-04-12
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Apr/0079.html
+Topics:
+  1. Introductions, Relevant Community Updates
+  2. Use cases update
+  3. Heads up on conversation on authz and /exchanges
+  4. Verifiers MUST cryptographically sign their challenges
+  5. Broken paths for test reports caused by changes to this repo
+  6. BbsBls sig test fixtures
+  7. Establish and document permanent URLs for specification and 
+    resources by version
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Mike Varley, Justin Richer, PL, Eric Schuh, Dave 
+  Longley, Kayode Ezike, Andy Miller, Joe Andrieu, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Matthias Gottlieb, Brian 
+  Richter, Shawn Butterfield, Kaliya Young
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right hey everyone welcome to the April 12th 
+  2022 VC API call the agenda was placed into the channel a bit ago 
+  here it is again on the agenda today is basically issue 
+  processing we're just going to keep going through issues with a 
+  minor kind of call out.
+Manu Sporny:  Issues that anyone feels or timely or worth 
+  discussing let's talk about those first before going through kind 
+  of the the rest of the issues let's go ahead and start out with 
+  any kind of introductions relevant Community updates anything 
+  like that.
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  Woudl anyone like to introduce yourself to the 
+  group, any introductions?
+Manu Sporny:  All right I think most of us have been on the call 
+  before so we'll get ahead go ahead and get into Community News 
+  any Community News any updates.
+Manu Sporny:  From the general community.
+Manu Sporny:  All right the only I think only update think we 
+  have some folks weren't here last week we have new test Suites 
+  for the basic issue or in basic verifier API so those are on the 
+  minutes from last week the goal of those test Suites are 
+  basically two just at a very minimal you just do a very minimal 
+  test do you.
+Manu Sporny:   Support the.
+Manu Sporny:  Epi the end point do you support verification that 
+  sort of thing the goal of those kind of micro test Suites is to 
+  put them all together so we hope to have we hope that those base 
+  apis end up driving a whole bunch of other feature apis like the 
+  crypto sweet apis like credential refresh.
+Manu Sporny:  And things of that nature the goal here is to have 
+  a bunch of small test Suites that you can kind of point to your 
+  infrastructure so your VC API endpoints just what you support and 
+  then that will end up the test Suite will run against that 
+  infrastructure for very targeted and points like credential 
+  issuing or presentation verification or things of that nature we 
+  will we're.
+Manu Sporny:   Still working on kind of the.
+Manu Sporny:  Output format for each test Suite they'll all the 
+  test Suites are intending we are intending for them to have a 
+  common output format in with that common output format the goal 
+  here is to have like a multi ecosystem like a multi industry 
+  vertical site that basically puts all of those tests we results 
+  together so education sector retail sector financial sector.
+Manu Sporny:  Did he say.
+Manu Sporny:  They're all that kind of traceability all those 
+  sectors would be able to pull those data files in in kind of show 
+  what cross-industry interop looks like show which platform 
+  support certain verifiable credentials and so on and so forth so 
+  the the first kind of round of that stuff kind of went out last 
+  week so that's in last week's minutes for anyone that wants to 
+  catch up on that let me pause there any.
+Manu Sporny:   Any questions concerns about any of.
+Manu Sporny:  Okay if not we'll go ahead and.
+Manu Sporny:  Let me go ahead and bring the issues up here.
+Manu Sporny:  Go ahead Eric you had a question.
+
+Topic: Use cases update
+
+Eric Schuh:  We're just wanted to give a quick update on the use 
+  cases since I've been traveling for the better part of the last 
+  month so I think last time we had left off we had kind of shown 
+  some images of sequence diagrams that I had put together just 
+  wanted to let tall Ted in the whole group know that Joe has 
+  created a script that will convert our output into.
+Eric Schuh:  So that should allow for easier commenting on 
+  specific line items in the sequence diagrams and I'm looking to 
+  get that update pushed here in the next week before hopefully 
+  this call next week and then also at the same time Joe and I are 
+  going to be going through the diagrams because right now they're 
+  just my first pass so just taking a second pass with a second set 
+  of eyes so if anyone else would like to join in on that either 
+  send Joe or myself an email.
+Eric Schuh:  And I guess just for you Manu may be looking at two 
+  to three weeks from now having kind of update on this call may be 
+  spending 20 minutes or however long we think is needed to kind of 
+  take a look at those diagrams.
+Manu Sporny:  Awesome that's a great update thank you Eric yeah 
+  plus 12 that happy to put you on the agenda whenever whenever you 
+  feel it's ready do you do you think you're going to like email 
+  mailing list with kind of an update before just like what's the 
+  trigger for that are you just going to email me email mailing 
+  list let's.
+Eric Schuh:  I could do either I'll say I'll email the mailing 
+  list and possibly you as well just to make sure it gets through.
+Manu Sporny:  Okay sounds great thank you for that.
+Manu Sporny:  We're how much more work do you feel I mean you 
+  know use cases are like this constant you know iterative thing 
+  until basically the working groups done with version 10 with that 
+  said do you feel like you know the first and this is really the 
+  second iteration is more or less done or what do you what kind of 
+  work do you foresee after that first iteration.
+Eric Schuh:  The main thing that will hopefully come out of that 
+  work I think is to help identify the gaps in endpoints that are 
+  currently missing in the actual spec itself and possibly if 
+  people start to see actual kind of formal sequence diagrams in 
+  the use cases in the document maybe it will trigger some people 
+  to go back and.
+Eric Schuh:  Use cases to have it that haven't made it into that 
+  document yet that needed a little bit more work in some way shape 
+  or form so those would kind of be the two paths I think coming 
+  out of it Joe I would prompt you here if you have anything to 
+  add.
+Joe Andrieu:  Should we we've got a good set of Base use cases.
+<eric_schuh> For reference if people want to see what mermaid 
+  flow diagrams will look like: 
+  https://mermaid-js.github.io/mermaid/#/
+Joe Andrieu:  I think all sort of are on the order of focal use 
+  cases and I think we just need to clean that up and decide if we 
+  want so we have some choices about scope that we need to make 
+  about the document itself but I think when we get back from this 
+  this working through the the sequence diagrams we should have the 
+  foundation of a document that would be will have a clear map from 
+  here to the end of the word.
+Manu Sporny:  All right sounds good is this next iteration is it 
+  a translation into Respec or is this just still in Google Docs 
+  with mermaid diagram.
+Joe Andrieu:  So we are in Respect In fact when I spoke about it 
+  last time I misread the readme.md for the the actual document 
+  that has everything that Eric has pulled over so there are in 
+  fact diagrams in the current DC API use cases.
+Eric Schuh: https://w3c-ccg.github.io/vc-api-use-cases/
+Eric Schuh:  I just said.
+Joe Andrieu:  So I would say we're already in the Respec World it 
+  may not be up to date or complete in terms of the total scope of 
+  the content but there's at least a draft that's in Respec and 
+  I'll drop that URL into our chat here good.
+Joe Andrieu: 
+  https://w3c-ccg.github.io/vc-api-use-cases/index.html
+Manu Sporny:  Awesome that's great so further further along than 
+  we thought we were last week let me go ahead and share my screen 
+  and get that on screen.
+Manu Sporny:  So this is the current document as at the current 
+  nice case is document as it stands right now.
+Manu Sporny:  Okay cool very cool and then.
+Joe Andrieu:  And Eric I believe you had said that there's this 
+  have all the diagrams from the Google Doc or there's some still 
+  in the pr.
+Eric Schuh:  It has the set of diagrams from the use cases we had 
+  accepted when Juan was still leading the use cases Endeavor which 
+  was the six of them that you see listed there there are probably 
+  another 10 or so use cases that didn't make our cut at that point 
+  so if people are feeling like something's missing.
+Eric Schuh:  I would ask that.
+Eric Schuh:  Go to the Google Doc which I'll link here and.
+Eric Schuh:  Take another pass or iteration or send me an email 
+  with.
+Eric Schuh:  Any updates that you would like to see and we can 
+  work through that together.
+Manu Sporny:  All right cool yeah looks great it's coming along 
+  just a heads up Eric let's see my expectation is you're going to 
+  have the source for the mermaid diagrams and somewhere.
+Manu Sporny:   Is that.
+Eric Schuh:  Yes they will be in the in some way shape or form.
+<eric_schuh> Use Cases Google Doc: 
+  https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc
+<eric_schuh> My email: eric@legreq.com
+Manu Sporny:  Okay okay great the reason I mentioned that is you 
+  know a I'm again have no idea when I'll get around to it but I'm 
+  going to try and add a mermaid render to Respec and once we do 
+  that then we will be able to directly embed that Source in the 
+  respect file and it will render into the respect document we 
+  won't have to convert to SVG anymore for example.
+Manu Sporny:   Okay good.
+Manu Sporny:  Anything else on use cases.
+Manu Sporny:  Updates questions concerns.
+Manu Sporny:  Okay thank you very much for that update Eric in 
+  Joe next up our issues I do want to point out very active 
+  conversation that's happening right now that folks might not have 
+  seen so let me pull this up active conversation on w z and end 
+  points.
+
+Topic: Heads up on conversation on authz and /exchanges
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/279
+Manu Sporny:  Issue 279 has 67 comments in like 14 days for those 
+  of you that have not been following along this is one of the 
+  places that ccg discussion around open ID went so there's been a 
+  big question and trying to kind of deconstruct does the exchanges 
+  and point that we have right now to find does it always need 
+  artsy or.
+Manu Sporny:   Or is Asia.
+Manu Sporny:  Optional in that conversation is gone in the bunch 
+  of different places and healthy you know in healthy places with 
+  diagrams on you know what the flows are and you know what what 
+  how chappie you know connects to the VC AP and BP are and what 
+  some of those kind of flows and security models look like I think 
+  there was also a commentary on.
+Manu Sporny:  Yeah there's I think Mike you proposed you know 
+  some stuff here about how do you get the identity of the wallet 
+  anyway it's a it's a really good thread and it's incredibly long 
+  I don't expect everyone has the time to catch up on that thread 
+  but there's a lot of kind of new thinking and Analysis that's 
+  going on there so just making sure everyone knows that that 
+  discussion at least part of that discussion is happening there.
+Manu Sporny:   And we're making some.
+Manu Sporny:  Head way around Otzi in open ID and chappy and the 
+  different protocols did come in that kind of thing in wallet 
+  identity incline identity and things of that nature okay any 
+  questions on that before we jump into Mike would you want to or 
+  Dave do you want to add anything into that.
+Manu Sporny:   Since both.
+Manu Sporny:  Active in that thread.
+Mike Varley:  This is Mike nothing from me although maybe it 
+  might be worthwhile having a summary on this call of sort of 
+  where the conversation has got to I think it's still very active 
+  so I don't know that that's appropriate you know next week but in 
+  order to so people don't have to read 67 plus messages we could 
+  just kind of do a readout of where we are and then kind of almost 
+  reset the conversation to help people.
+Manu Sporny:  Plus one doing that Dave any thoughts.
+Dave Longley:  I know I kind of agree with Mike but if you do 
+  like reading check out the issue.
+Manu Sporny:  I think Mike at the end here you do a loop like a 
+  really good job of of a summary of some kind right and so what 
+  we're trying to do is break all of these different Technologies 
+  into different categories so that we're doing apples-to-apples 
+  comparisons against them one of the I think mistakes that we all 
+  made in the discussion on the ccg mailing list is confusing 
+  chappie with like open IDC.
+Manu Sporny:   I like the protocol.
+Manu Sporny:  So they were very different things like things 
+  called mediators or locators hear things like chappy things like 
+  a invoking a protocol Handler on a mobile device the things that 
+  initiate a wallet are very different than the protocols that you 
+  actually use to move credentials back and forth like VC API and 
+  there was quite a bit of conflation of everything together and 
+  one of the things.
+Manu Sporny:   It has come out of this 67 mess.
+Manu Sporny:  Conversation here is we have better categories to 
+  lump these Technologies into like chappie is a locator / mediator 
+  right and then we have these things that are Discovery protocols 
+  where you do things like okay so as a client what can you support 
+  how can I talk to you how can we you know can we actually 
+  communicate as as might put it then there's session binding like 
+  do I know if the person.
+Manu Sporny:   Certain that you know is associated.
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api/issues/279#issuecomment-1095081012
+Manu Sporny:  I know that the person that's engaged with me on 
+  this website is the same person that's engaged with the digital 
+  wallet somewhere out there on the internet how can I how can I 
+  know that right so that's what this subject while at the session 
+  binding thing is about and then finally there's credential 
+  delivery how do I get a credential to you how do you get a 
+  credential to me that kind of stuff in there some examples here 
+  as well at the very bottom here I'll put the pointer to that in 
+  chat as.
+Manu Sporny:   As well.
+Manu Sporny:  But yeah I think Mikey did an excellent job here 
+  kind of summarizing at least where we got to in the conversation 
+  so it's bearing fruit but you know it'll be a little little bit 
+  longer until we're able to really get down into the details 
+  anything else on that before moving into issue processing.
+Manu Sporny:  Okay then let's go ahead and get into the first 
+  item.
+<> Verifier flows over https
+Manu Sporny:  Which is a proposal that Ori put forward that 
+  basically says the spec will recommend against doing direct 
+  issuer to verifier flows over HTTP the thing that there is a cat 
+  a bit of a caveat to this which is checking the status doing like 
+  a privacy-preserving status check what we're trying.
+Manu Sporny:   Trying to.
+Manu Sporny:  He clearly is that you know the direct issue to 
+  verify our flow is kind of a more traditional IDP to verify or 
+  flow it doesn't go through any intermediary like a holder it's 
+  just kind of a it's a phone home the concern is around phone home 
+  so there's been some discussion here but fundamentally think the 
+  proposal was that the spec.
+Manu Sporny:   Should argue.
+Manu Sporny:  Direct issuer to verifier flows.
+Manu Sporny:  One else want to speak to this any other thoughts.
+Joe Andrieu:  This sounds correct to me with that carve out that 
+  you mentioned so the refresh status check or not the refresh 
+  sorry the status check two very different points of extensibility 
+  there I think we should describe that and make it clear that that 
+  is an acceptable mechanism but make sure it's clear why it's 
+  accessible acceptable so that we have that mechanism documented 
+  as.
+Joe Andrieu:   As a private.
+Joe Andrieu:  He preserving best practice through the use cases 
+  that we've looked at so far we didn't have any instances where 
+  there was a good reason for issuer to verifier communication 
+  other than that one check.
+Manu Sporny:  Okay so the use case is other than status check do 
+  not show that correct make sure to verifier communication is 
+  necessary.
+Manu Sporny:  Operation of the system and I my expectation so 
+  we're basically waiting for a PR on this it's that is that right 
+  we just need someone to write a PR that says you know don't do 
+  direct issuer to verify our communication with with the caveat 
+  that privacy protecting status checks are okay.
+Manu Sporny:  Go ahead and like on the queue.
+Mike Varley:  So I'm just wondering how the spec intends to 
+  prevent that or dis encourage besides you're saying there's a 
+  reason why you shouldn't be doing this you know to preserve the 
+  model the model of self Sovereign you know identity it's the 
+  purposes the holders representing the data and we don't have 
+  these call homes but how are we going to.
+Manu Sporny:  And that's an excellent question we can prevent it 
+  right but I think the most that we can do is I mean the 
+  commentary that we've put in other specifications like the VC 
+  Speck in the did Speck have been taken pretty seriously like when 
+  you point to a security or privacy consideration and that's 
+  really probably wear this text should go right it should go in 
+  the privacy considerations section we should have a sec.
+Manu Sporny:   Ian called you know phone home or.
+Manu Sporny:  Direct issuer verifier communication and warned 
+  that against we've thought about this deeply in general it's a 
+  really bad idea don't do it and just have some explanatory text 
+  around that that the group did discuss it we did agree that it 
+  was a bad idea and so don't do it because people will come at you 
+  wagging their finger about what a terrible ecosystem participant 
+  you're being right.
+Mike Varley:  Right okay and it's also related to the exchanges 
+  and point you shouldn't be designing necessarily exchanges that 
+  require the verifier to.
+Mike Varley:  Suddenly called the issue.
+Manu Sporny:  Yes I always very good clarifying set of comments 
+  Mike so this should be placed in the privacy considerations 
+  considerations section should talk about exchanges chalk about 
+  this warning applying to exchanges as well.
+Manu Sporny:  Don't phone home um can we start the group 
+  considered this and in and in general feels like it's a bad idea 
+  okay any other input on this issue before we move on.
+Manu Sporny:  Okay I'll mark it as ready for PR and that is that 
+  item.
+Manu Sporny:  Here's the next topic.
+
+Topic: Verifiers MUST cryptographically sign their challenges
+
+Manu Sporny:  Are fires must cryptographically sign their 
+  challenges so this was raised by Ori as well can we remove the 
+  optionality for the challenge and domain part of requesting 
+  presentation and make it a requirement I suggest we do whatever 
+  Lackey presentation exchange does and use a jot like Barack says 
+  options could actually be optional or defined as a required 
+  parameter if call is required.
+Manu Sporny:   Jim Sinclair Sethi.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/188
+Manu Sporny:  Likes this issue of trusting the verifiers come up 
+  in several conversations so there's some miscommunication 
+  happening here as well the miscommunication I think is Jim thinks 
+  that this is the verifier digitally signing their request just to 
+  identify themselves this goes kind of Daniel hardman's point that 
+  he made last week which was this really should be peer-to-peer 
+  and both sides of the connection should be identifying 
+  themselves.
+Manu Sporny:   I believe what orry is saying.
+Manu Sporny:  That challenge and domain should never be optional 
+  during a presentation and you should always have them.
+Manu Sporny:  Trying to parse what Mike saying here.
+Manu Sporny:  So I think Mike is saying options should be 
+  optional or defined as required for the call the immediate thing 
+  that comes up if we do this so let's take a worries suggestion 
+  you must sign over challenge in domain destroys all Bearer token 
+  use cases so my suggestion is we can't do this because if you 
+  have to sign over.
+Manu Sporny:  And you are no longer supporting Bearer token use 
+  cases Longley you're up.
+Dave Longley:  Yeah I would think Bearer token use cases would 
+  not be sending the presentation for verification you'd be sending 
+  the credentials in the presentation for verification so you'd use 
+  the credentials that credential verifying point of the 
+  presentation verifying point so I think the request here is if 
+  you're going to be verifying presentation in that presentation 
+  should have a challenge and domain on it that is signed over and 
+  we'll I don't know.
+Dave Longley:   If there would be other discussion about.
+Dave Longley:  Signature there needs to be or if this will work 
+  for all possible signature types that anyone might put on a 
+  presentation not sure.
+Justin Richer:  Yeah I just wanted to point out that the use of a 
+  bearer token with a signed and a separated signed payload does 
+  make sense I mean that's if the bearer token is controlling 
+  access to the ability to call the endpoint and perform the 
+  action.
+Justin Richer:  What the bearer token represents this is separate 
+  from any signatures in the challenge itself which might prove you 
+  know who the holder is who was issued to and other controls and 
+  things like that so the separation of authorization of the action 
+  being taken and the and the.
+Justin Richer:  The veracity of the payload itself is an 
+  important design principle.
+Manu Sporny:  Thank you Justin Dave.
+Dave Longley:  Yeah so those points make sense we do need to 
+  decide I think at some point whether verifiers should be 
+  verifying only proofs that were created for the purpose of 
+  authentication when verifying a presentation which would be 
+  different from proofs that were created for the purpose of 
+  invoking a capability for example which is what I would think 
+  would fall under what Justin's talking about someone's trying to 
+  use a bearer token to.
+Dave Longley:   Take some kind of action.
+Dave Longley:  As opposed to their signing over a presentation to 
+  to prove that they control some cryptographic material or 
+  something like that.
+Manu Sporny:  The right queue is empty unless Justin you put 
+  yourself back on.
+Justin Richer:  I didn't but then I did but I was still left over 
+  anyway yeah I was just going to 2 plus 1 that comment and say 
+  that this does of course extend to proof of possession style 
+  token presentation like you have in systems like map where you 
+  actually may end up with different signatures for different 
+  purposes one covering the token and therefore the actions being 
+  taken on the API.
+Justin Richer:   By itself and.
+Justin Richer:  Covering the data for for higher level functions 
+  you know the these these things existed different layers and 
+  that's to me that's always been one of the most important things 
+  about the authorization discussion is not conflating the not 
+  conflating the authorization question which is what am I allowed 
+  to do here with with.
+Justin Richer:   All of the.
+Justin Richer:  VC is are meant to answer which is like who does 
+  this represent what you know who has testified to this data and 
+  all of those other kinds of things they're functioning at 
+  different layers and that needs to be clear in the structure.
+Manu Sporny:  Yep +12 that okay so this issue specifically is.
+Manu Sporny:  Should Challenge and domain be optional on a 
+  presentation or is it a must you must include them.
+Dave Longley:  Do we have any use case where they would not be 
+  included because I think we just talked about if you did not have 
+  a signature on your presentation then you then we're not talking 
+  about any of the cases regardless of the layering details or 
+  anything we're not talking about any of those cases and I don't 
+  know that we have a case where anyone would be submitting an 
+  unsigned presentation to a verifier endpoint because we tried to 
+  rule that out in the previous calls because there were potential 
+  security problems with.
+Dave Longley:  Telling people to do that and it if it is the 
+  case.
+Dave Longley:  Always going to be signed we could also 
+  potentially say they're always going to have challenges and 
+  domains as well and then if we have no use case where that's not 
+  true then we can make this requirement.
+Joe Andrieu:  In our in our current language around the requests 
+  are we we questing distinctly VCS versus V piece.
+Manu Sporny:  Could you repeat that question please.
+Joe Andrieu:  For a VP that includes a signature so I think 
+  there's a distinction here and I don't know if in our request we 
+  make that distinction but it seems to me that if there's no 
+  challenge then we are necessarily just asking for the VC that 
+  seems aligned if there is a challenge then it only makes sense if 
+  there's a VP that's going to be signed and returned.
+Manu Sporny:  So we do this for the verification stuff don't we.
+Manu Sporny:  VP are the the the age verification VPR or the BPR 
+  is we have a presentation that is unsigned that contains a 
+  credential.
+Dave Longley:  Yeah I was going to say that that I think that the 
+  new on Sir the difference here tweak to what Joe said is where we 
+  whenever we ask for anything in in these protocols at least so 
+  far the request is always for a presentation whether or not that 
+  presentation needs to be digitally signed is triggered off of 
+  whether or not a challenge is included in their request.
+Dave Longley:  And you know we could make that more explicit in a 
+  note in other ways we wanted to but the idea here is the response 
+  is always a presentation if the presentation is not signed and 
+  that's acceptable for business you know for the business logic or 
+  purposes whatever then the the system receiving that presentation 
+  would send the just the credentials for verification not the 
+  presentation and so the decision there would be a switch off of.
+Dave Longley:   The business law.
+Dave Longley:  Before hitting the verifier as opposed to always 
+  just sending whatever is received whether it's VC or vp2 to a 
+  verifier that makes sense.
+Manu Sporny:  Okay so what you're saying is that we do have a use 
+  case where you can put a credential in a presentation where the 
+  presentation doesn't have a domain a challenge or a signature and 
+  it sent over as a part of the exchanges API and then when you win 
+  the verifier gets that because for that exchange they know that 
+  they never asked for a domain or a challenge internally.
+Manu Sporny:   If they would just send them.
+Manu Sporny:  The credential from the VP and send the credential 
+  to the credential verifier endpoint and get a get a verification 
+  there so they would be okay with their not being a signature on 
+  it is that what you're.
+Dave Longley:  That's right yeah so so the presentation is always 
+  envelopes whatever VC is our Center whatever information is sent 
+  is always put into a presentation but that presentation may or 
+  may not be signed and whether or not that's acceptable as a is a 
+  business logic decision.
+Manu Sporny:  So you are arguing for Challenge and domain are 
+  option.
+Dave Longley:  I am not arguing so there's this is orthogonal I'm 
+  saying that the verifier endpoint for the part of this has to do 
+  with our language is still confusing because we're saying that 
+  the presentation is handed to the verifier and as a role but the 
+  service that that has the API for verifying this presentation is 
+  now going to the is why we we had a diagram with that has like 
+  verifier.
+Dave Longley:   Applications and other.
+Dave Longley:  Other multiple that like that maybe draw from that 
+  but.
+<joe_andrieu> apps and services
+Joe Andrieu:  Absent servers or services.
+Dave Longley:  Yeah it's like an app receives the presentation 
+  and then the app decides to hit the service and the end point 
+  that it hits is if it's okay with an unsigned presentation it 
+  hits the credential verify surface and point if it needs that 
+  presentation if it requires the presentation we signed it hits 
+  the end point for verifying presentation and now even in that 
+  model the the endpoint for verifying presentation can require a 
+  challenge in domain because.
+Dave Longley:   You would not hit that endpoint if you did not 
+  require.
+Dave Longley:  Presentation to be signed.
+Manu Sporny:  So here's the diagram you're saying the verifier 
+  app receives a presentation without a signature on it and a 
+  credential that does have a signature on it in it then makes a 
+  decision on what back-end call to hit the in on the verifier 
+  service it either hits credential verify if it was not expecting 
+  the presentation to be signed or it hits presentation verify if 
+  it was expecting there to be.
+Manu Sporny:   Challenge to Maine all that kind of stuff.
+Manu Sporny:  That makes sense to me I is anyone else concerned 
+  okay with the discussion so far questions concerns.
+Manu Sporny:  Thumbs up from Joe.
+Manu Sporny:  I know why I was expecting your name to be floating 
+  along with that thumbs up so distracting but it's great at the 
+  same time okay let's reset this okay so what are we doing here.
+Dave Longley:  I don't think we have a use case where the verify 
+  presentation endpoint.
+Dave Longley:  Doesn't require challenge or domain so we should 
+  require it and so we find that we there is a use case where it's 
+  not needed.
+Joe Andrieu:  The endpoint at the service.
+Manu Sporny:  I'm confused primarily because I just read the 
+  title here and it doesn't match up with what already was I'm 
+  having a hard time connecting these two statements together 
+  verifiers must cryptographically signed their challenges that to 
+  me says that there needs to be a digital signature on the VPR 
+  does anyone else read that in any other way.
+Joe Andrieu:  I do I think he's saying that the challenge is 
+  should exist and they should be signed jwt's just the challenge.
+Manu Sporny:  Does anyone else have that interpretation.
+Dave Longley:  I don't but I now see that at that could have been 
+  what he was trying to say.
+Dave Longley:  I'm not sure what else he would be saying since he 
+  says we should at the end of his comments he says and use a JWT 
+  so to me that implies at some level he's talking about making the 
+  challenge be a jot.
+Manu Sporny:  Alright we probably need to worry here to get his 
+  intent but we did cover some good ground here.
+<kayode_ezike> Can we post a message on that issue to clarify?
+Manu Sporny:  Yeah I'm seeing what you're saying now Joe and 
+  Dave.
+Manu Sporny:  Are we ready to do are we ready to write any kind 
+  of PR here.
+Manu Sporny:  I know I'm confused.
+Dave Longley:  No I don't think we're ready for a PR might need 
+  of clarification from Horry and I don't know that I would support 
+  making the challenge a jot I don't know that it's necessary to do 
+  that and I don't know that it would.
+Dave Longley:  Some of the.
+Dave Longley:  I mean I haven't thought through the how one would 
+  Implement if you used a job making sure in a distributed 
+  decentralized system that you did not have replay.
+Dave Longley:  You know it might be possible to do that for some 
+  systems and maybe not others so easily.
+Dave Longley:  In other words if so we have talked about and 
+  other issues that we should expose an endpoint on the verifier to 
+  create challenges that can be put in the vpr's and then must be 
+  presented when must be sent at to the presentation and point of 
+  the verifier and that challenge needs to not be reused to prevent 
+  replay attack and that.
+Dave Longley:  For at least some amount of time and if we're 
+  going to add if it seems to me like maybe using a job was 
+  supposed to try and make a limit.
+Dave Longley:  Make it easier for people to implement that so 
+  maybe they didn't need a backing database but that it seems like 
+  there's some there's some we need we need more feedback and 
+  information for Maury around why we would force this to be a jot.
+Manu Sporny:  Okay Joe Europe.
+Joe Andrieu:  Shit I lost my thread it seems to me that the 
+  challenge is a validation question not a verification question 
+  and it seems to me it's the app not the service who should be 
+  checking that because I believe the Threat Vector is not between 
+  the app in the service but between the app and the holder I think 
+  that's where the we are worried about the person in the middle 
+  attack.
+Joe Andrieu:  So if feels like checking if the issuer is on your 
+  white list right your allow list it seems like it's validation 
+  not verification but I'm curious what your thought is Dave 
+  because you didn't hesitate at treating it as verification.
+Dave Longley:  I think there's two components to it one is.
+Dave Longley:  I don't think you should even bother checking a 
+  signature of a challenge is not valid to begin with that 
+  challenge should exist on the verification system it should have 
+  been a challenge that was created by that system and the when you 
+  hit the verification service and say you know verify the 
+  signature it needs to make sure that it was signed over on a 
+  challenge that was previously created by that system and then the 
+  verified verifier can report back how many times it's.
+Dave Longley:   It's already seen that challenge before and.
+Dave Longley:  What the verifier app does with the number of 
+  times it seemed the challenges of validation question.
+Manu Sporny:  Right so we need more information from.
+Manu Sporny:  Me to proceed on this item.
+Manu Sporny:  Present it's basically a no op we don't have enough 
+  information to write a PR.
+Manu Sporny:  Okay moving on.
+Manu Sporny:  Broken passer test reports caused by changes to 
+  this repo.
+Manu Sporny:  This should probably be closed.
+
+Topic: Broken paths for test reports caused by changes to this repo
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/193
+Manu Sporny:  See Sween split test results.
+Manu Sporny:  Let's see so this has to do with test reports this 
+  repo doesn't do test reports anymore that's up to the testing 
+  stuff so based on that the suggestion is to close this issue 
+  because the VC API doesn't include test reports anymore thoughts 
+  concerns questions.
+Manu Sporny:  Would there be any objections to closing this issue 
+  on that basis we don't do test reports from the VC API spec repo 
+  anymore.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I'm not 
+  looking at the readme at the moment and she says the docks in the 
+  readme or not broken so the readme needs editing and in any case.
+Manu Sporny:  It does you are right.
+Manu Sporny:  Well this thing isn't about the readme I'm pretty 
+  sure I read me is really messed up at this point and we need to 
+  rewrite Ted we might want to open a new issue on that that the 
+  readme needs a significant update.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Oh yeah that 
+  seems reasonable.
+Manu Sporny:  Okay would you mind.
+Manu Sporny:  Opening that issue tab.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I don't have 
+  the facility to take that now right now.
+Manu Sporny:  Okay can someone do that while I close this issue.
+<kayode_ezike> Working on it…
+Manu Sporny:  That's that one closed did anyone do the raise for 
+  the read me.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I will try to 
+  remember later but I'm no guarantees.
+Manu Sporny:  I can do it right now here we go the readme.
+Dave Longley:  It's it is being done in the chat.
+Dave Longley:  Cody said he's working on it.
+Manu Sporny:  Great thank you.
+Manu Sporny:  All right going back.
+Manu Sporny:  Thank you Kayla day.
+Manu Sporny:  Let's see where our where wine and why sort pie.
+Manu Sporny:  Just recently updated.
+<kayode_ezike> Yep, I’ll circle back really soon
+
+Topic: BbsBls sig test fixtures
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/194
+Manu Sporny:  All right next one up is the BBS plus test text 
+  test fixtures.
+Manu Sporny:  Right so if this is true it's wrong I think we 
+  updated it the linked data proof stuff too.
+Manu Sporny:  Support more than jws but we might not have.
+Manu Sporny:   I think we just need to look at this.
+Manu Sporny:  Does anyone want to take an action to look at what 
+  proof format supports currently what we need to do is make sure 
+  that we support the new data Integrity stuff as well as the older 
+  jws stuff.
+Manu Sporny:  Okay don't have any takers we're just gonna.
+Manu Sporny:  Comment doesn't move on any other questions 
+  concerns comments on this item.
+Manu Sporny:  Alrighty well that needs to be looked into.
+Manu Sporny:  And it's clearly wrong if that is what we do.
+
+Topic: Establish and document permanent URLs for specification and resources by version
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/196
+Manu Sporny:  K next topic is to establish permanent URLs for 
+  specification and Resources by virgin.
+Manu Sporny:  So we have not been doing this.
+Manu Sporny:  Are in kind of an experimental spec right now there 
+  was a desire to version at some point.
+Manu Sporny:  And we did.
+Manu Sporny:  Thoughts about versioning the spec at this point in 
+  time.
+Manu Sporny:  Suggestions to do it suggestions against doing it.
+Justin Richer: +1
+Mike Varley:  It strikes me as though it's a bit early to version 
+  the spec at this time I agree versioning is very important but 
+  usually you would build that version when there's no clear 
+  testability in the new version so I just don't know the were 
+  there happy too happy for others to say otherwise but I don't 
+  think we're ready at 4:00.
+Dave Longley: +1 Not ready yet
+Manu Sporny:  Thank you Mike you got A plus one from Justin in 
+  chat I think I'm a +1 to what you said as well it feels premature 
+  to version something that's a bit of a moving Target another plus 
+  one from Dave lonely Okay so.
+Manu Sporny:  Discussed this song.
+Manu Sporny:  Fun and there were at least four people that 
+  suggested that the specification isn't ready to be version time 
+  would anyone object to us not versioning the specification at 
+  this point in time.
+Manu Sporny:  I'm going to close this the next time someone wants 
+  to version the specification they should raise an issue and say 
+  that they want to version snapshot of it.
+Manu Sporny:  Alright that closing.
+Manu Sporny:  See we have one minute left not enough time to talk 
+  about interoperability profile for the test Suites Mike your 
+  Europe for the next batch of issues if you don't mind scanning 
+  through them really quickly at some point in the next week and 
+  just closing ones where you feel like.
+Manu Sporny:   We don't.
+Manu Sporny:  Address this anymore there's some issues in here 
+  that are like two years old in are clearly you know talk about 
+  the test Suite where it's this is clearly not the place to do 
+  that anymore anyway just too.
+<kayode_ezike> Issue 283 was created as a follow-up to issue 193
+Manu Sporny:  Okay that's it for the call today thank you 
+  everyone for joining I really appreciate it feel free to take a 
+  look at issues raised PRS there are a couple of issues that are 
+  ready for PR so if you're looking for you know to contribute to 
+  the specification look at the ready for PR markers and see if 
+  you're willing to write up some text for that stuff thanks 
+  everyone have a great day bye.
