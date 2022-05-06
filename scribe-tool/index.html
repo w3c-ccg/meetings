@@ -29,7 +29,9 @@ fetchLog = function(dateString, groupString){
     .then(res => {
       $('#irc-log').val(res);
       $('#form-resp').removeClass('error').text('');
-      $('#btn-audio').removeAttr('disabled');
+      $('#btn-copy').attr('disabled', null);
+      $('#btn-audio').attr('disabled', null);
+      $('#btn-video').attr('disabled', null);
       displayMinutes();
     })
     .catch(err => {
@@ -39,7 +41,9 @@ fetchLog = function(dateString, groupString){
       $('#text-markup').val('');
       $('#html-markup').val('');
       $('#html-output').html('');
-      $('#btn-audio').prop('disabled', true);
+      $('#btn-copy').attr('disabled', true);
+      $('#btn-audio').attr('disabled', true);
+      $('#btn-video').attr('disabled', true);
     });
 };
 
@@ -140,6 +144,13 @@ downloadAudio = function(){
   window.open(audioUrl, '_blank');
 }
 
+downloadVideo = function(){
+  var videoUrl = "https://meet.w3c-ccg.org/archives/w3c-ccg-";
+  // get date from date input
+  videoUrl = videoUrl + $('#group').val() +"-"+ $('#date').val() + ".mp4";
+  window.open(videoUrl, '_blank');
+}
+
 // initialize scrawl
 $.getJSON( "people.json", function(people) {
   scrawl.group = "Credentials Community Group";
@@ -210,10 +221,10 @@ $(function(){
       </form>
       <p id="form-resp"></p>
 
-      <div class="button" onclick="javascript:copyText()">Copy</div>
+      <div class="button" id="btn-copy" onclick="javascript:copyText()">Copy</div>
       <span id="btn-resp"></span>
-
       <div class="button" id="btn-audio" disabled onclick="javascript:downloadAudio()">Download Audio</div>
+      <div class="button" id="btn-video" disabled onclick="javascript:downloadVideo()">Download Video</div>
    </div>
 </section>
 
