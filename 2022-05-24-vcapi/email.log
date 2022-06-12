@@ -1,0 +1,828 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-05-24-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-05-24-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-05-24
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022May/0045.html
+Topics:
+  1. Announcements and Introductions
+  2. Should this API define how to host revocation lists?
+  3. Issuer API does not expose issuer identifiers and supported 
+    crypto suites
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Markus Sabadello, Eric Schuh, Dmitri Zagidulin, Dave 
+  Longley, Logan Porter, Ananay, Kayode Ezike, Joe Andrieu, Justin 
+  Richer, Andy Miller, bengo
+
+<dmitri_z> VC-EDU plugfest: 
+  https://w3c-ccg.github.io/vc-ed/plugfest-1-2022/
+<dmitri_z> Original VC-EDU plugfest invitation email: 
+  https://lists.w3.org/Archives/Public/public-credentials/2022May/0009.html
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone to the May 24th 2022 VC 
+  verifiable credential API call our agenda is here on the agenda 
+  today is just a lot of issue processing basically.
+Manu Sporny:  Going to talk a bit about revocation lists 
+  supported crypto sweets for a Shore endpoints nature being 
+  optional has a lot to do just with the issuer API endpoint 
+  unsupported issuers and in things of that nature.
+Manu Sporny:  Any other updates or changes to the agenda before 
+  we get started.
+Manu Sporny:  Okay go ahead Eric.
+Eric Schuh:  Yeah just been a couple weeks just want to give a 
+  quick update on where the use cases team is at so we're still in 
+  the process of reviewing the sequence diagrams as part of that it 
+  became necessary for me and Joe to reach out to the original 
+  authors so it's taking a little bit longer than I had originally 
+  hoped but we're through the first three use cases I think for at 
+  least a second pass will be.
+Eric Schuh:  Continuing with the next three.
+Eric Schuh:  If you wrote one of those you will probably be 
+  hearing from either me or Joe the email just with any questions 
+  that came up and I think the way it's feeling to me is after 
+  we're done with that review with authors that will be the right 
+  time to bring those back to the group and they'll be at least 
+  somewhat stable at that point so going to be another couple weeks 
+  I think for that but that's where we're at.
+Manu Sporny:  Okay great awesome thank you Eric for the update 
+  and thank you for continuing to work on that.
+Manu Sporny:  Okay so I guess our next are kind of action from 
+  that it's just you're going to let us know when you're when you 
+  have them updated.
+Manu Sporny:  So I know that there's a you know you've got a kind 
+  of a there's a bug with the mermaid diagram renderer thing I am 
+  going to be unable to get to that for probably about three weeks 
+  or more so my apologies but it shouldn't it just makes it.
+Manu Sporny:  Little uglier it doesn't you know it doesn't it 
+  just puts more vertical space than I think we'd like and there's 
+  some weird CSS things that are going on with it.
+Eric Schuh:  Yeah it's mostly a white space issue so do nothing 
+  functional that I've found.
+Manu Sporny:  Okay great okay well let's go ahead and go into 
+  kind of a now we are kind of in announcements announcements and.
+
+Topic: Announcements and Introductions
+
+Manu Sporny:  Anyone need to call anyone would like to introduce 
+  themselves or reintroduce themselves.
+Manu Sporny:  See on an ace new I don't know if you'd like to 
+  provide a provide an intro background on you.
+Manu Sporny:  It's fine if you don't and just want to stay quiet.
+Manu Sporny:  Okay I think the rest of us the rest of us all know 
+  each other we've been on these calls for a while any 
+  announcements other than the use cases one we just heard from.
+<ananay> Hi, sorry can not open mic rn, but Hi everyone, I just 
+  Joined W3c and will be in your care.
+Manu Sporny:  Okay if not we can go ahead and get into the agenda 
+  before we do that you know apologies I have not well I guess it's 
+  for those of you that might have missed the this ECG weekly call.
+Manu Sporny:  Oh hey on an ageist introduced themselves can't do 
+  a mic right now but just join w3c wonderful welcome and welcome 
+  to the group.
+Manu Sporny:  As many of you know the the charter vote for the 
+  verifiable credentials working group and the data set 
+  canonicalization working groups out right now I've been prodding 
+  a couple of w3c members in at this point it looks like we have 
+  the minimum votes necessary for working group be created I can't 
+  say the numbers because those are I think member confidential.
+Manu Sporny:   But we're.
+Manu Sporny:  Pretty well with you know week to go for the 
+  verifiable credentials one and two weeks left in the boat for the 
+  rdf dataset canonicalization stuff so that's going well okay onto 
+  our issues.
+
+Topic: Should this API define how to host revocation lists?
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/232
+Manu Sporny:  First one up is should this API Define how to host 
+  revocation lists this is issue 232 and was brought up by Ori 
+  actually let me go ahead and share my screen here.
+Manu Sporny:  So we've got.
+Manu Sporny:  Okay so Ori ask the question.
+Manu Sporny:  Currently revocation list 2020 and the status list 
+  2021 stuff assumes that the list is hosted somewhere the VC API 
+  provides no way of obtaining that credential the the list so the 
+  question is should the VC API Define how to host revocation lists 
+  Marcus.
+Manu Sporny:   So I believe.
+Manu Sporny:  It's out of scope so maybe we could start with your 
+  position Marcus and then we can kind of go from there.
+Markus Sabadello:  So I don't fully remember this but I but I 
+  think.
+Markus Sabadello:  My idea was that a revocation list is 
+  something that's specific to one type of revocation mechanism or 
+  one cadential status Michael is ruined.
+Markus Sabadello:  Transferring me to define something.
+Markus Sabadello:  That that's specific to one mechanism and not 
+  universally applicable but.
+Markus Sabadello:  But I don't I don't completely remember that 
+  issue.
+Manu Sporny:  All right thanks.
+Dave Longley:  So I think there's some later comments on this 
+  issue about trying to reduce the having the verifier contact the 
+  issuer or hit an endpoint generally to try and increase privacy 
+  one of the things that's in the design for revocation lists is to 
+  express them as credentials and that would allow a verifier to 
+  request when they're requesting It Whatever credential they're 
+  requesting they could also.
+Dave Longley:   West the.
+Dave Longley:  And lest credential at the same time which would 
+  allow the holder to pull that information directly from the 
+  issuer and they can keep a cache copy or do whatever it is they 
+  want to presumably that would this be C would have to be fresh 
+  enough / the road whatever the verifier requires but they could 
+  respond to a VPR and include the revocation list credential along 
+  with whatever credential.
+Dave Longley:   Uses it and that would be.
+Dave Longley:  To handle the privacy-preserving aspect of this.
+Manu Sporny:  If I Had You.
+Joe Andrieu:  Yeah for for both the relocation and the refresh I 
+  think there was a sense at least I believe I advocated for it 
+  that these are points of extensibility but we should probably 
+  have one example so that people can see how the whole stack works 
+  together like I think a lot of people don't understand how you 
+  can do relocation at all without the phone home problem so I 
+  think I have had a sense that we there was some agreement.
+Joe Andrieu:   Not that it would be good to have at least one 
+  example.
+Joe Andrieu:  Both those mechanisms in scope for us to figure 
+  out.
+Manu Sporny:  Think Joe me any other thoughts on this item.
+Manu Sporny:  Go ahead Eric.
+Eric Schuh:  Yeah I think it's echoing what Joe is just saying 
+  but I was thinking it'd be if we do want to support this very 
+  nice to have a use case because currently I don't think any of 
+  the identified use cases call-out revocation in any way so if we 
+  could either work it into one of the existing ones or if someone 
+  could write a good example of a revocation use case that would 
+  make use of this that would probably be helpful in framing.
+Eric Schuh:   Whether or not it is in or out of school for.
+Manu Sporny:  Okay so let's see we do have well yeah right so all 
+  that all that's good stuff we do have I think the the hesitation 
+  in the beginning was this is a this is an extension point and we 
+  don't need Define it let's get the core API you know down and 
+  figure it out since then status list 2021.
+Manu Sporny:  Tesla's 2021 spec you know exists and there is 
+  thought there was maybe there isn't.
+Manu Sporny:  No it's the it's the credential refresh isn't it 
+  that's the that's the flow that we have refresh we see refresh 
+  2021 is the thing that exists.
+Manu Sporny:  And I think we have yeah we have like a protocol 
+  flow here.
+Manu Sporny:  But we don't have a protocol flow for example 
+  protocol flow example for.
+Manu Sporny:  Status list 2021 I guess.
+Manu Sporny:  Okay so what are the next steps here we need to.
+Manu Sporny:  Need to wear where should we detail this so should 
+  we detail this in status list 2021 and then point to that as an 
+  example of.
+Manu Sporny:  Revocation or should we.
+Manu Sporny:  Should we put this one thing of how you do.
+Manu Sporny:  Asian in scope for the VC API noting that there's 
+  another argument that we should put this in scope for the 
+  verifiable credential base spec like the data model stuff so so 
+  the three options are at least three options are put it in the 
+  v-spec then we can only just talk about data model put it in the 
+  VC API spec as the one normative way of doing status and 
+  replication.
+Manu Sporny:   Or keep it in a separate Speck.
+Manu Sporny:  And point to it from the VC API specification 
+  thoughts on those three.
+Dave Longley:  I would think it's going to end up being a 
+  combination of those things sorry I didn't I didn't jump on cue 
+  go ahead guys.
+Manu Sporny:  Since I had it Joe.
+Joe Andrieu:  My sense of the the VC API and I obviously we're 
+  still teasing out scope here that's the fundamental question was 
+  it it's wherever you need an endpoint for exchanging be seized or 
+  managing be seized and it seems like both refresh and relocation 
+  are part of that set we just haven't formalized a very well so I 
+  would question why isn't that endpoint part of the.
+Joe Andrieu:  One of the endpoints we use to manage species would 
+  be my question.
+Manu Sporny:  Ocean Marcus Europe.
+Markus Sabadello:  So monitored until recently argued that these 
+  tests which should be more modular and.
+Markus Sabadello:  We're not we're not talking about test Suites 
+  right was just talking about the API specification because I 
+  remember in the test with you you argue that all should be more 
+  modular right and there's no it is a separate test suite for Tiki 
+  and then there's a test suite for Ed 25-19 2020 and those are not 
+  part of the main we see API test Suite anymore so I'm wondering 
+  if that would be an argument Falls making this more modular and 
+  not make it part of the main.
+Markus Sabadello:   The main API specification because like you 
+  said it's.
+Markus Sabadello:  But I'm not sure I just just a thought that I 
+  think about these these are some kind of histories.
+Manu Sporny:  Yes certainly my preference would be to keep them 
+  separate in molecular there's a tension here right I mean they're 
+  good good arguments on either side the the argument for well so 
+  ok so first of all Marcus I think you're right you know there 
+  there's there's this argument for modularity and it is we there 
+  is a way to break this stuff down so all these things are in 
+  different test Suite so there's not one monolithic VC API test 
+  Suite.
+Manu Sporny:   And there's.
+Manu Sporny:  Kind of a super focused core test suite and then 
+  test Suites for Cryptid sweets in status mechanisms and refresh 
+  mechanisms and all those all those extension points so one way we 
+  could approach the work is basically say you know their test 
+  Suites were all the extension points for a VC in in the VC API 
+  has to define the basic end points for doing those things and I 
+  think it does today like the exchanges stuff.
+Manu Sporny:  I believe supports the refresh credential refresh 
+  so we've got that in the VC API spec and then the status list 
+  stuff is just any random URL out on the internet can hold the 
+  status list or the status list credentials and so managing those 
+  things is really kind of a back-end task for the issuer the 
+  issuer is the thing that manages those URLs and does things with 
+  them.
+Manu Sporny:   So you know.
+Manu Sporny:  All things you know all things considered it feels 
+  like keeping these things as module modular specifications 
+  modular test Suites in then pointing to them from the VC API as 
+  the one example Joe so if we want to provide examples we can say 
+  if you want an example of how to use XYZ API or how to do 
+  credential refresh or how to do status lists here as a normative 
+  specification that you can go off and read.
+Manu Sporny:   At least that would be my preference.
+Manu Sporny:  Go ahead base.
+Dave Longley:  I agree with a lot of that one other thing I want 
+  to bring up is that there's been a number of people in the VC in 
+  the in the run-up to getting a second PC working group they've 
+  mentioned how while we have extension points it would be really 
+  good for interoperability for any one of these extension points 
+  to have one working mechanism that people can be pointed to and 
+  while I agree.
+Dave Longley:   We want to try.
+Dave Longley:  Modular it would be good to figure out a way to 
+  deal with that tension as well and the other thing is there may 
+  be some additional work that needs to happen with the VC API to 
+  enable more privacy preserving checking of the revocation list 
+  and so there might be a piece of for example the verifier API 
+  might need to be able to accept the revocation list credential.
+Dave Longley:   Well when.
+Dave Longley:  When the very whenever whatever party hats that 
+  endpoint to verify BC it might need to optionally be able to send 
+  the list so it doesn't have to be fetched by the verifier API and 
+  that would be something that would go into the VC API test Suite.
+Manu Sporny:  See I put myself on the cue but forgot why was that 
+  front end of your comment lonely.
+Manu Sporny:  Well one way one way you know the so the point is 
+  people have been saying Hey would be good to have you have all 
+  these extension points you need to Define at least one normative 
+  way of doing it I think we can do that we can keep things modular 
+  and do that by effectively pointing in a normative way to say You 
+  must support status list 2021 for example and then point to the 
+  spec right because because specs do that all the time they point 
+  to other specs in a very normative way and say you must.
+Manu Sporny:  He's back so that's my suggestion if you know to 
+  keep things modular we can keep things modular and we can point 
+  normatively in the v-spec to say this is the one way of you this 
+  is you have to at least implement this replication mechanism or 
+  you have to at least specify this sorry status list you know 
+  mechanism or credential refresh mechanism the concern I have is 
+  the sheer amount of work.
+Manu Sporny:   That that might.
+Manu Sporny:  Generate for us where we have to move all those 
+  things into normative you know all at the same time in inevitably 
+  someone is going to show up with you know an arguably more 
+  privacy preserving mechanism right and then they'll be a big 
+  fight over all right which one you know should we should we use 
+  and again there's a trade-off there if you pick one thing then 
+  you improve interop.
+Manu Sporny:   But you also.
+Manu Sporny:  Potentially take other things the working group 
+  could have done in the meantime off the table that might have 
+  been you know more important so it's a bit of a double-edged 
+  sword doing that go ahead tape.
+Dave Longley:  Yeah I don't think we need to go so far as to say 
+  that you must implement this particular mechanism but I think 
+  what people were looking for minimally was if you're going to use 
+  this extension Point here is one normative way that you can use 
+  that extension point and I think that's different from telling 
+  people that they must Implement status this 2021 instead it's if 
+  you're going to use the credential status feature in the VC w g 
+  data model here is one normative way.
+Dave Longley:   It's done if you want to.
+Manu Sporny:  Plus 12 that see Joe gave a thumbs up as well.
+Manu Sporny:  Um okay so what is the proposal here that we don't 
+  Define how to host revocation lists with the VC API but we do 
+  point to a specification that does that in the desire there is to 
+  say that there is a normative way to do that here's how you would 
+  do that and here's how the and that specification says how you 
+  use.
+Manu Sporny:  You can specify the protocol on how you do that is 
+  that is that what we were saying go ahead lonely.
+Dave Longley:  I think so with the with one addition which is we 
+  need to say that that other spec might also Define a hook into 
+  the VC API for sending a revocation list credential to the 
+  verifier.
+Manu Sporny:  Yeah I know dick noting that it's super dangerous 
+  to do that unless you're using a heard privacy mechanism like 
+  status list 2021 and even then that's frowned upon like ideally 
+  it's the holder delivering that status list credential and there 
+  isn't a direct verifier to issuer communication.
+Manu Sporny:  I see okay.
+Dave Longley:  That's the to be clear that is the purpose of this 
+  the holder fetches it hands that to the verifier the verifier 
+  hits the VC verifier API with that caught it came from the holder 
+  that way they avoid pulling it from the issuer directly from the 
+  revocation list and point.
+Manu Sporny:  In the spec that should say that is the credential 
+  status 2021 spec.
+Dave Longley:  Yeah we'd be the first version of a spec saying of 
+  an extension spec saying what the VC API verifier API needs to be 
+  able to accept and so we might also need a section in the VC API 
+  we needed to extension point for the verifier so that credential 
+  status mechanisms can create these kinds of extensions.
+Dave Longley:  It's effectively a way to forward information from 
+  the holder to the verifier API so it's hate to use the word 
+  bucket but it's sort of a bucket for credential status it meta 
+  data or information that a verifier that understands how to apply 
+  a particular revocation method or status check method can use.
+Manu Sporny:  I miss that last part where would that.
+Dave Longley:  So when you when you're making a call to verify a 
+  verifiable presentation or credential or verifiable credential 
+  you would include additional credential status information and in 
+  the case of status list 2021 that would be you can optionally 
+  include the status list credential it off to the bear.
+Manu Sporny:  In the presentation you're saying in the 
+  presentation.
+Dave Longley:  If we might want it to be an option that rides 
+  along with the presentation so you send the presentation you also 
+  send options in those options today you include like a challenge 
+  and some other information and we would want a section on for 
+  credential status data and you would send the revocation list.
+Dave Longley:  Credential or that status credential as an option 
+  for the verifier to use.
+Manu Sporny:  Okay I see so that you're talking about in like the 
+  BP request spec we would do that.
+Dave Longley:  There's two pieces there's two pieces to this.
+Manu Sporny:  For the video response yeah there's it would be in 
+  the presentation right.
+Dave Longley:  Well the VP presentation request would ask for a 
+  status list credential along with what other credentials you're 
+  providing the holder would provide that information to the 
+  verifier app I'm not sure if I'm using the right terminology 
+  still the app would turn around and send the credentials from the 
+  presentation.
+Dave Longley:   And I guess would end up.
+Dave Longley:  We have to work through the details here but it 
+  might end up that that credential is in the presentation itself 
+  but what we want to have happen at the verifier service is it 
+  knows to pull out the revocation credential from that 
+  presentation and use it instead of fetching it directly.
+Manu Sporny:  Okay um okay so what so what's the plan here we are 
+  going to.
+Manu Sporny:  When when the topic of if there's a time where 
+  there is going to be a topic about you know revocation in the 
+  spec or we should talk about it and we should say hey if you want 
+  to do revocation here's a normative way of doing it and then we 
+  put a point to whatever the most popular you know mechanism is 
+  that day let's just say it's like credential status 2021 and in 
+  the credential status 2021 spec the data models defined the API 
+  ground Management's defined.
+Manu Sporny:   And in we're expecting large chunks of it to be 
+  dependent on the.
+Manu Sporny:  II or side effects from the VC API and then there 
+  may be other instructions in there on how to use the herd privacy 
+  credential how holder can prefetch it and how a verifier can ask 
+  for it if the holder has it and how the holder can deliver it to 
+  the verifier if if they.
+Manu Sporny:   Know how to get it you know.
+Manu Sporny:  From the issuer so it would require both the 
+  verifier in the holder to understand that each other supports 
+  this delivery feature and if they don't support that then for 
+  example the verifier can just go out to the issuer and fetch it 
+  in the in the holder still protected by preferred privacy when 
+  that happens.
+Manu Sporny:  Did I summarized that plan correctly.
+Dave Longley:  It sounded right to me.
+Manu Sporny:  Okay would anyone object to that plan or have 
+  concerns around that plan Joe.
+Joe Andrieu:  What gave me pause is the your language here that 
+  the verifier just goes to the issuer which is generally a pattern 
+  we have not been a bracing.
+Manu Sporny:  Yeah and that's why I hesitated a bit when they 
+  first said that because I know that people might look at that and 
+  go like we are never supposed to do that and in some cases it's 
+  kind of sort of okay like in the hard privacy case right status 
+  list 2021 was designed for that being the the the way people 
+  would just default to doing it with the more complex protocol 
+  that lonely just outlines being the best practice right.
+Manu Sporny:  Um but we know that something.
+Manu Sporny:  Are lazy and.
+Manu Sporny:  Well I don't know if that's a good argument but you 
+  know implementers can be lazy and and they're going to do the 
+  thing with the path of least resistance and we have to at least 
+  protect the holder in those cases and then the hope is that we 
+  can.
+Manu Sporny:   Put a.
+Manu Sporny:  Not light on there being a better way to do this in 
+  the future and and you know make that something that wallets 
+  compete on is we're being better about the way we you know.
+Joe Andrieu:  Right so so if our intention is what you just 
+  described and we I think we should have stronger language than 
+  verifier just goes to the shore and should be something along the 
+  lines of the verifier should use the Privacy respecting mechanism 
+  or something that avoids phone home right we should we should I 
+  think we should have a should in there about a privacy respecting 
+  mechanism rather than language that some people will see that oh 
+  they can just contact the issuer and they'll go build.
+Joe Andrieu:   That workflow.
+Manu Sporny:  Yep yeah I mean we could go as far as basically 
+  saying you should not the verifier should not contact the issuer 
+  in should use this other privacy-preserving mechanism where the 
+  holder delivers the credential to the verifier.
+Joe Andrieu:  Yeah as long as we can get Shades in there I 
+  understand that it can't be a must because there are use cases 
+  that need that but should do it through a privacy respecting 
+  intermediary layer is I think important.
+Manu Sporny:  Okay all right any concerns are objections to that.
+Manu Sporny:  Group are to go ahead.
+Kayode Ezike:  Here's a quick one so I guess this means that the 
+  holder would have to have whiskey would have to communicate with 
+  the verifier more often in order to get the more up-to-date 
+  version of the status list now that now that we know we're not 
+  relying on just verify being able to just update whatever is 
+  hosted at that link now we have to kind of have a way for the 
+  holder to then make sure that they're.
+Kayode Ezike:   You know constantly in sync with.
+Kayode Ezike:  If I select is a thoughts on on how frequently 
+  that that should be happening this putting that out there.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  I think that's going to be a matter of policy for 
+  the verifier and wallets are going to have to be responsive 
+  they're going to look at ideally they would look at a VPR that 
+  would have that information in there that says the credential 
+  needs to be at least this fresh and the wallet would need to go 
+  fetch it if it did not have a cached version that was that fresh 
+  and because it's really going to be the verifiers policy we can 
+  put we can suggest.
+Dave Longley:  Time frames in the spec but it's going to be a 
+  business rule.
+Manu Sporny:  All right one second way while I type this up so 
+  the proposal is talk about status revocation the VC API in point 
+  to a normative status replication mechanism from the spec spec 
+  that is pointed to as a concrete example of how to implement 
+  implement the feature the spec that is pointed to.
+Manu Sporny:  All the data models and the protocols hired to 
+  implement the location mechanism as well as guidance to maximize 
+  privacy when possible ideally the.
+Manu Sporny:  Are should not contact issuer to check status 
+  information and should get that status information from the 
+  holder.
+Manu Sporny:  To implement this is wellcome.
+Manu Sporny:  In the VC API and.
+Manu Sporny:  Okay so I think this one's ready for PR any other 
+  thoughts before we move on to the next thing.
+Manu Sporny:  All right that was a good solid discussion on this 
+  item thank you everyone okay.
+Manu Sporny:  Next item up the should start getting easier in 
+  theory.
+
+Topic: Issuer API does not expose issuer identifiers and supported crypto suites
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/266
+Manu Sporny:  Okay so does the issuer API that you sure API does 
+  not expose issue are identifiers and supported crypto sweets this 
+  kicked off a long discussion between Horry and Dave and Marcus 
+  chimed in as well it also spread into other repositories and the 
+  traceability work.
+Manu Sporny:  What I remember this kind of sort of has to do with 
+  Discovery and whether or not we need it I think the current.
+Manu Sporny:  The current set of discuss the current set of 
+  conversations we've had in the group have basically said that 
+  they're going to be issuer issuer URL in points just base in 
+  points that are configured with very specific credentials in very 
+  specific crypto sweets in very specific issue or IDs and those 
+  are not optional things that are sent anymore or rather 
+  implementations can can provide kind of options to switch those 
+  things.
+Manu Sporny:   Up but one way of a.
+Manu Sporny:  Plex City here the N by n complexity here is to 
+  just make it so that issuer and points are locked into a very 
+  specific issue or crypto sweet and possibly credential.
+Manu Sporny:  Okay so thoughts on that from folks that are 
+  implementing go ahead Dave.
+Dave Longley:  Yeah I'm a big fan of creating specific 
+  configurations on issuer software that are bound to as narrow a 
+  set of things for eliminating an option ality as much as possible 
+  ideally completely so the way I'm imagining these things to work 
+  is the party that wants to be able to issue credentials using the 
+  issuer API creates a new issue or.
+Dave Longley:   Since which.
+Dave Longley:  The configuration has a configuration that they 
+  want to support it that endpoint that would be a crypto sweet or 
+  Advocate status list or a credential status mechanism if they're 
+  using Z caps for example they would provide Z caps to allow 
+  access to use a certain key to sign the credentials they might 
+  also use oauth credentials to provide access to particular keys 
+  for signing.
+Dave Longley:   Something along those lines and.
+Dave Longley:  Once you create that configuration that it that 
+  endpoint using that in point should not require.
+Dave Longley:  Sending any kind of options and so when you post 
+  to that endpoint you send the the credential you want to have 
+  issued and if that's a supported credential I think I missed this 
+  you would also want to configure the credential types that are 
+  supported at that in Point if you send something that's valid for 
+  that configuration then you get a credit you get issue to an 
+  appropriate credential.
+Dave Longley:   I do.
+Dave Longley:  I just don't think and you know responding this 
+  discoverability concept I just don't think that there's it makes 
+  sense to have an API where a client could iterate over all the 
+  issuer's provided in an endpoint find one that has a 
+  configuration that they like and then just send something to it 
+  presuming that they even have the credentials to hit that 
+  endpoint I don't think that that really matches I don't know what 
+  use case that matches and it I don't think.
+Dave Longley:   Really makes any sense to do it that way I think 
+  that.
+Dave Longley:  It's going to be the process for setting up an 
+  application for issuing credentials is going to be to create and 
+  configure in issuing configuration and then add that to your 
+  software and hit that endpoint whenever you want to issue 
+  something.
+Joe Andrieu:  Yeah it it seems to me that the I think I'm with 
+  Dave I mean it's the issuer app which will be talking to the 
+  issue or service and that issue our app is the one who has 
+  encoded the business logic is written to drive that service 
+  endpoint it knows what that service is doing on behalf of the app 
+  like that was part of.
+Joe Andrieu:   Of standing up the whole.
+Joe Andrieu:  So I'm not understanding the use case in which the 
+  issuer app would need to do some sort of Discovery because the 
+  issuer service was configured to support the app so it seems to 
+  me it's a configuration time thing and not an interactive thing.
+Manu Sporny:  Yep plus one is that all that makes a lot of sense 
+  to me I think the the concern I have is that or he's not here in 
+  Mike Farley is not here to argue why they feel like Discovery is 
+  you know such a strong you know use case for them go ahead Dave.
+Dave Longley:  Yeah I agree it would be good to get their 
+  feedback again but my my feeling is that that original design 
+  came out of creating a system that's going to work with a test 
+  suite and it made writing test Suites easier but a whole lot of 
+  things were risk were relaxed and didn't you know don't really 
+  match real-world use cases with the test Suite I think create 
+  creating a demo site or a test Suite site that anyone can hit.
+Dave Longley:   It will sign with any key you know in.
+Dave Longley:  Your configuration options was a really good way 
+  to quickly bootstrap showing some of the features of this API but 
+  when you get down to real world use cases it's not going to ever 
+  function that way and and and I think we just need to modify how 
+  we would go about you know doing the test Suites where you 
+  provide specific configurations for the specific tests that you 
+  want to run and that that matches how you would also set up 
+  applications in the real world.
+Manu Sporny:  All right any other input on this item so the 
+  original issue was the issuer API does not expose issuer 
+  identifiers and supported Chris crypto sweets the argument is yes 
+  and it doesn't need to be in clothes the clothes the issue.
+Manu Sporny:  Yeah please go ahead Andy.
+Andy Miller:  I think my new this is Andy from one attack just as 
+  a little context I don't I'm not I don't have any input on that 
+  specific way the issues specifically worded but I do I did want 
+  to share that we have two specifications that support Dynamic 
+  client registration.
+Andy Miller:  That's LT I.
+Andy Miller:  Badges and the the use case are the scenario is 
+  that a in the case of an open badges one that you have your 
+  badges hosted somewhere you've been collecting them out on what 
+  we call a host which probably more be called a wallet these days 
+  and but you want to move them yeah I want to move them to this 
+  other service that I that I have come across or I just prefer.
+Andy Miller:   For some reason.
+Andy Miller:  And the through with Dynamic client registration if 
+  both sides support that then the application I music can reach 
+  out and discover the endpoint that the other host that I want to 
+  move to what it supports and can facilitate the actual exchange 
+  of all the registration information that.
+Andy Miller:   It's needed for.
+Andy Miller:  And and then and then start the actual process of 
+  helping you move your badges over to this new host so it's it's 
+  really the use case for us in both cases is where person wants to 
+  do something with their data move it to a different or use it or 
+  move it to a different application that.
+Andy Miller:  The current platform is not aware of yet and they 
+  don't want to go through the whole they in fact can't go through 
+  that whole process or there's no easy way to go through the whole 
+  process of getting the two platforms to talk to talk to each 
+  other call each other on the phone exchange email blah blah blah 
+  blah blah that's a facilitates all of that and it can happen 
+  almost instantly.
+Andy Miller:  And by the way Dynamic so that even a registration.
+Justin Richer:  And fight but I never sold out.
+Andy Miller:  Is used to stand the service Discovery as part of 
+  it.
+Justin Richer:  I don't have a way of doing the Cuban like to do.
+Manu Sporny:  All right Justin you're on right after Dave who's 
+  on the Queue I will add U + Justin thank you Andy that is that a 
+  super helpful service Discovery babe you're up next.
+Dave Longley:  Right so just do want to quickly respond to what 
+  Andy said and then I was on the queue for different reason I 
+  would say and he's use cases of you know really important one but 
+  it doesn't follow it does not fall under the issue or API because 
+  I don't think that the way that use case was described as not 
+  involve having all of your badges reissued and I don't know that 
+  you would even be able to do that because you would have to 
+  contact each individual issuer you can't just ask.
+Dave Longley:   Ask some other service.
+Andy Miller: +1
+Dave Longley:  Sign all of your badges over so I think what 
+  you're really talking about there is is as you mentioned you have 
+  this concept of a host or a holder a wallet and you want to move 
+  your existing badges to a different location to have those stored 
+  I think that's a totally valid use case but not related to what 
+  the issuer API is going to do and the comment I got on the Queue 
+  to make was I wanted to tweak what you said Manu it's not that 
+  we're going to say.
+Dave Longley:  Need to express any configuration information at 
+  these endpoints it's that I think it's fine to create a git and 
+  point for any one of these configurations so that any party 
+  that's able to access that endpoint can load and see what the 
+  configuration information is but we don't need to do that in 
+  support of some kind of Discovery API and nor do we need to make 
+  it so that these endpoints are highly optional.
+Dave Longley:   So I think it's totally fine to have an API.
+Dave Longley:  Configuration and if you called get on it later as 
+  some party that's authorized to hit that in point you could find 
+  out what that configuration information is but that's the the use 
+  case there is not two to browse this an endpoint a bunch of 
+  issuer instances and pick one and hope that you can issue 
+  something.
+Manu Sporny:  Right thanks Dave Justin Europe.
+Justin Richer:  Yeah so I just wanted to point out One support 
+  for what Andy is is discussing in terms of its use case and to 
+  just point out that the arguments that Dave is making are 
+  ultimately hunting the registration and Discovery questions down 
+  to another step and that has a benefit to cases which do have a 
+  static configuration of which there are many and you know many 
+  reasonable practical ones out there but the ability to have.
+Justin Richer:   Have machine-readable.
+Justin Richer:  Parameters for engaging with the system really 
+  like you can't downplay that and pretend that the only way that 
+  people are going to use it is in this you know open world lengths 
+  lay where I don't know anything about you so I'm just going to go 
+  through this entire catalog and hope I find something that 
+  matches because what's really going to happen realistically is 
+  that you'll have a handful of things that you do and a system 
+  that you're trying to talk to and you're trying to find the 
+  overlap of that.
+Justin Richer:   For right now.
+Justin Richer:  Yes exhibit a that with with automation that is 
+  usually.
+Justin Richer:  This is I will also point out that this is not 
+  really in conflict with Dave's idea of having an instance of this 
+  be locked down to a particular set of parameters it does however 
+  although that does though is push this question to some other 
+  endpoint that hasn't been defined that gives you a list of 
+  different configurations that you can that you can.
+Justin Richer:  True thank you Justin.
+Manu Sporny:  Awesome thank you Justin so good points all around 
+  go ahead Dave here on the queue.
+Dave Longley:  Yeah I wanted to to a certain extent I agree with 
+  what Justin said it's if we wanted to I think the way that this 
+  would work if people wanted to in a machine driven way create 
+  these configurations the way would work would not be that they 
+  would search for an existing configuration they can use is they 
+  would hit an endpoint on the issuer service that would list all 
+  of the possible support all the supported features of that 
+  issuing.
+Dave Longley:   At form.
+Dave Longley:  They would use that to create their own 
+  configuration from that dynamically and then use it and I think 
+  that's that's all that all matches that all lines up with my view 
+  of the system and I think that matches with Justin says.
+Justin Richer:  Yes what you've just described is.
+Dave Longley:  Right and it's but it's the thing that we were 
+  missing before I think was we were trying to fit that into a box 
+  where you would look at existing configurations and pick and 
+  choose one and instead what we want to do is discovery of all 
+  possible features that aren't particularly that aren't bound to 
+  something so and I think what's key here is we don't want to get 
+  a list of all the features and then choose all those options and.
+Dave Longley:   Send them to some particular.
+Dave Longley:  Point because that does not but we discovered is 
+  that does not work with we know that these end points need to be 
+  stateful in some way especially if they're going to be doing 
+  status lists and and revocation mechanisms and so on and so it's 
+  important that we have this step where you're creating the 
+  configuration that it has some level some kind of state 
+  associated with it and then we're using it and so I think what's 
+  key is breaking these things apart so that what word I guess what 
+  I guess what was confusing.
+Dave Longley:   Two people was what we are discovering we're not 
+  discovering an existing.
+Dave Longley:  Can use we're discovering the features that are 
+  available on the issuing system so that we can create a 
+  configuration to use it.
+Manu Sporny:  All right so where do we go from here the original 
+  issue was that the issuer API does not expose issuer identifiers 
+  in supported crypto sweets I think what Dave is saying is it 
+  could publish a static configuration in by doing so you are not.
+<dave_longley> publish a list of features (not a particular 
+  configuration)
+<dave_longley> those features can be combined to create a valid 
+  configuration (issuer instance)
+Manu Sporny:  Invalidating the whole dynamic registration kind of 
+  Discovery use case and I think what Justin in India are saying is 
+  that don't pump that use case down the road because they're 
+  legitimate use cases they're in we will end up needing some form 
+  and in some form of Discovery will be useful in the future 
+  because we've seen this happen before.
+Manu Sporny:   For you.
+Manu Sporny:  Their systems is that a fair summary.
+Dave Longley:  I would just nitpick on some of the terminology 
+  there I think what's being published as the list of features that 
+  can be used to create a valid configuration or issuer instance 
+  and then you can use that issue or instance once it's been 
+  created to issue credentials.
+Justin Richer:  Every that so far.
+Manu Sporny:  Okay just an indie any concerns about that like is 
+  that so far off or.
+Justin Richer:  I my only concern is that too big to adopt Dave's 
+  language it would need 22 and issue or instance creation API 
+  definition in order for that to make any sense and.
+Manu Sporny:  Would it be enough to point to an issuer instance 
+  configuration.
+Manu Sporny:  Like a like just making this up but like / issuers 
+  / 1 / config and then saying.
+Manu Sporny:  Config has to follow this this data model it's just 
+  like a Jason key value pairs on this is the issuer and this is 
+  the crypto sweeten this is a revocation mechanism is that the 
+  minimum arm that would need to be hit Justin.
+<andy_miller> No concerns. We have a discovery document which  
+  describes the supported features, endpoints, etc. The actual 
+  registration is formed using the information in the discovery 
+  doc.
+Justin Richer:  It's Robert it's that the critical part of that 
+  we could just as my understanding of what Mike Farley and have a 
+  steed I believe so about that is at least we're wired for that 
+  use case unfortunately with Mike not on the call like and you 
+  know and I do not speak authoritatively for that but I think that 
+  that's at least a good start make sure my gets taxed so we.
+Justin Richer:  So let's go.
+Manu Sporny:  Okay so let's let's try that.
+Justin Richer:  And I'll bring I'll bring this up with him when I 
+  be with him later.
+Manu Sporny:  Okay thanks Justin all right so let's try that the 
+  current proposal is to expose a configuration for an issue or 
+  endpoint and note the issuer ID crypto sweet allow mobile 
+  credentials Rebecca.
+Manu Sporny:  Is and other relevant details to provide the basis 
+  for discovery for that in point it is unknown currently how that 
+  particular configuration in point is discovered.
+Manu Sporny:  Another issue so AP are describing the issuer and 
+  points configuration is welcome which may or may not overlap.
+Manu Sporny:  The discovery and points that vast provided.
+Manu Sporny:  Any concerns about that being the path forward.
+Manu Sporny:  Push back on that.
+Dave Longley:  Miami pushback is its conflating the a little bit 
+  that clean separation that we brought to light on the call so 
+  it's we have two different things going on we haven't decided 
+  whether or not we want to create an endpoint that exposes the 
+  features that are available on each Wing system but if you wanted 
+  to do Dynamic configuration creation you would hit that endpoint.
+Dave Longley:  Decide to create a configuration from that and 
+  then what we have here with the current proposal to expose the 
+  configuration is that part's fine but we're not going to be ever 
+  I don't think discovering that particular configuration that's a 
+  you created that configuration following your discovery of 
+  features.
+Dave Longley:   That the issue.
+Justin Richer:  I know that we were taught.
+Manu Sporny:  I know that we were time and Joe I see your hand up 
+  and Justin you're unmuted and we got to let people go so how 
+  about so we're going to continue this discussion in the issue and 
+  I'll just say I'll tag Mike Farley and we'll try to get further 
+  here this was a good good discussion here today for this 
+  particular issue was suggested that a.
+Manu Sporny:   I'm here.
+Manu Sporny:  But there were or concerns looking to save Longley 
+  like barley Justin here the others to continue the discussion 
+  here okay all right then that's that's that that one that's some 
+  good data okay that's it for the call today thank you everyone 
+  for joining I'm going to be on.
+Manu Sporny:   Travel for the next two.
+Manu Sporny:  So if you would like to volunteer to run this call 
+  please let me know and if not we just won't have the calls thanks 
+  everyone have a wonderful rest of the week and we'll see you at 
+  some point in the future.
