@@ -1,0 +1,745 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-07-26-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-07-26-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-07-26
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jul/0096.html
+Topics:
+  1. Relevant Community Updates
+  2. VC API Use Case Review (Continued)
+  3. Specify DIDAuthentication protocol in more detail
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Joe Andrieu, John Henderson, Eric Schuh, Markus 
+  Sabadello, Dmitri Zagidulin, Rolson Quadras, Kayode Ezike, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Joe Andrieu:  Recording is on.
+Manu Sporny:  All right welcome everyone to the VC API work item 
+  call this is July 26th 2020 to our agenda is here in.
+Manu Sporny:  Chat channel on the agenda today just to review 
+  introductions reintroductions relevant Community updates Marcus 
+  I'm going to ask you about the rch working group and in some 
+  stuff there so that's coming up we are going to continue 
+  reviewing the VC API use cases and go through some of that stuff 
+  and then on to the question around in the exchanger serviced in 
+  presentation exchanges.
+Manu Sporny:  The did Authentication Protocol did all the 
+  protocol that may come into play when we were talking about the 
+  GFF plugfest and supporting that and then other issues as time 
+  permits are there any updates or changes to the agenda that we 
+  should go over.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  You know changes I'll note that we all know each 
+  other on the calls I'm going to skip introductions and 
+  reintroductions and go right into relevant Community updates 
+  let's start off with the rch working group to get that link.
+<manu_sporny> RCH WG: https://www.w3.org/groups/wg/rch
+Manu Sporny:  Is so the rch working group has been created Marcus 
+  would you like to give us kind of an introduction to the group 
+  and when the works kicking off timeline would be good.
+Markus Sabadello:  Yes sir that working group exists now and 
+  people can join we expect that the work will start after the 
+  summer maybe in in September there will be a kickoff meeting it 
+  tpack the joint session also way to verify the credentials to 
+  working group because of the relationship between the groups the 
+  objective of this one rdf data set comical ization and hash.
+Markus Sabadello:  So known as rich.
+Markus Sabadello:  Will be to Define specifications for 
+  canonicalizing and hashing rdf data sets as the name suggests and 
+  this is important for one of the ways how verifiable credentials 
+  can be secured with data Integrity this is a piece that's 
+  strictly speaking missing right in the in the VC stack how 
+  exactly linked data proofs previously also.
+Markus Sabadello:  Let's link fatal signature.
+Markus Sabadello:  How they are created Hardy.
+Markus Sabadello:  If Theta is like I'm Nan canonicalized and 
+  hashed before it can be signed and there may also be broader used 
+  for this work Beyond verify your credentials in linked data 
+  spaces and some some other communities there's there's interest 
+  so it is a very narrowly scoped working group to just Define 
+  hopefully small missing piece in the stack but.
+Markus Sabadello:  Still alive interesting 21 who's building 
+  things with its and Reese's.
+Manu Sporny:  Awesome thank you for that Marcus any questions 
+  about the rich working group before I move on.
+<manu_sporny> Publication request for Data Integrity CGFRs 
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jul/0107.html
+Manu Sporny:  The other item is this publication let me clean 
+  this publication request for some data Integrity specifications 
+  so there is a publication request for the data Integrity spec the 
+  jws 2020 spec ecdsa 2019 EDSA 2020 and that's it for now.
+Manu Sporny:  There are other crypto Suites that are listed in 
+  the charter where I didn't know if I didn't know who was going to 
+  publish them so it's mainly the co Blitz ecdsa one I guess that's 
+  or E so I'll let him.
+Manu Sporny:  Kind of try and try and publish that so we've got 
+  three out of the four crypto sweets published so far we're still 
+  waiting on the Cobell it's one this is just a heads up number of 
+  you participated in some subset of those discussions so make sure 
+  to agree to the final specification agreement if that comes 
+  across your desk.
+Manu Sporny:  The recovery crypto sweet I guess is also this 
+  looks like it's a diff one do we does anyone at diff know if 
+  whoever's in charge of the ecdsa recovery signature 2020 thing is 
+  going to publish that as a final report.
+Manu Sporny: 
+  https://identity.foundation/EcdsaSecp256k1RecoverySignature2020/
+Manu Sporny:  Like it's listed here but I don't know it's here 
+  let me get a link probably should under diff but it does not have 
+  an author.
+Manu Sporny:  And it was listed as one of the optional sweet so I 
+  guess we can leave that hang out there until someone claims it I 
+  guess from what I remember it was Spruce that wanted that in 
+  there if I remember correctly.
+Joe Andrieu:  The GitHub has contributors.
+Joe Andrieu:  Looks like Charles Lerner was the last one emerge 
+  something in on that.
+Manu Sporny:  Okay great thank you I'm still looking there we go 
+  viewed on GitHub.
+Joe Andrieu:  That's or a Charles and Ben go if you know 
+  Benjamin.
+Manu Sporny:  Okay yep I've got I've got a line to bend go as 
+  well so I'll ask them what their intent is on that particular 
+  particular one okay that's it for kind of the heads-up for the 
+  publication of those final reports.
+Manu Sporny:  The end okay any any other relevant Community 
+  updates or things of that nature.
+Manu Sporny:  Joe I've got a rebooting question for you what 
+  what.
+Manu Sporny:  The the format I don't know if the format has 
+  really changed there's a lot more time right at this rebooting or 
+  it feels like it and I think the last time rebooting happened 
+  there were some breaks you know they we're trying to plan enough 
+  kind of empty space around the main you know conference do you 
+  have any sense on how many things people could work on 
+  simultaneously there is there a.
+Joe Andrieu:  Ha ha ha II do but it's mostly from trying and 
+  failing I think the most successful multi paper efforts we've had 
+  have been when a group of people have gotten together and 
+  together they had several artifacts like hey on this conversation 
+  let's talk one that's about generating the signatures and another 
+  paper that's about verifying them right so they were connected I 
+  failed.
+Joe Andrieu:   When I had.
+Joe Andrieu:  He projects because I had somebody wanted to 
+  revisit Ameri or your mm and I was doing Saturn and a third one 
+  and really only one of them ended up getting published so even 
+  and that was also the comic book version of your arm was also so 
+  it's really hard to do more than one.
+Joe Andrieu:   Has been my personal.
+Manu Sporny:  Okay unless there's like related in some way and 
+  there's a lead for each paper or something like that is that the 
+  pattern that might work.
+Joe Andrieu:  Yeah the pattern that that did work was Christopher 
+  Alan and wolf McNally had led a team that spit out three or four 
+  papers but it was really the the team of six or eight of them 
+  working together so there was a because the problem is the 
+  conversation if you're not there to have the interesting 
+  conversations and you can miss how ideas built or what arguments 
+  have already been had you know decisions made so you can move on 
+  to some other.
+Joe Andrieu:   Stir and.
+Joe Andrieu:  Between multiple groups you often just miss out on 
+  that and so it's hard to build simultaneously but when they were 
+  in the same room you know for the whole week if you will then 
+  those sorts of conversations are more organic and easier to 
+  manage.
+Manu Sporny:  Got it got it got it got it okay all right that's 
+  that's very useful and trying to figure out how the I'm seeing a 
+  number of papers that could be kind of combined and trying to 
+  figure out how if it's better to join them or split them and that 
+  and as as you know that's a part of the process when we there.
+Joe Andrieu:  That's right what that is the the main thing we do 
+  on Monday afternoons for those of you who aren't familiar 
+  although I think most of the people I'm seeing here have been 
+  there but yeah that Monday when people come up with ideas Chris 
+  does his magic and says hey these two seem related can we merge 
+  them right and sometimes that works out sometimes it doesn't but 
+  that's part of the process.
+Manu Sporny:  Yep okay let's one thank you for that was just 
+  pontificating about that.
+Manu Sporny:  Okay anything else before we jump into use cases.
+
+Topic: VC API Use Case Review (Continued)
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api-use-cases/pulls/
+Manu Sporny:  All right so next up is the VC API use case review 
+  over to you Eric and Joe to take us through the remainder of 
+  whatever you want to take us through.
+Eric Schuh:  I believe last week we got at least partially 
+  through reviewing 6.4 this use case here aggregated credential 
+  workflow because it's a fairly short one.
+Eric Schuh:  I guess we could.
+Eric Schuh:  Take a quick look at it if people want before moving 
+  on to 6.5 so there's give everyone a couple minutes to read 
+  through the use case here and then go down to the diagram kind of 
+  following the same flow as last week.
+Eric Schuh:  Sorry I just realized this is one of the issues with 
+  having different PRS for each one is not actually the up-to-date 
+  one don't think the text changed.
+Joe Andrieu:  Was this one we had the questions from Mike.
+Eric Schuh:  Yes I do believe there's a set of questions for this 
+  here.
+Eric Schuh:  So maybe I'll go to those after a couple more 
+  minutes here just to give people time to read through.
+Eric Schuh: 
+  https://pr-preview.s3.amazonaws.com/eric-schuh/vc-api-use-cases/pull/19.html#aggregated-credential-workflow
+Joe Andrieu:  And for those of you who weren't here last week you 
+  can go to the pull request and do a preview if you want to get 
+  this into your own browser and be able to zoom in a little bit 
+  that might be helpful.
+Eric Schuh:  Richard link directly to the preview.
+Eric Schuh:  And this is 6.4 if you're using the.
+Eric Schuh:  Table of contents at the top.
+Eric Schuh:  Okay unless someone stops me I'm going to tab over 
+  to the questions that Joe and I developed coming out of this I 
+  think it's pretty obvious.
+Joe Andrieu:  I don't want to briefly stopped you just to be 
+  clear there was one slight language in thing but I think I did 
+  some big you ate it on step 5 we have display a comma B not found 
+  and that was be a was found but be was not as right as opposed to 
+  a comedy not found just so what's happening here is.
+Joe Andrieu:  Is trying to get something from job application and 
+  they need to credentials one of which Kenzie doesn't yet have 
+  which is his background check I take it.
+Eric Schuh:  Yes it's specifically I believe from the text up 
+  above its that she doesn't have it but her wallet knows how to go 
+  and get it automatically.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That'll be 
+  clear if you change the comment to a semicolon.
+Eric Schuh:  Sure let me.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It might be 
+  even better if it says b was not found.
+Eric Schuh:  So one thing that I think you should notice if you 
+  were here last week is that this diagram is quite a bit simpler I 
+  think than the rest and that is mostly because I think if I 
+  remember correctly Joe and I read through this version of it and 
+  through the text as well as the reference diagram that was in the 
+  original.
+Eric Schuh:  Google Drive document and we came out with this set 
+  of questions for this Mike I believe it was the original 
+  submitter yeah haven't had haven't heard back from Mike on these 
+  questions yet but after we kind of had him chime in as to these 
+  issues there was going to be another revision to the diagram 
+  itself.
+Joe Andrieu:  So one know I would add Eric for us to work on is 
+  and I think there's probably true of one of the others as well is 
+  we probably should review these with an eye to breaking out the 
+  holder the holder app and holder service I think this one is 
+  conflating the holder app with the holder.
+Joe Andrieu:  I think that's a must.
+Eric Schuh:  Maybe more the holder app with the holder service 
+  even.
+Joe Andrieu:  That could also be yeah I think those boundaries 
+  are the most immature in the VC API so when we get through this 
+  set you and I should look at them together and see where the 
+  consistent separations might be.
+Manu Sporny:  So I've got a question put myself on the Queue is 
+  this it so this is an async flow right there's a delay some of 
+  the other flows we've been looking at is like all the 
+  informations available across the the systems and it's just a 
+  matter of getting data from point A to point B and it's done 
+  pretty rapidly this one there's a delay in that swear step 16 
+  kind of comes in right it's it.
+Manu Sporny:  Or wait now so there's where does the delay come 
+  in.
+Joe Andrieu:  I think you're right.
+Eric Schuh:  I believe it would be actually at 12 as the 
+  background check.com this is Step 12 would essentially represent 
+  them doing the things they need to do to evaluate the background 
+  check so this would be where the time would come in and then once 
+  they've decided that it was good they go to their issuer service 
+  and get the VC issue.
+Eric Schuh:   So I.
+Eric Schuh:  12 Has the time delay.
+Manu Sporny:  This is the thing we're well I mean we're fairly.
+Manu Sporny:  We well I guess we are uncertain whether or not the 
+  API supports this kind of behavior today or we're fairly certain 
+  it does.
+Joe Andrieu:  I think we're fairly certain it doesn't.
+Manu Sporny:  Does it look okay okay.
+Joe Andrieu:  I think this is super interesting right from 
+  requirement standpoint that's what we're trying to tease out and 
+  we've got this this call from the issuer app a background check 
+  into the wallet and right now it's currently model this directly 
+  to the holder service and there's an arbitrary delay right 
+  between 12 and 15 and I think exposing this endpoint on the 
+  holder service for an issuer is not something we've talked about 
+  although I think it fits this this pattern of.
+Joe Andrieu:   We want to enable web hooks as.
+Joe Andrieu:  As a general pattern but I think that's a very 
+  young idea and I don't think it's well integrated into the API 
+  yet.
+Eric Schuh:  Yeah so one thing I think you'll notice as well as 
+  if you go back to the six point three or six point to be ours and 
+  look at those diagrams there I think we're mostly using the a 
+  callback mechanism so in those ones we would have had this 
+  credentials issue call kind of include a callback that could have 
+  been used here but I think we were trying to show two different 
+  ways where this could be an official and point as well and that's 
+  the way you could.
+Eric Schuh:  Enable the asynchronicity rather than it was.
+Eric Schuh:  Call back that then this service would have.
+Eric Schuh:  Keep around for a long time possibly because this 
+  could take two days right to evaluate a background check but 
+  these end points here which I think we also see a little bit more 
+  in the 6.5 we have no call-outs to the to these in the VC API 
+  today.
+Eric Schuh:   Kind of these.
+Eric Schuh:  And points which could hear it goes to the holder 
+  service but I think we also had one going from the issuer service 
+  to the issue rap at one point with something like this might say 
+  that in a bit.
+Joe Andrieu:  Yeah I expect that one that one in particular 
+  probably deserves to go to the app because the app would have the 
+  business logic to decide whether or not we should even accept 
+  that VC.
+Eric Schuh:  Right that's to your point earlier that this diagram 
+  isn't doing a good job of breaking that out there conflated here.
+Manu Sporny:  Okay yeah there's the well I mean we have the 
+  exchanger Service as a talking discussion point today so that.
+Eric Schuh:  Yeah which this could office could definitely feed 
+  into.
+Manu Sporny:  Okay yeah I mean this is certainly great because it 
+  does call out requirement you know of the system.
+Eric Schuh:  Yeah this is where.
+Eric Schuh:  As we were going through this originally in the 
+  visual Paradigm the other program that Joan I used to create 
+  these that's why I started to use the stereotypes for calls like 
+  this where this clearly does not exist today and it's not really 
+  clear if it should exist or if it should exist in a different 
+  form.
+Manu Sporny:  Yeah that that that would be an exchanges and point 
+  know the expectation what's this is mapping to in my head is like 
+  11.
+Manu Sporny:  Some some something that happens before 12 would 
+  provide an interactive URL for the holder and then 15 would call 
+  that interact URL which is something on the exchanges.
+Manu Sporny:  App service whatever whatever in the calling it but 
+  it's the how do you get back in touch with the holder after 
+  you've gotten the background check or tential.
+Eric Schuh:  But I guess my point was also if anyone that anyone 
+  here knows mermaid maybe a little bit better than I do at this 
+  point it has an idea for how we could maybe encode some better 
+  information about because this credentials issue and point is one 
+  that exists today in the VC API documentation where's this one 
+  was not it would be nice if that popped out a little bit more 
+  from these diagrams it would make them a little more useful I 
+  think but it's something I haven't figured out how to do in 
+  mermaid well.
+<john_henderson> You could add a note in mermaid as well
+Joe Andrieu:  Yeah I think there's some color stuff I hesitate to 
+  rely on color because of ADA but it may be an option that's at 
+  least marginally better.
+Eric Schuh:  Yep might just be something we have to live with 
+  but.
+Manu Sporny:  Yeah we don't have a lot of options with mermaid 
+  its markup syntax is kind of it's very limited John raised a good 
+  point in the chat Channel which is we can just add a note as well 
+  hmm.
+Eric Schuh:  I don't know okay that might be a might have to look 
+  at how to get that in.
+Eric Schuh:  But any other comments on this 6.4 at this point.
+Joe Andrieu:  No I what I was thinking of was more generic so I'm 
+  sure it'll come back when we look at the next one.
+Manu Sporny:  In just a organizer notes time box to for another 
+  10 minutes and then move on to the next agenda items if that 
+  works for you Eric.
+Eric Schuh:  Sure yeah I'll move a little bit quicker on this so 
+  6.5 I'll just spend two or three minutes here to read this and 
+  then get a quick look at the diagram.
+Manu Sporny:  What is this thing what is the core thing this this 
+  use case is pulling out that's different from the other ones.
+Eric Schuh:  Yeah so I think that gets to somewhat so Joe and I 
+  got about halfway through this use case as far as reviewing it 
+  and I think that question was one that is somewhat in the vein of 
+  a couple of these.
+Eric Schuh:  Where we focus more on looking at the initial 
+  diagram.
+Eric Schuh:  Here and just tried to we struggled I think with 
+  that question as well.
+Joe Andrieu:  I just from a quick scan of the paragraph here I 
+  think it's that they are using a external allow list for issuer.
+Joe Andrieu:  I don't think we have that in any of the 
+  discussions I don't know that it impacts the VC API much but I 
+  think that is the one thing that's different here.
+Manu Sporny:  So the so the verifier is using a allow list for 
+  issuers to determine whether or not they accept the credential.
+Eric Schuh: 
+  https://pr-preview.s3.amazonaws.com/eric-schuh/vc-api-use-cases/pull/20.html#submit-sign-verify-a-test-credential-to-a-licensure-system
+Joe Andrieu:  It is in real-time check we checking a state 
+  accreditation system which maintains the allow list.
+Manu Sporny:  That yeah I mean that that certainly has value I 
+  mean yeah that has value from protocol perspective because we do 
+  expect things like that to happen.
+Manu Sporny:  I mean it has more to do with allow lists you know 
+  the issue or allow less than anything else so you could argue 
+  that that's not really part of the VC API except that the 
+  protocol would need to reach out and get that kind of stuff.
+Joe Andrieu:  Yeah I think it's a great boundary question about 
+  you know what is the what are the bounds of the VC API and Does 
+  it include this very common use case of a I know I need to go 
+  check some system so do we standardize that or not and I think 
+  it's a fair game to argue either way within the within the 
+  working group.
+Eric Schuh:  Okay I think I'll leave people if they want to look 
+  at the diagram in more depth this is I think one of the more 
+  complicated ones in the set I just as far as how many different 
+  entities get involved throughout this use case so.
+Eric Schuh: https://github.com/w3c-ccg/vc-api-use-cases/pull/21
+Eric Schuh:  Just for the time box moving on to 6.6 the length of 
+  the pr in the chat.
+Joe Andrieu:  Oh yeah that's weird.
+Eric Schuh:  Note here I don't know what happened to the mermaid 
+  renderer with this one because when I put it into an external 
+  mermaid render I got this image and everything seemed to be okay 
+  so I don't want to spend too much time here just because this is 
+  a pain to read but just to give everyone a chance to take a look 
+  at the text for now.
+Eric Schuh:  I'll just spend two minutes here and then we can 
+  have whatever discussion we want and call that the end of the use 
+  case review.
+Joe Andrieu:  I have a medical question that many of you might be 
+  able to help with is there a way we can inspect the error that 
+  might be generated by this mermaid.
+Manu Sporny:  Yes yeah okay if you just bring up the JavaScript 
+  console it should have printed it out on the on the console.
+Manu Sporny:  And if not it throws at some point and we could 
+  look at that.
+Joe Andrieu:  Yeah I'm just saying the fav icon complaint.
+Manu Sporny:  Yeah same here so it's not actually crashing.
+Manu Sporny:  Oh yeah I will have to take a look my eye yeah I'd 
+  have to take a look at that.
+Joe Andrieu:  Like clearly don't need to solve it right now but 
+  I'm sure it's an extra semicolon or misplace quote or something 
+  but and a hard hard to debug.
+Eric Schuh:  I guess does anyone have any comments or discussion 
+  based off of the text here unfortunately.
+Joe Andrieu:  It's hard to parse do you remember what was what 
+  was interesting or different about it.
+Eric Schuh:  Um let's go see what the notes were back here.
+Eric Schuh:  So it was mostly the automation I believe.
+Eric Schuh:  That's really what this use case gets to for the 
+  most part.
+Joe Andrieu:  Is the the customers release come back as a VC.
+Eric Schuh:  I believe that's how I did it in the updated diagram 
+  yes but this is what I was working off of so what was intended is 
+  another question you and I haven't gotten around to reviewing 
+  this one Joe so we have a generator generated our questions yet.
+Joe Andrieu:  It seems similar to my car lease in that multiple 
+  VCS are being combined to get a yet another PC so I'm curious 
+  maybe the automation aspects are different but I think those are 
+  some of our questions for Mike as well like what exactly is being 
+  automated here and who is the authority to establish and monitor 
+  those authorizations.
+Manu Sporny:  Yeah I'm I'm looking in the traceability vocab 
+  right now and there's a PGA shipment status code released so it's 
+  looks like.
+Manu Sporny:  There is a VC for whether or not the thing spin or 
+  least.
+Eric Schuh:  I want to make a note.
+Manu Sporny: 
+  https://w3c-ccg.github.io/traceability-vocab/#PGAShipmentStatus
+Manu Sporny:  Me find the link to that real quick here's the PGA 
+  shipment status that they have.
+Eric Schuh:  But if there's no other comments why do I think back 
+  to you for issues.
+Manu Sporny:  Okay great thank you Eric and and Joe at this point 
+  does anyone have any objections to marching this stuff into the 
+  document once you know Eric and Eric and Jo do another pass on 
+  it.
+Joe Andrieu:  And this is will be the use case document just to 
+  clarify right not the main document in case we were concerned.
+Manu Sporny:  Yep sorry yep yeah that's that's right yeah merging 
+  this into the use cases document does anyone have any concerns 
+  about doing that at least at a conceptual level right now.
+<tallted> Further iteration will just shift from comments to PRs.
+Manu Sporny:  Okay all right well I mean y'all should feel free 
+  to merge after you've done whatever editorial fixes you feel are 
+  necessary thank you again a ton for working on those things and 
+  in documenting it there is a question around how that stuff gets 
+  moved into the VC WG I think there are a number of people that 
+  are kind of building to suggest that we move VC API NBC API use 
+  cases into the V CW G.
+Manu Sporny:   Earlier than sooner than later just so that it's.
+Manu Sporny:  Going to be.
+Manu Sporny:  And it's still a kind of an open conversation 
+  around whether or not we are going to continue these calls or 
+  whether these calls would become a special topic call for VC w g 
+  or things of that nature.
+Manu Sporny:  I am gay and I think that's a conversation that 
+  we're going to have in the be cwg not necessarily here I think 
+  this is just a heads up to this group that are stuff might be 
+  pulled in and sooner than later or at least snapshotted sloot 
+  sooner than later.
+Manu Sporny:  That's it any questions concerns about that.
+Manu Sporny:  Before moving on.
+Manu Sporny:  Right next item up is what if folks want to do you 
+  want to talk about it ox or do you want to talk about the 
+  exchange of service any preferences.
+Manu Sporny:   I see.
+Manu Sporny:  North is it might impact the jff work.
+Manu Sporny:  Go ahead Joe.
+Joe Andrieu:  I just meant to give the thumbs-up so.
+
+Topic: Specify DIDAuthentication protocol in more detail
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/296
+Manu Sporny:  Okay okay let's talk about did off then if there 
+  are no objections there's an issue raised to specify the did 
+  Authentication Protocol in more detail in the let me go ahead and 
+  share my screen because there's some concrete suggestions Troy 
+  and make this a bit bigger so people.
+Manu Sporny:  So the this this also does have to do with the VP 
+  request spec which is being used by the VC API right now in the 
+  tests and things of that nature we are very light on details 
+  around did off and we have always kind of been light on details 
+  around that so this is a suggestion that we need to start getting 
+  very specific and give give people something concrete to 
+  implement against their.
+Manu Sporny:   Has been the section on.
+Manu Sporny:  Back for a while now but it's again it's been it's 
+  been light so the simplest form of did auth you could argue is 
+  just a verifiable presentation request where the query is of type 
+  did authentication you provide a challenge I think the domains 
+  wrong you don't provide a domain the center provides a domain 
+  well that well actually there's there's a discussion.
+Manu Sporny:   Russian item around that but maybe.
+Manu Sporny:  Lie to me and maybe you don't and then you provide 
+  a service in which the entity can interact so where do they send 
+  the did authentication presentation where they send that back and 
+  there's a URL and point to send it back to the VC API so so this 
+  is basically like I don't this is basically saying I need you to 
+  dot I don't care what did method you use I don't care which 
+  crypto sweet you use here's your challenge and do.
+Manu Sporny:   Main generator.
+Manu Sporny:  Writes pretty open-ended there's another part of 
+  did off here which basically says I want you to did off but I 
+  actually care quite deeply about the did method that you use and 
+  the crypto sweet use so I only accept did Ott's using did web in 
+  you need to use an ecdsa signature sweet right so and standard 
+  nist crypto everything else.
+Manu Sporny:   Kind of Remains the Same but this is.
+Manu Sporny:  Scalise saying I want you to did off but with did 
+  web in with an ecdsa signature the third item is more complicated 
+  still this one is the same thing I want you to did off in this is 
+  effectively me let me this is an A and so I want you to let's see 
+  I want you to did off.
+Manu Sporny:  Multiple things right so I want you to do it off 
+  with did web so prove to me that you have you can do a nest.
+Manu Sporny:  I want you to also simultaneously did off with BBs 
+  + so prove to me that you can do selective disclosure / unlink 
+  ability and I want some kind of assurance from your digital 
+  wallet provider or a pseudonym pseudonymous version of that that 
+  you have multi-factor authentication into your wallet at some 
+  point in the next in the last eight hours.
+Manu Sporny:  Or whatever right.
+Manu Sporny:  So this is actually asking you to did off in to get 
+  some Assurance from your digital wallet that you've you meet some 
+  minimum multi-factor level so all three of these examples are.
+Manu Sporny:  At least our customers and there's a question of 
+  like okay well do we want to support things like like first 
+  what's the name of the type S do we want to be able to specify 
+  the did method third do we want to specify the crypto sweet and 
+  then this thing is probably separable meaning do we want 
+  assurances from someone that you've authenticated in a way we 
+  have multi.
+Manu Sporny:  Okay so let me let me stop there the fundamental 
+  question is do we want to specify do we want to spend some time 
+  specifying did off in more detail and create a PR for that.
+Manu Sporny:  And put yourself on the key of the.
+Manu Sporny:  I had to meet Ray.
+Manu Sporny:  You're muted Dimitri.
+Dmitri Zagidulin:  So in terms of said we specified it off I 
+  think so.
+Dmitri Zagidulin:  Because it is a key part of much of issuing 
+  use cases possibly verifying but definitely issuing.
+Dmitri Zagidulin:  I'm so that's that's answer that question I 
+  definitely recommend that we do tests on my other question was 
+  doesn't make sense for us to specify or at least illustrator 
+  mention inspect the methods of transmission of challenge so good 
+  to give an example one of the things that DC see that were 
+  running into in the issue.
+Dmitri Zagidulin:  Is an exchange endpoint for.
+Dmitri Zagidulin:  For an issue stuff.
+Dmitri Zagidulin:  It's a mobile app and so the question becomes 
+  how.
+Dmitri Zagidulin:  How does the issuer communicate the challenge 
+  to the to the wallet in order to perform the did authentication 
+  so that the issuer can issue the credit so it makes sense.
+Dmitri Zagidulin:  We're like we're going to recommend like 
+  scanning the QR code or following the Deep link but I wanted to 
+  make sense to mention any of those things in the in vcat.
+Manu Sporny:  If anyone else has thoughts please put yourself on 
+  the queue.
+Manu Sporny:  Ahead Joe oh in sorry Marcus how old is that Q.
+Markus Sabadello:  It's it's new but.
+Manu Sporny:  Go ahead and Marcus I'm sorry I didn't see you jump 
+  on the queue.
+Markus Sabadello:  Yeah I'm also generally interested in theater 
+  off and what else is apart exploring that further I'm not so very 
+  familiar with VP request specification so I assume there's a bit 
+  of work there that's that's relevant here I think I remember some 
+  earlier versions of this did off request and response where.
+Markus Sabadello:   I think at some point.
+Markus Sabadello:  Concept of a claim about your public key right 
+  there was the credential subject which was your date and then one 
+  of the claims was the public key so you're making a claim about 
+  what your public keys and then you're adding a prove to that 
+  looking at this it seems like it has changed a little bit but as 
+  I said I'm not fully up-to-date with verifiable presentation 
+  request specification and.
+Markus Sabadello:   Just in general I.
+Markus Sabadello:  Interested in this and support exploring this.
+Manu Sporny:  Thanks Marcus you are remembering correctly and I 
+  believe that still there we just need to detail it out the 
+  previous plugfest sees that that kind of mechanism in some of the 
+  use cases go ahead Joe.
+Joe Andrieu:  Yeah I wanted to introduce the notion of the VC and 
+  bedding perhaps in the evidence property some form of the did off 
+  that was performed to ensure that the subject ID was under the 
+  control of the party that the VC was issued to I think it's a 
+  pretty natural use case it may be as expensive in terms of the 
+  size of the VC but I think in some of you.
+Joe Andrieu:   Cases it's worth it and having a.
+Joe Andrieu:  Way to do that feels like a pretty easy lift.
+Dmitri Zagidulin:  That so the question for Joe about that 
+  particular use case so at the moment.
+Dmitri Zagidulin:  The Facebook verifiable presentation serves 
+  that use case.
+Dmitri Zagidulin:  Saying so the proof of did off comes in the 
+  wrapper to the D.C.'s not in the disease itself so my question to 
+  you is is that sufficient for our use case or would you also want 
+  to see it in the DC proper.
+Joe Andrieu:  I would like to see in VC proper one of the ways 
+  that I frame this when you know doing educational stuff for folks 
+  on this is really the the identity Assurance happens because you 
+  dude it off before is issued and then you do did off upon 
+  presentation and now we know that that party actually had access 
+  to at a minimum the secret that allowed them to do did off at two 
+  points in time.
+Joe Andrieu:  So it's really a codification of what I think is a 
+  best practice right now which is doing a did off before you issue 
+  to verify the the recipient is giving you an ID that they 
+  actually control.
+Dmitri Zagidulin:  Right but the best practice or at least in 
+  the.
+Dmitri Zagidulin:  The deployments that I've seen the best 
+  practice confirms the control of the did in the presentation not 
+  the VC.
+Joe Andrieu:  And and and before so the projects you and I have 
+  been on together rather than potentially bring in those names or 
+  companies or brands or whatever you know a prior to issuing the 
+  VC there was a did off to communicate the d i d that is actually 
+  going to be the subject in that VC.
+Dmitri Zagidulin:  Jack yeah I'm not done through a VP.
+Joe Andrieu:  Yes so but but it's a different VP that is a VP 
+  with no VC in it that's a did off before you issue the VC and and 
+  what I'm advocating for is that in that VC we could embed 
+  something that lets us know that that did off before issuance 
+  confirmed that the subject controlled that ID.
+Joe Andrieu:  It could be just embedding the VP of that initial 
+  did off like that's the naive solution I don't know that's the 
+  best solution but you couldn't just include the VP that was your 
+  did off back and forth.
+Manu Sporny:  Yeah I put myself on the Q yeah this is that's 
+  that's fascinating Joe I think the thing that we get out of this 
+  I think this is a great idea the thing that we get out of this is 
+  that the verifier no longer has to presume that the issuer 
+  checked they have cryptographic proof that the issuer got the 
+  subject to did auth.
+Manu Sporny:   Before they issued.
+Manu Sporny:  VC in the verifier that's one less thing the 
+  verifier has to wonder about they don't have to wonder about like 
+  did they actually do a did often with this did before to the 
+  subject before they issued the VC or did they mess that step up 
+  in this is actually assigned to you know something that doesn't 
+  make sense go ahead Dimitri.
+Dmitri Zagidulin:  So as a Counterpoint to that the current 
+  setup.
+Dmitri Zagidulin:  Assumes that the verifier that the very final 
+  presentation.
+Dmitri Zagidulin:  That the holder uses to hand over BC to the 
+  verifier includes did off the includes a proof of the holder and 
+  that's how the verifier knows that the subject of the BC is the 
+  same entity handing it over.
+Dmitri Zagidulin:  What do you mean.
+Joe Andrieu:  But you don't because you know just of prison 
+  fallacious scenario you could go get a VC with my ID and if they 
+  never do a did off before they give you that VC then you may be 
+  able to do all sorts of things to convince the issuer that you're 
+  me and then now my my wallet has the idea.
+Joe Andrieu:   Has control over the ID.
+Joe Andrieu:  Later in the process so in fact you got the VC you 
+  got an issue to my D and therefore the secondary singular check 
+  is not actually verifying what you think is verifying.
+Dmitri Zagidulin:  I'm not sure I fully understand if I stole 
+  your VC how would I be able to prove control to the verifier.
+Joe Andrieu:  No no you didn't steal my VC you went to the issuer 
+  and created a VC using my did.
+Joe Andrieu:  And the issuer accepted whatever song and dance you 
+  gave them that that was a good idea or they just didn't check 
+  they didn't bother doing it DID Auth and so when I go and present 
+  that VC because somehow you gave it to me we're not actually 
+  proving that the person who received the VC initially is the 
+  person who's presenting it.
+Dmitri Zagidulin:  Wait but that wasn't the claim that I was 
+  saying that their fact can check that the subject is the person 
+  presenting it the who received it doesn't really matter in our 
+  trust model.
+Joe Andrieu:  It may matter.
+Manu Sporny:  Yeah in some trust models it matters in others it 
+  doesn't write this is I think this is an important thing that we 
+  should dig in on but I guess I'd like to noting we've got five 
+  minutes left do we have any objections to trying to detail I did 
+  often in a bit more detail in the VP R-Spec.
+Joe Andrieu:  Now I think it's important to tease out DID Auth 
+  for the VC API to be wholly formed.
+Manu Sporny:  Okay then what we will do here if there are no 
+  objections we are needed detail add detail to the authentication 
+  it or not.
+Manu Sporny:  Protocol and the messages in the VP our 
+  specifications specifications such that it's usable in the VC API 
+  specification add notes around where did the topic that you're 
+  the topic you're raising Joe is more of like an Evidence pop 
+  property best practice thing so we can.
+Manu Sporny:   An add an.
+Manu Sporny:  The VP R-Spec that says hey you really should 
+  include you know where we're currently exploring whether or not 
+  it's a good idea to add the initial did off in the for the issuer 
+  to include the original data Earth in the evidence property of 
+  the credential that's issued we're exploring that like where 
+  would that that feels like we should.
+Manu Sporny:   Feels like.
+Manu Sporny:  Belonging to be cwg as an issue there how about 
+  this I'll write in trial add issue marker around including.
+Joe Andrieu:  So I think there is an issue so let me go see if I 
+  can find it and we can bubble it up.
+Manu Sporny:  Okay and then I can I'll add an issue or whoever 
+  does the pr if they get to it before I do add an issue marker 
+  around including the around the issue or including the initial 
+  initial it ought presentation as evidence in.
+Manu Sporny:  A VC that they issue.
+Manu Sporny:  We have three ish two minutes left any other items 
+  that folks would like to briefly mention before we end the call 
+  this week.
+Manu Sporny:  Okay that's it for the call this week thank you 
+  everyone for the discussion today we will meet again next week 
+  with a new set of issues to discuss thanks all bye.
