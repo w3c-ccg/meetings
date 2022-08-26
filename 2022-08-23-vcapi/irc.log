@@ -1,0 +1,250 @@
+[2022-08-23T20:01:26.573Z]	<Dave_Longley>	present+
+[2022-08-23T20:01:26.574Z]	<Eric_Schuh>	present+
+[2022-08-23T20:01:26.575Z]	<Manu_Sporny>	present+
+[2022-08-23T20:01:26.575Z]	<Joe_Andrieu>	present+
+[2022-08-23T20:01:42.689Z]	<Logan_Porter>	present+
+[2022-08-23T20:01:44.024Z]	<Mahmoud>	present+
+[2022-08-23T20:02:21.371Z]	<St-Louis>	present+
+[2022-08-23T20:04:35.069Z]	<Transcriber>	scribe+
+[2022-08-23T20:04:35.069Z]	<Transcriber>	Meeting: vcapi
+[2022-08-23T20:05:00.263Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2022Aug/0138.html
+[2022-08-23T20:05:01.018Z]	<Transcriber>	Manu_Sporny: All right welcome everyone to the verifiable credentials API call this is August 23rd 2022 I'm going to put our agenda in here.
+[2022-08-23T20:05:33.899Z]	<Transcriber>	Manu_Sporny: So on the agenda today is are a couple of big decisions renaming app to coordinator so we've been calling things like issuer app holder a pin we may end up calling them issuer coordinator or issuing coordinator and that so that rename it seems like we might have some be able to reach consensus there the next item is any kind of implementation experience with authorization so what are people.
+[2022-08-23T20:05:34.319Z]	<Transcriber>	Manu_Sporny:  using and then we're hoping.
+[2022-08-23T20:06:05.418Z]	<Transcriber>	Manu_Sporny: Define or there's a question on whether or not we should Define oauth2 as the authorization mechanism or at least one supported authorization mechanism I know the traceability folks have already done this we have enough implementations now to kind of demonstrate that that's the direction people are going in so we can kind of call that question today and then we can get to other issues as time permits are there any other updates or changes to the agenda anything.
+[2022-08-23T20:06:05.765Z]	<Transcriber>	Manu_Sporny:  if people would like to.
+[2022-08-23T20:06:29.057Z]	<Manu_Sporny>	Topic: Introductions, Relevant Community Updates
+[2022-08-23T20:06:37.481Z]	<Transcriber>	Manu_Sporny: All right in the mic Marley sent his regrets he is on leave okay first item up our introductions and relevant Community updates anyone want to introduce or reintroduce themselves I think we all know who each other is the call Patrick go ahead.
+[2022-08-23T20:06:47.198Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2022-08-23T20:07:07.063Z]	<Transcriber>	St-Louis: Yeah so so I came to the meeting for the first time two three weeks ago I was on vacation for the last two weeks but I plan to start attending this meeting weekly for personal a date I was sort of by the way thank you for accepting the pull request it's a very nice I was personally working on making an API application.
+[2022-08-23T20:07:39.464Z]	<Transcriber>	St-Louis: As we'll discuss later to sort of Leverage I kept I behind it to issue and verify credential and it's been working good so this is a little project I'm working on at the moment and I'm also sort of having a go at building sort of a CI to run different tests against one solution so yeah still looking at the various.
+[2022-08-23T20:07:39.840Z]	<Transcriber>	St-Louis:  this test Suites and the.
+[2022-08-23T20:07:50.284Z]	<Transcriber>	St-Louis: I thought there was going to be a meeting about this sweets I might have missed it but yeah it's still interesting to me to see that thank you.
+[2022-08-23T20:08:14.115Z]	<Transcriber>	Manu_Sporny: Okay wonderful yeah and welcome back and I hope you had a good break we have not had the meeting on test Suites yet one of the things we're waiting on is for you to get back as well since you said that you had an interest there so I think maybe next week or the week after we can talk about test Suites will be covering a little bit of that today on the call.
+[2022-08-23T20:08:40.648Z]	<Transcriber>	Manu_Sporny: Yeah so very interested in hearing how your experience integrating with occupy in the back end goes that would be I think one of the first occupy Integrations that we know of using the VC API and if that works out well then it's a good demonstration that we're kind of on the on a on a on a good trajectory right yep.
+[2022-08-23T20:08:48.852Z]	<Transcriber>	Manu_Sporny: Okay let's see any other introductions reintroductions or relevant Community updates.
+[2022-08-23T20:09:24.365Z]	<Transcriber>	Manu_Sporny: Okay I think last week we announced that we had a did key test Suite now for doing did resolution it's not really a pi VC api-related it's more like resolver related but there's a test Suite to start resolving did key now in and you know it's all signals are showing we have a quite a bit of work to do even on did key to get to you know multiple.
+[2022-08-23T20:09:31.644Z]	<Transcriber>	Manu_Sporny: Tations resolving did key all right.
+[2022-08-23T20:10:05.522Z]	<Transcriber>	Manu_Sporny: Yeah I'm trying to think about if we should there is a there is an automatic email that goes out every Monday in the credentials community group that highlights all of the changes happening in the verifiable credential working group specs of these are active working group specifications in I don't know if you've seen the past two or three weeks of those emails but they're massive so there are lots and lots of.
+[2022-08-23T20:10:05.842Z]	<Transcriber>	Manu_Sporny:  discussions happening lots and.
+[2022-08-23T20:10:12.378Z]	<Mahmoud>	yes, tons of stuff to grep in the one email
+[2022-08-23T20:10:20.097Z]	<Kayode_Ezike>	present+
+[2022-08-23T20:10:37.568Z]	<Transcriber>	Manu_Sporny: You know lots of PRS and changes to PRS going in so I know I'm having a hard time keeping up with everything and so just a heads up to that things are really moving it may not look like it but there's an enormous amount of change going on right now in one way to kind of see that in one snapshot as look at that Monday email that's got all of the Just the VC WG work it does.
+[2022-08-23T20:10:37.869Z]	<Transcriber>	Manu_Sporny:  don't even cover the ccg work.
+[2022-08-23T20:10:46.131Z]	<Transcriber>	Manu_Sporny: Going on okay so that's just a heads up to keep those things in mind.
+[2022-08-23T20:10:52.620Z]	<Transcriber>	Manu_Sporny: Other announcements or relevant Community updates before I move on.
+[2022-08-23T20:10:57.137Z]	<Manu_Sporny>	Topic: Renaming "App" to "Coordinator"
+[2022-08-23T20:11:02.879Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/297
+[2022-08-23T20:11:15.144Z]	<Transcriber>	Manu_Sporny: Okay first topic up issue 297 let me go ahead and share my screen and let's see share and then.
+[2022-08-23T20:11:47.674Z]	<Transcriber>	Manu_Sporny: All right so while ago we said that people were kind of confusing what app meant so in the VCA Pi bi we have a diagram that talks about kind of like the issuer app the verifier app the holder app and we've got a diagram here so we're talking about these diamonds in the diagram.
+[2022-08-23T20:12:18.583Z]	<Transcriber>	Manu_Sporny: That language seems to have confused people to mistake it for like a mobile application or things of that nature in there we kind of raised an issue said that it was confusing in there were some brainstorming in the issue like program manager what should we rename it to program manager in Terror.
+[2022-08-23T20:12:18.890Z]	<Transcriber>	Manu_Sporny:  a gator.
+[2022-08-23T20:12:50.271Z]	<Transcriber>	Manu_Sporny: Controller agent you know these things kind of came up and then Christopher Alan suggested coordinator in that seemed to resonate with Joe and Dave Longley in I you know I think it's a it's pretty it's better than app right so maybe we can iterate towards something better and I guess the question to the group is.
+[2022-08-23T20:12:50.610Z]	<Transcriber>	Manu_Sporny:  is what do y'all think.
+[2022-08-23T20:13:07.112Z]	<Transcriber>	Manu_Sporny: Gov coordinator should we raise a PR in give coordinator try and put that language in and then see how it works or does anyone have a better word that we could use at this point in time.
+[2022-08-23T20:13:14.088Z]	<Transcriber>	Manu_Sporny: To go ahead and put yourself on the cue or just start talking if you have any suggestions.
+[2022-08-23T20:13:23.139Z]	<Transcriber>	Joe_Andrieu: Sure I'll jump on that last invitation I'll go ahead Patrick I'll put myself in thank you.
+[2022-08-23T20:13:26.120Z]	<Transcriber>	St-Louis: Go ahead I can go after.
+[2022-08-23T20:13:55.869Z]	<Transcriber>	Joe_Andrieu: Okay I was just gonna say I think I think this is a fine iteration I was a big fan of the separation between app and server but we have repeatedly run into people being confused by it so even though I like it I think it's elegant and simple and it's just three letters it really has caused problems so coordinator doesn't seem to have any of that baggage that a lot of the other terms do I just wish it were shorter but I think that's enough of a reason to keep using app so I think this would be.
+[2022-08-23T20:13:56.731Z]	<Dave_Longley>	+1 to Joe ... better name, just wish it were shoter.
+[2022-08-23T20:13:58.693Z]	<Dave_Longley>	shorter*
+[2022-08-23T20:14:02.756Z]	<Transcriber>	Manu_Sporny: All right thank you Joe Patrick.
+[2022-08-23T20:14:32.107Z]	<Transcriber>	St-Louis: Yeah so just a few things let me just do to spark a discussion my first one was to have the association between a certain terminology and the sort of framework and which operates one thing I pointed out was like in the hyper Ledger space for example hyper Ledger Aries so we use a sort of controller to.
+[2022-08-23T20:15:03.583Z]	<Transcriber>	St-Louis: The agent would be the actual application which would like issue a credential and so on so if I take the example like was mentioning earlier if I were to make an API Standalone Stallone the API that's meant to sort of match the VC API expect and leverage I kept by agent and a vacuum in the hyper larger space that would be referred to as a controller and in the.
+[2022-08-23T20:15:35.625Z]	<Transcriber>	St-Louis: Space if I can call it so it would be referred to a coordinator let's say we go forward with the word coordinator so I just wanted to point out this sort of Divergence of terms depending on the framework and just make sure it's something that we would be aware of and all my second point was relating to this term app so if I look at the diagram it says.
+[2022-08-23T20:15:36.016Z]	<Transcriber>	St-Louis:  the issue advert for app.
+[2022-08-23T20:16:07.730Z]	<Transcriber>	St-Louis: Term API in there so is the intent here that the API is part of this application or is it sort of segregated in the same way as a like I explained in my example with Aries agent it's more like you have to micro application sort of talking to each other so that was my second point I wanted to bring that.
+[2022-08-23T20:16:08.087Z]	<Transcriber>	St-Louis:  don't know if I'm with the second point was.
+[2022-08-23T20:16:13.084Z]	<Transcriber>	St-Louis: Bit hard to explain.
+[2022-08-23T20:16:19.731Z]	<Transcriber>	Manu_Sporny: Does anyone want to put themselves on the Q to respond.
+[2022-08-23T20:16:40.629Z]	<Adam_Bradley>	present+
+[2022-08-23T20:16:54.216Z]	<Transcriber>	Manu_Sporny: I think that the first you know I'll go ahead and give it a shot so I think the the concern Patrick with controller is that that's a very well-known term in kind of the decentralized identifier space and is going to be a very well defined term in the verifiable credential data Integrity work in because of that because they're like official definitions for what a controller is in the in the global standard or in.
+[2022-08-23T20:16:54.910Z]	<Transcriber>	Manu_Sporny: Global standards reusing that.
+[2022-08-23T20:17:13.576Z]	<Transcriber>	Manu_Sporny: Something else will you know create problems understanding that you know the Aries ecosystem decided to use it to mean something slightly different so I think that's the concern around controller.
+[2022-08-23T20:17:20.213Z]	<Dave_Longley>	+1 to concerns around "controller"
+[2022-08-23T20:17:28.309Z]	<Transcriber>	Manu_Sporny: Your second question I had a bit of trouble following the what you were could you please repeat the second question that you had.
+[2022-08-23T20:17:56.569Z]	<Transcriber>	St-Louis: So if you can pull up the diagram you had which was showcasing the issue app so here we see we have those diamonds saying verify your app holder app issuer app and this diagram where is the API a part of those app or it would be separated from the application I'm basically I'm trying to understand what the term app refers to is a bit the.
+[2022-08-23T20:18:23.506Z]	<Transcriber>	Manu_Sporny: Right yep at this point I believe that there will be some apis that are Exposed on the apps and it's so the these will change the coordinators and the coordinators will expose some apis you know act at the external layer like the exchange apis basically I think are one of those one of those apis that get exposed there and we still have an.
+[2022-08-23T20:18:23.803Z]	<Transcriber>	Manu_Sporny:  in to.
+[2022-08-23T20:18:35.422Z]	<Transcriber>	Manu_Sporny: This API is normally Exposed on the issuer coordinator this API is only Exposed on the issuer service and so on so forth go ahead Joe.
+[2022-08-23T20:19:06.201Z]	<Transcriber>	Joe_Andrieu: Hi yeah I think you've nailed it to each of these boxes here represent potential software components that might be independently deployed or could be deployed together like the the verifier service the verifier app and the storage service could all be bundled into a single application from a service provider but these different roles identify categories for the endpoints of the API.
+[2022-08-23T20:19:30.318Z]	<Transcriber>	Joe_Andrieu: Do so if the verifier service has an endpoint and that's something that either a holder app or an issue where app could interact with for example but part of the API is defining which components are expected to talk to which other components so that we can speak to for example the authorization model for those interactions.
+[2022-08-23T20:19:35.969Z]	<Transcriber>	Manu_Sporny: Yep plus 12 that Patrick did that make sense.
+[2022-08-23T20:20:05.824Z]	<Transcriber>	St-Louis: Yeah no it makes a lot of sense thank you because for me like I was saying sorry I'll revert a lot to I probably Jerry's because it's what I know and it's I'm sort of interested in seeing how the the Gap can be bridged here so let's say I have a the API application so are is Agent by itself does have a API that's a expose you know that it's waiting for actions to be taken and if I have an application.
+[2022-08-23T20:20:06.470Z]	<Transcriber>	St-Louis: That all it is is a.
+[2022-08-23T20:20:37.526Z]	<Transcriber>	St-Louis: Turn API application that is just meant to correspond to the VC API definitions that are made and to then communicate that to the agent API and then with that response send that application send that information back so the API is not so much part of the application that will issue but it's just.
+[2022-08-23T20:20:43.624Z]	<Transcriber>	St-Louis: All I could see like a broker application to.
+[2022-08-23T20:20:54.221Z]	<Transcriber>	St-Louis: Between the two so it's not like sorry it's another thing a hard time explaining a clearly here but.
+[2022-08-23T20:21:04.199Z]	<Transcriber>	St-Louis: Not the the API is not part of the application itself that will issue the credential if that makes sense so I do.
+[2022-08-23T20:21:16.308Z]	<Transcriber>	Manu_Sporny: Wreck yeah it doesn't have to be so what you're describing makes I think is a legitimate architecture in what we're we're we're going to end up right so so you.
+[2022-08-23T20:21:30.620Z]	<Transcriber>	Joe_Andrieu: Hold on hold on a second if I could menu I was confused about this API is not part of the application itself for example the the issuer service is going to expose API endpoints.
+[2022-08-23T20:21:43.972Z]	<Transcriber>	Joe_Andrieu: I'm struggling to understand what I just said in light of the statement that the API isn't part of the endpoint or isn't part of the application.
+[2022-08-23T20:22:13.018Z]	<Transcriber>	St-Louis: Well I was saying like in my conception of leveraging I believed your Aries which is an agent and it's an application itself the but that application doesn't have API endpoint that matches the VC API spec however if I build a second application that matches that specs and then communicate with that application and the back in it would be like a another microwave.
+[2022-08-23T20:22:39.697Z]	<Transcriber>	St-Louis: That could meet the spec and leverage another solution to issue the credential this is so I just wanted to check if this is fine in the it's a acceptable way to develops VC API without with having like sort of a micro service approach to the solution.
+[2022-08-23T20:22:41.883Z]	<Transcriber>	Joe_Andrieu: Perfect that makes sense thank you.
+[2022-08-23T20:23:11.002Z]	<Transcriber>	Dave_Longley: Yeah I was just going to say that does make a lot of sense and I think all the matters is the interface into whatever it is that's going to be doing the issuing so we're defining what that API looks like that's just an interface into it you can use whatever back-end you want to whether that calls out to other external micro services or whatever it needs to do the common what needs to be common where we want to have interoperability as that is at that API layer.
+[2022-08-23T20:23:12.905Z]	<Transcriber>	St-Louis: Perfect thank you that explains a lot.
+[2022-08-23T20:23:23.703Z]	<Transcriber>	Manu_Sporny: All right good all that makes sense okay so would there be any objections for us renaming app to coordinator.
+[2022-08-23T20:23:28.147Z]	<Transcriber>	Manu_Sporny: What we yes coordinator at this point in time.
+[2022-08-23T20:24:02.341Z]	<Transcriber>	Manu_Sporny: Okay so let me go ahead and put a proposal in here.
+[2022-08-23T20:24:10.995Z]	<Manu_Sporny>	PROPOSAL: Rename "App" to "Coordinator" in the VC API.
+[2022-08-23T20:24:16.249Z]	<Dave_Longley>	+1
+[2022-08-23T20:24:17.163Z]	<Manu_Sporny>	+1
+[2022-08-23T20:24:18.792Z]	<Joe_Andrieu>	+1
+[2022-08-23T20:24:19.634Z]	<Transcriber>	Manu_Sporny: Rename app to coordinator in the VC API and just plus one minus one that we can get that in here.
+[2022-08-23T20:24:21.473Z]	<Mahmoud>	+1
+[2022-08-23T20:24:43.972Z]	<St-Louis>	+1
+[2022-08-23T20:24:45.992Z]	<Logan_Porter>	+1
+[2022-08-23T20:24:49.322Z]	<Transcriber>	Manu_Sporny: Anyone else want a plus one minus one usually what we'd like to see is more than just for at this point it's okay to not you know.
+[2022-08-23T20:24:51.028Z]	<TallTed>	+0
+[2022-08-23T20:25:00.857Z]	<Manu_Sporny>	RESOLVED: Rename "App" to "Coordinator" in the VC API.
+[2022-08-23T20:25:09.291Z]	<Transcriber>	Manu_Sporny: All right I'm gonna go ahead and call that it's resolved will rename that and what it is.
+[2022-08-23T20:25:43.147Z]	<Manu_Sporny>	Topic: Implementation experience wrt. Authorization
+[2022-08-23T20:25:43.408Z]	<Transcriber>	Manu_Sporny: Okay and then I'll mark this as P are needed we are ready for PR all right that's that item next topic implementation experience with respect authorization.
+[2022-08-23T20:26:14.146Z]	<Transcriber>	Manu_Sporny: As everyone can probably remember we had a heated number of months of discussion on what we were going to do with respect authorization to to the VC API the only things we could agree to at that point is that please don't do basic authentication right and then auth to may be used but we weren't really able to get any further than.
+[2022-08-23T20:26:41.211Z]	<Transcriber>	Manu_Sporny: In the meantime the traceability cohort was able to fully Define oauth2 in the number of the Scopes a lot Scopes that were there and I believe my mood please correct me if I'm wrong but I believe has have been able to demonstrate interoperability within their cohort for oauth 2 and the Scopes that they have.
+[2022-08-23T20:27:01.131Z]	<Transcriber>	Mahmoud: We have it for the first half the Scopes yes but not fully we're still doing - testing and like we're building that part out but for the most part we are able to check you know most of the oauth2 functionality but finding full dusting of the Scopes.
+[2022-08-23T20:27:29.515Z]	<Transcriber>	Manu_Sporny: Okay awesome thank you for that the other thing we should mention here is that we do have this verifiable credential API issuer interoperability report so this is something that this groups working on this is separate from the traceability interop traceability work that's happening but we now have five implementations implementing at least some subset of the VC API this is just the issuer and point.
+[2022-08-23T20:27:29.900Z]	<Transcriber>	Manu_Sporny:  what we're seeing you.
+[2022-08-23T20:28:02.067Z]	<Transcriber>	Manu_Sporny: Lots of people passing a variety of tests of these I believe API catalog Maven that forget if I think secure key still open individual bizarre have implemented oauth2 believed a new text still kind of an open end point and I think of ask secure keys still an open end point but they are absolutely you know on track to implement oauth 20 as well.
+[2022-08-23T20:28:02.382Z]	<Transcriber>	Manu_Sporny:  so at this point we've got four.
+[2022-08-23T20:28:34.109Z]	<Transcriber>	Manu_Sporny: You know implementations probably 56 implementations now of some derivation of VC API that are implementing oauth2 I think the the stuff that we have implemented for this issue or thing is they don't use Scopes but do use oauth2 so that's kind of where implementations are today and that's much further when we first had this debate there were there was.
+[2022-08-23T20:28:34.403Z]	<Transcriber>	Manu_Sporny:  rarely any.
+[2022-08-23T20:28:54.464Z]	<Transcriber>	Manu_Sporny: You know implementations and now I think about six months later we've got six so does anyone else have implementations that are considering oauth2 or any other type of authorization at this point.
+[2022-08-23T20:29:09.511Z]	<Transcriber>	Manu_Sporny: Patrick what about your implementation in coyote we interested in hearing if you've got one.
+[2022-08-23T20:29:14.978Z]	<Transcriber>	Manu_Sporny: You have what are you what are you doing for authorization to the API.
+[2022-08-23T20:29:42.099Z]	<Transcriber>	St-Louis: I'm not at that point right now right now it's just an open it's very like a development project which is meant to be like I'm aiming at doing some sort of Open Source contribution to demonstrate how it can be showcased but I can have a look when I'm at that point into a translation definitely.
+[2022-08-23T20:29:48.329Z]	<Transcriber>	Manu_Sporny: Okay do is is a vastu on the list of things that you are considering or would consider.
+[2022-08-23T20:29:49.647Z]	<Transcriber>	St-Louis: Hey it is no.
+[2022-08-23T20:30:00.412Z]	<Transcriber>	Manu_Sporny: Okay and then coyote do you have a preference there I don't know if you're doing an issue or implementation.
+[2022-08-23T20:30:32.278Z]	<Transcriber>	Kayode_Ezike: Yes so for for a DCC so this couple of ways were going about it at the moment so for I give a presentation last week on how we're doing it for the printer status and point which leverages mosquitoes control those control services to sort of mediate that for us and so kind of like automating that through through the API access to those Services probably send a link at some point to the VC as you called.
+[2022-08-23T20:30:32.928Z]	<Transcriber>	Kayode_Ezike:  call from last week on that so that's that's.
+[2022-08-23T20:31:03.161Z]	<Transcriber>	Kayode_Ezike: Before the credential status and point and for the other end points there's so we have a way we're doing it within the context of the under credential wallet that leverages to like two different techniques depending on how its configured one of them uses the challenge to identify a record and no internally for us and then the other one uses a.
+[2022-08-23T20:31:12.936Z]	<Transcriber>	Kayode_Ezike: She does use some authorization there so it's still some polishing up we have to do but we're marching along.
+[2022-08-23T20:31:23.629Z]	<Transcriber>	Manu_Sporny: Okay I didn't quite I wasn't able to quite understand if a loss to is one of the options that you're using or if you're using other things.
+[2022-08-23T20:31:38.050Z]	<Transcriber>	Kayode_Ezike: Yeah so so we are using lots of one of the mechanisms one of the options for we have two options basically for how we're authenticating the request and one of them is using using our DC for that.
+[2022-08-23T20:31:39.828Z]	<Transcriber>	Manu_Sporny: Okay all right.
+[2022-08-23T20:32:04.839Z]	<Transcriber>	Manu_Sporny: Okay so that means that we've got potentially 728 implementations using some variation of thoughts to it is anyone aware of any other implementations out there any other VC API implementations and what they might be doing at this point.
+[2022-08-23T20:32:27.784Z]	<Transcriber>	St-Louis: I know what ideal of we have the engagement at the moment for the client that wants to demonstrate compatibility with the w3c this API so that's all I can say for now but probably down the line there will be one more.
+[2022-08-23T20:32:54.689Z]	<Manu_Sporny>	Topic: Define OAuth2 authorization mechanism
+[2022-08-23T20:32:56.979Z]	<Transcriber>	Manu_Sporny: Okay okay that's great news that's that's potentially 829 implementations of e c API which is very high for something that's you know not standards track just yet okay that's that's all good news headed in the right direction let's go ahead and jump into actually calling the question right so do we want to define a w to as an authorization mechanism that is.
+[2022-08-23T20:32:59.502Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/301
+[2022-08-23T20:33:35.588Z]	<Transcriber>	Manu_Sporny: Okay so I think I mean I think the the proposals pretty clear right it's do we want to define a w to as an authorization mechanism to be clear we are not I think the suggestion is we're not going to we don't know yet whether or not we want to mandate it as you must Implement oauth 2 I think what we're trying to get to right now is that.
+[2022-08-23T20:33:35.962Z]	<Transcriber>	Manu_Sporny:  if you.
+[2022-08-23T20:34:06.638Z]	<Transcriber>	Manu_Sporny: To it must be implemented in these ways and to Define some Scopes and put some language around it we could try in just say it's mandatory so any implementation of be Capi must Implement oauth 2 or we could say must Implement some you know secure authorization mechanism for example oauth2 go ahead Dave.
+[2022-08-23T20:34:35.396Z]	<Transcriber>	Dave_Longley: Yeah so just quickly responding to this I don't want to reopen Old Wounds and cause more trouble here I think it would be fairly non-controversial for us to say if you're implementing a while to you need to do it like this but other authorization mechanisms are acceptable and an authorization mechanism that allows delegation might be defined in the.
+[2022-08-23T20:34:35.694Z]	<Transcriber>	Dave_Longley:  the future.
+[2022-08-23T20:34:47.235Z]	<Transcriber>	Dave_Longley: I think that would help address the concerns that have been brought up that we spent a lot of time on without reopening wounds.
+[2022-08-23T20:35:04.450Z]	<Transcriber>	Manu_Sporny: I'm trying to capture that also note that their authorization mechanisms likes be defined.
+[2022-08-23T20:35:18.870Z]	<Transcriber>	Dave_Longley: And specifically other authorization mechanisms that support delegation might be defined in the future or we can just say and and another authorization mechanism that supports you know I have to say that there would be multiple.
+[2022-08-23T20:35:34.609Z]	<Transcriber>	Manu_Sporny: Okay and there's a Mite and my guess is that would be an issue marker and if it never manifests it never manifests and if it does manifest then we'll have a discussion at that point around that mechanism.
+[2022-08-23T20:35:49.902Z]	<Transcriber>	Manu_Sporny: Does anyone have an else have any other thoughts on this item on whether or not you want you would like to is this you'd be plus one minus one to defining a lot too.
+[2022-08-23T20:36:21.388Z]	<TallTed>	There's no better contender, and we need something, so...  +1
+[2022-08-23T20:36:26.339Z]	<Transcriber>	Manu_Sporny: Okay so let me go ahead and write up a proposal Den probably Soul Define auth to as an authorization mechanism in the VC API noting that if it is implemented it must be implemented in the way defined in the VC API.
+[2022-08-23T20:36:41.455Z]	<Transcriber>	Manu_Sporny: Note that another authorization mechanism covering delegation might speed find the future.
+[2022-08-23T20:36:44.410Z]	<Manu_Sporny>	PROPOSAL: Define OAuth2 as an authorization mechanism in the VC API noting that if it is implemented it MUST be implemented in the way defined in the VC API. Note that another authorization mechanism covering delegation might be defined in the future.
+[2022-08-23T20:36:45.463Z]	<Transcriber>	Manu_Sporny: And that's it that's the proposal.
+[2022-08-23T20:36:53.128Z]	<Transcriber>	Manu_Sporny: Does anyone want to modify that proposal before we start plus one ting -.
+[2022-08-23T20:37:06.192Z]	<Manu_Sporny>	+1
+[2022-08-23T20:37:06.248Z]	<Dave_Longley>	+1
+[2022-08-23T20:37:07.596Z]	<TallTed>	+1
+[2022-08-23T20:37:09.227Z]	<St-Louis>	+1
+[2022-08-23T20:37:09.802Z]	<Mahmoud>	+1
+[2022-08-23T20:37:11.299Z]	<Transcriber>	Manu_Sporny: You all right go ahead and start voting plus one if you agree - one if you disagree.
+[2022-08-23T20:37:13.501Z]	<Joe_Andrieu>	+1
+[2022-08-23T20:37:29.022Z]	<Transcriber>	Manu_Sporny: I'll hold for about a minute if other people want to think about it plus one minus one.
+[2022-08-23T20:37:33.927Z]	<Kayode_Ezike>	+1
+[2022-08-23T20:37:54.480Z]	<Kayode_Ezike>	In case anyone’s interested in how we implement authorization for credential status endpoint (could potentially be expanded): https://docs.google.com/presentation/d/1UYFcVLYaz8jhmmYM8l43cBg-mtINlxlFMESCbYupjwo
+[2022-08-23T20:38:08.877Z]	<Transcriber>	Manu_Sporny: I'm going to go ahead and resolve this then.
+[2022-08-23T20:38:13.702Z]	<Transcriber>	Manu_Sporny: Oops let me.
+[2022-08-23T20:38:16.666Z]	<Manu_Sporny>	RESOLVED: Define OAuth2 as an authorization mechanism in the VC API noting that if it is implemented it MUST be implemented in the way defined in the VC API. Note that another authorization mechanism covering delegation might be defined in the future.
+[2022-08-23T20:38:40.359Z]	<Transcriber>	Manu_Sporny: All right result Ray that only took us 10 months okay we've got another part of this though in that is as old.
+[2022-08-23T20:39:11.646Z]	<Transcriber>	Manu_Sporny: That is Scopes so one of the things that I saw I think in the Muhammad in the traceability document was that there were some actions kind of described and I think some of the other Scopes I've seen have kind of different formulations so it's it's it's the end point but it's read write for the end point versus issue.
+[2022-08-23T20:39:40.208Z]	<Transcriber>	Manu_Sporny: Verify as the action words so the question you know is would would that create a big problem if if there were read credentials right credentials like read the issuing and point right the issuing endpoint or our people won't verbs more verbs associated with it.
+[2022-08-23T20:40:04.570Z]	<Transcriber>	Manu_Sporny: And then I don't know Longleaf you'd want to talk speak to like why at least our implementation does the read write stuff instead of the verb stuff and then my mood it would be good to hear from you where you feel like the discussion in the traceability cohort is on scope names and valleys go ahead Dave.
+[2022-08-23T20:40:31.870Z]	<Transcriber>	Dave_Longley: Yeah so we were trying to bring what we've learned from the capability space as much as possible to oauth and so that meant coming up with a with a set of verbs and keeping that keeping that minimal for effectively read and write plus the resource name to represent the Scopes when doing a lot with and so that really means you're really specifically targeting the end point that the the scope is.
+[2022-08-23T20:40:37.438Z]	<Transcriber>	Dave_Longley: We also brought the concept of.
+[2022-08-23T20:41:08.349Z]	<Transcriber>	Dave_Longley: Attenuation to those to those Scopes so we have a SAS space solution in it's really important for us that whatever Scopes we come up with will work with this but the idea is you create an issuer instance or verifier instance that resides at some URL and then you can get Scopes that Target that URL either directly giving you full access to go full read or Fulbright or both access to everything on that instance.
+[2022-08-23T20:41:08.645Z]	<Transcriber>	Dave_Longley:  that includes all of the.
+[2022-08-23T20:41:39.347Z]	<Transcriber>	Dave_Longley: API endpoints and then you could attenuate from there or you can you can give give out Scopes that are specific to specific API endpoints off of that instance so maybe you only Grant scope access to write / credentials as opposed to write / credential status or whatever the other mapi and points are and so we wanted to follow a generalized pattern that could apply to all the apis on the same way.
+[2022-08-23T20:41:44.434Z]	<Transcriber>	Dave_Longley: These simple properties that we were looking for.
+[2022-08-23T20:41:53.076Z]	<Transcriber>	Manu_Sporny: Might help the put some examples in to the chat Channel Longley.
+[2022-08-23T20:41:54.011Z]	<Transcriber>	Dave_Longley: Yeah let me let me grab this.
+[2022-08-23T20:42:06.539Z]	<Transcriber>	Joe_Andrieu: Your audio is really good.
+[2022-08-23T20:42:10.813Z]	<Transcriber>	Mahmoud: Please so to give you an idea of what the traceability Scopes look like right now and I'm trying to put up as I'm speaking let me see if I can switch.
+[2022-08-23T20:42:14.152Z]	<Transcriber>	Mahmoud: Is this better or worse.
+[2022-08-23T20:42:15.985Z]	<Transcriber>	Joe_Andrieu: About the same.
+[2022-08-23T20:42:20.749Z]	<Transcriber>	Mahmoud: Is this better for service name.
+[2022-08-23T20:42:27.498Z]	<Transcriber>	Joe_Andrieu: That's great that's a lot better thanks.
+[2022-08-23T20:42:52.169Z]	<Transcriber>	Mahmoud: Okay okay um so I'm trying to find a specific Scopes as I'm speaking but basically the way we've structured the Scopes were close to issue / credential and verify / credential read credential Etc right with the idea that you would like to provide for people as clear.
+[2022-08-23T20:43:24.472Z]	<Transcriber>	Mahmoud: As attenuated of permission as possible right now when we built this we were crystal clear that we were happy to have a much bigger conversation with the entire BC API Group you know as necessary but our idea was this is our best effort this is our thinking and if there are reasons to switch out of it then we're happy to you know explore those right.
+[2022-08-23T20:43:38.922Z]	<Transcriber>	Mahmoud: Idea was we were trying to stick to a we pick the scheme we stuck with it and we're reasonably happy with it but again we're always open to any you know changes that may be necessary.
+[2022-08-23T20:43:46.775Z]	<Manu_Sporny>	q?
+[2022-08-23T20:43:48.850Z]	<Mahmoud>	resolve:dids
+ issue:credentials
+ verify:credentials
+ read:credentials
+ update:credentials
+ prove:presentations
+ verify:presentations
+ submit:presentations
+[2022-08-23T20:43:49.694Z]	<Dave_Longley>	from our implementation... the audience field for the oauth2 token expresses the particular issuer instance and the scope would be like `read:/` <-- read any API on that issuer instance
+[2022-08-23T20:43:54.683Z]	<Transcriber>	Manu_Sporny: That sounds great Muhammad and I think let me check if you only were you able to get those yeah there we go or no.
+[2022-08-23T20:43:57.332Z]	<Transcriber>	Mahmoud: Emojis that's what then.
+[2022-08-23T20:43:57.648Z]	<Dave_Longley>	"read: /"
+[2022-08-23T20:44:08.608Z]	<Transcriber>	Manu_Sporny: That's what you see does they're actually bought some emojis for proof representations so Dave's putting a couple and as well.
+[2022-08-23T20:44:09.649Z]	<Dave_Longley>	and for a more specific permission: "read: /credentials/issue"
+[2022-08-23T20:44:38.234Z]	<Transcriber>	Mahmoud: I think the best way would we to date of you could post on the issue of maybe or something like that because this is going to be very hard to read through chat just like this is what the trace did and this is why this is what I would like to switch or something like that and that way we can easily and it's something that can easily bring back to the Trace Court we can have a conversation about it.
+[2022-08-23T20:44:47.983Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/issues/249
+[2022-08-23T20:44:49.308Z]	<Transcriber>	Manu_Sporny: Yep I'm trying to capture your ones in here I'm trying to capture these in the issue.
+[2022-08-23T20:44:58.963Z]	<Transcriber>	Mahmoud: There's a list there I'm trying to find the normative list right now I'm just struggling of it.
+[2022-08-23T20:45:29.704Z]	<Transcriber>	Manu_Sporny: And then let me just ask the question if push came to shove how difficult would it be to support all of these scopes.
+[2022-08-23T20:45:36.465Z]	<Mahmoud>	https://w3c-ccg.github.io/traceability-interop/draft/#scopes
+[2022-08-23T20:45:45.373Z]	<Transcriber>	Manu_Sporny: I think there's some there's some logic that comes into play with the read write stuff that might not apply to the traceability stuff.
+[2022-08-23T20:45:56.648Z]	<Transcriber>	Mahmoud: Sorry I missed part of it if push comes to shove.
+[2022-08-23T20:46:06.453Z]	<Transcriber>	Manu_Sporny: I'm wondering like is it can we just Implement everything can everyone Implement everything if we needed to like how difficult is that.
+[2022-08-23T20:46:33.725Z]	<Transcriber>	Mahmoud: I think our and we're doing our best to be at minimum one to one with VC API and add more to it I think that's the general ethos of everything that you submitted will come so if it is in the VC API we and it is not like a huge breaking change that will you know end up compromising the API overall then we're happy to implement on the trace I woke up and the traceability and drop site.
+[2022-08-23T20:46:38.897Z]	<Transcriber>	Mahmoud: That's the general effects of the entire row but yeah.
+[2022-08-23T20:47:06.668Z]	<Transcriber>	Manu_Sporny: Yeah so I think like I'm looking at the I haven't actually I haven't put any effort to try to figure out how easy it would be to map these but it's looking like there may be like a fairly straightforward mapping let me put this comment in here at least so like resolved ID's is not something to be C API does that's something the did resolution one does but.
+[2022-08-23T20:47:06.987Z]	<Transcriber>	Manu_Sporny:  who credentials is.
+[2022-08-23T20:47:19.409Z]	<Transcriber>	Manu_Sporny: Sickly a right on the credentials issue and point verify credentials is what's that right Longley on the bench clarification.
+[2022-08-23T20:47:23.724Z]	<Transcriber>	Dave_Longley: Yep on the on the credit / credentials / verify that's yep.
+[2022-08-23T20:47:35.133Z]	<Transcriber>	Manu_Sporny: Yep and then read on the read on the credentials just the raw / credentials in point it's a straight mapping update would be a right but I don't think we have the concept of an update.
+[2022-08-23T20:47:43.980Z]	<Transcriber>	Dave_Longley: This is probably for like the holder API or something and it did that it would just be right on / credentials.
+[2022-08-23T20:47:51.441Z]	<Transcriber>	Manu_Sporny: Okay and then prove would be a right verify presentations would be a right and then submit would be right so.
+[2022-08-23T20:48:00.490Z]	<Transcriber>	Dave_Longley: Yeah with each calling out the path directly so you're doing a direct binding to what to the resource that's going to be hit.
+[2022-08-23T20:48:21.179Z]	<Transcriber>	Manu_Sporny: Yeah okay but so at a high level it sounds like there's probably not a whole lot that can go wrong here if we needed to like if we need you know if traceability folks want and continue doing what they're doing and we defined read right here then it feels like.
+[2022-08-23T20:48:21.408Z]	<Transcriber>	Manu_Sporny:  they would be very.
+[2022-08-23T20:48:30.681Z]	<Transcriber>	Manu_Sporny: Clean mapping and just a couple of if statements required I'm hand-waving clearly but it sounds like.
+[2022-08-23T20:48:39.874Z]	<Transcriber>	Manu_Sporny: Sounds truthy to me at least right now okay so what's the next step here.
+[2022-08-23T20:48:42.967Z]	<Transcriber>	Dave_Longley: I asked him if he if he agreed with that.
+[2022-08-23T20:48:50.898Z]	<Transcriber>	Manu_Sporny: He unfortunately has connection dropped just disappeared like two minutes ago.
+[2022-08-23T20:48:54.906Z]	<Transcriber>	Dave_Longley: Yeah that's unfortunate.
+[2022-08-23T20:48:57.867Z]	<Transcriber>	Manu_Sporny: Okay well maybe if he comes back we can ask.
+[2022-08-23T20:49:02.026Z]	<Mahmoud>	present+
+[2022-08-23T20:49:08.104Z]	<Transcriber>	Manu_Sporny: Okay any anyone out there he is Mom we can you hear us.
+[2022-08-23T20:49:12.570Z]	<Transcriber>	Mahmoud: Yes sorry my laptop crashed.
+[2022-08-23T20:49:17.098Z]	<Transcriber>	Manu_Sporny: That's unfortunate Dave had a question for you.
+[2022-08-23T20:49:45.630Z]	<Transcriber>	Dave_Longley: Yeah well I don't know how much you heard from what Mona was explaining he went down the list of Scopes that you presented there and just did a quick mapping so for an example the issue: credentials would be mapped to write: / credentials / issue so it directly identifies the resource that's going to be hit and it's a right to that endpoint and for verify credentials that would be right: / credential / verify and you can repeat those all the way down the line.
+[2022-08-23T20:49:46.206Z]	<Transcriber>	Dave_Longley: To get to.
+[2022-08-23T20:49:57.874Z]	<Transcriber>	Dave_Longley: It's mapping that we're doing and we were wondering if you thought that those met those mappings were clean and what you what you thought of them and whether you know.
+[2022-08-23T20:50:17.316Z]	<Transcriber>	Mahmoud: Yeah I think these would be clean I think the only thing that I like personally don't understand is why so why would you do that for the verify what what's the advantage of doing a right / Electro / verify over what currently exists.
+[2022-08-23T20:50:22.890Z]	<Transcriber>	Dave_Longley: Well first of all from our from our perspective there was no current to work from.
+[2022-08-23T20:50:25.620Z]	<Transcriber>	Mahmoud: Hi as I currently as in what I'm just kind of crazy yeah.
+[2022-08-23T20:50:51.399Z]	<Transcriber>	Dave_Longley: Traceability yeah so we were trying to keep the vocabulary simple and keep everything generalizable so all we're talking about is we're defining this restful HTTP API that you're the reading to or writing from and so if you want to be able to read a right to a particular end point the scope is going to be read or write as the action and then the endpoint you talking about and that just that creates a full mapping so there's no room for anyone being confused about what those things should map to.
+[2022-08-23T20:51:12.844Z]	<Transcriber>	Mahmoud: Okay that sounds fair enough overall I don't see you I don't think there will be much push back to this I think it's just a matter of Dev work to get it done but I mean that's my personal read on it I can't speak for the rest of them go for it.
+[2022-08-23T20:51:35.275Z]	<Transcriber>	Manu_Sporny: Okay I mean that's that that to me sounds like a good place to start and he like so here's the thing like currently we don't we don't enforce scopes on the test suite and so I think we would wait until you know a good chunk if not everyone has enforced scopes.
+[2022-08-23T20:51:46.039Z]	<Transcriber>	Manu_Sporny: To deploy that and as I'm saying that I'm thinking like well it's really up to each implementer to give us a lot with.
+[2022-08-23T20:51:56.230Z]	<Transcriber>	Manu_Sporny: Tokens for the appropriate Scopes so maybe this is a non-issue in the test Suite I don't know.
+[2022-08-23T20:52:03.235Z]	<Transcriber>	Mahmoud: And then you would say like here is a list of fields for read credentials give me the token that would work for that and I'll just use it.
+[2022-08-23T20:52:04.163Z]	<Transcriber>	Manu_Sporny: Mmm yep exactly.
+[2022-08-23T20:52:12.678Z]	<Transcriber>	Mahmoud: Okay if we do that then do we need to define the Scopes in the spec at all is that the question you're asking.
+[2022-08-23T20:52:17.912Z]	<Transcriber>	Manu_Sporny: Yeah yeah I guess that's the question do we actually need to find.
+[2022-08-23T20:52:47.624Z]	<Transcriber>	Dave_Longley: Yeah I think we want to look at it differently so it is an open question whether or not we need to Define these at all but we want to look at I think is how easy would it be for someone to swap out implementations that they want it to and so if both implementations were using oauth what would have to change and would it you know if all of the scope stuff is all isolated in some way that means they don't have to think about it or care about it then I don't think it really matters.
+[2022-08-23T20:52:48.041Z]	<Transcriber>	Dave_Longley:  but if they do have to care for some.
+[2022-08-23T20:52:55.438Z]	<Transcriber>	Dave_Longley: Something that needs change then we probably want to say these are the ways this is the way you should do the Scopes.
+[2022-08-23T20:53:25.003Z]	<Transcriber>	Manu_Sporny: Okay okay well I think we've at least got some I think the next step here I mean this is ready for PR basically right so ready for PR and we'll raise a Priya PR and then take the discussion there right and in Define this finally okay with that noting that we want to try and end five minutes early to make sure that everyone has time.
+[2022-08-23T20:53:25.256Z]	<Transcriber>	Manu_Sporny:  I'm for their next meeting.
+[2022-08-23T20:53:56.250Z]	<Transcriber>	Manu_Sporny: Thank you everyone for the discussion today next week let's talk about test Suites so Patrick you know we'll get into that discussion next week bit unsure exactly what we'd talk but maybe we'll talk about like what are the goals with the test Suites how are we going to structure it there is a we have been asked to present on a test suite at the verifiable credentials working group at the World Wide Web.
+[2022-08-23T20:54:19.716Z]	<Transcriber>	Manu_Sporny: In early September and so maybe we can use this as an opportunity to kind of talk about how the VC API could be used for testing in the verifiable credentials working group okay with that thank you everyone for the great call we will chat with everyone next week take care.
+
