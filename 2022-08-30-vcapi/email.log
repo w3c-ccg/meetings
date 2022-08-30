@@ -1,0 +1,790 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-08-30-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-08-30-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-08-30
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Aug/0154.html
+Topics:
+  1. Introductions, Relevant Community Updates
+  2. Possible New Time For VC API Calls?
+  3. VC API Test Suite Goals
+  4. VC API Test Suite Design
+  5. VC API Test Suite Status and Roadmap
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Eric Schuh, Manu Sporny, Patrick St-Louis, Joe Andrieu, Logan 
+  Porter, Mike Varley, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Dave Longley, David Chadwick, Kerri Lemoie, 
+  Kayode Ezike, John Henderson, TallTed // Ted Thibodeau Jr (via 
+  iPhone)
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone to the August 30th 2020 
+  to VC API call. I will put our agenda into chat here and there on 
+  the agenda today we will review the doodle poll the new time we 
+  also have introduction.
+Manu Sporny:  Updates in today's basically talking about the VC 
+  API so the verifiable credentials API.
+Manu Sporny:  In the goals design the the status of the suite in 
+  the roadmap and then just a general discussion on what people 
+  would like to see differently you know happening there and then 
+  we might end early or we might try and process some issues so we 
+  all take that as as it comes any other updates or changes to the 
+  agenda before we get started.
+Manu Sporny:  Okay if not let's go ahead and jump into it.
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  Introductions relevant Community updates I think we 
+  all know each other here is there anyone that would like to 
+  introduce or reintroduce themselves.
+Manu Sporny:  Okay any Community updates relevant Community 
+  updates.
+Manu Sporny:  Go ahead Patrick.
+Patrick St-Louis:  Yeah I just wanted to mention that tomorrow 
+  there's an entire of patent presented by in d.c. oh in the hyper 
+  Ledger areas space and as we're going to be hosting a room 
+  helping people sort of Test Mobile Wallet application so how to 
+  use the area's agent test harness to test Mobile Wallet 
+  application and there is a small component about verifiable 
+  credential in this so.
+Patrick St-Louis:   I thought it would be interesting to mention.
+Manu Sporny:  Yeah interesting do you have a link to that that we 
+  could put in the minutes to share with the people.
+Patrick St-Louis:  I will definitely share link during the 
+  meeting I just need to go find it in my emails yeah.
+Manu Sporny:  Okay great thank you in Patrick would you mind 
+  giving us kind of an idea of like what are the goals of this 
+  particular interop Athan interop Fest.
+Patrick St-Louis:  So it's the second interpret on that in this 
+  year's hosting the Austin won in the past there's a few goals so 
+  at the moment a big conversation and the hyper Ledger in the area 
+  space is out of bound connections between agents and there is a 
+  move towards a IP version 2 so AI peas are sort of what defines.
+Patrick St-Louis:  Concepts and Airy space and migrating to this 
+  new VIP allows for more features to be present so it's a way for 
+  vendors and organization to come together and see if they're 
+  updated applications can talk to one another so they will be like 
+  an infrastructure in place they will simulate a scenario with 
+  laboratory offering test results this is going to be a holder 
+  agents.
+Patrick St-Louis:   Verify agents and it's just basically.
+Patrick St-Louis:  Showing up and testing specific rfc's to see 
+  if they can communicate in between every agents there's for more 
+  details I'll give a I can definitely post the links for more 
+  details about specifically which rfc's are the main focus of the 
+  event but it's mostly for the community to come together and test 
+  their limitations.
+Manu Sporny:  Excellent thank you Patrick and yeah looking 
+  forward to that link as well any other relevant Community 
+  updates.
+Patrick St-Louis: 
+  https://wiki.hyperledger.org/display/events/Interoperability+Event
+Manu Sporny:  Okay some of the community updates will cover 
+  during the test Suite goals design roadmap B the only thing that 
+  may be relevant to some people here working with verifiable 
+  credentials let me share my screen in this is a super rough demo 
+  playground no Jason they'll be so the Jason.
+Manu Sporny:   Aldi playground.
+Manu Sporny:  Um has been upgraded to support safe mode in 
+  json-ld J so one of the things when you're creating a verifiable 
+  credential that most json-ld processors used to do was that they 
+  would silently drop information that didn't have a term 
+  definition in signed the stuff that that didn't happen and that's 
+  been a couple of people over the years and so we've introduced at 
+  least in one of the.
+Manu Sporny:  Mode that will warn you when you're trying to use 
+  something that doesn't have a that doesn't have a term defined so 
+  if I go to the options here and see the safe mode here it's set 
+  to default I forget what the default is but if we set safe mode 
+  to True which was what we would expect to be set for most 
+  verifiable credential libraries.
+<dave_longley> the default is "true" for canonicalization
+Manu Sporny:  Forget if the activity streams context has a.
+<dave_longley> (for safe mode)
+Manu Sporny:  Hey vocab setting through well we'll see or yeah it 
+  does what give me let me use a different example here not 
+  schema.org this one if we add an undefined property in here like 
+  Foo bar in the json-ld processor detects that it's going to drop 
+  a property it will now throw an error so this is very programme.
+Manu Sporny:  You know you.
+Manu Sporny:  Exposed in this way in the signing libraries but we 
+  actually do detect it in throw a warning stating that this is an 
+  invalid property in stating that you know it's going to drop the 
+  property go ahead Dave.
+Dave Longley:  Yeah just want to make a quick comment that when 
+  you use the canonized tab on the playground the default for safe 
+  mode is true and canonized as what ends up getting used in 
+  signatures so that with the latest version of the library that 
+  fails it fails what does what's called failing closed it defaults 
+  to safe mode by true setting that to true so you'd have to turn 
+  that off if you wanted to allow unsafe values.
+Manu Sporny:  So in theory if I do food this it's going to throw 
+  an error safe mode validation error.
+Dave Longley:  The other thing to note here is that we'll also 
+  catch relative URLs so if if you're using relative URLs in your 
+  data and you don't have any mapping back to the vocab or at base 
+  and you have a relative URL that will also catch those errors so 
+  one of the most common mistakes people make is they they put at 
+  type or type if they have an alias and they put a value in there 
+  that doesn't actually map.
+Dave Longley:   Up to anything and so.
+Dave Longley:  You can see that at that are happening and you 
+  know you the same thing would happen if you put a capital f for 
+  Foo and no / because it attempts to yeah that when you do that 
+  I'm json-ld it attempts to make it a full URL but since safe mode 
+  will catch that for you now and throw an error.
+Manu Sporny:  Well in any case if this doesn't make any sense to 
+  you it may not affect you but if it does make sense to you you we 
+  are trying to protect developers from accidentally signing data 
+  that they they think they're signing when they're really not okay 
+  so that's json-ld safe mode will make an announcement on that 
+  about that on the mailing list later this week.
+Manu Sporny:   Any other.
+Manu Sporny:  Announcements relevant Community updates.
+
+Topic: Possible New Time For VC API Calls?
+
+Manu Sporny: https://doodle.com/meeting/organize/id/bkZ86z5a
+Manu Sporny:  Okay next up is possible new time for me see API 
+  calls question mark we have a dual Pol out because the number of 
+  people have said that they've wanted to come to this meeting but 
+  it's a bad time so we sent out a pole and we've gotten a lot of 
+  responses so far which is great the not sag.
+Manu Sporny:  Part of it is there.
+Manu Sporny:  UPS in everyone's schedule and it's not clear how 
+  many of these people are actually going to be able to show up.
+Manu Sporny:  We have some good kind of times so I think what 
+  we're going to try and do because you know no no time choosing 
+  processes is completely Fair we're probably going to optimize for 
+  implementers to get as many implementers on this call as possible 
+  implementers and potential implementers so they will get first 
+  priority and then second priority is potentially implementers and 
+  in all other people right so we're trying to just get as many 
+  people on these calls has as we can.
+Manu Sporny:   We do have some times that are looking pretty.
+Manu Sporny:  It's read 3 to 4 p.m. so an hour before this time 
+  maybe in any case go ahead and get your you know thoughts in on 
+  their understanding that it's just really hard to find good times 
+  for everyone any questions on the new time or any of that.
+Manu Sporny:  The other heads up I think associated with the time 
+  is this month sorry in September it's going to be a heavy 
+  conference season for everyone and travel season for everyone w3c 
+  TPAC is the second week of September we will probably cancel this 
+  call during the second week and then rebooting the web of trust 
+  is the last week in September and so we will probably cancel this 
+  call.
+Manu Sporny:   All then as well because a number of us are going 
+  to be.
+Manu Sporny:  Okay anything else on scheduling timing any of that 
+  stuff.
+Manu Sporny:  Oh it's it's well it's Eastern Standard but I think 
+  you can set your doodle preferences so it'll put it in your local 
+  time time zone.
+Manu Sporny:  Okay yeah it's it's yeah unfortunately looked it's 
+  complicated right yeah it's not it's not supposed to be in any 
+  particular time zone people are just supposed to pick it 
+  typically what we've noticed over the past 15-20 years is that 
+  you either have a lot of asia-pacific folks in a meeting like the 
+  internet of things and web of things stuff and then you tend to 
+  have it in in daytime.
+Manu Sporny:   I'm in Asia Pacific region.
+Manu Sporny:  Or you end up having something that's pretty 
+  heavily focused Western world's so it's East Coast 10 a.m. 11 
+  a.m. so year up in the u.s. meats and there is very rarely a time 
+  that you know well it's just not a time that works for everyone 
+  on the in the globe so we'll do our best we I think we optimized 
+  to try and make sure that you know matter could participate in 
+  these calls in we're going to you know.
+Manu Sporny:   Continue to see if we can we can do that.
+Manu Sporny:  The problem okay anything else on the times before 
+  we move on.
+
+Topic: VC API Test Suite Goals
+
+Manu Sporny:  Okay next up is BC API test Suite goals.
+Manu Sporny:  I'm going to I'm going to start off please other 
+  people join in because this is supposed to be the people's test 
+  Suite right our Collective test suite and so if you feel like 
+  some of the goals are misguided or they should be changed or any 
+  part of this you know please queue up and speak up so that we can 
+  figure out if there's a way for us to be inclusive about those 
+  requirements so I'm going to basically.
+Manu Sporny:  What's been driving the test Suite the VC API test 
+  Suite one that this groups working on to date and then you know 
+  we can maybe can compare contrast with traceability test suite 
+  and then and then go from there okay so.
+Manu Sporny:   The first.
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api-test-suite-implementations#usage
+Manu Sporny:  Link here we go ahead and put this in here in the 
+  chat channel one of the things that we're trying to do is just 
+  make it make it possible to test the VC API and the surrounding 
+  ecosystem in a modular way so basically we're trying to separate 
+  like the issuing test the things that just test the issuing end.
+Manu Sporny:   Point in the options that you can set.
+Manu Sporny:  Endpoint we're trying to test those in isolation 
+  right as one of the modular test Suites.
+Manu Sporny:  Another modular test Suite would for example test 
+  of very specific crypto sweet so like the Json web signature 
+  stuff or the BBS plus stuff or ecdsa or ed2 55:19 signature 2020 
+  those are examples of modular test Suites that just test one 
+  crypto sweet then we have modular feature test Suites so things 
+  like credential refresh.
+Manu Sporny:  Artists list 2021 things that basically test a 
+  specific spec right a specific you know thing in the goal here or 
+  at least the vision with this set of test Suites is that if we 
+  get enough test Suites together we will be able to put together 
+  some sort of interactive interoperability dashboard so something 
+  that looks like can I use.com so if I go to like.
+Manu Sporny:   Like you know this thing.
+Manu Sporny:  This is a wrap up of just like thousands of tests 
+  that are run for a specific feature for browsers so this cannot 
+  use.com is something that web developers use to figure out if 
+  it's safe to use a particular feature or not will it be if I use 
+  this feature in my web page will it be supported across all the 
+  browsers so what we're trying to do is we're trying to build this 
+  kind of thing for the ecosystem driven off of the VCA.
+Manu Sporny:  So what you can see here is Through Time different 
+  versions have different levels of support like for ecmascript 
+  2015 yes 6 Chrome versions for through 20 didn't supported and 
+  then there was partial support from verses 21 through 50 and then 
+  finally at version 51 through 100 3 it got you know really good 
+  support with little notes like so it doesn't support tail call 
+  right this little to here that's probably you can't see.
+Manu Sporny:   See but they're notes here for you know how 
+  things.
+Manu Sporny:  These sorts of things help developers figure out 
+  what they can Implement in they also can help executive teams 
+  figure out what kind of product you know roadmap things they 
+  should they should contemplate you know has the as the years roll 
+  on Patrick go ahead.
+Patrick St-Louis:  My question around for here we have a case you 
+  want to test an implementation against feature specification is 
+  there a concept about how to test an implementation against 
+  another implementation on the line let's say a company a has an 
+  issuer and Company B has holder company says a verifier are you 
+  just going to take for granted that.
+Patrick St-Louis:   That since they all.
+Patrick St-Louis:  Towards the specific features they should be 
+  interpretable with one another or do you consider down the line 
+  having a sort of a flow driven test had added to these sweets 
+  with one implementation against another.
+Manu Sporny:  That is an excellent question in I'm going to 
+  fast-forward really quickly and I haven't even looked at this 
+  part of the test Suite well no we don't do it there we do it 
+  somewhere yes the the short answer is yes there will be an N by n 
+  Matrix of one issuer calling another verifier to verify right in 
+  that's one of the things that the traceability folks are focusing 
+  on right now which is can you do workflows full full workflows so 
+  the short answer.
+Manu Sporny:   ER is yes we are contemplating.
+Manu Sporny:  For example the very simplest first workflow is 
+  something like did auth so did authentications defined in the in 
+  the BPA BPA R-Spec we will end up having a test Suite very 
+  shortly that does that did our thing and then the next thing is 
+  like okay well can you did off and then can they can the the 
+  issuer ask for a credential you deliver the credential and then 
+  they ask for another credential and you delivered that and then 
+  finally they give you the final verifiable.
+Manu Sporny:   Credential so yes absolutely you know workflow.
+Manu Sporny:  Exchange flows are contemplated in the future.
+Patrick St-Louis:  Okay interesting are you familiar with the 
+  area Center probability information page.
+Patrick St-Louis: https://aries-interop.info/
+Manu Sporny:  Not no not deeply so if you could provide that that 
+  would be.
+Manu Sporny:  Let It Go.
+Patrick St-Louis:  It can give a rough idea so it's a sort of 
+  Matrix towards all the different implementation so they respond 
+  different agents you know and then they test each agents against 
+  one another for given rfc's and at the end they give like a 
+  compatibility Matrix of different features and then if you go on 
+  the left you have each implementation on their own.
+Patrick St-Louis:  Areas like there's the pet python.
+Patrick St-Louis:  I work you know there's more popular ones and 
+  then you can dive into the details a lot deeper but I'm assuming 
+  is something a bit similar to that to you you want to do or.
+Manu Sporny:  Maybe I don't know if it's someone with more of a 
+  familiarity with the Aries interop you know thing can look at it 
+  at a high level I'm looking at this and I'm not seeing features 
+  tested individually but maybe that's.
+Manu Sporny:  Yeah so these are workflows being tested not 
+  necessarily features like jewelry first.
+Patrick St-Louis:  Yeah this is very much one implementation 
+  playing a specific role in the interaction.
+Manu Sporny:  Yeah can you're saying this is the interrupt Matrix 
+  like occupy against Occupy and if J against find e for example.
+Patrick St-Louis:  Yeah and it's so they're based on the.
+Patrick St-Louis: https://allure.vonx.io/
+Patrick St-Louis:  One second here so if you have a look so the 
+  user as a reporter its Allure of reporter so when they run the 
+  test the use this other reporter in this submit the results at 
+  this endpoint there and if you click on the left you can find all 
+  these these projects and how they generate that Matrix page is 
+  the query the API of this sort of yeah yeah.
+Patrick St-Louis:   Just need to click on the.
+Manu Sporny:  Yeah here we go.
+Patrick St-Louis:  Hold on a second.
+Manu Sporny:  Here we go.
+Patrick St-Louis:  So at the end of this sort of query so this 
+  sort of Allure of Docker service there's an API available that 
+  you can go query the results of every project and it's they have 
+  like sort of script that goes query certain and points and that's 
+  how they generate the interrupt page so the here it's a bit more 
+  in detail I see in your Suite.
+Patrick St-Louis:  I'd like a custom reporter like.
+Patrick St-Louis:  You see a proprietary reporter.
+Manu Sporny:  Yes that's one of the ways it can be rendered and 
+  we'll get to that here in a little bit and looking look at how 
+  that's done.
+Manu Sporny:  Okay but this is very very helpful so I think one 
+  of the differences I'm seeing here is that it's not clear which 
+  features are being tested and which parts of each sex being 
+  tested in which you know specific a IP is being supported other 
+  than the whole AIP right yep yeah yeah yeah so so this is good I 
+  mean we can we can look at this and compare contrast and figure 
+  out you know what's missing.
+Manu Sporny:   Missing from the VC API test.
+Manu Sporny:  Useful to have you know there as well.
+Manu Sporny:  Okay back to the goals though that's I think this 
+  is kind of where we want to end up with the ability to drill down 
+  so some variation of the area's interrupt test and the can I 
+  use.com site and in and the ability to really drill down into 
+  very specific test to see where exactly you're failing and where 
+  you're passing and things of that nature.
+Manu Sporny:   Any questions on the go.
+Manu Sporny:  Or does anyone else want to speak to other goals we 
+  might want to have.
+Manu Sporny:  Go ahead bad.
+Patrick St-Louis:  Sorry I have another question do you intend 
+  these test Suites to be available as tools for individual to test 
+  their only application where it's more to offer sort of represent 
+  Erie about current implementation and their status.
+Manu Sporny:  Oh I don't know if I understand the question.
+Patrick St-Louis:  Because right now like when I go into test 
+  Suite I can run the test suite and it's going to copy the VC API 
+  implementation repo and run the test against all those 
+  implementation but what if I'm an individual and I want to use 
+  this this sweet and preparation of some assessment was that the 
+  intended purpose of this test Suites okay.
+Manu Sporny:  You can absolutely do that like we have people that 
+  download and run these tests by themselves on their own software 
+  or other people software one of the things we were trying to do 
+  is just not require people to have to do that this this these 
+  test Suites run on a weekly basis and we're probably going to 
+  ratchet them down to run on a nightly basis so you will be able 
+  to see whether or not certain implementers you know support.
+Manu Sporny:  On a day-by-day basis.
+Manu Sporny:  So you can use that you can use the test Suites and 
+  Target your own systems with them like if you have an internal 
+  system and you don't want to make it publicly known that you have 
+  an internal system you can use it to test the internal systems 
+  but what we're really trying to do is generate visibility for 
+  people that need to use these systems to see which vendors are 
+  compliant and which ones are not effectively.
+Patrick St-Louis:  Okay so it's sort of like a to say French we 
+  say a deacon Technologic like a showcase for available in 
+  transition.
+Manu Sporny:  Yeah that's right yep just like this is you know 
+  that for web browsers so you have all the web browser kind of 
+  vendors up at the top and then you can see you know how many of 
+  them support es6 for example right and they're you know they're 
+  thousands of features that are covered here like how many of them 
+  support web transport right we can see that web transport isn't 
+  doing that great right now except in Chrome and.
+Manu Sporny:   Opera and Edge.
+Manu Sporny:  So now it's not the time to you know put web 
+  transport into production for example.
+Manu Sporny:  Okay any other questions concerns about the goals 
+  before we look into kind of how it's designed.
+Manu Sporny:  All right so real quick you see API test Suite 
+  design.
+
+Topic: VC API Test Suite Design
+
+Manu Sporny: 
+  https://github.com/digitalbazaar/mocha-w3c-interop-reporter
+Manu Sporny:  And I'll put these two links into the chat 
+  fundamentally.
+Manu Sporny:  What we trying to also do is create something that 
+  can be used in the working groups in like the verifiable 
+  credentials working group and in well yeah the in the VC working 
+  group we've got the 20 were coming up and it is a requirement w3c 
+  that you test every normative feature in the specification to 
+  exit to get to a global standard in so at some point we're going 
+  to have to write tests for the new.
+Manu Sporny:   Data model the new data Integrity stuff.
+Manu Sporny:  And that can be a very time-consuming and expensive 
+  process and so if we have something in place that allows us to 
+  test those things well before we need to go to Canada Trek or 
+  recommendation at w3c the better off we are right we can we can 
+  start demonstrating that these things that we're talking about in 
+  the working group are actually implemented multiple people 
+  support them the way you achieve that.
+Manu Sporny:   Is you tend to you generate.
+Manu Sporny:  And let me use an example here we see API it sure 
+  well I wonder if we have the VC test Suite in the past this was 
+  for verifiable credentials 10 we end up generating something that 
+  looks like this right so we take every single normative statement 
+  in the specification and we test it for a positive test and a 
+  negative test to make sure that people have actually implemented 
+  the specification so this.
+Manu Sporny:   Is test on the.
+Manu Sporny:  Patience so we test the basic document features and 
+  then we test the credential status features and then we test link 
+  data proves and credential scheme and so on and so forth right 
+  the problem with this of course is that we ran this test suite at 
+  the very end of the working group this is from 30th October 20 21 
+  and we never really ran it after that was so so you don't 
+  actually know what people are how they do today unless you go and 
+  you run.
+Manu Sporny:   The test Suite your.
+Manu Sporny:  One of the things with the design of the tests we 
+  did is we wanted to be able to run it on a nightly basis against 
+  systems that people were claiming our their latest you know 
+  greatest you know QA version at the at the at the very least 
+  Patrick please.
+Patrick St-Louis:  Is this this sweet still relevant the VC data 
+  model test Suite or is it slowly moving away to the VC API.
+Manu Sporny:  That's an excellent question I would argue in this 
+  is debatable that it's not relevant anymore because we haven't 
+  run it in a year and a half we could run it again but we would 
+  never be able to get the type of coverage we're starting to see 
+  with the VC API so I think you know what what what some of us are 
+  going to propose at the upcoming w3c TPAC meeting is that we use 
+  the VC API to run the tests so we.
+Manu Sporny:   I will create a feature specific test suite for.
+Manu Sporny:  Verifiable credential data model that will run 
+  these tests so we'll run the same tests but the mechanism will 
+  use to run the test is not asking each developer to run it on 
+  their machine generated Json file upload the Json file we will 
+  just basically say put up an endpoint that we can call on a 
+  nightly weekly basis and it will run all of these tests against 
+  the credential that you're issuing to make sure that you are a 
+  showing a valid verifiable.
+Manu Sporny:  Answer your question.
+Patrick St-Louis:  Okay unfortunately yes.
+Manu Sporny:  You can still run this and it should still work but 
+  because we're working going into verifiable credential 20 data 
+  models face it'll be it'll have to be revised you can still look 
+  so go ahead.
+Patrick St-Louis:  It's a no it's just like I said the lab like 
+  we have clients coming in and you know they want to be not 
+  certified but they want to have like some sort of stamp than are 
+  compliant with this standard and that standard so we looked 
+  around what test Suites are available so let's say we have a 
+  client engagement and they want to be like sort of WT CE 
+  certified without going public just yet for example so the moment 
+  we sort of look at which test Suites are available and then we 
+  run the.
+Patrick St-Louis:  As we give them a report we say yeah it looks 
+  good so.
+Patrick St-Louis:  You see like running this.
+Patrick St-Louis:  Test does it have some sort of validity in the 
+  market.
+Manu Sporny:  When I say that I say that having been being the 
+  person that wrote a good chunk of the test Suite.
+Manu Sporny:  Yeah so you know you can and you can get a gut 
+  reaction like if you have all kinds of red x's on your 
+  implementation there's a problem there but no I think we need an 
+  updated test Suite which is why we are suggesting let's let's use 
+  the verifiable credential API because it gives us repeatability 
+  and then the only thing that needs to be done is the just these 
+  tests need to be ported over which are is being done right now 
+  right so I'd say.
+Manu Sporny:  About another four months we'll have something 
+  where you could run it against a certain infrastructure and get a 
+  good idea on whether or not their conformant.
+Manu Sporny:  So it's coming if the working group agrees with the 
+  direction right yep and if they don't it's someone's going to 
+  have to propose something better okay so so we have this own the 
+  reason I went here is w3c expects these reports to be generated 
+  in a certain fashion but clearly this is not the only way that 
+  you can report how a test Suites.
+Manu Sporny:   Doing the move.
+Manu Sporny:  Reporter like this is another way right that Aries 
+  is providing this is yet another way of showing how the tests are 
+  running so they're different rendering things what we're trying 
+  to do is get the test Suites to get into a system where we can 
+  spit out data and then the data can be processed by test Suite 
+  result renders of which there are many so that's another part of 
+  this is this is one such rendering but it's not the only 
+  rendering.
+Manu Sporny:   And should not be the only rendering the test 
+  Suite.
+Patrick St-Louis:  Yeah if you showed a lot of page again and you 
+  just click on the sweets show all.
+Patrick St-Louis:  Right there yeah so there you get a bit more 
+  details about specific so I think this gets more into.
+Manu Sporny:  Yep yeah and then the difference here I think is 
+  that I don't know if these are actually tied back to the 
+  specification with w3c you're required to test the normative 
+  statements that's what tells you whether or not it's a it's an 
+  approved by the working group test or not do you know how that's 
+  here work or these directly from specifications or is this like 
+  someone decided that this is a good test.
+Patrick St-Louis: https://github.com/hyperledger/aries-rfcs
+Patrick St-Louis:  I don't mean to be a discussion in itself but 
+  basically the there's rfcs that go through life cycle so this is 
+  the page where they publish all the rfc's their request for 
+  comments and then in the Ares agent test our Nest there's 
+  different tags correlating to the rfc's themselves.
+Patrick St-Louis:  So if you go.
+Patrick St-Louis:  The features or the concepts you can add 
+  specific ifc's and the test harness their specific tags that 
+  going to mention while if you want to run all the tests that are 
+  about accepted or if C or if it's a work in progress or depending 
+  on the maturity of the RFC you can test these specific test so 
+  it's a behavior driven test Suite so it works.
+Patrick St-Louis:   Us with believe it's.
+Patrick St-Louis:  Behave it's a python it's written in Python.
+Patrick St-Louis:  And yeah it's a there's a lot to it.
+Patrick St-Louis:  But I'd be happy to talk about this maybe 
+  another time.
+Manu Sporny:  Okay okay yeah so but at the high level what we're 
+  trying to get to the design is designed around making sure that 
+  we've got something that's agreed by the working group officially 
+  testable on the normative statements in repeatable on a 
+  consistent basis with exports to different data formats that can 
+  be rendered in different ways fundamentally you know I think 
+  that's that's what we're trying to get to.
+Manu Sporny:   To as an industry.
+Manu Sporny:  Okay so that's you know about design the the 
+  there's a mocha w3c interop reporter you can generate other kind 
+  of plugins to render it in different ways and then we have this 
+  implementations directory which is where implementers come in and 
+  create pull requests for different infrastructure right and so if 
+  we look at like one of the most recent ones is measure I owe this 
+  is where they list their oath to.
+Manu Sporny:   To credential.
+Manu Sporny:  And of course we don't store the secrets and clear 
+  text those are protected secrets we have you know they're issuer 
+  and points that they allow in then the tags they can tag 
+  different ones with different things like this endpoint supports 
+  the Edwards curve 2018 signature the verifiers you know this says 
+  the tag say this is an oauth2 endpoint it supports the VC API.
+Manu Sporny:   And then the company names measure.
+Manu Sporny:  Easy so I think measure is our most recent 
+  integrate T it took a day and a half for them to integrate that 
+  tops and it's mostly because we had to like debug some of the 
+  oauth tokens that you know the oauth2 stuff wasn't happening 
+  appropriately so we had to look into why that was but it's meant 
+  to be fairly easy and once you list your implementation here 
+  it'll work off of all you know all of the different feature test 
+  Suites that.
+Manu Sporny:   That that exist.
+Manu Sporny:  So that's design next item up or any questions on 
+  design or how we're going to get into individual test Suites now 
+  any questions on design before we get into individual test 
+  Suites.
+
+Topic: VC API Test Suite Status and Roadmap
+
+Manu Sporny: https://w3c-ccg.github.io/vc-api-issuer-test-suite/
+Manu Sporny:  Okay so individual test Suites I'm going to just 
+  dump all these links into RC there in I will open all of them.
+Manu Sporny:  Bit by bit so at presents.
+Manu Sporny:  This is the latest run of the issuer test we'd so 
+  this this test Suite remember these are modular this only tests 
+  issuance that's the issuer API endpoint there so it's one end 
+  point and adjust tests the options that you send to that endpoint 
+  in that it actually generates something useful that comes back so 
+  the tests are really really simple here and as you can see we've 
+  got six one two three four five six.
+Manu Sporny:  Implementations listed so far with another.
+Manu Sporny:  On the way that we know of the.
+Manu Sporny:  You know a check mark means that they pass the test 
+  so for example this just texts check test to make sure that if 
+  you give it a valid credential the issue with valid options that 
+  it'll issue something and that's it that's all it all it does 
+  right and if you go over you hover over here you can see why 
+  certain implementations are failing right so at least it gives 
+  you data it may be inscrutable data but.
+Manu Sporny:   In this case we can see.
+Manu Sporny:  At this implementer has made the credential subject 
+  a text string which is a violation of the specification so that's 
+  why this one's failing it's not an object it's texturing in in 
+  that's feedback right that's just one test and then there are 
+  other things that they pass like the request body must have a 
+  property of credential that's that's the request of the issuance 
+  and point the response must.
+Manu Sporny:   That context defined that must be in a.
+Manu Sporny:  That must include only strings that you know the 
+  credential must have a type property that must be an array and so 
+  on and so forth right and again this is just testing some basic 
+  stuff it's not testing for example credential reissuance it's not 
+  testing revocation it's not testing the digital signature that's 
+  on the credential itself and so on and so forth right.
+Manu Sporny:  Patrick please go ahead.
+Patrick St-Louis:  What about the other endpoint specifying and 
+  the DC API specification sources like their credential status and 
+  point which is meant to change the status of the credential is 
+  that planning to be included in this test later or is it limited 
+  to the credential issue and point.
+Manu Sporny:  Yeah excellent question this is limited to the 
+  credential issue and point that's it. Right and so the the 
+  credential status in point will be a different modular test suite 
+  and these things are fairly easy to put together but that's 
+  that's a different test Suite it'll have different tests 
+  different normative statements in here that's tested so for 
+  example like this one is the verifier endpoint in the only thing 
+  this test is the verify and point in any options that you pass.
+Manu Sporny:   Stew it in.
+Manu Sporny:  Checks to make sure that invalid credentials will 
+  not verify right so there are all these tests that are done here 
+  it must not verify if the context is not an array must not verify 
+  if the items are not strings it must not verify if and so on and 
+  so forth right and then we've got a couple of failures here where 
+  the verification should have failed but it didn't for some reason 
+  right.
+Manu Sporny:  So this is another endpoint credential status will 
+  be another endpoint the exchanges stuff will be another sorry 
+  another test Suite go ahead Patrick.
+Patrick St-Louis:  I ran it a few times in the so the Mavs net 
+  there's ever that's gets reported and I had the same error on my 
+  test and it's a very strange error message so I don't know this 
+  is the right place to discuss that maybe open an issue but it 
+  says message to not exist and I'm not too sure.
+Manu Sporny:  You may want to raise an issue on the test Suite in 
+  someone like this one Tachi might get back to you to talk through 
+  like to look at why it's failing right one of the other things 
+  that might be good is if you have an endpoint go ahead and submit 
+  your implementation so that we can start running it so that other 
+  developers can kind of try and debug why that you know what it's 
+  getting back from the end point and what it's expecting to get 
+  get back and so on and so forth.
+Manu Sporny:   Okay but yeah it's.
+Manu Sporny:  Of them already it's like this one's just 
+  inscrutable like who knows what's going on here right and so 
+  we're going to try and improve the error reporting here.
+Manu Sporny:  Yeah I think that's that's you know we have to 
+  improve the airport in here right this is you can't you have no 
+  idea what's going on here.
+Manu Sporny:  But fundamentally you know these are / in points 
+  modular tests that test the specific the specification itself 
+  right we also have other modular test Suites for testing things 
+  like digital signature so this is specifically a cryptography 
+  sweet test for the Ed to 55:19 Signature 2020 test Suite we've 
+  got you know it tests the issuer side of this it tests the 
+  verifier will hold on.
+Manu Sporny:   On it tested at the data Integrity level.
+Manu Sporny:  Meaning the data Integrity spec level and then it 
+  tested at the specific crypto Suite level so it tests to make 
+  sure that you know the byte ranges are proper in the valid you 
+  know a valid signature verifies has as valid and an invalid 
+  signature does not verify.
+Manu Sporny:  Make sure that you're throwing certain errors like 
+  malformed errors if you have a mouth Forum signature same thing 
+  it checks to make sure that the proper data set canonicalization 
+  algorithm is run and here's the interop here's the N by n Matrix 
+  Patrick that you asked about before right so this is if one 
+  person issues a credential with this signature on it can the 
+  other systems verify.
+Manu Sporny:   It right.
+Manu Sporny:  We see these vendors are interoperable but these 
+  ones are not necessarily.
+Manu Sporny:  That makes sense.
+Patrick St-Louis:  Yeah yes it does a lot so that's what the 
+  issuer name environment variable is for it basically decides 
+  which issuer is going to issue the credential to verify.
+Manu Sporny:  Well it'll do an N by n so any it'll run all of the 
+  implementations against all the other implementations for this 
+  specific feature.
+Manu Sporny:  So for the Edwards curve signature it'll have one 
+  and issue it and another and verify it.
+Manu Sporny:  It'll do an end by in test against all of them.
+Manu Sporny:  And I think the reason these folks are not passing 
+  it as they don't support the Edwards curve signature but for some 
+  reason they're included in the in the tests will have to look 
+  into that anyway this is basically to show that we are doing in 
+  by in testing as well here and then finally we're using the same 
+  infrastructure to do did method testing as well right and so this 
+  is very early days it has nothing to.
+Manu Sporny:   To do with the VC API but is kind of a day.
+Manu Sporny:  Early modular infrastructure that can be used 
+  across.
+Manu Sporny:  Many different types of VC did you know ecosystem 
+  tests and they're more of these modular test Suites on the way 
+  these are just the ones that you know we feel comfortable sharing 
+  you know at this time there are ones that are we're working on 
+  for credential status so revocation suspension and they're also 
+  ones that were working on for credential refresh.
+Manu Sporny:   And then they'll probably.
+Manu Sporny:  DEC 20 2014 just like did authentication for 
+  example.
+Kerri Lemoie: :+1:
+Manu Sporny:  They will of course be ones that are very specific 
+  to certain types of credentials and certain type of credential 
+  flows like maybe carry we might want to talk about one for the 
+  jff plugfest or some kind of Workforce credentialing flow or 
+  something like that the sky's the limit.
+Manu Sporny:  That's that's primarily it any any other questions 
+  or concerns around kind of the test Suite it status kind of 
+  roadmap where we're going with it what we're trying to achieve.
+Patrick St-Louis:  This is very interesting thank you.
+Manu Sporny:  No problem thanks for all the good commentary and 
+  questions.
+Patrick St-Louis:  What kind of help how's it like I do you are 
+  you looking for to help for this this is obviously being an open 
+  source program are you open to contributions.
+Manu Sporny:  So absolutely yeah I mean we'd love help on 
+  anything in here so if anyone can see anything to improve here I 
+  think the biggest help we may need is creation of new test Suites 
+  for things that people want to test right so these are set up so 
+  that you should be able to copy the test Suite just the base 
+  template for it rip out all of the tests and put new tests in 
+  right so if you wanted to.
+Manu Sporny:   To test a different type of crypto sweet like.
+Manu Sporny:  Your signatures or you know SEC ecdsa signatures we 
+  need test Suites for that PC 20 data model will need test Suites 
+  you know for that so yeah Patrick if there's some some place that 
+  you'd like to help we have no shortage of work that needs to be 
+  done on these.
+Patrick St-Louis:  Because one of our project we want to build 
+  this sort of interpretability bench you know that's sort of the 
+  generic term and so far like the Aries agent test harness and the 
+  test Suites of the liberal trees here the two most concrete sort 
+  of.
+Patrick St-Louis:  And we want to.
+Patrick St-Louis:  Width and I know we are looking to hire a test 
+  that the mation developer in the we certainly might be interested 
+  in making some sort of contribution at some point.
+Manu Sporny:  Yeah please do it would be it would be very welcome 
+  so you happy to talk more I mean if you want to put aside you 
+  know telecon time to talk about that or just you know work 
+  through things and get Hub issues we'd love to love to chat about 
+  that.
+Patrick St-Louis:  Is there a channel for these type of 
+  conversation or these meetings are the only platform for this.
+Manu Sporny:  So there's an IRC channel the GitHub issue tracker 
+  in the credentials community group mailing list or probably the 
+  best places to have a conversation.
+Patrick St-Louis:  Perfect thank you.
+Manu Sporny:  So for synchronous communication it's this these 
+  calls for asynchronous communication that's throw around ideas 
+  it's the credentials community group mailing list and then if for 
+  very specific targeted conversations GitHub issues or probably 
+  the best.
+Manu Sporny:  With that and because we want to try and stop 
+  before the top of the hour I think that's the call for today any 
+  last words before we end the call.
+<kerri_lemoie> Appreciate this!
+Manu Sporny:  Okay thanks everyone we will get back to issue 
+  processing next week during next week's call and then the 
+  following week we will be skipping the call because of the w3c 
+  technical plenary in Vancouver okay thanks everyone have a great 
+  rest of the week take care bye.
