@@ -1,0 +1,549 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-09-06-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-09-06-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2022-09-06
+
+Agenda:
+  https://github.com/w3c-ccg/traceability-interop/AGENDA.md
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Chris Abernethy, Benjamin Collins, nis, Vivien, Russell 
+  Hofvendahl (mesur.io), Orie Steele, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com)
+
+Our Robot Overlords are scribing.
+Benjamin_Collins: I think I think I did it last week so I'd like 
+  to claim claim immunity as possible if we want to.
+Chris_Abernethy: I can I can publish the notes that's no problem.
+<benjamin_collins> This meeting is held by voice over Jitsi at 
+  the above link, and covers Pull Requests and Issues on items 
+  related to the use of various CCG projects related to 
+  Traceability and the Supply Chain.
+https://github.com/w3c-ccg/traceability-interop/pull/366
+<benjamin_collins> Starting with interop issues
+<benjamin_collins> starting interop PR's
+Benjamin_Collins: Oh yeah all right I'm just a little bit since 
+  it's not making up for that that's what I'm doing.
+Chris_Abernethy: Yeah so this is a PR in the purpose of this is 
+  to clarify the request body for credential status requests the 
+  existing schema indicated that there was a credential ID which is 
+  a string and a status which was an array of objects that contains 
+  type and status but there was no definition of what some of the 
+  possible values are for those or which of these fields are our 
+  properties are required.
+Chris_Abernethy: Define that so it made sense to modify our 
+  schema to incorporate some of those changes namely adding some 
+  required fields and producing some values for the credential 
+  status type and Status values.
+https://github.com/w3c-ccg/traceability-interop/pull/370
+Chris_Abernethy: I don't believe Ted is here today.
+https://github.com/w3c-ccg/traceability-interop/pull/373
+Chris_Abernethy: This one is mine so this is a request to change 
+  the schema for the credential note item and right now we have a 
+  we are allowing both string and object with ID for credential 
+  subject but.
+Chris_Abernethy: We wanted to restore we want to restrict this so 
+  that it's just credential with ID no string.
+Orie Steele:  Just a comment about the normative requirements of 
+  the credential subject field ID is optional there so it's really 
+  just credential subject should be an object whether there's 
+  properties true.
+Chris_Abernethy: Yet you're absolutely correct I misspoke on the 
+  requirement.
+Chris_Abernethy: And I believe the pull request includes out as 
+  an optional item.
+Chris_Abernethy: And this also includes various example updates 
+  in modification to the conformance test as appropriate for this 
+  change.
+Chris_Abernethy: I'm happy too yeah paying some folks if we don't 
+  do this we're not in line with the VC data model so I think it's 
+  important so already I ping you officially verbally and I'll ping 
+  Mike and mood as well.
+Orie Steele:  What's the question.
+Chris_Abernethy: Whether or not we should merge this.
+Orie Steele:  Doesn't seem like it has a required field so it 
+  seems like it should be merged.
+https://github.com/w3c-ccg/traceability-interop/pull/375
+Chris_Abernethy: This is another yeah this is another one of mine 
+  this is another VC data model change the proof property for 
+  embedded when the proof is embedded that has to be present if 
+  it's an external proof like a VC J WT where the proof is part of 
+  the encapsulating object and it doesn't but that's that's not 
+  what this particular spec item represents there's a separate open 
+  API spec item for VC J WT so in this.
+Chris_Abernethy: Scenario proof should always be required.
+Chris_Abernethy: And I did update that folder name as you pointed 
+  out in this thanks for catching that.
+Chris_Abernethy: Let me do that after the call and as long as 
+  everyone is okay with me merging after I resolve conflicts I can 
+  I can do that as well.
+https://github.com/w3c-ccg/traceability-vocab/pull/552
+https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+https://github.com/w3c-ccg/traceability-interop/issues/343
+Chris_Abernethy: So this is an issue that is a placeholder to 
+  change the script that updates the embedded conformance schema 
+  items in the conformance test Suite that's used to verify the 
+  responses right now when a spec includes an example that's also 
+  included and it doesn't need to be it just adds to bloat in the 
+  postman sweet so that can be.
+Chris_Abernethy: Have not had a chance to work on this.
+<orie> Excellent... that conformance is .... to the spec.
+Chris_Abernethy: So when we run the postman conformance sweet one 
+  of the things that it does is for each request it's making it 
+  takes the response and verifies it against the compiled open API 
+  spec so that we don't have to you know individually verify each 
+  element whether it's there or not we just run it through a their 
+  fire and in order to do that it needs access to those items so 
+  what we do is whenever the spec is.
+Chris_Abernethy: We compile it into Json and then we extract the 
+  relevant portions and put them in two variables in the postman 
+  Suite so that they can be referenced in used for that 
+  verification purpose in cases where the spec includes an example 
+  that is also included but not used in this case this isn't 
+  something that's displayed to users so examples are not helpful 
+  there this is just used for verification of responses from the 
+  system under test.
+Chris_Abernethy: I'm happy to work on this it's a easy fix it 
+  just hasn't been something I've been able to get to you.
+https://github.com/w3c-ccg/traceability-interop/issues/245
+Chris_Abernethy: Sure this is simply an orphan ticket that the 
+  work has been completed and it's ready to close.
+Chris_Abernethy: That goes for the next three as well.
+https://github.com/w3c-ccg/traceability-interop/issues/244
+https://github.com/w3c-ccg/traceability-interop/issues/243
+https://github.com/w3c-ccg/traceability-interop/issues/242
+https://github.com/w3c-ccg/traceability-interop/issues/347
+Chris_Abernethy: So this is a question and I wonder if we 
+  shouldn't add a label called discussion for this sort of thing 
+  but that may be a side issue but the reason I opened this is 
+  because the response for a post to credential status is listed as 
+  a 200 Response Code but there's no response body and my question 
+  here is should we change that to a 20-4 no content response or.
+Chris_Abernethy: At a response body definition.
+Chris_Abernethy: With either one I think 2 or 4 no content is 
+  probably more appropriate but I think we should open it up to 
+  discussion.
+Chris_Abernethy: Yeah currently it doesn't seem to be needed.
+Chris_Abernethy: I'm happy to take this on if we want to make it 
+  ready to PR.
+Chris_Abernethy: Yeah and I'll self-assign.
+https://github.com/w3c-ccg/traceability-interop/issues/349
+Chris_Abernethy: So 349 is an interesting one because it's a 
+  question of how do we respond to a request that is formatted 
+  correctly but which the server can't respond to and in this case 
+  it's because the issuer that comes in in a credentials Issue 
+  request does not represent any known key materials for the the 
+  implementation so.
+Chris_Abernethy: Can't be satisfied.
+Chris_Abernethy: Call Ted plenty of this out I think and 
+  suggested that that request is probably the right not the right 
+  choice and I tend to agree with him because requests are 
+  formatted correctly.
+<orie> its 4xx... the server didn't make a mistake.
+Chris_Abernethy: Or is suggesting 400 is correct I think tell Ted 
+  suggested 501 not implemented which I think is right out but 422 
+  on processable content could be a good option because the syntax 
+  of the request is correct but the server's unable to process the 
+  instructions.
+Chris_Abernethy: Or do you want to comment on maybe why you think 
+  I see a change it to 4 XX yeah so that's where we stand I think.
+Orie Steele:  Yeah big basically like the server didn't make any 
+  mistake here the client should have known better and the way to 
+  signal that as a for 400 level are maybe not 400 specifically I 
+  think a more specific area code in the 400 range would be better 
+  than informant.
+Chris_Abernethy: Yeah and I think one of the initial questions 
+  that Ted was bringing up is that it is this a should the server 
+  have this key material like is this a service configuration and I 
+  suggested that perhaps that was a bat slow to go down and it 
+  might not even it might not be worth it to try and sort of 
+  inspect errors in that way and simply suggest that the client.
+Chris_Abernethy: Made a mistake here.
+Chris_Abernethy: Do you want to want to comment on that.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Yeah I really 
+  think that this could go either way I'm not.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I'm not 
+  totally wedded to 501 but I think it is the more.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Apt error 
+  here whether the client should know better or not is debatable it 
+  is entirely possible that the issue is on the server side.
+<orie> how?
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): So my mind 
+  how does the server know that it's got all of its key material 
+  properly.
+Chris_Abernethy: Yeah but I think you know I would counter that 
+  with how does the server confidently serve a 404 error instead of 
+  a five hundred you know this should the server have that 
+  documentation and it's misconfigured or does it not exist I would 
+  suggest a we assume the server set up correctly in this case.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Well 404 not 
+  found is pretty clear it's not found it doesn't say why it's not 
+  found right it doesn't say it hasn't been installed and it exists 
+  and it doesn't say that it doesn't exist and that's why it's not 
+  there.
+Chris_Abernethy: Right but but 400 implies client error and I 
+  think you made the argument of distinction between client and 
+  server error.
+Orie Steele: Reminder: 
+  https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The 404 
+  implies that the client screwed up and ask for something that 
+  doesn't exist and so it shouldn't have asked for it but it is 
+  entirely possible that the thing is supposed to be on the server 
+  and it's there by accident somebody didn't put on a redirect that 
+  there were supposed to or whatever this happens constantly.
+Orie Steele:  I just want to add some context about the Ted's 
+  assertion that the there's no way for the issuer server to 
+  communicate to the issuer client what acceptable payloads you 
+  might submit and and he's not sort of he's not wrong to point 
+  that out this has been a thing that the VC API Group has kind of 
+  punted on and shuffled around.
+Orie Steele:  For quite some time.
+Orie Steele:  Last comments from that group that I heard on the 
+  subject and it could have changed so I'd look more to mic Pro 
+  Rock and mood or more involved in that work to comment but my 
+  understanding was that the entire issue or API was moving towards 
+  a world where.
+Orie Steele:  Issuer endpoint was specific to a single identifier 
+  so for every issue and point that endpoint would only work with 
+  one identifier and so you might ask well what is that identifier 
+  I don't know that they've communicated that at all but I have 
+  heard them say that it it you know they want to this to be such 
+  that there would only be one identifier that you could ever be 
+  asking for a credential from when you ask for a credential from 
+  issuing point.
+Orie Steele:   So I'm just sort of summarizing what I've heard 
+  the VC API Group folks.
+Orie Steele:  On the falls and the issues that have seen related 
+  to it and I don't know really much beyond that but that to me 
+  kind of indicates that they're thinking that the client should 
+  know what the issue would be because the client would know what 
+  the issue is for the end point that they're requesting because 
+  these endpoints are you know quote-unquote internal and points 
+  where the HTTP client and the HTTP server kind of both under the 
+  same control of sanction same trust model same.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Okay so on 
+  that I would say then 422 is the right response to use.
+<orie> yeah, i could live with 422
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I don't think 
+  it's perfect but I think it's the best of what we've got 
+  available.
+Chris_Abernethy: I would be inclined to agree with you Ted and I 
+  think this is a perfect opportunity to make use of the the 
+  details in our error responses to indicate why.
+Chris_Abernethy: This couldn't be processed.
+<orie> 500 === explosion.. and potentially an SLA violation.
+Benjamin_Collins: Yeah also you can kind of think of it somewhere 
+  to like a 403 error where it's like not authorized like say I was 
+  trying to do something that's like obvious like me has been I try 
+  to you know send a request with an issue or it may even that you 
+  know did web maybe net or something you know the server is going 
+  to look at that and say you don't have authorization to use this.
+Benjamin_Collins: Or that's completely wrong where I don't know 
+  what you're talking about like that's not an error that's 
+  happening on the server that's you know this client doesn't have 
+  authorization to use this identify.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I'd be okay 
+  with that as well I mean that's part of the challenge here right 
+  is that these response codes.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Were 
+  developed for a specific application which is not the application 
+  that we're putting them into now.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): So we can 
+  shoehorn something in ugly that is close but not quite or we 
+  could suggest maybe some additional error codes here.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Unrecognized 
+  key or something might be a way to go but you know that's an 
+  extension that's a new error code.
+<orie> 400 with a better error code would also work.
+Orie Steele: +1 Ted
+Chris_Abernethy: So Ori are you suggesting it sounds like what 
+  you're suggesting and Ted suggesting are slightly different Ted 
+  are you suggesting using a new currently as yet undefined HTTP 
+  Response Code or are you suggesting what or he's saying chat or 
+  it's 400 with some additional context.
+<benjamin_collins> Note that on the issue we have 3 votes in 
+  support of 422
+Orie Steele: +1
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I think 422 
+  with initial context is fine what I was suggesting would be a 
+  different yet yeah as yet undefined.
+<orie> saddly I need to drop.
+Chris_Abernethy: I think it would probably be best to avoid.
+<orie> make excellent decisions :)
+Chris_Abernethy: Standard response codes and I think based on our 
+  discussion and some of the approvals in the comments if 422 is 
+  probably as close as we're going to get.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And we're 
+  totally allowed to add extra context to what goes back with 
+  these.
+<benjamin_collins>	i think the main thing here is 4xx > 5xx
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): So that I 
+  think that probably the best we're going to do given that we're 
+  not going to extend the codes Beyond what's already defined.
+<benjamin_collins> and then inside 4xx, 422 is probably the 
+  closest
+Chris_Abernethy: Okay in this I think we can ready for PR this 
+  and go with go with the 42.
+Chris_Abernethy: Just as a side note this also applies I think 
+  for.
+Chris_Abernethy: Presentations with incorrect holders to sort of 
+  the same scenario.
+Chris_Abernethy: Yeah yeah sorry I didn't mean to pollute the 
+  issue here.
+https://github.com/w3c-ccg/traceability-interop/issues/329
+Chris_Abernethy: 329 is mine as well so.
+Chris_Abernethy: This is scenario where you can make a post to 
+  credentials issue with a number of types in the options I believe 
+  you can do Ed 25-19 signature Json web signature VC J WT I think 
+  is something we're working on implementing but the response 
+  linked data proof schema only allows one value there and it 
+  seemed like that.
+Chris_Abernethy:  allow the same values that.
+Chris_Abernethy: Pour it into proof type in the request.
+Chris_Abernethy: So I would I would like to move this to ready to 
+  PR if nobody disagrees.
+https://github.com/w3c-ccg/traceability-interop/issues/351
+Chris_Abernethy: Five 5351 this is mine as well.
+Chris_Abernethy: Let me just review this.
+Chris_Abernethy: So this is related to the link tissue credential 
+  options EML file there is a property called created which is 
+  defined as a string and the description is the date the proof was 
+  created and the question here is should we modify the description 
+  of this text indicate that it should be or must be a valid XML 
+  date-time string and test that accordingly.
+Chris_Abernethy: This is what we do for.
+Chris_Abernethy: Issue in State Property.
+Chris_Abernethy: I don't know where that originated but it is in 
+  our traceability API currently.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I think this 
+  came from the DC data model.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And has to do 
+  with the jaw translation.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I'm a little 
+  concerned that it's defined as the date the proof was created and 
+  not the date time especially given that people still I think want 
+  to use it as valid from.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Well that's 
+  debatable.
+Chris_Abernethy: That's I think what issue and state is for.
+Chris_Abernethy: No this is a proof option for the issuing a 
+  credential.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Oh I see 
+  okay.
+Chris_Abernethy: My personal opinion is and I want to open a 
+  separate issue for this is that you should not be able to adjust 
+  to the date the proof is created that should be filled out when 
+  the proof is created but I don't I haven't looked into that 
+  enough to know if that's an appropriate suggestion to make.
+Benjamin_Collins: I would tend to go that direction as well that 
+  issue and state is when the proofs are set to take hold and then 
+  the proof created is assigned by the system for when it was 
+  actually signed so I can make a claim that as of last year I 
+  graduated from college and that is my claim and the issuance date 
+  would be as of last year but time I made that statement would be 
+  like.
+Benjamin_Collins:  like today or a minute ago.
+Benjamin_Collins: And that taste and you know we would ideally 
+  want to preserve that functionality that you know if I said I 
+  graduated from college a year ago that you know the statement 
+  made and the issuance they would be the same if I'm playing it 
+  today you know the issue of state would be a year ago and then 
+  the proof that would be today when I made that statement.
+Chris_Abernethy: Should we comment that this entire property 
+  should potentially not be permitted in a credentials Issue 
+  request proof option set.
+Chris_Abernethy: Oh yeah that would be great in us and we can 
+  maybe do a little bit more research I can look into this further.
+Benjamin_Collins: And then double strike against the VC API it's 
+  up to us I think ideally we would want the time that the proof of 
+  your side will be assigned by the system.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Just looking 
+  at this yellow file I'm a little as is probably following the 
+  same convention that's being followed elsewhere and it's going to 
+  be confusing to me there too.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Credential 
+  status is a double word there right but created and type are not 
+  so it's not clear what they assess what their associated with.
+Chris_Abernethy: I believe that this is from the VC data model so 
+  I don't think we decided that.
+Chris_Abernethy: But if we wanted to change it I think we would 
+  have to open an issue there.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And then I'm 
+  extra confused by the method of credential status.
+Chris_Abernethy: That's I'm with you there that's probably a 
+  terrible description.
+Chris_Abernethy: If you want to let's leave the comment in there 
+  that we have I am happy to do some further research and.
+Chris_Abernethy: Look into the other apis that we need to adhere 
+  to and make sure that this is something that we well to find out 
+  whether or not we can talk about removing this.
+Chris_Abernethy: Is it required.
+Chris_Abernethy: Well if it's not required then we can say for 
+  our purposes in our profile so to speak that.
+Chris_Abernethy: It's emitted right.
+Benjamin_Collins: I like that angle.
+Chris_Abernethy: So I think.
+Chris_Abernethy: I think we need yeah let's maybe table this and 
+  get some input from everybody and maybe think about this for a 
+  week and come back to it.
+Chris_Abernethy: It would be it would be great if folks could 
+  think about both paths you know if we do need to keep this should 
+  we in fact be verifying it as a date if we do not need to keep 
+  this then that's that's a moot point but we should think of both 
+  options.
+https://github.com/w3c-ccg/traceability-interop/issues/352
+Chris_Abernethy: Yeah that you know writing conformance tests 
+  really brings out brings out a lot of things thanks so let's see 
+  this is for the same item the options created and this is a 
+  positive test for various items here if we do not include it 
+  because it's optional then we should verify that the response 
+  contains a value.
+Chris_Abernethy: That is close to.
+Chris_Abernethy: With appropriate fuzziness for for Network time 
+  if we do provide it then the response should contain a value that 
+  matches the one that we provide provided so this is just 
+  additional testing.
+Chris_Abernethy: And I think I'm going to put a comment that this 
+  is related to 351.
+Chris_Abernethy: I think that if we could get consensus that this 
+  is appropriate to add in the cases where we are in fact going to 
+  allow this value then.
+Chris_Abernethy: We can we can make it ready to PR.
+Chris_Abernethy: Yeah this is all conformance testing because if 
+  we omit the created date you know assuming that we're allowed to 
+  specify what we want that to be if we omit it because it is 
+  optional what do we expect in the return value and I would posit 
+  that it should be issued by the server at the time that the proof 
+  was created and that should be reasonably close to you know now 
+  we're now is the time that you issued the request.
+Chris_Abernethy: I think that we should probably hold off on this 
+  until we come to a conclusion on whether or not we're going to 
+  allow this field at all because if we aren't going to allow it 
+  then this would be wasted work so I suggest I'll put a comment - 
+  that we should hold off.
+Chris_Abernethy: Marcia your tongue.
+https://github.com/w3c-ccg/traceability-interop/issues/360
+Chris_Abernethy: So in 360 the request body to the credentials 
+  verify endpoint does not actually require that there be a 
+  verifiable credential in the body which that doesn't seem to make 
+  a lot of sense.
+Chris_Abernethy: That should be required because if it's not 
+  there then you can verify anything.
+Chris_Abernethy: Alternatively if anyone you know has a 
+  dissenting opinion I would.
+Chris_Abernethy: Say that we need to discuss what the response 
+  should be someone or miss it and I think it would still be bad 
+  request.
+Chris_Abernethy: I'll take it.
+https://github.com/w3c-ccg/traceability-interop/issues/342
+Chris_Abernethy: So yeah so 342 is interesting I started this out 
+  because as you know we used to use the first item in the also 
+  known as array as a way to figure out the endpoint for a 
+  deployment of the chair of the implementation of this API we no 
+  longer do that we now use the services node in the did document 
+  and we get the end point out of there.
+Chris_Abernethy: So that leaves.
+Chris_Abernethy: Inch of use cases where we are checking that 
+  also known as zero is present examples have it etc etc and this 
+  was a proposal to remove those in Horry countered with why are we 
+  using also known as at all why do we not simply require dude web 
+  and drop support for dookie so that everything is signed with did 
+  web we require did web anyway as.
+Chris_Abernethy:  as part of the process for discovering.
+Chris_Abernethy: And points so everyone is going to have one and 
+  I thought that was interesting I ran some tests and started using 
+  did web as the issuer in some of my requests locally and it works 
+  fine so I think we should discuss what people think about this.
+Chris_Abernethy: Yeah and I you know I ask Cory excuse me or why 
+  we didn't do this in the first place and he let he let me know 
+  that at the time that we started did web was not as widely 
+  supported as it is now.
+Chris_Abernethy: So I'm in favor of this so I you know I put my 
+  plus one in there.
+Chris_Abernethy: Yes I agree a hundred percent I think that's 
+  great.
+Chris_Abernethy: I have a comment on that that I found about that 
+  since our discussion this morning and if you so the current API 
+  spec requires that did Jason be available from the same place as 
+  credentials issue right same they need the same prefix so that 
+  being said if you also had another way to provide if you provide 
+  a did somewhere else that.
+Chris_Abernethy: And you know.
+Chris_Abernethy: Need a sub path but then pointed to a service 
+  implementation that did not have the sub path now you're 
+  maintaining did documents into different places so that seemed 
+  like a little bit of extra work and maybe that we should just 
+  remove the / did Json from the spec entirely but if we do that 
+  then how do we test that folks are including the right service 
+  Block in the did document I don't think we can because.
+Chris_Abernethy:  we don't.
+Chris_Abernethy:  we don't know.
+Benjamin_Collins: Isn't this the finding that it was tender 
+  though.
+Chris_Abernethy: I think so Nest maybe if you could outline 
+  again.
+Chris_Abernethy: And I think what you're proposing is that you 
+  you have it did web that does that includes a sub path to specify 
+  tenant information but that the associated did document for that 
+  will include a service endpoint that does not include that 
+  information.
+Benjamin_Collins: I think this might be hard to discuss without 
+  it picture documents it's talking about I think you know I think 
+  you can you can have a did web with a service point that starts 
+  the points to a different you can include any URL you want in the 
+  service block on the did so I could say Hey you know my did web 
+  is hosted on transmute but if you want to send me a presentation 
+  and I'll send me a presentation at measure dot IO / my tenant 
+  named yeah that would be perfect.
+Chris_Abernethy: So if you're if you're providing the.
+Chris_Abernethy: If you're providing the did web with the path 
+  information in it.
+Chris_Abernethy: And you're pointing at an implementation that 
+  also contains the path is that is that how you do it.
+Benjamin_Collins: I think I'm kind of jumping ahead of I think 
+  where you're going is like eye on transmute we have a did web 
+  document that represents a that represents a customer's you know 
+  did method but they don't want to see you know transmute that 
+  Industries they want to have their own name on their own did web 
+  so we could give them the option to download their did web and 
+  then that would result of their host name and then the service 
+  can point to.
+Benjamin_Collins:  to Maven better measure or whatever.
+Benjamin_Collins: Work that presentations so you can kind of do 
+  that with did webbing the case of where you generate the did 
+  weapon versus where you hosted it what you can do that in two 
+  different locations.
+Benjamin_Collins: If that's what you're getting at.
+Chris_Abernethy: I think I think it is and then my question is at 
+  the actually deploy implementation what did document are you 
+  serving up at did Json.
+Chris_Abernethy: Right but but someone is making the deployed 
+  implementation right so it exists somewhere because you're 
+  pointing at it yeah.
+Chris_Abernethy: Yep it's entirely possible that I'm just I've 
+  turned myself around in my head so I'm happy too.
+Benjamin_Collins: Yeah I think the main thing here is to draw a 
+  diagram to discuss what we're talking about the main thing with 
+  the web is the identifier points to the location where it's 
+  hosted on the web server you know where is generally you know the 
+  service was generated where you know okay you know Mason mavin 
+  error measure transmitter is is hosting your key material that's 
+  where it is versus where the document is actually hosted three 
+  two separate places.
+Chris_Abernethy: Yeah I got it.
+Chris_Abernethy: Well I can't I can't because I have to kick 
+  everybody.
+Chris_Abernethy: All right all right.
