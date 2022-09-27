@@ -1,0 +1,198 @@
+Thanks to Our Robot Overlords and russell_hofvendahl_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-09-27-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-09-27-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2022-09-27
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Sep&period_year=2022&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and russell_hofvendahl_(mesur.io)
+Present:
+  Russell Hofvendahl (mesur.io), nis, Paul Dietrich GS1, Chris 
+  Abernethy, vivien, Orie Steele, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Sam Curren, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+russell_hofvendahl_(mesur.io) is scribing.
+https://github.com/w3c-ccg/traceability-vocab/pulls
+https://github.com/w3c-ccg/traceability-vocab/pull/581
+https://github.com/w3c-ccg/traceability-vocab/pull/582
+https://github.com/w3c-ccg/traceability-interop/pulls
+https://github.com/w3c-ccg/traceability-interop/pull/396
+<transcriber> Chris_Abernethy: Yes can you guys hear me okay.
+Nis: vocab first
+<transcriber> Chris_Abernethy: All right so this is in response 
+  to issue number 395 and that has to do with making sure that when 
+  you post an actual status options to the potential issue endpoint 
+  that if you do post that has an optional item you must include 
+  the type property and that is because you see API is got that in 
+  there it's very clearly required.
+<transcriber> Chris_Abernethy:  but we had it as an option.
+<transcriber> Chris_Abernethy: Our schema and I think we all 
+  agreed this is the right thing to do last time we talked about it 
+  but my mood had asked if we could also do this for the update 
+  credential status endpoint and I went to do that this morning and 
+  realized that we had already done that quite some time ago with 
+  PR 366 so would like moved to re-review this before we merge but 
+  I think this is probably ready to go.
+<transcriber> Chris_Abernethy: I did yeah I requested a review 
+  from him but it was just this morning so he probably doesn't have 
+  hasn't had time to look at it.
+<transcriber> Russell_Hofvendahl_(mesur.io): Looks like the 
+  transcriber's picking up everyone but Nis
+Chris: this in response to 395, making sure when you post status 
+  options to cred issue endpt, must include type property (if 
+  optional).
+Sam Curren:  I sure Sam could I work for in d.c. oh and have been 
+  involved in the did come efforts at the diff and it involved in 
+  the areas Community as well.
+https://github.com/w3c-ccg/traceability-interop/pull/399
+<transcriber> Chris_Abernethy: I was queuing to say exactly what 
+  you just said.
+https://github.com/w3c-ccg/traceability-interop/pull/407
+<transcriber> Chris_Abernethy: Yeah this is just for quote 
+  consistency to replace bubbles.
+Nis: ok so 396, leaving that for another week. then 399 here, in 
+  doubt this is how we'll do it
+Orie Steele:  Except probably are we looking at for a seven.
+Orie Steele:  At one point requested changes we had talked about 
+  it I'm okay merging over top of if you've addressed the changes 
+  yep yeah.
+Orie Steele:  We're looking at 407?
+<transcriber> Russell_Hofvendahl_(mesur.io): Do you want to kick 
+  the transcriber this is like the notes would be pretty confusing.
+Orie Steele:  Yes I think we ought to disable the transcriber and 
+  take normal scribe notes from now on.
+Orie Steele:  Tired of having it say things that I didn't say 
+  that are offensive that going man.
+<transcriber> Russell_Hofvendahl_(mesur.io): Can you just get it 
+  like any other.
+https://github.com/w3c-ccg/traceability-interop/pull/410
+Nis: some checks failing on... will have to look on this and come 
+  back to fix
+Nis: again, abt moving to multitenant platform support, some diff 
+  ways to do that
+Orie Steele: +1 Chris
+Chris: each part of conformance suite should only be testing one 
+  endpt
+Nis: & way you suggest it, take hacky script, make proper method 
+  out of it, use it whenever we need it
+Chris: suggest in root folder in conformance suite, add root 
+  function similar to how get token and caches, gets json caches
+Orie Steele:  Not sure if these PRs or change suggestions align 
+  with what will say
+Chris: if we tell them to provide us w did web, save themn from 
+  implementation, not going thru extra step of providing did url is 
+  easier
+Orie Steele:  Yes, we should communicate reqs, reqs should be 
+  minimized
+Chris: agree, but not sure relates to PR
+Nis: not completely unrelated. if want to do generic could do any 
+  of this stuff here
+Orie Steele:  Pr 410 abt did web endpt
+Chris: so yes, way this is implemented is one way, but disagree 
+  with how
+Orie Steele:  But primarily just exchange endpts not all in test?
+Nis: also issuer id
+Orie Steele:  A given, but exchange endpts DO need to resolve in 
+  did web
+Chris: think abt exchange endpt testing
+Orie Steele:  So your proposal, before running exchange endpt 
+  tests, make request cache results go to cache for that
+Chris: but resolve did web talking about [something]?
+Orie Steele:  So to be clear, wouldn't be did resolution endpt, 
+  convert did web string to url, [...], access cache when needed
+Chris: & there'd be entire separate suite
+Nis: two things still need to discuss about issuer id
+Chris: agree, that's a holdover
+Orie Steele:  Yes, legacy
+Nis: so, limited to exchange endpt
+Paul: authenticated did resolution, don't know, someone post a 
+  link?
+https://w3c-ccg.github.io/traceability-interop/openapi/#get-/identifiers/-did-
+Orie Steele:  Every implementer stands up software implementation 
+  of spec desscribing http endpts
+Paul: why that way? why need auth'd?
+Orie Steele:  Thinking abt software implementations as being 
+  exposed. tryna test that sorta implementation
+Nis: so next steps, how we move fwd
+Chris: would like new PR, leave this open will base on
+Nis: talk about your suggestion, or belongs in other repo
+https://github.com/w3c-ccg/traceability-interop/pull/410#:~:text=https%3A//github.com/transmute%2Dindustries/verifiable%2Ddata/blob/main/packages/did%2Dweb/src/convertDidToEndpoint.ts
+https://github.com/transmute-industries/verifiable-data/pull/206
+Chris: PR'd this earlier today 
+  https://github.com/transmute-industries/verifiable-data/pull/206
+Orie Steele:  Surprised we didn't encounter before, but looks 
+  great thanks
+https://github.com/w3c-ccg/traceability-interop/pull/411
+Nis: so once you're done chris we'll close this as well
+Chris: one of mine. we had convo in 351 and related issues, 
+  whether or not when post soln issue whether related should be 
+  created for proof
+Nis: just approved
+https://github.com/w3c-ccg/traceability-interop/issues/351
+Orie Steele:  (Abt 351) number one prob is if want to match exact 
+  signature, won't be able to do that, server will always assign 
+  new date
+Chris: came up bc some question abt if not testing should [...]
+Orie Steele:  Yeah on test site should be valuable test, set it 
+  if defaulted correctly
+Chris: don't care if we incl or not, I want to know how test this
+Orie Steele:  If user doesn't supply created date then set by 
+  server
+Chris: decline, 351 indicate not going to remove it, going to 
+  need to modify 352 which expects to see it
+Orie Steele:  Nasty edge case, same applies to [...], set created 
+  as caller, ask for jwt, expect iat value in jwt
+https://github.com/w3c-ccg/traceability-interop/pull/412
+Nis: ok let's push fwd, 412, also chris
+Chris: for adding some positive testing
+Orie Steele:  Not specific to pr but
+Orie Steele:  Chose did key bc easy, chose [y] bc easy
+Chris: don't have specific knowledge, but general, going with 
+  known implementation you don't like, in project, early, bad idea
+Orie Steele:  Think did jwk is better, supports [?] curves
+Nis: I'm good with this one, then
+Orie Steele:  Will file issue
+https://github.com/w3c-ccg/traceability-interop/pull/413
+Nis: merging this one
+Chris: followup on change made earlier to remove "code" prop from 
+  errors
+Nis: objections?
+https://github.com/w3c-ccg/traceability-interop/pull/414
+Nis: merging then
+Chris: purpose, introduce two new specific error responses to use 
+  when request boyd not up to signature, second [...]
+Nis: so not adding code just description
+Chris: still 400, just diff message
+Nis: one approval. anyone else?
+Orie Steele:  Looking at now, looks good to me
+Orie Steele:  Wait, invalid sig in request body, not 400, client 
+  not wrong for asking to verify sig that's malformed
+Chris: ok, will add note then let's move on
+https://github.com/w3c-ccg/traceability-interop/pull/419
+Nis: next 419, another chris, last for today
+Chris: a couple errors in openapi spec, fixed
+Chris: conflict so will fix, happy to merge it offline
+Nis: will give note to merge
+Orie Steele:  So are folks expecting be able to load spec, 
+  integrate, target reome server, [?] to remove server, request 
+  with authorization
+Orie Steele:  If api spec doesn't work for that haven't built 
+  valid api spec
+Chris: in favor, new issue
+Orie Steele:  Should work, nis, but assigning you to create that 
+  issue
+Orie Steele:  This works afaik for our endpts, if not working for 
+  this item we should help
