@@ -1,0 +1,216 @@
+[2022-10-04T19:02:21.252Z]	<Manu_Sporny>	present+
+[2022-10-04T19:02:22.805Z]	<Brian>	present+
+[2022-10-04T19:02:26.687Z]	<Patrick_(IDLab)>	present+
+[2022-10-04T19:02:30.505Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2022-10-04T19:02:37.583Z]	<Dmitri_Z>	present+
+[2022-10-04T19:02:42.582Z]	<John_Kuo>	present+
+[2022-10-04T19:03:59.455Z]	<Transcriber>	scribe+
+[2022-10-04T19:03:59.455Z]	<Transcriber>	Meeting: vcapi
+[2022-10-04T19:04:26.984Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2022Oct/0008.html
+[2022-10-04T19:04:48.002Z]	<Transcriber>	Manu_Sporny: Alright welcome everyone to the October 4th 2022 verifiable credentials API call our agenda is here and on the agenda today we've got this review introductions reintroductions any relevant Community updates then looking at the question of snapshotting the VC API for the verifiable credentials group.
+[2022-10-04T19:04:49.078Z]	<Mike_Varley>	present+
+[2022-10-04T19:05:16.530Z]	<Dmitri_Z>	present+
+[2022-10-04T19:05:18.572Z]	<Transcriber>	Manu_Sporny: We're also looking at the credential revocation status configuration issues looking at the internal versus external API language in that kind of stuff and then processing any other issues as time might permit are there any updates or changes to the agenda that folks would want to cover today.
+[2022-10-04T19:05:45.918Z]	<Manu_Sporny>	Topic: Community Updates
+[2022-10-04T19:05:48.335Z]	<Transcriber>	Manu_Sporny: Okay if there are none let's go into introductions reintroductions in community updates is there anyone new here I think we all know each other anyone want themselves.
+[2022-10-04T19:06:23.378Z]	<Transcriber>	Manu_Sporny: If not we can go into Community updates any Community updates that folks would like to share last week was rebooting the web of trust there were a number of really interesting paper submitted in one's worked on there I think we'll try and type up a summary of what happened last week in share it with the ccg mailing list and so look for look for that.
+[2022-10-04T19:06:24.045Z]	<Transcriber>	Manu_Sporny: Hopefully in the next.
+[2022-10-04T19:06:55.120Z]	<Transcriber>	Manu_Sporny: Things that moved forward that might be of use to us here was this concept of authorized issuers or known authorities so like issuers that are well-known or verifiers that are well-known and using those values in ways when you do a validation of a verifiable credential so do you actually.
+[2022-10-04T19:07:26.769Z]	<Transcriber>	Manu_Sporny: His driver's license was issued by the relevant Authority or that this permanent resident card was issued by relevant Authority or this library card was issued by you know a university unknown University things like that other things that happened there Dimitri Bango in Charles Lander did some really good work on rendering.
+[2022-10-04T19:07:57.695Z]	<Transcriber>	Manu_Sporny: There was a number of items covered that had to do with Selective disclosure and when it's appropriate to do selective disclosure and when in might not be and where certain types of correlation can happen correlation can happen with data that you provide or it can happen when you use certain systems or it can happen in back-end systems so variety of things of of that.
+[2022-10-04T19:08:28.706Z]	<Transcriber>	Manu_Sporny: You were discussed there there were a lot of cool demos that that happened there will be some video released around that trying to think of anything else that might be oh Demetri and Phil Long in those folks took a look at kind of cryptographic hyper linking like the ability to link a current resource to a.
+[2022-10-04T19:08:29.067Z]	<Transcriber>	Manu_Sporny:  a remote.
+[2022-10-04T19:08:39.037Z]	<Joe_Andrieu>	present+
+[2022-10-04T19:09:01.108Z]	<Transcriber>	Manu_Sporny: Source in the verifiable credential so that was you know looking at more more formalization around that concept and that were moved forward so the way rebooting works is that now all the teams are going to work for a couple of weeks to clean up their papers and then they'll be published as rebooting papers and then once that happens that work might be fed into the credentials community.
+[2022-10-04T19:09:01.602Z]	<Transcriber>	Manu_Sporny:  group or diff or a variety of other.
+[2022-10-04T19:09:20.560Z]	<Transcriber>	Manu_Sporny: Organizations and eventually potentially be taken standards track are there any other items that folks that were at rebooting I wanted to cover anything else that we should mention that might affect be Capi.
+[2022-10-04T19:09:26.036Z]	<Transcriber>	Joe_Andrieu: Sure I have a comment.
+[2022-10-04T19:09:27.513Z]	<Transcriber>	Manu_Sporny: Please go ahead.
+[2022-10-04T19:09:57.288Z]	<Transcriber>	Joe_Andrieu: So the paper that I ended up contributing to was based on using Merkle trees to issue credentials to groups that at least was one of the primary sort of defining use cases and as we tease it out there were some interesting implications for fields that need to go into the verifiable presentation and also how do we present the guidance for validation that you are a member.
+[2022-10-04T19:09:57.696Z]	<Transcriber>	Joe_Andrieu:  of the group and we were.
+[2022-10-04T19:10:31.545Z]	<Transcriber>	Joe_Andrieu: Out like is that a separate proof is there a proof for tamper evidence versus proof for membership and we were trying to tease out and I think it aligns with some of the conversation that Oliver's engaging in about how do we provide guidance for people at the validation stage so I think there's going to be some suggestions there for the VC WG not sure if it's going to affect the API but it's definitely a sort of a different flow than some of the other use.
+[2022-10-04T19:10:31.941Z]	<Transcriber>	Joe_Andrieu:  Aces we've been talking about.
+[2022-10-04T19:10:53.168Z]	<Manu_Sporny>	IIWXXXV FALL 2022: NOVEMBER 15, 2022 – NOVEMBER 17, 2022: https://internetidentityworkshop.com/
+[2022-10-04T19:11:02.260Z]	<Transcriber>	Manu_Sporny: Yep yeah good good point thank you for that Joe okay with that I think we can well the other thing is the the next event that's coming up is internet iiw 35 I guess I'll put a link for that here November 15th through the 17th there is going to be.
+[2022-10-04T19:11:02.879Z]	<Transcriber>	Manu_Sporny: Is he there.
+[2022-10-04T19:11:33.804Z]	<Transcriber>	Manu_Sporny: Dated to the jobs for the future plugfest and that plugfest there a variety of companies that are using the verifiable credential API to do issuing so we've we're already getting some signals from the market that there are a number of implementers that are using the VC API to do issuing for that plugfest so that's interesting and so the day before iiw will be kind of the plugfest report out so.
+[2022-10-04T19:11:34.157Z]	<Transcriber>	Manu_Sporny:  all the plugfest stuff.
+[2022-10-04T19:12:02.684Z]	<Transcriber>	Manu_Sporny: Month and then during bit of the day before is the official plugfest kind of demo event and then I'm sure we'll hear about it throughout the internet identity Workshop okay I think that's it for Relevant Community updates anything else that folks want to comment on before we move on.
+[2022-10-04T19:12:06.477Z]	<Transcriber>	Manu_Sporny: Go ahead battery.
+[2022-10-04T19:12:36.541Z]	<Transcriber>	Patrick_(IDLab): Yeah it's just not as exciting as the the event of the last week in the updates but I made a proof-of-concept available for sort of Aries Cloud agent this API coordinator application if I can call it so so it's basically a open API with all the paths that are defined so far I've sort of combined the verifier issuer and a holder paths and one.
+[2022-10-04T19:12:37.014Z]	<Transcriber>	Patrick_(IDLab):  application and some of the endpoints.
+[2022-10-04T19:12:47.711Z]	<Transcriber>	Patrick_(IDLab): And they leverage our Aries agent to do the logic so I thought I'd share this.
+[2022-10-04T19:12:50.876Z]	<Transcriber>	Patrick_(IDLab): It's a very interest.
+[2022-10-04T19:13:08.893Z]	<Transcriber>	Manu_Sporny: Yeah that's that's really cool Patrick would you mind doing an announcement on the public credentials mailing list about that I think there'd be a variety of people that are interested in that I I'm pretty sure you're the first person that has done that kind of bridging.
+[2022-10-04T19:13:27.017Z]	<Mike_Varley>	yes! please post to the list.
+[2022-10-04T19:13:37.271Z]	<Transcriber>	Patrick_(IDLab): I was presenting it earlier today was the Acca Thug can we use a group which is the Aries Cloud agent python it was one attendant that said he he did give it a go but quite some time ago I think it was before the sort of the change in the test Suite he said it was Africa but some time ago and I know there was also a lot of interests if this gets mature not to sort of.
+[2022-10-04T19:13:38.305Z]	<Transcriber>	Patrick_(IDLab): Because the area.
+[2022-10-04T19:13:38.439Z]	<Transcriber>	Patrick_(IDLab): Jen does have.
+[2022-10-04T19:13:59.569Z]	<Transcriber>	Patrick_(IDLab): API available for the admin interface and there was an interest if it gets mature enough to implement this in Aries itself in the admin API so yeah that was also something that the community was potentially interested in doing.
+[2022-10-04T19:14:29.682Z]	<Transcriber>	Manu_Sporny: Yeah there's the feels like there's a bridge there that could be built which is always a useful thing so yeah if you don't mind sending you just something out to the public credentials mailing list about it I'm sure there's going to be interested in that and I see Mike Farley also suggesting you know please post that to the mailing list okay any other updates relevant Community updates.
+[2022-10-04T19:14:30.055Z]	<Transcriber>	Manu_Sporny:  of that nature.
+[2022-10-04T19:14:48.753Z]	<Manu_Sporny>	Topic: Snapshot VC API for VCWG?
+[2022-10-04T19:14:56.730Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/304
+[2022-10-04T19:15:01.633Z]	<Transcriber>	Manu_Sporny: All right let's go ahead and get into our main agenda item for this week so the first question is whether or not we should snapshot the verifiable credentials API for the verifiable credentials working group that is this issue 304 let me go ahead and.
+[2022-10-04T19:15:13.767Z]	<Transcriber>	Manu_Sporny: And then open this one.
+[2022-10-04T19:15:45.484Z]	<Transcriber>	Manu_Sporny: Um so we touched upon this topic two weeks ago before rebooting the web of trust there's been some amount of discussion most of it today on the issue and so the the question is do we feel like some subset of the verifiable credentials API is ready to be kind of published as a preliminary like draft note just in editors draft.
+[2022-10-04T19:16:16.690Z]	<Transcriber>	Manu_Sporny: It's the intention of it being a note in the verifiable credentials working group specifically it would be a subset of what we're working on as there's been some pushback to doing the whole document so the note will specifically provide the verifiable credential API calls necessary for generating a VC generating a verifiable presentation verifying both verified credential and a.
+[2022-10-04T19:16:17.089Z]	<Transcriber>	Manu_Sporny:  sighing verified.
+[2022-10-04T19:16:47.588Z]	<Transcriber>	Manu_Sporny: Presentation and checking the status of a verifiable credential so it will specifically not include the exchanges section of the document I think that's the current proposal we've got a plus one I think from Maven net a +1 from Danube Tech.
+[2022-10-04T19:16:47.901Z]	<Transcriber>	Manu_Sporny:  it is so.
+[2022-10-04T19:17:19.340Z]	<Transcriber>	Manu_Sporny: Of so there is a lot of clarification that happened here between these two comments here so transmute wanted the presentation stuff in there they wanted the ability to check status lists or revocation lists they did not want to do the exchange part because their contentious flavors of that and that might just.
+[2022-10-04T19:17:19.655Z]	<Transcriber>	Manu_Sporny:  start a fight in the group.
+[2022-10-04T19:17:40.183Z]	<Transcriber>	Manu_Sporny: Which you don't necessarily want to do at this stage let's see did not want references to other CG drafts to get dragged along did not want VC jot to be excluded.
+[2022-10-04T19:18:12.382Z]	<Transcriber>	Manu_Sporny: Make sign presentations or the ability to check credential status so there are some clarifications made and language updated in the original proposal in that got thumbs up from ory and Mike Farley from a vast and Dan UTech and Mike Farley here look like looks like you're supportive of The Proposal with the corrections let me stop there they the I think.
+[2022-10-04T19:18:12.607Z]	<Transcriber>	Manu_Sporny:  the challenge a couple of.
+[2022-10-04T19:18:41.867Z]	<Transcriber>	Manu_Sporny: Was that people seem to not be clear about what exactly we would be publishing and we said we'd put aside some time to discuss it now that people have had a couple of weeks to think about it what are the current thoughts concerns things of that nature if.
+[2022-10-04T19:18:48.412Z]	<Transcriber>	Manu_Sporny: Go ahead and put yourself on the Queue if you if you have any.
+[2022-10-04T19:19:05.548Z]	<Transcriber>	Manu_Sporny: Go ahead Mike.
+[2022-10-04T19:19:56.736Z]	<Transcriber>	Manu_Sporny: Yeah it's not even conformance thing it's just like here's a thing that a couple of people in the working group wrote and published and it doesn't mean that it has consensus or agreement or anything like that people just thought it was a useful thing to publish sometimes work well usually sorry no let me back that off sometimes.
+[2022-10-04T19:20:26.272Z]	<Transcriber>	Manu_Sporny: In groups publish notes with the intention that they could be taken standards track in the future so this you know when we publish the note the note can be used to do implementations and advisory things and then in the future the working group in a recharter could decide to take VC API to a standard or it could choose to not do that.
+[2022-10-04T19:20:52.105Z]	<Transcriber>	Manu_Sporny: Great thanks Mike Patrick you're on the.
+[2022-10-04T19:21:17.595Z]	<Transcriber>	Patrick_(IDLab): I just want to know if you question it depends on the field the endpoint it's got to do with the description of the end point for example the end point presentations verify the description says very very presentation with or without proofs attached and is there something I'm not understanding or in order for a presentation to be verifiable it needs to have a proof.
+[2022-10-04T19:21:34.596Z]	<Transcriber>	Manu_Sporny: Yes that's a great observation I am totally forgetting why we put that language in there so which let me see it's in the verifying presentation part.
+[2022-10-04T19:21:46.136Z]	<Transcriber>	Patrick_(IDLab): Yeah well there's a in a few places but yeah that would be the most blatant example so presentations verify from the verifier.
+[2022-10-04T19:22:10.519Z]	<Transcriber>	Manu_Sporny: Yeah there was a there was a point in time where I think we said well this endpoint is just for verifying a presentation and the presentation does not necessarily need to have a proof attached to it so you can make a presentation without any signature on it you can also present a credential without a signature on it.
+[2022-10-04T19:22:15.442Z]	<Transcriber>	Patrick_(IDLab): But what would the how would that get verified like what.
+[2022-10-04T19:22:42.532Z]	<Transcriber>	Manu_Sporny: For example if you had a presentation that was not a verifiable presentation but it contained a verifiable credential in it it you it's effectively a bearer instrument so presenting a movie ticket would be an example of a presentation of a bearer token so the verifiable credential would be the movie ticket and it it would be digitally signed by the movie theater company.
+[2022-10-04T19:22:42.954Z]	<Transcriber>	Manu_Sporny:  but the.
+[2022-10-04T19:23:09.939Z]	<Transcriber>	Manu_Sporny: In itself if the credential was not bound to any any you know cryptographic key then you could just provide a presentation with the verifiable credential that signed in it and that would be an example of verifies the presentation without a proof and Returns the verification result in the response body.
+[2022-10-04T19:23:12.532Z]	<Transcriber>	Patrick_(IDLab): So does that mean it would verify the credential instead and that case.
+[2022-10-04T19:23:33.597Z]	<Transcriber>	Manu_Sporny: Theoretically yes I think we still don't quite we haven't formalized that to in a appropriate level so the theory is yes that's what would happen but in practice we need more implementation feedback.
+[2022-10-04T19:24:00.236Z]	<Transcriber>	Manu_Sporny: Correct yep that's right.
+[2022-10-04T19:24:02.983Z]	<Transcriber>	Patrick_(IDLab): Okay and my other question is which is the exact on the same sort of thing so and on the holder side of things for example so when you do a get request on the can the credential this says you get a list of credentials or verifiable credentials what is a credential that is not verifiable are we just talking about the credential without a proof in this case okay.
+[2022-10-04T19:24:04.545Z]	<Transcriber>	Manu_Sporny: Yep it's a credential that has no signature on it.
+[2022-10-04T19:24:10.479Z]	<Transcriber>	Patrick_(IDLab): But it is still strictly the w3c data model we are referring to here.
+[2022-10-04T19:24:42.717Z]	<Transcriber>	Manu_Sporny: Yes correct yeah the VC data model I if I remember correctly has a the concept of a credential and a verifiable Prudential yeah and I think it's in the definition of it so if we look at terminology you know a credential is a set of one or more claims made by an issue or a verifiable credential is tamper-evident so on and so forth right and I believe the same thing yeah exist for a press.
+[2022-10-04T19:24:43.172Z]	<Transcriber>	Manu_Sporny:  and Tatian Data Drive from one or more.
+[2022-10-04T19:24:51.072Z]	<Transcriber>	Manu_Sporny: He sees I should buy one or more issuers shared with the verifier and then we Define what a verifiable presentation is there.
+[2022-10-04T19:25:10.795Z]	<Transcriber>	Patrick_(IDLab): So that was just yesterday the presentation but if I would be the only thing I would consider clarifying before submitting a sort of note to her I don't know how you called it oh yeah.
+[2022-10-04T19:25:26.725Z]	<Transcriber>	Manu_Sporny: So to be clear we can update this stuff a note is just like a point in time can be a point in time snapshot and I think that's all we're intending right now we can update this at any point and the expectation is we will be updating this you know throughout.
+[2022-10-04T19:25:26.985Z]	<Transcriber>	Manu_Sporny:  the next.
+[2022-10-04T19:25:33.434Z]	<Transcriber>	Patrick_(IDLab): Forever maybe not forever but.
+[2022-10-04T19:25:37.679Z]	<Transcriber>	Manu_Sporny: You know once years whatever yeah yes yes forever yeah hopefully at some point we're done with it but yeah for the foreseeable.
+[2022-10-04T19:25:51.181Z]	<Transcriber>	Patrick_(IDLab): Okay and if I cannot Also regarding the responses are these all required and do they all serve a purpose or there's just been a few that was filmed in there just in case.
+[2022-10-04T19:26:18.055Z]	<Transcriber>	Manu_Sporny: Yet to be determined so clearly like it looking on the screen here we've got you know someone was being queued and put 418 I'm a teapot right like that's not something we should have in the spec but we do need to cover for each one of these things will need to go and see if these are appropriate error codes and whether or not every single ones required.
+[2022-10-04T19:26:18.405Z]	<Transcriber>	Manu_Sporny:  or if.
+[2022-10-04T19:26:25.229Z]	<Transcriber>	Manu_Sporny: You know only some of them are required.
+[2022-10-04T19:26:36.677Z]	<Transcriber>	Patrick_(IDLab): Yeah and we didn't make sense in the get request credential to have like a 44 if there is a little more like get credentialed with the ID to have a 44 or is that yeah okay.
+[2022-10-04T19:26:51.407Z]	<Transcriber>	Manu_Sporny: Yeah yeah exactly yeah exactly and that's that's an example of one that's missing here I don't think we've put a tremendous amount of effort into the looking at each one of the endpoints and making sure that the response codes are you know correct.
+[2022-10-04T19:27:08.255Z]	<Transcriber>	Patrick_(IDLab): Yeah that's fine so I can think about that because when I was making the my Swagger all my open API wasn't sure if I needed to absolutely like copy as it is exactly or if I could the include like if you like the for for for example.
+[2022-10-04T19:27:26.536Z]	<Transcriber>	Manu_Sporny: Izzy a certainly I wouldn't I wouldn't look at anything that we're doing as anything other than like experimental and in movement right now so yeah do not take this as a final anywhere near close to the final specification there's still a lot of work that needs to go into it.
+[2022-10-04T19:27:42.943Z]	<Transcriber>	Manu_Sporny: Any other questions or concerns about moving this into the verifiable credential working group but one concern I have is that we may want.
+[2022-10-04T19:28:07.914Z]	<Transcriber>	Manu_Sporny: More of a Capi implementers to put their name on this and so maybe we want to reach out to some of them to see if they're okay with this being pushed in in the BC working group because I think right now we have one two three four five implementers that are supportive of it.
+[2022-10-04T19:28:38.672Z]	<Transcriber>	Manu_Sporny: And that have implemented to the API and that's and by the way that's like more than enough to actually get all the way through the recommendation process if if we were on that track and we're way way before having to do that so there seems to be enough implement or interest for this right now and you the minimum is you need to interoperable implementations and we're well past that at this point.
+[2022-10-04T19:28:54.129Z]	<Transcriber>	Manu_Sporny: Okay any any concerns around the framing here if not we could prepare a snapshot that could be taken.
+[2022-10-04T19:28:58.329Z]	<Transcriber>	Manu_Sporny: To the VC working group as a proposal.
+[2022-10-04T19:29:11.082Z]	<Transcriber>	Manu_Sporny: Okay the we Capi.
+[2022-10-04T19:29:57.010Z]	<Transcriber>	Manu_Sporny: Okay and one thing that we're going to have to do is.
+[2022-10-04T19:30:08.123Z]	<Transcriber>	Manu_Sporny: We're going to have to I don't know how this is done I don't think we publish a final community group specification or if we do.
+[2022-10-04T19:30:22.180Z]	<Transcriber>	Manu_Sporny: It's like of a particular version or something like that I'll have to maybe it's a final community group specification of a point release like version 0.8 or something like that.
+[2022-10-04T19:30:27.992Z]	<Transcriber>	Manu_Sporny: Um okay anything else on this topic before we move on.
+[2022-10-04T19:30:38.773Z]	<Transcriber>	Manu_Sporny: So this one was say ready ready for PR.
+[2022-10-04T19:30:43.787Z]	<Transcriber>	Manu_Sporny: Like it taken action to do this one.
+[2022-10-04T19:30:56.386Z]	<Transcriber>	Manu_Sporny: Next steps are to create General location is.
+[2022-10-04T19:31:39.631Z]	<Transcriber>	Manu_Sporny: I need to meet your specification and then.
+[2022-10-04T19:32:04.442Z]	<Transcriber>	Manu_Sporny: Okay so that's that item all right next up is.
+[2022-10-04T19:32:06.147Z]	<Manu_Sporny>	Topic: Credential Revocation/Status Configuration
+[2022-10-04T19:32:13.456Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/264
+[2022-10-04T19:32:13.522Z]	<Transcriber>	Manu_Sporny: Credential revocation and Status configuration there two issues here.
+[2022-10-04T19:32:28.822Z]	<Transcriber>	Manu_Sporny: Let's the cell and let's open to 64 and 141.
+[2022-10-04T19:33:08.446Z]	<Transcriber>	Manu_Sporny: Okay so this one has to do with the verification method of a revocation list must match the issuer of verifiable credential this is basically saying don't digitally sign the revocation list with a different value sorry with a different key than sorry don't sign a revocation list with a different type of cryptography.
+[2022-10-04T19:33:08.721Z]	<Transcriber>	Manu_Sporny:  geography than.
+[2022-10-04T19:33:25.327Z]	<Transcriber>	Manu_Sporny: The verifiable credential you issued so don't sign for example don't sign a revocation list with with SEC P 256.
+[2022-10-04T19:33:59.621Z]	<Transcriber>	Manu_Sporny: And then sign the credential with Edie 255 119 so so basically to 5519 so basically don't mix and match crypto between a revocation between the credential and the revocation list in which that credential is stored we had thought we had a discussion about this a while ago maybe we did.
+[2022-10-04T19:33:59.969Z]	<Transcriber>	Manu_Sporny:  did not.
+[2022-10-04T19:34:27.650Z]	<Transcriber>	Manu_Sporny: So this is a request for the VC API to specify that these two things should match up well or he's saying they must match up there may be a counter proposal that they should match up but we may not want to make it absolute.
+[2022-10-04T19:34:27.926Z]	<Transcriber>	Manu_Sporny:  for example.
+[2022-10-04T19:34:36.270Z]	<Transcriber>	Manu_Sporny: You're trying to do cryptographic layering you might want to digitally sign a list with two different values.
+[2022-10-04T19:34:54.258Z]	<Transcriber>	Manu_Sporny: Okay so all that said it oh the other the other thing that goes into this issue is that we have in the past made Let's see we have.
+[2022-10-04T19:35:27.244Z]	<Transcriber>	Manu_Sporny: Decided that it is okay for a different issue or endpoints to be pre-configured with a variety of different values like which crypto sweet they should use which type of revocation list they should use whether or not the credentials should be revocable all that kind of stuff goes in as a kind of a configuration for an issuing endpoint and so an extra thing that we could do is say that for that endpoint.
+[2022-10-04T19:35:27.566Z]	<Transcriber>	Manu_Sporny:  ain't we.
+[2022-10-04T19:35:47.824Z]	<Transcriber>	Manu_Sporny: Either you either must make sure that the crypto sweets are the same or you should be sure that the crypto sweets are the same let me pause there to see if anyone has any suggestions on how we might implement.
+[2022-10-04T19:36:17.624Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Something with solid cube.
+[2022-10-04T19:36:26.105Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Wondering how this will play out with crypto method that's broken.
+[2022-10-04T19:36:41.014Z]	<Joe_Andrieu>	q+
+[2022-10-04T19:36:41.068Z]	<Transcriber>	Manu_Sporny: Yeah it's a good question so basically.
+[2022-10-04T19:37:14.045Z]	<Transcriber>	Manu_Sporny: If you always keep these things one to one if that one crypto meth you know crypto sweet is broken your revocation list in your credentials broken as well so that's one option another option is that you could use this New Concept called cryptographic layering so let me try and data Integrity let me linked to the concept.
+[2022-10-04T19:37:30.989Z]	<Manu_Sporny>	https://w3c.github.io/vc-data-integrity/#agility-and-layering
+[2022-10-04T19:37:45.603Z]	<Transcriber>	Manu_Sporny: Here is this so the concept of cryptographic agility and cryptographic layering so the idea behind cryptographic layering is that you employ multiple personality rhythms at the same time in parallel to protect the data so you would digitally sign using like a pre Quantum cryptography sweet and a post Quantum cryptography cryptography sweet at the same time so that.
+[2022-10-04T19:37:45.939Z]	<Transcriber>	Manu_Sporny:  a tiff.
+[2022-10-04T19:38:18.742Z]	<Transcriber>	Manu_Sporny: One of those Cryptids weeds fails you've got the protection of the other Cryptids sweet so that's an sets the second option and then the third option is to use a different cryptography sweet to protect the revocation list then the credential but then if you have a failure whichever thing failed like the whichever cryptic sweet failed on either the the revocation list.
+[2022-10-04T19:38:19.423Z]	<Transcriber>	Manu_Sporny: Of the credential you would not be able to.
+[2022-10-04T19:38:29.905Z]	<Transcriber>	Manu_Sporny: Kind of the security in the system so they're kind of three options that were looking at right now Joe you're on the queue.
+[2022-10-04T19:38:58.022Z]	<Transcriber>	Joe_Andrieu: Yeah I was a little confused by the reference going from 264 over to the configuration of the endpoints but in the in the case of 264 if that's what the question is still about it seems that other verification methods in the same decentralized identifier should be valid such that the the did document can provide multiple ways to verify the list.
+[2022-10-04T19:38:58.345Z]	<Transcriber>	Joe_Andrieu:  I think the key thing is that.
+[2022-10-04T19:39:19.751Z]	<Transcriber>	Joe_Andrieu: Identifiers and that allows this sort of cryptographic agility overtime for different crypto sweet mechanisms so maybe I could support a should on this but must definitely feels over constraining given the flexibility we're going to need over the lifetime of the credentials were dealing with.
+[2022-10-04T19:39:21.479Z]	<Mike_Varley>	+1 Joe
+[2022-10-04T19:39:30.769Z]	<Transcriber>	Manu_Sporny: Yep good point let's see this was just.
+[2022-10-04T19:39:44.436Z]	<Transcriber>	Manu_Sporny: Any other thoughts on this micro he's giving you a plus one Joe any other thoughts on what we should do here.
+[2022-10-04T19:39:52.926Z]	<Transcriber>	Manu_Sporny: So let's see this was I can I can start writing down kind of what was discussed uh.
+[2022-10-04T19:41:46.321Z]	<Transcriber>	Manu_Sporny: Yo is your is what you're saying the that the so like you know a signature has a verification method that it's tied to and so are you saying that as long as the did method.
+[2022-10-04T19:41:55.214Z]	<Transcriber>	Manu_Sporny: Ports the same kryptos we are you said I don't know which one of these three options I guess you were referring to.
+[2022-10-04T19:42:17.089Z]	<Transcriber>	Joe_Andrieu: Yes I don't think the crypto sweet matters at all I think what matters is that that did has been updated to have a verification method that signs the revocation list I think the fact that we can change verification methods for an existing did is the is an important level of flexibility that we would lose here.
+[2022-10-04T19:42:33.264Z]	<Transcriber>	Manu_Sporny: I don't know if what you're saying makes sense so dids don't have revocation methods associated with them they have kryptos needs okay.
+[2022-10-04T19:42:58.048Z]	<Transcriber>	Joe_Andrieu: Every kid verification methods that in fact I would argue they don't have kryptos weeks I've been confused by that language throughout this conversation so the the did that is indicates the creator of a signature needs to be the did that signs the revocation list I think that's correct but if we were to say once you sign a VC you can only ever sign a revocation list with the verification method for those VCS that feels like.
+[2022-10-04T19:42:58.538Z]	<Transcriber>	Joe_Andrieu:  a pretty arbitrary.
+[2022-10-04T19:43:14.470Z]	<Transcriber>	Manu_Sporny: It's about saying once you sign the VC and the revocation list you can't change.
+[2022-10-04T19:43:28.529Z]	<Transcriber>	Joe_Andrieu: And I know it's with with or he's proposal signing the VC with a given verification method would prevent you from changing the verification methods in that did document and and still have it work.
+[2022-10-04T19:43:32.976Z]	<Transcriber>	Manu_Sporny: You don't want to tie a yeah yeah yeah.
+[2022-10-04T19:43:35.065Z]	<Transcriber>	Joe_Andrieu: It would it would deny rotation.
+[2022-10-04T19:43:38.563Z]	<Transcriber>	Joe_Andrieu: And I think rotations valuable.
+[2022-10-04T19:43:41.378Z]	<Transcriber>	Manu_Sporny: Yeah yeah yeah.
+[2022-10-04T19:44:14.643Z]	<Transcriber>	Manu_Sporny: But dids shouldn't be restricted from rotating their verification methods therefore these values are for the verification method likes drift over time okay.
+[2022-10-04T19:44:18.295Z]	<Transcriber>	Manu_Sporny: Yep good point.
+[2022-10-04T19:44:20.288Z]	<Manu_Sporny>	q?
+[2022-10-04T19:44:22.580Z]	<Transcriber>	Joe_Andrieu: Yeah I like should I think it's a good practice.
+[2022-10-04T19:44:39.373Z]	<Transcriber>	Manu_Sporny: So do we want to say that.
+[2022-10-04T19:44:47.830Z]	<Transcriber>	Manu_Sporny: Implementers should use the same.
+[2022-10-04T19:44:59.865Z]	<Transcriber>	Manu_Sporny: Yeah implementers should use the same verification method to.
+[2022-10-04T19:45:12.427Z]	<Transcriber>	Manu_Sporny: Protect both the VC and the revocation list if possible.
+[2022-10-04T19:45:15.329Z]	<Transcriber>	Joe_Andrieu: Yeah I would I would say issuers rather than implementers.
+[2022-10-04T19:45:24.699Z]	<Transcriber>	Manu_Sporny: Okay it's yours should should use the same time using the same verification method.
+[2022-10-04T19:45:43.314Z]	<Transcriber>	Manu_Sporny: Put maybe multiple to protect protect both the verifiable and chill as well as the revocation list if possible.
+[2022-10-04T19:45:48.383Z]	<Transcriber>	Manu_Sporny: I guess should implies if possible.
+[2022-10-04T19:46:05.259Z]	<Manu_Sporny>	ack joe
+[2022-10-04T19:46:06.603Z]	<Manu_Sporny>	ack patr
+[2022-10-04T19:46:08.064Z]	<Transcriber>	Manu_Sporny: As a best practice that's that sound as a britisher should use the same verification methods to protect both the verifiable credential as well as the revocation list I go ahead Patrick.
+[2022-10-04T19:46:12.277Z]	<Transcriber>	Patrick_(IDLab): What are we talking about verification methods here are we referring about the crypto sweet that's being used.
+[2022-10-04T19:46:18.663Z]	<Transcriber>	Manu_Sporny: There is a link let me try and draw the link.
+[2022-10-04T19:46:45.636Z]	<Transcriber>	Patrick_(IDLab): If I can maybe the so that the other part of my question was I remember a few called ago you said like one organization can have many implementation and it could be preferred that one implementation his use strictly one crypto sweet is this related to could this be related to that comment or it's a different.
+[2022-10-04T19:47:14.257Z]	<Transcriber>	Manu_Sporny: Yes it's it's it yeah it's it's related in some way we haven't figured out to what degree it's related so in theory you know what you what you would do is you would set up this verifiable credential API and then you would configure an endpoint to use a very specific set of verification methods to create digital proofs in those verification methods are.
+[2022-10-04T19:47:14.609Z]	<Transcriber>	Manu_Sporny:  associated with.
+[2022-10-04T19:47:47.400Z]	<Transcriber>	Manu_Sporny: It and so you're basically telling the end point when you create a digital signature here's the cryptographic material in the Crypt is sweet that you should be using and then everything it issues from there on out we'll use that in if we use the language here where we said issuers should use the same verification method then if that issuer endpoint has like you know uses a revocation list they will use the.
+[2022-10-04T19:47:47.783Z]	<Transcriber>	Manu_Sporny:  exact same.
+[2022-10-04T19:47:54.903Z]	<Transcriber>	Manu_Sporny: Verification method in crypto sweet design both the PC and the revocation list.
+[2022-10-04T19:48:00.004Z]	<Transcriber>	Patrick_(IDLab): Oh yeah yeah I think so.
+[2022-10-04T19:48:12.707Z]	<Transcriber>	Manu_Sporny: Do we have consensus on this language does anyone on the call disagree with this language.
+[2022-10-04T19:48:42.576Z]	<Transcriber>	Joe_Andrieu: Yep there is another opportunity here that may also be with Ori one of the things or he was looking for which is.
+[2022-10-04T19:48:50.520Z]	<Transcriber>	Joe_Andrieu: If the verifier is surprised by a different cryptographic sweets.
+[2022-10-04T19:49:10.730Z]	<Transcriber>	Joe_Andrieu: That does also seem to be problematic in a different way so right you may have a verifier who's restricted to a certain number of Curves right a specific set of crypto sweets and so would be weird if the crypto sweet berries.
+[2022-10-04T19:49:11.102Z]	<Transcriber>	Joe_Andrieu: It's a little.
+[2022-10-04T19:49:30.171Z]	<Transcriber>	Joe_Andrieu: Different than the verification method varies right you could have different verification methods but in this same crypto sweet so you could rotate keys but don't switch from you know SEC P 2E D 255 19 so different best practices I think.
+[2022-10-04T19:49:58.946Z]	<Transcriber>	Manu_Sporny: M so expecting a specific group too sweet to be used for VCS it might be surprising if the revocation list uses a different crypto sweet we say it should use the same verification methods and crypto sweets.
+[2022-10-04T19:50:07.402Z]	<Transcriber>	Manu_Sporny: That address the thing you were concerned about.
+[2022-10-04T19:50:10.051Z]	<Transcriber>	Joe_Andrieu: Yeah I think that expands a bit too little bit more the footprint or he was getting it.
+[2022-10-04T19:50:17.052Z]	<Transcriber>	Manu_Sporny: Hey does anyone disagree with that addition.
+[2022-10-04T19:50:27.707Z]	<Joe_Andrieu>	s/or he/Orie
+[2022-10-04T19:50:51.406Z]	<Transcriber>	Patrick_(IDLab): If match is my proof of concept I did so when hyper literary so basically you once you have your agent running you can set up a new wallet local wallet and then you choose your did method you can choose either did sub or did key and there's two crypto seats available if you create a wallet with the key method you have.
+[2022-10-04T19:50:51.663Z]	<Transcriber>	Patrick_(IDLab):  have the BBS.
+[2022-10-04T19:51:10.378Z]	<Transcriber>	Patrick_(IDLab): Us BBS PLS signature 2020 or ed2 5519 signature 2018 and then you will be restricted to that crypto sweet when you use that specific did key method.
+[2022-10-04T19:51:13.613Z]	<Transcriber>	Manu_Sporny: Yep that's right.
+[2022-10-04T19:51:16.091Z]	<Transcriber>	Manu_Sporny: Makes sense to me.
+[2022-10-04T19:51:36.564Z]	<Transcriber>	Manu_Sporny: Okay alright so let's go ahead and say that's where we got to this one is ready for PR think it's blocked because.
+[2022-10-04T19:51:42.938Z]	<Transcriber>	Manu_Sporny: Of a lack of get apis and I'll leave that there.
+[2022-10-04T19:51:57.831Z]	<Transcriber>	Manu_Sporny: Go ahead Patrick.
+[2022-10-04T19:52:16.099Z]	<Transcriber>	Patrick_(IDLab): Might be is sort of related but there was another attribute I'm not too sure exactly what it what comes into play It's the proof purpose which is default to assertion method where does that fit in this sort of interactions.
+[2022-10-04T19:52:35.216Z]	<Transcriber>	Joe_Andrieu: Should I be in here.
+[2022-10-04T19:52:37.220Z]	<Transcriber>	Manu_Sporny: We'll all be seized use assertion method so for us I don't think it means anything VPS use can use authentication instead of assertion method assertion method is used for making statements about the world whereas authentication is used to do like login flows so that kind of stuff.
+[2022-10-04T19:52:37.597Z]	<Transcriber>	Manu_Sporny:  that makes sense.
+[2022-10-04T19:53:14.496Z]	<Transcriber>	Manu_Sporny: With that we've only got two minutes to spare so not enough time to get into this internal versus external API language and we didn't get to 141 so we'll try to get to that next time we'll go ahead and meet again at this time next week unfortunately we've had a drop-in people attending with the new meeting time which was not supposed to.
+[2022-10-04T19:53:14.903Z]	<Transcriber>	Manu_Sporny:  happen so I will try and.
+[2022-10-04T19:53:47.334Z]	<Transcriber>	Manu_Sporny: Anyone that said that they could meet at this time and see why they're not showing up to the calls the worst part is that we lost I think three implementers by switching the time which is not what we not the intent we want to order that's not what we wanted to happen so we'll check with people make sure that the new times you know there's still okay for them and changing back is going to be probably even more disastrous.
+[2022-10-04T19:53:47.686Z]	<Transcriber>	Manu_Sporny:  if we do that in we'll try.
+[2022-10-04T19:54:02.281Z]	<Transcriber>	Manu_Sporny: See if we can get some of the people that were showing up the last call showing up to this call given the time difference okay any last minute items before we go.
+[2022-10-04T19:54:16.392Z]	<Transcriber>	Manu_Sporny: Okay with that thanks everyone for the great call today and we will see you again here next week take care bye.
+
