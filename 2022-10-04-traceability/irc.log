@@ -1,0 +1,171 @@
+[2022-10-04T17:29:02.263Z]	<Chris_Abernethy>	present+
+[2022-10-04T17:29:48.347Z]	<Mahmoud>	present+
+[2022-10-04T17:30:11.121Z]	<nis>	present+
+[2022-10-04T17:30:25.562Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2022-10-04T17:30:35.271Z]	<Ben_-_Transmute>	present+
+[2022-10-04T17:31:31.444Z]	<vivien>	present+
+[2022-10-04T17:32:48.955Z]	<Transcriber>	scribe+
+[2022-10-04T17:32:48.955Z]	<Transcriber>	Meeting: traceability
+[2022-10-04T17:33:13.157Z]	<Chris_Abernethy>	Agenda: https://github.com/w3c-ccg/traceability-interop/blob/main/AGENDA.md
+[2022-10-04T17:33:26.067Z]	<Chris_Abernethy>	Topic: IP Note, Agenda Review, Scribe Selection
+[2022-10-04T17:34:00.868Z]	<Transcriber>	Chris_Abernethy: Actually Nis I would just like to mention that many of the pull request involving the postman tests today are likely to have conflicts in the embedded schema it so for those that come up let's just discuss whether or not we feel comfortable merging those after the conflict is resolved and I can handle those after the call.
+[2022-10-04T17:34:05.455Z]	<Chris_Abernethy>	Topic: GitHub Issue & PR review
+[2022-10-04T17:34:08.379Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pulls
+[2022-10-04T17:34:49.760Z]	<Transcriber>	Chris_Abernethy: Sorry just let me get in the right order here and it's okay so 396 is a pull request to make the type property for the credential status object be required when the credential status is present in the options when you're posting to credentials issue this is an interesting one because if you see a piece.
+[2022-10-04T17:35:23.216Z]	<Transcriber>	Chris_Abernethy: It soft on this I don't think either of these are required the enclosing object or the type when using object is present and I think the last action here was that you called out to me that I should review the VCA Pi a and agree on a common shape and that's what I discovered so I am not sure you know if we didn't make this required and you in.
+[2022-10-04T17:35:23.584Z]	<Transcriber>	Chris_Abernethy:  included an empty.
+[2022-10-04T17:35:54.843Z]	<Transcriber>	Chris_Abernethy: This object in your options in a post to this end point you know I don't really know what the behavior would be whether it should be to proceed as though you had not presented it at all or if it should use a specific default so I think that we need to discuss if we aren't going to make this required and leave it optional as you see API does what should the behavior be if it's not there.
+[2022-10-04T17:35:55.262Z]	<Transcriber>	Chris_Abernethy:  or should we opted to.
+[2022-10-04T17:36:23.523Z]	<Transcriber>	Mahmoud: Yes the VC API is more loose than us we are saying we will yes so yes that we are still compiling this API if it is required.
+[2022-10-04T17:36:35.198Z]	<Transcriber>	Mahmoud: Sorry go ahead.
+[2022-10-04T17:36:36.237Z]	<Orie>	present+
+[2022-10-04T17:36:46.829Z]	<Transcriber>	Chris_Abernethy: I was going to say I think it is and I would I would be inclined to say if you're going to include this this object in the options then you need to specify the type otherwise there's no point in including it at all and you may just as well admit it.
+[2022-10-04T17:36:52.308Z]	<Transcriber>	Chris_Abernethy: His type is the only property of this object.
+[2022-10-04T17:36:54.901Z]	<Transcriber>	Chris_Abernethy: For this use.
+[2022-10-04T17:37:25.752Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/396
+[2022-10-04T17:38:52.746Z]	<Transcriber>	Chris_Abernethy: I think this was a dress my food at a subsequent comment I did point to a lot of different specs and call out the uses here and in our API the other use cases in the status update and point when you're updating credential status and there's a separate question there regarding Ray versus object but for the purposes of arguing this point the type is required in that other place.
+[2022-10-04T17:39:17.575Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/399
+[2022-10-04T17:40:05.460Z]	<Chris_Abernethy>	+1
+[2022-10-04T17:40:13.126Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/410
+[2022-10-04T17:40:30.767Z]	<Chris_Abernethy>	I believe we skipped 407
+[2022-10-04T17:41:17.195Z]	<Transcriber>	Chris_Abernethy: I believe yeah we we created when we landed up creating four to six for this and just using did web instead of get issuer ID.
+[2022-10-04T17:41:32.249Z]	<Transcriber>	Chris_Abernethy: Was that was part of it that's that's the only if it's done and I if I remember correctly we realized we don't need to do this caching of the did for this purpose.
+[2022-10-04T17:42:17.621Z]	<Transcriber>	Chris_Abernethy: I think that's fine I do believe we skipped for A7 though.
+[2022-10-04T17:42:55.583Z]	<Transcriber>	Chris_Abernethy: This was missing.
+[2022-10-04T17:43:18.801Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/421
+[2022-10-04T17:44:09.521Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/399
+[2022-10-04T17:45:12.351Z]	<Transcriber>	Chris_Abernethy: Yeah I think I think we had agreed that we were going to go ahead and Implement a method of etching the did Json caching it and extracting the data as needed and that was on my plate to do I have not gotten there yet.
+[2022-10-04T17:45:35.373Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/422
+[2022-10-04T17:46:13.087Z]	<Transcriber>	Chris_Abernethy: Okay so this is a similar to the other pull request we discussed where there's a type property on the proof and this is in reference to issue for 17 so the VC data model is pretty clear about when you have an embedded digital proof the specific method used must be included in that embedded proof using the type property so this is a PR to make that type property.
+[2022-10-04T17:46:27.527Z]	<Transcriber>	Chris_Abernethy: And now yeah it modifies a schemer adds performance test.
+[2022-10-04T17:46:30.482Z]	<Transcriber>	Chris_Abernethy: That's pretty much it.
+[2022-10-04T17:47:26.388Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/423
+[2022-10-04T17:48:03.988Z]	<Transcriber>	Chris_Abernethy: Swan is mine as well and this is in reference to his she 4:15 this is another one that brings us in line with the VC data model and if you see data model says that verifiable credentials and presentations must have a type property is any credential or presentation it doesn't have one is not verifiable so cannot be a verifiable credential or verifiable presentation.
+[2022-10-04T17:48:25.353Z]	<Transcriber>	Chris_Abernethy: Property has to be one or more you our eyes and our current schema allows the type to be an empty array which does not conform to one or more so this is a PR to require that that element have at least one item in it.
+[2022-10-04T17:48:33.504Z]	<Transcriber>	Chris_Abernethy: So this modifies the schema it's a couple of conformance tests.
+[2022-10-04T17:49:41.322Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/424
+[2022-10-04T17:50:03.798Z]	<Transcriber>	Chris_Abernethy: Yep so this is in response to 369 that I think was opened by Vivian and it was simply pointing out that the open API schema does not have a description for posting to the presentations and points that's the oauth version presentation so this simply modify schema and adds a description.
+[2022-10-04T17:50:32.333Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/425
+[2022-10-04T17:51:06.322Z]	<Transcriber>	Chris_Abernethy: This one is me yep so this PR does a couple of things first it removes testing related to bad values improved I created that has shunted over to issue 428 that will re add those in a different format and this then adds positive testing to ensure that whatever value is provided for proof created or excuse me when proof created is emitted it checks to see that the created value that is.
+[2022-10-04T17:51:06.916Z]	<Transcriber>	Chris_Abernethy: Turn from the implementation is.
+[2022-10-04T17:51:18.495Z]	<Transcriber>	Chris_Abernethy: About within 10 seconds of when the request was submitted so that we can sort of confirm that the server is correctly setting the creation time on these proofs.
+[2022-10-04T17:51:58.753Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/429
+[2022-10-04T17:53:24.897Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/432
+[2022-10-04T17:53:54.418Z]	<Transcriber>	Chris_Abernethy: Yes so this one addresses the fact that we used to obtain the issuer ID by making a did resolution call for did web and then looking at also known as array to figure out who to use as an issuer since we're no longer supporting the key we use did web exclusively we can simply use the organization did web as the issuer and we don't need to do this look up so this removes.
+[2022-10-04T17:53:58.978Z]	<Transcriber>	Chris_Abernethy: For the lookup and the code that used to look up.
+[2022-10-04T17:54:22.189Z]	<Transcriber>	Chris_Abernethy: I also added a small check to handle errors where the token cash did not previously exist I ran into that on my new laptop so I just put in a guard there try catch.
+[2022-10-04T17:55:00.703Z]	<Transcriber>	Chris_Abernethy: Yeah I'll just do this one this morning.
+[2022-10-04T17:55:02.524Z]	<Transcriber>	Mahmoud: No I think this is fine I just I think this was today I just didn't have a chance to review earlier yeah not an issue yeah.
+[2022-10-04T17:55:09.686Z]	<Transcriber>	Mahmoud: I will just give me one second.
+[2022-10-04T17:55:27.692Z]	<Transcriber>	Chris_Abernethy: I can say I don't know you mean ours is green.
+[2022-10-04T17:55:40.467Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/433
+[2022-10-04T17:56:08.239Z]	<Transcriber>	Chris_Abernethy: This is just simply adding an extra check to the workflow that runs whenever the open API spec is modified so in addition to preserving the Gamal to Json format this also runs a linter to make sure the uml is not malformed and this was triggered because last week I discovered some printing errors in the yellow.
+[2022-10-04T17:56:28.866Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/410
+[2022-10-04T17:57:00.538Z]	<Transcriber>	Chris_Abernethy: I'm having trouble remembering precisely whether or not this is I don't think it is because there are still cases where you need to do did resolution.
+[2022-10-04T17:57:07.554Z]	<Transcriber>	Chris_Abernethy: To perform that and it was a caching mechanism so that we're not making thousands of dude resolution calls.
+[2022-10-04T17:57:14.930Z]	<Transcriber>	Chris_Abernethy: But now with the changes that we merge today this is confined to presentations.
+[2022-10-04T17:57:39.841Z]	<Transcriber>	Chris_Abernethy: Yeah let's keep this one.
+[2022-10-04T17:57:44.427Z]	<Transcriber>	Chris_Abernethy: I don't believe it created a new issue too.
+[2022-10-04T17:57:52.726Z]	<Transcriber>	Chris_Abernethy: Brother and you PR yet so let's let's hang onto this one I'll create a new PR and then I will comment on this.
+[2022-10-04T17:58:22.449Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/583
+[2022-10-04T17:59:01.613Z]	<Transcriber>	Ben_-_Transmute: Makes me pretty happy too so basically we have you ever accidentally had a savior that the wrong when a request you might have run into this where all of a sudden the sea I will start spinning out massive numbers of schema issues and so what I did was I went through and fix all the schema issues and then I enabled schema checking for.
+[2022-10-04T17:59:49.995Z]	<Transcriber>	Ben_-_Transmute: Yeah I think I think you had a you knocked a lot of them out it wasn't it wasn't too bad the nice part about this was was I had issue 560 where I did a script to look through all of all the schemas that were wrong so that kind of gave me away to Pace myself and kind of figure out what percent I was done and as I went along but yep.
+[2022-10-04T18:00:38.686Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2022-10-04T18:01:23.411Z]	<Transcriber>	Chris_Abernethy: Yeah this was a question regarding whether or not we should remove credential status from the options in a credential issue requests and I don't see a documented here but I seem to remember talking about it and thinking that we should probably should not.
+[2022-10-04T18:01:45.835Z]	<Transcriber>	Chris_Abernethy: And this was c i linked over to you some.
+[2022-10-04T18:01:58.374Z]	<Transcriber>	Chris_Abernethy: Just looking through to see I don't think that they opted to remove that.
+[2022-10-04T18:02:08.862Z]	<Transcriber>	Chris_Abernethy: Food specifically asked why we are removing that in a comment on August 23rd.
+[2022-10-04T18:02:21.704Z]	<Transcriber>	Chris_Abernethy: - suggested that perhaps it might become an anti-pattern in time.
+[2022-10-04T18:02:41.584Z]	<Transcriber>	Chris_Abernethy: Was inclined to go with what was happening in d.c. API and it does not appear as though it's been removed there.
+[2022-10-04T18:02:50.855Z]	<Transcriber>	Chris_Abernethy: I would be okay with closing this.
+[2022-10-04T18:02:56.691Z]	<Transcriber>	Chris_Abernethy: We just had a commented.
+[2022-10-04T18:03:42.936Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/364
+[2022-10-04T18:03:59.742Z]	<Transcriber>	Chris_Abernethy: So this one is related to generating historical index so that previous test results can be browsed I have not had a chance to work on this.
+[2022-10-04T18:04:39.750Z]	<Transcriber>	Chris_Abernethy: Yeah results are being stored so nightly when the the tests are run forget the exact mechanism but I believe they're stored in a date specific folder and also in a folder that's considered current so that way we have we have the historical runs in archive folders but there's no easy way to browse through them and this was to this P this issue is to create some sort of a browsable index so that.
+[2022-10-04T18:04:40.838Z]	<Transcriber>	Chris_Abernethy: We could go back and forth and look at.
+[2022-10-04T18:04:58.088Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/368
+[2022-10-04T18:05:16.177Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Let me find my mute button.
+[2022-10-04T18:05:25.784Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Ryder has been doing a big PR push Fair number of commercials touting their New Logistics tracing.
+[2022-10-04T18:05:44.457Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Which just Maps very well to traceability as far as I can tell I don't have a contact with them it was more if anybody else had such contact that they might be a useful people to bring in.
+[2022-10-04T18:05:51.746Z]	<Orie>	lets tweet at them a link to the repo.
+[2022-10-04T18:05:54.852Z]	<Orie>	:)
+[2022-10-04T18:05:57.708Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Let me see if it's still alive.
+[2022-10-04T18:06:10.228Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	https://campaigns.ryder.com/SCS-ContactUs-Microsite?source=tv
+[2022-10-04T18:06:12.245Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It does redirect but it's live here's where it goes now.
+[2022-10-04T18:06:42.278Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): So yeah I guess it remains sort of in limbo unless somebody else has a contact.
+[2022-10-04T18:07:05.235Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/371
+[2022-10-04T18:07:38.316Z]	<Transcriber>	Chris_Abernethy: So this one is mine this is in regards to the published documentation for how we distribute meeting agenda and notes Etc and as Ted pointed out a more common way of doing this perhaps even a better way of doing this is to instead of having our standing agenda and get to rather send it out to the email list as other groups due to announce our agenda and linked to that.
+[2022-10-04T18:07:39.036Z]	<Transcriber>	Chris_Abernethy: In our meeting notes.
+[2022-10-04T18:07:55.861Z]	<Transcriber>	Chris_Abernethy: Simply linking to a standing agenda and suggest that if it changes will mail it out it's rather difficult for someone to determine whether we simply forgot to mail it out or there were no changes so I think that suggestion is probably a better way to move forward.
+[2022-10-04T18:08:11.541Z]	<Transcriber>	Chris_Abernethy: So I said I think this is ready for PR.
+[2022-10-04T18:08:21.655Z]	<Transcriber>	Chris_Abernethy: Yeah well I think I think the pr shooting documentation for of the procedure.
+[2022-10-04T18:08:36.383Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/349
+[2022-10-04T18:09:04.152Z]	<Transcriber>	Chris_Abernethy: Yeah so this one we had a bunch of back and forth on how we should respond if the presented issue ID is not known to implementation we landed on for 22 and this one is ready for PR but have not had time to him.
+[2022-10-04T18:09:22.057Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/342
+[2022-10-04T18:09:37.770Z]	<Transcriber>	Chris_Abernethy: Yeah I believe this is going to be closed.
+[2022-10-04T18:09:50.589Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/333
+[2022-10-04T18:10:20.778Z]	<Transcriber>	Chris_Abernethy: Yeah so this this was a question on whether or not we should do specifically that and as we have been doing in many other places we're moving away from that and requiring array of strings in these cases so I believe that this one can be closed.
+[2022-10-04T18:11:10.508Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/379
+[2022-10-04T18:11:32.314Z]	<Transcriber>	Orie: Yep so I think we looked at the VC API and they have the structure and we need to align with them or decide that we're not going for one with them.
+[2022-10-04T18:11:44.932Z]	<Transcriber>	Orie: I'm looking more to mood and Maven that on this front since they've indicated their support for the VC API let us know what you think about this.
+[2022-10-04T18:12:01.809Z]	<Transcriber>	Chris_Abernethy: I'm so I apologize for jumping in but worry I believe we are aligned with you Capi currently you have array of objects we have array of objects I think I'm.
+[2022-10-04T18:12:05.819Z]	<Transcriber>	Orie: Yeah read this wrong then is it just like a human error logic.
+[2022-10-04T18:12:10.747Z]	<Transcriber>	Chris_Abernethy: Well I think I'm in line with you and that it should be an object not an array of objects.
+[2022-10-04T18:12:17.372Z]	<Transcriber>	Chris_Abernethy: Yeah currently we're aligned.
+[2022-10-04T18:12:22.963Z]	<Transcriber>	Orie: I'm - 12 changing it if we're aligned the next change the next change we make should be only because what the other guy came out of alignment.
+[2022-10-04T18:12:29.793Z]	<Transcriber>	Chris_Abernethy: Yeah I took a look at this today and if you leave if you click through to.
+[2022-10-04T18:12:37.830Z]	<Orie>	Also, never trust the transcriber
+[2022-10-04T18:12:44.275Z]	<Orie>	its never accurate.
+[2022-10-04T18:12:49.033Z]	<Transcriber>	Chris_Abernethy: Your lines 30 link there nope that's not it I apologize but somewhere if you go to the VC API and you look at it for the update credentials and point which is what we're talking about here they do use array of objects.
+[2022-10-04T18:13:02.930Z]	<Transcriber>	Orie: Yeah I don't think we should argue with them we should just close this if we're an alignment and the person closing it should leave a comment saying I checked and we're in the linemen and tears.
+[2022-10-04T18:13:04.939Z]	<Transcriber>	Chris_Abernethy: I will enter that comment now.
+[2022-10-04T18:13:33.852Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/402
+[2022-10-04T18:14:21.332Z]	<Transcriber>	Orie: I'm mostly linking it to share that it exists it covers Postman APC is example seem relevant yeah it was just to put it on the radar for people to review see if it's relevant or useful.
+[2022-10-04T18:14:37.469Z]	<Transcriber>	Orie: Comments on it.
+[2022-10-04T18:15:04.639Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/359
+[2022-10-04T18:15:17.440Z]	<Transcriber>	Chris_Abernethy: I am done and this is just a placeholder to.
+[2022-10-04T18:15:22.449Z]	<Transcriber>	Chris_Abernethy: Implement conformance testing for the credential status and points.
+[2022-10-04T18:15:50.021Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/307
+[2022-10-04T18:16:09.558Z]	<Transcriber>	Ben_-_Transmute: I'm guessing this one still relevant just in terms of consistency with our.
+[2022-10-04T18:16:12.762Z]	<Chris_Abernethy>	q+
+[2022-10-04T18:16:21.244Z]	<Transcriber>	Ben_-_Transmute: Reading repository Chris just said that this was a lower priority and unless someone wants to take it from him it's probably just going to be in the queue.
+[2022-10-04T18:16:41.093Z]	<Transcriber>	Ben_-_Transmute: But I guess so if there's a read me that it's consistent with our existing style than yes.
+[2022-10-04T18:16:57.240Z]	<Transcriber>	Ben_-_Transmute: Yeah but I don't think there's any any disagreement with how should proceed yeah.
+[2022-10-04T18:16:59.858Z]	<Chris_Abernethy>	q-
+[2022-10-04T18:17:06.499Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/325
+[2022-10-04T18:17:34.645Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/39
+[2022-10-04T18:17:53.561Z]	<Transcriber>	Ben_-_Transmute: Let's do it.
+[2022-10-04T18:17:54.274Z]	<Transcriber>	Chris_Abernethy: I think maybe my story has to be updates.
+[2022-10-04T18:18:03.497Z]	<Transcriber>	Orie: I closed it.
+[2022-10-04T18:18:20.670Z]	<Transcriber>	Orie: I'm sure someone will find a way to reopen it but after this many meetings with this many no updates think it's appropriate not have to have this conversation again.
+[2022-10-04T18:18:29.051Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/363
+[2022-10-04T18:18:37.300Z]	<Transcriber>	Mahmoud: I think it's more Stockholm syndrome than Nostalgia but like.
+[2022-10-04T18:18:49.984Z]	<Transcriber>	Mahmoud: Yeah this is a super basic winter linked to the house at the collection thingy on Postman.
+[2022-10-04T18:18:55.797Z]	<Transcriber>	Mahmoud: Take Chris offered to do it last time and yeah.
+[2022-10-04T18:19:20.544Z]	<Transcriber>	Chris_Abernethy: I did actually started looking at this this morning and I think it's still fairly straightforward it's just read me updates but I think it's more than just links I think we need a little bit of refactoring and instructions and how to sign up to get you part of the test and how to import the conformance and interop tests I don't think it's a big deal which I just couldn't complete it before the meeting.
+[2022-10-04T18:19:29.970Z]	<Transcriber>	Chris_Abernethy: Yeah I don't think that's very helpful.
+[2022-10-04T18:19:33.952Z]	<Transcriber>	Chris_Abernethy: Simply looks I think we need a little bit more instruction.
+[2022-10-04T18:19:46.608Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/377
+[2022-10-04T18:21:04.793Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/389
+[2022-10-04T18:21:24.592Z]	<Transcriber>	Chris_Abernethy: I'm so this one is mine and this is a large issue to track the removal of these of also known as and to begin using did web instead of dookie we have done all these things this could be closed.
+[2022-10-04T18:21:40.592Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/397
+[2022-10-04T18:21:56.018Z]	<Transcriber>	Chris_Abernethy: Yep you have done this this was done with PR 400.
+[2022-10-04T18:22:04.162Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/415
+[2022-10-04T18:22:17.176Z]	<Transcriber>	Chris_Abernethy: I believe this is still open because I have to fix the conflict so when I fix that this will close automatically.
+[2022-10-04T18:22:24.662Z]	<Transcriber>	Chris_Abernethy: It will close I linked it with fixes.
+[2022-10-04T18:22:40.604Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/416
+[2022-10-04T18:23:11.611Z]	<Transcriber>	Chris_Abernethy: All right so this one initially when I was running - testing I was not running through all of the possible type options so for example if a property needed to be a string I was only testing if it failed if it was an array that's not really inclusive enough we need to test if it fails it's an array if it's an integer it's null if it's a Boolean Etc.
+[2022-10-04T18:23:12.254Z]	<Transcriber>	Chris_Abernethy: And I specifically ran into.
+[2022-10-04T18:23:29.486Z]	<Transcriber>	Chris_Abernethy: With some of my news testing where a value of null did not fail properly in our implementation so adding all of these tests is the better way to go rather than skipping some in assuming they will do the right thing.
+[2022-10-04T18:23:36.318Z]	<Transcriber>	Chris_Abernethy: This is ready for VR.
+[2022-10-04T18:23:40.612Z]	<Transcriber>	Chris_Abernethy: And I'll sell for sign this one.
+[2022-10-04T18:23:56.921Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/issues/401
+[2022-10-04T18:24:08.227Z]	<Transcriber>	Chris_Abernethy: I don't but I've been following this one.
+[2022-10-04T18:24:12.251Z]	<Transcriber>	Orie: That's that's Christina yesterday from Microsoft or Foundation.
+[2022-10-04T18:24:58.956Z]	<Transcriber>	Orie: I can summarize I mean essentially these confused by why we're using the word did off because did off is not really defined anywhere including really in the ccg but it is closest to being defined in the ccg A and the VP request back which is the spec we use to manage the presentations available and presentations admissions data models in the API that we have here.
+[2022-10-04T18:24:59.507Z]	<Transcriber>	Orie:  so she.
+[2022-10-04T18:25:32.114Z]	<Transcriber>	Orie: Can confused why we're talking about it off because in the circles that she runs in it's either open ID connect or it's you're not you not doing it our new forms of presentations like oauth presentations don't have any off piece so she's really just reading spec and being confused by our general weakness and communicating the different presentation scenarios and what they mean for the.
+[2022-10-04T18:25:32.568Z]	<Transcriber>	Orie:  holder binding for credentials.
+[2022-10-04T18:25:57.912Z]	<Transcriber>	Orie: A pull request that updated the language in those sections may be making it clear when holder binding is present when it's not when you office used when it's not when VP request spec is used when it's not that's that's what would help resolve this issue my opinion.
+[2022-10-04T18:26:40.960Z]	<Transcriber>	Chris_Abernethy: I'm happy to do the minutes if we could close #406.
+[2022-10-04T18:27:04.154Z]	<Transcriber>	Chris_Abernethy: This one is I was going to differentiate the responses from credentials verify into two different 400 errors and or a pointed out rather correctly that if the signature is invalid that's that's not a 400 that's a 200 with a verification failed response so this should just be closed.
