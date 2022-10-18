@@ -1,0 +1,788 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-10-18-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-10-18-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-10-18
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Oct/0087.html
+Topics:
+  1. Introductions, Relevant Community Updates
+  2. Alignment of VC API for JFF Plugest
+  3. Internal vs. External API language
+  4. Challenge management in the VC API
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  PaulDietrich GS1, Greg Bernstein, Manu Sporny, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Dave Longley, Mike Varley, 
+  Logan, Patrick (IDLab), John Henderson, Dmitri Zagidulin, Brian, 
+  Joe Andrieu
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Welcome everyone to the October 18th 2022 
+  verifiable credentials API call. Our agenda is in the chat 
+  Channel.
+Manu Sporny:  On the agenda today, we are discussing internal 
+  versus external API language we're going to talk a bit about a 
+  test for the default issuer and an end point we've got some 
+  amount of discussion around credential ID and whether or not 
+  we're going to use that in update credential status that one's 
+  been hanging out for a bit and then any other issues as time 
+  permits.
+Manu Sporny:  We will of course start with our regular 
+  introductions reintroductions and relevant Community updates okay 
+  with all that said let's go ahead well the first question is are 
+  there any updates or changes to the agenda.
+Manu Sporny:  Anything else folks want to talk about today?
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  Yeah I didn't check the the agenda for this but I 
+  know during the jmf work a number of things have come up around 
+  just a few minor changes for payloads for the VC API to to make 
+  sure that these exchanges API is consistent with the other apis 
+  we might want to cover that briefly and talk about getting spec 
+  changes in so that people that are implementing the exchanges API 
+  at JFF.
+Dave Longley:  Are doing the same thing.
+Manu Sporny:  Okay so let's put that first up on the agenda then 
+  right after introductions and relevant Community updates please 
+  remind me if I forget Dave can you raise an issue if there isn't 
+  one associated with it so we can just get that into the into the 
+  minutes.
+Manu Sporny:   All right.
+Manu Sporny:  Other updates or changes to the agenda?
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  All right first up introductions reintroductions 
+  relevant Community updates I think we have a couple of new folks 
+  here Greg John I think you've been here John Henderson I think 
+  you've been here before but Greg would you like to just do a 
+  quick introduction to yourself what you're interested in that 
+  kind of stuff.
+Greg Bernstein:  Hi my name is Gregg Bernstein previously been 
+  teaching Web Design Systems and cyber security at one of our 
+  local colleges here in California Cal State universities Bay 
+  Breyer did a lot of networking work particularly standardization 
+  at the ietf and I was teaching one covid hit and got really 
+  interested in verifiable credentials.
+Greg Bernstein:  So my interest is General verifiable could rent 
+  credentials web interfaces for them the security stuff associated 
+  with them and I like to get hands on and try out examples of 
+  things and such like that and so I was looking at the apis and 
+  got interested in your work.
+Greg Bernstein:  Already downloaded this stuff from get and took 
+  a little bit at look at it.
+Manu Sporny:  Awesome that's great welcome to the community Greg 
+  wonderful to have you here especially given your background and 
+  your area of Interest we definitely need more folks down in the 
+  code looking at things and in trying things out so welcome 
+Manu Sporny:  John do you want to do a re-intro, up to you?
+John Henderson:  Oh sure yeah just very briefly yep I'm John I'm 
+  a software engineer with the energy web foundation so we have a 
+  VC API implementation so following along here.
+Manu Sporny:  Awesome welcome welcome again to the community any 
+  other introductions reintroductions or relevant Community 
+  updates.
+Manu Sporny:  All right I have a couple the first one is that I 
+  believe we came to consensus last week on publishing snapshot of 
+  the verifiable credential API to the verifiable credential 
+  working group and the mechanics around that and all that stuff so 
+  that is on my work queue I hope to get to it in the next week or 
+  two the data Integrity work is also going out as far.
+Manu Sporny:   Public working draft.
+Manu Sporny:  It's kind of what the ccwg is focused on right now 
+  and I'm one of the editors for that specs that's slowing 
+  everything else down so that's in process just haven't been able 
+  to get to it yet see.
+Manu Sporny:  I think that's largely it for Community updates iiw 
+  the internet identity Workshop is coming up next month 
+  mid-november so if you haven't bought tickets definitely do so 
+  now they run out of tickets typically in there's going to be a 
+  lot of interop work involving the C API as well as you know the 
+  jobs for the Future Foundation is doing a huge interop fest 
+  Between like 30 companies VC API is involved in that it's one of 
+  the protocols that people are using and work is continuing their 
+  as Dave Longley mentioned okay I think that's it for Community 
+  updates let's go ahead and jump into alignment I guess of BC API 
+  for GFF plugfest.
+
+Topic: Alignment of VC API for JFF Plugest
+
+Dave Longley: https://github.com/w3c-ccg/vc-api/issues/311
+Manu Sporny:  Dave do you have a issue we can drop in awesome 
+  thank you.
+Dave Longley:  Yeah just dropped it into the chat.
+Manu Sporny:  Okay let me go ahead and share my screen here and 
+  why don't you get us started there.
+Dave Longley:  Sure I'm also trying to quickly find a link to an 
+  example.
+Dave Longley:  But the the short of it is a little while back in 
+  the verify API we decided to make sure that when it's either in 
+  the verifier the issue API which we made sure that when you're 
+  posting payloads to the API that you have a top-level property to 
+  put a verifiable credential or a verifiable presentation in and 
+  the same is true when the when the data is returned and we had a 
+  number of discussions around that and I'll agree that that was a 
+  good idea and made I believe.
+Dave Longley:   We made those changes.
+Dave Longley: 
+  https://w3c-ccg.github.io/vc-api/#example-step-3-presentation-to-issuer-provide-verifiable-presentation
+Dave Longley:  We did not make those changes to the X to the 
+  exchanges API and the same arguments and rules sort of apply 
+  there and so what this comes down to is is a very simple change 
+  so that when people are posting data to the VC API exchanges in 
+  point they should there should be a top-level property for 
+  verifiable presentation if they're posting a presentation instead 
+  of just posting a a raw presentation here's a.
+Dave Longley:   Link to one of the examples that would need to be 
+  updated.
+Dave Longley:  So that link shows the the post body just has a 
+  presentation Rawley posted posted there and instead what we want 
+  to do is have a property called verifiable presentation and put 
+  it under there and the argument for all of that that we went 
+  through before was to better future proof the API allow other 
+  properties potentially be included and allow other things to be 
+  posted in the same is true for any responses they come back from 
+  the server so.
+Dave Longley:   This issue is about updating the examples to 
+  bring that in line with the.
+Dave Longley:  We made with the other apis and this issue also 
+  covers its trying to slow down my talking because I know you're 
+  typing this on it this other all this issue also covers we have 
+  an example that uses put in the API the HTTP put instead of HTTP 
+  post and those semantics don't really match up because the user 
+  isn't putting a resource on a server somewhere they're trying to 
+  execute.
+Dave Longley:   In in.
+Dave Longley:  Some transaction so they're not just placing a 
+  resource there to get get it back later so post is a better as it 
+  is the better semantics for that allowing the server to do 
+  whatever it needs to do not just store a payload.
+Dave Longley:   Or stories.
+Manu Sporny:  Ice cream right any thoughts concerns plus ones yes 
+  we should do this - one no we should not from the group.
+Mike Varley: +1
+John Henderson: +1
+Greg Bernstein: +1
+Manu Sporny:  So I'm seeing support from Patrick to do this 
+  support from like Farley to do this.
+Dmitri Zagidulin: +1 (A reluctant one)
+Manu Sporny:  John Anderson Gregg Bernstein Dmitry Dmitry is 
+  reluctant with luck tonight's about Dimitri.
+Dmitri Zagidulin:  Just changing code.
+Manu Sporny:  Go ahead John.
+John Henderson:  Use the library on the broken semantics Dave.
+Dave Longley:  Yes so let me see if I can find the where they put 
+  is from the spec.
+Dave Longley:  So here is a link to that.
+Dave Longley: https://w3c-ccg.github.io/vc-api/#continue-exchange
+Dave Longley:  So put is being the way the place where you use 
+  put in HDPE is when you want to store a resource untouched at 
+  some endpoint and so the expectation is that a client is going to 
+  generate some kind of resource some kind of data send it to a 
+  server and then the server is going to put it there and then it 
+  can be fetched later and really what's happening with the VC 
+  exchange API is you might be posting.
+Dave Longley:   Let's see what you actually post.
+Dave Longley:  Hopefully we have an example of that.
+Dave Longley:  What's being sent up as a verifiable presentation 
+  and that's not just being stored at the end of the server that 
+  doesn't even make sense you're exchanging their presentation for 
+  another presentation that has like credentials in it or or maybe 
+  a VPR that is asking for more data so this this operation as a 
+  put makes no sense you're not giving the server a presentation 
+  that it's going to hold on to and then you can go get it later 
+  what you're doing is you're saying here's a presentation that's 
+  meant to satisfy some kind of.
+Dave Longley:   Constraints requirements in the exchange and in 
+  return I hope you give me back.
+Dave Longley:  With credentials or you give me back a VPR that 
+  says you need more information and so post is is more appropriate 
+  for as the HTTP verb in that case.
+Manu Sporny:  Go ahead Patrick oh first John did that answer your 
+  question and then after you Patrick.
+John Henderson:  Yeah that's great thanks.
+Patrick_(IDLab): I was curious in this interaction so we talked 
+  about verifiable Prudential verifiable presentation but at which 
+  stage in the interaction do you actually make like a request for 
+  a presentation where you include your constraints and so on.
+Dave Longley:  So when an exchange is first received however you 
+  receive it whether that's through like a QR code or through a 
+  chappie interaction you'll receive an exchange URL and you're 
+  supposed to post an empty body to that exchange or L and in the 
+  future there might be other things supposed to it but right now 
+  it's just an empty body and in response you get back either a 
+  verifiable presentation with the credentials you're looking for 
+  because the server the server doesn't.
+Dave Longley:   Need anything else from you.
+Dave Longley:  You get back a VPR that describes what else you 
+  might need to present in order to get the credentials that you're 
+  looking for then the expectation is you construct that 
+  presentation and you send it to the end point specified in the 
+  VPR and the VP are either and the end point either says okay now 
+  you're done and here are your credentials or it might have 
+  another VPR and that process can can go on based on whatever the 
+  business rules are for interacting with that Exchange.
+Patrick_(IDLab): Okay and when you say VPR that stands for 
+  verifiable presentation request.
+Dave Longley:  Yeah that's right.
+Manu Sporny:  Patrick all right so we have a bunch of plus ones 
+  little reluctance to change code which is understandable no 
+  objections so it sounds like we can make this change unless there 
+  any objections.
+Dave Longley:  And no objection I just want to clarify one more 
+  thing with Patrick if you're starting a chappie if you start an 
+  exchange from a chappie interaction you might have the initial VP 
+  are given to you with the interact field for the exchange and you 
+  can respond directly when that happens you could respond with 
+  your verifiable presentation to The Exchange directly in your 
+  first step.
+Patrick_(IDLab): Okay cuz the the framework I'm familiar with 
+  like first you would establish a connection between two agents 
+  and then the verify agent would prepare internally a sort of 
+  presentation request and including their the ID of both 
+  connections here but in the VC API there seems like there's not 
+  that concept of connection between both.
+Dave Longley:  Yeah that's right.
+Patrick_(IDLab): Okay because I know there was another concept 
+  that people are working at it's called like a out of bound 
+  Communications which seemed more in line with what is the 
+  approach here of the VC API which is sort of communication that 
+  are not bound to any pre-existing connections.
+Patrick_(IDLab): Yeah so when you have a verifier you would sort 
+  of create that request internally and then send that payload to 
+  the holder and the holder would then.
+Patrick_(IDLab): See if he has a credential that matches that 
+  request and present the field that were required.
+Dave Longley:  Yeah that's right and and so you might be starting 
+  an interaction where you visited a website and you chosen the 
+  credentials credential or credentials that you want on that site 
+  and the site's able to generate a VPR to pass to you through 
+  chappie in the beginning and then you choose a wallet and you 
+  respond to that BPR but you there are other use cases where 
+  you'll receive an exchange and point through some other mechanism 
+  that and you might not know what to send to the end point first.
+Dave Longley:   You just post an empty body and that endpoint at 
+  that point would give.
+Dave Longley:  For what it needs.
+Manu Sporny:  Right I'm not hearing any objections so next steps 
+  are to raise a PR that fixes the exchanges and points to ensure 
+  that when verifiable verifiable presentation is returned that.
+Manu Sporny:  Is contained in a verifiable presentation property 
+  I have misspelled this.
+Dave Longley:  Yeah and it's also in the case when you're 
+  submitting one so it's in both payload case.
+Dave Longley:  So stands for return.
+Manu Sporny:  Is sent or return that is contained okay there we 
+  go all right let's that seeing no one on the Queue I'll say this 
+  PR ready ready for PR in we will try to get that fixed really 
+  quickly so that the Jeff of plugfest folks can Implement 
+  accordingly.
+Manu Sporny:   Go ahead.
+Dmitri Zagidulin:  Just as a point just as a data point in case 
+  somebody's curious I don't expect a lot of jff implementers to go 
+  The Exchange Route I suspect.
+Dmitri Zagidulin:  I'll bet if you are implementing The Exchange 
+  Route and using it to test at jmf plugfest I'd love to hear from 
+  you.
+Dmitri Zagidulin:  I just because it's a simpler sorry it's a 
+  slightly more complicated workflow than just issue and so yeah I 
+  see Patrick something.
+Patrick_(IDLab): It's not related to what you said and so if 
+  people want to conclude that first.
+Manu Sporny:  Okay and I guess Dmitry you're saying like if 
+  people are using like chappie playground to do it you just don't 
+  have to do and you have a web Molly just don't have to do VC API 
+  at all you can get past the second plugfest just using purely the 
+  chappie playground yep.
+Dmitri Zagidulin:  We like we have the exchange endpoint 
+  implemented but we need to polish it up so that it matches the 
+  spec but we're not going to really use it in the plugfest prove 
+  you can do we use it.
+Manu Sporny:  Go ahead Patrick.
+Patrick_(IDLab): So regarding the last two little lines he wrote 
+  here you mentioned that you want the very vulgar option sent or 
+  return and a very full presentation I just want to point out it 
+  seems to be related so like when you issue a credential the 
+  return body is the verifiable credential without like a 
+  verifiable credential field so sure.
+Patrick_(IDLab):  shouldn't this match as well or.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  Yeah that that is what we talked about before and 
+  if we haven't updated the spec yet to do that we need to do that 
+  but we had that discussion in a previous meeting and decided to 
+  do that somewhere else in the other apis so it I don't know if 
+  the this same PR could address those things all at the same time.
+Patrick_(IDLab): So ideally like any request or response should 
+  have like one layer above the actual payload to say what it is 
+  whether it's a potential Republican actual presentation exedra.
+Dave Longley:  Yeah because that allows that gives us the future 
+  proofing features that we want and allows us to to work with 
+  these things now there might be this is when you're creating 
+  things or exchanging things it you know if there's a holder API 
+  in your fetching a credential that might not be a requirement but 
+  I don't have as much experience with the holder API and so can't 
+  speak to them.
+Manu Sporny:  I'm trying to see what we do here we definitely in 
+  the issue thing we have a credential top-level thing that 
+  contains it in the where where where.
+Patrick_(IDLab): I usually just going to sort of the web API 
+  documentation Pages the.
+Manu Sporny:  In the return values and documented their that's 
+  why I'm kind of digging in in here that would be I thought we had 
+  components in here yeah we do trying to see she credential 
+  options.
+Manu Sporny:  Really is in the.
+Dave Longley: https://github.com/w3c-ccg/vc-api/issues/291
+<dave_longley> An issue related to the previous discussion ^
+Manu Sporny:  Is sure Mo pencils Issue request body we specify it 
+  we don't really specify each credential response in components is 
+  where it is components issue credential writes that.
+Manu Sporny:  No it's down at the bottom sorry.
+Manu Sporny:  So in it sure looking for issue credential 
+  response.
+Dave Longley:  So I found the other issue where we had this 
+  discussion before and it's still it is also ready for a PR.
+Dave Longley:  And I went over that in the shop yeah.
+Manu Sporny:  Here yeah it just hasn't been updated yeah because 
+  we just return back standard bog standard verifiable credential 
+  and we should be returning back something with verifiable 
+  credential and this okay and in the yeah then the reason we did 
+  this was because we wanted to support eventually other formats 
+  being returned by the issuer API there's a theory that you could 
+  return back and mdl or you know.
+Manu Sporny:   Ovc jaw door.
+Patrick_(IDLab): Yeah because like so in the case of like Aries 
+  and occupy you know so the AIP vv2 extended originally was only a 
+  non-credit but the ipv do extended this to also handle w3c data 
+  model credential and you specified that like in the in the body 
+  you know whether you want and on credential or json-ld.
+Manu Sporny:  He he he he.
+Patrick_(IDLab): Angel and I think.
+Patrick_(IDLab): I really like the way that you define it because 
+  obviously different data model of credentials they don't operate 
+  the same way.
+
+Topic: Internal vs. External API language
+
+Manu Sporny:  Okay all right so I think we're good there we just 
+  need those changes just need to be made to the API okay I think 
+  that's a that item so moving on to our next agenda topic we're 
+  going to revisit the internal versus external API language which 
+  was a discussion we started last week and kind of ran out of time 
+  to talk about issue is here.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/282
+<dmitri_zagidulin> if we have time, any chance we can talk about 
+  challenge management?
+Manu Sporny:  And in this issue let's see where we got to last 
+  week was that we should move past the internal versus external 
+  language so she we don't need to talk about apis as being 
+  internal or external Dimitri I see your request in chat we can 
+  pick up challenge man.
+Manu Sporny:  After this issue probably it's a good it's a good 
+  topic but going back to external versus internal Joe Andrew noted 
+  that we should specify the roles that are you know calling which 
+  component and potentially why they're calling them Patrick 
+  mention that internal versus external would add complexity.
+Manu Sporny:  It's need to be anchored on a component and we need 
+  to specify the roles that are expected to call the component 
+  anyone any role can call any endpoint it's whether or not they're 
+  authorized to do so or not is the real question so there's a 
+  question around you know what are the expectations with these 
+  endpoints Joe noted that we really should get this into the 
+  specification before we try to do a publication of a note on it.
+Manu Sporny:   David Chadwick chimed in in.
+Manu Sporny:  The language that I used here with sloppy about who 
+  is calling an end point I tried to clarify that a bit and then 
+  maybe we can pick up with you Dave Longley and then Joe.
+Dave Longley:  Sure I mean what I said Joe said better which was 
+  just we should be talking about which roles we expect to call the 
+  endpoints so that we can create the so people know how to create 
+  the appropriate authorization for those roles.
+Manu Sporny:  Okay sounds good Joe.
+Manu Sporny:  You are muted still.
+Manu Sporny:  Yep we can hear you.
+Joe Andrieu:  How about now okay pretty much what Dave said I 
+  mean I think you know the key thing is some of these flows some 
+  of us have what we might call tribal knowledge about what's 
+  expected and so I think by defining who is actually expected to 
+  call what will help clarify what's the inside baseball and what's 
+  public facing and you know I think that's a better way to think 
+  about this internal external notion.
+Joe Andrieu: :+1:
+Dave Longley:  Yeah I just I want to really Hammer home that when 
+  we say who were talking about a role I think people got confused 
+  about that and they were thinking about you know individuals or 
+  that sort of thing all of our winter we talked about answering 
+  the question of who within the context of this API we're talking 
+  about a role that someone's playing and we have well-defined 
+  roles and if we're missing anything then that will should be 
+  surfaced through this exercise when we can have them.
+Manu Sporny:  Rikes we didn't want to make a decision on this 
+  last week as we were doing it in a rush our is is everyone okay 
+  if we move away from the internal external language and we 
+  specify what roles are expected to call which end points.
+Manu Sporny:   In which.
+Manu Sporny:  Are expected to be associated with which 
+  components.
+Manu Sporny:  So the concrete PR is going to effectively be that 
+  missing thumbs-up from Greg and Brian Patrick go ahead Joe you're 
+  on the queue.
+Joe Andrieu:  Sorry I was just trying to thumbs up and it put me 
+  on the key.
+Joe Andrieu:  I like it floating across the screen it just makes 
+  me giggle silly.
+Manu Sporny:  Okay that is kind of a pleasant I like the plus 1 
+  but the thumbs up is like a much more pleasant sound yeah all 
+  right so let me try and write something here next to the steps 
+  are to raise up PR that.
+Manu Sporny:  Notes to things for each endpoint.
+Joe Andrieu:  Is our cats worst.
+Manu Sporny:  One which role is expected which roles he's which 
+  roles are expected to which world are expected to call the 
+  endpoint and to which components those endpoints are expected to 
+  be.
+<joe_andrieu> /s/Is our cats worst.//
+Manu Sporny:  All right any objections as for that next step go 
+  ahead Patrick.
+Patrick_(IDLab): Put a certain objection just have a really hard 
+  time sort of grasping these two statements so if we maybe take a 
+  more precise example let's say we have the important like get 
+  credentials you know just to get all the credentials so if we 
+  answer those two questions one which rolled is expected to call 
+  that endpoint what would the answer to that be.
+Joe Andrieu:  What coordinator you mean.
+Manu Sporny:  The issuer controller role is expected to come 
+  sorry thank you coordinator the issuer coordinator role is 
+  expected to call the get credentials and point.
+Joe Andrieu:  Which is on the issue or service.
+Patrick_(IDLab): Well it's on the holder.
+Patrick_(IDLab): In my head it was very much a holder resource 
+  like a holder as potential and.
+<dave_longley> sounds like doing this exercise will help! :)
+Manu Sporny:  Yes that's true yeah which is on the issuer sir 
+  hold on it let's do it let's do a simpler one to let me let me 
+  try and do is to start with a simpler one because that one's a 
+  bit confused as to whether holders or issuers should call that 
+  yeah yeah yeah that one's complicated so let's go to an easier 
+  one right credentials issue the.
+Manu Sporny:  Is expected to call the credentials issue endpoint 
+  in the credentials issue endpoint is expected to live on the 
+  issuer service.
+Manu Sporny:  So that's a full stop that's an example of there 
+  that's an example there will be a PR Patrick that we can all look 
+  at in I'm sure there's going to be a debate over things like get 
+  credential right.
+Patrick_(IDLab): Yeah it's just a thing just a distinction of 
+  like what really is service means and this and I components so 
+  the like component okay you have the service which is a component 
+  and you would have like storage which is another component is 
+  that okay.
+Manu Sporny:  Yeah but to potentially a I mean I'm sure we're 
+  going to get I'm sure it's not going to be as easy as we're 
+  saying right here right I mean they're going to be ones like the 
+  get credentials and point which have been confused about exactly 
+  what they do.
+Manu Sporny:  That meaning like you know it could be on any 
+  service really right because.
+Patrick_(IDLab): Well because also like me like also again like I 
+  said that a lot but you know my point of reference is really a 
+  reason like an Aries agent can effectively play all role you know 
+  like an agent can as the capability to issue verify and store 
+  credential and presents so in my head like the distinction of 
+  those roles is more in the way that you will provision your agent 
+  and you're going to use it.
+Patrick_(IDLab):  so I have a hard time understanding.
+Patrick_(IDLab): This all the segregation of components just from 
+  my point of reference I have known that limited experience I have 
+  and it's interesting I think it was Joe that mentioned there's 
+  like tribal knowledge I think use as a term and I think that's 
+  that's very true you know because I had a feeling even when I 
+  started to join here like.
+Patrick_(IDLab):  there was a lot of.
+Patrick_(IDLab): Things that seem that we're very clear amongst 
+  the people attending this meeting but from an outsider point of 
+  view it's not so evident.
+Manu Sporny:  Yep yeah completely agree.
+Manu Sporny:  Police yet won't you.
+Joe Andrieu:  So if I could I don't know if there's a queue here 
+  have you seen the figure to diagram in the VC API draft Patrick.
+Patrick_(IDLab): Yes that the diagram with the if it's the one 
+  that I think so.
+Joe Andrieu:  Okay yeah that's definitely where we're trying to 
+  you know externalize that tribal knowledge it's currently out of 
+  date because all the apps we've decided renamed as coordinators 
+  but that's definitely the framework we're trying to tease out 
+  precisely because of the problems with Aries calling everything 
+  in agent and that it's hard to differentiate well what do you do 
+  when right so so this architecture breaks it all out so we can 
+  talk specifically about who needs what authors.
+Joe Andrieu:   Ation for what type of function.
+Patrick_(IDLab): I like what's the admin here like the the admin 
+  the sort of square with the stripes like what does that 
+  represent.
+Joe Andrieu:  Sure that's actually controversial so I'll take the 
+  the lumps on the confusion about that if there is any what that 
+  diagram means or what that element in that diagram means is that 
+  there is a way for the issuer to administer all of these services 
+  and it is probably not going to be standardized there was some 
+  initial thought from when I first presented this component I 
+  think did.
+Joe Andrieu:   Petrie spoke up and said.
+Joe Andrieu:  We're adamant that the administration side of it I 
+  don't really think we should standardize that feels to be spoke 
+  and I think I agree it might be nice to standardize it but first 
+  we need to get the functionality working so the point is there is 
+  some administrative interface in which the issuer would set some 
+  business rules they would set up the assets management and ditto 
+  the verifier would set up a pause management with the verifier 
+  Services they would set up the business rules with the verifier 
+  app so it's a conceptual block of this capability.
+Joe Andrieu:   Billy has to be there but it's not expected to be 
+  standard.
+Patrick_(IDLab): You see interface you mean like a web interface 
+  or it's just an interface in general it could be any command-line 
+  tool or anything.
+Joe Andrieu:  Could be yes anything it could be a command-line 
+  tool could be a Json file.
+Patrick_(IDLab): Okay just a way to input some configuration and 
+  rules.
+Joe Andrieu:  That's right there the main thing if you look at 
+  the pattern right is the issuer the verifier and the holder only 
+  deal with the administrative interfaces which is that's their 
+  direct engagement with the system right the issuer is and then 
+  the loop when you get a credential issued they are in the loop 
+  when they set up the rules for how those credentials are going to 
+  be issued.
+Manu Sporny:  Yeah I mean this this diagram is actually holding 
+  together pretty well Joe you know I mean we've been I don't know 
+  why it was created nine months ago or something like that and it 
+  feels like it's doing a great job of at least getting us on the 
+  same page about the components in the system that said need edit 
+  access so that we can update these yeah yeah exactly.
+Joe Andrieu:  Yeah I need to get you the new diagram right is is 
+  there an issue that is a PR I'm sorry is there a PR with the 
+  changing code a change in language that I could add the change 
+  the diagram to or something.
+Joe Andrieu:  Okay I'll go track that down then.
+Manu Sporny:  No yes yes there is yes there is let me I think it 
+  is one of the open PR's renamed app the coordinator yeah in here 
+  it's me asking you to.
+<manu_sporny> Rename "App" to "Coordinator": 
+  https://github.com/w3c-ccg/vc-api/pull/308
+Manu Sporny:  And ideally we would have something that what we've 
+  tended to do in the past is some kind of shared tool that we can 
+  link to with the chord diagram that we can then export the SVG 
+  because Respec supports it natively in the browser supported 
+  natively.
+Joe Andrieu:  Yeah I'm I'm torn.
+Manu Sporny:  Well anyway that's that's that's their the request 
+  is there out there anyway.
+Joe Andrieu:  Yeah that I will definitely get an upgrade I also 
+  do would like to get towards SVG instead of this proprietary tool 
+  I use so let me let me wrestle with that but I will definitely 
+  get us an updated diagram.
+Manu Sporny:  Great awesome thank you okay that's it for that 
+  issue we have 10 minutes before we are supposed to break so let's 
+  pick up Dimitri your issue around challenge Management in the DC 
+  API.
+
+Topic: Challenge management in the VC API
+
+Manu Sporny:  Go ahead me tree.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/310
+Dmitri Zagidulin:  Actually right so can you hear me okay so in 
+  implementing the verification for example but also the supplies 
+  to The Exchange and point so we require a challenge to prevent 
+  replay attacks right the fact requires a challenge but it but it 
+  in implementing we're running into difficulties or these 
+  questions of.
+Dmitri Zagidulin:   So how do we.
+Dmitri Zagidulin:  That Challenge from the verifier to the client 
+  that's going to be it's going to be using it.
+Dmitri Zagidulin:  Right so it the challenge mechanism sort of 
+  assumes that the.
+Dmitri Zagidulin:  The verifier in the exchange and point are 
+  sort of coupled.
+Dmitri Zagidulin:  And so do we.
+Joe Andrieu:  Hold on when when you when you say exchange and 
+  point at which component are you talking about.
+Dmitri Zagidulin:  Which component does the exchange on point 
+  live on.
+Joe Andrieu:  That's that's the question.
+Dmitri Zagidulin:  Don't know we have an exchange API right like.
+Joe Andrieu:  Well every time it gets brought up I ask these 
+  questions.
+Manu Sporny:  Yeah it can yeah the exchange API can exist in 
+  theory on every single one of these control what's the word 
+  coordinator diamonds.
+Dmitri Zagidulin:  I mean it might need its own exchanger 
+  coordinator but so I don't know the answer to a question Joe.
+Dmitri Zagidulin:  And so one of the one of the proposed 
+  solutions that we've come up with but I've also seen other groups 
+  do the similar thing like like Dave Longley is to have a 
+  challenge management and point so my question to the group is has 
+  anybody else run into challenge management problems how do you 
+  provision a challenge and I'd love for Dave to to weigh in here 
+  go ahead and mono.
+Manu Sporny:  Unfortunately Dave had to go it's but we can bring 
+  this up again next week I can kind of report I'm separated from 
+  what's going on with challenges today but there's an issue here 
+  is she 310 and so feel free to kind of take a look through that I 
+  think that's that's got the proposal for the challenge Management 
+  in point typically I know let's let's just talk about like.
+Manu Sporny:   There's a presumption.
+Manu Sporny:  Is a challenge and point on verifier on the 
+  verifier service at least it could be it could Exist Elsewhere 
+  but a coordinator can call a verifier service and say give me a 
+  challenge and then.
+Joe Andrieu:  Which which coordinator is calling is this is part 
+  of where I get lost with the exchanges and this this notion here 
+  and that the verifier at me to keep track of its own challenges 
+  but I'm not sure who it's exporting or giving them to.
+Manu Sporny:  The verifier service let's just let's just hold it 
+  in on just the verifier right let's say there is an exchange and 
+  here's where the diagram might break down Joe so so on the 
+  verifier coordinator here there exists in exchanges in point 
+  right in if the verifier at any point needs to go hey I need you 
+  to do did off for example that's an example where you need a 
+  challenge right the verifier.
+Manu Sporny:   Later would call the verifier.
+Manu Sporny:  Sorry let me start from the very beginning the 
+  holder contacts the verifier and goes I want to engage in an 
+  exchange with you the verifier goes okay I need to did off this 
+  entity so I'm going to call the verifier service and ask the 
+  verifier service to generate a challenge for me verify our 
+  service generates a challenge which it remembers sends it back to 
+  the verifier app the verifier app then bundles that challenge in 
+  a verifiable presentation request.
+Manu Sporny:   East and sends it back to the holder.
+Joe Andrieu:  Why is it the verifier creating the challenge.
+Manu Sporny:  Why is this verifier not creating the challenge the 
+  coordinator it's a design Choice the coordinator supposed to 
+  effectively have mostly business logic challenges aren't 
+  necessarily purely business logic it's something that like every 
+  sorry I shouldn't say that many services need that are that are 
+  kind of outside business logic you're not custom.
+Joe Andrieu:  So I argue that the the defense against man in the 
+  middle is a business logic we are saying we are doing this thing 
+  because we believe that someone could get in the flow here so we 
+  are placing an additional requirement on the rules.
+Manu Sporny:  Yeah but it's yeah I agree with you I agree with 
+  you I think it's so common that when these verify our services 
+  are deployed it may be more useful to have it there instead of on 
+  the verifier coordinator.
+Joe Andrieu:  I'm just right but I'm challenging that because 
+  it's the verifier who we need to protect for man-in-the-middle 
+  right so the verifier is the sole source of authority as to what 
+  challenge they should accept as soon as they export that to the 
+  verifier service they have to trust that the verifier service 
+  isn't leaking that information it seems like a weird.
+Joe Andrieu:   Security vulnerability to a.
+Manu Sporny:  Okay well I mean let's let's let's see so I'll 
+  write that down this.
+Joe Andrieu:  Okay I can see topologically they're essentially at 
+  the end of the day the same it's just who's on the hook for 
+  making sure that that challenge is a unique nonce and I think 
+  it's a unique nonce and the coordinators domain not in the 
+  issuer's domain.
+Joe Andrieu:  I have 11 more now when you get that down -.
+Manu Sporny:  Okay go ahead Joe.
+Joe Andrieu:  I actually thought it was essentially symmetric 
+  that because the verifier is the one who's I believe we expect to 
+  check so that's an interesting question as to whether or not it's 
+  the verifier checking that challenge if they are then we still 
+  have to communicate that challenge to them or communicate it by 
+  reference to the earlier request right so if we request a 
+  challenge from them then we have to Echo it back so I think we 
+  have to Echo it back anyway.
+Joe Andrieu:   Me either.
+Joe Andrieu:  So we think that net that we're better off just 
+  having they coordinator manage it and tell the tell this the 
+  verifier service what challenge they gave.
+Dmitri Zagidulin:  So in in discussing which component on the 
+  dryer diagram the API endpoint should live on I don't want to 
+  lose track of the higher-level question which is.
+Dmitri Zagidulin:  Should we have a challenge and point in the 
+  first place.
+Joe Andrieu:  Well it depends on where you want to put it so 
+  that's.
+Dmitri Zagidulin:  Everybody doesn't get away like it's my my 
+  question to the group is would others find it useful if we had 
+  such an endpoint.
+Joe Andrieu:  Wow let me push back on that because I don't think 
+  usefulness is enough of a threshold that's what I think I think 
+  what we're dealing with is whoo-hoo which owner of that 
+  functionality has the least security problems as a result of 
+  giving them ownership over that property and it seems to me that 
+  challenges are not designed to be exposed externally except 
+  through the path for which you were.
+Joe Andrieu:   Defending against man in the middle.
+Joe Andrieu:  So so you communicate it to the party and they 
+  communicate it back to you having another party in the loop feels 
+  like a security problem so I don't know why you would ever have 
+  such a API.
+Manu Sporny:  Yeah let me try and answer that the challenge 
+  management can be difficult and you know if the the idea here is 
+  the issue or services are expected their trusted components in 
+  the system like if the if the verifier coordinator can't trust 
+  its verifier service the all bets are off right because the 
+  verifier service can can say oh yeah that thing's a totally valid 
+  BC when it's not so one one.
+Manu Sporny:  That we might need to think about here is.
+Manu Sporny:  Um the trust boundary for between the verifier 
+  coordinator and the verifier service the usefulness question that 
+  I think Dmitri was asking at least for digital bizarre was we 
+  don't want to have to force coordinators to do their own 
+  challenge management because it can get pretty onerous to do that 
+  ideally.
+Manu Sporny:   We'd want.
+Manu Sporny:  That have the ability to Outsource it now you know 
+  coordinators can always decide I'm not going to Outsource my 
+  challenge management I'm going to do it internally that's always 
+  a thing right so it's exposure on the verifier service was meant 
+  to be merely a convenience function not an absolutely mandatory 
+  you have to call out to a verifier service to generate a 
+  challenge at least that's that's how we were thinking about it go 
+  ahead Joe.
+Dmitri Zagidulin:  The opponent will hold on you mind if I jump 
+  in at a data point the other thing I want to bring up is that 
+  there's challenge management challenge management across the high 
+  level areas on the diagram meaning if there's arguments to be 
+  made that they exchange endpoint lives on the issuer.
+Dmitri Zagidulin:  Part of the diagram because the exchange and 
+  point is the thing that is issuing the credentials.
+Joe Andrieu:  No it's not get Cricket credential is like I did I 
+  really don't understand that definition of Exchange.
+Manu Sporny:  I'll get credential isn't doing that so we need to 
+  we need to.
+Dmitri Zagidulin:  Credential is not at all.
+Joe Andrieu:  So if exchanges is what I called to issue a 
+  credential then I really don't understand exchanges and that's 
+  what I heard you just say Dimitri that I.
+Dmitri Zagidulin:  That is the guy said that is what we're doing 
+  to issue credentials on like for example for learning credential 
+  wallet and the reason we're not using the issue and point is 
+  because it before exchanging there's several rounds of 
+  prerequisites that the wallet has to meet before before issuing 
+  could go ahead man.
+Joe Andrieu:  And at no no I'm good with this being an opening of 
+  a messy conversation so I don't think we're going to resolve it 
+  here in a few minutes.
+<mike_varley> thanks all!
+Manu Sporny:  I was going to end the call cause we're two minutes 
+  over but I know Joe you were on the Queue so we'll pick this up 
+  okay okay okay the issue isn't resolved we'll discuss this next 
+  meeting okay that's it for the call today thank you everyone as 
+  always for the great engagement we will pick up here next week.
