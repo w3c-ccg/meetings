@@ -1,0 +1,793 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-10-25-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-10-25-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-10-25
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Oct/0103.html
+Topics:
+  1. Introductions, Relevant Community Updates
+  2. VC API Options
+  3. Signature Suites
+  4. Pull Requests
+  5. Challenge management in the VC API
+  6. Test for issue with default issuer provided
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Patrick (IDLab), Manu Sporny, Greg Bernstein, Todd Snyder, Brian 
+  Richter, Dmitri Zagidulin, Joe Andrieu, Dave Longley, Eric Schuh, 
+  John Kuo, PaulDietrich GS1, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com)
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Okay here is the agenda for today.
+Manu Sporny:  Is the verifiable credentials API work item call 
+  this is October 25th 2022 on the agenda today is standard 
+  introductions relevant Community updates we have challenge 
+  Management in the VC API which is a discussion we started last 
+  week which we will continue this week we have an.
+Manu Sporny:   Issue around.
+Manu Sporny:  Yeah we have an issue for default issuer and then 
+  credential ID and updating the credential status and then any 
+  other issues as time permits anything else that we need to cover 
+  today.
+Manu Sporny:  Sure thing hate on how you doing.
+Todd Snyder:  I'd post a question if there's time for meeting 
+  about the options being passed to the issuer in the verifier get 
+  some clarity on this I know.
+Manu Sporny:  See if this works it's working okay all right so 
+  yeah Todd let's take that as maybe the first item how much time 
+  do you need for that.
+Todd Snyder:  I just really wanted some clarification on the how 
+  we're supposed to handle the options being passed in.
+Manu Sporny:  Okay okay alright so let's go ahead and take that 
+  up right after we do introductions and relevant Community updates 
+  any other topics to cover today.
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  Okay if not let's go ahead and get into the agenda 
+  is there anyone new to the call Todd maybe you could give a 
+  little bit of your background since you're new here.
+Todd Snyder:  It sure I'm representing gs1 u.s. today I believe 
+  Paul Dietrich was involved the calls previously you could make it 
+  today yeah I've been working with did we see stuff for last year 
+  and a half recently we've been starting a new project try to get 
+  a better handle on what you guys are doing is what was some of 
+  the stuff going on with the border patrol traceability sweet 
+  stuff that's pretty much all.
+Todd Snyder:  It takes me.
+Manu Sporny:  Great welcome to the group Todd good to see you 
+  here anyone else that's new to the call that wants to do an 
+  introduction or reintroduction if you change jobs or just want to 
+  say hi again.
+Manu Sporny:  Right then next up is relevant Community updates 
+  please feel free to Q if you've got any I've got a couple one of 
+  them is that the verifiable credential data Integrity spec is 
+  going to be going to first public working draft the vote for that 
+  is tomorrow I believe so let me add this link.
+Manu Sporny:   Ink in.
+<manu_sporny> Create a First Public Working Draft for Data 
+  Integrity: https://github.com/w3c/vc-data-integrity/pull/67
+Manu Sporny:  There's a PR to do a first public working draft of 
+  data integrity and that covers all the security in securing 
+  verifiable credentials if you using the json-ld form of those 
+  things.
+Manu Sporny:  So there's that.
+Manu Sporny:  The other heads up and we'll go into this in a bit 
+  we're going to cover some pull request but there's a number of 
+  pull requests that have been raised against the verifiable 
+  credentials API do to kind of implementation feedback so we 
+  should probably cover those forgot to mention those at the at the 
+  top of the agenda anything else any other updates things that we 
+  should know about.
+Manu Sporny:  Oh I should I totally forgot to mention also that 
+  the jobs for the future plugfest number two is happening right 
+  now and we have been busily integrating people that are have 
+  implemented it over chappie or using the verifiable credential 
+  API in today we have me try and go to the issue.
+Manu Sporny:   Or playground.
+Manu Sporny:  You're my screen here so today we've got the 
+  following issuers implemented API catalog that's a java-based 
+  implementation Danube Tech that's Marcus's implementation 
+  learning economy is the newest addition to the issuer back ends 
+  measure I/O and of course the various demo issuer so we've got 
+  these five with a.
+Manu Sporny:   Couple more on.
+Manu Sporny:  At least two to three more that are on the way that 
+  we're going to integrate with this and that's basically for 
+  issuing you know jobs for the future badges but the good news 
+  here is that we're going to be adding more and more credentials 
+  as time goes on to this list and so if anyone in the group wants 
+  a credential here like a specific type of verifiable credential 
+  definitely let us know and we'll try to integrate it into the the 
+  list of credentials we also have a.
+Manu Sporny:  Examples thing that we're putting together where 
+  anybody can contribute verifiable credential kind of templates 
+  and they'll be added to the list and then using that you can 
+  select the backend issuing framework select whether or not you 
+  want it off and then issue the credential and then put it into 
+  any wallet that supports either web-based digital wallets through 
+  choppy or native wallets through chappie.
+Manu Sporny:  So yeah that's.
+Manu Sporny:  On and again I think we've got three digital 
+  wallets and five issuers so far that have been degraded with a 
+  couple more on the way I'm more wallets and were issuers there 
+  okay I think that's it for announcements go ahead Patrick.
+Patrick_(IDLab): Sorry what's the name of what's the name of this 
+  event.
+<dmitri_zagidulin> the event link is: 
+  https://w3c-ccg.github.io/vc-ed/plugfest-2-2022/
+Manu Sporny:  The jobs for the future plugfest so it's jmf 
+  plug-in jobs here or the future so it's mused slowed its jobs for 
+  the Future these folks and it's Walmart Foundation has funded a 
+  big plugfest for verifiable potentially Shores digital wallets 
+  verifiers it's happening in three stages we're in.
+Manu Sporny:   Stage 2 now stage.
+Manu Sporny:  The second phase ends mid-november and then the 
+  third phase is going to test while it's tough and Dimitri put a 
+  link in in the chat Channel if you're interested in learning 
+  more.
+Manu Sporny:  Thing else before we move on from here.
+
+Topic: VC API Options
+
+Manu Sporny:  Todd why don't we pick up your question first this 
+  is VC options.
+Todd Snyder:  Yeah we've been working on implementing our own 
+  version of the VC API just want to get some clarification or 
+  where we can maybe find some examples what people are doing with 
+  the the main challenge when they're issuing a single a single 
+  credential not sure exactly what to do with those options rather 
+  they would reflect the V3 API.
+<manu_sporny> How domain and challenge is used today: 
+  https://w3c-ccg.github.io/vp-request-spec/#did-authentication
+Manu Sporny:  Gotcha so in the VP request spec I think we have an 
+  example in bid authentication around somehow domain and 
+  challenges used so I'm going to put something in the chat channel 
+  for you to copy.
+Manu Sporny:  With the VC API and if you're using the verifiable 
+  presentation request thing and you're doing something like did 
+  authentication when a did authentication comes across it asks it 
+  gives you a challenge and a domain and what you're supposed to do 
+  is you're supposed to include that challenge and the domain in 
+  your response so the the site the verifier will say I need you to 
+  did authenticate with me.
+Manu Sporny:  These did methods here's a challenge and here's a 
+  domain that you need to include in your response and then when 
+  you respond what you do is you create a verifiable presentation 
+  in sign it and you know this is you the holder or signing it in 
+  in the proof block you're supposed to include the challenge 
+  ensure the domain matches the domain you're talking to and then 
+  include the domain as well did that answer your question Todd or.
+Manu Sporny:  You don't have to.
+Todd Snyder:  A little bit okay yeah so we're just working with 
+  the VC API test Suite right now and focusing on issuing so wasn't 
+  clear to us so this is a Capri.
+Manu Sporny:  Looted for that for the test suite for just the 
+  test Suite you don't need to include domain or challenge the the 
+  test Suite only tests the backend API for issuance meaning like 
+  you've got you know let's say you've got like a gs1 system that 
+  that's sitting at the edge of the internet and then behind that 
+  gs1 system in your own security domain you've got a verifiable 
+  credential issuing platform the call is going to be purely in 
+  your security domain like your.
+Manu Sporny:   Area of trust so you're just.
+Todd Snyder:  Yes I believe so yep.
+Manu Sporny:  The issuer in the issuer based on like some kind of 
+  oauth 2 authentication you do with it is going to trust you and 
+  it's going to just issue a credential with whatever you say it 
+  should issue so for the VC API test Suite specifically let me 
+  make sure we're talking about the same thing API it's it's the 
+  issue here it's this one the issuer test Suite okay got this one 
+  does not require Challenger domain to.
+Manu Sporny:   Be sent in the.
+Manu Sporny:  That's right exactly.
+Todd Snyder:  Got yoga but you do want to do did authorization 
+  that's where you would expect to get these in and then you would 
+  do a sounds like basically would verify who's calling you then 
+  that you were expecting them to call you okay.
+Manu Sporny:  Yep you got it yep and that happens more in the in 
+  the exchanges stuff so if you look at you see API this is still 
+  in there let me check to make sure if we look at this it the 
+  exchanges and points that's where you would expect there to be 
+  some kind of did auth so the second you initiate an exchange.
+Manu Sporny:   The Who.
+Manu Sporny:  Thing with like the verifier would sorry the 
+  verifier would respond with this so if you're like I want let's 
+  say you're the let's say you're the verifier Todd and I'm someone 
+  connecting to you when I want to initiate an exchange with you 
+  I'll post to some endpoint of yours that you've given me out of 
+  band and you would respond back with this like I need you to did 
+  authenticate and then I would respond back with.
+Todd Snyder:  Gotcha I think I'm understood okay so somewhere how 
+  you know off them flow most Works you're gonna pass be something 
+  I'm looking for and I'm going to respond back with yes I know 
+  it's you have access.
+Manu Sporny:  You got it yep yep in the thing the key thing with 
+  the exchanges and point here is that you can go back and forth 
+  any number of times so like you can say like I can hit you know I 
+  can hit your endpoint and you'll say I need you to get off and 
+  then I'm like okay here you go here's a DOT and then you can 
+  respond back with either like here's your verifiable credential 
+  or you can respond back with oh well now I need you to prove to 
+  me.
+Manu Sporny:   Me that you're you know.
+Manu Sporny:  Your business location is within the United States 
+  right and then I give you back a credential I present a 
+  credential back to you that says this is my business and it 
+  exists in the United States and then and then we can go back and 
+  forth with the exchanges stuff like that.
+Todd Snyder:  Okay yeah this was off because in the Swagger 
+  documentation it shows us for the issuer and the verifier 
+  endpoints the 3D have these options so.
+Manu Sporny:  They do have the options you do not need to provide 
+  them at all times yeah there's only when you're like engaged in a 
+  in exchange of some kind where you need to challenge the client 
+  or need to provide a challenge to the client only at that point 
+  do you need to use those options.
+Manu Sporny:  I hope that made sense.
+Todd Snyder:  Yeah I might have more questions later but I think 
+  a get some clarity what we were looking at them.
+Manu Sporny:  And we'll have a wheel have a did authentication 
+  test Suite soonish that uses those parameters.
+Todd Snyder:  I've got to keep my radar too.
+Manu Sporny:  Okay yep okay did that answer your question.
+Todd Snyder:  Yeah I think it did thank you is posing questions 
+  through the GitHub repo the best way to communicate.
+Todd Snyder:  Yeah understood engine so I just have one other 
+  quick question you can probably put in the right direction 
+  there's also a signature sweet test Suite.
+
+Topic: Signature Suites
+
+Manu Sporny:  And these calls are probably the best way to get a 
+  get an answer and when we meet we meet you know weekly the you 
+  know we're all chill we're all time challenge these days and so 
+  yeah yep.
+Manu Sporny:  Yes yeah yeah.
+Todd Snyder:  I was trying to get that up to working this morning 
+  and then I noticed something that you guys always that you work 
+  with did Keys is that correct for that test we occur we're just 
+  trying to figure out if that was something we have to look at now 
+  either okay.
+Manu Sporny:  Yeah so there to that you should probably pay 
+  attention to the let me let's see Edie unfortunately this is not 
+  let me be here we go so there are two test Suites this one is a 
+  test Suite that I mean it's just you know digit bizarre 
+  implementing it right now we know that we actually there a couple 
+  of others that actually pass this test Suite we just haven't 
+  added them yet.
+Manu Sporny:   Oh I'm sorry now this is the.
+<manu_sporny> "eddsa-2022" -- 
+  https://w3c-ccg.github.io/di-eddsa-2022-test-suite/
+Manu Sporny:  Sorry this is this is the new one so this is 
+  there's a new new one this is the thing that is being 
+  standardized in the VC working group so that this is the new one 
+  that basically hardly hit I don't think anyone's there are a lot 
+  of people that have implemented this one the Ed to 5519 one is 
+  the older one and this one has you know multiple implementers.
+Manu Sporny:   Is there the.
+<manu_sporny> "Ed25519Signature2020" -- 
+  https://w3c-ccg.github.io/di-ed25519-test-suite/
+Manu Sporny:  In both of them this the signature format is 
+  exactly the same except for the type and the crypto sweet label 
+  if you're so this this was sorry D and S sure 2020 this one that 
+  I just put in the chat Channel that's the one that's been 
+  deployed across the u.s. for the true age program and this things 
+  in production right so this one's not going to go anywhere it's 
+  safe to it.
+Manu Sporny:   Implement it it will be outlined in the.
+Manu Sporny:  Respect for a tedious a but if you're doing 
+  something that's a little more future facing you may want to move 
+  to the crypto Suite based mechanism there they're really the 
+  implementation for them are like really close except for like two 
+  if statements basically.
+Manu Sporny:  So if you implement one the chances that you can 
+  implement the other super high.
+Todd Snyder:  Got you could furnish thank you.
+
+Topic: Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pulls
+Manu Sporny:  Okay no problem alright let's go ahead and jump 
+  into pull request next quests here are our pull requests I have 
+  not had a chance to look at these we do have the renamed app to 
+  coordinator that thing just needs to be merged in haven't been 
+  able to do that yet there was 309.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/309
+Manu Sporny:  APR 22 the exchanges and point we don't really need 
+  to go.
+Manu Sporny:  This might be a typo that's being fixed so we'll 
+  have to look into that but it looks like you know a typo that's 
+  that's being fixed going back.
+Manu Sporny:  Let's see serve index in docs is Andrew here today 
+  let's see Andrew okay so this is just upgrades to the 
+  documentation to help people understand how they can actually 
+  develop on the specification so it looks like Andrews added a 
+  HTTP server serving cores so that you can do just doing it.
+Manu Sporny:   Npm install and do.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/312/
+Manu Sporny:  API development so that one's looking good that's 
+  312 go ahead and get this in there.
+Manu Sporny:  This is one of the things that we talked about last 
+  week which is implementing a verifiable credential object 
+  container so it all of our top level objects we made a decision a 
+  while ago to make sure that they were container objects like if 
+  it was a presentation it shouldn't be a raw presentation 
+  verifiable presentation at the top level you should have a 
+  property named verifiable presentation and you should put the.
+Manu Sporny:  They're same thing with verifiable credential we 
+  did that largely so that you could also pass and things like 
+  options you could provide metadata and do all sorts of things 
+  like that Andrew here has raised a PR to make sure that that 
+  applies to this this endpoint.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/314
+Manu Sporny:  Yeah so just adjust to this end point here when you 
+  issue a issue a credential in the response you get back a 
+  verifiable credential that was a bug that is now or would be 
+  fixed by that PR same fix for believe 314 although he's saying 
+  this is a draft not ready for review but it's basically making 
+  the same.
+Manu Sporny:  Change here to make sure that there is a verifiable 
+  presentation response like that when you get a verifiable 
+  presentation back from the API it's encapsulated in a verifiable 
+  presentation property so he's implementing the fix we talked 
+  about last week and then let's see adding a 404 not found to.
+Manu Sporny:  This needs by shedding I guess but this is 
+  replacing the put with a post this is something we talked about 
+  last week where it didn't make sense to put data here you're 
+  really posting data to an exchange transaction ID and then 
+  Andrews adding a 404 for not being able to find a transaction or 
+  sorry an exchange with a particular transaction ID I'm sorry Paul 
+  I totally missed the.
+Manu Sporny:   That you were on the Q was.
+Manu Sporny:  I don't know Q.
+PaulDietrich_GS1: Oh yeah that was from earlier but I think mono 
+  have to drop off so I'll try to reach out to you it was a 
+  question on the exchange interface but also reach out to at a 
+  different time.
+Manu Sporny:  Gosh I'm really sorry about that totally did not 
+  see on the queue.
+Manu Sporny:  All right and so those are all the polls remember 
+  our process it's typically seven days of review we'd like to see 
+  multiple reviewers on these and then after seven days if there 
+  are no objections and you know change suggestions have been made 
+  will merge those things into the specification any questions 
+  concerns about existing pull requests.
+
+Topic: Challenge management in the VC API
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/310
+Manu Sporny:  Okay if not we can pick up the conversation we 
+  started last week again so we were talking about challenge 
+  Management in the verifiable credential API in the conversation 
+  was just picking up when we had to basically end the call so 
+  we're going to pick up the conversation where we were last week 
+  would anyone like to kind of summarize.
+Manu Sporny:   Where we.
+Manu Sporny:  I can try here.
+Manu Sporny:  So let me let me give it a shot.
+Manu Sporny:  There was a question from Dmitri about how we're 
+  implementing challenges so Todd this was the initial question you 
+  had with this is freshly discussed in the group on you know how 
+  challenges and domains are being implemented there was 
+  disagreement on where the API endpoint should go there was one 
+  suggestion or there was a suggestion.
+Manu Sporny:  Bring up the diagram here.
+Manu Sporny:  So there was a suggestion that the the challenge 
+  creation and point so the thing that like creates challenges and 
+  tracks challenges might need to go on the verifier controller 
+  which is this diamond nor the app we're changing that to control 
+  our verifier controller or it needs to go on the verifier service 
+  the argument for putting on on the app is hey challenges our 
+  business logic.
+Manu Sporny:   In that's where they really should go.
+<joe_andrieu> /s/controller/coordinator/g
+Manu Sporny:  Um versus they should go on the verifier service 
+  because it's something that's common to many different 
+  applications and so it should be kind of this generalized thing 
+  and I believe we went kind of back and forth on that and didn't 
+  really get to a resolution so let's go ahead and thank you Joe 
+  coordinator let's go ahead and pick up.
+Manu Sporny:   Up that discussion.
+Manu Sporny:  Go ahead only.
+Dave Longley:  Yeah another thing I would add to the argument for 
+  putting this on the verifier services that challenges in 
+  particular are there are a number of ways to get checking for 
+  Replay MAX wrong especially in Partition systems are very common 
+  in back in implementations these days and so you want to make 
+  sure that the system that's checking the proof makes.
+Dave Longley:  We also checks.
+Dave Longley:  Challenge hasn't been reused or tracks how many 
+  reuses how many times the challenge challenge has been reused and 
+  so keeping that that tightly coupled to where the verification is 
+  happening makes it less likely for mistakes to be made and it 
+  makes it easier on people who are writing applications if you 
+  give them this feature for them to to use as you know obviously 
+  any application can implement.
+Dave Longley:   Isn't this feature.
+Dave Longley:  However they want to but providing it in the 
+  service because it's very commonly needed for effectively always 
+  needed for any kind of authentication I think that's very 
+  valuable.
+Joe Andrieu:  Yeah I think just that echo my no time last time is 
+  it sounds like these are primarily business rules validating how 
+  this challenge is to be used or maintained and it seems like it's 
+  very strange for the verifier to Outsource their relationship 
+  with the holder through the verifier so.
+Joe Andrieu:   It seems like a.
+Joe Andrieu:  Using the verifier to manage the state's for which 
+  you as a issuer I'm sorry verifier coordinator have to maintain 
+  anyway so it feels like a weird layer violation to me still.
+Dave Longley:  So a couple of points in response to that I'll try 
+  to talk slowly seat since I see you're typing on you so a couple 
+  of things were in there the the first was that it feels strange 
+  to verify to Outsource the relationship to the verifier service I 
+  don't feel that way I think we're you know we're whenever a 
+  holder provides a presentation to the coordinator they turn 
+  around and Outsource it to.
+Dave Longley:   The verifier.
+Dave Longley:  That helps them it gives them a tool to help them 
+  verify presentations and part of verifying a presentation that 
+  has a proof on it is making sure that the challenge is either not 
+  reused or not reused a number of times that would come into 
+  conflict with business rules and so the way I see it is you can 
+  make a call to this other system to manage your challenge your 
+  challenge state for you and that system can report back to you 
+  when you.
+Dave Longley:   Ask it to verify.
+Dave Longley:  And how many times that challenge has been reused 
+  and then it's a business decision to whether or not to reject 
+  that presentation based on the number of times the challenge has 
+  been reused and I would also say that there was a second point in 
+  there that Joe made about having to manage the state anyway I 
+  don't think you have to manage the state anyway if you have a 
+  call on the verifier service to generate a challenge then your 
+  application can make that call get a challenge and put it in a 
+  verifiable.
+Dave Longley:  Into the holder the holder turns around and sends 
+  the presentation back which they then the coordinator then sends 
+  to the verifier service and the rare fire service reports back 
+  whether or not that challenge has been reused and it creates a 
+  clean abstraction boundary on Challenger use where the actual 
+  coordinator app doesn't care what the challenges are so they 
+  don't have to maintain that state they just want to know whether 
+  or not a challenge has been reused and is how it is a timely 
+  challenge.
+Joe Andrieu:  Okay I'm by the way having a kick so it's piling up 
+  over there.
+Manu Sporny:  I'm having a I'm having a hard time switching 
+  windows.
+Joe Andrieu:  Well I agree that their business rules so I think 
+  we're on the same page there I think the my challenge is that the 
+  business rules should be driven by the coordinator and so it's a 
+  coordinator the one driving this I don't understand how unless 
+  the coordinator is giving VCS to everyone who shows up whatsoever 
+  unless they're doing that then they are going to have to manage 
+  State between the current session and.
+Joe Andrieu:  Whoever they think the current session is 
+  associated.
+Joe Andrieu:  So that's why I'm saying they have to manage State 
+  unless they're letting everyone through and therefore there are 
+  no business rules which is itself a business rule and hence I 
+  think they are managing State no matter what.
+Dave Longley:  If no one else is on the Queue managing State I 
+  think in that statement is a little too overly broad there will 
+  be services that won't manage State generally at all but there 
+  will other there will also be applications services that do 
+  manage state but I think specifically we're talking here about 
+  the challenge State and I think with what I just described before 
+  they don't have to manage that state.
+Dave Longley:   Eight and managing that state.
+Dave Longley:  The a more challenging thing for them to do given 
+  the comments I made earlier about ensuring atomicity with the the 
+  proofs and whatever we can do to make it so that there's less 
+  state for any particular party to have to manage and get right 
+  and get right around security I think is of Great Value to the 
+  applications that are looking to Outsource features.
+Dave Longley:   You know to put to you.
+Dave Longley:  A of or service at least to provide common 
+  features to get them to help them issue and verify feces.
+Joe Andrieu:  Yeah I work necklace others involvement.
+Manu Sporny:  Go ahead Joe and I and we're going to take a pause 
+  because this is just going back and forth between Joe and Dave 
+  any yeah.
+Joe Andrieu:  Not sure why the coordinator managing challenge 
+  state would deny atomicity if the verifier is going to check that 
+  which is a different debate then there's no reason that the 
+  coordinator can't provide that information at the same point so 
+  you can have an atomic check all of the business validation rules 
+  are expected to be in some notion Atomic right either you pass 
+  the.
+Joe Andrieu:   Business rules or you.
+Joe Andrieu:  Out and in some cases I guess you could construct 
+  Spectrum but nobody's really talk about modeling anything like 
+  that.
+Joe Andrieu:  But with that I agree we should wrap up.
+Manu Sporny:  Dimitri go ahead.
+Dmitri Zagidulin:  Well I want to give the impression that Joe 
+  and Dave are the only ones getting with this issue like I also 
+  care very strongly about this issue it's calm about as a result 
+  of implementation implementation experience both on my end and on 
+  digital bazaars I see that almost every single implementer is 
+  will need a challenge management mechanism like this and so 
+  there's no reason not to put it in this bag because the same for 
+  all.
+Dmitri Zagidulin:  Like all use cases.
+Manu Sporny:  Are there other implementers on the call that are 
+  need or believe they need a generalized challenge management 
+  mechanism in the API or are there anyone is there anyone on the 
+  call that's like I definitely do not.
+Manu Sporny:  It's a good idea.
+Manu Sporny:  All right so where do we go from here there doesn't 
+  seem to be a lot of feedback implementers can decide to implement 
+  this how are they feel like you know they can implement it 
+  wherever they want to I guess the question is Joe would you 
+  object to this end point being defined but.
+Manu Sporny:   Mean like not.
+Manu Sporny:  It goes I don't know if that's like it could go on 
+  the controller it could go on the service I'm trying to figure.
+Manu Sporny:  As I'm going to be I'm gonna do what Chris round 
+  did for like five years and keep calling it verifiable claims and 
+  thank you Joe coordinator it could go on the coordinator it could 
+  go on the service well I guess would anyone object if we defined 
+  what this API looks like and where it goes we kind of leave that 
+  vague for now.
+Joe Andrieu:  I'd actually go the other way I mean I think if 
+  it's on the coordinator I have a different opinion about it.
+Joe Andrieu:  My opinion is coordinators where it belongs it 
+  shouldn't be on the service.
+Joe Andrieu:  Where is Dave it makes sense on the service.
+Manu Sporny:  Yeah and we've got it's a gotcha yeah and I think 
+  we've got disagreement on that so hold on so do we have consensus 
+  that like this is a useful thing to have it's just we're 
+  disagreeing on does it go on the coordinator or does it go in the 
+  service.
+Joe Andrieu:  Well the the.
+Joe Andrieu:  It's it is a useful function to Define for people 
+  to implement it's not clear that it needs to be exposed as a 
+  service to be provided by anybody.
+Joe Andrieu:  Right well we're talking about our interfaces 
+  between different services.
+Manu Sporny:  Okay Dave you're on the queue.
+Dave Longley:  I went on the Queue to say I think it because of 
+  the atomicity issues it definitely belongs in the verifier 
+  service.
+<dmitri_zagidulin> I agree. (that it belongs on verifier service)
+Dave Longley:  But that's all.
+Manu Sporny:  In the meter you're saying it belongs on the 
+  verifier Service as well or the coordinator.
+Manu Sporny:  Joe would I guess that's the I'm wondering I'm 
+  trying to avoid asking the same question we Define this and not 
+  say where it goes or you're safe it's defined we have to specify 
+  or where it goes and it has to be on the coordinator.
+<dave_longley> coordinator :)
+<manu_sporny> *shakes fist at his own brain*
+Joe Andrieu:  Well I'm saying specifying it without specifying 
+  where it goes I think would not help us if if we can specify it 
+  more clearly that may help get more feedback about this issue.
+Manu Sporny:  Sorry I missed the last thing you said the last 
+  couple of words.
+Joe Andrieu:  If we explain that this this is something that's on 
+  the service and this is the API and this is the response like I 
+  don't think that's written up in a way that we can be concrete 
+  about spec text.
+Joe Andrieu:  And maybe if we have spec text then we can get 
+  better engagement on the issue.
+Manu Sporny:  So you're saying you're saying Bray's a PR to put 
+  this on the server surf service and then we'll discuss it then 
+  okay all right.
+Joe Andrieu:  I mean I know that's putting me in a distant bed 
+  just this advantageous state if I just want to oppose this but 
+  that's not my point my point is we need better conversation.
+Dave Longley: +1 To Joe being open and if he can convince me it's 
+  a terrible idea i won't support it :)
+Manu Sporny:  Okay alright thank you for being open to that Joe 
+  noted that we that having a PR might help move things forward 
+  next steps are to raise a PR to place the endpoint on the 
+  verifier service understanding that there is no.
+Manu Sporny:  On strong consensus on placing it are the pr is 
+  just being raised so we can have a detailed conversation okay 
+  great good so at least we got ourselves to writing a PR Mark that 
+  ready for PR.
+
+Topic: Test for issue with default issuer provided
+
+Manu Sporny:  And yep again thank you Joe for being open to at 
+  least trying it out in a PR and seeing seeing where the 
+  discussion takes us next item up is test for issue with default 
+  issuer provided.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/274
+Manu Sporny:  Okay so or is saying there should be a test for to 
+  issue a credential with the default issue or provided this was 
+  when we were actually providing who the issue should be for the 
+  end point I don't think we do that anymore I think we assume the 
+  endpoints have issuers pre-configured on them.
+Manu Sporny:  It's arguable that the tests are done elsewhere.
+Manu Sporny:  What do we want to do with this issue I I forget 
+  are you allowed to specify the issuer.
+Manu Sporny:  Go ahead only.
+Dave Longley:  I don't know if we ever came to a decision here 
+  but the direction we had it in was that issuer instances would 
+  already have the issuer field specified and and then what was 
+  open to discussion was whether it was okay to include an issuer 
+  field when submitting something and it had to match what was 
+  configured otherwise it.
+Dave Longley:   Would produce an error.
+Dave Longley:  Or if we should just produce an error if you 
+  provide anything at all no matter whether it passes the weather 
+  whether it matches or not.
+Dave Longley:  Don't know if we ever decided between those two 
+  options.
+Manu Sporny:  Well the other option is that you could people 
+  didn't have to follow that model they could just.
+Manu Sporny:  Switch up the issuer as they felt.
+Dave Longley:  Yeah that that sure we could document that but 
+  that is just I think that's a foot gun that's it doesn't it 
+  doesn't have any value because the whatever keys or capabilities 
+  to use keys are configured with the issuing instance the 
+  controller of those keys doesn't change so if you go change 
+  whatever the issue is.
+Dave Longley:  You're probably just going to end up with 
+  something that's broken and so we should probably make it so that 
+  you can't do that.
+Dave Longley:  I think really the the other point I'll make here 
+  is the only reason we allowed we originally allowed people to say 
+  what the issue or was was when we were still building this API 
+  around a test Suite instead of around actual use cases.
+Dave Longley:  So we wanted it to be easy to just hit the same 
+  instance and give it all the parameters you wanted and just 
+  assume that it has access to all the keys that it could possibly 
+  need or you know whatever test keys were built with the sweet 
+  test Suite all that kind of stuff but that doesn't match 
+  real-world use cases for it.
+Manu Sporny:  So yeah so we're we were creating the VC API to 
+  achieve a test Suite not to actually operate on these cases okay 
+  any other thoughts on this should we allow people to include a 
+  nature option in say it must be ignored do we stay silent on it 
+  do we say allowing the specification of issue or is a foot gun 
+  don't do it.
+Dmitri Zagidulin: +1 To footgun argument.
+Manu Sporny:  Go ahead Brian.
+Brian Richter:  Yeah I'm just looking at the traceability.
+Brian Richter:  What they're doing and it looks like they've 
+  removed it I think that's a reading around.
+Manu Sporny:  Okay that's interesting is there anyone from Trace 
+  here well mood let's see what mood Paul Todd I don't know how 
+  often you guys are on the trace calls.
+PaulDietrich_GS1: I've been on mono but I'm not following that 
+  issue that carefully.
+Manu Sporny:  Okay all right thanks um how about this let's The 
+  Proposal is to disallow the setting of issuer of options that 
+  issuer if it is included is ignored do we want to throw an error 
+  just excellent.
+Manu Sporny:   We ignore.
+Manu Sporny:  Probably throw in there.
+Dave Longley:  Yeah we should throw an error and I don't know if 
+  it's options that issuer this might I don't remember where this 
+  might be that you're supposed to omit it from the VC that front 
+  or from the credential that you were submitting yep so it's not 
+  in the options field you would just admitted it in the credential 
+  that you're submitting and I do think it would be a lot easier 
+  for systems to just have a schema that looks for that a Json 
+  schema for example rather than Andrew.
+Dave Longley:  Having to go look up things and and check the 
+  value.
+Manu Sporny:  All right so why don't understand how credential 
+  how would you match against the it has to match the issue or that 
+  you have.
+Dave Longley:  It's probably the case that most implementations 
+  will have that information in memory so it could check that 
+  immediately but I don't want to make assumptions about maybe 
+  fancy ways people could optimize that away so it's probably 
+  better to just make it so that you are not allowed to submit to 
+  include that field.
+Manu Sporny:  It included so if you set the issuer field.
+Dave Longley:  Yeah you should get an error.
+Manu Sporny:  Okay this is a trick to to any value it is assumed 
+  that the issuer in point will fill that value in the issuer and 
+  point will fill that value in when it is issuing well luckily 
+  there is that what we're.
+Manu Sporny:  We need to make sure that this won't conflict with 
+  what the phrase bility ABI is doing well.
+Manu Sporny:  If there are no objections we should raise a PR 
+  that states that an error must be thrown if issuer is set calling 
+  the.
+Manu Sporny:  A in the points.
+Manu Sporny:  That an air Rays appear that states that in there 
+  must be thrown if you sure if and chilled on the issuer calling 
+  nature and point.
+Manu Sporny:  Okay so this is this ready for PR is there anyone 
+  on the Queue that would disagree with this any objections 
+  basically raising an error if you try to set the issuer it's the 
+  endpoint that should set the issuer and it should be configured 
+  to set the proper value there.
+PaulDietrich_GS1: Why does that mean this thing is not a 
+  verifiable credential or credential at all at that point.
+Manu Sporny:  Not a it's not a verifiable credential at that 
+  point.
+PaulDietrich_GS1: Or even a credential according to the data 
+  model that has no issuer.
+PaulDietrich_GS1: That seems a little odd.
+Manu Sporny:  Yeah that's what I was trying to thing I don't know 
+  if we really don't know if we really.
+Manu Sporny:  And this let's see what do we see what do we say 
+  about issuer a verifiable credential must have an issue or 
+  property we don't say anything about a credential.
+Manu Sporny:  It sure if I was so determined to try so it's 
+  compliant to the spec right because we don't say a credential 
+  must have an issue or property.
+Manu Sporny:  I mean you know I'm I'm spec lawyer in right now so 
+  it's technically true I don't know if that's a good thing or not.
+Manu Sporny:  Yeah I'm not seeing anything that says a credential 
+  has to have insured property.
+Joe Andrieu:  I need to I need to.
+Joe Andrieu:  A credential doesn't need a proof at all but a 
+  verifiable credential does.
+Manu Sporny:  Are you saying that in support of the you don't 
+  really need an issuer on a credential until it's verifiable.
+Joe Andrieu:  Correct because issuers on the proof.
+Joe Andrieu:  Is there is a state and there are use cases or we 
+  could say hey this is a credential not a verifiable credential 
+  it's just we haven't found many use cases where formalizing that 
+  was important.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Are we saying 
+  sorry.
+Manu Sporny:  That's right and what you're sending to the issuer 
+  endpoint is a credential it's not a verify it's not a verifiable 
+  credential until it's issued so I think the logic hangs together 
+  Paul does that well I was going to ask Paul if that worked for 
+  him and then we'll go to you Ted.
+PaulDietrich_GS1: Yeah that's fine by me I think as long as it's 
+  a credential and still meets the specification that it's fine to 
+  say that that field can't be there.
+PaulDietrich_GS1: Don't know if it says approved field can't be 
+  there but that kind of would go along with this I would think.
+Joe Andrieu:  I'm also not sure if we have the type updated if we 
+  defined a tight for a credential.
+Joe Andrieu:  As opposed to type for a verifiable credential 
+  which I'm sure we have defined in the context.
+Manu Sporny:  Pl we don't attend you were going to mention.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Yeah I think 
+  we did at some point somewhere Define credential differently than 
+  verifiable credential yes but my speaking up was are we saying 
+  that an issuer endpoint.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Can only 
+  serve verifiable credentials from a single issuer.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Sort of 
+  thinking of.
+Manu Sporny:  We're saying an instance.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Don't make 
+  multiple entities behind the thing right and if you want to 
+  request that the VC that you're going to get you from one of 
+  those issuers that this endpoint is handling.
+Manu Sporny:  It's an important question I just noted that we're 
+  two minutes overtime and we should answer that at some point Dave 
+  go ahead.
+Dave Longley:  Yeah real quick I think you have different 
+  instances different endpoints you would hit to get different 
+  issuers but in that light I think we just all so I also just 
+  realized the use case at this is problematic for which is where 
+  you want to put use the same issuer and put two different proofs 
+  on the same VC and so we might not want to do this we might want 
+  to say you have to make sure that the issuer field matches and 
+  that's a good that is a use case where.
+Dave Longley:   You sign with signature type A create proof.
+Dave Longley:  And then you turn around and send the thing back 
+  to get to another place to get proofed IB.
+Manu Sporny:  We're at a time like this we need to pick this up 
+  next week and that's it for the call today thanks everyone for 
+  the good conversation will chat again next week ciao.
