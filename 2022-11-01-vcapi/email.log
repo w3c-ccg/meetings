@@ -1,0 +1,769 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-11-01-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-11-01-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-11-01
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Oct/0124.html
+Topics:
+  1. Introductions and Relevant Community Updates
+  2. Processing Pull Requests
+  3. credentialId in updateCredentialStatus
+  4. Requesting client features
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, vivien (mavennet), Greg Bernstein, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Eric Schuh, Dave Longley, 
+  Joe Andrieu, Dmitri Zagidulin, John Kuo, Patrick (IDLab), Logan 
+  Porter, Mike Varley, Mahesh Balan - pocketcred.com, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone to the November 1st 
+  verifiable credentials API call I will put our agenda in the chat 
+  Channel.
+Manu Sporny:  And I will share my screen.
+Manu Sporny:  On the agenda today we've just got this agenda 
+  review introductions and relevant Community updates I forgot to 
+  mention pull request we have a number of pull requests so we'll 
+  go over those and then we will go into our main agenda which is 
+  seeing if credential ID makes sense and update credential status 
+  will talk about how.
+Manu Sporny:  All deals with requesting client features we are 
+  hoping for an update on kind of use cases Eric Joe if that's 
+  possible sorry to put you on the spot but this was an issue that 
+  was in the queue in about time for discussion again and then any 
+  other issues as time permits are there any other changes or 
+  updates to the agenda before we start.
+
+Topic: Introductions and Relevant Community Updates
+
+Manu Sporny:  Okay is there anyone new to the call Vivian I think 
+  you might be new or re intro would be great from you.
+Vivien_(mavennet): This is Vivian from Mavennet.
+Manu Sporny:  Awesome welcome welcome to the call Vivian anyone 
+  else new to the call thanks I think everyone's been here before.
+Manu Sporny:  All right well welcome again Vivian wonderful to 
+  have you on the call.
+Manu Sporny:  All right relevant Community updates.
+Manu Sporny:  Let's see there's some special topic calls that 
+  folks here might be really interested in around verifiable 
+  credentials the verifiable credentials working group has had a 
+  special topic called those minutes will be published on that 
+  mailing list that has to do with making at context optional which 
+  could have a variety of consequences so make sure you're paying 
+  attention to that if you were not on the special topic call 
+  today.
+Manu Sporny:  Other thing that's happening in two weeks well next 
+  week is the internet identity Workshop how many people here are 
+  going to be there should we cancel next week.
+Manu Sporny:   Oh really.
+Manu Sporny:  Well I mean is anyone he gonna be there like we 
+  don't have it okay.
+Joe Andrieu:  Yeah I'm surprised it's next week already oh yes 
+  please let's go I will be but but if I'm the only one maybe we 
+  don't need to cancel I think both Eric and I are going to go.
+<john_kuo> I'm planning to be there
+Manu Sporny:  Okay cool have fun London.
+Dmitri Zagidulin:  Which event is this.
+Dmitri Zagidulin:  Right on right on right on.
+Joe Andrieu:  That's what I was going to say yeah you didn't miss 
+  me so that's like really next week oh my goodness.
+Manu Sporny:  Hi I'm sorry the ITF sorry I must misspoke I 
+  misspoke i-i'm sorry yeah next week is ITF yeah sorry and next 
+  week is next week is ITF the week after is IW we will definitely 
+  cancel for iiw do we need to cancel next week for ietf.
+Manu Sporny:  Okay so I'm guessing no none of us are going to 
+  ietf okay good so we'll have the meeting next week but the week 
+  after that is definitely canceled and I think the week after that 
+  is u.s. Thanksgiving if I remember correctly okay good so we'll 
+  have the meeting next week and then a two week break.
+Manu Sporny:  Any other announcements or things we should be 
+  aware of before we get into our agenda.
+
+Topic: Processing Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pulls
+Manu Sporny:  Okay next up its processing pull requests here is 
+  the link in the chat Channel.
+Manu Sporny:  I'm gonna go on these and the order that they were 
+  raised so the first one the group has been discussing for a while 
+  publishing a version of the VC API that could be published as a 
+  note a draft note in the verifiable credentials working group.
+Manu Sporny:  That was raised an issue 304 we had some discussion 
+  they were there was a request to basically take exchanges out and 
+  make a couple of modifications or you request that we have made 
+  those changes to the request and then those requests were carried 
+  through in the pr so today we.
+Manu Sporny:   Have a.
+<manu_sporny> Prepare document for publication as VCWG Draft 
+  NOTE: https://github.com/w3c-ccg/vc-api/pull/320
+Manu Sporny:  So this is 320 prepare document for publication as 
+  V CG W no put this in the chat Channel there and so what this 
+  what this PR does is it branches off of the main repository so it 
+  takes the latest version of what we're working on right now and 
+  then it deletes all the things.
+Manu Sporny:   All of us agreed.
+Manu Sporny:  So it deletes exchanges it deletes you know that 
+  from the yanil files from the OAS files it anyway it's so deletes 
+  all that stuff and deletes all the content talking about it so 
+  the only thing that's left is the standard API so you can look at 
+  a rendering of it here so down here in the issue I've published a 
+  rendering of the specification here.
+Manu Sporny:   Which has.
+Manu Sporny:  The front matter content you know empty design 
+  goals the architecture overview Joe description of the apps.
+Manu Sporny:  And then issuing verifying and presenting you'll 
+  note that all the exchanges stuff has been deleted and the spec 
+  doesn't mention exchanges anywhere they're so so the basic stuff 
+  here that in theory should be non-controversial is in there and 
+  that's what we have right now we were the last time we talked 
+  unsure about how we would manage this but I've found a way to do.
+Manu Sporny:   This through GitHub that looks.
+Manu Sporny:  Let me kind of highlight what the problem is a note 
+  as published through a w3c working group has zero intellectual 
+  property rights protection zero IPR protection in this group in 
+  the ccg we at least have some right which means that everyone 
+  participating in this has agreed to the credentials community 
+  group IPR policy so there is IPR protection on this thing that 
+  we're we're.
+Manu Sporny:   Creating together if we were to.
+Manu Sporny:  Of that as a note into the V CW G and give a full 
+  access and control over the V CW G they would have zero IPR 
+  protection on it so the suggestion is let's keep the 
+  specification in this group so there's IPR protection on it but 
+  what we can do is we can Fork the specification into the V CW G 
+  in have this Branch mainly cwg published as the published as the.
+Manu Sporny:   The VC.
+Manu Sporny:  Verifiable credentials working group version of a 
+  draft note that means that we can continue to work on the spec 
+  here our work here is not you know compromised or disturbed in 
+  any way we continue to have IPR protection here but we are also 
+  able to simultaneously publish a note in the verifiable 
+  credentials working group okay so that's that's kind of the pr 
+  and the suggestion on how we would manage this.
+Manu Sporny:  Questions comments concerns.
+Manu Sporny:  Go ahead go ahead Dave.
+<greg_bernstein> Sounds reasonable. Didn't know about the IPR 
+  issue.
+Dave Longley:  My one concern would be if the VC w g wanted to 
+  make any kind of changes or whatever they wanted to do with the 
+  note that might not be a goal but if they did I would be worried 
+  about the IPR stuff would we tell them those changes should flow 
+  back through the ccg for that reason.
+Manu Sporny:  Probably in there may be a couple of people in the 
+  group that get super cranky about that and they're like we need 
+  control over the VC API spec so that's just a conversation we'll 
+  have to have with that group ideally what we do is we were like 
+  oh yeah that's a great change please raise an issue on the in the 
+  ccg and then make a change to the spec and the next time we make 
+  a snapshot for the draft note will include those changes.
+Dave Longley:  That sounds good.
+Manu Sporny:  The other thing is if you have not already approved 
+  this PR and you want this thing to go through please please do a 
+  PR review and approval on it don't have to do it right now but 
+  please get to it at some point over the next week.
+Manu Sporny:  Okay any other concerns about the ccwg draft note 
+  on BC API.
+Manu Sporny:  All right if not moving on to the next PR and I 
+  have not seen these yet Andrew raise something about adding a 404 
+  as a response for get delete credentials ID and same for 
+  verifiable potential credentials it seems like a pretty 
+  reasonable thing so if that thing with the ID doesn't exist you 
+  get it.
+Manu Sporny:   Four for four.
+Manu Sporny:  And we don't need to you know discuss today this is 
+  just raising awareness to the group that there's a PR that does 
+  this in here seems pretty reasonable.
+Manu Sporny:  Alright next up is.
+Manu Sporny:  Verifiable presentation to exchange examples 
+  corrects the mistake where the exchange examples didn't match the 
+  exchange continue schema Dave you take a look at this what are 
+  your thoughts.
+Dave Longley:  Yeah I believe there was another PR that made it 
+  in a little while ago that fixed up the exchange of spec 
+  somewhere and the examples just were not brought along with that 
+  is my understanding of this PR and that just fixes that up.
+Manu Sporny:  Okay the only thing I did take a quick look at this 
+  the only thing that I was a bit concerned about is like there's a 
+  lot of changes here so I might need to carefully.
+Dave Longley:  Yeah it looks like that it should people should 
+  carefully look at it but I think that's mostly because of an 
+  indentation so this this text just got moved to the right because 
+  the change that was made to the exchanges was the adding the top 
+  level property verifiable presentation and so instead of dropping 
+  a presentation directly into the payload we have that property 
+  there and we've been talking about that over the last few weeks 
+  and so yep.
+Manu Sporny:  Okay so this this thing is really the only 
+  significant change.
+Dave Longley:  That is my understanding yep.
+Manu Sporny:  Okay alright well everyone keep a close eye out as 
+  you're looking to make sure that that's true because we just want 
+  to make a small change here not a big one all right and then 
+  finally add verifiable presentation request property to exchange 
+  initiate.
+Manu Sporny:  The candies are schema changes.
+Manu Sporny:  And lonely looks like you've reviewed this one as 
+  well.
+Dave Longley:  Yeah my comment so this changes in line with those 
+  other ones we just discussed making sure we have a top level 
+  property and so this was a change to the schema to do the same 
+  and then Michael my comment here is just about the technical 
+  detail of that.
+Dave Longley:  Don't know if this is I haven't made any of these 
+  changes to the schema before and I don't know if this is a 
+  precisely the right way to do it that's all.
+Manu Sporny:  I think it is yeah it's confusing but it's just a 
+  weird OAS thing OAS yeah Mille thing.
+Manu Sporny:  Anyway everyone everyone should pay attention to 
+  this as well okay I think that's it for pull requests any any 
+  other questions comments concerns about the PRS.
+Manu Sporny:  The only thing to point out here is this this thing 
+  is never going to be merged we're going to have a Perma never to 
+  be merged branch called main Dash B CW G that will will be what 
+  the VC WG Cuts their draft notes for VC API off of.
+Manu Sporny:  So I think I'll probably close this PR after about 
+  a week and then we'll bring it up in the VC w g.
+Manu Sporny:  Go ahead Logan.
+Manu Sporny:  No audio from you Logan I think you're still muted.
+<logan_porter> can't unmute for some reason
+Manu Sporny:  No sorry Logan you might try just refreshing your 
+  browser.
+Manu Sporny:  Someone else had that bug right where you couldn't 
+  unmute.
+Dave Longley:  That has happened to me before you.
+Manu Sporny:  Okay do we know if it's like a Firefox Safari 
+  thing.
+Manu Sporny:  Logan can you unmute.
+<logan_porter> still greyed out...
+Manu Sporny:  Still no it's grayed out interesting.
+<manu_sporny> Can you type your comment/question into chat?
+<logan_porter> Question was just if there is a need for IPR 
+  protections for the note if the intention is just to run the test 
+  suite?
+Manu Sporny:  Okay so Logan asks if there's a need for IP are 
+  protections for the note if the intention is just to run the test 
+  Suite so everyone should check with their favorite legal counsel 
+  on what I'm about to say this is not legal advice at all I am not 
+  a lawyer typically you always want IPR protections on anything 
+  that's potentially going to.
+Manu Sporny:   To become a standard of some.
+Manu Sporny:  Any kind of Gap in IPR protection means that 
+  somebody could sneak some kind of patented thing or in their own 
+  intellectual property into it and you don't have any kind of 
+  recourse so usually you just want a very nice complete IPR story 
+  for the thing that you're working on we have such a story for the 
+  VC API specification.
+Manu Sporny:  We were to take what we are working on right now 
+  and hand it over to the verifiable credential working group it 
+  would create an events that the second we handed it over it has 
+  no IPR protection whatsoever and so people can talk and say 
+  things and raise issues and add PRS and all that kind of stuff 
+  and whatever they do they're they can do without having to worry 
+  about announcing that they have a patent on the thing that they 
+  are saying they're putting into the standard or any of that stuff 
+  right.
+Manu Sporny:   Right and so is there.
+Manu Sporny:  For IPR protection.
+Manu Sporny:  Actions for the note absolutely because we do not 
+  want to end up where there's a gap in IP are protections 
+  companies there are some companies on this planet that look for 
+  openings like that or try to play games when when specifications 
+  are not IP are protected.
+<greg_bernstein> Patent Trolls :-(
+Manu Sporny:  Greg said it best patent trolls.
+Manu Sporny:  So anyway that's going to the argument to the 
+  verifiable credentials working group and then we'll see if 
+  anybody has any brighter ideas and how we can.
+Greg Bernstein:  Patent trolls particularly look at standards and 
+  go after standards I've had bad dealings with them so that's what 
+  they do.
+Manu Sporny:  They're particularly nasty lot.
+
+Topic: credentialId in updateCredentialStatus
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/126
+Manu Sporny:  Okay thank you for that Greg in let's get into our 
+  primary agenda here which is use of credential ID when you do 
+  update credential status link for that is here.
+Manu Sporny:  And I will open a tab to that.
+Manu Sporny:  Okay so the general question have we got we've 
+  talked about this back in March of this year should we allow 
+  should we should do you require a credential ID when you update a 
+  credential status Marcus is saying it might not fit all use cases 
+  especially use cases where you don't want to give your credential 
+  and ID not quite sure if the fields.
+Manu Sporny:  We discussed this back in march/april timeframe.
+Manu Sporny:  Everyone can read this to catch up I don't want to 
+  read out loud.
+Manu Sporny:  Yeah so I don't think there's a clear resolution 
+  here from the last time we talked about this I think it is 
+  definitely known that it is possible to issue a verifiable 
+  credential that doesn't have an ID and then once you do that.
+Manu Sporny:  There's I guess no way of accessing it unless you 
+  iterate through every credential you've ever issued to get it's 
+  you know endpoint URL thing go ahead Joe.
+Joe Andrieu:  What component is this.
+Joe Andrieu:  Who's asking for a get from home.
+Manu Sporny:  That's an excellent question.
+Manu Sporny:  I don't know because I didn't I'm not the one that 
+  yeah suggested this endpoint go ahead Dave.
+Dave Longley:  I didn't get on here to answer Jos question but I 
+  think the answer is the issuer coordinator does does it well this 
+  is a get for getting the status or for changing the Status I 
+  would think and then the issuing service would have what have the 
+  endpoint to allow the status to be changed in some way I don't 
+  know I haven't looked closely to see that whether the.
+Dave Longley:   The API.
+Dave Longley:  As that the credential ID that's used must 
+  necessarily reference the ID field of the credential perhaps 
+  there's certainly if you don't have any handle for accessing a 
+  credential at all there's I don't see how you could implement 
+  this endpoint but I understand that there are use cases where 
+  people want to have credentials that don't have IDs that are that 
+  use the ID field in the credential but maybe internally there's 
+  some other ID.
+Dave Longley:  That could be stored and used in the issuing 
+  system and when you specify the credential ID field that could 
+  map to either that could map into some internal space that the 
+  issuer has and is able to look up the credential in short I don't 
+  see how we could possibly get rid of this field but we might need 
+  to clarify or figure out is whether or not the field needs to 
+  necessarily map to the credentialed ID.
+Dave Longley:   Field in a credential.
+Manu Sporny:  Sorry taking notes go ahead Joe.
+Joe Andrieu:  Just as well two things what I think I think Dave's 
+  hit the nail on the head and that the the identifiers do not have 
+  to be the same identifier so that may be a solution you could use 
+  a hash or actually the content of the VC itself as a parameter 
+  right update by example I don't necessarily like that approach I 
+  wouldn't recommend it to my clients but just.
+Joe Andrieu:   We could do that to get around the ID field.
+Joe Andrieu:  But I think the better option is just say hey the 
+  ID doesn't need to be the ID in the credential it needs to be an 
+  identifier in the status architecture for that record.
+Manu Sporny:  Thanks Joe baby said something about this is 
+  associated with the issuer coordinator.
+Dave Longley:  Yeah the issuer Coordinator would be responsible 
+  for doing an update to the status and it would be hitting the 
+  issuer service giving it some identifiers that the service knows 
+  how to use to dereference the credential that's meant to be 
+  updated.
+Joe Andrieu:  Yeah it's important there man you and your note the 
+  it's a call from the issuer coordinator to the issuer service.
+Joe Andrieu:  So know the language I've been advocating about 
+  which component is it on this is this would be on the issue or 
+  service as a component and it's expected to be called by the 
+  issuer coordinator.
+Manu Sporny:  All right is this enough to write a PR hmm it's a 
+  bit hand-wavy if we're going to say I think we can it's a bit 
+  hand wavy isn't it.
+Joe Andrieu:  But what's what is the value of the ID field.
+Manu Sporny:  The credential that ID field.
+Joe Andrieu:  In the API do we have an expectation structure of 
+  what that ID field needs to be.
+Manu Sporny:  I don't I don't remember this is in.
+Dave Longley:  Yeah so the field that has to be sent is 
+  credential ID that's two words using camelcase.
+Dave Longley:  And I don't think we say very much about it but 
+  what we should do is add some text that says this just this needs 
+  to to map to a credential the issuer needs to know how to map 
+  that to a credential that in that mapping may include mapping it 
+  to the credential dot ID field or it may not and issuers are 
+  responsible for making sure there wouldn't be any conflicts.
+Dave Longley:  You know you could get into a situation where if 
+  you have a set of credential you want the names you want the 
+  namespace to be clean so.
+Dave Longley:  Any credential ID that is handed to you should not 
+  be able you should be able to find two different credentials as a 
+  result of it should uniquely identify one credentialing you're 
+  issuing system.
+Joe Andrieu:  From that issuer.
+Dave Longley:  From that issuer.
+Dave Longley:  It is I mean it is also the case we should 
+  probably just go ahead and say this so that people so that it's 
+  simple the the credential dot ID field in the VC data model is a 
+  URI that's supposed to be globally unambiguous the credential ID 
+  field should be the same.
+Dave Longley:  Sure should make sure that when they create 
+  generate identifiers for their credentials the ones that they use 
+  internally can't be somehow in conflict with the ones that are 
+  exposed through the credential that ad field.
+Manu Sporny:  Okay is that enough to write a PR probably but we 
+  are kind of hand waving around like.
+Manu Sporny:  We're leaving it up to implement or stick.
+Manu Sporny:  I do the mapping so so I you know what happens 
+  when.
+Manu Sporny:  I don't understand how when something is issued.
+Manu Sporny:  Where that is signal to the receiver to the in the 
+  response call like do we give it back like in the metadata.
+Dave Longley:  So this is one of the reasons why we wanted to 
+  make sure that when the credentials issued there's a top-level 
+  property like credential verifiable credential which I believe we 
+  made sure that we do so if the credential itself does not have a 
+  credential that ID field you could place a different top level 
+  property and we should probably call it credential ID so it maps 
+  to this field were using here and put the credential ID there.
+Dave Longley:   And so.
+Dave Longley:  An issuer Coordinator would would need to keep 
+  track of that information in some way or be able to find it again 
+  in some way and we're with that's very hand wavy we haven't said 
+  how that would work.
+Manu Sporny:  Logan Logan I'm sorry I don't know if that was an 
+  old Q or a new cue I was assuming it was an old queue.
+<logan_porter> old one
+Manu Sporny:  Okay I mean that's Fields enough to write a PR I 
+  don't know if I don't know if I'm super happy about that type of 
+  PR are they any other people that have reservations around this 
+  language or should we attempt to PR and see what it see where we 
+  go from there.
+Manu Sporny:  Go ahead Greg.
+Greg Bernstein:  Let me see since I'm an outsider we've got the 
+  unique URL we're supposed to use to identify.
+Greg Bernstein:  Central right that's the credential dot ID that 
+  we have to have in the credential correct and then we're saying.
+Greg Bernstein:  That's what I'm asking.
+Dave Longley:  Just just jump in real quick you technically don't 
+  have to have one so that's really where the mess comes in yep go 
+  ahead.
+Greg Bernstein:  You don't even have to have one and then we have 
+  how we're going to talk to the API about this credential that has 
+  say already been issued and we'd like to get an update or a 
+  status on it right and so I kind of think well if I had that 
+  other URL that may not be the same place I talk to the API it 
+  might be.
+Greg Bernstein:   Symbolic but.
+Greg Bernstein:  Of a subfield within it that I would use to talk 
+  to the API right some you know the number part of the ID like we 
+  see in the examples when I've been reading the docks so you know 
+  that's where I kind of see okay we have this one field kind of 
+  identifies it and then we have this other use of something 
+  similar so is that getting kind of like why we've got this bit of 
+  a.
+Greg Bernstein:  What's its job.
+Joe Andrieu:  II think so I'm trying to I'm trying to parse 
+  through what you mean by the the update on the status so this 
+  this end point here is to just to set the status of a given 
+  credential so if you're going to revoke the credential you need 
+  to and actually I'm not sure this lives on the issue or service 
+  but I think that's that's a fair debate and not vital to this 
+  point it may live on the status service.
+Joe Andrieu:   But that's a that's an architectural difference.
+Dave Longley: +1 This is for the issuer coordinator
+Joe Andrieu:  This is not an endpoint for someone other than the 
+  issuer coordinator to do anything so if you're the holder or the 
+  verifier this is not an endpoint you would use for that 
+  credential.
+Greg Bernstein:  Okay so I don't want to go back to that language 
+  that I thought you guys were getting away with away from internal 
+  versus external interface but this is definitely not.
+Greg Bernstein:  Older talking to the issuer.
+Greg Bernstein:  Okay don't know if that helps at all.
+Joe Andrieu:  That's right yeah there is another property which 
+  is the the refresh endpoint which I think is closer to what you 
+  were looking for in terms of the holder saying hey I need a 
+  refreshed version of this VC and that's a that's a different.
+Dave Longley:  Yeah so to try and walk through on the Fly here 
+  how I would expect the system to use this credential identifier 
+  you can imagine a system that has a set of users that it wants to 
+  issue credentials to.
+Dave Longley:  Those users could authenticate into their system 
+  using whatever mechanism as desirable and then they could choose 
+  to receive a credential and when they make that choice the a 
+  credential identifier could be generated that would be bound to 
+  that users record internal record in this would be somewhere like 
+  in the issuer coordinator system and so would be a binding 
+  between that local user account of sorts and.
+Dave Longley:   The credential that they're going to be 
+  receiving.
+Dave Longley:  That credential ID could then be used when you're 
+  generating the credential and it could either go into the 
+  credential data field or it could just be stored internally in 
+  the issuing system where some kind of or the status service where 
+  some kind of binding and linkages between a credential and its 
+  current status.
+<greg_bernstein> Makes sense...
+Dave Longley:  And so it might be more the case that instead of 
+  assuming that these issuing services will generate ideas for you 
+  you'll be you'll be managing your own ID space generating some 
+  kind of ID linking that to some local record and then that idea 
+  either goes into the credential that ID field or it doesn't but 
+  you can always reference the credential that is linked to a 
+  particular user account so if you need to suspend it or revoke it 
+  or change some status in some other way you.
+Dave Longley:   You know this is the user I need to change there.
+Dave Longley:  You ask your system to give you the credential ID 
+  and then you can use that to make the change to the status.
+Manu Sporny:  So I have a question around how if the status 
+  service sorry if the.
+Manu Sporny:  Where's this endpoint it's on it's the issue it's 
+  the issuing service when it issues a credential.
+Manu Sporny:  How does it communicate what the credential ID is 
+  back to the caller.
+Manu Sporny:  If you don't set credential ID.
+Dave Longley:  So I think it's the case that the caller should be 
+  saying what the ID is and the issuing service should use whatever 
+  idea was presented was handed to it and only if there's some kind 
+  of conflict like that credential already exists should there be 
+  an error generated that way the caller has complete control over 
+  what id gets used and whether or not it appears in a credential 
+  and what we probably are missing what we the Gap that we probably 
+  have here is.
+Dave Longley:   Being able to specify the credential ID property.
+Dave Longley:  To the issuing service when you ask it to issue a 
+  credential so that it has an identifier to keep track of it if it 
+  need if it has status that could change so you know we're trying 
+  to cover a number of use cases we have credentials that don't 
+  have status so their status is never going to change and those 
+  credentials may or may not have IDs and then we have credentials 
+  that have status and the status might change and those may or may 
+  not have IDs.
+Dave Longley:   And whoever's calling into the issuing service 
+  should be providing the identifiers.
+Dave Longley:  That the issuing service can store those and and 
+  enable status changes if their status on the credential.
+Dave Longley:  So that keeps the control over the identifiers and 
+  the identifier space in the hands of the party that's using this 
+  third party software to do the issuing and it's only the 
+  responsibility of the of that issuing party to let them know 
+  whether or not they have a conflict in ID.
+Manu Sporny:  All right so how many PR says this we need a PR to 
+  specify credential ID to raise a PR that specifies how 
+  credential.
+Joe Andrieu:  Hold on one second I've been confused about this 
+  credential ID so assuming there's no Q so this credential ID is a 
+  new property being proposed for the VC DM so it's a property of 
+  the VC okay that's where I got lost okay but where's it go got 
+  it.
+Dave Longley:  No it is not okay yeah this is this is just for 
+  this API so that you can communicate to the issuing service 
+  here's an identifier for this credential that I will use later to 
+  refer to it because I'm not going to put I'm not going to use the 
+  VC DMS identifier property.
+Manu Sporny:  So we need to raise a PR that specifies how 
+  credential ID is set when calling credentials issue right in that 
+  ID is this ID this credential ID the thing that you can do a get 
+  / credentials Prudential ID on.
+Dave Longley:  Yes if you do not specify credential dot ID in the 
+  credential you send to the issuing service then and you want to 
+  be able to refer to that credential you must specify credential 
+  ID the field you've most recently typed when you issue the 
+  gradual.
+Manu Sporny:  Man what happens if you don't do it you throw an 
+  error or you ought to generate one.
+Dave Longley:  No because there's a use case that's totally valid 
+  for specifying a credential that has no status and no i.d..
+Manu Sporny:  Okay okay okay comment works on this okay so we 
+  need to raise a PR that specifies how credential ID is set when 
+  calling credentials issue that value is what is used when making 
+  a call to get credentials blah blah blah it is possible to not 
+  set this value.
+Manu Sporny:  It is also possible that credential ID is set and 
+  if that's set and that value becomes Prudential ID I get that 
+  right.
+Dave Longley:  Yeah the flowchart is is really if the credential 
+  has credential that ID that field is used that's the simplest 
+  case.
+Dave Longley:  The next case is if credentialed that idea is not 
+  that sure.
+Manu Sporny:  Hold on slow down sold out and kill is used for 
+  credential I be if protential.
+Dave Longley:  There is no credential that ID.
+Dave Longley:  You may optionally specify credential ID.
+Dave Longley:  Camel case version.
+Manu Sporny:  Give me the name okay.
+Dave Longley:  And it if you don't specify you won't be able to 
+  change the status on a credential if you do then you can change 
+  the status provided that you've also specified whatever type of 
+  status you need to that's also open here in the credential.
+Manu Sporny:  So what was the last thing you said if you don't 
+  specify it you can't change the status.
+Dave Longley:  Period you know. And then if you do specify it 
+  then you can change the status on a credential using that field.
+Dave Longley:  If the credential also has a status to be changed.
+Manu Sporny:  Okay do we want it that's fine and I think it's 
+  consistent do we want to explore the auto generation of something 
+  and specifying that in the HTTP header that sent back like a 
+  location.
+Manu Sporny:   You know.
+Manu Sporny:  When you do a like it what is into one create you 
+  can specify a location.
+Dave Longley:  So right I think the second we do that then we 
+  change who's responsible for creating the identifiers or we make 
+  it possible to change possible to decide which response which 
+  party is responsible and I don't think we should take on that 
+  complexity if we don't need it so let's not do that now.
+Manu Sporny:  Okay all right so is this the only PR that we need 
+  to raise it feels complete any other any other concerns comments.
+Manu Sporny:  Going once going twice.
+Manu Sporny:  I'm bright well that's good I will mark this ready 
+  for PR in we will go on our merry way all right next up mmm this 
+  one is going to take more than 10 minutes.
+
+Topic: Requesting client features
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/280
+Manu Sporny:  But we can get started requesting client features 
+  issue 280.
+Manu Sporny:  I already had that open all right how our client 
+  features requested by the server during exchanges during a 
+  verifiable presentation request so the general thing the general 
+  issue is how does an issuer say I need you to did off using these 
+  did methods or I only support.
+Manu Sporny:  It's or things of that nature there was a proposal 
+  put forward.
+Manu Sporny:  I think Tobias had some concerns about this was 
+  back in April.
+Manu Sporny:  And we haven't talked about this yet here in the 
+  group I guess so there's a suggestion the way did all that is 
+  covered in the VC API today there's a did authentication flow and 
+  a part of the did authentication flow actually maybe it would be 
+  better to bring this up EP request spec.
+Manu Sporny:  So in the verifiable presentation request spec 
+  there's a section on did authentication in the question is how do 
+  you request client features how do you how do you as the server 
+  how do you tell the client hey I need you to do these things and 
+  these specific ways or I only support these crypto sweets or any 
+  support these did methods.
+Manu Sporny:   Go ahead Dave.
+Dave Longley:  Oh sorry I didn't mean to cut you off just want to 
+  get on cue.
+Manu Sporny:  Okay well okay okay Rick you then yeah right now we 
+  have a mechanism in did authentication that says these are my 
+  accepted methods you can also list crypto sweets these are the 
+  crypto sweets that I support as as a query that comes across 
+  right and that can really be for any kind of client provided 
+  feature so it can be either a feature.
+Manu Sporny:   That the client has.
+Manu Sporny:  It can be like a very specific credential that the 
+  individual has or the digital wallet has so like if the issuer 
+  was like I want to make sure that your before I give you this 
+  credential or before you did off I want to make sure that your 
+  keys are protected in an HSM for whatever reason right and then 
+  that query goes to the client and then it's up to the client on 
+  whether or not they want to respond to that or not to tell.
+Manu Sporny:   Then what their capabilities are right.
+<greg_bernstein> Finger printing...
+Manu Sporny:  One of the reasons it's been proposed this way is 
+  because you don't want the wallet to just blanket convey all of 
+  the did methods that you have access to and all the crypto sweets 
+  you propose that could be a privacy violation right and so what 
+  has been proposed is let's make it so that the server says these 
+  are the things that.
+Manu Sporny:   I could accept from.
+Manu Sporny:  You and then as a client you can pick which one of 
+  those things you want to use or you can choose to not respond at 
+  all okay so with that is kind of you know that's where this came 
+  from over to you Dave.
+Dave Longley:  Yeah so I would I would try to tweak the framing 
+  of this a little bit instead of saying let's find out the client 
+  features which does get into the fingerprinting case which we 
+  want to avoid what we're really saying is the party that is 
+  looking to authenticate someone using a client says these are the 
+  things I accept you have to have these things and that means 
+  either you know it means I will give you a list of.
+Dave Longley:   The things that I.
+<greg_bernstein> Like HTTPS hello?
+Dave Longley:  Is whatever you want from that list and if you 
+  don't have something on that list we're not compatible but if you 
+  have something that lets choose something and communicate with me 
+  and if there's a set of things that aren't part of the protocol 
+  necessarily but are a set of things that the the issuer wants to 
+  ensure that you have as you mentioned storing keys in an HSM or 
+  something like that then what the client the client would respond 
+  to that by saying well here's a VC.
+Dave Longley:   From some auditing party or something that says.
+<tallted> like the "MasterCard, VISA, AmEx, Discover..." NASCAR 
+  stickers at merchant cashier station
+Dave Longley:  I meet the requirements whatever that is so you're 
+  either responding back by choosing some protocol to speak or some 
+  did method to use or your presented or the client is presenting 
+  VCS that say you know I meet whatever your requirements are and 
+  in all of those cases I think it makes the most sense to have the 
+  the issuer say I will accept this stuff now you choose and that 
+  of that avoids the fingerprinting problem.
+Manu Sporny:  Thanks Dave Patrick you're in the queue.
+Patrick_(IDLab): Yeah so just a few question like when we talk 
+  about this is it more of what I need kind of in point or more of 
+  the what I can do.
+Dave Longley:  Well I think in this case we're talking about the 
+  the verifier I you know I keeps using the term issue irksome 
+  imagining someone picking up a credential but in that case there 
+  the really playing the role of verifier when you're asking 
+  someone to do a did authentication and what they're doing in that 
+  cases they're saying I want you to do a did authentication and 
+  here are the did methods for example that I accept in the crypto 
+  sweets that I would be able to check so.
+Dave Longley:   So there is sort of a crossover between what I 
+  can.
+Dave Longley:  And what I can accept but it's really just about 
+  what I would accept it doesn't really matter if I can do these 
+  other things if I wouldn't accept them that's not relevant to 
+  this interaction.
+Patrick_(IDLab): Okay because and is this something that would be 
+  like and point specific or is just more like a bold sort of 
+  Discovery and point that you can filter the results because then 
+  your example you're mentioning like a verifier but within this 
+  kind of feature be also interesting on issuer for example.
+Dave Longley:  Yeah so in the context of having this be on an 
+  issue I think is when the issue is playing a role of verifier 
+  because they want someone to do a did authentication before they 
+  issue them a VC so it would be happening on issuing system but 
+  they'd be playing the role of a verifier but I think what's 
+  important here is we're talking about doing all this through a 
+  verifiable presentation request which could be sent by any party 
+  but it's generally when that party is playing the role of.
+Dave Longley:   Fire because they want you.
+Dave Longley:  Kind of authentication and prove that you control 
+  the dead or prove that you have some set of VCS.
+Patrick_(IDLab): Okay and is this specifically scope for 
+  Authentication.
+Dave Longley:  I think when you're asking another party for a 
+  verifiable presentation you you're asking them to provide you 
+  with VCS that they have and usually but not always you want an 
+  authentication proof over the whole presentation proving control 
+  of some did that may or may be bound in some way to either those 
+  credentials or some other important field you might have 
+  previously for.
+Dave Longley:   Well bounded it too.
+Dave Longley:  It does seem like it's very very much associated 
+  with with Authentication.
+Patrick_(IDLab): Okay and one final question what is this 
+  something that's supposed to be used like programmatically or is 
+  it sort of a more of a like Discovery like it would return you 
+  the method that support with maybe some documentation URL and 
+  then you implement this and after that you can correctly 
+  communicate with that agent or is it something that's more meant 
+  to be used in the process.
+Patrick_(IDLab):  every time.
+Patrick_(IDLab): Take action based on the return here.
+Dave Longley:  Manas on the Queue but my my view is it's this is 
+  mostly the latter it's for programmatic you know someone wants to 
+  do a did all somewhere they read their requite where they request 
+  a VC and the issuer in the role of verifier says well if you want 
+  this VC I need you to did all the first and so this is in a 
+  protocol message and their client is going to process that and 
+  maybe they might offer the user some choices you know do you want 
+  to use this data or that dead if.
+Dave Longley:   So that's an option but then it's responded to.
+Manu Sporny:  I just put myself on the key to in the meeting so 
+  this is great good start to the conversation we're not done with 
+  it we'll pick it up next week group will continue the discussion 
+  on this item to be all right with that thank you everyone for the 
+  great and great engagement as always really appreciate that we 
+  will meet again next week where we will.
+Manu Sporny:   This conversation.
+Manu Sporny:  Issues thanks everyone have a great rest of the 
+  week chat with you next week.
