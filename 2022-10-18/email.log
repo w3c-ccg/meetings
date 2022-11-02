@@ -1,4 +1,4 @@
-Thanks to  for scribing this week!
+Thanks to Our Robot Overlords for scribing this week!
 
 The transcript for the call is now available here:
 
@@ -17,9 +17,862 @@ Agenda:
 Organizer:
   Mike Prorock, Kimberly Linson, Harrison Tang
 Scribe:
-  
+  Our Robot Overlords
 Present:
-  
+  Harrison Tang, Ashley Viloria, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Erica Connell, Keith Kowal, Si Shangase, 
+  Matthew Davis, Gregory Natran, Marty Reed, Nick, Jeff O - 
+  HumanOS, James Chartrand, Will, BrentZ, Kimberly Linson, Brian, 
+  PaulDietrich GS1, Shawn Butterfield, David I. Lehn, Joe Andrieu, 
+  Kerri Lemoie, Leo, Dmitri Zagidulin, Steve Magennis
 
-<transcriber> Harrison_Tang: All right thank you we're right on 
-  time thanks thanks a lot and thank you Matthew again thanks.
+Our Robot Overlords are scribing.
+Harrison_Tang: So hello everyone so welcome to the weekly w3c 
+  credentials community group meeting so we'll wait for other 
+  people to join but before then we can go over the agenda as well 
+  as the code of ethics and IP note.
+Harrison_Tang: So first of all today's main agenda we invited and 
+  Matthew from 3Box Labs to talk about ceramic Network actually a 
+  few months ago I remember the community was talking about ceramic 
+  and actually one of the community members suggested the idea to 
+  invite someone from ceramic to talk about it so that today we're 
+  very fortunate to have Matthew taking the time to actually 
+  present about ceramic and
+Harrison_Tang:  what  it does.
+Harrison_Tang: Any other agendas that people want to bring up?
+Harrison_Tang: Alright I'll quickly go over the IP notes first of 
+  all just a quick reminder about code of ethics and professional 
+  conduct so more or less just be respectful and then make sure 
+  that we create a psychologically safe environment where people 
+  feel safe to actually voice their opinions anyone can participate 
+  in these calls however all substanstive contributions to any CCG 
+  work items must be members of the CCG with full
+Harrison_Tang:  IPR agreement signed so they are links to the 
+  emails I’ve
+Harrison_Tang: Sent out to the mailing list so just click on that 
+  and to join and create a w3c account if you haven't done so these 
+  minutes and audio recordings of everything said on this call are 
+  archived at the link in the email actually recently we fixed the 
+  issue so the issue actually it’ll show up now we're still trying 
+  to fix the transcriptions and things like that so that we give us 
+  a little time to get all those in
+Harrison_Tang:  place we use IRC to queue speakers 
+Harrison_Tang: During the call as well as to take minutes type in 
+  Q+ to add yourself to the queue or Q- to remove it and just be 
+  brief so that if we have a lot of questions everyone has the 
+  chance to chime in now any introductions or reintroductions if 
+  you're new to the community or recently new relatively new and 
+  you want to reintroduce yourself please unmute
+Harrison_Tang:  or put yourself in the queue.
+Harrison_Tang: All right we’ll also do so at the end of the 
+  meeting as well I know some people join usually they would join 
+  like five minutes later and things like that so we’ll do the 
+  introductions and reintroductions at the end of the meeting as 
+  well any announcements or reminders?
+Harrison_Tang: Okay and I’ll also queue this up announcement to 
+  remind us at the end of this meeting as well.
+Harrison_Tang: Any comments on the action items on GitHub?
+Harrison_Tang: All right well today we have a relatively light 
+  agenda I guess so let's get to the main agenda as mentioned I 
+  think a few months ago someone from the community suggested to us 
+  to invite someone from ceramic to talk about ceramic.network what 
+  does how it intersects with the self Sovereign identity work that 
+  we're doing in the community and today we're very very
+Harrison_Tang:  pleased and want to thank Matthew
+Harrison_Tang: To actually give us a presentation on ceramic and 
+  I think you'll go over what ceramic is right and then as well as 
+  why is it important and then we’ll open up to the general Q&A at 
+  the end of his presentation so without further Ado Matthew please 
+  take the floor.
+Matthew_Davis: Awesome thank you would you guys prefer that I 
+  shared slides or do you want me to just talk because I can do 
+  either way.
+Matthew_Davis: Perfect no problem.
+Harrison_Tang: I think if you could share the slides that would 
+  be great thanks.
+Matthew_Davis: Okay so before I dive super deep into the slides I 
+  just want to give you guys a little about me I joined 3Box Labs 
+  to work on the ceramic Network about 9 or 10 months ago I come 
+  from traditional web2 companies prior to ending up at Ceramic I 
+  did a long stint at GitHub building Professional Services for 
+  that team so now I'm a developer advocate in this space I've done 
+  a lot with data over the 
+Matthew_Davis: Years I traveled around the world and did a bunch 
+  of like database consulting for a while
+Matthew_Davis: And that's kind of what led me into the ceramic 
+  world of things since ceramic definitely aims to be composable 
+  data on like the web3 mindset of building applications so that's 
+  a little about me let's dive into what ceramic is.
+Matthew_Davis: Also I'm the lead developer Advocate on the team 
+  so when we open up the Q&A session there might be a couple 
+  questions that I don't have the answers to for sure I mainly 
+  interface with developers and integrating this into their 
+  applications rather than like high-level strategic view stuff but 
+  any type of question that I can't answer for you here I can get 
+  over to our leadership team and they'll be able to answer that 
+  and I can follow up with you guys so
+Matthew_Davis:  don't hesitate to try to throw me to
+Matthew_Davis: the Wolves but at the same time you guys might get 
+  me on one or two so you'll have to forgive me.
+Matthew_Davis: So our team's been around for a while. Our core 
+  Foundry started at consensus way back in 2016 really focused on 
+  building leading web3 developer products most recently we've 
+  shipped something around DIDs so decentralized identifiers called 
+  DID session we'll talk about a little bit later it's really 
+  awesome I think it's like the number one product for our team to 
+  be proud about with how they're managing DIDs and sessions for
+Matthew_Davis:  apps as well as using those
+Matthew_Davis: DIDs to control data and provide you know 
+  Sovereign data to the owner of the DID and stuff and we shipped 
+  compose DB which expands our database layer to allow a lot more 
+  indexing to make it more queryable and to conform a little better 
+  with traditional standards like graphql so we've shipped a lot of 
+  things before that we've worked hard on like chain agnostic 
+  capability objects we've worked hard on react libraries like 
+  self-id.
+Matthew_Davis:  and a whole suite of
+Matthew_Davis: Developer tools along the way some of you might 
+  have actually stumbled upon ceramic and not realized it if you've 
+  ever used like 3 ID connect to get decentralized identifier from 
+  let's say Meta mask then you used ceramic in some way shape or 
+  form that used to be the flagship like product was this 3id 
+  connect which would pop an iframe the problem with that is it was 
+  very like user heavy the user had to
+Matthew_Davis:  assign a lot of transactions to do very simple 
+  things so it didn't like
+Matthew_Davis: Provide the best user experience DID session kind 
+  of solves that so I think in order to understand the value prop 
+  of ceramic it's really important to walk through a very simple 
+  user Journey it's one that we can probably all resonate with 
+  everyone of us has signed up to a social app I'm sure whether it 
+  be Facebook Twitter LinkedIn right name one you signed up to it 
+  excuse me during sign up time you probably answered some 
+  standardized information.
+Matthew_Davis:  Like what your name is, what your birthday might 
+  be, where you’re located, a username
+Matthew_Davis: And then once you're like logged in maybe you set 
+  up site preferences and then you had to go through this really 
+  long painful process of finding the people that you like in life 
+  to follow or the people that motivate you and you have to like 
+  follow them or and then if something goes wrong you have to 
+  unfollow them and this isn't a bad flow this is just like using 
+  an app but it gets really cumbersome when we go from one app to 
+  ten apps or however
+Matthew_Davis:  many social apps exist a lot of them ask for the 
+  same information upon signup
+Matthew_Davis: Right whether that's name birthday location we 
+  kind of get the point they all kind of had the same flow too once 
+  you're signed up and you're logged in then you're still adding 
+  and following your friends and your connections and and all the 
+  messaging and stuff exists this is not only a problem because 
+  we're repeating a bunch of data the bigger problem is that all of 
+  this data gets stored on that social app’s servers so if you 
+  consider Facebook which I think we can all agree Facebook has the
+Matthew_Davis:  most wonderful data
+Matthew_Davis: Practices of all time uh-huh all that sign up 
+  information and all that info about you get stored on Facebook 
+  servers and then when we sign up for Twitter it all gets stored 
+  on Twitter servers and what we signed up on LinkedIn it all gets 
+  sorted Linked In servers and these servers don't communicate with 
+  each other and you no longer own that data about yourself you you 
+  lose agency so you yourself the owner of the data has no agency 
+  over what happens to that data going forward.
+Matthew_Davis:  And this is kind of scary for developers
+Matthew_Davis: too because what if Facebook Twitter LinkedIn 
+  whatt if they decide to shut down the API to that data right now 
+  a lot of these social platforms they allow open access to APIs so 
+  that developers can query the data and use it in other 
+  applications but there's still like this really weird like layer 
+  of trust that we have to trust that we're getting the correct 
+  view back from Facebook and Twitter and whoever might have the 
+  agency over this data.
+Matthew_Davis:  So this is like
+Matthew_Davis: The major hurdle that we try to solve and it's not 
+  just one that we woke up to one day and said hey like let's let's 
+  fix a problem that's not real we're seeing a lot of web3 
+  companies really demand that sovereignty over data exists for 
+  their user base and that's really what we're aiming to tackle so 
+  for us ceramic what it really is is a decentralized network for 
+  composable data and it doesn’t necessarily
+Matthew_Davis: Make your application web 3 however it definitely 
+  contributes to the web3 stack.
+Matthew_Davis: It kind of comes in three very distinct components 
+  and if we can wrap our heads around these three components I 
+  think what ceramic is becomes really clear at the bottom layer 
+  the bare minimum here there's a ceramic node and this is just a 
+  small application that interfaces with ipfs it's the underlying 
+  infrastructure this is not currently an incentivized layer it 
+  will however one day be incentivized so that if you choose to.
+Matthew_Davis:  just be a node operator you can be a node 
+  operator.
+Matthew_Davis: So a node is is basically the small application 
+  that runs interfaces with ipfs but it is what decentralizes all 
+  the data stored on the ceramic Network the purpose of this is 
+  when we need to scale we can just horizontally scale by adding 
+  another node the main responsibility of a node is really 
+  providing the validity of the data so when we request data from a 
+  server that that that data is what it's supposed to be that the 
+  state is
+Matthew_Davis:  current there's blockchain proof that accompanies 
+  that data to some degree
+Matthew_Davis: And says “hey this data is correct” it also really 
+  keeps track of the stream history when I say stream I don't mean 
+  streaming data like we might find in Kafka or some other big data 
+  solution data streams on ceramic are very much just like Json 
+  objects of data so you could think like a mongodb document for us 
+  we call that a data Stream So these things go through changes 
+  consider if a user.
+Matthew_Davis:  they signed up
+Matthew_Davis: to social app a and they said their name was Matt 
+  Davis and then all of a sudden I decided to start going by 
+  Matthew and I wanted to change my name I'm going to need to 
+  update that stream about who I am to say Matthew instead of matt 
+  so ceramic will keep track of all of those changes to the data 
+  and what happens is when we do a read if it's an unknown read we 
+  will rebuild the history of all the changes that have ever 
+  happened to that data stream from genesis including 
+Matthew_Davis: all the blockchain proofs to verify that what we 
+  are currently seeing since it was previously unknown to us is 
+  valid and accurate to the most current state so the node handles 
+  all of this stuff for us which is great because it would be a lot 
+  to have to handle on our own so the second layer to that is 
+  called compose DB and this is one of our newest products out the 
+  door if you used ceramic in the past this might have been called
+Matthew_Davis:  ceramic we have renamed it to compose DB and 
+  added 
+Matthew_Davis: A bunch of
+Matthew_Davis: functionality to it however at this layer this is 
+  an API that's always going to be open and that's also what the 
+  ceramic nodes help with is maintaining the openness of this API 
+  so that we at Ceramic could never take it away from developers 
+  like it's always going to be open and available so compose DB 
+  allows developers to create and distribute like commonly accepted 
+  data schemas for these apps so if we go back and we look at this 
+  problem
+Matthew_Davis: Of name birthday location this this might be 
+  something like a user profile and this is a common schema that's 
+  used across apps or site preferences might be a specific schema 
+  shape and same for friends and followers so compose DB allows 
+  those developers to say hey I'm going to outline what a common 
+  basic profile looks like once I build that schema I'm going to 
+  publish it to the network and that
+Matthew_Davis:  allows every other developer in the world to 
+  quiery
+Matthew_Davis: for that schema and say hey instead of rebuilding 
+  a user profile let me just use what already exist and what 
+  becomes really cool about this is this is the composability piece 
+  if a user.
+Matthew_Davis: Creates a basic profile using their decentralized 
+  identifier their DID then they can log into any app in the world 
+  as long as that app understands how to read the basic profile 
+  from ceramic that profile follows the user so they can fill it 
+  out in one location and reuse it across all apps so this becomes 
+  really useful like if you have a million followers and you want 
+  to take that list with you from app to app to
+Matthew_Davis:  app you could just log in and since that list is
+Matthew_Davis: now attached to your DID rather than the 
+  application itself that list follows you everywhere and it's just 
+  up to the application to read from the ceramic Network rather 
+  than you know it managing that entire friends list on its own so 
+  compose DB enables that and the top layer here is this data 
+  Composites idea and that is where we take the decentralized 
+  identifiers and we allow them to control
+Matthew_Davis:  these schemas that have been composed and built 
+  together
+Matthew_Davis: So if we go back again and we take a look at this 
+  where user signup might be a schema site preferences might be a 
+  schema adding a following friends might be a schema we kind of 
+  bundle them together into something called a composite and then 
+  the app is able to read just the data schemas that it cares about 
+  and it does so at this top most level and this is where our DID 
+  session Library really comes into play.
+Matthew_Davis:  this flow looks a lot like a 
+Matthew_Davis: User goes to an application there's a connect 
+  wallet button in that application they click it Metamask pops up 
+  if that's their wallet of choice and it says Hey like do you 
+  authorize this app to do stuff on your behalf typically those 
+  permissions are interacting with this specific data composite 
+  user signs that message one time and they get a version of a DID 
+  in which now they can the app can
+Matthew_Davis:  do stuff in a session
+Matthew_Davis: Based manner on their behalf for a predefined 
+  period of time so the user no longer has to sign multiple 
+  messages if they add a friend they don't have to sign a message 
+  to make that happen if they change the site Preference they don't 
+  have to sign a message to make that happen they basically sign a 
+  message when they log in and then the app is allowed to do stuff 
+  on their behalf so it's very much a web to kind of cookies 
+  experience only built around
+Matthew_Davis:  DIDs rather than cookies and wallets and stuff so
+Matthew_Davis: The crazy thing is every piece of data on ceramic 
+  is globally readable which means that we had to come up with a 
+  mechanism to protect like malicious rights and stuff and that's 
+  where also like decentralized identifiers come into play the way 
+  a data stream works is any application that happens to know the 
+  schema can read that data but only the individual that did that 
+  controls the stream can write.
+Matthew_Davis:  updates to that data
+Matthew_Davis: And this immediately gives us back that 
+  sovereignty back to the users so and the agency right so really 
+  we're after like this entire New Era of Open Source information 
+  we need desiloed data we want data that works across any app in 
+  any context regardless of what the tech stack might be on top of 
+  that if the community comes together and they just they gain 
+  consensus on specific data models like a
+Matthew_Davis:  basic profile or like
+Matthew_Davis: What site preferences look like it encourages a 
+  much broader data ecosystem and it encourages those developers to 
+  take part and figuring out what that looks like instead of having 
+  so many one-off schemas that exist all of this should be 
+  accessible from around the web and we really by running nodes and 
+  having developers and putting out all three layers of this or all 
+  three pillars of what ceramic is we're really aiming to share
+Matthew_Davis:  the network effects of what’s going on
+Matthew_Davis: Between those that are building and those that are 
+  innovating and pushing the limits of what web3 data might look 
+  like and honestly the thing that got me to join this organization 
+  is the user agency Whoever has the DID is the controller of that 
+  data and they get to use it how they see fit if I have a basic 
+  profile and it's attached to my DID which is may be attached to 
+  my Metamask wallet I can update my name whenever I
+Matthew_Davis:  I want and nobody
+Matthew_Davis: can tell me that I can't and that's what's awesome 
+  about this and then that's like reflected across all these 
+  applications and this like the profile example is definitely 
+  arbitrary but I'm thinking bigger like friends lists or there's a 
+  lot of thing like my site preferences if I never had to change 
+  the color of a website because it automatically switched to dark 
+  mode for me I think that just brings a much better user 
+  experience to the world for us on top of that
+Matthew_Davis:  like nobody's gonna like sell my data and that's 
+  super important to me and
+Matthew_Davis: If they do
+Matthew_Davis: Start to sell it then I can just change it or make 
+  it unusable for them because I'm the one that has agency over 
+  that.
+Matthew_Davis: So this ceramic network has a couple pillars these 
+  qualities that exist and we had to keep these in mind as we built 
+  out this solution first and foremost it needed to be scalable and 
+  we achieved that by having a local first design so if I sit down 
+  to develop something using ceramic I'm also running a node on my 
+  local machine this allows me to have real-time updates during the 
+  development process to the data that I'm working with so my app 
+  gets
+Matthew_Davis:  instant feedback.
+Matthew_Davis: As I build things on top of that it also increases 
+  the number of nodes on the network which helped with the 
+  real-time updates for apps that actually run in production the 
+  other advantage to this is if you've done web3 stuff which I'm 
+  sure most of you have we we know it can be slow because of 
+  consensus right when we have to agree that like a proof exists 
+  sometimes that takes time but by running a local first design we 
+  can skip consensus during the
+Matthew_Davis:  development time which means
+Matthew_Davis: That we’re not constrained to waiting on that to 
+  happen for us to see if we're building the right thing in the 
+  bigger picture like there is consensus on the network but for 
+  development we get to abstract our ways out of that. The second 
+  things is that
+Matthew_Davis: It had to be mutable like data doesn't make any 
+  sense if you don't allow users to change it people change their 
+  name frequently that's not an uncommon thing people change their 
+  usernames frequently that's not an uncommon thing so it needed to 
+  be updatable but we also wanted to maintain every single state 
+  that that data stream has ever been in and that was very 
+  important that we had that read-only history since that is the 
+  only way to prove that the current state of the data is exactly 
+  what it's
+Matthew_Davis:  supposed to be and we do that with built in 
+  Anchor commits down to currently ethereum
+Matthew_Davis: In the long run it is chain agnostic we do aim to 
+  be chain agnostic our development team has an ethereum background 
+  so we support ethereum first and then other evm Alternatives and 
+  soon hopefully other complete layer ones as time goes on we're 
+  also flexible and that means that those data schemas we’re aiming 
+  to use graphql and we really give users that single unified 
+  interface.
+Matthew_Davis:  As a developer like all you have to do is 
+  understand
+Matthew_Davis: how to use the ceramic library and that is going 
+  to interoperate with ipfs it's going to get your data anchored 
+  down on chain you don't have to learn like 10 different APIs for 
+  10 different apps to make things happen it's one API to rule them 
+  all in Lord of the Rings style hopefully when it comes to dealing 
+  with data on web3 and interoperability I’ve kind of hinted on 
+  this a little bit it's chain agnostic.
+Matthew_Davis:  We're aiming to support all keys chains and 
+  context that we can come
+Matthew_Davis: Up with and we do this because this whole 
+  decentralized identity piece is built in it is a core fundamental 
+  piece to how ceramic Works no stream of data on the ceramic 
+  Network can exist without decentralized identifiers they're the 
+  only thing that is allowed to control a data stream on ceramic 
+  which also means that the only thing that's allowed to create a 
+  data stream on ceramic.
+Matthew_Davis: So all of that kind of brings itself back full 
+  circle to say that ceramic is essentially Dynamic content that's 
+  created using flexible data models stored on a decentralized 
+  peer-to-peer Network controlled by decentralized IDs and if you 
+  can wrap your head around that piece then I think there's a 
+  really solid understanding of what ceramic is and what we're 
+  aiming to do with it so I think that's the general
+Matthew_Davis: Overview I don't want to take up too much time 
+  going into specific web3 solving cases here but I would love to 
+  open it up to allow for this to become more of a discussion and 
+  questions and answer whatever you guys might have I think there's 
+  probably value there at that layer at this point right so that's 
+  the overview I would love to open it up and talk to you guys.
+Harrison_Tang: So Keith you have the floor.
+Keith Kowal:  Thanks so much Matthew it's super interesting can I 
+  ask about I was confused about the Privacy model so I think you 
+  talked about how DIDs control rights under the ceramic network 
+  but then anyone can read if they understand this schema so if I 
+  was to put me let's just talk PII so if I have PII in the ceramic 
+  network does that mean that anyone can read it or they can only 
+  read it with my permission or can you just talk about the overall 
+  privacy model if if it exists.
+Matthew_Davis: Yeah this is actually super easy question answer I 
+  thank you for asking it so I also think it's a really important 
+  one the short answer is there's not a huge privacy model the aim 
+  would be to make data open and composable which means that the 
+  limitation is that you would not want to store PII on ceramic 
+  there's a couple ways that you could but like I don't think 
+  anybody at
+Matthew_Davis:  ceramic would ever recommend doing any of them
+Matthew_Davis: One of those ways would be to encrypt your data 
+  client-side stored in ceramic and then decrypt it when you need 
+  it the problem with that is is now it's not not open so if you 
+  encrypt it in application A application B has no way to decrypt 
+  that so there are certain things that ceramic is not suitable for 
+  things like credit card numbers Social Security numbers any form 
+  of PII we would 1 million percent advise to not put on.
+Matthew_Davis: All data on Ceramic is not encrypted by default 
+  simply because it has that globally read-only mindset to it we 
+  want it to be reused we want application developers to not have 
+  to design custom schemas and as a result we encourage people to 
+  store as much plaintext stuff as we can so it's really useful for 
+  user-generated data that isn't sensitive or also like service 
+  generated data this is an area we don't talk much about yet 
+  because it's kind of like
+Matthew_Davis:  in Exploration mode microservices often have
+Matthew_Davis: needs and they could potentially have DIDs and 
+  they could be writing data that isn't sensitive too so things 
+  that aren't sensitive is what work really well on data there is a 
+  protocol out there called lip protocol and that would be if you 
+  did need to encrypt anything on ceramic still don't recommend PII 
+  but if for any reason you need to encrypt anything we recommend 
+  that you go through lip protocol
+Matthew_Davis:  to do that encryption.
+Keith Kowal:  Can I ask a quick follow-up because I'm now a 
+  little confused because a lot of the use cases you talked about 
+  were things like pro- maybe we're using different definitions of 
+  PII because in my definition of PII that includes things like 
+  first name last name gender like a lot of the things that would 
+  be in a profile when you like sign up to a website so maybe am I 
+  missing something here like maybe you don't consider that to be 
+  PIIi or?
+Matthew_Davis: Well I mean I can that's your birth your name is 
+  pretty public right I can look that up on a million forums I like 
+  my address is pretty public right like I bought a house that gets 
+  that gets published publicly to the city so I don't necessarily 
+  consider like my name PII whereas like my social security number 
+  my driver's license number even which is still kind of great 
+  because I think that's pretty public normally
+Matthew_Davis: Like things that could better compromise me might 
+  be and I get that you could build like a threat profile like by 
+  getting my name birthday and like my pet's name right you could 
+  probably social engineer somebody on that front the second piece 
+  to your follow-up is the profile thing is very much just a way to 
+  for us to talk about composability in a realm that we're all 
+  familiar with we had some things using profiles and the advantage 
+  to that
+Matthew_Davis:  is it's all opt-in right so like nobody’s going 
+  to force
+Matthew_Davis: A profile on a ceramic User it's one of those 
+  things if you want to have a profile you can have a profile 
+  there's also nothing that stops you from using fake data for 
+  whatever it's worth like if you wanted to be somebody completely 
+  brand-new in web3 like you kind of could because it's all about 
+  your decentralized identifier and not so much the text that 
+  you've attached to it so I think there's definitely there might 
+  be a small difference in what we're considering PII for sure and 
+  then on 
+Matthew_Davis: Top of that the profile thing is just
+Matthew_Davis: something that's easy I think for us to reconcile 
+  and a presentation for what could be composable.
+Matthew_Davis: Does that answer the question?
+Matthew_Davis: I'm happy to go deeper too if need be.
+Keith Kowal:  Yeah I guess my high-level comment I think only a 
+  lot of us look at the who have struggled with PII on blockchains 
+  I think that's where a lot of us come from it's not so much about 
+  what you think could be PII it's more about the Privacy 
+  regulations like GDPR what they consider to be PII and then their 
+  rules and regulations around that so I mean that's always kind of 
+  my framework for analysis but thank you for your answer.
+Matthew_Davis: Yeah that's actually a super good point I'm taking 
+  a note of it right now to be honest with you I like to go have 
+  like debrief sessions with our engineers and our team after I do 
+  these engagements so I took a note of that and because I think 
+  you do have a good point right like what we consider to be PII or 
+  not might not follow a regulatory standard and that’s something 
+  that we should look at so I definitely appreciate you bringing 
+  that up.
+Harrison_Tang: Oh we have - Nick do you have question?
+Matthew_Davis: Yeah that's also a great question thanks for 
+  asking that a couple of our Flagship apps that we have on our 
+  main net right now are gitcoin so gitcoin just rolled out gitcoin 
+  passport all of that is built on top of ceramic metagame is built 
+  on top of ceramic dao haus is built on top of ceramic DNS XYZ is 
+  built on top of ceramic I think rabbit hole is and there's a 
+  handful of other orbus
+Matthew_Davis:  orbus is a major player. orbus.club
+Matthew_Davis: They’re a major player on ceramic they even rolled 
+  out an SDK that further integrates ceramic for social use cases 
+  so those are like the main like pioneer web3 apps that exist as 
+  far as like some of the data we're seeing hundreds of thousands 
+  of DIDs being generated I don't know how accurate that number is 
+  it's not hard to go in and create a DID you could I have probably 
+  created a good 50 of them myself just
+Matthew_Davis:  doing testing and application development
+Matthew_Davis: So I don't know how accurate that number is or 
+  like what it truly represents we are far enough along to where 
+  like we're a real product but we're not far enough along to where 
+  our metrics have super meaningful analysis behind them we're just 
+  now getting to that meaningful analysis behind the metrics that 
+  we we do capture so we have a lot of DIDs which would imply that 
+  we have a lot of streams which there are quite a bit of streams 
+  there's actually a site it's called cerscan it’s c-e-r-s-c-a-n.
+Matthew_Davis: cerscan.com I think they're in Explorer for 
+  ceramic streams so that's another one they’re kind of a web2 app 
+  though I don't think they're deployed in a web3 way but they 
+  allow you to explore some of like the data that exists on ceramic 
+  and that's kind of exciting if you're into Data as a whole those 
+  are our big major players we also have some interesting use cases 
+  coming down the pipeline so a lot of those are social a lot of 
+  the ones I mentioned are more
+Matthew_Davis:  social or verified credentials those those kind 
+  of exists there we have a couple of projects in
+Matthew_Davis: Our pipeline right now though that are branching 
+  out to do things like carbon footprints for buildings and putting 
+  that on chain or like brand reviews we're working with a project 
+  right now their goal is to say solve the fake review thing that 
+  like Amazon deals with so if I want to leave a review on my brand 
+  new shoes then I have to have some sort of identifier that I own 
+  those shoes most likely an NFT and if
+Matthew_Davis:  I have that then I can write a review and they’re 
+  storing
+Matthew_Davis: All of their reviews and the validity of those 
+  reviews on ceramic or at least that's their their goal long-term 
+  they're still really early on so we're starting to see more use 
+  cases that aren't social related or aren't verified credential 
+  related but currently a lot of it is social and verified 
+  credential which kind of throws back to the whole black basic 
+  profile idea that's something thate our current Builders can 
+  reconcile with a lot so
+Matthew_Davis:  we'll probably get better examples of 
+  composability as we get 
+Matthew_Davis: Different use cases built out on ceramic there's a 
+  good handful of applications on our main net and that does not 
+  account for all the applications that come out of hackathons at 
+  like ethglobal and stuff that are running on test net and I don't 
+  have the test net numbers.
+Harrison_Tang: Hey Matthew I have a question in regards to like 
+  Speed and Performance because when I last check ipfs which 
+  ceramic is built on top of it's a little bit slow so when the use 
+  case that you're talking about signing in usually people have 
+  service level expectations in regards to like almost immediate 
+  right so how what's the kind of the performance here and then how 
+  do you kind of if you have solved the performance issues
+Harrison_Tang:  how do you solve it?
+Matthew_Davis: Wonderful question I love it that there's a lot to 
+  unpack here so I'm going to talk about two different things 
+  because they're both performance-related the first is the sign in 
+  piece because I agree there's like a service level expectation 
+  that if I click the sign in button I need to be signed in right 
+  now I don't have time to wait web2 has done a good job at getting 
+  us signed in quickly for the most part currently with our new 
+  session library that we shipped
+Matthew_Davis: that wraps around DIDs signing in is really 
+  painless it's really fast because it is not coupled with ipfs so 
+  all the DID stuff doesn't actually write down into ipfs so I 
+  could go create a bunch of decentralized identifiers right now 
+  and they're not anchored into ipfs so we abstract the fact that 
+  ipfs is a little bit slow away from that what ends up happening 
+  is like when that DID decides to
+Matthew_Davis:  generate data there’s a
+<keith_kowal> If DID docs are not on IPFS - where are they 
+  written? A more traditional database?
+Matthew_Davis: Field in the data object that says controller and 
+  we put the DID in there for reference and that's who can control 
+  the data so now we do some logic that says hey there's an update 
+  that wants to go into this stream is it from the DID yes it's 
+  from the DID okay we'll make that update so all the sign-in piece 
+  is really fast it's a actually we implemented and helped Pioneer 
+  the sign-in with ethereum standard so if you're used to sign in 
+  with ethereum or have any experience with it.
+Matthew_Davis:  it's as fast as that
+Matthew_Davis: You click the connect wallet button you select 
+  metamask metamask pops up says sign this message you click sign 
+  and you are you have a DID and you're ready to go in a matter of 
+  however fast you can click those buttons so it the sign in piece 
+  is pretty immediate it's really actually a wonderful user 
+  experience for web3 I remember when I was first getting in the 
+  web3 the whole how do I connect to this app was was kind of a 
+  painful process this is actually
+Matthew_Davis:  I hate using the word elegant when it comes to 
+  code because it’s really
+Matthew_Davis: Hard to have Elegant solutions for code but this 
+  one really feels elegant it's also extensible as I said right now 
+  it's really built on top of this sign with ethereum standard we 
+  are currently in talks with Solana and pioneering what the sign 
+  in with Solana standard is going to look like so hopefully we can 
+  Implement that chain agnostic you know DIDs here pretty soon and 
+  sign-in Methods at least for your apps so from that point of view 
+  we're talking pretty immediate.
+Matthew_Davis:  going down into the ipfs layer which is where the 
+  data is right so ceramic.
+Matthew_Davis: Sits right on top of ipfs and it's an interface 
+  down to ipfs we solve this problem because of the local nature of 
+  a node I don't have a diagram but I'll try to talk this through 
+  so you have an ipfs node we’lll call that the bottom layer so 
+  layer 1 or layer 0 depending on how you want to count will be in 
+  ipfs node and you're right like that's connected to an ipfs
+Matthew_Davis:  swarm and it's slow to propagate
+Matthew_Davis: And that is the nature of ipfs on top of that is 
+  ceramic and when we make a call to data ceramic holds the most 
+  recent change so the best way I can explain this is to think of 
+  the command line tool git or just any Version Control for code 
+  when we do a git init and we get that first commit in there so 
+  we'll git commit initial commit or whatever right we have that 
+  first Genesis commit.
+Matthew_Davis: And every commit we make we’re kind of like 
+  tracking like what's different like what's changed between 
+  commits ceramic streams on the same those Genesis commit and that 
+  lives on the ceramic node initially and then if a user makes an 
+  update they're basically making git commits to some degree to a 
+  ceramic stream now they're not git commits but they're similar 
+  we're committing the changes to a ceramic stream what's happening 
+  is the ceramic node is always in the know of the most
+Matthew_Davis: current state so the tip it knows the latest 
+  commit the previous commits are what gets sent down to ipfs so 
+  all the historical commits end up on ipfs so if an application 
+  that is tightly coupled with a ceramic node needs data it is 
+  asking the ceramic node for the tip and it's getting it back 
+  instantly it's as long as standard HTTP request takes so we're 
+  talking milliseconds it's getting that information.
+Matthew_Davis: back instantly if an application
+Matthew_Davis: that is not tightly tightly coupled with a node 
+  requests data then the node that has the tip will send the tip 
+  over or a copy of the tip over to the new node and the node for 
+  application 2 will query ipfs and will rebuild the data from 
+  Genesis commit all the way to tip and check all the blockchain 
+  proof along the way so the very first time a brand new 
+  application
+Matthew_Davis:  requests information
+Matthew_Davis: That it doesn't know about it can be a little slow 
+  on query but from there on out that node will also keep track of 
+  the tip so there's like lib PDP pub/sub messaging that takes 
+  place between the nodes to keep the tips in sync so it will know 
+  about the tip and all subsequent reads will be much faster so the 
+  performance depends on the situation how we solve the the slow 
+  ipfs
+Matthew_Davis:  part is by
+Matthew_Davis: Having those nodes keep track of the most current 
+  state and we only lean on ipfs when we need proof to verify that 
+  that the the current state is accurate there's a big consensus 
+  mechanism that runs too in case like we need to like there's two 
+  rights that happen at once it was two reads that happen at once 
+  the nodes will communicate with one another to look at like how 
+  everything got anchored down to chain through ipfs and then 
+  they'll decide who wins.
+Matthew_Davis: Thats a very well documented thing though in the 
+  docks and I'm going to mess it up if I tried to tell it to you 
+  completely but that's just know that there is a consensus 
+  mechanism to solve for that but that's how we get around like 
+  those performance implications of ipfs.
+Harrison_Tang: Thank you thank you Matthew and Keith I think you 
+  have a question earlier in the chat right.
+Keith Kowal:  I think I answered my own question so I add asked 
+  where the DID docs were stored but I think if you're using DID 
+  pkh then I guess they're just instantly composed sorry correct me 
+  if I’m wrong my reading my documentation is that you're using did 
+  TKH so you're not storing did docs you're just composing them on 
+  the fly when you have those kind of sign in applications would 
+  that be correct?
+Matthew_Davis: Yeah they get composed on the fly so when I when I 
+  connect my wallet I get a standard DID I forget the method that's 
+  used on the wallet right away then that gets turned into DID pkh 
+  the DID pkh is passed over to the app obviously that's the public 
+  key hash for it that's what manages the session but the DID 
+  itself like we know of DIDs because it's like we can tell how 
+  many digits are created not sure
+Matthew_Davis:  exactly how that communication with
+Matthew_Davis: The data takes place that's a good question I 
+  would love to follow up with a much better answer for you however 
+  I know what I do know is that I can create many DIDs via command 
+  line tools and other stuff that aren't pkh DIDs and still use our 
+  libraries so those aren't stored either like if I were to sit 
+  down right now at my terminal and created a DID using DID key 
+  that's not like stored on ceramic anywhere.
+Matthew_Davis: It is if I publish it to the node but like I don't 
+  know if the DID session which is what is responsible for DID pkh 
+  I don't know if that inherently publishes it to the node that'll 
+  be something I can follow up on with you though to get you a 
+  better answer.
+Harrison_Tang: And Matthew a different question so earlier if I 
+  remember correctly you mentioned that there are some folks 
+  actually using ceramic to kind of actually store verifiable 
+  credentials using ceramic so if that's correct like can you kind 
+  of share with us what are some of the use cases because you also 
+  mentioned that it is advised not to put really
+Harrison_Tang:  sensitive personal information.
+Harrison_Tang: on ceramic Network so what kind of verifiable 
+  credential use cases are people using right now on top of 
+  ceramic?
+Matthew_Davis: Yeah great question.
+Matthew_Davis: There's a couple different use cases I think I 
+  think gitcoin turns these into VC's so gitcoin passport is the 
+  number one thing I could point you to for this so what they do is 
+  they allow you to build like a more robust like profile around 
+  who you are so if I if I create my gitcoin passport I can get 
+  stamps which I'm pretty sure they're storing as like VCS in those 
+  stamps are like hey I'm going to I'm going to verify my Twitter 
+  account into this passport or
+Matthew_Davis: I'm going to verify my Facebook account so they’re 
+  building kind
+Matthew_Davis: Of a link between web2 applications so that they 
+  can be reflected better on web3 apps they’re right now like the 
+  biggest player in any type of like VC kind of space for for what 
+  ending up on ceramic I am 99% positive all those stamps are VCS I 
+  did not work super close with gitcoin when they did the 
+  integration though so you should probably do due diligence to 
+  find out if they are VCs but I'm pretty positive those are.
+Matthew_Davis:  then we actually jus had a
+Matthew_Davis: Chat with an organization that's doing something 
+  super unique over at devcon last week they are building a know 
+  your developer platform so one of the things they're doing is 
+  looking at historical like GitHub behavior from a developer and 
+  building like know your developer kind of credential that they 
+  will eventually want to store on ceramic but they're not as 
+  polished as gi coin is yet they don't have that out even on test 
+  net that's something that they're aiming to do so we're
+Matthew_Davis:  seeing things that and so that one the whole 
+  GitHub one
+Matthew_Davis: Is is all public data right like GitHub has the 
+  APIs for querying everything you've ever done as a developer that 
+  you've done in public and so they're using public data that's 
+  already available so it's not anything the user didn't opt in to 
+  being public as is and then they are actually scrubbing a lot of 
+  the the PII out of it so they don't care about your name they 
+  don't care about your email they’re scrubbing that out because 
+  the GitHub API returns that anyway.
+Matthew_Davis:  every time you run a query on like a specific 
+  user
+Matthew_Davis: Or a repo same with gitcoin I don't know that 
+  they're scrubbing it necessarily however it's a 100% opt in 
+  situation like I don't have to connect my Facebook to my gitcoin 
+  passport if I don't want to and I think that's largely the 
+  mindset of how it's being handled right now it's a 100% opt-in 
+  situation at the moment.
+Harrison_Tang: Thank you any other questions for Matthew from the 
+  community.
+Harrison_Tang: All right Matthew I have one last question for you 
+  so so like how how do you think like ceramic can help increase 
+  the market adoptions of self sovereign identity because you know 
+  as we know self sovereign identity even though we are in the 
+  community and it seems like it's getting more and more popular 
+  but it's still a long ways to go in terms of getting mainstream 
+  adoption so how how do you see like ceramic or from your 
+  experience is the
+Harrison_Tang:  the intersection between web3 and then the
+Harrison_Tang: self sovereign identity community how do we 
+  actually work together to increase the market options of SSI.
+Matthew_Davis: That's another wonderful question from Ceramic’s 
+  point of view we are pioneering the use of DID PKH and we really 
+  think that that ties into self Sovereign identities very tightly 
+  from here on out every DID that is created on ceramic that that 
+  we encourage the creation of is pointed to using this DID pkh 
+  method and what that actually does is
+Matthew_Davis:  it takes all
+Matthew_Davis: block chain wallets and it kind of turns them into 
+  DID wallets right any wallet can now become a DID and that gives 
+  you all the sovereignty over your identity there so we are by I 
+  think by driving adoption of of using DID pkh through various 
+  hackathons and just publishing a really well thought out and well 
+  built package that's easier for developers to use I think we 
+  definitely push things forward when
+Matthew_Davis:  it comes to using that as.
+Matthew_Davis: an identity mechanism on top of that our like our 
+  CTO not to Humble brag too much but like he's very active in the 
+  the DID standard itself for for W3C so if you go look up the DID 
+  standard Joel Thorstenson is our CTO like he's he's an active 
+  author for what decentralised identifiers look like so from just 
+  like the the point of view of.
+Matthew_Davis:  values to some degree as like
+Matthew_Davis: Company values I don't think there's a bigger 
+  commitment to anything in Web3 outside of what we have for 
+  identity the identity piece is critical for us having Sovereign 
+  data the identity piece is critical for user adoption especially 
+  as we've seen web2 kind of violate privacy along the way so from 
+  for us like I think it's very a very obvious flag planted in the 
+  ground that identity.
+Matthew_Davis: is key and it's important and we're going to 
+  continue
+Matthew_Davis: pioneering what that means to make it easy to 
+  onboard users into as I said about like DID pkh it couldn't be 
+  easier to sign into a web3 application right now like sign in 
+  with etherium was great and then we're automatically you know 
+  rolling DIDs when you use that standard and you have that and it 
+  follows you everywhere because it's attached to your wallet we're 
+  also working right now on figuring out how to do like multi DID 
+  so if I had multiple wallets but I still kind of want them to
+Matthew_Davis:  coupled with a bigger ID like how does that work 
+  and that's something that’s in like the
+Matthew_Davis: The scoping phase for us so I wouldn't expect it 
+  any time soon but it is on our plate so we're going to continue 
+  pioneering ways to reduce the friction of the web3 user getting a 
+  DID while making it very obvious that the web3 user is using DIDs 
+  rather than a direct wallet address and we're going to continue 
+  doing that in the ways that we've gotten this far which is 
+  hackathons and good packages and just encouraging the community 
+  to build with
+Matthew_Davis:  these standards we're also going to continue 
+  contributing
+Matthew_Davis: back to those standards that do exist around 
+  decentralized identity that's not a one and done for us we're 
+  fully committed to having Sovereign identities on web3.
+Harrison_Tang: Thank you thank you Matthew Si you have the floor.
+Matthew_Davis: Yeah that's a super solid question I actually just 
+  got out of a huge dkp like presentation at dev con last week 
+  there is definitely a use case for this ceramic itself is 
+  probably not going to Pioneer what that looks like though there's 
+  nothing that would prevent you from integrating zero knowledge 
+  proof into the way your application works and then storing 
+  whatever you need to on ceramic but I think we're at this stage
+Matthew_Davis:  we’re largely leaving that in the hands of the 
+  community to solve.
+Matthew_Davis: We're really focused on just making sure we put 
+  out a good product for example like indexing data with something 
+  we didn't have a month ago and now we do have it so our focus is 
+  largely on queer ability and interactions with the data but for 
+  like that type of stuff we are absolutely encouraging running 
+  zero-knowledge protocols along with ceramic to figure that out 
+  we're super super stoked to see what the community does on that 
+  but we're not
+Matthew_Davis:  at a point where we can put our own engineering 
+  cycles into the 
+Matthew_Davis: because we just don't have the bandwidth.
+Harrison_Tang: All right I just want to thank you again Matthew 
+  for taking the time to present ceramic to the community 
+  appreciate the time and appreciate ceramic like committing so 
+  much into Open Standards.
+Matthew_Davis: Thanks for having me I love talking about this 
+  stuff and it's always great to be in a group that asked very 
+  thoughtful questions and is very clearly thoughtful about what 
+  web3 means to the world so I just genuinely thank you for having 
+  us here today.
+Harrison_Tang: Great great and then last announcements or 
+  reminders on the community?
+Harrison_Tang: Last introductions and reintroductions?
+Harrison_Tang: All right thank you we're right on time thanks 
+  thanks a lot and thank you Matthew again thanks.
