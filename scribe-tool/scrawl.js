@@ -85,7 +85,7 @@
     }
 
     // extract all names from present list
-    var ircLines = ircLog.split('\n');
+    var ircLines = ircLog.split(/\r?\n/);
     var presentList = [];
     for(var line of ircLines) {
       var match = commentRx.exec(line);
@@ -871,7 +871,7 @@
     var rval = '';
     var minutes = '';
     var summary = '';
-    var ircLines = ircLog.split('\n');
+    var ircLines = ircLog.split(/\r?\n/);
     var aliases = scrawl.generateAliases(ircLog);
     scrawl.counter = 0;
 
