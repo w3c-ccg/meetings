@@ -1,0 +1,288 @@
+Thanks to Our Robot Overlords and ben_-_transmute for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-11-15-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-11-15-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2022-11-15
+
+Agenda:
+  https://github.com/w3c-ccg/traceability-interop/blob/main/AGENDA.md
+Action Items:
+  1. file separate issue for requiring verifications array in 
+    verification response
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and ben_-_transmute
+Present:
+  nis, Ben - Transmute, Jim Masloski, Chris Abernethy, vivien, Orie 
+  Steele, Russell Hofvendahl (mesur.io), TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com)
+
+Our Robot Overlords are scribing.
+https://github.com/w3c-ccg/traceability-interop
+<jim_masloski> nothing from me
+https://vocabulary.uncefact.org/
+Chris_Abernethy: Most of these PR's are mine so it might be best 
+  if I didn't scribe.
+Ben_-_Transmute: Yeah I am I'm tired but I figure that I can go 
+  ahead and give scribing a shot.
+https://github.com/w3c-ccg/traceability-interop/pulls
+ben_-_transmute is scribing.
+https://github.com/w3c-ccg/traceability-interop/pull/459
+Nis: starting with interop pull 459
+<transcriber> Chris_Abernethy: Yes so this is one of the ones 
+  that's been kicking around for a while this fixes issue 363 which 
+  was the one to add a link to import Postman collections this 
+  modifies the documentation for both the performance in the 
+  interop tests with some instructions on how to import each of the 
+  different items in the postman so yeah that's basically a 
+  documentation update.
+Chris: this issue fixes issue 363 for documentation update
+<transcriber> Ben_-_Transmute: The this looks like we've got 
+  looks like transcribers on can you get the three dots and then 
+  turn off captions.
+https://github.com/w3c-ccg/traceability-interop/pull/462
+Nis: next 462
+Chris: this is another oldie but goodie, suggest by Ted to update 
+  procedure for meeting publication
+Chris: also address process for manually scribing
+Nis: we have enough approvals, any objects?
+https://github.com/w3c-ccg/traceability-interop/pull/463
+Chris: this PR adds a brows-able list of historical reports
+https://github.com/w3c-ccg/traceability-interop/pull/465
+Chis: i created this PR before making this ready for PR on the 
+  issue
+Chris: this PR adds a top level json property on the verifiable 
+  credential to align with vc-api
+Chris: this will be breaking change that will start failing test 
+  when it merges
+Orie Steele:  I am in favor of the change
+https://github.com/w3c-ccg/traceability-interop/pull/465
+https://github.com/w3c-ccg/traceability-interop/pull/466
+Chris: this PR is the same change but for verifiable 
+  presentations
+<jim_masloski> :)
+Orie Steele:  This one is disagree with (sarcasm)
+https://github.com/w3c-ccg/traceability-interop/pull/467
+Chris: this one adds an additional test with a bad signature to 
+  get a 200 response with verified false
+Orie Steele:  At the library implementation layer, often you will 
+  see an implementation provide details around why a verifiaction 
+  failed
+Orie Steele:  It could be because date was out of range, or 
+  because revocation was not resolvable, or credential was revoked
+Orie Steele:  This is information that we could be providing, as 
+  a nice to have enhancement
+https://w3c-ccg.github.io/traceability-interop/openapi/#get-/credentials/-credential-id-
+Nis: we do have some of that in the spec
+Chris: there is an enum with a title status and description
+Orie Steele:  Are we testing this?
+Chris: no it is not required
+Nis: should we up our game on this?
+Orie Steele:  In the test you just did, you only checked for 
+  verified false, right?
+Chris: that is correct, verfied is required, where the 
+  verification array is not required
+Chris: we could update the verification array to be required, as 
+  without is not very helpful
+Orie Steele:  Chris would you mind creating an issue for that?
+Chris: yes, i will do it
+
+ACTION: file separate issue for requiring verifications array in 
+  verification response
+
+Nis: We seem to be good to merge 467
+Nis: let's switch focus over to trace-vocab
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-interop/issues/454
+Orie Steele:  Before we do that, there is one issue that i would 
+  like to discuss
+https://github.com/w3c-ccg/traceability-interop/issues/454
+Orie Steele:  Isse 454 attempts to align our api with the vc api 
+  to remove prove
+Orie Steele:  Before this change the client could ask for a 
+  specific proof format such as ed255192018, or vc-jwt
+Orie Steele:  But after this change, the server will need to make 
+  this change for the client
+Orie Steele:  So i proposed to move the option into the header
+Orie Steele:  If we're going to take this approach, we might use 
+  JSON web tokens, as it creates security and agility issues if we 
+  get different values per server
+Chris: what is the difference between a server that can only 
+  issue one type, versus not being able to request any at all
+Orie Steele:  It depends on which proof format the provider 
+  supports and different cryptography
+Orie Steele:  Versus someone else who might only issue one type
+Orie Steele:  I would prefer is we had the change were we used 
+  JSON Web Signature as a default
+Orie Steele:  Versus another one that might creat issues in a 
+  FIPS environment
+Orie Steele:  So we dont need to make a decision about it, but i 
+  will likely add change requests until we have a consensus
+Orie Steele:  But i would prefer having an header on the request
+Nis: can you put that on the issue?
+https://github.com/w3c-ccg/traceability-interop/issues/457
+Orie Steele:  Yes, i did, i added X-VC-PROOF-TYPE
+https://github.com/w3c-ccg/traceability-vocab/pulls
+https://github.com/w3c-ccg/traceability-vocab/pull/608
+Nis: we'll start from the bottom with Russel
+Russel: this is an application for the USJ to audit some facility
+Russel: it was pretty straightforward, with a description update, 
+  should be ready to merge
+Nis: Mahmoud requested a change
+Russell: that was a ddressed
+Nis: my opinion is that the change address has been addressed
+Nis: I'll go ahead and merge it
+https://github.com/w3c-ccg/traceability-vocab/pull/617
+Bne: adds organization as a type to all of our verifiable 
+  credential wrappers to have a specific schema for the issuer
+Ben: as opposed to type object
+<jim_masloski> I am not on the git hub, can I approve from here
+Nis: i'll add a comment that we need another approval on this
+<jim_masloski> No objection from me
+Nis: with two approvals i will go ahead and merge
+https://github.com/w3c-ccg/traceability-vocab/pull/618
+Ben: this is to make expiration date an explict optional property 
+  in our schemas
+Orie Steele:  Agreed
+https://github.com/w3c-ccg/traceability-vocab/pull/619
+<orie> I have to drop, GLHF
+Nis: next is 619 from Russel
+Russel: there are two related PPQ forms for pest interception and 
+  pest dtermination
+Russel: there were some change requests
+Nis: there were some acronyms i asked you to spell out
+https://github.com/w3c-ccg/traceability-vocab/pull/619
+Nis: merge when merge conflict is resolved
+https://github.com/w3c-ccg/traceability-vocab/pull/620
+Nis: the next is also yours Ruseel
+Russel: this is the notice of arrival, so this is a form that 
+  importer must submit when the shipment arrives
+Russel: looks like there is a similar change request that was 
+  address
+<jim_masloski> approved
+Nis: looks like there is a conflict, so merge when conflict is 
+  addressed
+https://github.com/w3c-ccg/traceability-vocab/pull/622
+Russel: this is updating the existing PPQ 203 and PPQ 587 to have 
+  the updated name format, and adds updated schemas around 
+  inspections
+Ruseel: i think there was something around shipment that was able 
+  to be rounded out
+Nis: i am happy that these credentials have finally been cleaned 
+  up for naming conventions
+https://github.com/w3c-ccg/traceability-vocab/pull/623
+Nis: Can merge when conflicts are addressed
+Russel: for shipments that need to be refrigerated, they check 
+  the temperature of the bulbs
+Russel: i fully agree that temperature recording should be 
+  covered by Measured observation
+Russel: currently it doesn't actually support that, being more of 
+  a mechanical observation
+Russel: so we might make an issue to report this
+Nis: do we want to hold off on it and sicuss it next week?
+Nis: How do we want to progress this?
+Russel: i think there are changed to be made for observation, 
+  which will probably be its own set of issues
+Russel: i think we should merge this and then approach 
+  observation later
+https://github.com/w3c-ccg/traceability-vocab/pull/623
+Russel: it would be better to have a more elgant solution, but i 
+  think that is separate from this PR
+https://github.com/w3c-ccg/traceability-vocab/pull/625
+Nis: 625 is next
+<jim_masloski> approve, will get on github before next weeks call 
+  so I can assist there.  sorry not getting it done this week.
+Ben: this updates mill test report to only use the required 
+  fields for organization
+Russel: i'm wondering if we stopped using entity
+Nis: we've had a lot of pull requests recently to stop using 
+  entity to use organization directly
+Nis: we've started to move mostly to organization, unless we 
+  really want to
+https://github.com/w3c-ccg/traceability-vocab/pull/625
+<jim_masloski> approved
+https://github.com/w3c-ccg/traceability-vocab/pull/626
+https://github.com/w3c-ccg/traceability-vocab/pull/627
+Ben: this is a similar PR, we use only relevant fields for 
+  organization for Bill of Lading
+Ben: this is a similar PR, we use only relevant fields for 
+  organization for Commercial Invoice
+Nis: this concludes our pull requests
+Nis: we normally switch back to trace-interop, we might not go 
+  through the whole list
+https://github.com/w3c-ccg/traceability-interop/issues/457
+Nis: there is a ton to address on trace-vocab
+https://github.com/w3c-ccg/traceability-interop/issues/447
+Nis: we can bring up issue 457, and focus on specific ones for 
+  trace-interop and switch over to trace-vocab
+Chris: I would like to bring up 447 on interop, we can close that 
+  if there is agreement to close
+Nis: any objects to closing this ticket?
+Nis: No? closing this issue
+Nis: can we talk about issue 457?
+NIs: as it turns out Azure has specific requirements about what 
+  scopes can be called
+Nis: this means that we might want to address this for different 
+  Oauth platforms
+Chris: let me just start by saying the recent comments are my 
+  Isaac and Orie getting caught up to speed
+Chirs; right now we have tests where the request much contain a 
+  specific scope, such as `issue:credential` to issue a credential
+Chris: but if you are using Azure, you can't name a scope exactly 
+  what you want, and would cause the test to fail
+Chris: so the proposal on this is that we remove the scope names 
+  from the conformance tests
+Chris: the difference is that the conformance test will need to 
+  have all scopes to pass the tests
+Chris: the suggestion was that we make this a configuration 
+  variable
+Chris: if you're using AUth0 this could be blank and for AzureAD, 
+  you would provide what you need to provide
+Chris: orie brought up some issues around interop
+Chris: I think this requires further discussion as it is a large 
+  change
+Chris: and I think people should sit with this and think about it
+Nis: I came up with a solution that doesnt sound good but hear me 
+  out
+Nis: right now we have 8 scopes that we are controlling, does it 
+  make sense that we have 8 scopes but we give them secret names?
+Nis: and then each vendor can assign the scope value into those 
+  secrets?
+Chris: the answer is yes we can do that, but we're not testing or 
+  mandating anything in that case
+Chris: we're not saying you need to have certain endpoints, and 
+  then you're providing those values to yourself
+Nis:but we are testing granularity that there is something that 
+  can be toggled to grant access to a resource for an end point
+Chris: if we do that, it means that can HAVE TO separate end 
+  points by scope, rather than they CAN separate end points by 
+  scope
+Nis: let's continue on the issue
+Chris: I definitely think you need to add that as a comment
+Chris: so we can address the test explosion that's going to 
+  happen because of this
+Nis: that's what i was trying to address, we've made a lot of 
+  work on conformance and I want to keep the work we have
+Nis: but maybe we should take the opportunity to ask if we're 
+  doing the right thing
+Nis: we're at the 5 minute mark. we've addressed the pull 
+  requests and main isses
+Nis: so let's go ahead and end here
+Chris: we now need to publish agenda prior to the next meeting
+Chirs; i will do that this time to make sure the notes that i 
+  made are legitimate
+Chris: but each meeting we will need to get someone ahead of the 
+  next meeting
+Russel: which readme was that updated in?
+Chris: the main one
+Nis: good to work with you see, see you next week
+All: good bye
