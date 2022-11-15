@@ -1,0 +1,953 @@
+Thanks to Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-11-08/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-11-08/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2022-11-08
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Nov&period_year=2022&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords and Our Robot Overlords
+Present:
+  Harrison Tang, kristina, Mike Prorock, Ben - Transmute, 
+  Jean-Francois Blier, Stuart Freeman, Keith Kowal, John Kuo, Ankur 
+  Patel @ Microsoft, Bruno Vavala (Intel), Alan Karp, Andrew 
+  Hughes, Steve Magennis, Mark Foster, David Waite, Erica Connell, 
+  Kaliya Young, Leo, Daniel Buchner, Manu Sporny, Joe Andrieu, Orie 
+  Steele, Dmitri Zagidulin, Sapan Narang, Will, David I. Lehn, Jeff 
+  O - HumanOS, TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  rgrant (Ryan), Nesim, Phil L (P1), Ted Thibodeau, Andy Miller, 
+  Rebecca Busacca, Territorium, PaulDietrich GS1, Nate Otto, Kerri 
+  Lemoie, Ankur @ Microsoft, James Chartrand, Gerard Iervolino, 
+  Rohit Gulati
+
+Our Robot Overlords are scribing.
+Ankur_Patel_@_Microsoft: See a lot of familiar names and faces I 
+  haven't seen or ever so good to see some of the familiar names 
+  and faces.
+Ankur_Patel_@_Microsoft: At least you know in acronym sentence.
+Ankur_Patel_@_Microsoft: Let you put your face on it for crying 
+  out loud.
+Ankur_Patel_@_Microsoft: Menu did Stewart still has managed.
+Stuart Freeman:  Yeah you have to setup gravatar and and the 
+  little three dots menu on just so you can set which email address 
+  it should look up on gravity.
+Ankur_Patel_@_Microsoft: How are you good to see you again in 
+  Mark yeah look.
+Ankur_Patel_@_Microsoft: I know he can't do simultaneous but 
+  those who can are we close to see people's faces because it's 
+  called good stuff you haven't I haven't made it down to inw 
+  either in.
+Ankur_Patel_@_Microsoft: 18 months I want to say.
+Ankur_Patel_@_Microsoft: Or even how are you like crap.
+<orie> hey!
+Harrison_Tang: Is like a little party going on here I think.
+Ankur_Patel_@_Microsoft: Oh sorry well you tell us ready to go we 
+  will socialize.
+Kristina: I'm I'm in Dublin actually on.
+Harrison_Tang: All right that's a that's do that up sorry 
+  Kristina please.
+Ankur_Patel_@_Microsoft: I know I heard all about it from page or 
+  just now so like half my engineering team is in Dublin.
+Kristina: Recording has stopped.
+Kristina: Okay I'll shut up.
+<andrew_hughes> Is the recording running?
+<kristina> yes, recording running
+<manu_sporny> No, recording is not running :(
+<nesim> Hi, first time here, just getting familiar
+<manu_sporny> Harrison, try to start it again (or at least start 
+  transcription)
+<ankur_patel_@_microsoft> :heart:
+Our Robot Overlords are scribing.
+Harrison_Tang: Sounds good thank you thank you thank you for 
+  calling that out.
+Joe Andrieu:  Recording his own.
+Harrison_Tang: All right any other announcements and reminders.
+Harrison_Tang: All right any work items that people want to bring 
+  up.
+Harrison_Tang: All right so let’s get to the main agenda so we 
+  are very pleased to have a Kristina, Ankur and Daniel from 
+  Microsoft to talk about their latest developments on Microsoft 
+  Entre verify ID at the w3c cgg meeting today so some of you guys 
+  know if you know my my impression is that Microsoft Entre Entre 
+  verified is actually one of the biggest if not the biggest 
+  commercial deployment.
+Harrison_Tang:  of self sovereign and decentralized identity 
+  today.
+Harrison_Tang: So I'm very very excited to learn more about the 
+  latest innovations that they're doing at Microsoft so the without 
+  further Ado just want to give a quick warm welcome to Daniel 
+  Ankur and Kristina all right the floor is yours thank you.
+Ankur_Patel_@_Microsoft: Thank you very much my name is Ankur 
+  Patel for those who don't know me I lead our product development 
+  efforts for entre verified ID which is a managed implementation 
+  of all the good Open Standards work that goes on across the 
+  industry specifically in the context of decentralised identity so 
+  we'll share with you some of our work our learnings along the way 
+  the current progress Kristina will cover our progress on 
+  implementation of standards and.
+Ankur_Patel_@_Microsoft:  some of the next steps around it and 
+  Daniel walk us through the.
+Ankur_Patel_@_Microsoft: architecture.
+Ankur_Patel_@_Microsoft: of how we implemented it these are again 
+  overviews you have our contact information we're happy to dive 
+  into details of any of it if you have questions feedback comments 
+  please put it in chat I'll keep an eye on it and I don't know 
+  what the rest of the protocol is raise your hands or otherwise I 
+  would love for this to be a discussion and we can do some of it 
+  now and then of course we can do follow-up discussions as 
+  appropriate as well so with that Preamble let's dive in all 
+  trying to share my screen I put together a few.
+Ankur_Patel_@_Microsoft:  slides so window do that share.
+Ankur_Patel_@_Microsoft: Can you see that okay.
+Ankur_Patel_@_Microsoft: So we think about this as decentralized 
+  identity work at Microsoft which is a key framing which is we 
+  have one of the implementers of this big ambition that the 
+  community has led for some for a very long time now our work 
+  started this incubation hypothesis it took us two years in fact 
+  to come to creating this hypothesis which was We Believe each of 
+  us needs a digital identity that we own and control and this 
+  comes from a place where I'm on.
+Ankur_Patel_@_Microsoft:  the same team that operates Microsoft 
+  account that's how you do Xbox Halo windows outlook.
+Ankur_Patel_@_Microsoft: Etc so there's more than a billion 
+  people around the world who do those things every day it includes 
+  Azure active directory which is the Enterprise identity 
+  management system for 96 percent of Fortune 500 companies whole 
+  bunch of governments around the world including United Nations.
+Ankur_Patel_@_Microsoft: It includes LinkedIn as our professional 
+  right so consumer Professional Network we operate all of these 
+  different account systems.
+Ankur_Patel_@_Microsoft: I think we've come to realize that our 
+  digital identity is bigger than that.
+Ankur_Patel_@_Microsoft: And so how might we move towards that 
+  world and the reason we want to do it is because our mission 
+  statement as a company is to empower every person in business to 
+  achieve more not that two or three billion that we reach today 
+  and oh by the way make it work whether Microsoft is online or not 
+  make it work whether it's Microsoft's policy as a business to 
+  allow or not.
+Ankur_Patel_@_Microsoft:  because that's not our.
+Ankur_Patel_@_Microsoft: Choice our choice is about empowerment 
+  and then local context whether its regulatory or business can 
+  decide how best to partner with each other we want to ensure 
+  highest security compliance privacy and convenience for using 
+  such systems so that's why we embarked on this journey several 
+  years ago and the second part was super important to us because 
+  our customers told us these governments are on the world's ….. 
+  and by the way make sure it's compatible with the existing 
+  internet.
+Ankur_Patel_@_Microsoft: not Ask people to rewrite all of the in 
+  applications devices and their lives to start over for those 
+  outcomes so how do we strike a balance between the two these are 
+  the two things we hold ourselves accountable to the first release 
+  of this went live for us earlier this summer on August 8th so 
+  it’s taken us four years to kind of go about doing the best we 
+  can do releasing this work and this work today is very much in 
+  the Enterprise context we're still not ready to support the 
+  scenario.
+Ankur_Patel_@_Microsoft:  The world is imagining in the context 
+  of self sovereignty if you will.
+Ankur_Patel_@_Microsoft: There's a lot more work.
+Ankur_Patel_@_Microsoft: Remains and I'll share with you some of 
+  that detail as to why we are making such Nuance statements.
+Ankur_Patel_@_Microsoft: It's a good segue to the current state 
+  of affairs on standards I'll hand off to Kristina to walk us 
+  through what we've done so far and we we’re trying to go.
+Kristina: Yeah so just to give a brief overview mostly should be 
+  aware with most of the standards um used in our Tech stack so 
+  starting from the entity identifier certainly bottom labels 
+  probably wrong but for so we use decentralized identifiers DIDs 
+  DID web for issuers and verifiers and DID:ION long form for.
+Kristina:  issuer holder or.
+Kristina: Verifier so our customers would have that choice um and 
+  also we do use well-known JID configuration specifications from 
+  div to establish binding between DID and see domain name for the 
+  lifecycle management /revocation we do use ….. 2021 we're using a 
+  pre-draft version you're waiting for a final specification so.
+Kristina:  hoping it's getting final soon.
+Kristina: And we’re hosting it in the identity Hub certain 
+  version of decentralized app Note again another disk back for 
+  data models the ….. CVC data model so it's a ….. VC transport 
+  protocol Vice it's open ID for ….. stack and ….. presentation 
+  exchange so yeah it's pretty pretty straightforward I'm that's 
+  what we do.
+Ankur_Patel_@_Microsoft: One comment in the upper right-hand 
+  corner that you see we are actively working on exploring ideas 
+  around SD job for example for enabling support for Selective 
+  disclosure this is one of the examples of us wanting to ensure 
+  compatibility with existing internet as well as moving the ball 
+  forward on enabling new scenarios but we want to do those 
+  scenarios when set standard support is available interoperability 
+  is achievable.
+Ankur_Patel_@_Microsoft: So Kristina can you take two more 
+  minutes to talk about our interoperability work as well here and 
+  then I'll re-Echo that a bit later.
+Kristina: Okay yeah that's a great point so our approach to 
+  interoperability has been interoperability on profiles there is a 
+  work happening in diff is a presentation for starting this 
+  presentation profile whereas there is a tech stack on consisting 
+  of pretty much standards obviously on the screen as a one way to 
+  interpret for certain scenarios mainly you know that you know ….. 
+  talk.
+Kristina:  So that
+Kristina: people who.
+Kristina: Implementers customers who realize how important moving 
+  towards as a issuer verifiable model is and they want to know 
+  start implementing on crossing the chasm towards that model they 
+  have this clear tech stack you know saying if you implement this 
+  you can interoperate right away and again it's not to say that 
+  our way or the only way to say it's a way how we can ensure 
+  interoperability and means is first to use cases.
+Ankur_Patel_@_Microsoft: Unmute myself so that's a quick overview 
+  of our stack there’s a lot more detail in it you might have lots 
+  of questions so please put in chat or follow us offline happy to 
+  dive into any of that detail as appropriate I'm going to try to 
+  queue up a demo so we can actually look at some of this stuff 
+  working.
+Ankur_Patel_@_Microsoft: So what does this unlock for us we went 
+  and talked to customers and 92% of those organizations today 
+  state they do these activities around onboarding employees 
+  contractors customers vendors suppliers and that's the pattern 
+  that we observed that the best place that we think we can 
+  leverage a decentralized approach is on Cross domain verification 
+  and these processes listed on the screen that's the start of it.
+Ankur_Patel_@_Microsoft:  the next thing that ends up happening 
+  is access to high.
+Ankur_Patel_@_Microsoft: Value applications and resources so 
+  Azure active directory for example does tens of billions of daily 
+  authentication events at four nines today from an availability 
+  and reliability perspective however we want to augment that 
+  system to now bring verifiability in or in addition to ease of 
+  use and secure.
+Ankur_Patel_@_Microsoft: And so our ambition is to empower our 
+  Enterprise customers who end up working with consumers who end up 
+  working with governments for that matter some governments are 
+  Enterprises in that to use these decentralized rails to continue 
+  to have the benefits of ….. security but augmented with privacy 
+  and portability this becomes particularly more important when we 
+  go to things like Self Service account recovery today most of 
+  them rely.
+Ankur_Patel_@_Microsoft:  on things like an email roundtrip or 
+  SMS round.
+Ankur_Patel_@_Microsoft: Trip or knowledge base questions like 
+  asking what street you grew up on not very interesting go ask 
+  Google everybody knows and therefore thinking about how might be 
+  bringing verifiability by going to the most suitable 
+  authoritative Source without doing custom integration work would 
+  be better received as a result 82% of that audience also said 
+  They wish there was a safer faster easier way of doing these days 
+  so these are bread-and-butter problems for Enterprises today 
+  around the world.
+Ankur_Patel_@_Microsoft:  web three and other web and then.
+Ankur_Patel_@_Microsoft: Number we can put on also have similar 
+  needs but one of the things we've come to learn is that are here 
+  and now companies with budgets and consumers with need that we 
+  can address immediately and that's one of the key reasons why I 
+  do this job at Microsoft because they have a privileged role to 
+  enable this jumpstart adoption of this work for a large set of 
+  population.
+Ankur_Patel_@_Microsoft: We think this credentials therefore can 
+  help power the trust fabric for the internet each bubble on the 
+  screen today could be considered a cloud right like many 
+  universities around the world run on Azure active directory for 
+  example.
+Ankur_Patel_@_Microsoft:  but that domain specific.
+Ankur_Patel_@_Microsoft: Credential whether it's an old token or 
+  fighter token only work for their own University context but if 
+  you issued a verified ID now as an internet facing credential 
+  they can continue learning with any preferred institution around 
+  the world that chooses to onboard them they can get a student 
+  checking account they can get an internship and employer they can 
+  improve their skills on LinkedIn they can get a student discount 
+  at retailers and so on so forth so we have found tremendous 
+  interest from our Enterprise customers.
+Ankur_Patel_@_Microsoft:  on wanting to go this way because it 
+  helps their own businesses.
+Ankur_Patel_@_Microsoft: It helps security and compliance it 
+  helps them give new value and tailored value for their customers 
+  without incurring new privacy and security risks if I may I'll 
+  pause here just take a quick temperature check if anybody has any 
+  questions or comments before I go into this tells you the why we 
+  are doing it next I will show you what is it and how does it 
+  actually work.
+Harrison_Tang: Actually we have Alan on the queue Alan do you 
+  want to ask your question.
+Alan Karp:  Yeah on your opening slide you said everybody wants 
+  to have an identity that they control isn't it more proper to say 
+  identities I mean even in the Enterprise I have an identity for 
+  my employer but also for the contract I'm working on.
+Ankur_Patel_@_Microsoft: You're correct and so it's important for 
+  us to those knew there were so many words and nuances to consider 
+  the important hold on I just turn on my other computer one thing 
+  to note is we completely believe that people have to have control 
+  over personas and facets of their lives that they share and then 
+  it's a matter of are those separate identities or there's 
+  personas and we as identity Community have had this debate and 
+  argument forever.
+Ankur_Patel_@_Microsoft:  one of the things that we learned from 
+  consumer research.
+Ankur_Patel_@_Microsoft: On this work like end-user how do you 
+  think about it their vocabularies that is one of me.
+Mike Prorock: +1 Personas vs identities is a very important 
+  notion
+Ankur_Patel_@_Microsoft: There are different projections of me 
+  that I share with different people even in my analog life forget 
+  digital and therefore we arrived at this depth idea of a digital 
+  identity but the idea is very much about supporting multiple 
+  personas profiles construct separation of concerns that has to be 
+  rooted in from ground up.
+Ankur_Patel_@_Microsoft: So hopefully that helps clarify some of 
+  our comment.
+Ankur_Patel_@_Microsoft: Okay I'm going to share a quick demo so 
+  let's do that anybody else have any comments as I bring up my 
+  demo.
+Ankur_Patel_@_Microsoft: Okay sounds like we're in good shape so 
+  I'll go to Woodgrove here I'll try to share from this screen 
+  high-wire act I don't know if that's possible or not but I will 
+  start sharing.
+Ankur_Patel_@_Microsoft: Hopefully you can see that okay yeah so 
+  this scenario as I mentioned for us is Enterprise focused and 
+  think about good growth is a fictitious company they're trying to 
+  hire someone Matthew Michael gets an email invitation or shows up 
+  in person to join this company and the first thing they ask them 
+  is hey we don't know you we need you to get verified with a 
+  partner We Trust.
+Ankur_Patel_@_Microsoft:  and so in this case they’re.
+Ankur_Patel_@_Microsoft: Sending them to a fictitious company 
+  called true identity in such processes have been used by Banks 
+  all over the world for a very long time we have done Partnerships 
+  with ten leading identity verification companies I'll show you 
+  who they are a bit later who can do things like take a selfie 
+  upload a ….. identity document but instead of sharing this data 
+  on the back end and the user not knowing what kind of did got 
+  done in their name in our world we are saying there should be 
+  issued a verified ID what a verifiable credential.
+Ankur_Patel_@_Microsoft: So I will go to the screen here and put 
+  up that guy next to it.
+Ankur_Patel_@_Microsoft: For demonstration purpose to make it 
+  easy I'm scanning this QR code which results in an open ID 
+  connect request I'm having it up in the establish trust across 
+  domains I click next I get a credential issued to me I click add 
+  in this case true identity is the issuer they are testing to a 
+  bunch of claims for their current business process I can go back 
+  to my employer and say hey I completed verification with a 
+  partner your trust I can present the you that at the station.
+Ankur_Patel_@_Microsoft: This is a presentation request just like 
+  any other open ID connect credential kick this off somehow did it 
+  stop sharing.
+Mike Prorock:  Yeah I lost it at least might need to reshare.
+Ankur_Patel_@_Microsoft: Yeah let me do that trying here we go 
+  Click Share rejoining 15 seconds oh I've been disconnected hang 
+  on.
+Ankur_Patel_@_Microsoft: Phone got kicked out.
+Mike Prorock:  Because you're trying to demo this is what always 
+  happens yeah.
+Ankur_Patel_@_Microsoft: Is too much to do three devices sharing 
+  one corporate Wi-Fi network with personal hotspot.
+Ankur_Patel_@_Microsoft: But I will keep talking in the meantime 
+  so the request here would have been an open ID connect request 
+  for requesting a verifiable credential so in our case we are 
+  changing that connect request to instead of asking for a ….. 
+  token or a fighter token you can now ask for a verifiable 
+  credential.
+Ankur_Patel_@_Microsoft: In this case the verifiable credential 
+  that was issued by true identity inc that you saw was against a 
+  decentralized identifier that is locally minted on the phone in 
+  our case we are currently using ion long form that Orie is on the 
+  call I saw him so I can do some name-dropping help develop a 
+  while ago and we are continuing to use that the identifier for 
+  the issuer.
+Ankur_Patel_@_Microsoft: Is based on didweb and we also support 
+  did ion as a method so Enterprises can choose whether they want 
+  to use a permission system or a permission less system as their 
+  root of trust if you will.
+Alan Karp:  Excuse me we're seeing we're seeing your slides not 
+  the demo.
+<orie> Yes! I worked on ION, Sidetree and Well Known DID 
+  Configuration... in addition to DID Web. :)
+Ankur_Patel_@_Microsoft: Yeah I'm about to switch I just joined 
+  thank you here we go.
+Ankur_Patel_@_Microsoft: So now I can go back to the demo.
+Ankur_Patel_@_Microsoft: Is a presentation request that I'm 
+  getting in this case woodgrove wants to know that I'm in start 
+  the presentation request again.
+Ankur_Patel_@_Microsoft: Scan the qr-code.
+<orie> Love the QR Code with nested image!
+Ankur_Patel_@_Microsoft: It should result in a new request.
+Ankur_Patel_@_Microsoft: Click Share and they're able to present 
+  oh let's view needs to refresh.
+<mprorock> /me cheers at the UX on this
+Ankur_Patel_@_Microsoft: All these things were a lot easier when 
+  you're getting a room but then to travel.
+Ankur_Patel_@_Microsoft: Actually I don't know if it's any easier 
+  in that room we fiddled with the HDMI cable.
+Ankur_Patel_@_Microsoft: Okay now that I have presented this 
+  credential I can continue my onboarding they were able to verify 
+  the signature that it came from a partner they trust it has the 
+  information they need going forward woodgrove can now issue me a 
+  verified employee credential so that's another key thing we're 
+  doing is we're going to make every azure id customer be able to 
+  issue these credentials whether it's for their employees their 
+  vendors their customers their students or whatever it might be.
+Ankur_Patel_@_Microsoft:  and we are making it.
+Ankur_Patel_@_Microsoft: Part of azure id free so.
+Ankur_Patel_@_Microsoft: That's a commercial thing for us that we 
+  believe so strongly in this that it helps improve the zero trust 
+  posture that we believe they should be available to all 
+  Enterprise customers for free now one of the things about these 
+  credentials I can use it not only at work but also Beyond work 
+  right so this is my work one the first things I can do is order a 
+  computer for a discount for work so I go to the proseware if I 
+  want to get my Enterprise discount how many federation's can 
+  proseware buy.
+Ankur_Patel_@_Microsoft:  Possibly set up versus they can request 
+  a credential.
+Ankur_Patel_@_Microsoft: Sort of type verified employee and if my 
+  employer is on this list I get my discount.
+Ankur_Patel_@_Microsoft: And best of all one of the things we 
+  have embraced is this idea of a receipt so the user has an 
+  independently signed receipt of every interaction they have had 
+  with a credential so that they can present this for audit and 
+  governance for their own lives to Regulators or otherwise.
+Ankur_Patel_@_Microsoft: Okay so that's a quick demo I'm going to 
+  switch back over to slide we're on my end.
+Ankur_Patel_@_Microsoft: So that's what we call entra verified ID 
+  it's a common set of apis and rails using which it hasn't 
+  switched for you it looks like I will try it again.
+Ankur_Patel_@_Microsoft: When do your share again.
+Mike Prorock:  Yeah I think you're up on the screen share here 
+  the Microsoft Entra verified.
+Ankur_Patel_@_Microsoft: Okay and does it showing Entra Verified 
+  ID now did I turn off My Demo screen.
+Mike Prorock:  Yep and I in just a jump in real quick with a 
+  quick question the you mentioned receipt is that just coming back 
+  in form of a verifiable credential and are you tracking some of 
+  the things around like software supply chain and receipts for 
+  checking in builds and things like that or trying to align that 
+  ability their what.
+Ankur_Patel_@_Microsoft: Yeah that would be an application of 
+  this work right so there's no special work we're doing for it but 
+  yeah so our colleagues and GitHub rx4 exceptions for example 
+  right.
+Ankur_Patel_@_Microsoft: And then LinkedIn is doing their own 
+  exploration and Xbox is doing their own exploration so these are 
+  all the places how we can see we can help jumpstart adoption of 
+  issuance and presentation of set credentials.
+Mike Prorock:  Okay awesome thank you.
+Ankur_Patel_@_Microsoft: Cool so we think this is a better way to 
+  verify not only is it easy to use and secure but it's verifiable 
+  transparent and convenient so we are building this into the 
+  existing Microsoft authenticator app but as Kristina mentioned we 
+  are also making ensuring interoperability so the SDK that we use 
+  to build off indicator experiences implementing that same VC 
+  interop profile that she described.
+Ankur_Patel_@_Microsoft:  and and we are able to actually.
+Ankur_Patel_@_Microsoft: Demonstrate interoperability with ping 
+  workday matter Spruce IBM and a whole bunch of companies.
+Ankur_Patel_@_Microsoft: Avast right so there's a bunch of 
+  Partners around the ecosystem who are all kind of holding each 
+  other accountable and we're trying to do it the right way one 
+  implementation of this is in Microsoft authenticate and we think 
+  again we can help adoption on the Enterprise side and some of 
+  those other brands can help in other Industries and scenarios for 
+  which they are a preferred vendor but most importantly this won't 
+  be a one-way Street we are by default ensuring we work with each 
+  other.
+Ankur_Patel_@_Microsoft:  okay let's keep going so what’s 
+  underneath this.
+Ankur_Patel_@_Microsoft: Is a platform for us the management 
+  interface audit for Enterprises to issue requests and verify is 
+  built into a portal which is available to every azure id customer 
+  today on by default free it's included in their subscription the 
+  entire service is comprised of a handful of apis Daniel is our 
+  architect on our team he'll walk you through what that looks like 
+  next.
+Ankur_Patel_@_Microsoft:  so they.
+Ankur_Patel_@_Microsoft: Simple to use rest apis and then that is 
+  the end user wallet like experience which in our case we build 
+  into authenticator very implementing again the interop profile 
+  the SDK we are keenly interested in that open Wallet work that 
+  communities championing next so lots of good stuff happening I 
+  hold it to Daniel now on some taking a quick overview for 
+  architecture.
+Ankur_Patel_@_Microsoft: One last thing to add for you Daniel 
+  there is that our documentation then points directly to set 
+  standards and specs so that if anybody wants to implement their 
+  own version they can and still be interoperable.
+Ankur_Patel_@_Microsoft: Okay so I'm going to move the 
+  conversation forward I noticed a question in the chat around 
+  custodian wallet or agent so in this case it's an unauthenticated 
+  wallets authenticator today as it sits is unauthenticated and it 
+  handles creating Keys credentials managing life cycle of keys and 
+  credentials basically as well as receipts and you can back that 
+  up export the file basically all the contents.
+Ankur_Patel_@_Microsoft:  encrypt it in the pneumonic phrase and 
+  take it to another wallet
+Ankur_Patel_@_Microsoft: Of your choice this is one of the areas 
+  that we want to continue to work with the community on making 
+  that experience better but hopefully that answers your question 
+  did the organizers want to recognize anyone else on their 
+  questions or comments before I keep going forward it again if you 
+  want to cover anything else.
+Mike Prorock:  No I think.
+Mike Prorock:  Yeah I think you hit for sure it looks like 
+  Steve's question there which is I think I had an overlap on as 
+  well the one question that I did want to get on because you do 
+  mention kind of and call out that they're you know you're 
+  utilizing obviously the verified ID rest API that you guys have 
+  published up I mean the open ID for VP and VCI cetera right 
+  that's that's moving along nicely in this kind of out in the open 
+  what's your sense around like rest apis and.
+Orie Steele: +1 Help us build the traceability api!
+Mike Prorock:  Getting into more of like system to system type 
+  use cases and non-interactive use cases I mean are you guys 
+  planning on you know collaborating because obviously if I think 
+  about like supply chain use cases working with you know is that 
+  an area you guys would be willing to collaborate with you know 
+  all okay.
+Ankur_Patel_@_Microsoft: Absolutely look the default answer is 
+  yes it's a matter of when and how we go about.
+Mike Prorock:  Okay because I think the Dynamics Team in 
+  particular right would be a great participant with your guys 
+  input especially the traceability API as Orie is noting in the 
+  chat so yeah.
+Ankur_Patel_@_Microsoft: Yeah absolutely and by the way we're 
+  working with those same colleagues right so Dynamics also has a 
+  thing called fraud for example and office has a set of things 
+  where you do signing for example and so on so forth all the 
+  boring enterprising things there is a there's a widget of that in 
+  our company and we are super interested in it we have our own 
+  supply chain concerns even for our own devices and software 
+  Supply chains for that matter as well right.
+Ankur_Patel_@_Microsoft:  so these are all pressing problems for 
+  us but we thought was we first want to get.
+Ankur_Patel_@_Microsoft: Identity of organizations and 
+  individuals represent such organizations to be trustworthy at 
+  which point I can go talk about applications and processes and 
+  devices that those persons and organizations operate until we 
+  achieve tension things.
+Ankur_Patel_@_Microsoft: Okay so I will proceed.
+Mike Prorock:  That makes total sense than really appreciate the 
+  you know kind of logical flow and real clear diagramming here so 
+  thanks again from the chairs here and I think there was one other 
+  wasn't it on the Queue yeah hang on yep Allen or Steve might 
+  still be on.
+Alan Karp:  Yeah do you have anything about the key and 
+  credential recovery or you're going to leave that up to the 
+  individual companies.
+Ankur_Patel_@_Microsoft: Today we just have a rudimentary offer 
+  which is for the individual side you are able to backup or export 
+  the key the credentials and the receipts into a bundle that isn't 
+  protected using a pneumonic phrase and then you can place it 
+  wherever you like including Google drive or your home desktop and 
+  then there is an ability to import that back into authenticator 
+  at least we understand it we're working with our interop.
+Ankur_Patel_@_Microsoft:  Partners to figure out where else we 
+  could use such a thing or.
+Ankur_Patel_@_Microsoft: Who else would be supporting and making 
+  it better that's in fact one of the slides in here is next steps 
+  on we want to do much better on it and if Community has ideas on 
+  what that could be up to do it.
+Ankur_Patel_@_Microsoft: Should I keep rolling.
+Mike Prorock:  Yeah I think think good to go thanks.
+<mprorock> would love thoughts on hardware sec integration and 
+  isolation later if we have time
+Ankur_Patel_@_Microsoft: Okay so the scenarios are next right so 
+  what where do we see energy from the community around it 
+  particularly around our Enterprise customers again it is on that 
+  faster remote onboarding it is securing access and recovery and 
+  as well as business process so the onboarding thing even into the 
+  especially in today's economic environment it's super competitive 
+  and people want to reduce their costs both in.
+Ankur_Patel_@_Microsoft: Time and money that it takes to do this 
+  and these are existing budget line item for every Enterprise to 
+  go make this better and it happens across the board across the 
+  world and each one resulting in poor privacy and security posture 
+  and compliance ….. And so.
+Ankur_Patel_@_Microsoft: Describing the value there and making it 
+  reusable has landed really well the other key place where it 
+  applies is securing access to privileged apps so as I mentioned 
+  we do tens of billions of daily authentication events some of 
+  them for example let's take my own CFO for my company goes and 
+  approved high-value transactions such a financial officer for 
+  Microsoft but they use the same multi-factor authentication as 
+  they do to check their email we think we could do better and 
+  bringing in there.
+Ankur_Patel_@_Microsoft:  real-world identity and verification 
+  and being able to verify from trusted sources whether it’s the 
+  government.
+Ankur_Patel_@_Microsoft: Or other applications like security 
+  training and clearance super valuable so there's a whole bunch of 
+  initiative around skills learning and using those at the stations 
+  to prove proficiencies to gain access to resources.
+Ankur_Patel_@_Microsoft:  and from a security zero trust 
+  perspective.
+Ankur_Patel_@_Microsoft: It is proving to be a really valuable 
+  asset because now you're no longer relying on a single domain 
+  testing new things.
+Ankur_Patel_@_Microsoft: And because of the simple apis that 
+  Daniel described they can go request these apis from disparate 
+  issuers who could be running on completely disparate 
+  infrastructure.
+Ankur_Patel_@_Microsoft: They could have a workday system issuing 
+  their workplace credentials and they could be using an IBM system 
+  who's issuing their training credentials and they could all be 
+  presented into authenticator and gone on to azure id accepting 
+  them.
+Ankur_Patel_@_Microsoft:  right for this customer.
+Ankur_Patel_@_Microsoft: Who wants to work across that ecosystem.
+Ankur_Patel_@_Microsoft: That federating through the user has 
+  landed really really well with our Enterprise customers one of 
+  those other places given again today's economic climate at most 
+  companies that super keen on is reducing their cost around 
+  support as you may have heard.
+Ankur_Patel_@_Microsoft: Like every phone call you make to get 
+  your password reset is $50 that's like a crazy number and if you 
+  can get down to seconds and significantly cheaper both for the 
+  user and by the way it's better for privacy and security so win 
+  win win so we have found our customers are resonating with a 
+  cheaper faster more trustworthy way to verify these types of 
+  flows and other stations and it's every business.
+Ankur_Patel_@_Microsoft:  Process in the industry and as much as 
+  I keep talking about enterprise.
+Ankur_Patel_@_Microsoft: We have to realize that every consumer 
+  interaction with a brand whether you're going to a hotel or a 
+  restaurant or getting on an airplane is an Enterprise interaction 
+  and it's these Enterprises are making those design choices.
+Ankur_Patel_@_Microsoft:  and so our goal.
+Ankur_Patel_@_Microsoft: Here is to make that as simple and 
+  intuitive as possible to enable that customer choice and 
+  empowerment that I started to call when there's a bunch of case 
+  studies that are public I adopted these slides but we have a few 
+  new ones now in addition some of the next steps if you like 
+  actually I can I just saw comment go by I'll recap what these 
+  three things are keio University is using it for student identity 
+  and not only having that identity verified on campus would be on 
+  campus National Health.
+Ankur_Patel_@_Microsoft:  Services in u.k. is using it for our 
+  staff passport for the caregivers.
+<kristina> keio is also alumni creds and their internal IT staff 
+  creds
+Ankur_Patel_@_Microsoft: Because doctors go from hospital to 
+  hospital and getting their identity verified time and again 
+  results in time taken away from providing care government of 
+  Flanders is looking at they already have digital identity for 
+  their citizens they want to issue these kinds of credentials to 
+  Citizens so that they can open a new business or do business 
+  around the world and still be able to easily verify their 
+  identity while respecting their privacy.
+Ankur_Patel_@_Microsoft:  some of the next steps we’re focused 
+  on.
+<rohit_gulati> Here is the link to the list of our case studies - 
+  https://customers.microsoft.com/en-us/search?sq=%22Microsoft%20Entra%20Verified%20ID%22&ff=story_product_categories%26%3E&p=0&so=story_publish_date%20desc
+Ankur_Patel_@_Microsoft: We think we made good progress on 
+  registration key management interoperability and it will continue 
+  by no means we're done however the next thing we need to add and 
+  improve on as Allen was just asking as well is around recovery 
+  making it more better on revocation on being able to check finder 
+  and attributes how do we reduce correlation there next up onstage 
+  for us is things are on selective disclosure and maybe even zero 
+  knowledge proof but again you want to lead with interoperability 
+  standards first we have more work to do that as a community.
+Ankur_Patel_@_Microsoft:  the second key area that we're focused 
+  on is performance and scale as Daniel was mentioning.
+Ankur_Patel_@_Microsoft: So did web is the.
+Ankur_Patel_@_Microsoft: Default configuration we have enabled we 
+  do support did ion as a preview method and it really relies on 
+  customer adoption but from APIs and user experience perspective 
+  and developer experience perspective they don't know any 
+  different on which DID method are interacting with by by Design 
+  we opted for that when we do make it very clear for issuers and 
+  verifiers on where do you want to go and why and so on so forth 
+  so we have some customers exploring use of did ion but most of 
+  them feel very comfortable starting with.
+Ankur_Patel_@_Microsoft:  did web and then exploring moving up to 
+  a permissionless system but.
+Ankur_Patel_@_Microsoft: Currently everyone starts with this did 
+  web world they're also thinking about other methods to support 
+  some of them are being proposed by things like European Union 
+  digital identity initiatives some of them are being proposed by 
+  large corporations who want to do consortiums and they want to do 
+  their own permission thing whether it's based on ethereum or some 
+  other flavor but for all of them be pushed towards a common 
+  attraction is that the DID method.
+Ankur_Patel_@_Microsoft:  please provide that.
+Ankur_Patel_@_Microsoft: And we'll follow the same pattern that 
+  we've been talking about as an architecture.
+Ankur_Patel_@_Microsoft: The last one they always ask for the 
+  community is we continue to do all of our work and diff and w3c 
+  so come join that growing movement so these are standard Slide by 
+  the way I use with all of my customers.
+<phil_l_(p1)> Going back to DIDs, It appears your using a single 
+  did and profiles to contextualize their role in different 
+  contexts rather than supporting multiple DIDs for different uses. 
+  Further explanation as to why?
+Ankur_Patel_@_Microsoft: And we've seen tremendous uplift on it 
+  there's a bunch of other companies Beyond contributing to 
+  standards are also helping activate now on participating on 
+  developing policy helping evolved business models and so on so 
+  forth.
+Ankur_Patel_@_Microsoft: That's a quick update but I do want to 
+  say thank you first of all to you guys who tirelessly work in 
+  forums like these and many others for that matter Kristina had 
+  quite the alphabet soup so all this work doesn't neatly happen in 
+  one room you guys know it more than most of us do so I just 
+  wanted to take a minute and on behalf of a product guy wanted to 
+  say thank you because this is like a quest it's a 10-year thing I 
+  feel like I'm a third of the way in have a long way to go but I 
+  feel very optimistic.
+Ankur_Patel_@_Microsoft:  because of all these resources we have 
+  created from starting with this idea of like.
+Ankur_Patel_@_Microsoft: What is this decent ….. why do I need it 
+  what I don't understand to now I can't I don't have enough time 
+  in my calendar well for my team for that matter around the world 
+  to handle the rate of inbounds and a lot of it is still there 
+  spending on education and awareness on why do you need it where 
+  is it appropriate what are some of the challenges what are what 
+  is the art of possible versus true reality today at least in our 
+  product.
+Ankur_Patel_@_Microsoft:  these are some of the resources we 
+  share with our customers as well.
+Ankur_Patel_@_Microsoft: You’ll get this deck as well and if you 
+  have other questions for this please hit us up I want to be 
+  respectful of your time and calendar though and we can spend more 
+  time on Q&A if you like.
+Harrison_Tang: Thank you Ankur Phil I think you have some 
+  question you have the floor.
+Phil_L_(P1): Yes can you hear me.
+Phil_L_(P1): Great this is it appears that you're using profiles 
+  as a way of contextualizing different dimensions of users for 
+  different for different roles opposed to allowing for multiple 
+  individual dids to be Associated or multiple digital be 
+  associated with a person that was just curious to why that 
+  approach in this particular instance.
+<kristina> profile is purely for interop
+Ankur_Patel_@_Microsoft: I might have misspoken or misunderstood 
+  in this case that's not what we're doing we are in fact doing 
+  what you just stated which is there could be a different 
+  identifier associated with any given credential the relying party 
+  or verifier can request one or more of those things verify each 
+  of those subjects Association or binding with it independently 
+  but using one set of apis the profile construct in fact is 
+  something that we're exploring.
+Ankur_Patel_@_Microsoft:  the context of decentralized web nodes 
+  and such again starting with a enterprise.
+<kristina> how DIDs are assigned can be defined in the profile
+Ankur_Patel_@_Microsoft: Entity relationship first and then maybe 
+  do end-user the profile of word that we use specifically is as 
+  Kristina’s pointing out in the chat is in the context of interop 
+  and so the interopability has a profile with says said standard 
+  ingredients used in this manner this recipe results in 
+  interoperability among us as ecosystem Partners it was not in the 
+  context of holder presenting credentials.
+Phil_L_(P1): Got it thank you very much.
+<mark_foster> How are you defining Schema
+Harrison_Tang: I have a question how does my impression of active 
+  directory is that it has a registry of employees in big 
+  Enterprises and if my impression is correct how does the how does 
+  the DIDs underlying the verified IDs like work with active 
+  directory.
+<kristina> we have few credential type templates + custom types 
+  customers can define
+Ankur_Patel_@_Microsoft: It turns out actually it's not even the 
+  users accounts that are in there right those actually sit the 
+  profile of an employee actually sits in human Capital Management 
+  Systems like workday and sap or Oracle or something what is in 
+  Azure active directory or active directory is a permission 
+  management system which says here's what how we're going to do 
+  access management here's how we'll all authenticate here's how 
+  I'll authorize here’s who has access to what application so and 
+  so forth.
+Ankur_Patel_@_Microsoft:  what we are now introducing is 
+  verifiable credentials as one such method.
+<kristina> ^ re schema question
+Ankur_Patel_@_Microsoft: Using which you can verify attributes 
+  which could have come from Azure active directory active 
+  directory workday sap whatever we're saying here is a standard 
+  way of doing it across disparate systems does that make sense.
+Harrison_Tang: Yes thank you.
+<mark_foster> How do you map schema to Linked Open Vocabularies
+Ankur_Patel_@_Microsoft: It's no longer about usernames and 
+  passwords which is what we have been true traditionally relying 
+  on and now the modern Incarnation could be an MFA or a …. key but 
+  in all of those cases The Binding between an object ID which is 
+  in the directory and that credential is sitting in the directory 
+  and we are saying what if it wasn't there what if it was with the 
+  user instead.
+Ankur_Patel_@_Microsoft:  as a result I don’t have the right app.
+Ankur_Patel_@_Microsoft: That speaks specifically to One 
+  Directory at a time I can talk to anyone.
+<kristina> we do not do linked data rn
+Harrison_Tang: Got it so essentially the active directory becomes 
+  more of a personal Pursuit permissioning and also kind of 
+  authorization authentications kind of service and then the ID 
+  registry is somewhere else basically okay.
+Ankur_Patel_@_Microsoft: That's right we've come to learn that in 
+  fact our customers have told us the real value that azure id 
+  provides is this orchestration right it's not the source of Truth 
+  the source of Truth is your human Capital management system or 
+  your CRM system for consumers or whatever it might be.
+Ankur_Patel_@_Microsoft: But what you want is a common interface 
+  using which you can ensure Integrity perform security compliance 
+  all of that stuff that you don't want a ….. application you do it 
+  using a service like Azure active directory or your preferred 
+  while you could use ….. or whatever it might be.
+Ankur_Patel_@_Microsoft:  as long as they support standards.
+Harrison_Tang: Got it so what if sorry for all the questions what 
+  if the service doesn't support these standards like some of the 
+  for example some of the issuers are not as familiar with a 
+  verifiable credentials and DID Concepts like what do you do there 
+  do you do some kind of proxy like issuer ….. or.
+Ankur_Patel_@_Microsoft: Yeah it's back to today's world right so 
+  today if I go to your I don't know you visit my company and we 
+  don't set up Federation and I'm going to ask you to create a 
+  local account right.
+Ankur_Patel_@_Microsoft: No different which is another important 
+  point though on ensuring compatibility existing internet you 
+  can't say sorry I can't do business with you no do I have to be 
+  able to work with you we have to provide alternate rails what are 
+  those and what our users are saying is I don't want to do 
+  different gestures and I'd learn different rituals I just want 
+  one way either I fill out a form or scan and present or something 
+  right it just better work everywhere.
+Harrison_Tang: Got it thank you.
+Harrison_Tang: Any questions from the community.
+Mike Prorock:  I'm just going to throw in a chair another chair 
+  comment which I'm sure Harrison would Echo is just really 
+  appreciate this Ankur and team like you know it's one it's always 
+  great seeing this stuff roll out for a variety for a variety of 
+  contexts but two actually seeing proposals that will scale that 
+  match and blend with real-world use cases and can integrate 
+  clearly obviously nothing's perfect and we're always going to 
+  keep evolving and improving and trying to find.
+Mike Prorock:   Better interoperability you know Etc.
+<orie> yes, really awesome work!
+<kristina> let's cross the chasm towards issuer-holder-verifier 
+  model together so that we can build more use-cases
+Mike Prorock:  But uhh just really appreciate the openness this 
+  is very helpful I think it's very helpful to the community and as 
+  I mentioned before especially around like traceability API like 
+  if that seems like a good Next Step we'd be happy to bring you 
+  guys into that and collaborate on that so.
+Ankur_Patel_@_Microsoft: Absolutely and look up this is going I 
+  genuinely think this is going to take a community effort for all 
+  of us to partner together and I work in some of these other 
+  forums and when you don't get that feedback of like is your work 
+  bettering is it going somewhere and how does it all right so I'm 
+  happy I do this with my partners and customers I'm happy to come 
+  do this every quarter every six months whatever you guys think is 
+  the high frequency at least for our part and we can share.
+Ankur_Patel_@_Microsoft:  updates I can bring my customers to 
+  tell you stories if it helps.
+Mike Prorock:  Yeah that that absolutely would be great to get on 
+  some of that like customer feedback and integration into other 
+  areas obviously a lot of us that are you know testing your APIs 
+  are working with you guys you know in one capacity or another you 
+  know are here on this call but the ecosystems broadening so much 
+  right and that's a great thing so we should definitely you know 
+  have some offline you know chats between ourselves obviously 
+  Kristina is one of the chairs of the VC working group but with 
+  Brent as well right.
+Mike Prorock:   Right and just see about you know let's look at 
+  some of these practical things and make sure we're working some 
+  of that stuff into the.
+Mike Prorock:  Schedule coming up so really once again really 
+  appreciate it.
+Ankur_Patel_@_Microsoft: Thanks everyone you have our contact 
+  info please ping us if we can be of any help anybody else have 
+  any closing comments or anything else.
+Harrison_Tang: Sorry I have one curiosity question so any single 
+  identity can have multiple they can wear multiple hats right so 
+  identity can be a issuer it can be a verifier it can be like a 
+  data subject holder itself right so my question is how do you 
+  kind of deal with the multiple roles or for lack of better term 
+  personas for a single issuer how do you deal with that especially 
+  how do you educate.
+Harrison_Tang:  these users as well as how do you on the.
+Harrison_Tang: Ui/ux side how do you actually clarify these 
+  complicated Concepts.
+Ankur_Patel_@_Microsoft: Such a good question in fact one of the 
+  things I always talk about the hardest bit about this stuff is 
+  actually ease of use and ease of use on helping audiences 
+  understand these Concepts that's one of the key concerns we have 
+  around selective disclosure knowledge proof stuff of how do I 
+  understand what the heck is actually happening forget you would 
+  you can technically do it so for our part this idea of fitting 
+  the current model of presenting credentials is something that 
+  normal users understand and creating the ceremony.
+Ankur_Patel_@_Microsoft:  of this is the party of.
+<kristina> ah - would be great if we can work on the trust 
+  frameworks together :) that is absolutely necessary to prevent 
+  verifiers over-requesting data
+Ankur_Patel_@_Microsoft: Requesting something from you this is 
+  the party who is going to receive this information hence the idea 
+  of a receive ironically we are trying to model more of the analog 
+  world in terms of such ceremonies and rituals we feel like the 
+  digital world is actually lagging compared to what we can do in 
+  our everyday life quite fast and fluid so that's our inspiration 
+  around it and we've created trust markers we have created markers 
+  in the user presentation and we can talk through the ux more 
+  detailed.
+Ankur_Patel_@_Microsoft:  next time we chat but these are all the 
+  things we test with end users to get feedback on.
+<mprorock> /me thinks that is very well said
+Ankur_Patel_@_Microsoft: Inspiring that confidence understanding 
+  specifically not just kind of the word service the lip service 
+  of.
+<mprorock> otherwise we would have no paper credentials left in 
+  supply chain
+Ankur_Patel_@_Microsoft: informed consent like actually trying to 
+  test it and making sure like is there enough information on the 
+  screen that helps you understand the of you feeling over about 
+  for example that's part of the reason why you choose 
+  authenticator or somebody else for example was not putting those 
+  work and care and finesse that will be required does that make 
+  sense.
+Harrison_Tang: Yes thank you.
+Harrison_Tang: All right thanks Ankur and thank you Daniel thank 
+  you Kristina for coming here and spending your time to present 
+  your latest work on the Microsoft entra verify ID thank you.
+<ankur_patel_@_microsoft> thank you team - really appreciate your 
+  leadership and partnership!
+<mark_foster> Thank you
+<rohit_gulati> Thank you all
+Harrison_Tang: Any any last announcement or reminders 
+  introductions.
+Alan Karp:  I had a question I tried to access the documents but 
+  it asked me to login is that correct that I do something wrong.
+Kristina: Sorry login where.
+Alan Karp:  At the aka.ms
+Alan Karp:  Those are some of the links for some of the on the 
+  slide.
+Kristina: I'm No usually you shouldn't have to login.
+Alan Karp:  That's what I would have thought but okay I'll figure 
+  it out.
+Kristina: Yeah feel free to send me like which ak.ms doesn't work 
+  and I can help but ya know usually doesn't require.
+Harrison_Tang: Cool Kaliya oh sorry.
+<orie> Hey Mark!
+Mark_Foster: I wanted to say hello I'm new to the group I just 
+  wanted to say hello I'm Mark Foster and I'm working on some I've 
+  been coming from a solid world you know solid project Tim 
+  berners-lee's project and I'm learning more about the community 
+  here and decentralized IDs so looking forward to learning from 
+  you guys.
+<orie> Welcome!
+Mike Prorock:  Awesome great to have you thanks for jumping in on 
+  the reintro at the end here so.
+<mprorock> hard stop for me - thanks again!!! all
+Harrison_Tang: Welcome Mark Kaliya do you have any announcements 
+  that you want make.
+Harrison_Tang: No problem thank you.
+Harrison_Tang: Thanks a lot.
