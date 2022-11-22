@@ -1,0 +1,187 @@
+[2022-11-22T18:28:36.291Z]	<Chris_Abernethy>	present+
+[2022-11-22T18:29:23.565Z]	<Paul_Dietrich_GS1>	present+
+[2022-11-22T18:30:17.686Z]	<nis>	present+
+[2022-11-22T18:30:57.188Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2022-11-22T18:31:15.235Z]	<Ben_-_Transmute>	present+
+[2022-11-22T18:32:11.668Z]	<Orie>	present+
+[2022-11-22T18:32:20.190Z]	<Transcriber>	scribe+
+[2022-11-22T18:32:20.190Z]	<Transcriber>	Meeting: traceability
+[2022-11-22T18:32:34.497Z]	<Mahmoud_Alkhraishi>	present+
+[2022-11-22T18:32:43.146Z]	<Chris_Abernethy>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2022Nov/0118.html
+[2022-11-22T18:33:35.040Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-interop/issues/468
+[2022-11-22T18:33:53.434Z]	<Ben_-_Transmute>	scribe+
+[2022-11-22T18:34:12.896Z]	<Ben_-_Transmute>	Chris: for issue 468 this is something Orie and I synced offline
+[2022-11-22T18:34:39.483Z]	<Mark_Foster>	present+
+[2022-11-22T18:34:40.511Z]	<Ben_-_Transmute>	Chris: this is about retrieving a credential which was previously issued
+[2022-11-22T18:35:00.145Z]	<Ben_-_Transmute>	Chris: this is because the id is both optional and can be non-unique
+[2022-11-22T18:35:26.599Z]	<Ben_-_Transmute>	Chris: one option is to have the id to not be included for revocable credentials and the id is provided by the server
+[2022-11-22T18:35:48.921Z]	<Ben_-_Transmute>	Chris: this means the server will need to be able to add the id into the credential that is sent back
+[2022-11-22T18:36:17.733Z]	<Ben_-_Transmute>	Chris: the other option would be to add another top-level attribute which be a way to reference the id
+[2022-11-22T18:36:36.881Z]	<Ben_-_Transmute>	Chris: in the case of revocable credentials this top-level attribute would be required
+[2022-11-22T18:36:43.004Z]	<Mahmoud_Alkhraishi>	Can we not have the issuer always return an ID?
+[2022-11-22T18:36:58.847Z]	<Ben_-_Transmute>	Chris: i have implemented this in our implementation, and it works well
+[2022-11-22T18:37:09.550Z]	<Ben_-_Transmute>	Chris: but i wanted to get feedback from other members
+[2022-11-22T18:37:27.016Z]	<Ben_-_Transmute>	Chris: Orie, i don;t know if you've had a chance to read through issue 468
+[2022-11-22T18:37:31.143Z]	<Mahmoud_Alkhraishi>	Q+
+[2022-11-22T18:37:50.296Z]	<Ben_-_Transmute>	Orie: I would like to see comments from all participants before we take action
+[2022-11-22T18:38:01.551Z]	<Orie>	We do say `id` is required already
+[2022-11-22T18:38:05.506Z]	<Orie>	in our profile
+[2022-11-22T18:38:07.217Z]	<Ben_-_Transmute>	Mahmoud: so id is optional, but can we say that id is required
+[2022-11-22T18:38:21.941Z]	<Ben_-_Transmute>	Chris: the id is provided by the requesting party
+[2022-11-22T18:38:28.521Z]	<Orie>	please read: https://w3c-ccg.github.io/traceability-vocab/#extensions-to-standard
+[2022-11-22T18:38:39.469Z]	<Orie>	> The object MUST have an id property, and its value MUST be a valid IRI (URI, URN).
+[2022-11-22T18:38:43.746Z]	<Ben_-_Transmute>	Mahmoud: Why can't we say, the party does not provide an id, and we provide an id on the server?
+[2022-11-22T18:38:56.943Z]	<Ben_-_Transmute>	Chris: this would break interoperability with VC-API
+[2022-11-22T18:39:28.572Z]	<Ben_-_Transmute>	Paul: what's the use-case of the requestor providing that id with the provider creating the id
+[2022-11-22T18:39:33.589Z]	<Mahmoud_Alkhraishi>	present+
+[2022-11-22T18:39:50.392Z]	<Ben_-_Transmute>	Orie: as far as i'm aware it's undefined behavior developed from the issuance API
+[2022-11-22T18:40:09.981Z]	<Ben_-_Transmute>	Orie: the group debated RESTful API's and didn't provide requirements around this area
+[2022-11-22T18:40:31.921Z]	<Ben_-_Transmute>	Orie: in the case of the traceability-API, we are providing context around these use-cases
+[2022-11-22T18:40:54.433Z]	<Mahmoud>	present+
+[2022-11-22T18:41:00.026Z]	<Ben_-_Transmute>	Orie: we're trying to reduce optionality and provide specific use-cases for interopability
+[2022-11-22T18:41:11.410Z]	<Mahmoud>	hi, sorry i crashed, missd your response Chris, will read the log earlier
+[2022-11-22T18:41:20.468Z]	<Ben_-_Transmute>	Paul: the question was what's the use-case for a client to define their own id?
+[2022-11-22T18:41:51.868Z]	<Mahmoud>	q+
+[2022-11-22T18:41:59.517Z]	<Ben_-_Transmute>	Orie: the case is a CQRS flow where they have their own stable identifiers, and they know they want the id to be a specific id, and the issuers policy was to accept that, that would be a case
+[2022-11-22T18:42:02.729Z]	<Ben_-_Transmute>	Paul: thank you
+[2022-11-22T18:42:34.640Z]	<Mahmoud>	ack mahmoud_alkhraishi
+[2022-11-22T18:42:39.307Z]	<Ben_-_Transmute>	Chris: would you say that if we forbid someone providing an id, would that be an option?
+[2022-11-22T18:42:55.344Z]	<Ben_-_Transmute>	Orie: right now it says that id is required for all of the traceability credentials
+[2022-11-22T18:43:10.460Z]	<Ben_-_Transmute>	Orie: we can say the id MUST NOT BE present, and the server will provide the id
+[2022-11-22T18:43:18.335Z]	<Mahmoud>	q+
+[2022-11-22T18:43:21.214Z]	<Mahmoud>	q-
+[2022-11-22T18:43:28.219Z]	<Ben_-_Transmute>	Chris: i would like to provide this as a third proposal as i think that would be better than the current proposals we have
+[2022-11-22T18:43:37.817Z]	<Chris_Abernethy>	Action: add third proposal to interop 468
+[2022-11-22T18:44:06.635Z]	<Ben_-_Transmute>	Mahmoud: I think the idea the server is the one that assigns the id, and i think it's the cleanest solution
+[2022-11-22T18:44:34.399Z]	<Ben_-_Transmute>	Mahmoud: another thing is the issuer field, i set it up so that issue field is always populated by the server
+[2022-11-22T18:45:00.199Z]	<Ben_-_Transmute>	Mahmoud: so if you provide your own random issuer, it would be changed to the configured issuer
+[2022-11-22T18:45:28.470Z]	<Ben_-_Transmute>	Mahmoud: it's a point of how much optionality do we allow to the request, versus how we define behavior on the server
+[2022-11-22T18:45:42.991Z]	<nis>	Paul, pondering if there are GS1 requirements to be considered?
+{
+ "@context": [
+ "https://www.w3.org/2018/credentials/v1",
+ "https://ns.gs1.org/vc/licence/licence.jsonld"
+ ],
+ "id": "https://ns.gs1.org/vc/licence/gs1_prefix/754",
+ "type": [
+ "VerifiableCredential",
+ "GS1PrefixLicenceCredential"
+ ],
+[2022-11-22T18:45:43.809Z]	<Ben_-_Transmute>	Chris: I think i agree, and would like to see that as a separate issue
+[2022-11-22T18:45:56.553Z]	<Chris_Abernethy>	Action: create a separate issue to have server generate issuer field when generating VCs
+[2022-11-22T18:46:21.103Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-interop/issues/469
+[2022-11-22T18:46:25.145Z]	<Ben_-_Transmute>	Chris: reminder to have every add their comments to the issue
+[2022-11-22T18:46:40.693Z]	<Ben_-_Transmute>	Chris: next issue is a response to a verification request
+[2022-11-22T18:47:13.946Z]	<Ben_-_Transmute>	Chris: currently we provide a response that is true or false, and the response has a requirement on the verified field and not the verification field
+[2022-11-22T18:47:43.059Z]	<Ben_-_Transmute>	Chris: in this case simply returning true or false is not very helpful, and having the verification array would provide extra context
+[2022-11-22T18:48:01.980Z]	<Ben_-_Transmute>	Chris: i think we should only have it required when the verification is false
+[2022-11-22T18:48:40.623Z]	<Ben_-_Transmute>	Ben: i agree with that, either when false or either an empty array when true is also an option
+[2022-11-22T18:48:59.102Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+[2022-11-22T18:49:05.263Z]	<Ben_-_Transmute>	Chris: this is something i wanted to get attention on, so i can add a "Ready for PR" tag next week
+[2022-11-22T18:49:16.985Z]	<Ben_-_Transmute>	Chris: first PR is 629 from Nis
+[2022-11-22T18:49:31.948Z]	<Ben_-_Transmute>	Nis: this is picking up the ones that need to be prefixed for ecommerce
+[2022-11-22T18:49:48.779Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/629
+[2022-11-22T18:49:54.565Z]	<Ben_-_Transmute>	Nis: it's sort of based on that, and updated with the patterns that we've developed since then
+[2022-11-22T18:50:07.594Z]	<Ben_-_Transmute>	Nis: this is addressing eCommerce and the requirements we have from CBP
+[2022-11-22T18:50:41.402Z]	<Ben_-_Transmute>	Nis: it's a bunch of credentials that supports eCommerce data flows to insentivise parties to share data early
+[2022-11-22T18:50:58.165Z]	<Ben_-_Transmute>	Chris: unless there are any rejections, i'll go ahead and merge this
+[2022-11-22T18:51:00.107Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/630
+[2022-11-22T18:51:04.718Z]	<Ben_-_Transmute>	Chris: next one is 630
+[2022-11-22T18:52:01.699Z]	<Mahmoud>	present+
+[2022-11-22T18:53:41.312Z]	<Ben_-_Transmute>	Nis: this is adding revocation for expiration date and credentialStatus to ctpat certificate
+[2022-11-22T18:54:05.237Z]	<Ben_-_Transmute>	Nis: we are having trouble with the test
+[2022-11-22T18:54:22.254Z]	<Ben_-_Transmute>	Nis: PR 632 is doing the same thing, so I will close my PR in favor of that one
+[2022-11-22T18:54:24.337Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/631
+[2022-11-22T18:55:03.689Z]	<Ben_-_Transmute>	Ben: what this PR does is provide proof with a specific JSOn schema for all of the credentials
+[2022-11-22T18:55:42.740Z]	<Ben_-_Transmute>	Chris: looks like Ted had some change suggestions, did you have a change to re-review?
+[2022-11-22T18:55:47.628Z]	<Ben_-_Transmute>	Ted: yes, I'm good
+[2022-11-22T18:55:52.141Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/632
+[2022-11-22T18:57:10.463Z]	<Ben_-_Transmute>	Ben: this is a change request that adds expiration date to CTPAt and adds credential status
+[2022-11-22T18:57:37.038Z]	<Ben_-_Transmute>	Ben: it's the issue of credential status that we're having trouble with, of getting the added context to work with the jest tests
+[2022-11-22T18:57:39.346Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2022-11-22T18:57:49.946Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-interop/issues/405
+[2022-11-22T18:57:53.305Z]	<Ben_-_Transmute>	Chris: is thereany objects to merging offline once the issues are addressed?
+[2022-11-22T18:58:01.935Z]	<Ben_-_Transmute>	Chris: i'll leave a comment to indicate this
+[2022-11-22T18:58:13.782Z]	<Ben_-_Transmute>	Chris: would you like to add comments to 405?
+[2022-11-22T18:58:30.439Z]	<Ben_-_Transmute>	Orie: sure this is still being defined, and there are no actions to take here
+[2022-11-22T18:58:46.343Z]	<Ben_-_Transmute>	Chris: i think i linked the wrong issue, let me sort
+[2022-11-22T18:58:50.696Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/290
+[2022-11-22T18:58:54.371Z]	<Ben_-_Transmute>	Chris: the correct first issue was 290
+[2022-11-22T18:59:05.933Z]	<TallTed>	https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2022-11-22T18:59:35.570Z]	<Ben_-_Transmute>	Chris: This one was opened by Vladimir, looks like Nis suggested we pick this up once we dive into GS1 modeling
+[2022-11-22T18:59:57.666Z]	<Ben_-_Transmute>	Chris: does anyone have any updates on this issue? Or can we assign anyone to this issue?
+[2022-11-22T19:00:02.125Z]	<Ben_-_Transmute>	https://github.com/w3c-ccg/traceability-vocab/issues/290
+[2022-11-22T19:00:46.683Z]	<Ben_-_Transmute>	Mahmoud: i think i missed this ping, assign it to me and i'll track it. Hopefully before we go through it again
+[2022-11-22T19:01:08.171Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/277
+[2022-11-22T19:01:36.982Z]	<Ben_-_Transmute>	Chris: next issue is also from Vladimir about inheritance and not aggregation
+[2022-11-22T19:02:22.957Z]	<Ben_-_Transmute>	Orie: this issue applied to how we build our context from our data model. Because of that we have some constraints on how we model our credentials
+[2022-11-22T19:02:57.669Z]	<Ben_-_Transmute>	Orie: this is someone with a lot of experience with RDF and JSON schema, and asking "if i used inheritance would that break it?"
+[2022-11-22T19:03:27.969Z]	<Ben_-_Transmute>	Orie: we should move the issue forward towards a concrete response, in this case it looks like a feature request
+[2022-11-22T19:03:54.528Z]	<Ben_-_Transmute>	Orie: we need to steer this issue from a debate to a specific actionable request to resolve the issue
+[2022-11-22T19:04:11.988Z]	<Ben_-_Transmute>	Chris: next issue is 280
+[2022-11-22T19:04:13.246Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/280
+[2022-11-22T19:05:53.066Z]	<Ben_-_Transmute>	Orie: it looks like he's suggesting we use something than OpenAPI specification 3
+[2022-11-22T19:06:11.501Z]	<Ben_-_Transmute>	Orie: and I think that we should indicate that we're sticking with OpenAPI
+[2022-11-22T19:06:43.342Z]	<Ben_-_Transmute>	Chris: can we add a comment that says, we're not intended on deviating from our current tools and add "Pending Close" on the issue
+[2022-11-22T19:08:03.012Z]	<Ben_-_Transmute>	Orie: we have this $linkedData struct we have in OAS, depending on how we do this is dependent on the tool that we could use to define heirarchies
+[2022-11-22T19:08:18.653Z]	<Ben_-_Transmute>	Ted: so it's a question of tool maturity?
+[2022-11-22T19:08:51.555Z]	<Ben_-_Transmute>	Orie: it's also a question of what's be requested on the issue, we have simple simple tooling that doesn't support richer ontology management
+[2022-11-22T19:09:09.343Z]	<Ben_-_Transmute>	Ted: if the richer ontology management is desired, then the tool needs further work?
+[2022-11-22T19:09:39.702Z]	<Ben_-_Transmute>	Orie: i think that's basically what's he's saying, the question is does everyone want that richer ontology management?
+[2022-11-22T19:10:20.737Z]	<Ben_-_Transmute>	Orie: if we can define what those are, then we can approach it, but it adds to the complexity, so we're going to want to make sure the other participants want that complextity?
+[2022-11-22T19:10:50.193Z]	<Ben_-_Transmute>	Ted: this gets to a bit of who feels the pain? In general we don't want to put it on the user. We want to get uptake on interop.
+[2022-11-22T19:11:16.250Z]	<Ben_-_Transmute>	Orie: the hard part for me is understanding what's being requested to estimate complexity
+[2022-11-22T19:11:38.277Z]	<Ben_-_Transmute>	Ted: it might be worth getting Vladimir to join a call instead of posting a ton of issues, this could be faster and easier
+[2022-11-22T19:11:47.911Z]	<Ben_-_Transmute>	Chris: does anybody know and work with Vladimir?
+[2022-11-22T19:12:26.531Z]	<Ben_-_Transmute>	Orie: Nis can ping him to ask, but we want to make sure we move the issue forward
+[2022-11-22T19:12:33.680Z]	<Chris_Abernethy>	Action: nis to ping VladimirAlexiev regarding issue #280
+[2022-11-22T19:12:54.415Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/542
+[2022-11-22T19:12:55.469Z]	<Ben_-_Transmute>	Chris: next issue is 542
+[2022-11-22T19:13:57.902Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/543
+[2022-11-22T19:13:59.207Z]	<Ben_-_Transmute>	Ben: this was a note to self and i think it was addressed so it can be closed
+[2022-11-22T19:14:57.077Z]	<Ben_-_Transmute>	Ben: for 543 this was a note for how we standardize the definition of types in our schemas, so i think this one can be closed
+[2022-11-22T19:14:59.541Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/385
+[2022-11-22T19:15:19.805Z]	<Ben_-_Transmute>	Chris: this one is assigned to Nis
+[2022-11-22T19:15:40.497Z]	<Ben_-_Transmute>	Nis: I did play around with EPCIS a little but have not taken it across the finish line
+[2022-11-22T19:16:03.530Z]	<Ben_-_Transmute>	Nis: right now we're asking for some GS1 feedback and also including the examples
+[2022-11-22T19:16:22.231Z]	<Ben_-_Transmute>	Nis: it's not super-related to the VC data model that came from GS1
+[2022-11-22T19:16:56.489Z]	<Ben_-_Transmute>	Paul: this is un-related to the VC data model
+[2022-11-22T19:17:30.627Z]	<Ben_-_Transmute>	Nis: in my opinion EPCIS fits into verifiable credentials, i would love to spend a couple of days, this is asking for bandwidth toward furthering that
+[2022-11-22T19:18:13.803Z]	<Ben_-_Transmute>	Nis: we made the decision that we weren't going to over invest in this, so i will unassign myself
+[2022-11-22T19:18:34.160Z]	<Ben_-_Transmute>	Paul: i can ask the EPCIS in the standards to see if he wants to take this on, if you want to work with him
+[2022-11-22T19:18:56.879Z]	<Ben_-_Transmute>	Nis: If we could build that bridge, it looks like a no brainer, i would love that
+[2022-11-22T19:19:19.043Z]	<Ben_-_Transmute>	Paul: I can ask the US satndards team and hopefully they have bandwidth to help out
+[2022-11-22T19:19:48.949Z]	<Paul_Dietrich_GS1>	paulfdietrich
+[2022-11-22T19:20:07.489Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/406
+[2022-11-22T19:20:12.438Z]	<Ben_-_Transmute>	Chris: next one is 406, opened by Orie
+[2022-11-22T19:21:00.707Z]	<Ben_-_Transmute>	Orie: Francis Kim has a credential that represents a bank account, he asked the question but never followed up, so I will ping him on this issue
+[2022-11-22T19:21:34.264Z]	<Ben_-_Transmute>	Chris: next issue is 553
+[2022-11-22T19:21:49.684Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/553
+[2022-11-22T19:22:27.341Z]	<Ben_-_Transmute>	Mahmoud: so we're having a conversation on a PR for how obvious our fake data should be
+[2022-11-22T19:23:03.360Z]	<Ben_-_Transmute>	Mahmoud: we should have more obviously real data, or more obviously fake data
+[2022-11-22T19:23:50.480Z]	<nis>	q+
+[2022-11-22T19:23:58.476Z]	<Mahmoud>	q-
+[2022-11-22T19:24:30.554Z]	<Ben_-_Transmute>	Chris: do we have any privacy issues around this?
+[2022-11-22T19:24:34.237Z]	<nis>	ack nis
+[2022-11-22T19:24:43.108Z]	<Ben_-_Transmute>	Ted: i think it would be fine if it was company data and not individual data
+[2022-11-22T19:24:58.423Z]	<Ben_-_Transmute>	Nis: this feels like a nice-to-have  for a problem i'm not having
+[2022-11-22T19:25:14.049Z]	<Ben_-_Transmute>	Nis: I think there is value in having something that feels recognizable
+[2022-11-22T19:25:43.050Z]	<Mahmoud>	q+
+[2022-11-22T19:25:47.231Z]	<Ben_-_Transmute>	Nis: I think we should focus on realism to have real streets
+[2022-11-22T19:26:25.775Z]	<Ben_-_Transmute>	Mahmoud: this was raised by Orie when he was trying to put examples to get coordinates, which were having bad coordinates
+[2022-11-22T19:26:47.956Z]	<Ben_-_Transmute>	Orie: we were using random GPS coordinates, we should at least have valid coordinates
+[2022-11-22T19:27:25.148Z]	<Ben_-_Transmute>	Orie: does this identify ACME inc as a real company in the United states, or does this coordinates point to the middle of the ocean?
+[2022-11-22T19:27:41.316Z]	<Ben_-_Transmute>	Ted: it depends on what kind of system this data is going to get loaded into
+[2022-11-22T19:28:17.470Z]	<Ben_-_Transmute>	Chris: would it be worth modifying the issue to say the data should model what it's trying to portray
+[2022-11-22T19:28:30.647Z]	<nis>	"geo": {
+          "type": ["GeoCoordinates"],
+          "latitude": "25.682338876065607",
+          "longitude": "-100.31373788104028"
+        },
+[2022-11-22T19:28:35.102Z]	<nis>	We still have this ^
+[2022-11-22T19:28:54.229Z]	<Ben_-_Transmute>	Orie: in the case of issues with "fix all of the schemas", we should create issues on a case-by-case basis where we have a problem with specific credentials
+[2022-11-22T19:29:50.802Z]	<Ben_-_Transmute>	Orie: We should be loading data into real systems and if we find errors in the data, we should file a separate issue for those cases
+[2022-11-22T19:30:15.257Z]	<Ben_-_Transmute>	Chris: we're at time i will post the meeting minutes
+[2022-11-22T19:30:37.953Z]	<Ben_-_Transmute>	Chris: i would like someone else to post the agenda and run the meeting next week
+[2022-11-22T19:30:42.145Z]	<Ben_-_Transmute>	Nis: I can do that
+[2022-11-22T19:30:52.195Z]	<Ben_-_Transmute>	Chris: thank you, see you next week
