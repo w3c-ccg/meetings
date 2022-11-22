@@ -1,0 +1,325 @@
+Thanks to Our Robot Overlords and Benjamin Collins for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-11-22-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-11-22-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2022-11-22
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Nov/0118.html
+Action Items:
+  1. add third proposal to interop 468
+  2. create a separate issue to have server generate issuer field 
+    when generating VCs
+  3. nis to ping VladimirAlexiev regarding issue #280
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and Benjamin Collins
+Present:
+  Chris Abernethy, Paul Dietrich GS1, Nis Jespersen , TallTed // 
+  Ted Thibodeau (he/him) (OpenLinkSw.com), Benjamin Collins, Orie 
+  Steele, Mahmoud Alkhraishi, Mark Foster, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/468
+Benjamin Collins is scribing.
+Chris Abernethy:  For issue 468 this is something Orie and I 
+  synced offline
+Chris Abernethy:  This is about retrieving a credential which was 
+  previously issued
+Chris Abernethy:  This is because the id is both optional and can 
+  be non-unique
+Chris Abernethy:  One option is to have the id to not be included 
+  for revocable credentials and the id is provided by the server
+Chris Abernethy:  This means the server will need to be able to 
+  add the id into the credential that is sent back
+Chris Abernethy:  The other option would be to add another 
+  top-level attribute which be a way to reference the id
+Chris Abernethy:  In the case of revocable credentials this 
+  top-level attribute would be required
+<mahmoud_alkhraishi> Can we not have the issuer always return an 
+  ID?
+Chris Abernethy:  I have implemented this in our implementation, 
+  and it works well
+Chris Abernethy:  But i wanted to get feedback from other members
+Chris Abernethy:  Orie, i don;t know if you've had a chance to 
+  read through issue 468
+Orie Steele:  I would like to see comments from all participants 
+  before we take action
+<orie> We do say `id` is required already
+<orie> in our profile
+Mahmoud Alkhraishi:  So id is optional, but can we say that id is 
+  required
+Chris Abernethy:  The id is provided by the requesting party
+<orie> please read: 
+  https://w3c-ccg.github.io/traceability-vocab/#extensions-to-standard
+<orie>	> The object MUST have an id property, and its value MUST 
+  be a valid IRI (URI, URN).
+Mahmoud Alkhraishi:  Why can't we say, the party does not provide 
+  an id, and we provide an id on the server?
+Chris Abernethy:  This would break interoperability with VC-API
+Paul: what's the use-case of the requestor providing that id with 
+  the provider creating the id
+Orie Steele:  As far as i'm aware it's undefined behavior 
+  developed from the issuance API
+Orie Steele:  The group debated RESTful API's and didn't provide 
+  requirements around this area
+Orie Steele:  In the case of the traceability-API, we are 
+  providing context around these use-cases
+Orie Steele:  We're trying to reduce optionality and provide 
+  specific use-cases for interopability
+<mahmoud> hi, sorry i crashed, missd your response Chris, will 
+  read the log earlier
+Paul: the question was what's the use-case for a client to define 
+  their own id?
+Orie Steele:  The case is a CQRS flow where they have their own 
+  stable identifiers, and they know they want the id to be a 
+  specific id, and the issuers policy was to accept that, that 
+  would be a case
+Paul: thank you
+Chris Abernethy:  Would you say that if we forbid someone 
+  providing an id, would that be an option?
+Orie Steele:  Right now it says that id is required for all of 
+  the traceability credentials
+Orie Steele:  We can say the id MUST NOT BE present, and the 
+  server will provide the id
+Chris Abernethy:  I would like to provide this as a third 
+  proposal as i think that would be better than the current 
+  proposals we have
+
+ACTION: add third proposal to interop 468
+
+Mahmoud Alkhraishi:  I think the idea the server is the one that 
+  assigns the id, and i think it's the cleanest solution
+Mahmoud Alkhraishi:  Another thing is the issuer field, i set it 
+  up so that issue field is always populated by the server
+Mahmoud Alkhraishi:  So if you provide your own random issuer, it 
+  would be changed to the configured issuer
+Mahmoud Alkhraishi:  It's a point of how much optionality do we 
+  allow to the request, versus how we define behavior on the server
+<nis> Paul, pondering if there are GS1 requirements to be 
+  considered?
+Chris Abernethy:  I think i agree, and would like to see that as 
+  a separate issue
+
+ACTION: create a separate issue to have server generate issuer 
+  field when generating VCs
+
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/469
+Chris Abernethy:  Reminder to have every add their comments to 
+  the issue
+Chris Abernethy:  Next issue is a response to a verification 
+  request
+Chris Abernethy:  Currently we provide a response that is true or 
+  false, and the response has a requirement on the verified field 
+  and not the verification field
+Chris Abernethy:  In this case simply returning true or false is 
+  not very helpful, and having the verification array would provide 
+  extra context
+Chris Abernethy:  I think we should only have it required when 
+  the verification is false
+Benjamin Collins:  I agree with that, either when false or either 
+  an empty array when true is also an option
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+Chris Abernethy:  This is something i wanted to get attention on, 
+  so i can add a "Ready for PR" tag next week
+Chris Abernethy:  First PR is 629 from Nis
+Nis Jespersen :  This is picking up the ones that need to be 
+  prefixed for ecommerce
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/629
+Nis Jespersen :  It's sort of based on that, and updated with the 
+  patterns that we've developed since then
+Nis Jespersen :  This is addressing eCommerce and the 
+  requirements we have from CBP
+Nis Jespersen :  It's a bunch of credentials that supports 
+  eCommerce data flows to insentivise parties to share data early
+Chris Abernethy:  Unless there are any rejections, i'll go ahead 
+  and merge this
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/630
+Chris Abernethy:  Next one is 630
+Nis Jespersen :  This is adding revocation for expiration date 
+  and credentialStatus to ctpat certificate
+Nis Jespersen :  We are having trouble with the test
+Nis Jespersen :  PR 632 is doing the same thing, so I will close 
+  my PR in favor of that one
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/631
+Benjamin Collins:  What this PR does is provide proof with a 
+  specific JSOn schema for all of the credentials
+Chris Abernethy:  Looks like Ted had some change suggestions, did 
+  you have a change to re-review?
+Ted Thibodeau:  Yes, I'm good
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/632
+Benjamin Collins:  This is a change request that adds expiration 
+  date to CTPAt and adds credential status
+Benjamin Collins:  It's the issue of credential status that we're 
+  having trouble with, of getting the added context to work with 
+  the jest tests
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/405
+Chris Abernethy:  Is thereany objects to merging offline once the 
+  issues are addressed?
+Chris Abernethy:  I'll leave a comment to indicate this
+Chris Abernethy:  Would you like to add comments to 405?
+Orie Steele:  Sure this is still being defined, and there are no 
+  actions to take here
+Chris Abernethy:  I think i linked the wrong issue, let me sort
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/290
+Chris Abernethy:  The correct first issue was 290
+Ted Thibodeau: 
+  https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Chris Abernethy:  This one was opened by Vladimir, looks like Nis 
+  suggested we pick this up once we dive into GS1 modeling
+Chris Abernethy:  Does anyone have any updates on this issue? Or 
+  can we assign anyone to this issue?
+https://github.com/w3c-ccg/traceability-vocab/issues/290
+Mahmoud Alkhraishi:  I think i missed this ping, assign it to me 
+  and i'll track it. Hopefully before we go through it again
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/277
+Chris Abernethy:  Next issue is also from Vladimir about 
+  inheritance and not aggregation
+Orie Steele:  This issue applied to how we build our context from 
+  our data model. Because of that we have some constraints on how 
+  we model our credentials
+Orie Steele:  This is someone with a lot of experience with RDF 
+  and JSON schema, and asking "if i used inheritance would that 
+  break it?"
+Orie Steele:  We should move the issue forward towards a concrete 
+  response, in this case it looks like a feature request
+Orie Steele:  We need to steer this issue from a debate to a 
+  specific actionable request to resolve the issue
+Chris Abernethy:  Next issue is 280
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/280
+Orie Steele:  It looks like he's suggesting we use something than 
+  OpenAPI specification 3
+Orie Steele:  And I think that we should indicate that we're 
+  sticking with OpenAPI
+Chris Abernethy:  Can we add a comment that says, we're not 
+  intended on deviating from our current tools and add "Pending 
+  Close" on the issue
+Orie Steele:  We have this $linkedData struct we have in OAS, 
+  depending on how we do this is dependent on the tool that we 
+  could use to define heirarchies
+Ted Thibodeau:  So it's a question of tool maturity?
+Orie Steele:  It's also a question of what's be requested on the 
+  issue, we have simple simple tooling that doesn't support richer 
+  ontology management
+Ted Thibodeau:  If the richer ontology management is desired, 
+  then the tool needs further work?
+Orie Steele:  I think that's basically what's he's saying, the 
+  question is does everyone want that richer ontology management?
+Orie Steele:  If we can define what those are, then we can 
+  approach it, but it adds to the complexity, so we're going to 
+  want to make sure the other participants want that complextity?
+Ted Thibodeau:  This gets to a bit of who feels the pain? In 
+  general we don't want to put it on the user. We want to get 
+  uptake on interop.
+Orie Steele:  The hard part for me is understanding what's being 
+  requested to estimate complexity
+Ted Thibodeau:  It might be worth getting Vladimir to join a call 
+  instead of posting a ton of issues, this could be faster and 
+  easier
+Chris Abernethy:  Does anybody know and work with Vladimir?
+Orie Steele:  Nis can ping him to ask, but we want to make sure 
+  we move the issue forward
+
+ACTION: nis to ping VladimirAlexiev regarding issue #280
+
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/542
+Chris Abernethy:  Next issue is 542
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/543
+Benjamin Collins:  This was a note to self and i think it was 
+  addressed so it can be closed
+Benjamin Collins:  For 543 this was a note for how we standardize 
+  the definition of types in our schemas, so i think this one can 
+  be closed
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/385
+Chris Abernethy:  This one is assigned to Nis
+Nis Jespersen :  I did play around with EPCIS a little but have 
+  not taken it across the finish line
+Nis Jespersen :  Right now we're asking for some GS1 feedback and 
+  also including the examples
+Nis Jespersen :  It's not super-related to the VC data model that 
+  came from GS1
+Paul: this is un-related to the VC data model
+Nis Jespersen :  In my opinion EPCIS fits into verifiable 
+  credentials, i would love to spend a couple of days, this is 
+  asking for bandwidth toward furthering that
+Nis Jespersen :  We made the decision that we weren't going to 
+  over invest in this, so i will unassign myself
+Paul: i can ask the EPCIS in the standards to see if he wants to 
+  take this on, if you want to work with him
+Nis Jespersen :  If we could build that bridge, it looks like a 
+  no brainer, i would love that
+Paul: I can ask the US satndards team and hopefully they have 
+  bandwidth to help out
+<paul_dietrich_gs1> paulfdietrich
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/406
+Chris Abernethy:  Next one is 406, opened by Orie
+Orie Steele:  Francis Kim has a credential that represents a bank 
+  account, he asked the question but never followed up, so I will 
+  ping him on this issue
+Chris Abernethy:  Next issue is 553
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/553
+Mahmoud Alkhraishi:  So we're having a conversation on a PR for 
+  how obvious our fake data should be
+Mahmoud Alkhraishi:  We should have more obviously real data, or 
+  more obviously fake data
+Chris Abernethy:  Do we have any privacy issues around this?
+Ted Thibodeau:  I think it would be fine if it was company data 
+  and not individual data
+Nis Jespersen :  This feels like a nice-to-have  for a problem 
+  i'm not having
+Nis Jespersen :  I think there is value in having something that 
+  feels recognizable
+Nis Jespersen :  I think we should focus on realism to have real 
+  streets
+Mahmoud Alkhraishi:  This was raised by Orie when he was trying 
+  to put examples to get coordinates, which were having bad 
+  coordinates
+Orie Steele:  We were using random GPS coordinates, we should at 
+  least have valid coordinates
+Orie Steele:  Does this identify ACME inc as a real company in 
+  the United states, or does this coordinates point to the middle 
+  of the ocean?
+Ted Thibodeau:  It depends on what kind of system this data is 
+  going to get loaded into
+Chris Abernethy:  Would it be worth modifying the issue to say 
+  the data should model what it's trying to portray
+Nis Jespersen : "Geo": {
+<nis> We still have this ^
+Orie Steele:  In the case of issues with "fix all of the 
+  schemas", we should create issues on a case-by-case basis where 
+  we have a problem with specific credentials
+Orie Steele:  We should be loading data into real systems and if 
+  we find errors in the data, we should file a separate issue for 
+  those cases
+Chris Abernethy:  We're at time i will post the meeting minutes
+Chris Abernethy:  I would like someone else to post the agenda 
+  and run the meeting next week
+Nis Jespersen :  I can do that
+Chris Abernethy:  Thank you, see you next week
