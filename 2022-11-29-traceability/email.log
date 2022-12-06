@@ -1,0 +1,183 @@
+Thanks to Our Robot Overlords and russell_hofvendahl_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-11-29-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-11-29-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2022-11-29
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Nov/0155.html
+Action Items:
+  1. clarify options in interop #468 and initiate polling
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and russell_hofvendahl_(mesur.io)
+Present:
+  Nis Jespersen , Jim M, Yinghui (Vivien) Fan, Benjamin 
+  (Transmute), Russell Hofvendahl, Paul Dietrich GS1, Chris 
+  Abernethy, TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  Orie Steele
+
+Our Robot Overlords are scribing.
+Russell_Hofvendahl_(mesur.io): Yeah I'm happy to describe it 
+  looks like there might be a transcriber the.
+russell_hofvendahl_(mesur.io) is scribing.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/471
+<chris_abernethy> I'm here
+<chris_abernethy> 1 sec audio
+Nis Jespersen :  Announcements?
+Nis Jespersen :  For clarification, not conformance?
+Chris Abernethy:  Both [conformance and interop are updated]
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/634
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/636
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/638
+Nis Jespersen :  Fantastic, that was one PR trace interop, 
+  switching to trace vocab
+Russell Hofvendahl:  638, Organic product certification
+<orie> For example:
+Nis Jespersen :  Should this be a credential?
+Orie Steele:  A bit confusing to have "certificate"
+Russell Hofvendahl:  Will make note to change 
+  "organicCertificate" to "organicCertification" later with future 
+  PR
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/639
+Nis Jespersen :  Next 639 gap location cert schema, russell
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/641
+Nix: 641, russell
+Nis Jespersen :  642, Russell
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/642
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/643
+Nis Jespersen :  643, Ben
+Ben: change to BOL cert, issue is they're not expanding [?]
+<benjamin_(transmute)> examples are non-spanning
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/644
+Nis Jespersen :  Any approvals? merged
+Ben: Change request for mahmoud, but similar change. This narrows 
+  scope of schema to fit specific example, not reduce optionality. 
+  This is JSON replacing a specific form, having closer values to 
+  what would expect
+Jim M: So if we get into cross-border movement, these specific 
+  terms would be required in-schema?
+Nis Jespersen :  Commercial invoice like any other. Til recently 
+  we pieced together cred schemas from full set of RDS building 
+  blocks. What schemas reflect now is extremely big systems. These 
+  are recent changes, to narrow it down. Ben selected specific 
+  attrs to narrow it down to commercial invoice
+Jim M: so truly commercial invoice between buyer and seller
+Nis Jespersen :  Yes
+Chris Abernethy: +1
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/645
+Nis Jespersen :  If Mahmoud is onboard can merge between this 
+  week and next week
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues
+<benjamin_(transmute)> we have the revocation issue
+Nis Jespersen :  On to issues. We've discussed not doing trace 
+  interop all the time, only 14
+<jim_m> I need to drop off. I will get  my ducks in order for the 
+  issues that I would respond to on next weeks call.  Have a good 
+  evening.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/468
+Chris Abernethy:  Since last week [?] has had a chance to weigh 
+  in on this, think these are worth reviewing
+<orie> MUST and SHOULD / MAY.
+Chris Abernethy:  Not possible for requester to guarantee they 
+  are providing IDs unique to requester
+Orie Steele:  You both might be talking abt diff endpts
+Chris Abernethy:  On board, believe you suggested in update 
+  endpt, someone who calls could provide identification in 
+  credential, but might not be able to look up [?]
+Orie Steele:  Not guaranteed uniqueness. Depends on issuer, if 
+  assigned identifier & using consistently get but with addnl 
+  constraints
+Chris Abernethy:  Agree, esp with increased complexity you 
+  pointed out
+Orie Steele:  Have "id must be present" today
+Chris Abernethy:  Not currently reflected in trace API schema, 
+  will do
+Orie Steele:  Should treat respec doc as source of true; openapi, 
+  tests, others as secondary sources of truth
+Chris Abernethy:  Think specifying process for generating IDs not 
+  worth getting into. Issuer that generates, needs to be able to 
+  use that later
+Orie Steele:  Inference in there, assuming [?]. Issuer could just 
+  do url example.123 for every cred, would conform with norm. 
+  Unless want not legal, we do need to describe what needs to be
+Chris Abernethy: +1 Orie
+<orie> regardless of the choice, we need a PR to flush out this 
+  section of the spec: 
+  https://w3c-ccg.github.io/traceability-vocab/#extensions-to-standard
+Nis Jespersen :  What you're talking way into, issuing server 
+  decides on ID, VC ID, consequences?
+<orie> you could say it MUST be unique and it SHOULD be a 
+  urn:uuid:v4.
+Chris Abernethy:  I agree with both. Responding to Orie, yes 
+  agree need specify instructions for that ID, misunderstood you. 
+  Yes specify needs unique.
+Nis Jespersen :  Sounds more like Manu's suggestion, we put it in 
+  options?
+Chris Abernethy:  Not quite
+Orie Steele:  Accomplishing same thing, moving client provided 
+  paramn from one object to another
+Chris Abernethy:  But it's there in VC, I think issue here is how 
+  it gets there
+Orie Steele:  K was thinking more abt update endpt. If know it's 
+  there can use ID in update endpt. In creation, can throw 400 
+  error in value or assign one, or override what client does - 
+  don't think we should do that
+Chris Abernethy:  But then issue, a) removing option to do 
+  something need to do, b) injecting data into cred
+Orie Steele:  Already adding proof tho
+Paul: So need some ref to this thing to call this update? Pass 
+  whole object to update method?
+Orie Steele:  But then would need to negotiate with everyone else
+Paul: My issue is not clear what [?]
+Orie Steele:  So clarify options in an issue, what choosing 
+  between, then polling to figure out what option has strength, 
+  then PR
+
+ACTION: clarify options in interop #468 and initiate polling
+
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/469
+Nis Jespersen :  Can try to summarize some of this tomorrow
+[...]
+Paul: Customer said "just want a black box", as soon as delivered 
+  just achieve fail, message that even for simple that verification 
+  message really useful
+Chris Abernethy:  Examples don't agree with spec rn
+Nis Jespersen :  Would be enum of verification types right?
+Chris Abernethy:  Yes
+Chris Abernethy:  Having all use cases would be very helpful
+Nis Jespersen :  Chris, don't understand what you said abt 
+  oopenapi
+Chris Abernethy:  Concerns abt writing test, so verifications 
+  array of objects with status good/bad, list of titles, optional 
+  description
+Nis Jespersen :  Have decided to leave 5mins at end for 
+  volunteer, so wrap this up now
+Chris Abernethy:  Happy to
+Nis Jespersen :  I'll agenda next wk as well
