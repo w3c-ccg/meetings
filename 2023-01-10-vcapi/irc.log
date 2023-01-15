@@ -1,0 +1,284 @@
+[2023-01-10T19:59:35.764Z]	<Greg_Bernstein>	present+
+[2023-01-10T19:59:35.765Z]	<Manu_Sporny>	present+
+[2023-01-10T19:59:44.282Z]	<Eric_Schuh>	present+
+[2023-01-10T20:00:13.085Z]	<Mahmoud>	present+
+[2023-01-10T20:00:15.582Z]	<Joe_Andrieu>	present+
+[2023-01-10T20:00:16.067Z]	<Greg_Bernstein>	present+
+[2023-01-10T20:00:18.265Z]	<Alan_Karp>	present+
+[2023-01-10T20:00:37.814Z]	<Patrick_(IDLab)>	present+
+[2023-01-10T20:00:41.136Z]	<Dmitri_Zagidulin>	present+
+[2023-01-10T20:01:42.965Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-01-10T20:01:57.288Z]	<Dave_Longley>	present+
+[2023-01-10T20:02:12.640Z]	<Transcriber>	scribe+
+[2023-01-10T20:02:12.640Z]	<Transcriber>	Meeting: vcapi
+[2023-01-10T20:02:39.559Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2023Jan/0020.html
+[2023-01-10T20:02:41.517Z]	<Transcriber>	Manu_Sporny: Success all right welcome everyone to the verifiable credentials API work item called This is the first call of the Year our agenda is here this is our chance this is our agenda.
+[2023-01-10T20:03:11.933Z]	<Transcriber>	Manu_Sporny: On the agenda today we have just a quick discussion update on BC the verifiable credentials working group and getting the VC API through there we should look at some PRS I forgot to put that on the agenda but we've got a couple of PR's that we need to process so please don't let me forget to do that.
+[2023-01-10T20:03:12.295Z]	<Transcriber>	Manu_Sporny:  at the top of the call.
+[2023-01-10T20:03:41.963Z]	<Transcriber>	Manu_Sporny: And we will have a discussion around Nate Autos PR reference error schemas or errors and then a discussion about all Z authorization in the exchanges and point and then talk about other issues and things as time permits are there any other updates or changes to the agenda before we get started anything else people want to talk about.
+[2023-01-10T20:03:48.229Z]	<Transcriber>	Manu_Sporny: Go ahead Patrick.
+[2023-01-10T20:03:56.734Z]	<Paul_Dietrich_GS1>	present+
+[2023-01-10T20:03:57.839Z]	<Eric_Schuh>	q+ use cases update
+[2023-01-10T20:04:10.638Z]	<Transcriber>	Patrick_(IDLab): Yeah just said if we have time there it's come to my attention a solution from matter it was called the launch pad from matter labs and add a bit of a look and I'm curious if we could see how this would fit into the VC API that we are discussing here.
+[2023-01-10T20:04:21.404Z]	<Transcriber>	Manu_Sporny: Yep sounds good let's put that at the front of the agenda if you don't think that's going to take a while to do Eric you're on the queue.
+[2023-01-10T20:04:22.286Z]	<Mahmoud>	would anyone not speaking be able to mute please
+[2023-01-10T20:04:52.260Z]	<Transcriber>	Eric_Schuh: Yeah just wanted to give a quick update on it's a document since I was out last week there should be the pr getting updates in the next hour or two and I plan on pushing it over to Joe for final approval kind of as we discussed just wanted to give another shout-out to tall Ted for all of his comments and suggestions so thanks for that that PR should go through hopefully end of day unless there's something weird that happens.
+[2023-01-10T20:05:06.974Z]	<Transcriber>	Manu_Sporny: Excellent great so that was an update on the use cases right great thank you very much for that work is it worth taking a look at anything on the call today Eric do you feel or.
+[2023-01-10T20:05:11.419Z]	<Transcriber>	Eric_Schuh: Unfortunately not I mean I'm working on it right now so.
+[2023-01-10T20:05:33.996Z]	<Manu_Sporny>	Topic: Introductions, Relevant Community Updates
+[2023-01-10T20:05:39.149Z]	<Transcriber>	Manu_Sporny: Gotcha okay okay all right that sounds good thank you again for the update and thank you Ted for your tireless work on making sure we convey the things we want to convey all right let's let's pick up your item well okay let's let's do quick intros relevant Community updates I think do we have anyone new here I think we all know each.
+[2023-01-10T20:05:39.554Z]	<Transcriber>	Manu_Sporny:  other fairly well at this point.
+[2023-01-10T20:05:39.979Z]	<Pete>	present+
+[2023-01-10T20:05:48.353Z]	<Transcriber>	Manu_Sporny: Um Alan do you want to give a quick intro to yourself I think most of us know you there might be something.
+[2023-01-10T20:06:04.206Z]	<Transcriber>	Alan_Karp: I'm Allen carp I'm the capabilities guy I've been lurking on this list for a while and my mission is to keep you guys from making new be capability mistakes that I myself made when I was a newbie.
+[2023-01-10T20:06:17.829Z]	<Transcriber>	Manu_Sporny: Awesome thank you and that's always appreciated Alan Pete do you want to introduce yourself you don't have to but we'd love to hear a bit about your background if you're if you want to share.
+[2023-01-10T20:06:30.777Z]	<Kayode_Ezike>	present+
+[2023-01-10T20:06:32.798Z]	<Transcriber>	Manu_Sporny: If you're searching for the mute button it's not the bottom left of the bar but maybe maybe not.
+[2023-01-10T20:07:03.840Z]	<Transcriber>	Manu_Sporny: Okay any relevant Community updates or things of that nature the I have just one quick one around status list 2021 that's been moved to the VC working group it's arguable that there is a part of status list 2021 that is pseudo dependent on the VC API we certainly have it in our diagrams that a.
+[2023-01-10T20:07:04.353Z]	<Transcriber>	Manu_Sporny:  list service would exist.
+[2023-01-10T20:07:32.199Z]	<Transcriber>	Manu_Sporny: And it is unknown what that overlap is but basically anything that the spec the status list 2021 spec will say is kind of sort of out of our control except oh good chunk of us are in that group so anyway just a heads up that that's moved to the official working group and is a standards track work item at this point Patrick you're up.
+[2023-01-10T20:07:38.663Z]	<Manu_Sporny>	ack eric
+[2023-01-10T20:08:01.879Z]	<Transcriber>	Patrick_(IDLab): Oh yeah just wanted to give a few updates about what's going on here and Canada so the idea lab is officially helping the province of Quebec for their digital ID program since just before the holidays parallel to that Newfoundland announced last week they were starting the POC for the digital ID program as well so I think we'll see a lot of things happening there the other thing the Aries agent testified.
+[2023-01-10T20:08:02.314Z]	<Transcriber>	Patrick_(IDLab):  harness maintainers are looking into.
+[2023-01-10T20:08:15.026Z]	<Transcriber>	Patrick_(IDLab): In the VC API test Suites and to their flow somewhere so at the moment is just an observation of how that would be possible and that's it for me thank you.
+[2023-01-10T20:08:31.841Z]	<Transcriber>	Manu_Sporny: Wonderful thank you Patrick I appreciate that and exciting news did you know what kind of Technologies Quebec in Newfoundland are have have picked or is that still up in the air or.
+[2023-01-10T20:08:56.991Z]	<Transcriber>	Patrick_(IDLab): So at the moment it Quebec Ontario and BC are sort of caliber collaborating on a pan-canadian blockchain initiative working with Hyper Ledger in the so this is a very much an action mostly led by b.c. the other provinces are learning the technology for Newfoundland there was not much information but I'm not.
+[2023-01-10T20:08:57.428Z]	<Transcriber>	Patrick_(IDLab):  assuming they will join.
+[2023-01-10T20:09:01.619Z]	<Transcriber>	Patrick_(IDLab): Network once it's a bit more mature.
+[2023-01-10T20:09:24.457Z]	<Transcriber>	Manu_Sporny: Great thank you for that Patrick and certainly please keep us up-to-date if you find out anything new that's interesting interesting developments okay any other announcements or introductions before we get into topics.
+[2023-01-10T20:09:37.837Z]	<Manu_Sporny>	Topic: MATTR Launchpad
+[2023-01-10T20:09:38.764Z]	<Transcriber>	Manu_Sporny: Patrick let's start with yours so this is the matter Launchpad I think.
+[2023-01-10T20:09:56.449Z]	<Transcriber>	Patrick_(IDLab): Yeah yeah so I just discovered this solution today someone showed it to me and I thought they was a cool maybe you can tell me more about it I'm assuming you're familiar with this platform.
+[2023-01-10T20:10:12.339Z]	<Transcriber>	Manu_Sporny: Sorry I was muted I've seen it in a demo here and there but I'm not familiar with it so do you have a link in.
+[2023-01-10T20:10:15.431Z]	<Patrick_(IDLab)>	https://launchpad.mattrlabs.com/
+[2023-01-10T20:10:38.440Z]	<Transcriber>	Patrick_(IDLab): Yeah I can share the link basically they offered three examples of credentials that you can issue to be proof of concept once you go through the step you get to a certain point so you can pretend to be a specific user and then it generates you a QR code and this QR code is did web URL.
+[2023-01-10T20:10:44.528Z]	<Transcriber>	Patrick_(IDLab): And it says open and wallet so I was just curious like.
+[2023-01-10T20:10:47.317Z]	<Manu_Sporny>	q+
+[2023-01-10T20:10:55.066Z]	<Transcriber>	Patrick_(IDLab): How could the VC API be leveraged to ingest this information if possible or if I'm misunderstanding the principal here.
+[2023-01-10T20:11:27.085Z]	<Transcriber>	Manu_Sporny: Yes we have seen this so in the jobs for the future plugfest number two its this launch pad that the open ID connect folks used to do the interactions so this is very much as far as I understand it focused on open ID connect and those mechanisms the but again I might be totally wrong on this it.
+[2023-01-10T20:11:27.422Z]	<Transcriber>	Manu_Sporny:  was kind of.
+[2023-01-10T20:11:31.988Z]	<Manu_Sporny>	https://playground.chapi.io/issuer
+[2023-01-10T20:11:58.817Z]	<Transcriber>	Manu_Sporny: Created as an oid C version of the chappie issuer playground which uses VC API in chappie so it's got two protocols that it uses today to move credentials from an issuing platform to a wallet it uses just straight chappie and then chappie to provide a VC API endpoint which then you do a VC API exchange and Kyle.
+[2023-01-10T20:12:15.118Z]	<Transcriber>	Patrick_(IDLab): You said that a coyote or what's the duct.
+[2023-01-10T20:12:20.090Z]	<Transcriber>	Manu_Sporny: All version of that in the jobs for the future plugfest to so I think it's I think it's similar in nature to that let me let me see if I can share so this here he's here coyote are you.
+[2023-01-10T20:12:20.393Z]	<Transcriber>	Manu_Sporny:  yeah they are.
+[2023-01-10T20:12:49.098Z]	<Transcriber>	Kayode_Ezike: Yep yeah you referring to the exchanges work for right yes so basically that's exactly right use the The Leverage The chappie Playground that model showing right now to know to engage in in the exchanges workflow from a native wallet and I'm happy to answer any questions related to that.
+[2023-01-10T20:13:14.863Z]	<Transcriber>	Manu_Sporny: Yeah so it's as far as I think Patrick I understand it these two sites effectively do the same thing the matter launch pad does it for open ID for VCI in the chappie playground does it for VC API in chappie to protocols go ahead Dave.
+[2023-01-10T20:13:15.736Z]	<Manu_Sporny>	q-
+[2023-01-10T20:13:40.501Z]	<Transcriber>	Dave_Longley: Yeah just have a quick question because Patrick you said that the QR code has a did web URL in it I would have expected it to be an open ID initiate issuance URL so that when I QR code comes up if you use a wallet that supports open ID connect verifiable credential issuance it could scan that QR code and get that oid C4 VCI URL.
+[2023-01-10T20:13:43.923Z]	<Transcriber>	Dmitri_Zagidulin: It is it is a initiate issue it's got ya.
+[2023-01-10T20:14:12.990Z]	<Transcriber>	Dave_Longley: Okay yeah so this playground is just doing delivery of the credential or you know this launch pad is doing delivery of the crown jewel through oid C4 B CI instead of through the VC API you can build a similar site that used to be Capi in the background the do all the exchange all of the issuance and verification stuff but the VC API does delivery either directly through choppy or.
+[2023-01-10T20:14:13.288Z]	<Transcriber>	Dave_Longley:  through exchanges URLs and.
+[2023-01-10T20:14:33.790Z]	<Transcriber>	Dave_Longley: Oid C4 B CI QR code is an alternative to that mechanism you could you know put a exchanges URL in a QR code to do it through BC API but effectively what's going on is a different protocols being spoken to do the delivery.
+[2023-01-10T20:14:53.343Z]	<Transcriber>	Patrick_(IDLab): Interesting I will definitely spend more time experimenting with it it's very interesting and it's just a side note I totally forgot to the committee of data we had a consultation with company called volte and they want to develop test Suites for oid see.
+[2023-01-10T20:14:53.608Z]	<Transcriber>	Patrick_(IDLab):  for verify.
+[2023-01-10T20:15:00.077Z]	<Patrick_(IDLab)>	https://vaultie.io/
+[2023-01-10T20:15:01.114Z]	<Transcriber>	Patrick_(IDLab): So I don't know if it's a organization that you've heard of before.
+[2023-01-10T20:15:14.196Z]	<Pete>	present+
+[2023-01-10T20:15:15.120Z]	<Transcriber>	Manu_Sporny: I have not heard of them but that's interesting actually no V yeah I've heard of them forget where but I've heard about these folks.
+[2023-01-10T20:15:21.217Z]	<Transcriber>	Patrick_(IDLab): I don't know much about how far off they are but it was something they're interested in it.
+[2023-01-10T20:15:30.391Z]	<Transcriber>	Manu_Sporny: Yeah they haven't I don't think they've participated in any of the plugfest stood eight but does anyone know as anyone interacted with them.
+[2023-01-10T20:16:06.953Z]	<Transcriber>	Manu_Sporny: Okay so don't know yeah I mean yeah I think that would be a would be a very useful thing to have in the ecosystem now is just I mean just more test Suite stood for interoperability so we people can test it still you know a little too hard to demonstrate inner up these days and I think we're actively working on this across the multiple protocols okay so I'll stop screen sharing their in Patrick did that.
+[2023-01-10T20:16:07.459Z]	<Transcriber>	Manu_Sporny:  over the yeah that covered the launch.
+[2023-01-10T20:16:07.723Z]	<Transcriber>	Manu_Sporny: You want to.
+[2023-01-10T20:16:15.937Z]	<Transcriber>	Patrick_(IDLab): Yeah I took some notes and I'll play around when I have some down time at work.
+[2023-01-10T20:16:28.639Z]	<Transcriber>	Manu_Sporny: Okay alright let's sounds good the next thing up we should probably do is pull request review we have one of these pull requests.
+[2023-01-10T20:16:29.588Z]	<Manu_Sporny>	Topic: Pull Request Review
+[2023-01-10T20:16:35.511Z]	<Transcriber>	Manu_Sporny: Her so I'll skip that one but.
+[2023-01-10T20:16:41.517Z]	<Transcriber>	Manu_Sporny: Other ones we should take a look at let me share my screen.
+[2023-01-10T20:17:12.318Z]	<Transcriber>	Manu_Sporny: So just real quick we had to pull request that had been out there for a while so Andrew Jones has put quite a number of just bug fix things into the the into the spec these are issues that he found while implementing.
+[2023-01-10T20:17:36.904Z]	<Dave_Longley>	present+
+[2023-01-10T20:17:45.136Z]	<Transcriber>	Manu_Sporny: Implementing the VC API the test Suites for the some of the VC API things and so like this you know the continue here using post and not put in updating some of the examples so last four days these are the three that we ended up pulling in they were out there for a while so just a heads up the folks that we pull these in take a look at them I don't think that they work on.
+[2023-01-10T20:17:51.368Z]	<Dave_Longley>	present+
+[2023-01-10T20:18:09.299Z]	<Transcriber>	Manu_Sporny: You know things like adding a description to the like you know adding descriptions to some of the like the error response right this was leading to some some bad renderings okay next item up is.
+[2023-01-10T20:18:12.691Z]	<Dave_Longley>	present+
+[2023-01-10T20:18:44.757Z]	<Transcriber>	Manu_Sporny: This one we're going to talk about here in a bit preparing the document for publication as of ECW G item this one I think is still a work in progress adding 44 as a response for getting delete to make it aligned with VPS I think Andrew currently has this as a draft so it's been approved but we're not he needs to I guess we need to Ping.
+[2023-01-10T20:18:45.016Z]	<Transcriber>	Manu_Sporny:  him to make it.
+[2023-01-10T20:18:46.504Z]	<TallTed>	present+
+[2023-01-10T20:18:48.094Z]	<Transcriber>	Manu_Sporny: PR so that we can pull it in.
+[2023-01-10T20:19:20.646Z]	<Transcriber>	Manu_Sporny: 323 ads verifiable presentation request to exchange initiate I believe this is an error I think Longley you looked at this and I looked at this and I think the error that's being made here is that he's adding a top-level verifiable presentation request which will make it double nested in the rest of the specs so we need to this PR probably just needs to be rejected.
+[2023-01-10T20:19:20.976Z]	<Transcriber>	Manu_Sporny:  unless he.
+[2023-01-10T20:19:27.169Z]	<Transcriber>	Manu_Sporny: Has a reason he's doing that I'll have to see.
+[2023-01-10T20:19:35.139Z]	<Transcriber>	Manu_Sporny: Was that the wrong place.
+[2023-01-10T20:19:51.936Z]	<Transcriber>	Dave_Longley: Part of the pr was required we wanted to add that property somewhere and I think the problem was that it linked to a it made the schema for a verifiable presentation request have the property within it so we still needed the property somewhere so there's there's some slight problem with how the our particular problem was being addressed I think is what's going on.
+[2023-01-10T20:20:01.337Z]	<Transcriber>	Manu_Sporny: Okay alright so we need to fix that anyway there's a block on that one to pull it in until that's fixed.
+[2023-01-10T20:20:06.696Z]	<Transcriber>	Manu_Sporny: 326 we'll talk about later today.
+[2023-01-10T20:20:39.443Z]	<Transcriber>	Manu_Sporny: 327 so Joe Eric just a heads up to both of you I just redid the diagram that was there and updated it to coordinator and their Google drawings that people can copy and modify and I'm not claiming that it's good I tried to keep the exact same kind of layout I changed this symbol symbology here a little bit.
+[2023-01-10T20:20:39.838Z]	<Transcriber>	Manu_Sporny:  because Google draw was doing weird things.
+[2023-01-10T20:21:08.387Z]	<Transcriber>	Manu_Sporny: Padding that made it look ugly added the disc thing for storage service tried to modify the language here a bit but again I'm totally not wed to any of this I just was trying to get it into a format that all of us could add it so there's a PRN for that with it.
+[2023-01-10T20:21:22.030Z]	<Transcriber>	Joe_Andrieu: Great let's get I hadn't realized we can look at it in the way that you're sharing right now so when I went to go look at them I guess I got to download the repo and whatnot but this looks great so far I will put an eyeball on it to look at the nuances you just mentioned.
+[2023-01-10T20:21:49.038Z]	<Transcriber>	Manu_Sporny: Awesome thanks yeah and feel free to just suggest changes or just clone the Google Doc or I can just give you access to it and you can modify it as you see fit there's a readme in the directory that links to it says for this SVG go to this Google doc so that's the only way I could think of conveying that easily the repo everything else Remains the Same as far as I can tell okay so there's that.
+[2023-01-10T20:22:22.167Z]	<Transcriber>	Manu_Sporny: There are two other PRS that I put in here we have been operating for quite a while without a introductory section in the spec and so now there is this chunk of text that was added as an introduction Ted has already suggested changes that I think are excellent so we'll need to rework the language a bit I got I got trapped in the internal versus external date.
+[2023-01-10T20:22:22.635Z]	<Transcriber>	Manu_Sporny:  API delineation public.
+[2023-01-10T20:22:32.777Z]	<Transcriber>	Manu_Sporny: And that's just language wanted to not use in Ted came up with better language so I'm going to try and apply that so we have an introductory section.
+[2023-01-10T20:22:49.017Z]	<Michael_Herman_(Web_7.0)>	present+
+[2023-01-10T20:23:05.504Z]	<Transcriber>	Manu_Sporny: Or not please take a look at it and improve it if you feel there's a better way to approach it the other one is just a design goals and rationale PR and again I'm just trying this was completely blank I tried to put in a couple of goals like modularity Simplicity composability extensibility and explain why you know these are goals for the API so.
+[2023-01-10T20:23:06.028Z]	<Transcriber>	Manu_Sporny:  that text exists now.
+[2023-01-10T20:23:37.115Z]	<Transcriber>	Manu_Sporny: Fairly generic it does apply it's just not it's not a hand wave but other people might have other goals that they wanted to put in there or you might want to modify the text was trying to keep things kind of short and sweet here and when we talk about design goals and rationale then we go into architecture overview one of the things that is striking me right now looking at this is that we don't refer to the use cases and we totally should so.
+[2023-01-10T20:24:08.624Z]	<Transcriber>	Manu_Sporny: You've got your PR in and we can refer to use cases in the introduction in there's also a related documents part here that we can add and link to it up there but we should totally do that okay that's the entirety of kind of the PRS are there any comments concerns about any of that stuff this was raised two days ago we've got you know until next Sunday to effectively.
+[2023-01-10T20:24:17.157Z]	<Transcriber>	Manu_Sporny: Wait to pull them in so you have until then to review but at a high level any questions concerns about the.
+[2023-01-10T20:24:50.752Z]	<Manu_Sporny>	Topic: Publication via VCWG on hold
+[2023-01-10T20:24:54.231Z]	<Transcriber>	Manu_Sporny: All right well there they are okay back to our agenda thanks all for the support and the oh geez okay so the next item up is our publication in the verifiable credentials working group we had mentioned this before the break.
+[2023-01-10T20:25:25.347Z]	<Transcriber>	Manu_Sporny: This PR there was a PR that was put together to prepare the VC API for for it to be pulled into the verifiable credentials working group we removed what we felt were maybe the controversial features in the VC API which is the exchanges stuff all the exchanges stuff thinking that people wouldn't find issue you know too much issue with the spec as a note and we'd be able to pull it into the verifiable credentials working group.
+[2023-01-10T20:25:25.737Z]	<Transcriber>	Manu_Sporny:  it was listed.
+[2023-01-10T20:25:59.312Z]	<Transcriber>	Manu_Sporny: A at something in the charter that we could do and we could publish but as folks all on the verifiable credentials working group there are a number of organizations that took exception to it Microsoft especially it's taking exception to the work being pulled into the verifiable credentials working group and because of the w3c transition to a legal entity which by the way we're in January in w3c Incorporated.
+[2023-01-10T20:25:59.727Z]	<Transcriber>	Manu_Sporny:  lists people thought it might not transition.
+[2023-01-10T20:26:13.081Z]	<Michael_Herman_(Web_7.0)>	present+
+[2023-01-10T20:26:32.973Z]	<Transcriber>	Manu_Sporny: Moved over the staff have gotten offers they're working not out of the woods yet but they'll be three C exists in 2023 which you know was a chance that it wasn't going to last year but because of that transition the questions that we had sent to the w3c staff they were dealing with larger fires than whether or not we could publish the be Capi in the verify the credentials working group so that got put on hold and.
+[2023-01-10T20:26:33.478Z]	<Transcriber>	Manu_Sporny:  in where we are now.
+[2023-01-10T20:27:03.833Z]	<Transcriber>	Manu_Sporny: Is kind of in limbo with the VC API there a couple of options forward one of them is to publish it as a note in the verifiable credentials working group that is in Charter we put that in the charter for the verifiable credentials working group because we wanted to publish this the VC API in that group and then pave the way for another.
+[2023-01-10T20:27:04.204Z]	<Transcriber>	Manu_Sporny:  pave the way to make it.
+[2023-01-10T20:27:13.735Z]	<Transcriber>	Manu_Sporny: Because of the pushback specifically from Microsoft we.
+[2023-01-10T20:27:47.184Z]	<Transcriber>	Manu_Sporny: We are product we're second-guessing if that's the best approach for it so all other Alternatives is we could ask for a new working group which would probably be a successful Endeavor because we have implemented we have 17 people that implemented the API and jobs for the future plugfest to like it's the we can demonstrate that there's interest in that people have implemented it and will provide implementation feedback that's not an issue so we could have a separate work.
+[2023-01-10T20:27:47.674Z]	<Transcriber>	Manu_Sporny:  King group but then it's weird to have the.
+[2023-01-10T20:28:21.388Z]	<Transcriber>	Manu_Sporny: Then shows data model group and the verifiable credentials API Group and I'm sure they'd talk with each other but it would probably be much easier to just do it all in one group so we could ask for another working group we could pull it into the VC w g which people have already said they're going to fight that and then it comes down to a process question on whether or not we can do that we could ask for another working group which will take time.
+[2023-01-10T20:28:21.999Z]	<Transcriber>	Manu_Sporny:  I'm it'll take months to probably Charter a new working group.
+[2023-01-10T20:28:50.253Z]	<Transcriber>	Manu_Sporny: Which needs its own set of chairs and its own staff contact and all that kind of stuff or we could decide to hold back and continue to incubate it here while we get a little more clarity while w3c Incorporated gets its feet under it in you know gets back to regular operations while the verify credentials specs make a little more progress.
+[2023-01-10T20:28:50.752Z]	<Transcriber>	Manu_Sporny:  It's Kind of a.
+[2023-01-10T20:29:10.979Z]	<Transcriber>	Manu_Sporny: You know it's an open question this group okay sorry that was a lot of background but that's kind of what's going on now thoughts feelings concerns about next steps does anyone have strong feelings about any one of those options or and or a new Option Patrick you're on the queue.
+[2023-01-10T20:29:17.049Z]	<Joe_Andrieu>	q+
+[2023-01-10T20:29:27.959Z]	<Transcriber>	Patrick_(IDLab): What a question but when you see something like some folks push backs against the VC API like do you need unanimity for something like that to go through or it's bit not so clear or do you need majority as it a vote based issue or.
+[2023-01-10T20:29:30.167Z]	<Kayode_Ezike>	My question exactly
+[2023-01-10T20:29:33.143Z]	<Transcriber>	Manu_Sporny: Excellent question Jose on the cue and I'll put myself.
+[2023-01-10T20:29:34.144Z]	<Manu_Sporny>	q+
+[2023-01-10T20:29:56.014Z]	<Transcriber>	Joe_Andrieu: Yeah I'll come in a little bit on that although it's in Charter ultimately the group decides what it's going to do and anything that happened outside the group of four hand is considered not binding so that the group is free to figure out within its scope of membership what that group decides is appropriate and I guess my medic not my man.
+[2023-01-10T20:29:56.468Z]	<Transcriber>	Joe_Andrieu:  a comment with a comment I got.
+[2023-01-10T20:30:30.613Z]	<Transcriber>	Joe_Andrieu: Was I think it and separate working group probably is going to be easier I think you know be Capi conflicts with some other big organizations goals for how they want to say the ecosystem move forward and I appreciate that they don't want this particular API tainting the VC work because that's how they see it they see other ways to deliver credentials and if we separated into its own working group maybe that'll give us the freedom to sit down and solve the problem away.
+[2023-01-10T20:30:31.118Z]	<Transcriber>	Joe_Andrieu:  we want to solve it as we've started here.
+[2023-01-10T20:31:02.721Z]	<Transcriber>	Manu_Sporny: Yep that's an excellent point and yeah exactly what Joe said it is up to the group it's debatable whether or not a minus one you don't need unanimity to pull work in that's not supposed to be how it works you need you need to be you need to have consensus when you decide to push it forward to.
+[2023-01-10T20:31:33.964Z]	<Transcriber>	Manu_Sporny: Recommendation traditionally that's the way it's been but the w3c process is that you can you know you can debate little bits here and there so traditionally you're not supposed to block work that has multiple implementers in a speck in people willing to work on it that's not you know it's it was traditionally viewed as just socially antisocial as you know it too.
+[2023-01-10T20:32:03.851Z]	<Transcriber>	Manu_Sporny: Out a good technical reason like this is going to break the internet so but that's you know we that is what we're expecting to happen because the ccwg has become a bit there is a contentious because of some of the larger players that have joined that have strong opinions about how the verifiable credential ecosystem should.
+[2023-01-10T20:32:11.757Z]	<Transcriber>	Patrick_(IDLab): When you say like the big players that are isn't that like some form of like lobbying there I say.
+[2023-01-10T20:32:39.078Z]	<Transcriber>	Manu_Sporny: Yeah yeah yeah it is but I mean you know we're all their lobbying right I mean you could argue that you know the little company it's a bit different when a large tech company throws their weight around in a working group versus a small tech company which doesn't really have that much weight to throw around right it's also there's been some gaming of process both well behind the scenes and in front of the scenes but that's you know but verify.
+[2023-01-10T20:32:39.445Z]	<Transcriber>	Manu_Sporny:  I will credentials is.
+[2023-01-10T20:33:10.596Z]	<Transcriber>	Manu_Sporny: That doubt that these same companies have been trying to you know slow kill modify take over the work in various ways since the beginning since you know 2014 so you know that's just kind of where that's the that's the environment we're dealing with but it used to be that some of these organizations were outside you know throwing stones into you know the tent and.
+[2023-01-10T20:33:19.200Z]	<Transcriber>	Manu_Sporny: I the tent you know throwing stuff around go ahead Jim.
+[2023-01-10T20:33:22.067Z]	<Manu_Sporny>	q-
+[2023-01-10T20:33:23.206Z]	<Manu_Sporny>	q-
+[2023-01-10T20:33:46.109Z]	<Transcriber>	Joe_Andrieu: Yeah I didn't realize I was gonna ask you twice there in a modest defense of these large players you know standard making is a mess and I don't like some of the things that's been happening but the verifiable credential standard itself does not depend on the exchange protocols so I can appreciate that hey let's let's keep these boundaries clean they're doing it for strategic reasons because they have some other API that they.
+[2023-01-10T20:33:46.487Z]	<Transcriber>	Joe_Andrieu:  / but the.
+[2023-01-10T20:34:08.379Z]	<Transcriber>	Joe_Andrieu: Work itself I don't think is innately sort of Tainted or messed up by this sorts of shenanigans it does make it hard for us to incorporate an alternative transport mechanism which is sort of what we bumped into so hence my advocacy that may be a separate working group is worth it even though it's a lot of extra effort.
+[2023-01-10T20:34:38.881Z]	<Transcriber>	Patrick_(IDLab): Okay because like reading the documentation like one big distinction I'm seeing with the work that's been done we see API it's a lot more of a technical approach as like the VC data model for example is more like just a specification that doesn't really tell people how to do stuff and I see this API maybe is I want to say like tightening the screw a little bit on a how to do stuff so that's like one distinction.
+[2023-01-10T20:34:39.367Z]	<Transcriber>	Patrick_(IDLab):  Ian I could see I don't know if that has to play with the.
+[2023-01-10T20:34:48.579Z]	<Michael_Herman_(Web_7.0)>	What is the transport that Mi roso
+[2023-01-10T20:34:58.300Z]	<Transcriber>	Manu_Sporny: Yeah I don't know how much it's driving the decisions that is I mean your read on it's right I mean we're trying to actually get to you know moving these credentials around not saying that they just exist so.
+[2023-01-10T20:35:07.027Z]	<Transcriber>	Manu_Sporny: Hearing that maybe what we want to do is just prep a new working group Charter for verifiable credential API.
+[2023-01-10T20:35:21.101Z]	<Joe_Andrieu>	q-
+[2023-01-10T20:35:23.813Z]	<Michael_Herman_(Web_7.0)>	What is the transport that Microsoft prefers?
+[2023-01-10T20:35:27.699Z]	<Transcriber>	Manu_Sporny: And and understanding that that's going to take a while and of course you know the current V CW G also has a saying that it's not just you know us that gets to know things there go ahead Dave.
+[2023-01-10T20:35:34.576Z]	<Kayode_Ezike>	If we end up forming a new working group, might it still cause challenges by creating a schism in the community?
+[2023-01-10T20:35:43.971Z]	<Manu_Sporny>	Microsoft prefers OpenID4VCI and OpenID4VP
+[2023-01-10T20:35:57.421Z]	<Transcriber>	Dave_Longley: Yeah one of the important things for a new working group like that is getting an idea of how many people would be actively joining and participating in those goals how many of the people because if you're a member of the w3c ccg you don't necessarily have to be a w3c member and pay member dues so it would be good to get an idea of how many of the members how many of the ccg members and people who have been participating on these goals would be involved in the working group.
+[2023-01-10T20:36:00.337Z]	<Michael_Herman_(Web_7.0)>	Thk u
+[2023-01-10T20:36:04.342Z]	<Transcriber>	Manu_Sporny: Yep exactly coyote do you do you want to vocalize your question I think it's a good one.
+[2023-01-10T20:36:34.952Z]	<Transcriber>	Kayode_Ezike: Yeah I mean I think for this one it kind of feels like we did the new working group would be sort of like the little brother or kind of like Black Sheep that's been trying its best to to make a case for itself to be incorporated into the larger we see W to Brooke Group which is I think in many people's eyes the main working group for without credentials I agree that it's it's technically different.
+[2023-01-10T20:36:35.572Z]	<Transcriber>	Kayode_Ezike:  it's is different things were specifying as far as like scheme.
+[2023-01-10T20:36:50.444Z]	<Paul_Dietrich_GS1>	Any thoughtful comparisons documents of OpenID4VC(s) and VC-API?
+[2023-01-10T20:37:02.111Z]	<Transcriber>	Kayode_Ezike: Um versus protocol but it kind of like because of the fact that most people already there and that's kind of the sensor center of gravity the way I see it I just wonder what kind of challenges it could love the this group so I don't have a clear idea of like what that would look like but it's just something I felt that I should go close.
+[2023-01-10T20:37:09.363Z]	<Transcriber>	Manu_Sporny: Yep let's say it's a good it's a good point there is always the risk I mean you know there's always the risk that.
+[2023-01-10T20:37:42.528Z]	<Transcriber>	Manu_Sporny: Looking at it from like a process gaming standpoint sometimes you want a piece of work item to kind of be split off from the main thing so that you can kill it or formally object that it should get started or give it a harder time starting up so there is that potential or it can turn out really well because if nobody formally objects to it in the group get started then you have a group of people that are motivated to work on that thing and it's very tightly focused on that thing.
+[2023-01-10T20:37:43.042Z]	<Transcriber>	Manu_Sporny:  the danger there of course is that.
+[2023-01-10T20:38:04.588Z]	<TallTed>	invited experts are a thing...
+[2023-01-10T20:38:17.858Z]	<Transcriber>	Manu_Sporny: Will not be able to pull some of the community in for that work because you have to be a w3c member to do it and if only you know a handful of w3c members show up there's a chance that people people that are hostile to the work could join the group and in kind of disrupt it so they're their benefits and drawbacks to the approach and Ted you're right invited experts are thing and so we could invite experts into the.
+[2023-01-10T20:38:18.500Z]	<Transcriber>	Manu_Sporny:  group but of course then you know that decision is up to the chairs.
+[2023-01-10T20:38:34.746Z]	<TallTed>	all solutions are imperfect. sadly.
+[2023-01-10T20:38:35.524Z]	<Transcriber>	Manu_Sporny: If you have good welcoming inclusive chairs that works out well but I've seen groups where the staff was pushed by management to basically say no to in minded experts.
+[2023-01-10T20:39:05.975Z]	<Transcriber>	Manu_Sporny: At too many invited experts in the group w3c members that are paying dues get kind of cranky okay I think we've probably talked about this enough I'm not hearing super strong opinions one way or the other other than maybe we should look into separate working group for the item understanding that it could take up to a year to get that started if we started on the charter now.
+[2023-01-10T20:39:06.543Z]	<Transcriber>	Manu_Sporny:  and it was.
+[2023-01-10T20:39:16.528Z]	<Paul_Dietrich_GS1>	q+
+[2023-01-10T20:39:18.132Z]	<Transcriber>	Manu_Sporny: You know in the next six months the soonest it would probably be up for a vote would be October of this year and that's a long time to wait.
+[2023-01-10T20:39:21.103Z]	<Transcriber>	Manu_Sporny: Go ahead Paul.
+[2023-01-10T20:39:27.740Z]	<Transcriber>	Paul_Dietrich_GS1: Yamato I know you talked about that as one of the Alternatives I missed were there other Alternatives that were proposed.
+[2023-01-10T20:39:55.555Z]	<Transcriber>	Manu_Sporny: Yeah just pull the work it recharged sorry the recharter the so we could do two things with the current working group we could pull the work into the current working group if there's agreement to do it or if process allows us to do that or we could reach harder the current working group and say once we're done with the data model stuff that working groups going to work on the verifiable credential API.
+[2023-01-10T20:40:05.930Z]	<Transcriber>	Manu_Sporny: And that might go a little faster because we already have a group set up in re Charters tend to go faster than a totally new group being.
+[2023-01-10T20:40:08.375Z]	<Transcriber>	Paul_Dietrich_GS1: I see thank you.
+[2023-01-10T20:40:21.700Z]	<Transcriber>	Manu_Sporny: It recharges could take it once we decide to do a recharger it could take three months to five months maybe if we decide to do a working group it could take eight months to a year.
+[2023-01-10T20:40:42.919Z]	<Transcriber>	Manu_Sporny: And then if we decide to just pull the work into the existing VC w g it's just the group votes to do that and it happens but then of course the specification won't have any standards it won't be a standard until the group is re-chartered to publish it as a standard.
+[2023-01-10T20:40:47.458Z]	<Transcriber>	Manu_Sporny: So those are the options.
+[2023-01-10T20:41:00.745Z]	<Manu_Sporny>	Topic: Reference error schema on errors?
+[2023-01-10T20:41:06.097Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pull/326
+[2023-01-10T20:41:14.655Z]	<Transcriber>	Manu_Sporny: All right let's get into some of the technical discussion so next up is reference what we're going to do about errors across the API so Nate Otto did a PR recently 326 that basically.
+[2023-01-10T20:41:45.431Z]	<Transcriber>	Manu_Sporny: Raise the question what are we doing for errors so we have our codes that are listed in the specification and we have this error response object but we're kind of like picking and choosing where we use it it's not used everywhere and so the question is when there is an error should we always provide an error response and the error response contains forget it's like an ID.
+[2023-01-10T20:41:45.790Z]	<Transcriber>	Manu_Sporny:  / code.
+[2023-01-10T20:41:51.047Z]	<Transcriber>	Manu_Sporny: A description in details.
+[2023-01-10T20:42:10.310Z]	<Transcriber>	Manu_Sporny: So we can add it to this one call he's got I forget what this call is it's this is the get credentials my ID call will throw an error and explain why.
+[2023-01-10T20:42:23.061Z]	<Transcriber>	Manu_Sporny: For a 404 and there's a question of like should we be doing that for a 404 but should all of these other error codes.
+[2023-01-10T20:42:31.829Z]	<Transcriber>	Manu_Sporny: Sorry all these other HTTP errors have an error code error response object in the response.
+[2023-01-10T20:42:37.285Z]	<Transcriber>	Manu_Sporny: Thoughts questions concerns.
+[2023-01-10T20:42:48.872Z]	<Transcriber>	Manu_Sporny: Go ahead Dave.
+[2023-01-10T20:43:01.543Z]	<Transcriber>	Dave_Longley: I'm ambivalent about it I think it's most important to get the status codes right and you know we've been doing that so far it's just a question of whether implementing this one all of the.
+[2023-01-10T20:43:30.871Z]	<Transcriber>	Dave_Longley: And to have to be the same for all of these apis becomes more important if there's any particular values that should be sent back to be acted upon along with the error messages as opposed to all of the information being adequately communicated via the status if we do decide to use some common error thing if if we're going to admit our own we need to.
+[2023-01-10T20:43:31.322Z]	<Transcriber>	Dave_Longley:  figure that.
+[2023-01-10T20:43:48.648Z]	<Transcriber>	Dave_Longley: And if we're going up ideally we wouldn't invent our own and we would turn to some other specification to do it provided that it matches what we're trying to accomplish here and that that other specification is actually used by other people in the in the community.
+[2023-01-10T20:43:52.872Z]	<Transcriber>	Manu_Sporny: You mean for error codes.
+[2023-01-10T20:44:10.576Z]	<Transcriber>	Dave_Longley: For error codes or even just the error data model I know that there was there's some RFC that maybe Mark Nottingham put together at some point for HTTP errors that we could look at I don't know if anyone uses that.
+[2023-01-10T20:44:10.934Z]	<Transcriber>	Dave_Longley: And I do.
+[2023-01-10T20:44:41.910Z]	<Transcriber>	Dave_Longley: If it fits our use cases it's I know that it might not quite match up with how errors are returned from some implementations today number of implementations use like the name field for errors because it matches how errors are implemented in for example JavaScript and on the web and that might create a difference that might be problematic for a w3c spec so those are also.
+[2023-01-10T20:44:42.186Z]	<Transcriber>	Dave_Longley:  the considerations.
+[2023-01-10T20:44:51.673Z]	<Transcriber>	Joe_Andrieu: I had a question I don't know if Paul still on the queue.
+[2023-01-10T20:44:54.046Z]	<Paul_Dietrich_GS1>	q-
+[2023-01-10T20:44:55.247Z]	<Manu_Sporny>	ack paul
+[2023-01-10T20:44:56.630Z]	<Transcriber>	Manu_Sporny: I don't think so sorry I forgot to ask them.
+[2023-01-10T20:45:08.403Z]	<Transcriber>	Joe_Andrieu: My question is is there or what is the framework for extensibility in those responses I think especially in error codes.
+[2023-01-10T20:45:16.831Z]	<Transcriber>	Joe_Andrieu: It seems like there may be open-ended things you may want to pass back.
+[2023-01-10T20:45:44.257Z]	<Transcriber>	Manu_Sporny: Yeah the current the current error object we have has a code so you know you get the HP code and then in the error response there's like an ID like not found or something like that and then there's a description which is just a textual description that it doesn't have to be what's in the spec it's can be in the native language of you know entity calling.
+[2023-01-10T20:46:08.423Z]	<Transcriber>	Manu_Sporny: People and then there's a details object that's arbitrary people can put an arbitrary amount of data in there and I think that's the extensibility model or so so the description field extensible in that you can put anything kind of you want in there as long as it's accurate and then the details object can have an arbitrary data placed into it go ahead Dave.
+[2023-01-10T20:46:33.207Z]	<Transcriber>	Dave_Longley: I'm not a huge fan of using the ID field the way that that was described because we use the ID field in all of the other data to describe specific objects and it sounds like the ID field for errors of used in that way would be not an idea of a specific error but more or less the name or type of an error and it seems like we should be using a different field like name or type for that error.
+[2023-01-10T20:46:52.329Z]	<Transcriber>	Joe_Andrieu: Yeah I agree but when you were talking about extensibility I was expecting that you would say Hey you go take the ID and you can go get more information on that error but if it is the category of the ID then there's no way to get specific information based on it.
+[2023-01-10T20:47:01.238Z]	<Transcriber>	Dave_Longley: Let's get mono a second type that up because we talk to way too fast for him.
+[2023-01-10T20:47:10.055Z]	<Transcriber>	Manu_Sporny: Okay so I am.
+[2023-01-10T20:47:36.781Z]	<TallTed>	q+
+[2023-01-10T20:47:41.325Z]	<Transcriber>	Manu_Sporny: I am forgetting exactly what's in there today well the first question is do we want to always return an error I'm hearing know we can depend on the error code for most of it and only in places where you actually want to add more information to you return an error that's one option the other option is it's up to the implementation to return an error object or not or there may be some error codes.
+[2023-01-10T20:47:41.654Z]	<Transcriber>	Manu_Sporny:  where the.
+[2023-01-10T20:47:52.640Z]	<Transcriber>	Manu_Sporny: Definitely wants to return an error in specific details and those will be dealt with on a case-by-case basis.
+[2023-01-10T20:47:59.814Z]	<Transcriber>	Manu_Sporny: Before we look details.
+[2023-01-10T20:48:07.730Z]	<Transcriber>	Dave_Longley: You're Mike got a little muffled Manu but Ted's on the queue.
+[2023-01-10T20:48:09.323Z]	<Transcriber>	Manu_Sporny: Sorry go ahead.
+[2023-01-10T20:48:36.141Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Yeah I'm pretty good with mandating sort of minimal requirements but also allowing for larger responses and as a troubleshooter I absolutely want to be able to get the biggest error I can so this might be a configurable thing that might be switchable whether it's by user basis or the admin has to push a button or whatever that's.
+[2023-01-10T20:48:36.474Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  that sort of thing.
+[2023-01-10T20:48:39.676Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I think implementation-specific.
+[2023-01-10T20:48:47.234Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): But I definitely want to leave the door open for implementations to provide.
+[2023-01-10T20:48:53.254Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Really sufficient information to troubleshoot whatever it is it's Arirang for whatever reason.
+[2023-01-10T20:48:59.172Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I know we all we only write perfect code but.
+[2023-01-10T20:49:00.926Z]	<Dave_Longley>	:)
+[2023-01-10T20:49:01.674Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): He's going to do something someday.
+[2023-01-10T20:49:15.274Z]	<Transcriber>	Manu_Sporny: Yeah okay what about are we mandating that an error always be returned on an error when an error codes raised.
+[2023-01-10T20:49:21.978Z]	<Alan_Karp>	+1 @tallted
+[2023-01-10T20:49:23.658Z]	<Transcriber>	Manu_Sporny: My I'm suggesting let's not do that I think that's too too heavy weight go ahead Longley.
+[2023-01-10T20:49:37.630Z]	<Transcriber>	Dave_Longley: I'd say we shouldn't do it until we find that we need to do it and I don't think that anyone here is saying that we know that we need to do it anywhere yet trying to think if they're there probably are.
+[2023-01-10T20:49:39.053Z]	<TallTed>	q-
+[2023-01-10T20:50:08.489Z]	<Transcriber>	Dave_Longley: There are cases I know where we should if we're not already be returning error codes for like duplicate issued VCS but again that's like a 409 status code can indicate that so I think we need to find cases where the HTTP status code is insufficient and if it's insufficient then we then we would mandate something but until then we should just say that you can return it if you are going to return an error you can return it.
+[2023-01-10T20:50:37.797Z]	<Transcriber>	Dave_Longley: We expect you to return Json of some kind but we don't have to say what it is and it could be implementation-specific as Ted said both for what you return and whether or not it's configurable to return the biggest terrorists as 10 put so I think until we know that we need something more than this we shouldn't mandate that people do something.
+[2023-01-10T20:50:43.926Z]	<Transcriber>	Manu_Sporny: What about if I can implementation decide to return an error code where the spec doesn't say to return one.
+[2023-01-10T20:51:08.156Z]	<Transcriber>	Dave_Longley: By Eric oh do you mean yeah I certainly think implementation should be allowed to return errors but at this time they should be understood to be implementation-specific so no one using it should rely on that to be the same across different implementations.
+[2023-01-10T20:51:28.825Z]	<Transcriber>	Manu_Sporny: Us implementations less is specified be the same either specification go ahead Patrick.
+[2023-01-10T20:51:58.110Z]	<Transcriber>	Patrick_(IDLab): Yeah I agree with this I think covering all state to code possible is a must for case that might need more information I'm thinking maybe some kind of specification that two different errors could return the same error code they would be good to know the the reason for it in the case that some implemented would want to return more detail about the ever I.
+[2023-01-10T20:52:15.274Z]	<Transcriber>	Patrick_(IDLab): Good idea to have a sort of predefined Shimmer for how ever bodies should be but leave the content at the ends of the implementer that would be the than what comes to mind for me.
+[2023-01-10T20:52:28.297Z]	<Transcriber>	Manu_Sporny: That that is helpful thank you Eddie any other input on this I think basically where we are right now is saying that.
+[2023-01-10T20:52:51.334Z]	<Transcriber>	Manu_Sporny: By default use HTTP error codes to return errors where it is implementers can always choose to include an error response object if they want to in the specification May in the future.
+[2023-01-10T20:52:57.691Z]	<Transcriber>	Manu_Sporny: Standardize some error response values.
+[2023-01-10T20:53:12.336Z]	<Transcriber>	Manu_Sporny: If we think that that's a good thing to do at a later date so I think in general that's what we're saying are there any objections or disagreements that kind of phrasing or that approach.
+[2023-01-10T20:53:58.193Z]	<Transcriber>	Manu_Sporny: It's English pea response response codes some implementers may return an error response if they just implementers may return a response for.
+[2023-01-10T20:54:21.354Z]	<Transcriber>	Manu_Sporny: HP error the specification May later date to find specific error responses in specific situations go ahead Dave.
+[2023-01-10T20:54:52.647Z]	<Transcriber>	Dave_Longley: Yeah I worry that using the camelcase error response here is a little perhaps too prescriptive it does making it sound like if you're going to send an error response that has to match this schema and I think what we want to do instead is say this is a suggested schema but you can do whatever you want and then we should additionally probably bike shed with that schema is since people won't since it's their people will use it or we should remove it because if we're not.
+[2023-01-10T20:54:53.402Z]	<Transcriber>	Dave_Longley:  one of the reasons not to say.
+[2023-01-10T20:54:53.692Z]	<Dmitri_Zagidulin>	we should probably look at the various RFCs that specify error detail fields..
+[2023-01-10T20:55:24.296Z]	<Transcriber>	Dave_Longley: If we're not if multiple people aren't implementing this in interrupting on it then we might have made the wrong decision and then there might be people that are going to need to change what they've done and they will be pushed back on that because the spec even made a suggestion and so unless we're going to put in expend the effort to make this error response thing good and match what we think is a good idea and have put.
+[2023-01-10T20:55:24.700Z]	<Transcriber>	Dave_Longley:  current amount of work into that.
+[2023-01-10T20:55:39.019Z]	<Transcriber>	Dave_Longley: Might be better to just say you can send a send a response response is expected to be Jason for example since all the other data here is Jason and leave it at that.
+[2023-01-10T20:55:56.807Z]	<Transcriber>	Manu_Sporny: Okay well I think this is ready for a PR and then we can bike shed the pr building noting what you just said well only.
+[2023-01-10T20:56:10.758Z]	<Transcriber>	Dave_Longley: Yeah if you can just have some note that says we might want to just say that they are response is Jason and not use any suggested schema that can be bike shed in the pr.
+[2023-01-10T20:56:50.383Z]	<Transcriber>	Patrick_(IDLab): I'm just thinking also like if we go back to the test Suite like in the case we want to have like a negative test you know like the test like is invalid credential idea or whichever and we want to analyze the response to match the test might be better to do if there's this like predefined ever Shima and that could be another reason.
+[2023-01-10T20:56:50.758Z]	<Transcriber>	Patrick_(IDLab):  and why would be good.
+[2023-01-10T20:56:54.933Z]	<Transcriber>	Manu_Sporny: Go ahead Dave.
+[2023-01-10T20:57:02.593Z]	<Michael_Herman_(Web_7.0)>	present+
+[2023-01-10T20:57:27.662Z]	<Transcriber>	Dave_Longley: I think if we're going to do that then that's a that's a case where we would just mandate you must have this in the response so if the test Suite is going to depend on that that's what people would Implement to and then there would be some semblance of interoperable and it so either the test Suites just going to look for HTTP status codes which might be better here since we don't really know what we want the errors to be or we find cases where we do think we know what the we want the heiress to be and then we mandate those.
+[2023-01-10T20:57:28.244Z]	<Transcriber>	Dave_Longley:  but I don't think we should do something sort of in between that because it ends up.
+[2023-01-10T20:57:38.642Z]	<Transcriber>	Dave_Longley: Facto what people are required to do and we just didn't say it and we didn't get the put in the effort to make sure it's what everybody wanted.
+[2023-01-10T20:57:56.633Z]	<Transcriber>	Manu_Sporny: All right I'm stopping Patrick okay so noting that we are more or less at time I am going to do this was this was already PR this should probably have been.
+[2023-01-10T20:58:01.507Z]	<Transcriber>	Manu_Sporny:  where's the.
+[2023-01-10T20:58:08.907Z]	<Transcriber>	Manu_Sporny: Work the issue button reverence and new issue.
+[2023-01-10T20:58:37.705Z]	<Transcriber>	Manu_Sporny: Let's see specify how error values it's fi if error details so that's why how are details are returned.
+[2023-01-10T20:58:52.207Z]	<Transcriber>	Manu_Sporny: Okay so create issue and then we will mark this as ready for PR.
+[2023-01-10T20:59:18.795Z]	<Transcriber>	Manu_Sporny: Okay that's that item thank you everyone for the discussion around that apologies for not getting to the exchanges and points discussion we will start the next call with this item in a few other issues thanks everyone for the great call today I appreciate it have a wonderful rest of your week and we will meet again next week take care bye.
+
