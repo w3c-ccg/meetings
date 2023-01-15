@@ -1,0 +1,849 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-01-10-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-01-10-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2023-01-10
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2023Jan/0020.html
+Topics:
+  1. Introductions, Relevant Community Updates
+  2. MATTR Launchpad
+  3. Pull Request Review
+  4. Publication via VCWG on hold
+  5. Reference error schema on errors?
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Greg Bernstein, Manu Sporny, Eric Schuh, Mahmoud Alkhraishi, Joe 
+  Andrieu, Alan Karp, Patrick (IDLab), Dmitri Zagidulin, TallTed // 
+  Ted Thibodeau (he/him) (OpenLinkSw.com), Dave Longley, Paul 
+  Dietrich GS1, Pete, Kayode Ezike, Ted Thibodeau, Michael Herman
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Success all right welcome everyone to the 
+  verifiable credentials API work item called This is the first 
+  call of the Year our agenda is here this is our chance this is 
+  our agenda.
+Manu Sporny:  On the agenda today we have just a quick discussion 
+  update on BC the verifiable credentials working group and getting 
+  the VC API through there we should look at some PRS I forgot to 
+  put that on the agenda but we've got a couple of PR's that we 
+  need to process so please don't let me forget to do that.
+Manu Sporny:   At the top of the call.
+Manu Sporny:  And we will have a discussion around Nate Autos PR 
+  reference error schemas or errors and then a discussion about all 
+  Z authorization in the exchanges and point and then talk about 
+  other issues and things as time permits are there any other 
+  updates or changes to the agenda before we get started anything 
+  else people want to talk about.
+Manu Sporny:  Go ahead Patrick.
+Patrick_(IDLab): Yeah just said if we have time there it's come 
+  to my attention a solution from matter it was called the launch 
+  pad from matter labs and add a bit of a look and I'm curious if 
+  we could see how this would fit into the VC API that we are 
+  discussing here.
+Manu Sporny:  Yep sounds good let's put that at the front of the 
+  agenda if you don't think that's going to take a while to do Eric 
+  you're on the queue.
+<mahmoud> would anyone not speaking be able to mute please
+Eric Schuh:  Yeah just wanted to give a quick update on it's a 
+  document since I was out last week there should be the pr getting 
+  updates in the next hour or two and I plan on pushing it over to 
+  Joe for final approval kind of as we discussed just wanted to 
+  give another shout-out to tall Ted for all of his comments and 
+  suggestions so thanks for that that PR should go through 
+  hopefully end of day unless there's something weird that happens.
+Manu Sporny:  Excellent great so that was an update on the use 
+  cases right great thank you very much for that work is it worth 
+  taking a look at anything on the call today Eric do you feel or.
+Eric Schuh:  Unfortunately not I mean I'm working on it right now 
+  so.
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  Gotcha okay okay all right that sounds good thank 
+  you again for the update and thank you Ted for your tireless work 
+  on making sure we convey the things we want to convey all right 
+  let's let's pick up your item well okay let's let's do quick 
+  intros relevant Community updates I think do we have anyone new 
+  here I think we all know each.
+Manu Sporny:   Other fairly well at this point.
+Manu Sporny:  Um Alan do you want to give a quick intro to 
+  yourself I think most of us know you there might be something.
+Alan Karp:  I'm Allen carp I'm the capabilities guy I've been 
+  lurking on this list for a while and my mission is to keep you 
+  guys from making new be capability mistakes that I myself made 
+  when I was a newbie.
+Manu Sporny:  Awesome thank you and that's always appreciated 
+  Alan Pete do you want to introduce yourself you don't have to but 
+  we'd love to hear a bit about your background if you're if you 
+  want to share.
+Manu Sporny:  If you're searching for the mute button it's not 
+  the bottom left of the bar but maybe maybe not.
+Manu Sporny:  Okay any relevant Community updates or things of 
+  that nature the I have just one quick one around status list 2021 
+  that's been moved to the VC working group it's arguable that 
+  there is a part of status list 2021 that is pseudo dependent on 
+  the VC API we certainly have it in our diagrams that a.
+Manu Sporny:   List service would exist.
+Manu Sporny:  And it is unknown what that overlap is but 
+  basically anything that the spec the status list 2021 spec will 
+  say is kind of sort of out of our control except oh good chunk of 
+  us are in that group so anyway just a heads up that that's moved 
+  to the official working group and is a standards track work item 
+  at this point Patrick you're up.
+Patrick_(IDLab): Oh yeah just wanted to give a few updates about 
+  what's going on here and Canada so the idea lab is officially 
+  helping the province of Quebec for their digital ID program since 
+  just before the holidays parallel to that Newfoundland announced 
+  last week they were starting the POC for the digital ID program 
+  as well so I think we'll see a lot of things happening there the 
+  other thing the Aries agent testified.
+Patrick_(IDLab):  harness maintainers are looking into.
+Patrick_(IDLab): In the VC API test Suites and to their flow 
+  somewhere so at the moment is just an observation of how that 
+  would be possible and that's it for me thank you.
+Manu Sporny:  Wonderful thank you Patrick I appreciate that and 
+  exciting news did you know what kind of Technologies Quebec in 
+  Newfoundland are have have picked or is that still up in the air 
+  or.
+Patrick_(IDLab): So at the moment it Quebec Ontario and BC are 
+  sort of caliber collaborating on a pan-canadian blockchain 
+  initiative working with Hyper Ledger in the so this is a very 
+  much an action mostly led by b.c. the other provinces are 
+  learning the technology for Newfoundland there was not much 
+  information but I'm not.
+Patrick_(IDLab):  assuming they will join.
+Patrick_(IDLab): Network once it's a bit more mature.
+Manu Sporny:  Great thank you for that Patrick and certainly 
+  please keep us up-to-date if you find out anything new that's 
+  interesting interesting developments okay any other announcements 
+  or introductions before we get into topics.
+
+Topic: MATTR Launchpad
+
+Manu Sporny:  Patrick let's start with yours so this is the 
+  matter Launchpad I think.
+Patrick_(IDLab): Yeah yeah so I just discovered this solution 
+  today someone showed it to me and I thought they was a cool maybe 
+  you can tell me more about it I'm assuming you're familiar with 
+  this platform.
+Manu Sporny:  Sorry I was muted I've seen it in a demo here and 
+  there but I'm not familiar with it so do you have a link in.
+https://launchpad.mattrlabs.com/
+Patrick_(IDLab): Yeah I can share the link basically they offered 
+  three examples of credentials that you can issue to be proof of 
+  concept once you go through the step you get to a certain point 
+  so you can pretend to be a specific user and then it generates 
+  you a QR code and this QR code is did web URL.
+Patrick_(IDLab): And it says open and wallet so I was just 
+  curious like.
+Patrick_(IDLab): How could the VC API be leveraged to ingest this 
+  information if possible or if I'm misunderstanding the principal 
+  here.
+Manu Sporny:  Yes we have seen this so in the jobs for the future 
+  plugfest number two its this launch pad that the open ID connect 
+  folks used to do the interactions so this is very much as far as 
+  I understand it focused on open ID connect and those mechanisms 
+  the but again I might be totally wrong on this it.
+Manu Sporny:   Was kind of.
+Manu Sporny: https://playground.chapi.io/issuer
+Manu Sporny:  Created as an oid C version of the chappie issuer 
+  playground which uses VC API in chappie so it's got two protocols 
+  that it uses today to move credentials from an issuing platform 
+  to a wallet it uses just straight chappie and then chappie to 
+  provide a VC API endpoint which then you do a VC API exchange and 
+  Kyle.
+Patrick_(IDLab): You said that a coyote or what's the duct.
+Manu Sporny:  All version of that in the jobs for the future 
+  plugfest to so I think it's I think it's similar in nature to 
+  that let me let me see if I can share so this here he's here 
+  coyote are you.
+Manu Sporny:   Yeah they are.
+Kayode Ezike:  Yep yeah you referring to the exchanges work for 
+  right yes so basically that's exactly right use the The Leverage 
+  The chappie Playground that model showing right now to know to 
+  engage in in the exchanges workflow from a native wallet and I'm 
+  happy to answer any questions related to that.
+Manu Sporny:  Yeah so it's as far as I think Patrick I understand 
+  it these two sites effectively do the same thing the matter 
+  launch pad does it for open ID for VCI in the chappie playground 
+  does it for VC API in chappie to protocols go ahead Dave.
+Dave Longley:  Yeah just have a quick question because Patrick 
+  you said that the QR code has a did web URL in it I would have 
+  expected it to be an open ID initiate issuance URL so that when I 
+  QR code comes up if you use a wallet that supports open ID 
+  connect verifiable credential issuance it could scan that QR code 
+  and get that oid C4 VCI URL.
+Dmitri Zagidulin:  It is it is a initiate issue it's got ya.
+Dave Longley:  Okay yeah so this playground is just doing 
+  delivery of the credential or you know this launch pad is doing 
+  delivery of the crown jewel through oid C4 B CI instead of 
+  through the VC API you can build a similar site that used to be 
+  Capi in the background the do all the exchange all of the 
+  issuance and verification stuff but the VC API does delivery 
+  either directly through choppy or.
+Dave Longley:   Through exchanges URLs and.
+Dave Longley:  Oid C4 B CI QR code is an alternative to that 
+  mechanism you could you know put a exchanges URL in a QR code to 
+  do it through BC API but effectively what's going on is a 
+  different protocols being spoken to do the delivery.
+Patrick_(IDLab): Interesting I will definitely spend more time 
+  experimenting with it it's very interesting and it's just a side 
+  note I totally forgot to the committee of data we had a 
+  consultation with company called volte and they want to develop 
+  test Suites for oid see.
+Patrick_(IDLab):  for verify.
+https://vaultie.io/
+Patrick_(IDLab): So I don't know if it's a organization that 
+  you've heard of before.
+Manu Sporny:  I have not heard of them but that's interesting 
+  actually no V yeah I've heard of them forget where but I've heard 
+  about these folks.
+Patrick_(IDLab): I don't know much about how far off they are but 
+  it was something they're interested in it.
+Manu Sporny:  Yeah they haven't I don't think they've 
+  participated in any of the plugfest stood eight but does anyone 
+  know as anyone interacted with them.
+Manu Sporny:  Okay so don't know yeah I mean yeah I think that 
+  would be a would be a very useful thing to have in the ecosystem 
+  now is just I mean just more test Suite stood for 
+  interoperability so we people can test it still you know a little 
+  too hard to demonstrate inner up these days and I think we're 
+  actively working on this across the multiple protocols okay so 
+  I'll stop screen sharing their in Patrick did that.
+Manu Sporny:   Over the yeah that covered the launch.
+Manu Sporny:  You want to.
+Patrick_(IDLab): Yeah I took some notes and I'll play around when 
+  I have some down time at work.
+Manu Sporny:  Okay alright let's sounds good the next thing up we 
+  should probably do is pull request review we have one of these 
+  pull requests.
+
+Topic: Pull Request Review
+
+Manu Sporny:  Her so I'll skip that one but.
+Manu Sporny:  Other ones we should take a look at let me share my 
+  screen.
+Manu Sporny:  So just real quick we had to pull request that had 
+  been out there for a while so Andrew Jones has put quite a number 
+  of just bug fix things into the the into the spec these are 
+  issues that he found while implementing.
+Manu Sporny:  Implementing the VC API the test Suites for the 
+  some of the VC API things and so like this you know the continue 
+  here using post and not put in updating some of the examples so 
+  last four days these are the three that we ended up pulling in 
+  they were out there for a while so just a heads up the folks that 
+  we pull these in take a look at them I don't think that they work 
+  on.
+Manu Sporny:  You know things like adding a description to the 
+  like you know adding descriptions to some of the like the error 
+  response right this was leading to some some bad renderings okay 
+  next item up is.
+Manu Sporny:  This one we're going to talk about here in a bit 
+  preparing the document for publication as of ECW G item this one 
+  I think is still a work in progress adding 44 as a response for 
+  getting delete to make it aligned with VPS I think Andrew 
+  currently has this as a draft so it's been approved but we're not 
+  he needs to I guess we need to Ping.
+Manu Sporny:   Him to make it.
+Manu Sporny:  PR so that we can pull it in.
+Manu Sporny:  323 Ads verifiable presentation request to exchange 
+  initiate I believe this is an error I think Longley you looked at 
+  this and I looked at this and I think the error that's being made 
+  here is that he's adding a top-level verifiable presentation 
+  request which will make it double nested in the rest of the specs 
+  so we need to this PR probably just needs to be rejected.
+Manu Sporny:   Unless he.
+Manu Sporny:  Has a reason he's doing that I'll have to see.
+Manu Sporny:  Was that the wrong place.
+Dave Longley:  Part of the pr was required we wanted to add that 
+  property somewhere and I think the problem was that it linked to 
+  a it made the schema for a verifiable presentation request have 
+  the property within it so we still needed the property somewhere 
+  so there's there's some slight problem with how the our 
+  particular problem was being addressed I think is what's going 
+  on.
+Manu Sporny:  Okay alright so we need to fix that anyway there's 
+  a block on that one to pull it in until that's fixed.
+Manu Sporny:  326 We'll talk about later today.
+Manu Sporny:  327 So Joe Eric just a heads up to both of you I 
+  just redid the diagram that was there and updated it to 
+  coordinator and their Google drawings that people can copy and 
+  modify and I'm not claiming that it's good I tried to keep the 
+  exact same kind of layout I changed this symbol symbology here a 
+  little bit.
+Manu Sporny:   Because Google draw was doing weird things.
+Manu Sporny:  Padding that made it look ugly added the disc thing 
+  for storage service tried to modify the language here a bit but 
+  again I'm totally not wed to any of this I just was trying to get 
+  it into a format that all of us could add it so there's a PRN for 
+  that with it.
+Joe Andrieu:  Great let's get I hadn't realized we can look at it 
+  in the way that you're sharing right now so when I went to go 
+  look at them I guess I got to download the repo and whatnot but 
+  this looks great so far I will put an eyeball on it to look at 
+  the nuances you just mentioned.
+Manu Sporny:  Awesome thanks yeah and feel free to just suggest 
+  changes or just clone the Google Doc or I can just give you 
+  access to it and you can modify it as you see fit there's a 
+  readme in the directory that links to it says for this SVG go to 
+  this Google doc so that's the only way I could think of conveying 
+  that easily the repo everything else Remains the Same as far as I 
+  can tell okay so there's that.
+Manu Sporny:  There are two other PRS that I put in here we have 
+  been operating for quite a while without a introductory section 
+  in the spec and so now there is this chunk of text that was added 
+  as an introduction Ted has already suggested changes that I think 
+  are excellent so we'll need to rework the language a bit I got I 
+  got trapped in the internal versus external date.
+Manu Sporny:   API delineation public.
+Manu Sporny:  And that's just language wanted to not use in Ted 
+  came up with better language so I'm going to try and apply that 
+  so we have an introductory section.
+Manu Sporny:  Or not please take a look at it and improve it if 
+  you feel there's a better way to approach it the other one is 
+  just a design goals and rationale PR and again I'm just trying 
+  this was completely blank I tried to put in a couple of goals 
+  like modularity Simplicity composability extensibility and 
+  explain why you know these are goals for the API so.
+Manu Sporny:   That text exists now.
+Manu Sporny:  Fairly generic it does apply it's just not it's not 
+  a hand wave but other people might have other goals that they 
+  wanted to put in there or you might want to modify the text was 
+  trying to keep things kind of short and sweet here and when we 
+  talk about design goals and rationale then we go into 
+  architecture overview one of the things that is striking me right 
+  now looking at this is that we don't refer to the use cases and 
+  we totally should so.
+Manu Sporny:  You've got your PR in and we can refer to use cases 
+  in the introduction in there's also a related documents part here 
+  that we can add and link to it up there but we should totally do 
+  that okay that's the entirety of kind of the PRS are there any 
+  comments concerns about any of that stuff this was raised two 
+  days ago we've got you know until next Sunday to effectively.
+Manu Sporny:  Wait to pull them in so you have until then to 
+  review but at a high level any questions concerns about the.
+
+Topic: Publication via VCWG on hold
+
+Manu Sporny:  All right well there they are okay back to our 
+  agenda thanks all for the support and the oh geez okay so the 
+  next item up is our publication in the verifiable credentials 
+  working group we had mentioned this before the break.
+Manu Sporny:  This PR there was a PR that was put together to 
+  prepare the VC API for for it to be pulled into the verifiable 
+  credentials working group we removed what we felt were maybe the 
+  controversial features in the VC API which is the exchanges stuff 
+  all the exchanges stuff thinking that people wouldn't find issue 
+  you know too much issue with the spec as a note and we'd be able 
+  to pull it into the verifiable credentials working group.
+Manu Sporny:   It was listed.
+Manu Sporny:  A at something in the charter that we could do and 
+  we could publish but as folks all on the verifiable credentials 
+  working group there are a number of organizations that took 
+  exception to it Microsoft especially it's taking exception to the 
+  work being pulled into the verifiable credentials working group 
+  and because of the w3c transition to a legal entity which by the 
+  way we're in January in w3c Incorporated.
+Manu Sporny:   Lists people thought it might not transition.
+Manu Sporny:  Moved over the staff have gotten offers they're 
+  working not out of the woods yet but they'll be three C exists in 
+  2023 which you know was a chance that it wasn't going to last 
+  year but because of that transition the questions that we had 
+  sent to the w3c staff they were dealing with larger fires than 
+  whether or not we could publish the be Capi in the verify the 
+  credentials working group so that got put on hold and.
+Manu Sporny:   In where we are now.
+Manu Sporny:  Is kind of in limbo with the VC API there a couple 
+  of options forward one of them is to publish it as a note in the 
+  verifiable credentials working group that is in Charter we put 
+  that in the charter for the verifiable credentials working group 
+  because we wanted to publish this the VC API in that group and 
+  then pave the way for another.
+Manu Sporny:   Pave the way to make it.
+Manu Sporny:  Because of the pushback specifically from Microsoft 
+  we.
+Manu Sporny:  We are product we're second-guessing if that's the 
+  best approach for it so all other Alternatives is we could ask 
+  for a new working group which would probably be a successful 
+  Endeavor because we have implemented we have 17 people that 
+  implemented the API and jobs for the future plugfest to like it's 
+  the we can demonstrate that there's interest in that people have 
+  implemented it and will provide implementation feedback that's 
+  not an issue so we could have a separate work.
+Manu Sporny:   King group but then it's weird to have the.
+Manu Sporny:  Then shows data model group and the verifiable 
+  credentials API Group and I'm sure they'd talk with each other 
+  but it would probably be much easier to just do it all in one 
+  group so we could ask for another working group we could pull it 
+  into the VC w g which people have already said they're going to 
+  fight that and then it comes down to a process question on 
+  whether or not we can do that we could ask for another working 
+  group which will take time.
+Manu Sporny:   I'm it'll take months to probably Charter a new 
+  working group.
+Manu Sporny:  Which needs its own set of chairs and its own staff 
+  contact and all that kind of stuff or we could decide to hold 
+  back and continue to incubate it here while we get a little more 
+  clarity while w3c Incorporated gets its feet under it in you know 
+  gets back to regular operations while the verify credentials 
+  specs make a little more progress.
+Manu Sporny:   It's Kind of a.
+Manu Sporny:  You know it's an open question this group okay 
+  sorry that was a lot of background but that's kind of what's 
+  going on now thoughts feelings concerns about next steps does 
+  anyone have strong feelings about any one of those options or and 
+  or a new Option Patrick you're on the queue.
+Patrick_(IDLab): What a question but when you see something like 
+  some folks push backs against the VC API like do you need 
+  unanimity for something like that to go through or it's bit not 
+  so clear or do you need majority as it a vote based issue or.
+<kayode_ezike> My question exactly
+Manu Sporny:  Excellent question Jose on the cue and I'll put 
+  myself.
+Joe Andrieu:  Yeah I'll come in a little bit on that although 
+  it's in Charter ultimately the group decides what it's going to 
+  do and anything that happened outside the group of four hand is 
+  considered not binding so that the group is free to figure out 
+  within its scope of membership what that group decides is 
+  appropriate and I guess my medic not my man.
+Joe Andrieu:   A comment with a comment I got.
+Joe Andrieu:  Was I think it and separate working group probably 
+  is going to be easier I think you know be Capi conflicts with 
+  some other big organizations goals for how they want to say the 
+  ecosystem move forward and I appreciate that they don't want this 
+  particular API tainting the VC work because that's how they see 
+  it they see other ways to deliver credentials and if we separated 
+  into its own working group maybe that'll give us the freedom to 
+  sit down and solve the problem away.
+Joe Andrieu:   We want to solve it as we've started here.
+Manu Sporny:  Yep that's an excellent point and yeah exactly what 
+  Joe said it is up to the group it's debatable whether or not a 
+  minus one you don't need unanimity to pull work in that's not 
+  supposed to be how it works you need you need to be you need to 
+  have consensus when you decide to push it forward to.
+Manu Sporny:  Recommendation traditionally that's the way it's 
+  been but the w3c process is that you can you know you can debate 
+  little bits here and there so traditionally you're not supposed 
+  to block work that has multiple implementers in a speck in people 
+  willing to work on it that's not you know it's it was 
+  traditionally viewed as just socially antisocial as you know it 
+  too.
+Manu Sporny:  Out a good technical reason like this is going to 
+  break the internet so but that's you know we that is what we're 
+  expecting to happen because the ccwg has become a bit there is a 
+  contentious because of some of the larger players that have 
+  joined that have strong opinions about how the verifiable 
+  credential ecosystem should.
+Patrick_(IDLab): When you say like the big players that are isn't 
+  that like some form of like lobbying there I say.
+Manu Sporny:  Yeah yeah yeah it is but I mean you know we're all 
+  their lobbying right I mean you could argue that you know the 
+  little company it's a bit different when a large tech company 
+  throws their weight around in a working group versus a small tech 
+  company which doesn't really have that much weight to throw 
+  around right it's also there's been some gaming of process both 
+  well behind the scenes and in front of the scenes but that's you 
+  know but verify.
+Manu Sporny:   I will credentials is.
+Manu Sporny:  That doubt that these same companies have been 
+  trying to you know slow kill modify take over the work in various 
+  ways since the beginning since you know 2014 so you know that's 
+  just kind of where that's the that's the environment we're 
+  dealing with but it used to be that some of these organizations 
+  were outside you know throwing stones into you know the tent and.
+Manu Sporny:  I the tent you know throwing stuff around go ahead 
+  Jim.
+Joe Andrieu:  Yeah I didn't realize I was gonna ask you twice 
+  there in a modest defense of these large players you know 
+  standard making is a mess and I don't like some of the things 
+  that's been happening but the verifiable credential standard 
+  itself does not depend on the exchange protocols so I can 
+  appreciate that hey let's let's keep these boundaries clean 
+  they're doing it for strategic reasons because they have some 
+  other API that they.
+Joe Andrieu:   / But the.
+Joe Andrieu:  Work itself I don't think is innately sort of 
+  Tainted or messed up by this sorts of shenanigans it does make it 
+  hard for us to incorporate an alternative transport mechanism 
+  which is sort of what we bumped into so hence my advocacy that 
+  may be a separate working group is worth it even though it's a 
+  lot of extra effort.
+Patrick_(IDLab): Okay because like reading the documentation like 
+  one big distinction I'm seeing with the work that's been done we 
+  see API it's a lot more of a technical approach as like the VC 
+  data model for example is more like just a specification that 
+  doesn't really tell people how to do stuff and I see this API 
+  maybe is I want to say like tightening the screw a little bit on 
+  a how to do stuff so that's like one distinction.
+Patrick_(IDLab):  Ian I could see I don't know if that has to 
+  play with the.
+<michael_herman_(web_7.0)> What is the transport that Mi roso
+Manu Sporny:  Yeah I don't know how much it's driving the 
+  decisions that is I mean your read on it's right I mean we're 
+  trying to actually get to you know moving these credentials 
+  around not saying that they just exist so.
+Manu Sporny:  Hearing that maybe what we want to do is just prep 
+  a new working group Charter for verifiable credential API.
+<michael_herman_(web_7.0)> What is the transport that Microsoft 
+  prefers?
+Manu Sporny:  And and understanding that that's going to take a 
+  while and of course you know the current V CW G also has a saying 
+  that it's not just you know us that gets to know things there go 
+  ahead Dave.
+<kayode_ezike> If we end up forming a new working group, might it 
+  still cause challenges by creating a schism in the community?
+<manu_sporny> Microsoft prefers OpenID4VCI and OpenID4VP
+Dave Longley:  Yeah one of the important things for a new working 
+  group like that is getting an idea of how many people would be 
+  actively joining and participating in those goals how many of the 
+  people because if you're a member of the w3c ccg you don't 
+  necessarily have to be a w3c member and pay member dues so it 
+  would be good to get an idea of how many of the members how many 
+  of the ccg members and people who have been participating on 
+  these goals would be involved in the working group.
+<michael_herman_(web_7.0)> Thk u
+Manu Sporny:  Yep exactly coyote do you do you want to vocalize 
+  your question I think it's a good one.
+Kayode Ezike:  Yeah I mean I think for this one it kind of feels 
+  like we did the new working group would be sort of like the 
+  little brother or kind of like Black Sheep that's been trying its 
+  best to to make a case for itself to be incorporated into the 
+  larger we see W to Brooke Group which is I think in many people's 
+  eyes the main working group for without credentials I agree that 
+  it's it's technically different.
+Kayode Ezike:   It's is different things were specifying as far 
+  as like scheme.
+<paul_dietrich_gs1> Any thoughtful comparisons documents of 
+  OpenID4VC(s) and VC-API?
+Kayode Ezike:  Um versus protocol but it kind of like because of 
+  the fact that most people already there and that's kind of the 
+  sensor center of gravity the way I see it I just wonder what kind 
+  of challenges it could love the this group so I don't have a 
+  clear idea of like what that would look like but it's just 
+  something I felt that I should go close.
+Manu Sporny:  Yep let's say it's a good it's a good point there 
+  is always the risk I mean you know there's always the risk that.
+Manu Sporny:  Looking at it from like a process gaming standpoint 
+  sometimes you want a piece of work item to kind of be split off 
+  from the main thing so that you can kill it or formally object 
+  that it should get started or give it a harder time starting up 
+  so there is that potential or it can turn out really well because 
+  if nobody formally objects to it in the group get started then 
+  you have a group of people that are motivated to work on that 
+  thing and it's very tightly focused on that thing.
+Manu Sporny:   The danger there of course is that.
+<tallted> invited experts are a thing...
+Manu Sporny:  Will not be able to pull some of the community in 
+  for that work because you have to be a w3c member to do it and if 
+  only you know a handful of w3c members show up there's a chance 
+  that people people that are hostile to the work could join the 
+  group and in kind of disrupt it so they're their benefits and 
+  drawbacks to the approach and Ted you're right invited experts 
+  are thing and so we could invite experts into the.
+Manu Sporny:   Group but of course then you know that decision is 
+  up to the chairs.
+<tallted> all solutions are imperfect. sadly.
+Manu Sporny:  If you have good welcoming inclusive chairs that 
+  works out well but I've seen groups where the staff was pushed by 
+  management to basically say no to in minded experts.
+Manu Sporny:  At too many invited experts in the group w3c 
+  members that are paying dues get kind of cranky okay I think 
+  we've probably talked about this enough I'm not hearing super 
+  strong opinions one way or the other other than maybe we should 
+  look into separate working group for the item understanding that 
+  it could take up to a year to get that started if we started on 
+  the charter now.
+Manu Sporny:   And it was.
+Manu Sporny:  You know in the next six months the soonest it 
+  would probably be up for a vote would be October of this year and 
+  that's a long time to wait.
+Manu Sporny:  Go ahead Paul.
+Paul_Dietrich_GS1: Yamato I know you talked about that as one of 
+  the Alternatives I missed were there other Alternatives that were 
+  proposed.
+Manu Sporny:  Yeah just pull the work it recharged sorry the 
+  recharter the so we could do two things with the current working 
+  group we could pull the work into the current working group if 
+  there's agreement to do it or if process allows us to do that or 
+  we could reach harder the current working group and say once 
+  we're done with the data model stuff that working groups going to 
+  work on the verifiable credential API.
+Manu Sporny:  And that might go a little faster because we 
+  already have a group set up in re Charters tend to go faster than 
+  a totally new group being.
+Paul_Dietrich_GS1: I see thank you.
+Manu Sporny:  It recharges could take it once we decide to do a 
+  recharger it could take three months to five months maybe if we 
+  decide to do a working group it could take eight months to a 
+  year.
+Manu Sporny:  And then if we decide to just pull the work into 
+  the existing VC w g it's just the group votes to do that and it 
+  happens but then of course the specification won't have any 
+  standards it won't be a standard until the group is re-chartered 
+  to publish it as a standard.
+Manu Sporny:  So those are the options.
+
+Topic: Reference error schema on errors?
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/326
+Manu Sporny:  All right let's get into some of the technical 
+  discussion so next up is reference what we're going to do about 
+  errors across the API so Nate Otto did a PR recently 326 that 
+  basically.
+Manu Sporny:  Raise the question what are we doing for errors so 
+  we have our codes that are listed in the specification and we 
+  have this error response object but we're kind of like picking 
+  and choosing where we use it it's not used everywhere and so the 
+  question is when there is an error should we always provide an 
+  error response and the error response contains forget it's like 
+  an ID.
+Manu Sporny:   / Code.
+Manu Sporny:  A description in details.
+Manu Sporny:  So we can add it to this one call he's got I forget 
+  what this call is it's this is the get credentials my ID call 
+  will throw an error and explain why.
+Manu Sporny:  For a 404 and there's a question of like should we 
+  be doing that for a 404 but should all of these other error 
+  codes.
+Manu Sporny:  Sorry all these other HTTP errors have an error 
+  code error response object in the response.
+Manu Sporny:  Thoughts questions concerns.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  I'm ambivalent about it I think it's most 
+  important to get the status codes right and you know we've been 
+  doing that so far it's just a question of whether implementing 
+  this one all of the.
+Dave Longley:  And to have to be the same for all of these apis 
+  becomes more important if there's any particular values that 
+  should be sent back to be acted upon along with the error 
+  messages as opposed to all of the information being adequately 
+  communicated via the status if we do decide to use some common 
+  error thing if if we're going to admit our own we need to.
+Dave Longley:   Figure that.
+Dave Longley:  And if we're going up ideally we wouldn't invent 
+  our own and we would turn to some other specification to do it 
+  provided that it matches what we're trying to accomplish here and 
+  that that other specification is actually used by other people in 
+  the in the community.
+Manu Sporny:  You mean for error codes.
+Dave Longley:  For error codes or even just the error data model 
+  I know that there was there's some RFC that maybe Mark Nottingham 
+  put together at some point for HTTP errors that we could look at 
+  I don't know if anyone uses that.
+Dave Longley:  And I do.
+Dave Longley:  If it fits our use cases it's I know that it might 
+  not quite match up with how errors are returned from some 
+  implementations today number of implementations use like the name 
+  field for errors because it matches how errors are implemented in 
+  for example JavaScript and on the web and that might create a 
+  difference that might be problematic for a w3c spec so those are 
+  also.
+Dave Longley:   The considerations.
+Joe Andrieu:  I had a question I don't know if Paul still on the 
+  queue.
+Manu Sporny:  I don't think so sorry I forgot to ask them.
+Joe Andrieu:  My question is is there or what is the framework 
+  for extensibility in those responses I think especially in error 
+  codes.
+Joe Andrieu:  It seems like there may be open-ended things you 
+  may want to pass back.
+Manu Sporny:  Yeah the current the current error object we have 
+  has a code so you know you get the HP code and then in the error 
+  response there's like an ID like not found or something like that 
+  and then there's a description which is just a textual 
+  description that it doesn't have to be what's in the spec it's 
+  can be in the native language of you know entity calling.
+Manu Sporny:  People and then there's a details object that's 
+  arbitrary people can put an arbitrary amount of data in there and 
+  I think that's the extensibility model or so so the description 
+  field extensible in that you can put anything kind of you want in 
+  there as long as it's accurate and then the details object can 
+  have an arbitrary data placed into it go ahead Dave.
+Dave Longley:  I'm not a huge fan of using the ID field the way 
+  that that was described because we use the ID field in all of the 
+  other data to describe specific objects and it sounds like the ID 
+  field for errors of used in that way would be not an idea of a 
+  specific error but more or less the name or type of an error and 
+  it seems like we should be using a different field like name or 
+  type for that error.
+Joe Andrieu:  Yeah I agree but when you were talking about 
+  extensibility I was expecting that you would say Hey you go take 
+  the ID and you can go get more information on that error but if 
+  it is the category of the ID then there's no way to get specific 
+  information based on it.
+Dave Longley:  Let's get mono a second type that up because we 
+  talk to way too fast for him.
+Manu Sporny:  Okay so I am.
+Manu Sporny:  I am forgetting exactly what's in there today well 
+  the first question is do we want to always return an error I'm 
+  hearing know we can depend on the error code for most of it and 
+  only in places where you actually want to add more information to 
+  you return an error that's one option the other option is it's up 
+  to the implementation to return an error object or not or there 
+  may be some error codes.
+Manu Sporny:   Where the.
+Manu Sporny:  Definitely wants to return an error in specific 
+  details and those will be dealt with on a case-by-case basis.
+Manu Sporny:  Before we look details.
+Dave Longley:  You're Mike got a little muffled Manu but Ted's on 
+  the queue.
+Manu Sporny:  Sorry go ahead.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Yeah I'm 
+  pretty good with mandating sort of minimal requirements but also 
+  allowing for larger responses and as a troubleshooter I 
+  absolutely want to be able to get the biggest error I can so this 
+  might be a configurable thing that might be switchable whether 
+  it's by user basis or the admin has to push a button or whatever 
+  that's.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  that sort of 
+  thing.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I think 
+  implementation-specific.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): But I 
+  definitely want to leave the door open for implementations to 
+  provide.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Really 
+  sufficient information to troubleshoot whatever it is it's 
+  Arirang for whatever reason.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I know we all 
+  we only write perfect code but.
+<dave_longley> :)
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): He's going to 
+  do something someday.
+Manu Sporny:  Yeah okay what about are we mandating that an error 
+  always be returned on an error when an error codes raised.
+Alan Karp: +1 @Tallted
+Manu Sporny:  My I'm suggesting let's not do that I think that's 
+  too too heavy weight go ahead Longley.
+Dave Longley:  I'd say we shouldn't do it until we find that we 
+  need to do it and I don't think that anyone here is saying that 
+  we know that we need to do it anywhere yet trying to think if 
+  they're there probably are.
+Dave Longley:  There are cases I know where we should if we're 
+  not already be returning error codes for like duplicate issued 
+  VCS but again that's like a 409 status code can indicate that so 
+  I think we need to find cases where the HTTP status code is 
+  insufficient and if it's insufficient then we then we would 
+  mandate something but until then we should just say that you can 
+  return it if you are going to return an error you can return it.
+Dave Longley:  We expect you to return Json of some kind but we 
+  don't have to say what it is and it could be 
+  implementation-specific as Ted said both for what you return and 
+  whether or not it's configurable to return the biggest terrorists 
+  as 10 put so I think until we know that we need something more 
+  than this we shouldn't mandate that people do something.
+Manu Sporny:  What about if I can implementation decide to return 
+  an error code where the spec doesn't say to return one.
+Dave Longley:  By Eric oh do you mean yeah I certainly think 
+  implementation should be allowed to return errors but at this 
+  time they should be understood to be implementation-specific so 
+  no one using it should rely on that to be the same across 
+  different implementations.
+Manu Sporny:  Us implementations less is specified be the same 
+  either specification go ahead Patrick.
+Patrick_(IDLab): Yeah I agree with this I think covering all 
+  state to code possible is a must for case that might need more 
+  information I'm thinking maybe some kind of specification that 
+  two different errors could return the same error code they would 
+  be good to know the the reason for it in the case that some 
+  implemented would want to return more detail about the ever I.
+Patrick_(IDLab): Good idea to have a sort of predefined Shimmer 
+  for how ever bodies should be but leave the content at the ends 
+  of the implementer that would be the than what comes to mind for 
+  me.
+Manu Sporny:  That that is helpful thank you Eddie any other 
+  input on this I think basically where we are right now is saying 
+  that.
+Manu Sporny:  By default use HTTP error codes to return errors 
+  where it is implementers can always choose to include an error 
+  response object if they want to in the specification May in the 
+  future.
+Manu Sporny:  Standardize some error response values.
+Manu Sporny:  If we think that that's a good thing to do at a 
+  later date so I think in general that's what we're saying are 
+  there any objections or disagreements that kind of phrasing or 
+  that approach.
+Manu Sporny:  It's English pea response response codes some 
+  implementers may return an error response if they just 
+  implementers may return a response for.
+Manu Sporny:  HP error the specification May later date to find 
+  specific error responses in specific situations go ahead Dave.
+Dave Longley:  Yeah I worry that using the camelcase error 
+  response here is a little perhaps too prescriptive it does making 
+  it sound like if you're going to send an error response that has 
+  to match this schema and I think what we want to do instead is 
+  say this is a suggested schema but you can do whatever you want 
+  and then we should additionally probably bike shed with that 
+  schema is since people won't since it's their people will use it 
+  or we should remove it because if we're not.
+Dave Longley:   One of the reasons not to say.
+<dmitri_zagidulin> we should probably look at the various RFCs 
+  that specify error detail fields..
+Dave Longley:  If we're not if multiple people aren't 
+  implementing this in interrupting on it then we might have made 
+  the wrong decision and then there might be people that are going 
+  to need to change what they've done and they will be pushed back 
+  on that because the spec even made a suggestion and so unless 
+  we're going to put in expend the effort to make this error 
+  response thing good and match what we think is a good idea and 
+  have put.
+Dave Longley:   Current amount of work into that.
+Dave Longley:  Might be better to just say you can send a send a 
+  response response is expected to be Jason for example since all 
+  the other data here is Jason and leave it at that.
+Manu Sporny:  Okay well I think this is ready for a PR and then 
+  we can bike shed the pr building noting what you just said well 
+  only.
+Dave Longley:  Yeah if you can just have some note that says we 
+  might want to just say that they are response is Jason and not 
+  use any suggested schema that can be bike shed in the pr.
+Patrick_(IDLab): I'm just thinking also like if we go back to the 
+  test Suite like in the case we want to have like a negative test 
+  you know like the test like is invalid credential idea or 
+  whichever and we want to analyze the response to match the test 
+  might be better to do if there's this like predefined ever Shima 
+  and that could be another reason.
+Patrick_(IDLab):  and why would be good.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  I think if we're going to do that then that's a 
+  that's a case where we would just mandate you must have this in 
+  the response so if the test Suite is going to depend on that 
+  that's what people would Implement to and then there would be 
+  some semblance of interoperable and it so either the test Suites 
+  just going to look for HTTP status codes which might be better 
+  here since we don't really know what we want the errors to be or 
+  we find cases where we do think we know what the we want the 
+  heiress to be and then we mandate those.
+Dave Longley:   But I don't think we should do something sort of 
+  in between that because it ends up.
+Dave Longley:  Facto what people are required to do and we just 
+  didn't say it and we didn't get the put in the effort to make 
+  sure it's what everybody wanted.
+Manu Sporny:  All right I'm stopping Patrick okay so noting that 
+  we are more or less at time I am going to do this was this was 
+  already PR this should probably have been.
+Manu Sporny:   Where's the.
+Manu Sporny:  Work the issue button reverence and new issue.
+Manu Sporny:  Let's see specify how error values it's fi if error 
+  details so that's why how are details are returned.
+Manu Sporny:  Okay so create issue and then we will mark this as 
+  ready for PR.
+Manu Sporny:  Okay that's that item thank you everyone for the 
+  discussion around that apologies for not getting to the exchanges 
+  and points discussion we will start the next call with this item 
+  in a few other issues thanks everyone for the great call today I 
+  appreciate it have a wonderful rest of your week and we will meet 
+  again next week take care bye.
