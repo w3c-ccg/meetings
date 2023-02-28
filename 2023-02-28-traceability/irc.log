@@ -1,0 +1,131 @@
+[2023-02-28T18:31:51.260Z]	<Ben_-_Transmute>	present+
+[2023-02-28T18:31:51.261Z]	<Chris_Abernethy>	present+
+[2023-02-28T18:32:07.891Z]	<Ben_-_Transmute>	present+
+[2023-02-28T18:32:11.486Z]	<Orie>	present+
+[2023-02-28T18:32:12.527Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-02-28T18:33:05.183Z]	<Mahmoud_Alkhraishi>	present+
+[2023-02-28T18:34:31.701Z]	<Paul_Dietrich_GS1>	present+
+[2023-02-28T18:34:35.657Z]	<Ben_-_Transmute>	scribe+
+[2023-02-28T18:34:36.661Z]	<Transcriber>	scribe+
+[2023-02-28T18:34:36.661Z]	<Transcriber>	Meeting: traceability
+[2023-02-28T18:36:43.392Z]	<Ben_-_Transmute>	Chris: Let's start with trace-vocab and begin with pull requests
+[2023-02-28T18:36:44.645Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+[2023-02-28T18:36:58.069Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/696
+[2023-02-28T18:37:05.706Z]	<Ben_-_Transmute>	Chris: Starting with the oldest, starting with 696
+[2023-02-28T18:37:35.692Z]	<Ben_-_Transmute>	Chris: This is from Russel, and adds Agricultural inspection.
+[2023-02-28T18:38:14.506Z]	<Ben_-_Transmute>	Mahmoud: The requested changes that I had were around updating the examples, and then pointing to UNC as opposed to defining our own. And I think that was resolved
+[2023-02-28T18:38:25.023Z]	<Ben_-_Transmute>	Chris: If there are no objects, I'll go ahead and merge
+[2023-02-28T18:38:45.675Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/698
+[2023-02-28T18:38:53.269Z]	<Ben_-_Transmute>	Chris: Next is 698 from Russel.
+[2023-02-28T18:39:21.710Z]	<Russell_Hofvendahl_(mesur.io)>	present+
+[2023-02-28T18:39:33.163Z]	<Ben_-_Transmute>	Orie: I have change requests on this. I reviewed again, part of it is removing fields from the common organization schema. There is also an external identifiers part which is not aligned with RDF best practices
+[2023-02-28T18:39:59.490Z]	<Ben_-_Transmute>	Orie: I don't believe we should be using either of this, and should use schema.org
+[2023-02-28T18:41:19.359Z]	<Ben_-_Transmute>	Orie: We can split the uncontroversial pieces from the controversial pieces and submit that as different PR's
+[2023-02-28T18:41:44.958Z]	<Orie>	https://schema.org/identifier
+[2023-02-28T18:41:53.804Z]	<Orie>	```
+{
+  "@context": "https://schema.org/",
+  "@type": "LocalBusiness",
+  "name": "A UK Organization Ltd",
+  "address": "1 A Street, London",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "Company Number",
+    "value":  "99065782"
+  }
+}
+```
+[2023-02-28T18:42:06.725Z]	<Ben_-_Transmute>	Russel: schema.org has the identifier, but the issue i had was I couldn't find an object that had everything that i needed. I need an array of identifier values
+[2023-02-28T18:43:15.483Z]	<Ben_-_Transmute>	Orie: There is the object, array polymorphism in RDF. If you see identifier is type property value. You can make the value side an array, and because of how RDF gets processed it's all the same. I think if this works, it would be better to use this.
+[2023-02-28T18:43:36.317Z]	<Ben_-_Transmute>	Russel: I don't just have property id and value, it also has url. Does that change anything?
+[2023-02-28T18:43:51.094Z]	<Ben_-_Transmute>	Orie: The examples you;ve shown me don't have url. You only had name/value pairs
+[2023-02-28T18:44:14.790Z]	<Orie>	See the term
+[2023-02-28T18:44:15.329Z]	<Orie>	https://schema.org/PropertyValue
+[2023-02-28T18:44:19.932Z]	<Ben_-_Transmute>	Russel: External Identifier has name, value and uri. And I was replacing all of the individual identifiers with these three.
+[2023-02-28T18:44:38.473Z]	<Ben_-_Transmute>	Orie: Can you look at the property value type and see if that would meet your use case?
+[2023-02-28T18:44:56.925Z]	<Ben_-_Transmute>	Chris: i think that's a good point to carry that offline
+[2023-02-28T18:45:34.770Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/pull/703
+[2023-02-28T18:46:49.765Z]	<Ben_-_Transmute>	Ben: What this PR does is that it adds credential schema to verifiable business card as a proof of concept
+[2023-02-28T18:47:09.751Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-interop/pull/491
+[2023-02-28T18:47:18.874Z]	<Ben_-_Transmute>	Ben: It creates vbc as a single schema file that can be used to check if the schema is valid or not
+[2023-02-28T18:47:43.655Z]	<Ben_-_Transmute>	Ben: It needs an update on the proof citation, and i'll merge it once it's been addressed
+[2023-02-28T18:47:54.549Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2023-02-28T18:48:06.822Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/577
+[2023-02-28T18:48:09.900Z]	<Ben_-_Transmute>	Chris: For trace-interop we only have one pull request from Mike, but it's in draft. so we will come back to it once it is open
+[2023-02-28T18:49:01.373Z]	<Ben_-_Transmute>	Chris: This is from Vlad, can we get Vlad to attend these meetings?
+[2023-02-28T18:49:25.740Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/271
+[2023-02-28T18:49:27.491Z]	<Ben_-_Transmute>	Orie: I think we need to add a comment to say, the action item wasn't understood and encourage him to atten
+[2023-02-28T18:50:29.870Z]	<Ben_-_Transmute>	Orie: It seems like the last comment is from Vlad to do the work on the issue that has been re-opened.
+[2023-02-28T18:50:40.309Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/578
+[2023-02-28T18:50:56.796Z]	<Ben_-_Transmute>	Chris: The next issue is from Vlad as well
+[2023-02-28T18:51:46.700Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/270
+[2023-02-28T18:52:20.041Z]	<Ben_-_Transmute>	Chris: This one is about wrong linked data mapping, it looks like Orie and Ted have participated on this one
+[2023-02-28T18:53:46.641Z]	<Ben_-_Transmute>	Orie: In this issue there are several places where we're using @id or @type incorrectly. We can't really fix this in the abstract the way the issue is described.
+[2023-02-28T18:54:29.540Z]	<Ben_-_Transmute>	Orie: If there are smaller specific issues we can make smaller issues, these can be addressed for specific problems. But a generally "fix all of the things" issue is not very helpful.
+[2023-02-28T18:54:43.506Z]	<Ben_-_Transmute>	Chris: Can we add a "Pending Close" on this?
+[2023-02-28T18:55:09.614Z]	<Ben_-_Transmute>	Ted: I think we can make a list of a checklist to address the issues
+[2023-02-28T18:55:57.758Z]	<Ben_-_Transmute>	Orie: We can do that now, where we need to go through the issue and make a list of what specific changes we need to be made.
+[2023-02-28T18:57:15.762Z]	<Orie>	issues should be "actionable" "made actionable" or "closed"
+[2023-02-28T18:57:57.493Z]	<Mahmoud_Alkhraishi>	q+
+[2023-02-28T18:58:10.648Z]	<Orie>	its not an issue I would be pick.
+[2023-02-28T18:58:45.685Z]	<Ben_-_Transmute>	Ben: We don't want to have abstract suggestions, we want actionable items whether that is one issue or multiple.
+[2023-02-28T18:59:06.033Z]	<Ben_-_Transmute>	Ted: I don't think we should drop the issue, either we are interested in the files or we're not
+[2023-02-28T18:59:43.007Z]	<Mahmoud_Alkhraishi>	ack
+[2023-02-28T18:59:54.807Z]	<Ben_-_Transmute>	Mahmoud: This is way too big for one person, we would need to split this out into smaller segments that could be picked up and tackled by multiple people. But I don't think it can be worked on in the current state.
+[2023-02-28T18:59:55.946Z]	<Mahmoud_Alkhraishi>	ack Mahmoud_alkhraishi
+[2023-02-28T19:00:24.879Z]	<Ben_-_Transmute>	Chris: I propose we need someone to split this into smaller work loads. Does that sounds acceptable?
+[2023-02-28T19:01:06.295Z]	<Ben_-_Transmute>	Ben: I think that splitting up the work is a heavy lift on it's own
+[2023-02-28T19:01:16.105Z]	<Ben_-_Transmute>	Orie: We could have a dedicated call to address this
+[2023-02-28T19:01:35.670Z]	<Ben_-_Transmute>	Mahmoud: I think there are some amount of segments that the issue could be broken into.
+[2023-02-28T19:01:57.128Z]	<Orie>	sry I have to drop now
+[2023-02-28T19:02:20.973Z]	<Ben_-_Transmute>	Chris: I'm going to make a note to say that's what needs to happen, and we can move on.
+[2023-02-28T19:02:27.165Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/571
+[2023-02-28T19:03:20.067Z]	<Ben_-_Transmute>	Summary: The issue on the GitHub repository of the W3C Credentials Community Group (CCG) is a discussion about the Traceability Vocabulary Specification, specifically regarding the use of the term “verifier” in the document.
+
+The issue was opened by a member of the CCG who suggested that the term “verifier” should be defined more precisely in the specification, arguing that the current definition is too broad and could cause confusion.
+
+The discussion in the issue involves various members of the CCG who are discussing the potential impact of clarifying the definition of “verifier” and the potential implications for existing implementations and users of the specification.
+
+The proposed changes to the specification suggest adding a definition of the term “verifier” that clarifies its specific role in the verification process of a credential. The proposed definition includes verifying the authenticity and validity of the credential, as well as checking if the credential meets the required criteria for a particular use case.
+[2023-02-28T19:04:28.402Z]	<Ben_-_Transmute>	Mahmoud: I called out that a specific PR does not address 571. I think this is saying we have multiple identifiers that are all pointing to schema.org/identifier. But i'm trying to see what the solution would be.
+[2023-02-28T19:05:27.705Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/575
+[2023-02-28T19:06:06.883Z]	<Ben_-_Transmute>	Ted: I think this is more of the typing confusion.
+[2023-02-28T19:06:14.166Z]	<Ben_-_Transmute>	Summary: The issue on the GitHub repository of the W3C Credentials Community Group (CCG) is a discussion about the Traceability Vocabulary Specification, specifically regarding the use of the term “attestor” in the document.
+
+The issue was opened by a member of the CCG who suggested that the term “attestor” should be changed to “issuer” in the specification, arguing that the term “issuer” is more commonly used in the digital credentials ecosystem and is less ambiguous than the term “attestor.”
+
+The discussion in the issue involves various members of the CCG who are discussing the potential impact of changing the term from “attestor” to “issuer” and the potential implications for existing implementations and users of the specification.
+
+The proposed changes to the specification suggest replacing the term “attestor” with the term “issuer” throughout the document. The proposed change aligns with the terminology used in other specifications related to digital credentials, such as the W3C Verifiable Credentials Specification, where the term “issuer” is used to refer to the entity that creates and signs a digital credential.
+[2023-02-28T19:06:26.476Z]	<Ben_-_Transmute>	Chris: What would be a good next step on this issue?
+[2023-02-28T19:06:39.675Z]	<Ben_-_Transmute>	Ted: I think it would be writing the yml correctly.
+[2023-02-28T19:07:54.707Z]	<Ben_-_Transmute>	https://www.schema.org/value- 500
+[2023-02-28T19:08:07.428Z]	<Ben_-_Transmute>	https://www.schema.org/value - 1500
+[2023-02-28T19:09:46.664Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/586
+[2023-02-28T19:09:49.723Z]	<Ben_-_Transmute>	Ben: I think the issue here is that we want a suggestion for what '@id" Vlad suggests
+[2023-02-28T19:10:39.384Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/152
+[2023-02-28T19:10:41.891Z]	<Ben_-_Transmute>	Ben: For this issue we want to make sure incorrect schemas would fail CI and I think we addressed this
+[2023-02-28T19:11:11.766Z]	<Ben_-_Transmute>	Chris: Looks like we added pending close in October, if no one objects we can close
+[2023-02-28T19:11:35.100Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/153
+[2023-02-28T19:11:38.113Z]	<Ben_-_Transmute>	Chris: This is another one from Ted
+[2023-02-28T19:12:31.193Z]	<Ben_-_Transmute>	Ted: This can be closed
+[2023-02-28T19:13:05.140Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/587
+[2023-02-28T19:13:15.681Z]	<Ben_-_Transmute>	Chris: This is from me, are we still using Lerna?
+[2023-02-28T19:13:56.431Z]	<Ben_-_Transmute>	Ben: I think we still have lerna lurking in package.json files.
+[2023-02-28T19:13:56.630Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/185
+[2023-02-28T19:14:33.470Z]	<Ben_-_Transmute>	Chris: This has pending close from October, so closing now.
+[2023-02-28T19:14:40.600Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/160
+[2023-02-28T19:14:58.984Z]	<Ben_-_Transmute>	Chris: We added a pending close on this one as well
+[2023-02-28T19:15:06.473Z]	<Ben_-_Transmute>	Ted: Good enough
+[2023-02-28T19:15:15.550Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/416
+[2023-02-28T19:16:12.766Z]	<Ben_-_Transmute>	ben: Previously we had "Certificate" as a postfix and we've moved to "Credential" as a postfix, so this can be closed
+[2023-02-28T19:16:17.299Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/464
+[2023-02-28T19:17:30.713Z]	<Ben_-_Transmute>	Ben: This might have been done and we didn't link the issue. I suggest marking as closed.
+[2023-02-28T19:18:37.125Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/379
+[2023-02-28T19:21:35.873Z]	<Ben_-_Transmute>	Crhis: I think the issue here was around canonicalization for linked data proofs. It might not matter as much if we sign the JSON directly.
+[2023-02-28T19:21:45.636Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/593
+[2023-02-28T19:23:19.737Z]	<Ben_-_Transmute>	Ted: I don't think we can tell other people how large their data can be, but we can make technical recomendations
+[2023-02-28T19:23:50.159Z]	<Ben_-_Transmute>	Ben: For 593 the suggestion is that we would want to use `datetime` for schema validation for properties like `issuedAt`
+[2023-02-28T19:24:03.627Z]	<Chris_Abernethy>	https://github.com/w3c-ccg/traceability-vocab/issues/594
+[2023-02-28T19:24:17.251Z]	<Ben_-_Transmute>	Ben: And I think Ted brings up a valid point that the description should be updated in those situations as well
+[2023-02-28T19:25:41.814Z]	<Ben_-_Transmute>	Chris: Thanks everybody and see you next week.
