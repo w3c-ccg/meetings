@@ -1,0 +1,252 @@
+Thanks to Benjamin Collins and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-02-28-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-02-28-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-02-28
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Feb&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Benjamin Collins and Our Robot Overlords
+Present:
+  Benjamin Collins, Chris Abernethy, Orie Steele, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Mahmoud Alkhraishi, Paul 
+  Dietrich GS1, Russell Hofvendahl, Ted Thibodeau
+
+Benjamin Collins is scribing.
+Our Robot Overlords are scribing.
+Chris Abernethy:  Let's start with trace-vocab and begin with 
+  pull requests [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/696
+Chris Abernethy:  Starting with the oldest, starting with 696 
+  [scribe assist by Benjamin Collins]
+Chris Abernethy:  This is from Russel, and adds Agricultural 
+  inspection. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  The requested changes that I had were around 
+  updating the examples, and then pointing to UNC as opposed to 
+  defining our own. And I think that was resolved [scribe assist by 
+  Benjamin Collins]
+Chris Abernethy:  If there are no objects, I'll go ahead and 
+  merge [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/698
+Chris Abernethy:  Next is 698 from Russel. [scribe assist by 
+  Benjamin Collins]
+Orie Steele:  I have change requests on this. I reviewed again, 
+  part of it is removing fields from the common organization 
+  schema. There is also an external identifiers part which is not 
+  aligned with RDF best practices [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  I don't believe we should be using either of this, 
+  and should use schema.org [scribe assist by Benjamin Collins]
+Orie Steele:  We can split the uncontroversial pieces from the 
+  controversial pieces and submit that as different PR's [scribe 
+  assist by Benjamin Collins]
+Orie Steele: https://schema.org/identifier
+<orie> ```
+Benjamin Collins: Russel: schema.org has the identifier, but the 
+  issue i had was I couldn't find an object that had everything 
+  that i needed. I need an array of identifier values
+Orie Steele:  There is the object, array polymorphism in RDF. If 
+  you see identifier is type property value. You can make the value 
+  side an array, and because of how RDF gets processed it's all the 
+  same. I think if this works, it would be better to use this. 
+  [scribe assist by Benjamin Collins]
+Benjamin Collins: Russel: I don't just have property id and 
+  value, it also has url. Does that change anything?
+Orie Steele:  The examples you;ve shown me don't have url. You 
+  only had name/value pairs [scribe assist by Benjamin Collins]
+<orie> See the term
+Orie Steele: https://schema.org/PropertyValue
+Benjamin Collins: Russel: External Identifier has name, value and 
+  uri. And I was replacing all of the individual identifiers with 
+  these three.
+Orie Steele:  Can you look at the property value type and see if 
+  that would meet your use case? [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy:  I think that's a good point to carry that 
+  offline [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/703
+Benjamin Collins:  What this PR does is that it adds credential 
+  schema to verifiable business card as a proof of concept [scribe 
+  assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/pull/491
+Benjamin Collins:  It creates vbc as a single schema file that 
+  can be used to check if the schema is valid or not [scribe assist 
+  by Benjamin Collins]
+Benjamin Collins:  It needs an update on the proof citation, and 
+  i'll merge it once it's been addressed [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/577
+Chris Abernethy:  For trace-interop we only have one pull request 
+  from Mike, but it's in draft. so we will come back to it once it 
+  is open [scribe assist by Benjamin Collins]
+Chris Abernethy:  This is from Vlad, can we get Vlad to attend 
+  these meetings? [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/271
+Orie Steele:  I think we need to add a comment to say, the action 
+  item wasn't understood and encourage him to atten [scribe assist 
+  by Benjamin Collins]
+Orie Steele:  It seems like the last comment is from Vlad to do 
+  the work on the issue that has been re-opened. [scribe assist by 
+  Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/578
+Chris Abernethy:  The next issue is from Vlad as well [scribe 
+  assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/270
+Chris Abernethy:  This one is about wrong linked data mapping, it 
+  looks like Orie and Ted have participated on this one [scribe 
+  assist by Benjamin Collins]
+Orie Steele:  In this issue there are several places where we're 
+  using @id or @type incorrectly. We can't really fix this in the 
+  abstract the way the issue is described. [scribe assist by 
+  Benjamin Collins]
+Orie Steele:  If there are smaller specific issues we can make 
+  smaller issues, these can be addressed for specific problems. But 
+  a generally "fix all of the things" issue is not very helpful. 
+  [scribe assist by Benjamin Collins]
+Chris Abernethy:  Can we add a "Pending Close" on this? [scribe 
+  assist by Benjamin Collins]
+Ted Thibodeau:  I think we can make a list of a checklist to 
+  address the issues [scribe assist by Benjamin Collins]
+Orie Steele:  We can do that now, where we need to go through the 
+  issue and make a list of what specific changes we need to be 
+  made. [scribe assist by Benjamin Collins]
+<orie> issues should be "actionable" "made actionable" or 
+  "closed"
+<orie> its not an issue I would be pick.
+Benjamin Collins:  We don't want to have abstract suggestions, we 
+  want actionable items whether that is one issue or multiple. 
+  [scribe assist by Benjamin Collins]
+Ted Thibodeau:  I don't think we should drop the issue, either we 
+  are interested in the files or we're not [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  This is way too big for one person, we would 
+  need to split this out into smaller segments that could be picked 
+  up and tackled by multiple people. But I don't think it can be 
+  worked on in the current state. [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy:  I propose we need someone to split this into 
+  smaller work loads. Does that sounds acceptable? [scribe assist 
+  by Benjamin Collins]
+Benjamin Collins:  I think that splitting up the work is a heavy 
+  lift on it's own [scribe assist by Benjamin Collins]
+Orie Steele:  We could have a dedicated call to address this 
+  [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I think there are some amount of segments 
+  that the issue could be broken into. [scribe assist by Benjamin 
+  Collins]
+<orie> sry I have to drop now
+Chris Abernethy:  I'm going to make a note to say that's what 
+  needs to happen, and we can move on. [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/571
+Benjamin Collins: Summary: The issue on the GitHub repository of 
+  the W3C Credentials Community Group (CCG) is a discussion about 
+  the Traceability Vocabulary Specification, specifically regarding 
+  the use of the term “verifier” in the document.
+Mahmoud Alkhraishi:  I called out that a specific PR does not 
+  address 571. I think this is saying we have multiple identifiers 
+  that are all pointing to schema.org/identifier. But i'm trying to 
+  see what the solution would be. [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/575
+Ted Thibodeau:  I think this is more of the typing confusion. 
+  [scribe assist by Benjamin Collins]
+Benjamin Collins: Summary: The issue on the GitHub repository of 
+  the W3C Credentials Community Group (CCG) is a discussion about 
+  the Traceability Vocabulary Specification, specifically regarding 
+  the use of the term “attestor” in the document.
+Chris Abernethy:  What would be a good next step on this issue? 
+  [scribe assist by Benjamin Collins]
+Ted Thibodeau:  I think it would be writing the yml correctly. 
+  [scribe assist by Benjamin Collins]
+Benjamin Collins: https://www.schema.org/value- 500
+Benjamin Collins: https://www.schema.org/value - 1500
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/586
+Benjamin Collins:  I think the issue here is that we want a 
+  suggestion for what '@id" Vlad suggests [scribe assist by 
+  Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/152
+Benjamin Collins:  For this issue we want to make sure incorrect 
+  schemas would fail CI and I think we addressed this [scribe 
+  assist by Benjamin Collins]
+Chris Abernethy:  Looks like we added pending close in October, 
+  if no one objects we can close [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/153
+Chris Abernethy:  This is another one from Ted [scribe assist by 
+  Benjamin Collins]
+Ted Thibodeau:  This can be closed [scribe assist by Benjamin 
+  Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/587
+Chris Abernethy:  This is from me, are we still using Lerna? 
+  [scribe assist by Benjamin Collins]
+Benjamin Collins:  I think we still have lerna lurking in 
+  package.json files. [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/185
+Chris Abernethy:  This has pending close from October, so closing 
+  now. [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/160
+Chris Abernethy:  We added a pending close on this one as well 
+  [scribe assist by Benjamin Collins]
+Ted Thibodeau:  Good enough [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/416
+Benjamin Collins:  Previously we had "Certificate" as a postfix 
+  and we've moved to "Credential" as a postfix, so this can be 
+  closed [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/464
+Benjamin Collins:  This might have been done and we didn't link 
+  the issue. I suggest marking as closed. [scribe assist by 
+  Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/379
+Benjamin Collins: Crhis: I think the issue here was around 
+  canonicalization for linked data proofs. It might not matter as 
+  much if we sign the JSON directly.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/593
+Ted Thibodeau:  I don't think we can tell other people how large 
+  their data can be, but we can make technical recomendations 
+  [scribe assist by Benjamin Collins]
+Benjamin Collins:  For 593 the suggestion is that we would want 
+  to use `datetime` for schema validation for properties like 
+  `issuedAt` [scribe assist by Benjamin Collins]
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/594
+Benjamin Collins:  And I think Ted brings up a valid point that 
+  the description should be updated in those situations as well 
+  [scribe assist by Benjamin Collins]
+Chris Abernethy:  Thanks everybody and see you next week. [scribe 
+  assist by Benjamin Collins]
