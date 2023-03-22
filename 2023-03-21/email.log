@@ -1,0 +1,852 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-03-21/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-03-21/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-03-21
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Mar&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Bob Wyman, Harrison Tang, Greg Bernstein, Orie Steele, Stuart 
+  Freeman, Erica Connell, Jeff O - HumanOS, Patrick (IDLab), Mike 
+  Prorock, Andres Uribe, Geun-Hyung, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), David I. Lehn, Phil L (P1), Steve 
+  Magennis, Joe Andrieu, David Chadwick, Juan Caballero, James 
+  Chartrand, Kimberly Linson, Marty Reed, Nikos Fotiou, Manu 
+  Sporny, John Kuo, Chandi Cumaranatunge, Brent Zundel, Wendy 
+  Seltzer, BrentZ
+
+Our Robot Overlords are scribing.
+Mike Prorock: 
+  https://lists.w3.org/Archives/Public/public-credentials/2023Mar/0101.html
+Mike Prorock:  All right all hello and welcome today we're going 
+  to be talking about verifiable credentials did web and actual 
+  practical useful stuff which is why I am sure the numbers are 
+  lighter since there's less room for generalized commentary and we 
+  actually are looking at grow real code that's the end of my snark 
+  and that's purely from a personal observation level so we love to 
+  talk to details.
+Mike Prorock:   And just.
+Mike Prorock: https://www.w3.org/Consortium/cepc/
+Mike Prorock:  I can hear first and foremost want to talk about 
+  and mentioned that this meeting as with all meetings is covered 
+  under the w3c code of ethics professional conduct really have a 
+  good time here and never tend to have any issues with that but 
+  just in case it's a handy reminder one note that this meeting is 
+  a w3c community group meeting and as a result of that anyone can 
+  participate in these competitions.
+Mike Prorock:   Calls they are open to the.
+Mike Prorock: https://www.w3.org/community/credentials/join
+Mike Prorock:  Public however if you're going to do work if 
+  you're going to contribute into w3c work items at this community 
+  group you do need to be a member and you need that's primarily 
+  for I pr reasons right to prevent any potential intellectual 
+  property claims and nasty stuff that can come up down the line 
+  should work proceed from here where we incubate work into 
+  something like a working group we're working actually that gets 
+  finished and standardized so just a note there we do take 
+  meeting.
+Mike Prorock:   Minutes as you are seeing go in the chat and 
+  those recordings do get posted.
+<mprorock> type “q+” to add yourself to the queue, with an 
+  optional
+Mike Prorock:  In the chat you may type Q the letter q and the 
+  plus sign to add yourself to the queue or raise your hand that 
+  stuff is sync up also work and I are see if you are on the IRC 
+  channel for some reason.
+Mike Prorock:  With that before we get into the main meeting do 
+  you want to pause and see if there are any new folks to the call 
+  that would like to introduce themselves.
+Patrick_(IDLab): Hey guys I see here oh yeah I'll just give a 
+  short introduction so I'm devops specialist I work for the 
+  digital identity laboratory of Canada than in the digital 
+  identity space for about two years now it's very very interesting 
+  so we as a independent entity we pride ourselves in being 
+  unbiased and really just observe the various.
+Patrick_(IDLab):  us efforts that are being made.
+Patrick_(IDLab): Here in Canada and internationally currently we 
+  have a lot of interest a lot of traction and the hyper Ledger 
+  side of things with Aries and a non credentials and what 
+  provinces are doing in Canada for a digital identity which is 
+  interesting regarding w3c I've been attending the VC API calls 
+  for some time now with special focus on test.
+Patrick_(IDLab):  sweets and testing and implementation.
+<orie> yay! did:web for testing is excellent
+Patrick_(IDLab): Ends and understanding how everything works I 
+  was particularly interested in this call today because I am sort 
+  of prototyping a proof of concept for a did web methods to manage 
+  and on creds credential the a non-credit credential has been made 
+  into its own sort of specification recently and we are exploring 
+  branching out to different did methods for.
+Patrick_(IDLab):  very interested in.
+Patrick_(IDLab): Services parameters and also videos so hopefully 
+  it will be an interesting call today for me.
+Mike Prorock:  Cool well great to have you and yeah we're 
+  definitely I'm particularly interested in the topic today as well 
+  because I think it's a good one let's see here with that I'm 
+  going to pause for any announcements or reminders for the from 
+  the broader Community here so anything relevant to ccg from the 
+  community before I start calling all the folks I am going to note 
+  that there's been a good thread that I think Manny might have 
+  started just given the fact that.
+Mike Prorock:   That our GitHub is getting a little up in size 
+  and probably.
+Mike Prorock:  Place to store a bunch of audio video Etc so there 
+  is some discussion of getting that stuff over to YouTube and 
+  possibly backed up to Archive org and some other options so 
+  chairs definitely will take that under consideration and it seems 
+  like there's broad Community Support so we will figure out some 
+  next steps there in our next chair meeting over the next two 
+  weeks so I'm going to be traveling next week so it'll probably be 
+  the week after.
+Mike Prorock:   The with that.
+Mike Prorock:  Any other announcements from the community side.
+Mike Prorock:  Mr Manu.
+Manu Sporny:  Hey oh geez I'm late and all Jesus was already 
+  discussed it was announcement on the or there was a question on 
+  the mailing list about whether or not we want to have a YouTube 
+  channel and upload like these recordings that we're doing well 
+  now to YouTube people have provide some feedback thanks for that 
+  I'm guessing we'll leave it open the question open for another 
+  week and then see what we want to do but if you have a.
+Manu Sporny:  Please provide some input on the mailing list 
+  that's it.
+Mike Prorock:  Yeah definitely in a maniac I just noted will 
+  probably sink up as chairs not this week coming up the following 
+  after there's been some more time for that to bake and we've got 
+  some good options but it looks like there's a rough consensus 
+  driving at least in a certain direction to get some stuff out 
+  there so thank you for starting that thread.
+Mike Prorock:   Also many other announcements from.
+<orie> fediverse / peer tube!
+Mike Prorock:  That impact ccg wise otherwise I'm going to turn 
+  the ball over to or a here I am a big fan of the federal workers 
+  as you know or a so.
+<bumblefudge> nic
+<bumblefudge> e
+Mike Prorock:  All right well Ori I'm going to hand it to you 
+  topic of today is implementing did web for use with verifiable 
+  credentials just a lovely topic yeah.
+Orie Steele:  Yeah and as I recall if I turn my video on servers 
+  melt right so maybe I don't turn the video.
+Mike Prorock:  Screen share works great video I don't know so.
+Orie Steele:  Right here how do I screen share in this thing 
+  there's the button.
+Orie Steele:  Tire scream I'll see my entire screen.
+Mike Prorock:  We can indeed.
+Orie Steele:  All right so the structure of this is presentation 
+  I do have a demo at the end of it I can give that basically just 
+  Recaps what you've all seen I can't see the chat or anything 
+  actually I can make it so that I can see that though.
+Mike Prorock:  I'll keep it monitored and yell if there's 
+  something crazy and then.
+Orie Steele:  Hopefully hopefully yeah there's interrupt does we 
+  go love love for it to be more conversational given several talks 
+  on did web at this point so it's fairly boring topic to me and 
+  I'd rather take your questions and yeah it just just Dive Right 
+  In so the purpose of today's talk is to just focus on what do you 
+  if you're trying to.
+Orie Steele:   Explore using did well.
+Orie Steele:  What's a easy way to get started you know and how 
+  can you use d-did web when you're sort of first learning about 
+  decentralized identifiers and verifiable credentials it's it's 
+  not geared towards production and it's not even geared towards 
+  sort of safe testing environment it's geared more towards a local 
+  testing environment for developers giving them the tools they 
+  need to figure out what's going on.
+Orie Steele:  So high-level agenda we're going to briefly recap 
+  what did web is going to talk about key generation and did 
+  document construction and hosting and then there's just a brief 
+  commentary on signing and verifying once you have added documents 
+  nice to do something with it and then there's technical details 
+  section which I imagine we spend a good amount of time and 
+  because there's lots of fun privacy and security.
+Orie Steele:   Purity considerations when it comes to did web.
+Orie Steele:  And questions at the end but of course questions 
+  along the way are welcome.
+Orie Steele:  And I'll provide an export of these slides for 
+  folks so you know don't worry I'll get up to the chairs at the 
+  end so what did well well web is a way to use the centralized 
+  identifiers with web infrastructure DNS and https and certificate 
+  authorities another way of thinking about what did web is is its 
+  kind of an alternate representation of oid see issuer and all IDC 
+  you have a web origin and.
+Orie Steele:   Well known open ID configuration and that.
+Orie Steele:  Describes where to find signing keys for that web 
+  origin as an issuer and those documents are Json documents the 
+  configuration is a Json document that's not signed and it's 
+  served from a web server with with TLS and the well-known J W KS 
+  which contains public Keys is also not signed and is just a Json 
+  file that serve from a web server.
+Orie Steele:   And so one way of sort of just.
+Orie Steele:  That is you know these are ways to discover keys 
+  that are authoritative for a web origin and oh IDC has one way 
+  that they do that for open ID connect and did web is just a way 
+  to do that but for dids basically and then of course did web is 
+  not a blockchain so if you were excited to talk about blockchain 
+  here this is about web Technologies which have been around for 
+  quite some time.
+Orie Steele:   And so.
+Orie Steele:  There's no blockchain here.
+Orie Steele:  At the bottom are a series of pictures that I found 
+  inspiring when thinking about what the web is.
+Orie Steele:  Key generation the old-fashioned way.
+Orie Steele:  If you if you want to if you want your did to be in 
+  any way useful you're going to need to generate some keys and 
+  you're going to want to keep the private key private and you're 
+  going to want to put the public key in your did document and most 
+  of what did create operation is in any did method is about that 
+  first date document construction and getting your first Keys into 
+  the document so here I've shown some excellent openssl commands 
+  for generating nist.
+Orie Steele:   Compliant public and private keys.
+Orie Steele:  Just a quick note you know with openssl you're 
+  going to get key formats like Pam and you're going to have to 
+  convert them into like a jwk format if you want to host them in 
+  your document and luckily there's like lots of really excellent 
+  tools that will do that for you because this is a problem that 
+  folks who have been using openssl have had for quite some time so 
+  converting between pain and jwk is relatively easy converting 
+  between pain and jwk and other more newer key.
+Orie Steele:   Formats can be kind of tricky and when you're 
+  building your first did.
+<mprorock> wrong!
+Orie Steele:  I would encourage you to think about maybe not 
+  trying to support all of the different cool key formats you've 
+  ever seen But focus on the ones that are going to help you 
+  quickly verify your hypothesis like why are you using did web 
+  what are you interested in doing you know try and use 
+  off-the-shelf key formats as much as possible and you know just 
+  because it's old does not mean it's socks or the newer stuff is 
+  better Star Trek next Generation is the best Star Trek still.
+Orie Steele:   So making.
+<bumblefudge> here... here?
+<mprorock> TOS all the way
+Bob Wyman: Question: Please discuss relationship between did:web 
+  and WebFinger. What does did:web do that WebFinger can't? Are 
+  there use cases that would be well served by using both did:web 
+  and WebFinger in the same app?
+Orie Steele:  Document and this is a this is where I introduce 
+  the spice they're part of this talk is going to be about a 
+  product called n grok which I've used for many years and it's a 
+  really great way of debugging network activity and opening 
+  tunnels to localhost and exploring and securing you know web 
+  services at the development phase so on the right hand side you 
+  can see an example of a did document and.
+Orie Steele:   And I created this Json.
+Orie Steele:  Basically starting the and grok web service and 
+  using its instrument apis to get the origin that it was but the 
+  tunnel is bound to and that's what goes into the did web 
+  identifier the public key also goes into the document and that 
+  public key comes from the openssl key generation there wasn't any 
+  cryptocurrency required there's no web 3 5 7 or 11.
+Orie Steele:   Key formats although.
+Orie Steele:  And if you were excited about experimenting with 
+  those actually think did web can be a great place to do that 
+  because you just add them as verification methods and it's Jason 
+  and it's very easy to use and in this case there isn't any need 
+  to add any other contexts or extensions if you're just trying to 
+  do Jason this vocabulary that's added at the top basically will 
+  automatically assign term definition so even the skull emoji and 
+  the fire Emoji have term.
+Orie Steele:   Missions here and so I highly recommend doing 
+  this.
+Orie Steele:  Because you will encounter all kinds of problems in 
+  your libraries that are processing your did document if it's not 
+  well formed json-ld so I always add a vocab to my did web 
+  documents so that those libraries don't explode and then I can 
+  look at you know a specific term assignments and I can decide 
+  whether I like those term assignments or not and I'll show you at 
+  the end a demo of a library that will definitely explode if it's 
+  not valid Json till date.
+Orie Steele:  Library that I use a lot in terms of so thinking 
+  about what the shape of a json-ld to document looks like.
+Orie Steele:  So hosting a did document it's not enough to just 
+  have a Json file has to go on to a web server and this is where n 
+  Gras comes in so the first line in the upper left-hand corner is 
+  basically saying I'm going to serve a folder with korres on 
+  localhost 3000 and normally that would only be accessible to you 
+  of your on localhost 3000 on the server that's running but what 
+  an grok will let you do.
+Orie Steele:   Do is it'll let you bind a tunnel to that service.
+Orie Steele:  See you know the in the end Rock Network diagram 
+  what it looks like when you don't have that web service up so 
+  it's green Up Until the End Rock agent and then it's red because 
+  your web service isn't running but then if you turn your web 
+  service on which is the first command in the upper left-hand 
+  corner you get did Resolute you get an actual did resolution for 
+  well it's not that resolution but it's the data web and point for 
+  that web origin resolved successfully.
+Orie Steele:   And that's because the.
+Orie Steele:  As has spun up in the tunnel is binding to 
+  localhost 3000 and its binding on this origin which is this you 
+  know hexadecimal string Dot and rock that app and we can talk 
+  more about that in the private in the sort of technical detail 
+  section because there's all kinds of privacy issues with doing 
+  this in a production environment but for testing there's a lot of 
+  benefits for this with did web and again you know this is just an 
+  example you probably know.
+Orie Steele:   How to host Json files without using and rock I'm 
+  just showing and rock here for the.
+Orie Steele:  Showing developers that this is a tool that's 
+  really useful when you're testing things with did well.
+Orie Steele:  So on to sign and verify so if you're going to sign 
+  and verify you need to be able to get key material I've shown on 
+  the left hand side a little bash script that will use J Q2 which 
+  is a tool for processing Json responses so this bash script will 
+  work against any resolver that returns you know did documents in 
+  a reasonable form.
+Orie Steele:   And basically.
+Orie Steele:  You're going to want to do is you need to get the 
+  public key that you're going to use to verify the thing so 
+  whatever it is that's been sign you got to get the public key 
+  which means you have to talk to a resolver and in the context of 
+  did web you know you could Implement that resolved or locally or 
+  you could trust a third party resolver but one way or the other 
+  you're going to have to dereference to the public key material to 
+  check a signature.
+Orie Steele:  See the key conversion piece at the bottom there 
+  you know if you resolve a key but it's not in the right format 
+  for your library that's going to check the signature you might 
+  need to deep Dukey conversion before you can really process that 
+  payload in a specific way.
+Orie Steele:  Talking about creating the signature here if we 
+  still have the private key from the original key generation we 
+  can sign with that private key so we could sign choose to sign a 
+  file then we're going to want to do this middle dereferencing 
+  piece which is what we're just looking at before and that's you 
+  know how do I get my public key that I need to do dereference I 
+  need to get this public key in order to verify signatures that 
+  are supposedly signed by it.
+Orie Steele:   So dereferencing.
+<mprorock> w?
+Orie Steele:  Is really important for using did web for anything 
+  like you need to get the keys verifying the signature or the 
+  openssl is at the bottom and that's easy and that's only possible 
+  because you've obtained that public key so you can basically use 
+  existing libraries like openssl as long as you have a clear and 
+  consistent way of moving from a did or a did URL to a public key 
+  and so the main point that I'm trying to make here is that.
+Orie Steele:   Is that like dad's might be a new way to discover 
+  public keys.
+Orie Steele:  The software that works with public and private 
+  keys still works it's great some of that software is empowering 
+  and securing major components of the internet for a very long 
+  time and so one way of thinking about your first you know 
+  experiments with dids might be how do I use all of the tools that 
+  I'm really familiar with and then just add bids as a tiny little 
+  extra step and that's really about key generation and 
+  dereferencing in my opinion so if you're interested in exploring.
+Orie Steele:   Flooring Dead's I'd suggest start with what you 
+  know and try and add a.
+Orie Steele:  As opposed to sort of starting with dids and then 
+  trying to figure out why you're spending any time with kids.
+Orie Steele:  So technical details there are a bunch of privacy 
+  issues with with did web and I've included this excellent 
+  Anonymous picture here with Anonymous bearing the coffin of 
+  privacy a lot of folks have have pointed out that you know 40 IDC 
+  servers it might be acceptable to disclose public keys that are 
+  used to sign access tokens but that's because the server is 
+  represent a business.
+Orie Steele:  You wouldn't really.
+Orie Steele:  I do that same kind of thing if it was for 
+  individual like and human users or in particular human users that 
+  are highly vulnerable to disruption through a normal legal 
+  process or through State actions web infrastructure does have 
+  some kinds of security issues associated with censorship and.
+Orie Steele:  Attacks on certain layers of the network 
+  infrastructure that powers the web are very easy for certain 
+  classes of attacker and they're pretty hard for other classes of 
+  attacker so depending on what your threat environment is did web 
+  might be really not the right method for you I tend to think of 
+  did web as being the right method for a lot of businesses 
+  probably a lot of individual developers but definitely not the 
+  best method for someone who's you know.
+Orie Steele:   Really private.
+Orie Steele:  A journalist or is a freedom fighter or terrorist 
+  like I don't think did web is a good it's good for those use 
+  cases at all I think they folks who are interested in you know 
+  truly immutable self Sovereign identity would be better off with 
+  other formats potentially ones that have no network observability 
+  at all.
+Orie Steele:   So I purely deterministic.
+Orie Steele:  Did not consent so one thing to think about you 
+  know with respect to did web is like well how can I trust the web 
+  server to not add new keys or change you know the public key that 
+  I've added and if you can't trust that web host service to not 
+  tamper with your regular content you should definitely not trust 
+  them to host your key material I'm so I used look GitHub to host 
+  a lot of did did web demos and I.
+Orie Steele:   I generally trust GitHub to not.
+Orie Steele:  Ten that I put in a web server I also trust GitHub 
+  to manage my version control for my software so I have a lot of 
+  trust built into that web origin already and if I feel 
+  comfortable with GitHub performing those operations then it 
+  follows maybe I feel comfortable with GitHub not altering my my 
+  did Json file which has the keys that I've added to it but you 
+  know other folks might feel differently about GitHub right so 
+  just be careful that you know with did.
+Orie Steele:   You have to trust.
+Orie Steele:  Service provider that's like an important part of 
+  using did web.
+Orie Steele:  And you know in terms of the privacy issues 
+  associated with did what I'm about to show an example of exactly 
+  what I mean with respect to privacy but that did Jason well-known 
+  endpoint has to be resolved in order for did resolution on that 
+  did web to succeed so that origin is seeing resolutions and they 
+  might just be seeing resolutions for their single identifier but 
+  in a world where they're using the path based routing so not the 
+  well-known and point but but.
+Orie Steele:   But many.
+Orie Steele:  Origin and there's even more risk of privacy issues 
+  and having the did controller you know in the context of the 
+  hosting service provider have visibility into that it can be 
+  actually really big benefit for certain businesses but it also 
+  has privacy issues if those businesses are acting on behalf of 
+  individuals.
+Orie Steele:  Again there's no blockchain here so web 
+  infrastructure has been shown to scale pretty well.
+Orie Steele:  And then if you want to learn like a lot more of 
+  like the technical details behind what's really going on with did 
+  web I've included some scripts on the right hand side for 
+  analyzing a did web you know this is not black magic it's the Dig 
+  curl and traceroute commands but they can help start to sort of 
+  pique your curiosity regarding the security infrastructure that 
+  goes behind did web and whether or not you can trust content that 
+  you're looking at if you're doing.
+Orie Steele:   Did resolution.
+Orie Steele:  And the rest is appendix and so I can give a demo 
+  now unless there's further questions.
+Patrick_(IDLab): I have a few questions I'm wondering if I should 
+  wait for the demo first or just go ahead.
+Orie Steele:  And ask now.
+Patrick_(IDLab): All right so my first question so regarding the 
+  whole block chain thing in the did method so it's fair to assume 
+  that depending on the did method there is sort of infrastructure 
+  backing it and the case of did web it's obviously a lot more open 
+  handed but if you have like the did you PSI for example we know 
+  very well that there is a blockchain infrastructure behind it and 
+  this going to bring some sort of implicit.
+Patrick_(IDLab):  Concepts to the documents that are.
+Patrick_(IDLab): Start there the most notably wand obviously 
+  availability is going to be a big one in youth ability and some 
+  kind of access control for writing on that server so parallel to 
+  that there's the concept of the verifiable data registry so how 
+  do you how would you explain the correlation between the 
+  verifiable data registry and the underlying infrastructure does a 
+  what I mean is does a verifiable data registry need.
+Patrick_(IDLab):  to have certain security features and it.
+Patrick_(IDLab): Secret few key features are really just 
+  depending on the infrastructures on which it relies that that 
+  make sense.
+Orie Steele:  Okay so the four when you create a did method you 
+  describe the identifier format so that's like you know what the 
+  identifier is going to look like and then you describe the 
+  operations create update resolved and deactivate and then you 
+  define security and privacy considerations.
+Orie Steele:   In any did.
+Orie Steele:  Lies on a verifiable data registry as a software 
+  component you usually have some treatment of the privacy and 
+  security considerations section for that component so if you use 
+  the theorem or Bitcoin your privacy and security considerations 
+  should say something like we used ethereum or Bitcoin for this 
+  it's a public permission list you know Ledger and anyone can 
+  write to it but everyone can read from it and there are other.
+Orie Steele:   No security issues.
+Orie Steele:  Blah you talk about the verifiable data registry in 
+  your privacy and security considerations section.
+Orie Steele:  If you so if you're talking about the kind of the 
+  verifiable data registry as it was sort of more of an abstract 
+  concept.
+Patrick_(IDLab): But my concern is like how does the verifiable 
+  that urgency fit into did when I guess it's the my main question.
+Orie Steele:  Yeah so yeah so the the what is the registry right 
+  the registry here is its DNS and it's a combination of DNS and 
+  HTTP and certificates it's not just you know one software 
+  component it's a slice across the web stack and adding each of 
+  those components up produces the consistent software experience 
+  that implementers rely on to build did web resolution or 
+  resolved.
+Orie Steele:   All that.
+<bumblefudge> in terms of historical resolution/versionTime=, the 
+  registry is the Internet Archive 🌶️
+Orie Steele:  Resolve operation for did web you need to consume 
+  those layers of the web infrastructure how those layers are 
+  implemented could vary greatly right so you could have a scenario 
+  where you know one did web uses a specific web server and a 
+  specific web origin and another one uses a totally different you 
+  know top-level domain totally different web hosting 
+  infrastructure and those are different implementation details 
+  underneath the same verifiable data registry.
+Orie Steele:  Does that make sense.
+Patrick_(IDLab): Yeah it does so the reliability of this VD R is 
+  going to really depend on the underlying implementation so you 
+  could have two implementation of did web one can be secured and 
+  the other one less secured yeah.
+Orie Steele:  Yeah yeah and you haven't really said this directly 
+  but I hear maybe hear a hint of it and what you've mentioned 
+  before like what if you really like a blockchain and you want to 
+  use the blockchain to manage the did Json documents and then you 
+  just expose the did Json documents on a web origin then the web 
+  origin is still trusted to not tamper with the those documents 
+  but you're kind of using a really stronger database.
+Orie Steele:   The store them instead of just putting files on a 
+  web server and.
+Orie Steele:  You allowed to.
+Orie Steele:  Do that but remember the trust is in the web origin 
+  because the web origin is the root and that's where tampering can 
+  occur.
+Patrick_(IDLab): Yeah so that there was something else I'm 
+  exploring is obviously with did web you could within some 
+  document you could reference other did methods so like object 
+  stored on other did methods so another question I would have is 
+  if me as my implementation I want to make an API that's meant to 
+  respond to did web request is that from the pain or.
+Patrick_(IDLab):  is that fine.
+Patrick_(IDLab): Storing a document but I'm sort of responding a 
+  document dynamically.
+Orie Steele:  No that's totally fine like so the file like the 
+  did Jason is like that the spec says this endpoint is what you 
+  must perform an HTTP resolution on to get the did document it 
+  does not tell you whether you have to implement the endpoint as a 
+  file or as a database query that talks to a blockchain or 
+  whatever you can do that however you like.
+Mike Prorock:  Exactly there's a good degree of flexibility there 
+  and I'm just jumping in because I see Bob on the cue and I do 
+  want to make sure or he's able to get to demo as well but Bob 
+  fire up.
+<bumblefudge> controller property
+Juan Caballero: "Controller":"did:stronger-vdr:alice"
+Bob Wyman:  Okay question okay give them the did web it relies on 
+  DNS it uses HTTP to fetch documents it doesn't rely or doesn't 
+  require any crypto and it exploits the dot well-known.
+Mike Prorock:  You got it.
+Bob Wyman:  A convention so the obvious question is is did web 
+  really just a profile on the use of webfinger and can we say 
+  right so so why why do we have why do we have did web as anything 
+  other than a profile on webfinger like when would I can did web 
+  do something that webfinger can't is there ever a case.
+Bob Wyman:   I swear I would want both.
+Bob Wyman:  And did wave in the same app like.
+Mike Prorock: https://www.rfc-editor.org/rfc/rfc7033
+Orie Steele:  Great great question so I'm webfinger is obviously 
+  useful as a building block in lots of other ecosystems like you 
+  know I think activity Pub or or Mastodon or one of one of those 
+  systems definitely uses it I've had to use it before.
+Bob Wyman:  Macedonia is it although not very well and kind of in 
+  a silly way but anyway.
+Orie Steele:  But the point basically there is that like the web 
+  server has a need to expose whether accounts exist on An Origin 
+  or not and that's kind of very strongly aligned with the did web 
+  path based identifiers approach format but it's not very well 
+  aligned with the raw origin did Web format so there's there's two 
+  primary ways to resolve a did web document one is the well-known 
+  did Jason and the other is a path based routing.
+Orie Steele:   And I mean if you asking not.
+Orie Steele:  In like it would be much better to just throw out 
+  everything that we have for did web and rebuild a profile on top 
+  of web finger.
+Orie Steele:  But that's not how standards work like this thing 
+  has been around since basically the beginning of dids and it's 
+  evolved to have its shape based on the community contribution and 
+  feedback spec is under development at the ccg and it becomes very 
+  hard to change what a did method is over time and that's why it's 
+  great to be able to create new did methods that have the 
+  properties that you wish the other did methods have and then you 
+  know you can advocate for hey.
+Orie Steele:   Guys like stop using did web start using did web 
+  finger or.
+Bob Wyman:  Well what is it about.
+Bob Wyman:  Did web that would need to change if one said it is a 
+  profile of wet finger.
+Orie Steele:  You have to describe the read operation in the 
+  verifiable data registry in terms of the web finger standard.
+Orie Steele:  That's just sentences in a document basically.
+Bob Wyman:  Okay but other than changing sentences with anything 
+  semantically change.
+Bob Wyman:  Like what any bits on The Wire have to change if one 
+  said that it was a webfinger profile.
+Orie Steele:  I mean the content that you're getting from the in 
+  the response would be different but you know.
+Orie Steele:  The overall approach that you're suggesting is one 
+  that can be explored and you know I encourage folks to just go 
+  make a new did method as a profile of webfinger and look at did 
+  web and look at the thing that you've got and you know show what 
+  the differences might be I think that sounds like a fun fun thing 
+  to do.
+Bob Wyman:  Okay it just strikes me that.
+Bob Wyman:  Frances between did web and potentially it did 
+  webfinger are so subtle that.
+Bob Wyman:  Not doing ourselves a favor by having this variety of 
+  this kind of variety or these differences like.
+Bob Wyman:  I mean this is is this ietf versus w3c is that what's 
+  going on here.
+Orie Steele:  I don't really know what you're what you're getting 
+  at with that but the in at least in the context of like the 
+  approach that did spec Registries and did core you know first 
+  publication took the approach was to document requirements where 
+  we could get consensus as a working group and then to make it 
+  possible for people to really.
+Orie Steele:   Explore the.
+Orie Steele:  Space of did methods and we did that with the did 
+  method Registries so you it's very easy you can easily create a 
+  new did method and it could be 99.9% the same as an existing one 
+  and if you've made some small Improvement to it that justifies 
+  giving it a separate name great and no one can stop you from 
+  doing that right it would be a problem if You Were Somehow not 
+  able to do that because it would be evidence that the 
+  decentralization property of the specification was weekly 
+  implemented.
+Bob Wyman:  I understand I understand that did webfinger would be 
+  trivial to spec and get registered but we didn't wasn't there 
+  just on the list there was recently a discussion about how 
+  flexibility ain't quite all its said to be.
+Mike Prorock:  Yeah there's there's I mean there's a bunch of 
+  stuff in it honestly like Baba actually I like this kind of 
+  conversation because I think it's going down some interesting 
+  especially meta type like you know how can we improve things are 
+  we putting effort in the right places etcetera but but I'd say 
+  let's probably table it for now and take the conversation to the 
+  list just because I Seek You stacking up and I want to make sure 
+  or he has 10 minutes at least four.
+Mike Prorock:   Demo followed by a question or two.
+Bob Wyman:  Okay sorry if I go too far off track.
+Orie Steele:  It's great is it ready.
+Mike Prorock:  If that works for you oh yeah yeah no worries yeah 
+  it's a cool topic and that's why it's easy to go away who you 
+  know way deep in lots of different directions on this so many.
+Manu Sporny:  Yeah just real quick to try and address Bob's 
+  concern the fundamental differences are the webfinger the the 
+  file that you get at the other side is a totally different data 
+  format from the from the did spec there's no compatibility with 
+  the rest of the did methods so you know it would be kind of a 
+  one-off you know for webfinger it was considered but you know 
+  webfinger was.
+Manu Sporny:   Kind of you know.
+Manu Sporny:  Specifier in webfinger it was just designed for 
+  kind of a different problem space you can step back and go like 
+  oh yeah I can see how there are more or less the same thing and 
+  that's true but the problems come in when you go to implement 
+  right lawyer where you go to implement key formats and file 
+  layout and yeah exactly that's where everything kind of falls 
+  apart that's it.
+Mike Prorock:  Yeah compliance with the data model itself and 
+  stuff like that yeah yeah yeah cool yeah awesome thanks man who 
+  and or you want to dive into demo and then we can take a few 
+  questions here.
+Orie Steele:  Sure so I have running in this tab that web server 
+  command.
+<smagennis> zoom in please
+Orie Steele:  This MPX serve of the WW origin and that's what is 
+  meaning this localhost pieces up here and then over here I have 
+  the an grok binding and you can see these you know server logs 
+  are reporting to me every time a resolution occurs so if I go to 
+  a resolver like this resolver processes did documents that are 
+  well formed json-ld and it makes you this like.
+Orie Steele:   Little graph.
+Orie Steele:  So you can you know look at the different 
+  components and pull them around zoom in and out of them in 3D 
+  space or whatever I was I made this resolver to basically 
+  highlight the cool part of json-ld and the did course back you 
+  can see you know all of these different relationships here for 
+  this one particular key and then you know you can see other 
+  details about that particular key you can see blank note 
+  identifiers Everyone likes to look at those.
+Mike Prorock: https://lucid.did.cards/
+<manu_sporny> Very cool demo! :)
+Orie Steele:  Like you know this particular format this only 
+  works because this is a well-formed json-ld document and every 
+  time you know I refresh this you can see another resolution so 
+  I'm tracking my own resolutions on my did basically here and if I 
+  look to another resolver so different web origin and I resolved 
+  again it's going to trigger another one of these here.
+Orie Steele:   Inside of an grok.
+Orie Steele:  Deeper at these so this is like their minimal 
+  interface that they provide but they have full request response 
+  introspection available here which can be really helpful if 
+  you're debugging something detailed but the important thing to 
+  note here is that this is just the well-known did Jason so I 
+  don't know what the user is trying to do with the did document 
+  like I don't know if they're trying to look at a specific 
+  verification method there's only one verification method good 
+  chance that that's what they're looking.
+Orie Steele:   For here.
+Orie Steele:  I have hundreds in here and then I wouldn't 
+  necessarily know which key they were trying to use and for what 
+  purpose and similarly for service you know endpoints like there 
+  aren't any service and points in this particular did document but 
+  if there were I would just see resolutions of the did Jason I 
+  wouldn't know exactly what they're trying to do here but just 
+  having that timing information can be a big problem like if you 
+  imagine this wasn't me self-hosting but instead this is me.
+Orie Steele:   Me and to some degree and rock is still seeing 
+  some of this transaction.
+Orie Steele:  So if I you know if this weren't you know for 
+  development and testing purposes maybe I'm concerned I'm leaking 
+  did resolutions to and rock because they can see each did 
+  resolution that's happening as a result of this well-known did 
+  Jason but again this is for one origin and this is me 
+  self-hosting that's very different than if you look at the server 
+  logs for this resolved or here where this resolver is going to 
+  have resolution logs for every did method that's resolved through 
+  it.
+Orie Steele:   So the point here is you know if you.
+Orie Steele:  If you want to use did web and grok and a Json file 
+  and a simple web server is really really easy way to get started 
+  and if you want you know to take the entire thing down you just 
+  killed it and Iraq instance and when you go to resolve it not 
+  going to resolve on any resolvers anymore and the wet local 
+  webservers up but the tunnel is down and like that's that's the 
+  whole sort of Point like you you were basically adding in these.
+Orie Steele:   These layers to serve Json files and that lets you 
+  easily update the.
+Orie Steele:  Machine you don't have to.
+Orie Steele:  Push anywhere you just change the file and it's 
+  going to change the behavior on the web server.
+Orie Steele:   That's it.
+Mike Prorock:  Cool thank you sir Patrick I see you on the queue.
+Patrick_(IDLab): Yes I usually have a few questions try to be 
+  sensible of time sometime I get over myself this is it was very 
+  interesting I've been looking at did web for the last two weeks 
+  or so like I mentioned beginning I'm trying to do like some 
+  prototype proof of concept implementation for the an incred 
+  specification so without going into too many details there's a 
+  requirement.
+Patrick_(IDLab):  to sort of.
+Patrick_(IDLab): Serve other type of documents than a did Json 
+  documents mostly just Json structure that are necessary to 
+  process the type of credentials that are issued and verified and 
+  upon my research I came to the conclusion that the best way to do 
+  that would be to use services in the documents and so more 
+  specifically I think.
+Patrick_(IDLab):  think like a sort of a file storage.
+Patrick_(IDLab): Service that would resolve these document so my 
+  first question is how I can.
+Orie Steele:  Yeah so you can't you can't just take did web and 
+  get the behavior you want there because what you're really asking 
+  is I need a resolver that knows how to handle related resources 
+  in the URLs right.
+<bumblefudge> nginx rules?
+Orie Steele:  Yeah so you need a resolver to do that and resolver 
+  might be able to process the path component of the did URL or 
+  process query parameters in a did URL and that resolution process 
+  would usually the way that it works it would resolve the did 
+  document then it would use the did document to resolve the 
+  relative resource or external resource and it would do that by 
+  processing the other components of the.
+Orie Steele:   Did your El.
+Patrick_(IDLab): Exactly so let's say I have a service which is 
+  my resolver which is I think what you're referring to.
+Patrick_(IDLab): If I if in my did document I use one of the 
+  service let's say I want to one of the examples like a shimmering 
+  so I need to publish some scare Maya is like a defined data model 
+  so I have one of my services could be like Shimmer resolver let's 
+  just pretend.
+Orie Steele:  Yep wait but you need that web service that knows 
+  how to handle did your Ells that point to resources that aren't 
+  in documents at web service is a resolver and resolvers are not 
+  standardized so you know you have the whole you can read the did 
+  resolution spec it's a draft in the ccg you know it's going to 
+  handle that one way other people can Implement other ways to 
+  handle did urls.
+Orie Steele:   Yes and this is its.
+Orie Steele:  With did core like this is an area of the working 
+  group wanted to do more but you know our Charter forbid us from 
+  making this easy.
+Juan Caballero: 
+  https://github.com/w3c-ccg/did-method-web/issues/61#issuecomment-1201181499
+<bumblefudge> ^ This might help
+Patrick_(IDLab): Okay because at the moment my way of thinking 
+  was to use like it did web URL with query you know parameters 
+  with the service and the relative reference I think it's called 
+  it's not pretty you know and I'm wondering what's the point of 
+  this service query the service parameter if it points in the did 
+  document to.
+Patrick_(IDLab):  like that.
+<bumblefudge> but orie's right on the resolution side
+Patrick_(IDLab): Fragment could I just use the fragment directly 
+  instead of a service parameter.
+Orie Steele:  So usually the fragments are for referring to sub 
+  resources in the document that you resolved with a specific media 
+  type so they're not really great for identifying external 
+  resources that's not their primary use there to there to identify 
+  sub resources in a result document the purpose of the service 
+  parameter and the relative ref you know features and these are 
+  extensions too.
+Orie Steele:   Decor that are in the did Speck Registries was to 
+  give.
+Orie Steele:  There's a way to create did URLs for resources that 
+  they are in control of without binding to a specific location so 
+  I could have an ipfs Gateway that I use to host ipfs content and 
+  I can make did relative ref did URLs for ipfs hashes and then if 
+  that Gateway service provider goes away I just change their 
+  service and point out and all the did URLs are still the same but 
+  the ipfs Gateway that's.
+Orie Steele:   Used to resolve is no different.
+Mike Prorock:  Yeah Brent I see you on the call so I'm going to 
+  put you on the spot because I know at least At Last he pack some 
+  discussion came up around standardizing some of the resolution 
+  side and things like that to get at these issues and what's your 
+  sense of where things would be going possibly in the future from 
+  a did working group reformation and you know potential work.
+BrentZ: So did working group right now is you know on extension 
+  while we work on a draft of the new Charter the primary work in 
+  the new Charter is to maintain the did course back there was 
+  conversation around some possibly additional things did methods 
+  and did resolution primary amongst them even if the did working 
+  group Charter in ends up including.
+BrentZ:  those things.
+BrentZ: It wouldn't result in a normative specification within 
+  the next couple of years most likely it would be for the group 
+  after the next group to more formally address those as part of 
+  the did work.
+Orie Steele:  But just to be clear on the point I think the 
+  current did working group can work on documents of a pre 
+  candidate recommendation draft status that would be related to 
+  standardizing specific did methods or standardizing specific did 
+  resolution processes that correct.
+BrentZ: It is proposed that the next did working group would have 
+  that in its Charter yes.
+Orie Steele:  Right yeah the charter is Charter text has recently 
+  received a pull request that emerged that and the charter text is 
+  not yet been voted on I think right.
+BrentZ: Write the next step is presenting it to the AC and having 
+  a conversation with the rest of w3c around how they feel about 
+  our proposed new chart.
+Mike Prorock:  I am sure that will go flawlessly and perfectly 
+  smooth.
+Orie Steele:  And I guess you'd have to be on the AC members list 
+  to participate in that conversation because it'll it won't be 
+  open.
+BrentZ: It is formally a conversation amongst AC representatives 
+  for w3c member organizations.
+Mike Prorock:  Cool well with that I see we're coming up towards 
+  the top of the hour there's been a goal for us to not run this 
+  meeting much Beyond 5 minutes to the top of the hour since 
+  everything seems to be running back to back these days I am going 
+  to just check the queue and see if there's any kind of final 
+  questions comments and otherwise I'm going to let already closed 
+  down and thank him for his time because this was extremely 
+  helpful and a nice thorough Deep dive.
+Orie Steele:  Awesome thanks always fun to present on something 
+  technical I'll give a PDF of the slides to the chairs for the for 
+  the list notes and if you have any questions their repository 
+  with all the code for the demo is public and it's linked in the 
+  slides and feel free to file issues their message me in the dip 
+  Slack.
+<harrison_tang> thank you, Orie !
+<manu_sporny> Great presentation, thanks Orie!
+Mike Prorock:  Awesome thank you so much mr. orry with that 
+  everyone please have a wonderful day and we will close.
