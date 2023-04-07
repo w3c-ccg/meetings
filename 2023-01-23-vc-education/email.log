@@ -1,0 +1,634 @@
+Thanks to Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-01-23-vc-education/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-01-23-vc-education/audio.ogg
+
+----------------------------------------------------------------
+VC for Education Task Force Transcript for 2023-01-23
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2023Jan/0053.html
+Topics:
+  1. Announcements & Reminders
+  2. JWT VC interoperability profile with Jen Schreiber from 
+    Workday Credentials
+Organizer:
+  Simone Ravaoli
+Scribe:
+  Our Robot Overlords and Our Robot Overlords
+Present:
+  Simone Ravaoli, Chris Webber, Andy Griebel, Jen Schreiber, Kerri 
+  Lemoie, David Ward, Tim Bouma, Xander, Eric Shepherd, Stuart 
+  Freeman, John Kuo, Dmitri Zagidulin, Andy Miller, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Phil Barker, Deb Everhart, 
+  Hob Spillane, Chris Kelly, Marty Reed, James Chartrand, Keith 
+  Kowal, Colin Reynolds, Ed Design Lab, Chandi Cumaranatunge, 
+  Kayode Ezike, Sharon Leu, Ryan Grant, Jim Kelly, Naomi, xander - 
+  ASU/Pocket, Phil L (P1), Kimberly Linson, Xander / ASU Pocket, 
+  Brian, PL, Xander - ASU Pocket, Jim Goodell, David Baumgartner 
+  @smartEduWallet TM, Glenn Rempe, Jeff O - HumanOS
+
+<simone_ravaioli_(vc_edu)> hello all. Let's give it a few mins...
+<kerri_lemoie> Hello All!
+Our Robot Overlords are scribing.
+Kerri Lemoie:  This is Carrie and scriber and it started and then 
+  it stopped.
+Kerri Lemoie:  Oh now I see it again so I don't know I missed you 
+  I'll keep an eye on it.
+Kerri Lemoie: :+1:
+<kerri_lemoie> Strange that you're not getting transcribed 
+  @Simone
+Kerri Lemoie:  Sure hey everyone snoring by the way I'm still not 
+  seeing now the transcribing has stopped again I'm not sure what 
+  is up.
+Our Robot Overlords are scribing.
+
+Topic: Announcements & Reminders
+
+<kerri_lemoie> plugfest 2 web page: 
+  https://w3c-ccg.github.io/vc-ed/plugfest-2-2022/
+Kerri Lemoie:  Anyway I just want to let folks know that we 
+  publish the videos for the plugfest to demos you can get it a 
+  link to it on the plugfest to web page and then put that in the 
+  chat for you right now.
+Kerri Lemoie:  Right at the top you'll see participant list with 
+  videos and then this is actually the list.
+<kerri_lemoie> page with videos: 
+  https://w3c-ccg.github.io/vc-ed/plugfest-2-2022/participants.html
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> The 
+  transcriber has intermittent and unpredictable deafness problems 
+  just like the rest of us. Restarting it *may* fix. Users not 
+  being heard by it may also need to drop and rejoin.
+Kerri Lemoie:  These are sorry it took so long but we had a lot 
+  of to go through this was a much more complex like class because 
+  we had issuers issuing to two wallets to all its or well it's 
+  issuing 22 issuers and then we also had multiple more than that 
+  more than more than two per some of the entries and then some 
+  folks you know combine their videos so it took us a while to sort 
+  it all out but you should be able to get a link to all of the 
+  organizations participated on this page.
+Kerri Lemoie:   See what they submitted at and the wallets and 
+  issuers interacted with and then.
+Kerri Lemoie:  The demo video.
+Kerri Lemoie:  And that's it thank you.
+<kerri_lemoie> Video of demo day coming soon
+<deb_everhart_(credential_engine)> is there also a list of all 
+  the participants?
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I'm just a 
+  quick thing the transcriber goes deaf just like the rest of us 
+  sometimes it's intermittent and unpredictable sometimes 
+  restarting the transcriber will fix it sometimes the users that 
+  it's not hearing also need to drop and rejoin.
+<kerri_lemoie> @deb - this list is all of the participantrs: 
+  https://w3c-ccg.github.io/vc-ed/plugfest-2-2022/participants.html
+<kerri_lemoie> Thanks @Ted
+<deb_everhart_(credential_engine)> thank you, an impressive 
+  group!
+
+Topic: JWT VC interoperability profile with Jen Schreiber from Workday Credentials
+
+Jen_Schreiber: Awesome thanks for that intro okay let me just 
+  start sharing my screen.
+Kerri Lemoie: Re: transcriber - so we don't interrupt the call, 
+  we can take the audio and get it transcribed after the call.
+Jen_Schreiber: Okay you got the slides.
+<kerri_lemoie> ... to fill in any gaps
+Jen_Schreiber: And I on.
+Jen_Schreiber: Not exactly her dish how sure how to do that but 
+  there are questions throughout I don't know Simone if you want to 
+  chime in or we can save them to the end.
+Jen_Schreiber: Perfect so as I got introduced I'm John Schreiber 
+  a software engineer at work day primarily working on VC interop 
+  and I met Simone a hat IW and have been kind of attending this 
+  task force on and off since then so I'm excited to be able to 
+  present here and share with you all some of the work that we've 
+  been doing.
+<kerri_lemoie> IIW == https://internetidentityworkshop.com/
+Jen_Schreiber: Bye little bit of an intro on what is 
+  interoperability I'm sure this part will be preaching to the 
+  choir with you all as very Pro interop Group next I'll get into 
+  the jot VC interoperability profile itself share with you all 
+  about the technology kind of some of the reasoning behind that 
+  its impact on open Badges and then I'll end with a nice demo okay 
+  let's get started.
+Jen_Schreiber:  so what is it.
+Jen_Schreiber: Especially related to verifiable credentials and I 
+  know you all are familiar with the this cuz all of the plugfest 
+  initiatives this last year but interoperability is the ability of 
+  different systems to talk to each other and in my mind 
+  interoperability is really the marker of amateur and successful 
+  verifiable credential ecosystem without interop without being 
+  able to share an issue credentials across multiple wallets and 
+  verify.
+Jen_Schreiber:  and issuer provider.
+<simone_ravaioli_(vc_edu)> love this streetwise def of Interop 
+  Jen
+Jen_Schreiber: Like you can't really embrace the true power of 
+  VC's and its use cases and it's.
+Jen_Schreiber: How are really gets stifled so why should you care 
+  about interoperability interoperability empowers the end-user it 
+  really empowers the holder of the credential in the context of 
+  this task force that's often the student to be active in their 
+  learning or education Journey they can take their credentials 
+  with them across institutions as they change universities they 
+  can get new credentials along the way but we really need 
+  interoperability to enable this.
+Jen_Schreiber: Vents a closed ecosystem.
+Jen_Schreiber: To have we want to avoid the situation where 
+  there's kind of like one wallet to rule them all or one issue or 
+  one verifier by opening the ecosystem and having interoperability 
+  we can really solve for a wide range of use cases and make our 
+  holders like quite successful in that education journey and 
+  lastly interoperability promotes VC up take this one's kind of 
+  self-explanatory but the.
+Jen_Schreiber:  or issuers.
+Jen_Schreiber: Verifiers and wallets we have the more popular 
+  verifiable credentials come will come and I think that's kind of 
+  the end goal that we all want we're VCS become really ubiquitous 
+  within technology.
+Jen_Schreiber: So currently there's lots of great specifications 
+  that you all know whether they're published by ietf or open id'd 
+  if w3c lots of specs for issuing and verifying VCS between 
+  wallets issuers and verifiers but because of all these specs the 
+  wallets and the verifiers the issuer's they all have to decide 
+  which specifications they want to operate under and support and 
+  hope that anybody that they.
+Jen_Schreiber:  on to communicate with any of these.
+Jen_Schreiber: Also support the same specs and specs by Nature 
+  are very broad flexible and often pretty on a pinion ated and all 
+  of this optionality within the specifications make it quite 
+  complex and really expensive to deliver code maintain a solution 
+  and issue and verifies VCS and specs alone cannot as you all have 
+  seen I'm sure they can't ensure interoperability and so.
+Jen_Schreiber:  I really need a spell.
+Jen_Schreiber: Vacation profile specification profiles outline 
+  the way in which multiple parties agree to implement a given set 
+  of specifications and they try to strip all but required 
+  optionality from uh specification so let's say in the use case of 
+  a jot if you see right so without a specification profile a 
+  implementer might have to support let's say like.
+Jen_Schreiber:  like 40 different.
+Jen_Schreiber: Designing algorithms because they don't know which 
+  type which dad algorithm you know whoever they want to 
+  communicate also supports but if we were to use a specification 
+  profile let's say that requires maybe only to signing algorithms 
+  that's overall like a 20x reduction in complexity with just that 
+  one constraint of signatures so you can visualize that if we were 
+  to go through this step for all the different specifications in a 
+  flow.
+Jen_Schreiber: It would really reduce that cost and complexity 
+  for implementers.
+Jen_Schreiber: So in comes the giant VC interoperability profile 
+  that I've been working on within the diff or decentralized 
+  identity foundations and we're working on this within the claims 
+  and credentials working group in the Jap VC interoperability 
+  profile work item.
+Jen_Schreiber: And there's been lots of great contributors to the 
+  profile thus far including me and my team at work day Microsoft 
+  ping matter IBM Spruce gen digital and then also other companies 
+  who are starting to implement the profile.
+Jen_Schreiber: Okay so now I want it to break down a little bit 
+  of the oh I heard a ping oh there's someone in the queue and 
+  they're out now okay okay yeah no problem so this slide just kind 
+  of goes over our stages of the interop profile we've divided the 
+  profile into three stages presentation issuance and portability 
+  or display VCS.
+Jen_Schreiber: Asian stage involves the whole enables the holder 
+  a to be able to present a compliant vc2 verifier be issuer 
+  issuance stage represents enabling an issue or be to be able to 
+  issue a credential to holder a and then portability and display 
+  involves consistent you is and the movement of VCS between 
+  different wallets.
+Jen_Schreiber: Right now State the first stage presentation of 
+  VCS that segment of the profile has been published within deaf 
+  and you can find that online issuance is being actively worked on 
+  us editors are planning on publishing the first draft of that in 
+  the next couple weeks so you can see that live then we haven't 
+  really started looking at portability and display yet.
+Jen_Schreiber:  but if you were to compare this to.
+Jen_Schreiber: We got within this work item that jmf flux is it 
+  kind of went a little bit in the opposite direction Flex S1 I 
+  think started with display and Pub plugfest to with issuance and 
+  then I think that the last plugfest will be presentation so same 
+  content but a little bit of a different order.
+Jen_Schreiber: Let's talk about the technology and the profile 
+  itself so the Jap VC interrupt profiles are based on open ID for 
+  verifiable credentials open ID for VP and open ID for VCI with 
+  some unused optionality to removed remember like kind of the goal 
+  of the specification profile is to make it as simple for 
+  implementers to write the code and my aunt Amy's.
+Jen_Schreiber: In the solutions and promote kind of like easy 
+  quick interop so we're using jot VCS with did methods of did ion 
+  or did web we're soon to be adding did J B WK the two key types 
+  that are supported our ed2 5519 and SEC P 256 K 1 keys.
+Jen_Schreiber: Using well-known did configuration which is a diff 
+  spec for link domain verification that is enables some basically 
+  trust for the domain and for the identities of the implementers 
+  for revocation status list 20 21 and then issuance right now is 
+  just supporting just-in-time issuance no deferred issuance and 
+  only an authorization code no pre-authorization code.
+Jen_Schreiber:  with this.
+Jen_Schreiber: I think we've had this Mantra throughout the whole 
+  experience of developing these interrupt profiles and that has 
+  been really that we're seeking progress and not Perfection with 
+  the recognition that really no specification profile is going to 
+  be universally accepted after its first iterate iteration and it 
+  kind of needs to adapt and grow naturally as implementers needs 
+  change but this is like that first kind of.
+Jen_Schreiber: First progress towards that and over time I think 
+  successful profiles there will probably be a couple competing 
+  profiles and hopefully they'll likely converge and we got this 
+  kind of universal standard for the ecosystem and that will make 
+  interrupt very easy and convenient for everybody so chat GPT I 
+  think put it really nicely that path to success lies in constant 
+  Improvement not the pursuit of an unattainable perfection.
+Jen_Schreiber: Okay let's talk use cases because this task worse 
+  loves the use cases so the Jap VC interoperability profiles were 
+  developed with the workplace credential use case in mind this is 
+  a credential type that's issued to a user by its workplace 
+  organization and we're calling this a verified employee.
+Jen_Schreiber:  and the users of.
+Jen_Schreiber: Type of credential would be employees students 
+  staff contractors or vendors of a workplace and workplace 
+  credential could support users in their Journey when they on 
+  board to a new company access to different workplace applications 
+  maybe even alumni scenario so there's lots of use cases that are 
+  workplace credential could support.
+Jen_Schreiber: And open badges really fit nicely into the 
+  interoperability profile especially the open badges V3 data model 
+  which are just verifiable credentials and they can be encoded 
+  just like any VC into a jot and once the badges are encoded in 
+  Jets we can use the interoperability profile to issue and verify 
+  them like we would any other.
+Jen_Schreiber: And that can again like ensure interoperability 
+  interoperable issuance and presentation of these ob3 job VCS and 
+  really enhance that student Journey so the new ob3 is just really 
+  exciting when you are able to use it with a profile like this.
+Jen_Schreiber: Okay and then the last portion of my presentation 
+  is a demo so I thought that you all would probably want to see 
+  the interoperability profile in action and so for the demo I'm 
+  going to be using a little scenario of a student and in this case 
+  my name as a student It's Pat Smith and let's just say I'm a 
+  university student getting my BS in.
+Jen_Schreiber: And so on the right of the screen you can see this 
+  is my wallet this is a command line wallet I'll get into that 
+  when I show you the actual demo but i'ii credentials in my wallet 
+  one is a research assistant I work in an organic chemistry lab 
+  and they're certain safety requirements so I had to go through 
+  training and that gave me this are a verified employee credential 
+  I'm also a student so I have a student credential maybe that 
+  gives me a discount to the movies or.
+Jen_Schreiber: I was me.
+Jen_Schreiber: This into a building and then the last credential 
+  in the wallet is teaching assistant credentials so I taught chem 
+  101 last semester and I needed to have access to a grading 
+  website to be able to add grades for students exams.
+Jen_Schreiber:  and this.
+<elizabeth_miller> did
+Jen_Schreiber: Has been revoked because let's say I did that last 
+  semester and now I shouldn't have access to the system so that 
+  sets the stage a little bit for the demo and I think I need to 
+  stop sharing and then re share again so I can show you the demo 
+  let's do that real quick.
+Jen_Schreiber: So this demo is.
+Jen_Schreiber: Pre-recorded because I'm not bold enough to do a 
+  live demo but I will talk through it so.
+Jen_Schreiber: So you should see I think that's that looks good 
+  from what I can tell.
+Jen_Schreiber: Okay great so this is a screenshot of my command 
+  line so I'm going to be demoing this flow with a command line 
+  wallet that my team at work day developed just for internal 
+  purposes that way we could easily iterate on interop and I just 
+  makes it really quick and.
+Jen_Schreiber: To show you all.
+Jen_Schreiber: Okay so the demo wallet has some convenient 
+  commands in it to issue and verify VCS you can scan QR codes and 
+  list different credentials that I have in my wallet so we use 
+  this demo wallet VC LS command so that you can see all the VCS in 
+  my wallet these are the three species that I showed you on the 
+  previous slide I have my student my aura and then my revoke t a 
+  credential.
+Jen_Schreiber: Okay so I'm going to first show you we're going to 
+  probably go through like 5 I think verifiers in this flow don't 
+  worry some of them will be at like 1.5 x speed so it's only like 
+  a three minute demo but I think by showing all the verifiers you 
+  can see the power of interoperability profile so let's play so on 
+  the right side I have a Microsoft verifier.
+Jen_Schreiber: And I use this demo while it's can command to scan 
+  the QR code with my demo wallet I just screenshot the qr-code 
+  much like I'd use a camera on a mobile app to scan a QR code so 
+  after I scan it then I'd M Allah will run through all these 
+  checks that are required in the profile so I will resolve the 
+  verifiers did and on eye on network and.
+Jen_Schreiber:  get its public key material I'll check the.
+Jen_Schreiber: Of the URL to make sure that I can trust this 
+  verifier that's the text in green and then my wallet will Loop 
+  through the credentials and check which credentials match the.
+Jen_Schreiber: Match the presentation definition defined by the 
+  verifier so this profiles using presentation exchange so after 
+  that I'm going to choose my credential in this case I'm going to 
+  share a student credential and my response has been accepted and 
+  then you can see that the presentation has been verified on the 
+  verifier okay so next I'm going to go through on a 1.5 x speed 
+  lots of other verifiers starting with a ping verifier it'll do 
+  all the same.
+Jen_Schreiber:  um checks just.
+Jen_Schreiber: I am and I'm going to share the student 
+  credential.
+Jen_Schreiber: Next I'm going to go through a jet this one 
+  verifier was made by Jen digital again scanning the QR code so 
+  you can see really buy all of these examples the power of the Jap 
+  VC interoperability profile it makes it very easy and the wallet 
+  has all the confidence that if the verifier follows the all of 
+  the specifications and directions within the profile then.
+Jen_Schreiber:  will be.
+Jen_Schreiber: So this is a spruce verifier you can see I think 
+  this time I shared research assistant Prudential.
+Jen_Schreiber: And here there's the credential subject and then 
+  lastly I'm going to pause it real quick this last verifier this 
+  is a verifier developed by auth0 lab and the most exciting about 
+  thing about this verifier is I just learned about this verifier 
+  on Wednesday in our last diff meeting and I tested it out for the 
+  first time on Friday as I was recording these videos and because 
+  they follow the.
+Jen_Schreiber:  Jap VC.
+Jen_Schreiber: Patient profile to a tee I was actually able to 
+  present my credentials to this verifier and have success on the 
+  first try so I think that's pretty amazing and shows you really 
+  how much following a specification profile really reduces all of 
+  the friction so I'm going to run through this one really quick as 
+  well run through my skin command anybody who's tried inner off.
+Jen_Schreiber:  and Sherry and credentials between wallets.
+Jen_Schreiber: Who participated in the plugfest you know that 
+  like in reality interop is very hard and there's so many little 
+  details that you have to work through and by following a profile 
+  like it just reduces all that so there you go success on the 
+  first try and then last demo I'm going to have this verifier 
+  check revocation status of the credential so it wants to make 
+  sure.
+Jen_Schreiber:  sure that a credential it receives.
+Jen_Schreiber: Vocht we're using replication status or status 
+  list 2021 for revocation so I'm going to try to be a little 
+  sneaky and shared a revoked credential this will be my ta chem 
+  101.
+Jen_Schreiber:  and you.
+Jen_Schreiber: See that the verifier was not happy about the 
+  credential status and that's exactly the outcome that we wanted 
+  so I hope that through all of these demos and seeing you know 
+  quickly each verifier run through that you might be able to a 
+  little bit appreciate what a interoperability what this job you 
+  see interoperability profile enables and how through it we can 
+  have a successful in Europe.
+Jen_Schreiber:  that is pretty much.
+Jen_Schreiber: The bulk of what I wanted to share.
+Jen_Schreiber: I'm happy to take any questions I'll stop sharing 
+  or talk about any of our experiences.
+Jen_Schreiber: The job BC interoperability profile that whole 
+  will give some time for questions they come in the chat.
+<chris_kelly_(dif)> Thanks Jen! Great, punchy demo :)
+Jen_Schreiber: Yeah definitely I was thinking that as well 
+  because one of the whole tracks of the plugfest is based on open 
+  ID for VC so it fits in very nicely and I love to see that 
+  overlap.
+<sharon_leu> @Jen - Will definitely reach out to chat. Excited to 
+  build on areas of alignment.
+Jen_Schreiber: Yes so I believe Microsoft I'm Tricia an that 
+  product area is based on the interoperability profile so they 
+  were kind of developing without use case in mind from work days 
+  perspective this is all.
+Jen_Schreiber: Not productized on our end but really our team is 
+  focused on building out the specifications and the profiles so 
+  that one day we might be able to move in that direction.
+https://learn.microsoft.com/en-us/azure/active-directory/verifiable-credentials/decentralized-identifier-overview
+Jen_Schreiber: Yeah I think it's oh I heard another comment.
+Jen_Schreiber: I think it yeah it just enables some really 
+  exciting possibilities and I'm not sure which of those will 
+  become a reality really you could use the interop profile for any 
+  use case right you could use it for sharing skills with open 
+  badges you could use it for workplace credential you could use it 
+  for an access credential so there's lots of different use cases 
+  and by folk by focusing on the.
+Jen_Schreiber:  specifications in the protocols to create 
+  interoperability.
+Jen_Schreiber: Enabling that future where like any application 
+  could work so in my mind it's more about we're like kind of 
+  setting the stage for whichever use case or application of these 
+  becomes more ubiquitous it ubiquitous or kind of do a reality.
+Jen_Schreiber: It's a future that we all hope for right like why 
+  we're doing all this.
+Jen_Schreiber: Yeah so right now we're in strictly like.
+Jen_Schreiber: Kind of like a proof of concept stage so work name 
+  is very early in the adoption of these you know there has been 
+  people out where day working on VC's I don't know for the last 
+  trying to think of my timeline is 2023 maybe like five years 
+  right so being very early in the ecosystem a lot of the standards 
+  just weren't where they needed to be to productize credentials 
+  and with outstanding.
+Jen_Schreiber:  and erds and even without interop.
+Jen_Schreiber: It's hard to have that future of you sees that we 
+  all want so workday now is pulling back and in the phase where 
+  we're putting our energy more into working on the standard side 
+  and working on the profile and not committing to a product at 
+  this point.
+Jen_Schreiber: It's hard to be an early adopter right.
+Jen_Schreiber: Yes yeah and and you know like it should take some 
+  iterations to get this right and it's not easy work that we're 
+  all doing and you know teaching the general public about 
+  credentials about decentralized identity like all of that takes 
+  time and also getting the standards where they need to be to have 
+  the credential world that we all want.
+Kerri Lemoie:  Yes hey Jen thank you for this and petitioner we 
+  appreciate it I have a question for you we've been working on the 
+  open Badge of stuff for a while now and here we are we're getting 
+  to this this time where we're making a lot of progress on I'm 
+  going to call it the envelope aspect of verifiability right and 
+  and do the interrupt stuff in terms of exchanging.
+Kerri Lemoie:   When they nasari to come more and more.
+Kerri Lemoie:  Reaching out to me is vocabulary and payload and 
+  like semantic interoperability and there are standards for that 
+  an open Badges and has a whole whole lot of metadata that could 
+  be used and there's other other standards coming you know and 
+  taxonomy is available and I was just sort of wondering about your 
+  perspective on that in terms of like the understandability of its 
+  kind of tells me start setting them around.
+Jen_Schreiber: So understandability from like a technical 
+  perspective for the implementers or more for the holders.
+Kerri Lemoie:  I'm work for the the verifiers in the relying 
+  parties like the other payload data read the description of these 
+  credentials which I find is one of the most challenging parts of 
+  the work we're doing in this task force because there are so many 
+  different types of credentials that were trying to communicate.
+<deb_everhart_(credential_engine)> e.g. linked open data in CTDL 
+  https://credreg.net/ctdl/handbook
+Jen_Schreiber: Oh I see like credential types is more what you're 
+  talking about.
+Kerri Lemoie:  So we have a yeah so for instance right now we 
+  must have badges but we can say that credential is it could be a 
+  diploma could be a certification but then in the credential 
+  subject and the actual achievement we may have like fields in 
+  there that sort of give more information right and that kind of 
+  mad at this yeah yeah so you're really talking about important 
+  schema all right and linked data where I'll be talking about it 
+  more as like metadata properties yeah yeah.
+Kerri Lemoie:  Yes we have time you know.
+Jen_Schreiber: I see ya what a complex topic schemas we always 
+  you know because I would say that because this profile is like 
+  really use case agnostic where we try not to get too into like 
+  what what schema you would use right like we have the workplace 
+  credential in the verified employee that follows a certain 
+  metadata but besides that we're not really like making an opinion 
+  on.
+Jen_Schreiber:  you have to use the profile with this because.
+Jen_Schreiber: It's just so complex and there is really no it's 
+  not set in stone I would say kind of what you were alluding to 
+  carry so I don't really have a good answer to that I hope that as 
+  different use cases develop or as different verifiers would 
+  decide you know like I'm accepting a badge only badges or I'm 
+  accepting this like we would get to some sort of standard way to 
+  express that but.
+Jen_Schreiber:  I'm not really sure what that.
+<deb_everhart_(credential_engine)> +q
+Kerri Lemoie:  You know someday I think it'd be great to revisit 
+  this with you and work day because I think you are working more 
+  unemployment credentials and a lot of times we talk about you 
+  education achievements but this this work this task force is both 
+  and even though we aren't specifically saying so our sort of 
+  implying that experiences is in works with their education too so 
+  I'm curious yeah to see in some point like if employers and HR 
+  assistant start using different.
+Kerri Lemoie:   Sort of schemas that.
+Kerri Lemoie:  And the education ones and how we can sort of 
+  figure that out right I don't know thinking out loud a little 
+  bit.
+Jen_Schreiber: Yeah yeah because if right like there's one thing 
+  about this you know speaking the same language of implementation 
+  and then also you have to understand the credential itself and 
+  yeah or else like where's the values so I think that's really 
+  important.
+Deb_Everhart_(Credential_Engine): Hey John thanks this is really 
+  helpful sorry I meant to leave my camera on and and great to see 
+  how this work is progressing especially across major players who 
+  are going to be super influential in this space so thank you for 
+  bringing up the the payload and I put a link in the chat to the 
+  handbook for the credential transparency description language I 
+  have a question to this.
+Deb_Everhart_(Credential_Engine):  group in general.
+Deb_Everhart_(Credential_Engine): So CDL covers all different 
+  types of Education and Training credentials you know diplomas 
+  badges degrees certificates Etc as well as courses and skills and 
+  it covers the it covers the basics of jobs and work roles but it 
+  doesn't really it does not I just say it explicitly it does not 
+  cover actual employment records.
+Deb_Everhart_(Credential_Engine): My broader question to this 
+  group is what would be useful in terms of how we bring schemas 
+  together is their employment records schema that is broadly used 
+  or could be adapted and what could we do that's useful to connect 
+  that to see TDL for example we've offered to connect see gdl to 
+  jdx.
+Deb_Everhart_(Credential_Engine):  but I know that's only part of 
+  this.
+Deb_Everhart_(Credential_Engine): So what would be helpful.
+Dmitri Zagidulin:  Just wanted to add a quick response.
+Dmitri Zagidulin:  The one thing I think would be really helpful 
+  from a developer standpoint is if maybe as a standalone video or 
+  maybe as a presentation here on one of these calls.
+Dmitri Zagidulin:  The tutorial of if you're a developer and 
+  you're you're creating for a pilot or deployment let's say of 
+  course credential here's how you would add data enrichment using 
+  CTL so I think.
+Dmitri Zagidulin:  Yeah I think the the.
+Dmitri Zagidulin:  Teaching credential developers about the 
+  low-hanging fruit data enrichment might be really helpful which 
+  would knock it doesn't.
+Dmitri Zagidulin:  That's not solely to the question you asked of 
+  employment credential specifically but I think in general it 
+  would be.
+Dmitri Zagidulin:  Oh that's great.
+Deb_Everhart_(Credential_Engine): Yeah we'd be happy to do that 
+  I'll also put a link in the chat to the badge publisher guide 
+  that we've that we've written collaboratively with an advisor but 
+  that is specifically about badges but it's really in general 
+  about how you use an alignment to link data that's outside the 
+  credential that's issued so it's generally available generally 
+  applicable.
+Deb_Everhart_(Credential_Engine): But anyway my question was like 
+  where where are the where the schema boundaries do those need to 
+  be boundaries how can we link things together because I thought 
+  the examples that you showed Jen we're interesting in part 
+  because they overlap employment and Education and Training 
+  credentials so just putting it out there that we want to be 
+  collaborative on this front and let us know what would be useful.
+<sharon_leu> q
+Jen_Schreiber: Yeah thanks I totally agree the lines are a little 
+  bit blurry on how we Define kind of the metadata or the even the 
+  scheme of a credential and it's a little bit subjective so yeah.
+Jen_Schreiber: It's a great thing to work towards.
+Sharon Leu:  I'm hitting the plus got added so that was a mistake 
+  I guess I wanted to rewind to earlier in the conversation where 
+  you were talking about the employer issued Workforce credential 
+  and I'm curious in using open badge which is designed not for 
+  that uses his we're like did you encounter any sort of limits to 
+  that particular specification or like did you have 
+  recommendations for other people who are also using them for non 
+  sort of traditional education.
+Sharon Leu:   Location badging purposes.
+Jen_Schreiber: From the display perspective or kind of broadly.
+Jen_Schreiber: Gasps so workday had we had implemented earlier 
+  with badges 2.0 and at that point we kind of bespoke Lee stuck 
+  the badge in a VC and kind of display the badge I.
+Jen_Schreiber:  I think we.
+Jen_Schreiber: Had to kind of played around using them for 
+  employment scenarios but I can't quite remember like any 
+  roadblocks we came to we have not tested putting badges 3.0 at 
+  like the newer badges as credentials so I can't directly answer 
+  to that.
+<deb_everhart_(credential_engine)> Credential Engine convened and 
+  open advisory group to produce this guide for including CTDL in 
+  badges-- feedback welcome, and this is intended to be useful for 
+  VCs in general 
+  https://docs.google.com/document/d/1vBmVd_t_514NmrLb3hWGwzEUteAaNuREwro7DaEIaqU/edit#heading=h.i33feeiez3el
+Jen_Schreiber: But we had kind of put them I think we were mainly 
+  using them into for like a picture type display that could be 
+  displayed on some sort of social media so that was the 
+  perspective we were coming from but I don't have much more to 
+  elaborate that didn't really answer your question I think like 
+  the emphasis I would put is that.
+Jen_Schreiber: Should treat badges just as we would treat any 
+  other VC and not kind of in my mind give it like super special 
+  treatment but you know it is essentially just a data model that 
+  we can use VC's to kind of wrap around it so the more we 
+  incorporate like that badge into the whole VC ecosystem that we 
+  have existing I think the more successful that badges will be.
+Jen_Schreiber: That would be my comment on that.
+<kerri_lemoie> Achievement Type in OBv3 is aligned with the CTDL 
+  vocabulary: 
+  https://1edtech.github.io/openbadges-specification/ob_v3p0.html#org.1edtech.ob.v3p0.achievementtype.class
+Jen_Schreiber: Yeah and I think Kerry mentioned that you know we 
+  have been contributors to the open badges 3.0 specs so you know 
+  I'm trying to play an active role in that group to help make sure 
+  that the badges the future of Badges and the future VC is 
+  converging a really easy-to-use nice way so.
+Jen_Schreiber: Why don't you see if I can publish it I got a 
+  double check on that.
+Jen_Schreiber: Yeah I think there are a lot of possibilities and 
+  a lot of potential and as we get the technology and the standards 
+  to where they need to be I think it's a very exciting future.
+<kerri_lemoie> Great presentation, Jen. Thank you!
+<colin_reynolds,_ed_design_lab> Thanks for joining and sharing 
+  Jen!
+Jen_Schreiber: Yeah thank you all for being a great audience and 
+  engaged really appreciate it.
+<sharon_leu> Thank you, Jen, this is exciting!
+<chris_kelly_(dif)> Thanks all!
+<kerri_lemoie> Have a great week!
+Eric_Shepherd: Now that's right I wanted to say thank you and 
+  clap and I hit the wrong button so I didn't actually intend to 
+  speak but I was great presentation that was really really helpful 
+  for me thank you so much.
+Eric_Shepherd: Thanks for clapping for me.
