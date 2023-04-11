@@ -1,0 +1,721 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-04-11-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-04-11-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2023-04-11
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2023Apr/0022.html
+Topics:
+  1. Relevant Community Updates
+  2. What happens between issuance -- POST to response?
+  3. Why do we believe it's a good idea to return an issued 
+    credential
+  4. Do the /exchanges/* endpoints need authz?
+  5. What happens when you delete a revocable credential?
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Phil L (P1), Manu Sporny, Greg Bernstein, Alan Karp, John Kuo, 
+  Dave Longley, Patrick St-Louis, John Henderson, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Joe Andrieu, Tom S, Paul 
+  Dietrich GS1, Phil Long
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Welcome everyone to the verifiable credentials API 
+  work item call this is Tuesday April 11th 2023 our agenda is in 
+  the chat channel.
+Manu Sporny:  On the agenda today we have issue processing 
+  largely so we'll do some Community updates and then move onto 
+  issue processing first one is an old one why do we believe it's a 
+  good idea to return an issued credential to an internal caller 
+  the next item is do the exchange.
+Manu Sporny:  I need authorization and then finally what happens 
+  when you delete a revocable credential and we'll get through 
+  those as we can any other updates or changes to the agenda 
+  anything else we want to discuss today.
+Manu Sporny:  Go ahead Patrick.
+Patrick St-Louis:  I had a question for the issue credentials 
+  issue and point I would like to discuss the question is in 
+  between the time that you send the post request and you receive 
+  the sign credential is it acceptable that there would be other 
+  operations happening like an exchange between the issuer in the 
+  holder so I'd like to discuss this.
+Manu Sporny:  Interesting yeah that's a great great question we 
+  will put it up first item on the agenda in people can pontificate 
+  on that point and yeah we'll start the discussion so please 
+  remind me Patrick right after we do community updates will pick 
+  up that question any other item we want to discuss today anything 
+  else we should cover.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  Okay if not let's get into Let's see we all know 
+  each other here yes so let's go into relevant Community updates 
+  I'll kick us off does well let me let me kick us off by going to 
+  the actually it's the ccwg mailing list there.
+<manu_sporny> The EdDSA Data Integrity Cryptosuite 
+  https://w3c.github.io/vc-di-eddsa/FPWD/2023-04-18/
+<manu_sporny> The ECDSA Data Integrity Cryptosuite 
+  https://w3c.github.io/vc-di-ecdsa/FPWD/2023-04-18/
+Manu Sporny:  Just a quick announcement that we've got first 
+  public working drafts going out for the EDSA crypto sweet and the 
+  ecdsa crypto sweet put those links in the chat Channel this is a 
+  part of the w3c process it's an F PW D basically is just a signal 
+  that you know the group doesn't agree on anything in the 
+  specification but we do intend to take this thing.
+Manu Sporny:   NG all the way through the global standards track.
+Manu Sporny:  These documents were approved nine months ago to 
+  transition out of ccg but the ccwg didn't accept them until just 
+  towards the beginning of this year and a couple weeks back and 
+  the first step official step on their Journey well I guess the 
+  second official step on their journey is being published as an F 
+  PW D so we're targeting the 18th the vote on that will happen 
+  tomorrow.
+Manu Sporny:  No it'll happen tomorrow and we'll go from there 
+  BBS doesn't have enough PWD yet it needs a little bit more work 
+  before that happens in the status list twenty twenty one thing 
+  doesn't have a FWD yet that's that's Point okay that's it as far 
+  as up do I guess the other other important thing to mention is 
+  the.
+Manu Sporny:  This discussion has kicked off we use multi formats 
+  for dids and signatures and all kinds of other things that go 
+  that are passed over the VC API and so that discussion just 
+  respond to the multi formats folks questions has been kicked off 
+  this week go ahead Patrick.
+Patrick St-Louis:  I just wanted to mention that I was saying as 
+  demonstration I wanted to prepare for I'm on Crimson is should I 
+  would like to propose to have it next week.
+Manu Sporny:  Perfect awesome we will definitely put that first 
+  week first thing on next week's agenda and thank you for working 
+  on that and putting it together Patrick.
+<phil_l_(p1)> There will be papers presented Thursday from RWOT11 
+  noon EDT:
+Manu Sporny:  Go ahead John.
+John Henderson:  Oh yeah so following up from the open knowledge 
+  Foundation topic from last week so the slot to actually presented 
+  the open wall Foundation is is arranged so that would be.
+John Henderson: 
+  https://github.com/openwallet-foundation/architecture-sig/blob/main/meeting-details.md
+John Henderson:  We could X Monday at 11 a.m. Pacific use the 
+  media details in the chat if anyone wants to join it and the 
+  meeting will be recorded I'll be presenting roughly what I 
+  presented last week.
+Manu Sporny:  Excellent thank you for scheduling that let me 
+  bring that up here thank you for scheduling that looks like to 
+  zoom meeting.
+Manu Sporny:  Yep 11 a.m. Pacific so hopefully everyone here can 
+  make that call.
+Manu Sporny:  I believe I should be able to make that call so 
+  yeah as ideally all of us show up on that call I'll send that out 
+  to the ccg actually John would you mind sending that out to the 
+  ccg mailing list you might get a couple more people joining if 
+  you announce it to the list.
+John Henderson:  Sure just saying that the presentation will be 
+  happening.
+John Henderson:  Great idea thanks that will do.
+Manu Sporny:  Yeah yeah there's a presentation on the verifiable 
+  credential API happening to the open Wallet foundation and then 
+  give them the meeting details and say everyone's invited to join 
+  yeah okay awesome thank you and thank you for continuing to push 
+  that forward any other updates Community relates.
+Manu Sporny:  Okay if not let's go into Patrick yeah go ahead.
+Phil_L_(P1): Man you just just I just put it in chat a little bit 
+  ago but there is a presentation on Thursday at noon eastern time 
+  of papers from the are wot 11 meeting that are going to be 
+  presented and the zoom link is there.
+Manu Sporny:  Excellent thank you I see it yep.
+Manu Sporny:  Okay any other community updates.
+Manu Sporny:  Alright if not let's jump into Patrick's topic 
+  Patrick how would you handle this.
+
+Topic: What happens between issuance -- POST to response?
+
+Patrick St-Louis:  So if I was to give it a title is it 
+  acceptable that in between the post request and the response on 
+  their credentials issuer endpoint there's other steps happening 
+  than just the signature of the verifiable credential by other 
+  steps I would specific scenario I have in mind is a will showcase 
+  it next week.
+Patrick St-Louis:  Exchange between the issuer and the holder to 
+  provide so that the older can provide additional information for 
+  the signature of the credential using a different cryptographic 
+  sweet and in this case it's it's a concept called The Link Secret 
+  so the holder provides a link secret that is embedded in the 
+  signature.
+Patrick St-Louis:  That allows the holder to do selective 
+  disclosure and so on.
+Manu Sporny:  Great got it Dave you're in the queue.
+Dave Longley:  Yes so in general I would say that you can as long 
+  as you're implementing to the API you can do just about whatever 
+  you would want in the background or you know you can hide 
+  whatever implementation details you would want to their however 
+  for that particular end point I would recommend not doing that 
+  and what you just described to me sounds like a really good use 
+  case just for using the exchanges API it seems like what's going 
+  on.
+Dave Longley:   On is you have a holder whose use.
+Dave Longley:  Later their client and if they're interfacing if 
+  that client is interfacing with an exchange and point that 
+  exchange endpoint could ask further whatever it needs and that 
+  could be provided to The Exchange endpoint which then would make 
+  a call to the issue endpoint with you know it would end when it 
+  makes a call that issue and pointed would have everything that it 
+  needs because it would have collected it from holder so the kinds 
+  of exchange the I mean they are exchanges the kinds of exchange 
+  you're talking about seems.
+Dave Longley:   Like it.
+Dave Longley:  Into the exchange flow not that it should be 
+  inserted into the issue service that's what it seems like to me.
+Patrick St-Louis:  Yeah I think that makes a lot of sense because 
+  I actually what's happening is that when you have the payload for 
+  the credentials issue you know it's like a credential json-ld at 
+  the moment it's a json-ld credential and I don't see a way to add 
+  that extra information besides having a new field and the options 
+  field that would have that information because what needs to 
+  happen here in my.
+Patrick St-Louis:   Sort of.
+Patrick St-Louis:  Are you do is from that credential there's a 
+  credential offer that gets generated presented to the holder to 
+  hold their generates a credential request that forwards it to the 
+  issuer and then the issuer can sign the credential and issue it 
+  so that that is the the scenario.
+Patrick St-Louis:  And I do see that this sort of offer request 
+  does fit in the exchange service that's from what I understand 
+  that's what it's for just I have a hard time how even after this 
+  result this can be sort of made visible in the currently defined 
+  payload of the credentials issue and point that extra 
+  information.
+Dave Longley:  Yeah it seems like we need to find a place to slot 
+  that in I mean using there are a number of people that want to 
+  use links secret be able to issue links secret based credentials 
+  and so we should make sure that the issue endpoint has a 
+  mechanism by which you can send it if it has to be options right 
+  now that's the way to go right now but maybe we we just need 
+  another field for some additional information that the issuer 
+  would need for.
+Dave Longley:   Depending on the type of crime.
+Patrick St-Louis:  Okay maybe we can further discuss this next 
+  week I love like something to show it so we can be more tangible 
+  than the discussions.
+Dave Longley:  Yeah sounds good.
+Manu Sporny:  Excellent any other points I mean I agree with what 
+  what Dave said any other points comments.
+Manu Sporny:  Exchanges versus the issue endpoint and how we may 
+  convey x-ray information to the issue endpoint right now.
+
+Topic: Why do we believe it's a good idea to return an issued credential
+
+Manu Sporny:  Okay yeah and it would be good to see maybe Patrick 
+  when we look at you demo next week we'll be able to you know 
+  provide more input to that question all right next well first 
+  second topic up today is why do we believe it's a good idea to 
+  return an issued credential to an internal caller so this is a 
+  very very.
+Manu Sporny:   Well it's just an old.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/48
+Manu Sporny:  From two years ago plus much as much discussion has 
+  happened since then and we have a better understanding about our 
+  kind of model let me go ahead and pull this issue up.
+Manu Sporny:  Okay so the the first you know it started with this 
+  issued credentials have flows to Holders the API requires issuers 
+  to also support flowing them to an internal caller for some 
+  reason you know not aware of an architectural reason areas are 
+  c36 excited but there's no concept of an internal destination and 
+  so the conversation goes back and forth the bit until Daniel 
+  says.
+Manu Sporny:  You know this set of issue apis is motivated by DHS 
+  asking for something common that it can ask all issuing systems 
+  to support its intent is to impose interoperability constraints 
+  on the whole industry this endpoint is built for internal callers 
+  therefore the credential is for an internal call or so and then 
+  you know he goes on to say I don't believe well let's see.
+Manu Sporny:  This was kind of like you know I don't want DHS to 
+  tell me it doesn't like everything software because it doesn't 
+  support you know this thing.
+Manu Sporny:  And the concern would go away if we make you know 
+  credentials something optional meeting don't have internal apis I 
+  think.
+Manu Sporny:  Go ahead Joe.
+Joe Andrieu:  Yeah I think I think this is confusion about this 
+  service versus the coordinator I think we are specifically 
+  addressing his concerns by refactoring the components so I think 
+  our our languaging of how we are defining the API makes this to 
+  my sense a non-issue although Daniel may still have issues.
+Joe Andrieu:  My kids his his presumption is the.
+Joe Andrieu:  The Entity who is the issuer is only able to give 
+  it to a holder.
+Manu Sporny:  Yeah now that we've split it between it's the 
+  coordinator that hands it to the holder and this API that we're 
+  talking about is specifically on an internal service and so the 
+  world Daniel wants still exists in this back-end issue or service 
+  is optional like you don't have to have an issue or service you 
+  know if you want interrupt you can define an issue or service 
+  which you don't have to have it.
+Joe Andrieu:  That's right if you want DHHS to buy your software 
+  it would be good to have this interface.
+Manu Sporny:  Let's see getting close Okay so so we did address 
+  this last year ago literally in Market pending close and Tobias.
+Manu Sporny:  Asks you know is the VC API internal style API.
+Manu Sporny:  The endpoint definition that the wallet interacts 
+  with is out of scope with exchanges it no longer is.
+Joe Andrieu:  Right I think it's this languaging around internal 
+  style API.
+Joe Andrieu:  We language differently to avoid the confusion that 
+  causes question.
+Manu Sporny:  Okay so let's see the group discussed this on the 
+  donkey 2304 1150 API telecon.
+Manu Sporny:  That we have changed we have a lot of discussion 
+  around the difference between and issuer control what do we 
+  coordinator coordinator and issue or service.
+Manu Sporny:  Away from the language related to internal versus 
+  external.
+Manu Sporny:  You have also ensured that implementation of any of 
+  these mechanisms is optional and have provided one way in which 
+  interoperability can be achieved.
+Manu Sporny:  Implement the issuer service I or implement the.
+Manu Sporny:  Yes you are coordinator API.
+Manu Sporny:  So I guess you know you had yet please.
+Joe Andrieu:  Let me could I speak minute the I was just 
+  revisiting the last question from Tobias part of the challenges 
+  is the language in uses slightly different words than we are like 
+  we don't have a thing called a wallet that we know that the 
+  holder stuff is wallet e but the boundaries between those two 
+  have the same sort of boundaries as service and coordinator.
+Joe Andrieu:   And accept are less well defined.
+Joe Andrieu:  So I'm just wondering he because he brings in oauth 
+  2 or 0 IDC and has a very specific question about how the wallets 
+  includes this access token and I think we as a group haven't 
+  really talked about how we support 0002 and oid see except for 
+  the fact that maybe magically exchangers could help with that but 
+  maybe if we were to think about how does the VC API integrated 
+  oauth2 Roi d.c..
+Joe Andrieu:   That may help the use case to bias is trying to 
+  address.
+Manu Sporny:  What was that last thing you said Joe I missed it.
+Joe Andrieu:  That if if we were to discuss or document how the 
+  VC API works with oauth2 or oid see that I think would help to 
+  revise this question.
+Joe Andrieu:  Yeah it should be 0 ID for that's the good 
+  correction.
+Manu Sporny:  Well I mean I don't know keeps the name keeps 
+  changing so it's 0 ID for as of last iiw yeah exactly go ahead 
+  Dave.
+Dave Longley:  Yeah sort of in response to Joe talking about 
+  figuring out how to make exchanges work with oid for we have done 
+  that with oid for BC already and so I do think it's just a matter 
+  of documenting how that works and I'm not sure we might already 
+  have another issue around exchanges and properly documenting more 
+  on around it exchanges and exchangers and that text would go in 
+  there.
+Dave Longley:   Are allowing us to.
+Manu Sporny:  Okay so that effectively says ready for PRI I'm a 
+  bit unclear about what would be written in the PR but we think 
+  what we are suggesting is.
+Manu Sporny:  This is you know ready for PR in some some case any 
+  any suggestions on what the pr would say.
+Joe Andrieu:  I think we're talking about it might be 
+  implementation guidance and we haven't talked about how we're 
+  structuring that sort of thing like if you want to integrate the 
+  VC API with oid for our poor VC or whatever a section that 
+  describes how you do that I think would answer devices question.
+Joe Andrieu:  In terms of trying to understand the flow.
+Joe Andrieu:  May I let my biggest hesitation there is it may be 
+  that we need the exchangers to be integrated and it's not doesn't 
+  belong in an implementation guidance section but it may be in an 
+  example of how you use exchanges.
+Joe Andrieu:  But I think we need to refactor for exchanges in 
+  any case because I do think an exchanger is probably a first 
+  class component that has its own endpoints and we haven't worked 
+  through that stuff either.
+Manu Sporny:  Okay go ahead Patrick.
+Patrick St-Louis:  I totally forgot to say but this week it's 
+  slightly off topic here when I go see the VC API page and all the 
+  sections issue credential get credential they're all empty is 
+  that normal.
+Manu Sporny:  That's probably because there is a syntax error in 
+  the OS file in the parsers choking on it because we did we did a 
+  merge last week and I didn't check so thank you for that we 
+  should look into that.
+Manu Sporny:  That's the unfortunate thing about building the 
+  building the spec from code is that the build process chokes from 
+  time to time and you can't see it.
+Manu Sporny:  Okay so the next step here is to raise a PR that 
+  details how oid for can be integrated with the Capi exchanges.
+Manu Sporny:  All right and then I'll mark this as ready for PR.
+
+Topic: Do the /exchanges/* endpoints need authz?
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/279
+Manu Sporny:  And we will move on to the next item next topic up 
+  is do the exchanges and pointsme.tv this is issue 279 and I keep 
+  thinking we have discussed and settle this issue but it doesn't 
+  look like it super long discussion so I guess I raised this.
+Manu Sporny:  Exchange endpoints have optional artsy.
+Manu Sporny:  It's not required.
+Manu Sporny:  Yeah we don't use oauth2 we used it odds for some 
+  exchanges the approach has been challenged to be insecure so this 
+  issue is to discuss the attack models insecurity characteristics 
+  of this approach so let's see there's been a long discussion here 
+  about what this would look like.
+Manu Sporny:  See it's restaurants.
+Manu Sporny:  So this was a big back and forth between I guess 
+  Tobias and myself and this was when we were trying to figure out 
+  how I D yd fit in like what was the difference between VC API and 
+  oid for and things have converged now where you can do oid for 
+  using the C API exchanges.
+Manu Sporny:  Demonstrating kind of what these end and flows look 
+  like.
+Manu Sporny:  Yeah this is a pretty involved discussion.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  Yeah I would suggest that the same PR we just 
+  talked about detailing exchangers and how 084 integrates with the 
+  VC API exchange would could be used to close this out these these 
+  are all these issues seem to be interrelated and getting spec 
+  text in there that shows how these things work would allow us to 
+  continue and see whether or not any new issues need to be raised.
+Manu Sporny:  So it looks like we discussed this two months ago 
+  yeah plus one that Dave looks like we discussed this two months 
+  ago what did we say.
+Joe Andrieu:  Yeah I like what Dave said I think there's also I 
+  think confusion between the exchange and points that create 
+  exchanges and exchange what a capability URL as I think the term 
+  we're using that would invoke that exchange or use that exchange 
+  and I think they have different off.
+Manu Sporny:  Yes correct it looks like the last time we 
+  discussed this in January we just said we need to assign what 
+  type of security is on each end point and then we can close the 
+  issue and we've done that we were just that PR so I'm wondering 
+  if we should make this harder on ourselves than it needs to be 
+  nobody has objected to this path forward we did it.
+Manu Sporny:  We're going to do the other thing in a separate you 
+  know we've already said ready for PR in the other thing so that's 
+  going to happen anyway so.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  Yeah I was just going to say I'm happy to link to 
+  that other issue and close this one and say there's PR that will 
+  be done that will detail you know but we can point to those other 
+  details we don't need you don't need to type everything I'm 
+  saying here but it's we're going to detail with it what exchanges 
+  are we going to be clear on the thing Joe just raised about how 
+  the Aussie is different for creating exchanges versus using it 
+  and those will be details that'll be in the spec and that we've 
+  already worked out and.
+Dave Longley:   Sit down somewhere and some other issue.
+Manu Sporny:  Tell me about me tab and get the pr that signed.
+Joe Andrieu:  Yeah my only hesitation man who was I wanted to go 
+  double-check if what we did is what you thought it was.
+Joe Andrieu:  And it's not rendering so.
+Manu Sporny:  Yeah so we had security schemes here and we set 
+  security schemes on everything so I'll just I'll just note that 
+  the group has set security schemes says set available security 
+  schemes for all in points and PR 334.
+Joe Andrieu:  So I don't think we have which is a nuanced I'm 
+  trying to get in here like I think the exchanger is still not 
+  well represented and I think it's important to understand the 
+  exchanger so I think we started moving in that direction by 
+  providing the security on each component but I think we haven't 
+  refactor the component was are learning that yes an exchanger is 
+  a first class component it will have it.
+Joe Andrieu:   So no points which is how you set up.
+Joe Andrieu:  Exchanges that you're going to give to other people 
+  so there's a little bit of work still to do about refactoring the 
+  exchanges so it can fit into this documentation.
+Manu Sporny:  Okay so okay so which dress is part of this issue 
+  future PR is plans to refactor exchanges as first class component 
+  as a first class component.
+Manu Sporny:  Explain how exchanges are created figured and then 
+  used.
+Dave Longley:  Yeah you should say exchangers their exchangers 
+  are what will be configured and then exchanges will be built off 
+  of them.
+Manu Sporny:  Next Step because you raised a PR to refactor 
+  exchanges is the first thing that exchangers are created 
+  configured and then exchanges are.
+Manu Sporny:  Okay alright so I'll say this is ready for PR as 
+  well.
+Manu Sporny:  All right so that's that item.
+Manu Sporny:  Next topic up.
+
+Topic: What happens when you delete a revocable credential?
+
+Manu Sporny:  Is what happens when you delete a revocable 
+  credential.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/276
+Manu Sporny:  And I think the question really is should you 
+  revoke that credential what happens to the status bits all we 
+  talked about this.
+Manu Sporny:  Go ahead Patrick.
+Patrick St-Louis:  When we say when you delete a revocable 
+  credential or we talking about like who's deleting the credential 
+  here.
+Manu Sporny:  Yeah I think this is the last time we talked about 
+  this Joe you mentioned that it's difficult to explore without 
+  knowing which system component we're talking about we have 
+  labeled those now issue or service so I think we're talking about 
+  the issue or service.
+Patrick St-Louis:  Because for me is the holder without because 
+  once and here we talking about like issued credential so like 
+  it's the holder.
+Manu Sporny:  Yeah that's a great point the group discussed this 
+  3411 Helicon and let's see.
+Manu Sporny:  Noted that we have now signed have now split system 
+  components and have issue of coordinators and issuer services 
+  question raised about which service is going to delete the make 
+  sure service.
+Manu Sporny:   Or the holder.
+Manu Sporny:  Service not clear what the delete ferment delete 
+  credential holder wallet is semantically different than delete on 
+  nature app so that's what you just said Patrick group needs the 
+  caller the component in the semantics around delete operation 
+  identified in order to make progress on this issue so perhaps we 
+  can talk about what happens when you do a delete call on.
+Manu Sporny:   On a.
+Manu Sporny:  If I'd credential in the issue or service and then 
+  the older service go let's see where's Q go ahead Joe.
+Joe Andrieu:  I think there's there's an easy answer to that no 
+  here and that I think delete and revoke semantics are profoundly 
+  different no matter where you're doing them delete to me is about 
+  removing the digital object from wherever they're just being 
+  stored and whoever controls that storage should be able to delete 
+  it right so if it's the holder they can delete it if it's an 
+  issue or service and the running out of data they could delete it 
+  without revoking it.
+Joe Andrieu:   It like the the semantics I don't know of any.
+Joe Andrieu:  Where we know that the semantics are guaranteed to 
+  always be aligned.
+Joe Andrieu:  Did you allow them to be separate.
+Manu Sporny:  Okay go ahead base.
+Dave Longley:  Yeah I was going to recommend something similar 
+  here where I don't know how much we have to try and force 
+  interoperability or be really prescriptive I think we can allow 
+  implementations to just perform the delete and we could also 
+  allow implementations to throw an error if they want to say you 
+  need to revoke this or you know there's a status list associated 
+  with this and if you and it's an error to.
+Dave Longley:   I'll eat it in till.
+Dave Longley:  You something else.
+Dave Longley:  I don't know what that something else would would 
+  necessarily be other than changing the status on the credential 
+  before you delete it.
+Dave Longley:  I'm not sure how much we need to try really hard 
+  to get an interoperability here because it's not that clear to me 
+  how people would want these systems to perform.
+Joe Andrieu:  Yeah that mean there's just a point of 
+  clarification I guess we don't currently have a requirement I 
+  believe for anyone to store issued VCS that correct.
+Dave Longley:  That's correct but if you're going to be using 
+  some kind of status list there's a presumption that there's some 
+  mechanism you're keeping around some kind of information around 
+  those VCS to enable the status to be changed.
+Joe Andrieu:  Sure but they may not have a.
+Dave Longley:  Yeah if they don't have a status then it could 
+  easily be implemented and you know I their implementations in the 
+  wild that exist now that don't store the credentials at all if 
+  there's no status list.
+Joe Andrieu:  Right well my point is on the server if they don't 
+  store it delete said no up but revoke is not necessarily.
+Dave Longley:  Right but that's the case we're so if they're not 
+  tracking status then revoke is also a no op or it's an error.
+Joe Andrieu:  Correct but if they are tracking status but they're 
+  not storing it they may still be able to revoke it.
+Dave Longley:  That's true but that means they're storing some 
+  kind of information around the credential and and so I guess the 
+  question becomes when you delete a credential or you deleting the 
+  ability to modify its status as well.
+Joe Andrieu:  Right which is a question I guess what is which 
+  maybe we've already said right what's the scope of delete are you 
+  talking about an issued VC that's a data object that is now going 
+  to be removed from Storage are you talking about removing a bunch 
+  of metadata around it that is used to manage that particular 
+  object.
+Dave Longley:  Yeah and I would really think it would be the 
+  latter otherwise you would have no way to remove that information 
+  we would have no API that does that and so there might be some 
+  linkage between status and storage here.
+Dave Longley:  Even even though the semantics are very different 
+  there's there might still be some linkage here.
+Manu Sporny:  All right so based on that.
+Manu Sporny:  I mean it sounds like we don't really want to say 
+  anything specific here we meeting like we don't know if we really 
+  need to have interop at this layer there are things people should 
+  consider and maybe we should document those in security 
+  considerations or privacy considerations section Alan you're on 
+  the queue.
+Alan Karp:  Yeah if the if you revoke you have to have some place 
+  where you remember that it's revoked doesn't have to be you there 
+  has to be some sort of crl so people can check to see if it's 
+  been revoked all you need is CID or hash of the thing not have to 
+  store the actual certificate but I think you need that somewhere.
+Dave Longley:  Yeah other advice we might want to give damp Le 
+  manners is in this is also just this is for users of the system 
+  including expiration dates on VCS make it easier for you to know 
+  that you can safely delete them from storage at least you know on 
+  the issue or service you would not need to necessarily once the 
+  VC is expired you could your software could probably take the 
+  approach that.
+Dave Longley:   That it can be safely deleted and removed from 
+  different.
+Manu Sporny:  So let me try and formulate this into like 
+  something actionable here so I think what we're saying is we 
+  don't want to give like normative guidance what we may want to do 
+  is provide some implementation guidance of what implementer 
+  should think of when they're doing deletion and revocation and 
+  there's some things up here that I missed that I want to make 
+  sure so I'd like to create a list of things that should go in the 
+  pr.
+Manu Sporny:   Give me one.
+Manu Sporny:  For I go back to the cue The Next Step here is to 
+  provide a PR that okay okay.
+Joe Andrieu:  Hold on I'm not I'm not sure that's the next step 
+  Manning the.
+Manu Sporny:  When you start when you start talking it auto 
+  removed you know.
+Joe Andrieu:  Which is weird why did I go off to Q I didn't do 
+  that anyway doesn't matter yeah it's too smart by half okay what 
+  how Allen walks through the question that made me think what's 
+  more interesting to me is what is the semantics of deleting a 
+  revoked credential.
+Joe Andrieu:  So one of the Notions I think it was how Dave 
+  phrased that we're talking about the metadata as well well can I 
+  purge can I purchase this thing can I get it totally out of my 
+  system and so but if I revoked it as Alan put it someone has to 
+  remember that it's revoked and so I think this is about there's 
+  different semantics probably for delete for revoke and maybe a 
+  purge or some other thing and I think that's the space we need to 
+  understand better before we get.
+Joe Andrieu:   Get to implementation.
+<phil_t3> Wouldn't the issuer want to maintain retain info about 
+  expired credential?  This may be recorded in a log file somewhere 
+  but an expiration isn't necessarily no longer useful.
+Dave Longley:  Yeah I think we also want to be careful with if we 
+  were to introduce a new semantics of purge that starts to create 
+  an implication on how you go about implementing the system of 
+  course looking at it from the other direction if you don't have 
+  that Purge then you you still you you're also creating a 
+  prescription for how you ought to go about implementing the 
+  system so it's it's touchy here especially in the reason.
+Dave Longley:  It's touchy is we don't want to go and make a 
+  normative decision around something where we're not sure where we 
+  want to see it play out in the market and have people experiment 
+  with how this should work and if there is a way that it comes out 
+  that is the best way for it to work then we can be normative 
+  about it but I think it's too early to do that now.
+Manu Sporny:  Okay so what concrete thing can we do here say that 
+  we considered this and it was too early go ahead Patrick.
+Patrick St-Louis:  I don't know if drafting is sort of Matrix 
+  could help of all these semantics like if the credential has been 
+  revoked and you deleted then consider this if they're going to 
+  try has not been revoked deleted consider this and so on.
+Manu Sporny:  We could do that.
+Manu Sporny:  Mmm well they're at present.
+Manu Sporny:  It sounds like we need to consider what the the two 
+  things Joe mentioned which is you know the delete and well 
+  there's really delete and well there's there's there's delete and 
+  then there's the status list semantics of revoke and suspend in 
+  we may want to do what Patrick said which is just go through 
+  every iterate through every possibility if you have X and you 
+  know go through the Matrix and and flip all the.
+Manu Sporny:   It's and then have create some.
+Manu Sporny:  Each case in with respect to like what people 
+  should be aware of but not yet any kind of normative language say 
+  hey we thought about this here's where we got to it's not clear 
+  what the best way is right now there may be a best way in the 
+  future but we are collecting you know Market input at this point 
+  to decide if there's should be some normative guidance we get 
+  around this.
+Manu Sporny:   This and we can just you know flashing.
+Manu Sporny:  Add with the.
+Manu Sporny:  You marker and effectively that can stay open until 
+  we get to you know standards track and then get all the way to 
+  recommendation so that might what thoughts about that approach.
+Manu Sporny:  Okay thumbs up now to remember what I actually said 
+  so the next step here is to raise a PR that iterates through all 
+  possibilities of delete plus status list Otis has provided.
+Manu Sporny:  Thoughts on each it's through a matrix of all 
+  possibilities.
+Manu Sporny:  Provide thoughts on each combination but make it 
+  clear that it's too early for normative guidance.
+Dave Longley:  Yeah we could also suggest to implementers that 
+  they might want to implement delete a sort of a soft delete where 
+  there will be some effectively garbage collection later when all 
+  the references to the credential are gone maybe the credentials 
+  expired its status list is expired and and so on and then it can 
+  be cleaned up that's something that implementers could 
+  potentially do.
+Joe Andrieu:  Yeah I would add or or abandoned like to Talons 
+  point you may be able to have a substrate out there that you 
+  can't erase from that you could put a permanent relocation on.
+Alan Karp:  The expiration date is critical otherwise you've got 
+  an unbounded storage I mean storage is cheap but the only time 
+  you can really forget about a revoked can revoke certificate is 
+  when it's expired otherwise you've got to keep at least an 
+  identifier for it around.
+Manu Sporny:  Okay alright so let's just say this is ready for PR 
+  for now and we will raise a PR and then check the language in the 
+  pr and iterate from there once we get there.
+Phil Long:  Just want to be clear that expired there's a number 
+  of reasons why you might want to keep around an expired 
+  credential both the on the issue or side and the and the holder 
+  side and I mean expired can be done for can occur for lots of 
+  reasons it doesn't necessarily mean you're even thinking about it 
+  removing it because the person is going to use that for to a 
+  reapplication to.
+Phil Long:   To extend it or something like that.
+Phil Long:  From holders point of view it's expired but it's 
+  still something they went through and they want to present to 
+  somebody.
+Alan Karp:  I'm talking to you I agree completely that you often 
+  want to keep these around forever for audit purposes.
+Phil Long:  Yeah that's a whole other thing I'm assuming that 
+  there's a log separate from all of this where that where that 
+  sort of thing is being managed so that it hasn't been stated.
+Manu Sporny:  Apologies and been looking at the Q so filled that 
+  you and then Ellen I guess okay.
+Phil Long:  Not we I just gave you what house Alan went before me 
+  and I just followed up.
+Manu Sporny:  Okay jeez it's moving fast Dave and then Ellen.
+Dave Longley:  Yeah so I also agree with what Phil just said but 
+  to clarify on the garbage collection comment I made I did intend 
+  for it to mean that if the delete command had been issued then it 
+  would become garbage collectible you can make it so that your 
+  system did not issue those commands and you just kept things 
+  around you could also have some external auditing system that 
+  would keep a permanent record of everything expired that goes 
+  into like cold storage so there's there's a number of different.
+Dave Longley:   Approaches for.
+<phil_t3> Understood - just want that guidance to be clear  to 
+  people implementing
+Dave Longley:  This use case but the main point here is without 
+  calling delete I would not recommend that an implementation Auto 
+  expire things but of course you know maybe your implementation 
+  has a feature where you could set that up the configuration or 
+  something.
+Alan Karp:  I took my sorry I jumped the queue so I took myself 
+  off.
+Manu Sporny:  Got it okay all right so thank you we've got a 
+  ready for pull request here.
+Manu Sporny:  And so basically what we're doing is we're 
+  providing thoughts to implementers on various things they should 
+  consider but no normative gotten set this point and we're going 
+  to make it clear that we're looking for input on what should 
+  happen in this case.
+Manu Sporny:  Okay and that's it we are at time thank you 
+  everyone for the productive discussion we got through three 
+  issues for items today next week will be a demo by Patrick and 
+  then we'll have a set of other issues we can process if we have 
+  time also John will look for your email out on the ccg mailing 
+  list to join.
+Manu Sporny:  In the open Wallet Foundation call okay that's it 
+  thanks everyone I have a great rest of the week will chat with 
+  everyone next week take care bye.
