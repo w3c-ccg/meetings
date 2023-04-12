@@ -1,0 +1,249 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-04-11/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-04-11/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-04-11
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Apr&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Stuart Freeman, Harrison Tang, Mike Prorock, Bob Wyman, Paul 
+  Murdock, Gregory Natran, Jeff O - HumanOS, Oliver Terbu, Greg 
+  Bernstein, David Chadwick, Adrian Gropper, James Chartrand, Bryan 
+  Luisana, Tom S, Erica Connell, Kerri Lemoie, Wendy Seltzer, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Steve 
+  Magennis, Andrew Whitehead, Phil L (P1), BrentZ, Kaliya Young, 
+  Orie Steele, John Kuo, Will, Dmitri Zagidulin, Joe Andrieu, Clare 
+  Nelson, Paul Dietrich GS1, Geun-Hyung, Marty Reed, Colin 
+  Reynolds, Ed Design Lab, Nate Otto, Chandi Cumaranatunge, David 
+  I. Lehn
+
+Our Robot Overlords are scribing.
+Mike Prorock: 
+  https://lists.w3.org/Archives/Public/public-credentials/2023Apr/0019.html
+Mike Prorock:  All right I'll hello and welcome to the April 11th 
+  w3c credentials community group meeting we are going to be 
+  talking about a fun topic today which is holder binding a lot of 
+  good use and luckily we have Oliver here to lead the conversation 
+  and to tell us what they've been finding and experiences and 
+  research in the area as well as practical applications just a 
+  quick note that this meeting and all done.
+Mike Prorock: https://www.w3.org/Consortium/cepc/
+Mike Prorock:   P3c meetings are conducted under the code of 
+  ethics.
+Mike Prorock: https://www.w3.org/community/credentials/join
+Mike Prorock:  Rational conduct so basically good people it's a 
+  good thing so if you need to look at details you can go through 
+  and click on the link I pasted in the chat a quick IP note which 
+  is this meeting is totally open to the public but if you do want 
+  to go through and contribute to any w3c work items and 
+  specifically ccg work items you must be a member of the ccg 
+  pasted a link to that to join.
+Mike Prorock: https://w3c-ccg.github.io/meetings/
+Mike Prorock:  You do need a W3 ID account but you do not need to 
+  be an actual full w3c member to contribute which is quite helpful 
+  quick note that all of these meetings and the recordings are 
+  posted to our meetings link I'll put that in the chat as well 
+  just in case anyone needs it and the just a note around 
+  moderation I am going to when we do get into kicking off the 
+  meeting.
+<mprorock> In IRC type “q+” to add yourself to the queue, with an 
+  optional
+Mike Prorock:  Letting Oliver at least get the whole intro in and 
+  monitoring Q in the process when we get to a good point will all 
+  start opening queue up for questions and processing through that 
+  to put yourself on the Queue you can hit the raise hand button 
+  and jitsi I'm also putting some instructions here around the 
+  letter q and the plus sign that will put you on the queue as well 
+  quick pause here for any intros Andre intros is anyone.
+Mike Prorock:   One new to this call is this error your first 
+  time or second time here in.
+Mike Prorock:  Introduce yourself to the group or if you have 
+  recently changed roles and would like to introduce yourself to 
+  the group in that new context and I'll pause and just listen for 
+  anyone to speak up if they're brand new here.
+Mike Prorock:  All right I'm going to take that as we are all 
+  veterans the quick pause here for any announcements and reminders 
+  Brent I'm going to put you on the spot because I think there are 
+  two VC working group items that are coming in from the ccg that 
+  we're getting ready to put final Community draft status on I 
+  believe that is the schema work.
+Mike Prorock:   And then maybe.
+Mike Prorock:  One of the.
+<kaliya_identitywoman> Ok I called in on the app. No sound. Just 
+  came in via just the web no sound - this isn’t good guys
+Mike Prorock:  Do sweets as well is that correct or did I miss 
+  any of those.
+BrentZ: No that is correct there's the Json schemas for VC's work 
+  and the BBS data Integrity signature sweet I believe that the 
+  steps have been taken that are necessary like PRS have been 
+  raised against those items to change the status so now it's I 
+  believe it's ready the I believe they're ready for the ccg to 
+  make that determination to publish.
+Mike Prorock:  I believe that is the case as well and I double 
+  checked this morning it looked like all PRS are in place and so 
+  if you have an objection for some reason feel free to send that 
+  out to the list or open it to one of the repos and question but 
+  these are items that have been pretty stable for a while now I 
+  will dig the links up because I Paula apologies for not having 
+  them handy here but we will put those out on the list we're.
+Mike Prorock:   To give it.
+Mike Prorock:  I think those announcements actually all went out 
+  to the list last week that those were rolling through but I do 
+  but just make sure if there's an issue that it is raised before 
+  we actually put final status on that it would be nice to 
+  transition those into the VC working group ideally by the end of 
+  this week since it's been more than seven days since that posting 
+  went out to the public group so that's our Target here so if if 
+  for some reason you missed making a comment on that you can go 
+  check on the list and I'll.
+Mike Prorock:   I'll post those.
+Mike Prorock:  I said and we can get those in.
+Mike Prorock:  Any other announcements from the community here 
+  they're relevant.
+Mike Prorock:  Awesome so with that I am going to hand it over to 
+  Oliver and let him take it away on the topic of holder bindings.
+<phil_l_(p1)> Schema URL https://github.com/w3c/vc-json-schema
+Mike Prorock:  We can and I am loving the strikethrough.
+<mprorock> thanks phil!
+<phil_l_(p1)> Phillip_Long present+
+<phil_l_(p1)> The VCWG has agreed to adopt vc-di-bbs, this email 
+  is to notify the W3C CCG of our intention to transfer the 
+  repository below and continue the work on vc-di-bbs (previously 
+  ldp-bbs).
+<bobwyman> Are we seeing again that the software doesn't 
+  recognize speech by non-native speakers of English?
+<mprorock> we are definitely seeing that
+<mprorock> @manu...
+<kerri_lemoie> Could we get a link to the slides? Thanks!
+<mprorock> yep - we are going to get slides out on the list, and 
+  once we get to a pause will get the link in the chat
+<harrison_tang> I can ask Oliver to share it after the meeting
+<phil_l_(p1)> RWOT11 holder binding paper: 
+  https://github.com/WebOfTrustInfo/rwot11-the-hague/blob/master/final-documents/identifier-binding.md
+<mprorock> Orie loves registries
+<orie> registries are the new directories
+<kaliya_identitywoman> where are the slides?
+<mprorock> about to be in chat and on list
+Oliver Terbu: 
+  https://docs.google.com/presentation/d/1-uPVyl3S-vPvy4HqL6BcjN0xTu9AvqxFfwowqwzcXpo/
+Mike Prorock:  Awesome thank you Oliver and do you mind real 
+  quick just taking the share link from this presentation and 
+  dropping it in the chat and then obviously we'll get it out to 
+  the list as well awesome cool so I guess at this point we're 
+  going to open it up for questions here just going to watch the Q 
+  you know one note that I thought was interesting that helped me a 
+  lot especially at the face-to-face VC.
+Mike Prorock:   A working group meeting.
+Mike Prorock:  Out of my way.
+Mike Prorock:  They're the last one was that kind of what the 
+  relationship to evidence is right in terms of thinking about 
+  evidence as the actions performed by an issue or you know most 
+  often to make sure that credential they're issuing is backed by 
+  additional information right if required and that confirmation 
+  method is really what is handed over as part of potentially as 
+  part of a presentation right for a recipient to be able to 
+  perform.
+Mike Prorock:   I'm right what steps.
+<david_chadwick> It appears we need to request access to these 
+  slides
+Mike Prorock:  Can you perform to do that this credential does 
+  indeed belong to so-and-so etcetera and I'm noticing some 
+  permissions issues on the slide deck there Oliver just as a heads 
+  up but I don't know if you have any comments on that or thoughts 
+  on that Oliver.
+Mike Prorock:  Excellent thank you.
+Mike Prorock:  All right anyone in the audience here have any 
+  questions for Oliver I know he's been deep diving on this 
+  probably as much as anyone except for the person who just queued 
+  up so David taken away.
+<kerri_lemoie> Would there be a directory of confirmation 
+  methods?
+<kaliya_identitywoman> I like the dog vaccination use-case
+<joe_andrieu> @Kerri_Lemoie there is a directory of related work, 
+  which is where I expect folks to list things like verification 
+  methods
+<mprorock> this is helpful for approaches around proof of 
+  posession of key material 
+  https://www.rfc-editor.org/rfc/rfc7800.html
+Joe Andrieu: https://w3c.github.io/vc-specs-dir/
+Mike Prorock: +1 Joe
+<kerri_lemoie> Thanks @Joe - makes sense
+Mike Prorock:  Any other questions in here.
+Mike Prorock:  Question from the implementation side I know 
+  obviously you know Spruce is got some good work going on this 
+  front Oliver but for the other implementers on the call anyone 
+  else have implementations in this area and identifying any 
+  issues.
+<orie> checkout how cnf is used for holder binding in sd-jwt
+Mike Prorock:  I'm going to put Oreo on the spot if I don't see a 
+  volunteer.
+Mike Prorock:  I'm totally putting Oreo on the spot now.
+Orie Steele:  What what is the question.
+Mike Prorock:  From an implementation side I mean have you guys 
+  gone down anything around like confirmation method holder binding 
+  side and are you seeing any pros cons frustrations yet or.
+Orie Steele:  Yeah the only thing that I've implemented 
+  concretely related to this is how confirmation method is used in 
+  holder binding for a Visa for SD J WT s so in the case where the 
+  payload is a verifiable credential in json-ld format and you want 
+  to reveal only one you know set of one part of the claims and 
+  that credential but you also want to make sure.
+Orie Steele:   Sure that it's presented.
+Orie Steele:  He that signed by the original issuer f d dot has a 
+  mechanism for doing that it's kind of clever and just Builds on 
+  foreign oil JWT so it's really easy to implement yeah that's the 
+  only implementation of this that I've seen I mean I know em doc 
+  has a version of this kind of thing but it's not in you know a 
+  w3c sort of format.
+Mike Prorock:  Yeah oh well yeah yeah Oliver if you want to 
+  respond let's go first and then we'll get Harrison it.
+<mprorock> {
+<mprorock> from 7800
+Orie Steele: 
+  https://github.com/oauth-wg/oauth-selective-disclosure-jwt/blob/7aa6f926bfc684eae530ebf1210d74b636ae0a06/sd_jwt/operations.py#L272
+Mike Prorock:  Awesome yeah and I'm most familiar obviously for 
+  more of the CNF side of things with you know Johnson JW k s 
+  etcetera Harrison.
+Harrison_Tang: Yes can someone just go a little bit deeper into 
+  how like and Doc and DL I got you comments hold it binding or 
+  confirmation methods I mean earlier it's mentioned that MDOC or 
+  mdl by Implement something similar to the confirmation methods 
+  but can we go into a little bit details.
+<orie> Just buy the ISO spec to find out more!
+<kaliya_identitywoman> here is my work on this with Lucy - 
+  https://medium.com/@identitywoman-in-business/vc-mdl-project-stakeholder-interviews-6d175da09598
+<kaliya_identitywoman> this is how we think they can meet in the 
+  middle - 
+  https://medium.com/@identitywoman-in-business/where-can-the-w3c-vcs-meet-the-iso-18013-5-mdl-b2d450bb19f8
+<mprorock> /me is closing queue
+Mike Prorock:  Awesome well with that I'm going to be respectful 
+  of time I know a lot of folks have been rolling up on the meeting 
+  we're making best effort to get this meeting to end between 1050 
+  or well my time 10 50 and 55 so folks aren't stacked right back 
+  with that I really just thank you for the time Oliver and 
+  obviously David as well I know you get.
+Mike Prorock:  It's a complex enough topic that it does require 
+  some thought to do right and really I think now we're in search 
+  of norment which around this stuff so.
+<orie> now go review the holder binding PR: 
+  https://github.com/w3c/vc-data-model/pull/1054
+Mike Prorock:  Less so with that I'm going to let Harrison stop 
+  recording and thank you again all please have a wonderful week.
+<phil_l_(p1)> :clap:
+<econnell> Thanks, Oliver!
+Harrison_Tang: Thanks Oliver thank you.
+Mike Prorock:  And Harris has to be the last one out again.
+<kerri_lemoie> Thanks!
