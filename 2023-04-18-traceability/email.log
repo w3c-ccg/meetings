@@ -1,0 +1,379 @@
+Thanks to Benjamin Collins and Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-04-18-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-04-18-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-04-18
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Apr&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. trace-vocab PR's
+  2. Trace-Interop Issues
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Benjamin Collins and Our Robot Overlords and Our Robot Overlords
+Present:
+  Mahmoud Alkhraishi, Russell Hofvendahl, Benjamin Collins, TallTed 
+  // Ted Thibodeau (he/him) (OpenLinkSw.com), Orie Steele, Nis 
+  Jespersen , Ted Thibodeau
+
+<orie> I just joined
+Benjamin Collins is scribing.
+Our Robot Overlords are scribing.
+Russell_Hofvendahl_(mesur.io): I don't know I don't know what 
+  happened.
+Our Robot Overlords are scribing.
+Mahmoud Alkhraishi:  Today we're doing trace-interop, we will 
+  start with PR's [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  On the trace-interop side there is only one 
+  draft PR from Mike. We have pinged him the last several meetings 
+  with no response. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  We can ask him about the timeline about that 
+  PR. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  We have switch to the trace-vocab PR's 
+  [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/735
+
+Topic: trace-vocab PR's
+
+Orie Steele:  This PR was supposed to be simple, but there were 
+  issues I encountered when working on it. So I fixed errors in 
+  test that I'm not sure why other people weren't seeing. 
+  Essentially all this does is change the default vocab to use the 
+  term for the vc-data-model. [scribe assist by Benjamin Collins]
+Orie Steele:  We still get the ability to track undefined terms. 
+  But for now we're not defining a new term, we're using the same 
+  one as the v2 option. It is possible for us to define a term that 
+  differs from the core data model, but I don't think we need to. 
+  [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I was going to ask you if there are two 
+  vocabs, which one wins. But it sounds like the last one wins. 
+  [scribe assist by Benjamin Collins]
+Orie Steele:  The JSON-LD processor determines that behavior, but 
+  as far as I know, the last @vocab defined is the one that get's 
+  used. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  When we migrate to v2, can we remove the 
+  @vocab expansion? [scribe assist by Benjamin Collins]
+Orie Steele:  We could potentially, the downside of that would be 
+  to have v1 and v2 have the same behavior, but if we remove it it 
+  would only work with v2, not v1. [scribe assist by Benjamin 
+  Collins]
+Mahmoud Alkhraishi:  Do we know if there is a plan to deprecate 
+  the v1 context? [scribe assist by Benjamin Collins]
+Orie Steele:  That file is forever, it seems like they are 
+  committed to keeping that file up indefinitely. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  Looking at the PR, it looks like there are 
+  three approvals, so are we good to merge? [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/736
+Mahmoud Alkhraishi:  Merging now. [scribe assist by Benjamin 
+  Collins]
+<nis> Hi folks - sorry I'm late!
+Orie Steele:  I opened this PR to have a conversation. Adding 
+  tests for the core data model is a little sus, but i wanted to 
+  show the upgrade from v1 to v2. We can maintain a parallel test 
+  suite for v2, but we need group consensus to do that. What ever 
+  we do is going to be experimental, and there could be breaking 
+  changes. [scribe assist by Benjamin Collins]
+Orie Steele:  I'm also going to be working on web token's and 
+  involved in that, so i'm not sure how much time I'll have to work 
+  on this, but I am committed to making this work well if others 
+  are interested in it. But for now this PR is not ready to be 
+  merged, it's not passing CI. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I know this would be helpful as I know of 
+  some production-adjacent projects that are looking into v2.I see 
+  the VC-JWT, will there be overlap? [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  The two primary points for us to consider are 
+  credential schema and credential status, which we do use, but 
+  don't test anything beyond revocation list 2020. But i would like 
+  to see tests for status list 2021 in the core data model, and I 
+  would like to see more tests. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  For statuslist 2021, it looks like that's on 
+  track, should we start adding tests to it? [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/711
+Orie Steele:  I think it looks safe, and I think we should start 
+  adding tests and I can add those tests to the core data model. 
+  And I think we want end to end test for credential status and 
+  credential schema. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I linked an issue, would we want to include 
+  the statuslist 2021 context in the context, since people seem to 
+  hate it. [scribe assist by Benjamin Collins]
+Orie Steele:  That's relevant to the conversation going on the 
+  verifiable credential working group,. We could bundle that unto 
+  the traceability context. That can work, it makes our context 
+  already fairly large. This would make it a little bit bigger. But 
+  this is a little orthogonal to the pull request. [scribe assist 
+  by Benjamin Collins]
+Mahmoud Alkhraishi:  Is there any downsize to a large context? 
+  [scribe assist by Benjamin Collins]
+Orie Steele:  There always is, every byte counts. But it depends. 
+  [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  Is there something for signing depending on 
+  the size of the credential? [scribe assist by Benjamin Collins]
+Orie Steele:  That's less sensitive for VC-JWT, but more 
+  impactful for linked data proofs. There is some performance for 
+  the size, but it's mostly around the terms that you use as you 
+  expand them. And for terms that are not used, there is a tiny 
+  hit, but probably doesn't matter as much as the terms that are 
+  being used. [scribe assist by Benjamin Collins]
+Orie Steele:  You can imagine that if you named your terms poorly 
+  and used max url size, then processing the document will be more 
+  expensive. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I've seen this a little bit on my side and 
+  wanted to ask about it. [scribe assist by Benjamin Collins]
+Orie Steele:  This won't matter as much for v2 as we're not doing 
+  any n-quads. But if you convert to n-quads then it will be 
+  expensive. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  If the delta isn't too heavy, i think the 
+  pull request at hand is important. [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  I'm happy to do it if folks want to. [scribe assist 
+  by Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/737
+<tallted> shouldn't we be using the least-recently-updated sort?  
+  https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-asc
+Mahmoud Alkhraishi:  The next PR is fixing undefined terms in 
+  traceable presentations. What I wanted to ask was should there be 
+  a verifiable credentials array, or am i missing something? 
+  [scribe assist by Benjamin Collins]
+<mahmoud_alkhraishi> for PR i went with order of opening
+Orie Steele:  The verifiable credential array, technically it's 
+  an optional property. And not having it is used for did 
+  authentication. We could say that in our profile we're only doing 
+  verifiable presentations. [scribe assist by Benjamin Collins]
+Nis Jespersen :  Would we define that on the traceable 
+  presentation, where as verifiable presentation is supposed to be 
+  a cloned definition of the spec. [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  We could say that in our version of the profile, we 
+  don't expect to do authentication with credentials and we could 
+  make that field required. [scribe assist by Benjamin Collins]
+Benjamin Collins:  I think that might be a fair assertion to 
+  make, that our use case is for exchanging documents. [scribe 
+  assist by Benjamin Collins]
+Mahmoud Alkhraishi:  We don't have any workflows around defining 
+  authentication. I'll make an issue to talk about that. [scribe 
+  assist by Benjamin Collins]
+Orie Steele:  Yes, that's a separate issue, this pull request is 
+  about fixing the undefined terms. [scribe assist by Benjamin 
+  Collins]
+Mahmoud Alkhraishi:  The next one is about GS1 traceble 
+  workflows. [scribe assist by Benjamin Collins]
+Nis Jespersen :  This is one we've worked on with GS1, these are 
+  the main ones. There's more that we're working on, But these are 
+  the main ones that define data for a product. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  Makes sense. [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  Quick note about the Mermaid, it's nice that 
+  they're there, but can we provide the source for those diagrams 
+  instead of images? [scribe assist by Benjamin Collins]
+Nis Jespersen :  Yes, there is an issue for that. [scribe assist 
+  by Benjamin Collins]
+Benjamin Collins: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/740
+Nis Jespersen :  We narrowed down the packing list, we want to 
+  narrow down the schema. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/743
+Orie Steele:  I wanted to ask about the snippets folder, do we 
+  have any documentation around that? [scribe assist by Benjamin 
+  Collins]
+Benjamin Collins:  Snippets is for cases when you don't want to 
+  pull in a full RDF class, and only use a subset of fields and be 
+  able to re-use it. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I filed an issue for it. [scribe assist by 
+  Benjamin Collins]
+Benjamin Collins:  Thanks [scribe assist by Benjamin Collins]
+Benjamin Collins: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/741
+Nis Jespersen :  For this PR I cleaned up fields that weren't 
+  being used like name, description and related link. [scribe 
+  assist by Benjamin Collins]
+Mahmoud Alkhraishi:  Didn't we make the assertion that name and 
+  description should alsways be there? [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  I think we said should, not must. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  I think you guys said you needed it for some 
+  reason. [scribe assist by Benjamin Collins]
+Orie Steele:  I can comment on this, v2 defines name and 
+  description, so we don't need to define it in our context. And 
+  i'll create an issue for that. [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  For RDF yes, as there's no reason to re-define 
+  those terms. But for a schema perspective, if we want those to be 
+  required, we'd need to define that here. [scribe assist by 
+  Benjamin Collins]
+Nis Jespersen :  In terms of business logic, I don't think a lot 
+  of documents have name and description. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  I'll create an issue to track it, it might 
+  be a lower priority issue. But that's aside from this PR. But 
+  there are conflicts. [scribe assist by Benjamin Collins]
+Orie Steele:  That's probably from my PR running the regenerate 
+  script. If we can merge it outside of the call. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  Okay, I'll make a note [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  That's all of the PR's is there anything 
+  else we want to bring up, or are we good to move to trace-interop 
+  issues? [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+
+Topic: Trace-Interop Issues
+
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/490
+Mahmoud Alkhraishi:  There is merged PR that addresses. [scribe 
+  assist by Benjamin Collins]
+Orie Steele:  I know something about this. We have that workflow 
+  join monstrosity that uses it. I think we had talked about wanted 
+  to run an example of a workflow that would run the instance and 
+  definition for oil gas and ecommerce. And that would be something 
+  that's just show your intent to import credential. [scribe assist 
+  by Benjamin Collins]
+Orie Steele:  I think we should pick this up very soon where we 
+  get rid of the huge test that we have, and then we make sure we 
+  have a presentation import id and then check for the intent to 
+  import id. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/487#discussion_r1087967307
+<ben_-_transmute> Orie; This seems like a high priority issue to 
+  address.
+Mahmoud Alkhraishi:  It looks like there are two issues, the test 
+  suite and the documentation for it. [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  I remember that he had a huge text PR where this 
+  was mentioned, and my impression was that text is up to 
+  interpretation, and we want to have very specific tests. Some of 
+  that might be better in the trace-vocab document. We have these 
+  two documents, one of is about exchange data models and the other 
+  is data models. [scribe assist by Benjamin Collins]
+Orie Steele:  In a lot of cases for nonces, you're going to see 
+  them in both documents, but where do you make the normative 
+  requirement? [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I made notes for the test suite, 
+  documentation and anything else? [scribe assist by Benjamin 
+  Collins]
+Benjamin Collins:  Do we want to get rid of the existing workflow 
+  instance join? [scribe assist by Benjamin Collins]
+Orie Steele:  We built the data model to account for it, but as 
+  we get closer, it looks like we don't nee dot keep the test suite 
+  in there the way that it is. [scribe assist by Benjamin Collins]
+Orie Steele:  For the issue, we want to assign someone to the 
+  test side, not the language side. [scribe assist by Benjamin 
+  Collins]
+Mahmoud Alkhraishi:  Any volunteers? [scribe assist by Benjamin 
+  Collins]
+Nis Jespersen :  I will pick up the test. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  Sounds good I will assign you and Mike. Nis 
+  for test. Mike for test. [scribe assist by Benjamin Collins]
+Benjamin Collins: +1
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/538
+Orie Steele:  I really wish Mike was here for this one. We've had 
+  several conversations around this. I've seen you on the VC-API 
+  calls where they discussed it. If we talk about it, it would be 
+  you and me talking about it instead of me and Mike talking about 
+  it. And I wish we want to have more people on this. [scribe 
+  assist by Benjamin Collins]
+Orie Steele:  I think he has made a test for this, but not made 
+  tests for multiple implementations. I think Mike wants to remove 
+  the DID Auth tests, but it seems like it hasn't gotten to the 
+  point where it's worth implementing. I asked Digital Bazzar, but 
+  they didn't provide an example. They might just say, "read the 
+  API spec and do what it's doing" [scribe assist by Benjamin 
+  Collins]
+Mahmoud Alkhraishi:  What we could do is ask Digital Bazaar if 
+  they tested against Energy Web. [scribe assist by Benjamin 
+  Collins]
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-interop/issues/538
+Orie Steele:  In the interest of the original issue, I think we 
+  could remove the DID Auth, we know that we're the only 
+  implementer of that and we know we want to move to OAuth. [scribe 
+  assist by Benjamin Collins]
+Mahmoud Alkhraishi:  +1 On my end for removing them. [scribe 
+  assist by Benjamin Collins]
+Orie Steele:  It means there is no way to send a message to 
+  anyone without security which might be where we want to go in 
+  terms of hardening. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  Do you know of any implementations that 
+  don't interact with OAuth security, i think we can remove it. 
+  [scribe assist by Benjamin Collins]
+Orie Steele:  I think that it's a non-trivial amount to remove 
+  that. I know Mesur wanted to remove some of it. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  Do you know that issue? Maybe we reference 
+  that issue and close it here? [scribe assist by Benjamin Collins]
+Orie Steele:  I don't know which issue, only comments with Chris 
+  and Mike. I think we can comment on this issue and then ping 
+  thins. And then Chris can pick it up because he really wanted to 
+  do that. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  Sound sgood [scribe assist by Benjamin 
+  Collins]
+Orie Steele:  Interop profile getting thin. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  Yes, great! [scribe assist by Benjamin 
+  Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/534
+Orie Steele:  This seems like a terminology clean up. Mahmoud if 
+  you wanted to do a huge terminology review this issue gives you 
+  cover to do that. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  I assigned this issue to me, I'll pick it 
+  up. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/533
+Mahmoud Alkhraishi:  These are reasonably small changes that 
+  should be handled. I'll go ahead and assign it to me. And I'll do 
+  it in the same pass as the previous issue. [scribe assist by 
+  Benjamin Collins]
+Mahmoud Alkhraishi:  And I see the next six issues are from the 
+  same review. I'll see how much I can do in one PR. [scribe assist 
+  by Benjamin Collins]
+Orie Steele:  If you can't tackle everything, leave a link to the 
+  issue in the spec and that will make it painfully clear that 
+  someone needs to come back and fix it. [scribe assist by Benjamin 
+  Collins]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/529
+Mahmoud Alkhraishi:  There is one issue that needs discussion. 
+  What is out relation to the VC-API? We have said we are a 
+  specific profile. Is there anything specific we want to sa? 
+  [scribe assist by Benjamin Collins]
+Orie Steele:  There are two definitions of profile. One is a 
+  strict subset, as well as a subset with some added stuff. And I 
+  think we're the latter. We're not implemented and then adding 
+  more stuff to be nearly our own thing at this point. [scribe 
+  assist by Benjamin Collins]
+Orie Steele:  As we just committed to remove the DID Auth end 
+  points. [scribe assist by Benjamin Collins]
+Orie Steele:  I think we can simply say that you do not need to 
+  reference the VC APi in order to understand what our profile 
+  does. [scribe assist by Benjamin Collins]
+Mahmoud Alkhraishi:  We are at time, is there anything else 
+  someone wants to bring up? [scribe assist by Benjamin Collins]
+<orie> Thank you!
+Mahmoud Alkhraishi:  Okay, thank you! [scribe assist by Benjamin 
+  Collins]
+<ben_-_transmute> scribe-
