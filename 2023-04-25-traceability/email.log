@@ -1,0 +1,209 @@
+Thanks to Our Robot Overlords and Benjamin Collins for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-04-25-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-04-25-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-04-25
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Apr&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and Benjamin Collins
+Present:
+  steven capell, Benjamin Collins, Mahmoud Alkhraishi, Nis 
+  Jespersen , Orie Steele, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Benjamin Collins is scribing.
+Mahmoud Alkhraishi:  Welcome to th traceability call. In order to 
+  participate you need the IPR agreement signed. Today we will be 
+  doing trace-vocab. Do we have any announcements?
+Nis Jespersen :  Should we welcome Steve on the call.
+Steve: Hello, this is my first time on the call, we've been using 
+  W3c standards, and this is my first time on the call
+<orie> This is a community group call, not a formal working group 
+  :)
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Mahmoud Alkhraishi:  Thanks for coming. We will start with PR's.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/736
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/747
+Orie Steele:  Version 1 of the verifiable credential technical 
+  recommendation supported credential schema which allowed you to 
+  describe the schema of the VC credential. There was never an 
+  implementation of it. But people liked it. In our case we use it, 
+  but didn't surface it. So I added this property to all of the 
+  credential.
+Orie Steele:  This is what the PR doesn, it adds that property to 
+  all of the examples. And to point out we do publish all of the 
+  URL's. And I did test these in the V2 test. So the test for v2 
+  should start passing as we see it's functioning as expected.
+<nis> 🙏
+Orie Steele:  Another issue with this is PR is it changes a lot 
+  of credentials, so it's going to have a lot of merge conflicts if 
+  it doesn't go through.
+Mahmoud Alkhraishi:  Does this unblock the 736 PR?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/745
+Orie Steele:  I'll need to re-run the CI and if it runs into 
+  problems i'll look into them
+Nis Jespersen :  This gives a QoL pass on the Purchase Order 
+  schema. I updated some of the terms, took out edge cases and made 
+  more thing mandatory.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/746
+Orie Steele:  There are cases where you want to encode an image 
+  in a verifiable credential. I think we want to have a credential 
+  with this property for the sake of testing. In the case where you 
+  have a link to an image, we don't want to load that image, 
+  because it will show that credential is being viewed. So we want 
+  to have a credential with an embedded image for testing purposes.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/748
+Nis Jespersen :  Similar to what we looked at on the purchase 
+  order. We did the mill test report  a few years back, so I looked 
+  at what does a generic and user friendly mill test report look 
+  like? I did some de-normalization where I added classes for 
+  Chemical Composition and Mechanical properties.
+Mahmoud Alkhraishi:  My feedback is that Chemical Composition is 
+  generic, I though we could use that for oil. But it looks like 
+  it's steel specific.
+Orie Steele:  In the first pass of the mill test report, we made 
+  it generic, but that made the experience poor. We had an array, 
+  which made data entry hard. So we wanted to have more concrete 
+  fields to get better feedback about what's required and what's 
+  optional.
+Mahmoud Alkhraishi:  My feedback would be to move Chemical 
+  Composition from a generic to a steel specific case.
+Orie Steele:  I think we're blocked by the schema, not by the 
+  terms, so i think we can have @vocab handle the terms, not define 
+  a new RDF class here.
+Nis Jespersen :  Let me confirm what the ask is here. I want to 
+  move ChemicalComposition to Steel Checmical Composition?
+Orie Steele:  I think that we want to have only inlined fields in 
+  this PR. I can't make a change request since this was originally 
+  my PR.
+Ted Thibodeau:  If you look at the changed files, should still 
+  see the blue checkmark button to make comments.
+Orie Steele:  It won't let me request changes, but it will let me 
+  leave a comment. I'll leave a comment saying requesting changes.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/749
+Orie Steele:  Is this the title casing issue. One of our 
+  engineers opened this. There was coordination issues. This should 
+  be closed.
+Nis Jespersen :  Am I asking too much if I say, can I inline and 
+  then merge out of bound?
+Mahmoud Alkhraishi:  I think it should be okay, ping me and I'll 
+  do a quick review.
+Orie Steele:  I don't think it should be too bad unless you're 
+  issuing MTR's.
+Mahmoud Alkhraishi:  We're not, but I want to give it a pass over 
+  to confirm the structure. So I'll say it's okay to merge out of 
+  band.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Mahmoud Alkhraishi:  We have no open PR's on trace-interop. 
+  Before we review issues do we have any specific issues we want to 
+  address?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/297
+Mahmoud Alkhraishi:  This one has no assignee and it's pending 
+  volunteers.
+Orie Steele:  My thinking is there is something valuable here, 
+  but we're not communicating it effectively. With linked data 
+  there is an ontology that people like, and that people don't 
+  like. So it's a matter of how we address it.
+Orie Steele:  The issue here is you can optimize for RDF or you 
+  can focus on the schema experience. And now we're focused on the 
+  data model.
+Mahmoud; I don't see how this would apply to oil. So i really 
+  don't see how I could be using this. A lot of these values are 
+  hardness or tensile tests. These seem to apply more to steel than 
+  to oil. And I personally don't see any use cases where we would 
+  use it. If someone wants to invest the time into it, then i'm 
+  willing to leave it open.
+Mahmoud Alkhraishi:  If anyone is willing to take it as an action 
+  item then we can keep it open, otherwise i think we need to close 
+  it.
+Orie Steele:  I agree with your suggestion.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/300
+<orie> Sry I will need to drop
+<nis> Gotta drop
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/217
+Mahmoud Alkhraishi:  For this issue, we want to have a roadmap. 
+  it's been open for we made some step.
+Steve: We've starting a phase 2 of a traceability, and we're 
+  talking about using the UN Vocabulary and wanted to ask. And 
+  collect thoughts about where the vocabulary lives. And if a UN 
+  picks it up, are there any governance issues?
+Mahmoud Alkhraishi:  The question about the roadmap for changing 
+  governance, i do know we using existing authoritative sources 
+  such as the UN. on the IP note, I think you have a better 
+  knowledge of this than I do, as far as I know I don't think we 
+  have any restrictions.
+Steven: Taking this and contributing this to the UN, what would 
+  happen if we were to re-use these at the UN?
+Ted Thibodeau:  Do you need to re-publish them in order to re-sue 
+  them?
+Steve: No we don't need to re-publish them, but our constituents 
+  care about the governance.
+Ted Thibodeau:  We are a community group in the W3c, and the 
+  documents we create are a report, when it is done, the next 
+  process it to pass it to a working group which as a few year 
+  span. To make sure that everything is polished and that becomes a 
+  TR which patent free and royalty free. There is a lesser IPR for 
+  the community group process. I don't have the legal knowledge to 
+  make a definitive statement, but it's avaialble.
+Steve: From an observer, there's good work here. From nation 
+  states, we like to have definitive.
+Ted Thibodeau:  Part of why things are developed in the W3C and 
+  not ISO is the dollars installed. For ISO there is a cost 
+  associated with anything including being able read it. With the 
+  W3C  the idea is that everything is provided without a paywall.
+Steve: I agree, we like open standards, where IPR is owned by the 
+  UN but made available with no limitations. I'm coming at it from 
+  who is the policy maker for which rules you can use.
+Steve: You could easily have a much better quality vocab than the 
+  UN, it's a matter of who is endorsing it.
+Mahmoud Alkhraishi:  To answer you specifically there is no plan 
+  to change the governance. For republishing, we can't answer that. 
+  If you reach out to the chairs of the CCG they should be able to 
+  answer that.
+Mahmoud Alkhraishi:  We can add the question on the issue.
+Benjamin Collins:  The scope of this issue is we've been hearing 
+  that people want to use it, but it's a moving target, so at what 
+  point can we communicate that everything is locked down and we're 
+  not planning on making any more changes.
+Mahmoud Alkhraishi:  For us we want to have our schemas locked 
+  down by June. But for each vertical where we want to get 
+  commitments and lock down.
+Mahmoud Alkhraishi:  Also with the context changes to the 
+  verifiable credentials V2, this could affect us as well. We could 
+  see that once the is locked down, we will want to take that into 
+  account.
+Benjamin Collins:  Yes, depending on where and how we ship this, 
+  we we will make different decisions.
+Mahmoud Alkhraishi:  Are there any requirements to start locking 
+  down a version? If we get to the point where we need to have a 
+  lot of changes. We could say, what is the first date where we 
+  need to cut a version, and then what do we need to get to that 
+  version?
+Ted Thibodeau:  That seems like a valid plan, I don't have any 
+  details on those dates.
+Mahmoud Alkhraishi:  I'll cc Mike and Orie where we could have 
+  internal dates.
