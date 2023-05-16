@@ -1,0 +1,318 @@
+Thanks to Our Robot Overlords and ben_(transmute) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-05-16-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-05-16-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-05-16
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=May&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and ben_(transmute)
+Present:
+  Mahmoud Alkhraishi, Paul Dietrich GS1, Nis Jespersen , Ben 
+  (Transmute), TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  Orie Steele, Russell Hofvendahl
+
+Our Robot Overlords are scribing.
+ben_(transmute) is scribing.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Mahmoud Alkhraishi:  Welcome to the trace-call for May 16. Today 
+  is interop day, but we have a lot of PR's to go through first
+Mahmoud Alkhraishi:  Before we do PR's is there anything we want 
+  to bring up?
+Nis Jespersen :  For the Thing credential we wanted to talk about 
+  that lines up with workflows
+Orie Steele:  On VC working groups today we discussed the test 
+  suites and exiting VR and getting towards a stable version. And 
+  we agrees that JSON schema might support the core data model.
+Orie Steele:  We can probably continue to the the same kind of 
+  testing in the branch with confidence it will line up with what 
+  the working group is doing
+Mahmoud Alkhraishi:  Sounds like good news for getting unblocked, 
+  but it sounds like no updates on the PR specifically?
+Orie Steele:  That's correct
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/769
+Mahmoud Alkhraishi:  I merged this PR out of band, but before I 
+  revert I wanted to go over it. What this is doing is in a 
+  workflow I want o reference an identifier that is in a black box 
+  system. Orie had the suggestion to create a Thing credential. The 
+  main usecase for this is mapping the entry number id to a 
+  workflow and a free trade number.
+<orie> It would be cool to see the workflow definitions for those 
+  2 use cases
+<orie> added to the document.
+Nis Jespersen :  I wanted to make sure that we're aligned. if we 
+  have smaller chunks of data it allows us to pass it along before 
+  the rest is ready. The graph shape we're producing here with a 
+  generic name identifier might not match up with the entry summary 
+  credential. We might be able to fix that if we made it less 
+  generic.
+Nis Jespersen :  And my second concern is anything that doesn't 
+  match current business process worries me that it's going to be 
+  seen as a new thing by the industry. So when it's not aligned to 
+  what's being done just digital makes me worried.
+Orie Steele:  I understand the need for this credential. There 
+  isn't any way to do linked data with the current entry numbers 
+  because they're not IRI's. But this would give us a way to wrap 
+  that, and this would let up offer support without doing much 
+  else.
+Orie Steele:  As far as asking fo a new thing thing, it's the 
+  first time it's being asked to do this for several business uses.
+Orie Steele:  I think it's valuable to define these forms in 
+  JSON-LD, but not everyone is going to agree to that and have the 
+  bandwidth to support the credentials.
+Mahmoud Alkhraishi:  I talked to Sapan from Transmute earlier 
+  today and there are updates on the requirements for the 7501 
+  entry summary. Our shared customers do not only need the entry 
+  summary id.
+Orie Steele:  There's proposals to have these things changed, but 
+  I have not signed off on this. I'll have to follow up with Sapan.
+Orie Steele:  I think it's fair to say there is no commitment to 
+  the JSON-LD quality around any of the credentials as we have not 
+  gotten enough review to stand behind them With the exception of 
+  GS1 that have gone through GS1's review process.
+Mahmoud Alkhraishi:  There are two paths forward, we can support 
+  the 7501 but only the id, the other option is following the Thing 
+  Credential
+Mahmoud Alkhraishi:  We would need to create a similar form for 
+  free trade to say we want to link this identifier
+Mahmoud Alkhraishi:  I personally think the Thing credential is a 
+  much easier way of making this flexible
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/common/CBPEntry.yml#L52
+Nis Jespersen :  I just looked at the definition and it's just 
+  pointing at the Schema.org description. That kind of kills my 
+  first argument. Second it sounds like you will have a workflow 
+  that requires a things credential
+Mahmoud Alkhraishi:  Yes, that's what  i'm hearing from my 
+  customers that they want to provide that information at a point 
+  in time and they dont care what it's called.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/770
+Mahmoud Alkhraishi:  This PR is an update to our workflows and 
+  our packages. I ran the CI and the tests and adds caching. I 
+  removed our auto-release thing. No one is taking advantage of it.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/772
+Mahmoud Alkhraishi:  This was also me. One of the things that we, 
+  this adds a reschedule to a delivery statement. We didn't have 
+  credentials for this, and that's basically it.
+Orie Steele:  It looks generally good. I'm looking at changes to 
+  port of entry that says identifier, but you're using codes
+Mahmoud Alkhraishi:  We're using the standard coding industry, i 
+  think it's CBP's code system
+Orie Steele:  The term definition for these is 
+  schema.org/identifier. If i read that url, I'm not going to be 
+  able to resolve which codes are needed.
+Mahmoud Alkhraishi:  In the description i could add a link, i 
+  don't know how i could provide a url in the JSON-LD
+Orie Steele:  If their CFACT, there could be something there
+Orie Steele:  I think you're proposal works, we want people 
+  implementing this we want to provide that kind of information. 
+  Does GS1 have some vocab that would provide these codes?
+Paul: I'm not aware of any that provide these, but I can check
+Orie Steele:  If it's international it might not be customs 
+  specific, but having those codes would be beneficial.
+Nis Jespersen : https://vocabulary.uncefact.org/
+<paul_dietrich_gs1> this is what I found for code but can't tell 
+  if this is the same reference you are making 
+  https://www.gs1.org/voc/LocationID_Type
+Nis Jespersen :  On the port of arrival, port of entry i think 
+  those are LO codes
+<paul_dietrich_gs1> these are ISPS codes
+Mahmoud Alkhraishi:  I don't think it's LO codes being used. I 
+  put a comment on the PR to update the description.
+<orie> for example: 
+  https://www.gs1.org/voc/LocationID_Type-UN_LOCODE
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/774
+Paul: That link i put in the type, if you're describing what that 
+  code is, then I think you'll need a type.
+Orie Steele:  I think we need an IRI for an RDF predicate.
+Orie Steele:  We've received request for a table of terms for 
+  each of the credentials of interest. If the data element of a 
+  credential is CATAIR, or if not is this information is not being 
+  used in CATAIR. This might not be of interest internationally, 
+  but the funding from this is coming from the USA.
+Orie Steele:  In this case we're using hierarchical types which 
+  nobody is using. So the proposal is putting it in a table and if 
+  a field is required then put it in a table to match it up with 
+  CATAIR. There's also the optional piece and we might want to do 
+  that for all fields. This PR takes us down a path of extreme data 
+  entry pain for us. But this is the only approach i've seen 
+  proposed for this. Mike suggested using AI which I want to see a 
+  PR for.
+Nis Jespersen :  I suggest we add these tables under the 
+  credential section. I think that would make it more bite sized.
+Orie Steele:  I don't think we can do that is those areas as 
+  generated from the schemas. I think we do this do address a 
+  concern from a customer.
+Nis Jespersen :  I like the way it opens up on the columns. More 
+  countries could be added if we want to be more international.
+Mahmoud Alkhraishi:  The requirements as I understand them. From 
+  what I understood we only needed the fields that were not in 
+  CATAIR.
+Orie Steele:  You have to look in CATAIR to tell if something is 
+  in CATAIR or not.
+Mahmoud Alkhraishi:  So that is to say the absent ones are not in 
+  CATARI?
+Orie Steele:  Yes
+Nis Jespersen : +1 Mahmoud
+Mahmoud Alkhraishi:  Is there a way we can add this to the JSON 
+  schemas so that way it shows up next to the credential?
+Orie Steele:  We'd have to update an extension, and then update 
+  the CD, and then make sure we're doing it inline or by reference, 
+  and by the time we do that we could have done it directly.
+Nis Jespersen :  Doing this in HTML seems even more painfully. I 
+  want something  that I don't have to add TR and TD tags 
+  endlessly.
+Orie Steele:  We can talk about what would be needed to add it 
+  programically.
+Mahmoud Alkhraishi:  Let's say I wanted to an entry summary 
+  credential.
+<nis> +q
+Orie Steele:  Yes it needs to happen for every credential for 
+  every JSON path
+Nis Jespersen : $Catair:
+<nis> alongside $linkedData:
+Mahmoud Alkhraishi:  My point is the table you have now would 
+  need to be repeated for every credential. We would need to update 
+  the subheadings. If we do the programming route, we would need to 
+  do extentions.
+Orie Steele:  There are several problems here. The $linked data 
+  has mostly been removed. We've done that to make the JSON Schema 
+  focus on security and be smaller. So the natural place where you 
+  want to do this is focused on schema and less about semantics and 
+  comprehention.
+Orie Steele:  There's a difference between this is a type and the 
+  example, and the JSON pointer operation converts it into the key 
+  value pairs. You only get the pointer column and not the values. 
+  You would need to get some value for each of the columns for each 
+  of the industries. You would need a vector for that in each 
+  credential.
+Nis Jespersen :  I think we want to not pollute the nice inline 
+  JSON schemas that we have, but we might want to add them to 
+  common. What we don't want is people having to deal with them 
+  when they consume our schemas.
+Nis Jespersen :  I think there's an argument for using $linkdata
+Orie Steele:  We don't consume the $linkeddata. it is a solution.
+Nis Jespersen :  We can inline as long as we make sure the types 
+  is what's in common.
+<nis> LOL
+Orie Steele: 
+  https://w3c-ccg.github.io/traceability-vocab/#MillTestReportCredential
+Orie Steele: 
+  https://w3c-ccg.github.io/traceability-vocab/openapi/components/schemas/credentials/MillTestReportCredential.yml
+<orie> Look at the schema for the credential
+<orie> this is where the update would need to be made.
+Nis Jespersen :  I think that this shouldn't be too automatic. We 
+  don't want this to be something that we update often. We make it 
+  painful so it's not something that get's updated dynamically.
+Mahmoud Alkhraishi:  I don't mind of manual versus automatic, my 
+  main gripe is where the table is in the respec doc. So if we had 
+  HTMl that got loaded where it needed to be that's fine.
+Orie Steele:  We can do that, it would take longer to load, but 
+  editor drafts can load longer as the final version is going to be 
+  compiled. So we could have a folder structure where HTML is 
+  loaded at specific points.
+Nis Jespersen :  I'm going to be negative, as it's probably going 
+  to be me having to do it, so I reserve my right to be grouchy.
+Nis Jespersen : +1
+Orie Steele:  You have your rights to complaint, but speak now or 
+  forever hold your piece. We're going to add a resolution that 
+  we're going to inline the HTML and the HTML needs to be in the 
+  credential section. Is that what we're doing?
+Mahmoud Alkhraishi:  Yes
+Orie Steele:  Okay, then add that as a change request on the PR 
+  and I will make the updates.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/775
+Nis Jespersen :  We want to make as much mandatory as we can.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/776
+Nis Jespersen :  What the PR is about is what we've been doing 
+  for the credentials and inlining forms to take out what's not 
+  needed from common. For the consignee it's optional, so it's an 
+  array with an array with max value of 1.
+Mahmoud Alkhraishi:  So it's an array that is empty or one
+Orie Steele:  Yes, it's constrained by the JSON Schema
+Mahmoud Alkhraishi:  Where is the zero or one?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/777
+Line 584
+<orie> nice
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/777
+<orie> <3 OG is both oil and gas and original gangster.
+Mahmoud Alkhraishi:  This does a couple things, for what ever 
+  reason 771 had a ton of crashing, so i killed the branch and 
+  moved it. What this does is changes "OG" to oil and gas and it 
+  removes the UN logo from a delivery schedule example.
+<nis> LOL
+Original Gangster is the only thing my brain defaulted to for OG
+<nis> "OilAndGas" or "OilGas"?
+Orie Steele:  Maybe we can use Ptrolium?
+Mahmoud Alkhraishi:  That was proposed and I think there was a 
+  business reason why that didn't work
+<nis> "OilAndGas" is heaps better than "OG"!!!
+Orie Steele:  It was a suggestion to get rid of "And"
+<orie> Can we make it "Oil n' Gas"
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/540
+Mahmoud Alkhraishi:  The idea is that we're going to need to 
+  update the workflows. And this is a package update.
+Mahmoud Alkhraishi:  One issue that I want to bring up is the 
+  Intent to Import credential
+<paul_dietrich_gs1> have to drop a bit early. Thanks
+<orie> thanks!
+Nis Jespersen :  It's almost back to the Thing credential. It's a 
+  very vague requirement, what do we want a product to be? If we're 
+  talking a steel workflow it's a Mill Test Report, on ecommerce 
+  it's more of a GS1.
+Orie Steele:  I think the schema and the example need to be made 
+  coherent first. I also agree with Nis that it's better not to 
+  make it complicated. Maybe for the minimum fields, product isn't 
+  one of them. Given that's an important credential we make it an 
+  agenda item for a meeting.
+<orie> That property seems correct to me
+<orie> I don't think we need to add additional claims to intent 
+  to import
+Mahmoud Alkhraishi:  Our common intent to import credential, we 
+  removed any agility to add a product. If I were to issue an 
+  intent to import with a product would be invalid. And we can 
+  spend next call on it and my belief is yes we should.
+<orie> but we can disucss
+Mahmoud Alkhraishi: 
+  https://w3c-ccg.github.io/traceability-vocab/#IntentToImportCredential 
+Nis Jespersen :  I was showing off our interoperability and we 
+  don't have anything that is 100% interop-able?
+Mahmoud Alkhraishi:  On the trace-interop? We should really up 
+  our interop?
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+Nis Jespersen :  People look at it and see it's not 100%?
+Nis Jespersen :  Interop is really what we should be bragging 
+  about.
+<orie> conformance is less. exciting when we are working on VCDM 
+  v2
+Mahmoud Alkhraishi:  Looking at our interop side we should change 
+  our yellow to green. I see conformance for Transmute and Messur, 
+  it's 100%, but then when we look at interop we have yellows.
+Orie Steele:  I think it's presentations that we want to focus 
+  on, and I don't that that's covered by conformance.
+Mahmoud Alkhraishi:  I have sprints scheduled for early June to 
+  sit down and attack this.
+Nis Jespersen :  Take is encouragement. We need more green.
+Scribe-
