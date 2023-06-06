@@ -1,0 +1,264 @@
+[2023-06-06T17:31:06.274Z]	<Russell_Hofvendahl_(mesur.io)>	present+
+[2023-06-06T17:31:06.276Z]	<nis>	present+
+[2023-06-06T17:31:06.275Z]	<Mahmoud>	present+
+[2023-06-06T17:31:15.352Z]	<Russell_Hofvendahl_(mesur.io)>	present+
+[2023-06-06T17:31:17.195Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-06-06T17:31:18.240Z]	<Ben_-_Transmute>	present+
+[2023-06-06T17:32:46.792Z]	<Russell_Hofvendahl_(mesur.io)>	scribe+
+[2023-06-06T17:32:52.464Z]	<Transcriber>	scribe+
+[2023-06-06T17:32:52.464Z]	<Transcriber>	Meeting: traceability
+[2023-06-06T17:33:58.803Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pulls
+[2023-06-06T17:34:06.634Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/794
+[2023-06-06T17:35:16.133Z]	<Orie>	present+
+[2023-06-06T17:35:42.811Z]	<Chris_Abernethy>	present+
+[2023-06-06T17:35:44.237Z]	<Russell_Hofvendahl_(mesur.io)>	nis: greetings, welcome to trace call, don't forget to sign contributor agreement
+
+vocab week, going through PRs
+
+first is 794, Orie, takes out RDF classes from table of contents, few additional things - general reader improvements
+
+Three approvals, looks pretty good to go. Mahmoud, question abt monetary amt? Might have come from diff PR, I included bc it was from filing value customs, price spec doesn't apply to that, rly monetary amt. That's how class got in there.
+[2023-06-06T17:36:26.008Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/794#discussion_r1218467320
+[2023-06-06T17:36:32.717Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Confused. Why monetary? Different PR?
+[2023-06-06T17:36:53.864Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Don't know why there, but that's OpenAPI yaml, auto built from folders
+[2023-06-06T17:37:07.109Z]	<Russell_Hofvendahl_(mesur.io)>	nis: bit of delay before gets to openapi, why it got in here
+[2023-06-06T17:37:16.098Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: k, CI error but didn't break
+[2023-06-06T17:37:31.826Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Not CI, artifact of how we construct CI from folder of docs regularly merged
+[2023-06-06T17:37:38.140Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Happy to merge
+[2023-06-06T17:37:49.224Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/795
+[2023-06-06T17:37:53.304Z]	<Russell_Hofvendahl_(mesur.io)>	nis: Next, also Orie, 795
+[2023-06-06T17:39:27.361Z]	<nis>	q+
+[2023-06-06T17:39:38.049Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/pull/798
+[2023-06-06T17:39:49.105Z]	<Orie>	https://github.com/w3c-ccg/traceability-vocab/pull/795/files
+[2023-06-06T17:39:58.635Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: just removes name, description fields, updates text
+
+Ted's made suggestion, but won't accept it
+
+If blocking suggestion, rebase and figure out
+
+But important part, name and description field
+
+Name and descr when present are schema.org/name and /descr
+
+Our creds all had name/descr, moved toward not having. Would like to know if gs1 thinks good to have name/descr
+[2023-06-06T17:39:58.924Z]	<nis>	ack nis
+[2023-06-06T17:40:27.588Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: nis, if yours does it for everything, let's merge yours before mine
+[2023-06-06T17:40:37.478Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/798
+[2023-06-06T17:41:21.459Z]	<Russell_Hofvendahl_(mesur.io)>	nis: might want to do 798 first
+
+798, removes name/descr also related links. Not using that much, this is cleaning that out
+
+Tried to avoid touching ag
+[2023-06-06T17:41:45.883Z]	<Russell_Hofvendahl_(mesur.io)>	mahmoud: anyone on mesur side using name descr?
+[2023-06-06T17:41:55.417Z]	<Russell_Hofvendahl_(mesur.io)>	Russell: unsure, would need to look into
+[2023-06-06T17:42:33.220Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: wouldn't impact gs1
+[2023-06-06T17:42:42.518Z]	<Russell_Hofvendahl_(mesur.io)>	Chris: deferring to Russell
+[2023-06-06T17:42:53.435Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: happy to merge after if this works for mesur
+[2023-06-06T17:43:19.677Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/796
+[2023-06-06T17:43:50.622Z]	<Russell_Hofvendahl_(mesur.io)>	nis: so close 795
+
+796, adds name, by request from cbp
+[2023-06-06T17:44:03.457Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: to be clear, issuerName
+[2023-06-06T17:44:07.748Z]	<Russell_Hofvendahl_(mesur.io)>	nis: objections?
+[2023-06-06T17:44:54.732Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: same comment, if you care about issuerName prop being allowed, may want to engage with VC group, have added name/descr to cred, not to issuer
+
+If customer should always understand correctly, good time to chime in with issuer name
+[2023-06-06T17:45:15.032Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/797
+[2023-06-06T17:45:19.622Z]	<Orie>	issuer name could go here: https://github.com/w3c/vc-data-model/blob/main/contexts/credentials/v2#L44
+[2023-06-06T17:45:47.147Z]	<Russell_Hofvendahl_(mesur.io)>	nis: k, still want to merge, merging
+
+797, Adam, not on call. Orie?
+[2023-06-06T17:47:09.123Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: In general bundle api, so can download all schemas, this PR attempts to do something regarding workflows?
+
+modifies a lot of things, don't think it should be merged unless rly safe to merge. Substantial refactoring to entire thing, haven't had chance to review it, don't have a lot of confidence
+
+Though if you look at paths, very nice, but breaks permanently
+
+maybe not necessary just to expose workflows
+[2023-06-06T17:47:22.974Z]	<Russell_Hofvendahl_(mesur.io)>	Chris: Seems like new files containing paths just moved, hiding workflows
+[2023-06-06T17:47:41.571Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Agree, helpful refactoring would love to merge if doesn't break, but if breaks then fire mode
+[2023-06-06T17:47:51.818Z]	<Russell_Hofvendahl_(mesur.io)>	Chris: Yeah, separate into two PRs
+[2023-06-06T17:47:59.424Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Sync with adam before merging
+[2023-06-06T17:49:21.322Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Other side, any PRs on top of, drift? Just indexing?
+
+nis, pull down branch, verify everything, let us know?
+
+Should be cautious getting into right shape, be confident we can merge it; if we change anything gonna break again
+[2023-06-06T17:49:36.636Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/799
+[2023-06-06T17:50:49.196Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/800
+[2023-06-06T17:50:52.358Z]	<Russell_Hofvendahl_(mesur.io)>	nis: I'll check out after meeting, engage with Adam
+
+798 talked about, 799 from me, fixes little bit of oddities commercial invoice, bad examples
+
+objections? one more approval? thank you Chris, going ahead
+
+One more, from Ben , 800
+[2023-06-06T17:51:27.660Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: getting in nis/I as authors before we freeze everything
+
+Everyone go ahead and add yourself, if you want credit
+[2023-06-06T17:51:42.656Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Removed Brian Muntz
+[2023-06-06T17:52:02.487Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: This PR adds to authors, not Editors, correct
+[2023-06-06T17:53:04.872Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/553
+[2023-06-06T17:53:05.156Z]	<Russell_Hofvendahl_(mesur.io)>	nis: great, merging, please keep coming so all represented
+
+All for vocab, switch to interop
+
+Someone else take over?
+[2023-06-06T17:53:16.387Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: I can. interop, 553, Orie?
+[2023-06-06T17:54:42.818Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Yes, on last call when we did issue processing assigned me several issues related to selective disclosure, this PR closes those issues
+
+signing and verify, SD JWT, general misc. text on selective disclosure. Basically moves sections arnd, provides links on WIP stuff, makes it clear not normative, es84 the normative alg
+[2023-06-06T17:54:48.620Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/555
+[2023-06-06T17:55:32.070Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Bunch of approvals no objections, merging
+
+555, one sentence from revocation to status list
+
+Russell will be adding tests, need issue
+[2023-06-06T17:57:00.988Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Several scenarios, trying to get ready for vc v2, getting stuck on rev list 2020 holds us back. Also VC JSON schema work, also want to get alignment
+
+At some point want second test suite for v2, tests for v2 v1, decide if we want to make conformance v1 must v2 optional, or other way around, this is a baby step twd
+
+So on PR make note, this used to support rev list 2020
+[2023-06-06T17:57:31.074Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Orie, articulate what you said in comment?
+[2023-06-06T17:58:19.608Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Have, merge PR work on tests for what want in v2, get off tests for thing not mentioned in spec anymore
+
+What we implement in tests, keep up with spec, usually not fully up to date with specs
+
+Russell create issue?
+[2023-06-06T17:58:54.952Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Already have issue, so make search for and add
+[2023-06-06T17:59:22.449Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/556
+[2023-06-06T17:59:24.946Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/556
+[2023-06-06T18:00:09.856Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/557
+[2023-06-06T18:00:15.385Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Update sections for normative vs non-normative language, parts say informative some normative
+
+PR 556. Any objections?
+
+Still have big overhaul for spec, ik assigned to this but haven't had the time. Looking at approvals, have three, merging
+
+557 changes requested, opened by nis
+[2023-06-06T18:00:31.675Z]	<Orie>	Lots of suggestions need to be applied
+[2023-06-06T18:01:04.102Z]	<Russell_Hofvendahl_(mesur.io)>	nis: Address some changes discussed last time, from Mike last time, so re-wrote workflow section
+
+Lot of changes, didn't see that
+
+Seems there's stuff to improve with Ted's comments
+[2023-06-06T18:01:09.173Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmou: Also Orie
+[2023-06-06T18:01:33.557Z]	<Russell_Hofvendahl_(mesur.io)>	Orie: Avoid statements inside advisement blocks
+
+Ok merging outside call time so long as suggestions applied and conflict fixed
+[2023-06-06T18:01:51.488Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/558
+[2023-06-06T18:02:31.703Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Yes. Any objections?
+
+No, Nis, merge once ready
+
+Adds authors nis and Ben, 558
+[2023-06-06T18:02:44.491Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Also conflicts
+[2023-06-06T18:02:49.841Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Ted?
+[2023-06-06T18:02:59.867Z]	<Russell_Hofvendahl_(mesur.io)>	Ted: Adding myself to block
+[2023-06-06T18:03:17.184Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2023-06-06T18:03:20.434Z]	<Orie>	sry i need to drop
+[2023-06-06T18:03:24.829Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/issues/681
+[2023-06-06T18:03:58.001Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: That's all PRs today
+
+On vocab issues, by least recently updated, SCAC should be Org not BoL
+
+nis, assigning you?
+[2023-06-06T18:04:00.036Z]	<Russell_Hofvendahl_(mesur.io)>	nis: yes
+[2023-06-06T18:04:01.045Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/issues/461
+[2023-06-06T18:04:39.489Z]	<nis>	+1 on too generic
+[2023-06-06T18:04:51.442Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Moving on
+
+461, representing raw materials in vocab
+
+Similar convos abt measurements, weird with two objects. res: reduce generic values for measured
+[2023-06-06T18:04:54.779Z]	<Russell_Hofvendahl_(mesur.io)>	nis: yeah
+[2023-06-06T18:05:05.042Z]	<nis>	+1
+[2023-06-06T18:05:11.195Z]	<Russell_Hofvendahl_(mesur.io)>	mahmoud: Instinct, we do not need this. Everyone else?
+
+Also more than year old
+[2023-06-06T18:05:18.374Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Pending close probably
+[2023-06-06T18:05:53.481Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/issues/548
+[2023-06-06T18:06:38.880Z]	<Chris_Abernethy>	Apologies - I need to drop as well.
+[2023-06-06T18:06:52.562Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: fair.
+
+alright, on to 548, hash link no substitute for proper semantic description of content.
+
+manu has point, doesn't provide semantic details
+[2023-06-06T18:07:00.453Z]	<Chris_Abernethy>	I'm happy to publish today, please slack if needed.
+[2023-06-06T18:08:43.721Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: thoughts on this
+
+Opening statement, hashlink not substitute for semantics. But complication, finding right term investing in time to do it. And fidelity, if schema not locked down, have to look. Lock schema down, once certain not gonna change, then let's find right terms for it
+
+That said, the hashlink not worst option ever for terms we invent, if not out in web, hash link says "we can't find term for this", if we use it expect our term defs to start overlapping, with those terms
+
+Would like this, "hey this hash term could be better addressed with this specific term"
+[2023-06-06T18:11:35.162Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Agree, but important thing issue 385 at top. I believe only one is events linking to products.
+
+What gs1 proposed, instead of links to products, identifiers linking to product itself
+
+pros/cons, one is for barrel of oil no such thing as g10, for those can use substitute
+
+Vlad comment, do we care abt immutability of product linking to? is it ok if that changed at all?
+
+Want discussion, is important, if I link to product steelproduct, owner of steelproduct can't change to become say potato.
+
+On one hadn yes super important, on other can solve with external ref to identifier, unique to steel product
+[2023-06-06T18:12:02.065Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Example at top, seems separate from commisionevent with hash
+[2023-06-06T18:12:22.847Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: If only using hashlink for events, if following different model then makes this convo moot
+[2023-06-06T18:12:37.120Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Close in favor of keeping 385 open?
+[2023-06-06T18:12:51.583Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Might be best we can do, reality that cant add semantics to every edge
+[2023-06-06T18:13:28.133Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: reality this is expected hashes at this point in time, don't see any way around that
+
+Want to make sure separating 548 from 385.
+[2023-06-06T18:13:35.933Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: don't see workaround
+[2023-06-06T18:13:50.023Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: nis?
+[2023-06-06T18:14:25.478Z]	<Russell_Hofvendahl_(mesur.io)>	nis: if you don't have better term, invented under trace, more recently switched to @vocab
+
+So if trying to catch all, think @vocab does that now?
+[2023-06-06T18:14:33.446Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/common/CommissionEvent.yml#L56
+[2023-06-06T18:15:36.457Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Thing, orie's comments on thread say, we should upadate this line so doesn't point to hashlink, but some semantic meaning like product we have. Issue is, always receive hashlink, not product
+
+Follow hashlink should get product, but type of link not link ID is hash link.
+
+What we could do as stopgap, put in ID make point to products add type URL
+[2023-06-06T18:16:08.378Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: But context, @id points to context
+[2023-06-06T18:16:53.617Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Point is that every term within that, rn every array of type string, should be array of type url
+
+I believe solves issue right?
+
+Going to write that up
+[2023-06-06T18:17:19.302Z]	<Russell_Hofvendahl_(mesur.io)>	nis: Still feels like misusing @id here. Repeating what you said, it's primitive type it's not semantic type
+[2023-06-06T18:17:54.816Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: K, look at line 47, is that misusing type id
+
+Propose, change 56 to be similar to 47, then modify 53 to be url
+[2023-06-06T18:17:55.211Z]	<nis>	1+
+[2023-06-06T18:18:01.238Z]	<Russell_Hofvendahl_(mesur.io)>	nis: great yes
+[2023-06-06T18:19:53.384Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: Need a second to write comment
+
+k, would this make sense?
+[2023-06-06T18:20:08.674Z]	<Russell_Hofvendahl_(mesur.io)>	nis: yes, only thing is trace product, should not be necessary for us to invent
+[2023-06-06T18:20:15.360Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: already have I think
+[2023-06-06T18:20:29.975Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/common/Product.yml @nis
+[2023-06-06T18:20:43.359Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Now explicitly says what expects to be there
+[2023-06-06T18:21:00.300Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmou: Great. Only question is idk fi url, #url works?
+[2023-06-06T18:21:11.311Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Think formatUrl can have hashtag at end
+[2023-06-06T18:21:31.812Z]	<Russell_Hofvendahl_(mesur.io)>	nis: I believe we mostly use URI, would use that
+[2023-06-06T18:22:54.068Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: assigning to me
+[2023-06-06T18:23:06.511Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/issues/561
+[2023-06-06T18:23:10.534Z]	<Russell_Hofvendahl_(mesur.io)>	Ben: Even if spent time on, at least if closed out then success
+[2023-06-06T18:23:23.001Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/issues/804
+[2023-06-06T18:24:49.383Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-vocab/issues/385
+[2023-06-06T18:26:37.834Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: 561, big one, EPCIS modelling of events. All the event schemas we have,
+
+Gives us point and time ref in these schemas so not dependent on gs1 for schemas
+
+But because our events, should be modelled on gs1 event schemas, should be as close as possible to 1 on 1 epcis
+
+Ik we have a lot of epcis issues
+
+Want to close 561, believe 385 has more stuff, more discussion
+
+idk if we shoul close either but should def make sure they ref each other
+
+Closing 561
+[2023-06-06T18:26:57.098Z]	<Russell_Hofvendahl_(mesur.io)>	Mahmoud: K, call it a day
