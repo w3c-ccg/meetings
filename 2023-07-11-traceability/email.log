@@ -1,0 +1,241 @@
+Thanks to Our Robot Overlords and russell_hofvendahl_(mesur.io) and Our Robot Overlords and russell_hofvendahl_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-07-11-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-07-11-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-07-11
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jul&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and russell_hofvendahl_(mesur.io) and Our Robot Overlords and russell_hofvendahl_(mesur.io)
+Present:
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Nis Jespersen 
+  , Russell Hofvendahl, Brooke Funtleyder, Yinghui (Vivien) Fan, 
+  Orie Steele, Chris Abernethy
+
+Our Robot Overlords are scribing.
+Russell_Hofvendahl_(mesur.io): I can scribe.
+russell_hofvendahl_(mesur.io) is scribing.
+Our Robot Overlords are scribing.
+<orie> welcome BDO : )
+Brooke_Funtleyder: Yes I'm with BDO with the customs and 
+  international trade department and so I'm just here to learn and 
+  take notes.
+russell_hofvendahl_(mesur.io) is scribing.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/568
+<orie> merge please :)
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/569
+Nis Jespersen :  Interopo PRs first
+Orie Steele:  We'd previously agreed to remove structures from 
+  error messages, this is that
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/571
+<orie> cleanup is good.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/572'
+Nis Jespersen :  Objections? Merging 569
+Nis Jespersen : +1
+Orie Steele:  In interop repo, & vocab, lot of dependencies on vc 
+  v1 proofs. To get us to support v2, need to first relax proof 
+  specific stuff, then address multiple contexts, challenge, then 
+  ready to support v1 v2.
+Nis Jespersen :  2 Approvals. Objections to merging?
+Orie Steele:  Main pt, mesur done excellent job on conformance 
+  side, might see breakage as we trim out v1 specific stuff. Might 
+  want to call out, this'll happen as we get support from v2 in.
+Nis Jespersen :  Merging 572
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/573
+Nis Jespersen :  573, Russell
+Russell Hofvendahl:  ...
+Orie Steele:  Created vc-format header when vc-api no support for 
+  jwt. No way to support two formats that vc defined.
+Chris Abernethy:  Just threw in, header expecting vc or vc-jwt
+<orie> it should match specific content types
+<orie> vc+ld+jwt and vc+ld+json
+Chris Abernethy:  Current enum, Orie's addition, vc and vc-jwt. 
+  Thought content-type should match an actual content-type we're 
+  using to differentiate these.
+Orie Steele:  Content-Type currently being passed as request 
+  param?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/824
+Nis Jespersen :  Moving on. That's it on interop.
+Nis Jespersen : +1
+Orie Steele:  No concensus, no approvals, not viable path forward 
+  we discussed, let's close
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/817
+Nis Jespersen :  Next, 817
+Orie Steele:  Suggest skipping, ci failing
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/820
+Nis Jespersen :  Will revisit
+Orie Steele:  External, first-time contributor. Nox (?) team I 
+  think.
+Orie Steele:  Generic status list 2021?
+Orie Steele:  Don't understand mahmoud objection, approving
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/830
+Nis Jespersen :  Asking mahmoud for elaboration
+<orie> TIL https://schema.org/agent
+Yinghui (Vivien) Fan:  A few updates in delivery schedule. Update 
+  a few linked data
+Orie Steele:  Great changes
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/831
+Nis Jespersen :  Merging.
+Yinghui (Vivien) Fan:  Delivery ticket, nosMonth rename
+Nis Jespersen :  Moved from inlining to referencing organization?
+Yinghui (Vivien) Fan:  Don't know why inlining in first place. 
+  Fields are same in organization object
+Orie Steele:  Left comment. Possible carrier org is more fields 
+  than want, rec not using ref as org when can inline smaller set 
+  of reqs. Would generally rec inlining smaller requirements. 
+  Reduces potential work filling in form
+<orie> chances are referring to organization is adding 
+  requirements you probably don't want.
+Nis Jespersen :  If need all fields in org can do this, but 
+  typically more generic, want to pick out use case working on.
+Yinghui (Vivien) Fan:  Apply to other common elements?
+Orie Steele:  Applies generally, any rdf type that defines other 
+  rdf type. Best to say "it's org but only name req'd". When using 
+  $ref, only pulling in. Reduces burden for someone issuing cred.
+Yinghui (Vivien) Fan:  How make sure terms aligned? Say in 
+  inline, field saying name, but in organization rename name to
+Orie Steele:  Term defs only appear when convert from json-ld to 
+  rdf.
+Yinghui (Vivien) Fan:  So you suggest hold on merging this PR?
+Orie Steele:  Fine with merging, can come back re-inlin org in 
+  smaller PR
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/833
+Nis Jespersen :  Merging
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/834
+Orie Steele:  Good to have mahmoud, mike, ben for, skip
+Nis Jespersen :  834
+Orie Steele:  Cousin of other PR I mentioned. Removes proof req 
+  everywhere, proof from visualization. Most of what'schanging 834 
+  internal tooling no longer necessary.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/835
+Nis Jespersen :  Objections to thumbs up to merge out of band?
+Orie Steele:  Weird whitespacing, looks nice
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/481
+Nis Jespersen :  Merging with 2 approvals
+Chris Abernethy: +1
+Nis Jespersen : +1
+Orie Steele:  PR merged removed verification of tests
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/534
+Nis Jespersen :  Closing
+Orie Steele:  Pinging him, skip it
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/533'
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/532
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/496
+<orie> hmm
+Nis Jespersen :  533 Also Mahmoud, adding changes to section 4. 
+  Mahmoud already assigned. Moving on
+Chris Abernethy:  496, Clarify best practices for retrieval and 
+  ownership of data.
+Orie Steele:  Mike had massive PR, made him create ticket to 
+  resolve
+Chris Abernethy:  Pinging Mike
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/497
+Nis Jespersen :  497, Same story, didn't know what to do
+Orie Steele:  Have added sections to vcab since filed, which 
+  addressed this, refer to that and should be able to close
+Nis Jespersen :  Safe to close?
+Orie Steele:  Think so. can't issue revocable credential if don't 
+  have an ID.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/539
+Nis Jespersen :  Next, 539, duplicate json keys in request.
+Orie Steele:  Great, request for conformance test I think.
+Nis Jespersen :  Takers?
+Chris Abernethy:  Question on how we might, this means any of 
+  items
+Orie Steele:  Pick random, like issuer.
+Chris Abernethy:  Satisfied with only testing one key?
+Orie Steele:  Yes. It's abt parser. If it gets dupe keys should 
+  error. Issuer makes sure triggering for most important one
+<orie> thank you!!!!!
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/542
+Nis Jespersen :  542, From Christina, deployment architecture
+Orie Steele:  Seems to want api to not comment on single vs multi 
+  tenant. Don't rly agree, since spec defines http api, worth 
+  commenting if expects to be accessed by one domain or multiple.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/543
+Nis Jespersen :  543, Also Christina
+Orie Steele:  Questions about vc-api endpoints.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/544
+Nis Jespersen :  Assigning self.
+Chris Abernethy:  My understanding
+Orie Steele:  Right, that'd apply to cleanup. If determine don't 
+  need to document, or doc and say implementers don't need 
+  understand.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/546
+Nis Jespersen :  Adding self also, same thing
+<orie> Thank you!!!
+Chris Abernethy:  Pending close, issue where had github pages 
+  artifact exceeded size. Cleaned up etc. should be good to go
+<orie> our reports are one of our  proudest features : )
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/551
+Nis Jespersen :  Objections to closing?
+<nis> ^ 100%
+Chris Abernethy:  Fallout from changing how we handle scope reqs, 
+  microsoft req'd scope names didn't fall within our reqs. Made env 
+  var so didn't define scopes for purpose of testing, otherwise 
+  don't test scopes anymore
+Orie Steele:  Commenting on issue. I rec we remove tests 
+  regarding scopes entirely
+Chris Abernethy:  Yes, update=delete
+Orie Steele:  Concretely there should be no tests on specific 
+  scopes
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/550
+Nis Jespersen :  Thank you Chris.
+Chris Abernethy:  Yes, specifically for tests while prev was doc 
+  & spec
+Orie Steele:  Close both issues in same PR
+Chris Abernethy:  For interop, did it for conformance
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/502
+Nis Jespersen :  Assigning Chris
+Orie Steele:  We say not allowed to create multiple presentations 
+  same ID, says vocab standards piece
+Chris Abernethy:  Matches with last two comments
+Nis Jespersen :  Chris, can you?
+Chris Abernethy:  Sure, may be a bit
+Orie Steele:  Let's assign nis. Needs to be handled in a shorter 
+  timeframe
+Nis Jespersen :  Thanks for joining
