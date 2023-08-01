@@ -1,0 +1,221 @@
+Thanks to Our Robot Overlords and russell_h_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-08-01-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-08-01-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-08-01
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Aug&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and russell_h_(mesur.io)
+Present:
+  Mahmoud Alkhraishi, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Russell H (mesur.io), Nis Jespersen , Chris 
+  Abernethy, Ted Thibodeau, Orie Steele, Benjamin Collins
+
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> VOCAB week, 
+  Standing Agenda: 
+  https://github.com/w3c-ccg/traceability-interop/blob/main/MEETINGS.md
+Our Robot Overlords are scribing.
+russell_h_(mesur.io) is scribing.
+Mahmoud Alkhraishi: 
+  https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+Mahmoud Alkhraishi:  Starting with vocab
+Nis Jespersen :  Let's look at trace interop reports, mysterious 
+  failures
+Mahmoud Alkhraishi: 
+  https://w3c-ccg.github.io/traceability-interop/reports/conformance/
+Mahmoud Alkhraishi:  Conformance looks fine
+https://w3c-ccg.github.io/traceability-interop/reports/interoperability/#:~:text=Provider%20%26%20Test%20Summary
+Nis Jespersen :  I can run it locally, figure it out
+Ted Thibodeau:  Provider and test summary, transmute and mesur 
+  dragging it down
+Mahmoud Alkhraishi:  I think last week it was very different. 
+  change since we added credential workflow, maybe
+Ted Thibodeau:  Still breaking this provider line down by 
+  company, not provider, troublesome. want an overall average there
+Mahmoud Alkhraishi:  There's one at the top. you're lookiing for 
+  "credential average is x"
+Ted Thibodeau:  So credentials issue, in subtable, 100 100 28. I 
+  want to know overall avg.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/582
+Mahmoud Alkhraishi:  Will raise two issues on that
+Ted Thibodeau:  And what changed between last week and now
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-asc
+Mahmoud Alkhraishi:  Anything else before PRs?
+Nis Jespersen :  Client scope was added as env var, guessing 
+  that's not defined, that could be it?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/843
+Mahmoud Alkhraishi:  Probably. we're passing fail tests but not 
+  passing pass tests. I believe I did something on our end to fix, 
+  so that's probably what's going on.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/842
+Nis Jespersen :  Misc cleanup
+Nis Jespersen :  Some odd changes to workflow, but that's from 
+  building last week
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/820
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/817
+Mahmoud Alkhraishi:  Transmute, does that affect your steel demo?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/820
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/841
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/842
+<nis> Bravo!
+Nis Jespersen :  Have had around for a while, just committed 
+  orie's changes
+Nis Jespersen :  Another workflow thing as side effect
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/843
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/844
+Mahmoud Alkhraishi:  Create PR with grammar changes suggested by 
+  ted, cause it has to change elsewhere
+Nis Jespersen :  Adding tin to MTR chem compounds
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/845
+Mahmoud Alkhraishi:  2 Approvals, any problems merging 844 in? 
+  merging
+Nis Jespersen : +1 On spelling out Oil And Gas
+Ted Thibodeau:  Also, this pr uses og, we decided is oilandgas, 
+  unsure where
+Mahmoud Alkhraishi:  I think it's just PR name
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+Mahmoud Alkhraishi:  Modifying PR name. two approvals, any 
+  objections to merging 845? merging
+Chris Abernethy:  Change that scope thing that broke all our 
+  testing. Doc updates.
+Mahmoud Alkhraishi:  Orie had change request? and I'd like to add 
+  that it's optional
+<orie> we should just remove it?
+<orie> why spend so much effort to maintain optionality nobody is 
+  using
+Chris Abernethy:  Suggest wording for that?
+Orie Steele:  Quick comment - lot of work done to maintain 
+  optional param noones using, remove?
+Chris Abernethy:  Have to, otherwise ppl can't participate at all
+Orie Steele:  Make supporting themd efault case remove optional 
+  details. Other way of saying, anyone getting value out of tests 
+  only excluding id?
+Chris Abernethy:  Already removed them. that's why this client 
+  var exists, now justa ssume we're passing tests and if you need 
+  wonky names then specify.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/581
+Mahmoud Alkhraishi:  Awesome. going to add comment please address 
+  pr, merge offline. chris ask orie to review again after made 
+  changes
+Orie Steele:  Just removes deprecated suites not using, pretty 
+  straightfwd, refers to media type, could change but better to 
+  rfer to that than suite no one's using
+Mahmoud Alkhraishi:  Do we expect to continue jsonwebkey2020, or 
+  just jsonwebkey?
+Orie Steele:  I'd suggest just jsonwebkey. all applies to did doc 
+  not context credential
+Orie Steele: https://github.com/w3c/vc-data-integrity/pull/137
+Orie Steele:  Merge pr as-is, update other things as pr 137 
+  lands. incremental improvement seems worth it.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/583
+<orie> sry need to drop
+Mahmoud Alkhraishi:  2 Approvals, all comments resolved, merging 
+  in
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/571
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/593
+Mahmoud Alkhraishi:  Any pressing issues?
+Benjamin Collins:  Basic schema issue of type str and add format 
+  of datetime to make sure it's specific form of datetime for 
+  format. using it more consistently across schemas, tho I don't it 
+  should be scaled across all issues
+Mahmoud Alkhraishi:  Writing that in as additional action item.
+Benjamin Collins:  Assigned myself. I can do a pass.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/594
+Mahmoud Alkhraishi:  Added ready for pr label. anything else on 
+  this? great
+Nis Jespersen :  We can be more precise than a string, standard 
+  being applied. I think this'd be the right way to express the 
+  content that is the mill test.
+Mahmoud Alkhraishi:  What's next steps?
+Nis Jespersen :  Assign me, let's come back
+Mahmoud Alkhraishi:  So second comment is action item?
+Nis Jespersen :  Yes
+Mahmoud Alkhraishi:  Any ip issues if we use iso standards in 
+  vocab terms? or is this fine?
+Ted Thibodeau:  As long as the things resolve to ppl who haven't 
+  bought into iso
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/379
+Mahmoud Alkhraishi:  Thank you, next up, max size limit for 
+  json-ld vc's
+Ted Thibodeau:  Just followed link to presented elongation, wrong 
+  link.
+Mahmoud Alkhraishi:  Fair. but going to need to go through all of 
+  them anyway. will note that.
+Ted Thibodeau:  Really problematic. taking one product's 
+  arbitrary limitation, smaller than file size limits on any os, 
+  saying "this tiny thing is how big any"
+Benjamin Collins:  More around time it takes to sign. could even 
+  time out on i7 with 32gigs mem. Jsonld the canonical op before 
+  signing, there's a practical term
+Ted Thibodeau:  Diff argument than "mongo has this limit"
+Mahmoud Alkhraishi:  Look at last two links in orie's comment.
+Ted Thibodeau:  Ok, so, this should be doc'd, "there's a 
+  practical limit here and this is why"
+Mahmoud Alkhraishi:  Underlying thing, chris, we are moving away 
+  from canonicalization anyway
+Benjamin Collins:  Practical limit on what can be computed. If 
+  quantumn computing let's you do it in half a sec, that's a 
+  technical dependency. ANd then chri's point if we move away from 
+  canonicalization, it's just hashing the bytes.
+Ted Thibodeau:  Also noting, this is a deployment tradeoff. may 
+  be that x hours is worthwhile
+Mahmoud Alkhraishi:  Not hard no, "this is guidance plz follow 
+  guidance". Someone can still do it
+Benjamin Collins:  Part of use case is transactions, if need 
+  100's of transactions/min. if have datacenter, 300cpus, 3 
+  terabytes mem and you want to spend all day signing something, go 
+  ahead
+Mahmoud Alkhraishi:  Any action items?
+Ted Thibodeau:  I think this is fine for PR
+<chris_abernethy> I have a potential PR for the interop testing 
+  we talked about earlier - not 100% sure it will solve things, but 
+  it is a step in the right direction: 
+  https://github.com/w3c-ccg/traceability-interop/pull/585
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/706
+Mahmoud Alkhraishi:  Any volunteers?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/585
+Chris Abernethy:  If one more, let's discuss 585, pass scope in 
+  env var
+Mahmoud Alkhraishi:  Put if statement on whether var is present.
+Nis Jespersen : +1 Mahmoud
+Mahmoud Alkhraishi:  This does need to go through. I think we 
+  have enough approvals, I think we can merge in
