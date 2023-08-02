@@ -1,0 +1,801 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-08-01/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-08-01/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-08-01
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Aug&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Joel Hartshorn, Kimberly Linson, Alan Karp, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Wendy Seltzer, Hiroyuki 
+  Sano, Japan, Gregory Natran, Dmitri Zagidulin, James Chartrand, 
+  Vanessa, Phil Long, Bob Wyman, Erica Connell, John Henderson, 
+  Kaliya Young, Will, Nis Jespersen , Joe Andrieu, Leo, Stuart 
+  Freeman, Greg Bernstein, Lucy Yang, BrentZ, Sharon Leu, Harrison 
+  Tang, Manu Sporny, Jeff O - HumanOS, Charles E. Lehner, Sue, 
+  Andres Uribe, David I. Lehn, Eric Sembrat, Paul Fuxjaeger
+
+Our Robot Overlords are scribing.
+Kimberly Linson:  So I'm really excited to welcome Joel to talk 
+  with us today he Harrison sent out a link to his article and I 
+  just had a chance to read it and was telling him as we were 
+  coming on and getting started that it was very helpful and very 
+  accessible so I hope you all have had a chance to look at it but 
+  if you have not and he is going to be kind of talking through it 
+  for hope you know.
+Kimberly Linson:   Bit of.
+Kimberly Linson:  The conversation today and then hopefully we 
+  can actually have a discussion around it and I know Harrison sent 
+  out a number of questions that I think will be really good for us 
+  to start the conversation I think one of the things that is 
+  happening for me and is that I'm getting a more and more robust 
+  understanding of dids by every time we have one of these 
+  conversations and so I'm looking forward to today I think what I 
+  learned from the article helped.
+Kimberly Linson:   A sort of build that.
+Kimberly Linson:  And so I'm hoping that I can come away with 
+  even just a clearer sort of two-sentence description for those 
+  folks who I encounter on a really regular basis who who don't 
+  know what it did is so anyway but let's jump into just kind of 
+  our quick little housekeeping staff and then we'll let Joel take 
+  over as you all know and are all committed to is that we follow a 
+  code of ethics.
+Kimberly Linson:   X and professional conduct.
+Kimberly Linson:  On that there is a link in the agenda to it we 
+  welcome anyone to participate in these calls and encourage that 
+  participation however if you're really wanting to be involved in 
+  the nitty-gritty work that we're doing then I would invite you to 
+  sign the IPR agreement and the link to that can be found on the 
+  website on our should be able to be found on our website to but 
+  it also can be found in the agenda and it will require that you 
+  have a.
+Kimberly Linson:   You 3C account but just to know.
+Kimberly Linson:  Three and participation in the community group 
+  is also free we do keep a recording of Anna minutes of this 
+  meeting and we use jitsi to do that if you want to participate in 
+  the call I'm looking through and I see most of you are familiar 
+  faces so you know to kill yourself by just typing q+ in the in 
+  the chat and that will put you on the Queue and I will be the.
+Kimberly Linson:   The one today who is.
+Kimberly Linson:  To manage that Q so now comes one of my 
+  favorite parts of the day which is introductions and 
+  reintroductions so if you are new to this group or if you haven't 
+  come off mute in a while and you'd like to just remind us who you 
+  are now is your opportunity to do so so please go ahead and hit 
+  that Q Plus button.
+Kimberly Linson:  Alan I noticed you came off you yeah.
+Alan Karp:  Yeah I don't usually attend this meetings but I 
+  attend a lot of w3c meetings where they're talking about object 
+  capabilities just so that people don't make them trying to keep 
+  people from making the Newbie mistakes that I made when I was a 
+  capability newbie.
+Kimberly Linson:  Awesome well welcome glad you're here.
+Kimberly Linson:  Anyone else want to come off mute and say 
+  hello.
+Kimberly Linson:  Okay how about introduction about announcements 
+  and reminders.
+Kimberly Linson:  Anyone want to add themselves Q4 that Clea yes 
+  please.
+Kaliya Young:  Hi just a reminder that the internet identity 
+  Workshop it's coming up October 10 through 12 in Mountain View 
+  California and early bird registration I think ends at the end of 
+  this week so yeah we hope to see you there.
+Kimberly Linson:  I will be there I'm really excited about it 
+  October and Mountain View sounds like a fabulous.
+Kimberly Linson:  I definitely hope to see lots of folks on this 
+  on this list.
+Kaliya Young: http://www.internetidentityworkshop.com
+Kimberly Linson:  Other announcements and reminders.
+Kimberly Linson:  Dimitri could I could I put you on the spot to 
+  give kind of a recap of the data Integrity work that you've been 
+  working on.
+Dmitri Zagidulin:  I sure I think mine might be a better 
+  candidate to do that but.
+Dmitri Zagidulin:  So the verifiable credentials working group 
+  the 2.0 is also developing a data Integrity specification as part 
+  of its deliverables and it is a general-purpose way to sign 
+  essentially Json objects and there's a number there's a general 
+  mechanism and a number of specific Signature suites using key 
+  types that we're all familiar with so.
+Dmitri Zagidulin:  Elliptic Edwards curve RSA the nist curves and 
+  so on the data Integrity works either if you're signing linked 
+  data objects using json-ld or it also works using non linked data 
+  Json objects using simple Json con causation so and it's in fact 
+  that.
+Dmitri Zagidulin:   A part is being.
+Dmitri Zagidulin:  Adopted by the FED of Earth so essentially 
+  social media such as Mastodon and others.
+Dmitri Zagidulin:  So the the specs are both the main spec and 
+  the sweet specs are on track to be delivered with the rest of 
+  working groups backs.
+Kimberly Linson:  Great thank you.
+Manu Sporny:  Yeah just add to what Dimitri was saying so the 
+  good news I think with the data Integrity sweets is as of last 
+  week we only have three issues on the main spec and three issues 
+  on the Eds a spec that we need to resolve before we think the 
+  specifications are ready to go into the candidate recommendation 
+  phase that's basically where you freeze the specifications 
+  completely.
+Manu Sporny:   Tell the implementers that they're.
+Manu Sporny:  Haitian in to integrate them with the test Suite so 
+  the good news there is that I think we're a little ahead of 
+  schedule they're clearly you know we can't say that we're done 
+  yet we will learn things as people more broadly implement it but 
+  the other good news with those data Integrity test Suites which 
+  were all incubated in the ccg is that we have multiple 
+  independent.
+Manu Sporny:   Ins for them.
+Manu Sporny:  34 Ecdsa 34 EDSA 74 the ones we used for the 
+  plugfest last year and that is without actually announcing that 
+  to have people integrate with it so on a good Glide path for 
+  those data Integrity items that's it.
+Kimberly Linson:  Great thank you I've noticed that we've had a 
+  whole sort of influx of folks come in and just the last little 
+  bit and so I want to read sort of come back to introductions and 
+  reintroductions and see if there is anyone who is joining us 
+  today that is new or just wants to come off mute and kind of say 
+  hello so I kind of revisit that that topic.
+<kimberly_wilson_linson> queue?
+Kimberly Linson:  Right now I'll say again to everyone that's 
+  here now if you have announcements and reminders come put 
+  yourself on the queue.
+Kimberly Linson:  Okay well then that concludes the housekeeping 
+  portion of a call today and so I'm going to go ahead and turn it 
+  over to Joel who is going to talk a little bit with talk about 
+  kids with us Joel Joel and I practice screen sharing so it should 
+  be should work well.
+Joel Hartshorn:  Everyone happy to be here.
+Joel Hartshorn:  Let's see if I can get the slides going.
+Joel Hartshorn:  Okay how about that.
+Kimberly Linson:  Yep we see.
+Joel Hartshorn:  Hey so these are slides that actually put 
+  together somewhat over a month ago in the article published also 
+  over a month ago so I want to just excuse in advance that this is 
+  not Super Fresh in my memory but I think we can still have a good 
+  discussion and I would also say if that's okay like feel free to 
+  interrupt if there's anything unclear as I'm.
+Joel Hartshorn:   Going through this.
+Joel Hartshorn:  I know we'll have time for questions at the end 
+  as well.
+Joel Hartshorn:  Okay so what are we going to be talking about 
+  today is something that I've called generative the ID maximalism 
+  and this is something that kind of arose past I've been building 
+  decentralised protocols that use the IDS as like the account 
+  mechanism and struggling with kind of how to support multiple 
+  data.
+Joel Hartshorn:   D methods.
+Joel Hartshorn:  Retaining the centralization of power cord 
+  protocol.
+Joel Hartshorn:  So before I jump in is like very briefly about 
+  myself I've been working in the web T / Block Chain space since 
+  2015 been working with dids since 2016 I was part of the viewport 
+  team which was one of the early projects doing the ad stuff but 
+  back then I'm a co-founder of a company called tape of slabs and 
+  our main focus is building a decentralized Data Network called 
+  surrounded.
+Joel Hartshorn:  Leverages Dae says like the wit main account 
+  model for publishing data into the network.
+Joel Hartshorn:  All right so for the agenda today I'm going to 
+  start talking about like why the IDS can't interoperate and to 
+  dive a little bit deeper into that like why do we need me to 
+  build the in the 80s in the first place then we'll talk about 
+  what generative the 80s are and how they can be used together 
+  with object capabilities and then we'll just have time for 
+  General discussion.
+Joel Hartshorn:   The end.
+Joel Hartshorn:  So for people who actually read my article 
+  before Huns this is kind of just like in reiteration of that.
+Joel Hartshorn:  You all right so let's dive in why can't the IDS 
+  up interoperate well I think the main reason for this is that we 
+  have this specification that allows anyone to kind of implement 
+  the ideas with whatever kind of back end that they feel 
+  appropriate and this has led to as many of you know I think the 
+  numbers probably weight larger now but over like.
+Joel Hartshorn:  At this point dating methods in the registry 
+  it's great that we get to experiment a lot but if you want to 
+  build an application you like we have to pick one or a few 
+  methods that you support and so why can't we support all of them 
+  why is that so hard.
+Joel Hartshorn:  Different DD methods requires different 
+  verifiable data Registries in most cases where you actually want 
+  to have a decentralized data registry you need to rely on some 
+  sort of watching.
+Joel Hartshorn:   So this could be.
+Joel Hartshorn:  Bitcoin could be a terrier mix could be some 
+  other network and in the case where you're lying on one 
+  blockchains a Bitcoin or ethereum you can run this on commodity 
+  hardware and you can potentially even support multiple different 
+  Theory methods there are supported by that individual blockchain 
+  but if you want to support multiple different EAD methods that 
+  rely on multiple different blockchains you're in trouble you.
+Joel Hartshorn:   Basically won't be able to run.
+Joel Hartshorn:  Resolve these the IDS on commodity Hardware you 
+  need to kind of Outsource that work to a server somewhere and 
+  then we're kind of losing some of the properties of.
+Joel Hartshorn:  So if we actually want we want them to be 
+  decentralized we want them to be trust minimized.
+Joel Hartshorn:  And in many cases the DD methods on like Bitcoin 
+  or ethereum actually requires you to run a full node it's not 
+  enough to run I like clients in some cases like like a might be 
+  enough but definitely not in all cases.
+Joel Hartshorn:  Especially if you build trying to do like a 
+  fully decentralized application where you want the user to have 
+  kind of around the pole kind of decentralized application this is 
+  this this aspect of like supporting multiple dates across watches 
+  is simply not going to work and there are some great efforts to 
+  have some sort of universal resolver I think there's like a repo 
+  that just like tries to integrate a bunch of tid.
+Joel Hartshorn:   Words into one single repo with a bunch of 
+  docker.
+Joel Hartshorn:  That's great but the problem is you can only see 
+  simply run this on.
+Joel Hartshorn:  Right big servers and tend to run an application 
+  that requires users to run this locally the simply too much.
+Joel Hartshorn:  And so the question that comes next is like okay 
+  well so what does actually using these boxing's give us and what 
+  this block chains are verifiable data Registries allowed to do is 
+  how mutability of early 80s that also has to have a history of 
+  like which keys were authorized to act on behalf of this D ID at 
+  what point in time and that's kind of.
+Joel Hartshorn:   Why we want you to bility of.
+Joel Hartshorn:  Like the history historical changes of the dod 
+  enables mutability and so I would say there are two main things - 
+  is key rotation the other one is something that Daddy's also 
+  allow us to have a place to store some metadata it's usually like 
+  a pointer to some service I guess in general is called services 
+  on the 80s but to pointing to some server or to some other kind 
+  of resource.
+Joel Hartshorn:   And so one thing that.
+Joel Hartshorn:  Sort of thinking about this is like okay Dee 
+  Dee's actually do two very different things one is supporting key 
+  rotations and one is having this like registry of metadata so 
+  what I'm proposing talking about here is mainly just like 
+  thinking about the key rotation aspects of the IDS personally am 
+  not convinced that also having a metadata registry inside of a 
+  deity it's like we're kind of.
+Joel Hartshorn:   Trying to solve too kind of very different 
+  problems with.
+Joel Hartshorn:  Privilege but I want to dive too much into that 
+  right now okay so there's this great article written by I think 
+  Wayne from Spruce ID and there he talked about actually can think 
+  of different the ID methods as having different traits.
+Joel Hartshorn:  So all of this these deities in this example 
+  like the key to th red you know since on supports the SEC P 256 K 
+  1 key type the key in the dkh are purely generative.
+Joel Hartshorn:  The other ones are have the ability to voltages.
+Joel Hartshorn:  Is a generative Theory method it's basically the 
+  idea method that doesn't support any type of key rotation instead 
+  you can basically generate the DAT document from only knowing the 
+  daad URI itself we can essentially in some shape or form the URI 
+  includes the public key so for the key you actually have encoded 
+  the entire public key for did pkh you have encoded.
+Joel Hartshorn:   The hash of the public key.
+Joel Hartshorn:  The nice property about generative the 80s is 
+  that we don't actually rely on any Ledger we can use them 
+  anywhere without needing to synchronize a blockchain or look up 
+  DNS name like in the web or contact some centralized server we 
+  can just use them locally and so that's that's very nice.
+Joel Hartshorn:  But we actually want key rotation right that we 
+  want the ability to revoke peace and to rotate keys.
+Joel Hartshorn:  And this is where I think the combination of 
+  generative Theory Paradigm with object capabilities becomes a 
+  really powerful way of having Primitives that enable each other 
+  so objective abilities can be used to delegate control over the 
+  ID and sometimes and I'm not this is not like a talk about or 
+  like a discussion of.
+Joel Hartshorn:   What object capabilities are in the.
+Joel Hartshorn:  He's going to talk about some of the things 
+  they've been seeing in the space there are some emerging 
+  standards in kind of web 3ish community and recap is object 
+  capability based on sign in with etherium so basically makes any 
+  other involved into a wallet that also can be a DAT and delegate 
+  control to session keys or other dadss essentially could be.
+Joel Hartshorn:   Be a key in your browser or.
+Joel Hartshorn:  Since the eggy you can is an emerging standard 
+  in the ipfs community and is being used by a number of different 
+  projects and this is based on jwt's.
+Joel Hartshorn:  We've actually been working closely with the 
+  Spurs team and the fishing team who each are responsible for 
+  Recaps and Yukon to align the format for the recap and you can 
+  capabilities and so we can actually represent them in a very 
+  similar way and have interoperability between these two then I 
+  wanted to mention also Chambers and I think this is.
+Joel Hartshorn:   Is kind of critical.
+Joel Hartshorn:  To understand like how we can actually have 
+  something like.
+Joel Hartshorn:  The same properties in would have with 
+  verifiable data registry with on the genitive deities and object 
+  capabilities so chain proofs is basically an object capability 
+  that encodes a state proof from approaching so for example in 
+  ethereum every block there's the there's a hatch that's basically 
+  this is the route has of the state of the entire Block Chain and 
+  given that hash I can actually generate a miracle.
+Joel Hartshorn:   Proof that.
+Joel Hartshorn:  Says the owner for example the owner of this nft 
+  is account 0x ABC and I can verify this proof and verify that 
+  this blog header is included in the blockchain for this Jam proof 
+  and I can know that okay this account was actually owner of this 
+  entity at this point in time and this is really powerful because 
+  then I can verify any state about the blockchain using only a 
+  like.
+Joel Hartshorn:  Essentially this enables us to have the ID 
+  methods that are based on various types of engine State without 
+  having to run a full node in the blockchain and actually running 
+  one or multiple light claims locally on come on commodity 
+  Hardware is way easier than running call nodes which should be 
+  self-evident.
+Joel Hartshorn:   See you soon.
+Joel Hartshorn:  Sample of how we could use object capabilities 
+  to delegate control over the media let's see here we have the ID 
+  example a and we delegate the basically the star basically full 
+  access to the DA DB.
+Joel Hartshorn:  So now this is essentially the ADB can do 
+  anything that Didier could do and this example the idea here 
+  think of this is that a generative the ID that doesn't allow you 
+  to do any sort of key rotation think of you could think of this 
+  for example at least I did key now did be basically as makes a 
+  right to some some resource and we call this data one.
+Joel Hartshorn:  Later point in time we issue a provocation of 
+  the do essentially the of the capability that we gave to vdd and 
+  this could be like either you can or recap it doesn't really 
+  matter.
+Joel Hartshorn:  The access that DDP had okay also and here down 
+  at the bottom we have the time it's over we can see that Theta 
+  one was written in some kind of time and data be or excite the 
+  revocation now did be happened later now we run into a problem 
+  here where because how do I know here if we don't have a strict 
+  sense of time.
+Joel Hartshorn:   But maybe.
+Joel Hartshorn:  ATB that another right of data time too.
+Joel Hartshorn:  And from an external Observer I might not have 
+  seen this this revocation yet so we need some sense of time here 
+  and if there's just no sense of time we only have object 
+  abilities and and its data rights that happen at some opaque and 
+  point in time we can really know like when this was revoked or 
+  not and what this actually means is we need.
+Joel Hartshorn:   Need a verifiable data.
+Joel Hartshorn:  Should we need to be able to time-stamped what 
+  point in time does the district ation happen the this revocation 
+  happened before data one was written or did it happen after and 
+  there to get that information we need to have some way of time 
+  stamping and this time stamping.
+Joel Hartshorn:   Yeah it needs to.
+Joel Hartshorn:  To see what it could be like learned we could 
+  simply just like register some some Merkle tree or some some hash 
+  on chain that can be proven with only like a client of similar to 
+  change groups that I mentioned before but okay like now we need a 
+  verifiable data literacy a reason back to where we started and we 
+  need to select it's essentially what I'm watching or have to have 
+  some centralized system that runs all the blockchain.
+Joel Hartshorn:   It's but I think it's slightly more advanced.
+Joel Hartshorn:  So in the case where we have a musical the ID we 
+  essentially have to pick one if we want to have it fully 
+  decentralized and take Bitcoin or think it's here or some other 
+  blockchain and then that's it while in the case we use table 
+  capabilities and generative dod's the generative theories are 
+  kind of universally compatible with as need some code to verify 
+  those locally.
+Joel Hartshorn:   Then on top of that we're using object capable.
+Joel Hartshorn:  Some cases these are fully we can use them 
+  wherever as well as some cases that require some sort of like 
+  client like for example if we use these same proofs if it's a 
+  chain proof of the ethereum blockchain we of course need like 
+  client of lithium function we can sort of like mix and match the 
+  object capabilities could potentially support across multiple 
+  chains finally the revocation registry which is what I'm calling.
+Joel Hartshorn:   In the verifiable data registry with 
+  time-stamped Isa.
+Joel Hartshorn:  Is the point in time to happen.
+Joel Hartshorn:  Here we actually need to pick one essentially 
+  saying or verifiable data registry which we use for our 
+  application but as you can see this gives us a lot more 
+  flexibility because we can have way more interoperability on 
+  these lower level layers and have make this constraint in our 
+  revocation registry right so you might wonder at this point like 
+  okay well.
+Joel Hartshorn:   What if I want to.
+Joel Hartshorn:  A mutable the ID and object capabilities in that 
+  case you're kind of picking the worst of Both Worlds in my 
+  opinion because you both need to choose a docking system for 
+  immutable d a d and then choose one for the revocation of the sea 
+  and they kind of like.
+Joel Hartshorn:  Unless you want to like have this drive towards 
+  centralization because you can run it on commodity Hardware.
+Joel Hartshorn:  Okay so let's talk about examples of generative 
+  vad methods like what can we actually do which what type of 
+  things could is reasonable here that's who I mentioned already 
+  sticky most of you are probably familiar with this purely 
+  generative it can work with your cancer recap.
+Joel Hartshorn:  And yeah like very flexible did th also purely 
+  generative works with Recaps / of signing with a theorem or 
+  there's similar things designer with the theorems for other 
+  blushing world's benefit of did pth is there's already a wide 
+  distribution of the cryptocurrency waltz out there that people 
+  are using as it enables us to have wide distribution then there 
+  are other deities.
+Joel Hartshorn:   Methods that are currently not.
+Joel Hartshorn:  Noted or doesn't exist yet but did entity not 
+  currently generative but it could be changed to make to be made 
+  generator we could simply just like based on the identifier 
+  generate a static documents and then we could use this.
+Joel Hartshorn:  Improve to essentially as an object capability 
+  have a state proof of for example the ethereum blockchain that 
+  had this particular address AKA did pkh is the owner of this 
+  entity and.
+Joel Hartshorn:  Potentially them delegated further to to other 
+  deities but we can have like a full proof of like okay here is at 
+  this point in time this was actually the owner of this in a p and 
+  so you need a like going to verify the object capability but the 
+  and the dod itself is purely generated very similar we could 
+  imagine a lady method called good ebm that on this.
+Joel Hartshorn:   Essentially steal like any.
+Joel Hartshorn:  To any contract on a theorem can be used as a 
+  dat.
+Joel Hartshorn:   This is.
+Joel Hartshorn:  Goodbye a shame proof methodology.
+Joel Hartshorn:  Then look at let's look at some kind of existing 
+  deities that are not currently generative but I think we could 
+  imagine them reimagine them as generative vad methods for example 
+  the a DNS right now it's looks up DNS record when you resolve it 
+  I think and they're probably people who can correct me on this on 
+  this call but in theory we could I think make an object.
+Joel Hartshorn:   Visibility that includes a DNS proof.
+Joel Hartshorn:  That you can verify your verifying the signature 
+  and kind of the delegation chain rather than like always 
+  resolving the deity so the DNS did document basis contains like 
+  hey this is the Guinness record as long as you have another vad 
+  that can provide a delegation proof through some DNS record we 
+  can have this we can see that this delegation chain is.
+Joel Hartshorn:   Is volatile.
+Joel Hartshorn:  Similarly with the male 2 we could potentially 
+  do something as well using d'yquem proof to also do that's kind 
+  of Delegation and I know there's a lot of nuances here that one's 
+  more this Captain but this is more kind of as an illustrative 
+  example of how we can move more in this direction.
+Joel Hartshorn:   All right.
+Joel Hartshorn:  Does all the kind of content that I had prepared 
+  and article I think it went a little bit more in detail that I 
+  hope this helped to kind of pause here and then if there are any 
+  questions.
+Kimberly Linson:  Great thanks Joel thanks a lot and before I 
+  start the Q is already and blowing up before I start calling on a 
+  cue I want to just make sure that I got my understanding is right 
+  and have you kind of help walking through my taste so I have a 
+  wallet and I use it to store primarily open Badges and CLR.
+Kimberly Linson:   Words that are from education.
+Kimberly Linson:  Grabs professional licenses and we use did web 
+  so when I'm connecting with somebody who's going to issue me one 
+  of those credentials I'm sending them my my did web and they're 
+  authenticating it back at back and forth but if I wanted to 
+  connect to somebody who used a different kid method they would be 
+  like no sorry we can't we can't communicate.
+Kimberly Linson:   So your your way would be.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> Jitsi was 
+  intermittently telling me "Video for Joel has been turned off to 
+  conserve bandwidth". Is it just me (suggesting that I may need to 
+  talk to my ISP), or are others getting this as well (suggesting 
+  that Joel may want to talk to his ISP)? Definitely woud like a 
+  link to the slidedeck, in either case!
+Kimberly Linson:  Fluid to allow for that did method to allow 
+  like a connection between those that methods so that I could use 
+  my usual did method to.
+Kimberly Linson:  Act is that right and how is it wrong.
+<manu_sporny> I was getting that too, TallTed
+<manu_sporny> First time I've seen it.
+Joel Hartshorn:  So I think actually you could maybe have some 
+  kind of Oracle system that acts as like an interoperability layer 
+  for these types of so of more centralized dat methods like did 
+  web did web reliable DNS naming system and it also relies on 
+  someone running a server somewhere but if you can have like some 
+  Oracle system that the tests you like hey yeah.
+Joel Hartshorn:   Yeah this was this.
+Joel Hartshorn:  Did read result to this the any document at this 
+  point in time then you can sort of trust this Oracle Network and 
+  use that as an object of ability So in theory yeah I guess you 
+  could have that sort of interoperability thing this is not really 
+  what I was like trying to convey here the primary thing I'm 
+  trying to communicate here is.
+Joel Hartshorn:  We want to make a system that is fully 
+  decentralized and doesn't rely on kind of centralized servers to 
+  resolve the ad methods what are what is the kind of trade off 
+  space and like how can we make different dat methods as 
+  interoperable as possible so it's kind of like the daad space is 
+  pretty large so it's like a lot of different things there are 
+  some methods that are like highly centralized are some methods 
+  are like highly decentralized and I know.
+Joel Hartshorn:   Others like someone has been working on the 
+  rubric and what not.
+Joel Hartshorn:  But kind of what I'm trying to do is like this 
+  space of the centralized deity methods like how can we make them 
+  more interoperable and make them something that we actually drive 
+  more usage of rather than use like using these more centralized 
+  Eid methods as it's like a cop-out almost.
+Kimberly Linson:  Still maybe a maybe a better example would be 
+  someone has one of these very decentralized methods and they want 
+  to communicate with a more centralized method they need a way to 
+  do that.
+Joel Hartshorn:  Yeah it's more like if you want to build an 
+  application and you want your users to not rely on kind of 
+  centralized systems but you still want to support as much stuff 
+  as possible how right what are the right constraints for you to 
+  consider when you're building your application.
+Kimberly Linson:  Ah that's very helpful got it thank you okay 
+  let me get over here to the queue.
+<kimberly_wilson_linson> queue
+<kimberly_wilson_linson> queue ?
+Alan Karp:  Yeah what I wanted to talk about the revocation I 
+  think it's easier than you may doubt because an object capability 
+  has to designate a specific object or to be an object capability 
+  and therefore to revoke you only have to notify the service that 
+  hosts that object Note to no longer honor that capability is that 
+  conform to what you were saying I did.
+Alan Karp:   Get that from what you said.
+Joel Hartshorn:  I think that's fine in the case where you have a 
+  service right so for example in the protocol we're building we're 
+  not assuming that there's one service that hosts your object your 
+  object is a self-certifying data structure that could be living 
+  at any number of nodes in the network and so what we need is a 
+  way for any node to synchronize this data structure and be able 
+  to verify the Integrity of this data structure.
+Joel Hartshorn:   Trustless Lee.
+Joel Hartshorn:  And for that to be the case we need to be able 
+  to know like what point in time when this was this object 
+  capability revoked.
+Alan Karp:  So this is not a mutable object then because 
+  otherwise you have to synchronize any updates in which case you 
+  can use the same mechanism to synchronize revocations.
+<joe_andrieu> "Trustless Lee" is my new favoriate use case actor.
+Joel Hartshorn:  Yeah I think I think that's the point yeah you 
+  would use the same method to synchronize revocations but if you 
+  want to verify the Integrity of historical events in this data 
+  structure you need to know that hey this key be was valid at time 
+  one time to it got revoked and the time three was not valid and I 
+  need to have this information if I want to know that like the 
+  previous event that happened previous point in time it's.
+Joel Hartshorn:   Still to be considered valid.
+Alan Karp:  Time time is a tricky thing whose time the only one 
+  that makes sense again is the place that going to do the update 
+  and that's distributed that's a real tricky problem there are 
+  other ways to handle it maybe we should talk offline.
+Joel Hartshorn:  To me this is the.
+Alan Karp:  That has no say for example a forwarding proxy that 
+  you can just stop forwarding.
+Joel Hartshorn:  To me this is the problem that blockchains all 
+  right like if you read the Bitcoin right they were the way the 
+  way they said oh she actually describes it is as the 
+  decentralized time-stamping service and I think that's like a 
+  really powerful thing to leverage in this these cases.
+Alan Karp:  Right then you can just put the revocation on the 
+  blockchain and when you get a request you can see if it's been 
+  revoked.
+Joel Hartshorn:  Yeah I think I think putting it on the 
+  blockchain might be expensive what you can do is you can put a 
+  bunch of applications in a Merkle tree with the root of that 
+  function and have some kind of other peer-to-peer gossiping or 
+  synchronization mechanism.
+Alan Karp:  Right okay I have to learn more about your system but 
+  I think I think that problem is not as difficult as you made it 
+  out to be and I don't think that Stein timestamps are you have to 
+  think very carefully about what timestamps me.
+Manu Sporny:  Yeah thanks Kimberly this was a great July you know 
+  I think you hit on a number of challenges that we have in the in 
+  the did ecosystem and I think it's really interesting how you you 
+  know broke the part bring the multiple parts right so one of them 
+  is it is interesting to be able to classify these did methods by 
+  the traits that they have right then you some would say like it's 
+  a feature set so it t in did.
+Manu Sporny:   PK ages.
+Manu Sporny:  Is different from did web and which is different 
+  from did ion and did BDC and the the etherium based did so I 
+  thought that was the one thing that you highlighted or re 
+  highlighted that was really important I thought the other really 
+  interesting thing that you're highlighting here is that there is 
+  a way to use object capabilities as a binding mechanism between 
+  two different did methods.
+Manu Sporny:   Meaning you know the.
+Manu Sporny:  The cryptographic delegation is a useful thing to 
+  have and then finally the way that you spoke about the time 
+  stamping services in Alan you know I think of them as you know 
+  ordering Services as well meaning like you have to understand the 
+  order in which these things happened in and if you and you need 
+  to be able to Anchor that to some common trust model so I totally 
+  agree with you Joel that that's largely.
+Manu Sporny:   Lee the service that block chains provide.
+Manu Sporny:  Going all the way back to the original Bitcoin 
+  paper I think the challenge here in this is in like this is not a 
+  solved problem right I mean if we solve this problem then this is 
+  that would be huge it would allow us to you know potentially 
+  largely reduce the number of did methods they are and so on so 
+  forth I think the challenge is you know putting the pieces 
+  together in the right order and it's what Alan kind of 
+  highlighted it's like at some point.
+Manu Sporny:   If you start depending.
+Manu Sporny:  Time stamping service then it raises the question 
+  well isn't it just easier to store all the data there as well and 
+  as you said Joel well that might you know rocket the cost of the 
+  transaction up and we don't want to do that in a way to mitigate 
+  that is Markle so we've got all this stuff kind of bubbling 
+  around at this soup of potential you know solutions that we could 
+  provide and I think that one of the biggest challenges here Joe 
+  and I'm interested in your thoughts on this is.
+Manu Sporny:   The complexity that this adds to.
+Manu Sporny:  Um to implementers the the wallets and things of 
+  that nature so we are already mired in complexity right now with 
+  all the different did methods and requiring a effectively a 
+  universal resolver to be able to resolve all of them do you feel 
+  like the level of complexity is the same if we did the 0 cap and 
+  delegation approach with the time stamping service versus a 
+  universal resolver like how would you rate.
+Manu Sporny:   The complexity of.
+Manu Sporny:  To those Solutions is one easier than the other.
+Joel Hartshorn:  Well first of all I think I have a feeling that 
+  even if you have a resolver that is universal or whatnot you 
+  still probably want to rely on some kind of object capabilities 
+  at some point and now you're kind of stacking complexity on top 
+  of each other which seems not like the greatest idea and so my 
+  intuition is tells me like.
+Joel Hartshorn:   Let's just put the cam.
+Joel Hartshorn:  In the way to revoke object capabilities and 
+  keep the kind of lower-level cryptographic Primitives as simple 
+  as possible I do think the object capability registry and like 
+  ability to revoke that is not super simple and it's helped to 
+  solve like if we want like one universal solution to that.
+Joel Hartshorn:  But I think that.
+Joel Hartshorn:  It could potentially be something that 
+  applications juices like hey my application over here.
+Joel Hartshorn:  Pass the simple revocation approach another 
+  application over here has some other approach to that but we can 
+  still enter operate on these like generative DOD methods and 
+  different representations of object capabilities.
+Joel Hartshorn:  I mean I think the universal resolver approach 
+  works if you're fine with having your application rely on some 
+  service somewhere that you used to resolve the ID methods if 
+  you're not fine with that you want more resilience and you want 
+  your application to be more of a more beautiful nature that might 
+  not be a trade out of that you want to make.
+Kimberly Linson:  So can you give me an example of.
+Kimberly Linson:  The type of use case where I would want it to 
+  be.
+Kimberly Linson:  Like I can enough T wallet like you talked 
+  about before that that would be maybe a place is or is there a 
+  better use case that you can help me picture.
+Kimberly Linson:  That'd be great.
+Joel Hartshorn:  Maybe I can give an example of how we use 
+  generative Theory methods and object capabilities in the protocol 
+  and building ceramic and then maybe expand from that the right 
+  now basically all accounts and ceramic is either an aquarium 
+  account or some other watching account but the majority of 
+  inventory is like a dream accounts for this we use dat PT h.
+Joel Hartshorn:  As of the normal flow when a user comes in 
+  application that uses ceramic as kind of a data storage network 
+  is that user arrives deprecation in the backgrounds the 
+  application generates h i thinki this session key is is like a 
+  dead key very simple then the application prompts the user to 
+  sign a message and this is a normal kind of standardized within 
+  the human Community called sign in with interior and this message 
+  essentially contains.
+Joel Hartshorn:  The public interest and it also contains a list 
+  of resources that this key is allowed to write to you sign this 
+  message with your wallet and the application gets the message and 
+  the signature back and so in our case that resource is ceramic 
+  URL basically an IDE for Unique resource.
+Joel Hartshorn:  And as long as this D the session key can 
+  produce a signature that includes the hash of this up the 
+  capability and also pass this along this object capability any 
+  ceramic Network Pierre can validate the Integrity of this 
+  objective ability and see that okay this session key is actually 
+  allowed to write to this resource so that's that's how we use 
+  them to capabilities right now and ceramic.
+Joel Hartshorn:   You asked about.
+Joel Hartshorn:  About the Manistee or something like this we 
+  could imagine instead of a resource being owned by like enter 
+  their email address you could be owned by an entity as in that 
+  case we would have like one extra step of the radiation so when 
+  the user comes in application the application simply generates a 
+  state proof from ethereum showing that like there's proof from 
+  the nft to the owner and then there's a session key and there's a 
+  proof from the.
+Joel Hartshorn:   Terry mattress to that session key and.
+Joel Hartshorn:  The session key we can present these two object 
+  capabilities together it can write to this resource on surf Mike 
+  this is not something we have implemented yet though but it's 
+  something that we're kind of planning to do and we want to do it 
+  in a way where the only kind of require have like a light client 
+  requirements.
+Kimberly Linson:  Okay that's very helpful thank you Dimitri.
+Dmitri Zagidulin:  I just wanted to add too.
+Dmitri Zagidulin:  Active outside and don't answer your question 
+  so think of it as being able to delegate to an f t wallets or any 
+  kind of cryptocurrency allows you to access the audience of.
+Dmitri Zagidulin:  We use things like meta mask who have enough 
+  teas right it'll it's less than that you should choose it for a 
+  new use case and more it gives you a wider audience of people 
+  with wallets.
+Joel Hartshorn:  Yeah exactly as far as I know the kind of 
+  cryptocurrency ecosystem and distribution of walls is the largest 
+  distribution of private keys or like public key infrastructure 
+  we're actually and like actually people have control over their 
+  own Keys which I think is very aligned with what the whole can of 
+  the idea because system is trying to achieve.
+Kimberly Linson:  Great thank you both Allen.
+Alan Karp:  One thing you didn't mention if you have a 
+  time-stamping service you can make short-lived capabilities and 
+  just rely on the exploration time instead of explicitly revoking.
+Joel Hartshorn:  That's right here and that's actually what we're 
+  doing for our objective abilities that we use however you still 
+  need to notarize the events that you produce using that object 
+  capability because if if I produce a bunch of events that at Time 
+  1 and the object capability expires the time to the time passes 
+  and now it's time 3 I send basically my.
+Joel Hartshorn:   Pierce and those events.
+Joel Hartshorn:  From your perspective with you see like yes I'm 
+  three but you have a bunch of things are signed with the object 
+  capability that was expired a kind to so I'm not going to accept 
+  them as well however you have a proof that this was time-stamped 
+  before that you can accept those.
+Alan Karp:  Right now I just a matter of how you handle the 
+  expiration time.
+Alan Karp:  But it resolves the problem you mentioned distributed 
+  resources and needing to get the revocation signal to them you 
+  could just rely on the timeouts.
+Joel Hartshorn:  Yeah I mean unless you have an expiration time 
+  this like too far into the future and you actually want to revoke 
+  a key.
+Alan Karp:  Well that again that's why I don't like just I don't 
+  like using expiration times but certainly a good fallback and if 
+  you have a distributed system sometimes it's just the simplest 
+  thing the hard part actually of the expiration time is you didn't 
+  want to revoke so you have to reissue the capability that's 
+  typically the trickiest part.
+Joel Hartshorn:  Yeah and as far as actually that's very simple 
+  because if you come to an application the application notice is 
+  that the session key has a capability that's been expired it's 
+  trivial to generate a new one a snoozer designing new message.
+Alan Karp:  So your situation it's actually easier than in most.
+Kimberly Linson:  All right anyone else with it with a question 
+  for Joel.
+Kimberly Linson:  Alright great thank you so much to all for 
+  coming and sharing this information with us oh Ted.
+Kimberly Linson:  Yes we've added some things.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Just a quick 
+  request for a link quick request for a link to the deck.
+<phil_t3> Does this allow you to reissue keys and map them to the 
+  deprecaed key?
+Joel Hartshorn:  Yeah sure let's see if I can share this.
+Kimberly Linson:  Phil we have a couple minutes you want to pop 
+  on and ask your question.
+Joel Hartshorn: 
+  https://docs.google.com/presentation/d/1JBJsFRAtlP0t07BjE1oausgvkplBrriu/edit?usp=sharing&ouid=101173869656507147085&rtpof=true&sd=true
+Phil Long:  Thank you but I'm pretty wiped out from covid at the 
+  moment so if you could.
+Kimberly Linson:  Oh no I'll ask it for you then Jal Phil Phil is 
+  wondering does this allow you to reissue keys and map them to the 
+  deprecated key.
+Joel Hartshorn:  I'm not sure if I understand the question but 
+  you could definitely I don't know what we issue a keep means but 
+  you can you can revoke a key and delegate same access that I key 
+  has two different key I mean in theory you could revoke a key 
+  then like unruly like give the capability again.
+Joel Hartshorn:  Probability model is very flexible.
+<phil_t3> The context is when you move for a cloud-based central 
+  wallte and need to reiusse the creds to an indiependent 
+  credenital
+Kimberly Linson:  Flexible is good all right thank you everyone 
+  for coming today and engaging in this conversation I learned a 
+  lot and deepening my knowledge I'm not sure I'm ready to explain 
+  it at a in the elevator but I'll work on it so thank you again 
+  Joe lat thank you everyone for coming and we'll see you next 
+  Tuesday.
