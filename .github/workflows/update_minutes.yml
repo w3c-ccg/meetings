@@ -77,12 +77,3 @@ jobs:
         body: ${{ format('file://{0}/email.log', steps.detect_file.outputs.dir) }}
         to: public-credentials@w3.org
         from: CCG Minutes Bot
-    - name: Twitter Action
-      uses: ethomson/send-tweet-action@v1
-      with:
-        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.detect_file.outputs.group, steps.detect_file.outputs.dir) }}
-        consumer-key: ${{ secrets.twitter_api_key }}
-        consumer-secret: ${{ secrets.twitter_api_secret }}
-        access-token: ${{ secrets.twitter_access_token }}
-        access-token-secret: ${{ secrets.twitter_access_token_secret }}
-

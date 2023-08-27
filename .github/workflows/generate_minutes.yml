@@ -14,7 +14,7 @@ jobs:
       run: git config --global push.default simple && git config --global user.email "w3c.ccg@gmail.com" && git config --global user.name "W3C CCG"
     - name: Pull raw meeting log file
       id: pull_raw_file
-      env: 
+      env:
         DATE: ${{ github.event.client_payload.date }}
         GROUP: ${{ github.event.client_payload.groupName }}
         GROUP_ALIAS: ${{ github.event.client_payload.groupAlias }}
@@ -38,19 +38,8 @@ jobs:
         CI: true
         DATE: ${{ steps.pull_raw_file.outputs.date }}
         DIR: ${{ steps.pull_raw_file.outputs.dir}}
-        GROUP: ${{ steps.pull_raw_file.outputs.group }}  
+        GROUP: ${{ steps.pull_raw_file.outputs.group }}
     - uses: stefanzweifel/git-auto-commit-action@v2.5.0
       with:
         commit_message: Add minutes for telecon [ci skip]
         branch: main
-
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-    - name: Twitter Action
-      uses: ethomson/send-tweet-action@v1
-      with:
-        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.pull_raw_file.outputs.group, steps.pull_raw_file.outputs.dir) }}
-        consumer-key: ${{ secrets.twitter_api_key }}
-        consumer-secret: ${{ secrets.twitter_api_secret }}
-        access-token: ${{ secrets.twitter_access_token }}
-        access-token-secret: ${{ secrets.twitter_access_token_secret }}
