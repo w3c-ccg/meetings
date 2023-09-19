@@ -4,7 +4,7 @@ This repo contains the meeting archives for the W3C-CCG (Credentials Community G
 
 ## Notes on archive process
 
-This section descibes how the chairs archive W3C-CCG meetings, including sending the agenda, how to run the meetings, and how to publish CCG minutes transcript and audio after. This information is also use for leads and other facilitators archiving any alternative CCG meetings such as task forces and special meetings.
+This section describes how the chairs archive W3C-CCG meetings, including sending the agenda, how to run the meetings, and how to publish CCG minutes transcript and audio after. This information is also used for leads and other facilitators archiving any alternative CCG meetings such as task forces and special meetings.
 
 ### Before Meeting (Agenda for the weekly W3C-CCG Chairs meeting)
 
@@ -14,7 +14,7 @@ This section descibes how the chairs archive W3C-CCG meetings, including sending
 * Review all [community issues](https://github.com/w3c-ccg/community/issues) and choose 1-3 and tag "action: review next"
 * Open the [W3C-CCG Planning & Agenda Email Draft](https://docs.google.com/document/d/1PbyZ0UtI6yzr5V_r-iseVyrZIWPm1BLXWsLeEV-mJvY/edit) in Google Docs 
 * Updated all the items highlighted in yellow, in particular adding new agenda items for week starting with item 7.
-* If there is a guest presentation, add it to the appropriate dated meeting [archives folder](https://github.com/w3c-ccg/meetings/)  before the meeting.
+* If there is a guest presentation, add it to the appropriately dated meeting [archives folder](https://github.com/w3c-ccg/meetings/)  before the meeting.
 * Go to [CCG Email Send Agenda" Google Script](https://script.google.com/d/1QcV9INTap2Ke0gEkMTAovlZ-Cg3MIrYzxvU5h7SPKYvUrAuHnUCqgAHD/edit) - select function "sendAgenda" and click play. 
 * Confirm in the [CCG mail archives](https://lists.w3.org/Archives/Public/public-credentials/) that the agenda was sent correctly
 * Monthly - review Work Items https://github.com/w3c-ccg/community/blob/master/work_items.md
