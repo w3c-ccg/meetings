@@ -1,0 +1,812 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-09-19/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-09-19/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-09-19
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Sep&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, David Waite, Brandi Delancey, Alan Karp, Mike Xu, 
+  Brian Campbell, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Stuart Freeman, pauld gs1, Jeff O - HumanOS, 
+  Nis Jespersen , Greg Bernstein, Dmitri Zagidulin, Wendy Seltzer, 
+  David Chadwick, Chandi Cumaranatunge, Kaliya Young, Geun-Hyung, 
+  Nikos Fotiou, BC, David I. Lehn, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Hi everyone so welcome to this week's at w3c ccg 
+  meeting today we're going to have a very exciting topic a little 
+  bit different usually we talk about the IDS decentralised 
+  identifiers verifiable credentials and things like that today 
+  we're going to talk about authentication which is basically a the 
+  linkage doing the physical and virtual self and we got an expert 
+  here David wait the principal technical architect of hidden 
+  identity to lead the.
+Harrison_Tang:  discussion of Fido and one of them so before we.
+Harrison_Tang: Just want to do something quick and then stuff the 
+  first of all just want to do a quick reminder of the code of 
+  ethics and professional conduct just want to make sure that we 
+  have a fruitful discussion here and hold a respectful 
+  conversation all right anyone can participate in these calls 
+  Harbor also extensive contributions to a nice easy walk items 
+  must be members of the ccg with for IPR agreements signed so if 
+  you.
+Harrison_Tang:  have any.
+Harrison_Tang: In regards to how you do that or if you have 
+  problems sign up for the w3c account just reach out to any of the 
+  cultures.
+Harrison_Tang: These calls are being recorded and the meeting 
+  minutes are automatically transcribed so we publish these meeting 
+  minutes and audio recordings GitHub about within a day or two 
+  basically within the week at the latest we use teach each a2q 
+  speakers during the call so you can type in cubed plus to add 
+  yourself to the cube or q- to remove.
+Harrison_Tang: Like you just type in Q question mark.
+Harrison_Tang: All right so that that's go to that introduction 
+  so and reintroduction so if you are new to the community or if 
+  you haven't been active and want to kind of introduce yourself a 
+  little bit feel please feel free to just me.
+Harrison_Tang: I see mostly familiar faces so if you're feeling a 
+  little bit shy toward the editor we got time feel free to just be 
+  yourself.
+Harrison_Tang: Alright announcement and reminders any 
+  announcements and or reminders.
+Harrison_Tang: So on October 10th that's the week of the internet 
+  identity Workshop we will be holding a special hybrid open house 
+  session and IW so that will be 12 p.m. Pacific Time 3 p.m. 
+  eastern time so Kimberly will be outside in Mountain View and 
+  holding a hybrid open house session and people get join online 
+  I'll special I'll send out the email about it.
+Harrison_Tang:  the week prior so.
+Harrison_Tang: That time will be a little bit different because 
+  the our regular nine nine o'clock Pacific time kind of coincides 
+  with open circle discussions during the IW so that will be pushed 
+  to noontime Pacific Time or 3 p.m. eastern time.
+Harrison_Tang: By any other announcement organizers.
+Harrison_Tang: So click preview of what's coming so next week 
+  we'll have not money and kind of talk about the selected 
+  disclosure for data integrity and the week after that we'll talk 
+  about proof of possessions at the application layer by Mike Jones 
+  and then the week after that will be IW special hybrid open house 
+  session and then the week after that would be selective 
+  disclosure mechanisms different selected disclosure methods.
+Harrison_Tang: Don't be led by Ori.
+Harrison_Tang: All right any other announcements or reminders.
+Harrison_Tang: Yeah updates on the work items.
+Harrison_Tang: All right before we get to manage Enda last calls 
+  for introductions for introductions announcements reminders work 
+  items.
+Kaliya Young:  Sorry internet identity Workshop is coming up 
+  October 10 through 12 and it was finally confirmed this morning 
+  there will be an open Wallet Foundation pre IW workshop at 9:00 
+  a.m. 9:00 to 11:00 30 something like that maybe it's at 11:51 
+  happening nearby IW the venue is in chosen yet but those of you 
+  interested in the.
+Kaliya Young:   And wallet.
+Kaliya Young:  An excellent opportunity to hear about the code 
+  that is already contributed and also an interactive part of the 
+  event where everyone who's there will get to contribute what they 
+  are doing that may be related or what they hope can happen with 
+  the foundation and its work.
+Harrison_Tang: Sounds good thank you.
+Harrison_Tang: The on her last announcements were reminders.
+Kaliya Young:  Sorry I'll just say that I'll send a link to the 
+  registration when it opens hopefully before the next one of these 
+  calls to the list.
+Harrison_Tang: Great thank you.
+Harrison_Tang: All right let's get to the main agenda so today 
+  very very happy and also very glad that David from peeing 
+  identity is able to take the time to present and lead a 
+  discussion on Fido and web often I think he'll go into what Phi 
+  do I wipe off that means and what are the differences later but 
+  it's a very important standard that's being adopted across all 
+  the major browser platforms that.
+Harrison_Tang:  will contribute to more secure Authentication.
+Harrison_Tang: Ends and accessing our accounts Beyond just 
+  password so without further Ado David the floor is yours.
+David_Waite: Yeah thank you for having me I was advised to turn 
+  my video off once I start presenting just want to say hello to 
+  everyone and I hope you enjoyed the presentation.
+David_Waite: Okay so when we talking about Fido the final 
+  weigh-ins and also the web authentication specifications which 
+  are created within the w3c I'm going to be talking about trying 
+  to talk a bit about how they fit into the larger credentials 
+  ecosystem that seemed appropriate for this group a little bit 
+  more details on how the system works I'll try to walk through 
+  step by step.
+David_Waite:  but also get a bit of an.
+David_Waite: Even the current state and some of the challenges 
+  because I suspect that's an area where people come into this 
+  field have to do a bit more research there's a lot of momentum 
+  and a little bit of a directional shift that have happened in the 
+  last will say year.
+David_Waite: Don't myself work on various standards Ping Identity 
+  we do on-prem and hosted mostly Federated identity an MFA 
+  although we have access control we also have new identity 
+  verification and essential as identity products I participate in 
+  web on 10 I'm also Vice chair over on the private to side that's 
+  working on the kind of.
+David_Waite:  adware protocols.
+David_Waite: Focuses more on privacy approaches and Technologies 
+  how can we you know make sure that the technology doesn't leak 
+  information or enable people to be tracked even if you know 
+  social realities still would.
+David_Waite: Into the specification landscape web authentication 
+  or often just called Web authentic is working group I believe it 
+  started in 2017 and its focus is on the client-side API so how do 
+  I as the web page also known as relying party how am I able to 
+  interact through the browser and do stronger Authentication.
+David_Waite:  this is done by bees.
+David_Waite: Those devices or software that perform 
+  authentication called authenticators which create an assert 
+  credentials so the one of the fundamentals is that there's no 
+  inherent like a federation where you have an existing account 
+  that shared a website after this is I want to use this system I 
+  want to get a.
+David_Waite:  credential in this case it's actually.
+David_Waite: Public-private key based in order to be able to 
+  prove it's the same user again in the future.
+David_Waite: This is also you know by virtue of being w3c has 
+  user consent as part of the process it's meant to identify or 
+  authenticator should say people not machines and.
+David_Waite: Have to be done so with with their knowledge of 
+  what's going on since that's pretty strong tracking vector.
+David_Waite: The API itself supports both primary authentication 
+  as well as secondary secondary being the historical source of 
+  specifications and it relates to fight oh because Fido specifies 
+  the kind of Hardware protocols how do you work over USB in the 
+  like but also can be provided by software either provided within 
+  the platform itself like Windows hello or via third party.
+David_Waite: I think one password may have actually really 
+  something this week that spective defines all the exchanges and 
+  also the format since they're cryptographically protected it also 
+  defines the extensibility mechanisms although there's caveat sand 
+  that browsers typically want to know what extensions are being 
+  supported so that they know the Privacy impacts of those so 
+  there's typically an allowed list of what extensions are a lot.
+David_Waite:  loud even if the Authenticator.
+David_Waite: A clean way little bit because there's a lot of 
+  different options within web authentic there's this concept of 
+  discoverability so this is I come with the browser of cleared all 
+  cookies I've cleared everything can a website use this API to 
+  just say try to authenticate the user if I have if there's been 
+  any sort of previous relationship I can't see that as website 
+  because of privacy I need you.
+David_Waite:  you to tell me does the user want to talk.
+David_Waite: But I don't know who this so you need to have all 
+  the state necessary for tracking within the client within the 
+  authenticators what sort of relationships have already been 
+  established older school u2f what started Run 2013 and it's kind 
+  of the the source for webathon didn't have any storage so it 
+  wasn't capable of working this way so you either call these non 
+  discoverable or non-resident.
+David_Waite: That was only useful for a second Factor really 
+  because one you traffic doesn't provide a way of any doing any 
+  sort of additional checks on who the person is but also you had 
+  to provide a list of handles and those handles were typically 
+  cryptographic information either seed values or wrapped 
+  credentials because those that Hardware was limited had no local 
+  storage.
+David_Waite:  the out pinning of this.
+David_Waite: That discover one on discoverable credentials formed 
+  the basis of primary factor and second Factor authentication so 
+  are you supplementing something like a username and password or 
+  are you trying to get like a fully pastoralist even potentially 
+  user nameless experience.
+David_Waite: Concept called user presents this is a gesture 
+  showing that you as a user intend to authenticate that could be a 
+  button on a piece of Hardware or on a software user interface or 
+  could be the action of taking the piece of hardware and bring it 
+  close to a NFC Reader but that only shows that you have 
+  possession of the key and nowadays that may or may not even mean 
+  that it's a hardware Factor so there's an.
+David_Waite:  list additional concept called user.
+David_Waite: Occation authenticator controls the mechanism but 
+  it's way in the API to request that additional checks be 
+  performed so very diverse potential ecosystem of authenticators 
+  that could be a pinhead on a piece of Hardware it could be an 
+  activation code being gathered by the users web browser platform 
+  to unlock a piece of Hardware it could be a biometric sensor 
+  built directly.
+David_Waite:  and without.
+David_Waite: Is that your doing additional verification that's 
+  isn't just a piece of Hardware found in the street that this is 
+  set up in a way to actually verify the user.
+David_Waite: If I don't liance little bit older than the website 
+  then effort started in 2013 with a overarching goal of reducing 
+  you know ideally eliminating passwords and replacing them with 
+  stronger authentication mechanisms a lot of their initial Focus 
+  was around there being lots of inventions for stronger 
+  authentication there were Biometrics being built into laptops for 
+  instance.
+David_Waite: One of these had a different integration strategy 
+  and so widespread adoption you just wasn't going to happen you 
+  know it's the purview of browser plugins and integration on a 
+  site by site basis so they started the uaf protocol which was a 
+  primary factor for interfacing with hardware and software 
+  authenticators Google and Yuba code contributed.
+David_Waite:  adieu to F which was.
+David_Waite: For second factor which actually wound up being 
+  coming the underpinning for web authentication see tap to which 
+  added back on top of that the idea of being primary factor by 
+  adding that additional memory and so the see tap to spec 
+  underneath the final alliances describing the hardware 
+  interactions it also defines something called a hybrid transport 
+  if you've tried web.
+David_Waite:  then and.
+David_Waite: Selected you want to try other mechanisms and you 
+  get a qr-code pop up which I can probably show at the end if 
+  people like.
+David_Waite: That's actually being defined by fight alliances 
+  well and that's Mitch these are basically meant to be not tighter 
+  like a particular ecosystem or a particular piece of Hardware or 
+  a particular vendor for being cross-device cross-platform 
+  mechanisms for authenticating and then if you ever hear the term 
+  fito to its kind of umbrella almost marketing term for the 
+  combination of what with ahead and see tab.
+David_Waite: People probably heard the term passkeys if they've 
+  looked at this space saying that a pesky is an alternative to a 
+  password is probably the best way to put it because it's not 
+  really meant to be a technical term it's more of a conceptual 
+  term it's more of how do we explain this concept to your average 
+  consumer in a way we're not really having to teach them something 
+  new or just leveraging their.
+David_Waite:  Ting knowledge.
+David_Waite: Put passwords are and just saying this is a better 
+  alternative if you were to map that to technical term would be 
+  the that idea of those discoverable credentials that you can go 
+  to a website with no prior configuration on your local machine 
+  just that prior registration of an authenticator and login so you 
+  don't have to type in a username you don't have to do a lot of 
+  things the the.
+David_Waite: Pharmacist and helping you authenticate and they 
+  provide that as kind of a consistent interface across different 
+  platforms across different websites that want to use this 
+  technology for the authenticators underneath it's really matter 
+  of user choice that one's it being pretty diverse set it could be 
+  that existing Hardware that could be done rolling platform so 
+  functionality built in like Windows hello or it could be.
+David_Waite: Relatively new idea of a third-party piece of 
+  software.
+David_Waite: So you know the lot of these are password managers 
+  getting into the space although there are some Enterprise piece 
+  of software that also want to provide very specific capabilities.
+David_Waite: All this talking about why it's better than a 
+  password this is kind of the minimum bar expectation of how those 
+  are better that one is tracking resistance so while using the 
+  same email address as your username across sites is going to 
+  enable tracking at that level that is that these credentials are.
+David_Waite:  R generate a.
+David_Waite: It's per site so each site gets its own unique key 
+  in those can't be used to crawl it you likewise when I visit a 
+  website like a retailer or social network they don't actually see 
+  I have any credentials at all registered until I give consent in 
+  the form of an authentication prompt and even then again it's 
+  still just proof that I'm the same person they've seen previously 
+  and have.
+David_Waite: Registered a credential with so it's somewhat up 
+  here authentication Factor another is reach resistance so since 
+  this is all based on public key cryptography even if the you know 
+  backup of the credential database table gets leaked that it 
+  doesn't actually enable any sort of exploits so a lot more 
+  resilient to people having to go and change passwords on a bunch 
+  of other websites because the right if you use the same password.
+David_Waite:  awkward and one of those sites got.
+David_Waite: Typically doesn't happen they just have more of 
+  their identities exploited the third one is strong fish and 
+  resistance so since these credentials are per site and since the 
+  browser is actively mediating and providing a channel there's a 
+  kind of a DNS binding of those credentials the cryptographic 
+  protocol was scribes the party that it's communicating with so.
+David_Waite: So as strong as the DNS and POS infrastructure of 
+  the web itself so much stronger fishing resistance email 
+  campaigns sitting new to the wrong website won't really succeed 
+  in capturing a credential you in fact won't even be prompted to 
+  supply the credential because the browser knows what it is and 
+  isn't supposed to be doing there.
+David_Waite: So where's this in the credential ecosystem little 
+  hesitant in this group to talk too much about what is or isn't a 
+  credential but these are pair wise so they're not meant to be 
+  Global men There's issues with using something like an identity 
+  credentials likes a driver's license for authentication in some 
+  cases that might be appropriate like the actual issuing authority 
+  or overarching government has.
+David_Waite:  as assurances there that there's.
+David_Waite: This is there are certain actions that they can 
+  accept that risk whereas someone else may not know that 
+  identifiers or stable or not what they move whether they move to 
+  a different state whether they have another identity issue and 
+  have numbers rotated or have any sort of action they can take the 
+  turns out that credentials issued fraudulently so.
+David_Waite:  being paralyzed.
+David_Waite: The big benefit for an authentication credential 
+  likewise it doesn't represent any sort of certification or 
+  qualification it doesn't really have any identity attributes 
+  whatsoever nor does it represent any sort of personal Authority 
+  or authorization it is just authentication just previously I 
+  registered this I'm the same party as I was at that point.
+David_Waite: Happy Hearts there's attestation so especially as 
+  you get more into regulated space you want to know how that user 
+  verification is performed you also may want to know the security 
+  properties of that key so for instance is the are the credentials 
+  cloneable and there are mechanisms now for doing additional data 
+  storage at time of registration which are used for things like 
+  say taking.
+David_Waite:  the underlying credential and.
+David_Waite: Get into like x.509 certificate form.
+David_Waite: So part in the white slide but this talks a bit 
+  about the parties involved so you have the end-user you have the 
+  client which is typically a web browser you have the 
+  authenticator which actually does the authentication process any 
+  of the relying party which is kind of in two parts since the 
+  JavaScript API you're typically not trying to.
+David_Waite:  authenticate the user.
+David_Waite: Purpose of the script running inside the browser 
+  you're typically trying to get access to improve that it's the 
+  user to say some sort of back-end system this is changing 
+  slightly with some new extensions that are coming but you 
+  generally have that kind of division at the relying party where 
+  it's kind of the front end and the back end so the process is 
+  very similar whether you're registering a credential.
+David_Waite:  in the first time or are using it again.
+David_Waite: That the user initiates the client browser there's 
+  some sort of part of the presentation webpage to kick off the 
+  process ruling party usually wants to have its own interactive 
+  challenge so it fetches that that gets baked into a robot then 
+  request at the JavaScript level and then that gets turned by the 
+  client into this case a CPAP request.
+David_Waite:  and that goes to that piece.
+David_Waite: I will say over USB it does in step five a check for 
+  user presents or verification like see it has a biometric and 
+  that creeps cryptographic response that gets sent back through 
+  the client to the JavaScript within the client and then on to say 
+  that the back end of the line party to actually perform 
+  Authentication.
+David_Waite: So talking a bit about the current state of things.
+David_Waite: So the markets pain devil is evolving quite a bit of 
+  the last year while Apple had things in preview for a couple of 
+  years prior last year was really the start of passkeys their 
+  public facing system-wide credential system and think ability it 
+  was also when Google added passkeys to.
+David_Waite:  to the Android platform.
+David_Waite: So adding describable credentials unifying around 
+  kind of that terminology it really change the position of the 
+  market before it was say very low double digits or single digits 
+  adoption insights where you know it's not a closed system where 
+  say an Enterprise's giving credentials to people.
+David_Waite: Telling them that they need to use them to having 
+  the ability to do what about then the actual authenticator to do 
+  it not just browser support for interaction being pretty much 
+  ubiquitous and this caused a bit of growing pains especially in 
+  regulated industries that adopted webathon early because these 
+  platforms have different security properties the big one is 
+  recover ability and sinking.
+David_Waite:  I'm so.
+David_Waite: Mobile phone vendor isn't going to want people to 
+  lose their ability to log into every website when they buy a new 
+  phone or replace the phone that was lost or stolen however that 
+  means that you're no longer really interacting with the security 
+  Factor you're interacting with an authentication process behind 
+  that authenticator boundary and that makes things a lot harder 
+  for people to reason about when they need to understand the risk 
+  and how the.
+David_Waite:  this fulfills.
+David_Waite: Their regulatory requirements so bit of growing 
+  pains there however there has been significant investment on kind 
+  of the unregulated consumer space and adoption there there's been 
+  several rounds of iterative user experience refinements there's 
+  been greater adoption of the passkey kind of terminology also 
+  relatively recently there's been plenty.
+David_Waite:  that forms the.
+David_Waite: The software at a system level similar to how you 
+  have autofill from password managers today at a system level so a 
+  lot of the consumer password managers are seeking to become a ski 
+  providers and to integrate either within the browser at that 
+  system level to provide people an alternative with you know 
+  different properties that's again meant to be more of a diverse 
+  ecosystem where you know say.
+David_Waite:  a piece of.
+David_Waite: You Linux or having a open database might be very 
+  compelling for some people and not really that interesting for 
+  others.
+David_Waite: So with this a lot of the metaphors have been 
+  aligning more with password managers and that kind of go along 
+  with that minimal level of assurances that you can get from 
+  passkeys which is that compared to passwords that has better 
+  security properties fishing resistance tracking resistance and 
+  resistance in the face of compromise.
+David_Waite:  so that kind of breach list.
+David_Waite: Passwords we've seen the user experience aligning 
+  more with autofill Behavior at login so this is nice because one 
+  of the biggest problems with technology adoption is how do you 
+  educate the user does every party that wants to use the system 
+  have to take some responsibility for educating the user so having 
+  it in the platform having a.
+David_Waite:  Zur meeting.
+David_Waite: That but really only shows up if they've already 
+  opted into using the pass key system that really reduces the 
+  amount of Education needed especially on see the homepage of the 
+  website and.
+David_Waite: Not having likes it model prompts that people have 
+  to figure out what the system's even talking about definitely 
+  reduces the chance of churn that adopting this technology would 
+  cause people to just decide they don't want to deal with it right 
+  now and to leave the website all together.
+David_Waite: The hope is as uptake improves as we kind of see 
+  wider spread adoption further ux improvements that relying 
+  parties don't feel the need to explain what pass keys are to the 
+  users what are they don't have to explain what a password is 
+  today.
+David_Waite: So in progress the standards you have web 
+  authentication level 3 so this it's referred to as conditionally 
+  mediated UI for that kind of Auto form fill Behavior providing 
+  more information about the same credentials for websites this is 
+  really meant for rejecting the credential this is meant so 
+  website understands is this a piece of Hardware where if they 
+  misplaced.
+David_Waite:  face it they.
+David_Waite: Be able to.
+David_Waite: Access my website at all or is this something like 
+  something backed by a cloud account where if the user has a lost 
+  or stolen phone they can recover access and be able to achieve 
+  kind of account recovery on that end so what is the burden and 
+  the site and they might use this knowledge to decide for instance 
+  whether or not they give user to completely eliminate password 
+  login options.
+David_Waite:  there's a little Ben.
+David_Waite: Number of quality of life improvements one of my 
+  favorite is that the robot then data a lot of its binary being 
+  cryptic messages one of those messages actually go all the way 
+  back to you to F so that there's compatibility with some pretty 
+  old like 10 plus year old Hardware at this point and 
+  unfortunately a lot of the burden and dealing with those binary 
+  messages and and how to coordinate with like a back-end system 
+  fell on.
+David_Waite:  in JavaScript.
+David_Waite: Of like if you bought a product that have their own 
+  libraries for how do you interact between that back-end server 
+  and your webpage well in what about them level 3 there's now a 
+  Json formats there's API built in to convert between kind of the 
+  API configuration or responses and to be able to get Json and use 
+  that for API calls to a back-end system and.
+David_Waite:  with a lot of as.
+David_Waite: A lot of ongoing web standards many of the features 
+  are already deployed so the conditionally mediated you is already 
+  been in browsers for over a year.
+David_Waite: Kind of its companion over in fight alliances he tap 
+  2.2 the sets that hybrid QR code based Bluetooth based web socket 
+  based mechanism that some of you may have seen and this is really 
+  meant to go cross device so how can I login to my desktop using 
+  my cellphone and credentials they created their or even cross 
+  ecosystem so how do I.
+David_Waite: Sign into a Windows desktop using my Android phone.
+David_Waite: So a lot of this comes down to and by Nature being 
+  in the w3c and and having this investment by browsers and 
+  platforms to being backed by an open-world model where it's 
+  really the users choice in what authenticator they use and then 
+  the relying party is meant to evaluate how well that meets the 
+  requirements for some sites just being able to get fishing 
+  resistance and to get some of.
+David_Waite:  the properties they would normally have to do.
+David_Waite: P we're out of an authenticator is as great and 
+  other regulated environments the base level might not be enough 
+  and the ruling party may need to do additional Factor prompts and 
+  that's the public internet for you know for private parties like 
+  Enterprises or government to employer government to contractor 
+  there may be much further restrictions even going down to saying 
+  I.
+David_Waite:  I don't just want to use this.
+David_Waite: Need to use one that came from our ordered batch 
+  with the proper serial number with the proper configuration so 
+  that information is reported to us.
+David_Waite: Um that's really private parties public-facing 
+  including those in regulated Industries are expected to honor the 
+  users choice and and not reject some because it became from a 
+  particular platform or because it doesn't have a particular 
+  capability and a lot of that is both to prevent any sort of early 
+  adopter Advantage but also to really allow for a diverse 
+  ecosystem where.
+David_Waite:  you know say someone has accessibility needs.
+David_Waite: An authenticator can be built specifically for their 
+  use without having to see go and get approval from the top 100 
+  200 300 websites of the internet who have decided to Institute an 
+  allowed list.
+David_Waite: But this goes counter to at the stations so the idea 
+  of how you know that say it's back to a particular piece of 
+  hardware by a vendor that has particular security properties so 
+  if I have safety security key fob that I'm selling into an 
+  Enterprise environment at the stations are great that meets the 
+  customers requirements that's part of the reason they're 
+  purchasing the.
+David_Waite: From soccer based authenticator I had different 
+  motivations I don't want to have fingerprinting I don't want say 
+  websites on the internet decided that since password manager had 
+  a breach that that Pastor manager from this point forward will 
+  never be acceptable on a particular website is kind of a brand of 
+  penalty and you know in the web space we've seen what's happened.
+David_Waite:  and with say.
+David_Waite: It strains and how you know a lot of browsers wind 
+  up lying either baking in the names of other browsers for regular 
+  expression purposes or having a quirks mode where they just say 
+  this is the value I have to return on this website in order for 
+  my users to have access however it is widely recognized that 
+  there's a gap between that Enterprise environment and say.
+David_Waite: Character enthusiasts Forum in regulated Industries 
+  such as Banks and health care where they may have requirements 
+  that the the base level does not satisfy and that makes it hard 
+  for them to adopt the system because they typically already have 
+  complex authentication processes that they feel to meet their 
+  needs so a better alternative to passwords may not be worth the 
+  cognitive load it may not.
+David_Waite:  be worth instituting.
+David_Waite: Another option for one part of the authentication 
+  process especially if they're going to be passkeys and then turn 
+  around and Reliance of like SMS to try to do a uniqueness 
+  constraint and that case they're adopting this and it's not 
+  actually solving even any other business costs so it's a known 
+  Gap there's active areas but it's also an area where the 
+  different parties have very different needs.
+David_Waite:  different worries different goals.
+David_Waite: Active research and development it is moving slower 
+  than I think anyone will like but this is why most of the 
+  software base and platform-based authenticators that have come 
+  out in the last year don't have at the station says because 
+  there's not really a desire to have people locked into particular 
+  platform to have websites decided they just aren't going to 
+  accept.
+David_Waite: Particular items so they've been a little bit of 
+  Anonymous in terms of how that credentials being source with 
+  backing authenticator is so I can speak a little bit to those in 
+  Q&A which I believe.
+David_Waite:  we're now at.
+David_Waite: If people would like.
+Harrison_Tang: Any questions for David by the way I have one 
+  question so earlier in your slides you mentioned that the web 
+  platforms have adopted their level one web application and then 
+  you describe the level of 3 so the natural question is like what 
+  is level 2 and then is there a level four.
+David_Waite: So so level one was the initial version level to had 
+  a lot of kind of adoption features more focused on Enterprise 
+  adoption so it added things like Enterprise at two stations this 
+  would be how with either machine policy so say a Windows or other 
+  emm policy or via policy on the hardware key itself.
+David_Waite: Identify internal websites and perhaps release more 
+  information than people would normally be comfortable with such 
+  as a serial number so if I use antibiotics key on an Enterprise 
+  site maybe a uniquely identifies the key and so they can track 
+  what your batch it came from which employee was issued to 
+  definitely not what they want for Seattle stations on the public 
+  internet in fact final lines the certification.
+David_Waite:  and one of the other.
+David_Waite: At the station and say I think 50,000 or 100,000 
+  device batches so you can kind of tell which weeks say yubikey 
+  was manufactured in but you can't get too many bits of 
+  information about a particular user based on the key that's being 
+  used Enterprise environment very different requirements so how do 
+  you opt in t tab 2.1 that's kind of the.
+David_Waite:  corresponding spec there and so it.
+David_Waite: Like if I if that key gets out of the employees 
+  control say they leave the company and they reset it and put it 
+  on eBay making sure that Enterprise policy is cleared out so it 
+  acts just the same as any other key from that manufacturer not 
+  something that has kind of a surface an unknown policy and that 
+  changes privacy characteristics so making sure certified devices 
+  have of.
+David_Waite:  reset policy that would clear out.
+David_Waite: I was loaded on them.
+David_Waite: That was level to a lot of cleanups a lot of areas 
+  where there was opportunity for improvement the discoverable 
+  credential it came from that and some of that was because in 
+  level 1 there was a residency term that Resident non-resident if 
+  it's in memory but it turns out that was really more the hardware 
+  roots from the sea tab side the u12 side and not really usability 
+  focused and.
+David_Waite:  and that actually cause some conflicts where.
+David_Waite: On the Windows platform whatever you request it's 
+  always residents are always created by the Crypt of subsystem and 
+  always put onto a file system because storage is not a premium 
+  but those were actually meant to be usability terms and so 
+  websites would find out that they never meant for particular 
+  credential to be used some way but it was still showing up and 
+  say a list of the user even though.
+David_Waite:  will never work.
+David_Waite: Very inconsistent between authenticators and 
+  platforms that this new terminology came about in level 2 so 
+  there's a bit of more of a focus on what the behavior of things 
+  were supposed to be rather than what the hardware capability of 
+  things were supposed to be the browser's themselves had different 
+  levels of adoption so.
+David_Waite: Being a bit I believe they're not level 2.
+David_Waite: Which is in the current published spec and then 
+  level 3 I believe the goal is to have it go to see our early next 
+  year but we'll see where that is there's a lot of really 
+  interesting things that may wind up pushing it back.
+Harrison_Tang: Got it and if you're a website like and trying to 
+  integrate with wipe off then you're just interacting with the 
+  platforms like apis right like why do you care about attestations 
+  of the hardware or different authenticators.
+David_Waite: So at the stations are kind of made to be a heavy 
+  lift or you can say some of that is implicit and you know 
+  optimizing for more the consumer cases some of it may be a little 
+  bit intentional because there's definitely an idea that for an 
+  open web model add two stations or something that they don't want 
+  a lot of people using just because there.
+David_Waite: If all you want to do is about then to do basically 
+  Pass key is and you don't care about active stations you have a 
+  significantly smaller lift once you get into act two stations 
+  different Hardware May produce different formats that the station 
+  itself doesn't really prove much just kind of identifies the make 
+  and model so you'll have independent certification bodies like 
+  Fido Alliance that provide.
+David_Waite:  tables to kind of map that into capabilities.
+David_Waite: Students like you know this random number generator 
+  have a compromise or someone figured out how to exfiltrate 
+  information off of the key big kind of maintain certification 
+  levels and kind of active states of those keys but you kind of 
+  take all that if not on in order to consume active stations 
+  there's also some of this may go away in the future but.
+David_Waite:  there's currently also props to release those out 
+  to sea.
+David_Waite: That is because it's hard to know that a 
+  non-conforming authenticated that hasn't gone through a 
+  certification process that they're not uniquely identifying the 
+  user but it's also just a little bit of an additional burden for 
+  people to take at the stations that if you don't need them you 
+  really shouldn't be asking for them and a lot of that comes back 
+  to that open mic model it just.
+David_Waite:  people don't want websites to say.
+David_Waite: We're only going to accept this brand on the public 
+  internet they don't want to get to a point where someone has to 
+  carry 12 key fobs on their key ring and figure out which one gets 
+  into which website just because we're different security 
+  restrictions that quite honestly are arbitrary.
+Harrison_Tang: Thanks any other questions.
+Harrison_Tang: And David you mind going a little bit deeper into 
+  kind of like the password recovery equivalent process right and 
+  also does the passkey you kind of have an expiration date and or 
+  does it is it like permanent.
+David_Waite: Sure so there's no key rotation process the ideas I 
+  can just register a new passkey and there's a user handle 
+  provided by the relying party so if the same authenticator gets a 
+  new credential with the same handle it just reads it just creates 
+  a new credential replaces the old one so.
+David_Waite: Rotation it just not really an expiry otherwise the 
+  relying party would have to make the determination that I kind of 
+  want a new one in terms of recovery so from a typical Hardware 
+  security key perspective there isn't any and that's been that was 
+  a huge adoption issue identify you know right up until a year ago 
+  that if I lose my security key then all of a sudden.
+David_Waite:  and I don't have a way to.
+David_Waite: On WE authenticate these sites so if their whole 
+  purpose of adopting this was to get like a Al to say level of 
+  authentication you can't have recovery be the weakest link and so 
+  you know the whole water level went up an Enterprise so that 
+  you're not doing strong authentication with email magic link 
+  recovery but the.
+David_Waite: So the guidance was well by multiple security keys 
+  and periodically go back at have websites support multiple 
+  passkeys and periodically go back and register your backup key 
+  from the safe with those various websites and this is you know 
+  even for someone in the security industry pretty difficult and so 
+  there was a proposal by yubico to.
+David_Waite:  have a protocol that's kind of a.
+David_Waite: Future introduction between keys where I could 
+  provide basically proof that Mikey was one that was mentioned in 
+  a previous registration or use there were some prototypes of that 
+  they didn't really get too much adoption issue interest mostly 
+  because every relying party would have to take the effort to 
+  support that new protocol and extension or else you know you were 
+  still at the same state where.
+David_Waite:  are there wasn't really any sort of built.
+David_Waite:  The platform's basically.
+David_Waite: You treat passkeys as part of the sink fabric they 
+  have.
+David_Waite: Or passwords so the private keys are protected and 
+  synchronized in the cloud through whatever mechanism they have 
+  there were some improvements I believe to some of that some sir.
+David_Waite: Cloud HSM and you're really recovering access to use 
+  that cloud HSM but the idea where there was I still might get 
+  locked out because I might get at locked out of say my Google 
+  account or Apple account so you still need a recovery story but 
+  the recovery burden is written release reduced on the relying 
+  party because it's a much more exceptional flow rather than I 
+  hoped.
+David_Waite:  I updated a piece of hardware and now I realize it 
+  can never.
+David_Waite: Here at the same time the other part there is that 
+  whole hybrid that's in c-type 2.2 the cross-device authentication 
+  based on the QR codes and Bluetooth and a bunch of other things 
+  but the idea there is if I use my Android phone on my Windows 
+  desktop to get in a relying party could just offer it could 
+  detect that.
+David_Waite:  at and say.
+David_Waite: Don't you just add Windows hello so you don't have 
+  to go through this in the future assuming this isn't some sort of 
+  kiosk there's no reason you should have to use your phone to get 
+  into your desktop because we can just give your desktop access as 
+  well and so that also means that it kind of AIDS you and 
+  registering multiple credentials he had multiple ways back in so 
+  it none of that's a silver bullet you know nobody's invented the 
+  Silver Bullet solution.
+David_Waite:  for Recovery yet but every.
+David_Waite: Bird and then makes it so that recovery is a less 
+  often behavior and that therefore means that's going to be more 
+  scrutiny about it.
+Harrison_Tang: Got it thanks for clarification.
+Harrison_Tang: I have a business question I got quite a bit of 
+  questions about I'm quite interesting this topic have a kind of 
+  business question I'm just curious like because you know the 
+  platforms like Chrome browsers like oh have passwords like 
+  password managers right and then he supports the web Athens and 
+  you know and then a Mac like it integrates with the touch IDs and 
+  things.
+Harrison_Tang:  like that so I'm just curious.
+Harrison_Tang: The role of third-party password managers 
+  especially when the platforms already have have these features 
+  kind of baked in.
+David_Waite: You know it's a lot of it is evolutionary speed so a 
+  company dedicated to building user-facing or family or say 
+  Enterprise facing password managers has more resources that 
+  they're probably willing to put on those products more desire to 
+  iterate and innovate.
+David_Waite: You know someone very recent feature as a yesterday 
+  is that the Apple password manager added groups so that you could 
+  have a set of passwords and passkey shared with your family quite 
+  honestly I didn't think they would ever do that and it's not 
+  because it's not valuable is because I didn't know if it'd make 
+  the cut because there's a certain amount of cognitive load and 
+  there's ongoing support and from their perspective it's a feature 
+  not a product so.
+David_Waite:  so you know same with why would I.
+David_Waite: Additional software I think a lot of it is you know 
+  the ability to cater to the needs of your customers which may be 
+  different than the needs of everyone using pass keys and so 
+  having a consistent interface across platforms so knowing that 
+  works identical on singing Mac and on Android phone any support 
+  they have in the future for something like.
+David_Waite:  X which doesn't have a.
+David_Waite: Platform level feature for we'll both end and pass 
+  key is yet but I know there's people that have been looking into 
+  that you know all those sorts of things differentiate the the 
+  accessibility is a area I'm really interested in seeing what sort 
+  of you know very targeted Evolution could happen to help people 
+  with specific needs and.
+David_Waite: Freeze all ships that may become table Stakes when 
+  people realize oh this is excellent this is the baby should have 
+  done at all along but if you don't have more velocity and more 
+  experimentation than that realization may never happen.
+Harrison_Tang: Thank you I think we're at time and I just want to 
+  say thank you big thank you again David for taking a time here to 
+  present in deep discussion and answer a bunch of my question that 
+  I have for a long time about by do a wipe off that but thanks a 
+  lot.
+<tallted> link to the deck? :-)
+David_Waite: Yeah and if you or anyone else has additional 
+  questions and kind of this space feel free to reach out you know 
+  there were it was talking the past of whether or not the act of 
+  stations that fire do created where usable for wallets generally 
+  don't think that's a great idea but.
+David_Waite: Willing to talk about perhaps in the mailing list 
+  but if yeah if anyone has questions you can also reach out to me 
+  directly.
+Harrison_Tang: Sounds good and by the late David if you don't 
+  mind can you kind of share the link to the slide to me after the 
+  meeting or or just like feel free to just reply back to the 
+  threat.
+David_Waite: I'll send it to you I'll send it as a PDF.
+Harrison_Tang: Sounds good thank you thanks a lot.
+David_Waite: Everyone thanks for having me.
+Harrison_Tang: All right have a good one.
