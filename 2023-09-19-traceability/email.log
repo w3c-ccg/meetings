@@ -1,0 +1,230 @@
+Thanks to russell_h_(mesur.io) and Our Robot Overlords and russell_h_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-09-19-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-09-19-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-09-19
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Sep&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  russell_h_(mesur.io) and Our Robot Overlords and russell_h_(mesur.io)
+Present:
+  Nis Jespersen , Russell H (mesur.io), Benjamin Collins, Mahmoud 
+  Alkhraishi, Chris Abernethy, Orie Steele, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com)
+
+russell_h_(mesur.io) is scribing.
+Our Robot Overlords are scribing.
+russell_h_(mesur.io) is scribing.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/871
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/872
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/873
+Nis Jespersen :  Diving into interop
+Mahmoud Alkhraishi:  Work to be done on waybill?
+Nis Jespersen :  Not inlined, how we like to inline docs. Based 
+  on iata's very elaborate reqs, aligns very well to iata paper 
+  template. That part's solid
+Mahmoud Alkhraishi:  So some work on internal structure we're 
+  using, but pretty in line with reqs of paper doc
+Nis Jespersen :  Yes, why?
+Mahmoud Alkhraishi:  A customer asked, brought up iata airwaybill
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Nis Jespersen :  Yeah, never been tested in wild but a lot of 
+  stuff, aligned with reqs, safe to point them at that
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/530
+Nis Jespersen :  Least recently updated issues interop
+Mahmoud Alkhraishi:  10 Issues all straightfwd, rephrase or 
+  restructure etc., haven't found time
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/503
+Nis Jespersen :  Pinging you on ticket
+Chris Abernethy:  Been out of office, don't think anything 
+  needed, ready for PR
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/482
+Nis Jespersen :  482, Chris?
+Nis Jespersen :  Oh, marked pending vc 2.0 upgrade. remove 
+  assignee mahmoud?
+Mahmoud Alkhraishi:  Keep, happy to stay on it and do it, just 
+  hold off
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/506
+Nis Jespersen :  506, Mike, to orie. Orie, anything you need?
+Orie Steele:  No, blocked by VC 2.0 work I think. Ik want to 
+  support, some crypto algs want to rec, know what they are, could 
+  put text around this now... could address without adding 
+  examples, "sig base securing mechanisms rec'd to use base [?] or 
+  stronger"
+Nis Jespersen :  So don't put 2.0 label?
+Orie Steele:  Mark as ready for PR, just needs respec text to 
+  close
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/552
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/479
+Nis Jespersen :  552, Me, adding interop test for gs1 
+  credentials. Pinging myself, also ready for PR
+Chris Abernethy:  Placeholder for us to update openapi spec, have 
+  some examples where content of signed items mmodified for reasons 
+  but sigs not regenerated, so examples not internally consistent 
+  so should be updated
+Nis Jespersen :  We don't sign examples anymore, on vocab
+Chris Abernethy:  Possible things have changed since opened, if 
+  have could investigate and close
+Orie Steele:  So, duplicating testing across interop & vocab?
+Chris Abernethy:  Not to do with testing, it's bc including 
+  examples in openapi texts for requests. If someone actually tries 
+  examples and it doesn't do what wants
+Orie Steele:  Wait for 2.0, use those examples
+Nis Jespersen :  So adding wait for 2.0 label
+Orie Steele:  Still on 479, says soemthing on schemas, if any req 
+  on proof for yaml files that needs to be addressed, cause that'll 
+  block 2.0 - what comment from 1 month ago says
+Chris Abernethy:  Agree but not sure it applies here
+Chris Abernethy:  These aren't examples in specs, they're in 
+  openapi
+Orie Steele:  Would recommend not having examples in openapi with 
+  proofs
+Mahmoud Alkhraishi:  How test creds verify if no proof
+Mahmoud Alkhraishi:  Still testing v1. I understand v2 we remove, 
+  but for now we keep?
+Orie Steele:  My understanding, not try and support v1 + v2, at 
+  some pt we make decision to switch all
+Mahmoud Alkhraishi:  But today supporting v1. I think until that 
+  day should stay in examples
+Mahmoud Alkhraishi:  So chris no action item there if all on same 
+  page
+Chris Abernethy:  So we leave as-is with incorrect?
+Mahmoud Alkhraishi:  Suggest we regen proofs, but no action item 
+  on removing proofs today
+Nis Jespersen : +1
+Orie Steele:  Would just leave as broken, won't matter, 
+  unnecessary work
+Chris Abernethy:  So close won't fix?
+Orie Steele:  Yeah let's do that
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/359
+Nis Jespersen :  Any objections? great
+Chris Abernethy:  Old one, placeholder to add conformance testing 
+  for cred status endpts
+Mahmoud Alkhraishi:  Do we have interop testing on creds status?
+Chris Abernethy:  Not recalling
+Mahmoud Alkhraishi:  Not do any work bc know going to be bunch of 
+  work on v2 with status list changes
+Orie Steele:  Agree
+Mahmoud Alkhraishi:  So don't close but mark v2, wait until
+Chris Abernethy:  Seconded
+Nis Jespersen :  So removing 'ready for pr", adding "vc 2.0"
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/483
+Nis Jespersen :  483, Mahmoud?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/554
+Mahmoud Alkhraishi:  Were testing for msg content, thought we 
+  resolved this? did resolution we shouldn't care what message is, 
+  just structure? & I think tests currently don't care. Ping me to 
+  search?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/460
+Nis Jespersen :  554, Will find time for it, pinging myself
+<mahmoud> Apologies need to drop off now.
+Chris Abernethy:  Trying to remember,  I think we opened some 
+  documentation
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/468
+Nis Jespersen :  Poking you, let's move on to 468, chris?
+Chris Abernethy:  Method for referencing stored VCs, assigned to 
+  me, I'll get to it ASAP
+Orie Steele:  Should be alignment. When you have status list 
+  should be able to store, if secure other than data integrity 
+  proofs status list must be able to return in correct media type, 
+  there aren't tests yet for that. & we wanted to reduce number of 
+  media types to just be sd-jwt
+Nis Jespersen :  Chris unsure if your pevious comment still 
+  applies but, can we conclude we're not doing that?
+Chris Abernethy:  Old, should just confirm we did what we were 
+  going to do in initial suggestion
+Orie Steele:  Agree, at a certain point close because stale, too 
+  much to read and no longer actionability
+Chris Abernethy:  Add pending close, give me another week to 
+  confirm what want to confirm?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/567
+Nis Jespersen :  Good call, adding note
+Orie Steele:  We did this, ping him to confirm and close if it's 
+  been done
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/574
+Nis Jespersen :  574, Russell
+Nis Jespersen :  Still want to do these
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/575
+Orie Steele:  Not cwt, look into sign1, 
+  https://w3c.github.io/vc-jose-cose/#with-cose
+Orie Steele:  Good to provide respec guidance encouraging client 
+  to request format. but also good guidance to let server respond 
+  with whatever they'd like
+Nis Jespersen :  So close this one? as it doesn't have to do with 
+  server implementation?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/576
+Nis Jespersen :  Ready for PR, will do the work
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/534
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/533
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/532
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/496
+Nis Jespersen :  534, Mahmoud, who dropped as he said. pinging 
+  him.
+Chris Abernethy:  Iirc came out of giant PR mike did while back, 
+  orie requested some issues to not lose track of things changed in 
+  spec
+Chris Abernethy:  Might be good to re-review respec see how much 
+  is still relevant
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/531
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/589
+Nis Jespersen :  589 From manu, align workflows in vc api and 
+  trace, anyone familiar?
+Orie Steele:  If we moved to more compact formats or other 
+  security mechanisms, how much vc-api still relevant.
+Nis Jespersen :  Isn't it more for them to align with us? If it 
+  isn't, are we just using same term to describe two different 
+  things?
+Orie Steele:  Some historical context arnd work item. Original 
+  vc-api didn't support any of our interop APIs. Interop work item 
+  created to work on these APIs. Then they made incompatible 
+  version of same APIs. Good to have diversity, but when you get to 
+  standardization that's when you should aim at alignment.
+Nis Jespersen :  Made comment, "discussed, no significant 
+  interest"
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/589
+Orie Steele:  Just specify only coming from transmute. Unsure if 
+  openlink has implementation ted but open to comment as well.
+Chris Abernethy:  In agreement with orie, opening can of worms to 
+  do this right now
+Orie Steele:  Ok say that, but comment transmute and mesur don't 
+  plan on engaging in effort to perform alignment
+Nis Jespersen :  Unsure if this is just my understanding, but I 
+  think mahmoud is more invested in vc api than the rest of us.
+Chris Abernethy:  I can do minutes
