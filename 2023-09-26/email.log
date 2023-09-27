@@ -1,0 +1,943 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-09-26/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-09-26/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-09-26
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Sep&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. Introductions / Re-introductions
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, Bob Wyman, Nis Jespersen , Erica Connell, TallTed 
+  // Ted Thibodeau (he/him) (OpenLinkSw.com), Mike Xu, Wendy 
+  Seltzer, Manu Sporny, Matt Gee, Leo, David I. Lehn, Colin 
+  Reynolds, Ed Design Lab, Stuart Freeman, Jeff O - HumanOS, Paul 
+  Bastian, Adrian Gropper, Colin Reynolds, Dave Longley, Anil John, 
+  Phil L (P1), Kaliya Young, Eric Sembrat, James Chartrand, John 
+  Henderson, Chandi Cumaranatunge, Dmitri Zagidulin, Phil Long, 
+  TallTed // Ted Thibodeau Jr (via iPhone)
+
+Our Robot Overlords are scribing.
+Harrison_Tang: So welcome to this week's w3c ccg meeting so today 
+  we're very glad to have our menu here to kind of the discussion 
+  to the selected disclosure for data Integrity but before we get 
+  to that I just want to quickly go through some and stuff first of 
+  all just a quick code of ethics and professional conduct reminder 
+  just make sure that we are respectful to each.
+Harrison_Tang:  each other's comments.
+Harrison_Tang: Next anyone can participate in these calls however 
+  or substantive contributions to ccg work items must be member of 
+  the ccg with for IP our agreement style so if any questions on 
+  that or if you have problems and troubles creating a w3c account 
+  feel free to just reach out to me myself or other cultures.
+Harrison_Tang:  all the me.
+Harrison_Tang: Minutes and audio recordings these meetings are 
+  being recorded and automatically transcribed and all the minutes 
+  and recordings will be published within the next few days we used 
+  to teach at to cue the speakers during the call you can type in 
+  Cube plus 2i yourself to a queue or q- to move you can type in Q 
+  question mark to see who is in the queue.
+
+Topic: Introductions / Re-introductions
+
+Harrison_Tang: Any introductions and reintroductions we are new 
+  to the community or you if you are having been engaging with the 
+  community and want to kind of re-engage with it feel free to just 
+  unmute and introduce yourself.
+Matt_Gee: Hi all this is Maggie from Bright Hive longtime 
+  listener first-time caller for this group looking forward to it.
+Harrison_Tang: Great thank you Matt welcome.
+Harrison_Tang: Any other introductions were rink reintroduction.
+Harrison_Tang: Alright announcements and reminders.
+Manu Sporny:  So I've got an exciting announcement let me go 
+  ahead and share my screen really quickly I can find it so the 
+  state of California has just released a very big pilot to 
+  California residents using verifiable credentials.
+Manu Sporny:  And decentralized identifiers so this is the 
+  California DMV app the California DMV app allows you to hold 
+  mobile driver's licenses and it also lets you do digital age 
+  verification specifically it uses the true age program which uses 
+  verifiable credentials decentralized identifiers and data 
+  integrity and a bunch of other stuff that we're standardizing it 
+  w3c.
+Manu Sporny:   This is a.
+<matt_gee> Awesome news! Now we just need to get Illinois to do 
+  the same thing:)
+Manu Sporny:  Because the pilot includes 1.5 million people in 
+  the state of California this is a huge deployment of w3c 
+  Technology verifiable credentials this image you see over here on 
+  the left here that QR code is a verifiable credential it's a w3c 
+  encoded digitally signed verifiable credential using technologies 
+  that all of us here have been working on for many many years the.
+Manu Sporny: 
+  https://www.nbclosangeles.com/news/local/california-mobile-drivers-license-pilot-program/3216602/
+Manu Sporny:  That's huge right because because they're going to 
+  start out with the population of 1.5 million people and they're 
+  going to grow it to 24 million people anyone that drives in the 
+  state of California or has driver's license will have the ability 
+  to deliver verifiable credentials through the kaltura media be 
+  hap so that's item one that's you know a big huge pilot you can 
+  read more about it actually here let me go ahead and drop the 
+  links here into the chat Channel.
+Manu Sporny:   You can read more about it.
+Manu Sporny: https://www.dmv.ca.gov/portal/ca-dmv-wallet/truage/
+Manu Sporny:  For Nia DMV webpage where they cover the true age 
+  program the true age program the other big news here is with the 
+  announcement that the California DMV app is live true age is also 
+  announcing that you know they are very much into production 
+  deployment at this point in fact true age has been in production 
+  since January of this year.
+Manu Sporny:   But we were waiting on.
+Manu Sporny:  The California announcement to note that so 
+  everyone in this you know this is a this is a huge kind of 
+  watershed moment I think for people in this community this is you 
+  know in production deployed real citizens are using it the true 
+  age program uses a very aggressive privacy stance meaning there's 
+  no personally identifiable information in the verifiable 
+  credential it's tokenized single use tokens much.
+Manu Sporny:   Better than.
+Manu Sporny:  This license which has 35 pieces of pii so there we 
+  go that's the announcement for this week.
+Harrison_Tang: Well that's amazing and by the way like do they 
+  also support mobile like mvl like MDOC kind of format or just 
+  verifiable credentials.
+Manu Sporny:  Yes so California is the first state to basically 
+  go we're just going to support multiple formats so there's 
+  support mdl and that's that you use that if you want to board an 
+  airplane and they support verifiable credentials for the age 
+  verification portion of this.
+Harrison_Tang: Got it so it's kind of.
+Manu Sporny:  Yeah so they're dual sorry they're very much multi 
+  multi issuance at this point they're basically saying we don't 
+  know which one of these formats are going to win in the end and 
+  we're just going to support all of them and and it's you know and 
+  it's possible to do so this is a example of it.
+Harrison_Tang: Cool so it's kind of depends on the wallet like 
+  what does the wall that want to support basically right 
+  implement.
+Manu Sporny:  Yeah well both issue right so the issuer's here 
+  interesting the the California DMV wallet is the wallet it's an 
+  app but it's got multiple issuers associated with State of 
+  California and then the National Association of convenience 
+  stores retailers that that Association issues the age credential 
+  so this is also an example of like multi-source credentials from 
+  a variety of different places being put into the.
+Manu Sporny:   Wallet in being used for.
+Harrison_Tang: Cool thank you and by the way do you know anybody 
+  who's like actually being instrumental in pushing this initiative 
+  by we can invite to talk about it.
+Manu Sporny:  So the the wallet is something that Spruce so you 
+  know when changing X chair for this group is the CEO of spruce so 
+  bringing Wayne in to talk about it would be good and then the 
+  true age folks that's us so we built architect and deployed the 
+  true age system in that's digital bizarre so we deployed that 
+  architecture in the in the u.s. so yeah happy too happy to chat 
+  more about it we should definitely have Wayne and them coming.
+Manu Sporny:   And talk about it as well.
+Harrison_Tang: What do you do.
+Harrison_Tang: I'll kind of connect with you and went offline 
+  thanks.
+Harrison_Tang: All right any other announcements or reminders.
+Kaliya Young:  We've got the internet identity Workshop coming up 
+  in two weeks on the morning of Monday There's a open Wallet 
+  Foundation event for developers and anyone can come but it's 
+  oriented towards developers I did post a link to the list but I 
+  will repost it here it's from 9 to noon.
+Kaliya Young:   A tiger.
+Kaliya Young:  Herman location but we'll figure that out and I 
+  also wanted to say I'm going to be at identity week America next 
+  week in DC and I actually have free tickets to give away if you 
+  want a free ticket if you're in the area or nearby I'm happy to 
+  send you a link to register if you want a back Channel me.
+<kaliya_identitywoman> kaliya@identitywoman.net for free tickets 
+  to Identity Week Americ
+Harrison_Tang: Announcements and reminders.
+<matt_gee> @Kaliya, I’ll be in DC next week and would love to 
+  attend if possible
+<kaliya_identitywoman> intenret Identity Workshop 
+  https://internetidentityworkshop.com/
+Manu Sporny:  Yeah I guess I don't know if anyone's got a report 
+  out from what happened at the w3c technical plenary two weeks ago 
+  but there is the other the other really interesting thing is that 
+  there was very heavy interest by the browser manufacturers Apple 
+  and Google in Microsoft's browser team and the Android Team all 
+  met up at the w3c technical plan area to talk about.
+Manu Sporny:   How does.
+<kaliya_identitywoman> Open Wallet Foundation - 
+  https://www.eventbrite.com/e/openwallet-pre-iiw-developers-face-to-face-tickets-722252636077
+<kaliya_identitywoman> MOnday 9-12
+Manu Sporny:  W3c verifiable credentials in Mobile driver's 
+  licenses through a browser API so this is all about you know open 
+  Wallet selection and invocation there some proposals that are 
+  kind of flying around from one you know one of them's from Apple 
+  the other ones from Google but the the outcome of those 
+  discussions was really positive in that the Google Chrome team at 
+  least has stated that there.
+Manu Sporny:   Very interested in providing.
+Manu Sporny:  Open Wallet selection in the web browser to deliver 
+  things like you know mobile driver's licenses or verifiable 
+  credentials they want to stay format agnostic protocol agnostic 
+  it's still a bit you know an active discussion you know whether 
+  or not the support both native apps and web apps is a you know as 
+  a part of the discussion but I mean they were like you know 3036 
+  browser.
+Manu Sporny:   Core people in the.
+Manu Sporny:  You had program managers from Google and Android 
+  for Google Chrome and Android you know in Apple's browser in 
+  attendance so they are following and of course a number of us in 
+  this community have been talking with them directly they are 
+  following some of this stuff some of the groundwork that was laid 
+  with the credential Handler API chappie but they're also looking 
+  for inspiration from.
+Manu Sporny:   Um you know the.
+Manu Sporny:  Double driver's license stuff that Apple's been 
+  doing and the web payment stuff that has been done in the past so 
+  this is another kind of big movement where the browser vendors 
+  have kind of woken up and gone oh we need to be a part of this 
+  there now weekly meetings in the web incubator community group so 
+  this is another w3c community group called ycg that is usually 
+  where the browser vendors test.
+Manu Sporny:   Test test.
+Manu Sporny:  Is before they try to create working groups at w3c 
+  on it there is a plan for something called An Origin trial in the 
+  Google Chrome browser starting in probably about five months and 
+  An Origin trial in Google Chrome is where they build 
+  functionality in an only allowed to be accessed by certain you 
+  know people certain demographics or they hide it behind the 
+  browser invocation.
+Manu Sporny:   Russian flag but at that.
+Manu Sporny:  You know they have real running code able to move 
+  things like mobile driver's licenses and verifiable credentials 
+  they run those with the intent purpose of shutting them down but 
+  you know they run them to get like real world data back on how 
+  people are going to use the API and things of that nature so a 
+  number of us in this community are going to participate in that 
+  origin trial to ensure that at least the ccgs some of the ccgs 
+  in.
+Manu Sporny:   Tourists are you know represented there.
+Manu Sporny:  The verifiable credentials working groups interests 
+  are represented there that's it for that item.
+Harrison_Tang: Thanks mommy Camille.
+Anil John:  Just if folks have not seen it I think there is a 
+  announcement from the open ID Foundation that they released a new 
+  white paper called human-centric digital identity for government 
+  officials I happened to read that and I found it to be really 
+  worthwhile read I think there's a lot of work that went into 
+  creating the paper getting a dip variety of different 
+  perspectives I.
+Anil John:   No folks.
+Anil John: 
+  https://openid.net/human-centric-digital-identity-whitepaper/
+Anil John:  Dave Birch and many others in the community actively 
+  contribute to that paper so I would highly recommend reading it I 
+  found it to be really interesting and a very holistic look at the 
+  current state of identity across the globe and a very worthwhile 
+  read so I highly recommend I'll put a link in the chat for where 
+  people can find it.
+Harrison_Tang: Thank you thank you Emil.
+Harrison_Tang: Any other announcements or reminders.
+Harrison_Tang: All right any updates to the work items.
+Harrison_Tang: All right so let's get to the main agenda so 
+  couple actually I would say two three months back Manu has kind 
+  of shared this selective disclosure for data Integrity were with 
+  shiji mailing list actually kind of want to invite him to kind of 
+  talk about it but at that time we have Quest a bit of speakers 
+  already lined up and already invited so so only now we have the 
+  chance to kind of discuss this is.
+Harrison_Tang:  idea and also he has the.
+Harrison_Tang: The two kind of go over that so thank you man you 
+  for taking the time to kind of present it and please take the 
+  floor.
+Manu Sporny:  Awesome thank you Harrison let me go ahead and 
+  share my screen going to slide show mode can folks see that.
+Manu Sporny:  Okay yeah thank you Harrison for inviting us to 
+  speak I've also got Dave Longley here who did an enormous amount 
+  of the technical work on this selective disclosure mechanism this 
+  approach for data Integrity just to give folks a bit of a 
+  background who might not know so the you know we are a part of 
+  the credentials community group here at the World Wide Web 
+  Consortium we incubate.
+Manu Sporny:  Here in once we feel like that technology is ready 
+  to go standards track it w3c we kind of push it onto you know we 
+  work on a charter we push the technology kind of into an official 
+  working group at w3c most recently the the latest working group 
+  that we had a part meaning the credentials community group had a 
+  part in creating was the second iteration of the w3c verifiable.
+Manu Sporny:   Churchill's working group.
+Manu Sporny:  Um in scope for that working group were a couple of 
+  items the the first one was you know maintain verifiable 
+  credentials release a 20 version of it you know make it better 
+  that kind of thing and the other work item that went along with 
+  it was securing mechanisms for verifiable credentials so everyone 
+  knows the the verifiable credential the thing that makes it 
+  verifiable is that you've got some.
+Manu Sporny:   Kind of digital signature on it some kind of 
+  digital.
+Manu Sporny:  Tells you who signed it who issued it who's making 
+  those statements so securing mechanisms were in scope and there 
+  are multiple ways of doing it there's the besiege odd stuff 
+  there's the SD jot stuff in there's a mechanism called Data 
+  Integrity so we're going to be looking at that data Integrity 
+  approach today and so and so all this to say that this is work 
+  that is actively being.
+Manu Sporny:   Sized at w3c.
+Manu Sporny:  See in an official working group feel free to 
+  interrupt at any point here I will definitely stop at certain 
+  points through here and see if there any questions the talk is 
+  this is largely kind of like a high-level introduction to 
+  selective disclosure with a very strong focus on specific 
+  mechanism but you know.
+Manu Sporny:  For any form of selective disclosure I think is 
+  fair game to discuss here so if you have any questions on any of 
+  that stuff you know please let us know okay so let's get started 
+  one big disclaimer here is that all I'm trying to do here is just 
+  introduce data Integrity selective disclosure schemes in provide 
+  some benefits and drawbacks this is not meant to be like a.
+Manu Sporny:  Closure mechanism is better than your selective 
+  disclosure mechanism you know let's have a big giant argument 
+  about it this is just kind of like information sharing I stayed 
+  away from a comparison because that tends to get people's kind of 
+  hackles up so this is meant to just be a you know here's here's 
+  what we have and here's what it does and a discussion around that 
+  just the set of things that we're going to cover today.
+Manu Sporny:   Just a really brief.
+Manu Sporny:  View of selective disclosure and what it is go over 
+  some selected disclosure use cases look at the life cycle for 
+  Selective disclosure so you know you know there's this 
+  three-party model that we have you know which party does what 
+  when selective disclosures done you know what are the things to 
+  look out for and then we'll go on a into a how it works from a 
+  conceptual standpoint so that's going to be like a really high 
+  level like no techno jargon.
+Manu Sporny:   Jargon anything just like.
+Harrison_Tang: No this is.
+Manu Sporny:  He what are we doing here how does it work and then 
+  we will go into a deep dive if we have time or if people are 
+  interested so that's kind of what we're going to cover over the 
+  next 15 to 20 minutes I think is there anything on here that 
+  folks would like to cover of that I mean it's fine if it's out of 
+  left field but it was there anything you were hoping that would 
+  be covered and you're not seeing it on on here we're going to 
+  cover it.
+Manu Sporny:  Okay all right all right then let's get started 
+  what is selective disclosure it's a it's a super simple 
+  straightforward concept right so the idea here is that got some 
+  document some data in you're going to hand that data over to a 
+  holder so you know someone that's going to hold on to that data 
+  and you want to empower them to only reveal specific information 
+  in that document.
+Manu Sporny:   To a verifier the.
+Manu Sporny:  Easiest way to think about this is like you've got 
+  a driver's license and if somebody you know if you're going to go 
+  rent a car they may not need to know your everything on that 
+  driver's license right or if you're trying to and I stay away 
+  from the proving age thing because I think that's a very complex 
+  use case if all you're trying to do is share some information.
+Manu Sporny:  This license then handing all of it over is not 
+  what you want to do you want you want a way to select a bliss to 
+  disclose what's in that driver's license so that's all selective 
+  disclosure is is we're trying to empower people to not over share 
+  information and data like they do today and that's it in a 
+  nutshell that's all it's also like the disclosure is it certainly 
+  gets more complex from there.
+Manu Sporny:   But you know that's kind.
+Manu Sporny:  What we're dealing with today okay so what are some 
+  use cases that we can think of you know with respect to selective 
+  disclosure one of them is proving that you're a citizen of of a 
+  particular country without revealing your address so let's say 
+  you have something like a passport or a permanent resident card 
+  you may not want to share all the information like.
+Manu Sporny:   Like what.
+Manu Sporny:  Three was your height and weights or that kind of 
+  stuff if all you need to do is prove that you are a citizen of a 
+  particular country.
+<matt_gee> I’m hoping in the technical part you might share your 
+  thoughts on Latorre et al.’s recent proposal for iURIs for SD-JWT 
+  to support selective disclosure of data from source data systems 
+  with disparate data formats.
+Manu Sporny:  Another use case is proving that you're an employee 
+  of a particular company without revealing your name and position 
+  so you know saying that you are an employee of Utopia Corp 
+  instead of revealing that you have a very sensitive position in 
+  that organization is a desirable thing to do if you have an 
+  employee ID card but you know selective disclosure does not.
+<matt_gee> this ends up being incredibly important for downstream 
+  analytics use cases for selective disclosure
+Manu Sporny:  Apply to people or identity documents for people if 
+  you think of shipping manifests like the contents of a shipment 
+  so let's say that you need to you have a shipment and you need to 
+  reveal where the shipment is going without revealing the context 
+  contents of the shipment so and that has a you know pretty direct 
+  analogy to the way.
+Manu Sporny:   Shipping or.
+Manu Sporny:  You put an address on the outside of the of the of 
+  the package in whoever shipping it really doesn't see inside the 
+  Box they just send it to where it's going right so if we want to 
+  take that thing digital but use you know a single document 
+  selective disclosure helps their if we look at payments revealing 
+  the sender and receiver of a payment to make sure that they're 
+  not on the sanction list.
+Manu Sporny:   Or something of that nature.
+Manu Sporny:  Feeling exactly what's being paid for so sending 
+  and receiving payment without understanding you know what the 
+  goods that are being exchanged our are you know is another 
+  legitimate selective disclosure use case and then of course this 
+  this proving that you're over a certain age and are licensed to 
+  drive without sharing your Pi I so the use case here is like a 
+  car rental or temporary car rental or even golf cart rental.
+Manu Sporny:   You know.
+Manu Sporny:  Was that you can operate over a certain age and all 
+  you really need to do is prove that you are a license to operate 
+  the motor vehicle Without Really revealing anything else so these 
+  are you know some fairly straightforward examples of selective 
+  disclosure again what we're trying to do is protect protect 
+  people's privacy and it's not just people right it's protect 
+  people's privacy.
+Manu Sporny:   To see protect an.
+Manu Sporny:  To see when they're interacting in a transaction 
+  Christopher Allen had or had this you know interesting thing 
+  about Progressive disclosure the idea here being that you know 
+  when you start out in a transaction you probably want to share 
+  the absolute minimum necessary to get to the next level with you 
+  know more and more disclosure happening as you feel more and more 
+  comfortable.
+Manu Sporny:   Edible with the entity that your.
+Manu Sporny:  Acting with there are also just you know I know 
+  everyone in this community like understands like gdpr and the 
+  Privacy you know California consumer Privacy Act and all that 
+  kind of stuff there's regulation now that is pushing 
+  organizations to collect less and less information to only 
+  collect the information that is necessary for the transaction you 
+  know if regulations require the collection of certain 
+  information.
+Manu Sporny:  Don't over collect information so selective 
+  disclosure helps with all those use cases did I miss a use case 
+  that folks are interested in is there.
+Manu Sporny:  Do you disagree with any of these use cases hold 
+  for a couple of beats.
+Manu Sporny:  That you're in the queue.
+Phil_L_(P1): One two and two.
+Matt_Gee: Yeah just just one that comes up for us a lot is 
+  selective disclosure for cooled analytics so like being able to 
+  opt in or out of research studies especially true in education 
+  being able to say yeah you can use my data as a student to learn 
+  more about how learning is happening so if I'm thinking about the 
+  use case of pooling data and ensuring that the disclosure of the 
+  allowed use of.
+Matt_Gee:  at data consent mechanism.
+Matt_Gee: Travels with the data is very important.
+Manu Sporny:  Yeah absolutely yeah that's that's that's yeah 
+  that's a great that's a great point the other thing I that is 
+  somewhat related to that that's come up in the past is use use of 
+  data for you know training AI which is you know it's a touchy 
+  it's a touchy subject right now right I mean nobody wants to have 
+  their data be used to train an AI without their consent and even 
+  then you may want to only selectively disclosed some parts of 
+  what.
+Manu Sporny:   R doing or you might want to Blind.
+<phil_l_(p1)> Q - dialog re: selective disclosure where RP 
+  doesn't see something they want and can ask for it
+Manu Sporny:  The data that you're sending over entirely to make 
+  sure that only the only the data that you want to you know be 
+  used to train it is being used so research studies and in sharing 
+  of information certainly.
+Manu Sporny:  Any other use cases that folks.
+Manu Sporny:  All right I'm going to I'm going to go on but yeah 
+  this is so hopefully this gives you know everyone in 
+  understanding of like why why people are so interested in 
+  selective disclosure it's not you know who cool whiz-bang you 
+  know new technology cryptography its data privacy regulation I 
+  think is driving a lot of this stuff and people are starting to 
+  understand how their data is being used and don't necessarily 
+  like like how it's being used in many cases.
+Manu Sporny:  Okay so how does Selective disclosure work with 
+  verifiable credentials this is this three-party model that we 
+  keep talking about and have worked on for many years standardized 
+  you've got an issue or a holder and a verifier the issue or 
+  issues of verifiable credential to a holder who then stores that 
+  in like a digital wallet and then they go to another party with 
+  some which is a verifier who asks for some variation of that 
+  information.
+Manu Sporny:   From the issue.
+Manu Sporny:  And then the whole represents something to the 
+  verifier so the using selective disclosure doesn't change that 
+  model at all and it doesn't change the flow of information at all 
+  the only difference largely is in the cryptography that is used 
+  to secure the verifiable credential the issuer has to knowingly 
+  use a selective disclosure scheme when they handed over to the 
+  holder the holder then sees that the issuer has given.
+Manu Sporny:   Them something that they can.
+Manu Sporny:  It's close and so when the verifier requests 
+  something the verifier also has to request it in a way that says 
+  I am okay with a selective disclosure selectively disclosed a 
+  piece of information that thing to understand here is that the 
+  issuer in the verifier have to buy into this ecosystem and that 
+  can be challenging right sometimes issuers are unknown you know 
+  they don't know any better and they just.
+Manu Sporny:   Issue a base.
+Manu Sporny:  Thing sometimes they can't you know don't have the 
+  technological capabilities to issue a verifiable credential as a 
+  selectively disclosed thing and sometimes the verifier and this 
+  is what people are you know a bit concerned about and this is why 
+  we're you know doing work on trust Frameworks and verifiable 
+  verifiers sometimes the verifier won't give you the option 
+  they'll say no I want all this information I'm do.
+Manu Sporny:   Don't support selective disclosure.
+Manu Sporny:  That's the thing to keep in mind here is that it 
+  will require a good bit of pressure on issuers and verifiers to 
+  make sure that they do the right thing in largely again 
+  regulation is driving a lot of that you know the consumer privacy 
+  acts gdpr is is trying to really put pressure on organizations 
+  to.
+Manu Sporny:   Do the right thing and.
+Manu Sporny:  Like more than what you need Okay so let's see I'm 
+  going to yeah there was a performance slide in here I've taken 
+  that out just because that raises people's hackles let's start 
+  talking about data integrity and selected disclosure specifically 
+  the the scheme that's being worked on in the verifiable 
+  credential working group there were a couple of requirements 
+  there one of them is we had to provide a mechanism that supported 
+  nist approved cryptography so there's.
+Manu Sporny:  Other selective disclosure mechanisms like BBS that 
+  is not recognized directly by nist and you know people don't feel 
+  like it's mature enough so if you want to really you know say hey 
+  look we're using this to prove cryptography. This selective 
+  disclosure mechanism for data Integrity is something we wanted to 
+  we we needed to be able to say that right so that governments 
+  could adopt.
+Manu Sporny:   Up this.
+Manu Sporny:  We needed to support mandatory disclosure of 
+  specific properties so when an issue or issues something let's 
+  say that there's a revocation list associated with the credential 
+  well you shouldn't allow a holder to selectively disclosed that 
+  whether or not the credential is revoked so you from a mandatory 
+  standpoint have to disclose you know whether or not the 
+  credentials revoked or not we wanted really small initial proof 
+  sizes between 7000.
+Manu Sporny:   4000 Bytes to store in the digital wallet so.
+Manu Sporny:  To make it so that you know what's stored in a 
+  digital wallet is reasonable from a proof size perspective and 
+  then for disclosure we wanted really small as small as we could 
+  get them disclosure slot sizes because there are some use cases 
+  that are data constrained in some of the selective disclosure 
+  schemes are have really big signatures so we optimized for really 
+  small disclosure proof sizes.
+Manu Sporny:   In disclosure proof size.
+Manu Sporny:  Let's start small so the less you share the smaller 
+  the signature size the more you share the more the signature size 
+  grows so about 128 bytes per claim that you're expressing this is 
+  an example we tried to take like what a driver's license or a 
+  permanent resident card would look like under this disclosure 
+  scheme so the lines are showing how big the signature size is.
+Manu Sporny:  A selectively disclosed scheme so as you can see 
+  here with one claim revealed we're down at like 270 to 300 bytes 
+  and as each new claim is revealed your signature size grows but 
+  it never gets you know super crazy big or anything like that so 
+  anyway there's a you know pretty standard linear curve to how big 
+  this.
+Manu Sporny:   Signature sizes are.
+Manu Sporny:  Let's talk about how it works at a super high level 
+  again this is kind of the journey here the issuer has to 
+  digitally sign something using the selective disclosure scheme 
+  they handed over the holder which understands that they're 
+  holding onto a verifiable credential and selective disclosure 
+  scheme and then the verifier has to ask for a subset of that 
+  credential like I want to see your driver's license but the only 
+  thing I want to see on it is whether or not you have a driver's 
+  license at all I don't want to see the driver's license number I 
+  don't want to see you.
+Manu Sporny:  In States but I don't want to see where you live 
+  for example and so that then there's a you know protocol where 
+  the holder selectively discloses that stuff to the verifier in 
+  the verifier can check the signature just the properties it asked 
+  for okay so how does it work let's look at a pretty simple 
+  credential this is an employee use case so this is an employee 
+  credential the employee credential is valid from June 2020 3 2 
+  Jun.
+Manu Sporny:  The subject is Jane Doe and Jane Doe has some 
+  information in here Jane's employee ID is this number here Jane's 
+  job title is a comptroller she works in the accounting division 
+  in her employers name is example Corporation right so this is a 
+  verifiable you can this is a verifiable credential the types of 
+  claims you'd see in a verifiable credential and we want to make 
+  this selectively disclosable so how do we do.
+Manu Sporny:   Do that well the.
+Manu Sporny:  Step at least with data Integrity is we 
+  canonicalize so we have to take these statements and put them in 
+  a certain order so that we know you know which field where when 
+  we reveal the certain Fields the same field you know is 
+  understood to be revealed at the verifier thing so so this green 
+  thing happening over here on the left is we have just kind of 
+  sorted the data right using you know.
+Manu Sporny:  So that's step one is you put it in order put it in 
+  a list in order step two is you sign every single statement so 
+  you put the put the data in order and then for each line here you 
+  sign it there's a bit of a hand wave going on there you know some 
+  of these statements you're going to group together and say you 
+  must disclose these things group them all together sign them once 
+  and then you can select ones to be selectively disclosed.
+Manu Sporny:  So for example the validity dates mandatory Lee 
+  disclosed right you want to make sure that the validity of the 
+  credential is well-known but you may want to hide their employer 
+  ID or make that selectively disclosable okay so step one is you 
+  cannot Collide Step 2 is you sign all the statements step three 
+  is you hand though that whole.
+Manu Sporny:   Sign credential over to the holder.
+Manu Sporny:  Receives this it's digitally signed by the issuer 
+  and they see that it's a selectively disclosable credential and 
+  then the verifier asks for specific claims so the verifier goes 
+  hey I need an employee credential from you stating your 
+  employer's name I just want to know who your employer is and 
+  whether or not you know it's current just give me that 
+  information I don't need to know your employer ID number I don't 
+  need to know your I don't even know need to know your name right 
+  so you.
+Manu Sporny:   Can think of this as like for building access is 
+  your employer in the.
+Manu Sporny:  You know use an employee credential guess with your 
+  employees name to get access to the building so when the holder 
+  creates this disclosure the selectively disclosed verifiable 
+  credential that's the only two things that includes in there it 
+  says this VC is an employee credential in my employers example 
+  Corporation and that's it that's all they share right so that's a 
+  that's a subset of what was originally created okay and and 
+  that's that's pretty much it.
+Manu Sporny:   At a high-level let me pause to see if.
+Manu Sporny:  Questions here and then we can get deep into the 
+  weeds if folks want.
+Harrison_Tang: Come on you I have a question like why do you need 
+  to kanak canonicalization like step like and also is there a 
+  specific order that you have to have.
+Manu Sporny:  That's a great question so canonicalization allows 
+  us so do you need it do you need it it depends on your use case 
+  so SD jot it well it's arguable whether or not SD jot actually 
+  canonicalize has so some people will argue like it doesn't 
+  canonicalize at all and you don't need it other people will argue 
+  that it's got a canonicalization mechanism in there so so most of 
+  these schemes do some.
+Manu Sporny:   And of canonical.
+Manu Sporny:  And some of them are more complex than than the 
+  other the reason that we canonicalize in data Integrity is 
+  because it allows us to use the same signature when the 
+  verifiable credential is expressed in a variety of different 
+  formats so Jason versus C boar versus yeah Mille when we use 
+  canonicalization in the way that we do we can make sure that the 
+  same signature applies across multiple different data formats we.
+Manu Sporny:   An also stack signatures one on top.
+Manu Sporny:  We can do a signature that uses standard Miss 
+  cryptography that's not selectively disclosable and then we can 
+  add another signature that allows selective disclosure and then 
+  we can add another signature that allows unlink Bill signatures 
+  and then we could in the future add another so you had another 
+  signature that does post Quantum signatures that's a Quantum safe 
+  signature so canonicalization is this.
+Manu Sporny:   Mechanism that we can use that gives us some 
+  advantage.
+Manu Sporny:  With with a drawback being that it's more cannot 
+  it's more complicated to do than you know come alkalization I 
+  know that yeah go ahead go ahead.
+Harrison_Tang: Darling and cannot and I like canonicalization 
+  doesn't mean just like adding some order list are right it's a 
+  lot more more than that is that correct because in your example 
+  you just put one two three four five but it's probably more than 
+  that is that right.
+Manu Sporny:  Technically it's more than that but conceptually 
+  it's not any different than that I like a canonicalizing a list 
+  and putting it in alphabetical order that's canonicalization 
+  right so if you had a bunch of items and you just sorted by where 
+  you know by alphabetical order that is an example of 
+  canonicalization and and the type of canonicalization we do.
+Manu Sporny:   For Selective.
+Manu Sporny:  Closure is not really all that different from from 
+  doing that.
+Harrison_Tang: And clear your on the queue.
+https://datatracker.ietf.org/doc/draft-irtf-cfrg-bbs-signatures/
+Clare_Nelson_(DIF): Thank you hi everyone I'll Echo what man who 
+  said BBS some of that work that's been incubated at diff is not a 
+  standard with nist however its draft 03 on its way to becoming a 
+  standard that ITF I just put the link in chat and we're at the 
+  very early stages remember it's a long road to crawl walk run 
+  with Nest to becoming a standard.
+Clare_Nelson_(DIF):  third but the BBS.
+Clare_Nelson_(DIF): Is presenting to the nist crypto reading club 
+  on October 18th so if you belong to that club you can join or 
+  send me a message and I'll try to get you into that club we just 
+  got the invitation so I don't even know if it's open to the 
+  public but it's very exciting news that were initiating our 
+  discussions at nist any questions.
+Harrison_Tang: Thanks Claire I'm sorry.
+<phil_t3> Will the info about NIST and the discussion be found on 
+  the NIST website?
+Manu Sporny:  Is that is that that is really fantastic news 
+  Claire one of the things I wanted to point out here is this 
+  selective disclosure mechanism works with nist approved crypto in 
+  in we are working with the EBS as well there's a mechanism that 
+  allows this selective disclosure stuff to work with the BBS 
+  mechanism that you were talking about Claire and we're pretty 
+  excited about that as well so it's great news on the progress.
+Harrison_Tang: Man you're next in the queue.
+Matt_Gee: Thanks so I'm curious is that is the canonicalization 
+  essentially the trying to accomplish the same thing that I think 
+  the firing Pi Community has been trying to solve the like how do 
+  you identify entities within kind of within a claim and they 
+  there's a proposed by group on interruptible universal reset an 
+  advisor essentially like uuids instead of rank ordered numbers.
+Matt_Gee:  is it at the.
+Matt_Gee: At the entity level a is is that solving for the same 
+  problem if so like why go with the canonicalization over like a i 
+  URI.
+Manu Sporny:  There yeah that's a great question Matt the short 
+  answer to that is no that's not solving the the same issue I 
+  think that one has to do and you'll have to forgive me fire you 
+  know I am familiar with the firework but not following it closely 
+  the what one of the big big issues there was being able to just 
+  identify entities at all the that that class of problem is like 
+  decentralized identifiers uuids for specific people and entities 
+  and.
+Manu Sporny:   Things of that.
+Manu Sporny:  Am I misreading kind of what you were saying that.
+Matt_Gee: Yeah well maybe I'll just stop posting the chap this 
+  this is actually specifically how fire Epi open the a chart 
+  cetera are implementing selective disclosure for medical records 
+  so it's actually very specific a selective disclosure not just 
+  like NC pollution generally in a medical context yeah so I that 
+  it is find a way to derail the conversation was just curious if 
+  it's the same solving for the same problem or if they're actually 
+  two separate problems within the context of see.
+Matt_Gee:  corrective disclosure I'll post.
+Manu Sporny:  That's really interesting yeah and if you don't 
+  mind if you could send that to the mailing list I think that 
+  would be great to look at.
+Manu Sporny:  Awesome thanks man.
+Harrison_Tang: And Paul you're next in the queue.
+Paul_Bastian: Thanks say this pool is this approach following the 
+  idea of atomic credentials basically and don't you also need like 
+  an additional signature to group all of these eight signatures 
+  together.
+Manu Sporny:  That's a great question I'm Paul good to good to 
+  hear you on the call so it's not I wouldn't call it an atomic 
+  credential I'd call it you know a bunch of atomic claims in your 
+  right you do need another signature to tie them all together so I 
+  can get into that here in a bit once we go through the kind of 
+  the excruciating detail part of it and kind of show you how that 
+  works there.
+Manu Sporny:  Just to kind of respond to your question the claims 
+  subset of the claims are Atomic their single you know claims each 
+  those are the selectively disclosable B and then there's a chunk 
+  of claims that are mandatory you must always reveal these 
+  statements and then there is a signature that goes over all of it 
+  that basically digitally signs all of it.
+Manu Sporny:   And again I'm hand-waving a bit over the details.
+Manu Sporny:  I'll get into the details here in a bit did that at 
+  least answer your question at a high level Paul.
+Paul_Bastian: They're kind of let's let's go ahead here.
+Manu Sporny:  All right are you do we have a clear Q Harrison.
+<matt_gee> Here’s a recent writeup of the iURI concept for 
+  selective disclosure: 
+  https://pubmed.ncbi.nlm.nih.gov/37386999/#:~:text=We%20define%20the%20Interoperable%20Universal,encoding%20system%20and%20data%20format.
+Manu Sporny:  All right okay I'll try to run through the 
+  excruciating detail here quickly so this is a verifiable 
+  credential this is this is a version two verifiable credential 
+  it's the employee credential so we're just doing the same 
+  credential here sorry the same example in the in the conceptual 
+  example this is what the verifiable credential would look like so 
+  this is Jane Doe who has a certain employee ID number job title.
+Manu Sporny:  Foyer is example Corporation so we take this bear 
+  verifiable credential we canonicalize it and we Bunch those 
+  statements into two sets of statements one of them are the 
+  mandatory disclosure claims up here at the top these are the 
+  things that Jane is always going to have to reveal because the 
+  issuer feels that this is must be revealed in the issuer here has 
+  basically said you must always reveal me the issuer.
+Manu Sporny:  Verifier can't trust the PC without that and then 
+  the validity dates and then the type of credential right but your 
+  selectively disclosed claims and Paul this is where it's like 
+  every single one of these lines is a separate statement with the 
+  separate signature your selective disclosure mechanisms sorry 
+  your claims is this list here right in these are these are both 
+  canonicalize these lists are canonicalized and so we're going to 
+  sign all these mandatory disclosure claims and one blob in.
+Manu Sporny:   And then each one of these selective disclosure 
+  claims it's going to get it so.
+Manu Sporny:  So one signature for all the mandatory disclosure 
+  disclosure claims here at the top and then one signature / 
+  statement down here at the bottom and that allows Jane to 
+  selectively disclose each one of these items here the signature 
+  itself that we hand over to the holder has what we call a base 
+  signature and that base Signature Signs over everything else here 
+  so Paul this is the.
+Manu Sporny:   You know the.
+Manu Sporny:  Thing that you were I think alluding to there is an 
+  ephemeral public key that's used just to do the selective 
+  selective signatures in the ephemeral key is signed over with the 
+  base signature so this is the issuer's signature here there's an 
+  hmac key that we use to do some privacy preserving computations 
+  on blank note identifiers this is a complex topic that I'm going 
+  to not get into today but the idea here is that we.
+Manu Sporny:   We want to.
+Manu Sporny:  Blind some of the information in the graph so that 
+  so it doesn't reveal information like for example the number of 
+  family members that you might have the number of items in a 
+  shipment that kind of thing so that's what this hmac keys for and 
+  then there's a list of fields that you have to mandatorily 
+  disclosed so these are Jason pointers that point to specific 
+  Fields so you have to reveal the issuer the time.
+Manu Sporny:   Up the validity.
+Manu Sporny:  It's here and then we have a whole bunch of 
+  selective signatures so this is for each one of those claims we 
+  want to selectively sign there's a signature there for it and the 
+  final signature size using nist approved P 256 key is 643 B so 
+  pretty small and compact there when in this is what the fully 
+  signed verifiable credential with a selective disclosure scheme 
+  looks like this is the proof down here so all that information.
+Manu Sporny:   Fashion is contained in this digital signature 
+  down here.
+Manu Sporny:  It just looks like a standard you know verifiable 
+  credential secured using data Integrity now we go to the verifier 
+  so what does the verifier ask for when they ask for a verifiable 
+  credential so this is using verifiable presentation request query 
+  by Example The credential query that they're sending over is we 
+  need to we need you to verify your employee that's what they want 
+  and then the example query based.
+Manu Sporny:  The type of credential they want to receive so the 
+  verifier says I want you to give me a credential and it needs to 
+  take this kind of form and we can see here is that you know they 
+  say the type has to be an employee credential you've got to have 
+  an identifier for the credential subject and employer identifier 
+  in a name and then they provide a challenge and a domain just to 
+  make sure that the thing can't be replayed what.
+Manu Sporny:   The holder.
+<dave_longley> important points: 1. canonicalization transformed 
+  the JSON-LD into a set of claims that could be atomically signed, 
+  2. the authenticity proof that is generated is added back to the 
+  original VC without changing its format.
+Manu Sporny:  Is then they derive a new verifiable credential 
+  with a limited set of fields so here what they're doing is they 
+  are taking that original credential which had a whole bunch of 
+  more fields in it and they're minimizing the information and 
+  they're generating a new proof this is the signature that they're 
+  generating and then they're going to send that over to the 
+  verifier and when the verifier checks this you know there's an 
+  algorithm that's.
+Manu Sporny:   Find in a in a specification.
+<dave_longley> 3. an ephemeral key pair is generated for each VC 
+  -- and the public key is signed over, binding all atomically 
+  signed claimed (signed by this key) together.
+<phil_t3> Q - what's the holder's user experience like in doing 
+  all of this?
+Manu Sporny:  If I were credential working group in they will 
+  check you know this information in either get a thumbs up or 
+  thumbs down on the credential so the credential that's handed 
+  over just looks like a you know minimized version with only 
+  certain Fields exposed to the verifier okay that's it for the 
+  presentation I think we've got like maybe a couple of minutes 
+  left for Q&A.
+Paul_Bastian: At first very simple question that the query 
+  language was not presentation exchange what was that is that 
+  something specific to ecdsa SD.
+Manu Sporny:  No it's there's a there's verifiable presentation 
+  request which is a work item in the ccg that's using query by 
+  example but I want to be clear like the the query language is 
+  separate from the selective disclosure mechanism you could use 
+  multiple different types of query languages so you don't have to 
+  use this one this is just the one that we've implemented and 
+  used.
+Paul_Bastian: Okay and a second question do you have like what 
+  was the rationale to use individual signatures I compared to to 
+  the hashes is that required for the canonical ization or was 
+  there another reason.
+Manu Sporny:  It's not required it was a design choice and Dave 
+  you're here I don't know if you want to kind of weigh in on that.
+Dave Longley:  So the main reason for doing that is it reduces 
+  the disclosure proof sizes by considerable amount if you use the 
+  hash based approach approach you must disclose all of the hashes 
+  every time you do a disclosure proof If you do the atomic 
+  signature approach you only disclose the signatures that you that 
+  go along with the data that you are disclosing so the sizes go 
+  down and enable use cases for when your when your data.
+Manu Sporny:  Yeah for example like we have use cases where we 
+  have to express this stuff in like a QR code and you have to get 
+  it in you know the idea behind selective disclosure is you're 
+  trying to minimize the amount of information you're sharing so we 
+  were like well if we have to share less than five claims then we 
+  need to make sure that the signature sizes are small enough that 
+  we can fit them in a QR code or they can go over you know a 
+  single data Block in an NFC.
+Manu Sporny:  So we were optimizing for disclosure size versus 
+  you know the other mechanism now with that said there is nothing 
+  preventing another data Integrity crypto sweet to take the 
+  approach that SD job took right so if what we want to do is the 
+  you know the route reveal of hashes approach we could fairly 
+  easily do that with with data integrity.
+Manu Sporny:   We were just optimizing for.
+Manu Sporny:  Or I think a different set of use cases then SD job 
+  was optimizing for did that answer your question Paul.
+Paul_Bastian: Yeah that's that's kind of a good reason I think 
+  it's interesting because there might be kind of a trade-off 
+  because from the top of my head I thought like a hash has less 
+  than the 128 bytes so initially maybe / disclosure.
+Paul_Bastian: There might be differences but in the hash based 
+  approach you reveal all the hashes so it kind of depends on how 
+  many claims you have and how many claims you reveal and depending 
+  on that that might impact the size of the two approaches.
+Manu Sporny:  Yes you're absolutely right there are certainly 
+  trade-offs there remember that with the SD jawed approach you 
+  always have to reveal the full signature you know as well as all 
+  the hash it's oh so this is where we get into kind of compare 
+  contrast between the two what we found out is that that you know 
+  having run some tests with SD jot your signature sizes are 
+  usually really big your veal sizes or like to k 2 4 kilobytes in 
+  size for thing.
+Manu Sporny:   NG the size of like a driver's license and and 
+  there's.
+Manu Sporny:  Online or that doesn't matter but they are 
+  constrained use cases that we're dealing with where that does you 
+  no matter so these things you know it's a collection of 
+  trade-offs right in certain formats optimized for certain 
+  approaches one of the other you know trade-offs with the data 
+  Integrity approach this one specifically is that you have to do 
+  multiple signatures whereas with SDG&E you'll need to do one 
+  signature in you know there are trade-offs there.
+<phil_t3> Q 1   re: out of time
+Manu Sporny:  Meaning that you know you have to do multiple 
+  signatures with the selected disclosure data Integrity mechanism 
+  whereas with SDG&E you don't have to and so if you you know if 
+  your HSM such you're using or expensive then their cost 
+  considerations that you might want to take into account but you 
+  know we've again done cost analysis on it and tends to be really 
+  like a rounding error doing multiple signatures versus single 
+  one.
+Manu Sporny:   All right I know.
+Manu Sporny:  We're at the top of the hour and fortunately I 
+  think Phil you had a you had a question no.
+Phil Long:  Yeah but the top of the hour I was just going to ask 
+  with the holders experiences and all this.
+Phil Long:  We can we can leave that.
+Manu Sporny:  Yeah well you want to simplify it as much as 
+  possible until the holder that you know you're only releasing 
+  this information right there a couple of good demos that are out 
+  there of mobile wallets doing selective disclosure but you want 
+  to keep things as simple as possible for the individual tell them 
+  that you know hey you're sharing your driver's license but you're 
+  only sharing these three fields and just let them you know 
+  communicate that to them in the street.
+Phil Long:  Got great presentation and thank you.
+Manu Sporny:   Thanks Phil.
+Harrison_Tang: Oh thank you thank you mommy your presentation is 
+  amazing so thanks a lot alright so this concludes this week's ccg 
+  meeting will publish the meeting minutes and audio recordings in 
+  a few days and if you have any questions feel free to just 
+  message in the email list right thanks a lot.
