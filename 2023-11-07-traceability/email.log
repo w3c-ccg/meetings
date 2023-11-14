@@ -1,0 +1,194 @@
+Thanks to Our Robot Overlords and russell_h_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-11-07-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-11-07-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-11-07
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Nov&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and russell_h_(mesur.io)
+Present:
+  Nis Jespersen , Benjamin Collins, Russell H (mesur.io), Chris 
+  Abernethy, TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Benjamin Collins:  Let's see the ya subtitles.
+Benjamin Collins:  Like transcribers in the meeting.
+Benjamin Collins:  Well what is it about like your your computer 
+  or your setup that like is.
+Russell_H_(mesur.io): Yeah really just excluding.
+Benjamin Collins:  Yeah let's see.
+Russell_H_(mesur.io): Yeah I can I can scribe.
+Benjamin Collins:  Let's Ness go ahead kick stop the subtitles 
+  and let's let Russell scribe.
+russell_h_(mesur.io) is scribing.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/895
+Nis Jespersen :  Diving in
+Nis Jespersen :  Replaced scheme.org/value with more specific 
+  alternatives
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/896
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/897
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/898
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pulls
+Nis Jespersen :  Objections to merging 895? merging
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/595
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/605
+Nis Jespersen :  Interop, starting at bottom, 595, one of mine. 
+  Feedback from gs1, what I was wanting. Just going to leave a 
+  comment, will act on soon
+<tallted> `application/vc+ld+json+sd-jwt` shouldn't exist
+Ted Thibodeau:  Issue with this. media type there. problem here, 
+  multiple plus is moving target still, ietf very slow. ppl who 
+  have been working on it have been inconsistent in understanding 
+  how media types work. Traditionally it allowed multiple "+" but 
+  inconsistently implemented. "vc+ld+json" sure, but "sd-jwt" is 
+  its own thing, which might contain vc+ld+json, or another thing. 
+  But its a contain thing similar to a zip. Unfortunately ppl 
+  focused on this, have forgotten that. Thinking abt new stuff 
+  designing, not looking back on how spec'd already. Not treating 
+  sd-jwt which is similar to zip, as if it were a zip
+<tallted> it should be just `application/sd-jwt` from which an 
+  `application/vc+ld+json` can be extracted
+Nis Jespersen :  What would happen if we left it in?
+Ted Thibodeau:  Unsure. think it's a bad path to go down multiple 
+  "+" signs ok, sure. Problem is this sequence of "sd-jwt" after 
+  "json"
+Chris Abernethy:  Good pts ted, something in meantime to address 
+  this while that moves fwd? cause purpose here is to signal what 
+  sort of response is expected
+Ted Thibodeau:  That may be, but, wrong media type shouldn't be 
+  used to signal that. If ask for sd-jwt, that'll always contain 
+  json. May not always contain vc-json. Unsure how to get down that 
+  road.
+Benjamin Collins:  Vc+sd-jwt?
+Ted Thibodeau:  Still like "vc+zip", not how supposed to be done
+Chris Abernethy:  How word that we're waiting for proper content 
+  types? or accept header wrong way to do this?
+Ted Thibodeau:  Accept header wrong place to say what want. Sure 
+  say "sd-jwt", but what you want to be inside it is
+Nis Jespersen :  Just application/sd-jwt?
+Ted Thibodeau:  Think that's ok
+Chris Abernethy:  Ok with that. use application/sd-jwt for now, 
+  might change
+Ted Thibodeau:  Suggest changing this media type anywhere it 
+  exists
+Chris Abernethy:  Is sd-jwt in use currently?
+Ted Thibodeau: 
+  https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/
+Ted Thibodeau:  Appears its in use in another ietf draft
+Chris Abernethy:  Think it makes sense to use that
+Nis Jespersen :  Leave a comment ted? so that can be referenced
+Ted Thibodeau:  Will put in a comment, not rn but today
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/606
+Nis Jespersen :  Revisit next week
+Nis Jespersen :  This makes it so vc-api implementations will 
+  need to return 400 if accept header not present. Will break 
+  tests.
+Nis Jespersen :  Underscores that we need to settle the 
+  media-type thing, first
+Nis Jespersen :  Are we in agreement for apis demanding accept 
+  header?
+Chris Abernethy:  Update spec with informative language (respec)
+Chris Abernethy:  *Normative
+Nis Jespersen :  What do we do with this?
+Chris Abernethy:  Leave comment
+Nis Jespersen :  Give another week to brew
+Nis Jespersen :  So do we want apis to demand accept header?
+Chris Abernethy:  Unsure if we want to require? but either we 
+  require and add normative, or optional and informative
+Nis Jespersen :  So PR is blocked by discussion that needs to 
+  happen?
+Nis Jespersen :  Made a comment - dependent on 606, and that if 
+  we merge we'll need an issue to add to respec
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/607
+Nis Jespersen :  Interesting discussions, thank you Russell
+Chris Abernethy:  Grabbed this off mahmoud's plate. vc-jws-2020 
+  has been withdrawn, this removes references.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/608
+Nis Jespersen :  608, Chris?
+Chris Abernethy:  Adds links to respec doc so users can find 
+  tutorials on importing and running postman interop and 
+  conformance testing suites
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/897
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/issues/832
+Nis Jespersen :  More approvals?
+Ted Thibodeau:  Seems likely all this needs, intenttoimport must 
+  ref shipment that contains these details.
+Nis Jespersen :  That's the workflow instance that binds these 
+  together
+Ted Thibodeau:  So that needs to be made clear.
+Benjamin Collins:  Think original intention was to specify scope 
+  of the import. Is thing being imported exactly what's on invoice? 
+  subset? set of products with multiple invoices in shipment? how 
+  do we define scope of which products are being associated with 
+  import issue.
+Nis Jespersen :  Can of worms. Each doc has varying degree of 
+  details. [...] big deal, this is not easy, this list doesn't seem 
+  to capture these complexities.
+Benjamin Collins:  This is domain expertise I don't have a sense 
+  of. Say you're importing two things of lumber, do you do two of 
+  these?
+Nis Jespersen :  All of that reflected in bill, any other doc 
+  that might be specific to the import type
+Nis Jespersen :  Mill test report for steel,, even further detail 
+  specific to steel.
+Benjamin Collins:  Mike is focused on product and details abt 
+  product will be defined in other docs, orthogonal to q of how 
+  scope defined though. I think need to make that clear.
+Nis Jespersen :  Final parting thought, every time we change biz 
+  process, we ask 100M ppl to comply with it. Big deal, rly want to 
+  avoid it.
+Benjamin Collins:  Intention here is to align with right biz 
+  process.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/issues/587
+Nis Jespersen :  Will try and leave comment on that
+Chris Abernethy:  Initially had Lerna, npm type manager for repos 
+  with more than one package, which this is not. this is to see if 
+  we can remove Lerna, which we likely can. I'll assign this to 
+  myself
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/issues/846
+Benjamin Collins:  Took a first stab removed 80% of stuff? But 
+  yeah if you take another pass should be able to get rid of 
+  everything
+Nis Jespersen :  Next 846. We should have linked data terms for 
+  chemical compounds. seems ready for PR.
+Ted Thibodeau:  844 Specific, 846 generic we should do for 
+  everything
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/issues/571
+Nis Jespersen :  Are we using chem compounds elsewhere? I think 
+  this is done. I think we can close
+Ted Thibodeau:  Sample data vlad used is bad, starts with triple 
+  turns into quintuplet.
+Nis Jespersen :  Pinging mahmoud
+Chris Abernethy:  I can do minute uploads
