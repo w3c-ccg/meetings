@@ -76,6 +76,8 @@ function generateEmailBody() {
       'Full text of the discussion follows for W3C archival purposes.\n' +
       'Audio of the meeting is available at the following location:\n\n' +
       `https://w3c-ccg.github.io/meetings/${program.directory}/audio.ogg\n\n` +
+      `A video recording is also available at:\n\n` +
+      `https://meet.w3c-ccg.org/archives/w3c-ccg-${scrawl.group.id}-${gDate}.mp4\n\n` +
       '----------------------------------------------------------------\n' +
       content;
   return content;
