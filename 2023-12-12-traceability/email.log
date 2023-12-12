@@ -1,0 +1,185 @@
+Thanks to Our Robot Overlords and Benjamin Collins for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-12-12-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-12-12-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-12-12
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Dec&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and Benjamin Collins
+Present:
+  Mahmoud Alkhraishi, Nis Jespersen , Benjamin Collins, Patrick 
+  St-Louis, TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Ted 
+  Thibodeau, Russell H (mesur.io), Orie Steele
+
+<mahmoud> can you guys hear me?
+Our Robot Overlords are scribing.
+Benjamin Collins is scribing.
+Mahmoud Alkhraishi:  Point of order, we're going to have a 2pm 
+  cut off. We will need to switch to a new timeslot in the new 
+  year. Before we get started into the meeting, do we want to talk 
+  about timeslots in the new year?
+Mahmoud Alkhraishi:  Both myself and Nis have hard conflicts half 
+  an hour into this call.
+Nis Jespersen :  My conflict got pushed back an hour
+:+1:
+Mahmoud Alkhraishi:  We can move the time up by 30 minutes
+Mahmoud Alkhraishi:  Who can modify the calendar? How do we get 
+  that modified?
+Ted Thibodeau:  You need permissions on the calendar, I know that 
+  ccg chairs can do it, so it would be worth poking them.
+Mahmoud Alkhraishi:  I'll send an email to the ccg chairs to 
+  either move it or get permission to move it.
+Mahmoud Alkhraishi:  Patrick you wanted to talk about your 
+  interop work.
+Nis Jespersen :  I also want to make time for the timeline in the 
+  new year
+Mahmoud Alkhraishi:  We'll split the meeting into two ten 
+  minutes. Otherwise we'll do the technical talk in the first 
+  meeting of the new year.
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+Patrick St-Louis:  I was approached by the BC government to get 
+  some indepent work from the BC. They are pioneers in digital 
+  identify. We want to do it in relation to their energy and mines 
+  program. This would be using the DHS traceability work. I am 
+  tasked to build an API to bridge between the trace-api and 
+  apkapi(?). I had a go at runnign the test suite, and I need to 
+  get around some of the issuance on the akapi (?) . For did:web 
+  I'm working with a plugin used to sign credentials. My specific 
+  question is around the state of the document and the tests. Some 
+  of th examples were giving 404 and some of the collections were 
+  not in there. What is the state is it fully stable or still in 
+  development?
+Mahmoud Alkhraishi:  That seems like it seems to transition into 
+  our roadmap conversation
+Patrick St-Louis:  I'm not sure if there was a concrete question, 
+  and after that there seems to be a process to join the 
+  interopability matrix.
+Nis Jespersen : :+1:
+Mahmoud Alkhraishi:  We would recommend with how you can get 
+  started with the test suite to get yourself included into the 
+  matrix which is running the suite locally against everyone else. 
+  My suggestion would be to go through that process. The ideal is 
+  that being added to the matrix should be reasonably straight 
+  forward.
+Mahmoud Alkhraishi:  All you would need to do is provide client 
+  credentials and end point information and that way everything 
+  should work out.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/blob/main/environment-setup/README.md
+Patrick St-Louis:  Before I do that I want to make sure that I 
+  have full coverage, so I want to make sure that everything is 
+  working locally. And I'm aware of what's public and what's not 
+  made public.
+Nis Jespersen :  You mention that some of the collections are not 
+  working.
+<orie> please file issues or open a PR :)
+Patrick St-Louis:  It's not that they're not working. Three of 
+  them the folder doesn't exist any more.
+Nis Jespersen :  I recommend looking at what's being run. And if 
+  you run into any issue, open an issue so we can address them.
+Patrick St-Louis:  Definitely, I think it's just in the readme.
+Orie Steele: https://github.com/w3c/vc-data-model/pull/1379
+Orie Steele:  Overall we have a mission to test SD-JWT verifiable 
+  credentials and status list 2021 and we want to have tests for 
+  those components and have multiple vendors passing those tests. 
+  Currently we have status list 202 and data integrates proofs and 
+  there are challenges to what we have now and where we want to go. 
+  And the first thing to chat about about is traceable 
+  presentations with SD-JWT.
+Orie Steele:  This is a pull request in the technical 
+  recommendation and this would need to be merged for us to go 
+  forward with that. So if you haven't approved or commented on 
+  this PR, i want to know what your thoughts are.
+Orie Steele:  We need something like this or you cant make a 
+  verifiable presentation with SD-JWT because the security models 
+  are different between the two.
+Patrick St-Louis:  I see a comment about the data model being 
+  used. And I see this is an issue with version 1.1 of the data 
+  model?
+Orie Steele:  Before we had discussed that maybe we don't want to 
+  switch to version 2, but the way i'm reading this we MUST use the 
+  v2 context to give it meaning.
+Mahmoud Alkhraishi:  For the presentation itself?
+Orie Steele:  Yes, for us to make presentations.
+Patrrick: So you could have a v2 presentation containing v1 
+  credentials?
+Mahmoud Alkhraishi:  Supposedly?
+Orie Steele:  I guess the other piece of this is that we dont 
+  want to update all of the credentials to version , but if we need 
+  to do that for presentations, does that change anything?
+Mahmoud Alkhraishi:  We could take the approach that only 
+  presentations need to be v2 to allow people to migrate with the 
+  lowest amount of friction.
+Mahmoud Alkhraishi:  We're going to need to support both 1.1 and 
+  2 in most cases unless you don't care about backwards 
+  compatibility. But I think that we should decouple these two 
+  issues as far as presentations and credentials.
+Mahmoud Alkhraishi:  Is there any issue with having presentations 
+  be v2 and credentials be v1?
+Patrick St-Louis:  Would that affect normal issuance or 
+  verification?
+Orie Steele:  It will affect what we choose to write tests for, 
+  and it would change all of the presentation related API
+Orie Steele:  And it would also affect the issuance which would 
+  need SD-JWT
+Patrick St-Louis:  Why label it VC-API, why was that included in 
+  the title of the collection? Why would the implementation for JWT 
+  affect the test for the normal credential?
+Orie Steele:  That collection for JWT is ancient and we'll likely 
+  remove that. And that's going to make everything confusing as 
+  people start looking for JWT.
+Nis Jespersen :  It's also not in the interop report.
+Orie Steele:  THese are a collection of API's and data models and 
+  previously there was alignment with another work item called the 
+  VC-API, but there is less alignment now.
+Orie Steele:  There's a set of APIs that we're testing 
+  conformance for and unless their exchange API's, there just end 
+  points that vendors are deciding to implement similarly. So we 
+  have internal issuance and verification and then there are cross 
+  trust domain to support presentations and all of them will need 
+  to be updated.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/611
+Patrick St-Louis:  THere is the VC-API spec, but everything lives 
+  on its on service. Other end points are meant to be publicly 
+  interactable or outside of the trust domain, And there is an 
+  issue around the coordinator which has a lot of issue. And there 
+  is talk about organization of organizing the documentation.
+Orie Steele:  I don't know how other people feel about this, and 
+  we've had tests for internal end points and I don't think it's 
+  done a lot for us and I would like to see more emphasis on 
+  interoperable exchange end points.
+Mahmoud Alkhraishi:  The statement that I would like to make is: 
+  presentations v2, v1.1 for credentials. Are there any negative 
+  reactions to that statement?
+Patrick St-Louis:  My work is to be done by the end of January? 
+  What sort of time frame do you see this is implemented?
+Orie Steele:  I think it will take quite some time, we've been 
+  talking about this for a year, it's a long process.
+Patrick St-Louis:  For the matrix, are there more in the wild?
+Mahmoud Alkhraishi:  I'm aware of two more implements.
+Patrick St-Louis:  Would you define this as a breaking change?
+Mahmoud,Orie: Yes
+Patrick St-Louis:  So it's not just a change, but some will 
+  break?
+Orie Steele:  We're not planning support for the older interface, 
+  we're only interested in the exchange end point
+Patrick St-Louis:  Like the issuance end point?
+Orie Steele:  Yes, [we will not plan support for those]. It's 
+  expensive to maintain them.
+Patrick St-Louis:  It might help new comers have some end points 
+  to start around. i think it depends on the maturity of the 
+  implementor.
