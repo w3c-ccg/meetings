@@ -70,6 +70,8 @@ function generateEmailBody() {
   if(scribe === 'transcriber') {
     scribe = 'Our Robot Overlords';
   }
+
+  const groupId = program.directory.match(/-([a-z]*)\/$/)?.at(1) || 'weekly';
   content = `Thanks to ${scribe} for scribing this week!\n\n` +
       `The transcript for the call is now available here:\n\n` +
       `https://w3c-ccg.github.io/meetings/${program.directory}/\n\n` +
@@ -77,7 +79,7 @@ function generateEmailBody() {
       'Audio of the meeting is available at the following location:\n\n' +
       `https://w3c-ccg.github.io/meetings/${program.directory}/audio.ogg\n\n` +
       `A video recording is also available at:\n\n` +
-      `https://meet.w3c-ccg.org/archives/w3c-ccg-${scrawl.group.id}-${gDate}.mp4\n\n` +
+      `https://meet.w3c-ccg.org/archives/w3c-ccg-${groupId}-${gDate}.mp4\n\n` +
       '----------------------------------------------------------------\n' +
       content;
   return content;
