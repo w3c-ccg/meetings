@@ -1,0 +1,212 @@
+Thanks to Our Robot Overlords and russell_h_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-03-19-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-03-19-traceability/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-03-19.mp4
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2024-03-19
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Mar&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and russell_h_(mesur.io)
+Present:
+  Nis Jespersen , Chris Abernethy, Russell H (mesur.io), TallTed // 
+  Ted Thibodeau (he/him) (OpenLinkSw.com), Mahmoud Alkhraishi, 
+  Guilherme, Patrick St-Louis, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+russell_h_(mesur.io) is scribing.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/628
+<mahmoud> i did
+<mahmoud> can you not hear me
+<mahmoud> hold for a sec
+Nis Jespersen :  Interop
+Mahmoud Alkhraishi:  On index.html there's a lot of things being 
+  removed, like encryption key management. I don't believe we 
+  received reqs these should be removed, says removing them for 
+  clutter. I feel these are important
+Nis Jespersen :  Does it belong in this spec?
+Mahmoud Alkhraishi:  Spec about, would you like to be able to 
+  work to us, send data to us. like, if you don't use tls it won't 
+  work, we won't accept your stuff. can't test for encryption at 
+  rest, but we can rec you do that. so yes, not hard req, but good 
+  idea to keep in actual spec
+Nis Jespersen :  Fair. any other opinions?
+Mahmoud Alkhraishi:  Diff question. Recall someone mentioning, 
+  every time you have a must statement you should test it.
+Ted Thibodeau:  Correct I think
+Mahmoud Alkhraishi:  Is a must right now in spec. Feel that that 
+  should stay in, but no hard statement saying "if it's must, must 
+  be testable"
+Nis Jespersen :  That aside, why is storage part of protocol?
+Mahmoud Alkhraishi:  Can ay encryption at rest maybe not part, 
+  but encryption in transit yes definitely.
+Mahmoud Alkhraishi:  I'd rather we keep these in. disaster 
+  recovery stuff maybe not, not actually telling you how to do it, 
+  so that should go. threat model, maybe should stay, 
+  non-normative, tiny, actually...
+Patrick St-Louis:  Q on reqs, a lot of items noted post 1.0 
+  release, how update reqs?
+Mahmoud Alkhraishi:  Don't think they mention 1.0
+Patrick St-Louis:  Want to understand, how will the test suite 
+  evolve along with reqs, if reqs come before test suites, are we 
+  expecting change in suites soon enough?
+Ted Thibodeau:  Seems odd making substantial alterations to 
+  conform to reqs some of us can't see
+Nis Jespersen :  Was going to ask, mavennet, do you know if reqs 
+  available online?
+Mahmoud Alkhraishi:  Not publicly available. Patrick it's a 
+  direction question. We have existing tests, if new reqs come in, 
+  what happens to existing tests?
+Patrick St-Louis:  Makes sense, have conformance and interop test 
+  suites. conformance do test data model with neg tests, but most 
+  important part interop, can cred issued by some org be verified 
+  by another org. If conformant against self good to know, but 
+  these sorts of tests outside data model good to know.
+Mahmoud Alkhraishi:  Clarifying, nis pointed out where in reqs 
+  we've said 2.0.
+Ted Thibodeau:  How make what we have conform with secret reqs, 
+  though?
+Nis Jespersen :  Have 3 companies on call contracted with gov, 
+  building for gov. not a secret, just not been shared publicly. 
+  there are earlier drafts
+Ted Thibodeau:  Work of ccg is entirely outside bounds of cbp, 
+  ridiculously secret cohort project. thing is semipublic, needs to 
+  become public or not be banging on ccg.
+<nis> Reminder I need to drop in 2 mins
+Patrick St-Louis:  In beginning, comment, trace perceived as us 
+  way of doing things. answer was that this is more global. but 
+  when reqs come from cbp, reinforces that this is us system.
+Nis Jespersen :  Acknowledgement, says, no secret this is for us 
+  gov
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-interop/draft/#acknowledgements
+<nis> ^Patrick
+Nis Jespersen : +1
+Mahmoud Alkhraishi:  While they've funded us to work on this, 
+  doesn't mean they have any control over this work. ppl on call 
+  have say, "don't like these things don't include them"
+Nis Jespersen :  Need to drop, hope you can stay on call
+Mahmoud Alkhraishi:  Great, taking lead
+Patrick St-Louis:  As you get more actors to impose changes, on 
+  this pr been open two weeks. I have no problem with content, it's 
+  just to put these in renqs week, week and a half, seems abrupt. 
+  incl as "this is where we're going, next step",  but keep test 
+  suites as are now. For me it's how quickly these came into play
+Ted Thibodeau:  Starting point, change title of pr to, reflect 
+  more of functional justification. cbp not mentioned in 
+  acknowledgements. should not be black box from which mysterious 
+  deletion of chunk of stuff that was work. don't have a problem 
+  removing what's in this pr.
+Mahmoud Alkhraishi:  Reqs only in mandatory to implement html 
+  file. everything else is nis cleaning up spec in general. two 
+  separate things
+Ted Thibodeau:  Should be two PRs then. good
+Mahmoud Alkhraishi:  Could I walk through reqs 1 by 1? I agree 
+  with you, will update pr name and split into two PRs. One, 
+  updates to clean up existing pieces, one "requirements". Does 
+  that sound fair?
+Ted Thibodeau:  That'll help
+Mahmoud Alkhraishi:  Yes. and these are what we're already doing, 
+  just says "use latest version of it". use latest jose/cose, use 
+  statuslist. these reqs are just, use latest version of publicly 
+  available drafts as your baseline.
+Patrick St-Louis:  Yeah. think there should be section on 
+  backwards compatibility. 
+Mahmoud Alkhraishi:  That was nis. just says "we're considering 
+  diff drafts, waiting til mature, once its mature we'll choose 
+  one". was wishy washy statement
+Patrick St-Louis:  Sd has a place I think, removing it entirely, 
+  think there should be a section even if just says "under eval"
+Mahmoud Alkhraishi:  Should be non-normative, for info only, with 
+  you.
+Ted Thibodeau:  Why not piped through pr preview?
+Mahmoud Alkhraishi:  I think broken for us
+Patrick St-Louis:  Looking at privacy considerations
+Mahmoud Alkhraishi:  Yeah, lot of work to be done, I'm with you. 
+  nis's first instinct. I'll split it into two PRs, one that 
+  outlines "we need to sync to latest version".
+Patrick St-Louis:  Three prs, selective disclosure in own pr? I 
+  can make an issue for sd stuff.
+Mahmoud Alkhraishi:  Sure
+Ted Thibodeau:  Looking at what's in this pr. two substantial 
+  change suggestions, both in reqs list and reference section 
+  above. I believe this update was intended to peg interop spec to 
+  specific versions of other spec.
+Mahmoud Alkhraishi:  These should be applied, make sense
+Ted Thibodeau:  Marked as resolved
+Mahmoud Alkhraishi:  Says its outdated, when I un-resolved it. 
+  think it's a github thing.
+Ted Thibodeau:  Yeah github, when click on commit doesn't show 
+  changes happened, file does
+Mahmoud Alkhraishi:  So, fork off of this pr, revert changes on 
+  cleanups, keep rest of changes to reqs, discuss those on merits 1 
+  by 1, remove references to cbp, new pr that doesn't touch 
+  selective disclosure, then patrick open third pr to clean up sd
+Patrick St-Louis:  Sure, issue then pr linked to it
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/629
+Mahmoud Alkhraishi:  Next up 629, by patrick, change collection 
+  link to use SL2021 collection
+Patrick St-Louis:  Confused by orie's comments. in interop & 
+  conformance there's tests for both. but github actions only tests 
+  2020, not 2021. I'd like to drop support for R2020. According to 
+  orie, cred status update wouldn't work.
+Mahmoud Alkhraishi:  As general idea, previous pr says "use 
+  2021". we've all wanted that. orie's saying "until that's merged 
+  don't test for 2021". I don't agree
+Patrick St-Louis:  Don't understand why cbp status update has to 
+  do with this
+Mahmoud Alkhraishi:  Nowhere in spec says use status list 2021
+Patrick St-Louis:  Yes, linked to text in spec
+Mahmoud Alkhraishi:  K, we should do that then
+Patrick St-Louis:  Not sure what orie refers to.
+Mahmoud Alkhraishi:  You've run this test?
+Patrick St-Louis:  Yes, against self
+<tallted> the place where the Status List 2021 requirement is: 
+  https://w3c-ccg.github.io/traceability-interop/draft/#data-integrity-proof-suites
+Mahmoud Alkhraishi:  With you, don't see issue
+Mahmoud Alkhraishi:  So I would't merge on top of his objections, 
+  ask him to clarify. ted put link in chat to where says sl2021 is 
+  req in spec, ask him to clarify why wouldn't.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/630
+Patrick St-Louis:  Could we also remove r2020 tests?
+Mahmoud Alkhraishi:  I don't believe we have anywhere in spec 
+  where says we must use 2020. so sure, can remove that
+Ted Thibodeau: +1
+Patrick St-Louis:  Alright, will do that
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/630
+Mahmoud Alkhraishi:  Next, 630, remove negative tests for context 
+  object items
+Patrick St-Louis:  If you use 1.1 spec req you use @vocab for 
+  non-cred issuer attributes. just one test, wondering if there for 
+  specific reason
+Chris Abernethy:  To clarify, intention of test was not about 
+  @vocab, it was just a convenient way to test objects
+Patrick St-Louis:  Another issue, pyld lib, won't go fetch @vocab 
+  in existing context to apply to vc
+Chris Abernethy:  My comments only for clarification, but if we 
+  want to remove test must modify schema
+Mahmoud Alkhraishi:  So saying as a concrete change request. 
+  these tests are checking schema, if you want to change update 
+  schema then test
+Chris Abernethy:  Correct, if remove tests no longer testing 
+  against schema
