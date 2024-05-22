@@ -1,0 +1,296 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-05-21/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-05-21/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-05-21.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-05-21
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=May&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Kimberly Linson, Harrison Tang, Nis Jespersen , Jennie M, Tim 
+  Bloomfield, Erica Connell, Kaliya Young, Brandi Delancey, Joe 
+  Andrieu, Mirko, Simone Ravaoli, pauld gs1, Alex H, Leo, Dmitri 
+  Zagidulin, Will Abramson, Kerri Lemoie, Mike Xu, Hiroyuki Sano, 
+  Japan, MEDBEN, Benjamin Young, James Chartrand, Nate Otto, PL/T3, 
+  Jeff O / HumanOS, David I. Lehn
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Hello everyone uh welcome to this week's w3c 
+  meeting today we're excited to have Miracle Lucy Clea uh and 
+  Torsten to actually talk about credentials format comparison um 
+  but before then just want to quickly go through the.
+Harrison_Tang: So first of all just a quick reminder on the code 
+  of ethics and professional conduct uh just want to make sure that 
+  uh we hold constructive conversations and respectful 
+  conversations here.
+Harrison_Tang: Next a quick intellectual property note uh anyone 
+  can participate in these calls however all substantive 
+  contributions to the ccg work items must be member of the ccg 
+  with full IP agreements signed.
+Harrison_Tang: So you have any questions in regards to getting 
+  your w3c account or the agreement uh just let any of the cultures 
+  know.
+Harrison_Tang: Next are these meetings are automatically recorded 
+  and transcribed and uh we will publish uh these meeting minutes 
+  and all the recordings and video recordings in the next uh 1 or 2 
+  days.
+Harrison_Tang: Uh we use GG chat to cue the speakers during the 
+  calls as well as to take minutes and you can type in Q Plus to 
+  add yourself to the queue or cue minus to remove.
+Harrison_Tang: So just want to take a quick moment for the 
+  introductions and reintroductions uh if you're new to the 
+  community or you haven't been active and want to re-engage uh 
+  please uh just feel free to unmute and introduce yourself.
+Harrison_Tang: All right I think it's mostly familiar faces.
+Harrison_Tang: Uh next uh any announcements or reminders.
+Kaliya Young:  Hi folks um.
+Kaliya Young:  Good news is we got um registration for our.
+Kaliya Young:  Iiw inspired event in Africa live uh so if you 
+  want to join us in september in South Africa or hosting uh did 
+  unconference Africa uh september 20.
+Kaliya Young:  5 To 27 um I'll put a link and registration's open 
+  and so our sponsorships so if you are doing business in the 
+  region and want to erase your profile it's a great way to do it 
+  and.
+Kaliya Young:  Digital identity unconference Europe is coming up 
+  in about a month uh June 18 to 20 in Zurich and also post a link 
+  for that.
+Harrison_Tang: Thank you thanks.
+Kaliya Young: https://didunconf.africa/
+Kaliya Young: https://diceurope.org/
+Erica Connell:  Yeah hi everybody uh just a note that uh 
+  rebooting the web of trust will be convening in October the 7th 
+  through the 11th in um Southern California and Ventura just north 
+  of Los Angeles so uh mark your calendars and more information on 
+  Eventbrite I will put the link in the chat thanks that's it.
+Harrison_Tang: Any other announcements or reminders.
+<econnell> www.RWOT13.eventbrite.com
+Simone Ravaoli: 
+  https://github.com/WICG/digital-credentials/issues/115
+Harrison_Tang: Thanks a lot.
+Harrison_Tang: Any other announcements or reminders.
+Erica Connell: 
+  https://www.eventbrite.com/e/rebooting-the-web-of-trust-13-2024-ventura-tickets-881441755017
+Harrison_Tang: All right any updates on the work items.
+Harrison_Tang: All right last call is for introductions 
+  announcements reminders and work items.
+Harrison_Tang: Let's get to the main agenda so today uh the main 
+  agenda is on credentials format comparison and we're very glad to 
+  have uh Miracle Lucy uh in Korea to kind of join us uh to present 
+  their work.
+Harrison_Tang:  so miracle.
+Kaliya Young:  Yep that would be great I think that that makes 
+  sense in terms of the the the flow to go from simpler to more 
+  complex.
+Kaliya Young:  Um okay I.
+Kaliya Young:  Uh okay I'm.
+Kaliya Young:  I would like okay uh oh Google Chrome would like 
+  to record this computer screens audio I guess so.
+Kaliya Young:  Sorry it's asking me to do things I didn't really 
+  know.
+Harrison_Tang: Maybe miracle if you could uh just kind of 
+  introduce yourself a little bit I know you're doing uh great work 
+  uh that uh other foundation so.
+Kaliya Young:  All righty great thank you so much um so.
+Kaliya Young:  I'm gonna share out this paper and the previous 
+  paper that Lucy and I wrote um called standards based digital 
+  credential flavors explained uh we were sponsored to do this work 
+  by.
+Kaliya Young:  DHI the crown Corporation for the country of 
+  Bhutan that's led the development of their um.
+Kaliya Young:  Digital credential um system.
+Kaliya Young:  And we work with companies to do sponsored work 
+  like this where.
+Kaliya Young:  Information would be good for the whole market and 
+  folks um.
+Kaliya Young:   Pay us to do.
+Kaliya Young:  The research and and share it.
+Kaliya Young:  Um you can see um this was the purpose of the 
+  project to provide a simplified but Tech technically accurate 
+  overview of the main flavors of C based digital credentials for 
+  humans in the market today to inform policy business and 
+  Technical decision makers on the fence regarding what to use for 
+  their implementations um the purpose of of why we did this and we 
+  did not um we did not choose to focus on every possible flavor 
+  Under the Sun we focused on what was what was in market and being 
+  used.
+Kaliya Young:  So the first version of the paper was written when 
+  Lucy and I worked for the coid credentials initiative under Linux 
+  Foundation Public Health.
+Kaliya Young:  In 2001 and covered.
+Kaliya Young:  Uh 4 major flavors and took them through a journey 
+  of the life cycle and sort of articulated how each flavor was 
+  different in in each stage of the life cycle.
+Kaliya Young:  We evolved this paper.
+Kaliya Young:  For the next version in 23 and we um split it up 
+  into some new sections the top section cover data formats so Json 
+  Json LD and core.
+Kaliya Young:  And then section covered different cryptographic 
+  securing methods JWT cwt and data Integrity proof.
+Kaliya Young:  And then we also went through some key 
+  capabilities like selective disclosure and explained how those 
+  worked along with subject holder binding and Hardware binding.
+Kaliya Young:  Then we went through the same steps that we had in 
+  the first paper sort of the life cycle of a credential from issue 
+  to.
+Kaliya Young:  Covering 4 different flavors and then at the very 
+  end we touch on 2 of the flavors that we dropped from this paper 
+  the a non-red flow and um what was called.
+Kaliya Young:  Jason ldz KP with BBs plus called BBS with data 
+  Integrity signatures and 2 New Kids on the Block we touched on 
+  um.
+Kaliya Young:  Authentic chain data containers acdt and gordian 
+  envelopes and then we discussed how most of zks is.
+Kaliya Young:  That are in the real world or.
+Kaliya Young:  Pseudo zks were statements are signed but the 
+  actual cryptographic sort of math properties aren't happening so 
+  that's the difference in the 2 table of contacts.
+Kaliya Young:   I thought I'd.
+Kaliya Young:  Walk through sort of some of the content of the 
+  paper.
+Kaliya Young:  Is this difference between Json and Json LD.
+Kaliya Young:  On the left hand side is Json it's just name value 
+  Pairs and on the right is Json LD that has um an app context file 
+  that points to schema.org and you can see below is.
+Kaliya Young:  The reference in this is drawn directly from the 
+  schema.org um.
+Kaliya Young:  Website and the.
+Kaliya Young:  The context um sort of map for birth date in this 
+  schema is the schema.org birthday right so it's a way to 
+  reference.
+Kaliya Young:  Using Uris specific data fields so that meaning 
+  can be determined and 1 of the things is also that provides the 
+  potential to do language mapping so you could.
+Kaliya Young:  Have assert that this is a birth date in Chinese 
+  or Hindi or Thai or whatever language you want and.
+Kaliya Young:   And you.
+Kaliya Young:  Could figure out that it was referencing a birth 
+  date so it's it's good for the.
+Kaliya Young:  Multilingual World we're moving into.
+Kaliya Young:  Then this is an example of severe so we just took 
+  the Seymour that was on the left on the previous screen and 
+  translated into sibur and so this is basically all the words in 
+  the that's in the paper because it would be lots of numbers if we 
+  kept going with it but it gives you kind of a tangible example of 
+  these 3 different data formats that are being used in 
+  credentials.
+Kaliya Young:   And then.
+Kaliya Young:  And we have.
+Kaliya Young:  Happening infographic that we made um.
+Kaliya Young:  And so I just thought a good.
+Kaliya Young:   Thing to.
+Kaliya Young:  Share would be some of would be these infographics 
+  for us to look at we did Json signed with a JWT.
+Kaliya Young:  The whole thing is signed all of all together.
+Kaliya Young:  There is no selective disclosure capability.
+Kaliya Young:  On the right hand side you have Json LD with data 
+  Integrity proofs very similarly the whole all the information of 
+  the credential is signed together external link to go and be able 
+  to do.
+Kaliya Young:  Um resolution of what the.
+Kaliya Young:  Names in the name value pairs actually means.
+Kaliya Young:  Then we have the 2 formats that supports ISO MDOC 
+  mdl.
+Kaliya Young:  Um basically that the top is the the sort of what 
+  happens with the issuance of the credential and the bottom is 
+  what happens with the presentation of the credential so that um.
+Kaliya Young:  The individual is able to share some of the values 
+  and and doesn't have to share all of them.
+Kaliya Young:  Um with estie JWT hashes of the values are signed 
+  and disclosure object are given to the individual and when they 
+  share those disclosure objects.
+Kaliya Young:  Combined with the hashes the information becomes 
+  viewable by.
+Kaliya Young:  Verifier so these are 2 different strategies that 
+  are quite similar to achieve the same thing which is selective 
+  disclosure.
+Kaliya Young:  And then finally the infographic uh included the 2 
+  pets that were in the earlier paper data Integrity with BBs Plus.
+Kaliya Young:  Of showing that you each value is signed 
+  separately and that the holder can.
+Kaliya Young:  Name value Pairs and the signatures.
+Kaliya Young:  And a non-red also um has a similar architecture.
+Kaliya Young:  So those are the formats covered in the paper and 
+  um maybe that's all I have to share and um I'm happy to take a 
+  few questions if people have any before or we can just go on to 
+  next doesn't matter to me let me stop sharing I'm not sure their 
+  stop sharing okay great.
+Harrison_Tang: Any questions on the what Kia has presented.
+<kaliya_identity_woman> Here is where you get the paper - 
+  https://medium.com/@identitywoman-in-business/new-paper-and-infographic-on-flavors-of-digital-credentials-released-b9b6ec5b95af
+Harrison_Tang: Yes looks great.
+Harrison_Tang: So any comments or questions.
+Harrison_Tang: So a quick question um so what's next like uh 
+  what's the next phase other than like Gathering inputs and then 
+  like complete this further what's the next phase phase on this 
+  project.
+Harrison_Tang: Got it thank you.
+Harrison_Tang: And do you have a I know this is to do but do you 
+  have a hunch on what are the.
+Harrison_Tang:  uh for.
+Harrison_Tang: Mats or uh protocols that that that has the 
+  biggest market share were poised to uh to have the biggest market 
+  share.
+Harrison_Tang: No I agree with your comments I do think 
+  Simplicity helps uh adoptions as well so thank you.
+Kaliya Young:  I think that I you know I.
+Kaliya Young:  Pretty clear we're going to live in a multi.
+Kaliya Young:  Um there are really legitimate reasons for a 
+  different choices.
+Kaliya Young:  And I think yeah so.
+Kaliya Young:   I I.
+Kaliya Young:  I don't think.
+Kaliya Young:  1 Format to rule them all I do think that we will 
+  have several formats that have different trade-offs.
+Kaliya Young:  For different reasons and that's fine.
+Harrison_Tang: Great um any questions in regards to any of the 
+  formats or.
+Harrison_Tang: Technology or the comparisons.
+Nate Otto:  Hey thanks this is a really cool resource um first of 
+  all um I'm curious about the.
+https://openwallet-foundation.github.io/credential-format-comparison-sig/#/
+Nate Otto:  Internals of the claim structure as well um.
+Nate Otto:  What space does this tool have to talk about the 
+  different types of claims that might be made in various different 
+  um profiles is that a direction that you're interested in 
+  exploring or is that.
+Nate Otto:  Up way too much and would be out of scope or 
+  unmanageable.
+Nate Otto:  Sure so a lot of the um comparison that we're seeing 
+  here is at the kind of the envelope of the uh.
+Nate Otto:  Credential not about what.
+Nate Otto:  Specific claims the issuers are making about holders 
+  or recipients um are you interested in covering.
+Nate Otto:  Specific claims like uh you know for example uh 
+  whether achievements were made skills were held birth dates uh 
+  degrees.
+Nate Otto:  That type of level of.
+Nate Otto:  Content in this comparison or is that out of scope.
+Harrison_Tang: Simone you're next.
+Harrison_Tang: Any other questions.
+Harrison_Tang: Last call for questions.
+Harrison_Tang: All right well thank you thank you Mo thank you 
+  can uh Clea for coming on and presenting your work this is 
+  definitely very interesting and definitely a very important work 
+  to uh showcase all the different options and help users uh or uh 
+  the decision makers uh make a more informed decisions on what the 
+  appropriate Technologies to use so thanks a lot.
+Harrison_Tang: All right so I think this concludes uh this week's 
+  w3c ccg meeting and uh.
+Harrison_Tang: Will see you next week thanks a lot.
