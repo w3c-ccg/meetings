@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var async = require('async');
 var fs = require('fs');
 var path = require('path');
@@ -36,7 +35,7 @@ var peopleJson = fs.readFileSync(
 var gLogData = '';
 var gDate = path.basename(dstDir);
 gDate = gDate.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/)[1];
-var groupConfig = _.find(config, c => c.name === program.group);
+var groupConfig = config.filter(c => c.name === program.group);
 if(!groupConfig) {
   groupConfig = config[0];
 }
