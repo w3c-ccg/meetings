@@ -46,7 +46,9 @@ jobs:
     - name: Generate html minutes
       id: generate_html_minutes
       run: |
+        cd scribe-tool/
         npm install
+        cd ..
         bash ./generate-html.sh
         echo "##[set-output name=date;]${DATE}"
         echo "##[set-output name=dir;]${DIR}"
