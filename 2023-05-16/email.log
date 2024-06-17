@@ -1,0 +1,956 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-05-16/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-05-16/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-05-16
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=May&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, Richard Bird, Kimberly Linson, Mike Xu, John Kuo, 
+  Nis Jespersen , paul murdock, Sandy Aggarwal, Greg Bernstein, 
+  Jennie Meier, Joe Andrieu, Will, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), Hiroyuki Sano, Sharon Leu, Leo, Andrew 
+  Whitehead, PL/T3-ASU, Erica Connell, Paul Dietrich GS1, Dmitri 
+  Zagidulin, JeffO - HumanOS, David I. Lehn, Chandi Cumaranatunge, 
+  Keith Kowal, Kaliya Young, Jeff O - HumanOS, Eric Sembrat, Marty 
+  Reed, pdl-T3
+
+Our Robot Overlords are scribing.
+Kimberly Linson:  Alright hello everybody we are really excited 
+  to welcome Richard Byrd to join us today I will run through a few 
+  housekeeping items and then we'll get started we're going to talk 
+  about identity and security and I know that's a topic that we're 
+  all.
+Kimberly Linson:  Very interested in and I think he's got I had a 
+  chance to do a little bit of reading up and I think you'll enjoy 
+  his presentation style as well so just to remind everyone as we 
+  sort of set the intention for today that we are all bound by a 
+  code of ethics and professional conduct and that we are all here 
+  to better the world of credentials the world of identity in the 
+  world of security were all.
+Kimberly Linson:   Working towards the same.
+Kimberly Linson:  Anyone is welcome to participate in these calls 
+  but if you plan to be a contributor or you want to get more 
+  involved than I really would encourage you to fill out and sign 
+  the IPR agreements which links can be found to those in the 
+  agenda for today and it's very simple to join in and we 
+  definitely want to have your voice cure at the table.
+Kimberly Linson:  They also we do keep a recording of This call 
+  and also notes in the in the transcript and chat so please feel 
+  free to put notes in the chat and if you would like to ask a 
+  question that's how we'll be managing the discussion today so put 
+  Q Plus in the chat if you have something you'd like to ask 
+  Richard if you or q- if you want to remove yourself from the 
+  queue and this.
+Kimberly Linson:   Is the section of the agenda.
+Kimberly Linson:  Get a chance to meet new folks so if you are 
+  joining us for the first time and you'd like to introduce 
+  yourself and what you're working on and what your interest is in 
+  credentials we'd love to hear from you and if you are haven't 
+  been here for a while and you just want to sort of give a verbal 
+  hello to everyone and let us know what you've been up to we'd 
+  invite you to do that now as well so go ahead and put yourself on 
+  the Q if you'd like to.
+Kimberly Linson:   Introduce yourself.
+Kimberly Linson:  All right next is announcements and reminders 
+  does anybody have anything coming up that they want to talk about 
+  something that is important for the community to be aware of and 
+  now is the opportunity for you to share that.
+Kimberly Linson:  Dimitri I'd like to put you on the spot if you 
+  don't mind to kind of give a little.
+Kimberly Linson:  30 Second update on the VC edu plugfest 
+  discussion from Monday and maybe it also will serve as a teaser 
+  for when you all are going to come and talk to this group about 
+  it in a couple of weeks.
+Kimberly Linson:  Week we you're very muffled like if you're not 
+  not loud enough.
+Dmitri Zagidulin:  One second one second.
+Dmitri Zagidulin:  Is this a little better.
+Dmitri Zagidulin:  Okay so a couple of things so we just had the 
+  first pre pre discussion about the third jobs for the future 
+  foundation so jmf plugfest which is going to be testing 
+  requesting verifiable credentials from wallets so the first one 
+  tested display a VCS second one tested issuing this one is going 
+  to be testing verifiers requesting multiple credentials from.
+Dmitri Zagidulin:   From wallets.
+Dmitri Zagidulin:  The blood vessel itself is going to be held on 
+  October 9th so the day before II w.
+Dmitri Zagidulin:  So we're going to the discussion about the 
+  exact details like what we're testing and how is continuing so 
+  those are just the broad broad terms of what we're focusing on so 
+  we encourage everybody to join the discussion that's coming here 
+  to the ccg shortly that can barely mentioned and further calls on 
+  the subject on @vc at you how's that.
+Kimberly Linson:  That was perfect and I will grab the link for 
+  those of you that haven't there do want to participate in the 
+  plugfest I'll grab the link that you need to fill out by think 
+  Jimmy choos that is the deadline June 6th June 8th something like 
+  that I'll put the it's in the link so I'll put that I'll put the 
+  link in the chat and just a moment.
+Kimberly Linson:   Anybody else with ever.
+<dmitri_zagidulin> I don't remember, re deadline
+<sharon_leu> deadline is june 5
+Kimberly Linson:  Thank you Sharon the deadline is June 5th and 
+  sure enough you have that link handy you can certainly post it in 
+  the in the chat for us.
+Sharon Leu: https://forms.gle/Nnc2fsgiyaMHbYkQA
+Kimberly Linson:  Right well let's get right to the main agenda 
+  which is Richard Byrd who is the chief security officer at 
+  traceable Ai and as I Was preparing to have Richard come today I 
+  was thinking a little bit about this group and how I feel like 
+  and this is just sort of for Richard to know we're group of about 
+  500 folks and as a community group I think we really.
+Kimberly Linson:   One is interested in credentials but one of 
+  the things.
+Kimberly Linson:  A part of this community is that folks really 
+  come at it with sort of one of three lenses there either like me 
+  sort of very interested in credentials and how we can people can 
+  tell their story of their life and experience through credentials 
+  or they come at it from a security how do we keep these things 
+  secure or they come at it from an identity lens and so I think 
+  it's really great to have you here at a kind of give us a your 
+  perspective on identity and security.
+Kimberly Linson:   Tea and with that I will let you take it away 
+  and.
+Kimberly Linson:  Let us know you if you have things you want to 
+  share you can certainly go ahead and should be able to go ahead 
+  and share now.
+Richard_Bird: Absolutely thank you and thank you everyone for the 
+  opportunity to be with you I'll talk a little bit about my 
+  inspiration motivation to do so in just a second but let me go 
+  ahead and get the presentation that I pulled together up on the 
+  screen and Kimberly if I can ask and you see it.
+Kimberly Linson:  I sure can it looks great.
+Richard_Bird: All right fantastic looks like I'm going to have to 
+  do a screen here so hang on for just a second.
+Richard_Bird: So let me say first of all I'm really eager to talk 
+  with you all today for a number of different reasons but the most 
+  important reason is because of how long I've been associated with 
+  identity and I'm going to make some disclaimers first of all I'm 
+  not a technical presenter it doesn't mean that you know we can't 
+  go in the weeds and JSON and Johnson no.
+Richard_Bird:  OIDC and AuthZ and AuthN.
+Richard_Bird: Around all of these components and aspects for 
+  years and years but my presentation style and my presentation 
+  approach tends to be on picking apart myths and misconceptions 
+  and misrepresentations that all of us particularly those of us 
+  that work in the field of identity you know whether it's in the 
+  credential space or verification validation access control that 
+  we have to labor with all the time and I think that there's a 
+  real.
+Richard_Bird:  the interesting reason why that's the case and has 
+  to do.
+Richard_Bird: The fact that we're one of the few security domains 
+  that really doesn't know much about our history which I'll talk 
+  about a bit today I do like interactive you know conversations 
+  versus me just verbal vomiting all of this information out and 
+  and I will say as we as we get to the close of the presentation 
+  it's another day which means it's another airport and another 
+  Sprint to a different city for me.
+Richard_Bird:  me and I'll give some background on why that's the 
+  case.
+Richard_Bird: As we wrap up I'll definitely be looking to tie 
+  things up let you get back to the remainder of the meeting 
+  inclusion and I'll be hitting the road so I've subtitled today's 
+  discussion as a problematic history in three acts and I think for 
+  folks that have you know like 33 C zg you know people that have a 
+  specific interest in credentials and have a specific interest in 
+  the association of credentials to decentralized.
+Richard_Bird:  entity and other you know.
+Richard_Bird: I think that it's really important to understand 
+  the distinction of the three acts of the history of identity now 
+  if I if I dive in a little bit first of all why even listen to me 
+  I always think it's important to have at least some kind of 
+  credibility statement you know it may not be as much credibility 
+  as I would like but you know I hope that you know I give you some 
+  reason to think about something in a new way today and the reason 
+  you know that.
+Richard_Bird:  that I.
+Richard_Bird: To do that and most of my presentations is just 
+  simply because of where I've come from a my experience now when I 
+  say I go but way back and identity I do remember that my first 
+  identity Project without even recognizing it was an identity 
+  project back in my late twenties was a Novell edirectory to 
+  Microsoft active directory migration that wasn't actually this 
+  the thrust of my it career at that point I was you know working 
+  for.
+Richard_Bird:  a company that was just simply.
+Richard_Bird: Raishin they didn't have anybody else to do the job 
+  and so I put my hand up and said I do it about the first part of 
+  my it career was actually in it technology management I spent 20 
+  plus years actually 24 years in the corporate world my first 
+  track was an IT operations so middle office and back office in 
+  the banking industry's so I did a lot of application development 
+  release management qau 80 in all of those you know fun Parts the 
+  good thing for me.
+Richard_Bird:  I'm a security standpoint.
+Richard_Bird: Is that I was the guy that used to break all the 
+  rules actually remember my first information security head before 
+  we had anything like cisos oh came to me one day and said hey we 
+  got to you know stop your production code deployment because 
+  you've got security vulnerabilities and I can distinctly remember 
+  saying and this is terrible but it's Tinker remember saying you 
+  didn't pay for this application the business did will go to 
+  production and will know your will note your findings as.
+Richard_Bird:  opportunities for.
+Richard_Bird: Your features and enhancements wrong thing to say 
+  Obviously then but we weren't as knowledgeable about the bad 
+  outcomes as we are now certainly the wrong thing to say today 
+  unfortunately I wish I could say it's changed but it really 
+  hasn't changed as much as we'd like to or like it to change I was 
+  actually brought back in after a CIO to be in a role that I think 
+  is helpful for this conversation the role that I'm most known for 
+  in my career is not my city services.
+Richard_Bird:  bio position the Royal I'm most known for.
+Richard_Bird: Largest centralized identity function back in the 
+  day at JPMorgan Chase I ended up leaving chase after 11 total 
+  years is the head of global or the global head of identity for 
+  all of the consumer businesses about 350 thousand employees 
+  72,000 contractors to point something million functional machine 
+  accounts and those are the only those are only the identities 
+  that I sort of find every quarter as who I know there's numbers 
+  well all these years later so obviously spent a lot of time.
+Richard_Bird:  in banking most importantly for for me on the 
+  professional side.
+Richard_Bird: I was pulling the cord and getting out of the 
+  corporate world and that liberated me actually gave me freedom to 
+  speak which I've now done six hundred some odd times in the last 
+  seven years and I've held multiple see positions now in solution 
+  side of the equation caveat about my presentation please forgive 
+  the traceable template I am this presentation is not about 
+  traceable this presentation is about identity unfortunately I 
+  keep all of my work on a single work laptop.
+Richard_Bird:  and I didn't want to grind out.
+Richard_Bird: You know a brand new template for this presentation 
+  I have been quoted extensively and globally for years now you 
+  know New York Times Wall Street Journal dark greeting you know 
+  kind of all of the interesting media Outlets both on the business 
+  and the technology side and also for this group you know I do 
+  have some background in having sat and served on standards 
+  committees that associated with nist been associated with open 
+  banking Accords in the UK.
+Richard_Bird:  a as well as EU and Australia.
+Richard_Bird: It's a tan and a back committee years and years ago 
+  so I've definitely spent a lot of time in this space now let's 
+  get right into the you know the meat of the discussion I had 
+  mentioned that one of the things that I find challenging about 
+  making progress in identity as it relates to security is that we 
+  are the only domain that has no knowledge of our history and I 
+  think this is really important for discussion because.
+Richard_Bird: Church and it's interesting how thin the the amount 
+  of information that about information security is out there 
+  nobody's actually done much in the way of academic studies or 
+  even popular studies around the history of information security 
+  and if I launched a number of dates of probably the most 
+  significant breaches exposures or events that have happened in 
+  cybersecurity and just mentioned.
+Richard_Bird:  and the date.
+Richard_Bird: Timing of those events most people even just in 
+  cybersecurity have no idea what those events are from historical 
+  perspective but it's even worse than the identity side let me 
+  give you an example of this is a great picture you know those of 
+  us that go back to the days of tape you know know what this is 
+  this is a main from operations room probably from the early 60s 
+  and I still fascinated by somebody that's doing.
+Richard_Bird:  cute wearing a suit.
+Richard_Bird: Head because usually it's a Grateful Dead t-shirt 
+  these days especially if you're in the Mainframe space but the 
+  the situation that we have is is where did identity start and 
+  identity did not start at the very beginnings of compute any act 
+  as an example really didn't have any concept or a framework of 
+  Access Control Beyond physical Keys you know so if you are 
+  familiar with the NEX system and.
+Richard_Bird:  late 40s through the early 60s you know the.
+<kaliya_identitywoman> Seeing SSI in Historical Context - I cover 
+  some of this history 
+  https://identitywoman.net/topics/my-papers/seeing-ssi-in-historical-context/
+Richard_Bird: Food system and you actually accessed it by turning 
+  it on or turning the console on with a physical key it wasn't 
+  until 1961 or 62 that the construct that we become identity as we 
+  know it today would be introduced and this is a really 
+  fascinating part of our history because it not only got 
+  introduced it created what now has become the dumpster fire that 
+  is identity.
+Richard_Bird: If the Mainframe was the beginnings the current 
+  middle state of where we're at in evolution and growth 
+  unfortunately is the dumpster fire and I'm going to give you some 
+  really specific reasons why that is we go through this 
+  presentation that I want to come back though to you know the 
+  beginnings of when identity became an ocean within compute it was 
+  1962 in a 1962 and I don't read slides I tend to wave my hand at 
+  them and.
+Richard_Bird:  maybe talk about what.
+Richard_Bird: I'm so you're more than welcome to read the the 
+  wired quote yourself but in 1962 IBM has embarked on a massive 
+  installation of new Mainframe technology MIT and at MIT The 
+  Graduate students that were associated with the the equivalent of 
+  what would have been C is today from a degree standpoint but 
+  actually was engineering back then they were in a bit of a.
+Richard_Bird:  pickle because.
+Richard_Bird: They needed a number of hours per week to be able 
+  to access the mainframe system and be able to do their coursework 
+  right or their research or their studies so this introduce the 
+  necessity for CTS s or computer time-sharing system and the CTS s 
+  system was actually developed by MIT and it assigned accounts and 
+  passwords to the students now here's what I think is really 
+  really.
+Richard_Bird:  we important to.
+Richard_Bird: And about great we introduced account passwords as 
+  was the very beginning and identity as an ocean within the 
+  digital world it is so persistent as a framework and structure we 
+  still use it today no matter how bad it sucks and how about that 
+  does it suck well the early days of this particular event should 
+  have already given us a lessons that we needed to have done 
+  better and by that I mean it took approximately depending upon 
+  who's.
+Richard_Bird:  or you listen to it took approximately.
+Richard_Bird: 11 hours for Allan surer and specifically to figure 
+  out that he go scrape the entire password log out of the system 
+  and then begin to sell compute time to his fellow students so you 
+  know really the foundation of identity in all that we do was 
+  shown to be problematic within a half a day of it being 
+  introduced as a structure and yet we continue to build on this 
+  idea of.
+Richard_Bird:  of identities and passwords and even if.
+Richard_Bird: The foundational Notions of a directory right it 
+  was in the form of an access control log or Access Control list 
+  back in 1962 but functionally it was a directory it was a student 
+  named assignment to each of these password and account components 
+  I was centralized in one location so everything that has come 
+  since was built off of a foundation that was understood to be a 
+  challenge or a problem from the very beginnings and yet we didn't 
+  stop we rushed on towards.
+Richard_Bird:  greatness and building these now I would really.
+Richard_Bird: I'm going to.
+Richard_Bird: Jaden I always like to make the disclaimer I am not 
+  being paid for any of the the endorsements or recommendations 
+  that I make the only book that I'm aware of that produces a 
+  fairly decent history of information security I would actually 
+  like to have seen it on the threat side as much as I saw it on 
+  kind of the standards and laws and different activities that were 
+  done around information security which is really where vulnerable 
+  system puts its emphasis.
+Richard_Bird: Vulnerable system a vulnerable system is really a 
+  must read for anybody and information security it it gives us a 
+  anchor to our history and it helps us understand how things are 
+  the way that they are today because of foundational practices or 
+  behaviors that we established 20 30 50 even 70 years ago so if I 
+  can encourage you to read anything new I'm actually on my second 
+  read through on it I would definitely encourage you.
+Richard_Bird:  you to grab this book so let's talk about the 3x.
+Richard_Bird: We're gonna cover identity and its relationship to 
+  Security in three specific acts and it's there also be the next 
+  slide will be a bit of a talk about where we're at notionally and 
+  from a maturity standpoint against these acts but if we think 
+  about some of the things that I just talked about in the 
+  Mainframe in the origination of Mainframe access Administration 
+  the First Act of.
+Richard_Bird:  access that has lasted a very long.
+Richard_Bird: Actually continues to persist is access 
+  Administration now the important thing here is that these are 
+  things that have been continuously and constantly and in 
+  accurately associated with security and I think it's unfortunate 
+  because if you are an identity practitioner you labor either 
+  explicitly or implicitly with the burdens of an.
+Richard_Bird: Population of people who think that access 
+  Administration is access control or security and within that 
+  population are people like your own heads of business and you 
+  know directors and CEOs and you know all the different people who 
+  believe you know what my corporate CIO believed a long time ago 
+  when I was asked to take over access at JPMorgan Chase I remember 
+  the day that I got promoted and I walked in with still.
+Richard_Bird:  a Young Man.
+Richard_Bird: At that time and I walked in and my corporate CIO 
+  at that time control the two and a half billion dollar it budget 
+  and he stuck out his hand and he said congratulations you've got 
+  the easiest job in it and I looked at Chris and I said why would 
+  you say that and he goes well it's just giving people giving 
+  people access to stuff how hard can it be.
+Richard_Bird:  now for folks.
+Richard_Bird: I saw in this organization are in this presentation 
+  today that both sounds absurd and painfully accurate in terms of 
+  our interactions with people who have some interesting 
+  assumptions and expectations about what access really means from 
+  an identity security standpoint so we look at this First Act 
+  these are common terms and common constructs that we are all 
+  faced with today in managing identity.
+Richard_Bird:  you in.
+Richard_Bird: In any given organization accounts and passwords 
+  obviously or the very root just like we talked about is related 
+  to 1962 and MIT MIT and see TSS Along Came Federation and SSO now 
+  Federation and SSO or it while directories actually before so 
+  I'll get back to that in a second when we look at Federation and 
+  NASA so I have spent a good close to 20 years with a lot of 
+  conflation of security and Federation and SSO.
+Richard_Bird:  and at Federation and SSO have nothing to do.
+Richard_Bird: And I think that the disconnect there is 
+  fascinating to me because you know even in the identity security 
+  practitioner space we push heavily on Federation and SSO but from 
+  an operational standpoint Federation SSO yields a better end user 
+  experience we all remember the days of 27 accounts and passwords 
+  that we needed to remember in order to get into each of the 27 
+  key critical business applications.
+Richard_Bird: Or technology interfaces that we had to work with 
+  right obviously Federation necessary made that a lot easier 
+  security obviously comes into play relative to a federation and 
+  SSO we can apply security over Federation and SSO right in theory 
+  then we're doing a one-to-many application of security to all of 
+  the applications and processes there in that F of federation SSO 
+  space but there.
+Richard_Bird:  was a time when a lot of people thought that 
+  their.
+Richard_Bird: We're done because they'd already Federated or 
+  single sign-on the majority of their you know critical and high 
+  business applications unfortunately the reality of the curve of 
+  cyber crimes and losses clearly shows that Federation SSO didn't 
+  get us to the Nirvana Security State and directories the 
+  directories are always fascinating to me because I'm a very very 
+  big fan of decentralized identity for a number of reasons that 
+  are probably too broad to discuss in today's.
+Richard_Bird:  presentation but I do think.
+Richard_Bird: At one of.
+Richard_Bird: A significant hindering factors in achieving 
+  identity security is this strong tie that we still have to 
+  directory-based directory born systems and it's frustrating 
+  because when you look at the way that directories or originally 
+  developed particularly for say Microsoft active directory 
+  directories will never actually built for identity security 
+  active directory and azure.
+Richard_Bird:  Hades primary it.
+Richard_Bird: To this day after nearly 40 years is simply that 
+  active directory was built specifically to share files and give 
+  access to printers that is the root history of Active Directory 
+  as the root history of directories are set in total which is 
+  access to assets not control of the access or to those assets 
+  that is really stymied Innovation and.
+Richard_Bird:  growth and it also is.
+Richard_Bird: Conversations about decentralized identity very 
+  difficult because directories are so rooted in architectural 
+  Frameworks that when we start to talk about decentralized 
+  identity the Assumption by our colleagues and say in architecture 
+  or any other technology trades the assumption is that 
+  decentralized identity introduces complexity because we're 
+  fragmenting the associated components that would.
+Richard_Bird:  it'd be in a hole.
+Richard_Bird: Great and that's not even going into Deep dive on 
+  the security implications of you know the risks of aggregating 
+  all of your access has into a single directory format but that's 
+  the you know kind of the laundry list of items that were really 
+  the core creation of access Administration along with some color 
+  commentary on how it's been problematic in terms of our growth in 
+  our Innovation and identity for security but then Along Comes 
+  access control with Access Control we.
+Richard_Bird:  start to see things like.
+Richard_Bird: Strong authentication right the rise of two fa to 
+  MFA and we're not here to debate whether or not it's strong 
+  enough authentication sad fact MFA deployment in the Enterprise 
+  is somewhere near 13 to 14 percent we have not yet even crossed 
+  the line of 25% of Enterprises using MFA effectively it's been a 
+  very slow adoption curve and yeah can it be fished of course it 
+  can be.
+Richard_Bird:  he fished.
+Richard_Bird: The problem is is that I see people arguing not do 
+  not to do MFA in the Enterprise because of all this you know 
+  conversation about you know it's still can it still could be you 
+  know co-opted it still can be taken over I don't care what 
+  argument you make it still way better than account and password 
+  unfortunately the the 2f M 2f amfa debate has created some 
+  interesting problems but there's a reason for it because.
+Richard_Bird:  even if you do an.
+Richard_Bird: Strong I think that dedication flow for your users 
+  from an access control standpoint it introduces at least a small 
+  amount and sometimes a larger amount of friction and this is 
+  where we begin to see the massive tensions between access 
+  Administration and identity and security because the instant that 
+  we start talking about introducing friction people freak out now 
+  this is inconsistent with security in the.
+Richard_Bird:  higher T of the rest.
+Richard_Bird: Security in the entirety of the rest of our lives 
+  specifically in the analog requires effort right I can't just 
+  think about my security system at home turning on when I go to 
+  bed I have to engage in some form of action in order to make that 
+  security happen however in the digital world because we've had 
+  access Administration for so long we have simply put our users in 
+  a space where they are conditioned.
+Richard_Bird:  and to expect.
+Richard_Bird: Easy is available to users the downside is as easy 
+  as available to the back guys won't belabor that point you 
+  already understand exactly what I'm talking about you will see 
+  some additional components and access control that are 
+  interesting but a burden with some challenges as it relates to 
+  operational execution such as step up and step down Dynamic 
+  authentication you know specifically Step Up off was a step-up 
+  authentication was expected to deliver it.
+Richard_Bird:  a tremendous amount of value and then we found out 
+  that it's extremely difficult to execute and the reason is is 
+  because.
+Richard_Bird: Our part of me authentication is coarse-grained 
+  security it is not fine grained security authentication begins to 
+  tip into fine-grained security and authorization tips fully into 
+  fine-grained security and I'm going to talk about that and do it 
+  in a second but because it tips into fine-grained security most 
+  of our systems have no underlying.
+Richard_Bird:  lying capabilities to.
+Richard_Bird: Step-up authentication so then we're stuck in a 
+  space where we're driving it with rules and policies and if you 
+  work in a rules and policies focused organization on the security 
+  side you already know what I'm about to say which is rules and 
+  policies are tremendous amount of overhead the more and more of 
+  them that you have and managing and and controlling those 
+  policies becomes not just a full-time job that usually a 
+  full-time staff.
+Richard_Bird: So as we've tipped into finer grain aspects of 
+  Access Control we started to see the limitations of act number 
+  two and then you know we've seen the beginnings and access 
+  control of the conversations around decentralized identity and 
+  that's not SSO that's SSI my apologies for the acronym Miss self 
+  Sovereign identity I would say that if there's anything that's 
+  happened in Access Control that's pushed the.
+Richard_Bird:  verse ation of see.
+Richard_Bird: Further recently at least with the conceptual 
+  interior of the theoretical level within the access control space 
+  has been the introduction of didn SSI now that's not to say it 
+  doesn't come with some challenges right Deedee a didn SSI are 
+  problematic in terms of execution and operation for a couple of 
+  different reasons some that I already highlighted which is they 
+  go heavily against current.
+Richard_Bird:  eight architectures and.
+Richard_Bird: Frameworks as it relates not just a security but to 
+  Identity as well so it requires a substantial mind shift by 
+  people to begin to understand how do you create decentralized 
+  identity constructs that service an operational population itself 
+  Sovereign identity is even more problematic because I think SSI 
+  is been stuck in the basically in a muddy rut recently well not 
+  just even recently probably the last four or five years because 
+  SSI is gotten.
+Richard_Bird:  a bit off track.
+Richard_Bird: Back in this world of what I would call not 
+  political in the sense of parties and and you know kind of the 
+  Dynamics in the United States but political in the sense of who 
+  has ownership of their identity how much of their identity do 
+  they have ownership of and I'll put a fine point on this I talked 
+  to a lot of SSI people and they tell me well you know human being 
+  should have complete control over all aspects of their identity.
+Richard_Bird:  tea and Myra.
+Richard_Bird: So that is usually do you have any family member 
+  who is you know perfectly capable and you know in this full-grown 
+  and functioning adult but you don't trust them with any 
+  significant decisions those are the same people that were 
+  suggesting have the capacity and capability to have full control 
+  over their own identities and and is problematic as well in that 
+  many large parts of our identities are not.
+Richard_Bird:  it defined by us by the way that I like to.
+Richard_Bird: Walking JPMorgan Chase and declare myself to 
+  breathe be a private client customer right A Private Client 
+  customer has criteria on the number of amount of deposit dollars 
+  you have do you have a private Banker do you have all of these 
+  different pieces of your identity that are associated to you by 
+  JPMorgan Chase not by self-declaration so like I said access 
+  control is really you know kind of where we've gravitated to from 
+  maturity there's a ton.
+Richard_Bird:  of access Administration that is the reality for a 
+  large part of companies today.
+Richard_Bird: Especially come especially applications is a can't 
+  do Federation SSO but you know we're really kind of firmly in 
+  this axis control space and finally the third act which is the 
+  act to come and it's the act that we're currently in layer 7 
+  access layer 7 access is where we start to talk about the details 
+  of API Access fine-grain Control Ozzy and authentic elimination 
+  of implied and persistent trust for identities I'm not.
+Richard_Bird:  I think I have successfully scrubbed all 
+  references to.
+Richard_Bird: Trust and tried to focus specifically on layer 7 
+  because layer 7 is an accepted notion in our in our layered 
+  security models but you know the elimination of implied in 
+  persistent trust is is obviously a ziti type statement and I'm 
+  going to talk about that in some detail as I go forward here so 
+  let's talk real quick about the villains in each Act I know that 
+  you know I'm burning time here pretty quickly let's talk about 
+  the villains.
+Richard_Bird:  you know first of all access Administration is 
+  not.
+Richard_Bird: . it is not security it is a space for 80 90 
+  percent of the Enterprise world is still stuck and where there's 
+  this assumption expectation that it is security but it is not 
+  access Administration goes back to what that corporate CIO told 
+  me it's just giving people access to stuff how hard can it be and 
+  in fact giving people access to stuff intentionally or 
+  unintentionally is probably one of the easiest things in 
+  technology but it's just it's super easy to give people access 
+  method.
+Richard_Bird:  fact you know the the correlational theory is 
+  probably.
+Richard_Bird: Space because taking access away from people is 
+  extremely hard but giving to them is extremely easy access 
+  control is only security when it is implemented across the entire 
+  digital estate and is fully dependent on the quality that 
+  implementation so access control is strongly impacted by weakest 
+  link risk if we think about you know all of the access related 
+  breaches in the last 20 years the the Bad actors just simply 
+  found the weakest link.
+Richard_Bird:  and now that weakest link is move to the human.
+Richard_Bird: Is your row.
+Richard_Bird: To fishing and ransomware and that type of you know 
+  activity but the Bad actors always are able to find the weakest 
+  link because access control is not distributed across the entire 
+  digital estate work with the gentleman that runs a really 
+  well-known pen testing organization and he says all I have to do 
+  is keep trying I will always find a way in and that always find a 
+  way in is not the same as it's not a matter of if it's.
+Richard_Bird:  a matter of when we get high.
+Richard_Bird: That's always find a way in because there's always 
+  something in our digital State around identity that has not been 
+  secured correctly and you know raises the possibility that maybe 
+  if we actually secured identities we would see less breaches 
+  different conversation different type layers have an access you 
+  know much like the dids I statements that I made around Access 
+  Control layer 7 requires major rethinking around our security 
+  architectures.
+Richard_Bird:  it puts it puts identity.
+Richard_Bird: In a primary position instead of assets and data 
+  and if you look at the the vast majority of security 
+  architectures and deployments in companies today they put assets 
+  ahead of identity and because they put assets ahead of identity 
+  all I have to do is be you and I get your stuff so the rethinking 
+  necessary for layer 7 access security is only just now beginning 
+  and I'm only seeing movement and handful of companies.
+Richard_Bird: You know for those of you that are you know in the 
+  devops world of the def set cops world this is not my statement 
+  this was something that I picked out a very interesting read that 
+  I also encourage you to take a look at which is identity is very 
+  rarely first in our hearts in the technology world this comes out 
+  of a very fascinating paper called The Tragedy of the commons and 
+  you know I will read the Red Label part about the introduction of 
+  2fa against open source of.
+Richard_Bird:  Purity registries.
+Richard_Bird: This simple measure could prevent 99.9% of account 
+  takeovers a rising threat to open source security however obvious 
+  this measure seems the new mandate resulted in an outcry from the 
+  development Community authors of extremely popular objects 
+  threatened to quit doing OSS registry updates if they were forced 
+  to do oh my God two fa right and this is this is in the last.
+Richard_Bird:  last two years folks this is not.
+Richard_Bird: Something that goes back a decade ago right this is 
+  this is our own technology Community saying if you put as much of 
+  a man as of Iota of friction in my experience I am going to just 
+  simply not play anymore and unfortunately this is the reality of 
+  where we're at with identity today this is the reality that we're 
+  at as it relates to credentials as it relates to verification as 
+  it relates to validation.
+Richard_Bird: I introduce anything that improves security we run 
+  into a significant percentage of population that not only doesn't 
+  like that friction they will find ways to work around it.
+Richard_Bird: So the tragedy of the digital Commons like I said I 
+  definitely in encourage you to read this paper it was actually a 
+  fascinating Deep dive into security problems with a strong 
+  orientation towards critical infrastructure and law and I'm a big 
+  fan of us reading materials that are manifested from places 
+  outside of technology and this is one of those so I definitely 
+  encourage you to take a read on it.
+Richard_Bird:  I actually did.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> Can we get a 
+  link to this deck, plus links to the recommended reads?
+Richard_Bird: Case directly out of JWT on Json web tokens here's 
+  the thing and and you know I hope that I'm not because I put my 
+  disclaimer at the bottom I hope that I'm not offending anybody on 
+  it kind of relates to the conventional space signatures claims 
+  but encryption signatures and claims they are not identity 
+  security they are they're very critical component and I'm a big 
+  big fan of.
+Richard_Bird:  you know verifiable.
+Richard_Bird: Will claims but there's a disconnect which is all 
+  of the history that I just shared with you right how do we 
+  introduce how do we introduce a capability from a credential 
+  standpoint that we do not run into a problem that I cannot phrase 
+  more elegantly than my mentor and my friend and probably one of 
+  the you know the the key personalities and identity over.
+Richard_Bird:  the last 25 years.
+Richard_Bird: And at Ping Identity Andre said if you authenticate 
+  the wrong person you still have a bad day this is strongly 
+  Associated to what I'm saying here which is all of the 
+  credentials all of the verification components all of the 
+  encryption that's associated with an identity that is not the 
+  correct identity upon authentication none of that saves us from 
+  the Bad Day right and.
+Richard_Bird:  so I think that there's a.
+Richard_Bird: You know deeper deeper dive that we all need to do 
+  around and I love Kimberly the way that you framed up you know 
+  what the the three distinct interests are here right the three 
+  distinct interest within this organization about what gets you 
+  fascinate excited motivated about you know credentials it's the 
+  bringing of these three motivations together the begins to put us 
+  on the path way to true identity security.
+<harrison_tang> @TallTed I'll ask Richard to share it after the 
+  meeting, and I will share it on the public list.
+Richard_Bird: I'm very big Vision focused around this because I 
+  work in the weeds of identity for so long I operate off of the 
+  simple mission statement a personal mission statement which is my 
+  job is to make the digital world safer for everybody I believe 
+  that that job starts very much with identity you know from day 
+  one so bringing you know the three components of Interest 
+  together just in this group is exactly what I'm talking about 
+  because credentials and their.
+Richard_Bird:  Association do identity.
+Richard_Bird: How we achieve security is the way that we've got 
+  to be building our structures because these things in isolation 
+  plus another problem and I'll talk about in just a second these 
+  things in isolation do not provide security because they do not 
+  have the full context of what we're available to create about 
+  identities today but when you apply these capabilities to a fully 
+  contextually aware identity then we get security the one thing.
+Richard_Bird:  that I want to said I would mention just second.
+Richard_Bird: Is about encryption a really strongly encourage you 
+  to go look up Dynamic encryption first posited by a professor in 
+  Scandinavia in an academic paper in 2015 I believe I'm sorry that 
+  I don't have a reference to it I know of two companies currently 
+  that are working on Dynamic encryption but look the the the real 
+  problem with our dependencies on it's not claims and credentials 
+  that are the problem you know.
+Richard_Bird:  per se.
+Richard_Bird: That they're still relying on things like a yes 
+  which was introduced more than 20 years ago and keys and secrets 
+  that are associated with key holder and a key store and there's 
+  static right so once I get a hold of these you know these 
+  credentials are these Keys then I can just you know simply use 
+  them for bad things so I would definitely encourage you to take a 
+  look at dynamic dynamic encryption and start thinking about how 
+  the world is going to potentially.
+Richard_Bird:  we move that direction.
+Richard_Bird: Once we solve some challenging overhead problems 
+  but encryption in its current state is just simply problematic 
+  because all I got to do is steal your keys so I won't belabor the 
+  point talk just a little bit I try and put this in the simplest 
+  format but this is just a re-emphasis of the statement that I 
+  made earlier if I authenticate and I'm not you I get your stuff 
+  and if this goes beyond right we're identity description is a 
+  thing I you know I work in a pi security.
+Richard_Bird:  we assign a uid to every API right we're treating.
+Richard_Bird: II as an identity and credentialed thing right I 
+  don't like to use of human and non-human actors because actually 
+  everything in the digital is non-human your your account and we 
+  just had this conversation you know with somebody tried to log on 
+  and their credentials or not them right you are not your 
+  credentials and and they are a proxy for you in the digital world 
+  if they're a proxy for you and your human.
+Richard_Bird: If their proxy for you and it's a functional 
+  account then you're a functional ID right but all of them are 
+  still descent dependent upon the same process flow and less 
+  authentication is left out it's a fully authenticated and naked 
+  and exposed call you know authentication happens for the most 
+  part authentication is a one and done right which obviously 
+  introduces you know problems with actor in the middle and a 
+  number of other issues but when we look at the span of 
+  authentication and The NeverEnding.
+Richard_Bird:  during story which.
+Richard_Bird: Tends to be the implied and persistent Trust of an 
+  open session continuously open like I love people telling me you 
+  know my identity security shop is awesome then I login to their 
+  Wi-Fi system and their guest Wi-Fi and it said would you like to 
+  keep this connection for five days the AZT right a persistent 
+  session is not zero trust and frankly it's not defense in depth 
+  but this idea of a NeverEnding Story or a never-ending session 
+  has persisted in our technology system now for decades.
+Richard_Bird:  AIDS why because it's easier for the user go back 
+  to what I said earlier.
+Richard_Bird: For the you.
+Richard_Bird: It's easier for the bad guys right and there's when 
+  I say pretty much nothing it has some ties to organized share in 
+  just a second but I do want to kind of put a point on this when 
+  we talk about you know the the exposure that our credentials and 
+  our verification aspects and our tokens and everything else is 
+  associated with our online access has we talked about them look 
+  folks the damage is real here like the most attacked information 
+  on the web for the.
+Richard_Bird:  last decade has been identity.
+Richard_Bird: This is not a this is not a anything that that has 
+  no explanation to it right the reason why people are stealing all 
+  of this data is to create the day that this necessary for them to 
+  to spoof identities right another problem on my we don't use 
+  security language when we talk about identity we don't stock talk 
+  about spoofing and non-repudiation however you if you immediately 
+  you know kind of associate all of the kind of data that I'm.
+Richard_Bird:  thing about here and.
+Richard_Bird: It's used to do password resets and account 
+  takeovers and fraudulent account creation and all of these 
+  different kind of aspects you immediately you know if you've 
+  spent some time in security you can immediately make that 
+  connection between you know spoofing and non-repudiation here's a 
+  basket of information that creates the possibility to both spoof 
+  and create multiple identities associated with a singular user 
+  right so these damages are real but I talked to.
+Richard_Bird:  you know about the the you know nothing going on 
+  in here.
+Richard_Bird: Station in The Neverending Story of open sessions 
+  and it's you know it's interesting because apis and I'm going to 
+  be you know real conscious time here and try and wrap in case 
+  there's questions the reality is that the fuel for apis is 
+  authorization right so you know there's a you know there's a 
+  cursory authentication call for apis today but there's nothing 
+  for authorization layer security there are.
+Richard_Bird:  no security solution providers that have built 
+  authorization.
+<kaliya_identitywoman> I'm just arriving at the dentist so may 
+  not hear the answer to this question.  But here it is...which 
+  "SSI people" have you talked to that assert that people are 
+  entirely 100% in total control of their identities.?  I don't 
+  know them - I feel like this assertion has been made by the 
+  "convention Identity management" community to discredit the 
+  tech/dismiss us. Rather than a real thing people actually say.
+Richard_Bird: Security specifically if we're doing authorization 
+  layer security at tends to be best efforts may be some rules and 
+  policies but here's the problem apis are now the universal attack 
+  Vector every attack that I used to have to have expertise and you 
+  know some amount of tech access to I can now do with apis so this 
+  now starts to get into act 3 layer 7 API access.
+Richard_Bird:  and because.
+Richard_Bird: As you're exploding and because they are an 
+  identity and because they are accessing assets think about the 
+  problem it creates when we have no authorization layer security 
+  and now these apis are in here picking off specific data elements 
+  specific microservices specific assets from an access standpoint 
+  and they can do so like a laser beam they don't need to in fact 
+  you do not fear uncertainty and doubt one of the things that.
+Richard_Bird:  you know my kind of you know put.
+Richard_Bird: For you I have worked with a customer who had a 
+  massive data exfiltration and the bad guys never got to court.
+Richard_Bird:  they see.
+Richard_Bird: Scrape the payloads in the apis that were 
+  unprotected and those payloads were achieved through 
+  authorization calls and they aggregated that information walked 
+  out without either setting off a single alarm because of this 
+  notion of a unit of apis as a universal attack Vector so when we 
+  think about this layer 7 access space the thing that I would 
+  encourage you to start thinking about as it relates to identity 
+  is is good principles around layer.
+Richard_Bird:  on reducing the attack.
+Richard_Bird: We're going apis exponentially and nobody and 
+  identity is in control of them nobody insecurity is control of 
+  them that is an ever-increasing an ever-growing attack surface so 
+  we're not just adding the human user element from an identity 
+  standpoint we're adding tens of thousands of actors they're 
+  making billions upon billions of calls like imagine how many 
+  alarms will go off if One banking customer access to online 
+  banking a billion times in a month.
+Richard_Bird:  that's happening today.
+Richard_Bird: Continuous verification you know not just vacation 
+  at the authentication layer but verification at the authorization 
+  layer again won't belabor the point based on time and the goal 
+  being to stop data breaches at the at the at that data layer at 
+  that layer 7 won't spend time on this leave it up so that it's 
+  recorded So that you can see it you can see there's a huge amount 
+  of identity related Concepts.
+Richard_Bird:  in the dynamic.
+Richard_Bird: You can see.
+Richard_Bird: Patience for layer 7 matter of fact one of the 
+  biggest questions that I get as Richard after so many years and 
+  identity why did you move to a pi security and I said well 
+  because in 24 months API security is going to be identity 
+  security and that I saw the direction that a that API security 
+  was going and it became very obvious to me that we were going to 
+  be able to leverage some security control capabilities in 
+  particular around authorization that we've never been able.
+Richard_Bird:  to put controls around before so that said I think 
+  I met my last slide.
+Richard_Bird: The top of the hour here so I can drop that and I 
+  can stop talking and see if there's any questions.
+Kimberly Linson:  Thank you so much Richard this was really 
+  helpful for me I feel like I've picked up a lot of.
+Kimberly Linson:  Uses of security information and how it fits 
+  with identity but I didn't have the context that you just gave us 
+  and even just the simple categorization of administration and an 
+  access control like that was really helpful for me so thank you 
+  very much and I believe we have Harrison on the Q Harrison you 
+  have a question.
+Harrison_Tang: Yeah so Richard I just want to say thank you I 
+  love this presentation especially the History part of it learned 
+  a lot so thank you I actually have two questions so the first 
+  question is in regards to authentication I actually do believe 
+  that authentication is one of the biggest problem in the identity 
+  and security since that you know you want to make sure it's the 
+  right physical being that's in excess of the digital identity so 
+  my question there is actually what are the most.
+Harrison_Tang:  promising Authentication.
+Harrison_Tang: LG's have you seen that best balance the trade-off 
+  between security and user friction and my second question is a 
+  little bit different which is you mentioned that you do believe 
+  in decentralized identity and self Sovereign identity and my 
+  question is why do you believe that and then also how do you 
+  think decentralised identity and self software identity can gain 
+  market share in in the security Market in general despite 
+  challenges such as the architecture.
+Harrison_Tang:  ER things that you mentioned.
+Richard_Bird: Yeah yeah yeah so on the authentication piece I 
+  think a lot of things that we're seeing in advance Biometrics and 
+  as well in the efforts around strong authentication that are 
+  password list that are associated to what I would call more 
+  behavioral authentication write that as everybody on this call 
+  knows there's there's 20 interesting and discrete data points 
+  that Apple collects off my cell phone at any.
+Richard_Bird:  a given time so much.
+Richard_Bird: And I've confirmed this with with folks over at 
+  Apple so much so they haven't built this system but if I ever 
+  authenticated my cell phone with my left hand using a face can 
+  call somebody because I'm dead and my head is in a bag at duffel 
+  bag probably on the side of the road because that's not the way 
+  that I ever authenticate my phone the signals so I didn't talk 
+  much about signals in the the whole effort that's.
+Richard_Bird:  kind of growing on.
+Richard_Bird: And signals and events which I think is another 
+  promising area do run into a bit of a strong authentication 
+  problem as it relates to privacy right and that's why we haven't 
+  seen much of a growth yet exponentially and all the different 
+  ways that we could be improving strong authentication you know 
+  things like Biometrics are only the very beginning but there's a 
+  lot of problems in the back end and I do a lot of work on the 
+  legislative side and the regulatory side on figuring out how do 
+  you collect that kind of very very very specific.
+Richard_Bird:  no information and not.
+Richard_Bird: Current data privacy courts on the self Sovereign 
+  and dids I'd do it D ID and self-serving very specifically I 
+  believe that every human being should have a right to prove that 
+  they are who they say they are right and I think that when we 
+  talk about where specifically SSI comes into the equation I think 
+  that my ability to bring my own authenticator bring my own 
+  verified credentials is absolutely.
+Richard_Bird: Act in a digital world it is threatening to a lot 
+  of people I think this is the problem that we continuously get in 
+  and Eid an SSI it's not just the architectural things that I 
+  mentioned the ID and SSI is threatening especially to large 
+  corporations because even though they may not use that really 
+  rich information to create a better security so solution for you 
+  on the strong authentication side they love keeping all that 
+  information about you and the idea of you having.
+Richard_Bird:  in control of some of that information.
+Richard_Bird: Is problematic in current business structures so I 
+  think that there's a huge amount of tension between corporate 
+  business interests and what D ID or SSI means in terms of giving 
+  control back to the consumer or the citizen and I think that 
+  we're going to see that tension kind of continue to build we're 
+  seeing really interesting successful things happening in Africa 
+  and Australia as it relates to a society.
+Richard_Bird: I think that.
+Richard_Bird: Soap operas going to continue for the next three to 
+  five years before we actually start to see some progress in that 
+  space.
+<harrison_tang> Thank you !!
+<sharon_leu> thanks!
+Kimberly Linson:  Great thank you so much Richard I know we are a 
+  time I imagine that many of you may have other questions if you 
+  want to send me an e-mail those questions I will consolidate them 
+  and get them over to Richard thank you so much for being so 
+  generous with your time and I wish you safe travels wherever 
+  you're off to and thank you everyone for coming today and we'll 
+  see you next week.

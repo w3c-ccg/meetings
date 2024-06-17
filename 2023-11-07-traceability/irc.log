@@ -1,0 +1,148 @@
+[2023-11-07T18:30:40.700Z]	<nis>	present+
+[2023-11-07T18:30:41.933Z]	<Ben_-_Transmute>	present+
+[2023-11-07T18:30:52.859Z]	<Russell_H_(mesur.io)>	present+
+[2023-11-07T18:30:54.676Z]	<Chris_Abernethy>	present+
+[2023-11-07T18:30:56.151Z]	<Ben_-_Transmute>	present+
+[2023-11-07T18:31:06.795Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-11-07T18:33:07.840Z]	<Transcriber>	scribe+
+[2023-11-07T18:33:07.840Z]	<Transcriber>	Meeting: traceability
+[2023-11-07T18:33:16.664Z]	<Transcriber>	Ben_-_Transmute: Let's see the ya subtitles.
+[2023-11-07T18:33:20.120Z]	<Transcriber>	Ben_-_Transmute: Like transcribers in the meeting.
+[2023-11-07T18:33:37.176Z]	<Transcriber>	Ben_-_Transmute: Well what is it about like your your computer or your setup that like is.
+[2023-11-07T18:33:44.770Z]	<Transcriber>	Russell_H_(mesur.io): Yeah really just excluding.
+[2023-11-07T18:33:50.155Z]	<Transcriber>	Ben_-_Transmute: Yeah let's see.
+[2023-11-07T18:33:51.111Z]	<Transcriber>	Russell_H_(mesur.io): Yeah I can I can scribe.
+[2023-11-07T18:33:58.264Z]	<Transcriber>	Ben_-_Transmute: Let's Ness go ahead kick stop the subtitles and let's let Russell scribe.
+[2023-11-07T18:34:09.219Z]	<Russell_H_(mesur.io)>	scribe+
+[2023-11-07T18:34:22.323Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pulls
+[2023-11-07T18:34:32.126Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/895
+[2023-11-07T18:34:35.692Z]	<Russell_H_(mesur.io)>	nis: diving in
+
+vocab week
+
+first, russell, 895
+[2023-11-07T18:36:00.757Z]	<Russell_H_(mesur.io)>	russell: replaced scheme.org/value with more specific alternatives
+[2023-11-07T18:37:27.435Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/896
+[2023-11-07T18:37:58.215Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/897
+[2023-11-07T18:39:19.081Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/898
+[2023-11-07T18:40:47.922Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pulls
+[2023-11-07T18:40:50.460Z]	<Russell_H_(mesur.io)>	nis: objections to merging 895? merging
+
+next up, 896, ecommerce. type 86 cred typically used for customs to file, to claim so
+
+two approvals, no objections, merging
+
+Next 897, other de minimis, targeting digital sellers. Took out [?], changed name to be more cbp-oriented, prefixing cbp
+
+waiting on an edit suggested by ted, will come back to
+
+898, entry inlining. mainly inline another cbp creds, main one entry one, getting stuff into us. inlining and correcting FIRMS code. had to add that to Place, otherwise all inline.
+
+two approvals, objections to 898? merging
+
+jumping over to interop
+[2023-11-07T18:40:58.416Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/595
+[2023-11-07T18:41:58.285Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/605
+[2023-11-07T18:42:08.592Z]	<Russell_H_(mesur.io)>	nis: interop, starting at bottom, 595, one of mine. Feedback from gs1, what I was wanting. Just going to leave a comment, will act on soon
+
+pushing fwd to 605 russell
+[2023-11-07T18:42:26.404Z]	<TallTed>	`application/vc+ld+json+sd-jwt` shouldn't exist
+[2023-11-07T18:44:52.647Z]	<Russell_H_(mesur.io)>	ted: issue with this. media type there. problem here, multiple plus is moving target still, ietf very slow. ppl who have been working on it have been inconsistent in understanding how media types work. Traditionally it allowed multiple "+" but inconsistently implemented. "vc+ld+json" sure, but "sd-jwt" is its own thing, which might contain vc+ld+json, or another thing. But its a contain thing similar to a zip. Unfortunately ppl focused on this, have forgotten that. Thinking abt new stuff designing, not looking back on how spec'd already. Not treating sd-jwt which is similar to zip, as if it were a zip
+[2023-11-07T18:45:01.660Z]	<TallTed>	it should be just `application/sd-jwt` from which an `application/vc+ld+json` can be extracted
+[2023-11-07T18:45:15.327Z]	<Russell_H_(mesur.io)>	russell: what would happen if we left it in?
+[2023-11-07T18:47:49.354Z]	<Russell_H_(mesur.io)>	ted: unsure. think it's a bad path to go down multiple "+" signs ok, sure. Problem is this sequence of "sd-jwt" after "json"
+
+sd-jwt should be treated as a zip. So application/sd-jwt, like zip
+[2023-11-07T18:48:15.332Z]	<Russell_H_(mesur.io)>	Chris: good pts ted, something in meantime to address this while that moves fwd? cause purpose here is to signal what sort of response is expected
+[2023-11-07T18:49:21.559Z]	<Russell_H_(mesur.io)>	ted: that may be, but, wrong media type shouldn't be used to signal that. If ask for sd-jwt, that'll always contain json. May not always contain vc-json. Unsure how to get down that road.
+
+Ppl have been thinking of media-types in way not intended to be used. It's just supposed to describe, this is sd-jwt.
+[2023-11-07T18:49:30.059Z]	<Russell_H_(mesur.io)>	Ben: vc+sd-jwt?
+[2023-11-07T18:49:50.887Z]	<Russell_H_(mesur.io)>	ted: still like "vc+zip", not how supposed to be done
+[2023-11-07T18:50:06.121Z]	<Russell_H_(mesur.io)>	Chris: how word that we're waiting for proper content types? or accept header wrong way to do this?
+[2023-11-07T18:50:59.805Z]	<Russell_H_(mesur.io)>	ted: accept header wrong place to say what want. Sure say "sd-jwt", but what you want to be inside it is
+[2023-11-07T18:52:08.746Z]	<Russell_H_(mesur.io)>	russell: just application/sd-jwt?
+[2023-11-07T18:52:13.877Z]	<Russell_H_(mesur.io)>	ted: think that's ok
+[2023-11-07T18:53:23.139Z]	<Russell_H_(mesur.io)>	chris: ok with that. use application/sd-jwt for now, might change
+[2023-11-07T18:54:13.783Z]	<Russell_H_(mesur.io)>	ted: suggest changing this media type anywhere it exists
+
+in this ecosystem when media type includes sd-jwt we know it'll have vc+ld+json
+[2023-11-07T18:54:32.573Z]	<Russell_H_(mesur.io)>	chris: is sd-jwt in use currently?
+[2023-11-07T18:54:33.843Z]	<TallTed>	https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/
+[2023-11-07T18:54:53.371Z]	<Russell_H_(mesur.io)>	ted: appears its in use in another ietf draft
+[2023-11-07T18:56:11.901Z]	<Russell_H_(mesur.io)>	chris: think it makes sense to use that
+[2023-11-07T18:56:35.679Z]	<Russell_H_(mesur.io)>	russell: leave a comment ted? so that can be referenced
+[2023-11-07T18:57:51.396Z]	<Russell_H_(mesur.io)>	ted: will put in a comment, not rn but today
+[2023-11-07T18:58:08.147Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/606
+[2023-11-07T18:58:13.250Z]	<Russell_H_(mesur.io)>	nis: revisit next week
+
+606, russell
+[2023-11-07T18:59:27.250Z]	<Russell_H_(mesur.io)>	russell: this makes it so vc-api implementations will need to return 400 if accept header not present. Will break tests.
+[2023-11-07T19:00:27.418Z]	<Russell_H_(mesur.io)>	nis: underscores that we need to settle the media-type thing, first
+
+let's wait
+[2023-11-07T19:00:40.626Z]	<Russell_H_(mesur.io)>	Russell: are we in agreement for apis demanding accept header?
+[2023-11-07T19:01:05.916Z]	<Russell_H_(mesur.io)>	chris: update spec with informative language (respec)
+[2023-11-07T19:01:19.904Z]	<Russell_H_(mesur.io)>	chris: *normative
+[2023-11-07T19:01:53.103Z]	<Russell_H_(mesur.io)>	russell: what do we do with this?
+[2023-11-07T19:01:58.308Z]	<Russell_H_(mesur.io)>	chris: leave comment
+[2023-11-07T19:02:31.125Z]	<Russell_H_(mesur.io)>	nis: give another week to brew
+[2023-11-07T19:02:42.069Z]	<Russell_H_(mesur.io)>	russell: so do we want apis to demand accept header?
+[2023-11-07T19:03:39.552Z]	<Russell_H_(mesur.io)>	chris: unsure if we want to require? but either we require and add normative, or optional and informative
+
+don't know which is correct. So, open an issue
+[2023-11-07T19:03:54.215Z]	<Russell_H_(mesur.io)>	russell: so PR is blocked by discussion that needs to happen?
+[2023-11-07T19:04:40.116Z]	<Russell_H_(mesur.io)>	nis: made a comment - dependent on 606, and that if we merge we'll need an issue to add to respec
+[2023-11-07T19:05:24.911Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/607
+[2023-11-07T19:05:35.015Z]	<Russell_H_(mesur.io)>	nis: interesting discussions, thank you Russell
+
+Moving on, Chris with 607?
+[2023-11-07T19:06:25.005Z]	<Russell_H_(mesur.io)>	Chris: grabbed this off mahmoud's plate. vc-jws-2020 has been withdrawn, this removes references.
+
+(in respec, readme, tests, example)
+[2023-11-07T19:06:43.230Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/608
+[2023-11-07T19:07:09.634Z]	<Russell_H_(mesur.io)>	nis: 608, chris?
+[2023-11-07T19:07:35.315Z]	<Russell_H_(mesur.io)>	chris: adds links to respec doc so users can find tutorials on importing and running postman interop and conformance testing suites
+[2023-11-07T19:09:03.946Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/897
+[2023-11-07T19:09:36.082Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2023-11-07T19:09:44.425Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/issues/832
+[2023-11-07T19:11:20.881Z]	<Russell_H_(mesur.io)>	nis: more approvals?
+
+merging
+
+one more in trace vocab that was in CI. objections to merging trace vocab 897, section 321 updates? merging
+
+looking at issues. vocab, first one, put product back in intent to import, don't agree with.
+
+If we go down this path, worry is if we invent new reqs to biz process, obstacle to update. If we keep IntentToImport lean and carrying noa ctual data, almost part of the protocol, all it does is signal the intent. Product gets described multiple times with other credentials, all these reference, there are plenty of product refs in docs you need to file
+[2023-11-07T19:11:44.826Z]	<Russell_H_(mesur.io)>	ted: seems likely all this needs, intenttoimport must ref shipment that contains these details.
+[2023-11-07T19:11:54.667Z]	<Russell_H_(mesur.io)>	nis: that's the workflow instance that binds these together
+[2023-11-07T19:12:21.129Z]	<Russell_H_(mesur.io)>	ted: so that needs to be made clear.
+[2023-11-07T19:13:20.856Z]	<Russell_H_(mesur.io)>	ben: think original intention was to specify scope of the import. Is thing being imported exactly what's on invoice? subset? set of products with multiple invoices in shipment? how do we define scope of which products are being associated with import issue.
+[2023-11-07T19:14:37.243Z]	<Russell_H_(mesur.io)>	nis: can of worms. Each doc has varying degree of details. [...] big deal, this is not easy, this list doesn't seem to capture these complexities.
+[2023-11-07T19:15:07.808Z]	<Russell_H_(mesur.io)>	Ben: this is domain expertise I don't have a sense of. Say you're importing two things of lumber, do you do two of these?
+[2023-11-07T19:15:30.449Z]	<Russell_H_(mesur.io)>	nis: all of that reflected in bill, any other doc that might be specific to the import type
+[2023-11-07T19:15:47.492Z]	<Russell_H_(mesur.io)>	nis: mill test report for steel,, even further detail specific to steel.
+[2023-11-07T19:16:24.865Z]	<Russell_H_(mesur.io)>	ben: mike is focused on product and details abt product will be defined in other docs, orthogonal to q of how scope defined though. I think need to make that clear.
+[2023-11-07T19:16:53.102Z]	<Russell_H_(mesur.io)>	nis: final parting thought, every time we change biz process, we ask 100M ppl to comply with it. Big deal, rly want to avoid it.
+[2023-11-07T19:17:15.148Z]	<Russell_H_(mesur.io)>	Ben: intention here is to align with right biz process.
+[2023-11-07T19:17:21.014Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/issues/587
+[2023-11-07T19:17:36.133Z]	<Russell_H_(mesur.io)>	nis: will try and leave comment on that
+
+next is 587, chris?
+[2023-11-07T19:18:24.280Z]	<Russell_H_(mesur.io)>	chris: initially had Lerna, npm type manager for repos with more than one package, which this is not. this is to see if we can remove Lerna, which we likely can. I'll assign this to myself
+[2023-11-07T19:18:48.610Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/issues/846
+[2023-11-07T19:18:49.309Z]	<Russell_H_(mesur.io)>	Ben: took a first stab removed 80% of stuff? But yeah if you take another pass should be able to get rid of everything
+[2023-11-07T19:19:48.394Z]	<Russell_H_(mesur.io)>	nis: next 846. We should have linked data terms for chemical compounds. seems ready for PR.
+
+wait 844, merged? checking
+[2023-11-07T19:19:59.972Z]	<Russell_H_(mesur.io)>	ted: 844 specific, 846 generic we should do for everything
+[2023-11-07T19:21:05.186Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/issues/571
+[2023-11-07T19:22:21.730Z]	<Russell_H_(mesur.io)>	nis: are we using chem compounds elsewhere? I think this is done. I think we can close
+
+closing
+
+next 571, vlad, did we finish this?
+[2023-11-07T19:29:22.456Z]	<Russell_H_(mesur.io)>	ted: sample data vlad used is bad, starts with triple turns into quintuplet.
+[2023-11-07T19:29:30.489Z]	<Russell_H_(mesur.io)>	nis: pinging mahmoud
+[2023-11-07T19:29:38.498Z]	<Russell_H_(mesur.io)>	chris: I can do minute uploads

@@ -1,0 +1,185 @@
+[2024-03-19T17:32:38.218Z]	<nis>	present+
+[2024-03-19T17:32:38.219Z]	<Chris_Abernethy>	present+
+[2024-03-19T17:32:38.220Z]	<Russell_H_(mesur.io)>	present+
+[2024-03-19T17:32:47.294Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2024-03-19T17:32:49.843Z]	<Russell_H_(mesur.io)>	present+
+[2024-03-19T17:32:51.454Z]	<Mahmoud>	present+
+[2024-03-19T17:33:50.747Z]	<Chris_Abernethy>	present+
+[2024-03-19T17:34:45.810Z]	<Guilherme>	present+
+[2024-03-19T17:34:54.108Z]	<Transcriber>	scribe+
+[2024-03-19T17:34:54.108Z]	<Transcriber>	Meeting: traceability
+[2024-03-19T17:35:56.085Z]	<Russell_H_(mesur.io)>	scribe+
+[2024-03-19T17:36:02.577Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pulls
+[2024-03-19T17:36:09.883Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/628
+[2024-03-19T17:36:37.582Z]	<Mahmoud>	q+
+[2024-03-19T17:36:55.635Z]	<nis>	ack mahmoud
+[2024-03-19T17:37:06.583Z]	<Mahmoud>	i did
+[2024-03-19T17:37:08.140Z]	<Mahmoud>	can you not hear me
+[2024-03-19T17:37:33.655Z]	<Mahmoud>	hold for a sec
+[2024-03-19T17:37:43.603Z]	<Russell_H_(mesur.io)>	nis: interop
+
+first PR, 628, cbp requirement updates. thanks orie, ted
+[2024-03-19T17:38:06.951Z]	<Patrick>	present+
+[2024-03-19T17:38:27.225Z]	<Russell_H_(mesur.io)>	mahmoud: on index.html there's a lot of things being removed, like encryption key management. I don't believe we received reqs these should be removed, says removing them for clutter. I feel these are important
+[2024-03-19T17:38:36.229Z]	<Russell_H_(mesur.io)>	nis: does it belong in this spec?
+[2024-03-19T17:39:29.778Z]	<Russell_H_(mesur.io)>	mahmoud: spec about, would you like to be able to work to us, send data to us. like, if you don't use tls it won't work, we won't accept your stuff. can't test for encryption at rest, but we can rec you do that. so yes, not hard req, but good idea to keep in actual spec
+[2024-03-19T17:39:48.337Z]	<Russell_H_(mesur.io)>	nis: fair. any other opinions?
+[2024-03-19T17:40:36.550Z]	<Russell_H_(mesur.io)>	mahmoud: diff question. Recall someone mentioning, every time you have a must statement you should test it.
+
+so encryption at rest, has must, good idea but no way of knowing that they are
+[2024-03-19T17:40:47.291Z]	<Russell_H_(mesur.io)>	ted: correct I think
+[2024-03-19T17:41:18.640Z]	<Russell_H_(mesur.io)>	mahmoud: is a must right now in spec. Feel that that should stay in, but no hard statement saying "if it's must, must be testable"
+[2024-03-19T17:41:28.570Z]	<Russell_H_(mesur.io)>	nis: that aside, why is storage part of protocol?
+[2024-03-19T17:41:58.258Z]	<Russell_H_(mesur.io)>	mahmoud: can ay encryption at rest maybe not part, but encryption in transit yes definitely.
+[2024-03-19T17:43:46.413Z]	<Russell_H_(mesur.io)>	mahmoud: I'd rather we keep these in. disaster recovery stuff maybe not, not actually telling you how to do it, so that should go. threat model, maybe should stay, non-normative, tiny, actually...
+
+reversing self, ok merging
+[2024-03-19T17:44:17.879Z]	<nis>	ack patrick
+[2024-03-19T17:45:33.449Z]	<TallTed>	q+
+[2024-03-19T17:45:42.481Z]	<Russell_H_(mesur.io)>	patrick: q on reqs, a lot of items noted post 1.0 release, how update reqs?
+
+substantial change, affects available schemas. So if all schemas using 1.0, will they all be migrated? or
+[2024-03-19T17:45:53.794Z]	<Russell_H_(mesur.io)>	mahmoud: don't think they mention 1.0
+[2024-03-19T17:47:01.663Z]	<Mahmoud>	q+
+[2024-03-19T17:47:05.678Z]	<Russell_H_(mesur.io)>	patrick: want to understand, how will the test suite evolve along with reqs, if reqs come before test suites, are we expecting change in suites soon enough?
+
+will this group build data model 2.0 postman test suites again? or leverage existing w3c test suites to avoid duplication? Like status list
+[2024-03-19T17:47:07.621Z]	<nis>	q?
+[2024-03-19T17:47:15.605Z]	<nis>	ack TallTed
+[2024-03-19T17:47:31.859Z]	<Russell_H_(mesur.io)>	ted: seems odd making substantial alterations to conform to reqs some of us can't see
+[2024-03-19T17:47:40.727Z]	<nis>	q?
+[2024-03-19T17:48:08.037Z]	<Russell_H_(mesur.io)>	nis: was going to ask, mavennet, do you know if reqs available online?
+[2024-03-19T17:48:12.320Z]	<nis>	ack mahmoud
+[2024-03-19T17:51:07.501Z]	<nis>	q+
+[2024-03-19T17:51:10.334Z]	<nis>	q?
+[2024-03-19T17:53:48.829Z]	<Russell_H_(mesur.io)>	mahmoud: not publicly available. Patrick it's a direction question. We have existing tests, if new reqs come in, what happens to existing tests?
+
+q2, are we going to reuse existing test suites, answer should be yes.
+
+question 1, can't give raw form of reqs. To my knowledge what nis has produced is in line with reqs.
+
+path forward I think, one of two ways. first, could cut current test suite as a version, "this is the test suite we can test against as today", then new test suite with new reqs. That way can say "hey I was compliant as of x time". Might. be useful to some ppl with contract reqs for compliance. I like this approach
+
+second approach, say "these tests are fluid, reflect best undertanding of what we want to do in ecosystem. Have always said want to move to 2.0, to statuslist, just doing that sooner.
+
+We already use a lot of the reqs. the big changes vc data model 2.0, signing with jose/cose, bitstring status list. So that's answer to q1.
+
+To q2, should do our best to do the same, run against existing tests, big issue is that they're all js tests, but we're postman tests. Not 1-1 compatible with their jest, or mocha I think.
+
+We're clear abt, not testing vc data model itself, testing our trace vocab specific terms. Not tessting how terms defined in data model
+
+Focus on how send vocab terms bn parties, which afaik only tested in vc-api. It'd be nice to extend, but there are fundamental differences
+[2024-03-19T17:54:27.271Z]	<Mahmoud>	q+
+[2024-03-19T17:54:32.808Z]	<TallTed>	q+
+[2024-03-19T17:55:10.750Z]	<nis>	q?
+[2024-03-19T17:55:12.407Z]	<Russell_H_(mesur.io)>	Patrick: makes sense, have conformance and interop test suites. conformance do test data model with neg tests, but most important part interop, can cred issued by some org be verified by another org. If conformant against self good to know, but these sorts of tests outside data model good to know.
+[2024-03-19T17:55:22.090Z]	<nis>	q-
+[2024-03-19T17:55:25.535Z]	<nis>	ack mahmoud
+[2024-03-19T17:55:30.420Z]	<nis>	q?
+[2024-03-19T17:55:35.678Z]	<nis>	ack TallTed
+[2024-03-19T17:55:37.893Z]	<Russell_H_(mesur.io)>	mahmoud: clarifying, nis pointed out where in reqs we've said 2.0.
+
+ted?
+[2024-03-19T17:56:00.532Z]	<Russell_H_(mesur.io)>	ted: how make what we have conform with secret reqs, though?
+[2024-03-19T17:56:27.841Z]	<Russell_H_(mesur.io)>	nis: have 3 companies on call contracted with gov, building for gov. not a secret, just not been shared publicly. there are earlier drafts
+[2024-03-19T17:57:29.709Z]	<Russell_H_(mesur.io)>	ted: work of ccg is entirely outside bounds of cbp, ridiculously secret cohort project. thing is semipublic, needs to become public or not be banging on ccg.
+
+Cohort projects distinct from work of non-cohort members, until becomes thing we can access
+[2024-03-19T17:57:40.465Z]	<nis>	Reminder I need to drop in 2 mins
+[2024-03-19T17:58:06.069Z]	<Russell_H_(mesur.io)>	patrick: in beginning, comment, trace perceived as us way of doing things. answer was that this is more global. but when reqs come from cbp, reinforces that this is us system.
+[2024-03-19T17:58:19.455Z]	<Russell_H_(mesur.io)>	nis: acknowledgement, says, no secret this is for us gov
+[2024-03-19T17:58:22.176Z]	<nis>	https://w3c-ccg.github.io/traceability-interop/draft/#acknowledgements
+[2024-03-19T17:58:26.582Z]	<nis>	^Patrick
+[2024-03-19T17:58:57.498Z]	<nis>	+1
+[2024-03-19T18:00:20.534Z]	<Russell_H_(mesur.io)>	mahmoud: while they've funded us to work on this, doesn't mean they have any control over this work. ppl on call have say, "don't like these things don't include them"
+
+if you look at actual reqs, all things we've agreed to do, none of these things we've said no to
+
+just reframes them as list, but will find things somewhere in issues, or in conversations, or in spec itself.
+
+said we'd use data model, 2.0 when nready, did web sl etc.
+
+Can't point to single req net new thing.
+
+Hear your concern, next week they come in say "hardcore req you x y z counter to ccg"
+[2024-03-19T18:00:32.689Z]	<Russell_H_(mesur.io)>	nis: need to drop, hope you can stay on call
+[2024-03-19T18:00:42.106Z]	<TallTed>	q+
+[2024-03-19T18:02:59.927Z]	<Russell_H_(mesur.io)>	mahmoud: great, taking lead
+
+so to me, not great, but, flow of reqs came other way. we're the onese fighting for these specific reqs.
+
+don't want this work item to be us only work item. if any other entity believes there should be added reqs, should be on their merits. not ccg
+
+I think it should be, does req have merit do we agree to it yes or now.
+
+to cap off, if entity comes in not cbp, "btw think this makes sense", won't become ccg spec.
+[2024-03-19T18:05:04.242Z]	<Russell_H_(mesur.io)>	patrick: as you get more actors to impose changes, on this pr been open two weeks. I have no problem with content, it's just to put these in renqs week, week and a half, seems abrupt. incl as "this is where we're going, next step",  but keep test suites as are now. For me it's how quickly these came into play
+[2024-03-19T18:06:15.070Z]	<Russell_H_(mesur.io)>	ted: starting point, change title of pr to, reflect more of functional justification. cbp not mentioned in acknowledgements. should not be black box from which mysterious deletion of chunk of stuff that was work. don't have a problem removing what's in this pr.
+[2024-03-19T18:06:38.066Z]	<Russell_H_(mesur.io)>	mahmoud: reqs only in mandatory to implement html file. everything else is nis cleaning up spec in general. two separate things
+[2024-03-19T18:08:01.717Z]	<Russell_H_(mesur.io)>	ted: should be two PRs then. good
+
+size of this, scope, impossible to eval or understand what it's doing, esp with title & inability to see what they are. should say svip if anything, but even that problematic. svip paying to do work on this thing, not me. shouldn't make it so I can't see
+
+black box orgs should not be visible, but I hope their impact is justified technically
+[2024-03-19T18:08:42.160Z]	<Russell_H_(mesur.io)>	mahmoud: could I walk through reqs 1 by 1? I agree with you, will update pr name and split into two PRs. One, updates to clean up existing pieces, one "requirements". Does that sound fair?
+[2024-03-19T18:09:20.466Z]	<Russell_H_(mesur.io)>	ted: that'll help
+
+I don't think we need to go thru list items. if I understand, svip reqs list is this.
+[2024-03-19T18:11:03.710Z]	<Russell_H_(mesur.io)>	mahmoud: yes. and these are what we're already doing, just says "use latest version of it". use latest jose/cose, use statuslist. these reqs are just, use latest version of publicly available drafts as your baseline.
+
+& to address patrick's issue, suggest we incl this as 1.1, existing reqs stay the same, ppl can run old tests as we build out new tests
+
+sound fair?
+[2024-03-19T18:11:57.847Z]	<Russell_H_(mesur.io)>	patrick: yeah. think there should be section on backwards compatibility. 
+
+second, about removal of selective disclosure
+[2024-03-19T18:12:57.567Z]	<Russell_H_(mesur.io)>	mahmoud: that was nis. just says "we're considering diff drafts, waiting til mature, once its mature we'll choose one". was wishy washy statement
+
+nis was taking wishy washy that can't be teste, keeping things that were testable. no issues with that pr?
+[2024-03-19T18:13:42.240Z]	<Russell_H_(mesur.io)>	patrick: sd has a place I think, removing it entirely, think there should be a section even if just says "under eval"
+[2024-03-19T18:13:56.525Z]	<Russell_H_(mesur.io)>	mahmoud: should be non-normative, for info only, with you.
+[2024-03-19T18:14:09.149Z]	<Russell_H_(mesur.io)>	ted: why not piped through pr preview?
+[2024-03-19T18:14:18.571Z]	<Russell_H_(mesur.io)>	mahmoud: I think broken for us
+[2024-03-19T18:14:37.321Z]	<Russell_H_(mesur.io)>	patrick: looking at privacy considerations
+[2024-03-19T18:15:59.087Z]	<Russell_H_(mesur.io)>	mahmoud: yeah, lot of work to be done, I'm with you. nis's first instinct. I'll split it into two PRs, one that outlines "we need to sync to latest version".
+
+I'll incl justifications for these reqs, can argue on the merits
+[2024-03-19T18:16:23.729Z]	<Russell_H_(mesur.io)>	patrick: three prs, selective disclosure in own pr? I can make an issue for sd stuff.
+[2024-03-19T18:16:26.714Z]	<Russell_H_(mesur.io)>	mahmoud: sure
+[2024-03-19T18:17:43.688Z]	<Russell_H_(mesur.io)>	ted: looking at what's in this pr. two substantial change suggestions, both in reqs list and reference section above. I believe this update was intended to peg interop spec to specific versions of other spec.
+
+it doesn't do that, my change suggestions did do that. these have not been applied.
+[2024-03-19T18:17:53.307Z]	<Russell_H_(mesur.io)>	mahmoud: these should be applied, make sense
+[2024-03-19T18:18:03.173Z]	<Russell_H_(mesur.io)>	ted: marked as resolved
+[2024-03-19T18:18:43.882Z]	<Russell_H_(mesur.io)>	mahmoud: says its outdated, when I un-resolved it. think it's a github thing.
+[2024-03-19T18:19:11.037Z]	<Russell_H_(mesur.io)>	ted: yeah github, when click on commit doesn't show changes happened, file does
+[2024-03-19T18:20:18.653Z]	<Russell_H_(mesur.io)>	mahmoud: so, fork off of this pr, revert changes on cleanups, keep rest of changes to reqs, discuss those on merits 1 by 1, remove references to cbp, new pr that doesn't touch selective disclosure, then patrick open third pr to clean up sd
+[2024-03-19T18:20:28.313Z]	<Russell_H_(mesur.io)>	patrick: sure, issue then pr linked to it
+[2024-03-19T18:20:35.928Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/629
+[2024-03-19T18:21:01.338Z]	<Russell_H_(mesur.io)>	mahmoud: next up 629, by patrick, change collection link to use SL2021 collection
+[2024-03-19T18:22:14.358Z]	<Russell_H_(mesur.io)>	patrick: confused by orie's comments. in interop & conformance there's tests for both. but github actions only tests 2020, not 2021. I'd like to drop support for R2020. According to orie, cred status update wouldn't work.
+[2024-03-19T18:22:59.837Z]	<Russell_H_(mesur.io)>	mahmoud: as general idea, previous pr says "use 2021". we've all wanted that. orie's saying "until that's merged don't test for 2021". I don't agree
+[2024-03-19T18:23:12.389Z]	<Russell_H_(mesur.io)>	patrick: don't understand why cbp status update has to do with this
+[2024-03-19T18:23:23.820Z]	<Russell_H_(mesur.io)>	mahmoud: nowhere in spec says use status list 2021
+[2024-03-19T18:23:35.811Z]	<Russell_H_(mesur.io)>	patrick: yes, linked to text in spec
+[2024-03-19T18:23:43.939Z]	<Russell_H_(mesur.io)>	mahmoud: k, we should do that then
+[2024-03-19T18:24:09.324Z]	<Russell_H_(mesur.io)>	patrick: not sure what orie refers to.
+[2024-03-19T18:24:15.829Z]	<Russell_H_(mesur.io)>	mahmoud: you've run this test?
+[2024-03-19T18:24:23.328Z]	<Russell_H_(mesur.io)>	patrick: yes, against self
+[2024-03-19T18:24:31.418Z]	<TallTed>	the place where the Status List 2021 requirement is: https://w3c-ccg.github.io/traceability-interop/draft/#data-integrity-proof-suites
+[2024-03-19T18:24:36.558Z]	<Russell_H_(mesur.io)>	mahmoud: with you, don't see issue
+[2024-03-19T18:25:36.456Z]	<Russell_H_(mesur.io)>	mahmoud: so I would't merge on top of his objections, ask him to clarify. ted put link in chat to where says sl2021 is req in spec, ask him to clarify why wouldn't.
+[2024-03-19T18:25:40.745Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/630
+[2024-03-19T18:26:00.739Z]	<Russell_H_(mesur.io)>	patrick: could we also remove r2020 tests?
+[2024-03-19T18:26:29.755Z]	<Russell_H_(mesur.io)>	mahmoud: I don't believe we have anywhere in spec where says we must use 2020. so sure, can remove that
+[2024-03-19T18:26:37.754Z]	<TallTed>	+1
+[2024-03-19T18:26:46.499Z]	<Russell_H_(mesur.io)>	patrick: alright, will do that
+[2024-03-19T18:26:51.312Z]	<Mahmoud>	https://github.com/w3c-ccg/traceability-interop/pull/630
+[2024-03-19T18:27:24.468Z]	<Russell_H_(mesur.io)>	mahmoud: next, 630, remove negative tests for context object items
+[2024-03-19T18:28:10.884Z]	<Russell_H_(mesur.io)>	patrick: if you use 1.1 spec req you use @vocab for non-cred issuer attributes. just one test, wondering if there for specific reason
+[2024-03-19T18:28:40.264Z]	<Russell_H_(mesur.io)>	chris: to clarify, intention of test was not about @vocab, it was just a convenient way to test objects
+[2024-03-19T18:29:17.732Z]	<TallTed>	q-
+[2024-03-19T18:29:40.484Z]	<Russell_H_(mesur.io)>	patrick: another issue, pyld lib, won't go fetch @vocab in existing context to apply to vc
+[2024-03-19T18:30:01.273Z]	<Russell_H_(mesur.io)>	chris: my comments only for clarification, but if we want to remove test must modify schema
+[2024-03-19T18:30:31.632Z]	<Russell_H_(mesur.io)>	mahmoud: so saying as a concrete change request. these tests are checking schema, if you want to change update schema then test
+[2024-03-19T18:30:44.806Z]	<Russell_H_(mesur.io)>	chris: correct, if remove tests no longer testing against schema

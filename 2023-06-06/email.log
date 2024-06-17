@@ -1,0 +1,1046 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-06-06/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-06-06/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-06-06
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jun&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, Mike Prorock, Sam Smith, Hiroyuki Sano, Japan, 
+  Phil Long, BrentZ, Marty Reed, Greg Bernstein, Dmitri Zagidulin, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Charles E. 
+  Lehner, Nis Jespersen , Mike Xu, Will, Geun-Hyung, Kimberly 
+  Linson, Erica Connell, Manu Sporny, Leo, Kerri Lemoie, Jennie 
+  Meier, TimG, James Chartrand, CEL (phone), Sharon Leu, Andres 
+  Uribe, Lucy Yang, Keith Kowal, Orie Steele, Joe Andrieu, Dave 
+  Longley, Jeff O - HumanOS, Bob Wyman, David I. Lehn
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Hello everyone to this week's at w3c ccg meeting 
+  today we have a last-minute change of agenda a speaker gasps sick 
+  I think if they are in California I think you'll know that it's 
+  very very cloudy and cold it's like weird Earth June ever so a 
+  lot of people got sick but anyway we'll push back the original 
+  agenda of open ID of for VCS and.
+Harrison_Tang:  if I will presentations to our let letter.
+Harrison_Tang: And today we'll just talk about the overview of VC 
+  jot with our fellow co-chair Mike here Mike will do the 
+  presentation and we'll have the discussions great discussions 
+  about this but before we start I just want to do a quick 
+  reminders on the code of ethics and professional conduct just 
+  want make sure that everyone know be respectful.
+Harrison_Tang:  to each other honestly I.
+<mprorock> Also, you aren't muted you may want to mute by default
+Harrison_Tang: Disrespectful comments in the past year or a year 
+  and a half but just wanna give a quick shout-out to the code of 
+  ethics and professional contact reminder all right quick IP notes 
+  anyone can participate in these calls.
+Harrison_Tang: However all substantive contributions to any ccg 
+  work items must be member of the ccg fourth for IP are signed.
+Harrison_Tang: And make sure you have the w3c account if you have 
+  any questions or encountered any issues just let any of the 
+  cultures know.
+Harrison_Tang: This meeting are being recorded and the minutes 
+  are automatically transcribed we will publish the meeting minutes 
+  and audio recordings within the next few days are generally 
+  actually we've been pretty good within the next 24 hours but no 
+  just sometimes you'll take a few days all right we use DC chat to 
+  two speakers you can type in Q Plus 2i yourself to the qq- to 
+  read.
+Harrison_Tang:  move and you can do Q question mark.
+Harrison_Tang: Who is Nick you.
+Harrison_Tang: All right introductions and reintroductions if 
+  you're new to the community or you want to or you have any change 
+  of affiliations where you haven't been engaging you want to 
+  re-engage feel free to unmute yourself and kind of introduce 
+  yourself a little bit.
+Harrison_Tang: Okay what about announcement or reminders.
+Harrison_Tang: Any announcements working minders my new place.
+<manu_sporny> AnonCreds v2 and Data Integrity: 
+  https://lists.w3.org/Archives/Public/public-credentials/2023Jun/0014.html
+Manu Sporny:  Just a real quick announcement that I sent out to 
+  the mailing list we've had a pretty nice big breakthrough 
+  regarding some work around data integrity and a non creds V2 let 
+  me put this in the chat Channel non-credit V2 and data Integrity 
+  as some of you know they're you know there's a there's been.
+Manu Sporny:  History of us trying to figure out how to get an 
+  ankh Reds and some of the work that we do in this community to 
+  converge in over the past two weeks Steven Curran and Patrick st. 
+  Louis from the digital identity lab of Canada and province of 
+  British Columbia were able to demonstrate in on creds V2 working 
+  with the w3c data integrity.
+Manu Sporny:   Even so this is a big deal because.
+Manu Sporny:  We've been trying to figure out a way to get this 
+  stuff to work together for the past six plus years and with this 
+  newest kind of demonstration which was also shared with the Anon 
+  krenz Community I think last week and a workshop we finally got 
+  some sort of conversions so there's a post on the mailing list 
+  about this called you know and on creds V2 and data Integrity 
+  convergence folks should take a look there that's.
+Manu Sporny:   Pretty big news and that's of course on the heels 
+  of us all.
+Manu Sporny:  Um sharing the ecdsa selective disclosure the data 
+  Integrity selective disclosure scheme the previous week so what 
+  we're seeing here is a number of different communities kind of 
+  converging using data Integrity as a mechanism to kind of secure 
+  verifiable credentials anyway good news that's it thanks.
+Harrison_Tang: Thank you thank you Manuel I've been following the 
+  thread is a really interesting read so if you haven't been 
+  following I would encourage you to read it so thank you any other 
+  announcements or reminders.
+Harrison_Tang: Any updates to the work items.
+Harrison_Tang: All right quick note on the upcoming I'll coming 
+  meanings I know that you know people have been talking about they 
+  would love to get some speakers to discuss the intersection of AI 
+  and identity so if you have any speakers or any people anyone 
+  that you think that we would like to invite to have these kind of 
+  discussions here just let any of the cultures know and also I 
+  think.
+Harrison_Tang:  to the earlier Monument.
+Harrison_Tang: Regards to data Integrity earlier we have a 
+  presentation on selected disclosures there's any one that you 
+  want us to find invite to hold those discussions please let us 
+  know as well alright so let's get to it man agenda so today we 
+  have a last-minute change of the agenda and today we're going to 
+  talk about VC chart or verifiable credentials Json web token.
+Harrison_Tang:  said you know the main speaker.
+Harrison_Tang: Talk about the presentations on VC charges will be 
+  Mike Mike Iraq I don't think he needs any further introductions 
+  he's our beloved cultures I think the fact that he was able to 
+  it's really nice by the way to have a speaker ready to go at any 
+  time so I just want to say thank thank thank you to him for that 
+  and I think the table is yours Mike.
+Mike Prorock: 
+  https://docs.google.com/presentation/d/1LcNCHeyrpjuO-QXlxL_spouTsbyeovHVdXPx3PuelX0/edit#slide=id.gc6fa3c898_0_0
+Mike Prorock:  Yeah thanks Harrison and yeah no definitely if you 
+  don't know me I'm just a nerd I'm one of the co-chairs of this 
+  group I am firmly taking my co-chair hat off at this point and 
+  going to talk about some of the stuff I'm doing is an editor with 
+  VC jobs and especially changes things like that that have come 
+  about as part of the 2.0 working group so if you have questions 
+  over all around VC VC working group etcetera.
+Mike Prorock:   Brent on the line Christina may or may not be on 
+  the line but the chairs are normally in a.
+<brentz> _waves_
+Mike Prorock:  That working group a big part of my focus for that 
+  working group has been on the job side and wanted to really kind 
+  of talk through some of the things that actually are a little bit 
+  of a change from the way at least Johnson 1.1 and things like 
+  that were so I'm going to set the stage by saying that in this is 
+  once again this is just personal hat here right as an.
+Mike Prorock:   I'll Mentor or someone.
+Mike Prorock:  Been you know kind of got pulled into this 
+  ecosystem for a variety of reasons one of the things that always 
+  kind of bugged me about 1.0 and 1.1 and things related to jobs or 
+  other securing mechanisms was it really didn't feel like you were 
+  doing these you know kind of the payloads and things like that 
+  require either mappings or Transformations and things were weird 
+  right and so one of the things that really got hammered out so 
+  far and it's been a huge.
+Mike Prorock:   Huge amount of work.
+Mike Prorock:  Do you know.
+Mike Prorock:  Argument sorry friendly conversation between 
+  members of the working group to really come to I think consensus 
+  around a couple of things one that were specified in the charter 
+  for the working group so let's make sure we can secure the core 
+  data model and then also how do we represent media types or 
+  content types for these items and things like that notably and 
+  I'm going to stay away from this side of the topic there are 
+  people that could probably dive in really deep on this side I 
+  probably.
+Mike Prorock:   We could as well but.
+Mike Prorock:  Because it's a little bit contentious still is 
+  this question of like if you just want to do jobs with registered 
+  claims and you know ISS and sub etcetera you know I think there's 
+  still some open discussion just from issues and PRS that are 
+  being debated as to whether we're does that stuff live right does 
+  that live in the VC jots bag does it live elsewhere if it does 
+  live in the VC job spec how do we make sure it's a good compliant 
+  VC etcetera and things like that so that some of the.
+Mike Prorock:   Duff's up a little bit up in the air but what we 
+  do have.
+Mike Prorock:  Now is a.
+Mike Prorock:  Really good way of securing the core data model 
+  and and I wanted to just roll back as a starting place and talk 
+  just a bit about what the VCS actually bring us why or why are 
+  they interesting night and and what they're really interesting 
+  for is providing a good standardized way of exchanging 
+  credentials now a lot of times this stuff you know gets thought 
+  of in a personal context right your driver's licenses that you 
+  know answering.
+Mike Prorock:   Is like age verification from an identity card 
+  right man is the.
+Mike Prorock:  One that always comes to mind when I think about 
+  be seized for a lot of reasons and I know that's a use case he 
+  works heavily with their you know from our interactions I 
+  actually tend to deal as an implementer with VCS into other areas 
+  one is around data and data verification and has this data been 
+  tampered with or modified you know in claims about how that 
+  information was gathered as well as claims related to supply 
+  chain credentialing for.
+Mike Prorock:   Ettore purposes and these are different cases 
+  right you have things.
+Mike Prorock:  Some of the stuff while you know might be a little 
+  different right you might want things like correlation and 
+  traceability throughout the chain whereas in personal cases you 
+  may not right and that's one of the beautiful things about the 
+  three party model that verifiable credentials brings to us right 
+  as a specification is that we have these multiple roles that are 
+  clearly defined and credentials can pass between intermediaries 
+  and be received and still verified right and that's a neat thing.
+Mike Prorock:   Thing that's a neat trick.
+Mike Prorock:  Standardized way and it gives us the ability to 
+  link back into really solid semantics so that machines can 
+  actually have good understanding of the meaning of the data under 
+  the hood at a minimum what this is the VC itself mean right in 
+  the claims in Avicii itself mean that's a really helpful set of 
+  properties and so a lot of the motivation around this work in 
+  general rolls back to that three-party model and the ability to 
+  go in and support a lot of cool use cases from this.
+Mike Prorock:   A very strong privacy-preserving you know manner.
+Mike Prorock:  So with that kind of background I want to take a 
+  look at basically what is a VC look like a now if you're in the 
+  VC job world and this has been interesting because I've been 
+  going through and running some implementations on the 
+  traceability side and running bunch of different implementations 
+  on different test sets and the different extensions and things 
+  like that lately and one of the neat things is that you can do 
+  things now like as long as you're setting this head.
+Mike Prorock:   Order properly.
+Mike Prorock:  And we'll get into what goes in there and just a 
+  little bit the payload is just a normal verifiable credential 
+  what you would typically see as a credential right it's the claim 
+  set gets passed in and you can literally just rip out from a lot 
+  of these vocabularies I'll use Trace abilities and example but 
+  obviously there's citizenship and others where you have these 
+  well-defined json-ld vocabularies and schemas validation stuff 
+  its grip that example out and dump it right in right cool Nifty.
+Mike Prorock:   Right and what's going on with a jot if you're 
+  not familiar.
+Mike Prorock:  User often called jots the Nerds are want to do we 
+  tend to Jumble things together and pronounce them in weird ways 
+  especially acronyms and what's going on basically is that there's 
+  a conversion and encoding right of the header and the payload as 
+  well as ultimately the signature wants its generated into what's 
+  called base64 URL so it's just Basics T4 but entirely web safe 
+  right it's.
+Mike Prorock:   He its URL safe so some characters are flipped 
+  around.
+<orie> base64url (no pad) : )
+Mike Prorock:  Libraries for this stuff and what that encoding 
+  gives use that ability to transmit that information over the wire 
+  embedded in a URL Etc right yes no pad or you know and you know 
+  let's it lets you kind of pass that stuff around in a safe Manner 
+  and know that what you're doing what you're going to get is the 
+  same on the other side right that's that's a helpful property 
+  right the data Integrity stuff.
+Mike Prorock:   I think everyone's familiar with but that gets at 
+  this.
+Mike Prorock:  Different way right it runs canonicalization and 
+  you get your end quads and you sign those end you know or Hashem 
+  Ensign or sign those and quads and that's that's what you're 
+  getting right you're getting the signature of transform method 
+  this is much more let's take an encoding and sign that encoded 
+  version now what goes in the header here right then so they're 
+  going to talk about the header of it well a couple of things from 
+  a verifiable credential side probably first and foremost and one 
+  of the things that I think is unique about the way.
+Mike Prorock:   He sees leverage jobs as a format for exchanging 
+  this information is that the.
+Mike Prorock:  Right it's a lot of times just pointing back to a 
+  did web or something like that it's giving you a way to go 
+  identify what is the key material involved with signing or 
+  verifying this John the a log we're going to come back to what I 
+  think is probably though the most interesting thing is that 
+  there's two things involved to New Media types that are coming 
+  about and there's there's a little at-risk asterisk here which is 
+  that there's double pluses in these.
+Mike Prorock:   Things so depending on what happens at ietf we 
+  may have to adjust the.
+Mike Prorock:  But it'll be some version of this which is the 
+  type is a VC so verifiable credential that is linked data because 
+  the core data model is linked data and it's encoded in a job 
+  format right so it's in a Json web token.
+Mike Prorock:  Ha what's interesting also is the cty the content 
+  type this tells us that what what do we expect as far as to claim 
+  said to me right what do we expect to be in the pale oak right 
+  now as you encode it well this gives us a really strong hint here 
+  it's a verifiable credential conforming to the VC core data model 
+  it's like data because the core data model is like data data 
+  model and it's in Json right json-ld is ultimately just.
+Mike Prorock:   Json at the end of the day and so that can give 
+  you some.
+Mike Prorock:  About what to do with this after you get it out 
+  right after you've gone through and verified signatures.
+Mike Prorock:  Um and assuming Harrison / normal is watching the 
+  queue because I can't monitor both chat and otherwise so if you 
+  feel like Ewing up just raised hand type Q Plus whatever get it 
+  so now let's roll back to that out thing right Alex specifies 
+  what is the algorithm Works pectin here right what it what is the 
+  actual algorithm for the signing standpoint and this has relation 
+  to other things right but things that often times will get 
+  confused.
+Mike Prorock:   So key types for instance or the curve name.
+Orie Steele: 
+  https://www.iana.org/assignments/jose/jose.xhtml#web-signature-encryption-algorithms
+Mike Prorock:  And these are not the same thing and the nice 
+  thing about a log is that there's a really good reference to 
+  where to go to find out what should be in there and I've got this 
+  in the handy links section if you're not familiar with it there's 
+  this really cool thing that Ayanna gives us which has where do we 
+  go through and look for the algorithm location figure out how to 
+  go handle this stuff and what RFC it's related to or other spec 
+  Etc right.
+Mike Prorock:   Right you can see interesting things like what 
+  about stuff point.
+Orie Steele: 
+  https://www.iana.org/assignments/cose/cose.xhtml#algorithms
+Mike Prorock:  You'ii see you know specs so it's a really good 
+  set of directions and master list the other thing that I think is 
+  important is sometimes you'll hear things like oh well with Jose 
+  or comes at a right you got to go in and Implement all the things 
+  right well not real to a degree it's important to represent a 
+  certain Baseline for compatibility and how to know that if you're 
+  going through and double-checking your implementation or things 
+  you may or may not want to down profile from.
+Mike Prorock:   From they actually give you the Jose.
+<orie> these IANA assignments are not "all" the algorithms that 
+  have ever existed... they are the ones that were worth 
+  registering..
+Mike Prorock:  Idea I think Corey's put the Cozy equivalent in 
+  the chat but they'll tell you is this a required algorithm is 
+  optimal is it really strongly recommended right recommended plus 
+  and also things like don't use this thing it's prohibited it's 
+  bad for whatever reason right in fact we just last couple ietf's 
+  who went through and push some of this stuff through where it's 
+  like Yep this is a thing that's out there you really don't want 
+  to use it outside of very odd.
+<orie> sometimes its good to register things, specifically to 
+  prohibit them.
+Mike Prorock:   You know scenarios that are well understood.
+Mike Prorock:  Um so with that I think the other thing that's 
+  worth noting is the fact that this does set up you know some 
+  other other goodies right any of the other John stuff that you're 
+  familiar with or want to leverage you know x5c for example right 
+  if you want to tie stuff back into hey that I want to make sure 
+  you're going in verifying a certificate channels right with this 
+  and stuff like that so it sets up some of those abilities there.
+Mike Prorock:   So what goes.
+Mike Prorock:  Well it's a b c right it's straight core data 
+  model VC.
+Harrison_Tang: Yeah menu many has a question.
+Manu Sporny:  Yeah Mike on the on your last Slide the x5c stuff 
+  is there are there any plans to use x Phi C + VC ja door like 
+  right any algorithms or anything around that.
+Orie Steele: https://www.rfc-editor.org/rfc/rfc7517#section-4.7
+Mike Prorock:  I don't think we would need to write any 
+  additional text there honestly and part of the reason for that is 
+  it's already well defined in the RFC and so because that 
+  verifications happening as part of like years this container 
+  around the sine data and they coding you know we would push back 
+  to that original RFC loan that but I could say for sure that 
+  there are cases like I'm thinking of regulatory cases especially.
+Mike Prorock:   Lee where we met in a profile for.
+Mike Prorock:  Saying hey here's how do we want to go handle this 
+  in this very specific case that seems like a really good place 
+  I'm thinking a traceability though we probably won't do it there 
+  as something where you might want to point out and say hey if 
+  you're doing this you want to leverage this x5c property or X5 
+  you and go point back to it does that make sense man.
+Manu Sporny:  Yeah interesting thanks.
+<orie> the juice must be worth the squeeze.
+<manu_sporny> ^ yeah, wondering about that.
+Mike Prorock:  Honestly this is one of the things I like about 
+  this is you don't have to reinvent the wheel or go back and 
+  revisit things unless there's a real good reason to write you got 
+  to kind of ask yourself first foremost like does this thing 
+  already exists is it already well defined and is there some 
+  reason I would want to down select that behavior because they're 
+  often times are right there there are a lot of cases where an RFC 
+  might be real broad or things like think about did core right you 
+  know they're you wind up with these very broad things in aspect 
+  to account for.
+Mike Prorock:   A lot of use cases that may not be applicable in 
+  a case where you need tighter security or verifications.
+<manu_sporny> (and other things like -- what if your did:jwk 
+  conflicts w/ x5c) -- haven't thought deeply about that, tho.
+<dave_longley> also be careful: more ways to make verifiers go do 
+  more work
+Mike Prorock:  Payload well fortunately we've got a data model 
+  and a bunch of examples of bunch of vocabularies in this group 
+  and everything else so that's what goes in the payload right it's 
+  all that that work that were actually doing from more business 
+  logic side rather than the structure inside.
+Mike Prorock:  How do I.
+<orie> JWS refers to payload (which is opaque bytes), JWT refers 
+  to payload as "claimset" and its content type is KNOWN to be 
+  JSON.
+Mike Prorock:  The stuff if I want to create a VC what do I do 
+  here right the you know that's where you get into some 
+  interesting stuff here and I think strong benefit from this side 
+  which is generally speaking you're going to use in whatever 
+  language you like to program it in my case on the lazy so I like 
+  to code in Python I also do a lot of machine learning so I'd like 
+  to code in Python but I also right.
+Mike Prorock:   Right go for production code typically or at.
+<orie> cool part of using JWS is you can use it to secure content 
+  types that are not JSON, like application/nquads.
+<dave_longley> (if there are 10 different things you can tell the 
+  verifier to go do because they were already "built in", that's 10 
+  different ways to attack)
+Mike Prorock:  Have people that work for me right to you know and 
+  rust and things like that they're better for different different 
+  kinds of scenarios but really all you're doing is just calling in 
+  like if I'm thinking right off the top of my head you would call 
+  into the sign operation right right on your JWT library or jwk 
+  library and so in the case of python that's a literally just JW T 
+  Dot and Coke right that's it and you pass it in what your 
+  encoding.
+Mike Prorock:   Passing the private key you're signing with you 
+  may have to.
+<orie> Dave, sounds like you are advocating for profiles.
+Mike Prorock:  Helga's a separate parameter depending on your 
+  implementation sometimes it will read that from the header right 
+  depending on what's going on and then it performs the gives you 
+  back a nice nice little encoded job just like this over on the 
+  right hand side and I rip these examples right from VC John spec 
+  by the way also double-check them pretty regular as I think 
+  disorient now what about verification well same thing use the 
+  built-in libraries you got.
+Dave Longley: +1
+<orie> They are indeed considered a best practice.
+Dave Longley: +1
+<orie> but they tend to be application specific.
+<orie> or industry specific.
+<dave_longley> ensure your off-the-shelf libs can let you 
+  "profile down" too
+Mike Prorock:  Go ahead and once again and I'll use Python since 
+  its kind of built into my brain at this point in some areas at 
+  least where you go ahead and you say yep I want to decode and 
+  it's I've got this thing and you know maybe need to separate the 
+  signature maybe not ending on the application and here's the 
+  public key that I got now obviously you're going to probably want 
+  to put some helper wrappers around the stuff like you know to 
+  apply by rules that you're most likely after in a verifiable 
+  credentials.
+Mike Prorock:   I'd like hey maybe I want did resolution on that 
+  key ID right and go ahead and get the public key and verify that 
+  and add some additional checking.
+Mike Prorock:  And stuff like that.
+<orie> similar to vocabularies.
+Mike Prorock:  So that's all left up to the implement but the 
+  core cryptography side is very separate from the data model side 
+  under this world.
+Mike Prorock:  Now I want to get some security concerns and this 
+  stuff to General write this this is pretty broadly deployed stuff 
+  in the industry so we've beat it up pretty good we found lots of 
+  fun ways to exploit it unfortunately of course sometimes the bad 
+  guys find that stuff before you do the normal preface do first 
+  and foremost is use good key material good Randomness and protect 
+  your private keys right that's same with any kind of cryptography 
+  signing etcetera but there are things that are very specific and 
+  the the in.
+Mike Prorock:   Euler the fact that Al is not mandatory because 
+  it wasn't thought of that way.
+Mike Prorock:  As being a mandatory thing and thinking more these 
+  private use cases but yachts and that's obviously evolved this is 
+  pretty problematic right and so there were lots of things around 
+  that and there's lots of good discussion rolling in the ietf 
+  around this one of the people advocating for that has just joined 
+  the queue so Horry fire away.
+Mike Prorock:  Yep yeah it's a good call out because there's a 
+  it's one of those areas that has definitely been people 
+  especially in terms of the authentication world right exchange of 
+  credentials a little bit different but it's definitely something 
+  there are really good reasons for the way the reason it is 
+  designed the way it is in the verifiable credential use case we 
+  probably want to be a little are on the safe side right it's not 
+  going to hurt us any we're already packing in some extra data.
+Mike Prorock:   Here other little random things though that I 
+  think people don't always think.
+Mike Prorock:  This has to do with whenever you get some piece of 
+  information from anywhere on a network all right you just assume 
+  if there's a URI in there that it's probably not trustworthy 
+  right now Suma came from a user in an attacker particular and so 
+  you can get into things like Kidman out you know manipulation and 
+  you know pointers back into sir chains are valid or have weird 
+  loops and all sorts of other stuff to try to exploit something 
+  and another Library like openness.
+Mike Prorock:   The cell that might be present on your system so 
+  there's just things to be aware of that.
+<orie> Another reason to include alg, is that you can integrity 
+  protect it, which can improve security characteristics.
+Mike Prorock:  Normal rules that come up have to be accounted for 
+  and so if we think about our case with the kids right we're 
+  usually they at least from an implementer side in our case like 
+  we're always using dids I think for the hockey material and 
+  Discovery you know you've got to have good sanity checking in 
+  rules and stuff like that around there right so it's it's one of 
+  those things that's important because the header sign right and I 
+  think.
+Mike Prorock:   Orie just is beating me to things I should.
+Mike Prorock:  Wanted to or not which is that you know you can 
+  lock in that out right and what's expected there when you issue a 
+  VC so some recommendations when you're thinking about use of ECS 
+  and I think some of this stuff is probably going to wind up in 
+  either implementation guide or in informative and editorial notes 
+  on the specification itself but there's some stuff that typically 
+  tends to happen when we're thinking.
+Mike Prorock:   Going about.
+Dave Longley: +1 For profiles and using libraries that let you 
+  restrict to what you support, as getting "built in things for 
+  free" needs to be audited otherwise
+Mike Prorock:  See charts Etc which is I think this is a key 
+  difference with v CG W when your go through and start to do 
+  things like say yep you told me this is json-ld now I want to go 
+  ahead and make sure it's json-ld before I do something else and 
+  maybe I might rules say that I don't want to accept it if it's 
+  not valid probably is a good case in a lot of regulatory 
+  scenarios but you're processing that after you verify the 
+  signature right and so that's an important thing you eat.
+Mike Prorock:   You don't trust the data because it came from 
+  outside somewhere what you have.
+Mike Prorock:  Our trust in it right event because we got a 
+  little more confidence that the data at least wasn't tweak around 
+  with before you received it and maybe you're checking off of a 
+  trusted issuers list and things like that right answer questions 
+  that come on similarly things like status list checking stuff 
+  like that rules for that apply after in the processing and 
+  inspection and then acting all the data that you received in the 
+  cop more importantly acting all the contents of the data you 
+  received don't happen until.
+Mike Prorock:   I'll after you have verified that the signatures 
+  are saying now some questions.
+Mike Prorock:  What if I don't want to mess with the encoding 
+  this thing right I don't need this base64 URL stuff right I just 
+  you know I want to fall expanded payload stuff like that right 
+  well fortunately the rfc's you know and ietf is given us a good 
+  mechanism for this which is you know and I think I don't think 
+  this has been set and maybe we will maybe we won't look at this 
+  and VC jobs but you know there are very good standardized way to 
+  say I want to do a you know JWT with an unencoded payload.
+Mike Prorock:   Those are the cases where the a you probably 
+  better be looking at something if you're not doing in coding 
+  some.
+<orie> sad part of unencoded payload for JOSE is the header size 
+  increase
+<orie> COSE is much better about detached payloads.
+Mike Prorock:  It's reproducible you may want to be looking at 
+  things like J CS or some kind of canonicalization prior to 
+  signing and stuff like that and you better really defining this 
+  stuff in either some kind of profile that or interop 
+  specification that lets you know what both sides are and what the 
+  transport mechanism is making sure that stuff is not going in 
+  there and yes the header size definitely increases or you so 
+  Davis e will make you there.
+Dave Longley:  Yeah just wanted to make an important note here 
+  around processing after verification given the the three party 
+  model wherein people who are implementing digital wallets should 
+  be aware of the fact that they're not always going to have an 
+  allow list or something for the issuers that they might trust and 
+  so any attacker can create a dead key for example and they will 
+  produce you know a valid signature so just just be aware of that 
+  fact.
+Dave Longley:   That a lot of the stuff in the.
+<orie> maybe don't supprt "did:key" unrestricted in production
+Dave Longley:  Anyone can generate a signature that will check 
+  out and so that's an important consideration.
+<manu_sporny> Orie, did:jwk has the same issue...
+<orie> that is kinda like "alg:none", or embedding jwk in header 
+  for JWT...
+<manu_sporny> it's an aspect of SSI, not any particular  key 
+  format
+Mike Prorock:  Yeah 100% and thanks for bringing that up Dave 
+  because I think that's something that a lot of people you know 
+  here verifiable credentials right assume that that means that 
+  this data should be trustworthy or something else right but it's 
+  this is the kind of the downside to some of these aspects of 
+  things like self Sovereign issuers and stuff like that right 
+  we're sure you're leveling the playing field but not going to be 
+  appropriate for all cases you should probably take things for 
+  what that's worth.
+<orie> yeah, same issue for any static public key.
+<manu_sporny> yes ^
+<dave_longley> digital wallets will never know all the issuers, 
+  it doesn't matter if it's did:key, did:jwk, whatever.
+<dave_longley> that was just an example :)
+Mike Prorock:  So some Nifty things that come from this and and 
+  this is actually the area that I think most excites me it's not 
+  so much VC jobs outside of yes finally we've got like the core 
+  data model and I can have good link data that I want to go 
+  exploit another ways from a Knowledge Graph standpoint all this 
+  other cool stuff you can do with json-ld and you know like data 
+  in general you know is the fact that this is really setting a 
+  path to an a Very consistent and standardized way using off.
+Mike Prorock:   The shelf tooling go down this path of how do we 
+  really start to look.
+<orie> device trust stores are a thing.
+<dave_longley> i'm talking about general purpose digital wallets 
+  for the VC ecosystem.
+<orie> FYI, cose has no reserved tag for "typ"
+Mike Prorock:  In Seaborn binary right and this stuff gets really 
+  important when you're looking at large volumes of data going over 
+  the wire this gets especially important as I noted at the bottom 
+  there right when we start to need to start to look at things like 
+  detached payloads right hey I've got this big old file over here 
+  that I'm you know but registering a signature around and stuff 
+  like that how do I do this and if you if you're not familiar with 
+  cozy and Seaboard stuff like that don't worry like we've actually 
+  got as tears we already lined up.
+Mike Prorock:   Up some of the folks who actually wrote like the 
+  descriptor languages and actually I think the guy that wrote 
+  Seymour.
+<orie> it does have a reserved tag for content_type.
+Mike Prorock:  Coming in a few weeks to go talk about what is he 
+  more we're going to come from and all that kind of fun stuff so 
+  if you need a primer on that don't worry we're going to make sure 
+  everyone knows where to go for the stuff but cozy in the case of 
+  Sabor object signing and encryption as opposed to Jose which is 
+  Json signing and encryption the you know the what we get from 
+  that is Nifty stuff like that and the example I gave here is 
+  where you just take payload right rip it.
+Mike Prorock:   It over to see boards pretty.
+Mike Prorock:  Most libraries so like in Python it's just like 
+  Seaboard to .load S on a date right you're there right you're in 
+  right you've got Seaboard it's just binary now and then you can 
+  sign it normal mechanisms using whatever libraries you like for 
+  that because they sign one is the example right and that's where 
+  wouldn't there's one signature attached to this thing's pretty 
+  normal for a lot of these use cases.
+Mike Prorock:  Is though that are covered by cozy cozy sign in 
+  generals a little more loose and have multiple signatures and 
+  stuff like that so it's an area worth exploring a big note here 
+  something that jots give us that c WT S & Cozy don't really give 
+  us right now right in the end this is something that I think the 
+  working groups that ietf are kind of hammering out is typ Right 
+  content types got a good reserved tags 3 I believe.
+Mike Prorock:   It's like plug it in but once again going from 
+  memory here.
+<orie> content type is tag 3, see the other tags... 
+  https://www.iana.org/assignments/cose/cose.xhtml
+Mike Prorock:  Don't trust me on that verify all right but you 
+  can set the content type that I'm expecting it to be good linked 
+  data conforming to verifiable credential core data model but this 
+  typ side right this is the non-standard side or it could probably 
+  rent your ears off about why we need to get that in I actually 
+  agree with him but it's going to take some work to get that that 
+  side of it covered and it may be covered elsewhere so.
+Mike Prorock:   Yeah Ted.
+Mike Prorock:  Tag three and and has to do with binary encoding 
+  Etc right how do we tag the stuff.
+Mike Prorock:  So on that I do want to follow up on some things 
+  that make verifiable credentials better and especially things 
+  with VC John's right stuff that comes up a lot with data 
+  integrity and some values there is like hey you know if terms got 
+  added to the context that you're using right if a term got 
+  modified you'll know it turned out of you probably won't but if 
+  the term got modified write your signature is going to break cool 
+  right.
+Mike Prorock:   But you actually do really want to be.
+<orie> SRI... 
+  https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
+Mike Prorock:  This is on your side just putting that logic in 
+  there you know on your implementations cetera but if you've got a 
+  remote resource right there are things like s RI and other other 
+  specs probably want to be looking at in terms of how do you 
+  actually make sure that when you're verifying something that you 
+  trusted especially in cases context for you probably shouldn't be 
+  calling out to the web to grab that stuff right you should 
+  probably be working off of trusted reviewed cache copy how do you 
+  know that cache copies one.
+Mike Prorock:   That got used it issuance time so there is a pull 
+  request out on this this is actually.
+<orie>	> Subresource Integrity (SRI) is a security feature that 
+  enables browsers to verify that resources they fetch (for 
+  example, from a CDN) are delivered without unexpected 
+  manipulation. It works by allowing you to provide a cryptographic 
+  hash that a fetched resource must match.
+Manu Sporny: +1 To SRI
+Mike Prorock:  An underlying issue in json-ld that they have 
+  noted in the json-ld spec so just be aware of that right this 
+  this kind of Integrity aspect of knowing that remote resources 
+  are the same as what you're operating on is a big question in 
+  especially in general right think about the trade case a lot of 
+  times you may have some external thing that you've got a 
+  signature of or a hash of that you need to be able to represent 
+  in a standardized way something comes up a lot for us and I know 
+  this question has come up a lot.
+Mike Prorock:   A lot in this group has come up in VC working 
+  group so there is a PR on that.
+Mike Prorock:  Is that typically when I'm writing code I want to 
+  make sure that the okay what they're a verified this signature 
+  right it is from who it says it is the signature checked out all 
+  that stuff now I want to know before I even take any steps what 
+  is there what are these checks like a form to make sure that the 
+  structured data that I got right now actually is what I think is 
+  the easy check first righteous check make sure it's valid Json 
+  cool could thing to do then probably checked.
+Mike Prorock:   Make sure is it valid Json Aldis instructor 
+  properly Etc but you could probably.
+Mike Prorock:  Further right and if you've got schemas and things 
+  like that especially schemas defining what a VC is schemas to 
+  describe the vocabulary that you're specifically using that's a 
+  good check and then maybe you can think about operating on the 
+  contents of the thing that are in there so these are these are 
+  all things you probably want to be layering on since we're asking 
+  questions about security and integrity and the validity of data.
+Mike Prorock:  With that big old collection of helpful links if 
+  you've not seen them just starting places to go dig in and I did 
+  include it last one right just tell you about the ubiquitous of 
+  this kind of thing but like Akamai and that was digging around 
+  like and one of the things that I thought was interesting is they 
+  had a great old iot example of like yeah I want some tokens and 
+  keys to exchange around and stuff like that how do I just do that 
+  with Bash.
+Mike Prorock:   Ash and all that's a salad tools are commonly 
+  installed on either mine.
+<manu_sporny> haha, was that a dig on Windows.... /how dare you!/ 
+  :P
+Mike Prorock:  You know Linux box or if you're on Windows right 
+  inside of whatever their new containerization thing is that I'm 
+  sure as a developer you have installed because you really need 
+  things like piping and good dueling you know the rest of the Unix 
+  ecosystem there so you know the stuff is really built around a 
+  lot of prolific widely deployed stuff and a lot of times it's the 
+  tools are right there at your disposal to go start to play around 
+  so.
+<orie> sounds good
+<orie> take questions if there are any
+Mike Prorock:  Going to open it up for questions and I had to I 
+  had to get the dig in on Windows the but Tory anything that I 
+  missed that you think I probably should have covered the he said 
+  sounds good so he's probably doing like three meetings Ximena.
+Manu Sporny:  I'm curious about the cause a cozy stuff right 
+  because he signed and in thoughts there is there is the idea 
+  there to kind of follow the same direction that the VC jot stuff 
+  is taken which is you know you basically just take the core data 
+  model you shove it in a in a you know Seymour object and because 
+  he signed one that or are there other further optimizations that 
+  you're thinking of like.
+Manu Sporny:   Yeah compression anyway that's General.
+<orie> current plan here: https://w3c.github.io/vc-jwt/#with-cose
+Mike Prorock:  Yeah yeah great great question man you know this 
+  is my implementer individual hat on right for me I think a good 
+  starting place that you kind of have to do is kind of why you 
+  have to do Json in general these days anyways as you got to start 
+  with what people know and what they're familiar with and support 
+  that as a base case and then get into worrying about 
+  optimizations after the fact so if I were to take a pic and we've 
+  got this defined.
+Mike Prorock:   Right um.
+Mike Prorock:  I will comment on this but if I were to take a pic 
+  on preference you rip it right over into Seymour cosine 1 it's a 
+  clean starting place that everyone understands that's been I mean 
+  especially because the software supplies chain side of things 
+  it's had a lot of highs in EN like what problems are we going to 
+  run into how do we handle things like counter signatures later 
+  witnessing stuff and they said there's lots of cool problems 
+  being explored in that space and it's had a lot of really really.
+Mike Prorock:   Ali good eyes and actually some of them are on 
+  this call and there's some of the folks from rat.
+Mike Prorock:  Bonus call that that's that's what I got there or 
+  a do you want to comment specifically I think I did call that out 
+  around the cty side and you know content so content type and type 
+  but or do you want to comment explicitly your thoughts there.
+Mike Prorock:  He cute - so I must have said close enough to what 
+  he was thinking that I was not totally wrong oh there we go.
+Orie Steele:  Sorry yeah I clicked the wrong button content type 
+  is the type of the payload so you know if you wanted to secure 
+  different media types and you wanted to make sure that the 
+  registered media type would be well understood you would go to 
+  the media types registry which I can share a link and you know a 
+  million different known register.
+Orie Steele:   Third media types.
+Orie Steele: 
+  https://www.iana.org/assignments/media-types/media-types.xhtml
+Orie Steele:  And if you really wanted to secure one of those 
+  registered media types you would put that registered media type 
+  as the content type and then you would put the bites of that 
+  payload that is of this content type in the payload and you would 
+  secure it and so what you know the verifiable credentials working 
+  group has done is its defined a or it's requested or registration 
+  right and and so it won't receive its requested.
+Orie Steele:   Castration for my.
+Orie Steele:  Until the multiple pluses issue is resolved but you 
+  know assuming that that the registration of eye on assignments 
+  will accept media type requests with multiple plus signs in the 
+  future then you would expect to see VC + LD + Jason in the media 
+  types registry assignment from Ayanna and then you could secure 
+  that content type with cozy or any other.
+Orie Steele:   System that.
+Orie Steele:  It media types and then you know this is where you 
+  plug in those values so you know for example JWT it's already in 
+  media-type registry but that one is for the typ property that's 
+  the type of the token and it's a very confusing thing if you're 
+  just getting familiar with this content type is the content type 
+  of the payload but typ is that sort of type of the entire toe.
+Orie Steele:   Okin and if you think about it like that's weird 
+  because.
+<manu_sporny> good analogy, Orie.
+Orie Steele:  Type property that's embedded inside of the content 
+  which is actually also sort of the way rdf types work where 
+  you're looking at the the type property of a verifiable 
+  credential and you're seeing it's a permanent resident card but 
+  you're embedded or that's a type that's embedded in content.
+Mike Prorock:  Yeah cool yeah I've already that I think that was 
+  well said and I think that nesting of things right is a very 
+  common thing we see just in you know comp in general right I've 
+  got some piece of data I need to wrap it up somewhere else and 
+  then go send it over the wire do some things to it get it back 
+  out right Harrison I think you're up on the Queue I could be 
+  wrong though.
+Harrison_Tang: Yeah actually I have a question to to or we I 
+  think earlier we have a lot of Side by Side Bar comments and then 
+  or you mentioned something about device trust stores and then 
+  also sub resource Integrity like who are those things are they 
+  related.
+Orie Steele:  Oh device trust doors are usually part of your 
+  operating system there will be a place where you can install 
+  certificates and this is your attackers favorite place to install 
+  things because it allows for your operating system to process 
+  things that it maybe wouldn't normally have processed and so a 
+  common example of this is like when your employer install 
+  certificates on.
+Orie Steele:   Your device that are specific to your.
+Orie Steele:  And they do that to meet with your employer's you 
+  know security policies.
+Orie Steele:  Or in the another case you know maybe you're a 
+  government and your mandating that certain certificates be 
+  installed on devices of every citizen who accesses the internet 
+  from that government you know within the region that that 
+  government is a The Sovereign so these are cases where you know 
+  there is a collection of key material or certificates and they're 
+  on your device accessible to your operating.
+Orie Steele:   Item and they can be used to make.
+Orie Steele:  Decisions that impact your security or privacy and 
+  you may not be aware that they're having these impacts if you 
+  didn't install the certificate yourself or if you just don't know 
+  how certificates work on devices but they are going to be 
+  processed and understood by your operating system you know for 
+  the most part you will get a warning for a self-signed 
+  certificate for web origin unless you install that self.
+Orie Steele:   Sign certificate.
+Orie Steele:  Bring system until someone to you know force it to 
+  be trusted and that's your operating system trying to protect you 
+  self signed certificate you shouldn't trust that but maybe you 
+  know better maybe you're a developer and you've got a self-signed 
+  certificate for something and you just want it to be accepted and 
+  you don't want your operating system to complain to you every 
+  time you connect through that then you can install that 
+  certificate or you know maybe you're wanting to install a 
+  different set of root certificates for.
+Orie Steele:   Another use case maybe it's an iot use case and 
+  you want those certificates to be available.
+<keith_kowal> Any thoughts on the Open Badge 3.0 implementation 
+  of VC-JWT?
+Orie Steele:  You know for some reason so that's the the trust 
+  stores pieces like operating systems tend to have a place where 
+  they put these things and if you want your software to be 
+  processed in the same way the operating system would normally 
+  process these things like that's where you need to go to install 
+  these kinds of resources and the sub resource Integrity stuff I 
+  linked to that and that Speck is.
+Orie Steele:   For a basically it covers.
+Orie Steele:  The concept of the browser wants to check the 
+  Integrity of an external resource so you could imagine you have a 
+  web page and you're loading jQuery which is very common 
+  JavaScript library that lots of people use so jQuery is also a 
+  really great place to put privacy destroying malware because you 
+  know that lots of things are going to use it so you might want to 
+  check the Integrity of the jQuery bundle before the browser will 
+  do.
+Orie Steele:   Anything with it.
+Orie Steele:  Then you could put sub resource Integrity check on 
+  that and that way if the attacker compromises the jQuery resource 
+  server that browser will like automatically not process that 
+  script because the resource Integrity check is broken and so it 
+  forces the attacker to go to places to compromise instead of just 
+  going to a CDN and serves JavaScript resources and compromising 
+  them there and then having every web browser.
+Orie Steele:   Matically served.
+Orie Steele:  That's loading that particular script tag.
+Harrison_Tang: Cool thank you thanks.
+<mprorock> a?
+Mike Prorock:  Awesome I think I see Andreas on what a plus is I 
+  can't type yet and dress.
+Andres_Uribe: Yeah thanks Mike Super useful to hear this one of 
+  the things I was wondering is how do you see the evolution of 
+  this and what features specific to include jots DC being used 
+  here because most of the things that I've sought where jws 
+  instead of dots right like.
+Mike Prorock:  Yeah exactly it's a good call out you know I think 
+  there are things that are worthy of exploring right there you 
+  know especially when we think about things with you know the way 
+  these work right intermediary Changing Hands Etc well it gives us 
+  some flexibility to think about some of the properties that are 
+  built into jobs it just using them as is that may be appropriate 
+  for like hey this is part of my wire transfer aspects and things.
+Mike Prorock:   Like that.
+Mike Prorock:  Are things there but this is really just setting 
+  the Baseline this is the minimum and that's why that you know is 
+  what's being approached from a standardization standpoint now can 
+  you go further yeah hundred percent and that's one of the nice 
+  things about it the I think the obvious one that comes to mind is 
+  your certificate chaining and checking that stuff right that 
+  comes up in a lot of both Regulatory and Enterprise scenarios 
+  where not only do you want to know that the public key is from 
+  selling.
+Mike Prorock:   And so right in that there.
+<orie> if you secure JSON with a JWS, you have made a JWT... all 
+  the fields of a JWT are optional... this is a major reason to use 
+  profiles, which you care about the structure of the claimset 
+  /payload... the profiles can make the "optional" stuff 
+  "mandatory" and this improves interoperability.
+Mike Prorock:  Happen there but you might need to know some other 
+  items about that as far as is it tied back into assert chain as 
+  they've been a revocation that's managed centrally elsewhere that 
+  you need to check against in addition to maybe the credential 
+  status tracking and things like that so so those are all things 
+  that I think when we think about exploiting additional properties 
+  of jots those are you know those are things there.
+Mike Prorock:   And yeah I think has.
+Mike Prorock:  Loaded right it's the this is where profiles or 
+  building out like a specification around a specific use case 
+  that's where you can then leverage that stuff around that those 
+  specific use cases.
+Mike Prorock:  Does that make sense Andreas.
+Andres_Uribe: Yeah yeah yeah it does thanks I guess like yeah 
+  it's where he's Point like yeah jwt's are all jws has but.
+Mike Prorock:  Yeah exactly that's it's one of the nice things 
+  about it it's also one of the dance Einsteins at least some open 
+  questions of like well do we want to do this well it depends on 
+  your scenario right that's the flexibility there II did see I 
+  think it was Keith post to the question around open badges in the 
+  MVC jobs you know asking like hey would we want to go down this 
+  path with open badges or should demonstrate a way of doing it I 
+  mean sure obviously we're putting the speck out there there's no.
+Mike Prorock:   Not too I think one nice thing to think about is 
+  when we think about.
+Mike Prorock:  Ventral side right stripped the fountain drop this 
+  right in right so there's really not a lot of lift to go in and 
+  say Hey you know I just want to go use VC jot with something 
+  that's already got a well-defined model Cole great use that 
+  well-defined model and just drop it in and sign it a different 
+  different way.
+<kerri_lemoie> I think some are already doing this with Open 
+  Badges.
+Mike Prorock:  Any other questions from the group here in or 
+  actually I'm going to put Nori on the spot talking about like 
+  well-defined model and what happens if you want to go test it 
+  with this approach how long did it take you to go test this with 
+  the entire traceability vocab or.
+Orie Steele:  What do you mean like do you mean like if you have 
+  a library that supports standard signature algorithms how hard is 
+  it to sign arbitrary Jason.
+<dave_longley> Maybe some of the drawbacks / what is lost if you 
+  take that approach would be good to hear about.
+<dave_longley> For example, can you still express your open badge 
+  on a website that can be processed by a search engine?
+Orie Steele:  Yeah so I mean it's pretty easy different libraries 
+  are going to you know have different apis for the standards so 
+  you might find that you know it's a python Library might use the 
+  Builder interface scheme Library might have like a lot of 
+  functional interfaces for producing signatures go and rust 
+  they're going to expose different apis for performing a standard 
+  cryptographic operations.
+Orie Steele:   Operation the good news is that most.
+Orie Steele:  Libraries will attempt to support standard 
+  cryptography wherever possible because it's what gives them 
+  interoperability so you know for example the web crypto API 
+  supports es 256 but to implement es 256 in web crypto it's 
+  awkward you have to like experience web crypto which isn't really 
+  all that fun but the signatures you get out on the other side of 
+  that or standard compliant es 256.
+Orie Steele:   Others you have to do some work too.
+Orie Steele:  From web crypto but you know you might use an 
+  off-the-shelf Hosey Library it's going to produce es 256 Jason 
+  Webb signatures like in a much faster and easier sort of 
+  developer experience and you know in general if you're signing 
+  content of a known type you're going to have a really easy time 
+  because a lot of the standards and cryptography been built around 
+  the idea of I'm going to protect the content type and then I'm 
+  going to.
+Orie Steele:   To protect the payload of that type and.
+Orie Steele:  Fire can check the signature after reviewing the 
+  header and then a verifier can process the payload according to 
+  the content type and that's a safe API because you don't 
+  accidentally start processing content that an attacker had 
+  mutated and so most standard Json web signature libraries when 
+  you're processing Jason Webb signature that's a Json web token 
+  they will only give you decoded Jason if the signature checks and 
+  it will just give you an.
+Orie Steele:   Error otherwise.
+Orie Steele:  So you'll be looking at base 64 encoded stuff until 
+  you've done your security check and you can decode That Base 64 
+  and flow your foot off if you want that's always an option in 
+  cryptography but it's important to sort of think about the 
+  standards are one layer of Defense they apis that you build for 
+  those standards are another layer of defense and you want to sort 
+  of use both of those layers wherever possible.
+Orie Steele:   That's it.
+Harrison_Tang: Cool thanks Horry any other comments we have.
+Mike Prorock:  I was muted and talking I wanted to comment 
+  quickly on something I saw flyby in the chat and I think David 
+  Longley brought up a really good comment which is in a 
+  specifically I think in relation to open badges like hey what 
+  about embedding stuff and a web page for you know to make sure it 
+  gets picked up by search engine etcetera right that that is a 
+  case where doing things like thinking about having the unencoded 
+  side or a you know paired up and.
+Mike Prorock:   ODed on encoded as useful.
+Mike Prorock:  Good example of something that's getting adoption 
+  today like hey I want to verify this thing is what it says it is 
+  and is it rolled out and it's a piece of media I found on the web 
+  that's getting picked up by search engines cetera is actually 
+  kind of combat of I want to say at this point now you know BBC 
+  New York Times entail Adobe others writer playing in this I use 
+  the content authenticity side and what's interesting about that 
+  and I think there's a lot of correlations back into open badges 
+  in some ways right I've got.
+Mike Prorock:   Some piece of thing that I need to make sure is 
+  actually authentic Etc.
+Mike Prorock:  Handled with embedded Seaboard right and in a way 
+  that's very in line with the direction that I think John's 2.0 
+  are you know we're going BC job 2.0 is going so that's just 
+  something to bear in mind like when you're thinking about 
+  exposing this content exposing content that might be on the web 
+  that you then need to verify you know you're not necessarily 
+  doing that embedded proof side the way you would be doing 
+  otherwise you might be externalizing it may be taking the payload 
+  and keeping it on coded.
+Mike Prorock:   You know Pearl.
+Mike Prorock:  Etcetera so those are cases that you just need to 
+  have in mind there.
+<orie> maybe "vc+ld+cbor" will be a registered media type 
+  eventually
+<manu_sporny> one day :P
+Harrison_Tang: All right thanks Mike I've been where a time so 
+  just wanted to give a quick preview of what's coming so next week 
+  we'll have a discussion around Bitcoins or you know the ID method 
+  and then we after that we'll have people from velocity Network 
+  talking about know they are Davis thing and then the week after 
+  that we have filled when we talking about you know kind of give 
+  you an overview of the book on learning digital identity.
+Harrison_Tang:  yeah and earlier Mike mention about.
+Harrison_Tang: One of the co-authors of Sabor talking about 
+  concise binary object representation on July 11th so so a lot of 
+  cool things coming up feel free make sure that you can join our 
+  discussions and then also share these events with your friends 
+  and people who might be interested to learn more.
+Harrison_Tang:  all right.
+<manu_sporny> also great job on the presentation MikeP and Orie 
+  -- nice save! :)
+Harrison_Tang: Have a good one.

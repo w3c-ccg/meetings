@@ -1,0 +1,233 @@
+Thanks to ben_(transmute) and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-05-23-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-05-23-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-05-23
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=May&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  ben_(transmute) and Our Robot Overlords
+Present:
+  Nis Jespersen , Russell Hofvendahl, Paul Dietrich GS1, Ben 
+  (Transmute), Orie Steele, Chris Abernethy
+
+ben_(transmute) is scribing.
+Our Robot Overlords are scribing.
+Ben_(Transmute): Octopus is off.
+Nis Jespersen : https://github.com/w3c-ccg/traceability-vocab
+Nis Jespersen :  Thanks for  joining the weekly trace call. Make 
+  sure to sign the contributor agreement.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/736
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/786
+Orie Steele:  I was able to get the CI to pass. But it has 
+  surfaced a couple of issues that would be good to discussed. 
+  These are linked in the PR.
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/787
+Orie Steele:  The first is schema validation for GS1 and schema 
+  validation.
+Orie Steele:  The original intention for the PR was a VC version 
+  2 test suite and maybe even convert all of the existing 
+  credentials to version 2 automatically. To start supporting v2. 
+  There are places where we assert the structure of the context.
+Orie Steele:  In the case of GS1 there is no trace context, but 
+  in the case of MTR we have trace context. To be able to define 
+  what the shape looks like in JSON schema. We want to know about 
+  cases where the JSON is changed before getting to the verifier to 
+  make sure time is not wasted.
+Orie Steele:  One issue would be to add more contexts, which 
+  would add a lot more processing time. Or adding a giant array of 
+  empty objects, so schema validation is a security vector 
+  especially for data integrity proofs.
+Orie Steele:  So I can get a yes or no answer if a credential is 
+  able to validate to schema. We might have an issue when we have 
+  issues, like with GS1 we can bundle GS1 into our context. In our 
+  respec document we're saying a context must be in some kind of 
+  allow list.
+Orie Steele:  The way we're handing schema validation is not 
+  working for GS1 credentials.
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/736/files#diff-398c38414614698511f6dbce592de71d0be2b3b21504661a5fc7d033fea2eb26
+Nis Jespersen :  I wanted to the comment about the "must include 
+  traceability" limitation. The GS1 schemas do list which contexts 
+  are required for which credentials. Are we in the clear if we 
+  remove that constraint?
+Orie Steele:  The respec document needs to be updated, and it 
+  needs to match something to the example that I just linked. We 
+  would expect to say that we have the v1 or v2 context, and then 
+  we have some other list of credentials. And both our respec and 
+  schemas need to say that.
+Orie Steele:  Another thing we could say is traceabiliy schemas 
+  only allow for version 1 or version 2 or both. And say here are 
+  the other contexts that are allowed. What we should definitely 
+  not do is say you can put in anything. And we should fix this 
+  before we freeze.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/credentials/MillTestReportCredential.yml#L16
+Nis Jespersen :  At line 16, isn't on a credential by credential 
+  basis where you control what is allowed per schema. So if MTR is 
+  v2, wouldn't that be reflected at this part of the schema? Do we 
+  need to do anything else outside of updating the respec document?
+Orie Steele:  You're correct, but if you change the property in 
+  this schema, then it needs to line up with what we say in respec. 
+  To say ONLY v1 or ONLY v2. But if you say either or, you run into 
+  problems like issuanceDate is now validFrom.
+<ben_(transmute)> Paul: I wanted to confirm, you want to have a 
+  JSON schema to validate the context within some set that is 
+  valid. What's the restriction on what rules you can apply in JSON 
+  schema?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/credentials/GS1KeyCredential.yml#L16
+Orie Steele:  You can make a very specific to only what is spec 
+  legal. The GS1 data model that you guys have defined has which 
+  contexts are allowed. And say that it must match that.
+Nis Jespersen :  We list credential v1 and then two GS1 contexts.
+Orie Steele:  So reading this out, what this really says, the 
+  traceability GS1 key credential. This JSOn schema validates ONLY 
+  validate credentials that fit the spec. And that should allow you 
+  to check the schema before you do any JSON-LD processing.
+<ben_(transmute)> Paul: And somehow this complicates things when 
+  we move to VC v2?
+Orie Steele:  In order for this to be legal in v2, GS1 would need 
+  to say we're supporting v2. Think about this from a customs 
+  agencies perspective. They want to know if they're v1 or v2 
+  credentials. They want to know is there a schema that verifies an 
+  instance of this JSON.
+<ben_(transmute)> Paul: To support traceability with v2 GS1 needs 
+  to provide v2 credentials. and a schema to define those 
+  credentials.
+Orie Steele:  So might have v1 GS1, v1 traceability, v2 GS1, and 
+  vs traceability.
+<ben_(transmute)> Paul: Do the versions align with the verifiable 
+  credential data model?
+Orie Steele:  Yes, so in v2 issueanceDate is now validFrom and 
+  the schema would need to be updated.
+Orie Steele:  The PR adds a v2 credential. And it would add a v2 
+  credential that would be shipped. And there are a lot of software 
+  libraries that won't be able to issue it. The core spec for v1 
+  made it more difficult. So we want to decent when we want to do 
+  that and how we want to do it. But it's likely we're going to be 
+  in that situation where we have multiple version. and if GLIEF 
+  adds credentials here, the same will apply as well.
+Nis Jespersen :  Beyond this conversation, do we need to make a 
+  decision where we have double support, and then deprecate version 
+  1 before we get there?
+Orie Steele:  I think the highest priority action item is to fix 
+  the respec document to make GS1 valid to allow those contexts. 
+  The v1 support is currently not correct.
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-vocab/#extensions-to-standard
+Orie Steele:  In summary if we merge 736 we will be in a world 
+  with three kinds of context, And our respec document says there 
+  is only one kind of context.
+Orie Steele:  In that section we want to say, "these are the 
+  contexts that you MUST support in order to conform to this 
+  profile"
+Nis Jespersen :  My opinion is that's a separate issue. We need 
+  to update the respec, I would push towards merging, and then 
+  clean up after ourselves.
+Orie Steele:  Also we have tests where we expect v1 and it's 
+  going to start surfacing weird errors. I made a comment in the 
+  Pull Request.
+Orie Steele:  We need to update the tooling if we merge 736.
+Nis Jespersen :  Any objections to merging 736?
+Nis Jespersen :  If we include a v2 credential, should we mark it 
+  as experimental?
+Orie Steele:  We have tags and they are being used.
+Orie Steele:  If we merge this, there are other things we're 
+  going to have to fix in short order.
+Nis Jespersen :  We have three approvals, let's go ahead and 
+  merge.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/774
+<nis> acl paul
+https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-interop/reports/conformance/
+https://w3c-ccg.github.io/traceability-interop/reports/conformance/
+<ben_(transmute)> Paul: I ad a question if the lingering 
+  conformance and interop. Are being help off? Looking at the 
+  tests, the last was run in April?
+Nis Jespersen :  They should be running nightly, these ran 17 
+  hours ago, it looks like the date on the report page is not being 
+  updated.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/774
+Nis Jespersen :  Let's push forward with the pull requests.
+Nis Jespersen :  The next is the CATAIR mapping. There are 
+  changes requested and orie and mahmoud are not on the call, so 
+  let's address that next time.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/779
+Nis Jespersen :  This updates the Importer Security Filing and 
+  took out Oil and Gas because oil is not transported with this 
+  form.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/781
+Nis Jespersen :  We had "The Thing" credential, which has the 
+  ability to throw generic identifiers into an instance. So this 
+  creates a more business oriented credential. Originally I 
+  overwrote "The Thing" credentials. So this just adds an entry 
+  number. And Mahmoud approved it.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/782
+Nis Jespersen :  This aligns to the recommendation of using two 
+  letter ISO country codes.
+Nis Jespersen :  We got a response back from schema.org. And that 
+  dialog has started.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/783
+Russell Hofvendahl:  This is pretty straight forward to implement 
+  consistent fake phone numbers. Where 555 is the standard fake 
+  number.
+Nis Jespersen :  Great, probably a lot of what you're fixing is 
+  me not understanding the US area code.
+Nis Jespersen :  I would go ahead and merge as soon as the 
+  conflict is resolved.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/784
+Russell Hofvendahl:  This one adds USDASpecialtyCrops237AForm in 
+  response to feedback from AMS. This also goes into a few fields 
+  in agriculture product. And it updates a few related credentials.
+Russell Hofvendahl:  Extended products has some additional 
+  information from agriculture product.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/785
+Nis Jespersen :  This PR adds a workflows folder that defines a 
+  traceable presentation.
+<paul_dietrich_gs1> have to drop . Thanks everyone.
+Nis Jespersen :  And this it takes those workflows and renders 
+  them in the respec document using mermaid to render the sequence 
+  diagrams.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/788
+Nis Jespersen :  The next one builds on the previous PR and adds 
+  more business workflows. It has SIMA and Mill Test Reports and 
+  importer security filing.
+Nis Jespersen :  Any questions on what this is doing?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/545
+Chris Abernethy:  This one is brand new, so we might want to 
+  leave it until next week. This is an old issue for how Azure 
+  handles scope naming, which has a format that doesn't conform to 
+  the format we use. We removed the normative requirements for 
+  which scopes are required. And we make the assertion that 
+  implementations have handled some scopes for security.
+Nis Jespersen :  It's a little sad with how much work we put into 
+  getting it.
+Chris Abernethy:  After this came up, maybe we were over stepping 
+  our bounds.
+<ben_(transmute)> scribe-

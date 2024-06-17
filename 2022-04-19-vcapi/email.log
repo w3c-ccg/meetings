@@ -1,0 +1,826 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-04-19-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-04-19-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-04-19
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Apr/0097.html
+Topics:
+  1. Announcements and Community Updates
+  2. Pull Requests - mermaid.js diagrams
+  3. Should URL options be terms or absolute URLs?
+  4. Support for StatusList2021
+  5. Discoverability of VC API features
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Mahmoud Alkhraishi, Dave Longley, Eric Schuh, Dmitri 
+  Zagidulin, Joe Andrieu, Kayode Ezike, Brian Richter, Andy Miller
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Right welcome everyone to the April 19th 2022 VC 
+  API call our agenda.
+Manu Sporny:  On the agenda today we've got our standard agenda 
+  review introductions relevant Community updates and then 
+  basically issue processing so questions like should URL options 
+  be terms or absolute URLs should we support status list 2021 API 
+  discoverability Scopes in r&r's in OAS 30 linting see ICD and 
+  then any other business.
+Manu Sporny:   So that's what's on the agenda for.
+Manu Sporny:  Are there any updates or changes to the agenda 
+  anything else folks would like to cover today.
+<eric_schuh> Quick update from the use cases team: We made 
+  progress with our conversion script to get the sequence diagrams 
+  to mermaid format but have some bugs we are working through. Will 
+  be pushing that forward in the next week.
+Manu Sporny:  Go ahead Eric if you want to localize that.
+
+Topic: Announcements and Community Updates
+
+Eric Schuh:  Sure just the mermaids going to be at least another 
+  week Joe and I were just working through some bugs with the 
+  visual Paradigm to mermaid export tool that we're making so 
+  looking to just push that forward in the next week and hopefully 
+  get to mermaid sooner rather than later.
+Manu Sporny:  Okay awesome go ahead Joe.
+Joe Andrieu:  I'm here on a different topic I raise an issue in 
+  the repo about labeling these endpoints by their components 
+  i-it's were a poor the issuer service there are n points that 
+  will be on some and not on the others and if we don't distinguish 
+  that it's going to be hard for us to understand what these 
+  systems are really good.
+Manu Sporny:  Okay that sounds like a really important thing for 
+  us to track in an issue do we have one for that yet Joe okay 
+  okay.
+Joe Andrieu:  Yeah yeah I created that issue this is just drawing 
+  your attention I could go find it and put it in chat.
+Manu Sporny:  Be good yeah and you know plus 12 that agree with 
+  the concept there go ahead Dave.
+Dave Longley:  Yeah I think that's a good idea too I think we're 
+  also going to want to descend big you ate with app means I think 
+  it's I don't want to take up too much call time on that but 
+  that's something we need to do I think.
+Joe Andrieu: https://github.com/w3c-ccg/vc-api/issues/285
+Manu Sporny:  Okay okay I mean we could potentially talk about 
+  that today I forgot to also note that we've got some pull 
+  requests outstanding that we should probably well I guess we 
+  don't really need to take a look at today well let's go ahead and 
+  take a look at them as well let me go ahead and also point out a 
+  couple of other kind of announcement type things.
+<joe_andrieu> (That's the component identification issue)
+Manu Sporny:  Let me find the link here Paul is I should have 
+  this handy before.
+Manu Sporny:  Here we go let me go ahead and share my screen.
+Manu Sporny:  So here are a number of test Suites that we went 
+  ahead and actually Jim going to meet you because I'm getting some 
+  air noise from you here we go there's some VC API test stuff that 
+  we moved over to the ccg let me actually find the.
+Manu Sporny:  Where is the where the team's give me a second okay 
+  here teams I created an implementer team for the ccg and the 
+  implementers I just added people that I knew that were 
+  implementing and if I missed you and I should have put you in 
+  here please let me know the implementers are basically people 
+  that have access to the test Suites and Repose so we move these 
+  five test Suite.
+<dmitriz_> @manu - I'd like to be added to the implementer list
+Manu Sporny:  Over we haven't announced it yet we're waiting on 
+  one last push to the Edwards curve crypto sweet test Suites 
+  before announcing things so right now it's the issuer this is 
+  just like super high like the the simplest issuer API 
+  implementation the simplest verifier implementation we have a 
+  repo now for all the implementation.
+Manu Sporny:  Talk about that at a future call and then there's 
+  this data Integrity test Suite assertion library that we're going 
+  to reuse in a bunch of the crypto sweets but this is just a heads 
+  up that we moved all of these things over to ccg after Consulting 
+  with the chairs and there were cool with it Dimitri I think I saw 
+  you as wanting to be added here.
+Manu Sporny:  Let me go ahead and add you is there anyone else 
+  that wants to be added while we're here.
+Manu Sporny:  So these are the people I added.
+Manu Sporny:  Anyone else people can think of that should be on 
+  here.
+Manu Sporny:  Okay there's no real bar tipping added here other 
+  than you are actively working on implementations and you need 
+  access you know to the test Suites to be able to put in PRS and 
+  manage issues and you know that kind of stuff so if you know of 
+  someone that is an implementer that should be on this list please 
+  let us know so that we can add them we are also trying to assign 
+  repositories just these two start and will.
+Manu Sporny:   You know as new.
+Manu Sporny:  What stories are added will add people there.
+Andy Miller:  I'm sorry this is Andy from IMS and I know that 
+  nobody has started yet on the Opie and CLR implementations but I 
+  think they're going to within weeks or and so if if they do and I 
+  want to point them toward over here would I who when you say just 
+  let us know who would who would I where would I point them.
+Manu Sporny:  Any of the chairs or me just you know on the 
+  mailing list if they say hey I'm an implementer and I'd like to 
+  be added that's all it takes and will someone all in all we need 
+  to know from them is their GitHub handle in that kind of stuff 
+  Andy of note specifically for IMS Global this crypto Suite here 
+  implements the Edwards curve stuff that you guys were asking for 
+  in your issue tracker so they'll be a you know.
+Manu Sporny:   What we hope to be a good solid tests.
+Andy Miller:  That sounds great thank you so much.
+Manu Sporny:  For that okay no problem the I guess the other 
+  thing to point out in D is that if they you know the this is 
+  supposed to be an inclusive set of modular test Suites and so if 
+  there are 0 B CL are like VC test credentials or something of 
+  that nature maybe we should chat with IMS Global or just have a 
+  community chat.
+Manu Sporny:   About how to enable that.
+Manu Sporny:  Certainly in kind of the design of these test 
+  Suites they're all supposed to kind of their independent test 
+  Suite so they only test a small part of the ecosystem but one of 
+  those test Suites could be you know 0 be expressed as a 
+  verifiable credential or no bi 30u no verifiable credential thing 
+  or CL are expressed as a verifiable credential as its own test 
+  Suite itself and then you could Point like a bunch of the 
+  implementers at that test suite and see how many of them pass.
+Manu Sporny:   Like that's the that's what we're shooting for 
+  here is to get.
+Manu Sporny:  For you to throw a bunch of implementers and what 
+  you're doing you know at IMs Global and then getting a getting a 
+  immediate feedback on how many of them are passing and how many 
+  of them are not.
+Andy Miller:  That's a brilliant idea I think well I'll try and 
+  push that through.
+Manu Sporny:  Okay alright okay that's that heads up anything 
+  else from kind of an announcements Community announcements 
+  perspective that we should cover.
+
+Topic: Pull Requests - mermaid.js diagrams
+
+Manu Sporny:  Okay moving over real quick pull requests.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pulls
+Manu Sporny:  See we have the following pull requests outstanding 
+  let me go ahead and share my window again.
+Manu Sporny:  It's really so let's see his mic here today Mike 
+  Farley.
+Manu Sporny:  Seeing him so we're kind of blocked on this PR 
+  we're waiting for Mike to respond to some of the commenters this 
+  PR is new as of this weekend it adds mermaid diagram support so 
+  we used to have a actually I can show the image here probably in 
+  the current API spec do that.
+Manu Sporny:  So we had this diagram here for an exchange example 
+  showing a typical interaction between a holder app like a digital 
+  wallet and a verifier app and kind of the back and forth that 
+  could be done using the VC API Exchange in points the issue with 
+  this is of course like this is a static image and it's not 
+  accessible from an accessibility you know standpoint.
+Manu Sporny:  So people with sight challenges wouldn't be able to 
+  extract the text and all that kind of stuff right and there was a 
+  suggestion that we kind of switch over to using mermaid we have 
+  done that in this PR in this is what the diagram looks like right 
+  now it's the the displays a little buggy because of some Respec 
+  issues.
+Manu Sporny:   But I think I know what.
+<eric_schuh> yep, as soon as we get our exporter working I will 
+  be giving this a try
+Manu Sporny:  You can put an effects in the future to the 
+  renderer and the expectation is Eric Joe you'd be using the same 
+  feature in the use cases document if you had any relationship 
+  diagrams or flow diagrams or Swim Lane diagrams like this you can 
+  use mermaid for all of that and it's and it's a pretty simple 
+  thing so let me try and find like this is this is that sequence 
+  diagram right here this is.
+Manu Sporny:   What it looks like when you.
+Manu Sporny:  It up as a mermaid diagram you use mermaid markup 
+  and then it transforms it into that image Joe you're on the 
+  queue.
+Manu Sporny:  You might be double needed.
+Joe Andrieu:  I was nice is the ability for edits in the pr to 
+  modify the diagram without going to an editor like iterating on 
+  the diagram itself is always a pain in the butt but here you can 
+  just comment on a single line and change the name or change the 
+  syntax of one of these messages it really makes collaboration 
+  much easier.
+Joe Andrieu:  So I love this I'm glad that you have it thanks for 
+  that work.
+Manu Sporny:  So you can basically do what I'm doing right now 
+  and you can change the diagram by just editing that text okay so 
+  hopefully that'll be useful to folks still some bugs that need to 
+  be worked out but I think we have a handle on that so I think 
+  that's going to be merged unless there are any objections you 
+  know in the next couple of days and that's the only PR we have 
+  any comments concerns about the pr before we.
+Manu Sporny:  All right moving on two issues.
+Manu Sporny:  Sorry I lost a lost a window.
+Manu Sporny:  All right so let's do.
+
+Topic: Should URL options be terms or absolute URLs?
+
+Manu Sporny:  URL options topic first one up is 198.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/198
+Manu Sporny:  And let me go ahead and open that issue here my 
+  screen again okay so there was a issue raised about whether or 
+  not you're a options should be terms or absolute URL so I think 
+  we tried very hard not to infect the API with json-ld and so 
+  today eight all the.
+Manu Sporny:  That we have the outermost structures into the API 
+  or Json structures there's no assumption that they're json-ld 
+  anything but then we started using a bunch of json-ld terms like 
+  this Edward signature term and the assertion method term and you 
+  know verification method and things of that nature and so the 
+  very good question of.
+Manu Sporny:   You know what.
+Manu Sporny:  What are we doing here should we be using fully 
+  qualified URLs should we be using short json-ld terms if we use 
+  the json-ld terms should we include a context or not code it you 
+  had mentioned a couple of things in here do you want to vocalize 
+  some of that on the call.
+Kayode Ezike:  Oh yeah this was quite some time ago looking at it 
+  now so so basically so the first comment I made at it I'd have to 
+  probably let's review this again but I think what I was saying 
+  for the first one is just like the option having the option to 
+  make that property optional so that if it's included in the terms 
+  we can yeah.
+Kayode Ezike:  Have to just give you this again but.
+Kayode Ezike:  Basically I think.
+Kayode Ezike:  Idea was kind of similar to along wonder what we 
+  were saying about like trying not to enforce enforce the the 
+  json-ld sort of verbiage in there and making it more accessible 
+  to you and you know industry standard apis and so I think that's 
+  effectively what I was getting at there.
+Manu Sporny:  Okay thanks Dave Europe.
+Dave Longley:  Yeah so one of the purposes for using json-ld is 
+  to establish a context that you're working in and data and this 
+  API already has such a context we already know that it is a VC 
+  API were working within the that context and we're going to we're 
+  using either VC jots or data Integrity sweets and so the context 
+  is already been established in those are the only things that are 
+  supported so.
+Dave Longley:   So given that.
+Dave Longley:  I think we can just work within that context so we 
+  don't need to.
+Dave Longley:  Do fully qualified URLs for terms and things like 
+  that.
+Manu Sporny:  Right any other comments on this topic so what then 
+  what's the suggestion we just keep using terms like we're we've 
+  always been using or or we use fully qualified URLs or something 
+  else.
+Dave Longley:  I think the only reason to use fully qualified 
+  URLs as if we had a use case for bringing another vocabulary 
+  terms into this API and I don't think that we have that so we 
+  have we have a clearly established context and we don't have any 
+  use cases for bringing anything into this so I don't see any 
+  reason to adopt that complexity.
+Manu Sporny:  So go ahead Joe.
+Joe Andrieu:  I like what David saying although I think.
+Joe Andrieu:  The point of extensibility is to allow people to 
+  innovate faster than the standards process can do so.
+Joe Andrieu:  Is is there an option that the terms defined in 
+  this PC API specifications are not fully qualified but that 
+  someone can use a fully qualified URL for Innovation to add a new 
+  type of term.
+Joe Andrieu:  Other words can we get the best of both worlds.
+Dave Longley:  Yes I think that just falls under General 
+  extensibility to the API in if we depending on how we say that 
+  extensibility happens if we're ignoring unknown Jason terms or 
+  whatever then that gives people that the space to do that in 
+  might be that some of these apis are more lockdown than that but 
+  someone running an experiment could open their apis up to allow 
+  additional options in whatever ecosystem they're running they're.
+Dave Longley:  So I think there still.
+Dave Longley:  And I'm not sure what we want to say or what we 
+  feel like we need to say about enabling that.
+Manu Sporny:  So what if we say exactly what you just said 
+  Longley which is any keywords any terms used in the VC API that 
+  are not defined in the VC API are ignored unless the 
+  implementation understands what that term means that creates a 
+  situation where we can have conflicts.
+Manu Sporny:  But at the same time.
+Manu Sporny:  You know allows that kind of extensibility go ahead 
+  Joe.
+Joe Andrieu:  Well you you can't know if they understand it 
+  unless it's fully qualified so you could say unless it's in the 
+  VC API it has to be fully qualified but I think if we drop it 
+  just because it's not in the VC API then that's not extensible 
+  right.
+Manu Sporny:  Yeah but you know again the I think point is that 
+  the large swaths of the Jason Community Live by that thing where 
+  it does not need to be fully qualified you just you know if you 
+  like the job stuff if you don't if you don't recognize the thing 
+  then you just ignore it you drop it on the floor right and and 
+  that is one design philosophy the question is do we follow that 
+  that's what the law design.
+Manu Sporny:   Philosophy or do we say that.
+Manu Sporny:  Things need you know Java like reverse domain names 
+  or need just fully qualified URLs go ahead Longley.
+Dave Longley:  Yeah I think we have an additional difference in 
+  this situation because I believe that we're developing Jason 
+  schemas that would reject any additional properties that are not 
+  known that are not part of the spec and so in order to run the 
+  kinds of experiments that people might want to run to do 
+  extensibility they would have to open that up and that kind of 
+  implies that they would understand those but those properties in 
+  their own ecosystem where that would be opened up.
+Dave Longley:  B extensibility in the space is a little bit 
+  different from in the full open world space with VCS where you 
+  definitely want to have fully qualified names because anybody 
+  could be saying anything about anything and interacting with 
+  anyone in any way and these These apis are slightly more locked 
+  down in that case I would say that I'm not against having a 
+  statement in the speck that says if you want to.
+Dave Longley:  Are met with names they.
+Dave Longley:  To be fully.
+Dave Longley:  But that to me also feels like it's going to fall 
+  into sort of the anti pattern of.
+Dave Longley:  The browser qualified CSS terms or X headers so 
+  I'm not sure if that's the right approach for an API.
+<dave_longley> there is no "start off" ... it's forever
+Manu Sporny:  Right and in the for those that are unfamiliar with 
+  the browser qualified x dash anti-pattern what the browser 
+  vendors found was that when they start off with really long fully 
+  qualified names or just fully qualified names like x dash Mozilla 
+  Dash blah Dash blah that people start using and depending on 
+  those and then they start doing massive you know creating like 
+  massive CSS files where you have x dash.
+Manu Sporny:  Webkit Dash block.
+Manu Sporny:  Mozilla Dash block stash Opera Dash blah and they 
+  just put in a ton of different things before the thing is 
+  standardized and then once you standardize it you can't remove 
+  that code or at least there has been a propensity to just never 
+  remove that code and always leave it in there so that's the 
+  challenge with fully qualified names is that some point it 
+  ossifies in your software needs to support it whether whether or 
+  not it was experimental at the time and so the suggestion.
+Manu Sporny:   That the browser vendors have made is.
+<kayode_ezike> Is one of the concerns that we don’t want API 
+  callers to need to spell out the terms via URIs?
+Manu Sporny:  Pretend as if your extension is going to be 
+  standardized at some point in Define the term and have a spec for 
+  it and you know that that sort of thing so.
+Manu Sporny:  It's a it's a tough.
+Manu Sporny:  It's a it's a difficult discussion Joe I don't know 
+  if your cue is old or not.
+Manu Sporny:  In jail you might be muted if you're talking.
+Joe Andrieu:  Yeah but I'm not sure it's the same case because 
+  there isn't the ability in the other architecture to have a 
+  future term that maps to the old term I can automatically have 
+  that work but we can do that by adding the term to the spec and 
+  even identifying that as perhaps having originated as this other 
+  term right those are all json-ld is and.
+Joe Andrieu:   But it's a different.
+Joe Andrieu:  Mark if if what we say is that the Jason LL that 
+  Json property must be in the VC API then we don't have 
+  extensibility which I think would be a negative because I think 
+  what's what we need to be able to support is different components 
+  in the ecosystem right the the issue our app and the verifier app 
+  being able to innovate independently that is that is our 
+  challenge we.
+Joe Andrieu:   Have a monolithic system.
+Joe Andrieu:  If my issuer has a new service in the verifier 
+  doesn't quite support it I don't want them to drop it or I 
+  potentially don't want them to drop it I wanted to pass it 
+  through so we can get to the right party.
+Manu Sporny:  Right here I think I saw you say something in chat 
+  but I missed it I don't know if you want to vocalize it.
+Kayode Ezike:  Sure yeah I was just looking over some of my 
+  comments again just to refresh my memory but I think when I had 
+  made them I was thinking that one of the one of the kind of 
+  leading questions or concerns maybe was that we didn't want to 
+  put like I guess API calls in a position where they would have to 
+  spell out two terms fear their absolute uri's that they map to 
+  and the vocabularies is that not part of what the motivation was 
+  for for.
+Kayode Ezike:   Or rather is that not part of like the concern.
+Kayode Ezike:  Not enabling contacts and other json-ld isms or 
+  something else here.
+Manu Sporny:  No you've got it I mean if we just put a context at 
+  the top then people could use the terms and they'd be fully 
+  qualified and everything would be fine the issue of course is 
+  that there's a subset of the community that absolutely does not 
+  want to do that they don't want json-ld anything in the BC API 
+  and given how every working group we have that has json-ld as a 
+  part of the work item ends up in this kind of like.
+Manu Sporny:  Fight over Jason Aldean versus.
+Manu Sporny:  I think what we're trying to do is just start out 
+  with the API and say no json-ld and in see in see how far we can 
+  get understanding that there are plenty of apis out there that 
+  are json-based apis that don't use json-ld and they do they do 
+  fine for some definition of fine so you're right coyote we could 
+  we could do that in make it.
+Manu Sporny:  At the same time I think we've heard push back on 
+  doing that Joe you're on the queue.
+Dave Longley: +1 To Jason Aldean
+Joe Andrieu:  Yeah two things one I want to celebrate our hero 
+  Jason Aldean because I love the transcriber but more seriously 
+  there's a point of process here man and I don't mean to bust your 
+  chops over it but are you that voice because you really shouldn't 
+  be representing other voices right like if you think it's a bad 
+  idea I can support what you're saying but if other people think 
+  it's a bad idea we need them to show up in these calls so they 
+  can hear the arguments and participate in a collaborative way to 
+  deal with.
+Joe Andrieu:   With the pain.
+Joe Andrieu:  Trying to resolve with these features.
+Manu Sporny:  Yes I completely agree with you I am one of let me 
+  let me say that I'm one of the voices I'm tired of fighting the 
+  json-ld fight and here's a place where we don't have to do it and 
+  you know I think we can make a lot of progress on other things if 
+  we don't kick off that json-ld fight I think there are other ways 
+  of doing extensibility one of them being like let it be a wild 
+  west.
+Manu Sporny:  On the on the Jay on the API.
+Manu Sporny:  And see what happens I don't think it's going to be 
+  a catastrophic you know thing because remember I mean the reason 
+  we use json-ld for verifiable credentials is the design space is 
+  so fantastically large right for the VC API design space is not 
+  that big the design space is just the VC API in its concentrated 
+  enough to the point where I think we can go without Global 
+  semantics go ahead Joe.
+Joe Andrieu:  So I don't think it's as simple as you think it is 
+  part of it is I'm looking at these apis and you know we don't 
+  even know which component it's on like a lot of these things were 
+  talking past each other and people are very sophisticated and 
+  complex workflows that they're expecting to handle here you know 
+  in fact the addition of arbitrary workflows made this insanely 
+  complex and so how do you specify workflow of a different type 
+  that needs properties that aren't defined yet.
+Joe Andrieu:  You're dropping all the.
+Joe Andrieu:  That I don't have in the existing spec so I think 
+  that's really problematic if we want to have customized workflows 
+  I I would love to talk with you offline in fact I queued up maybe 
+  two months ago man you and notion about this issue that I 
+  deferred because of where it's at in the did conversation and the 
+  did approval process but I think I think the Jason json-ld 
+  distinction is more political than technical.
+Joe Andrieu:   And because Jason.
+Joe Andrieu:  And so I would like to get past this false 
+  dichotomy and figure out what are the rules so that we can have 
+  whatever terms we need and it doesn't break whatever tools people 
+  are using that don't want to invoke json-ld because I think we 
+  can get there and I don't know that we want to take up more time 
+  on this call but I'd be happy to have a conversation with you 
+  I'll find to see if you even think I'm being saying about how I'm 
+  thinking about it.
+Manu Sporny:  Plus one of that go ahead Dave.
+Dave Longley:  Yeah I agree you got a lot with what Joe said but 
+  the way I see json-ld is as a tool and if the tool is unnecessary 
+  in some space don't use the tool but if it's necessary in another 
+  space use the tool and I think we just need to be clear about 
+  where those lines are and then they might be more of a spectrum 
+  than a line so there's you know we might be bumping into fuzzy 
+  gray areas where we could go one way or the other.
+Dave Longley:  There's talking about extensibility with respect 
+  to workflows json-ld starts to make a lot more sense than if 
+  we're just talking about options for passing in crypto sweet 
+  names to an API so I think there's I think there's a spectrum and 
+  the technology makes a lot of sense the more open and more 
+  unpredictable possible extensions might be and so that's my 
+  feedback.
+Manu Sporny:  All right all great all great comments and input.
+Manu Sporny:  So this issue was specifically about URL options 
+  and it didn't necessarily contemplate what you just said Joe 
+  which was the workflows bit and I agree with you and think it 
+  gets much harder to make this decision when we have a much more 
+  open design space and also agree with what they've saying about 
+  you know json-ld being a spectrum of problems that you can apply 
+  to some of them make sense some of.
+Manu Sporny:  You know don't.
+Manu Sporny:  Can we take one of these options off the table like 
+  absolute URLs does anyone here feel like that is a winning 
+  strategy.
+Manu Sporny:  I can anyone speak in support of using absolute URL 
+  so the choices would be between just like Jason Wild West you 
+  know just use short terms they don't map to anything full stop 
+  and then the other alternative is figure out some way to apply 
+  json-ld context in that tells you what terms you can use.
+Manu Sporny:   But is anyone.
+Joe Andrieu: Options: a-wild west
+Manu Sporny:  For like fully qualified URLs as as options to put 
+  into the VC API go ahead Dave.
+Dave Longley:  I think we have to break down what we're talking 
+  about first in for like I like I was saying before we're talking 
+  about options passed into terms like crypto sweets I think those 
+  can just be really simple terms I think that's a closed mostly 
+  closed space and there's no need to adopt additional complexity 
+  in that space when we're talking about designing entire workflows 
+  or expressing business rules.
+Dave Longley:   Rules that would go into like exchanges.
+Dave Longley:  That's a much more open space that probably needs 
+  a tool like json-ld to be able to handle the extensibility over 
+  there so I think we need to think we need difference I think we 
+  need to adopt the appropriate extensibility strategy for whatever 
+  component we're talking about.
+Manu Sporny:  Okay Joe you're on the queue.
+Kayode Ezike: +1 Dave_Longley
+Joe Andrieu:  I'm not sure if what I was trying to argue for is 
+  one of those three which is why I listed them and chat my sense 
+  is if it's not a fully qualified URL this is altogether if it is 
+  not a fully qualified URL that it must be a term defined in a VC 
+  API specification I guess that is may be functional at the same 
+  as saying there will be a VC API context and that will define 
+  those terms.
+Joe Andrieu:  I feel that the language.
+Joe Andrieu:  Is very json-ld specific whereas I mean what I'm 
+  worried about is someone wants to innovate in a workflow and that 
+  needs a new Option passed to a endpoint that before didn't have 
+  an option of that type how do we plug that in if we are wholesale 
+  ignoring terms that are not in the VC API spec.
+Joe Andrieu:  But if it's in the spec I don't want to have to be 
+  fully qualified that feels like a mess.
+Manu Sporny:  Yeah so one one strategy of course is the 
+  tried-and-true registry so we just have a registry and if you're 
+  in the registry it's totally fine to use short terms and if 
+  you're not then you've got to have a full full URL that's another 
+  you know approach that's kind of a low bar of Entry that ensures 
+  global interop.
+Manu Sporny:   I agree.
+Manu Sporny:  Everything you said Joe you know if it's in the 
+  spec it's Overkill to put it anywhere else or so sorry it's 
+  Overkill to have a fully qualified URL if it's in the spec but we 
+  need to support you know extensibility and how do we do that the 
+  options are the same options here and always have which is you 
+  know mechanism like json-ld to do decentralized extensibility or 
+  a centralized registry to do.
+Manu Sporny:   Wised extensibility.
+Manu Sporny:  And they could all you know they are all they're 
+  all workable Technical Solutions.
+Manu Sporny:  What are the next steps here how can we move this 
+  issue forward.
+Manu Sporny:  I guess is anyone here Mike's assigned here is 
+  anyone willing to help Mike kind of push this conversation 
+  forward.
+Joe Andrieu:  So given given your disposition and speaking with 
+  that voice many which I appreciate that you said you are one of 
+  those people I would like to understand like in an issue so we 
+  can debate it why json-ld is not a suitable answer.
+Joe Andrieu:  Like why aren't we using json-ld to deal with these 
+  disambiguation of properties.
+Joe Andrieu:  And I would you know maybe maybe I'm open to the 
+  fact that Mike Jones and others who are in the the ante json-ld 
+  Camp have legitimate points that I haven't understood yet don't 
+  understand that use cases are something but I think it would be 
+  good to have a GitHub moderated debate about those points.
+Manu Sporny:  I guess that issue is not this issue because this 
+  one tries to focus on just your all options itself and what we're 
+  saying is Well it sure would be nice to resolve the issue more 
+  broadly.
+Joe Andrieu:  Yeah I support that maybe a new issues the right 
+  place.
+Manu Sporny:  Okay okay great issue for terms across all API is 
+  outputs.
+Manu Sporny:  It's really all inputs we have a solution for the 
+  outputs.
+Manu Sporny:  Okay so that's the next step there and why don't we 
+  go ahead and create that so this is 198 so what's the issue here 
+  what is the extensibility story for terms used in the BC API.
+Joe Andrieu:  Can we make a specifically why not you say CLD.
+Manu Sporny:  I think we need to talk about all the options 
+  that's that's why Joe I think you know we need to compare and 
+  contrast against the json-ld is just one option so there's option 
+  one which is the wild west do whatever no registry option two is 
+  used json-ld and option three is use user registry a centralized 
+  registry right.
+Joe Andrieu:  Sure but I guess my request in the dialectic is I 
+  want someone who doesn't like json-ld tits to document why so 
+  that we can discuss it and debate it like if you want me to do 
+  that for Jason I could do that as well but I understand how 
+  json-ld solves many problems that Json doesn't Json alone doesn't 
+  what I don't understand is the meritorious reasons that others 
+  feel.
+Joe Andrieu:   The way they do about Jason.
+Joe Andrieu:  I understand the political reasons or the business 
+  reasons but that's not technical.
+Manu Sporny:  Sure okay so let's let well then we'll open two 
+  issues one for Jason Aldean one for Jason right why what are the 
+  reason easons that json-ld shouldn't be used for karma 
+  extensibility in the VC API.
+Manu Sporny:  Patient started in issue 198.
+Manu Sporny:  The group wanted to have a discussion around I 
+  around what the reasons for not using json-ld for extensibility 
+  and TBI.
+Manu Sporny:  Sure that's discussion.
+Manu Sporny:  It's all start at one and then.
+Andy Miller:  I know you said the conversation started but it 
+  reads the conversation stated.
+Manu Sporny:  Oh thank you thank you thank you or could we go 
+  thank you okay and then this one is using its Jason shouldn't be 
+  used Jason.
+Manu Sporny:  It just Ruiz it's really a Jason registry.
+Manu Sporny:  Shouldn't be used for term extensibility in the.
+Manu Sporny:  Okay there we go to issues raised Joe does that 
+  meet your what you were hoping for.
+<kayode_ezike> We may want to (kindly) share this issue with 
+  folks in the anti-JSON-LD camp?
+Manu Sporny:  Okay great um all right so that's that issue it's 
+  always it's always a bit depressing when one issue turns into two 
+  but at the same time it's a conversation we need to have so so 
+  great for that okay next up.
+Manu Sporny:  The yes coyote we do want to do that would how can 
+  we tag people I think maybe my Pro rock quarry might have 
+  thoughts on it my Jones would certainly I mean Mike Jones would 
+  probably have some thoughts on it Sam Smith with the have some 
+  thoughts on it Drummond I think argued pretty.
+Manu Sporny:  Just read as well but.
+Manu Sporny:  Yeah the Jason only thing yeah I mean if folks 
+  could go to that issue and tag folks that might be best I feel 
+  like we also need an explainer on exactly where this 
+  extensibility would happen we need some examples otherwise the 
+  whole conversation is going to go off the rails.
+
+Topic: Support for StatusList2021
+
+Manu Sporny:  Okay next topic support for status list 2021.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/214
+Manu Sporny:  This is issued to 14.
+Manu Sporny:  So my midi raise this one replication status 2020 
+  no longer supported we should migrate to used as list 2021 
+  agreement Marcus push back a bit and said not supported by who or 
+  what and then we should migrate t plus 1 that.
+Manu Sporny:  I think the the high level on this issue is that 
+  we're putting out of there's a test suite for status list 20 21 
+  and that's going to be out there I think this this issue was 
+  raised during a time where we were trying to pick like one 
+  mechanism and I think the new testing our infrastructure doesn't 
+  require that to happen so your implementation can support 0 
+  status list or revocation.
+Manu Sporny:   Haitian mechanisms and you.
+Manu Sporny:  Some of the test Suites and you will fail the 
+  status list 20 21 sweet and if you don't Implement revocation 
+  status 2020 you'll fail that test suite and that's totally fine 
+  thing right one of the reasons we split the all these repos apart 
+  was so that it was possible to you know pass some level of 
+  issuing and verifying that was legitimate like bear credentials 
+  don't need status list and they don't need revocation by and 
+  large.
+Manu Sporny:   My suggestion here is.
+Manu Sporny:  Is this issue and say that the VC API test Suite 
+  doesn't need to pick.
+Manu Sporny:  It doesn't need to pick a sorry what I'm trying to 
+  say the the status the the BC API doesn't need to pick a status 
+  you know mechanism let me let me stop to see if there are any 
+  concerns with that.
+<mahmoud_alkhraishi> I agree we should be mechanism agnostic
+Manu Sporny:  And Mahmud saying agree that we should be mechanism 
+  agnostic the VC API should be mechanism status mechanism 
+  agnostic.
+Mahmoud Alkhraishi:  Yeah this was raised absolutely when we were 
+  assuming that migration from revocation list status list would be 
+  reasonably quick and most people would just do it as a matter of 
+  course and that there would be no real reason to use replication 
+  most at that point I think there's a bunch of chain like the 
+  thinking has changed since then a few people I still believe we 
+  should be able to support both.
+Mahmoud Alkhraishi:  Both but yeah I think this is business like 
+  we should just say it should support staff listening to anyone as 
+  well as I think one that should be his.
+Mahmoud Alkhraishi:  No no I'm saying the test should tell 
+  support yeah.
+Manu Sporny:  Okay are you saying the spec should so this so I 
+  think got it okay got it got it the tests okay the tests should 
+  support both revocation 2020 and Status least 2021 the VC API 
+  spec should be agnostic with respect to the specific status list 
+  is the status.
+Manu Sporny:  The thing and it is totally possible to do that so 
+  we've structured some of these new test Suites so that it will 
+  test that you have the endpoint in like the endpoint exist and 
+  you can do some things with it and then the test Suites 
+  themselves they'll be ones for 2020 and 2021 so it is possible to 
+  check for the existence of the endpoint or potentially in the 
+  future do Discovery to see that the endpoint does exist without 
+  having.
+Manu Sporny:   To assert that it supports you know.
+Manu Sporny:  20 Or status list 2021 those specific tests will be 
+  a part of specific test Suites that specifically test those those 
+  things okay would there be any objections to effectively saying 
+  that so the VC API spec should be agnostic with respect to the 
+  status mechanism but Define you know and and point and then there 
+  will be test Suites for specific status.
+Manu Sporny:   Mechanisms as the way that.
+Manu Sporny:  This any objections.
+Manu Sporny:  Don't worry it's myth that so the group decide the 
+  VC API spec should Define mechanisms to Angus Define in points to 
+  modify the status status of a credential and chill but be 
+  agnostic with respect to the specific status mechanisms it is 
+  expected that test Suites.
+Manu Sporny:   Will be.
+Manu Sporny:  For specific status mechanisms.
+Manu Sporny:  So we've got that that probably need some spec text 
+  and so it's already marked with ready for PR let me clear that.
+Manu Sporny:  I got it back again make sure.
+Manu Sporny:  Okay anything else on this item before we move on 
+  to the next one.
+
+Topic: Discoverability of VC API features
+
+Manu Sporny:  Hey the next one is actually a pretty big topic 
+  we're not going to get through this but we might as well kick it 
+  off every ability of features.
+Manu Sporny:  To this issue to 18 or we raise this one the API 
+  lacks required discoverability features so basically this is a 
+  how do you discover whether or not the API is capable of doing 
+  something you want it to do so for example the security schemes 
+  that it supports I guess for let's see I guess this means oauth.
+Manu Sporny:   And I.
+Manu Sporny:  I think Brian Richter you suggested maybe you can 
+  put that stuff in did web at all Ted said well maybe night should 
+  be linked header or he's saying well what about well-known files 
+  but fundamentally the idea here is that there is a file that your 
+  API exposes that specifies whether or not your API supports a 
+  certain feature set or not.
+Manu Sporny:   Also known it's.
+Manu Sporny:  This issue yet but there is a mechanism through VPR 
+  where it can ask for crypto sweet supported like during the 
+  course of next change ask for crypto sweet supported ask for you 
+  know a variety of other things of that nature so what was it 
+  crypto sweet supported forget the the list of all the things okay 
+  thoughts questions around this this is.
+Manu Sporny:   Has been a bit of a hairy.
+Manu Sporny:  Comments suggestions what we should do here should 
+  we be defining.
+Manu Sporny:  You know any of these things Mahmood what's the 
+  what's the trace of what's where the traceability focus on this.
+Mahmoud Alkhraishi:  We haven't really finalize What discovery is 
+  means I don't think we've moved forward on how to do this 
+  completely features but yeah that's basically it I think a big 
+  part of it as well that like there's an expectation that API that 
+  you're interacting with you have a channel that you will be 
+  communicating with them beforehand and that you authenticated 
+  with them in some other way as well and so maybe you don't even 
+  need.
+Mahmoud Alkhraishi:  This couple video.
+Mahmoud Alkhraishi:  As in the API.
+Mahmoud Alkhraishi:  You can just send it over email but that's 
+  one of the arguments being made right I don't think we've settled 
+  on anyway.
+Manu Sporny:  Yeah that's yeah that's super helpful I mean I yeah 
+  I think the the struggle we've had with this discoverability 
+  thing is what's the use case I think you know I think we can we 
+  can imagine use cases right but today when you go to use an API 
+  and you're setting up your oauth token or whatever with that API 
+  you end up configuring the endpoint in some way or they.
+Manu Sporny:   Tell you exactly what.
+Manu Sporny:  Support so you just don't do the integration like 
+  that's how you do the discoveries you use your eyeballs and read 
+  you know the stuff that that endpoint can do and then you decide 
+  whether or not to connect to it or not so that's one you know one 
+  one Viewpoint here I guess the other Viewpoint is.
+Manu Sporny:  This is where you need to do that dynamically like 
+  in the exchanges sometimes you as a holder you don't want to 
+  broadcast the types of crypto Suites that you support it can it 
+  can out you and in ways that you know it's just you're giving 
+  attackers information or you're exposing information that you 
+  don't necessarily want other people to have like the fact that 
+  you can do a BBS plus signature right is is leaking some amount 
+  of information about your.
+Manu Sporny:   Rafa capabilities and sometimes you don't want.
+Manu Sporny:  You that unless absolutely necessary so there's 
+  some privacy concerns around you know how your endpoints 
+  configured where you may not actually want to share those through 
+  something like well known and you may want to do that within the 
+  channel after you've done some level of authentication on with 
+  who you're talking to right so basically if you don't 
+  authenticate with me and I don't know who you are I'm not going 
+  to tell you what my capabilities are in.
+Manu Sporny:   That that removes you know.
+Manu Sporny:  Options like the like header and well-known and did 
+  web to a certain degree.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  I think we need a clear use case that shows where 
+  a machine is going to go read this information and respond to it 
+  and what by doing something and stablishing creating a 
+  configuration one of these endpoints doing I think we're just 
+  going to keep going around in circles until someone says here's 
+  the use case where we definitely need this and if we don't have 
+  that I'd say we don't try to build anything that could have flaws 
+  in all these different ways.
+Manu Sporny:  So basically this is a more information needed at 
+  this point.
+Manu Sporny:  Go ahead Andy.
+Andy Miller:  I will share that open badges as an API and it 
+  supports discover of dynamic registration and to enable that 
+  Dynamic registration uses a well-known URL to discover the 
+  capabilities so it there are the use case there is that they.
+Andy Miller:  They wanted the ability to simplify the 
+  registration process of for for consumers or users or holders of 
+  Badges and so that's where the dynamic registration came in and 
+  dynamically registration really needed some way of discovering 
+  the capabilities and the URLs where is the URL for the 
+  authorization server here whatever is required for.
+Manu Sporny:  Do you know of anyone that we could tag in this 
+  issue that could highlight that in more detail.
+Andy Miller:  Yeah Nate Otto
+Manu Sporny:  Yep how many like thoughts on this issue okay great 
+  that gives us a lead thank you and be super helpful okay that's 
+  it sorry for going over by two minutes but that's the call today 
+  really appreciate the discussion we'll keep going through these 
+  issues next week thanks all bye.
+<kayode_ezike> Sorry Manu, could you add me as a VC-API 
+  implementer when you get a chance?
+<manu_sporny> Yes, will do!
+<kayode_ezike> Awsome, thanks!

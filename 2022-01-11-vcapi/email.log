@@ -1,0 +1,626 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-01-11-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-01-11-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-01-11
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jan/0089.html
+Topics:
+  1. Introductions and Reintroductions
+  2. Relevant Community Updates
+  3. Verifiable Credential Refresh 2021
+  4. Issuer Automation Pull Request
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Justin Richer, Mike Prorock, Markus Sabadello, 
+  Tobias Looker, Mahmoud Alkhraishi, Joe Andrieu, Rolson Quadras, 
+  Juan Caballero, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), brentz, Eric Schuh, Phil L (P1), Adrian 
+  Gropper, Orie Steele, Kerri Lemoie, TallTed // Ted Thibodeau Jr 
+  (via iPhone), Dmitri Zagidulin, James Chartrand, Phil (T3), Brian 
+  Richter
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Alright welcome everyone to the VC API call this is 
+  January 11th 2022.
+Manu Sporny:  We are trying auto-transcription today, we'll see 
+  how it does it typically does a terrible job -- but you know -- 
+  let's just give it a shot.
+Manu Sporny:  Our agenda for today was sent out last Sunday.
+Manu Sporny:  On the agenda today we just have agenda review, 
+  which is this, some introductions for anyone that's needed to 
+  call any relevant Community updates.
+Manu Sporny:  I'll do a quick overview of verifiable credential 
+  refresh 2021, new spec that uses VC API -- not meant to be a 
+  debate just kind of like a heads up kind of thing. We'll then 
+  talk about then some pull requests -- there's a workflow 
+  automation request that I put in that Orie has been heavily 
+  engaged in, and that Marcus has been heavily engaged in. Thanks 
+  for being here Marcus, I know it's late your time -- so we will 
+  talk about that and then do issue processing with any time that's 
+  left over.
+Manu Sporny:  Any updates that folks would want to make to the 
+  agenda.
+Manu Sporny:  Okay, then we'll go with that agenda.
+Manu Sporny:  For those of you that might have missed it; Chrome 
+  97 was just released 7 days ago and it seems to be semi-busted 
+  with its audio. You may need to use Firefox or Safari or the 
+  Jitsi App or dial-in or chromium version before 97 -- all this 
+  should work, Chrome 97 is busted.
+<tobias_looker> Thanks manu :) was scratching my head why audio 
+  wasn't working
+
+Topic: Introductions and Reintroductions
+
+Manu Sporny:  Let's do introductions and reintroductions, anyone 
+  new to call? Anyone that wants to provide a reintroduction or has 
+  anything changed with you?, or you just want to reintroduce 
+  yourself to the group.
+Manu Sporny:  Alright if there's no one that wants to re-intro 
+  themselves, let's move on
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  We will go on with the rest of the agenda. Next 
+  topic up is relevant Community updates.
+<juan_caballero_(spruce)> 💪🌲
+Manu Sporny:  The only Community update I have is that, I mean, 
+  it's no secret the DHS SVIP program is going to run a set of 
+  interoperability tests throughout this year. We expect that some 
+  of that work is going to happen in this group. This is an open 
+  invitation for anyone to participate -- we're really trying hard 
+  to do all that work out in the open, in public, and so the 
+  interop tests, which will be public, they'll be some of them 
+  maybe working elsewhere, but they're meant to be set up so anyone 
+  can participate. So you do not have to be in the DHS SVIP program 
+  to participate in the interop tests. Spruce is a great example of 
+  a company that was not an SVIP company that still went and 
+  demonstrated interop amongst a lot of the test suites.
+Mike Prorock:  We will likely be running the supply chain and 
+  traceability side over in the trace work item, but you know, 
+  there's overlap with apis here.
+Mike Prorock:  Would love to it if other vendors would like to 
+  pass those tests. Happy to help you get pointed in the right 
+  direction on that stuff.
+Manu Sporny:  Awesome, great thanks Mike I do think it would be 
+  super interesting if companies that have nothing to do with 
+  traceability were put into that test to see how far you get.
+Mike Prorock:  Fantastic, which is why I was bringing it up on 
+  this call.
+Manu Sporny:  Okay, great, so I'm sure we'll see vendors 
+  volunteering to be subjected to things they've never seen before 
+  and seeing if they interop -- that's the best kind of interop.
+Manu Sporny:  Any other relevant Community updates?
+Manu Sporny:  Or wishes for this year?
+<adrian_gropper> Don't ask me that :)
+Manu Sporny:  Surely, you guys want something to happen this year 
+  right.
+Mike Prorock: https://github.com/w3c-ccg/traceability-interop
+<orie> I wish for the W3C to become a Legal Entity.
+Manu Sporny:  Laughing at Adrian and Orie's comments.
+Joe Andrieu:  My sincere wishes for the Jitsi audio to work.
+Manu Sporny:  Your wish and mine, my friend.
+<mprorock> ROFL @orie
+Mike Prorock:  Joe, it worked!?
+Joe Andrieu:  How did it work!?
+Mike Prorock:  I heard your voice.
+<kerri_lemoie> :P
+Manu Sporny:  We're one-for-one so far this year on wishes 
+  granted for this year!
+Manu Sporny:  Ok, the next up is Verifiable Credential Refresh.
+
+Topic: Verifiable Credential Refresh 2021
+
+Manu Sporny:  Here is a link to that spec.
+Manu Sporny: https://digitalbazaar.github.io/vc-refresh-2021/
+Manu Sporny:  Here's a spec for verifiable credential refresh 
+  that we sent out sent out last year. We're proposing soon as a 
+  CCG work item. We're saying we'd like it to become one we do need 
+  a co-sponsor on it, so if any of you are interested in being a 
+  co-sponsor of the work item, that would be greatly appreciated.
+Manu Sporny:  The purpose of this spec is basically to refresh 
+  your VC when it's about to expire, with holder consent.
+Manu Sporny:  The Assumption here is that you have holder, you 
+  have done some kind of holder interaction that's like do you want 
+  us to refresh this credential -- renew this credentialing, its 
+  expiring, and the person's clicks okay. They say "yeah I want 
+  that". This is being applied to the DHS SVIP Permanent Resident 
+  Card use case. That's a high level.
+Orie Steele:  I've been following this work for sometime; I think 
+  it's really awesome work. I guess it's a trend that I'm noticing, 
+  as there's revocation lists, now credential refresh stuff, 
+  there's the VP request spec, and this call is the VC API. So, I 
+  guess my main question is what are their assets of the 
+  specification that are specific to the VC API, and if so why is 
+  the specification need to be in a separate place or another way 
+  of thinking about it might be like -- it is there is it supposed 
+  to be better handled in the VP request spec?
+Orie Steele:  Different versions of this but I think folks 
+  attending this call, it becomes really hard to tell what this 
+  call is about when all of the work is split across so many 
+  different smaller specifications of the CCG. So, this seems like 
+  a risk to some degree if we continue to do that in the future. I 
+  think the work is very valuable regardless of where it happens, 
+  I'm just trying to get a sense as to what your thoughts are 
+  regarding the VC API call, which were on today, and its 
+  relationship to this work.
+<mprorock> Follow on, honestly should we note on some of these 
+  things that they might be intended to merge into main VC  API 
+  spec/WG?
+Manu Sporny:  Yeah excellent question. Let me go to the Q, I 
+  don't want to jump in front of folks. I will answer that when the 
+  queue gets to me.
+Mike Prorock:  I have kind of a follow on note that was in the 
+  chat.
+Tobias Looker:  This appears to be a data model extension spec, 
+  and a protocol definition spec.
+Tobias Looker:  What is the relationship, can we move some of 
+  this stuff into the main VC Data Model spec, how would that be 
+  accommodated.
+Tobias Looker:  Is this mean to function more as a registry for 
+  all the refresh specs?
+Manu Sporny:  Also, excellent question, Tobias -- I promise I 
+  will answer all those things when it gets to my point in the 
+  queue. Joe, you're up next.
+Joe Andrieu:  Yeah, I just want to share my my sense of this. 
+  From the beginning is at the VC API was about harmonizing 
+  different work different people are doing in different places. 
+  Some of which had already emerged as their own specs on their 
+  own, so I'm supportive of building something that's harmonizing 
+  rather than a single monolithic API that we have to fight over 
+  every little detail so.
+<orie> Agree with you Joe.
+Manu Sporny:  Great thanks Joe, that does go a bit to answering 
+  the questions asked so far.
+Adrian Gropper:  Shouldn't we wait to do this work until after we 
+  do Authorization? Perhaps Justin can weigh in.
+<mprorock> no.
+Manu Sporny:  Alright thanks Adrian Justin do you want to respond 
+  to that.
+Justin Richer:  Yeah, sure, I'll respond -- No.
+Justin Richer:  GNAP is fundamentally about getting an artifact 
+  that gives you access to apis.
+Justin Richer:  So, refreshing a credential could both be an API 
+  that is protected, but as the group decided months ago that is 
+  not something that this group wants to think about right now for 
+  reasons I disagree with, but have been discussed another major 
+  aspect is that this is the kind of thing that could provide input 
+  to a GNAP authorization server, what as it's making its 
+  authorization decision and that's where I see the real value of 
+  connecting these two types of protocols... but it's not really an 
+  overlap in that case either, so from what little I understand, 
+  this is about VC refresh, not authorization.
+Justin Richer:  I don't believe that there is any type of 
+  overlap.
+Justin Richer:  Unless I'm missing something.
+Manu Sporny:  I don't think you're missing anything, Justin, my 
+  read is the same as yours. Let me try and quickly answer folks 
+  questions -- first, why a different spec the VC data model?
+Manu Sporny:  Sorry did not have this link ready -- finding it -- 
+  there it is: https://w3c.github.io/vc-data-model/#refreshing
+Manu Sporny:  We contemplated something that goes in 
+  refreshService at like above... but we never defined what it was. 
+  There is a data model that goes along with it and almost 
+  certainly a protocol that goes along with it. So we always needed 
+  somewhere to define a data model and protocol for refresh. There 
+  will probably be other types of refresh services out there and 
+  they may be different specs. It's a bit too early to tell but 
+  having one like gigantic spec that handles all refresh across the 
+  entire VC ecosystem is that monolithic approach that Joe 
+  mentioned -- that might not be a good strategy, so we're trying 
+  to define at least a data model and then how the data model is 
+  going to use a protocol. So that's what this new spec does for 
+  refresh.
+Manu Sporny:  This spec defines a data model, a way of doing 
+  manual refresh, and automatic refresh. The language is kinda 
+  wrong here... we want mediated and unmediated refresh, really. 
+  Automated refresh happens automatically, is completely 
+  machine-driven. Mediated expects a web browser to appear in the 
+  process where an individual human being participates.
+Manu Sporny:  That can be done in a fully automated fashion 
+  presuming a that the holder has consented to doing that kind of 
+  thing. We've got data model -- that's one of the purposes of the 
+  specification, and then the other one is the defining a protocol, 
+  at what we've tried to do is reuse the VC API entirely. There's a 
+  different PR that we'll talk about later in the call that does 
+  that, but what we're trying to do here is to outline a protocol 
+  here that really just defers almost everything to the VC API. 
+  What we're saying is we would like the data model to express 
+  certain things that let you use the vanilla VC API to do all the 
+  refreshing, and we give an example of what that back-and-forth 
+  might look like here in the examples in a four step process with 
+  examples.
+Manu Sporny:   It's meant to map to the VC API directly.
+Manu Sporny:   So, that's why its not separate specs. If we were 
+  to take this refresh data model and put it into the VC API spec, 
+  that might be a bit weird because the VC API isn't really about 
+  internal VC Data Model specifics.
+Manu Sporny:  Some people might disagree, but it might be weird 
+  to put the refresh spec into the VC API because that presumes 
+  that we were solving solving refresh for everything and that's 
+  probably not the case.
+Manu Sporny:  We allow for multiple data models and multiple 
+  protocols for refresh because some people might not use VC API to 
+  do refresh in the future. Perhaps some sort of bluetooth refresh 
+  mechanism will come out, and that's definitely not going to use 
+  VC API over HTTP.
+Manu Sporny:  I hope that answered everyone's questions, let me 
+  know if I missed something.
+Markus Sabadello:  This makes a lot of sense to me, the way it is 
+  modular, it's basically the same pattern as the Data Integrity 
+  work, proofs, and other parts of the VC Data Model. VC Data Model 
+  provides the central extension points, and extensions are in 
+  other specifications.
+<orie> exactly markus... but this is the first that I am aware 
+  that depends on VC API?
+Mike Prorock:  That's similar to what Markus was saying, I mean 
+  this makes total sense, I guess my question is more around the 
+  long-term path for this. It's more about the land between the 
+  data model extensions and protocol... whats the outbound path 
+  here?
+<orie> StatusList depends of VC Data Model, this appears to 
+  depend on VC Data Model and VC API Draft?
+Mike Prorock:  How does this go into the VC working group? It 
+  feels like the data model stuff should almost move over to the 
+  data model proper right from the start, and then the protocol 
+  might be better incubated here and then standardized elsewhere.
+Mike Prorock:  What are you thinking there from a standardization 
+  path standpoint?
+Orie Steele:  So I just wanted to be clear, my understanding of 
+  the the refresh is that it takes a concrete dependency on the VC 
+  data model which is similar to the status list spec. But this is 
+  the first one that depends on VC Data Model and VC API, right?
+<mprorock> Traceability work does the same thing.
+Manu Sporny:  Yeah, aside from Traceability, I don't know of 
+  any... but that was deliberate... we need to start standardizing 
+  these protocols.
+<orie> There were objections when we did this, with 
+  Traceability... I guess the door is open now?
+Manu Sporny:  We are starting to signal pretty strongly to W3C 
+  that we have done data model, we're doing data integrity, and now 
+  we have to do protocol. So, it's to apply a kind of 
+  standardization pressure on W3C proper... these things are coming 
+  down the pipeline. We were forced to only do data model at W3C in 
+  the beginning, but we've established work at W3C now... we're 
+  going to do protocol next, the company objecting to that work has 
+  now joined us, so it might be easier.
+Manu Sporny:  Status list spec is interesting, we have a 
+  normative dependency on VC Data Model, but we did normatively 
+  depend on a protocol spec -- HTTP, it just so happened that that 
+  was done and we could just use it.
+<orie> I was limiting my criticism to drafts that depend on 
+  drafts... HTTP and W3C VC Data Model are standards... but yes, 
+  answered.
+Manu Sporny:  Again, I'm just proposing a possible path forward. 
+  We have a VC Data Model standard, we have a VCWG, we are doing 
+  Data Integrity next, once that's done, it's protocol... There is 
+  a pipeline here and we're just filling the pipeline.
+Manu Sporny:  In the next rechartering as a non-normative work 
+  item and then when we recharter again which we can do within a 
+  year right I mean we can change your mind if things go quickly 
+  with the data Integrity stuff we can recharter and then take on 
+  the VC API work, and possibly things that depend on it (like 
+  status list, refresh, etc.).
+Mike Prorock:  Yeah.
+Mike Prorock:  Make total sense. We know that protocol caused 
+  consternation in the past at W3C, so cautious for that reason.
+Manu Sporny:  We've won at least one of the formal objectors over 
+  since that point in time.
+Mike Prorock: +1
+<orie> I would never assume someone won't formally object.
+<orie> ever.
+<orie> in fact, start assuming they will.
+Manu Sporny:  Yeah, agree, people are still going to formally 
+  object over something.
+Manu Sporny:  Any other questions on that before we move on?
+
+Topic: Issuer Automation Pull Request
+
+Manu Sporny:  This PR was raised as a non-normative basis for the 
+  credential refresh spec.
+Manu Sporny:  Basically, this PR is about issuing through 
+  automation workflows... it says it's highly experimental, just a 
+  simple four-step back and forth protocol, gives examples w/o 
+  adding normative text.
+Manu Sporny:  Orie, you've provided a bunch of good 
+  input/feedback, so thanks a ton for that. Could you please take 
+  us through your feedback?
+Orie Steele:  Basically the original objection was that the PR 
+  was referring to an "interact" primitive, which was assumed to be 
+  part of the VP request spec, which is a assumed (I think) 
+  dependency of the VC API as it stands today, so let me share that 
+  PR...
+Orie Steele: https://github.com/w3c-ccg/vp-request-spec/pull/13
+Orie Steele:  This is the change request I asked for -- define 
+  "interact" in VPR spec... and you did that in this PR.
+Orie Steele:  This is where it belongs and now you're now 
+  providing an example in the VC API spec on how to use this 
+  feature.
+Orie Steele:  So we're now doing a second version of that, and if 
+  you're clever with using it, you can use it to present 
+  credentials from a holder to a verifier. Now this new pull 
+  request on the VC API is doing the same thing, except that 
+  there's this extra interact feature, which you can use and if you 
+  want to learn more about it you can go read the VP request spec.
+Orie Steele:  We had no definition, and now we're adding a thing 
+  that has a definition, and it doesn't preclude the existing flows 
+  that we have. I do think it fails to understand why there's 
+  existing flows were requested in first place, but that's not a 
+  reason to hold off the pull request. We can continue to work on 
+  that.
+Orie Steele:  So I just I'm trying to connect all the dots for 
+  folks, to understand everything you have to go read a couple 
+  other pull request to get the background information.
+<orie> Is it compatible with GNAP?
+<orie> can you use GNAP with "interact"?
+<orie> these are good questions.
+Manu Sporny:  Justin, I'm interested in your thoughts on 
+  interact, because it was inspired by GNAP. Do you have any 
+  high-level thoughts to start, or do you want some more time to 
+  think about it since we just dumped this question on you.
+Justin Richer:  I have not had a chance to read this in any depth 
+  whatsoever, but I can say that this kind of pattern is exactly 
+  the type of connection point we were talking about in the GNAP 
+  process. The authorization server is allowed to say: "ere's how I 
+  can do the authorization in the client to negotiate ways to 
+  interact with the end-user", and that's what the interact block 
+  is all about so when the client shows up and it says that I want 
+  to talk to the AS -- these are the ways that I can interact with.
+Justin Richer:  With the end-user if you need to, the AS can come 
+  back and say: "Yes, this is how I will support that interaction 
+  because I need to get in touch with the user somehow now". I'm 
+  not convinced from just reading what's on the screen here that 
+  this is actually doing the same thing, so I don't know if it's 
+  the right application of that.
+Justin Richer:  We're not doing the same kind of negotiation, I 
+  believe, here.
+Justin Richer:  We're not doing the same kind of delegation.
+Justin Richer:  This is just kind of access.
+Justin Richer:  So, I don't think it's quite the same thing but 
+  again I have not had a chance to read through this in any depth, 
+  so I'm not really qualified to speak on what was meant here.
+Justin Richer:  Maybe Dimitri can fill that in, though?
+Justin Richer:  I think he understands both sides a little bit 
+  better.
+Manu Sporny:  Go ahead Dimitri.
+Dmitri Zagidulin:  So yeah, the interactive section was 
+  definitely inspired by GNAP.
+Dmitri Zagidulin:  It's both true that this is not trying to 
+  replace GNAP.
+Dmitri Zagidulin:  This is more this whole mediated and 
+  unmediated flows is trying to model.
+Dmitri Zagidulin:  Iterative, between client server that has to 
+  do with prerequisites on the server side.
+Dmitri Zagidulin:  So client asking: "Please issue me this 
+  credential or please renew this credential", and the server 
+  saying: "In order to do that, I need the following things and 
+  here's where you can submit them."
+Dmitri Zagidulin:  That's what the "interact" block is doing.
+Dmitri Zagidulin:  So, it's inspired by GNAP, not trying to 
+  compete with it.
+Justin Richer:  Can I respond to that?
+Manu Sporny:  Please.
+Justin Richer:  Thank you, I realize I'm jumping the queue my 
+  apologies.
+Justin Richer:  Okay, so that does make more sense now.
+Justin Richer:  As is usually the case, in systems design when 
+  you see things that are in inspired and similar, it does start to 
+  beg the question: "Is there a common abstraction or, 
+  cross-reference, that could even be used here?"
+Justin Richer:  So, Dimitri, I'm actually going to request invite 
+  you to present at the GNAP interim meeting next week, if you're 
+  at all available? I can give you 20 minutes or so to very roughly 
+  present this idea to the GNAP working group and cuz I think it's 
+  interesting.
+Justin Richer:  I do think this pattern is interesting, and I 
+  think that might be something that the networking group would 
+  like to take a look at if you're available.
+Dmitri Zagidulin:  I would love to, yeah, let's connect and cross 
+  pollinate the idea.
+Manu Sporny:  Awesome, this is exactly it is exactly the type of 
+  feedback and conversation I was hoping would happen. Justin, we 
+  just want to make sure that if we're using "interact" here, it 
+  doesn't screw things up with GNAP. If it's going to send people 
+  down the wrong path, or a misunderstanding, we will rename it if 
+  it turns out this is a bad idea. We're trying it out because we 
+  think there's probably some kind of generic pattern here that's 
+  interesting.
+Justin Richer:  Yeah and I really do believe in the power of this 
+  pattern, otherwise we wouldn't be building GNAP off of this. For 
+  those unfamiliar with how works, this whole interaction section 
+  is one of the key protocol differentiators (for GNAP).
+Justin Richer:  Today, you have to sort of decide ahead of time 
+  what your Grant type is and then you're kind of stuck with in 
+  that process. In GNAP, this interact section that allows this 
+  decision to be made at runtime where you don't have to know 
+  everything ahead of time. I'm very much a fan of this pattern and 
+  I would like these two groups actually try to figure out if there 
+  is either commonality or as Manu said, we do need to be carefully 
+  distinct from each other because if they're similar patterns.
+Justin Richer:  We don't want people assuming that n extension 
+  that gets written for VC API can just be dropped into a GNAP 
+  negotiation.
+<orie> See also 
+  https://developer.box.com/guides/authentication/tokens/downscope/
+<mprorock> you can downgrade tokens in oauth
+<justin_richer> yes you can downscope in Oauth, I wrote that 
+  section in the spec :)
+Adrian Gropper:  Yes, so apologies for my inability to understand 
+  the protocol work. I think I can help by basically saying what my 
+  perspective is on this conversation. I'm interested from a 
+  privacy perspective that every request falls to the authorization 
+  server regardless of what authorization server is associated with 
+  what domain whether it's the issuer  or the holder or something 
+  else.
+Adrian Gropper:  It sounds to me like we're planning to send 
+  requests and this case refresh requests to the resource server, 
+  the issuer as a resource server. It raises all sorts of issues in 
+  my mind, I apologize if I'm getting it wrong cuz I'm too high 
+  level for the discussion at hand, but that's what I'm trying to 
+  get to.
+<justin_richer> Details for the interim meeting next week: 
+  https://datatracker.ietf.org/wg/gnap/meetings/
+<mprorock> so you want a central point of failure and control?
+<orie> Room_641A
+Manu Sporny:  We'll have time to talk about this -- this is all 
+  new stuff, so I think everyone's going to have to get their mind 
+  wrapped around it before we can have a productive discussion in 
+  the group. This is just a heads up that this stuff is out there 
+  and there is a PR.
+Manu Sporny:  I heard Orie say that he's okay with the PR so far. 
+  It would be good for other people to take a look at the multiple 
+  PR's and see what they think about them. Remember this is all 
+  experimental stuff so we're trying to be a bit faster about 
+  moving these things in, but it would be good to get a couple more 
+  reviews in before we pull it in. There were a few open questions 
+  that Orie and Markus raised in the PR that might be good to put 
+  out to the group.
+Mike Prorock:  From a nerd perspective, I hate to say this, but I 
+  kind of want to see a diagram and some plain English.
+<orie> Lets volunteer Joe : )
+<orie> he makes diagrams!
+Manu Sporny: :Laughs: Joe's good work reduced to "He makes 
+  diagrams."
+Mike Prorock:  It's just a feeling a little bit in nebulous, and 
+  a feeling a little bit like some of the language is just so in 
+  the weeds.
+Dmitri Zagidulin: @Mprorock: could I interest you in 
+  https://github.com/w3c-ccg/vc-api/issues/245 ?
+Mike Prorock:  And I kind of want it in there now, but it might 
+  just be a room for improvement thing.
+<dmitriz> it doesn't have diagram, but has step by step examples
+Manu Sporny:  Yes, I can do a diagram, no problem, swim lanes, 
+  got it.
+Mike Prorock:  Yeah, that would be awesome.
+Mike Prorock:  First glance I can't be the only programmer that's 
+  been working on that work stuff for 20-plus years that's going to 
+  look at this go: "Oh yeah, it might be useful for something 
+  else."
+Manu Sporny:  Agreed, it did cross my mind when I was writing the 
+  PR and then I just sort of ran out of time. I can put a swimlane 
+  diagram in the PR.
+Mike Prorock: +1
+Dmitri Zagidulin:  I just wanted to respond to Mike, could I 
+  interest you in the write-up and VC API issue 245 -- no diagrams, 
+  but it does have step-by-step JSON examples.
+Dmitri Zagidulin:  It differs from Manu's Proposal in like one 
+  API endpoint, but same for the rest.
+Orie Steele:  You can do whatever you want in the refresh spec 
+  because it's not a CCG work item, it's under Digital Bazaar right 
+  now, so you don't need any permission to update that document.
+Manu Sporny:  That's true, thanks for the reminder, I had totally 
+  forgotten about that.
+Adrian Gropper:  A quick question, I saw a comment in the chat 
+  about a single point of failure. I think it was a reference to 
+  something I might have said and I'm curious what triggered that?
+Mike Prorock:  Yeah, I did and I think Orie dropped one of the 
+  many things I was thinking, which is a certain room in a building 
+  that you could probably Wikipedia if you care to (central routing 
+  point for all communication)... I always get very concerned when 
+  I hear things like: "Oh, all of this stuff needs to route through 
+  the authorization service."
+Mike Prorock:  Snooping attack vector.
+<orie> I get concerned anytime i hear choke point... some guys 
+  like squeezing choke points.
+Mike Prorock: +1 Orie
+Adrian Gropper:  Well to the extent that we're concerned to align 
+  with a zero trust architecture mandates, so you know when the 
+  federal procurement. In general, I think it's very much worth 
+  discussing the point that Mike brought up because in my opinion 
+  one could look at your  architecture and say the problem is Zero 
+  Trust Architecture. I'll just leave it at that, thank you.
+<mprorock> off topic, but yes important
+Manu Sporny:  I wanted to point out a couple of things, food for 
+  thought, and then kickoff a discussion on any of them.
+Manu Sporny:  I wanted to point out here what's being proposed in 
+  the auto-refresh spec is that each workflow is kicked off by 
+  hitting a URL, I think with that we can be aligned with what the 
+  traceability folks are doing in step 1. Step 2 so the first one 
+  is I want to present something to you or I want to engage in a 
+  flow with you in a workflow with you that's the first client to 
+  server message the server response back with okay if you want to 
+  do that here the things I need from you.
+Manu Sporny:  So, lots of alignment on step 2 and 3.
+Manu Sporny:  Step 4, we don't want this to be tied to verifiable 
+  presentation request in fact we want to allow for extensions 
+  around for alternative verifiable for presentation exchange 
+  languages different ones here, like WACI/PeX.
+Manu Sporny:  Partly, because you know, maybe VPR is the wrong 
+  thing to do.
+<orie> WACI/PeX isn't a work item, I don't want to comment on it.
+Manu Sporny:  And we might want VPR out when we find out that it 
+  was a terrible choice.
+<orie> but I don't think thats a good strategy.
+Manu Sporny:  So we could potentially do different presentation 
+  protocols like WACI/PeX or DIDComm-based thing or some binary 
+  Bluetooth whatchamajigger. The key here is that we want to be 
+  able to have some agility/extensibility here... but we will focus 
+  on VPR first. I just wanted to highlight that we may want to 
+  enable other protocols and presentation request mechanisms.
+Orie Steele: +1 To starting with 1 thing, and not precluding 
+  others
+<mprorock> can we bring this in as a work item to CCG?
+Manu Sporny:  Or he saying he doesn't like to this is Reggie 
+  that's totally fine just putting it out there for people to to 
+  think about yes agreed Glory let's start with one thing and we 
+  remodeling it you know VPR.
+<mprorock> i would feel better on call time and contributing if 
+  it were and covered by full IPR
+Manu Sporny:  Yes, we can do that, Mike... just need a 
+  co-sponsor.
+https://github.com/w3c-ccg/vc-api-use-cases/pull/5/files
+<juan_caballero_(spruce)> (to the previous point about /available 
+  endpoint initiation)
+Manu Sporny:  Markus also raised a really good point -- don't we 
+  want to use other authz/authn strategies -- yes, we do, but we 
+  don't want to pick one. We might be able to say it's open ended, 
+  use what's important to you.
+Manu Sporny:  Step 4 also disagrees between workflows and 
+  traceability. Autorefresh gives you back a VP at the end... 
+  Traceability tells you if the VP succeeded or failed. So, 
+  alignment needs to happen there.
+Manu Sporny:  For the traceability stuff is kind of yeah we got 
+  your presentation everything validated. What we're proposing with 
+  auto-refresh that we want to be able to do a continuation into 
+  another process, now that you've passed this process, so we 
+  should probably discuss in a future call and have a discussion 
+  around how do we reconcile those two kind of things.
+Mike Prorock:  Yeah it just made a comment in the chat, and I 
+  didn't want it to get lost. I would feel better, like with this 
+  item, and I think the request back are both like Digital Bazaar 
+  items, I feel a lot better if we're dedicating call time to CCG 
+  work items.
+Mike Prorock:  Just as we're starting to get more eyes in and 
+  stuff like that.
+Orie Steele: https://w3c-ccg.github.io/vp-request-spec/ is 
+  contributed to by Secure Key... supposedly.
+Manu Sporny:  Agreed, VPR is already a CCG work item.
+Manu Sporny:  So everyone has seen what we're proposing to do, do 
+  we have anyone that wants to be a co-sponsor on the on the spec?
+<orie> You might try the regular call time and mailing list
+Manu Sporny:  I'll send something out to the mailing list, I was 
+  just seeing if we can pick one up here, then we're done. If not, 
+  we'll take it to the mailing list, so that's what we're waiting 
+  on, Mike... we definitely want this in the CCG as soon as 
+  possible, but we need a co-sponsor.
+<mprorock> if we can get this aligned better with trace, I would 
+  happily co-sponsor.
+Manu Sporny:  Alright I'll send it out to the the mailing list 
+  with the request.
+Manu Sporny:  All right, and that's a call thanks everyone for 
+  the call day.
+<orie> Great work on this.
+Manu Sporny:  Thank you to our Robot Overlords for scribing.
+Manu Sporny:  Chat with everyone next week. Thanks all, bye.

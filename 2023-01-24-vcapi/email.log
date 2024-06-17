@@ -1,0 +1,818 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-01-24-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-01-24-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2023-01-24
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2023Jan/0055.html
+Topics:
+  1. Introductions and Relevant Community Updates
+  2. Pull Requests
+  3. Do the /exchanges/* endpoints need authz?
+  4. Verifier API should return verified VCs
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Greg Bernstein, Patrick (IDLab), Dave Longley, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Nate Otto, 
+  Dmitri Zagidulin, Joe Andrieu, Brent Shambaugh
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone to the verifiable 
+  credentials API call this is Tuesday January 24th 2023 our 
+  agenda.
+Manu Sporny:  Is in here and on the agenda today go ahead and 
+  share screen we've got this agenda review followed by 
+  introductions relevant Community updates I forgot to put a pull 
+  request review on here but we've got some pull requests that 
+  folks should be paying attention to and then our agenda today is 
+  the same as the agenda last week where we spent the entire.
+Manu Sporny:   Fire call talking about.
+Manu Sporny:  Exchanges endpoints an authorization which was a 
+  really good discussion and so we're going to see if we can wrap 
+  that discussion up and then go onto the return status for the 
+  verifier API in API endpoints meaning of API endpoint specifying 
+  the component that they're associated with are there any other 
+  updates or changes to the agenda that we should talk about before 
+  going into.
+Manu Sporny:   To introductions and.
+
+Topic: Introductions and Relevant Community Updates
+
+Manu Sporny:  All right let's do introductions and relevant 
+  Community updates is anyone new to the call or has had a change 
+  in what you're doing Nate please go ahead.
+Nate Otto:  Hey thanks NATO here I have been working on digital 
+  credentials for about 10 years mostly open badges this is my 
+  first time to the VC API call I do hope to implement this API 
+  especially for issuer but probably also are also for verifier use 
+  cases in the coming months.
+Manu Sporny:  Awesome excellent welcome Nate in for those of you 
+  that don't know Nate Nate is awesome so we're super excited that 
+  you're here Nate and even more excited that you're looking at an 
+  implementation any other introductions are relevant Community 
+  updates go ahead Patrick.
+Patrick_(IDLab): That's just a heads up so we'll know in two 
+  weeks where I can have a full-time test developer ideal and so we 
+  are looking at probably making some contributions to various this 
+  sweet like the VC API this with is probably going to be one we're 
+  going to look at so.
+Manu Sporny:  That's excellent news thank you Patrick there is a 
+  tremendous amount of tests we Ting that we're going to be doing 
+  in the verifiable credentials working group over the next couple 
+  of months and we could definitely use some help there if you're 
+  interested just to get put that on your radar if there's 
+  interest.
+Patrick_(IDLab): Hello invites him probably not next week but the 
+  week after and production.
+Manu Sporny:  Okay okay sounds good the other kind of heads up 
+  the folks is the verifiable credentials working group 
+  face-to-face meeting is happening in Miami in 3 weeks 2 weeks 
+  something like that February 14th ish so if you have not booked 
+  your tickets or hotel like I have not you should do it soon 
+  before prices go way high up.
+Manu Sporny:   It's a three-day in-person event.
+Manu Sporny:  You're required to be a w3c member to attend 
+  automatically but they also allow invited experts you need to 
+  talk to the chairs if you want to go and as an invited expert or 
+  just an observer and they have already let a couple people in to 
+  be there and observe.
+Manu Sporny:  Okay I think that's it any other updates 
+  announcements.
+Manu Sporny:  Oh Patrick I forgot to ask you about the Microsoft 
+  Entra thing, do you have a link.
+https://www.youtube.com/watch?v=i6TzzUZGYQU
+Patrick_(IDLab): Oh yeah sure to YouTube video so it was just a 
+  presentation to trust over IP from here.
+Manu Sporny:  Awesome great thanks so that's on Microsoft entra 
+  presentation at trust over IP okay now pull requests.
+
+Topic: Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/323
+Manu Sporny:  Um we have three pull requests the first one was 
+  done by Andrew to add verifiable presentation request property 
+  the goal here is good but the pr is wrong and we're just waiting 
+  for Andrew to update it he's not around until beginning of 
+  February so it's just.
+Manu Sporny:   Just a structural change.
+Manu Sporny:  To this PR so I think that's what we're waiting on 
+  there the next one Nate you opened in the discussion here we had 
+  quite a lengthy discussion about this it's question was you know 
+  do we want error conditions standard error conditions what should 
+  we do we had a long conversation about it's in the group two 
+  weeks ago Nate you chimed in with a couple of thoughts Nate do 
+  you want to add anything to kind of.
+Manu Sporny:   What's going on with this PR.
+Nate Otto:  Yeah it's correctly marked as draft meaning not 
+  intended for merging at the moment I can put some more work into 
+  it if there is a clear direction to go it seems that one thing 
+  that came up was that people liked the idea of being able to 
+  respond with various different error codes but not include any 
+  response body at all but then if the response body is included to 
+  have it match a predictable schema.
+Nate Otto:   And then also we.
+Nate Otto:  You better make the error responses machine 
+  processable the inclusion of a specific error code in addition to 
+  a kind of more freeform textual message might require us to look 
+  into a what enumeration do we want to use for those codes and 
+  list something out within the document.
+Manu Sporny:  Great thank you Nate yeah so I maybe we should talk 
+  real quick about like direction for this so I agree with 
+  everything you said Nate I think that's the the read from the 
+  group is like we should at least do HTTP status codes in try to 
+  convey as much information as we can through that we didn't want 
+  to mandate that every HTTP error resulted in a are response but 
+  if there was an error.
+Manu Sporny:   A response that.
+Manu Sporny:  The implementer wanted to give that it matched a 
+  specific format.
+Manu Sporny:  I don't I mean it feels like well go ahead Dave 
+  Longley.
+Dave Longley:  Sure so I think also where we got to was we didn't 
+  want to specify a specific error schema until we had a concrete 
+  case where we needed to do it because otherwise it would just be 
+  the effectively this untested speculative thing that we didn't 
+  know if it worked well or not.
+Manu Sporny:  I didn't I didn't get that from the conversation 
+  that's fine it makes sense I guess we we already have defined in 
+  our schema in the spec like it exists.
+Dave Longley:  Yeah we don't it's not good yeah we did discuss 
+  that last time how it has some some problems and things that 
+  people weren't expecting and how my personal preference is 
+  probably just to remove that schema until we have a clear error 
+  that we need to model and make sure that it a that we have 
+  consensus from the group on how it should look and that might not 
+  even come up and if it doesn't come up then I don't.
+Dave Longley:   We should do anything because we just don't know.
+Dave Longley:  Commentation experience with.
+Manu Sporny:  We should check with Ori and the trace folks 
+  because they were super happy that we had a standard error schema 
+  I think they might be using it already and that would give you 
+  your your use case I guess go ahead.
+Nate Otto:  Yeah I think if the issue is that we haven't 
+  identified use cases for why there wouldn't be an error response 
+  you know I can help generate those as an action item or I don't 
+  think it would be too hard to generate some of them a couple that 
+  I had been looking at was because the spec is so light on 
+  authorization it would sometimes be helpful to be able to have an 
+  answer as to why a particular request was not authorized with a 
+  certain authorization token.
+Nate Otto:   But another request.
+Nate Otto:  Fine and I also like that there was a error schema 
+  that enabled me to express simple things like that on the level 
+  of here is a message that applies to the entire request as a 
+  whole and other use cases in more in the 400 error category where 
+  that data was sent by the client often require identification of 
+  a specific field that was in error or whether their messages 
+  apply to everything.
+Nate Otto:   And I think that coming up with use cases for that.
+Nate Otto:  Complex and we probably don't want to take on the 
+  work to get that fancy with our schema for now but I did find a 
+  lot of value in having kind of some error schema that could be 
+  expressed where I could potentially work with multiple different 
+  pieces of software in the.
+Manu Sporny:  Got it the Dave does that meet your use case bar of 
+  having a use case.
+Dave Longley:  Yeah I mean if we can formalize that and I think 
+  that's fine I think one of the biggest problems we have with the 
+  existing error schema I think both Joe and I spoke to it was the 
+  use of an ID field for a code which is inconsistent with the rest 
+  of the API and it also made it seem like you could maybe look 
+  that a specific instance of an error up later and that's not what 
+  that field in the current error schema was meant to be and so we 
+  discussed using something like name.
+Dave Longley:  One and web errors or something like code which is 
+  common in other apis but code might imply like doesn't have to 
+  but to some people it implies using numbers or something like 
+  that and that that also has a bunch of other implications and I 
+  think would be simpler for us to just go with named errors and I 
+  don't know how that will work with the traceability folks maybe 
+  there's a backwards compatibility path maybe doesn't matter.
+Dave Longley:   Her butt.
+Dave Longley:  If we do develop in formalize these use cases 
+  would prefer the schema to go in that direction.
+Manu Sporny:  All right so I am a should get a rock.
+Nate Otto: +1 I'm fine with named errors rather than coded 
+  errors. Avoiding the need to enumerate many codes.
+Manu Sporny:  And Ari is input on this from the the side on their 
+  need for are schemas.
+Manu Sporny:  So what about a next step on this.
+Dave Longley:  So I think next steps are we want when I think we 
+  need to say here's an API and when it throws this error we need 
+  this kind of information back from it and so this is how the does 
+  the information that would need to be in an error and ideally we 
+  have I mean just one of those is probably good enough but ideally 
+  we have a few of them so we can figure out some whether or not 
+  this approach will work across multiple API calls I think.
+Dave Longley:   The other comment.
+Dave Longley:  Make try not to talk too fast the other comment I 
+  would make is Nate you mentioned the spec is light on 
+  authorization I think we have either a pending issue or something 
+  to discuss about doing a better job of saying which endpoints are 
+  authenticated and which ones aren't and it might be for those 
+  things depending on the type of authorization you use their might 
+  already be standardized.
+Dave Longley:  There are codes that we would expect people to use 
+  in the case that you did not provide authorization on one of 
+  these endpoints so might not even be that we would Define 
+  something specifically here other than to say go use this Speck 
+  over there.
+Manu Sporny:  I had Mitri.
+Dmitri Zagidulin:  Is was made before me.
+Manu Sporny:  I'm sorry yes go ahead mate.
+Nate Otto:  You're just very briefly wanted to specify I wasn't 
+  talking about presence of authentication or not I was talking 
+  about use cases by which certain credential requests should be 
+  denied for an issue based on permissions you authorization to do 
+  a certain action rather than authentication that a user was a 
+  certain entity or not so like yeah I agree there there's a clear 
+  difference status code level between like you didn't include an 
+  authorization.
+Nate Otto:   An off header.
+Nate Otto:  Your auth token included was invalid the that is a 
+  different issue usually for a one then a permissions based 
+  authorization failure like you cannot award a credential that is 
+  blue you can only award red credentials that's a far three.
+Nate Otto:  And I think the spec is correct to be silent on what 
+  types of authorization failures might exist because it's just not 
+  the scope of the spec it's not the purpose of it but it is very 
+  interesting to me to build software that can enforce a whole 
+  bunch of different authorization rules on the issuer endpoints.
+Nate Otto:  So I want to be able to express our messages in a 
+  predictable way.
+Manu Sporny:  Thanks Nate Dimitri.
+Dmitri Zagidulin:  I wanted to add a comment to what Dave said 
+  that some of the authorization methods used by implementers like 
+  all off to dictate their own error format and so it might be 
+  useful for us to either follow that error format or at least have 
+  it be isomorphic so for example oauth2.
+Dmitri Zagidulin:  Defines the fields error description and error 
+  URI and then the commonly used name and Status codes and they've 
+  mentioned that's it.
+Manu Sporny:  Great thanks to meet Ray yes important to keep that 
+  in mind as well okay so there's a PR here in what ways can Nate 
+  change it or document it to move it forward.
+Manu Sporny:  So highlight Nike title highlighting a number of 
+  use cases where error codes are useful talking specifically to an 
+  end point that is going to use these error codes and then in then 
+  providing some guidance in the general response object Nate I 
+  don't know if you feel like you've got enough to kind of go on 
+  there if you wanted to put something together were I'm clearly 
+  I'm not trying to volunteer you but.
+Nate Otto:  I would be perfectly happy to put some time into this 
+  in the next couple weeks I don't think that I have a sense that 
+  the group is at consensus on you know something that would be 
+  good enough that everyone would like it at this point but I could 
+  take a stab at adding some of those use cases very briefly into 
+  the document and then I have no idea right now what to do about 
+  the eye the schema itself that's in there if that needs an 
+  immediate.
+Nate Otto:   Action to address the fact that we're using a ID 
+  instead.
+Nate Otto:  If modification there would be acceptable.
+Manu Sporny:  Yeah I think maybe waiting for the trace folks to 
+  give some feedback because they might have already done something 
+  here in maybe asking them hey we're trying to move away from IDs 
+  and just two names would you object to that and see see if they 
+  have any input before attempting to change the schema I think 
+  separating the two maybe just talking about use cases would be 
+  you know.
+Manu Sporny:  Act that talks about the are schema and the use 
+  cases around it and then that can be a PR and then we can take a 
+  look at it and if we are okay with that then hopefully that helps 
+  us with the actual scheme itself.
+Nate Otto:  The other thing I could look into is how to express 
+  the optional response body type thing with in Json xerath in open 
+  API I think that would is I think there's an approach that I just 
+  haven't actually done that particular documentation before and so 
+  if that's something we want I could look into them.
+Manu Sporny:  Yeah I think that would be super helpful as well.
+Manu Sporny:  Okay well let's just say like you know there's some 
+  next steps there and it's up to you Nate if you want to drive 
+  that forward or you know do again like if or somebody else you 
+  know can can do it if you get busy or someone else feels like 
+  they they want to put something together there okay that's that 
+  PR.
+Manu Sporny:  Um the next PR up is 334.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/334
+Manu Sporny:  In this is well this is says it's fixing the errors 
+  in the OAS files but the errors that the linter was kicking out 
+  was that we didn't Define security for endpoints so this a year 
+  ago was a Perma thread-like very contentious topic where we 
+  couldn't just pick one authorization mechanism for endpoints are 
+  os Linton continues to fail because we haven't defined security.
+Manu Sporny:   We know that people will.
+Manu Sporny:  To find no security we know that people will object 
+  if we Define a very specific type of Security based on 
+  implementations we have at least four types of security 
+  authorization that people have implemented including no 
+  authorization whatsoever authorization capabilities did based 
+  authorization and oauth2 so in an attempt to quiet the linter I 
+  have.
+Manu Sporny:   Defined these for security schemes because.
+Manu Sporny:  We do have.
+Manu Sporny:  People that have implemented all of them and and 
+  more than one in some cases and then apply those security schemes 
+  to all of the endpoints now it's a bit it's super like the oauth2 
+  part of it's wrong I think.
+Manu Sporny:  But I couldn't the linting stuff says you have to 
+  define a flow and you have to Define you know if it's there's an 
+  author of saying you have to define a URL in a token URL and you 
+  have to Define Scopes and it's like I don't think we're ready to 
+  do that but that's what it kind of you know requested let me stop 
+  there see Patrick's on the Queue and then Dave.
+Patrick_(IDLab): Yeah just I told you forgot to leave a comment I 
+  was wondering so on the end points where you apply them you don't 
+  include the did odd was that voluntary or involuntary.
+Manu Sporny:  Voluntary I didn't we only do did all that on one 
+  of the endpoints I think and I forgot it's the exchanges and 
+  point that's the only part that we've seen implementations used 
+  it ought to date and so that's the only one I put it on for now I 
+  think the presumption here is like we can add and remove things 
+  as we see fit this is just you know temperature check for the 
+  group to see if like this is the worst thing ever.
+Manu Sporny:   Or if people feel.
+Manu Sporny:  We're ready to at least take this first step.
+Patrick_(IDLab): Sorry the first step being what.
+Manu Sporny:  This PR just defining it so normally you'd put like 
+  you know in this in for example what's on my screen for oauth2 
+  normally you would list Scopes here and I just haven't done that 
+  right.
+Patrick_(IDLab): Okay it's more of like a placeholder type of 
+  field.
+Manu Sporny:  Yeah it's yeah it's basically to say for this 
+  endpoint you can use any of these security mechanisms to secure 
+  it so including not putting any authorization on it at all right 
+  and then we'll parameterize it as the months roll on and we get a 
+  better understanding of how to do this correctly Dave Europe.
+Dave Longley:  Yeah I think my only concern with this is with 
+  those with two endpoints you highlighted that you said were wrong 
+  maybe we can do something similar there and put TBD or 
+  customizable or something like that I mean even saying you have 
+  to use an authorization code is probably not right since the 
+  there are flows that involve this preauth code in other ways and.
+Dave Longley:  At least that that is how the exchanges API can 
+  work so it's if we can somehow get some text in there that makes 
+  it clear that we don't intend we're not telling people that you 
+  have to build it this way because people eat will easily forget 
+  that and may say well this is what spec says you're not doing 
+  with spec says and it could easily not work for some people.
+Manu Sporny:  I don't know how to do that in OAS.
+Dave Longley:  Well I mean it's free form right oauth 2 / 
+  authorized you just type that so it could just be you know TBD 
+  and leave it as long as it passes linting.
+Manu Sporny:  As long as people don't think it's Daniel Buckner's 
+  company the new Square yeah okay so how about this I'll suggest 
+  this as a change.
+Dave Longley:  If that passes linting that's that's fine with me 
+  would also be good at there was I don't know if there's a way to 
+  say you don't have to use authorization code because it also 
+  reads us or a potential interpretation of this is you have to use 
+  authorization code we just don't know what the invoice will be so 
+  there's a way to comment on that too.
+Manu Sporny:  Yeah OS is does not like leaving things to the 
+  imagination I'll try to lie look for a little bit to figure out 
+  like how we could get around the linting errors but it's you know 
+  if you say it's of type oauth2 than it has a schema that you must 
+  must meet and so we've got to figure out a way.
+Dave Longley:  We invent another thing we do we invented these 
+  other names so we could invent a with two dash V Capi or 
+  something and then leave it blank.
+Dave Longley:  Yeah that's another option for now.
+Manu Sporny:  I see like maybe okay yep I see so not say oauth2 
+  but say type HTTP and okay all right yeah we'll figure out a way 
+  to try it.
+Manu Sporny:  Not specify things that we are trying not to 
+  specify okay any other concerns about this PR I mean it'll 
+  probably I'm going to give it like a week or two more just in 
+  case anyone here has a better idea of how we could do it the 
+  other thing that the pr does is you are required to put servers 
+  in there like these are live servers that you can hit and I was 
+  going to try and pull the.
+Manu Sporny:   A list from.
+Manu Sporny:  VC API implementations we have like we have like 
+  nine or ten servers in potentially Auto build this list just you 
+  know requires time and writing code to do that didn't have the 
+  time to do that so the idea here is that this before this PR goes 
+  in will try and list all the servers and the VC API because they 
+  do list and points there.
+Manu Sporny:  And then of course if we can auto-generate it even 
+  better.
+Manu Sporny:  Okay any other thoughts on this PR before we move 
+  into the main agenda.
+
+Topic: Do the /exchanges/* endpoints need authz?
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/279
+Manu Sporny:  All right okay so those are all the pull requests 
+  that we have the next item up is through the exchanges endpoints 
+  need authorization and we had a very long discussion about this 
+  last week as PR or sorry as issue 279.
+Manu Sporny:  And this was our discussion last week towards the 
+  end it felt like we were converging on something that could get 
+  to consensus.
+Manu Sporny:  Let's see last bit said was did anyone have 
+  concerns around a given exchanges endpoint should be a URL 
+  capability or establish authorization through an exchange flow 
+  itself.
+Manu Sporny:  On carp had a problem because they were private 
+  endpoints we noted that these endpoints are not necessarily 
+  private but you have to interact elsewhere to get it there are 
+  multiple options for effectively getting this URL this one off 
+  URL this capability URL.
+Manu Sporny:  And Alan noted that you don't need authorization to 
+  hit it for the first time.
+Manu Sporny:  When it's part of a flow you effectively get a 
+  capability to invoke so I'm I guess I'm a bit lost on where we 
+  got last week go ahead Jo.
+Joe Andrieu:  Yeah I'm not sure where we got either but one thing 
+  is marinating on it it does seem to me that there were two things 
+  one trigger by Ellen's comment.
+Manu Sporny:  Yeah yeah we can hear you.
+Joe Andrieu:  Hello is I think it's very different between the 
+  different endpoints for example between the issuer coordinator 
+  and the issuer is verified coordinator and the verifier service 
+  those seems like they should be secured through some mechanism 
+  whereas I'm not sure that a holders interaction with the verifier 
+  coordinator needs it.
+Joe Andrieu:   It like I think that should be up.
+Joe Andrieu:  Our coordinator to decide based on their business 
+  rules whether or not they need off or not but with regard to what 
+  Alan said here I would think establishing off see through the 
+  exchange flow is still having Aussie on that exchange flow but 
+  maybe I'm missing a technical Nuance that's embedded in the 
+  question.
+Dave Longley:  Yeah I think I think what Alan was saying still 
+  fits into the the quote that we have their it given exchanges and 
+  point should be a URL capability or establish all see through the 
+  exchange for itself because either we have the case where you're 
+  using a URL capability you you know it's not an advertised URL 
+  you had its it has sufficient Randomness in it so that you 
+  couldn't.
+Dave Longley:   Produce or guess that URL at you someone had to 
+  give.
+Dave Longley:  For you to use it or we have the case that you 
+  have that there is a hesitate to use the word public because Joe 
+  hates that word but but Alan was using that word or you have this 
+  you know what Alan described as a public URL something that 
+  anybody could hit and the first time you hit that URL you might 
+  for example be given a verifiable presentation request that you 
+  must respond to an in so in that respect.
+Dave Longley:   Response some kind of all Z is going to be 
+  established.
+Dave Longley:  Through the exchange flow and so I do think that 
+  that quote that we had sort of covers what I expect to be both 
+  cases that we have.
+Dave Longley:  Are there you didn't know the URL and you had to 
+  be given it so it's a URL capability or there's a URL that's out 
+  there and when you hit it you will for whatever the business case 
+  is you'll establish all see through the through the actual Flow 
+  by using a point.
+Joe Andrieu:  It makes sense to me.
+Manu Sporny:  Okay so the question was do the exchanges endpoints 
+  need Odyssey.
+Manu Sporny:  Those to cover where you do need Otzi is their use 
+  case where they don't.
+Manu Sporny:  Like it's just a bear credential first first come 
+  first serve.
+Dave Longley:  So I think what we came in the conversation that 
+  we had last week we said there would still be some kind of all to 
+  see ultimately in those situations because we wouldn't expect the 
+  if there's literally no limit on giving out credentials like that 
+  even first come first serve it doesn't seem like the credential 
+  has any value.
+Dave Longley:  So you would expect that there would be a even if 
+  the endpoint is advertised in public it would be which would 
+  probably be quite unusual but even if it were you would expect it 
+  would be like a limited number of credentials that would be given 
+  out by that endpoint and that's all that means is by the time you 
+  hit one plus one over the limit you're going to be rejected and 
+  so you would not be authorized and so that's still implies that 
+  there's some kind of control over using that endpoint.
+Joe Andrieu:  Well I guess I could torture out some use cases 
+  like just a proof that the service is running you know get me BC 
+  from your server that convinces me your servers running.
+Dave Longley:  Even then it might be rate limited but I at that 
+  point we are torturing what authorization means is so it's I'm 
+  questioning what dou you what piece of information what kind of 
+  conclusion conclusion we trying to come to here when we get into 
+  that area.
+Manu Sporny:  I'm starting to wonder if we need to even answer 
+  the question if we go through and we specify all the endpoints 
+  and the ways that you can do authz, aren't we done.
+Dave Longley:  Yeah I think we are but that's just my opinion I 
+  kind of just jumped right in that that's that that's to me that 
+  sounded like the right thing to do just to enumerate all the 
+  possibilities number done.
+Joe Andrieu:  I mean by my sense for the coordinators is since 
+  that's about the business rules of the party who's trying to 
+  facilitate that particular exchange you know maybe they maybe 
+  they don't want it but I think we can talk through that on an 
+  endpoint by endpoint basis or component by component if it's if 
+  we're really just talking about the exchanges.
+Manu Sporny:  Okay all right good then that's that gives us like 
+  a good concrete way of getting through this question and we can 
+  get out of the philosophical discussion into a concrete 
+  discussion about whether or not the endpoint can can do otzi's 
+  mechanisms X y&z okay great so the next step here is effectively 
+  to close this issue after we have specified.
+Manu Sporny:  Mechanisms exist for each endpoint next step in 
+  please someone challenge that if you disagree.
+Joe Andrieu:  My only question is is this you said for all the 
+  endpoints is it still all the exchanges endpoints like is there a 
+  shift in scope about what we need to specify.
+Manu Sporny:  We will inevitably through the OAS files talk about 
+  each class of exchanges endpoint.
+Joe Andrieu:  Okay so we're going to do some work anyway and that 
+  will address this.
+Manu Sporny:  Exactly and I think that work.
+Manu Sporny:  The work doesn't start here but yeah that's 
+  basically like.
+Manu Sporny:  It's this pull request it's this one the fixed 
+  linting errors because it specifies the type of security on the 
+  end of each endpoint in this tells you very clearly whether or 
+  not this endpoint needs lots of you're not right in this answer 
+  is like.
+Manu Sporny:  You can do no authorization or oauth2 or is he caps 
+  those are options and we do have one for exchanges here where we 
+  specify the security on the exchanges and point and then per 
+  transaction as well I think one second let me get back to the 
+  queue.
+Manu Sporny:  No then go ahead and eat.
+Nate Otto:  Just suggesting that the pull request titled about 
+  linting errors it would be nice if we didn't expand the scope of 
+  that into a whole debate about which answers should be correct 
+  about which auth sun which endpoints get an initial thing down 
+  merge that and I would suggest doing the issue work around which 
+  endpoints need which off as individual fixes to that later.
+Manu Sporny:  Yeah huge plus 12 that let me go ahead and make 
+  that note in here too far back.
+Manu Sporny:  The intent of this PR is not to establish the 
+  correct odd see mechanisms for each endpoint that will be done in 
+  the future he our goal here is to get close enough and then.
+Manu Sporny:  Fine tune fiancée mechanisms in our future PR not 
+  take the Nazi mechanism is instead provided as for anything more 
+  than Rock in progress time we actually put that up in the actual 
+  PR.
+Manu Sporny:  There we go so we're at stated now very clearly go 
+  back Q Patrick go ahead.
+Patrick_(IDLab): Just want to make sure I understand when you say 
+  no a lot that's literally mean the authorization is optional or 
+  that endpoint.
+Manu Sporny:  It means it is an option to not do authorization we 
+  do have some implementers that have like it's a totally open end 
+  point anybody can hit it in most of us like that's not a good way 
+  to deploy production software but some people are like well you 
+  know what happens if I have complete internal control of the 
+  network you know and I don't want to pay the cost.
+Manu Sporny:   At that particular.
+Manu Sporny:  Stack so that's the argument for like.
+Patrick_(IDLab): Right if it's strictly internal component 
+  component okay.
+<nate_otto> Yeah, there may be a bug in the intent of "noAuth" 
+  here, don't know what "bearer": "emptystring" will do but that 
+  can be fixed to properly mean "auth header(s) are optional".
+Manu Sporny:  Yep you got it yep it's closed insurance we sign 
+  with that sign what security are on an endpoint all right so 
+  basically once we do this work to make sure we are okay with the 
+  authorization mechanisms assigned to each endpoint in the API we 
+  can close this issue because it will have answered the question 
+  about.
+Manu Sporny:   About what types of.
+<dave_longley> we might want to define "noAuth" as "firewall" or 
+  something instead
+Manu Sporny:  Relation are there for each endpoint.
+Manu Sporny:  Does anyone disagree with that and I'll get to your 
+  comment there Nate.
+Manu Sporny:  Okay I'm gonna basically put that in so that's good 
+  Nate you mentioned this looks wrong because it is totally wrong I 
+  just made this up like this is this is I couldn't figure out a 
+  way around the lint there is no there is no no there's no null 
+  security scheme so you either do security: and you turn it off 
+  entirely and 0s or you specify some kind of security scheme.
+Manu Sporny:   Oh yeah totally open.
+Manu Sporny:  Xing this or changing it to make it the right 
+  thing.
+Dave Longley:  Do you have to specify like the scheme and bear 
+  format because if you don't have to do that we could maybe rename 
+  this to like firewall or something that signifies that its 
+  internal network network based.
+Manu Sporny:  There is a Json schema that goes along with it and 
+  it was throwing up all kinds are so I didn't have the time to 
+  look at the Json schema to see what all the options were but the 
+  thing of the thing that seemed the most open was saying that the 
+  type of authorization is HTTP in the scheme is bare and then you 
+  can do whatever you want here again like this is all wrong like 
+  it.
+Dave Longley:  Sure yeah I'm just saying when if we can figure 
+  out something better we might be two birds with one scone by 
+  changing this from knoweth to firewall or something so that it's 
+  clear that there's always authorization on these end points that 
+  were talking about but you could choose to use some kind of 
+  network configuration architecture and that's that distinguishes 
+  it from.
+Dave Longley:   Having it be an open network.
+Dave Longley:  Are you something like that.
+Manu Sporny:  Or maybe just that work lot because you're you're 
+  you are depending on the security cat or S6 of the network to do 
+  authorization effectively for you.
+Manu Sporny:  Yep that's good.
+
+Topic: Verifier API should return verified VCs
+
+Manu Sporny:  Alright good so I think we've at least got a plan 
+  on how to address this issue let's move on to the next one so the 
+  next issue up we've got about 10 minutes is the verifier API 
+  should return verified BCS.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/207
+Manu Sporny:  Here's the link to 07.
+Manu Sporny:  So this was an issue that David Chadwick raised 
+  specifying that when you verify a verifiable credential the input 
+  is a sine v c VP.
+Manu Sporny:  And then the return value should return a set of 
+  validated credentials in w3c format without their proof so you 
+  should strip the proof off of them and guess strip the VP strip 
+  the proof off of them and this return back and array of 
+  credentials.
+Manu Sporny:  And there's all kinds of stuff for what happens if 
+  a job go ahead Patrick.
+Patrick_(IDLab): When we send a ray of credential we mean the 
+  whole credential or just the credentials subject.
+Manu Sporny:  Yeah that's a good question I would imagine David 
+  meant the whole credential not just credential subject.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  Yeah I also think he meant the whole Grinch oh and 
+  that if you are verifying it jot you would reconstruct the 
+  credential since their deconstructed in that format I also 
+  question whether it would be a good idea to strip the proofs off 
+  you might just want to return the credentials that were verified 
+  I don't know if it's useful to remove the proofs and there.
+Dave Longley:   Might be other proofs that.
+Dave Longley:  You would want to check or do something with 
+  depending on your use case.
+Dave Longley:  There might be other proofs that are not assertion 
+  proofs that you might want to do something with.
+Manu Sporny:  Why did I miss anything they're serving the Bruce 
+  might be not be a good idea yeah.
+Manu Sporny:  Go ahead Joe.
+Joe Andrieu:  It seems to me that this is most valuable for jwt's 
+  and it makes sense if I'm handing off the entire JWT base vc2 a 
+  verifier if they're going to check it and make sure it works and 
+  they have the Json give it back to me that seems very useful but 
+  the idea of stripping off the proofs of a VC that I sent them 
+  that's.
+Joe Andrieu:  That seems odd so maybe we can make it optional or 
+  type-specific.
+Manu Sporny:  And I'll note that I don't I don't we haven't 
+  defined what a jaunt input inputs and outputs to the API looks 
+  like I think there's a big hand wave around what that looks like 
+  right now I think there's a desire to support that but I don't 
+  think it exists in the OS files today.
+Manu Sporny:  That I'd see a Patrick give me a sec Duty input 
+  output is defined in the u.s. finals today go ahead Patrick.
+Patrick_(IDLab): Yeah just about this section you mentioned the 
+  JWT input outputs and the final thing that goes along with multi 
+  credential support because is it Julia T DW T consider the w3c 
+  verifiable credential or it's considered as as its own sort of 
+  credential format.
+Manu Sporny:  That is the current debate going on in the 
+  verifiable credentials working group.
+Patrick_(IDLab): Cuz I coding is if you look at the page for the 
+  data model 1.1 there's clearly a section about JWT but there's 
+  also like it's on spec yeah.
+Manu Sporny:  Yeah I'm going to be very biased and say a JWT is 
+  not a verifiable credential a JWT can encapsulate a credential 
+  and secure it but there are two different things you have the 
+  outer just JWT and then the JWT has a VC property in it that 
+  contains either.
+Manu Sporny:  A verifiable credential part of the data model 
+  spec.
+Dave Longley:  Edit there's actually a third option it contains a 
+  partial credential that's missing Fields so it's yeah it's messy.
+Manu Sporny:  Okay okay so well I wanted to ask the question are 
+  we concerned about performance issues by mandating the return 
+  value should the default return value be okay everything's fine 
+  and then you add an option to say I actually want you to give me 
+  back the entire verifiable.
+Manu Sporny:  Met how do we how do we want to answer those 
+  questions go ahead Joe.
+Joe Andrieu:  Yeah I think we need to support the minimum 
+  communication possible otherwise we're going to undermine a bunch 
+  of sort of edge device iot kind of situations where you just 
+  don't have the bandwidth like every Everybody matters.
+Manu Sporny:  Okay agree is Tyler's um I had Patrick.
+Patrick_(IDLab): Smite my gut feeling would be that I don't 
+  really see the point of returning the actual VC if I mean you 
+  clearly sent it as an input it returns you if it's verified or 
+  not if it returns you the VC is just returning you what you and 
+  put in so I don't know how I maybe there's use case I don't see 
+  but just at first I thought I don't really see the point.
+Manu Sporny:  Points it used to be that it was possible to put 
+  properties into the credential.
+Manu Sporny:  Be silently dropped on signature and verification 
+  and it and so that's that used to be true verifiable credentials 
+  20 has added an ad vocab property in it which now means that you 
+  will never drop never is correct I'm pretty sure let me assert 
+  that you will never drop a property in so whatever you give it if 
+  it's verified you.
+Manu Sporny:   Is get the same thing back.
+Manu Sporny:  It could be that someone has messed with the 
+  verifiable credential actually no that doesn't even work I'm 
+  going to stop speaking because it feels like there used to be a 
+  use case for this and I don't know if that exists anymore.
+Manu Sporny:  Patrick did I accurate did you put your car in the 
+  queue.
+Patrick_(IDLab): I just put myself that quickly regarding the 
+  data model 2.0 that's being drafted when when and if it gets to a 
+  point that it's published is it going to supersede that that our 
+  model 1.0 or they're both going to sort of Live And.
+Manu Sporny:  They're both going to live side by side for a while 
+  I imagine you know wheel to will say it supersedes it and you 
+  should be using 20 but people won't listen to us and they'll 
+  continue to use 10 you know.
+Patrick_(IDLab): Yeah for whichever reason.
+Manu Sporny:  Yep exactly go ahead lonely.
+Dave Longley:  Yeah I was also going to say the 11 work doesn't 
+  get into any of the with the exception of some mapping rules for 
+  jobs so it doesn't get into how data Integrity proofs work and 
+  generally speaking modern data Integrity proof libraries will 
+  throw errors if anything is dropped regardless of whether using 
+  vc-1 one or some other context it doesn't really matter and the 
+  other point I was going to make is I think the main.
+Dave Longley:   Main use case for this feature is for jots you.
+Dave Longley:  There's just no unless the verifier returns back 
+  back to you the decoded data you can't use it because that's how 
+  jots work and so they don't have the option of functioning in the 
+  way that the data Integrity proof secured VC's do.
+Manu Sporny:  Go ahead and eat.
+Nate Otto:  Yeah I don't feel like I am an expert enough at this 
+  particular endpoint and how its scope to you know be him a very 
+  helpful here but I do want to speak to the how I built the open 
+  Badges validator and how that ended up being useful to me a few 
+  years ago as a client identified a bunch of use cases for where 
+  what the output of the validator was would just sort of beat the 
+  trusted version.
+Nate Otto:   Of the thing that I sent in and the scope of.
+Nate Otto:  Totally different in that it went out and did a whole 
+  bunch of other HTTP fetches to grab Associated resources and 
+  dynamically like return to whole bunch of different stuff about 
+  the credential that was under test also and this is a totally 
+  different scope here but one as a client one way of really 
+  valuing what I got from a validator was just like oh this is the 
+  trusted version of the thing this is the canonicalized version of 
+  the thing under some particular understanding.
+Nate Otto:   That I had of that.
+Manu Sporny:  Got it right I think that resonates I mean I think 
+  what we have here is we have a clear use case Q we have a clear 
+  abuse case where this is useful for jots it's questionable on 
+  whether or not it's useful for data Integrity things secured with 
+  data integrity and it's clear that we want to have a mechanism 
+  where you want.
+Manu Sporny:   To minimize the amount of back and forth.
+<nate_otto> (so that's a "a response body of the VC is useful 
+  sometimes" +1 to @dlongley)
+Manu Sporny:  So you want to basically be able to say like don't 
+  give me the trusted canonical form in the return value so it 
+  feels to me like the so the question is should the verifier API 
+  return verified BCS and I think the answer that I'm hearing is 
+  it's an optional feature we can talk about defaults later but 
+  I'll just assert you know the default is it's off by default.
+Dave Longley: +1 To manu's framing
+Manu Sporny:  Or can request that the return value contains the 
+  canonical form and that can be done on data Integrity versions it 
+  can be done on jwt's and if we take that approach it feels like 
+  we've got something that we can put in a PR would there be any 
+  objection to a PR like that so so basically the verifier API can 
+  return.
+Manu Sporny:  A canonical verified document and it's an optional 
+  feature where the default is off.
+Manu Sporny:  Okay the verifier API can return a canonical form 
+  after verification it is an option that is off by default let's 
+  can be on the option is valid with all types of.
+Manu Sporny:  With all types of verifiable credentials that are 
+  secured different ways okay so that is ready for PR and noting 
+  that we are at the top of the hour is our last issue for the day 
+  you real quick one last time okay awesome great thank you that 
+  was super helpful and I think we'll give.
+Manu Sporny:   Give people what they want.
+Manu Sporny:  While making the right balance next call we will 
+  start with API endpoints that mess specify the component so this 
+  is the thing we've been wanting to do for a while and then maybe 
+  the other thing that we can do is talk about the security on 
+  those endpoints and clearly not co-mingle the to one of them's 
+  easier than the other one I think but that is what we will try 
+  and tackle next time thanks everyone for the call have a 
+  wonderful.
+Manu Sporny:   Full rest of your week take care bye.

@@ -1,0 +1,158 @@
+Nis: Welcome to the trace call, it is interop week. Make sure to sign the contributor agreement, 
+3:34
+Fellow Jitster
+Fellow Jitster says:test 
+3:34
+Fellow Jitster
+Fellow Jitster says:Nis: It looks like we have someone new 
+3:34
+Fellow Jitster
+Fellow Jitster says:Hey AJ : ) 
+Fellow Jitster says:This is a community group : ) 
+3:35
+Fellow Jitster
+Fellow Jitster says:AJ Stein: My name is AJ Stein I work at the National Institute of Standards and Technology. I met Orie and I thought I'd come see what's going on. 
+Fellow Jitster says:Welcome AJ! 
+3:35
+Fellow Jitster
+Fellow Jitster says:Thank you. 
+3:35
+Fellow Jitster
+Fellow Jitster says:Ted: The CCG is not doing the eco, maybe because the previous meeting didn't kick anyone. I'm concerned about the minutes. 
+3:36
+Fellow Jitster
+Fellow Jitster says:see you in a sec 
+3:37
+Fellow Jitster
+Fellow Jitster says:OK, bye bye 
+3:37
+Orie
+Orie says:did it work? 
+3:39
+me says:We'll have to manually grab the meeting notes before the end of the meeting 
+me says:Sounds good 
+3:40
+Orie
+Orie says:This is CG tooling, W3C tooling is zoom. 
+3:40
+nis
+nis says:OK ,I see 
+3:41
+Orie
+Orie says:welcome Patrick! 
+3:41
+A.J. Stein
+A.J. Stein says:I will not joke about tooling from my employer and other communities, this is not really bad. We all take notes by hand, work has strict requirements on recording and transcription for work-sponsored public meetings. I am happy it is automatic part of the time! 
+3:41
+me says:Patrick: I work for ID Lab, i work as a dev ops specialist and I've worked here for three years. before that I've been doing cyber security. I've been on the VC-API calls. We're interested in test suites and this is a big part of this group. And I'm here to get familiar with what's being worked on. 
+3:42
+nis
+nis says:
+https://github.com/w3c-ccg/traceability-interop/pulls
+ 
+3:42
+me says:Nis: This is interop week, so we will go through PR's on interop repo 
+3:42
+nis
+nis says:
+https://github.com/w3c-ccg/traceability-interop/pull/595
+ 
+nis says:
+https://github.com/w3c-ccg/traceability-interop/pull/605
+ 
+3:43
+me says:Nis: This is from Russell, this is about request headers 
+3:43
+Mahmoud Alkhraishi
+Mahmoud Alkhraishi says:unfortunately I also have to drop at 2:00pm today. 
+For my interop tickets, I believe I can get quite a big chunk of them opened next tuesday, its booked on my calendar and everything! 
+3:43
+Russell H (mesur.io)
+Russell H (mesur.io) says:
+https://github.com/w3c/vc-jose-cose-test-suite/issues/8
+ 
+3:44
+me says:Russell: This was from last week and blocked about a conversation about request headers. There is a long string in our spec. And the suggestion is to shorten it. And there is also discussion on the JOSE/COSE repo. And I'm not sure if there is consensus. 
+3:44
+nis
+nis says:ack patrick 
+3:45
+me says:Orie: Part of this is just using the media type for VC's. If we're passing around data integrity proof with the right media type. And the current working group is using multiple suffixes, but I agree with Ted that it might not be relevant. But that's something the VC group needs to figure out. And this repository can reflect what that draft is. 
+me says:Patrick: Would it be worth opening an issue over there? 
+me says:Orie: I can open a new issue on JOSE/COSE. 
+me says:Ted: We should not be opening spaghetti issues 
+me says:Orie: I think we should provide context in the upstream repo for our reasoning. I think we should keep the data integrity proof, but the SD-JWt part we can cut out. 
+me says:Russell: So I should cut that out? 
+me says:Orie: Yeah I think that's safer 
+me says:Nis: We'll give it another week 
+3:47
+nis
+nis says:
+https://github.com/w3c-ccg/traceability-interop/pull/606
+ 
+3:47
+me says:Russell: There is one difference, this also requires discussion on whether we require an accept header at all. 
+me says:Russell: Whether Verifiable Credential issue requests should require an accept header. 
+me says:Mahmoud: I think the next step is dependent on the previous PR. In spirit i agree with this PR, but it's depended on the SD-JWT issue that we just talked about. 
+3:49
+Russell H (mesur.io)
+Russell H (mesur.io) says:
+https://github.com/w3c-ccg/traceability-interop/issues/609
+ 
+3:49
+me says:Russell: Also requiring accept headers will cause tests to break, so that's something I want to get approval on in the issue. 
+me says:Russell: Can I do something similar here in terms of just requiring accept headers for the data integrity proofs? 
+me says:Orie: I would break them apart so we can incrementally improve 
+me says:Russell: Do I have the go ahead to require the accept header? 
+me says:Orie: If the accept header is not passed, the server normally gets to provide what ever it wants 
+me says:Russell: I think the idea it was supposed to fail without that, but not sure if that makes sense 
+me says:Orie: It doesn't make sense. The accept type is set on the client, and you can either get the type that you requested, the server can throw an error, or the server can respond with what it wants. 
+3:52
+Chris Abernethy
+Chris Abernethy says:+1 to not requiring Accept header 
+Chris Abernethy says:and defaulting to `application/vc++ld+json` 
+Chris Abernethy says:(spelled right though) 
+3:53
+me says:Russell: It's reasonable for the server to throw an error for content type that is not available, but it doesn't make sense to throw an error when nothing is provided? 
+3:53
+A.J. Stein
+A.J. Stein says:Is there a reason we don't want graceful downgrades if Accept cannot be handled by the server's response? 
+A.J. Stein says:I may have misunderstood. 
+3:53
+me says:Russell: okay, i'll close the PR for adding negative tests 
+3:53
+Orie
+Orie says:thanks! 
+3:53
+nis
+nis says:
+https://github.com/w3c-ccg/traceability-interop/pull/610
+ 
+3:54
+me says:Orie: If the client is going out of it's way to ask for a specific media type, then it seems friendlier to throw an error as opposed to providing something else. 
+3:54
+Russell H (mesur.io)
+Russell H (mesur.io) says:I've got to drop off 
+3:55
+me says:Ted: Adding helpful line breaks for code review 
+3:55
+nis
+nis says:
+https://github.com/w3c-ccg/traceability-vocab/pulls
+ 
+3:55
+me says:Nis: These are adding specific identifiers to the terms 
+me says:Nis: Any objections to merging 899? 
+me says:Nis: This is allowing for expiration date on the mill test report. Merging 900. 
+3:56
+Orie
+Orie says:I'm good to end early 
+3:57
+Chris Abernethy
+Chris Abernethy says:+1 
+3:57
+Mahmoud Alkhraishi
+Mahmoud Alkhraishi says:We hit all PRs so we should be ok 
+3:57
+Patrick (IDLab)
+Patrick (IDLab) says:👍 

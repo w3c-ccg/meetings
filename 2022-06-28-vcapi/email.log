@@ -1,0 +1,726 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-06-28-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-06-28-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-06-28
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jun/0051.html
+Topics:
+  1. Introductions and Relevant Community Updates
+  2. Use Cases Update
+  3. chapi.io and VC Issuer API
+  4. Options for /presentations/verify
+  5. Implementations for /credentials/derive and 
+    /presentations/prove?
+Organizer:
+  Manu Sporny, Mike Varley
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  Dmitri Zagidulin, Gregory Natran, Mike Varley, Andy Miller, 
+  Justin Richer, Eric Schuh, Joe Andrieu, Charlie Fontana, Rolson 
+  Quadras, Kayode Ezike, Marty Reed, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Right welcome everyone to the June 28th 2022 
+  verifiable credentials API call our agenda for the call is here.
+Manu Sporny:  On the agenda today is just this agenda review 
+  introductions relevant Community updates and then we're going to 
+  keep going through the options questions we had from last week so 
+  what kind of options do we want to be able to pass presentations 
+  verify who is implementing credentials derive and presentations 
+  proved and.
+Manu Sporny:   Then options for.
+Manu Sporny:  Credentials derive in presentations prove any other 
+  updates or changes the agenda today anything else we should 
+  cover.
+Gregory_Natran: My name is Gregory I'm just checking to make sure 
+  my mic is working.
+Manu Sporny:  It is wonderful to hear your voice welcome to the 
+  call.
+Gregory_Natran: Sounds like it is thank you.
+
+Topic: Introductions and Relevant Community Updates
+
+Manu Sporny:  Okay if there are no additions to the agenda we 
+  will jump into Productions and relevant Community updates anyone 
+  new to the call or would like to reintroduce yourself to the call 
+  today.
+Gregory_Natran: Well it's Gregory that would probably be me since 
+  I first time I started on this group although I've been 
+  participating on the verifiable credentials working group for 
+  about the last two years.
+Gregory_Natran: I work for a company named Natasha cybertech and 
+  we do a fair bit of work on identity Based Services particularly 
+  in the public sector in Canada that's probably all you need to 
+  know.
+Manu Sporny:  Well when wonderful welcome to the call Gregory 
+  wonderful to have you here.
+Manu Sporny:  Anyone else knew or want to reintroduce yourself.
+Manu Sporny:  Okay onto relevant Community updates I've got to to 
+  kick us off and then yeah if anybody else has Community updates 
+  would love to hear them the first one of course is that the 
+  verifiable credentials working group The the 20 working group is 
+  starting up.
+Manu Sporny:  At 11 a.m. eastern time so if you are a w3c member 
+  please join the group if you are not in don't have the funding to 
+  do that you can do there's an option to join as an invited expert 
+  all of our work happens largely in GitHub so you don't need to be 
+  a w3c member or even a part of the community group or anything 
+  to.
+Manu Sporny:   I paint you can literally just.
+Manu Sporny:  Walking off of the internet and start commenting on 
+  issues and as long as you're making Salient points you know the 
+  the group will will discuss those so plenty of opportunity to 
+  engage if you'd like to do that.
+Manu Sporny:  Announcement one the second announcement is around 
+  chappie IO there was get the link here.
+<manu_sporny> chapi.io announcement: 
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jun/0055.html
+Manu Sporny:  There's an announcement about chap EIEIO here eat 
+  IO announcements and I was going to take a quick run through that 
+  on the call just with some screen sharing for any kind of 
+  questions and answers the relevance did this group specifically 
+  is that we have plans to try and integrate the verifiable 
+  credential API into the.
+Manu Sporny:   The chap e-verify.
+Manu Sporny:  Potential playground so that you can select an 
+  issuer so when you have an example on the screen you can then 
+  take that and package it up and send it to anyone that implements 
+  the VC it's your API and have that issued so we'll go through a 
+  quick demo on that as long as there are no objections to do that 
+  right after this set of community.
+Manu Sporny:  Any other community updates anything else that we 
+  should know about.
+Manu Sporny:  Okay our folks okay with taking a look at chappie I 
+  owed you'll want to just jump into options any strong feelings 
+  one way or the other.
+Manu Sporny:  Joe's saying comes up.
+Manu Sporny:   Go ahead.
+
+Topic: Use Cases Update
+
+Eric Schuh:  Oh yeah just wanted to give a quick use cases update 
+  unfortunately don't have too much this week just so everyone 
+  knows what's going on Joe and I use this program called visual 
+  Paradigm to generate sequence diagrams and I've been struggling 
+  to get our xmi to mermaid converter functioning in a way that 
+  makes it easy for me to update the use cases so I think.
+Eric Schuh:   In the last.
+<andy_miller> Will vc 2.0 use the same repo as 1.x? 
+  (https://github.com/w3c/vc-data-model)
+Eric Schuh:  Our Joe and I identified what we need to do to get 
+  that into something that means I don't have to manually delete a 
+  bunch of new lines and add new line characters in a bunch of 
+  places so next week we should have the PRS for all of our six 
+  focal use cases we did get in a little bit of a reorganization PR 
+  to the use cases repo moved R6 use cases to focal use cases and 
+  removed some old diagrams.
+Eric Schuh:   Just mostly minor formatting.
+Eric Schuh:  So hopefully next week we'll have some more to talk 
+  about in regards to use cases.
+Manu Sporny:  Awesome great thank you for the update Eric the 
+  struggle is real data data format conversion struggle is real but 
+  thank you for continuing to work on that stuff and make it so 
+  that those things can be converted easily in round-trip and 
+  updated easily.
+Manu Sporny:  Hindi you asked a question in the chat channel will 
+  the verifiable credentials 20 spec use the same repo as the 1X 
+  spec yes it will so we just need to track that one repo and we 
+  will have a 1x in a 1:1 and a in a in the 2-0 branch will become 
+  the main branch as long as that's what the group decides that 
+  they want to do but highly likely that that is the path for 
+  there.
+Manu Sporny:   Any questions.
+Manu Sporny:  It's about use cases for Eric or Joe before we move 
+  on.
+
+Topic: chapi.io and VC Issuer API
+
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jun/0055.html
+Manu Sporny:  Thank you for that update Eric much appreciated 
+  okay next up happy IO and BC is sure sure API as some of you saw 
+  there was a an announcement about chappie I owe this is the 
+  credential Handler API it's a work item of the credentials 
+  community group and is one mechanism that can be used to move 
+  verifiable.
+Manu Sporny:   Initials from.
+Manu Sporny:  An issuer to a holder or from a holder to a 
+  verifier another protocol that can be used is the VC API certain 
+  aspects of the VC API can be used to do the same thing chappie is 
+  typically used when you are in a browser setting and you need to 
+  move data to a native app or to a web based app back in.
+Manu Sporny:   Fourth there.
+Manu Sporny:  And so this technology has existed since 2013 
+  really 2015 is where it started to stabilize and we have been you 
+  know maintaining the infrastructure ever since to make sure that 
+  there are ways of moving credentials around when you're in the in 
+  the browser okay so let me try and screen share here.
+Manu Sporny:  Kinfolk see this this is just a standard Google 
+  Chrome screen.
+Manu Sporny:  Okay awesome thank you so happy I oh there's going 
+  to be more documentation here and if you go to the polyfill 
+  there's all the documentation about integrating this with digital 
+  wallets and issuers and verifiers but really the big thing that 
+  has happened is this chappie playground thing the playground is 
+  basically a way to create a verifiable credential and put it at 
+  any URL any json-based json-ld based.
+Manu Sporny:  Um you can then pull that data into the issuer and 
+  then issue it to a wallet so one of the first things that you 
+  need is a wallet right now we have the various wallet is kind of 
+  a demo so I'm just going to slide it up real quick.
+Manu Sporny:  Can you can add like any number here.
+Manu Sporny:  If you want a new account and then that basically 
+  ends up creating a digital wallet for you so you've got a digital 
+  wallet now and then to effectively use the chappie playground you 
+  load this up by this I mean like you go to the playground site 
+  that's linked off of the main page so if I go to chappie.
+Manu Sporny:   P Dot.
+Manu Sporny:  Takes me to the main playground site if I click 
+  that link and then you can basically put in any URL here right as 
+  long as you've got a well-formed verifiable credential here you 
+  can use any URL but we have this default example which is the 
+  alumni use case example when you click resolve it basically pulls 
+  the credential into the.
+Manu Sporny:   Round and so.
+Manu Sporny:  Clay you know that's those of you that have been 
+  that know about the the example in the VC data model we've got 
+  the basic example out of the out of the BC data model and then 
+  when you click store in wallet it will use chappy to invoke the 
+  wallet that was just installed you can actually select from a 
+  variety.
+Manu Sporny:   Piety of different wallets hear anything.
+Manu Sporny:  Any wallet that is registered and supports chappie 
+  will work here so if I go back here this is kind of the wallet 
+  selection screen if I had multiple wallets installed it would 
+  show multiple wallets here this little checkbox is automatically 
+  checked usually which basically you select a wall and you can 
+  continue to use the wallet for that side so I select my wallet 
+  the wallet pops up here and asked if I'd like to store these 
+  credentials.
+Manu Sporny:   All's I click.
+Manu Sporny:  And that's it right that just that is basically 
+  moved the credential from the playground into the wallet and if I 
+  go to the wallet and I refresh the screen here you'll see the new 
+  alumni credential in the digital wallet here I can click on that 
+  take a look at the credential itself so the important part here 
+  around the BC API is not really the wallet or any of that stuff 
+  it's.
+Manu Sporny:  Hope part what we really want to be able to do here 
+  is to 1 be able to list multiple digital wallets here that 
+  support chappie so if you've got a digital wallet and you want it 
+  listed on this page we're going to have like kind of a listing of 
+  wallets that people can sign up and use and then the other 
+  important part here is we want to wire this verifiable credential 
+  issuer up to different issue or back.
+Manu Sporny:   Ends and that's where the VC API comes.
+Manu Sporny:  We'd like the call to be made so you'll basically 
+  have a raw credential here without a proof on it and then you can 
+  call different issue or back ends to issue the credential and 
+  then you can click store in wallet and store it in in multiple 
+  different wallets here okay so let me stop there to see if there 
+  are any questions around the demo or how we intend to try to hook 
+  this up to be Capi.
+Manu Sporny:   Go ahead.
+Manu Sporny:  Eric I think that's an old Q is that right.
+Eric Schuh:  Yeah that's old for me.
+Manu Sporny:  Go ahead to me tree.
+Dmitri Zagidulin:  First of all this question is a design one 
+  what was the.
+Dmitri Zagidulin:  Pulling me in the credential Bo you're 
+  well-versed a pep talk.
+Manu Sporny:  That is just I think so let's let me let me try and 
+  yeah good question so your audio is a little muffled Dimitri so I 
+  think the question was why did you make this a URL and why didn't 
+  you just put it in the site itself I think what we're trying to 
+  do here is just provide the minimum tooling so that people can 
+  kind of pull in the things that they would like to test with.
+Manu Sporny:  Too opinionated about what goes in here so I think 
+  what we're thinking here is that we may end up loading this list 
+  or the set of credentials from the VC examples in the credentials 
+  community group and so if people want to they can go to the VC 
+  examples and then just add whatever examples they want in and 
+  we'll be able to surface all of those examples in the credential 
+  issuer but people don't want to use any of those and they want to 
+  use their.
+Manu Sporny:   Our own URL like.
+Manu Sporny:  Kind of like testing stuff and they don't really 
+  want to make it you know public to the community they can put it 
+  out at a URL that they trust or I think in the future we'll have 
+  just text input box to let you just copy and paste directly into 
+  the end of the playground did that answer your question to me.
+Dmitri Zagidulin:  Yeah yeah what was just curious if you had a 
+  particular reservations about the text input box sounds like 
+  roadmap items Punk right.
+Manu Sporny:  No yeah it's a roadmap item in on and really if 
+  there's like a strong feeling from any of you or anyone in the 
+  community like please raise an issue or let us know on the 
+  mailing list so that we can like hot put a higher priority on the 
+  features people want to see versus like you know so if like 
+  loading from URL you're like a that's not really useful to me 
+  like give me a text input box then we can put a higher priority 
+  on the text input box for example.
+Manu Sporny:   Go ahead.
+Gregory_Natran: Sorry this is probably a bit of a catch up 
+  question but this is primarily focused on just getting a 
+  credential into the wall and we don't care too much or at least 
+  this doesn't seem to care too much about where credential 
+  definitions and did documents reside or anything like that it's 
+  just it just spits it out and gets it to the wallet.
+Manu Sporny:  Yes that is that is correct in fact right now with 
+  the URL base thing it doesn't even check for the validity of the 
+  credential so you could just Jam anything you wanted to in here 
+  and it would deliver that to the wallet and the wall it might 
+  blow up the wallet might basically be like I don't know what that 
+  is but again we were trying to not be opinionated here in so if 
+  people wanted to you know put we put basically put anything in 
+  here they can do that whether.
+Manu Sporny:   Her or not the wallets will accept it or not is a 
+  different question.
+Gregory_Natran: Fair enough thanks.
+Manu Sporny:  Right there's also so there's a question on like 
+  you know do people want that restricted or do you want it to be 
+  kind of left it open-ended like like for example I don't know if 
+  VC jots I don't think these he jots are supported right now but 
+  there's nothing that would prevent that from being submitted now 
+  right like if you put a VC jot in here as in a URL it'll load it 
+  and it will shove it across chappie.
+Manu Sporny:   And then the.
+Manu Sporny:  It's got to decide what to do with that so I think 
+  we want to keep that in here right the same thing with like a z 
+  cap but again like we didn't want to mention that on the site 
+  because I think that kind of confuses would be more confusing to 
+  people than than helpful.
+Manu Sporny:  But yeah this is supposed to be really about just 
+  how Jack chap he's a dumb pipe that will move data from one 
+  location to another Without Really caring about what the data is.
+Manu Sporny:  Yeah any other questions before we move on to our 
+  main agenda.
+<kayode_ezike> Neat tool 👌🏾
+
+Topic: Options for /presentations/verify
+
+Manu Sporny:  Alright then I will stop sharing and then let's 
+  move on to the next item which is options for presentation verify 
+  so.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/292
+Manu Sporny:  Then we are in shoe to 92.
+Manu Sporny:  And let me go ahead and share my screen here.
+Manu Sporny:  You see if.
+Manu Sporny:  This helps okay so last week we had a lot of 
+  discussion around various options that we were sending two 
+  endpoints like credentials verify in credentials issue we came to 
+  a number of conclusions last week like Joe mentioned that we 
+  really.
+Manu Sporny:   Need a disguise.
+Manu Sporny:  For each endpoint that lists which components it's 
+  expected to be attached to so for example for the credentials 
+  issue in point is that something that's supposed to be exposed on 
+  the issue or a poor the issue or service or both and so on and so 
+  forth so for example the correct credentials issue is something 
+  that's Exposed on the shore service will stop right so we need to 
+  go and Mark all of the endpoints with that information we also 
+  decided to remove change.
+Manu Sporny:   Challenge domain and.
+Manu Sporny:  Potential status from the list of settable options 
+  for the credential issue and point it didn't seem like anybody 
+  was well Challenge and domain don't make sense and then 
+  credential status is typically configured on an endpoint by 
+  endpoint basis we also wanted to clarify that that options are 
+  not mandatory like you don't have to set any options options are 
+  truly optional.
+Manu Sporny:  So you can completely omit the options object when 
+  you call these endpoints and everything should continue to 
+  function we also had a discussion on something that Dimitri 
+  raised which was a good point here noting that one we needed 
+  steps for verification using normative language we needed to 
+  change.
+Manu Sporny:   Check to make sure.
+Manu Sporny:  Verification specifically so we made a we had a 
+  conversation about verification versus validation verification 
+  specifically means that you check the structure of the verifiable 
+  credential to see that it's valid so it's like a syntactically 
+  well-formed thing you if the credential scheme has defined you 
+  check that because that will give you a very clear yes it passes 
+  the Json schema or no it does not pass the Json schema.
+Manu Sporny:  You check to make sure that the verification method 
+  has not been revoked.
+Manu Sporny:  You check the credential status to make sure that 
+  the credential has not been revoked.
+Manu Sporny:  And I thought we decided not to do the current time 
+  is between issue and state and expiration.
+Manu Sporny:  Date because that's a validation rule am I miss 
+  remembering that Joe I remember you having a.
+Manu Sporny:  Ocean about this.
+Joe Andrieu:  Yeah I think that particular boundary felt like 
+  sometimes it's a business rule but I think it's a it's a fair 
+  debate as to whether or not that should be part of every occasion 
+  or should be treated as a part of validation because sometimes 
+  the fact that it's expired does not mean that it is unusable for 
+  your use case.
+Gregory_Natran: It's great remember having these discussions on 
+  the vert the working group as well.
+Gregory_Natran: Of whether a time-stamped one is still valid for 
+  use cases.
+<kayode_ezike> Sounds like something to take up in VCWG
+Manu Sporny:  Yep yeah okay so how about this will create an 
+  issue marker to note that checking current time checking whether 
+  current time is between nations and expiration date is still up 
+  for debate with respect to whether that is a check that's done 
+  during verification ordering.
+Joe Andrieu: +1 @Kayoda for raising this in VCWG
+<joe_andrieu> @kayode
+Manu Sporny:  Okay all right and then finally Dimitri that all 
+  that was all discussions that we had while debating the concept 
+  that Dimitri raised but Dimitri also said hey it would be good to 
+  have an events log which is an optional value it's not mandatory 
+  that provides the checks that the verifier performed by default 
+  it is turned off so you will not get an.
+Manu Sporny:  Log on things.
+Manu Sporny:  At work checked the presumption there is that we 
+  may need some identifiers for things that were checked like 
+  syntax credential schema verification method revocation 
+  credential status things like that right but I think in general 
+  everyone believed that that was a good feature to have okay.
+Manu Sporny:   Okay that's.
+Joe Andrieu:  Hold on man I had one comment on that I think it 
+  was the event log in the case of a successful verification is 
+  optional but in the case of a failed verification then the entire 
+  event log by default should be shared.
+Joe Andrieu:  So if it succeeds you get a short quick answer if 
+  it fails you get the details as to what actually failed.
+Manu Sporny:  Got it yep I remember that vaguely as well it does 
+  anyone object to that recollection of last week's discussion.
+Manu Sporny:  Okay by default that's turned off and successful 
+  verification.
+Manu Sporny:  However the event log is provided on failed 
+  verification.
+Manu Sporny:  Is that it doesn't capture everything you said Joe.
+<kayode_ezike> Even that event log is optional though, correct?
+Manu Sporny:  I think it does.
+<kayode_ezike> I remember David Chadwick expressed a desire for 
+  that
+Manu Sporny:  Okay so we've got multiple PR's that need to go in 
+  for that one.
+Manu Sporny:  Okay so today we are picking up let's see 
+  presentations verify for the patient and verify options in let me 
+  bring up this look like me see.
+Manu Sporny:  Okay so verifying a presentation.
+Manu Sporny:  Provides you basically provide a challenge in a 
+  domain in the options object.
+Manu Sporny:  And that is because typically when there's a 
+  presentation there is a challenge at domain that's supplied.
+Manu Sporny:  So that seems right to me any thoughts or concerns 
+  about this.
+Manu Sporny:  About where where the spec is today I think it's 
+  right.
+Manu Sporny:  These are optional right you don't have to specify 
+  them.
+Manu Sporny:  See David it's David Chadwick on the call today.
+Joe Andrieu:  Are we suggesting that if challenge our domain is 
+  stripped by the verifier it just won't do that check.
+Manu Sporny:  I think so here's my concern so so let's say that 
+  you know this is a VC jot that's coming in or some other type of 
+  you know thing that's got a wrapper around it I don't know what 
+  some of the vcg people are doing when it comes to challenge you 
+  know challenging domain.
+Manu Sporny:  Because I mean like you audiences used sometimes 
+  you know in those sorts of protocols so the question is are the 
+  VC job folks handling this in different ways anyone is anyone 
+  implementing VC jots on the call.
+Manu Sporny:   And you.
+Manu Sporny:  The VC API to do it.
+<mike_varley> Avast plans to but has not started...
+Manu Sporny:  So maybe what we should do is we should check okay 
+  so Mike you're saying of as plans to but has not started.
+Manu Sporny:  Do you have any inkling on what you would do with 
+  Challenge and dumaine Mike.
+Mike Varley:  It's a good question so no we haven't looked that 
+  closely at it although I think we're all seams on the call to so 
+  maybe you can correct me but I think the point is we will be 
+  trying to implement that so we should be able to provide Insight 
+  when we get there we're not there yet.
+Manu Sporny:  Okay so we know that they plan on implementing but 
+  have no.
+Mike Varley:  Current Insight yes or migrant suggestions.
+Manu Sporny:  Kurt Kurt Kurt suggestion.
+Joe Andrieu:  So so right this is for.
+Manu Sporny:  Yep that's right it's for the presentation.
+Joe Andrieu:  So our presumption here did we have other language 
+  that establishes that verifying a presentation includes checking 
+  domain and challenge.
+Manu Sporny:  No we I don't think we had there's any normative 
+  anything yet because that's protocol land and I think people have 
+  been doing it but we don't have concrete spec text about I don't 
+  think I don't think the PC data model specifies well you know I 
+  say that.
+Joe Andrieu:  It feels like validation to me but if there's 
+  already been consensus established that verifying the 
+  presentation includes that.
+Manu Sporny:  Checking Challenge and domain.
+Joe Andrieu:  Right as part of verification as opposed to 
+  validation.
+Manu Sporny:  I don't think there's consensus.
+Joe Andrieu:  In other words is this the right party seems like 
+  what you're checking at least with the domain.
+Joe Andrieu:  The challenges for the person in the middle defense 
+  but.
+Manu Sporny:  Yeah I'm wondering if it's in the data Integrity 
+  spec I'm trying to figure out I'm trying to remember where this 
+  is I know it's in the security vocabulary oh and uh.
+Manu Sporny:  Yeah it's nice I don't think it's anywhere it's 
+  just it's a tribal knowledge at this point so I would imagine we 
+  should bring this up in the VC to you know working group but yeah 
+  the whole reason challenging domain is there is the domain is 
+  effectively audience and challenges to prevent replay when you're 
+  doing presentations.
+Manu Sporny:  Noted that both challenge in.
+Manu Sporny:  Challenge and Main are not specified or not 
+  normatively specified anywhere in these.
+Manu Sporny:  Birdies are cry all knowledge point.
+Manu Sporny:  And is the assertion here that this is a part of 
+  verification the challenge in domain is part of I mean it's 
+  really really supportive validations.
+Joe Andrieu:  I actually think it's better line with validation.
+Manu Sporny:  Yeah I think you're right.
+Joe Andrieu:  Because the question of who is this is to me the 
+  same as you know is this a good issuer.
+Joe Andrieu:  So the sweet like business rules rather than 
+  cryptographically or procedurally verifiable facts.
+Manu Sporny:  Nothing man create an issue marker noting that 
+  challenge and domain.
+Manu Sporny:  And are not normatively defined that presents 
+  should be unknown which spec they should go into VC data model.
+Manu Sporny:  Yeah the VC dated well let's but should be 
+  discussed in the VC data model at the.
+Manu Sporny:  At the very least the protocol specification 
+  normatively.
+Manu Sporny:  Okay okay I think that's it for options for 
+  presentations verify anything else on presentations verify before 
+  we move on to the next item.
+
+Topic: Implementations for /credentials/derive and /presentations/prove?
+
+Manu Sporny:  All right so the next item is is basically asking 
+  the question has anybody implemented credentials derive or 
+  presentations.
+Manu Sporny:  So well let's let's take credentials to arrive 
+  first I think credentials derive was put in there to do BBS style 
+  derivation go ahead and like.
+Mike Varley:  I'm just jumping on the cue to say that we've 
+  implemented the derive and point exactly for BBS Plus.
+Manu Sporny:  In implementing it did you was there a question 
+  around whether or not that was the right endpoint or if it was a 
+  presentations derivation or a credentials derivation.
+Mike Varley:  Um so no we just kind of followed the follow the 
+  Herd on that on that decision so it may not be the right place 
+  for that but we did implement it as it's currently defined and I 
+  apologize I have to drop and I gotta run but I think role since 
+  on the call so if there's other questions maybe he could take 
+  over.
+Mike Varley:   Sorry there thanks.
+Manu Sporny:  Okay thanks Mike no problem no problem thanks Mike 
+  Okay so.
+Manu Sporny:  Asked if anyone had implemented last implemented 
+  but noted that the endpoint might not be in the right place any 
+  other thoughts on credentials derive or presentations derive it 
+  has anyone else implemented it.
+Manu Sporny:  I think this came from I think Cory put this in 
+  here initially and I'm wondering who else has implemented 
+  derivation but primarily because the BBS plus 2020 stuff was 
+  found to have a security vulnerability in it in that has been 
+  kind of moved away from in the new stuff I don't think is out 
+  there quite yet roll.
+Manu Sporny:   Listen any any.
+Manu Sporny:  Like what the timeline is for implementing 
+  derivation in the VC API for Avast.
+Rolson_Quadras: Hey man so currently the implemented this class 
+  to ICT Comics me of 2021 right when it was initially defined and 
+  what was tearing the spec we implemented and after that to be 
+  honest right we have haven't cooked attic.
+Manu Sporny:  And we had residue meaning vegetables are had 
+  reservations about the endpoint in the options and that kind of 
+  thing so we do agree that we probably do need an endpoint for 
+  this but it's not clear if what's being done here is.
+Manu Sporny:   Doing a.
+Manu Sporny:  Angel derivation or doing a presentation of a set 
+  of credentials or what in I think to really understand what that 
+  looks like we would need.
+Manu Sporny:  To look at how signature derivation looks like for 
+  multiple different types of.
+Manu Sporny:  Credentials sorry multiple different types of 
+  digital proofing mechanisms all right so what options do you send 
+  them what do you send up what do you get back that kind of thing 
+  any other input on this this endpoint.
+Manu Sporny:  I guess what I'm what I'm wondering is should we 
+  even discuss this right now until you know we'd sorry should we.
+Manu Sporny:  We mark this as an issue noting that we don't have 
+  an active implementation that's happening right now around 
+  selective disclosure or BBS plus you know pairing base crypto 
+  derivation and just leave it there and not talk about this until 
+  we get to the point of implementing this stuff again should we 
+  take it out of the spec thoughts.
+Rolson_Quadras: I think I can talk about the why we implemented 
+  so we had we reason with the API and we had issuer and the 
+  verified we didn't have any holder apis that time right and it 
+  was bit hard to test like without using choppy or browser so I 
+  think that chemicals question was around how to define hold a 
+  repair right two things one is the sign presentation API and the 
+  derive and it was mainly that motivation right to test.
+Rolson_Quadras:  just like end-to-end using Epi see implemented 
+  these things.
+Rolson_Quadras: On that question maybe my opinion probably I'll 
+  defer that to Mike he would have a better idea I've got your 
+  roadmap.
+Manu Sporny:  Okay that that's helpful and I think that's the 
+  same reason I believe or he said that that was the same reason 
+  they implemented it is because they wanted to demonstrate and 
+  then flows and they had no holder API to derive a credential in 
+  so they created this to meet that use case.
+Manu Sporny:  I feel like we should warn people that it's a more 
+  than likely will have something like this but it's not being 
+  actively developed at this point right in maybe in the time that 
+  it starts becoming active to actively developed is when we have 
+  you know some BBS plus spec pairing base crypto spec to work 
+  against is that the right timing well so does anyone object to 
+  putting that kind of issue mark.
+Manu Sporny:   You're in the spec right now.
+Manu Sporny:  Is not under active development and it will become 
+  under active development once we have an updated BBS plus 
+  specification and then we can basically ask matter on what their 
+  expected timeline there is.
+<kayode_ezike> Looks like Manu was booted
+Manu Sporny:  Start that back up alright and screen share.
+Manu Sporny:  Okay so we will need an issue marker for the 
+  credentials derive and note that it's not being actively 
+  developed and provide a timeline where.
+Manu Sporny:  Online when we feel real.
+Manu Sporny:  Drew development again.
+Manu Sporny:  Okay so there's that.
+Manu Sporny:  Okay well that's for credentials derive round 
+  presentations prove although did we take that out.
+Manu Sporny:  And apologies I'm looking at this kind of.
+Manu Sporny:  Presentations prove and the exchanges stuff.
+Manu Sporny:  Is effectively the same thing so / presentation / 
+  prove in the posting to initiate an exchange is effectively the 
+  exact same it's the exact same thing here right any thoughts on 
+  this about this duplication should we remove it we keep it.
+Joe Andrieu:  Sure I don't understand what proving is so when you 
+  say it's the same as initiate exchange find that very confusing.
+Manu Sporny:  Yeah I agree this was I think presentation proved 
+  was presentations proved was put in here by or E2 again for the 
+  same kind of thing they needed kind of a bunch of holder apis and 
+  how do you check to see.
+Joe Andrieu:  So we lost Humanity or I did.
+<kayode_ezike> Yeah, he disconnected again
+<kayode_ezike> Hahaha
+<marty_reed> yup, lost Manu
+Joe Andrieu:  We lost Humanity that we just lost Manu.
+Manu Sporny:  Am I am I going again.
+Joe Andrieu:  Yes you are.
+<marty_reed> he's back!
+Manu Sporny:  Wait wait but you can hear me.
+Eric Schuh:  Are you just came back you were gone.
+Manu Sporny:  Okay yeah sorry I guess my.
+Manu Sporny:  Internet stuff is going in and out what what do we 
+  what language do we use for creating a presentation it's create 
+  isn't it.
+Manu Sporny:  Does anyone remember.
+Joe Andrieu:  Yeah that's a good question.
+Manu Sporny:  Generate verifiable presentations share well what 
+  now but present is it's the step before you present you've got to 
+  create it in the first place right this is literally signing the 
+  the the object I think that's what presentations prove was 
+  supposed to be.
+Joe Andrieu:  Prove prove is supposed to be the act of creating 
+  the VP.
+Manu Sporny:  Yes correct I believe that's the case.
+Manu Sporny:  You issue a credential what do you do to a 
+  presentation.
+Manu Sporny:  Rate a verifiable presentation.
+Joe Andrieu:  Yeah I think we only specify that you present it 
+  not what you do to create it before you present it.
+Manu Sporny:  Yep so that word whatever that word is is probably 
+  what should go in this API endpoint.
+Joe Andrieu:  Seems like it should be issue.
+Manu Sporny:  Yep so we.
+<andy_miller> Or "present"
+Gregory_Natran: But but would you sorry man you would you not be 
+  issuing before you got to the presentation stage.
+Manu Sporny:  You would issue a go ahead Joe sorry.
+Joe Andrieu:  I think we're going to say the same thing a 
+  credential is definitely issued by the issuer of that credential.
+Joe Andrieu:  But then I believe when the holder is preparing to 
+  present it.
+Joe Andrieu:  You in the presentation seems to be most symmetric 
+  with regarding API.
+Gregory_Natran: You should get but that makes sense.
+Manu Sporny:  Okay well one thing's for sure we need to get 
+  buy-in from the be cwg on what this word is I can't believe we 
+  got through an entire spec without having to define this word.
+Manu Sporny:   Well maybe.
+Manu Sporny:  I do believe it because we weren't focused on 
+  protocols and presentation.
+Manu Sporny:  Okay so how about this PC data model.
+Manu Sporny:  Issues new issue what is the word what is the 
+  action associated associated with.
+Manu Sporny:  She doing creating a viable correctly.
+Manu Sporny:  When creating to create a verifiable credential 
+  press keys.
+Manu Sporny:  And chill you issue the.
+Manu Sporny:  To create a verifiable presentation View.
+Manu Sporny:  What is the word that be like to use for the.
+Gregory_Natran: Just just a suggestion man who and what is the 
+  verb that the working group would want.
+Manu Sporny:  Thank you what is the verb we would like to use for 
+  the creation of the presentation that is unblinking the malignant 
+  one or more PCS to a presentation and then generating a proof on 
+  that presentation is.
+Manu Sporny:  Hold ER hold ER Bud like one of my reasons rather 
+  than generating proof that presentation okay so that is and I can 
+  take that action to do that okay so going back there was concern 
+  over the word prove not being the right verb to use in this 
+  situation.
+Manu Sporny:  This were create issue proof options discussed 
+  included great issue in prove any other verbs people want to 
+  throw in here while we're here.
+Manu Sporny:  The one repair.
+Manu Sporny:  You say sign.
+Manu Sporny:  Okay this was raised as.
+Manu Sporny:  Yep yep alright that down as well.
+Gregory_Natran: Ramona I'm just going to put out a suggestion 
+  since I know that proved prepare and all that has been used what 
+  about assemble since you're taking multi you could be taking 
+  multiple credentials could things you're just assembling it up 
+  into a package and shoving it out based on Tuesdays and I and I 
+  don't think assemble will be conflicting with anything else we've 
+  used.
+Manu Sporny:  Yep agreed okay all right I put the all those and 
+  there's options I'm sure the V CW G will discuss it and pick 
+  something and then that will influence probably what we end up 
+  calling this thing here okay we are at the top of the hour thank 
+  you everyone very much for the engagement on these issues we are 
+  still going through the options but this is important because 
+  like they were.
+Manu Sporny:   Are actually covering options for the entire.
+Manu Sporny:  API surface so it will take a bit to get through it 
+  okay so we will cover credentials derive in presentations prove 
+  options well we we will skip credentials derive because we've got 
+  no input right now on it no one's actively developing there and 
+  we'll talk about presentations prove and a variety of other 
+  things that.
+Manu Sporny:  We need to.
+Manu Sporny:  Easy API anything else before we go.
+Manu Sporny:  Okay with that thank you everyone for the call 
+  today have a great week in we will see you next week thanks all.

@@ -1,0 +1,308 @@
+Thanks to Our Robot Overlords and ben_(transmute) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-05-09-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-05-09-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-05-09
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=May&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and ben_(transmute)
+Present:
+  Mahmoud Alkhraishi, Russell Hofvendahl, Paul Dietrich GS1, Nis 
+  Jespersen , Ben (Transmute), Orie Steele, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com)
+
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-vocab/actions/workflows/cd.yml
+Our Robot Overlords are scribing.
+Orie Steele: 
+  https://github.com/w3c-ccg/traceability-vocab/actions/runs/4869710877/jobs/8684556363#step:10:217
+ben_(transmute) is scribing.
+<orie> rate limit exceeded
+Mahmoud Alkhraishi:  All right welcome to Chris Cole May 9th 23 
+  IPR note please make sure anyone can participate any substantive 
+  contributions need to be people have signed the ccg work.
+<orie> Seems it can be fixed by removing the github release
+Mahmoud Alkhraishi:  Welcome to thr trace call, IPR note, in 
+  order to make any contributions make sure you have signed the 
+  agreement
+<orie> or by being smarter about how we do releasres
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Mahmoud Alkhraishi:  There are no pr's on trace-interop, there 
+  are PR's on trace-vocab
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/736
+Orie Steele: https://github.com/w3c/vc-jwt/pull/77
+Orie Steele:  I spent some time on this, it's still upstream. So 
+  i'm not spending time on that PR until i have a better idea of 
+  the path forward. Mike P make a PR on VC-JWT that's blocking. If 
+  that can go through it will help it along.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/766
+Nis Jespersen :  This is minor tweaks to the MTR after using it 
+  with real data. A couple chemicals missing. The product 
+  description is always a single product and a fix to the 
+  description of measurements. And steel grade is a string.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/768
+Mahmoud Alkhraishi:  It looks like it has approvals, merging.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/769
+Nis Jespersen :  This is adding syntax sugar to credentialSchema. 
+  Looks like it has tabs and spaces issues. I can fix and merge out 
+  of band.
+Mahmoud Alkhraishi:  This is a PR to make a credential which adds 
+  an identifier from an external system. Think of a blackbody 
+  system where the identifiers are internal.
+Russell Hofvendahl:  I did something similar, but I have problems 
+  with the complications, so I think I dropped this.
+Orie Steele:  I think there are some requirements in what you 
+  said that are really important. So I think that the id's you're 
+  using are not a graph-node identifiers. I think you also want to 
+  give a name to this identifiers. So I non-graph-node identifier. 
+  You need an identifier can be any string and a name for anything. 
+  And these are provided with schema.org
+Orie Steele:  So why are we definition our own terms, when we can 
+  use Thing?
+Mahmoud Alkhraishi:  I was trying to use Identifier, I didn't 
+  realize there was Thing. I can change this to Thing, and ping you 
+  guys to review.
+Orie Steele:  Also I think this is a "Thing" credential and just 
+  make it generic. I could be useful.
+Mahmoud Alkhraishi:  There are no PR's on trace-interop, this 
+  week is trace-vocab week. Do we want to goto issues, or is there 
+  anything we want to bring up?
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/457
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/457
+Orie Steele:  Can we address the scope issue on trace-interop. I 
+  think GS1 is still blocked on that, and I wanted to check where 
+  we on that issue. I think Chris came away with some action item, 
+  but I don't remember the specific details.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/217
+Mahmoud Alkhraishi:  This is the roadmap, which I wanted to bring 
+  up. What is out concrete plan to getting from where we are today 
+  to a v1.0 spec to say it's not fully locked down, but it's 
+  reasonably stable.
+Mahmoud Alkhraishi:  1. Do we want to wait for a vc 2.0 context, 
+  2. do we want to publish on the w3c? 3. how complete are we 
+  really, how many more changes do we have?
+Mahmoud Alkhraishi:  That way we can try to put down a deadline 
+  around locking down v1.
+Orie Steele:  This is aligned with the CD process. We should trun 
+  off the github releases, since we're not using them.
+Orie Steele:  As far as publishing them, I expect a high 
+  availability server that hosts the context file and never changes 
+  ever. The vocabulary side of it, it can drift around. I think all 
+  we need to do is host our context file that's permanent and 
+  stable. What you don't want is context drift. And we want to make 
+  sure that's mature and not going to change/
+Orie Steele:  The reality is that it's an on-going process and 
+  it's going to change.
+Mahmoud Alkhraishi:  I agree to all of that, let's talk about 
+  getting to that small v1 that's stable that will not change. We 
+  separate by verticals, and we say that review each one of the 
+  credentials in that veridical , we look at the terms and say 
+  these are signed off. And then when we look at those and make a 
+  cut off date to say that we expect the context to be published by 
+  a certain date.
+Orie Steele:  To be clear, we publish a single context as v1, and 
+  we build that from credentials we believe has maternity. And 
+  everything else moves somewhere else.
+Mahmoud Alkhraishi:  So we have a development version with 
+  on-going changes. And then we have a fixed version with the v1 
+  terms. Do we think this is a path forward towards a fixed v1?
+Orie Steele:  We can commit to that on the Transmute side for the 
+  steel-tech demo to make those permanent. We could do what GS1 did 
+  where they split their contexts files and intentionally made them 
+  very small for that one credential. For Paul, do you think we 
+  should try to make them smaller or make one larger context?
+Paul: One second?
+Nis Jespersen :  As someone who is consuming the context, I find 
+  it hard to use, as I would like to have everything in one larger 
+  to context. I queued to say, we don't want to change, but can we 
+  add?
+Orie Steele:  That's a no-no
+Paul: We broke it up with the way we have things today. In this 
+  case it might make sense to have instances for steel or gas, but 
+  then where do you put the common stuff. So that might make things 
+  harder if you have a lot of common vocabulary?
+Orie Steele:  This has come up a lot in the v2 credentials 
+  context? Will the v2 define everything, or do we want to make a 
+  more layered approach where it could be more files.
+Mahmoud Alkhraishi:  Is there a way to set up n umbrella context 
+  that refers to other ones?
+Orie Steele:  You can, but it's not an elegant way to do because 
+  the document loader is always chaining.
+Mahmoud Alkhraishi:  We could do both, we could have industry 
+  versus common, or one with everything.
+Orie Steele:  It just speaks to when you build the context what 
+  are you trying to do?
+Mahmoud Alkhraishi:  I think from where we are today and the best 
+  cut of V1, let's pick the credentials that are ready, let's put 
+  them in a context with the terms that they need. If we find there 
+  are issues and we need to have more layers, we can push that as 
+  another version.
+Mahmoud Alkhraishi:  Other than the context questions, is there 
+  anything else we see as a deal breaker before we can pushing the 
+  v1?
+Nis Jespersen :  There's the JSON Schema side as well, that also 
+  needs versioning
+Mahmoud Alkhraishi:  For that I guess we set up a folder for as 
+  of v1 this is the state of these credentials.
+Orie Steele:  I would publish all of the schemas both as a a 
+  directory and a bundled archive. And we publish potentially 
+  outside of github.
+Orie Steele:  Or we can create a Github repository that is 
+  immediately archived. But if people are getting them, Github 
+  might rate limit, so we might want to have something that's 
+  stable and reliable.
+<russell_hofvendahl_(mesur.io)> Going to have to drop
+Mahmoud Alkhraishi:  What i hear from Mike is they're ready to 
+  go. On our end, we're ready to say these credentials are ready. 
+  It looks like Transmute is ready to do that to. And we need to 
+  publish static JSON schema files, and publish the context on a 
+  high availability web server.
+Orie Steele:  Thinking through the mechanics of this, we might 
+  want to handcraft a version 1 repository of this in order to 
+  confirm what it will look like to have a sanity check that it's 
+  reasonable.
+Orie Steele:  We are thinking that everything is built, it's 
+  going to be a superset of v1. So we make it a fixed version, and 
+  we make it so you can't push changes to the schemas or context.
+Mahmoud Alkhraishi:  At the start, we need to do a dry run of it 
+  to make sure that nothing is wrong when doing that.
+Orie Steele:  We're constantly doing that. We can say that what 
+  we're committing to now is what we're publishing.
+Mahmoud Alkhraishi:  For that window, i still think that we want 
+  to look through every schema, every credential, every term. Make 
+  sure required and optional fields are correct.
+Paul: Is this going to be done in a branch?
+Orie Steele:  We're going to do it on the current branch, we 
+  going to have a cut off date for no more changes after a certain 
+  date. We probably have to look at schema.org. Or the JSON schema 
+  files.
+<orie> sry i need to drop
+<orie> good luck
+Nis Jespersen :  How do we want to version this? The way many LD 
+  libraries are versioned in with a year stamp, would that work 
+  here?
+Mahmoud Alkhraishi:  I think a lot of people hate the year. 
+  Because it makes a lot of sense to normal versions. Because we 
+  have 2018 v1 and it's everywhere, and then they're just switching 
+  to V2. We can add that as a question on the issue.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Mahmoud Alkhraishi:  I think we closed 297 because of no 
+  volunteers. And we left this open, but no one is raising their 
+  hand for it.
+https://github.com/w3c-ccg/traceability-vocab/issues/300
+Nis Jespersen :  We've gone another way on the observations. 
+  We've sort of denormalized the observations, which is easier for 
+  the common folks to use.
+Mahmoud Alkhraishi:  Personally I've hated working with it as 
+  it's just generic. And I find that alot of documents don't map to 
+  a generic way of working with these. And if you have to do custom 
+  logic anyways. So we might just close this issue.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/304
+Nis Jespersen :  For this, do we want to have an enum, or a 
+  format to try and get people to use a country code. When I use 
+  this, I find myself putting in the country name more often than 
+  not.
+Mahmoud Alkhraishi:  The scope of the issue was just to open an 
+  issue on schema.org. Ben have you been typing in the country 
+  name?
+Nis Jespersen :  Yeah. it's just a string value and I find myself 
+  typing in the name more often than not.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/555
+Mahmoud Alkhraishi:  Okay I think we're using country codes, but 
+  it it's not working as intended we might pass on this.
+Mahmoud Alkhraishi:  For issue 555 it's marked as ready for PR. 
+  Do we have any volunteers?
+Nis Jespersen :  For this, i think that trace-able presentations 
+  has caught on. Is there any appetite for this?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/546
+Mahmoud Alkhraishi:  So basically it has legs, Nis opened it. Nis 
+  is it okay to close?
+Nis Jespersen :  Yeah, close it.
+Mahmoud Alkhraishi:  This issue to was to break it out into 
+  smaller issues. If there are no hard requirements for a scenario 
+  that we're using, i think we want to close it.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/306
+Nis Jespersen :  Agreed, I'll write a comment.
+Mahmoud Alkhraishi: 
+  https://onerecord.iata.org/ontology/webvowl/index.html#
+Mahmoud Alkhraishi:  I put a link to WebVOWL. There is an example 
+  in a comment i wrote. I think it needs a server to run. You can 
+  click one, see what it's touching, and drag it around. It's 
+  pretty, but I don't know what it does.
+Nis Jespersen :  I think the question originally came from Vlad. 
+  He wanted to see where our terms defined. Which ones are we 
+  defining ourselves, and which ones are we reusing? It's a sales 
+  argument for the work we do here. I'm getting pushback from 
+  getting called a vocabulary since people think we're trying to 
+  re-define all of the terms. So this is good to say, "these are 
+  the existing terms that we're already using"
+Mahmoud Alkhraishi:  So what we need to say is that we're not 
+  defining 600 terms, we're actually using 400 existing terms. I'm 
+  personally not running into these problems, so I don't know how 
+  useful they would be.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/526
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/374
+Mahmoud Alkhraishi:  For this one, the readme's are way out of 
+  date for the PR's and we could have one referencing the other. 
+  And it might be easier to have one link to the other where  only 
+  one of them is the source of truth. I notice that everytime i do 
+  the hosting the IPR note is on the trace side on the not the 
+  vocab side.
+Mahmoud Alkhraishi:  This is a big picture issue about how do i 
+  reference a different credential, or a product that is not in 
+  this credential.
+Nis Jespersen :  I think i suggested using related link.
+Mahmoud Alkhraishi:  If i have an event credential and I need to 
+  reference a product id. So I could put in a product link, but 
+  someone changes that. So it has the same problem.
+Nis Jespersen :  In this case there is an id which is did:web and 
+  the related link is for the identifier for where do you need to 
+  go to find out about it.
+Mahmoud Alkhraishi:  So I would have a purchase order, you would 
+  have related link. Wait, the example doesn't make sense. I want 
+  to have something that's a hash link or similar.
+Nis Jespersen :  Can we go through that with an example?
+Mahmoud Alkhraishi:  At the very top, we have a uri that points 
+  to a VC. And that works except that doesn't prevent anyone 
+  hosting the data from changing the information that. So I have a 
+  product, and someone hosting that changes it. My event will point 
+  to the same thing, but the thing i'm talking about has changed. 
+  So we need a hash link so things break when things have changed. 
+  it adds to complexity. and it not standardized.
+Nis Jespersen :  How does that work?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/common/ExternalResource.yml
+Mahmoud Alkhraishi:  You add the link, but you add a hash and 
+  then end of the url, and when you resolve that url if the hash 
+  doesn't match, you don't trust that resource. In the vocabulary 
+  we call it an external resource. We're doing it for images, but 
+  we're not using it for other things. But if it works for images, 
+  it should work for anything.
+Scribe-

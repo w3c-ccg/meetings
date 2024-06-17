@@ -1,0 +1,713 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-09-06-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-09-06-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-09-06
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Sep/0022.html
+Topics:
+  1. (Re-)Introductions, Relevant Community Updates
+  2. OIDC4VCI and VC API
+  3. How granular should authorization be?
+  4. Define credentialStatus correctly in YAML
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Patrick St-Louis, Brian Richter, Manu Sporny, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Dave Longley, Kaliya Young, 
+  David Chadwick, Joe Andrieu, Eric Schuh, Logan Porter, Kayode 
+  Ezike, TallTed // Ted Thibodeau Jr (via iPhone)
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Welcome everyone to the verifiable credentials API 
+  work item call this is September 6th 2022 our agenda is going to 
+  be put in the chat Channel.
+Manu Sporny:  Bay on the agenda we have a new meeting time that 
+  people have selected by going to the pole there 15 well no they 
+  were 2025 respondents much more than we expected but in a number 
+  of people that haven't been able to come to the call that have 
+  suggested new time so that's good we'll cover that.
+Manu Sporny:   At in today's call.
+Manu Sporny:  Is largely about authorization granularity 
+  credential revocation in credential status will also do some 
+  relevant Community updates towards the front part of the call are 
+  there any other updates or changes to the agenda that anyone 
+  would like to make before we.
+Patrick St-Louis:  I was wondering if they could be a slight time 
+  to discuss so I came across this open ID for about credential 
+  issuance document which seems to be a project put forward by 
+  Microsoft and matter and I wanted to know what in your opinion is 
+  the distinction between this and what this community is working 
+  on.
+Manu Sporny:  That is an excellent question let's put that at the 
+  front part of the agenda in potentially time box it to 10 to 15 
+  minutes because it is a very thick can turn into a very deep 
+  conversation very quickly does that work for you Patrick.
+Patrick St-Louis:  Yeah 100% thank you.
+Manu Sporny:  Okay awesome let's go ahead and add that in if I 
+  forget for whatever reason please remind me when we get to it.
+
+Topic: (Re-)Introductions, Relevant Community Updates
+
+Manu Sporny:  Okay introductions reintroductions relevant 
+  Community updates is there anyone that's new to the call or is 
+  there anyone that would like to reintroduce themselves.
+Manu Sporny:  All right I think most of us know each other 
+  relevant Community updates I've got a few the first one is that 
+  w3c's technical plenary is next week in that means that we're 
+  going to be canceling this call for next week they're good 
+  there's going to be a decent chunk of us going to the technical 
+  plenary and it's just difficult to have this call in have.
+Manu Sporny:   The technical plan.
+Manu Sporny: https://doodle.com/meeting/organize/id/bkZ86z5a
+Manu Sporny:  The week after next week we will be meeting during 
+  our new call time so our new call time let me I don't know if 
+  anyone can get this doodle poll probably not so let me try screen 
+  sharing it so people can see.
+Manu Sporny:  Our new call time this interfaces so bad but let me 
+  scroll to who there's a fit yeah he 15 okay so I think the 
+  highest value you have to scroll all the way to the bottom and 
+  then you have to scroll all the way to the top to see where you 
+  are I think the highest value we got was 15 people could make 
+  this time.
+Manu Sporny:  It's basically an hour earlier so right now we 
+  start at 4 p.m. Eastern in only 10 people said that they could 
+  make that and if we move it up by an hour hopefully the folks in 
+  New Zealand matter can still make the call and we pick up five 
+  more people that said that they would participate that's by far 
+  the highest time that we got and unless there.
+Manu Sporny:   Objections to that.
+Manu Sporny:  That's going to be the new call time is 3 p.m. 
+  Eastern on Tuesdays I'm sorry Logan you're going to probably be 
+  waking up an hour earlier get you can you still make it Logan.
+Manu Sporny:  They're now earlier.
+Manu Sporny:  Okay alright okay and again apologies for being on 
+  the other side of the planet.
+Manu Sporny:  Yeah I guess if only we had a flat earth right okay 
+  so I think so we're going to try that time and if people want to 
+  you know if people want to move it again we can we can try 
+  running it again but hopefully that's going to work out for folks 
+  we will start that time not next week but the week after Joe go 
+  ahead you're on the queue.
+Joe Andrieu:  My question was just about Google calendar item I 
+  happen to have an old one that you had issued for the current 
+  time.
+Joe Andrieu:  I can't change it.
+Manu Sporny:  Yes yeah I'll I'll like I have switched calendars 
+  and I can't revoke that thing so everyone will have to delete it 
+  from the I know isn't it great calendaring technology it's a 
+  standard so so everyone's gonna have to delete that one from 
+  their calendar we have two calendars what do people prefer we can 
+  either put it on the ccg calendar or I can send a new invite out 
+  to the mailing list I was going to just send a new email out to 
+  the mailing.
+Manu Sporny:   List since that seems.
+Manu Sporny:  Instead of and I just do that repeatedly for like 
+  three to four weeks until people have it on their calendars and 
+  then I stopped that's what seems to have worked well in the past.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> please 
+  update the CCG calendar item which is already there
+Joe Andrieu:  Does the ccg calendar give us the benefit that we 
+  have right now with the ccwg stuff we're like if things get 
+  cancelled it shows up in my calendar is it plugged into that way.
+Manu Sporny:  No no I mean we can try I could talk with w3c staff 
+  in.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It was 
+  because if you updated.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Yeah yeah the 
+  W3 calendar is working very well.
+Manu Sporny:  Okay well hold on Ted there's the ccg calendar and 
+  then there's the actual w3c calendar which one are you talking 
+  about.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Oh I 
+  apologize.
+Manu Sporny:  I think you mean the w3c calendar which I say I 
+  agree we should probably just start using because it does have 
+  the benefits that you outlined Ted.
+Joe Andrieu:  Yeah if we can it's really convenient.
+Manu Sporny:  Okay okay all right I will try to chat with the 
+  appropriate people in set that up it's an I don't think it's 
+  extra I don't think it's extra work because I still have to send 
+  out a reminder every week or a new agenda every week okay then 
+  we'll will Target that IND that will be.
+Manu Sporny:  The first meeting that we have at that new time 
+  will be the week after TPAC not next week but the week after and 
+  then the following week will cancel the call again because of 
+  rebooting but after that we'll be back to our regular time okay 
+  any other relevant Community updates questions concerns in 
+  general.
+Manu Sporny:  All right then moving into our agenda the first 
+  thing is I'd be C4 VCI out go ahead Jo.
+Joe Andrieu:  Are you hoping to have this call also the week of 
+  rebooting.
+Manu Sporny:  No I was thinking we'd cancel it but unless you 
+  have an idea okay yet.
+Joe Andrieu:  No I'm good with canceling it I mean I'm going to 
+  be rebooting but I don't we talk about TPAC we didn't talk about 
+  the two weeks.
+Joe Andrieu:  Okay great I just didn't hear it this time around.
+Manu Sporny:  Yeah sorry I thought I said we'd cancel it for tea 
+  pack and we'd cancel it for rebooting yep okay all right yeah 
+  that's that's the plan and if and if somebody want really wants 
+  to have this call during tpack endearing rebooting volunteered a 
+  chair it and run it that's a totally fine option as well.
+
+Topic: OIDC4VCI and VC API
+
+Patrick St-Louis: 
+  https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html
+Manu Sporny:  Okay next topic is the one Patrick mentioned at the 
+  top of the hour or IDC for VCI and the VC API I'm going to try to 
+  summarize this unless somebody else wants to take a shot at this.
+Patrick St-Louis:  I put the link in the chat.
+Manu Sporny:  Yes thank you so fundamentally there are let's see 
+  I want to be careful about what I say here some of the companies 
+  on this call are working currently working with customers to 
+  implement both YDC for VCI and DC API and the the general 
+  difference between the two.
+Manu Sporny:  Or VCI is a verifiable credential delivery protocol 
+  that basically means that you can use it to get a credential from 
+  an issuer to a holder.
+Manu Sporny:  To contrast the verifiable credential API.
+<dave_longley> four main VC functions: issuance, verification, 
+  delivery, presentation
+Manu Sporny:  A number of things that oid C4 VCI doesn't do like 
+  handle the interface for issuing a credential so the internal 
+  calls you'd make at an issuer to construct a verifiable 
+  credential it also covers verification so in points that you 
+  would use at a verifier to make a call like an HD be called to 
+  verify a credential.
+Manu Sporny:  The VC API also allows you to do things like 
+  credential revocation so changing the status of a credential and 
+  then the current VC API also has the mechanism that allows you to 
+  do credential exchange so basically arbitrary back and forth 
+  protocols that allow verifiers to request information and holders 
+  to respond with information and back and forth and back.
+Manu Sporny:   Back and forth until they're done with.
+Manu Sporny:  Dealer credential workflow so all I DC for VCI is 
+  very targeted at delivery the VC API is kind of a much more broad 
+  support some more broad set of use cases you can do delivery over 
+  both the YDC for VCI and you can do delivery using the VC API 
+  well I DC for VCI is something that uses a number of other 
+  protocols at the.
+Manu Sporny:   Nid foundation.
+<joe_andrieu> /s/nid foundation/OpenID Foundation/
+Manu Sporny:  It kind of Builds on top of existing work there 
+  whereas the VC API does not utilize a lot of those mechanisms 
+  that exist in oid C 4 V 4 BC i instead it uses things like oh off 
+  to but doesn't necessarily require you to use the other oid C4 or 
+  sorry open ID connect mechanism so let me stop there did I get 
+  anything.
+Manu Sporny:   Wrong does anybody.
+Manu Sporny:  Complications changes to that go ahead look.
+Manu Sporny:  All right thanks Logan next up is David Chadwick 
+  then Dave Longley then Patrick go ahead David.
+Manu Sporny:  Got it thank thanks David.
+Manu Sporny:  Okay thanks David Dave you're up next.
+Dave Longley:  Right so I think one of the biggest challenges 
+  we've had in understanding the differences between oh I DC for 
+  PCI and the VC API is clearly differentiating delivery fee see 
+  delivery from VC issuance so the oid C4 VCI spec is really about 
+  how a digital wallet can request a credential on behalf of a end 
+  user from an issuer and receive it and that involves it.
+Dave Longley:   An optional involve authorization of the.
+Dave Longley:  As an oauth client and it's like that it's totally 
+  agnostic about the backend services that the issuer software 
+  would use to it actually issue the VCS or verify presentations or 
+  do any of those things the VC API covers a large swath of those 
+  things where the VC API is about defining common interfaces that 
+  people can Implement so you can swap out different back-end 
+  services like an issuing service.
+Dave Longley:   Or a verifier service and then the.
+Dave Longley:  And Grant authority to clients that can act on 
+  behalf of the issuer to issue things and to verify things those 
+  things have absolutely nothing to do with oid C4 VCI in the sense 
+  that that that oid see spec is agnostic about those thing you can 
+  use the VC API to implement the backend services for the oid C4 B 
+  CI front-end VC delivery service the VC API also has its own VC.
+Dave Longley:   Delivery mechanism which is related to.
+Dave Longley:  Exchanges API and that is where an end user can go 
+  pick up a credential and so that if we wanted to compare the two 
+  protocols that's where the comparison would be.
+Manu Sporny:  Thanks Dave let's see Patrick you're up next and 
+  then Logan.
+Patrick St-Louis:  Thank you Dave that was very interesting and 
+  also all the other comments because there's two things that 
+  spoken to my mind so the first one regarding the issuance and 
+  delivery that was actually a question I had we going to be C API 
+  spec for example when you see you have the endpoint to issue a 
+  credential for me the way I perceive that before is when you 
+  issue a credential there's also the concept of the Korean 
+  shoulder.
+Patrick St-Louis:  Ultimately stored in a wallet at some.
+Patrick St-Louis:  The way that this API seems to be Amanda the 
+  act of issuing credential is only returning json-ld format of a 
+  verifiable credential and it didn't get stored in a wallet so the 
+  distinction between those two it was not very clear to me because 
+  for example on a Kappa agent there's an endpoint to Simply sign 
+  credential which would transform it into a variable.
+Patrick St-Louis:   Potential and there is also a different 
+  point.
+Patrick St-Louis:  Credential which does both the signing and 
+  send it to a pre-existing wallet that's been connected with that 
+  agent so I was not sure what the term issue meant in the VC API 
+  spec any other the second part is because I have started to hear 
+  some maybe project about potentially developing a test suite for 
+  the open ID for verifiable credential and the reason why I wanted 
+  to.
+Patrick St-Louis:   To know the difference.
+Patrick St-Louis:  Understand if this this sweet would be similar 
+  to what is being worked in this community or if it says something 
+  slightly different which seem to be more decays after what 
+  they've mentioned that's it thank you.
+Manu Sporny:  Thanks Patrick Logan you're up next and then David 
+  Chadwick.
+<dave_longley> you can combine the technologies/protocols 
+  together
+Manu Sporny:  Okay thanks Logan David.
+<logan_porter> same that I don't seem to be getting picked up by 
+  the transcriber bot
+<dave_longley> could you type in what you said, Logan ... so we 
+  have it for the minutes?
+David Chadwick:  In terms of testing, as you know I'm leading NGI 
+  Atlanstic project for test suites for OIDC for issuance and 
+  verification. We've taken postman test suite from Orie and 
+  already got suite path test for pre-auth flow and writing other 
+  test for that, later this month working w/ Joseph from OIDF to 
+  look at OpenID test suite to add features for OIDC4VCs as well, 
+  there will be test suties, not for whole of OIDC4VC protocol, 
+  many different comibnations, lots of different flows, 
+  authentications that you can use. [scribe assist by Manu Sporny]
+David Chadwick:  We're producing tests against those profiles, 
+  those will be publicly available. [scribe assist by Manu Sporny]
+Manu Sporny:  Type of great thanks David sorry it was scribing 
+  you Logan David yeah that it's not picking up your audio because 
+  whatever browser OS combination you have I don't know if it's 
+  possible for either of you to switch to a different combination 
+  or if that would actually help but I got watching.
+Manu Sporny:  Yeah it's it's it's Mac you can't sit on a Mac you 
+  can't switch browsers you you only get a choice of safari even 
+  even though it looks like you're using Google Chrome the backend 
+  browser Safari in Safari is unfortunately not standards-compliant 
+  when it comes to webrtc I don't know.
+Manu Sporny:  As your Firefox and Safari under the covers that's 
+  that's the way Max work unfortunately so it won't matter I guess 
+  what I'm saying is it won't matter unless you switch to like an 
+  on Mac thing which is a ridiculous thing to ask so we'll try to 
+  remember to subscribe you David or if you could remind us 
+  describe you when you're talking we can we can fill in okay let 
+  me look at the queue.
+Manu Sporny:   I put myself on the cue for a.
+Manu Sporny:  More so we'll just skip that okay so now I 
+  mentioned that we'd time box this thank you everyone for the the 
+  useful comments as everyone probably knows and this goes without 
+  saying both of these apis are Under development right now and are 
+  subject to change and the test Suites are under active you know 
+  rework and all that kind of stuff so hopefully Patrick that 
+  helped provide.
+Manu Sporny:   Vide at least.
+Manu Sporny:  Idea of the differences between the two of them 
+  right now and those differences may change as they're developed 
+  over the next you know year to two years okay any anything else 
+  about the differences between y DC for VCI in.
+David Chadwick:  Current design for a secure wallet has a concept 
+  of a front-end wallet and back-end wallet, and flowcharts are 
+  showing both of these, interesting concepts, necessary or not to 
+  have that? Some believe it is, I'm not sure it is. That's one 
+  difference. Also, way it's shaped at the moment, it appears that 
+  wallet software provider will be identified to an issuer. [scribe 
+  assist by Manu Sporny]
+David Chadwick:  I think that will be a really bad design. Some 
+  people think that EUDI is the way it's going to be. [scribe 
+  assist by Manu Sporny]
+David Chadwick:  This seems to be a privacy violation to the 
+  user, don't want to work with a wallet provider. [scribe assist 
+  by Manu Sporny]
+<kaliya_identitywoman> but how do you know the wallet has been 
+  built with proper securitiy?
+<dave_longley> +1000 to David Chadwick's concerns on wallet 
+  identification to the issuer problems
+Manu Sporny:  All right thank you David I put myself on the cue 
+  the speak exactly that that David I'm I'm trying to I'm trying to 
+  be kind of even-keeled about this conversation one of our biggest 
+  I'm going to speak just for digital bizarre one of our really one 
+  of our biggest concerns with the open ID protocol is exactly what 
+  you.
+Manu Sporny:   Said David it.
+<david_chadwick> To Kaliya. By having the software certified by a 
+  TTP
+Manu Sporny:  As identification by the wallet vendor to the 
+  issuer or sometimes well we'll just say to the issuer we think 
+  that that can be used in a whole bunch of anti-competitive ways 
+  in the same way that you know providing browser cookies seem like 
+  a totally reasonable thing to do in the early days of the web in 
+  providing browser ID strings seem to be a totally okay thing.
+Manu Sporny:   To do at the early part of the.
+Manu Sporny:  But then people started using those browser ID 
+  strings to code directly to like Microsoft Edge sorry Internet 
+  Explorer so that websites only work with Internet Explorer they 
+  would detect effectively the browser / you know the wallet and 
+  then tie the website to specific proprietary vendor 
+  implementations we think the same danger exists for the oid C4 B 
+  CI.
+Manu Sporny:   Ian their ways.
+Manu Sporny:  But we're not seeing David as you said in an 
+  acknowledgement of the issue in the first place into a desire to 
+  kind of solve it so I'll leave it at that there are ways to 
+  mitigate it but we're not seeing them to contrast this the the VC 
+  API exchange flows David you asked about metadata a lot of the 
+  meta data is exchanged in the flow itself not outside of it so 
+  you're not able.
+Manu Sporny:  Lee if at all do wallet fingerprinting right which 
+  is what some of these some of the O open ID you know protocols do 
+  I won't go any deeper into that again I think we're at the end of 
+  our time box so Logan you've got the last word and then we'll 
+  move on to the rest of our agenda go ahead Logan.
+<kaliya_identitywoman> What is a TTP and how does the issuer know 
+  that it has passed such a thing?
+Logan Porter:  I don't think that, from my understanding at 
+  least, that the OID4VCI spec that you have to identify the 
+  wallet, that it's a requirement, but it's important to manage 
+  that [scribe assist by Dave Longley]
+
+Topic: How granular should authorization be?
+
+<david_chadwick> Trusted Third Party certification authority
+Manu Sporny:  Yep all right okay so with that good job everyone 
+  we managed to cover that topic without getting wrapped around the 
+  axle on it hooray for everyone next up expect like a lot of this 
+  conversation to be kind of furthered over the next couple of 
+  months it's it's a it's kind of the next stage of kind of wallet.
+Manu Sporny:   Tikal discussion.
+<dave_longley> if you have to do dynamic registration and 
+  identify a callback URL to send the authorization code, you're 
+  identifying the wallet to the issuer
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/223
+<david_chadwick> By the TTP issuing a VC to the wallet
+<kaliya_identitywoman> what is a TTP???
+Manu Sporny:  I think okay issue 223 is how granular should 
+  authorization be let me share my screen and maybe zoom in here so 
+  Brian you raised this issue would you mind giving us kind of a 
+  background on it and then we can.
+Manu Sporny:   Get into discussion.
+<kaliya_identitywoman> sometimes people and their acronyms
+<david_chadwick> I already said "trusted third party"
+Brian Richter:  Yeah I mean it was quite a while ago but I think 
+  the reason I originally raised it was all the authorization 
+  discussions that were going on it seemed that the rich 
+  authorization or are whatever it is and had capabilities that you 
+  could make the API extremely granular whereas just playing with 
+  two Scopes kind of doesn't have that so it was kind of a way to 
+  maybe.
+Brian Richter:   Make some decisions.
+Brian Richter:  But the discussion kind of evolved from there so.
+Manu Sporny:  Alright okay so go ahead Dave.
+Dave Longley:  I was going to say that as Brian mentioned this 
+  issue came up a long time ago when I think we had slightly less 
+  Clarity around some of the things we were just discussing around 
+  issuance and delivery and which you know who would be authorized 
+  to hit the issue and that and point for example and I think it's 
+  become a lot more clear that the issuance I'm point is for 
+  parties that have been authorized.
+Dave Longley:  The issuer to act of centrally on behalf of the.
+Dave Longley:  You were to issue.
+Dave Longley:  Being seized which is not the same thing as an end 
+  user who's going to be receiving who who have a VC delivered to 
+  them to their digital wallet and so this issue might have been 
+  raised because we had a little less Clarity around that and it 
+  might be a little more obvious now that I don't know that we 
+  having granularity around for example the credentials subject or 
+  things like that or of that.
+Dave Longley:  Or of a lot of value here it seems more like the 
+  regularity we're looking for might be related to exchanges in VC 
+  delivery then as opposed to the issuance of point.
+Manu Sporny:  All right so given that what do we want to do with 
+  this issue Brian thoughts.
+Brian Richter:  Yeah I think I think Dave point out nicely I 
+  think it's kind of deprecated I'd say.
+Manu Sporny:  Are there any objections to Us closing this issue 
+  one thing before we if if and if we do that it may be worth 
+  noting that Dave you presented a hierarchical scheme for oauth.
+Manu Sporny:  A Scopes and we also know that the traceability API 
+  folks don't necessarily have that Mahmood said we'd be too happy 
+  to kind of introduce the topic to the traceability API folks 
+  which use the VC API to determine if there's overlap there so 
+  could we say at this point that if we need to create.
+Manu Sporny:  Tightly scoped credentials whether or not you're 
+  using R organ a poor oauth2 or Z caps we have a mechanism to do 
+  that across all we have a design pattern that we can apply across 
+  all of those use cases is that a fair statement only.
+Dave Longley:  Sorry I didn't mean to put my hand up I think 
+  that's a fair statement I think what we were trying to do with 
+  the the hierarchical Scopes is more tightly since we were 
+  exploring saying these are the Scopes you must use when 
+  implementing the API we were exploring tightly binding those 
+  Scopes to the API endpoints and their functionality so if we 
+  wanted to have new types of functionality that we wanted to 
+  expose on the issuer you each.
+Dave Longley:   Each new type of functionality could come along 
+  with a scope.
+Dave Longley:  Specifically that functionality and if you had if 
+  you were granted a scope in a earlier part of a path in a 
+  resource am or what is it higher part of the hierarchy you get 
+  all of the functionality underneath that API.
+Manu Sporny:  Okay alright so the proposal is to close this issue 
+  because we have a design pattern and if we ever need to utilize 
+  the design pattern we can do so when that time comes any 
+  objections to that.
+Manu Sporny:  We feel that it should close this issue.
+
+Topic: Define credentialStatus correctly in YAML
+
+Manu Sporny:  Okay great all right so given their no objections I 
+  didn't hear any looking at the chat Channel not seeing any there 
+  I'm going to go ahead and close this issue all right thanks 
+  everyone that was easy next up is finding credentials status 
+  correctly in the yeah mobile.
+Manu Sporny:  Ori said that the credential status property is not 
+  defined correctly in the Amal and I went looking I did a little 
+  bit at diving on this yesterday.
+Manu Sporny:  Or he said we should Define it in this credentials 
+  component but then miss said.
+Manu Sporny:  Credential status field is already defined an issue 
+  credential options not credentials in you saying it's already 
+  defined here so basically you can specify the type of credential 
+  status mechanism you want to use when you issue a credential like 
+  revocation list 2020.
+Manu Sporny:  One of the discussions that we've had in this group 
+  has basically said your revocation mechanism is going to be tied 
+  to an end point and so you will probably not specify this the 
+  other thing that we also mentioned was that if people want to 
+  specify credential status they can do so but that's like a 
+  dangerous thing to do.
+Manu Sporny:   So don't do it.
+Manu Sporny:  Be some people that want to do it and if you want 
+  to do it then you know buyer beware go ahead Dave.
+Dave Longley:  Yeah my understanding of what we and maybe we need 
+  to be more clear whether or not the group's come to consensus 
+  around this is that choosing a a credential status method or 
+  specifying that you want to credential status method in the 
+  absence of any other configured state or anything else that's 
+  managing that status method just doesn't work if especially if 
+  we're talking about things like status lists.
+Dave Longley:  It's really that you need to create some kind of 
+  issuing instance that's configured to work with a particular 
+  revocation mechanism and then whenever you use that instance to 
+  issue a credential that revocation mechanism is used 
+  automatically you can't decide to turn it off or on at that point 
+  if you want to issue a credential with some other mechanism or no 
+  mechanism at all you need to create a new configuration and use 
+  that other issuing instance just because it's it.
+Dave Longley:   You can't make the software.
+Dave Longley:  That way if you didn't do that.
+Manu Sporny:  All right thanks lonely go ahead Patrick.
+Patrick St-Louis:  And two things I want to first of all that I'm 
+  curious you mentioned you don't recommend people defining 
+  credential status maybe if you could expand a little bit why and 
+  what does that exactly mean and my second question is the 
+  credentials that is as I understand it they can be used to revoke 
+  a credential is there any other uses and revocation to that 
+  option.
+Manu Sporny:  Lonely do you want to cover that.
+Dave Longley:  Yeah sure so you're the one that said this money 
+  you don't recommend people saying it but I think what you meant 
+  was you don't recommend someone sending creating some having an 
+  issuing endpoint where you can send it to the same end point 
+  multiple different types of revocation status information so you 
+  might issue you might hit this endpoint an issue something using 
+  a revocation status list on Tuesday and then on Wednesday you 
+  have the same issuing.
+Dave Longley:   Point without any revocation specified.
+Dave Longley:  And or maybe you choose an entirely different 
+  mechanism to to track status it's going to be extremely 
+  challenging for implementations to be able to implement switching 
+  off different types of status lists for the same effect of group 
+  of credentials and so instead what we're saying is when you want 
+  to be able to issue credentials that that use the a certain type 
+  of revocation.
+Dave Longley:  Issuing instance it's configured for that and 
+  always hit that instance if you want to use that that status 
+  method or that list and create groups of credentials that are 
+  linked to a certain status replication mechanism to answer your 
+  second question are there other types of status information yes 
+  yes there are at least one other type is in a community group 
+  spec right today so you can.
+Dave Longley:   Can you can specify.
+Dave Longley:  Tension status in the status list 2021 spec there 
+  are you can have multiple different types of statuses in the two 
+  that are defined there today or revocation and suspension.
+Dave Longley:  So one more one more clarification so I don't 
+  think the comment around being able to send an option to an end 
+  point for doing revocation and the suggestion that you don't do 
+  that was about saying don't use revocation status lists or status 
+  lasat all it was set up an end point where any time you use that 
+  endpoint that revocation mechanism that same mechanism will be 
+  used now and that's different from saying don't.
+Dave Longley:  Revocation of course you can use it just don't.
+Dave Longley:  Try and mix and match.
+Dave Longley:  This is too hard to implement.
+Patrick St-Louis:  I think you very much it's a very clear answer 
+  so regarding the point about having an implementation use only 
+  one vocation status method at a time with that mean you would 
+  hard-code one type of revocation credential status list in your 
+  solution and if so then what's the.
+Patrick St-Louis:  Having that option feel available on the API 
+  if it's going to be changed towards that implementations method 
+  afterwards anyway.
+Dave Longley:  Yes is something that we noticed was missing from 
+  these apis a few weeks back was there's effectively another layer 
+  of sort of statefulness that's missing we didn't have the concept 
+  until recently that you can so when they when they pass was 
+  originally designed with sort of designed around building a test 
+  Suite very rapidly so that people could expose a simple API.
+Dave Longley:   To a test suite and the tests we could.
+Dave Longley:  A bunch of test vectors and hit that one API and 
+  get some kind of output and then we could build a table around 
+  whether or not people were being we're having success in 
+  implementing the API however that did not lend itself very well 
+  to real-world use cases where if you have this one API that's for 
+  example digitally signing using cryptographic signature type 1 
+  and if you have a revocation lists associated with that you 
+  probably use the same type of cryptographic signature on the.
+Dave Longley:   List as you are going to use on the VC so that 
+  anyone trying to verify the VC.
+Dave Longley:  Is to support that one method to be able to do 
+  what you need to do in fact if you have certain missed 
+  requirements you couldn't mix and match certain types of crypto 
+  so if you only have that one endpoint you're not you don't have 
+  the affordances that you need to in implementing your software to 
+  be able to support other types of cryptography and so we said 
+  we're missing a layer here what you shouldn't just have one 
+  issuing endpoint which you should have are issuing.
+Dave Longley:   Senses that you.
+Dave Longley:  Where you say I'm going to create this 
+  configuration it's going to support this type of signature it's 
+  going to support this type of revocation method and you can 
+  create as many of these instances as you want and once you create 
+  them then this other issuing API hangs off of the end of that 
+  instance and that and then you hit when you hit that instance and 
+  you hit that API you don't have to specify all of the options 
+  that you use to configure it you only you only effectively 
+  provide the VC that you want to be issued and then that.
+Dave Longley:   Curation that was state.
+Dave Longley:  Or with that instance gets applied so to answer 
+  your question Patrick you're saying you know would you hard-code 
+  this into your in your implementation answer's no you would just 
+  make your implementation support creating multiple instances and 
+  whatever types of cryptography and types of status methods you 
+  want to support in your system you would afford you would offer 
+  those as possible configurations people would create the 
+  configurations they want use those to create instances and then 
+  off of those men they would use those instances.
+Dave Longley:   Has to.
+Dave Longley:  Why would I.
+Dave Longley:  Figuration say chosen so you can have one 
+  implementation that has n many of these configurations may be 
+  your first configuration will sign with the key that uses 8255 19 
+  and a revocation list with the same crypto method maybe your 
+  second instance signs with an ecdsa key and has no replication 
+  and then your third and fourth and so on.
+Manu Sporny:  All right thank you Dave Patrick gave a thumbs up 
+  to that explanation any other questions or concerns about this it 
+  looks like.
+Manu Sporny:  Well so it looks like.
+Manu Sporny:  Still allow HTTP API this is probably hold on one 
+  second I've got a okay so this is currently defined in issue 
+  credential options and we still allow credential status to be set 
+  there's a question on whether or not mmm we should.
+Manu Sporny:  Remove this option or not.
+Manu Sporny:  So I think that's the real question under under 
+  debate right now we have to come to some kind of determination on 
+  that go ahead Patrick.
+Dave Longley: +1 For removing it, it should be bound to a 
+  specific configuration (issuer instance)
+Patrick St-Louis:  Yeah that that was a part of what I was 
+  wondering is those options some of them like especially like the 
+  credentials that is shouldn't be necessarily set as an option but 
+  it should be more of a tag in the implementation when it runs the 
+  test Suites if I understand like you would tag that well this and 
+  point uses this.
+Patrick St-Louis:  Then there would be a test Suite associated 
+  with that specific specific implementation.
+Manu Sporny:  Yes exactly right that that is at least that's how 
+  the current test Suites design it did to do than that.
+Patrick St-Louis:  Because like when I was working on like I said 
+  like a toying around with the beasts API and the Occupy and what 
+  I found out is that I implemented those options and it doesn't 
+  really say and respect like which ones are optional or required 
+  and what I would do is essentially is my API would override some 
+  of them to comply to the Occupy and stands and the back end and 
+  the credentials taxes was something that I would hard code a.
+Patrick St-Louis:  A word so what I was thinking is like that's.
+Patrick St-Louis:  But if it's a no.
+Patrick St-Louis:  Certain and they want to test it with a 
+  specific option and I override this afterwards it didn't make 
+  much sense in my head so the that clarifies this a lot.
+Manu Sporny:  Okay great Dave go ahead.
+Dave Longley:  Yeah just want to agree with Patrick and and say 
+  the the test Suite should be given specific instances that the 
+  test Suite has authorization to access and use and those those 
+  instances would be configured with whatever different pieces of 
+  the tests we were looking at test so I completely agree with 
+  that.
+Manu Sporny:  Okay so the question is should we remove setting 
+  credential status from the API I'm almost certain Ori from 
+  transmute is going to object to this if we do that so the 
+  suggestion is to ask the traceability folks if this negatively 
+  impacts them before doing that so my suggestion is as a Next Step 
+  here we ask traceability folks if we can get rid of setting 
+  credential status.
+Manu Sporny:   And then see.
+Manu Sporny:  From there go ahead Patrick.
+Patrick St-Louis:  What would the potential objects in sound like 
+  like what benefit would it have for some implementation at it 
+  being an options.
+Manu Sporny:  We don't know I know that they said that I think or 
+  he does not agree with the concept of issuer instances yet in he 
+  feels like if they want to for example implement the complex 
+  State machine in their back end that they should be able to do 
+  that and we should not be you know.
+Manu Sporny:   No stop.
+Manu Sporny:  That for example sorry Dave I jump cue in front of 
+  you go and.
+Dave Longley:  Yeah that's okay so first of all I would say we 
+  would be removing our suggestion should be to remove this from 
+  the issuing and point but move it into the the configuration or 
+  instance creation and point I my read and again we're talking for 
+  someone else's not here so we should really hear directly from 
+  worried about my read from or a was not that he objected to these 
+  instances where that concept.
+Dave Longley:   It was just making sure that everything was 
+  fully.
+Dave Longley:  My understanding is also that they've been waiting 
+  to do any status list implementation until they had more clear 
+  signals that the spec was not going to change and so I don't know 
+  that you know we obviously should still reach out to them but I 
+  don't know that they're using this at all but I think the 
+  suggestion here would be just to remove it from the the issuing 
+  and point and move it to where your the the issuing instance 
+  creation and point.
+Manu Sporny:  Okay alright so there's the proposal so the group 
+  is suggesting that this option should be moved from the issuance 
+  and point to the issuance instance configuration and point the 
+  group wanted to check with Trace Bailey API before making this 
+  change to ensure that it wouldn't say negatively impact the 
+  traceability.
+Manu Sporny:  See see them any objections for this plane of any 
+  objections to this plan.
+Manu Sporny:  So I will comment that we are at time 2 minutes 
+  over thank you everyone for the great discussion today as always 
+  our call next week is cancelled because of w3c TPAC we will see 
+  everyone back here week after next an hour earlier on Tuesday.
+Manu Sporny:   Thanks everyone.

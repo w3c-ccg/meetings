@@ -1,0 +1,647 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-08-16-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-08-16-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-08-16
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Aug/0113.html
+Topics:
+  1. Relevant Community Updates
+  2. Status of Exchange Discovery PR
+  3. How are client features requested in VPR?
+  4. Background on OIDC4VCI
+  5. How VPR requests client features
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Dave Longley, Joe Andrieu, Mike Varley, David 
+  Chadwick, Dmitri Zagidulin, Eric Schuh, Kerri Lemoie, TallTed // 
+  Ted Thibodeau (he/him) (OpenLinkSw.com), bengo
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Welcome everyone to the verifiable credentials API 
+  work item called This is August 16th 2022 today on our agenda.
+Manu Sporny:  Is a just a review introductions relevant Community 
+  updates status of the exchange Discovery PR some like Varley 
+  heads up that we're going to ask you to give us an update there.
+Manu Sporny:  How our client features requested so a question 
+  about intra and Inter protocol request for information this 
+  interact thing in the back and forth associated with it a 
+  discussion around terminology so renaming the app terminology to 
+  maybe coordinator it looks like there's there's a slight lean in 
+  that direction in the issue and then other issues as time permits 
+  are there any other.
+Manu Sporny:  Changes to the agenda today.
+Manu Sporny:  The other the other question we might want to 
+  explore is we've heard from at least three people that have said 
+  that they want to be on these calls but it's at a bad time for 
+  them so there's a question around asking if we if we asking the 
+  community group if people would prefer a different time so we 
+  could maybe put that out to the list as well so I'll put that on 
+  the agenda.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  Each other here so we can skip introductions and 
+  reintroductions and go to relevant Community updates any relevant 
+  Community updates other than the standard rebooting is coming up 
+  please register w3c tpack is coming up please register and iiw is 
+  coming up in November in registered for that as well.
+Manu Sporny:   Anything else that.
+Manu Sporny:  I would like to announce.
+Manu Sporny:  Okay that will do it for oh actually there's one 
+  more that is I'd see the matrial get Tina in a second chappie I/O 
+  so chappie now has the ability ability.
+<manu_sporny> chapi.io playground now has the ability to use 
+  different issuer back-ends that are powered by the VC Issuer API: 
+  https://playground.chapi.io/issuer
+Manu Sporny:  Bility to use different issuer back ends that are 
+  powered by the VC API VC issue or API.
+<manu_sporny> We have added Mavennet as an implementer of the VC 
+  issuer and verifier API: 
+  https://w3c-ccg.github.io/vc-api-issuer-test-suite/
+Manu Sporny:  I'll put that in the chat Channel and the other 
+  interesting piece of news is that getting another link we have 
+  another implementer of the VC issuer API we have added Maven Nets 
+  as an implementer of the DC issuer and verifier API.
+Manu Sporny:   And that.
+Manu Sporny:  Up to five active implementers that are 
+  implementing against the API.
+Dmitri Zagidulin:  Does that list include DCR Cassidy.
+Manu Sporny:  As not but we would love to have BCC in that list.
+Dmitri Zagidulin:  Yeah please please on one of the early 
+  implementers.
+Manu Sporny:  So Dimitri you put yourself on the cue and I do 
+  have a question for you on getting you in that in that go ahead.
+<kerri_lemoie> Plugfest 2: 
+  https://w3c-ccg.github.io/vc-ed/plugfest-2-2022/
+Dmitri Zagidulin:  Right the other announcement is the day before 
+  IW the next jobs for the future interop Fest is going to be 
+  happening so this is plugfest to testing specifically issuing 
+  protocols so we're looking for either vendors that have 
+  implemented issuers or vendors that have been implemented 
+  credential wallets or both so there's a sign up form but you 
+  should sign.
+Dmitri Zagidulin:  And point out which one you're implementing 
+  and which protocol into use so VC API is one of the three 
+  protocols that.
+Dmitri Zagidulin:  We're expecting people to implement that we 
+  want to be testing against.
+Dmitri Zagidulin:  So reminder for everybody if you haven't 
+  considered participating in jmf plugfest do consider.
+<kerri_lemoie> Registration Form: 
+  https://docs.google.com/forms/d/e/1FAIpQLSdIhSjlJhLmi1Y_jV3q_7ywlHYP4rNCqQiY04CDUxwixHBNrA/viewform
+Dmitri Zagidulin:  If you haven't filled out the registration 
+  form do fill it out and that's it.
+Manu Sporny:  Awesome thank you Dimitri yes super important 
+  plugfest for this year it's the well I think one of the most 
+  important plug fests that's going on over the next year let me 
+  share window here just wanted to go back and show folks around a 
+  sure back end so in order to support the jff plugfest at least 
+  through the chappie interface.
+Manu Sporny:   Is there's now this.
+Manu Sporny:  Icon here in the top right and you can select the 
+  issuer's right now it's only digital bazaars v c JS front-end 
+  issuance thing that that has that happens there so for example 
+  you can click on an alumni credential and click generate 
+  verifiable credential in the proof here is generated by the web 
+  page through the vcg S application but the very next set of 
+  features that we're going to be releasing our the.
+Manu Sporny:   The issuer back end so we will then.
+Manu Sporny:  Allow selection of different issue or back ends 
+  that the credential can be issued through and then you can store 
+  that in the wallet there are also plans to do it off flow sorry 
+  decentralized identifier flow through this yes Dimitri go ahead.
+Dmitri Zagidulin:  Okay so first of all that's really exciting I 
+  really like this UI and this is going to be useful in the 
+  plugfest as well my question is of course authentication as in as 
+  in does.
+Dmitri Zagidulin:  Did you expect that chappie IO when handing 
+  off the request.
+Dmitri Zagidulin:  To a particular issuer to have some sort of 
+  token authentication header or are we expecting it to be 
+  unlocked.
+Manu Sporny:  Um let's see for did authentication there a couple 
+  of answers there right so did authentication see it's BP.
+Dmitri Zagidulin:  48 Sorry API authorization I should be this 
+  is.
+Manu Sporny:  API authorization right now in the test Suite is 
+  either completely open so you do 20 authorization you can use 
+  oauth2 or you can use the Caps or the test Suite supports all 
+  three mechanisms today.
+Dmitri Zagidulin:  Awesome thank you.
+Manu Sporny:  The the so just kind of drilling to your question a 
+  bit more this is the latest VC API issuer test Suite run it runs 
+  every Sunday against everyone's live implementations as we can 
+  see here API catalogs and implementer Dan UTech digital bizarre 
+  Maven that insecure key and as you can see we're not all passing 
+  the tests initial bizarre is embarrassingly the worst compliant 
+  one.
+Manu Sporny:   One on here.
+Manu Sporny:  We have test Suites from what I remember API 
+  catalog uses oauth 2 digit bizarre uses oauth to Dan UTech I 
+  believe you're open right now Marcus Maven that is a loss to and 
+  I forget secure key like I don't know if you remember.
+Manu Sporny:  Okay okay okay oh and I'm sorry I totally misspoke 
+  digital bazaars ecaps so we support both a lot to and Z caps 
+  clearly we're not expecting anybody else to support Z caps but we 
+  wanted to make sure that people knew that we have a delegated 
+  authorization based mechanism that does work against the API and 
+  we have implemented for that so all three forms.
+Manu Sporny:   Read is that was that the.
+Dmitri Zagidulin:  I guess I was hoping that at least I'll have 
+  to is supported it sounds like it is so we're good.
+Manu Sporny:  Yeah absolutely yep yeah yeah we are yeah we're 
+  certainly I think we'll get knocked if we don't support you know 
+  at least oauth2 and then multiple forms so yeah we're I think 
+  we're good there the on the issue or side on the on the chappie 
+  side.
+Manu Sporny:  Well anyway it don't worry it's going to be there 
+  if it's not there it's going to be there right in very short 
+  order and this is already a demonstration that we already have 
+  infrastructure that supports all three right okay all right so 
+  that's that and then the addition of Maven net was a happy thing 
+  this week the other thing about did on with the authentication 
+  that did authentication PR has been merged at this point Mike 
+  Farley we had.
+Manu Sporny:   Rest number of your concerns there.
+Manu Sporny:  And you know should this be an array of objects or 
+  not and Dmitry or concerns around should we have this P an object 
+  or not and so for both accepted methods and accept crypto sweets 
+  it isn't Ray of objects where each object at a minimum specifies 
+  like for did methods the method name in for crypto sweets the 
+  crypto sweet name.
+Manu Sporny:   And that's it those were the.
+Manu Sporny:  Talked about last week and those have been applied 
+  and things are there and in so then the question becomes you know 
+  in jmf.
+Manu Sporny:   Are we.
+Manu Sporny:  I think people did all through the VC API are we 
+  expecting them to did all the true chappie in that is probably 
+  something we should queue up for a conversation in the vce you 
+  call I don't know carry Dimitri are y'all planning on broaching 
+  that topic at some point in the future.
+Manu Sporny:  Go ahead Carrie.
+Dmitri Zagidulin:  Looks like Arizona.
+Kerri Lemoie:  Hey at least I can ferment around but we're not 
+  requiring a specific type of data is only that it happens.
+Manu Sporny:  Okay got it.
+Dmitri Zagidulin:  And so we are expecting that the choice of 
+  protocol will dictate the data.
+Dmitri Zagidulin:  Meaning if if this issue of the swallowed only 
+  works with BC API we expect that after that it supports chappie 
+  we expected all three champions.
+Manu Sporny:  Got it okay so I think what we may plan to do is 
+  try to provide it through chappie the chappie playground and 
+  through VC API endpoint as well that does did all through the VC 
+  API in both mechanisms will use exactly the protocol defined in 
+  this VP request spec hopefully it's detailed enough at this point 
+  that people can Implement to it.
+<kerri_lemoie> That's a better clarification. Thanks, Dmitri
+Manu Sporny:  Any other questions comments concerns before we 
+  move into the rest of the agenda.
+
+Topic: Status of Exchange Discovery PR
+
+Manu Sporny:  All right thanks all mixed up status of exchange 
+  Discovery PR.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pull/268
+Manu Sporny:  Mike this was I think adopted for merge meeting 
+  like everyone was cool with merging it I think we're still 
+  waiting on you to rebase any updates here.
+Manu Sporny:  Yeah I'm trying to figure out if this is something 
+  that I can maybe do.
+Manu Sporny:  Yeah something like that you see I so you basically 
+  you would go to can I jump to your.
+Manu Sporny:  Yeah it has merge conflicts so there's just the 
+  merge conflicts need to be resolved and I'm happy to do that the 
+  next time I'm in the spec if that would be helpful to you I just 
+  didn't want to stop over anything you were doing.
+Manu Sporny:  Things have not shifted now I think we're still in 
+  the same position so whatever you you know that what you outlined 
+  I think is where the group still is in and I think we're just 
+  looking for this to be merged right now as a heads up this exists 
+  implemented if you feel it's useful right okay all right so how 
+  about this if it's not merged by this weekend I will.
+Manu Sporny:  Okay all right that sounds good so we discussed 
+  this on the 2020 28 call and it was decided that we will merge 
+  this PR by the following all and following weekend.
+Manu Sporny:  Carly will preface and merge or any will do Burge.
+Manu Sporny:  Okay alright so that's that item thank you for the 
+  update next.
+
+Topic: How are client features requested in VPR?
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/280
+Manu Sporny:  Our client features requested so this is issue 280.
+Manu Sporny:  Um an issue to 80 let's see yeah this is a big one 
+  so the question is how.
+Manu Sporny:  If it's so basically there are two ways to kind of 
+  discover what a client's capable of at least two that have been 
+  explodes explored so far it's the kind of oid see well known 
+  mechanism and the VC API kind of in protocol mechanism and to 
+  summarize them bluntly the oid see mechanism you know kind of 
+  publishing.
+Manu Sporny:   She has all the.
+Manu Sporny:  Alex of the digital wallet says I support did key 
+  and did web and these types of crypto sweets and these types of 
+  you know protocols right and that's published in a well known 
+  well known space so that's kind of the oid see approach and then 
+  the VP our approach is very much in band which is in band meaning 
+  like when you're doing a presentation.
+Manu Sporny:   Change the.
+Manu Sporny:  Verifier goes I need to know which did methods you 
+  support and you get a kind of a something back to say that and 
+  then it's might say I need to know whether or not your two-factor 
+  authentication right now and that happens kind of dynamically in 
+  the protocol flow itself in those are kind of the two approaches 
+  that have been suggested I think this one specifically has to do 
+  with VPR and if the BPR mechanism is is a.
+Manu Sporny:   Useful one and I think we're going to.
+Manu Sporny:  Spend a bit of time on the call today kind of 
+  comparing and contrasting I see Carrie and David on the Queue 
+  carries that an old Q or anyone.
+Kerri Lemoie:  Sorry that's a little timid with myself.
+Manu Sporny:  Okay sorry I didn't ask you go ahead David.
+
+Topic: Background on OIDC4VCI
+
+Manu Sporny: DavidC: For OIDC, it's recognized that not every 
+  wallet will be able to publish its metadata, so there is a 
+  default set of metadata that is being documented in the OIDC4VC 
+  specs, so you can assume wallet supports a certain set of 
+  metadata if you have no other way of finding out.
+Manu Sporny:  That is just kind of like it's in the spec and so 
+  by default all wallets will support did key for example is that 
+  what you're saying.
+Manu Sporny: DavidC: There was a discussion at the meeting last 
+  week, whether default metadata is mandatory to implement or not. 
+  There was some disagreement about that. It's not been finally 
+  nailed down, Dmitri was at that meeting, perhaps he can recall 
+  more than I can.
+Dmitri Zagidulin:  I do remember sorry I don't remember the 
+  conclusion was.
+Manu Sporny: DavidC: That's my recollection as well.
+Manu Sporny:  Okay okay was anything I said did mischaracterize 
+  what idc's doing with with your additions David is that a proper 
+  characterization of what the IDC is kind of doing.
+Manu Sporny: DavidC: If there is a well known wallet that 
+  everyone uses, the manufacturer would publish... the software 
+  supplier, not the Holder, would publish metadata.
+Manu Sporny:  Yeah okay in the in the kind of contrast that 
+  approach with what is in VPR for for example we can look at did 
+  authentication so this PR that just went into the VP R-Spec ass 
+  in line so there is no well let's see let me try and find a 
+  request.
+Manu Sporny:  Kind of did all section to show how this this is a 
+  bit different I'll go too.
+Manu Sporny:  More of a complex example so in the VP R-Spec the 
+  VC API once it you know you initiate an exchange one of the 
+  queries that can come in through the protocol is I need you to do 
+  did authentication in these are the in this is this is the 
+  verifier saying these are the accepted methods so I support did 
+  key and I support the ecdsa 2022 crypto sweet and I want you to 
+  sign over this Challenge and domain basically so this.
+Manu Sporny:   Is an inline thing this.
+Manu Sporny:  Not published on the on the web or the internet or 
+  anything like that it happens completely in line and the 
+  difference there of course is that it doesn't use well-known so 
+  you know chappie and other things like that use a manifest.json 
+  file for some basic things around the wallet but they don't 
+  express features and things that you know can be done in part of 
+  the reason that the at least.
+Manu Sporny:   The BPR.
+Manu Sporny:  Takes this approach is because sometimes what is 
+  supported is entirely dependent on what the holder has done in 
+  their wallet so for example if they don't have a let's say a did 
+  example didn't method registered then the wallet publishing 
+  through a static file that it supports did example doesn't really 
+  do any good in the actual protocol itself because.
+Manu Sporny:   The individual to hold.
+Manu Sporny:  Themselves have no way of doing a did example based 
+  exchange right so that's one of the one of the reasons that at 
+  least the VP R-Spec has made this design choice is because 
+  there's some questions about capabilities about wallet features 
+  that can't be answered on a generalized basis they have to be 
+  answered on a specific.
+Manu Sporny:  Is another example of that is like whether or not 
+  the individual has to factored so a wallet may say this wallet is 
+  capable of doing two Factor authentication but whether or not the 
+  individual has actually turned on to factor or not is something 
+  that's very specific to the holder that's in charge of that 
+  wallet so again the the query for that feature comes in through 
+  the.
+Manu Sporny:   Verifiable presentation.
+Manu Sporny:  It is not something that can easily be just 
+  expressed you know publicly in a static file the finally the 
+  other thing is that there may be some features that the wallet or 
+  the holder don't want to publish publicly like the fact that you 
+  have a specific type of did method or that you support a specific 
+  type of did method from a holder perspective might not be 
+  something that you know they want to just kind of publish so that 
+  goes to the.
+Manu Sporny:   The the the idea here.
+Manu Sporny:  That you know it's been suggested that the client 
+  should publish its capabilities to the to the verifier but that 
+  leaks Privacy Information that leaks information that the holder 
+  may not want to expose to the verifier and so the verifier at 
+  least in VPR right now it's the verifier that says here's how I'd 
+  like you to engage with me and that's.
+Manu Sporny:   Then the.
+Manu Sporny:  With engagement from the holder goes okay of those 
+  mechanisms that the verifier supports this is the way I want to 
+  actually engage in that and go back and forth back and forth so 
+  let me stop there see if there any questions concerns comments.
+Manu Sporny: DavidC: As a comment, OpenID verification has a 
+  similar scheme, but uses the DIF PEv2 syntax, in that, they say 
+  what format they want VPs/VCs to be in. Feasible for Verifier to 
+  say different format, but VP to have JWT.
+Manu Sporny: DavidC: That is a dynamic request coming from 
+  verifier to wallet, using DIF PE. That is not something OIDC 
+  protocol has specified itself. That's an equivalent feature.
+Manu Sporny:  Yeah that that yeah understood so basically you're 
+  saying that the diff presentation exchange has that feature but 
+  the OIDC stuff doesn't use diff presentation exchange is that 
+  right.
+Manu Sporny:  Okay got it Mike you're on the Queue go ahead.
+Manu Sporny: DavidC: No, it's OIDC uses DIF PE.
+Mike Varley:  So two things... static config can be used in 
+  OIDC... once the static config happens, then you can shift to 
+  dynamic PE-based mechanism. [scribe assist by Manu Sporny]
+Manu Sporny:  I had a hard time describing that David would you 
+  mind typing that in I think I followed what you were saying but 
+  it was a bit hard to follow.
+Manu Sporny:  Hard to describe.
+<david_chadwick> In OIDC presentation, the RP is the client and 
+  the wallet is the OP/Authz server
+<david_chadwick> In OIDC Issuance the wallet is the client and 
+  the issuer is the OP and Authz server/RS Server
+Manu Sporny:  So for all IDC for VC I am I understanding this 
+  correctly some of the capabilities are published through 
+  well-known file in the other capabilities can be discovered 
+  through presentation exchange for oid C4 VCI.
+Manu Sporny: DavidC: Credential manifest has been dropped in 
+  OIDC4VCI, just using snippets of it... display strings in 
+  different locales.
+Manu Sporny:  Dave I think you're on the cue next it won't we.
+Dave Longley:  So I think one of the differences between the 
+  protocols that we want to highlight here is that wallet 
+  identification and client identification is a hard requirements 
+  in using oid C4 R ECI whereas it is not a hard requirement using 
+  just be capr Ian and VPR so it allows for more data minimization 
+  for use cases where you don't need to know now what the.
+Dave Longley:  My that's the difference that I think it's 
+  important to highlight.
+Manu Sporny:  Go ahead David.
+Manu Sporny: DavidC: That difference isn't correct, in the 
+  pre-authorized flow, the issuer doesn't need to know who the 
+  client is. The pre-authorized flow, the user goes to the issuer's 
+  website, logs in, and then is displayed a QR Code which they scan 
+  into the wallet, then wallet contacts authorization server. In 
+  that case, authz server doesn't need to know the client -- 
+  they're authenticated via pre-authorization code that was given 
+  to them.
+Dave Longley:  There is a read the redirection URL involved in 
+  that process though right.
+Manu Sporny: DavidC: You go to website, it's given a secret, and 
+  you're redirection.
+Dave Longley:  And that redirection URL identifies the client.
+Manu Sporny: DavidC: The OIDC4VC doesn't state whether client ID 
+  needs to be present.
+Dave Longley:  Does the does the perhaps you're saying the that 
+  that an authorization code Flows In some wall back to the to the 
+  client which implies that the authorization server there was 
+  there is an authorization server that the issuer is in uses in 
+  some way and the user must go to that authorization server and 
+  that is where the client is authenticated isn't that the case and 
+  it's like unified manner.
+Dave Longley:   He has so that that's is.
+Dave Longley:  So that's steps not necessary for the VC API.
+Manu Sporny: DavidC: Yes, that's the case.
+Manu Sporny: DavidC: That happens out of band, has a secret in 
+  it, sent to wallet, then wallet sends it to AZ. First time AZ 
+  talks to system, it has preauth request.
+Dmitri Zagidulin:  Yes if I can jump in there if I can jump in 
+  there Dave the interesting part in that flow is that the user is 
+  authenticated but the wallet is not identified but while it just 
+  passes through a random string from the kip owed to the 
+  authorization server so.
+Dave Longley:  I don't understand how they use your wood so there 
+  is the fact that there's an authorization server at all means 
+  that the issuer made some kind of choice around authorization and 
+  the user must go somewhere to authorize the client to to give it 
+  some kind of access to do something because that's how well that 
+  works and if that's the case it seems to me like the client 
+  absolutely needs to be identified to the authorization server and 
+  to the user where.
+Dave Longley:   And that's where they make.
+Dave Longley:  And an authorization code is generated.
+Manu Sporny: DavidC: Right, this is another interesting point -- 
+  who is the resource owner, that's who says "this client can acces 
+  smy resource". One can view resource owner as being the issuer, 
+  and it can revoke them, so client (user) comes to AZ with secret 
+  and says "can I have an access token" and AZ can ask itself if it 
+  wants to allow it.
+Manu Sporny: DavidC: Assumption was initially if user is resource 
+  owner, OP is giving the credential out.
+Dave Longley:  Right and if that's the case the issuer is the 
+  party that's working with the authorization server and that means 
+  that the client must must authenticate itself in a must identify 
+  itself to that authorization server and that's that's the the 
+  distinction of drawing.
+Dave Longley:  Yeah and my point is that in the VC API VPR 
+  approach the issuer can be totally blind if you did so desire you 
+  can they can be totally blind to the piece of software that the 
+  user is using so they don't have to know what wallet is is being 
+  used in the oid see flows it's a requirement because it's part of 
+  how the security and authorization server works.
+Dave Longley:  But you're taken to an authorization server where 
+  you approve what wallet that is which means that it knows what 
+  the wallet it.
+Dave Longley:  Just by definition.
+Manu Sporny: DavidC: It's the user that's authenticated, but the 
+  wallet
+Dmitri Zagidulin:  So it's essentially introducing another type 
+  of authorization server that doesn't need to identify the client.
+Dmitri Zagidulin:  Yeah so you're up.
+Dave Longley:  If it doesn't need to be to identify the client it 
+  does that what does that mean about the user knowing which piece 
+  of software they're using.
+Dave Longley:  Is there an allow screen where they approve that 
+  piece of software that they're using.
+Manu Sporny: DavidC: If they're using cross-device flow, QR Code 
+  shown on issuers website, user takes smartphone, enters wallet of 
+  their own choosing, selects a wallet.
+Dave Longley:  Sure and then after that the wallet makes a call 
+  right to the authorization server.
+Dmitri Zagidulin:  So it's finding its using the limitation of 
+  mobile operating system it's turning the bug into a feature it's 
+  using the fact that you have to select your wallet instead of the 
+  allow screen the traditional off to does Sonic sense so how does 
+  the user know what software they're driving it's because they 
+  opened it and click to scan QR code in that software.
+Dmitri Zagidulin:  So the the permissions implicit.
+Dave Longley:  But I'm so once they're in their wallet they scan 
+  the QR code with their wallet and and does does the wallet ever 
+  redirect them back to an authorization server where they see an 
+  allow page and approve that wallet for use at the issuer.
+Dave Longley:  That's fair that's very interesting okay.
+Dave Longley:  I'm very curious to know more about that.
+Dmitri Zagidulin: 
+  https://openid.net/specs/openid-connect-4-verifiable-credential-issuance-1_0-05.html#section-7
+<dmitriz> @dave ^
+Dave Longley:  So from that qr-code.
+Dave Longley:  Right so so if the user chooses any application 
+  through any means of their own and then scans the QR code it just 
+  immediately goes to the wallet and there's no additional step.
+Dave Longley:  Is that right okay.
+Manu Sporny: DavidC: That's right
+Manu Sporny: DavidC: If you can't scan QR Code, ther eis a URL 
+  link -- deep link, custom scheme, that will be redirected via 
+  deep link to wallet. That will be configured inside users 
+  machine, if it's openid, that wallet will get to scheme.
+Dave Longley:  This is all very interesting but we do have a Q so 
+  I'm not going to say any more at this time.
+Manu Sporny:  Go ahead and like.
+Mike Varley:  The pre-auth is done w/ DIF-WACI like flow -- user 
+  interacts w/ website, there is a bearer token that's passed 
+  across to engage the wallet. The assumption is whoever picks that 
+  up/makes call, gets that VC -- similar to CHAPI, whoever knows 
+  the secret can pick up the credential. [scribe assist by Manu 
+  Sporny]
+Mike Varley:  There is no client authentication at that point. 
+  [scribe assist by Manu Sporny]
+Dave Longley:  You're on the kitty litter.
+Manu Sporny:  Go ahead well yeah I'm I'm yeah I'm I'm confused 
+  because I was I thought there were no use of Bearer tokens in the 
+  oid c4v ci-flow and now I'm here that there are the one of the 
+  one of the criticisms against chappie and the VC API was that the 
+  URL passed over was Bear token and now I think I'm I think I'm 
+  hearing that.
+Manu Sporny:   It's the same exact thing you know I.
+Manu Sporny:  For VCI that approach I'm so I'm confused but maybe 
+  sure.
+Mike Varley:  You are absolutely correct, the pre-auth code flow 
+  is what we were doing w/ CHAPI flow and WACI flow and is subject 
+  to same challenges/security vulnerabilities/checks ... but it is 
+  an option in the OIDC flow. The other option is you go through 
+  full authorization code flow -- OIDC has many forks, pre-auth 
+  flow now exists as well... authorized code flow is valid ... 
+  bearer token flow, pre-auth was state of the art year/year ago -- 
+  get QR Code wallet does the rest. [scribe assist by Manu Sporny]
+Dave Longley:  I don't know if I'm jumping Q should I talk now.
+Manu Sporny:  You are jumping to David's next and then you're 
+  after oh sorry go ahead then.
+Dave Longley:  No I got kicked off the queue I think it's all 
+  right okay I'll just be quick okay that's thank you Mike that's 
+  interesting it looks like there's potentially multiple ways that 
+  you can implement the oid see for me ci-flow I don't know if 
+  that's a change in what has happened or not and I would like to 
+  know since David's coming up on the Queue if that choice was made 
+  to help address the problem that wall.
+Dave Longley:   It's were forced to.
+Dave Longley:  Because that is one reason that the design was the 
+  way it was with VC API in VPR.
+Manu Sporny: DavidC: I can't answer the question, only started 
+  working on OIDC  when group was already under way. Two points -- 
+  every OAuth code uses bearer tokens, you're not escaping bearer 
+  tokens -- pre-auth has MFA, so when user scans in QR Code, if 
+  issuer wants multifactor, it can ask for a PIN, send PIN to user 
+  via SMS, then wallet when it gets QR Code will pop up window to 
+  enter PIN then send PIN and secret to authz server.
+Manu Sporny:  All right queue is empty um.
+Manu Sporny:  Where to go from here.
+
+Topic: How VPR requests client features
+
+Manu Sporny:  Yeah go ahead Mike.
+Mike Varley:  Ok, so we talked a bit about OIDC, VPR does inline 
+  stuff... seems like engotiation /discovery of capabilities is met 
+  by this VPR feature - is that the goal? [scribe assist by Manu 
+  Sporny]
+Manu Sporny:  Yeah I think fundamentally the the VC the VP R-Spec 
+  specifically has one way of doing this so it doesn't branch in 
+  the variety of different ways that you know oh I DC might Branch 
+  the feature Discovery mechanism is purely in Channel and is 
+  purely through the delivery of verifiable.
+Manu Sporny:  Every feature is delivered as a verifiable 
+  credential. Right I don't know if anyone else wants to you know 
+  comment to that but that's effectively the design here is that 
+  there's no branching there's no it can happen this way or that 
+  way or this other way it's purely the VC API sorry the VC API 
+  with VP are all capabilities are in Channel.
+Manu Sporny:   Protected not.
+Manu Sporny:  Public and and can go you know back and forth so 
+  that's it.
+Mike Varley:  We have discovery for API endpoints for 
+  protocol/exchange... client can call discovery endpoint and based 
+  on that can understand protocol, if VPR protocol, then inband it 
+  can expect to see "capabilities request/statement" which it can 
+  then meet or not. Particular methods/cryptosuites it can't meet, 
+  then ok, end of story. [scribe assist by Manu Sporny]
+Mike Varley:  This sufficiently answers discovery/negotiation 
+  requirement that comes up in open world. Are there gaps here? 
+  [scribe assist by Manu Sporny]
+Manu Sporny:  Like go ahead David.
+Manu Sporny: DavidC: The gap that I see, I'm on my browser, 
+  connect to RPs website, has login button, widget, etc... it 
+  doesn't know whether my wallet talks OpenID for VC / VP  -- we 
+  need something at the super protocol level that allows both 
+  parties to determine which protocol. That to me is the missing 
+  gap.
+<dave_longley> VPR can include multiple interact URLs, one with 
+  OIDC4VCI and one with VC-API
+Dmitri Zagidulin:  I think what what would David what would David 
+  wish list item is that for example there's a wallet selector with 
+  a protocol field so like if the chappie mediator is extended to 
+  say all right please before this request and by the way I'd like.
+Dmitri Zagidulin:   To talk to.
+Dmitri Zagidulin:  Bird calls that speak this API or I'd like to 
+  talk to all at speak opening to connect.
+Manu Sporny:  Go ahead Longley and and we we've got three minutes 
+  left in the call will have to wrap up after this comment go 
+  ahead.
+Mike Varley: +1 David, the client and server have to have a 
+  shared starting point... or a meta-method to figure that out.
+Dave Longley:  Yeah I was going to say I think we're actually two 
+  minutes over because we want the w3c calls to end five before but 
+  just real quick yes to what to meet you said that is one approach 
+  the problem the other thing I highlighted in chat is VPR lets you 
+  send multiple interact URLs and you could send if the server 
+  supports both oid c4v CI + VC API that can send two different 
+  URLs and let the client choose which one they want to use.
+Manu Sporny:  Yep and that's already supported in the BP R-Spec 
+  and and there's discussion about supporting this stuff in the in 
+  the chappie wallet selector as well so we've got two two 
+  mechanisms that could be utilized to do this in VPR and in in 
+  chappie okay that's the call for today I'll try to get these 
+  minutes out I've been bad about minutes for the past three weeks 
+  so I'll try to get all this published in hopefully today.
+Manu Sporny:  Give everyone for the Lively call.
+Manu Sporny:  I think Mike said it best I don't know if anyone 
+  feels that you know there's anything more to say about how 
+  feature detection Works in VPR at least there's just one way that 
+  it works the end okay so next week do we want to talk about the 
+  test Suites and testing we said we were going to do.
+Manu Sporny:  But I'm at a bit of a loss as to how to have that 
+  conversation other than just going through you know the test 
+  seats test Suites for the VC API stuff any thoughts or 
+  preferences there or do we just want to do it more issue 
+  processing.
+<mike_varley> unfortunately I will miss next week
+<mike_varley> thanks all
+Manu Sporny:  Alright I'll send that question to the list and or 
+  just make a judgment call all right thanks everyone for the call 
+  today we'll see y'all next week.
+<kerri_lemoie> Thanks!

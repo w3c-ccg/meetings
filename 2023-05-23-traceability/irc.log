@@ -1,0 +1,96 @@
+[2023-05-23T17:28:17.175Z]	<nis>	present+
+[2023-05-23T17:29:14.603Z]	<Russell_Hofvendahl_(mesur.io)>	present+
+[2023-05-23T17:29:56.631Z]	<Paul_Dietrich_GS1>	present+
+[2023-05-23T17:30:34.143Z]	<Ben_(Transmute)>	present+
+[2023-05-23T17:31:53.311Z]	<Orie>	present+
+[2023-05-23T17:32:58.236Z]	<Chris_Abernethy>	present+
+[2023-05-23T17:33:05.842Z]	<Ben_(Transmute)>	scribe+
+[2023-05-23T17:34:13.466Z]	<Transcriber>	scribe+
+[2023-05-23T17:34:13.467Z]	<Transcriber>	Meeting: traceability
+[2023-05-23T17:34:21.211Z]	<Transcriber>	Ben_(Transmute): Octopus is off.
+[2023-05-23T17:34:44.910Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab
+[2023-05-23T17:34:55.256Z]	<Ben_(Transmute)>	Nis: Thanks for  joining the weekly trace call. Make sure to sign the contributor agreement.
+[2023-05-23T17:35:00.013Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/736
+[2023-05-23T17:35:34.337Z]	<Orie>	https://github.com/w3c-ccg/traceability-vocab/issues/786
+[2023-05-23T17:35:40.963Z]	<Ben_(Transmute)>	Orie: I was able to get the CI to pass. But it has surfaced a couple of issues that would be good to discussed. These are linked in the PR.
+[2023-05-23T17:35:44.395Z]	<Orie>	https://github.com/w3c-ccg/traceability-vocab/issues/787
+[2023-05-23T17:35:54.818Z]	<Ben_(Transmute)>	Orie: The first is schema validation for GS1 and schema validation.
+[2023-05-23T17:36:41.587Z]	<Ben_(Transmute)>	Orie: The original intention for the PR was a VC version 2 test suite and maybe even convert all of the existing credentials to version 2 automatically. To start supporting v2. There are places where we assert the structure of the context.
+[2023-05-23T17:37:42.514Z]	<Ben_(Transmute)>	Orie: In the case of GS1 there is no trace context, but in the case of MTR we have trace context. To be able to define what the shape looks like in JSON schema. We want to know about cases where the JSON is changed before getting to the verifier to make sure time is not wasted.
+[2023-05-23T17:38:30.709Z]	<Ben_(Transmute)>	Orie: One issue would be to add more contexts, which would add a lot more processing time. Or adding a giant array of empty objects, so schema validation is a security vector especially for data integrity proofs.
+[2023-05-23T17:39:08.075Z]	<nis>	q+
+[2023-05-23T17:39:44.211Z]	<Ben_(Transmute)>	Orie: So I can get a yes or no answer if a credential is able to validate to schema. We might have an issue when we have issues, like with GS1 we can bundle GS1 into our context. In our respec document we're saying a context must be in some kind of allow list.
+[2023-05-23T17:39:57.096Z]	<nis>	ack nis
+[2023-05-23T17:39:57.186Z]	<Ben_(Transmute)>	Orie: The way we're handing schema validation is not working for GS1 credentials.
+[2023-05-23T17:40:52.115Z]	<Orie>	https://github.com/w3c-ccg/traceability-vocab/pull/736/files#diff-398c38414614698511f6dbce592de71d0be2b3b21504661a5fc7d033fea2eb26
+[2023-05-23T17:40:57.130Z]	<Ben_(Transmute)>	Nis: I wanted to the comment about the "must include traceability" limitation. The GS1 schemas do list which contexts are required for which credentials. Are we in the clear if we remove that constraint?
+[2023-05-23T17:41:44.165Z]	<Ben_(Transmute)>	Orie: The respec document needs to be updated, and it needs to match something to the example that I just linked. We would expect to say that we have the v1 or v2 context, and then we have some other list of credentials. And both our respec and schemas need to say that.
+[2023-05-23T17:42:40.458Z]	<Ben_(Transmute)>	Orie: Another thing we could say is traceabiliy schemas only allow for version 1 or version 2 or both. And say here are the other contexts that are allowed. What we should definitely not do is say you can put in anything. And we should fix this before we freeze.
+[2023-05-23T17:42:49.911Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/credentials/MillTestReportCredential.yml#L16
+[2023-05-23T17:43:49.749Z]	<Ben_(Transmute)>	Nis: At line 16, isn't on a credential by credential basis where you control what is allowed per schema. So if MTR is v2, wouldn't that be reflected at this part of the schema? Do we need to do anything else outside of updating the respec document?
+[2023-05-23T17:44:29.710Z]	<Paul_Dietrich_GS1>	q+
+[2023-05-23T17:44:38.126Z]	<nis>	ack paul
+[2023-05-23T17:44:39.066Z]	<Ben_(Transmute)>	Orie: You're correct, but if you change the property in this schema, then it needs to line up with what we say in respec. To say ONLY v1 or ONLY v2. But if you say either or, you run into problems like issuanceDate is now validFrom.
+[2023-05-23T17:45:10.915Z]	<Ben_(Transmute)>	Paul: I wanted to confirm, you want to have a JSON schema to validate the context within some set that is valid. What's the restriction on what rules you can apply in JSON schema?
+[2023-05-23T17:45:58.347Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/credentials/GS1KeyCredential.yml#L16
+[2023-05-23T17:45:59.248Z]	<Ben_(Transmute)>	Orie: You can make a very specific to only what is spec legal. The GS1 data model that you guys have defined has which contexts are allowed. And say that it must match that.
+[2023-05-23T17:46:15.218Z]	<Ben_(Transmute)>	Nis: We list credential v1 and then two GS1 contexts.
+[2023-05-23T17:47:31.667Z]	<Ben_(Transmute)>	Orie: So reading this out, what this really says, the traceability GS1 key credential. This JSOn schema validates ONLY validate credentials that fit the spec. And that should allow you to check the schema before you do any JSON-LD processing.
+[2023-05-23T17:48:12.702Z]	<Ben_(Transmute)>	Paul: And somehow this complicates things when we move to VC v2?
+[2023-05-23T17:49:01.752Z]	<Ben_(Transmute)>	Orie: In order for this to be legal in v2, GS1 would need to say we're supporting v2. Think about this from a customs agencies perspective. They want to know if they're v1 or v2 credentials. They want to know is there a schema that verifies an instance of this JSON.
+[2023-05-23T17:49:40.072Z]	<Ben_(Transmute)>	Paul: To support traceability with v2 GS1 needs to provide v2 credentials. and a schema to define those credentials.
+[2023-05-23T17:50:02.735Z]	<Ben_(Transmute)>	Orie: So might have v1 GS1, v1 traceability, v2 GS1, and vs traceability.
+[2023-05-23T17:50:19.192Z]	<Ben_(Transmute)>	Paul: Do the versions align with the verifiable credential data model?
+[2023-05-23T17:50:48.489Z]	<Ben_(Transmute)>	Orie: Yes, so in v2 issueanceDate is now validFrom and the schema would need to be updated.
+[2023-05-23T17:52:23.074Z]	<Ben_(Transmute)>	Orie: The PR adds a v2 credential. And it would add a v2 credential that would be shipped. And there are a lot of software libraries that won't be able to issue it. The core spec for v1 made it more difficult. So we want to decent when we want to do that and how we want to do it. But it's likely we're going to be in that situation where we have multiple version. and if GLIEF adds credentials here, the same will apply as well.
+[2023-05-23T17:52:57.531Z]	<Ben_(Transmute)>	Nis: Beyond this conversation, do we need to make a decision where we have double support, and then deprecate version 1 before we get there?
+[2023-05-23T17:53:35.135Z]	<Ben_(Transmute)>	Orie: I think the highest priority action item is to fix the respec document to make GS1 valid to allow those contexts. The v1 support is currently not correct.
+[2023-05-23T17:54:11.506Z]	<nis>	https://w3c-ccg.github.io/traceability-vocab/#extensions-to-standard
+[2023-05-23T17:54:13.058Z]	<Ben_(Transmute)>	Orie: In summary if we merge 736 we will be in a world with three kinds of context, And our respec document says there is only one kind of context.
+[2023-05-23T17:54:52.083Z]	<Ben_(Transmute)>	Orie: In that section we want to say, "these are the contexts that you MUST support in order to conform to this profile"
+[2023-05-23T17:55:36.163Z]	<Ben_(Transmute)>	Nis: My opinion is that's a separate issue. We need to update the respec, I would push towards merging, and then clean up after ourselves.
+[2023-05-23T17:56:27.132Z]	<Ben_(Transmute)>	Orie: Also we have tests where we expect v1 and it's going to start surfacing weird errors. I made a comment in the Pull Request.
+[2023-05-23T17:56:52.607Z]	<Ben_(Transmute)>	Orie: We need to update the tooling if we merge 736.
+[2023-05-23T17:57:58.771Z]	<Ben_(Transmute)>	Nis: Any objections to merging 736?
+[2023-05-23T17:58:23.547Z]	<Ben_(Transmute)>	Ben: If we include a v2 credential, should we mark it as experimental?
+[2023-05-23T17:58:31.061Z]	<Ben_(Transmute)>	Orie: We have tags and they are being used.
+[2023-05-23T17:59:44.660Z]	<Ben_(Transmute)>	Orie: If we merge this, there are other things we're going to have to fix in short order.
+[2023-05-23T17:59:54.566Z]	<Ben_(Transmute)>	Nis: We have three approvals, let's go ahead and merge.
+[2023-05-23T18:00:26.420Z]	<Paul_Dietrich_GS1>	q+
+[2023-05-23T18:00:31.748Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/774
+[2023-05-23T18:00:39.927Z]	<nis>	acl paul
+[2023-05-23T18:00:43.235Z]	<nis>	ack paul
+[2023-05-23T18:01:08.197Z]	<Paul_Dietrich_GS1>	https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+[2023-05-23T18:01:11.430Z]	<nis>	https://w3c-ccg.github.io/traceability-interop/reports/conformance/
+[2023-05-23T18:01:24.980Z]	<Paul_Dietrich_GS1>	https://w3c-ccg.github.io/traceability-interop/reports/conformance/
+[2023-05-23T18:01:45.753Z]	<Ben_(Transmute)>	Paul: I ad a question if the lingering conformance and interop. Are being help off? Looking at the tests, the last was run in April?
+[2023-05-23T18:02:07.539Z]	<Ben_(Transmute)>	Nis: They should be running nightly, these ran 17 hours ago, it looks like the date on the report page is not being updated.
+[2023-05-23T18:02:33.216Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/774
+[2023-05-23T18:02:38.754Z]	<Ben_(Transmute)>	Nis: Let's push forward with the pull requests.
+[2023-05-23T18:03:26.982Z]	<Ben_(Transmute)>	Nis: The next is the CATAIR mapping. There are changes requested and orie and mahmoud are not on the call, so let's address that next time.
+[2023-05-23T18:03:53.499Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/779
+[2023-05-23T18:04:30.555Z]	<Ben_(Transmute)>	Nis: This updates the Importer Security Filing and took out Oil and Gas because oil is not transported with this form.
+[2023-05-23T18:04:34.783Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/781
+[2023-05-23T18:05:34.427Z]	<Ben_(Transmute)>	Nis: We had "The Thing" credential, which has the ability to throw generic identifiers into an instance. So this creates a more business oriented credential. Originally I overwrote "The Thing" credentials. So this just adds an entry number. And Mahmoud approved it.
+[2023-05-23T18:06:24.923Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/782
+[2023-05-23T18:06:45.658Z]	<Ben_(Transmute)>	Nis: This aligns to the recommendation of using two letter ISO country codes.
+[2023-05-23T18:07:40.267Z]	<Ben_(Transmute)>	Nis: We got a response back from schema.org. And that dialog has started.
+[2023-05-23T18:07:52.891Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/783
+[2023-05-23T18:08:39.341Z]	<Ben_(Transmute)>	Russell: This is pretty straight forward to implement consistent fake phone numbers. Where 555 is the standard fake number.
+[2023-05-23T18:09:05.275Z]	<Ben_(Transmute)>	Nis: Great, probably a lot of what you're fixing is me not understanding the US area code.
+[2023-05-23T18:09:36.858Z]	<Ben_(Transmute)>	Ben: I would go ahead and merge as soon as the conflict is resolved.
+[2023-05-23T18:09:47.333Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/784
+[2023-05-23T18:10:36.099Z]	<Ben_(Transmute)>	Russell: This one adds USDASpecialtyCrops237AForm in response to feedback from AMS. This also goes into a few fields in agriculture product. And it updates a few related credentials.
+[2023-05-23T18:12:03.429Z]	<Ben_(Transmute)>	Russell: Extended products has some additional information from agriculture product.
+[2023-05-23T18:18:39.505Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/785
+[2023-05-23T18:20:38.158Z]	<Ben_(Transmute)>	Ben: This PR adds a workflows folder that defines a traceable presentation.
+[2023-05-23T18:20:55.446Z]	<Paul_Dietrich_GS1>	have to drop . Thanks everyone.
+[2023-05-23T18:22:18.564Z]	<Ben_(Transmute)>	Ben: And this it takes those workflows and renders them in the respec document using mermaid to render the sequence diagrams.
+[2023-05-23T18:22:25.759Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/pull/788
+[2023-05-23T18:23:21.119Z]	<Ben_(Transmute)>	Nis: The next one builds on the previous PR and adds more business workflows. It has SIMA and Mill Test Reports and importer security filing.
+[2023-05-23T18:23:32.540Z]	<Ben_(Transmute)>	Nis: Any questions on what this is doing?
+[2023-05-23T18:24:19.924Z]	<nis>	https://github.com/w3c-ccg/traceability-interop/pull/545
+[2023-05-23T18:25:49.288Z]	<Ben_(Transmute)>	Chris: This one is brand new, so we might want to leave it until next week. This is an old issue for how Azure handles scope naming, which has a format that doesn't conform to the format we use. We removed the normative requirements for which scopes are required. And we make the assertion that implementations have handled some scopes for security.
+[2023-05-23T18:26:38.503Z]	<Ben_(Transmute)>	Nis: It's a little sad with how much work we put into getting it.
+[2023-05-23T18:26:56.292Z]	<Ben_(Transmute)>	Chris: After this came up, maybe we were over stepping our bounds.
+[2023-05-23T18:27:33.129Z]	<Ben_(Transmute)>	scribe-

@@ -1,0 +1,270 @@
+Thanks to russell_hofvendahl_(mesur.io) and Our Robot Overlords and russell_hofvendahl_(mesur.io) for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-06-13-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-06-13-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-06-13
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jun&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  russell_hofvendahl_(mesur.io) and Our Robot Overlords and russell_hofvendahl_(mesur.io)
+Present:
+  Mahmoud Alkhraishi, Adam C, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Nis Jespersen , Ben, Russell Hofvendahl, Orie 
+  Steele
+
+russell_hofvendahl_(mesur.io) is scribing.
+<ben> thank you Russell!
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pulls
+Nis Jespersen :  Trace interop week
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/559
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/560
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/561
+Russell Hofvendahl:  559 Interop tests, 560 openapi and docs, 561 
+  conformance tests
+Mahmoud Alkhraishi:  Statuslist2021 going through changes in the 
+  near future
+Nis Jespersen : +1
+Orie Steele:  Same thing as Mahmoud. Process wise would have been 
+  good to create new suites for new feature
+Mahmoud Alkhraishi:  Though don't have any references to 
+  statuslist2020
+Orie Steele:  Good to keep both until get migration
+Nis Jespersen :  Great, let's leave for next week
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/560
+Nis Jespersen :  560 Then. mahmoud, couple of comments? orie as 
+  well?
+Mahmoud Alkhraishi:  All 3 up to 561 are same package
+<orie> there is not reason that we need to pick between
+Mahmoud Alkhraishi:  More important to have statuslist2021 as 
+  default, than revlist2020. If you run into compromises
+<orie> its possible to keep demonstrating support for both.
+Our Robot Overlords are scribing.
+Mahmoud Alkhraishi:  No I did not start recording.
+russell_hofvendahl_(mesur.io) is scribing.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/563
+Nis Jespersen :  Moving on, 563
+Mahmoud Alkhraishi:  Adds vivien to authors
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/pull/564
+Nis Jespersen :  564
+Orie Steele: +1
+<orie> yes, excellent PR
+Mahmoud Alkhraishi:  Tried to make readme more clear. bn trace 
+  interop and vocab, way its set up, lots of desyncing that 
+  happens. kept instructions all in trace interop side, linked to 
+  it from sister pr on trace vocab side.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/797
+Nis Jespersen :  Great, merging, on to trace vocab
+Adam: this PR to add workflows to openapi yaml file, so can 
+  import workflows. Did some refactoring, openapi yaml file has 
+  separate refs for paths, easier to maintain. Didn't see that npm 
+  install on trace schemas package has schemasToOpenapi.js file. 
+  Need tor evisit, make sure that script writes file as proposing 
+  in PR
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/803
+Orie Steele:  Blocked, see comments
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/805
+Nis Jespersen :  803, Add tallted, merged
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/807
+Nis Jespersen :  805, Enough approvals, merged
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/808
+Nis Jespersen :  807 Merged. 808, ben?
+Ben: built on that, added boolean, mahmoud comment?
+Mahmoud Alkhraishi:  Since nis merged commercial invoice cred, 
+  why are we still seeing delta for that? github funny?
+Nis Jespersen :  Yeah on github
+Ben: look on convo page, first one is commit from nis fix 
+  optionality
+Nis Jespersen :  Sad we'll be removing pro forma invoice. Out in 
+  industry get a lot of credit for work for sheer number of schemas
+Orie Steele:  We don't need schemas that implement same 
+  semantics, but isProforma is very poor JsonLD
+Nis Jespersen :  Counterproposal, copy inline commercial invoice, 
+  turn it into proforma. Choose one you need, if you don't need 
+  proforma then leave it
+Orie Steele:  Not gonna meet consensus I think. Ppl want single 
+  schema, want to know if proforma or not.
+Nis Jespersen :  Alright. formally no objections, ben could you 
+  fix isProforma thing?
+Ben: how?
+Nis Jespersen :  Merge and pr later?
+Ben: feedback is, want to have single invoice cred with flag, & 
+  bad semantics seems like a separate issue
+Nis Jespersen :  We can choose to work more on semantics before 
+  we merge
+Ben: prefer to merge and create a new issue
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/809
+Nis Jespersen :  Objections to merging 808? merging
+Mahmoud Alkhraishi:  Couldn't find ref, "these are steps need to 
+  do after you change vocab term", nothing saying "do x to sign 
+  creds". unless im missing it
+Nis Jespersen :  Sure, so merge and fix subsequently?
+Mahmoud Alkhraishi:  Yeah
+<orie> merge first, ask questions later
+<orie> et..
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-vocab/pull/810
+Nis Jespersen :  Great, merging.
+<orie> good improvement
+Mahmoud Alkhraishi:  Weird. discussed this, hashlinks don't have 
+  semantic meaning, end of result to move it add url to array, 
+  update id to point to actual thing, trace product. As going thru, 
+  nis mentioned why not point it to schema.org product. As it 
+  stands nothing pointing to trace product, maybe future PR remove 
+  that?
+Nis Jespersen :  Any concerns? merging.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/453
+Nis Jespersen :  453, Allow jwt in creds verify, chris
+Orie Steele:  (No chris) in general need to start thinking of jwt 
+  formatted creds. Adding different content types as supporting 
+  args, in general. If I were to tackle, would start by updating 
+  all schema defs to be oneOf, then concrete schemas for those 
+  types. That's my rec.
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/460
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/464
+<ben> there's no such thing as "too american"
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/485
+<orie> i literally typeed thiat
+<orie> then delerted it
+<mahmoud_alkhraishi> americans...
+Nis Jespersen :  Anything else on 453? no, on to 460, also from 
+  chris, been around for a while
+<nis> LOL ^
+Ben: scope, make sure we have reqs, problem of sending wrong 
+  creds. Sent invoice from customer, but sent wrong invoice, need 
+  to say "hey dont associate this". Main thing is to ger reqs so 
+  can check implementation against
+Nis Jespersen : +1
+Orie Steele:  Have to assume verifier won't comply with delete 
+  reqs. First is send correct data, second is communicate "hey I 
+  sent other data". Analogy, in healthcare, sometimes send wrong 
+  patient records. "hey I sent wrong info, here's right & make sure 
+  delete that".
+Mahmoud Alkhraishi:  So need to send second cred, might not share 
+  id of original. Second cred is correct data. & send instruction, 
+  please replace
+Orie Steele:  First yes, second implementation detail might not 
+  get concensus.
+Mahmoud Alkhraishi:  So first part, sending new cred with correct 
+  data new cred id? Or old cred id?
+Orie Steele:  Doesn't matter. prez needs to be correct, will 
+  never be same ID
+Ben: & depends who the issuer was. ctpat record, have on file, 
+  associate wrong thing, might not be able to
+Orie Steele:  Send correct data, doc what correct data looks 
+  like, creds will conform to our spec if in our vocab, otherwise 
+  don't know what fields present. id optional, whatever. also say 
+  "you should communicate out of band to verifier that you sent 
+  wrong thing"
+Nis Jespersen :  Any volunteers?
+<orie> Nominating Nis to update respec document
+Ben: all need to do is update spec doc?
+<nis> lol
+Mahmoud Alkhraishi:  Need statement, expected behavior 1 2 3, 
+  don't believe tests we're talking about now. so yeah just respec.
+<orie> i gave you the text
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/468
+Nis Jespersen :  Ok, I'll do it.
+Mahmoud Alkhraishi:  Have had separate convos with other parties. 
+  one thing vc does, anyone can expect, expects issuer to just 
+  issue. Should be up to issuer to determine IDs. When client 
+  requests credential, if they provide ID it should be 404. Should 
+  be up to issuer.
+Orie Steele:  Our spec says ID is req'd on creds we define schema 
+  and shape for. You're saying issuer resp for assigning ID. Asign 
+  that prior to protecting.
+Mahmoud Alkhraishi:  I think manu said something, unsure if 
+  addressed
+Mahmoud Alkhraishi:  Have we made that statement, issuer resp not 
+  the client?
+Orie Steele:  Same party in internal facing, kind of weird
+Mahmoud Alkhraishi:  We've said in past, treat every endpt as 
+  cross domain, treat as such
+Orie Steele:  Treat all as needing security, but client ID 
+  needing server, not public ID exposed. ID client can't request id 
+  seems incorrect, cause same ID. Client setting all other claims
+Mahmoud Alkhraishi:  Chris's original point, bad actor can, but 
+  not actually true
+Orie Steele:  Long running confusion, not sure how to fix without 
+  being more clear in respec, probably what we need
+Mahmoud Alkhraishi:  Looking at end, chris says discussed on 
+  call.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/468#issuecomment-1334024036
+Orie Steele:  I'd close this, not helpful, look at req'd fields 
+  client must provide. If cred ID in fields & marked req'd, 400 if 
+  absent. If not in there should be, 400, there & not supposed to 
+  be also 400.
+Mahmoud Alkhraishi:  I think that's where chris ended up going.
+Nis Jespersen : 
+  https://w3c-ccg.github.io/traceability-interop/openapi/#post-/credentials/issue
+Orie Steele:  What we get back to api and send are two separate 
+  thing
+Mahmoud Alkhraishi:  ID shouldn't be req'd what sent, should be 
+  on returned back
+Orie Steele:  400 If provide ID?
+Mahmoud Alkhraishi:  No, may or may not send it, issuer may or 
+  may not use it
+Orie Steele:  So long as says somewhere in respec, plain english, 
+  can be done
+Nis Jespersen :  Any volunteers to copy option 4 into respec?
+Mahmoud Alkhraishi:  Chris already assigned
+Nis Jespersen : 
+  https://github.com/w3c-ccg/traceability-interop/issues/438
+Nis Jespersen :  438 Open wallet foundation, orie?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/issues/562
+Orie Steele:  Can close, no longer pursuing open wallet. They 
+  asked, they're chugging along I think, but no longer interested
+Mahmoud Alkhraishi:  Bumping up 562. As far as know jws being 
+  withdrawn, orie updates on status? Issue need to remove jws from 
+  spec, what do we replace with?
+Mahmoud Alkhraishi: 
+  https://w3c-ccg.github.io/traceability-interop/draft/#integration-considerations
+Orie Steele:  Need to remove rdf type, doesn't make sense 
+  anymore. Remove any refs to jws 2020. May add sentence, "if 
+  you're interested in securing w this thing deprecated, consider 
+  other thing", point to vc-jwt
+Mahmoud Alkhraishi:  If remove ref to jws 2020, put in ref for 
+  vc-jwt?
+Orie Steele:  Remove 2018, remove 2020, decide if want data 
+  integrity proofs, decide if support vc-jwt.
+Mahmoud Alkhraishi:  So good to open PR removes 2018 2020?
+Orie Steele:  Yes. Knew would have problem on test side. Prev 
+  signing things all the time, no longer need to include examples 
+  with proofs.
+Mahmoud Alkhraishi:  Updating ticket
+<orie> thank you!
+Nis Jespersen :  Assigning mahmoud.

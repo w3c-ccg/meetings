@@ -1,0 +1,177 @@
+Thanks to Nis Jespersen  and Our Robot Overlords and Nis Jespersen  for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-01-23-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-01-23-traceability/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-01-23.mp4
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2024-01-23
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jan&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Nis Jespersen  and Our Robot Overlords and Nis Jespersen 
+Present:
+  Nis Jespersen , Guilherme, Patrick St-Louis, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Mahmoud Alkhraishi, Chris 
+  Abernethy, Ted Thibodeau
+
+Nis Jespersen  is scribing.
+Our Robot Overlords are scribing.
+Mahmoud Alkhraishi:  I didn't hear this recording started.
+Nis Jespersen  is scribing.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pulls
+Mahmoud Alkhraishi:  Welcome
+Nis Jespersen :  Guiheme is new here
+[Nis feeling shame]
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/923
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/926
+Patrick St-Louis:  Reached out to Nis on linked in to connect on 
+  923. Still pending
+Nis Jespersen :  The term counter is just updated locally then 
+  gets included in the commit
+Mahmoud Alkhraishi:  Merged
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/927
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/629
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/564
+Nis Jespersen :  This only fixes a tiny part of 964
+Which we need to discuss more depth.
+Mahmoud Alkhraishi:  We'll get to that
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/pull/928
+Nis Jespersen :  Got sort of stuck on this
+Mahmoud Alkhraishi:  I like the govt framing, but not only US
+Nis Jespersen :  One is US, one is EU
+They are quotes from White House, the other for EU COmmission
+Mahmoud Alkhraishi:  When I read it, I didn't get that
+Patrick St-Louis:  What I understand from Canada BC is to come 
+  into contact with US border agency. Trace is a means to do that
+So it does have a US connotation
+Nis Jespersen : +1
+Mahmoud Alkhraishi:  Yes, there is a connotation. US govt 
+  contracts
+However, w3c ccg is not able to make anything binding for the US, 
+  speak on behalf or anything
+The intention is to make a broader interoperability standard
+Patrick St-Louis:  Makes sense, there needs to be frameworks to 
+  align to
+Mahmoud Alkhraishi:  The first paragraph needs to be longer
+Nis Jespersen :  Yes, it sucks
+Let's leave it, I'll fix it up
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/620
+Mahmoud Alkhraishi:  Switching to interop
+Patrick St-Louis:  The VC API expects the /credentials/issue 
+  response to be the verifiable credential
+Mahmoud Alkhraishi:  Yes, but the issuer tests just test give me 
+  the VC directly
+Patrick St-Louis:  I know, in interop it expects what the spec 
+  says
+It is a frustrating situation
+Mahmoud Alkhraishi:  I think it's straight forward, I think it's 
+  a bug on the test suite
+Just raise a bug issue, it should be a small fix
+Mahmoud Alkhraishi:  Are there any other deviations you have 
+  noticed?
+Patrick St-Louis:  Signature type on the option, that's all
+https://github.com/w3c-ccg/traceability-interop/pull/620/
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop/pull/622/files
+Ted Thibodeau:  All good
+Mahmoud Alkhraishi:  Should we keep running or revisit v1 issues
+Chris Abernethy: +1 To finish initial tagging of all issues 
+  before we go back over those already tagged
+https://github.com/w3c-ccg/traceability-vocab/issues/564
+Ted Thibodeau:  564 Got closed - unintentionally
+Nis Jespersen :  I could delete sizerOrAmount due to OG and Agri
+Mahmoud Alkhraishi:  We need that to express e.g. 7 barrels of 
+  oil
+Generic enough to be used on many different types of products
+Any ideas on how to do that?
+Potentially replace sizeOrAmount with quantity
+Nis Jespersen :  Quantity belongs on line item
+Mahmoud Alkhraishi:  But you can have 7 barrels without being 
+  quantity 7
+Ted Thibodeau:  We are trying to make everything all at once
+That's zero modelling
+Throw all attributes against the wall
+Mahmoud Alkhraishi:  Proposal: remove sizeOrAmount, replace with 
+  quantity
+EPCIS solves this with a generic quantity element
+Nis Jespersen :  Quantity is on line items
+Mahmoud Alkhraishi:  Each batch is its own distinct product
+76000 Barrels of oil being put in a pipeline
+The Batch is unique
+Just volume might work
+Ted Thibodeau:  On agri it will be a silo
+This is very specific and very generic product specification
+Mahmoud Alkhraishi:  It might be because this is the only one we 
+  have
+Ted Thibodeau:  Are we working from any kind of paper form, or 
+  are we just making it up?
+Mahmoud Alkhraishi:  50/50 On OG
+Chris Abernethy:  Will ping Russel
+Nis Jespersen :  Consider line items
+Ted Thibodeau:  Product has properties, volume could be measured 
+  in gallons - and you specify the type you are measuring in
+Batch is the container holding the product you are getting
+Mahmoud Alkhraishi:  Because its a fluid, batch is always used
+Strawberrys don't change is the batch changes. For oil they do.
+Ted Thibodeau:  Batch sounds like "lot". That's because 
+  strawberrys are not fluid
+Mahmoud Alkhraishi:  This specific collection of barrel
+We could remove volume from generic to crudeOil type
+Nis Jespersen :  You need an abstract class for the product
+Ted Thibodeau:  Volume matters
+Nis Jespersen :  Separate type of product from traded volume
+Ted Thibodeau:  The batch is the product
+Mahmoud Alkhraishi:  Not straight forward because they can be 
+  forwarded. They can't be fungable
+Ted Thibodeau:  Of course it can, siphon off a gallon
+Mahmoud Alkhraishi:  But then it's a new batch
+Nis Jespersen :  Don't you need the batch class
+Mahmoud Alkhraishi:  That's OGproduct
+Ted Thibodeau:  It's broken, generic has no size or volume. 
+  Product is "Liquid x".
+Mahmoud Alkhraishi:  Industry works with crude oil product. It 
+  defines a number of properties on top of product.
+Mahmoud Alkhraishi:  I will try that, de-assigning Nis, assigning 
+  Mahmoud and Russell
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/379
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/273
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/739
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/385
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/717
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/406
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/827
+Mahmoud Alkhraishi:  A functioning OAS should be v1
+Volunteers to fix this?
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/865
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-vocab/issues/866
+Thank you everyone

@@ -1,0 +1,709 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-04-05-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-04-05-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-04-05
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Apr/0029.html
+Topics:
+  1. Agenda Review, Introductions, Relevant Community Updates
+  2. VC API Issuer/Verifier Test Suites (WIP)
+  3. VC API and Wallet Protocol Analysis
+  4. Should vc http api use PE Spec for query format?
+  5. did:web issuer uses publicKey instead of verificationMethod
+  6. Mediated Holder Exchanges
+  7. Retro-documentation efforts towards UCR documentation
+  8. Ensure that GNAP can be an Authorization protocol extension 
+    authorization
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Justin Richer, Dave Longley, Dmitri Zagidulin, Joe 
+  Andrieu, Mahmoud Alkhraishi, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), PL, James Chartrand, Tomislav Markovski, Marty 
+  Reed, Kaliya Young, Mike Varley, Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Right welcome everyone to the April 5th 2022 VC API 
+  call our agenda is here.
+Manu Sporny:  On the agenda today we let me go ahead and get this 
+  set up on the agenda today we've got.
+<mahmoud_alkhraishi> is the VC-API openapi spec hosted somewhere?
+<mahmoud_alkhraishi> i tried looking for it today couldn't find 
+  it
+Manu Sporny:  Just relevant Community updates some test Suites 
+  that we've been working on around the issue and verifier just 
+  pointing people to the BC API and wallet protocol analysis 
+  document that's ongoing and then issue processing after that so 
+  should we use the presentation explain exchange spec for the 
+  query format.
+Manu Sporny:   Did web.
+Manu Sporny:  The key instead of verification method mediator 
+  hold mediated holder exchanges use case documentation and then 
+  other issues any other updates or changes to the agenda anything 
+  folks want to discuss today.
+Manu Sporny:  I think my mood you had a question about where the 
+  OAS spec is posted.
+Mahmoud Alkhraishi:  Yeah last week or week before I think Mike 
+  updated the OAS back also it's really hard to find where that's 
+  from like the from our spec will be really nice if we can fix 
+  that.
+Manu Sporny: https://github.com/w3c-ccg/vc-api
+<mahmoud_alkhraishi> oh ok awesome
+Manu Sporny:  Yes so there's been an issue that I think Chris 
+  Abernathy has had assigned to him to fix the build process so the 
+  commits that Mike put together yesterday broke the spec and broke 
+  the build and all that kind of stuff and I think we're just 
+  waiting on Chris Abernathy to go in and fix that and if Chris 
+  doesn't get to that by this weekend I will go in and fix that.
+Manu Sporny:  Everything is broken right now.
+Mahmoud Alkhraishi:  No just checking if it's mirror.
+Manu Sporny:  Nope nope everything is just broken right now.
+Manu Sporny:  Let's go ahead and get started then.
+Manu Sporny:  Sorry I'm juggling windows.
+
+Topic: Agenda Review, Introductions, Relevant Community Updates
+
+Manu Sporny:  So the first topic is agenda review introductions 
+  relevant Community updates any any Community updates that anyone 
+  wants to share.
+Manu Sporny:  All right I'm think most of you are on the weekly 
+  call earlier today the charter the VC to working group Charters 
+  out for vote so just heads up on that if you know who your AC rep 
+  is make sure they're aware to look out for a charter boat that 
+  will be open for about a month after the vote opens and of course 
+  the.
+<mahmoud_alkhraishi> absolutely
+Manu Sporny:  VC API is a topic of conversation in the wallet 
+  protocol analysis stuff so there's protocol section to that 
+  document that goes into things the VC API with a VPR can and 
+  can't do that's a particular interest to the trace folks I think 
+  Mom would so if you don't mind conveying that to Horry and mic 
+  Pro Rock on the trace call I think that would be be good.
+Manu Sporny:   Any other.
+Manu Sporny:  Any updates before we move on.
+
+Topic: VC API Issuer/Verifier Test Suites (WIP)
+
+Manu Sporny:  Alright next up is.
+Manu Sporny:  VC I don't know why I put hdp in there the VC API 
+  issuer verifier test Suites so let me go ahead and share my 
+  screen here.
+Manu Sporny:  There is can everyone see this.
+<mahmoud_alkhraishi> yes
+Manu Sporny:  Okay let me go ahead and.
+Manu Sporny:  Okay so there is.
+Manu Sporny:  So we've had a test Suite we've had kind of like 
+  this all-encompassing test suite for a while I think my mood 
+  correct me if I'm wrong or not I think the trace folks have their 
+  own test Suite that they have for traceability stuff is that 
+  right okay.
+Mahmoud Alkhraishi:  Yes we have our own it's a trace that 
+  General it's all posting based rather than being jobs replaced by 
+  yes.
+Mahmoud Alkhraishi: 
+  https://github.com/w3c-ccg/traceability-interop
+Manu Sporny:  Okay okay so there's that thing what we found 
+  meaning just bizarre found was that we needed just some basic 
+  tests to test the spec that we're working on in this group and 
+  that it's basically like just the most basic issue or test and 
+  just the most basic verifier test based on the Json schema and 
+  everything else that we had in the spec so.
+Manu Sporny:   We've had to engineer.
+Manu Sporny:  From our side work on a verifier interop test suite 
+  and an issuer interrupt test Suite it only checks the spec as it 
+  exists today right so we have these kinds of tests in here there 
+  are four categories so the verifier in points that we have right 
+  now are for verifying a credential and verifying a presentation 
+  there's a data Integrity version of it and a JWT version of it.
+Manu Sporny:  So this is like the verifiable credential data 
+  Integrity test right there and this is just the things run on a 
+  on a regular basis right so I think we're going to run it on a 
+  nightly basis but the only thing this test report reports back on 
+  is verifier tests so if you have a b c API verifier 
+  implementation you can point this test suite at it and it will 
+  run all the tests that we have.
+<mahmoud_alkhraishi> we haven't updated our endpoint
+Manu Sporny:  Her the VC API spec to be clear here I don't think 
+  my mood I don't think we've gotten kind of credentials from from 
+  you or measure transmute yet right so these are only failing 
+  because authentications failing and we can't access the apis 
+  right but the second that we get that in point in there then all 
+  of a sudden will see certain things working these things over 
+  here.
+Manu Sporny:   Are all these greens over here are.
+Manu Sporny:  Because these are negative test so it's basically 
+  saying it must not verifier if at context property is missing but 
+  the reason we're getting the proper response code quote-unquote 
+  the proper response code is because authentications failing so 
+  it's like oh yeah the verification failed but the verification 
+  failed because we failed to off not you know the actual Caulfield 
+  itself so this is a work in progress and will need further work.
+Manu Sporny:   For it too.
+Manu Sporny:  Really really test the spec the other thing of 
+  course is that you know all of these tests this prove these proof 
+  type tests make no sense for the JWT version of it and so will 
+  have different tests for the the JWT version of it in most of 
+  these tests are negative tests right so we have one positive test 
+  that says does the verification succeed or not for a valid BC and 
+  then everything else here are you know - tests these tests.
+Manu Sporny:   It's also test the.
+Manu Sporny:  Json schema itself so whatever Json schema we're 
+  defining in the be Capi OS file is what's being tested here in 
+  some of these things well anyway so all that to say that we found 
+  some bugs in the Json schema as well as we went through it Mahmud 
+  you're on the queue.
+Mahmoud Alkhraishi:  Are the test right now actually that's the 
+  idea and their codes or is it just you know status code is it 
+  right or.
+<mahmoud_alkhraishi> sounds fun
+Manu Sporny:  Status it's checking the status code right now 
+  which it's so this is a problem with the current test Suite or or 
+  the spec or both right so this this testing uncovered like a 
+  whole bunch of concerns that we have like like I think I think 
+  we're using the exact same error code for an authentication 
+  failure versus actual verification failure in so we met as a 
+  group want to look into that.
+Manu Sporny:  It I think I think we're doing the wrong thing in 
+  the in the spec right now anyway I mean this is good this is why 
+  we build test Suites and you know do that kind of testing a 
+  couple of other things on the on the test Suite so this is the 
+  verifier here's the there's also one for the issuer so these are 
+  the issuer and points Force reload this.
+Manu Sporny:  At the end this is what the issuer you know 
+  endpoint testings looking like so for jots and for you know data 
+  Integrity stuff so as you can see like there are a lot of 
+  failures across the board the the matter Maven that measure well 
+  I don't know why measures passing but you know these failures are 
+  just because we're failing authentication but as you can see 
+  digit bazaars failing a couple of things here like for example.
+Manu Sporny:   All credentials.
+Manu Sporny:  Must be an array the Json schema says that but that 
+  is non-compliant with the VC data model so we uncovered a bug in 
+  the Json schema in again this is why we write test Suites to make 
+  sure that you know the the things that we actually have in the 
+  scheme I actually follow you know the other specs so again this 
+  this test we just dues issuing and of course the grand plan is 
+  to.
+Manu Sporny:   To export each one of.
+Manu Sporny:  Each one of these test Suites on a nightly basis 
+  and then export the data so that we can do one gigantic roll up 
+  test for the entire ecosystem to see you know which implementers 
+  Implement which features and you know what's conformant what 
+  isn't that kind of thing so these are because it's kind of the 
+  first approach to the kind of having more smaller more focused 
+  test Suites a couple of other things that.
+Manu Sporny:   The engineers here focused on.
+Manu Sporny:  Is breaking all the implementations out into their 
+  own repo and having Secrets environmental secrets so that we 
+  don't have to the implementers don't have to keep going into 
+  every single one of these GitHub repos and setting up all of 
+  their endpoints and secrets you know across 10 20 30 40 different 
+  test Suites so we're working on extracting that out so that 
+  implementers can just set up their implementation and points.
+Manu Sporny:   In one place.
+<mahmoud_alkhraishi> does the w3c ccg github org have the ability 
+  to set org level secrets?
+Manu Sporny:  And then basically just basically like make it 
+  easier to manage and then that sort of thing any questions on 
+  that.
+Mahmoud Alkhraishi:  Yeah I had a question does the ccg Oregon 
+  GitHub have the blade is that for a couple secrets.
+Manu Sporny:  No so these are running off of so this is the read 
+  this is one of the things we need to chat about today VC API is a 
+  work item in ccg and in theory all these test Suites are work 
+  items as well but I did not want to presume and just move the 
+  test Suites over to ccg I wanted to see if this group thought 
+  that like the appropriate thing to do would be to move these 
+  these test Suites over if that's.
+<mahmoud_alkhraishi> that would make a ton of stuff easier
+Manu Sporny:  Ccg has the ability to create organizational 
+  organization-wide Secrets like environmental secrets that we can 
+  pull into a variety of different repositories I guess the 
+  question to like the implementers would it would be like are you 
+  okay with us doing that like in theory you should be able to set 
+  your configure software so that you give.
+Manu Sporny:  You know oauth token or z cap to ccg to just run 
+  the tests like you can't you know do production e things with it 
+  and you can't do like 5 billion calls against the API with it and 
+  for that reason we think that having environmental Secrets shared 
+  across all these different repos and like one implementation you 
+  know configuration repo is probably going to help everybody to 
+  just set it.
+Manu Sporny:   Once and then not have to worry.
+<mahmoud_alkhraishi> we don't have oauth scopes in vc-api
+<mahmoud_alkhraishi> atleast not defined
+Manu Sporny:  About it again do folks would folks well the first 
+  question is would there be any implementer of that would be 
+  opposed to setting environmental secrets so that we can access 
+  their apis in ccg and then the second question is does having 
+  just one repository with all the VC API implementation just 
+  configs sound like it's going to be beneficial.
+<mahmoud_alkhraishi> on our end we're happy to do that
+Mahmoud Alkhraishi:  A couple points overall I think like on my 
+  even upside we're happy to do that the one thing I want to point 
+  out is that we don't actually have any obstacles to find in the 
+  VC API so it's going to end up being that each org limits the w3c 
+  access in whatever way they want and so you know it's not going 
+  to be a standardized I'm getting up.
+Manu Sporny:  I think I see what you're saying.
+Mahmoud Alkhraishi:  We've taken a stab at having some on the 
+  trace interrupt side but I know there's been a lot of pushback on 
+  it on the VC API calls.
+Manu Sporny:  You mean having Scopes like defining scopes.
+Mahmoud Alkhraishi:  Yeah the finding Scopes or using like asking 
+  the first place.
+Manu Sporny:  Yeah I think what we were what I what internally we 
+  have that discussion I think because of the pushback on that we 
+  made it just like a configuration option like you can set 
+  configuration options to specify you know the Scopes and in that 
+  kind of thing.
+Manu Sporny:  I anyway I think we're just going to have to talk 
+  to all the implementers to see how they what they're thinking and 
+  maybe the implementers get together and Define what you know if 
+  they want a common set of Scopes defining that.
+Manu Sporny:  As part of just the test Suite implementation.
+<mahmoud_alkhraishi> yeah if we restrict it to test suite i dont 
+  see pushback happening
+Manu Sporny:  That's my mood would you like that's the only way I 
+  can think of to do that.
+Mahmoud Alkhraishi:  No no I think if we just restrict that's me 
+  I don't think there's going to be any perspective I think that 
+  makes a ton of sense.
+Mahmoud Alkhraishi:  I think the biggest push back was if we put 
+  it on a spec like VC API spec level but I can't talk to people 
+  working in love.
+Manu Sporny:  Okay okay well let's let's just start you know by 
+  defining that for the test Suite itself and then we can have the 
+  open that old wound back up you know in in a couple of weeks or 
+  months if we if we if the implementers get to the point where 
+  they have agreed on you no scopes and that kind of thing.
+Manu Sporny:  Okay let's see I think the other thing of note here 
+  is that digital bazaars authorization mechanism RZ caps so we 
+  have that implemented as a authz mechanism but we will of course 
+  also support oauth 2 okay that's it I think for the test Suites 
+  any other questions concerns.
+<mahmoud_alkhraishi> excited to get it working!
+
+Topic: VC API and Wallet Protocol Analysis
+
+Manu Sporny: 
+  https://docs.google.com/document/d/139dTcWp28LePAQjrA1uXVy4d154B22Y2d-vn5GvIaec/edit#
+Manu Sporny:  I like The Artsy mechanism mistake that the 
+  transcriber meant okay next up is the VC API and wallet protocol 
+  analysis discussion that link in here.
+Manu Sporny:  So let me open that here as well so as some of you 
+  probably have seen the there's been a huge discussion about open 
+  ID connect and did Cam and chappy and every everything right and 
+  that has resulted you know it started out kind of as like a 
+  comparison.
+Manu Sporny:  It was a it was a wallet invocation comparison at 
+  this point like how do you invoke a wallet and then once you 
+  invoke a wallet what protocols can you run over it so it had to 
+  do with presentation exchange data models like VP are you know 
+  IDC for VP and diff pecs and Aries I forget what this stands for 
+  PPI the presentation proof protocol.
+Manu Sporny:  End it also discussed presentation exchange 
+  protocols like VPR it's really be C API and YDC for VCI and for 
+  VP and then wacky did come V2 in this is you know this is the 
+  column that this group is most familiar with than working on in 
+  there's been an attempt to try and compare it against some of the 
+  other protocols because there was a lot of confusion about.
+Manu Sporny:   About what does what and.
+Manu Sporny:  And that conversation is actually resulted in a 
+  good everyone I think learning something about the other 
+  protocols and where the boundaries are and what that protocol 
+  supposed to do and when it's not supposed to be due and in that 
+  kind of thing right so the teasing apart of chappie from oid see 
+  and why they're very different I think was a useful outcome there 
+  for those that are engaged in that discussion all all I think all 
+  we're doing here.
+Manu Sporny:   Is just pointing out that.
+Manu Sporny:  This document exists in their conversations 
+  happening there was a lot of conversation in the in the Google 
+  sheet last week during this call people like please make it into 
+  a Google doc that was done over the weekend and now conversation 
+  continues here there are some conversations that are you know in 
+  line here there's some conversation that's happening you know in 
+  the margins over here my.
+Manu Sporny:   Question is that.
+Manu Sporny:  Not in the wall discussion so this is probably more 
+  to the trace folks you might want to take a look at what's being 
+  said about VC API and BP are here to see if you agree disagree or 
+  want to comment on it so that work continues it's also work in 
+  progress who knows when it's going to end but the conversations 
+  bearing a decent bit of fruit part.
+Manu Sporny:   Out of.
+Manu Sporny:  There have been other things that have come up 
+  during that conversation like does the exchanges and point need 
+  authorization so if some of you are unaware of this conversation 
+  that's you know 40 to 45 long there's tons of like flow diagrams 
+  in here VCA pi plus VP are as well as let's see ones for open ID 
+  right in.
+Manu Sporny:  Why DC and choppy and that kind of stuff so there's 
+  a lot of really good discussion that's happening here around 
+  wallet protocols right so just a heads up that we've we are 
+  having active discussion around all to see around VC API here 
+  there has also been an issue raised about how do you detect 
+  client features like do you support.
+Manu Sporny:  Which did methods do you support.
+<mahmoud_alkhraishi> yes
+Manu Sporny:  Which crypto sweets do you support Muhammad my 
+  understanding is that Trace abilities doing that kind of 
+  negotiation through did web is that is that right.
+<mahmoud_alkhraishi> sorry background dogs
+Manu Sporny:  Yes okay so Mom and said yes and chat channel so 
+  NASA we should you know probably talk about you know how VPR does 
+  it versus how did web does it I think did web is the server 
+  saying it's just their different different ways of expressing 
+  what did methods and what crypto Suites you support in there's a 
+  way of publishing the information.
+Manu Sporny:   Ian through.
+Manu Sporny:  Reopen IDC Discovery and there's ways of expressing 
+  that information in a in a did document like it did web document 
+  and then this example has you expressing that information in line 
+  and the did author request itself with by saying you know you 
+  accept certain did methods and accept certain crypto sweets so we 
+  should probably there that discussion is kind of ongoing there as 
+  well.
+Manu Sporny:   All this to say that.
+Manu Sporny:  It protocol discussion has generated a number of 
+  big discussions in the VC API issue tracker as well any questions 
+  concerns before we move on to the next item.
+
+Topic: Should vc http api use PE Spec for query format?
+
+<manu_sporny> Should vc http api use PE Spec for query format?
+Manu Sporny:  All right if there are none the next item is issue 
+  174 issue 174 ask the question on whether or not the VC HTTP API 
+  should use the presentation exchange specification for the query 
+  format.
+Manu Sporny:  This is raised by Ori.
+Manu Sporny:  It was assigned to you my mood but automatically.
+Manu Sporny:  It sounds like everyone you know it sounds like 
+  most of the folks here are implementing VPR is there anyone here 
+  that is working with presentation exchange and VC API.
+Manu Sporny:  Is anyone planning to implement presentation 
+  Exchange in VC API.
+Manu Sporny:  Okay does anyone know of anyone that is going to 
+  implement presentation Exchange and be Capi.
+Dave Longley:  Might be the case that secure key has based on 
+  that Mike's comment on the screen.
+Manu Sporny:  Yeah you're right.
+Manu Sporny:  Okay um what if folks want to do I'm the VP our 
+  supports arbitrary query languages and presentation exchange 
+  could be one of those that that can be just injected in at some 
+  point in the future.
+Manu Sporny:  As Mike has elaborated here.
+Manu Sporny:  I want to say that in the VP R-Spec.
+Manu Sporny:  We want to stay silent until someone actually 
+  implements it.
+Manu Sporny:  Thoughts feelings one way or the other.
+Dave Longley:  The seems like it would end up falling under the 
+  same sort of things that came up with the VC data model with 
+  terms of use and evidence and things like that where we can talk 
+  about there are in VPR we Define a couple of very simplistic 
+  query languages or query types that cover a lot of use cases but.
+Dave Longley:  You something else just you know as Mike has shown 
+  his example here you can use a different Korean language and we 
+  can say where that goes and we I'm not sure if if we wanted to 
+  use an example of something else probably the best thing to use 
+  as an example of something else is probably.
+Dave Longley:  Presentation exchange language.
+Manu Sporny:  Okay so maybe it's Show an example using 
+  presentation Exchange in VPR.
+Manu Sporny:  Well how about this does anyone believe 
+  presentation exchange should be a top-level primitive in the VC 
+  API.
+<mahmoud_alkhraishi> i don't think it should
+Manu Sporny:  As we do I mean VPR is a top-level primitive right 
+  now my mood is saying no I don't think it should.
+Mahmoud Alkhraishi:  Well it's not a little bit I don't think it 
+  should because they don't think there's enough support for it in 
+  the sense of if we get a bunch of people asking for it that I'm 
+  all I'm very happy to add it in but as right now.
+Mahmoud Alkhraishi:   We're like.
+Dave Longley: -1 Because it can travel in VPR
+Mahmoud Alkhraishi:  Trying to find people who use it and the 
+  spec is already big enough as is I don't think we need to look 
+  for more.
+Dave Longley:  Yeah I agree we shouldn't make it a top level 
+  primitive right now especially because we have a place where any 
+  query language can travel in VPR so you know we've got a we have 
+  a place to slot that in and to slide in any any other query 
+  language that might become popular over time that other people 
+  come up with.
+Manu Sporny:  It would there be any objections if we put a 7-Day 
+  close on this I did ask Mike if secure keep plans to work on the 
+  area.
+Manu Sporny:  And we can put a 7-Day close on it and Mike can you 
+  know object or say no no no we are planning on implementing this 
+  and in we can keep it open.
+Manu Sporny:  Okay not hearing objections that plan of action.
+Manu Sporny:  And then clothes.
+Manu Sporny:  K next up.
+
+Topic: did:web issuer uses publicKey instead of verificationMethod
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/175
+Manu Sporny:  Did web this was raised by Charles a while ago 
+  almost a year ago more than a year ago did web the issuer uses 
+  public key instead of verification method.
+Manu Sporny:  This is really it is in the test Suite isn't it but 
+  look he is no longer in did Coke or lean into verification 
+  method.
+Manu Sporny:  Is anyone expected to support public key for 
+  backwards compatibility I think the suggestion is like no 
+  definitely not.
+Dave Longley: -1 To support publicKey
+Manu Sporny:  Yeah this dude document was using an older context.
+<mahmoud_alkhraishi> yeah its outdated
+<mahmoud_alkhraishi> i think its good to close issue
+Dave Longley: +1 To close
+Manu Sporny:  I think the clear answer here is its outdated 
+  nobody but should be using public key if anybody's using public 
+  key it's a bug everyone should be using verification method okay 
+  well moons agreeing Dave's agreeing okay so the any any 
+  objections to closing this issue based on that.
+Manu Sporny:  It was agreed that public key is out of date and 
+  shouldn't be used and patient method should be used instead 
+  closing do we need to fix anything here.
+Manu Sporny:  This is in the super super old test Suite which 
+  doesn't exist here anymore also the test Suite does not live in 
+  this repository anymore and you.
+Manu Sporny:  Don't use public key cleansing.
+Manu Sporny:  All right that one's closed.
+Manu Sporny:  An up is mediator holder X mediated holder 
+  exchanges.
+
+Topic: Mediated Holder Exchanges
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/176
+Mahmoud Alkhraishi:  The median holder exchanges so I went 
+  through it when I was trying to do some cleanup it's basically 
+  ready to be closed except for the last bit where it's a call-out 
+  to fix our spec and add some diagrams and I didn't want to close 
+  it because our spec is broken I didn't know what exactly is the 
+  current state so that's basically just where we are it's ready to 
+  close assuming that the spec diagrams are.
+Mahmoud Alkhraishi:   Are up-to-date.
+Mahmoud Alkhraishi:  There was a lot of really good discussion on 
+  it but we've already talked old exchanging from cigarettes.
+Manu Sporny:  Okay we need so we need to make sure that the 
+  diagrams in the specification are up.
+Manu Sporny:  And updated it's not right.
+Manu Sporny:  Okay yeah we don't have that diagram.
+Mahmoud Alkhraishi:  Yeah so there's diagrams so we need to make 
+  sure that we have an exchange diagram that shows that you can 
+  just do holder to holder I guess or like just a direct exchange 
+  without the need for an issue in the middle but I don't think we 
+  have that diagram we but I can't you know say yes or no without 
+  actually looking at the cream which is.
+Mahmoud Alkhraishi:  But we also do.
+Mahmoud Alkhraishi:  A lot of diagrams and there's a bunch of 
+  issues outlining the missing diagrams so I don't know if it makes 
+  sense to keep this open or to point out like I think there's I 
+  know there's at least like five or six issues with X diagrams 
+  missing.
+Mahmoud Alkhraishi:  Then maybe Market ready for PR.
+Manu Sporny:  Well I mean I it doesn't hurt us too much to keep 
+  it open and just say hey someone's got to create a diagram here 
+  right because it becomes really easy to close this when the 
+  diagram exist in the spec that okay yep sounds good.
+Manu Sporny:  All right there we go.
+Manu Sporny:  One Respec extension I'm trying to work on trying 
+  to find some spare time to work on is emerge mermaid JS renderer 
+  for Respec so that we can just you know do the flow diagrams 
+  there in the meantime you can use mermaid JS to create the flow 
+  diagram and just copy the SVG over by my hope is that we'll be 
+  able to do inline SVG Auto generation who knows at some point in 
+  the future all that to say.
+Manu Sporny:  That if you can.
+Manu Sporny:  A mermaid Jazz save the source code use the SVG 
+  today but we will hopefully have a life ranger.
+Manu Sporny:  Some point in the next couple of months.
+Manu Sporny:  Okay that's media to hold the exchanges ready for 
+  PR.
+Manu Sporny:  Anything else on that before moving on.
+
+Topic: Retro-documentation efforts towards UCR documentation
+
+Manu Sporny:  Okay this is documentation around use cases.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/180
+Manu Sporny:  So here's 180.
+Mahmoud Alkhraishi:  So there was nothing actionable here and the 
+  end of the conversation was basically we don't need to open a new 
+  repo from the document and as far as I know we're completely done 
+  with the use case requirements Gathering right we just don't know 
+  we didn't talk about if it's going to be added to the spec in any 
+  way.
+Mahmoud Alkhraishi:   But yeah.
+Joe Andrieu:  Let me let me time in on that.
+Joe Andrieu:  So I don't think the use case work is complete I do 
+  think we've exhausted the momentum we got from the last call for 
+  input but I know Eric was working through a number of diagrams to 
+  convert to which we were going to convert to mermaid JS actually 
+  so I know there's still some work to be done there and our 
+  expectation was that that would be maintained as a separate 
+  document which is a pattern we did for.
+Joe Andrieu:   The did use cases in the VC use case.
+Manu Sporny:  Okay that sounds good okay so let's see this on the 
+  2022 405 call Joe provided an update to note that out that work 
+  continues on these cases documented.
+Manu Sporny:  Speculation is that it will be placed to its own 
+  repository after it has been cleaned cleaned up.
+Joe Andrieu:  Another another process now just for folks who 
+  maybe haven't been through this before the my experience I came 
+  in late to the VC use case work but was there for the whole did 
+  you use case and I expect we're gonna have a similar pattern here 
+  which is there's a lot of activity up front as people are trying 
+  to define the work through the use cases and then as the API 
+  matures we're going to realize some of the use cases that are 
+  important maybe weren't in that first batch so the use cases tend 
+  to be an ongoing documentation as consensus.
+Joe Andrieu:   It develops so I expect that work to continue 
+  alongside state.
+Manu Sporny:  Yep plus 1 to that okay so the next the next step 
+  here is let's see.
+<mahmoud_alkhraishi> next step is status update and roadmap on 
+  usescases
+Manu Sporny:  Joe is is the expectation here that Eric's going to 
+  take the use cases document in make it into a Respec like thing 
+  and then we'll publish in a ccg repo.
+Joe Andrieu:  I think that is the right plan it would be good to 
+  memorialize it here I don't know if the use case document is 
+  currently a ccg work item so we may need to inject that step 
+  before we move it over but that feels like the right way to go.
+Joe Andrieu:  As a precursor to whatever we're going to Charter 
+  the VC API work to be done under.
+Manu Sporny:  Right that does create a question at least for me 
+  the next time you the current is to take the current use cases 
+  document and convert it into a nice pack adopt it as a ccg work 
+  item so so I'm wondering if the BC API is already a ccg work item 
+  do we do we really need to make the.
+Manu Sporny:  Item and then what about test Suites like do all of 
+  those need to be taken one at a time or does the fact that we 
+  decided to work on VC API mean that we can just like a working 
+  group does like break that work up in whatever form we see fit.
+Joe Andrieu:  I think that's a great question for the current 
+  chairs I know you know when Chris Kim and I were running saying 
+  is we would have treated them as separate work items I think you 
+  could it could go either way.
+Joe Andrieu:  I don't think I've chartered limited is what I'm 
+  saying.
+Ted Thibodeau:  We should not need distinct work items for UCR 
+  docs or test suites on things we've already set up as work items 
+  [scribe assist by Ted Thibodeau]
+Manu Sporny:  Okay yeah my concern is yeah got gotcha yeah my 
+  concern is you know a lot of process over these documents but 
+  yeah okay so we'll put a question out to the mailing list ccg 
+  work item if necessary and publish as.
+Joe Andrieu:  There's yeah there's no reason that a work item has 
+  to be one-to-one map to a repo so maybe we could just create two 
+  new repos under that work item.
+Manu Sporny:  Yep okay well we'll put it out to the mailing list 
+  because this is I don't know if we've ever asked that question on 
+  the mailing list of the chairs before okay but next step here is 
+  to take the current use cases document converted to Respec 
+  adopted as a ccg work item if necessary and publish as a separate 
+  Repository.
+Manu Sporny:  All right does anyone know Eric's GitHub handle.
+Manu Sporny:  Maybe he's not a part of this maybe he's not a part 
+  of the CC no I thought he was added.
+Manu Sporny:  If you don't mind you once you find the his handle 
+  if you can add it to the bottom here so we know it who who it's 
+  assigned to.
+Manu Sporny:  And ideally we can remove my mood from this and 
+  just put Eric as The assignee.
+Manu Sporny:  All right we're out of issues and we have 10 went 
+  not we're not out of issues we got to the bottom of our list.
+Manu Sporny:  Let's see next item up um.
+
+Topic: Ensure that GNAP can be an Authorization protocol extension authorization
+
+Manu Sporny:  I'm sure that can app can be an authorization 
+  protocol extension.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/181
+Mahmoud Alkhraishi:  So there was a merge commit to this a while 
+  ago but that doesn't actually isn't.
+Mahmoud Alkhraishi:  The spec right now does not mention enough 
+  as far as I can tell in anyway so I'm not really sure if this is 
+  even still an issue if you go to the authorization section right 
+  now we have two parts on it we have a forbidden authorization we 
+  have an oauth 2.0 authorization and I believe there was an issue 
+  at one point that said we can add a good nap one here but I also 
+  can't remember if we resolve that yes or no.
+Mahmoud Alkhraishi:   This issue however.
+Mahmoud Alkhraishi:  Doesn't do anything like it's an issue that 
+  has a PR that's emerged but doesn't actually you know have an 
+  action item.
+Manu Sporny:  Got You Justin my memory was that we've selected 
+  this language very carefully to ensure that it was Kanab 
+  compatible do you know if that you do you have the same agree.
+Justin Richer:  So I mean I remember going around and around 
+  about the language and honestly what's in there is practically an 
+  on statement because it says if you do this then you're allowed 
+  to do what's in that spec which makes absolutely no sense to have 
+  as a normative requirement whatsoever and so.
+Justin Richer:  There's there's so much in here that is so ill 
+  defined that technically you are correct that this does allow 
+  somebody to use an app it also allows somebody to use smoke 
+  signals I mean I could get completely absurd and come up with a 
+  perfectly compliant way to.
+Justin Richer:  Comply with this section it is.
+Justin Richer:  From a specification and interoperability 
+  standpoint functionally useless dead weight.
+Manu Sporny:  Okay so what are the concrete.
+Manu Sporny:  What's what's the concrete thing where's the 
+  concrete place we can go from here.
+Manu Sporny:  All right so I think what I'm taking away from that 
+  Justin is we need to Define more concrete language in the 
+  specification that covers authorization mechanisms such as auth 
+  to Etc or say nothing at all.
+Manu Sporny:  Is that a fair summary.
+Justin Richer:  Are you looking for my approval for that text.
+Manu Sporny:  Engineer was just a it was a yes one and then 
+  General it question to everyone else like we need to write some 
+  spec text or we need to just close these issues.
+Justin Richer:  I strongly believe that the correct answer is to 
+  write spec.
+Manu Sporny:  Okay and I don't think I'm we can try again I know 
+  Justin you said you know that doesn't sound like fun to you but 
+  you know it's been a couple of months and maybe we can get 
+  somewhere with the.
+<mike.varley> I joined late but +1 to the comment on 181.
+Manu Sporny:  Anyway I think this is just a general invitation 
+  for whoever wants to feel that kind of pain again to write a 
+  write a PR and we will review it and maybe it'll go somewhere 
+  this time and maybe the same thing that happened last time will 
+  happen again The Next Step here is to write a concrete and we 
+  write a PR with more concrete language than exists in the.
+Manu Sporny:  Shouldn't be related to any authorization mechanism 
+  that a proposer would like to see ya I specification so this is 
+  ready for PR.
+Manu Sporny:  Okay that was that item we have three minutes left.
+Manu Sporny:  Let's go ahead and end on that note primarily 
+  because I think this will be more than three-minute conversation 
+  okay any other comments concerns that I'm sorry Joe were you on 
+  the queue.
+Manu Sporny:  I just might need.
+Joe Andrieu:  Yes I think I was I added Eric to also noted we do 
+  already have a repo but it's not really up to Snuff so it looks 
+  like Eric started on that process and then ran into some 
+  difficulties so I'll help him with that.
+Manu Sporny:  Okay sounds good all right with that thank you 
+  everyone for the call today thanks for the discussion we will 
+  meet again next week and keep going through these issues we may 
+  have a couple more test Suites to share with folks as well thanks 
+  everyone have a wonderful day ciao.

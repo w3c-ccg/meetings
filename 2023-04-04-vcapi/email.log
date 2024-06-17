@@ -1,0 +1,758 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-04-04-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-04-04-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2023-04-04
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2023Apr/0002.html
+Topics:
+  1. Relevant Community Updates
+  2. Review VC API Presentation to OWF
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Patrick (IDLab), Dave Longley, Alan Karp, Greg 
+  Bernstein, Tom S, John Henderson, Dmitri Zagidulin, John Kuo, 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Joe Andrieu, 
+  Patrick St-Louis
+
+Our Robot Overlords are scribing.
+Manu Sporny:   Welcome everyone this is the verifiable 
+  credentials API work item call this is Tuesday April 4th 2023.
+Manu Sporny:  At the third like the agenda said thank you Alan 
+  for catching that our agenda.
+Manu Sporny:  It's here on the agenda today we have a review of 
+  the VC API presentation that John Henderson has put together for 
+  the open Wallet Foundation we've got an issue called why do we 
+  believe it's a good idea to return an issue credential to an 
+  internal caller if you 48 and then we have an Aussie discussion.
+Manu Sporny:  Hoping we can close after more than a year of work 
+  on trying to answer the question on whether or not exchange and 
+  points need all to see or not and then of course other issues as 
+  time permits any other updates or changes to the agenda anything 
+  else we should discuss today.
+Manu Sporny:  K and then looking through the list of people that 
+  are here it's The Usual Suspects that we all know each other so 
+  I'm going to skip introductions any relevant Community updates.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  The only thing I think that might be worth 
+  mentioning I think we mentioned last week which is which is 
+  there's probably going to be a multi-format working group mini 
+  working group at the ietf and there's mailing list for that check 
+  the minutes from last week for where to sign up for that mailing 
+  list the other heads up is that I think the verifiable 
+  credentials working group that's working on 20.
+Manu Sporny:   Is going to.
+Manu Sporny:  Fairly aggressive with.
+Manu Sporny:  I won't say cutting features but making sure people 
+  are assigned to features and if people aren't assigned the 
+  features people should have the expectation that those features 
+  are not going to get done and not going to make progress and 
+  they're not going to go into Canada track which means that by 
+  mid-summer we will see a bunch of hopeful features that we had 
+  for 20 get cut so if you care about specific features in the.
+Manu Sporny:   Bible credential to.
+Manu Sporny:  And there's an issue raised for that feature and 
+  there's no one assigned for it either assign yourself or say 
+  bye-bye to that feature once you know we get halfway through the 
+  summer so you know the chairs are going to give everyone a good 
+  heads-up multi-month heads up on that but but that's coming.
+Manu Sporny:  I think that's it for Relevant Community updates 
+  anyone have anything else before we jump into the VC API 
+  presentation that John is put together.
+
+Topic: Review VC API Presentation to OWF
+
+Manu Sporny: https://speakerdeck.com/jhenderson/vc-api-at-owf
+Manu Sporny:  Okay well with that John volunteered a number of 
+  weeks ago to put together a presentation deck for the BC API 
+  presentation to the open Wallet Foundation I will put the link to 
+  that deck in the minutes here and thanks to John for putting that 
+  together and over to you John please take us take us through the 
+  you have right now please.
+John Henderson:  Okay will do thank you everyone in advance for 
+  giving me the opportunity to share this work I'm going to.
+John Henderson:  And then share my screen okay I was at work okay 
+  great so.
+John Henderson:  Maybe a bit of a preamble on the open world 
+  Foundation I've said this before but in case anyone's mr. or 
+  needs a refresher so the open wall Foundation is an organization 
+  that is implementing wallet components they're not working on 
+  specifications.
+John Henderson:   And they have.
+John Henderson:  A technical architecture committee that is 
+  looking for project proposals and myself at energy web we believe 
+  that there's opportunity for a VC API implementation of some sort 
+  or at least that is worth considering so this is step one in that 
+  process is to educate the Open Lord Foundation or at least share 
+  knowledge on this API.
+John Henderson:   So with that I will get into the.
+John Henderson:  And right so what I'm thinking of doing here is.
+John Henderson:  To deliver the presentation not exactly as I 
+  would to the open world Foundation but kind of talking about what 
+  I will say to the over what I thinking of saying the open wall 
+  Foundation which I propose to say and if there's I would suggest 
+  if there's any feedback please chime in at any point and I can 
+  note that down and we can make changes I've also been 
+  workshopping idea and I think it's been mentioned.
+John Henderson:   Before that having other people at the 
+  presentation from the piece.
+John Henderson:  Nearly there be very valuable so if there's any 
+  sections in the presentation that people think they could deliver 
+  well it could add to or if there's additional sections that 
+  people would like to deliver I'm certainly open to that as well 
+  please chime in with those suggestions but with that let me get 
+  into the agenda here so the topics are a bit of intro motivation 
+  is presentations and background on the VC API.
+John Henderson:   Discussing the design the use case.
+John Henderson:  Is the design Jack gives the roles architecture 
+  authorization basically all the sections from the start of the 
+  speck that they were all familiar with and then talking about the 
+  end points themselves and I'm going to intersperse discussion of 
+  the endpoints with the little demo using the energy web 
+  implementation.
+John Henderson:   And at the end of.
+John Henderson:  Read about test Suites.
+John Henderson:  So bad about myself I'm a while in particular 
+  for this kind of work I'm wearing a software architect at and 
+  energy web and I have in focusing on the SSI stack for a couple 
+  of years now energy web and and you rub along with Leah Group 
+  which is a transmission system operator in Belgium and Germany 
+  we've implemented.
+John Henderson:   It V Capi.
+John Henderson:  Like I mentioned previously this presentation 
+  the objective is to get easy API into the sphere of attention of 
+  the open wall Foundation community and like Isis in particular 
+  the technical architecture folks and this is because energy web 
+  is interested in contributing some portion of BC API where it 
+  makes sense for open world foundation and I believe that these 
+  API is important for the open world.
+John Henderson:   Foundation because it.
+John Henderson:  Is a shared interface for BC lifecycle 
+  management well we'll talk about what that means but I would say 
+  at a high level it's interacting and modifying VCS within a role 
+  domain and between will domains get into that.
+John Henderson:  Before we talk about the architecture and rules 
+  a bit of background so what we talked about the VC lifecycle bit 
+  and as we all know on this call it's a ccg work item it's a 
+  diversion 0.3 the timeline I would be interested if anyone has 
+  any feedback on this I joined in the VC API Community after it 
+  started which I believe was in 2020 and I pulled this.
+John Henderson:   Abstract Target.
+John Henderson:  24 From the profile data standards roadmap yeah 
+  go ahead menu.
+Manu Sporny:  Yeah I mean I think we you know it's undetermined I 
+  think we're in a state where we're like it's going to be done 
+  when it's done right so whenever we as a group decide like hey we 
+  like you know where it is right now and we feel like it's ready 
+  to go standards track we can do that in 2024 seems like a like 
+  you know sure yeah it could probably be ready to go standards 
+  track B then but it's largely you know up to this group I think 
+  one of the.
+Manu Sporny:   Things we might want to highlight is we don't.
+Manu Sporny:  We let me see throw the statement out there and see 
+  if people disagree or agree we don't feel that there is a rush to 
+  get this thing done in standardized we want to take our time and 
+  do it right in in you know we don't see us taking our time and 
+  doing it right as slowing this thing down you know in the market 
+  right so we there are already production deployments of these 
+  Capi.
+Manu Sporny:   In production use cases.
+Manu Sporny:  You know those those implementations don't seem to 
+  be bothered by the rate at which were we're going right now so if 
+  I had to summarize I'd suggest that but I don't know if people 
+  you know disagree with that so if you object the kind of like 
+  that framing please speak up would love to hear other thoughts on 
+  the matter.
+Dave Longley:  Yes I'm generally behind that other than the idea 
+  that once something escapes into the wild and takes takes gets a 
+  lot of uptake it can become solidified and and hard to change and 
+  these things that we say we want to do right might be really hard 
+  for us to change and we might end up with two different protocols 
+  out there with the one that ends up getting standardized that 
+  might not be what is in use in some Productions.
+Dave Longley:   Systems and that can be an.
+John Henderson:  Okay yeah thanks how many reindeer I'll add a 
+  bit of.
+John Henderson:  Of that perspective to the slide as well.
+John Henderson:  Moving along I briefly I'm going to touch on the 
+  use cases this is just to say that the several areas of user 
+  needs that have been compiled by folks on this call and that 
+  there's some local use cases and for example the multi-state 
+  presentation one.
+John Henderson:   This is.
+John Henderson:  My view and even mg web in a use case is kind of 
+  the energy space so this you see it bi is useful going to be on 
+  and it was shown here.
+John Henderson:  Continue along here to the design objectives.
+Manu Sporny:  Just to go back to the last slide is the 
+  traceability stuff on there that's a pretty important one as well 
+  I imagine it is but I couldn't.
+Manu Sporny:  And in quickly.
+Manu Sporny:  Yeah I'm not seeing like supply chain on there in 
+  that might be missing just to note as Eric.
+Manu Sporny:  Thoughts on that.
+Manu Sporny:  Patrick you're on the Queue go ahead.
+Manu Sporny:  And if you're talking Patrick we can't hear you.
+Manu Sporny:  Still no audio Patrick um okay well justjust to 
+  know John we might want to mention the supply chain use cases 
+  here as well as possible go ahead Patrick.
+Manu Sporny:  There we are we can hear you.
+Patrick St-Louis:  To do a little brown swap Chrome to the rescue 
+  when you say you don't see supply chain on there isn't supply 
+  chain sort of implied and some of these use cases like for 
+  example.
+Patrick St-Louis:  Hello online pharmacy would end there be 
+  implied supply chain in there.
+Manu Sporny:  It there's an implied 1 but I think if you look at 
+  the use cases document I don't think it has to do with supply 
+  chain the reason I bring it up is because we have like a whole 
+  other work group like us that's just focused on traceability 
+  right the traceability work item and they utilize the VC API and 
+  I was just mentioned and it feels like a problem domain unto 
+  itself they work with like US Customs and Border Protection and.
+Manu Sporny:   Imports of.
+Manu Sporny:  Trillions of dollars of product into the United 
+  States in I don't I guess we don't have that problem domain 
+  listed here so just a minute you know note to like Eric that 
+  maybe we want to add that here that's it.
+John Henderson:  Okay yeah thanks that's a good point.
+Joe Andrieu:  Plus one to that mandate to the traceability guys 
+  have their own use case document floating around somewhere.
+Manu Sporny:  I don't know I don't think they do I think their 
+  use cases might be in their vocabulary document maybe that's what 
+  they're doing I don't know it's a short answer.
+Manu Sporny: 
+  https://w3c-ccg.github.io/traceability-interop/draft/#use-cases-and-requirements
+John Henderson:  Yeah again yeah thanks for that that feedback 
+  and this next slide on the design objectives is from the again 
+  from the spec so talking about the four objectives of modularity 
+  Simplicity composability and extensibility and I pulled these 
+  icons and they'll show up in layabouts the presentation.
+John Henderson:  Star little bit quicker as I guess time is 
+  flying by so looking at the rules.
+John Henderson:  I think this slide is very important in my view 
+  for my understanding of you see API because it talks about the 
+  roles that are familiar to many in the SSI ecosystem of issuer 
+  verifier and older but this will split I think is an Innovative 
+  concept that we see API provides so I'll discuss that and I think 
+  the key point that I understand is that the service is.
+John Henderson:  Architectural feature that has been noticed and 
+  so separating the business logic from the verifiable credential 
+  Services as has resulted in this rule split and then this other 
+  bit here is talking about how the holder this language about how 
+  the holder could be seen as a wallet the while it is may be 
+  overloaded term but as the presentation is for the open.
+John Henderson:   World Foundation the perhaps.
+John Henderson:  It's of particular interest to them.
+Manu Sporny:  We've got a q John in don't worry about like if 
+  this takes the whole call it takes the whole call I think we're 
+  all here to provide feedback to you so so don't worry about 
+  having to rush through it Patrick I don't know if that's an old Q 
+  or not.
+Patrick St-Louis:  Yeah that's probably an old cue.
+Manu Sporny:  Okay go ahead Ted.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): He's the 
+  quick one subject should probably be like a shadow icon because 
+  while it's wireless integral to the internals of the VC it is not 
+  a part of me Capi.
+Manu Sporny:  Yeah plus 12 that the the other thought I have here 
+  is that it might confuse people to have the little person icon 
+  for issuer service and issuer coordinator those are really kind 
+  of at least I think of them as like sub systems or systems that 
+  are operating on behalf of the issuer so using a little person 
+  icon for the issuer I think makes sense and then using a I don't 
+  know Joe help me like a computer or a something for issue or 
+  service or issue.
+Manu Sporny:   Or coordinator might be better maybe.
+Joe Andrieu:  Yeah I think that's right I mean the.
+Joe Andrieu:  My other note here would be to maybe make it 
+  symmetric radially rather than left to right so that the 
+  coordinators are close to each other and the services are on the 
+  outside but yeah some other icon for both the coordinator and 
+  service I think would be useful.
+Joe Andrieu:  But probably different one I don't know if they 
+  need to be different ones but certainly different from a human.
+Manu Sporny:  Thanks Joe Dave Europe.
+Dave Longley:  Yeah I agree with those comments generally I was 
+  thinking more of these that make we kind of have a completion 
+  your roles and components but there's also some some strength to 
+  somehow doing a better job of communicating that the individual 
+  components like these Services might be provided by a third party 
+  and I know if you just break them out as components people could 
+  fit perhaps figured that out on.
+Dave Longley:   In their own butt.
+<joe_andrieu> Traceability Use Cases 
+  https://w3c-ccg.github.io/traceability-interop/draft/#use-cases-and-requirements
+Dave Longley:  Concept or being able to see that this API enables 
+  different people to work together to build different pieces that 
+  and that they can contribute to an issuer is helpful.
+Manu Sporny:  Go ahead Patrick.
+Patrick St-Louis:  No problem the same.
+Patrick St-Louis:  A wave of changing the icons maybe I would 
+  change the icon of the subject because it might not always be a 
+  person.
+Manu Sporny:  All good points.
+Manu Sporny:  He thought we'd have so many opinions and 
+  iconography back over to you John.
+John Henderson:  Thanks a lot thanks again for the feedback 
+  that's some improvements here for sure is I pulled that diagram 
+  from the use cases document and there is this other diagram 
+  figure that uses bigger but that splits into boxes rather than 
+  people so maybe that addresses one of the concerns that it's 
+  confusing to have.
+John Henderson:  Yeah I think moving really move along to the 
+  next slide it does have more of that some other diagram that has 
+  the radio perspective from the BCP is back so this guy want to 
+  spend quite a bit of time on this slide while least in the actual 
+  presentation because I think it's it's key it shows the 
+  separation between service and coordinator that was discussed in 
+  the.
+John Henderson:   Previous slide and also introduces.
+John Henderson:  They're interesting components such as the admin 
+  and and storage Services there's a couple notes in the text in 
+  the specification say about the issue of service saying that it 
+  should have access to keys or that the verifier service.
+John Henderson:  The authenticity and time stamps of the 
+  credential but the business logic is left to the verifier 
+  coordinator I supposed to get generally that's a line of 
+  Separation as I see between the services and the coordinators is 
+  that the coordinators have the business logic.
+John Henderson:   And and it.
+John Henderson:  With other other back ends as well.
+John Henderson:  And then a point I wanted to make in this slide 
+  as well is that I see there potentially being use of the 
+  modularity design principle and this architecture where you could 
+  use VC API to send VCS I've said between domains here 
+  communication between the coordinators but you can also use be 
+  Capi to operate on VCS some of that lifecycle management.
+John Henderson:  Within a single ruler single two of you system.
+John Henderson:  Yeah please manner.
+Manu Sporny:  Yeah I love how you have I mean you know it I love 
+  that the diagram so the fact that you've circled the domains and 
+  it's like there's a clear separation the second I saw this died 
+  you know the second I saw this slide I was like yes that is 
+  exactly why we should convey that so thank you for doing that the 
+  one and I'm and and now to nitpick on it right and so like the 
+  between.
+Manu Sporny:   Domains the check verifiable credential state 
+  that.
+Manu Sporny:  Line should probably.
+Manu Sporny:  Check verifiable Prudential State I think that is 
+  between domains has as well yeah and of course it's going to be 
+  difficult to do that like anyway so but I thought that this is 
+  great because it really demonstrates what we've been trying to 
+  convey which is some of these apis you were use within a domain 
+  and some of them use between domains so plus one to that.
+Manu Sporny:   Dave you're on the Queue and then Joe.
+Dave Longley:  Yeah something that may or may not come up during 
+  the owf presentation is there might be people that are there that 
+  are familiar with oid for VC and oid for BP and they may be 
+  asking questions around what are the differences between the VC 
+  API in that one or you know how do they relate and this diagram 
+  might be somewhat useful in answering that question by talking 
+  about how those other ones specifically focus on between domains 
+  and the BC API Works in.
+Dave Longley:   Both of those places.
+Dave Longley:  Even be integrated with those other systems for 
+  the between some of the between donation domain communication.
+Manu Sporny:  Go ahead Joe.
+Manu Sporny: +1 To Dave
+Joe Andrieu:  One of my favorite phrases from William Gibson is 
+  at the Futures already invented it's just not evenly distributed 
+  there is a future where this diagram has an exchange service or 
+  an exchanger in it but we haven't done that yet or figure it out.
+Joe Andrieu:   The edge cases of.
+Joe Andrieu:  So I think I just want to note that I don't know 
+  Dave or man if you guys want to come and I think I think it would 
+  be premature to try and get it into this presentation but just to 
+  socialize amongst us I do think there is another component that 
+  is an exchanger that's at least the issuer in verifier are 
+  probably going to deserve and their box and I'll let that go.
+Manu Sporny:  Okay thanks Joe Patrick.
+Patrick St-Louis:  Yeah there was a term I think Dave said it a 
+  couple of times I think he referred to it as trust boundaries 
+  would that be correlating to the different domains like different 
+  domains are different trust boundaries and if so be so good term 
+  I like it.
+Dave Longley:  Just quickly yes Patrick and I think this helps 
+  visualize where those boundaries are the other point I was going 
+  to make is yes we don't have exchanges on here yet and I do think 
+  it would be a bit of a rush to try and get it in here now but if 
+  it does come up and there's something to talk about we can talk 
+  about how this diagram at least partially the place where 
+  exchanges would happen in this diagram now would be where 
+  verifiable credentials are being received or present it so the.
+Dave Longley:   The arrows.
+Dave Longley:  In within those within the the lower arrows in the 
+  between domains Circle between the holder and verifier and issuer 
+  and holder and so that could at least be answered if there comes 
+  up as a question during the presentation.
+Manu Sporny:  All right back over to you John.
+John Henderson:  Great a thank you thanks again for the comments 
+  and feedback I think that's like Converse this slide so exercises 
+  to briefed on authorization I don't personally have much to say 
+  and maybe it's not worth having such a slide but I think my 
+  purpose here is to say that authorization is within the scope of 
+  you see API and that oauth 2 is explicitly mentioned other.
+John Henderson:   Is are allowed.
+John Henderson:  An explicit for baiting of long-lived 
+  credentials like username and password basic HTTP authorization.
+John Henderson:  So that gets us through the design section of 
+  the presentation and into a discussion of the endpoints so the 
+  first section is on issuance and points and I've got a few so 
+  I'll just skip ahead just going to shows there's a few sections 
+  on the various endpoints it's having made these tables exhaustive 
+  they don't have every endpoint but more to give a sense of some 
+  of the key and points.
+Manu Sporny:  I think it's a good thing that you don't have every 
+  endpoint on here I totally agree with the way you're choosing to 
+  present it which is give them and give them an idea of what's in 
+  there it doesn't need to be exhaustive it's a plus one to the 
+  approach you're taking.
+John Henderson:  Okay that's good to know that thank you.
+John Henderson:  Quite so talking more about the issue its 
+  endpoints are actually maybe to introduce this table so what I've 
+  done here is take the from that one discussion that was maybe not 
+  sure a couple months ago maybe those it is an attempt to put the 
+  endpoints on the various components and list the expected callers 
+  so I've.
+Manu Sporny: +1 A good assumption to make
+<manu_sporny> it's the closest we have to consensus now :)
+John Henderson:  Information is still still relevant even though 
+  it's not in the spec as of yet I don't think but I think it does 
+  help understand the endpoints so I've with focusing on issuance 
+  now so the probably the most important point is this issuance of 
+  a credential and.
+John Henderson:  Yeah I'd like to do a little demo that so I 
+  will.
+John Henderson:  Go over to.
+John Henderson:  We've got yeah we should have time so I yeah 
+  I'll run through my demo was planned here so the first step of 
+  that is yet use this credentials issue and point I'm running the 
+  energy web implementation locally.
+John Henderson:  Yeah let me go over I've got a.
+John Henderson:  Ready here that I will copy.
+John Henderson:  It's been so it's a permanent it's a permanent 
+  resident card credential and.
+John Henderson:  The point that I want to make about the the 
+  issue and point is that there was a discussion a little while 
+  back now about reducing the client optionality for the issue and 
+  point so it's not necessary to at one point was possible to 
+  specify the verification method but it's not currently possible 
+  and I see that as an example of Simplicity of the Simplicity 
+  design principle.
+John Henderson:  Yeah please go ahead.
+Patrick St-Louis:  Just wanted to know like is it forbidden or is 
+  it optional I forgot where the decision was made about this.
+Dave Longley:  So it should be forbidden it should be based on 
+  the configuration of the particular issuer instance you're 
+  communicating with.
+John Henderson:  Yeah so like I said not specifying here and I 
+  don't think we can specify no limitation anyway yeah let's let's 
+  go and we end up with.
+John Henderson:  This permanent resident card credential with the 
+  the proof.
+John Henderson:  Okay don't have too much to say about the this 
+  other status and point folks on the call will know well but it's 
+  to update the status of a credential on the status service so 
+  within the issue a domain and this is also this get credentials 
+  within the issue domain where an issue coordinator could say list 
+  all the credentials that have been issued at least that's my 
+  understanding.
+John Henderson:  So that takes us to verification.
+John Henderson:  Will flip over to well actually maybe I'll just 
+  point out that the these two endpoints there's presentation 
+  verify credentials verified both on the verification service and 
+  called by the verification coordinator I will quickly do a demo 
+  of the.
+John Henderson:  An important when we.
+John Henderson:  This gradual that was just issued.
+John Henderson:  Okay thank you.
+John Henderson:  And this might not sure if this is the right 
+  reply but yet it's if this this replies in this back but it's 
+  saying that the proof has been checked.
+John Henderson:  Okay that's it for verification nice and short 
+  there and then we get to presentation so the presentation section 
+  I'm going to do in tandem with the exchange section because the 
+  presentation is done in response to an exchange so.
+John Henderson:  But I'll talk about presentation for a bit so 
+  the presentation were we're looking at and points on the issuer 
+  and holder services and coordinators and here where it's more on 
+  the Imports on the holder service and the caller's the holder 
+  coordinator so there's an endpoint.
+John Henderson:   For driving.
+John Henderson:  Controls for example for BBS credentials for 
+  proving a credential for applying a proof to soive approving a 
+  presentation shoulder demo up and then this other important that 
+  I've added is for getting a presentation and potentially it could 
+  be on the bear for verifier coordinator and I called it out 
+  because it could be useful for asynchronous flows and that's an 
+  example of the composability principle of composing.
+John Henderson:   These complex flows from.
+John Henderson:  How many points.
+John Henderson:  And so before I demo that like I said let's go 
+  over and continue with exchange and points so and.
+John Henderson:   The key endpoint here.
+John Henderson:  Just posting to this exchange and point which is 
+  done by.
+John Henderson:  Traffic so I won't let this baby this is 
+  backwards.
+John Henderson:  I think it should be the other way around where 
+  they hold their coordinator with wood.
+John Henderson:  Be a collar and it could be on the issue or the 
+  rarefied coordinator.
+Dave Longley: +1 To that being backwards
+<manu_sporny> ^ yep
+John Henderson:  An interesting note is that you're potentially 
+  do some point hopefully doesn't need authorization and some of 
+  you some use of the design principles here is that.
+John Henderson:  This changes are extensible via the verifiable 
+  presentation request format so I'll talk about that in a minute 
+  and also composable the multi-step flow so I mentioned that being 
+  one of the focal use cases and so it's it's the possible using 
+  the exchanges and point.
+John Henderson:  I think it's helpful to before doing the demo to 
+  talk about what the verifiable presentation request is so it's a 
+  it's a related specification to be Capi least it's it's.
+John Henderson:  And then you see API where you have I mean every 
+  on this calls for know you so I don't spend too much time but the 
+  they're getting the key point I want to highlight for the award 
+  Foundation is that this interact well really this extension 
+  points in the query as well but in the interactors and extension 
+  point where there's these different interact types so you can 
+  imagine extending into other interaction types Beyond you Capi 
+  exchanges and also others can be added.
+Dave Longley:  Yeah I think in the bullet points there you should 
+  probably put oid for BC.
+John Henderson:  Yeah good idea yes.
+John Henderson:  That's great point.
+John Henderson:  Yeah that yeah thanks for that point that no 
+  other questions I think I will roll into the one of the demo 
+  year.
+John Henderson:  That I've got.
+John Henderson:  And exchange created actually let me just create 
+  it on the demo screen.
+John Henderson:  I actually saw before going into the demo let's 
+  see one other other slide I have on not with the example exchange 
+  flow and this is essentially what I'm going to be demoing so 
+  there's this is a it will this figure you'll probably recognize 
+  pulled its pulled from the spec or you have a holder coordinator 
+  initiate an exchange and in a sponsor will be a verifiable 
+  presentation request and then a VP will be sent.
+John Henderson:   So yes.
+John Henderson:  You know that sequence that I will show so I'll 
+  start by initiating The Exchange which I believe is this one here 
+  yeah so.
+John Henderson:  3 When I've configured.
+John Henderson:  And in response I have this.
+John Henderson:  If you request this very enviable presentation 
+  request so there's a query which energy well we've been using the 
+  presentation definitions back to ask for credentials so it's 
+  asking here for a permanent resident card credential which is the 
+  gradual issued earlier and there's this challenge that I'll use 
+  to prove a presentation and also interaction and point.
+John Henderson:  Do the next step of proving the presentation 
+  here.
+John Henderson:   So that.
+John Henderson:  The send it.
+John Henderson:  Let me take the quiz station the potential for 
+  you.
+John Henderson:  It should go here.
+John Henderson:  The whole everything else should be.
+John Henderson:  Same except for the I've already used using the 
+  same same older and verification method I do need to change that 
+  but I need to change the challenge.
+John Henderson:  Great John response we have a VP which we can.
+John Henderson:  It so the final step of the demo is to go.
+John Henderson:  Close small have it up to get behind in our 
+  implementation there were still using the old put rather than 
+  post introduced three I'll put the presentation here.
+John Henderson:  Response I saw in the that that concludes the 
+  demo and was in the diagram there was a presentation the 
+  container credentials and here is just a response body.
+John Henderson:   And what did that.
+John Henderson:  Yes please go ahead if there's any feedback on 
+  the demo I mean probably could be improved in terms of 
+  smoothness.
+Manu Sporny:  Patrick you're on the queue.
+Patrick St-Louis:  Yeah just regarding exchanged is the first 
+  time I see some kind of demonstration of an exchange and it's 
+  very interesting abstract question so you set the exchange ideas 
+  value of three what does the three represent is it like a type of 
+  exchange that someone can engage with and then the transaction ID 
+  is like sort of Communication channel between two agents.
+John Henderson:  My understanding is they're opaque especially to 
+  the client so there's no real meaning at least I haven't 
+  attributed them any meaning to these numbers strengths.
+Patrick St-Louis:  So tell me like you put three but does that 
+  mean that three is what I need to engage with if I want to do a 
+  presentation exchange for example.
+John Henderson:  Press over to the Q yeah.
+Manu Sporny:  Got it Alan and then Dave go ahead Alan.
+Alan Karp:  Yeah as someone who's not very familiar with this 
+  stuff I found the demo to be just you know like a magic act with 
+  without the excitement you have to consider that people don't 
+  know what most of this stuff is which is me now if your audience 
+  knows more about this than for ignore my comment.
+Manu Sporny:  Thanks Alan Dave.
+Dave Longley:  Yeah I agree a lot with what Alan said I don't 
+  know how much for our benefit you were skipping whatever kind of 
+  set up you might provide in before you run the demo and talk 
+  about it but talking about a specific use case and what's going 
+  on with that exchange I think would really help ground it for the 
+  people that are watching even if they're not going to really 
+  understand what the technical details are and to respond to 
+  Patrick the way that we've implemented exchanges is.
+Dave Longley:   There are exchangers.
+Dave Longley:  Have IDs that hang off of them.
+Dave Longley:  Mapped to specific flows are use cases that you 
+  might work through and when you're on like a website and you want 
+  to like pick up a USCIS permanent resident card the issue where 
+  Coordinator would create a new exchange off of that Alpha the 
+  exchanger that's for getting a USCIS card and then they would 
+  give you that exchange with the with you know maybe then it won't 
+  be the number three it'll be some random number on the end of the 
+  URL I would hand that to you.
+Dave Longley:   And then when you post to that URL it'll give you 
+  a.
+Dave Longley:  Present a verifiable presentation request for what 
+  it is you must hand over in order to get a USCIS card permanent 
+  resident card in response.
+Patrick St-Louis:  And the transaction ID is just something 
+  that's link between that specific exchange between you as a 
+  holder and this issuer.
+Dave Longley:  Yes yeah and and in our implementation we've 
+  actually found we don't need to use the transaction ID but it 
+  could be used to keep track of State we just keep track of that 
+  internally as we walk people through exchanges.
+Patrick St-Louis:  Yeah I do you could probably delegate that ID 
+  to some field in the body to keep track of which exchange that 
+  is.
+Dave Longley:  Or the exchange itself could be stateful so each 
+  time they make a post to the exchange it keeps track of what step 
+  there on in what the you know and it might there might only be 
+  one step but if it's a multiple step thing it could keep track of 
+  where they are and return back to them either another 
+  presentation request or the actual VP with the BCS in it that 
+  they are trying to get.
+John Henderson:  All right y'all thanks again for that feedback 
+  yeah certainly agree the demo could use some work in that some 
+  great feedback to try to ground it in a use case please.
+Patrick St-Louis:  I think something at least for me and I think 
+  it's probably a shared feeling maybe not with everyone but 
+  something that was interesting to discuss was the whole part 
+  about which endpoint can live on which component and two because 
+  when I think about an API usually I'm thinking about okay there's 
+  one server with these API roots and then it can do all this but 
+  the this Vis API Founders and it's more providing.
+Patrick St-Louis:   A choice of routes that you can Implement on.
+Patrick St-Louis:  Eviscerate component to do a goal that I think 
+  this is displayed by the the tables you had and when you talk 
+  about modularity but I think it should be more emphasis should be 
+  put on that maybe when you present the tables to say like to put 
+  emphasis on the modularity meaning it's not like this one server 
+  it's going to have all these roots implemented but it's almost 
+  like a pick and choose approach.
+Patrick St-Louis:  Does anyone resonate with that or.
+<manu_sporny> yes, +1 Patrick -- we do want to call out "you can 
+  pick and choose which bits you implement (and where)"
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> Loose 
+  Coupling, for the win
+Dave Longley:  The president's a lot with me and I think it would 
+  I was kind of trying to get at something related to that when we 
+  were talking about iconography around how this API enables you to 
+  pick and choose from different service providers because it's 
+  modular and broken up in that way you can you could Implement all 
+  these pieces on your own and run a whole system yourself or you 
+  might pick and choose from different implementations or different 
+  service providers that are giving you the different pieces and 
+  they should all work together.
+Dave Longley:   And it's the it.
+Dave Longley:  The design in.
+Dave Longley:  To happen so that there's interoperability and a 
+  there can be a bigger ecosystem and more choice in in the pieces 
+  that you pick and choose from.
+<manu_sporny> ^ +1 to that
+John Henderson:  Okay yeah I bet that's a good point how about a 
+  size in the modularity I'll think about how that could be 
+  emphasized but more.
+John Henderson:  M that it that's it presentation-wise see here.
+John Henderson:  No I spoke too soon yeah less so I thought.
+Patrick St-Louis:  And my last question was about to test Suites 
+  and imitation.
+John Henderson:  All right so there's just a bit about the sweets 
+  I actually I was thinking maybe it makes sense to go and.
+John Henderson:  I show like wow and I will do now but yeah my 
+  plan for the presentation is to just show the table that I'm sure 
+  you've all seen in them and they rendered test Suite results and 
+  I've got a point here about focusing on data Integrity proofs.
+John Henderson:  Yeah maybe I should say but WT is mentioned I 
+  would say that.
+John Henderson:  And then I just a bit about implementation so 
+  I've listed if anyone wants to highlight their implementation or.
+John Henderson:  Add an additional implementation or something 
+  like that please let me know but I provided a link to the energy 
+  where I wanted as well.
+Manu Sporny: 
+  https://docs.google.com/presentation/d/19GmJ3bLMrbVadesnkmsWaaUr-U71Y9Kr775tZvgs-xI/edit#
+Manu Sporny:  We might want to mention the jff plugfest results 
+  specifically when you have a handful of implementations there but 
+  we had you know like what was it 17 implementations or 17 
+  different issuers right now I don't know how many different like 
+  full-blown implementers there but there's some I put the slide 
+  deck in the chat Channel you might want to pull some content.
+Manu Sporny:   From that to demonstrate that.
+Manu Sporny:  We've already get done interoperability testing on 
+  on the stuff and demonstrated some level of interop there and you 
+  know it's in any case like there's a we've got like really good 
+  really good interop story already on it that's it.
+John Henderson:  Okay great thank you yeah I would be good to 
+  list as many as possible and without that really does close the 
+  presentation thank you for giving me the opportunity to present 
+  here.
+Manu Sporny:  Treyton in thank you John again for putting this 
+  together I think it's great and now we have we actually have a 
+  presentation deck to talk about you know the stuff that we do 
+  here so that's also very much appreciated sure a number of us are 
+  going to want to kind of divide and conquer in other groups that 
+  were involved with okay so I think you know next steps here John 
+  or just if you coordinate with owf.
+Manu Sporny:   F to get a date just.
+Manu Sporny:  Let us know what the date is in the date and time 
+  for the presentation and as many of us as can make it will 
+  certainly show up in support you and then maybe it during the 
+  next call we could talk about you know who wants to take what 
+  section although I mean John I think you having a unified Voice 
+  through the whole thing was a good thing so maybe what we could 
+  do is just kind of say something supportive things while you're 
+  going through the presentation at owf.
+<john_kuo> Did we get a link to the presentation?  Sorry if I 
+  missed it
+Manu Sporny: https://speakerdeck.com/jhenderson/vc-api-at-owf
+Manu Sporny:  Okay with that thanks again John we're at time in 
+  so next week we will pick up on the agenda that we had today pick 
+  back up on issues and process those linked to the agenda is here 
+  I'll put it back in the chat Channel John quo.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Just a quick 
+  note a possible shorthand for the modularity is to highlight 
+  loose coupling basically that you pick the component that you 
+  want to use from the bunch that have implemented the stuff and 
+  they can interchange like Lego blocks for the various roles.
+Manu Sporny:  Plus one do that alright with that that's the call 
+  thank you everyone for the the input and feedback to John on the 
+  deck today we will pick back up on issue processing next week 
+  thanks again have a good one.

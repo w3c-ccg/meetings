@@ -1,0 +1,271 @@
+Thanks to Our Robot Overlords and Benjamin Collins for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-03-07-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-03-07-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2023-03-07
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Mar&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords and Benjamin Collins
+Present:
+  Nis Jespersen , Benjamin Collins, Chris Abernethy, Mahmoud 
+  Alkhraishi, TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  Orie Steele, Russell Hofvendahl
+
+Our Robot Overlords are scribing.
+Benjamin Collins is scribing.
+Chris - Welcome to the tracability weekly meeting, today is 
+  trace-introp.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-asc
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/pull/523
+Chris Abernethy:  Right now we have 4 PR's, we're going to skip 
+  the draft
+Chris Abernethy:  This is in response to an issue that Issac 
+  brought up where we require id for issue, which breaks 
+  compatibility with VC-API. So this PR updates the test to make id 
+  optional.
+Chris Abernethy:  Orie mentions this will break compatibility 
+  with GS1
+Orie Steele:  Can we share screens and bring up the respec 
+  document?
+Orie Steele:  If you see in the example that we're looking at, 
+  the context has credentials v1 and then a gs1 context. If we we 
+  were to use this test on this credential it would fail
+Orie Steele:  Prior to having GS1 we required our context in our 
+  credentials, but now with GS1, this will cause it to fail
+Chris Abernethy:  This PR is about credentials.id and it happens 
+  to include copy and pasted code from other tests that had that 
+  context from the tests you highlighted
+Chris Abernethy:  My suggestion would be to merge it and then fix 
+  the context issues seprately
+Orie Steele:  Why is the credential context included in this 
+  test?
+Chris Abernethy:  It's included in a lot of tests, that we need 
+  to take out
+Orie Steele:  So you're proposal is to merge this and then fix 
+  the context in a separate issue. I'm okay as long as we have an 
+  issue linked on the PR.
+Chris Abernethy:  The reason that it's in there is because 
+  previously we want to have a specific check for looking at 
+  variables in an array, and it was copy and pasted into a lot of 
+  tests.
+Chris Abernethy:  I will add a comment and then we can remove 
+  these from the tests as a separate issue.
+Chris Abernethy:  Are folks okay with merging this once we have 
+  an issue and then merge this, or do we want to wait until next 
+  week?
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/pull/524
+Chris Abernethy:  This is a PR to add emails for editors for an 
+  issue opened by Orie
+Orie Steele:  Hey, I haven't seen the extra syntax
+Chris Abernethy:  I added an image to show what it looks like, 
+  it's a mail-to link.
+Orie Steele:  This is editorial, it can be merged. We're had 
+  people from IETF reach out with questions about how to get in 
+  contact with editors.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/pull/525
+Chris Abernethy:  This final editor is PR 525 which adds text of 
+  the IPR note to the meeting instructions before starting a 
+  meeting.
+Orie Steele:  I support merging this, this eems worth while.
+Chris Abernethy:  Those are the PR's for interop, and there are 
+  no PR's open for trace-vocab this week.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Orie Steele:  I think that's the first time this has happened.
+Benjamin Collins:  Nis was out last week
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/481
+Chris Abernethy:  I suspect that had something to do with it
+Chris Abernethy:  This is for documentation for verification 
+  results to show what each of the results mean.
+Orie Steele:  Mahmoud had comments bout this, but I think that 
+  was a different issue. Do we have consensus that we have a 
+  specific JSON shape for what needs to be returned?
+Chris Abernethy:  I think I agree with that, but I'm not sure we 
+  can do that with the openAPI schema given this is an array
+Orie Steele:  I think it's possible to define these in openapi 
+  specification. But i think the question is do we like the shape, 
+  because then we can address this that way.
+Orie Steele:  We could say that the boolean verified status is 
+  the only thing that matters.
+Chris Abernethy:  I'm okay with that
+Orie Steele:  Let's put a comment on the issue that says, only 
+  the 'verified' boolean must be present, additionalProerties true
+Chris Abernethy:  Adding label 'ready for PR'
+Russell Hofvendahl:  I can do that
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/405
+Orie Steele:  I have yet to sit down with this, I will make 
+  additional comments, but there is no action here yet.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/427
+Chris Abernethy:  This is about using did:jwk instead of using 
+  did:key
+Orie Steele:  I was on a podcast yesterday discussing did:key vs 
+  did:jwk
+Orie Steele:  I think if we're using web keys, then it makes more 
+  sense to use did:jwk. But we might say that only did:web is 
+  required and the other did methods are not included in the 
+  profile
+Orie Steele:  Are we only using did:web at this point, and if 
+  that's the case we can close this
+Orie Steele:  I think we can say did:key are did:jwk are not 
+  supported by the profile
+Mahmoud Alkhraishi:  Do we need to specifically call them out and 
+  say it's not part of the profile
+Orie Steele:  I mean if it's not included in the tests, it's not 
+  part of the profile. We should leave a comment on the issue and 
+  close it.
+Chris Abernethy:  I will go ahead and leave a comment to that 
+  effect.
+Orie Steele:  Seems good to me, can we close it?
+Chris Abernethy:  Closing it now.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/402
+Chris Abernethy:  This one was created by Orie, and Nis promised 
+  us to have it done by today
+Orie Steele:  It's on interop, but it seems like it should be on 
+  vocab, like a vocab credential that covers this first
+Orie Steele:  Oh, it's about postman. It's about support for this 
+  endpoint in the interop profile
+Orie Steele:  This needs to be described in respec, then a 
+  postman collection to implement those tests. And then potentially 
+  there is a lot of work behind that
+Orie Steele:  If this is just an idea, then we might just close 
+  it
+Orie Steele:  Are there any implementer on the call intended into 
+  implementing this end point?
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/359
+Orie Steele:  If not then we should close it.
+Chris Abernethy:  This is opened by me. Some work has been done, 
+  we need some positive tests. But no work has been done.
+Orie Steele:  This says that it's blocked by 468, do we want to 
+  jump to that?
+Chris Abernethy:  468 Was referenced to how we reference a 
+  verifiable credential, to get status list, to get it by id 
+  because credential.id is optional.
+Chris Abernethy:  We were thinking that we would make it 
+  required, but the issue is that break capability with VC-API.
+Orie Steele:  I'll dispute what Isaac is saying there. There is 
+  no way to issue a revocable credential without an id. The end 
+  point needs to have an id.
+Chirs: This is about when the id is present, before or after the 
+  issue present in the request object, or the returned signed.
+Orie Steele:  In our profile, we don't have a problem with this, 
+  because for revocable credentials you will always have an id to 
+  be able to revoke it.
+Orie Steele:  The conformance for credential status, that should 
+  be testable without changing these
+Chris Abernethy:  The reason it was dependent because we weren't 
+  sure of the shape.
+Chris Abernethy:  I think the result is proposal 4 where you MAY 
+  provide an id, but the server MUST return a credential with an id
+Chris Abernethy:  So the server will only generate an id if it is 
+  not present already
+Chris Abernethy:  Okay. I think this is ready for PR.
+Nis Jespersen :  I think that we want to capture that we're going 
+  with option 4, the last comment says option 6
+Chris Abernethy:  Does anyone have an objection to option 4 based 
+  on the current discussion?
+<mahmoud_alkhraishi> Have to drop i have a conflict
+Nis Jespersen :  What was the reasoning?
+Chris Abernethy:  I think the reasoning was that we wanted a 
+  single party to be responsible for the credential.id. And as 
+  Isaac pointed out that causes a lot of problems where we go with 
+  the fallback of expecting the issuer to make an id and have the 
+  server generate one if not present.
+Chris Abernethy:  I think this has been addressed, so I will 
+  leave a comment to that effect.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/483
+Chris Abernethy:  This one is about the shape error responsed.
+Chris Abernethy:  I suggest that we don't proceed that we wait 
+  for Mahmoud to proceed on this issue.
+Benjamin Collins:  I think I agree with the sentiment here. I 
+  think we want to define an specific http response code, or a 
+  minimal response that MUST be there, and then vendors implement 
+  what's better for their customers on top of that with respect to 
+  error messages.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/438
+Chris Abernethy:  The downside of that is that if we want to have 
+  conformance for something to fail for a specific reason. But we 
+  might way that we expect a 400 and as long as we get that we're 
+  okay
+https://github.com/w3c-ccg/traceability-interop/issues/453
+Chris Abernethy:  This one is to say the expected response is a 
+  JSON object, but it might be a JWT. I have not done anything with 
+  this, it is still on my todo list.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/460
+Chris Abernethy:  This is about adding postman information into 
+  the respec. I think that Orie and Mahmoud want this in the respec 
+  document, but I want some guidance on where and how that should 
+  be represented.
+Nis Jespersen :  Isn't this adding a section? Does it matter 
+  where it sits?
+Chris Abernethy:  I haven't written much of the respec document, 
+  so I want to have a little feedback before going in blind.
+Chris Abernethy:  I can take a stab at this and people could yell 
+  at me in comments on  the PR.
+Nis Jespersen :  I agree with that approach, do what you think is 
+  the least bad, and then it's easy to move around
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/464
+Nis Jespersen :  The workflows have these big american badges on 
+  them. I got a comment that these were American-centric. The issue 
+  was about making it more generic.
+Nis Jespersen :  The ISF is a good example of workflows. Maybe i 
+  can run down the 'MURICA feel, and then keep the ISF example.
+Chris Abernethy:  That sounds fine to me, I don't want to lose 
+  the example, and we swap out the graphics.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/457
+Chris Abernethy:  This one is related to using OAuth with Azure 
+  as Azure enforces naming different from the scopes that we use
+Chris Abernethy:  That means that no-one using Azure can 
+  implement the spec. Nis wanted Microsoft to weigh in before 
+  making any changes.
+Chris Abernethy:  Generally with m2m OAuth, when you auth, you 
+  get all of the scopes available to you. We had to do some 
+  manipulation to see what happens when you are missing scopes. The 
+  test would lose granularity, but we would need to remove a few 
+  tests for specific scopes.
+Nis Jespersen :  The tactic was to get Microsoft involved, and 
+  say, "we'll put a bad label on you", but that doesn't seem to 
+  have gotten their attention.
+Nis Jespersen :  My suggestion would be to make another attempt 
+  to get them to interact on this again.
+Chris Abernethy:  How should we reach out to them, or should we 
+  implement Orie's suggestion of adding a warning around using 
+  Azure?
+Chris Abernethy:  We need to decide what that says, if we say 
+  "you can't use Azure-AD if you want to issue verifiable 
+  credentials" that's a line in the sand that I'm not sure I want 
+  to cross.
+Nis Jespersen :  Let's leave a comment to Orie to ask him to 
+  reach out again.
+Chris Abernethy: 
+  https://github.com/w3c-ccg/traceability-interop/issues/485
+Benjamin Collins:  This is saying that  that we want to be able 
+  to have a way to show intent for documents that have been sent in 
+  error, or that need to be amended and how we address that over 
+  the wire.
+Scribe-

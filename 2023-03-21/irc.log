@@ -1,0 +1,301 @@
+[2023-03-21T15:57:27.209Z]	<bobwyman>	present+
+[2023-03-21T15:57:27.211Z]	<Harrison_Tang>	present+
+[2023-03-21T15:58:19.892Z]	<bobwyman>	present+
+[2023-03-21T15:58:34.186Z]	<Greg_Bernstein>	present+
+[2023-03-21T15:59:33.207Z]	<Orie>	present+
+[2023-03-21T16:00:20.289Z]	<Stuart_Freeman>	present+
+[2023-03-21T16:00:29.410Z]	<econnell>	present+
+[2023-03-21T16:00:49.497Z]	<Jeff_O_-_HumanOS>	present+
+[2023-03-21T16:01:09.267Z]	<Patrick_(IDLab)>	present+
+[2023-03-21T16:01:14.697Z]	<mprorock>	present+
+[2023-03-21T16:01:18.665Z]	<econnell>	present+
+[2023-03-21T16:02:40.441Z]	<Andres_Uribe>	present+
+[2023-03-21T16:02:56.043Z]	<Geun-Hyung>	present+
+[2023-03-21T16:03:03.422Z]	<Transcriber>	scribe+
+[2023-03-21T16:03:03.422Z]	<Transcriber>	Meeting: weekly
+[2023-03-21T16:03:11.429Z]	<mprorock>	https://lists.w3.org/Archives/Public/public-credentials/2023Mar/0101.html
+[2023-03-21T16:03:35.740Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-03-21T16:03:37.026Z]	<David_Lehn>	present+
+[2023-03-21T16:03:38.819Z]	<Transcriber>	mprorock: All right all hello and welcome today we're going to be talking about verifiable credentials did web and actual practical useful stuff which is why I am sure the numbers are lighter since there's less room for generalized commentary and we actually are looking at grow real code that's the end of my snark and that's purely from a personal observation level so we love to talk to details.
+[2023-03-21T16:03:39.123Z]	<Transcriber>	mprorock:  and just.
+[2023-03-21T16:03:43.389Z]	<Phil_L_(P1)>	present+
+[2023-03-21T16:03:50.769Z]	<mprorock>	https://www.w3.org/Consortium/cepc/
+[2023-03-21T16:03:54.891Z]	<smagennis>	present+
+[2023-03-21T16:04:09.802Z]	<Transcriber>	mprorock: I can hear first and foremost want to talk about and mentioned that this meeting as with all meetings is covered under the w3c code of ethics professional conduct really have a good time here and never tend to have any issues with that but just in case it's a handy reminder one note that this meeting is a w3c community group meeting and as a result of that anyone can participate in these competitions.
+[2023-03-21T16:04:10.037Z]	<Transcriber>	mprorock:  calls they are open to the.
+[2023-03-21T16:04:11.590Z]	<mprorock>	https://www.w3.org/community/credentials/join
+[2023-03-21T16:04:18.154Z]	<Joe_Andrieu>	present+
+[2023-03-21T16:04:26.317Z]	<David_Chadwick>	present+
+[2023-03-21T16:04:43.321Z]	<bumblefudge>	present+
+[2023-03-21T16:04:45.166Z]	<Transcriber>	mprorock: Public however if you're going to do work if you're going to contribute into w3c work items at this community group you do need to be a member and you need that's primarily for I pr reasons right to prevent any potential intellectual property claims and nasty stuff that can come up down the line should work proceed from here where we incubate work into something like a working group we're working actually that gets finished and standardized so just a note there we do take meeting.
+[2023-03-21T16:04:46.035Z]	<Transcriber>	mprorock:  minutes as you are seeing go in the chat and those recordings do get posted.
+[2023-03-21T16:04:54.521Z]	<mprorock>	type “q+” to add yourself to the queue, with an optional
+reminder, e.g., “q+ to mention something”. The “to” is required.
+[2023-03-21T16:04:55.438Z]	<James_Chartrand>	present+
+[2023-03-21T16:05:04.496Z]	<Transcriber>	mprorock: In the chat you may type Q the letter q and the plus sign to add yourself to the queue or raise your hand that stuff is sync up also work and I are see if you are on the IRC channel for some reason.
+[2023-03-21T16:05:16.020Z]	<Transcriber>	mprorock: With that before we get into the main meeting do you want to pause and see if there are any new folks to the call that would like to introduce themselves.
+[2023-03-21T16:05:26.025Z]	<Harrison_Tang>	ack patrick
+[2023-03-21T16:05:34.161Z]	<kimberly_Wilson_Linson>	present+
+[2023-03-21T16:05:37.756Z]	<Marty_Reed>	present+
+[2023-03-21T16:05:54.168Z]	<Transcriber>	Patrick_(IDLab): Hey guys I see here oh yeah I'll just give a short introduction so I'm devops specialist I work for the digital identity laboratory of Canada than in the digital identity space for about two years now it's very very interesting so we as a independent entity we pride ourselves in being unbiased and really just observe the various.
+[2023-03-21T16:05:54.579Z]	<Transcriber>	Patrick_(IDLab):  us efforts that are being made.
+[2023-03-21T16:06:26.420Z]	<Transcriber>	Patrick_(IDLab): Here in Canada and internationally currently we have a lot of interest a lot of traction and the hyper Ledger side of things with Aries and a non credentials and what provinces are doing in Canada for a digital identity which is interesting regarding w3c I've been attending the VC API calls for some time now with special focus on test.
+[2023-03-21T16:06:26.734Z]	<Transcriber>	Patrick_(IDLab):  sweets and testing and implementation.
+[2023-03-21T16:06:29.850Z]	<Nikos_Fotiou>	present+
+[2023-03-21T16:06:54.605Z]	<James_Chartrand>	present+
+[2023-03-21T16:06:56.096Z]	<Orie>	yay! did:web for testing is excellent
+[2023-03-21T16:06:58.853Z]	<Transcriber>	Patrick_(IDLab): Ends and understanding how everything works I was particularly interested in this call today because I am sort of prototyping a proof of concept for a did web methods to manage and on creds credential the a non-credit credential has been made into its own sort of specification recently and we are exploring branching out to different did methods for.
+[2023-03-21T16:06:59.193Z]	<Transcriber>	Patrick_(IDLab):  very interested in.
+[2023-03-21T16:07:03.839Z]	<Joe_Andrieu>	present+
+[2023-03-21T16:07:10.103Z]	<Transcriber>	Patrick_(IDLab): Services parameters and also videos so hopefully it will be an interesting call today for me.
+[2023-03-21T16:07:28.079Z]	<mprorock>	q?
+[2023-03-21T16:07:40.835Z]	<Nikos_Fotiou>	present+
+[2023-03-21T16:07:43.170Z]	<Transcriber>	mprorock: Cool well great to have you and yeah we're definitely I'm particularly interested in the topic today as well because I think it's a good one let's see here with that I'm going to pause for any announcements or reminders for the from the broader Community here so anything relevant to ccg from the community before I start calling all the folks I am going to note that there's been a good thread that I think Manny might have started just given the fact that.
+[2023-03-21T16:07:43.626Z]	<Transcriber>	mprorock:  that our GitHub is getting a little up in size and probably.
+[2023-03-21T16:07:55.608Z]	<Manu_Sporny>	present+
+[2023-03-21T16:08:13.519Z]	<John_Kuo>	present+
+[2023-03-21T16:08:16.524Z]	<Transcriber>	mprorock: Place to store a bunch of audio video Etc so there is some discussion of getting that stuff over to YouTube and possibly backed up to Archive org and some other options so chairs definitely will take that under consideration and it seems like there's broad Community Support so we will figure out some next steps there in our next chair meeting over the next two weeks so I'm going to be traveling next week so it'll probably be the week after.
+[2023-03-21T16:08:16.919Z]	<Transcriber>	mprorock:  the with that.
+[2023-03-21T16:08:21.692Z]	<Transcriber>	mprorock: Any other announcements from the community side.
+[2023-03-21T16:08:24.463Z]	<Transcriber>	mprorock: Mr Man Who.
+[2023-03-21T16:08:54.294Z]	<Transcriber>	Manu_Sporny: Hey oh geez I'm late and all Jesus was already discussed it was announcement on the or there was a question on the mailing list about whether or not we want to have a YouTube channel and upload like these recordings that we're doing well now to YouTube people have provide some feedback thanks for that I'm guessing we'll leave it open the question open for another week and then see what we want to do but if you have a.
+[2023-03-21T16:08:56.291Z]	<Geun-Hyung>	s/Man Who/Manu
+[2023-03-21T16:09:00.107Z]	<Transcriber>	Manu_Sporny: Please provide some input on the mailing list that's it.
+[2023-03-21T16:09:14.181Z]	<Chandi_Cumaranatunge>	present+
+[2023-03-21T16:09:22.824Z]	<Transcriber>	mprorock: Yeah definitely in a maniac I just noted will probably sink up as chairs not this week coming up the following after there's been some more time for that to bake and we've got some good options but it looks like there's a rough consensus driving at least in a certain direction to get some stuff out there so thank you for starting that thread.
+[2023-03-21T16:09:23.239Z]	<Transcriber>	mprorock:  also many other announcements from.
+[2023-03-21T16:09:25.692Z]	<Orie>	fediverse / peer tube!
+[2023-03-21T16:09:35.181Z]	<Transcriber>	mprorock: That impact ccg wise otherwise I'm going to turn the ball over to or a here I am a big fan of the federal workers as you know or a so.
+[2023-03-21T16:09:50.097Z]	<bumblefudge>	nic
+[2023-03-21T16:09:51.021Z]	<bumblefudge>	e
+[2023-03-21T16:09:51.677Z]	<Transcriber>	mprorock: All right well Ori I'm going to hand it to you topic of today is implementing did web for use with verifiable credentials just a lovely topic yeah.
+[2023-03-21T16:09:58.283Z]	<Transcriber>	Orie: Yeah and as I recall if I turn my video on servers melt right so maybe I don't turn the video.
+[2023-03-21T16:10:01.768Z]	<Transcriber>	mprorock: Screen share works great video I don't know so.
+[2023-03-21T16:10:07.200Z]	<Transcriber>	Orie: Right here how do I screen share in this thing there's the button.
+[2023-03-21T16:10:09.013Z]	<mprorock>	q?
+[2023-03-21T16:10:13.907Z]	<Transcriber>	Orie: Tire scream I'll see my entire screen.
+[2023-03-21T16:10:16.101Z]	<Transcriber>	mprorock: We can indeed.
+[2023-03-21T16:10:41.740Z]	<Transcriber>	Orie: All right so the structure of this is presentation I do have a demo at the end of it I can give that basically just Recaps what you've all seen I can't see the chat or anything actually I can make it so that I can see that though.
+[2023-03-21T16:10:45.511Z]	<Transcriber>	mprorock: I'll keep it monitored and yell if there's something crazy and then.
+[2023-03-21T16:10:55.763Z]	<Chandi_Cumaranatunge>	present+
+[2023-03-21T16:11:14.930Z]	<Transcriber>	Orie: Hopefully hopefully yeah there's interrupt does we go love love for it to be more conversational given several talks on did web at this point so it's fairly boring topic to me and I'd rather take your questions and yeah it just just Dive Right In so the purpose of today's talk is to just focus on what do you if you're trying to.
+[2023-03-21T16:11:15.211Z]	<Transcriber>	Orie:  explore using did well.
+[2023-03-21T16:11:41.605Z]	<Brent>	present+
+[2023-03-21T16:11:41.978Z]	<Transcriber>	Orie: What's a easy way to get started you know and how can you use d-did web when you're sort of first learning about decentralized identifiers and verifiable credentials it's it's not geared towards production and it's not even geared towards sort of safe testing environment it's geared more towards a local testing environment for developers giving them the tools they need to figure out what's going on.
+[2023-03-21T16:12:14.155Z]	<Transcriber>	Orie: So high-level agenda we're going to briefly recap what did web is going to talk about key generation and did document construction and hosting and then there's just a brief commentary on signing and verifying once you have added documents nice to do something with it and then there's technical details section which I imagine we spend a good amount of time and because there's lots of fun privacy and security.
+[2023-03-21T16:12:14.566Z]	<Transcriber>	Orie:  Purity considerations when it comes to did web.
+[2023-03-21T16:12:21.155Z]	<Transcriber>	Orie: And questions at the end but of course questions along the way are welcome.
+[2023-03-21T16:12:54.060Z]	<Transcriber>	Orie: And I'll provide an export of these slides for folks so you know don't worry I'll get up to the chairs at the end so what did well well web is a way to use the centralized identifiers with web infrastructure DNS and https and certificate authorities another way of thinking about what did web is is its kind of an alternate representation of oid see issuer and all IDC you have a web origin and.
+[2023-03-21T16:12:54.469Z]	<Transcriber>	Orie:  well known open ID configuration and that.
+[2023-03-21T16:13:21.168Z]	<Transcriber>	Orie: Describes where to find signing keys for that web origin as an issuer and those documents are Json documents the configuration is a Json document that's not signed and it's served from a web server with with TLS and the well-known J W KS which contains public Keys is also not signed and is just a Json file that serve from a web server.
+[2023-03-21T16:13:21.616Z]	<Transcriber>	Orie:  and so one way of sort of just.
+[2023-03-21T16:13:47.444Z]	<mprorock>	q?
+[2023-03-21T16:13:52.774Z]	<Transcriber>	Orie: That is you know these are ways to discover keys that are authoritative for a web origin and oh IDC has one way that they do that for open ID connect and did web is just a way to do that but for dids basically and then of course did web is not a blockchain so if you were excited to talk about blockchain here this is about web Technologies which have been around for quite some time.
+[2023-03-21T16:13:53.205Z]	<Transcriber>	Orie:  and so.
+[2023-03-21T16:13:55.608Z]	<Transcriber>	Orie: There's no blockchain here.
+[2023-03-21T16:14:04.336Z]	<Transcriber>	Orie: At the bottom are a series of pictures that I found inspiring when thinking about what the web is.
+[2023-03-21T16:14:06.339Z]	<Brent>	present+
+[2023-03-21T16:14:08.111Z]	<Transcriber>	Orie: Key generation the old-fashioned way.
+[2023-03-21T16:14:45.215Z]	<Transcriber>	Orie: If you if you want to if you want your did to be in any way useful you're going to need to generate some keys and you're going to want to keep the private key private and you're going to want to put the public key in your did document and most of what did create operation is in any did method is about that first date document construction and getting your first Keys into the document so here I've shown some excellent openssl commands for generating nist.
+[2023-03-21T16:14:45.711Z]	<Transcriber>	Orie:  compliant public and private keys.
+[2023-03-21T16:15:21.038Z]	<Transcriber>	Orie: Just a quick note you know with openssl you're going to get key formats like Pam and you're going to have to convert them into like a jwk format if you want to host them in your document and luckily there's like lots of really excellent tools that will do that for you because this is a problem that folks who have been using openssl have had for quite some time so converting between pain and jwk is relatively easy converting between pain and jwk and other more newer key.
+[2023-03-21T16:15:21.717Z]	<Transcriber>	Orie:  formats can be kind of tricky and when you're building your first did.
+[2023-03-21T16:15:52.764Z]	<mprorock>	wrong!
+[2023-03-21T16:15:54.023Z]	<Transcriber>	Orie: I would encourage you to think about maybe not trying to support all of the different cool key formats you've ever seen But focus on the ones that are going to help you quickly verify your hypothesis like why are you using did web what are you interested in doing you know try and use off-the-shelf key formats as much as possible and you know just because it's old does not mean it's socks or the newer stuff is better Star Trek next Generation is the best Star Trek still.
+[2023-03-21T16:15:54.306Z]	<Transcriber>	Orie:  so making.
+[2023-03-21T16:15:56.037Z]	<bumblefudge>	here... here?
+[2023-03-21T16:15:58.558Z]	<mprorock>	TOS all the way
+[2023-03-21T16:16:02.020Z]	<bobwyman>	Question: Please discuss relationship between did:web and WebFinger. What does did:web do that WebFinger can't? Are there use cases that would be well served by using both did:web and WebFinger in the same app?
+[2023-03-21T16:16:27.055Z]	<Transcriber>	Orie: Document and this is a this is where I introduce the spice they're part of this talk is going to be about a product called n grok which I've used for many years and it's a really great way of debugging network activity and opening tunnels to localhost and exploring and securing you know web services at the development phase so on the right hand side you can see an example of a did document and.
+[2023-03-21T16:16:27.485Z]	<Transcriber>	Orie:  and I created this Json.
+[2023-03-21T16:16:59.947Z]	<Transcriber>	Orie: Basically starting the and grok web service and using its instrument apis to get the origin that it was but the tunnel is bound to and that's what goes into the did web identifier the public key also goes into the document and that public key comes from the openssl key generation there wasn't any cryptocurrency required there's no web 3 5 7 or 11.
+[2023-03-21T16:17:00.252Z]	<Transcriber>	Orie:  key formats although.
+[2023-03-21T16:17:26.098Z]	<mprorock>	q?
+[2023-03-21T16:17:33.993Z]	<Transcriber>	Orie: And if you were excited about experimenting with those actually think did web can be a great place to do that because you just add them as verification methods and it's Jason and it's very easy to use and in this case there isn't any need to add any other contexts or extensions if you're just trying to do Jason this vocabulary that's added at the top basically will automatically assign term definition so even the skull emoji and the fire Emoji have term.
+[2023-03-21T16:17:34.531Z]	<Transcriber>	Orie:  missions here and so I highly recommend doing this.
+[2023-03-21T16:18:05.871Z]	<Transcriber>	Orie: Because you will encounter all kinds of problems in your libraries that are processing your did document if it's not well formed json-ld so I always add a vocab to my did web documents so that those libraries don't explode and then I can look at you know a specific term assignments and I can decide whether I like those term assignments or not and I'll show you at the end a demo of a library that will definitely explode if it's not valid Json till date.
+[2023-03-21T16:18:14.233Z]	<Transcriber>	Orie: Library that I use a lot in terms of so thinking about what the shape of a json-ld to document looks like.
+[2023-03-21T16:18:47.942Z]	<Transcriber>	Orie: So hosting a did document it's not enough to just have a Json file has to go on to a web server and this is where n Gras comes in so the first line in the upper left-hand corner is basically saying I'm going to serve a folder with korres on localhost 3000 and normally that would only be accessible to you of your on localhost 3000 on the server that's running but what an grok will let you do.
+[2023-03-21T16:18:48.402Z]	<Transcriber>	Orie:  do is it'll let you bind a tunnel to that service.
+[2023-03-21T16:19:19.806Z]	<Transcriber>	Orie: See you know the in the end Rock Network diagram what it looks like when you don't have that web service up so it's green Up Until the End Rock agent and then it's red because your web service isn't running but then if you turn your web service on which is the first command in the upper left-hand corner you get did Resolute you get an actual did resolution for well it's not that resolution but it's the data web and point for that web origin resolved successfully.
+[2023-03-21T16:19:20.219Z]	<Transcriber>	Orie:  and that's because the.
+[2023-03-21T16:19:54.990Z]	<Transcriber>	Orie: As has spun up in the tunnel is binding to localhost 3000 and its binding on this origin which is this you know hexadecimal string Dot and rock that app and we can talk more about that in the private in the sort of technical detail section because there's all kinds of privacy issues with doing this in a production environment but for testing there's a lot of benefits for this with did web and again you know this is just an example you probably know.
+[2023-03-21T16:19:55.739Z]	<Transcriber>	Orie:  how to host Json files without using and rock I'm just showing and rock here for the.
+[2023-03-21T16:20:02.731Z]	<Transcriber>	Orie: Showing developers that this is a tool that's really useful when you're testing things with did well.
+[2023-03-21T16:20:06.857Z]	<mprorock>	q?
+[2023-03-21T16:20:36.517Z]	<Transcriber>	Orie: So on to sign and verify so if you're going to sign and verify you need to be able to get key material I've shown on the left hand side a little bash script that will use J Q2 which is a tool for processing Json responses so this bash script will work against any resolver that returns you know did documents in a reasonable form.
+[2023-03-21T16:20:37.026Z]	<Transcriber>	Orie:  and basically.
+[2023-03-21T16:21:01.531Z]	<Transcriber>	Orie: You're going to want to do is you need to get the public key that you're going to use to verify the thing so whatever it is that's been sign you got to get the public key which means you have to talk to a resolver and in the context of did web you know you could Implement that resolved or locally or you could trust a third party resolver but one way or the other you're going to have to dereference to the public key material to check a signature.
+[2023-03-21T16:21:20.215Z]	<Transcriber>	Orie: See the key conversion piece at the bottom there you know if you resolve a key but it's not in the right format for your library that's going to check the signature you might need to deep Dukey conversion before you can really process that payload in a specific way.
+[2023-03-21T16:21:55.191Z]	<Transcriber>	Orie: Talking about creating the signature here if we still have the private key from the original key generation we can sign with that private key so we could sign choose to sign a file then we're going to want to do this middle dereferencing piece which is what we're just looking at before and that's you know how do I get my public key that I need to do dereference I need to get this public key in order to verify signatures that are supposedly signed by it.
+[2023-03-21T16:21:55.590Z]	<Transcriber>	Orie:  so dereferencing.
+[2023-03-21T16:22:28.840Z]	<mprorock>	w?
+[2023-03-21T16:22:29.649Z]	<Transcriber>	Orie: Is really important for using did web for anything like you need to get the keys verifying the signature or the openssl is at the bottom and that's easy and that's only possible because you've obtained that public key so you can basically use existing libraries like openssl as long as you have a clear and consistent way of moving from a did or a did URL to a public key and so the main point that I'm trying to make here is that.
+[2023-03-21T16:22:30.149Z]	<Transcriber>	Orie:  is that like dad's might be a new way to discover public keys.
+[2023-03-21T16:22:31.290Z]	<mprorock>	q?
+[2023-03-21T16:23:04.785Z]	<Transcriber>	Orie: The software that works with public and private keys still works it's great some of that software is empowering and securing major components of the internet for a very long time and so one way of thinking about your first you know experiments with dids might be how do I use all of the tools that I'm really familiar with and then just add bids as a tiny little extra step and that's really about key generation and dereferencing in my opinion so if you're interested in exploring.
+[2023-03-21T16:23:05.503Z]	<Transcriber>	Orie:  flooring Dead's I'd suggest start with what you know and try and add a.
+[2023-03-21T16:23:12.719Z]	<Transcriber>	Orie: As opposed to sort of starting with dids and then trying to figure out why you're spending any time with kids.
+[2023-03-21T16:23:43.793Z]	<Transcriber>	Orie: So technical details there are a bunch of privacy issues with with did web and I've included this excellent Anonymous picture here with Anonymous bearing the coffin of privacy a lot of folks have have pointed out that you know 40 IDC servers it might be acceptable to disclose public keys that are used to sign access tokens but that's because the server is represent a business.
+[2023-03-21T16:23:43.926Z]	<Wendy_Seltzer>	present+
+[2023-03-21T16:23:44.631Z]	<Transcriber>	Orie: You wouldn't really.
+[2023-03-21T16:24:11.533Z]	<Transcriber>	Orie: I do that same kind of thing if it was for individual like and human users or in particular human users that are highly vulnerable to disruption through a normal legal process or through State actions web infrastructure does have some kinds of security issues associated with censorship and.
+[2023-03-21T16:24:41.412Z]	<Transcriber>	Orie: Attacks on certain layers of the network infrastructure that powers the web are very easy for certain classes of attacker and they're pretty hard for other classes of attacker so depending on what your threat environment is did web might be really not the right method for you I tend to think of did web as being the right method for a lot of businesses probably a lot of individual developers but definitely not the best method for someone who's you know.
+[2023-03-21T16:24:41.874Z]	<Transcriber>	Orie:  really private.
+[2023-03-21T16:25:05.531Z]	<Transcriber>	Orie: A journalist or is a freedom fighter or terrorist like I don't think did web is a good it's good for those use cases at all I think they folks who are interested in you know truly immutable self Sovereign identity would be better off with other formats potentially ones that have no network observability at all.
+[2023-03-21T16:25:05.921Z]	<Transcriber>	Orie:  so I purely deterministic.
+[2023-03-21T16:25:36.483Z]	<mprorock>	q?
+[2023-03-21T16:25:38.642Z]	<Transcriber>	Orie: Did not consent so one thing to think about you know with respect to did web is like well how can I trust the web server to not add new keys or change you know the public key that I've added and if you can't trust that web host service to not tamper with your regular content you should definitely not trust them to host your key material I'm so I used look GitHub to host a lot of did did web demos and I.
+[2023-03-21T16:25:39.017Z]	<Transcriber>	Orie:  I generally trust GitHub to not.
+[2023-03-21T16:26:10.291Z]	<Transcriber>	Orie: Ten that I put in a web server I also trust GitHub to manage my version control for my software so I have a lot of trust built into that web origin already and if I feel comfortable with GitHub performing those operations then it follows maybe I feel comfortable with GitHub not altering my my did Json file which has the keys that I've added to it but you know other folks might feel differently about GitHub right so just be careful that you know with did.
+[2023-03-21T16:26:10.745Z]	<Transcriber>	Orie:  you have to trust.
+[2023-03-21T16:26:15.668Z]	<Transcriber>	Orie: Service provider that's like an important part of using did web.
+[2023-03-21T16:26:47.843Z]	<Transcriber>	Orie: And you know in terms of the privacy issues associated with did what I'm about to show an example of exactly what I mean with respect to privacy but that did Jason well-known endpoint has to be resolved in order for did resolution on that did web to succeed so that origin is seeing resolutions and they might just be seeing resolutions for their single identifier but in a world where they're using the path based routing so not the well-known and point but but.
+[2023-03-21T16:26:48.458Z]	<Transcriber>	Orie:  but many.
+[2023-03-21T16:27:11.916Z]	<Transcriber>	Orie: Origin and there's even more risk of privacy issues and having the did controller you know in the context of the hosting service provider have visibility into that it can be actually really big benefit for certain businesses but it also has privacy issues if those businesses are acting on behalf of individuals.
+[2023-03-21T16:27:19.251Z]	<Transcriber>	Orie: Again there's no blockchain here so web infrastructure has been shown to scale pretty well.
+[2023-03-21T16:27:21.562Z]	<mprorock>	q?
+[2023-03-21T16:27:50.423Z]	<Transcriber>	Orie: And then if you want to learn like a lot more of like the technical details behind what's really going on with did web I've included some scripts on the right hand side for analyzing a did web you know this is not black magic it's the Dig curl and traceroute commands but they can help start to sort of pique your curiosity regarding the security infrastructure that goes behind did web and whether or not you can trust content that you're looking at if you're doing.
+[2023-03-21T16:27:50.940Z]	<Transcriber>	Orie:  did resolution.
+[2023-03-21T16:28:02.741Z]	<Transcriber>	Orie: And the rest is appendix and so I can give a demo now unless there's further questions.
+[2023-03-21T16:28:15.575Z]	<Transcriber>	Patrick_(IDLab): I have a few questions I'm wondering if I should wait for the demo first or just go ahead.
+[2023-03-21T16:28:17.052Z]	<Transcriber>	Orie: And ask now.
+[2023-03-21T16:28:27.205Z]	<bobwyman>	q+
+[2023-03-21T16:28:48.755Z]	<Transcriber>	Patrick_(IDLab): All right so my first question so regarding the whole block chain thing in the did method so it's fair to assume that depending on the did method there is sort of infrastructure backing it and the case of did web it's obviously a lot more open handed but if you have like the did you PSI for example we know very well that there is a blockchain infrastructure behind it and this going to bring some sort of implicit.
+[2023-03-21T16:28:49.195Z]	<Transcriber>	Patrick_(IDLab):  Concepts to the documents that are.
+[2023-03-21T16:29:22.897Z]	<Transcriber>	Patrick_(IDLab): Start there the most notably wand obviously availability is going to be a big one in youth ability and some kind of access control for writing on that server so parallel to that there's the concept of the verifiable data registry so how do you how would you explain the correlation between the verifiable data registry and the underlying infrastructure does a what I mean is does a verifiable data registry need.
+[2023-03-21T16:29:23.385Z]	<Transcriber>	Patrick_(IDLab):  to have certain security features and it.
+[2023-03-21T16:29:30.615Z]	<Transcriber>	Patrick_(IDLab): Secret few key features are really just depending on the infrastructures on which it relies that that make sense.
+[2023-03-21T16:29:55.475Z]	<Transcriber>	Orie: Okay so the four when you create a did method you describe the identifier format so that's like you know what the identifier is going to look like and then you describe the operations create update resolved and deactivate and then you define security and privacy considerations.
+[2023-03-21T16:29:55.788Z]	<Transcriber>	Orie:  in any did.
+[2023-03-21T16:30:26.979Z]	<Transcriber>	Orie: Lies on a verifiable data registry as a software component you usually have some treatment of the privacy and security considerations section for that component so if you use the theorem or Bitcoin your privacy and security considerations should say something like we used ethereum or Bitcoin for this it's a public permission list you know Ledger and anyone can write to it but everyone can read from it and there are other.
+[2023-03-21T16:30:27.380Z]	<Transcriber>	Orie:  no security issues.
+[2023-03-21T16:30:35.850Z]	<Transcriber>	Orie: Blah you talk about the verifiable data registry in your privacy and security considerations section.
+[2023-03-21T16:30:52.396Z]	<Transcriber>	Orie: If you so if you're talking about the kind of the verifiable data registry as it was sort of more of an abstract concept.
+[2023-03-21T16:31:00.626Z]	<Transcriber>	Patrick_(IDLab): But my concern is like how does the verifiable that urgency fit into did when I guess it's the my main question.
+[2023-03-21T16:31:25.134Z]	<Transcriber>	Orie: Yeah so yeah so the the what is the registry right the registry here is its DNS and it's a combination of DNS and HTTP and certificates it's not just you know one software component it's a slice across the web stack and adding each of those components up produces the consistent software experience that implementers rely on to build did web resolution or resolved.
+[2023-03-21T16:31:25.416Z]	<Transcriber>	Orie:  all that.
+[2023-03-21T16:31:32.735Z]	<bumblefudge>	in terms of historical resolution/versionTime=, the registry is the Internet Archive 🌶️
+[2023-03-21T16:31:47.949Z]	<mprorock>	q?
+[2023-03-21T16:31:56.324Z]	<Transcriber>	Orie: Resolve operation for did web you need to consume those layers of the web infrastructure how those layers are implemented could vary greatly right so you could have a scenario where you know one did web uses a specific web server and a specific web origin and another one uses a totally different you know top-level domain totally different web hosting infrastructure and those are different implementation details underneath the same verifiable data registry.
+[2023-03-21T16:31:59.329Z]	<Transcriber>	Orie: Does that make sense.
+[2023-03-21T16:32:19.794Z]	<Transcriber>	Patrick_(IDLab): Yeah it does so the reliability of this VD R is going to really depend on the underlying implementation so you could have two implementation of did web one can be secured and the other one less secured yeah.
+[2023-03-21T16:32:48.325Z]	<Transcriber>	Orie: Yeah yeah and you haven't really said this directly but I hear maybe hear a hint of it and what you've mentioned before like what if you really like a blockchain and you want to use the blockchain to manage the did Json documents and then you just expose the did Json documents on a web origin then the web origin is still trusted to not tamper with the those documents but you're kind of using a really stronger database.
+[2023-03-21T16:32:48.868Z]	<Transcriber>	Orie:  the store them instead of just putting files on a web server and.
+[2023-03-21T16:32:49.099Z]	<Transcriber>	Orie: You allowed to.
+[2023-03-21T16:32:56.624Z]	<Transcriber>	Orie: Do that but remember the trust is in the web origin because the web origin is the root and that's where tampering can occur.
+[2023-03-21T16:33:23.794Z]	<Transcriber>	Patrick_(IDLab): Yeah so that there was something else I'm exploring is obviously with did web you could within some document you could reference other did methods so like object stored on other did methods so another question I would have is if me as my implementation I want to make an API that's meant to respond to did web request is that from the pain or.
+[2023-03-21T16:33:24.178Z]	<Transcriber>	Patrick_(IDLab):  is that fine.
+[2023-03-21T16:33:31.038Z]	<Transcriber>	Patrick_(IDLab): Storing a document but I'm sort of responding a document dynamically.
+[2023-03-21T16:33:51.533Z]	<Transcriber>	Orie: No that's totally fine like so the file like the did Jason is like that the spec says this endpoint is what you must perform an HTTP resolution on to get the did document it does not tell you whether you have to implement the endpoint as a file or as a database query that talks to a blockchain or whatever you can do that however you like.
+[2023-03-21T16:34:03.934Z]	<Transcriber>	mprorock: Exactly there's a good degree of flexibility there and I'm just jumping in because I see Bob on the cue and I do want to make sure or he's able to get to demo as well but Bob fire up.
+[2023-03-21T16:34:07.048Z]	<mprorock>	ack bob
+[2023-03-21T16:34:07.941Z]	<bumblefudge>	controller property
+[2023-03-21T16:34:09.360Z]	<mprorock>	q?
+[2023-03-21T16:34:10.423Z]	<bumblefudge>	"controller":"did:stronger-vdr:alice"
+[2023-03-21T16:34:20.717Z]	<Transcriber>	bobwyman: Okay question okay give them the did web it relies on DNS it uses HTTP to fetch documents it doesn't rely or doesn't require any crypto and it exploits the dot well-known.
+[2023-03-21T16:34:35.684Z]	<Transcriber>	mprorock: You got it.
+[2023-03-21T16:34:52.195Z]	<Transcriber>	bobwyman: A convention so the obvious question is is did web really just a profile on the use of webfinger and can we say right so so why why do we have why do we have did web as anything other than a profile on webfinger like when would I can did web do something that webfinger can't is there ever a case.
+[2023-03-21T16:34:52.621Z]	<Transcriber>	bobwyman:  I swear I would want both.
+[2023-03-21T16:34:58.141Z]	<Transcriber>	bobwyman: And did wave in the same app like.
+[2023-03-21T16:35:06.928Z]	<mprorock>	https://www.rfc-editor.org/rfc/rfc7033
+[2023-03-21T16:35:16.685Z]	<Transcriber>	Orie: Great great question so I'm webfinger is obviously useful as a building block in lots of other ecosystems like you know I think activity Pub or or Mastodon or one of one of those systems definitely uses it I've had to use it before.
+[2023-03-21T16:35:20.279Z]	<Transcriber>	bobwyman: Macedonia is it although not very well and kind of in a silly way but anyway.
+[2023-03-21T16:35:51.686Z]	<Transcriber>	Orie: But the point basically there is that like the web server has a need to expose whether accounts exist on An Origin or not and that's kind of very strongly aligned with the did web path based identifiers approach format but it's not very well aligned with the raw origin did Web format so there's there's two primary ways to resolve a did web document one is the well-known did Jason and the other is a path based routing.
+[2023-03-21T16:35:52.110Z]	<Transcriber>	Orie:  and I mean if you asking not.
+[2023-03-21T16:35:59.594Z]	<Transcriber>	Orie: In like it would be much better to just throw out everything that we have for did web and rebuild a profile on top of web finger.
+[2023-03-21T16:36:33.072Z]	<Transcriber>	Orie: But that's not how standards work like this thing has been around since basically the beginning of dids and it's evolved to have its shape based on the community contribution and feedback spec is under development at the ccg and it becomes very hard to change what a did method is over time and that's why it's great to be able to create new did methods that have the properties that you wish the other did methods have and then you know you can advocate for hey.
+[2023-03-21T16:36:33.586Z]	<Transcriber>	Orie:  guys like stop using did web start using did web finger or.
+[2023-03-21T16:36:37.281Z]	<Transcriber>	bobwyman: Well what is it about.
+[2023-03-21T16:36:44.688Z]	<Transcriber>	bobwyman: Did web that would need to change if one said it is a profile of wet finger.
+[2023-03-21T16:36:51.591Z]	<Transcriber>	Orie: You have to describe the read operation in the verifiable data registry in terms of the web finger standard.
+[2023-03-21T16:36:55.959Z]	<Transcriber>	Orie: That's just sentences in a document basically.
+[2023-03-21T16:37:00.268Z]	<Transcriber>	bobwyman: Okay but other than changing sentences with anything semantically change.
+[2023-03-21T16:37:07.875Z]	<Transcriber>	bobwyman: Like what any bits on The Wire have to change if one said that it was a webfinger profile.
+[2023-03-21T16:37:15.023Z]	<Transcriber>	Orie: I mean the content that you're getting from the in the response would be different but you know.
+[2023-03-21T16:37:37.938Z]	<Transcriber>	Orie: The overall approach that you're suggesting is one that can be explored and you know I encourage folks to just go make a new did method as a profile of webfinger and look at did web and look at the thing that you've got and you know show what the differences might be I think that sounds like a fun fun thing to do.
+[2023-03-21T16:37:39.788Z]	<Transcriber>	bobwyman: Okay it just strikes me that.
+[2023-03-21T16:37:45.366Z]	<mprorock>	q?
+[2023-03-21T16:37:49.268Z]	<Transcriber>	bobwyman: Frances between did web and potentially it did webfinger are so subtle that.
+[2023-03-21T16:37:59.280Z]	<Transcriber>	bobwyman: Not doing ourselves a favor by having this variety of this kind of variety or these differences like.
+[2023-03-21T16:38:07.667Z]	<Transcriber>	bobwyman: I mean this is is this ietf versus w3c is that what's going on here.
+[2023-03-21T16:38:32.917Z]	<Transcriber>	Orie: I don't really know what you're what you're getting at with that but the in at least in the context of like the approach that did spec Registries and did core you know first publication took the approach was to document requirements where we could get consensus as a working group and then to make it possible for people to really.
+[2023-03-21T16:38:33.158Z]	<Transcriber>	Orie:  explore the.
+[2023-03-21T16:38:50.017Z]	<mprorock>	q?
+[2023-03-21T16:39:07.280Z]	<Transcriber>	Orie: Space of did methods and we did that with the did method Registries so you it's very easy you can easily create a new did method and it could be 99.9% the same as an existing one and if you've made some small Improvement to it that justifies giving it a separate name great and no one can stop you from doing that right it would be a problem if You Were Somehow not able to do that because it would be evidence that the decentralization property of the specification was weekly implemented.
+[2023-03-21T16:39:21.015Z]	<Transcriber>	bobwyman: I understand I understand that did webfinger would be trivial to spec and get registered but we didn't wasn't there just on the list there was recently a discussion about how flexibility ain't quite all its said to be.
+[2023-03-21T16:39:52.117Z]	<Transcriber>	mprorock: Yeah there's there's I mean there's a bunch of stuff in it honestly like Baba actually I like this kind of conversation because I think it's going down some interesting especially meta type like you know how can we improve things are we putting effort in the right places etcetera but but I'd say let's probably table it for now and take the conversation to the list just because I Seek You stacking up and I want to make sure or he has 10 minutes at least four.
+[2023-03-21T16:39:52.602Z]	<Transcriber>	mprorock:  demo followed by a question or two.
+[2023-03-21T16:39:56.399Z]	<Transcriber>	bobwyman: Okay sorry if I go too far off track.
+[2023-03-21T16:39:56.942Z]	<Transcriber>	Orie: It's great is it ready.
+[2023-03-21T16:40:06.270Z]	<Transcriber>	mprorock: If that works for you oh yeah yeah no worries yeah it's a cool topic and that's why it's easy to go away who you know way deep in lots of different directions on this so many.
+[2023-03-21T16:40:34.060Z]	<Transcriber>	Manu_Sporny: Yeah just real quick to try and address Bob's concern the fundamental differences are the webfinger the the file that you get at the other side is a totally different data format from the from the did spec there's no compatibility with the rest of the did methods so you know it would be kind of a one-off you know for webfinger it was considered but you know webfinger was.
+[2023-03-21T16:40:34.520Z]	<Transcriber>	Manu_Sporny:  kind of you know.
+[2023-03-21T16:41:06.002Z]	<Transcriber>	Manu_Sporny: Specifier in webfinger it was just designed for kind of a different problem space you can step back and go like oh yeah I can see how there are more or less the same thing and that's true but the problems come in when you go to implement right lawyer where you go to implement key formats and file layout and yeah exactly that's where everything kind of falls apart that's it.
+[2023-03-21T16:41:11.554Z]	<Transcriber>	mprorock: Yeah compliance with the data model itself and stuff like that yeah yeah yeah cool yeah awesome thanks man who and or you want to dive into demo and then we can take a few questions here.
+[2023-03-21T16:41:12.899Z]	<mprorock>	q?
+[2023-03-21T16:41:17.452Z]	<Transcriber>	Orie: Sure so I have running in this tab that web server command.
+[2023-03-21T16:41:36.192Z]	<smagennis>	zoom in please
+[2023-03-21T16:41:48.402Z]	<Transcriber>	Orie: This MPX serve of the WW origin and that's what is meaning this localhost pieces up here and then over here I have the an grok binding and you can see these you know server logs are reporting to me every time a resolution occurs so if I go to a resolver like this resolver processes did documents that are well formed json-ld and it makes you this like.
+[2023-03-21T16:41:49.062Z]	<Transcriber>	Orie:  little graph.
+[2023-03-21T16:42:20.587Z]	<Transcriber>	Orie: So you can you know look at the different components and pull them around zoom in and out of them in 3D space or whatever I was I made this resolver to basically highlight the cool part of json-ld and the did course back you can see you know all of these different relationships here for this one particular key and then you know you can see other details about that particular key you can see blank note identifiers Everyone likes to look at those.
+[2023-03-21T16:42:23.636Z]	<mprorock>	https://lucid.did.cards/
+[2023-03-21T16:42:36.296Z]	<Manu_Sporny>	Very cool demo! :)
+[2023-03-21T16:42:49.097Z]	<Transcriber>	Orie: Like you know this particular format this only works because this is a well-formed json-ld document and every time you know I refresh this you can see another resolution so I'm tracking my own resolutions on my did basically here and if I look to another resolver so different web origin and I resolved again it's going to trigger another one of these here.
+[2023-03-21T16:42:49.575Z]	<Transcriber>	Orie:  inside of an grok.
+[2023-03-21T16:43:21.069Z]	<Transcriber>	Orie: Deeper at these so this is like their minimal interface that they provide but they have full request response introspection available here which can be really helpful if you're debugging something detailed but the important thing to note here is that this is just the well-known did Jason so I don't know what the user is trying to do with the did document like I don't know if they're trying to look at a specific verification method there's only one verification method good chance that that's what they're looking.
+[2023-03-21T16:43:21.513Z]	<Transcriber>	Orie:  for here.
+[2023-03-21T16:43:56.544Z]	<Transcriber>	Orie: I have hundreds in here and then I wouldn't necessarily know which key they were trying to use and for what purpose and similarly for service you know endpoints like there aren't any service and points in this particular did document but if there were I would just see resolutions of the did Jason I wouldn't know exactly what they're trying to do here but just having that timing information can be a big problem like if you imagine this wasn't me self-hosting but instead this is me.
+[2023-03-21T16:43:57.208Z]	<Transcriber>	Orie:  me and to some degree and rock is still seeing some of this transaction.
+[2023-03-21T16:44:33.370Z]	<Transcriber>	Orie: So if I you know if this weren't you know for development and testing purposes maybe I'm concerned I'm leaking did resolutions to and rock because they can see each did resolution that's happening as a result of this well-known did Jason but again this is for one origin and this is me self-hosting that's very different than if you look at the server logs for this resolved or here where this resolver is going to have resolution logs for every did method that's resolved through it.
+[2023-03-21T16:44:33.594Z]	<Transcriber>	Orie:  so the point here is you know if you.
+[2023-03-21T16:45:09.132Z]	<Transcriber>	Orie: If you want to use did web and grok and a Json file and a simple web server is really really easy way to get started and if you want you know to take the entire thing down you just killed it and Iraq instance and when you go to resolve it not going to resolve on any resolvers anymore and the wet local webservers up but the tunnel is down and like that's that's the whole sort of Point like you you were basically adding in these.
+[2023-03-21T16:45:10.075Z]	<Transcriber>	Orie:  these layers to serve Json files and that lets you easily update the.
+[2023-03-21T16:45:11.974Z]	<Transcriber>	Orie: Machine you don't have to.
+[2023-03-21T16:45:19.301Z]	<Transcriber>	Orie: Push anywhere you just change the file and it's going to change the behavior on the web server.
+[2023-03-21T16:45:19.436Z]	<Transcriber>	Orie:  that's it.
+[2023-03-21T16:45:28.336Z]	<Transcriber>	mprorock: Cool thank you sir Patrick I see you on the queue.
+[2023-03-21T16:45:57.279Z]	<Transcriber>	Patrick_(IDLab): Yes I usually have a few questions try to be sensible of time sometime I get over myself this is it was very interesting I've been looking at did web for the last two weeks or so like I mentioned beginning I'm trying to do like some prototype proof of concept implementation for the an incred specification so without going into too many details there's a requirement.
+[2023-03-21T16:45:57.610Z]	<Transcriber>	Patrick_(IDLab):  to sort of.
+[2023-03-21T16:46:29.528Z]	<Transcriber>	Patrick_(IDLab): Serve other type of documents than a did Json documents mostly just Json structure that are necessary to process the type of credentials that are issued and verified and upon my research I came to the conclusion that the best way to do that would be to use services in the documents and so more specifically I think.
+[2023-03-21T16:46:30.135Z]	<Transcriber>	Patrick_(IDLab):  think like a sort of a file storage.
+[2023-03-21T16:46:41.925Z]	<Transcriber>	Patrick_(IDLab): Service that would resolve these document so my first question is how I can.
+[2023-03-21T16:46:55.551Z]	<Transcriber>	Orie: Yeah so you can't you can't just take did web and get the behavior you want there because what you're really asking is I need a resolver that knows how to handle related resources in the URLs right.
+[2023-03-21T16:47:12.500Z]	<bumblefudge>	nginx rules?
+[2023-03-21T16:47:28.024Z]	<Transcriber>	Orie: Yeah so you need a resolver to do that and resolver might be able to process the path component of the did URL or process query parameters in a did URL and that resolution process would usually the way that it works it would resolve the did document then it would use the did document to resolve the relative resource or external resource and it would do that by processing the other components of the.
+[2023-03-21T16:47:28.446Z]	<Transcriber>	Orie:  did your El.
+[2023-03-21T16:47:36.215Z]	<Transcriber>	Patrick_(IDLab): Exactly so let's say I have a service which is my resolver which is I think what you're referring to.
+[2023-03-21T16:47:50.663Z]	<BrentZ>	present+
+[2023-03-21T16:47:54.761Z]	<Transcriber>	Patrick_(IDLab): If I if in my did document I use one of the service let's say I want to one of the examples like a shimmering so I need to publish some scare Maya is like a defined data model so I have one of my services could be like Shimmer resolver let's just pretend.
+[2023-03-21T16:48:22.920Z]	<Transcriber>	Orie: Yep wait but you need that web service that knows how to handle did your Ells that point to resources that aren't in documents at web service is a resolver and resolvers are not standardized so you know you have the whole you can read the did resolution spec it's a draft in the ccg you know it's going to handle that one way other people can Implement other ways to handle did urls.
+[2023-03-21T16:48:23.394Z]	<Transcriber>	Orie:  yes and this is its.
+[2023-03-21T16:48:33.007Z]	<Transcriber>	Orie: With did core like this is an area of the working group wanted to do more but you know our Charter forbid us from making this easy.
+[2023-03-21T16:48:39.465Z]	<bumblefudge>	https://github.com/w3c-ccg/did-method-web/issues/61#issuecomment-1201181499
+[2023-03-21T16:48:46.695Z]	<bumblefudge>	^ This might help
+[2023-03-21T16:48:57.632Z]	<Transcriber>	Patrick_(IDLab): Okay because at the moment my way of thinking was to use like it did web URL with query you know parameters with the service and the relative reference I think it's called it's not pretty you know and I'm wondering what's the point of this service query the service parameter if it points in the did document to.
+[2023-03-21T16:48:58.162Z]	<Transcriber>	Patrick_(IDLab):  like that.
+[2023-03-21T16:49:03.388Z]	<bumblefudge>	but orie's right on the resolution side
+[2023-03-21T16:49:04.074Z]	<Transcriber>	Patrick_(IDLab): Fragment could I just use the fragment directly instead of a service parameter.
+[2023-03-21T16:49:27.350Z]	<mprorock>	q?
+[2023-03-21T16:49:34.501Z]	<Transcriber>	Orie: So usually the fragments are for referring to sub resources in the document that you resolved with a specific media type so they're not really great for identifying external resources that's not their primary use there to there to identify sub resources in a result document the purpose of the service parameter and the relative ref you know features and these are extensions too.
+[2023-03-21T16:49:35.051Z]	<Transcriber>	Orie:  Decor that are in the did Speck Registries was to give.
+[2023-03-21T16:50:07.679Z]	<Transcriber>	Orie: There's a way to create did URLs for resources that they are in control of without binding to a specific location so I could have an ipfs Gateway that I use to host ipfs content and I can make did relative ref did URLs for ipfs hashes and then if that Gateway service provider goes away I just change their service and point out and all the did URLs are still the same but the ipfs Gateway that's.
+[2023-03-21T16:50:07.911Z]	<Transcriber>	Orie:  used to resolve is no different.
+[2023-03-21T16:50:40.943Z]	<Transcriber>	mprorock: Yeah Brent I see you on the call so I'm going to put you on the spot because I know at least At Last he pack some discussion came up around standardizing some of the resolution side and things like that to get at these issues and what's your sense of where things would be going possibly in the future from a did working group reformation and you know potential work.
+[2023-03-21T16:50:46.296Z]	<mprorock>	q?
+[2023-03-21T16:51:10.526Z]	<Transcriber>	BrentZ: So did working group right now is you know on extension while we work on a draft of the new Charter the primary work in the new Charter is to maintain the did course back there was conversation around some possibly additional things did methods and did resolution primary amongst them even if the did working group Charter in ends up including.
+[2023-03-21T16:51:10.878Z]	<Transcriber>	BrentZ:  those things.
+[2023-03-21T16:51:38.870Z]	<Transcriber>	BrentZ: It wouldn't result in a normative specification within the next couple of years most likely it would be for the group after the next group to more formally address those as part of the did work.
+[2023-03-21T16:51:51.031Z]	<Transcriber>	Orie: But just to be clear on the point I think the current did working group can work on documents of a pre candidate recommendation draft status that would be related to standardizing specific did methods or standardizing specific did resolution processes that correct.
+[2023-03-21T16:52:04.740Z]	<Transcriber>	BrentZ: It is proposed that the next did working group would have that in its Charter yes.
+[2023-03-21T16:52:08.055Z]	<Transcriber>	Orie: Right yeah the charter is Charter text has recently received a pull request that emerged that and the charter text is not yet been voted on I think right.
+[2023-03-21T16:52:15.030Z]	<Transcriber>	BrentZ: Write the next step is presenting it to the AC and having a conversation with the rest of w3c around how they feel about our proposed new chart.
+[2023-03-21T16:52:23.246Z]	<Transcriber>	mprorock: I am sure that will go flawlessly and perfectly smooth.
+[2023-03-21T16:52:30.262Z]	<Transcriber>	Orie: And I guess you'd have to be on the AC members list to participate in that conversation because it'll it won't be open.
+[2023-03-21T16:52:38.147Z]	<Transcriber>	BrentZ: It is formally a conversation amongst AC representatives for w3c member organizations.
+[2023-03-21T16:52:59.454Z]	<mprorock>	q?
+[2023-03-21T16:53:15.771Z]	<Transcriber>	mprorock: Cool well with that I see we're coming up towards the top of the hour there's been a goal for us to not run this meeting much Beyond 5 minutes to the top of the hour since everything seems to be running back to back these days I am going to just check the queue and see if there's any kind of final questions comments and otherwise I'm going to let already closed down and thank him for his time because this was extremely helpful and a nice thorough Deep dive.
+[2023-03-21T16:53:36.963Z]	<Transcriber>	Orie: Awesome thanks always fun to present on something technical I'll give a PDF of the slides to the chairs for the for the list notes and if you have any questions their repository with all the code for the demo is public and it's linked in the slides and feel free to file issues their message me in the dip Slack.
+[2023-03-21T16:53:38.104Z]	<Harrison_Tang>	thank you, Orie !
+[2023-03-21T16:53:42.638Z]	<Manu_Sporny>	Great presentation, thanks Orie!
+[2023-03-21T16:53:46.405Z]	<Transcriber>	mprorock: Awesome thank you so much mr. orry with that everyone please have a wonderful day and we will close.

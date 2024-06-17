@@ -1,0 +1,739 @@
+Thanks to Our Robot Overlords and Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-06-04/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-06-04/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-06-04.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-06-04
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jun&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords and Our Robot Overlords and Our Robot Overlords
+Present:
+  Harrison Tang, Hiroyuki Sano, Japan, GregB, Bob Wyman, DAVID 
+  WAITE, Rashmi Siravara, Gregory Natran, Will Abramson, Nis 
+  Jespersen , TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), 
+  Dan Yamamoto, Kimberly Linson, Erica Connell, Jeff O / HumanOS, 
+  PL/T3, Alex H, Jennie M, Tim Bloomfield, Manu Sporny, Nate Otto, 
+  David Waite, Yusuke Ikunaga, Dave Longley, Przemek Praszczalek, 
+  Daniel Buchner, Wes-Smith, Ted Thibodeau, Laura Paglione, 
+  Benjamin Young, Kaliya Young, Dmitri Zagidulin
+
+Our Robot Overlords are scribing.
+Harrison_Tang: I think it should work now hold on a second but it 
+  doesn't.
+Harrison_Tang: All right I think it should work even though it 
+  didn't say sporting started no.
+Manu Sporny:  If it didn't say.
+Manu Sporny:  It's not recording Harrison um it'll it'll fail and 
+  then you can retry it and it should work again.
+Harrison_Tang: Oh okay all right let me start.
+Manu Sporny:  It'll capture the text though.
+Harrison_Tang: Okay let me uh stop and.
+Harrison_Tang: No actually hold on let me restart it give me a 
+  second.
+Our Robot Overlords are scribing.
+Harrison_Tang: Right wherever you go.
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2024May/0081.html
+Manu Sporny:  Hey all um thanks well um we we made this 
+  announcement on the uh mailing list but we uh just released a new 
+  uh specification called verifiable credential barcodes and I'll 
+  put that in the chat channel here.
+Manu Sporny:  Um and basically what this new technology allows 
+  you to do is it allows you to embed a verifiable credential uh 
+  into like a driver's license or an identity document a physical 
+  identity document of some kind um and basically adds a digital 
+  signature to protect the uh driver's license or employment 
+  authorization document or naturalization certificate or a variety 
+  of other documents like this um uh.
+Manu Sporny:  So that's specs kind of out there we're looking for 
+  other people to join us uh to help edit the specs so if you're 
+  interested in supporting the spec please jump in and um uh add 
+  yourself to kind of the list of people that would like to edit 
+  the spec um we also this morning made an announcement that there 
+  is a demonstration website that you can use so you can actually 
+  like load up this website on your phone and turn your camera on 
+  and scan uh the examples in the specification and it will tell 
+  you whether or not the signature is good and or whether or not 
+  the verifiable credential you know is valid and that sort of 
+  stuff um we also have physical cards that we can ship to you so 
+  if you would like a physical card um.
+Manu Sporny:  That embeds this technology.
+Manu Sporny:  In it um please fill out the form give us you know 
+  your email and and in mailing address it doesn't have to be your 
+  home of course um and we will get.
+Manu Sporny:  Cards shipped off to you uh so you've got some 
+  physical examples that you can uh try out and show people if you 
+  want uh happy to answer any questions on the mailing list um 
+  about any of this new tech that's it.
+<tallted> manu -- abstract link -- 
+  https://digitalbazaar.github.io/verifiable-barcodes/#abstract -- 
+  is 404
+Manu Sporny:  West West Smith will be presenting yes in August on 
+  this technology yep.
+Gregory_Natran: Oh I was just going to ask Manu uh sorry is this 
+  is this the spec underlying some of the uh verification stuff we 
+  saw yesterday or sorry yesterday last week from uh DHS.
+Ted Thibodeau:  Has been moved here: 
+  https://digitalbazaar.github.io/vc-barcodes/ [scribe assist by 
+  Dave Longley]
+Manu Sporny:  Yes correct so this is the same technology that it 
+  was announced that is going into the uh California driver's 
+  license in the United States so 27 million people in California 
+  have uh a driver's license and this technology will be used to 
+  secure those documents uh it was also announced 2 weeks ago that 
+  this same technology will be going into uh future.
+<dave_longley> need to get a redirect working for that.
+Manu Sporny:  Physical identification documents issued by US 
+  citizenship and immigration services including the permanent 
+  resident card employment authorization documents citizenship and 
+  Naturalization certificates and that's Nationwide uh in the US.
+GregB: I may allow sharing.
+Our Robot Overlords are scribing.
+GregB: To talk about BBS Basics okay and that was a just over a 
+  year ago okay so things have matured quite a bit okay we're in 
+  our final cryptographic review of the BBS spec and things like 
+  that we'll talk about that in a sec today I'm going to talk 
+  about.
+GregB: And review verifiable credentials data Integrity so what 
+  do I mean by that okay gonna review BBS but not as in depth as 
+  the last time.
+GregB: And we're going to talk about in particular how do we 
+  combine the 2 how do we get BBS messages whatever those are which 
+  I'll remind you of from Json LD how do we specify mandatory and 
+  selective disclosure of our Json how do we put this together and 
+  why do we have 2 different types of proofs based and derived 
+  okay.
+GregB: So who am I um and invited expert now I'm semi-retired how 
+  do you become an invited expert well you can help go edit a lot 
+  of documents so I've been working on the data integrity and the 
+  cryptographic Suites like eddsa ecdsa nbbs.
+GregB: And if you are having trouble in your implementations if 
+  your implementer.
+GregB: There is open-source code that I use to produce the test 
+  vectors.
+GregB: Okay and if you're not verifying the test factors get in 
+  touch with me because we might have made a mistake this is what 
+  we do if particularly even over in the ietf we're working on the 
+  BBS spec we try not to update our document until we've got a 
+  couple folks that have verified the test vectors with each change 
+  we do I've also got open source implementations I was checking 
+  the specs as I worked on them as an editor so for the ecdsa SD 
+  BBS okay and that's actually the fundamental BBS implementation 
+  of the cryptography.
+GregB: Our data Integrity V VBS and I've got a little tiny server 
+  so I can use my stuff in interoperability testing okay and this 
+  is Tiny okay this is a node.js uh express.js implementation 
+  suitable for anybody to use including all the way down to a a 
+  wind surfing club uh that might want to issue uh credentials to 
+  say who knows how to take their stuff off the dock and not leave 
+  a mess okay.
+GregB: I'm also working with the ietf BBS specs okay and we've 
+  got a couple new ones coming out for some features that we want 
+  for BBs.
+GregB: So that's me that you can get a hold of me easily and all 
+  those things are.
+GregB: The this presentation has been uploaded and the links are 
+  in the uh email that I sent out in response to Harrison so VC 
+  data Integrity what do I mean by this.
+GregB: Is we're starting with the credentials data model OKAY the 
+  Json LD V2 data model okay it's got an information it's got a 
+  section all about verifiable credentials that tells you what 
+  needs to be in there I am concerned here with an embedded proof 
+  as compared to an enveloping proof.
+GregB: This is the.
+GregB: Thing where we add into the credential.
+GregB:  the J.
+GregB: Nissan credential a proof field that has all the stuff we 
+  need for the proof.
+GregB:  what do we.
+GregB: Need for the proof.
+GregB: Handled by the verifiable credential data Integrity spec.
+GregB: This tells you what the proof field should look like okay 
+  and this also adds stuff for producing those parallel signatures 
+  you've heard of proof sets and proof chains.
+GregB: Okay I take a very simplistic point of view about it what 
+  is the Json look like.
+GregB: J for a verify credential with the data model it's got to 
+  have a certain set of required Fields not very many actually just 
+  for.
+GregB: And a credential subject.
+GregB: Okay I found out that the issuer is required when I was 
+  trying to be participate in our operability tests hang and I left 
+  that off.
+GregB: How could you have a credential without an issue or you're 
+  saying okay there are a variety of other fields you can add in.
+GregB: But we have these essential ones okay so that's what the 
+  data model sets now.
+GregB: Talking about it embedded proof.
+GregB: That's dictated by the data Integrity spec.
+GregB: And it tells us what the proof feels should look like it's 
+  got a set of required Fields type proof purpose verification 
+  method that gets us the public key thinking about it from proof 
+  value.
+GregB: The actual string encoding of the cryptographic 
+  information and very importantly we specify what crypto Street 
+  we're using you can have a bunch of optional fields too.
+GregB: When we put these things together.
+GregB: We get a secure data Integrity secured credential okay so 
+  we see the credential required Fields here okay context ID.
+GregB: Oops I should have left the ID is not required it's 
+  optional type issuer credential subject where the both the 
+  information and look the proof field this is required okay and 
+  this is where the data Integrity stuff goes okay.
+GregB: So this is what um and the BBS verifiable credential BBS 
+  data Integrity spec it's about.
+GregB: And if you look the data Integrity specs you'll see this 
+  diagram which talks about going from the credential the data.
+GregB: The data with proof okay and we perform a transformation 
+  on the data.
+GregB: Lie in general previously we had hashed the data 
+  separately.
+GregB: Generate a proof by using a signature algorithm and 
+  bundling that stuff up.
+GregB: The general approaches all the information in the proof 
+  other than.
+GregB: Proof value we actually consider proof options the issue 
+  work comes up with that okay.
+GregB: We're going to take that stuff.
+GregB: Going to standardize it.
+GregB: What we call can canonize it or canonicalization okay and 
+  hash that.
+GregB:  the idea.
+GregB: That is we.
+GregB: Protect the proof metadata everything's got to be 
+  protected very few things aren't protected and most things are 
+  protected in this method cryptographically okay the unsecured 
+  document gets canonized okay and then gets hashed to protect the 
+  document and the documents metadata.
+GregB: The 2 hash get concatenated okay and then we.
+Ted Thibodeau: Correction: we don't canonize data; we do 
+  canonicalize data.
+GregB: Use a signature algorithm produced the proof bites the 
+  proof bites are then multibase encoded produce a string of proof 
+  value that's included in the proof field okay this is the general 
+  approach we've been using okay you may be asking what's this 
+  canonicalization.
+GregB: Well the same Json document.
+GregB: Okay can look very different you add white space you can 
+  reorder.
+GregB: The uh property values names okay that still is the same 
+  information okay.
+GregB: So changing the order of properties in the Json document 
+  doesn't change its meaning neither does adding white space 
+  between tokens so that's just an example of 2 items okay however 
+  if I took a cryptographic hash over the text of that.
+GregB: When I change those things get a very different result 
+  because that's what hashes do cryptographic hashes do so we need 
+  equivalent documents from the point of view of their meaning to 
+  produce the same hash okay solution we put it in the canonical 
+  standardized form there's various ways of doing this.
+GregB: Way is so here's the credential start if I use the JCS 
+  Json canonicalization scheme from uh okay it removes the wide 
+  spaces essentially and orders.
+GregB: The fields alphabetically of course it's really not that 
+  simple because there's always a lot of corner cases.
+GregB: Okay and there's 2 different canonicalization schemes we 
+  use unfortunately JCS is not usable for BBS or selective 
+  disclosure we'll see in a sec.
+GregB: BBS we talked about this before and let's just remind 
+  ourselves there was basics.
+GregB: Talk that I gave before which gave the history and things 
+  like that short answer is it's coming up to about 20 years old 
+  when Dan Bonet and his co-authors first published the idea it's 
+  been over 8 years since it was completely written up and rigor 
+  with proofs back in 2016 and we're almost done standardizing it 
+  at the ITF okay we have 1 last breaking change that's going in 
+  right now that was asked for by the people doing some embedded 
+  work.
+GregB:  to make it.
+GregB: To do things it doesn't it's not a cry it's not a security 
+  motivated thing it's so that they can produce some things easier 
+  by rearranging the order in which they take a hash anytime you 
+  change the order you do something and hash is going to produce 
+  different results there's also an in-browser demo which I'll 
+  actually even show you guys again.
+GregB: What are its fundamental properties and let's just go to 
+  the demo to take a look okay.
+GregB: BBS produces signatures which means public private key 
+  cryptography you'll have a private key and a public key.
+GregB: What's different about BBS let's look at the signature 
+  creation is it doesn't work on just 1 item it works on what we 
+  call messages BBS terminology calls the things.
+GregB: Messages they can be plenty long they don't have to be 
+  short okay.
+GregB: And we create a signature on those messages.
+GregB: BBS has the property.
+GregB:  that if.
+GregB: If I add a message.
+GregB: Create an updated signature.
+GregB: The signatures of fixed length for an arbitrary number of 
+  messages.
+GregB: Within the size of the finite fields and such where it's 
+  essentially arbitrary Okay so.
+GregB: Very space efficient for multiple messages Okay so.
+GregB: Second thing that BBS allows you to do once again.
+GregB: BBS works with a sign so we produce a signature creation 
+  we can look at the signature bundle produced here's the public 
+  key here's all these messages.
+GregB:  we can.
+GregB: Look and see did the signature verify.
+GregB: And obviously if we change 1 of these messages.
+GregB: Process the Json.
+GregB: It will vert won't verify okay.
+GregB: So mod so it's got the properties of a signature.
+GregB: Selective disclosure a tree goes into a bar to get a big 
+  glass of water.
+GregB: Doesn't want to reveal who he is but the bar requires that 
+  all trees have to reveal their date of birth.
+GregB: And their home.
+GregB: Roughly their home uh State Park otherwise they won't get 
+  served in California because we're tend to have droughts.
+GregB: Okay so we're only going to select a certain amount of 
+  information okay.
+GregB: So out of all that information just given.
+GregB: The signature and the public key not the private key so 
+  this would be the holder can select what they're going to reveal.
+GregB: And so I put bundle this up into a proof bundle.
+GregB: Okay there's the public key.
+GregB: Close messages there's some extra information telling 
+  which of the mess original messages I actually disclosed and 
+  here's this proof thing it's longer than the signature.
+GregB: Using just the public key of verifier.
+GregB: The proof and.
+GregB: If they try and lie about their age.
+GregB: Say they're older than they are.
+GregB: The proof form verify.
+GregB: So that's selective disclosure.
+GregB: Unlink proofs what is this about okay so we saw the tree 
+  tree driver's license we saw selective disclosure saw example 
+  proof there are times when you want to be tracked.
+GregB: If you are wind surfing on on the San Francisco Bay where 
+  there's huge container ships and tanker ships and ferry boats and 
+  things like that you might like somebody to know where you are.
+GregB: Here I am outside the Golden Gate Bridge and the fog's 
+  coming in.
+GregB: And there could be container ship traffic those things are 
+  7 or 8 stories uh.
+GregB: No they're taller than 8 stories tall from the water I've 
+  counted 7 containers stacked on them from.
+GregB: Deck as I've sat out here okay that's a good thing.
+GregB: On the internet we get tracked a lot that's not a good 
+  thing.
+GregB: I just got a notice from my health care provider that 
+  there was a data breach was it a data breach not really.
+GregB: The web designers for the healthcare provider had put 
+  pixels for Twitter and Facebook and things like that.
+GregB: Realized that by putting those on their website.
+GregB: They allowed those.
+GregB: Media sites to know every time I visit my health care 
+  provider When I visit them how often the exact time and date Etc 
+  okay now.
+GregB: We have a situation where verifiers could collude with 
+  each other okay you're going oh well how would they know who's 
+  who well.
+GregB:  in a.
+GregB: It's cryptographic information.
+GregB: Are highly unique okay if the data is different the 
+  signature has to be different okay that's we're using hash 
+  cryptographic hashes we're using cryptographic signatures okay so 
+  people could kind of tell from signatures if the same person 
+  visited verify or 1 and verify or 2 if they present the same 
+  credential.
+GregB: Okay verifiers conclude.
+GregB: Okay or verifiers could collude with issuers to be 
+  tracked.
+GregB: This is covered completely and documented in the uh.
+GregB: Uh BBS back uh no yes the BBS spec where we cover this 
+  because BBS is the only current selective disclosure scheme that 
+  provides unlikable proofs.
+GregB: So what do we mean by unlike Global proofs.
+GregB: Let's go back to the example.
+GregB: Or the demo where you can try this yourself.
+GregB: If I come up here.
+GregB: And click the create signature button.
+GregB: BBS is deterministic.
+GregB: The the version of we standardized okay so the signature 
+  doesn't change.
+GregB: If you give somebody the signature they'll know and be 
+  able to track you buy this unique information.
+GregB: Let's go down and look at the proof.
+GregB: Okay if I click the generate proof button.
+GregB: I get a new proof.
+GregB: If I click it again I get another proof.
+GregB: I click it again and again each 1 of these proof values I 
+  get the cryptographic information.
+GregB: Absolutely from a point of view of cryptography.
+GregB: Statistically different from each value previously 
+  generated.
+GregB: And the original signature.
+GregB: Is using the magic of zero knowledge proofs.
+GregB: Okay so the proof information itself.
+GregB: What you may have.
+GregB: And disclose maybe linkable look if there's only 1 tree in 
+  the jebidiah Smith Redwood State Park okay.
+GregB: And there's okay and they have their birthdays on them.
+GregB: Distinctly then I'm going to be able to tell okay there 
+  are a lot of trees in jebidiah Smith for I mean there are over a 
+  thousand probably probably way more than that because that's 1 of 
+  the major Redwood state parks okay and they don't identify their 
+  date of birth on the trees hence.
+GregB: We have what's known as a good anonymity set their.
+GregB: So we can generate these unlined.
+GregB: BBS is very good for this however.
+GregB: They do not prevent correlation on disclosed information 
+  okay.
+GregB: There is a whole important write up we added to the BBS 
+  spec which goes into a lot more detail on selective disclosure 
+  and on linkability okay shows 2 different types of tracking via 
+  verifier issuer collusion and verify or verifier collusion and 
+  looks at things from cryptographic Primitives from how we map 
+  things in and goes through this in depth okay so just because BBS 
+  provides unlink proofs doesn't mean that if you stick an ID in 
+  the middle of everything and make it uh in in disclose it.
+GregB: Doesn't you have reduced renamed e set to zero okay to 1 I 
+  mean.
+GregB: Okay so that's the caveat BBS can help a lot with this on 
+  LinkedIn but there's another piece to it.
+GregB: So we're done right.
+GregB: You just showed us how to oh wait these are messages this 
+  doesn't look anything like a verifiable credential does it know 
+  this is just Greg's example he just bundled things up into Json 
+  and passed it around within his example his demo of BBS this is a 
+  demo of BBS where yeah I use some Json but it's not a verifiable 
+  credential ah we got some work to do.
+GregB: So let's look at BBS API okay careful.
+GregB: There's BBS the BBS signature scheme okay produced by the 
+  ietf.
+GregB: And then there's verifiable credentials okay.
+GregB: We have terminology Collision both BBs.
+GregB: And verify viable verifiable credentials use the term 
+  proof and signature these can have very different meanings hence 
+  I'll use terms like BBS signature and BBs proof for cryptographic 
+  information generated by the BBS signature scheme.
+GregB:  and then.
+GregB: I'll try and use V verifiable credential VC data Integrity 
+  proof.
+GregB: So it's a signature scheme BBS it's got sign and verify 
+  okay sign uses a secret key Not Unusual what's unusual is it uses 
+  not 1 message or document or data that you're signing over but an 
+  array of messages and ordered array of messages.
+GregB: Verify uses the public key the signature and messages 
+  header.
+GregB: Actually some nice is a nice way of Furnishing Associated 
+  data along with the signature and we use that feature as part of 
+  the overall scheme of um putting a verifiable credentials into 
+  BBS okay but I'm not going to cover that detail that but you're 
+  seeing it here okay however.
+GregB: That's not all BBS has a second set of apis.
+GregB: Something called proof Jen okay this is the BBS proof 
+  generated by the holder.
+GregB: Okay utilizing the signature.
+GregB: Public key of the issuer but no private key of the issuer 
+  this is completely new okay oh to create that proof we Supply the 
+  messages and then we tell it which of that ordered set of 
+  messages we choose to disclose.
+GregB: Oh so this is our API okay then the verifier would use 
+  this proof verify.
+GregB: Underneath everything with the public key of the original 
+  issuer the BBS proof generated by the holder.
+GregB: And the disclosed messages they received.
+GregB: Oh and they need to know the indexes of those messages too 
+  out of the original set so they get the disclosed messages and 
+  the indexes okay are used by the verifier to validate okay so you 
+  can see we got some extra information besides just the messages 
+  we have to give them the disclosed indexes we got to give them 
+  the header etc etc okay.
+GregB: I have Json LD.
+GregB: Here's my wind surfing quiver consisting of a bunch of 
+  sales.
+GregB: And a bunch of boards.
+GregB: Meet up names because I'm not these are not actual Brands 
+  these are cities on Maui.
+GregB:  okay like.
+GregB: Quite leaner which we hope is recovering and Kihei okay.
+GregB: How do we go from this to a set of messages.
+GregB: That's key and an ordered set of messages and an ordered 
+  set of messages that doesn't care about things that are 
+  equivalent like reordering the.
+GregB: Names of the properties in Json LD and and Json LD is 
+  actually more General than just Json there's more different 
+  things with that you can do as far as meanings go.
+GregB: Okay they have Notions of things like sets not just 
+  arrays.
+GregB: Okay so how do we get from the messages or statements 
+  right each 1 thing so Json LD is a serialization storage and 
+  exchange format for the reson description framework uh oh I start 
+  getting scared when I see this stuff rdf is a graph-based model 
+  consisting of subject predicate object if needed containing graph 
+  or rdf oh boy let's look at a pitcher so let's take a look at my 
+  credential and the Json LD playground so this is my wind surfing 
+  quiver.
+GregB: If I look at visualized I see that all this nested 
+  structure looks like.
+GregB: Not the kind of graphs I'm used to with networking this is 
+  kind of a more simple graph and as cyclic graph there's no Loops 
+  okay so the.
+GregB: The credential itself has a type it's a verifiable 
+  credential it's got an issuer it's got a credential subject oh 
+  okay that's the high level then the credential subject has a sale 
+  number.
+GregB: Set of sales.
+GregB: My sales okay oops it's missing my 50 which I used 
+  yesterday never mind okay got a set of boards okay.
+GregB: So each 1 of these represents statements okay look the 
+  sale number okay Earth 101 board name okay all these different 
+  things get turned into statements.
+GregB: And the canonicalization of this with this thing called 
+  rdf canonicalization is it going to produce a consistent set of 
+  ordered statements.
+GregB: Okay for equivalent jsons canonized will produce the same 
+  set of statements in the same order that's exactly what I need 
+  for BBS because it's an ordered set of messages without that I 
+  can't do BBS because I need to do things based on a set of an 
+  ordered set of messages where I sit there and say what index of 
+  those messages am I revealing.
+GregB: Time check we're gonna make it okay so we already saw the 
+  example set of messages.
+GregB: Highly readable there.
+GregB: No we're not going to make developers or users deal with.
+GregB: The canonical version of the Json LD.
+GregB: The issuer of.
+GregB: A b 1 of these BBS credentials has the option to specify 
+  some statements must be revealed mandatory reveal okay and a 
+  holder as we saw before is going to want to selectively disclose.
+GregB: How do we do this in a friendly way or a standard way.
+GregB: It's not friendly.
+GregB: Something called Json pointers it's been standardized for 
+  a while now it's an ietf standard okay and it tells you.
+GregB: Nice string Syntax for identifying a specific value within 
+  a Json object within a Json document okay for example it can be 
+  as simple as slash issuer is used to match the issuer field.
+GregB: Is it really that simple yeah pretty much this document 
+  like all documents that specifies things like this has to deal 
+  with lots of complic with a bunch of weird Corner cases so when 
+  you read the document and look at the example you're going what 
+  is this stuff it's very complicated looking because they're 
+  dealing with a bunch of corner cases.
+GregB: With special characters okay.
+GregB: If I want to specify my sales number which I have to okay 
+  the race committee is going to make that mandatorily disclose 
+  because otherwise nobody can identify me on the water okay 
+  they're going to say sale number.
+GregB: That's pretty straightforward credential subject.
+GregB: Disclosed to sale number then it says you got to reveal 2 
+  of your sales okay.
+GregB: And the year of 1 year boards I just made this up.
+GregB: Race committees want to make you do that they have other 
+  restrictions and things like that and would certify your 
+  equipment okay you can use a variety of different Json pointer 
+  libraries and perform the matches okay that's what I did here 
+  this is all taken from the test vectors in the spec okay.
+GregB: To show people how to do this stuff step by step okay and 
+  behind the scenes.
+GregB: Stuff and that's what all this data if you ever wondered 
+  why under these selective disclosure functions and the and the 
+  ecdsa.
+GregB: Um document BBS reused a lot of these things they're about 
+  going back and forth between looking at the Json using Json 
+  pointers getting.
+GregB: The canonical form okay that we work with and such like 
+  that and back and forth okay right because the canonical form 
+  that we work with it gives us the list.
+GregB: Ordered list of statements that were going to use for BBs.
+GregB: How are we doing time wise we're going to make it.
+GregB: Let's put this together.
+GregB: Data Integrity base.
+GregB: There's 2 different types of proofs there's the 1 Crew 
+  type of verifiable credential proofs.
+GregB: That we're going to use okay create base proof is going to 
+  be used by the issuer.
+GregB: This is going to use.
+GregB: The BBS signature.
+GregB:  like we said.
+GregB: Before those are the things like created date.
+GregB: Crypto Suite BBs.
+GregB: 23 okay and that kind of stuff the public key information 
+  the unsecured document the credential without proof and the key 
+  material this is like what we've done before what's new is 
+  mandatory pointers okay how do you specify what's mandatory could 
+  be empty array of Json pointers the mandatory reveal okay what 
+  we'll do is we'll do similar to like we did before we can't not 
+  canonize the proof options produce a hash.
+GregB: We will take.
+GregB: Okay we'll take as inputs are mandatory pointers and 
+  secured documents produced mandatory hash over the mandatory 
+  statements blah blah blah blah blah.
+GregB: Okay we're going to take.
+GregB:  what's be.
+GregB: Comes our header of our proof hash and our mandatory hash 
+  and our messages become the non-mandatory quads deep information 
+  you don't have to worry about it we've got higher level functions 
+  that do all this for you okay.
+GregB: We package this all up we put things into the field uh the 
+  proof value field okay in a way where we can actually identify 
+  the difference between.
+GregB:  the space.
+GregB: And what we'll see next is derived proof okay so what does 
+  this end up looking like.
+GregB: It doesn't look too much different than what we've seen 
+  before okay here's all the fields here's our credential here's 
+  all my sales here's my boards.
+GregB: Okay the proof here data Integrity proof blah blah blah 
+  blah blah verification information proof value okay.
+GregB: But this is BBS particular okay this is a BBS base proof.
+GregB: Uh sorry verifiable credential it's the base proof and it 
+  used the BBS signature.
+GregB: Okay now what is the holder do the holder receives this.
+GregB: The holders got the secured document they do not send the 
+  secured document to a verifier no no no.
+GregB: You specify using selective pointers okay.
+GregB: Json pointers the fields day want to reveal okay.
+GregB: Ultimately inside we're going to use the BBS proof genen 
+  okay.
+GregB: Notice you use the BBS signature from the original issuer 
+  okay and it's never sent to the verifier.
+GregB: The messages are the non-mandatory quads and such like 
+  that that's down in the details okay.
+GregB: We're going to create.
+GregB: Selectively reveal document the document that only has.
+GregB: A certain subset oh only 2 of my sales.
+GregB: Information about both boards though okay.
+GregB: And we see a proof with the proof value this proof value 
+  is D is based on the BBS proof that zero knowledge proof thingy 
+  that I can make unique.
+GregB: Time for each time I visit the same verifier or for each 
+  verifier I visit okay I can create a new proof it's in the hands 
+  of the holder.
+GregB: Okay along with those fields they choose select to me 
+  reveal.
+GregB: So I went quick through this I didn't go through all the 
+  details we've got.
+GregB: All the details obviously in the specs.
+GregB: You can see all the test vectors too in this specs okay.
+GregB: Questions I know I went through that quick but I wanted to 
+  particularly hit the issue of.
+GregB: Json LD how do we get messages for use with BBs.
+GregB: How do we spec mandatory and selective pointers and we 
+  have 2 different types of proofs.
+GregB: Verify or credential proofs of Base proof and a derived 
+  proof.
+Dmitri Zagidulin:  I have a really simple question uh which is 
+  why are they called messages and not Fields or properties.
+GregB: I'm gonna blame these guys.
+<harrison_tang> haha, i have the same question, too
+GregB: Um and it came from.
+GregB: Takes the original paper.
+GregB: Um I'm glad they use messages because if it was properties 
+  that would have been even more of a collision.
+Dmitri Zagidulin:  That would I could see how that would be very 
+  confusing that makes sense.
+GregB: I mean statements could have been okay.
+GregB: Yes okay in let's see where am I right now I am.
+GregB: This is the base proof and the base proof example.
+GregB: What we do remember we I said hey we got to tell people 
+  the mandatory pointers and things like that I gotta convey some 
+  Header information we act up some other things and the BB raw BBS 
+  signature we take all those extra pieces that we have to convey 
+  and we actually use sibur and code for efficiency and we put a 
+  keyboard tag at the front of it okay that tells us the indicate 
+  the base proof.
+GregB: Zero blah blah blah blah and now if we go and look at the.
+GregB: If we look at the drive proof we'll see that the values 
+  are slightly different okay and this is similar to what was done 
+  in ecdsa SD.
+GregB: In a about a month I'm going to tell you about some 
+  features of anonymous holder binding and 2 different flavors of 
+  end uh a flavor of pseudonyms.
+GregB: Um which are very nice features to add on top of BBS.
+GregB: And we actually use some header bites there again so I've 
+  kind of summarized that.
+GregB: These optional feature optional feature summaries um.
+GregB: All the different proof header bites we might use note the 
+  optional features I just and I'm going to talk about those are 
+  provisional right now okay but I've got this little table that 
+  and there's a section that explains them and I'll be talking 
+  about them in about a month but yes so the person receiving 
+  approved can determine if it's the right type of proof for what 
+  they think it is and what I mean by proof I mean verifiable 
+  credential proof type.
+PL/T3: And that correct um quick question and the question is I'm 
+  assuming because this is a derived proof that neither the relying 
+  party or the verifier has any information about the fact that 
+  there may be.
+PL/T3: Or 8 other uh properties in the original Json LD 
+  credential that they're not disclosing they know nothing about 
+  what's not disclosed in terms of even the number that might have 
+  been present but which of which only through your shown something 
+  like that.
+GregB: Ideally yes okay.
+GregB: When I say that though.
+GregB: 1 of the things though that we do uh and we have to tell 
+  them is we have to tell them the selective indexes okay and so in 
+  this document.
+GregB: And when you deal with linkability.
+GregB: Okay you gotta be very we want to be very cautious 
+  because.
+GregB: Selective indexes hm you're just going to tell them which 
+  indexes you're using right.
+GregB: What happens if you had a very long College transcript 
+  with every course somebody took over 4 years.
+GregB: And you're going to select the courses you did best out of 
+  to show to certain class of employers.
+GregB: Those kind of circumstances that could those indexes 
+  themselves.
+GregB: Create something that's somewhat linkable okay.
+GregB: Even in the original BBS document when we talk about.
+GregB: We added this in there's security and privacy 
+  considerations we worry about things like hey the total number of 
+  messages will be known.
+GregB: So the index of the disclosed messages okay so we we we.
+GregB: We have to be careful because everything we try and do 
+  here we try and have.
+GregB: Rigorous statements okay about the security of things and 
+  so I will say that.
+GregB: Those indexes can reveal something just like the total 
+  number of messages we can reduce that obviously um by having a 
+  fixed number of messages for a certain class of documents okay so 
+  yes they will not know anything about those other things but I 
+  always worry we always want to be cautious about data leakage 
+  because we're cryptographers.
+PL/T3: Right so that it might be able to determine by subtracting 
+  those 2 things that I got um.
+PL/T3: Things out of 12 or 4 things out of 50.
+GregB: You won't know what they were.
+PL/T3: And but but I don't necessarily know that each message 
+  corresponds in your example for a transcript Court to a course 
+  get a message good correspond to things Beyond just courses 
+  correct.
+GregB: Yes there yeah I mean so there.
+GregB:  are ya.
+GregB: You got it.
+GregB: We in the data Integrity document.
+GregB: Term that got chosen was crypto Suite.
+GregB: Which is probably a little bit better for BBS because BBs.
+GregB: Both signature and zero knowledge proof of knowledge of a 
+  signature wow that's a long thing or BBS proof right so it's not 
+  I mean.
+GregB: They act like signatures with the holder is generating for 
+  verifiers and BBs but.
+GregB: Be told they're not accurately to call a signature so.
+GregB: I'm not sure it shows that nice language crypto Suite but 
+  I like it.
+GregB: Okay the time bell rang.
+<jeff_o_/_humanos> Thx All
+<harrison_tang> Thanks, Greg!  Love it!

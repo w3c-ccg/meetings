@@ -1,0 +1,587 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-08-02-traceability/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-08-02-traceability/audio.ogg
+
+----------------------------------------------------------------
+Verifiable Traceability Task Force Transcript for 2022-08-02
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Aug&period_year=2022&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Orie Steele, Mike Prorock, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Mike Prorock, Khalid Gobin, Orie Steele, nis, Ben - Transmute, 
+  Russell Hofvendahl (mesur.io), Vivien, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), Ted Thibodeau
+
+Our Robot Overlords are scribing.
+Khalid_Gobin: Yeah for sure my name is Khalid I am a software 
+  developer internet May vinet and it's nice to be working with all 
+  of you.
+Mike Prorock:  All all detours briefly Chris has actually gone 
+  this week so kudos to him for actually leaving like the front of 
+  his computer the but we Orient have been talking for a little 
+  while about doing like a walkthrough of how do what are best 
+  practices and really start to finish like json-ld for 
+  vocabularies because there.
+Mike Prorock:   Kind of some specific things there.
+Mike Prorock:  I think unless or he's going to be out of office 
+  to we should try to do that during the trace called next week and 
+  if so because that way I think most people will be out of 
+  vacation time and here and stuff like that I just wanted to make 
+  sure like we had as many people as possible around for that any 
+  quick feedback anyone from either the transmute may have Annette 
+  said anyone could be out next week or anything like that that we 
+  should think about before we schedule anything like that.
+Mike Prorock:   And I'm.
+Mike Prorock:  Silence is like I can send an email to the list 
+  that we're going to do that so.
+<tallted> fwiw I expect to be here next week
+Mike Prorock:  Great all right I'll send an email to the list to 
+  that effect so cool that was the only detour I think I aside from 
+  Ori since you and I spent last week having our brains full of 
+  things anything you want to note for my ETF that's relevant to 
+  this group just while we're here as a group or anything.
+Orie Steele:  I think that there is continued interest in the 
+  house E & Cozy representations for verifiable credentials so if 
+  you're not currently capable of issuing credentials and those 
+  formats you can consider whether or not you want to issue 
+  credentials in those formats we have some tests that cover some 
+  of that and I see.
+Orie Steele:  Posie & Cozy formatted verifiable credentials will 
+  change so I also understand if you don't want to implement them 
+  just yet because you know they're going to change that's really 
+  all I have to say about that.
+Mike Prorock:  Yeah yeah I will note that that seemed to be a 
+  running theme that I was encountering in a lot of different 
+  context but especially on things related to supply chain and ITF 
+  so so you aware if you're working on stats issuing and verifying 
+  credentials You Know bethink Thee for sure thinking about the 
+  future right and especially binary type stuff is we look at some 
+  volumes of data so and I think.
+Mike Prorock:  That's probably the last.
+Mike Prorock:  Detour and less.
+Mike Prorock:  What else has anything.
+https://github.com/w3c-ccg/traceability-vocab/pulls
+https://github.com/w3c-ccg/traceability-vocab/pull/503
+Russell_Hofvendahl_(mesur.io): Hey I think that was me.
+Russell_Hofvendahl_(mesur.io): No problem so this the biggest you 
+  last time was that I wasn't clear enough on this to provide a 
+  good explanation of why it was needed thank you Mike for 
+  elaborating on that the only other than that the only change is 
+  as requested how the value with multiple possible types handled.
+Mike Prorock:  And I queued up because I can talk to this a 
+  little bit because it's yeah it's a bit of a weird one and Ted 
+  and I think the initial read that I think both said and everyone 
+  else had and it was my initial read when presented with this by 
+  customer was that why right and what it actually boils down to is 
+  that we have a couple of customers and we're able to test you 
+  know throwing some.
+Mike Prorock:   Any kind of data their way just to see how they.
+Mike Prorock:  To adjust it they wanted a very sad way to say 
+  that here is this programmatic way to make a labeled you know the 
+  thing with some external reference number that they handle 
+  separately in their system right it's totally blind to anything 
+  going on with the Trade Center on stuff that then correlates that 
+  label in their system with some external value and and the.
+Mike Prorock:   Kind of.
+Mike Prorock:  They like the easy example to think of is where 
+  you have a customer that needs to reference for instance an 
+  external database identifier in some third party system that 
+  there is a pre-arranged you know rule set between the two parties 
+  the up I can send you this data and you know what to do with it 
+  in your system knows how to programmatically interpret something 
+  you got to credential of this type and you then have this 
+  business logic that steps in and says.
+Mike Prorock:  I've got a rule.
+Mike Prorock:  You know have in there and then based on that I'm 
+  going to go step down some other business logic somewhere and so 
+  rather than just saying oh yeah just make a claim and call it 
+  whatever you want that made people very very nervous right just 
+  exploiting the actual default behavior of VCS they actually 
+  wanted some names attached to it and also one of the type 
+  assigned to the like a defined type for this kind of icky bear 
+  effectively.
+Mike Prorock:   You know key value pair so that they could 
+  intercepted.
+Mike Prorock:  Handle it appropriately that may or may not have 
+  triggered some questions from folks in the group not sure so.
+Mike Prorock:  It's a loaded term yeah exactly.
+<orie> This PR is a disaster
+Mike Prorock:  Yeah well in in in a totally alternate path and I 
+  lost a language that they request because they effectively we're 
+  going after third party you know a very programmatic way of 
+  referencing third-party literal claims you know like here's an 
+  idea to go look up this additional data that will never make its 
+  way over here right you know the you know I think the terminology 
+  itself.
+Russell_Hofvendahl_(mesur.io): Terminology was it would be easy 
+  just to rename this third-party claim so it's less ambiguous.
+Mike Prorock:  You know I would you know that or external value 
+  right or something like that right so you know or keep are 
+  credential write something like that key value pair and it's just 
+  a very verbose way of basically saying there's key value pair 
+  that we explicitly know is going to reference some external 
+  system that's the goal right so we can bike shed the terminology 
+  our we want but that's what they actually.
+<orie> I feel like you don't undersand what JSON-LD is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I think this 
+  needs to be an issue before it becomes a PR I don't think that 
+  it's flushed out nearly enough to understanding either what these 
+  end users want or how the best way to handle that is first we 
+  really do have to be clear on what they need and how it is not 
+  addressed by what we've already got.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And we can 
+  hammer on what's the best way to deliver that thing that we don't 
+  already have.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Because it's 
+  been discussed a bit and apparently not fully understood also 
+  want to talk about how claims became credentials verifiable 
+  claims to The uninitiated Listener and also to an awful lot of 
+  initiated listeners suggest that the statement IE the claim.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Itself is 
+  verifiable so that you can confirm the factual nature of what is 
+  being stated and that is not what's going on.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Verifiable 
+  credentials what is verifiable is that the issuer said these 
+  things made these claims.
+<orie> TLDR, read the spec: 
+  https://www.w3.org/TR/vc-data-model/#claims
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There's 
+  nothing about their validity their accuracy anything like that 
+  it's only that Joe said that Frank is in the park that's it Frank 
+  may not be in the park.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): May not be a 
+  park at all Frank may not exist.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): But we know 
+  that Joe said that thing that's it.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And that 
+  being the case.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Not sure that 
+  this customer wish this end-user wish is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That's it for 
+  now.
+Orie Steele:  Yeah I mean I think we have some building blocks 
+  which were extending here and I think the challenge that I have 
+  with this pull request is it's Reinventing the building blocks 
+  that were using so from a data modeling perspective if we say you 
+  know json-ld and semantic data modeling that requirement we have 
+  a spec that defines sin.
+Orie Steele:   Tax for that and this.
+Orie Steele:  Using that existing syntax again to Define that 
+  existing syntax just it seems to miss the point of verifiable 
+  credentials or Json I'll be generally I think the if the 
+  customer's request is I want a way to have key value pairs that 
+  are unique or in some structured format good news is that json-ld 
+  handles that really really well and I don't know that you 
+  necessarily need.
+Orie Steele:   To do anything.
+Orie Steele:  Much more in order to accomplish that like the type 
+  you know the question is you're trying to define a key value pair 
+  are you trying to define a key value pair that's just a property 
+  or an rdf class what which one are you trying to Define I think 
+  that's that's where we should start because that's the language 
+  that Jason will be uses to Define key value pairs so I think.
+Orie Steele:  Should have a conversation on issues about it it's 
+  possible that maybe some basic education around json-ld would 
+  also help unblock the stuff a happy to do that yeah when I want 
+  to understand why it is that we're Reinventing json-ld in a 
+  vocabulary.
+Mike Prorock:  Yeah well and it's it's more as a way of an 
+  interface to people that cannot will not nor have no desire to 
+  work with json-ld want to treat this stuff just as Json and want 
+  a programmatic way to say hey here's this identifier I'm going to 
+  give you and here's a foreign key or some other value that you 
+  can use to go look that up in that thing that's it and it could 
+  literally just be a key value pair like if we.
+Mike Prorock:  Do your external reference or external okay said 
+  like pretty flexible on the naming here but it's going to be a 
+  market reality that we're going to see.
+<tallted> didn't we have something like "correlation"?
+Orie Steele:  So I'm cute to respond to that we are contact we 
+  are.
+Orie Steele:  Working on this vocabulary this is a json-ld 
+  vocabulary if there's disagreement now around whether or not 
+  that's what we're working on together I think we should just 
+  pause and have a longer conversation around that because there is 
+  ways there are ways to make json-ld sore friendlier to folks but 
+  there has to be some sort of shared a green around the value of a 
+  vocabulary and in the context of the work item as it's been 
+  developed so far.
+Orie Steele:   Far what you just said Mike is super.
+Orie Steele:  I don't really know how to effectively support 
+  folks who want to use a json-ld vocabulary but don't want to know 
+  what json-ld is.
+Ben_-_Transmute: Yeah you know for me my my kind of argument or 
+  question behind this is you know if the customer wants to have 
+  some key value lookup or some way to do that wouldn't you know if 
+  they just have some Json interface you know that they wanted 
+  program at they want to do you know could they do that outside of 
+  vocabulary you know is that just a script or program that they 
+  write that does this is this really something that would be 
+  committed.
+Ben_-_Transmute: Baseball cap or could you say you know.
+Ben_-_Transmute: The scripture hears it.
+Ben_-_Transmute: Your face feel free to use it outside of this.
+Mike Prorock:  Maybe yes maybe no but I don't think so and for 
+  one very good reason right if you think about putting a traceable 
+  presentation over.
+Mike Prorock:  We expect that everyone will have all of their 
+  data for all systems related to all things related to a supply 
+  chain or regulatory bodies Etc and this vocab and described in 
+  this vocab cool then I think then it's then we don't have a 
+  problem and we can kill this PR right but I think in fact I know 
+  realistically there will be an onboard time and a step-by-step 
+  type process and I'll give you a really good example which is 
+  Organic certification.
+Mike Prorock:   In the agriculture sector.
+Mike Prorock:  There are folks that will want to say look I've 
+  done the bare minimum to issue a VC that literally like I might 
+  not even do it right like I'm doing this real bare minimum you 
+  know almost hard coating it to say this you know ID you know 
+  number identifying the organic search that you can come look up 
+  in our system has such name attached to it and hands that to it.
+Mike Prorock:  Third party who then.
+Mike Prorock:  In a traceable presentation right there trusted 
+  there's a there's an agreement of business logic agreement 
+  between these people and a contractual agreement between these 
+  orgs that's the kind of situation we're going to increasingly run 
+  into as we start interfacing this stuff with the rest of the 
+  world right and and there and that's the issue is how do we then 
+  make it very as simple as possible to just our Bertie you know 
+  all on you know when needed say yep I've got this idea it's such 
+  a.
+Mike Prorock:  Or such and such foreign key that exists in an 
+  external system but I know enough about verifiable credentials to 
+  say yeah I want to sign that piece of data right but that's it I 
+  might not even know anymore than that right and I understand that 
+  sure it's not ideal it's not right it's not perfect etcetera but 
+  I but I think it's also practical.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's so 
+  starting from the base point that what we're building in this 
+  work item in this call is a traceability vocabulary.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Is there 
+  nothing in the existing vocab as we've built it that covers this 
+  is question one and question two is is this something that exists 
+  in the paper world that were theoretically Reinventing with this 
+  vocabulary or or not so much Reinventing as standardizing we're 
+  building an OE D in a sense of all the traceability forms that 
+  are being used and so we need the vocabulary to.
+Mike Prorock:  The paper yeah exactly yeah.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Of the 
+  filament blankly and if this doesn't if this is me just as a fill 
+  in this blank label then we're already going outside our remit.
+Mike Prorock:  Yeah Ted there's actually a really common paper 
+  example you see which is a letter that says it you know issuer I 
+  so-and-so right as the issuer about this subject right this 
+  person say that they have an import permit for X with 
+  such-and-such number or a organic search for such number it's 
+  literally that so it's precisely the use case for verifiable 
+  credentials it's just the barest minimum true.
+Mike Prorock:   Aimed down version of that.
+<orie> I suggest you review `@id` and `@type` :)
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The network 
+  they should use is a barest version trimmed down verifiable 
+  credential or they should attach maybe some binary exhibit to 
+  this.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): But that's 
+  that's where we're going here is we're talking bare-bones minimum 
+  and they're not willing to educate themselves about the 
+  bare-bones minimum they're using if you give somebody a hammer 
+  and they're not going to take the time to realize they should not 
+  use it on their head that's not our problem.
+Ben_-_Transmute: Yeah I could I could I think you know we might 
+  kind of want to move on to an after this so basically just a 
+  summary is the sounds like a like Evite this just seems like 
+  mapping a key value Jason pair to arraylist and verify the 
+  credentials for people who don't understand the json-ld I think 
+  that.
+Ben_-_Transmute:  that you know.
+Ben_-_Transmute: The purpose of this project is that we're 
+  defining a vocabulary in which we have structured data that can 
+  be grouped and and haven't already of representation so this 
+  doesn't feel like a stop Gap is much as if the claims and you 
+  know in this context aren't going to be mapped to anything it 
+  sounds like you could almost use at vocab and just have you know 
+  terms of floating or something like that it seems it seems like 
+  there could be it seems like you know a go.
+Ben_-_Transmute:  cat could be abused.
+<orie> `@vocab` + `@id` and `@type`.
+Ben_-_Transmute: Or what do you think.
+Orie Steele:  Yeah I think it's possible to do I mean there are 
+  as possible to do this and have term definitions that are 
+  somewhat useful it's possible to do it with term definitions that 
+  are useless and it's possible to do it while saying this is 
+  arbitrary Json I'm signing over it and I have no idea what it is 
+  you can do all of those things.
+Orie Steele:   Which of.
+Orie Steele:  Things are we trying to do you know I suspect based 
+  on the pull request we're trying to sign over terms that are 
+  meant to be interpreted in a generic way and I think that's very 
+  much achievable but my concern is that it's pulling the 
+  vocabulary in a direction that maybe isn't fully thought through 
+  and then the question is like well how does this approach 
+  integrate with all of the work we've done up until now.
+Orie Steele:   Because I think.
+Orie Steele:  Could easily start like patching less and just undo 
+  all of the vocabulary and go back to like signing simple key 
+  value pairs in and out vocab context with arbitrary Json inside 
+  of it and it might I could see a sort of like going all the way 
+  back that direction I'm not in favor of doing that I think we're 
+  here to create semantic Clarity and that means some extra effort 
+  has to be applied and then you need a way of signaling you know.
+Orie Steele:   No if you can't meet those.
+Orie Steele:  Eat that semantic Clarity bar as an issuer and yet 
+  you still want to issue credentials you should have a way of 
+  signaling that and are we actually have that today it's what you 
+  get when you just sign arbitrary Json within a vocab and you 
+  don't Define your terms properly.
+Mike Prorock:  I defer I kicked myself out of queue to let person 
+  case he was oh yeah.
+Mike Prorock:  Yeah yeah I'm going to I'm going to make a 
+  fundamental Point here that I think is important which is we will 
+  never go map every piece of.
+Mike Prorock:  Jack related to all vocabularies because otherwise 
+  we're going to do exactly the same cluster that exists for all of 
+  the mess of vocabs that are already out there so one of the 
+  things that I think we need to be cognizant of is do we or do we 
+  not at a fundamental level want to provide some way to represent 
+  a relationship between in our case a traceable presentation with 
+  some third-party system in a consistent program at.
+Mike Prorock:   Akin to find way so this is why I said this is a 
+  terminology.
+Mike Prorock:  Right you know and or you know bike shedding 
+  whatever we can kill this and we can reopen up and identical 
+  thing or a very similar thing but basically do we want to provide 
+  in the classic example in supply chain as sap do we want to be 
+  able to reference and say this issuer who runs this closed up sap 
+  system makes the following Claim about a subject right you know 
+  and you so we're using issuer in.
+Mike Prorock:   Objects same way that they.
+<tallted> have we defined this "traceable presentation"? or is 
+  that just a verifiable presentation using the traceability vocab?
+<orie> but this isn't a traceable presentation!
+<orie> its an endorsement use case
+<orie> ....
+Mike Prorock:  I have some pick arbitrary x y z table and a 
+  foreign key for instance right and yes Ted we have defined 
+  traceable presentation it's in the vocab it's a way of attaching 
+  a correlation ID to credentials that are presented together at 
+  the same time and and so if yeah correct or this is not a 
+  traceable presentation it's an endorsement use case that that 
+  you're exactly right just following the chat.
+Mike Prorock:   So how do we want to represent that.
+<ben_-_transmute> i think those gaps can be filled in with 
+  @vocab, i think our objective is to define richly defined 
+  vocabulary for specific document-types
+Mike Prorock:  That is a thing we need to provide an answer to 
+  assuming that we're not going to get immediate adoption or you 
+  know Etc of all things and have all database schemas Etc 
+  described but want to in a semantic way be able to represent that 
+  kind of foreign key relationship and I don't think yeah.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): This seems 
+  like this is an implementation guide this is a onboarding to the 
+  modern new way of doing things this is get away from your paper 
+  and get into the wire but I still don't have a solid use case 
+  that is not satisfiable given the things that we already have.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  I need.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I need to 
+  understand why how the things that we already have are not usable 
+  for this thing I think the correlation ID is right there and that 
+  correlation ID could be attached to a binary attachment it could 
+  be attached to arbitrary text can be attached to anything and 
+  that should deliver what is being asked for right now which is 
+  semantically empty.
+Orie Steele:  Mike can I take a stab at understanding your use 
+  case since we were clearly stuck on must this pull request so I'm 
+  a first-party issue of organic certificate for my farm so I am 
+  I'm a farmer and I'm signing and certificate it says this field 
+  here is organic.
+Orie Steele:  Start start me with the the an issuer first issuer 
+  making a claim about us.
+Mike Prorock:  The first issue are in this case would be a 
+  third-party regulatory body that comes in and perform something 
+  and assigns an ID of some kind right so in this case it will be 
+  in the use case we're talking about the actual organic certifier 
+  comes in and says Ah I've got this farm and their organically 
+  certified but I'm not.
+Orie Steele:  Okay so let me let me back up let's start with the 
+  subject what is the subject.
+Mike Prorock:  In that case that would be the farm.
+Orie Steele:  So the farm as an organization the entire thing 
+  okay.
+Mike Prorock:  Yes yeah we're some ID right reverence it did 
+  right.
+Orie Steele:  Right and in the first issue or making a claim 
+  about that organization is what what is the issue.
+Mike Prorock:  The first issue we're making the claim about that 
+  the issuer would be the organic certifying body.
+Orie Steele:  Okay so there's a legal entity that certifies Farms 
+  are the issuer they're claiming that a specific Farm is organic.
+Mike Prorock:  Yeah that's an example in organic is not a good 
+  one because and the reason I'm saying organic is not a good one 
+  as we can Define some basic credentials around this right but 
+  there are this is really like but it's that kind of a thing where 
+  yeah.
+Orie Steele:  Want to understand how far beyond the issuer makes 
+  claims about subject use case we have to go so if are we done and 
+  we if I have an issue.
+Orie Steele:  Okay so hold on.
+Mike Prorock:  Over because what they need to then say is not 
+  just issuer Organics it's not just organic search as the you know 
+  certifying body is the issue or saying that the subject has the 
+  existence of an organic thing right there at what they're 
+  actually doing is they're specifying that here's an IED for a 
+  type that I need you to go look up in my third party system 
+  organic sir tidy whatever and the chorus.
+Mike Prorock:   Clapping item.
+Mike Prorock: +1 Nis
+https://github.com/w3c-ccg/traceability-vocab/pull/506
+Ben_-_Transmute: For me okay I will just quickly give a short 
+  introduction to this poor past this is making a few lines change 
+  in regenerate that JS I realized that after the folder 
+  organization that we did were now that all the credentials are in 
+  one folder I can make the assumption that every single every 
+  single file in that folder is expected to have a proof and if it 
+  doesn't have a proof I can generate it or if the proof fails I 
+  can regenerate it and that's what these small line.
+Ben_-_Transmute:  organization is doing.
+Ben_-_Transmute: Okay either ping me or pull pin issue.
+https://github.com/w3c-ccg/traceability-vocab/pull/508
+https://github.com/w3c-ccg/traceability-vocab/pull/509
+<ben_-_transmute> merge out of call okay
+https://github.com/w3c-ccg/traceability-vocab/pull/510
+Ben_-_Transmute: Also I think we should probably add result of 
+  jazz to the getting nor file so that doesn't get committed so I 
+  will.
+Ben_-_Transmute: I think so it probably looks like you committed 
+  in the previous one and it's probably gonna it's probably gonna 
+  thrash for every for every poor request so we can we can fix that 
+  out a call and just say merge once files fixed.
+https://github.com/w3c-ccg/traceability-vocab/pull/511
+https://github.com/w3c-ccg/traceability-vocab/pull/513
+Russell_Hofvendahl_(mesur.io): I think we might have 512.
+https://github.com/w3c-ccg/traceability-vocab/pull/512
+Russell_Hofvendahl_(mesur.io): Yeah sure this is pretty 
+  straightforward EDD one of the suggestions with EDD appear that 
+  was merged last week was to change SHP to shape which makes a lot 
+  of sense keep things consistent so this that's all this does.
+https://github.com/w3c-ccg/traceability-vocab/pull/513
+Russell_Hofvendahl_(mesur.io): Yeah yeah this addresses all 
+  undefined terms in the nice Mama files that also where marriage 
+  last week.
+Russell_Hofvendahl_(mesur.io): So this doesn't this is doesn't 
+  affect anything outside of the nice my files.
+Russell_Hofvendahl_(mesur.io): Most of most of those a few issues 
+  where I just made blatant mistakes like with how with property 
+  names or maybe there was one case where there's a missing 
+  property there were also I think some cases where types needed to 
+  be defined better but yeah it was just kind of a cleanup thing.
+https://github.com/w3c-ccg/traceability-interop/pulls
+https://github.com/w3c-ccg/traceability-interop/pull/319
+Mike Prorock:  Woman pulling it up the are details because I 
+  looked at this.
+Mike Prorock:  Yeah the are details were reasonably constrained 
+  prior and so there were some problems in there so that's what he 
+  fixed so he gave it the ability to return a raise and Cetera from 
+  are details.
+https://github.com/w3c-ccg/traceability-interop/pull/320
+https://github.com/w3c-ccg/traceability-interop/pull/321
+https://github.com/w3c-ccg/traceability-interop/pull/322
+Khalid_Gobin: Yeah but as for me.
+Khalid_Gobin: Yeah so the idea of this was just tackle the issue 
+  of hosted Cosmic elections I was reading the Forum and I saw that 
+  the tasks were two further.
+Khalid_Gobin: Like we did we discuss it in the chat where we were 
+  talking about the host Postman Collections and you said every 
+  moving away from that so I just added how to import the postman 
+  collections in the readme.
+Khalid_Gobin: It is the other line.
+Khalid_Gobin: Yeah I have one question regarding issue 100 which 
+  is the hosted Postman collections.
+Khalid_Gobin: You okay yeah so you said that we need to add a 
+  list of collections to the Respec can you clarify what is the 
+  respect.
+https://w3c-ccg.github.io/traceability-vocab/
+https://github.com/w3c-ccg/traceability-interop/issues/100
+<ben_-_transmute> Respec document: 
+  https://w3id.org/traceability/interoperability
+https://w3c-ccg.github.io/traceability-interop/
+<ben_-_transmute> Location in repo: 
+  https://github.com/w3c-ccg/traceability-interop/blob/main/docs/index.html
+Khalid_Gobin: Yeah it does.
+https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+https://github.com/w3c-ccg/traceability-vocab/issues/241
+https://github.com/w3c-ccg/traceability-vocab/issues/178
+Ben_-_Transmute: She will put a tag on this if it's externally 
+  blocked or something too.
+Ben_-_Transmute: I can make the label.
+https://github.com/w3c-ccg/traceability-vocab/issues/327
+https://github.com/w3c-ccg/traceability-vocab/issues/344
+Orie Steele:  It's what this is I guess it's just a comment also 
+  about the way that we're labeling or undefined terms because as 
+  you read them they kind of come up with these camelcase fragment 
+  based your eyes and there's a number of sort of unfortunate side 
+  effects that come from that like one it makes the term definition 
+  very unreadable and maybe that was your goal but that's sort of 
+  like throwing you're going.
+Orie Steele:   Throw an exception you might.
+<ben_-_transmute> should we add "ready for PR"?
+Orie Steele:  Throwing nice exception right in the case of 
+  undefined terms it's not a thrown exception really if we're doing 
+  this at vocab mapping so I think we want to make it a little bit 
+  more readable a little bit friendlier to the folks that are going 
+  to produce tons of these I mean your first experience in json-ld 
+  as a Json developer is you're going to manufacture credentials 
+  with undefined terms that's what you're going to do and so we 
+  should be thinking about the.
+Orie Steele:  As of credentials and making them gentle but direct 
+  and so I think that changing the way we're handling at vocab 
+  there's options that we could there's things we can do like there 
+  that might be a little bit friendlier I think we should think 
+  about them I will leave some comments on the issue I think it's 
+  it's not done until we're done with undefined terms.
+Orie Steele:   Which will never be done with.
+Orie Steele:  It's other stuff to I'll leave a comment on the.
+Ben_-_Transmute: Should Mark this is right for PR.
+Orie Steele:  I don't think it's ready for PR I think it needs 
+  to.
+Mike Prorock:  Orange defining new terms.
+Ben_-_Transmute: Well know that way you can tell it was written 
+  by a true programmer.
+Mike Prorock:  Exam pant I mean it kind of makes sense it's an 
+  example expansion yeah.
+https://github.com/w3c-ccg/traceability-vocab/issues/324
+Mike Prorock:  Witnesses saying is that everyone except for 
+  obstinate me is well behaved.
+Orie Steele:  Archon I would just say I really appreciated having 
+  that conversation earlier Mike because it's this is what we're 
+  here to work on like we're doing a modeling issue and I think 
+  it's excellent and we should just refine it a bit more before we 
+  have such an open discussion on an issue but I think I like I 
+  like being able to also have these discussions and not just 
+  mindlessly cross issues with no commentary so I think.
+Ben_-_Transmute: Yeah I I really I mean I would have been I would 
+  have been more than happy to spend the entire hour if we didn't 
+  have for request to get through that was very tempting.
+Orie Steele:  Yeah that I think is correct like we should.
+Ted Thibodeau: +1 Vocal discussion is important and valuable
+Orie Steele: +1
+Mike Prorock:  Well we totally my bad because I literally called 
+  Russell from like I did some weird place and was like Hey can you 
+  Johnson code down and I what I should have said was jot this 
+  example down in an issue is what I should have done instead I 
+  said hey just fire up in a PR and see what people say and that 
+  obviously was the wrong strategy.
+<orie> but PRs do generate more conversation than issues :)
+<orie> lol
+Ben_-_Transmute: Have a great day.

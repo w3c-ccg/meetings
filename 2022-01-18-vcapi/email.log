@@ -1,0 +1,684 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-01-18-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-01-18-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-01-18
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Jan/0137.html
+Topics:
+  1. Intros and Reintros
+  2. Relevant Community Updates
+  3. Pull Requests
+  4. Issue Processing
+Organizer:
+  Manu Sporny, Orie Steele, Markus Sabadello, Mike Varley, Mahmoud Alkhraishi
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Joe Andrieu, Dmitri Zagidulin, Mike Prorock, Justin 
+  Richer, Mike Varley, Adrian Gropper, Markus Sabadello, Juancho, 
+  Eric Schuh, Kerri Lemoie, Brian Richter, Phil L (P1), Phil (T3), 
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), brentz, Brent 
+  Zundel, TallTed // Ted Thibodeau Jr (via iPhone)
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Alright hello everyone welcome to the VC API call 
+  this is January 18th 2022.
+Manu Sporny:  On the agenda today is just an agenda review which 
+  is what we're doing right now introductions and reintroductions 
+  if we need any we will then move on to relevant Community updates 
+  spend five minutes on that look at to pull requests around 
+  workflow apis and hope to try to at least have a tiny bit of 
+  discussion there put 30 minutes to it but we can move on from it 
+  if.
+Manu Sporny:  I don't want to dwell on that and then finally 
+  we'll be doing some issue processing as time allows and then any 
+  other business folks one are there any updates or changes to the 
+  agenda anybody want to talk about anything else today?
+Manu Sporny:  Okay if not we'll go ahead and get started.
+
+Topic: Intros and Reintros
+
+Manu Sporny:  See first up on the agenda is our introductions and 
+  reintroductions intros and reintros, is there anyone new on the 
+  call or anyone that has a chance had a change that wants to give 
+  us an update.
+
+Topic: Relevant Community Updates
+
+Manu Sporny:  Okay no introductions are reintroductions relevant 
+  Community updates does anybody have anything that the group 
+  should know about with respect to VC API or protocols or anything 
+  in general happening in the in the API space around verifiable 
+  credentials.
+Manu Sporny:  All right no updates there just forgot to mention 
+  that the verifiable credential 11 spec the final date to vote on 
+  that is today if you have not voted in favor of publishing it as 
+  an updated wreck please please do so it doesn't have a lot of 
+  boats on it and for those of you that can see the votes you'll 
+  see some very interesting commentary by a very big company.
+Manu Sporny:  It's on a good track it's just, anyway take a look 
+  -- 
+  https://www.w3.org/2002/09/wbs/33280/vc-11-2021-corrections/results
+Manu Sporny:  Any other community updates before we move on?
+Manu Sporny:  I guess it's worth mentioning that interrupts going 
+  to be a big part of this year with respect to kind of be Capi in 
+  some of the other stuff that we're doing in other spaces in I 
+  expect us to probably have an interop discussion not next week 
+  but the following week just to cover cover some interrupt things.
+
+Topic: Pull Requests
+
+Manu Sporny:  Dimitri I shared a link in the ccg minute sorry I 
+  don't have it in front of me right now but you should be able to 
+  find it in the Raw logs public logs there.
+<manu_sporny> Define Workflow APIs - 
+  https://github.com/w3c-ccg/vc-api/pull/255
+Manu Sporny:  Right on to pull request so the first pull request 
+  is about the workflow apis so just to remind everyone on the last 
+  call we talked in the fair amount of detail about the 
+  non-normative workflow API things it just you know the messages.
+Manu Sporny:   You know going back and forth.
+Manu Sporny:  Around credential refresh and how that could be 
+  generalized this PR pull 255 covers actually let me go ahead and 
+  share my screen here.
+Manu Sporny:  This PR covers a realization of that API so it 
+  actually defines it so PR 255 basically takes the non-normative 
+  text that we had last time moves it into a new section on 
+  workflows it adds two endpoints and defines them in open API 
+  specification.
+Manu Sporny:  It identifies that we're talking about 
+  generalizations to the exacting to the existing VC API and then 
+  it provides two diagrams one of them is the generic VCA Pi flow 
+  this kind of back and forth showing how the workflow calls are 
+  made so you basically request to start a workflow a verifiable.
+Manu Sporny:  Issuer/Verifier can request  information for from 
+  you in a way of interacting and then you respond back to that 
+  with a verifiable presentation with the things that for example 
+  the issuer asked for or the verifier asked for and then once the 
+  receiving app that you sure the verifier processes the 
+  information they let you know.
+Manu Sporny:  How it went so they'll either give you a new 
+  verifiable credential if you're refreshing or they'll say hey 
+  thanks I got that data looks good to me or they'll kick back an 
+  error or they'll say hey I need more information with you within 
+  additional interaction request there so there's a generalized 
+  flow in the spec now in that generalized flow is the exact same 
+  thing that we have proposed in the refresh spec.
+Manu Sporny:   Refresh is a specialization of the generalized 
+  flow in the in the VC API PR that's here let's see let me see if 
+  I can get a preview so the new section is here under workflows.
+Manu Sporny:  There are two endpoints workflows the name and 
+  start and then workflows in an active workflow ID and 
+  presentations so you either start a workflow and then you're 
+  asked to give it some data and you post the data at the 
+  presentations and point in these two are just kind of like 
+  works-in-progress the naming whether or not this is a design 
+  pattern or an actual endpoint URL still to be determined the 
+  interaction thing, here is the same one that you saw in the 
+  previous screen.
+Manu Sporny:  And then it's just got a whole bunch of you know it 
+  has the examples of the thing that we talked about last time it 
+  also talks about the start workflow here and it's got you know 
+  Json schema on validating it and Response Center codes and things 
+  of that nature so that's that PR 255 let me pause.
+Manu Sporny:  Any questions or concerns I see Mike's provided 
+  some feedback Marcus you provided some feedback and enough you'll 
+  want to elaborate on that here.
+Manu Sporny:  Go ahead Justin.
+Justin Richer:  There we go so my main question with this is that 
+  if that hey I need to get the user involved thing and a Marxist 
+  comment I think it was starts to touch on this can be abstracted 
+  in tough to be able to act as a jumping off point for a variety 
+  of different systems because this it it very much feels like 
+  WWW-Authenticate header style thing.
+Justin Richer:  You're basically saying I can't fulfill this 
+  request but here's the information that you need in order to go 
+  do some to do a different protocol to fulfill the request that 
+  you want right because it is it is about API access and that is 
+  an API response and this I think from my perspective is where 
+  Adrian's questions of meshing with things like GNAP really come 
+  into play where things like you know did come messaging and stuff 
+  really come into play is is in that part of the step.
+Manu Sporny:  Yes that is absolutely correct in what you just 
+  said is where the next PR picks up so the next PR talks about 
+  interaction and bootstrapping and other protocols and you know I 
+  can't do anything with you here you need to go over there style 
+  interaction so that is not.
+Manu Sporny:  The pr here is just kind of a general kind of 
+  structure but I think your comments Justin apply more to like 
+  interact if interact comes back and says I need you to go 
+  somewhere else and do something else I think that's where the 
+  majority of your comments apply if you just you know if all if 
+  all the response then you can just respond.
+Manu Sporny:  Clean that you know that could be the end of it.
+Justin Richer:  So I would actually like to push back on that and 
+  ask why that is a different thing because in both cases you are 
+  telling the client here's something that I need from you.
+Manu Sporny:  Yeah and so maybe it's not a different thing.
+Justin Richer:  And that's as so that's basically that's how 
+  we're treating it in cap and which is where so which is where I 
+  think that there are some similarities in the pattern here 
+  whether or not there's overlap and then abstraction in the 
+  protocol I think you know remains we figured out but this 
+  similarity is that I'm seeing in the pattern are are around that 
+  type of thing where sometimes.
+Justin Richer:  You talk to somebody else and go do a whole other 
+  protocol and then get back to you with something sometimes you 
+  just want them to answer a question that you're asking directly 
+  give me a verifiable presentation that answers.
+Justin Richer:  This query or what have you.
+Justin Richer:  But they're materially very similar there's 
+  semantically identical things where even though the process for 
+  fulfillment is very different.
+Manu Sporny:  Yep yep so I think we need to kind of as a group 
+  drill into that and see if there's stuff here we can simplify or 
+  if there's overlap where we can remove you know unnecessary 
+  differentiation and things of that nature Adrian you're on the 
+  queue.
+Adrian Gropper:  That was quick so having spent about a decade in 
+  the UMA context and then watching the healthcare people go and 
+  invent something called you'd App instead of adopting Boomer or 
+  looking forward to good nap I'm very sensitive to what Justin 
+  just said so I'll just leave it at that.
+Adrian Gropper:  There with what good app is now fixing that was 
+  not fixed before and the the healthcare specific approach I don't 
+  think it's going to catch on even in healthcare but they're doing 
+  it.
+<mprorock> <sarcasm>god forbid we recognize that this is a 
+  pre-standard, work in progress, commit stuff, then move move 
+  forward and improve</sarcasm>
+Manu Sporny:  All right thanks for that input Adrian okay if 
+  there are no other comments on this PR please take a look at it 
+  and tell us what you think of it that sort of thing the next PR 
+  up is in a different repo but this goes to what Justin was.
+Manu Sporny:   Was speaking to.
+Manu Sporny:  Is you might want to bootstrap into another 
+  protocol or they may be another protocol that comes into effect 
+  so in the verifiable presentation request spec which a number of 
+  vendors are using in this space like the traceability folks digit 
+  bizarre uses it there is a section on interaction so last I think 
+  it was a week or so ago.
+Manu Sporny:  For mediated presentation, you need a human being 
+  to step in and do something or you don't need a human being to 
+  step in and you can just respond through HTTP that takes 
+  basically verifiable presentation right so those are the two 
+  things that we had before but interaction as we talked about last 
+  week has you can provide a whole bunch of different ways of 
+  interacting in these are usually known as.
+Manu Sporny:   Has different protocols.
+Manu Sporny:  And so when you say I want to start a workflow in 
+  the response comes back to you in it there can be an interaction 
+  interact mechanism and it could for example be an open IDC 
+  credential provider interact mechanism where it expects you to 
+  then bootstrap into an open IDC credential provider approach so 
+  this is the work that matter has been working on.
+Manu Sporny:  To respond using open ID Connect credential 
+  provider there's a it says I understand that and you can go here 
+  to do that or if you wanted to interact in communicate over did 
+  calm so you wanted to switch from VC API into did Cam you have 
+  that capability through this Edition and you can list multiple 
+  interaction mechanisms so you can respond.
+Manu Sporny:  Just through VC API you can respond with open IDC 
+  credential provider you can do respond with did calm in the 
+  receiving server the issuer for example supports all three 
+  protocols or two or whatever you know it is so this PR is meant 
+  to demonstrate that we could bootstrap into other protocols.
+<adrian_gropper> UDAP Today: 
+  https://groups.google.com/g/udap-discuss/c/wdKGtb6d0b0/m/BDRw4jTHAAAJ
+Manu Sporny:  Through you know verifiable presentation request it 
+  tells you how it can interact now clearly the market it's best 
+  for the market if we could agree on one thing you know simpler if 
+  it solves all the use cases you know simpler security 
+  characteristics less code to go wrong you know all that kind of 
+  stuff but what we're trying to do here is kind of show.
+Manu Sporny:   All the different wallet.
+Manu Sporny:  Two calls that there is a way to go about this 
+  where not everyone has to choose to die on their own Hill right 
+  it's a we can at least agree to the mechanism in which we then 
+  bootstrap into a separate protocol which you know is is one way 
+  that we could go about this so This PR is pretty simple it just 
+  adds the oid see credential.
+Mike Varley:  Hi there can you hear me oh super first time using 
+  Safari here okay my question on the flow this is the the holder 
+  reaches out to the issuer in the very first call in order to get 
+  this message back that says how the issuer can interact correct 
+  for all cases.
+Mike Varley:  Yep yep no I can see it.
+Manu Sporny:  Yes yeah that's correct can you can you see my 
+  screen I'll try and point so on the on the diagram step one is so 
+  this is the generic flow but it lets assume holder on the left 
+  issue or on the right if holder reaches out to an issuer and says 
+  I want to start this workflow the issuer can respond back with 
+  that's great here's the information I need from you and here's 
+  how you can interact with me in that at that point.
+Manu Sporny:  And say I want you to interact with me using kind 
+  of the VC API or I want you to interact with me using open ID c-- 
+  credential provider or did convey to or wacky packs or this is a 
+  fully automated exchange just you know give me a presentation 
+  back in return all of those are options could the options.
+Mike Varley:  Okay so the slow step so this first API endpoint is 
+  like a almost like a dynamic Discovery API call.
+Mike Varley:  That would be kind of standardized through this API 
+  saying any wallet implementing this Dynamic Discovery can make 
+  this API call and then look for an interact response which then 
+  might switch them over to a did Chamorro IDC flow where that 
+  stack is fully implemented that's it I'm getting that sense I'm 
+  getting that flavor I don't know if that's the intention.
+Manu Sporny:  That is the intent I'd stop by you know I don't 
+  know if it's a discount I see how you could see it as a discovery 
+  mechanism it's really meant to be like I want to do this thing 
+  with you and then you say great here are the ways that we can 
+  interact accomplish that.
+Mike Varley:  Right and so I guess my other comment there is it's 
+  not like a static dot well-known how could we possibly talk 
+  together type meta document it's a context specific Discovery 
+  API.
+Manu Sporny:  Yes so the place that that's kicked off let me 
+  bring up this other PR here there's this start workflow thing 
+  where it's like workflows the name of the workflow and start 
+  there's a presumption that this is shared out-of-band somewhere 
+  right and it could be that you get this URL from a well-known 
+  thing that is yet to be invented.
+Manu Sporny:  At you you have a specifically like a specific end 
+  point you go to to just kick the process off and from there you 
+  can discover how they interact for that specific process for that 
+  specific workflow you're talking about that make sense.
+Mike Varley:  It does I'm wondering than would a valid 
+  implementation this may be a huge question so I apologize if it 
+  explodes but could a an implementer of the VC API just implement 
+  this workflow start and response message and then for example the 
+  open ID connect or a did.
+Mike Varley:  Our core but so the only piece they really 
+  Implement from VC API is his this component.
+Manu Sporny:  I think the short answer is yes I think at least 
+  that's kind of been the proposal but that's up for the group to 
+  kind of discuss and see if that's a you know a good idea or not.
+Mike Varley:  Absolutely and I just wanted to hear your thoughts 
+  on that and you said you know yes that would be compliance okay 
+  cool great thank you.
+Manu Sporny:  All right thanks Mike Mike Pro rocker on the queue.
+Mike Prorock:  Yeah thanks man who and and mr. Marley I think you 
+  hit on something key which is it's highly context-specific right 
+  this is not like a capabilities Discovery mechanism ride this is 
+  not saying oh what crypto do you support or anything like that 
+  right it's very specific around you know oh you've got this thing 
+  let me go ahead and deal with this specific item right like a 
+  credential type item or something else the.
+Mike Prorock:  I think the other key thing you hit on is that you 
+  may we may well see micro service type deployments that are like 
+  yep I'm just handling workflows or I'm just who you know handling 
+  verification etcetera as subsets of this so.
+Mike Varley: +1 Thanks
+Manu Sporny:  Yep that's that's exactly right Mike you know I 
+  think the goal with the VC API is you can choose to only 
+  Implement subsets of it so issuers would probably only you know 
+  Implement issuing May Implement workflows verification verifiers 
+  would maybe just Implement verification without issuing you know 
+  present to holder software might just implement this side of it 
+  right.
+Manu Sporny:  Workflow stuff... anyone can Implement so whether 
+  you're an issuer you might have workflows for issuing stuff for 
+  verifiers you might have workflows for verifying stuff and you 
+  could even contact holders and say I want to engage in a certain 
+  type of well-known workflow with you but I mean that's that's a 
+  bit speculative right I don't know praise ability folks might 
+  have a use case it's actually I think traceability does have a 
+  use case for that where the issuer contacts you and they're like 
+  I've got some credentials for you.
+Manu Sporny:  And so that could be viewed as like a workflow.
+Mike Prorock:  Yeah since you went there yeah we have that we 
+  absolutely do have that exact use case of saying yep I've got a 
+  pile of credentials or a presentation with a bunch of you know 
+  credentials inside of it that you know let me know when you're 
+  ready to come get this right and and you know it does some 
+  exchange of challenge token Etc once again we also from an 
+  interop standpoint are starting to look at that capabilities 
+  Discovery side right and how does that get done we had been using 
+  did config which has some.
+Mike Prorock:  Likely shifting over to did web on a lot of that 
+  so but that but that kind of capabilities this discovery of are 
+  you supporting issuing you know are you supporting verifying 
+  right basically what are these endpoint groups are you supporting 
+  that side of it is getting you know somewhat auto-detected and 
+  check box via tests on our own the interop side of things for 
+  traceability so.
+Manu Sporny:  Got it thanks Mike yep yep okay so I mean plenty to 
+  dive into here but you know the first step is to try and just 
+  Define exactly what the API looks like with the schemas 
+  input-output documentation looks like and kind of go from there 
+  okay that's PR 15 on the verifiable presentation request spec any 
+  other comments or questions on bootstrap into protocol from VP 
+  API?
+
+Topic: Issue Processing
+
+Manu Sporny:  Okay if there's nothing else there let's go ahead 
+  and jump into issue processing next to processing.
+Manu Sporny: 
+  https://github.com/w3c-ccg/vc-api/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+Manu Sporny:  Go ahead Mike.
+Mike Prorock:  Yeah just a light that posit is one thing that 
+  occurred to me and I just wanted some clarification on your 
+  thinking on this so far as far as bouncing out into other 
+  services obviously things that are very credential you know 
+  related such as oid C etcetera makes sense there what about like 
+  arbitrary Services right because a case that comes up for us the 
+  you know still in the early phases of hashing out as like you 
+  know doing things like saying hey.
+Mike Prorock:  Areas of credentials coming in related to some 
+  known thing like a shipment can you go ahead and just start 
+  streaming me these credentials you know over to some arbitrary 
+  service right that good just think Pub sub type stuff is that 
+  something you and vision being able to handle with this kind of 
+  thing basically saying yep if you're authorizing X you know yep 
+  you could go ahead and do that and then fire off this service 
+  here or do you think it should be bound a little more.
+Manu Sporny:  The former so interaction types are meant to be in 
+  extensibility point in so if there's some kind of like let's say 
+  you're doing like mqtt streaming of some totally different other 
+  type of credential you know I think that's a possibility now you 
+  know is it is it a good thing to bootstrap from like a verifiable 
+  credentials ecosystem in to some kind of totally different 
+  ecosystem I don't know but it's pause it's that it's certainly 
+  possible to do that right or maybe it's you know you're sharing 
+  verifiable credentials over mqtt instead of this or Bluetooth 
+  right or pick anything else pick any other type of you know 
+  protocol that's not HTTP you should be able to bootstrap into 
+  that from using this interaction type. Did that answer your 
+  question Mike?
+Mike Prorock:  Okay cool it did yeah thank you.
+Manu Sporny:  Okay alright so let's go ahead and jump into 
+  issues.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/97
+Manu Sporny:  First one up is issue 97 in this is Mike you open 
+  this issue confusion around and point naming Mike would you like 
+  to remind us what this issue is about it's a year old at this 
+  point.
+Mike Prorock:  Yeah this is yeah what back in the day a little 
+  bit and I think bird from discussions going back even into 2020 
+  and before but basically the whole point of this issue is that 
+  you know there's some pretty good guidance around how do you name 
+  rest endpoints and things like that and it you know we don't 
+  really follow that Super Crate here on the PC ABI there have been 
+  some improvements to this.
+Mike Prorock:  Basically kind of getting at you know hey should 
+  we go ahead and adopt certain naming you know conventions and if 
+  so when is a good time to open a PR on that when it's good time 
+  not to etcetera so especially as we think about things like 
+  multi-tenant Services Etc gets you know more important properly.
+Manu Sporny:  Right so I think yeah excellent point I think we 
+  decided to follow I forget the name of the the approach but you 
+  know it's where you have a verb as the as the last as the last 
+  bit so cart checkout playlist play that kind of thing I think we 
+  agreed to using that General pattern in general and then you know 
+  the question of can you tack the API on the end of a tenant ID I 
+  think I thought we said yeah you can do that meaning that like 
+  you know the the endpoints are not intended to be just bear off 
+  of the off of a domain I think you can I thought we said we could 
+  put them at the end of it.
+Manu Sporny:  As long as they're the end of the URL we're good 
+  but I don't know if I'm misremembering that anyone else remember 
+  what decision we came to there.
+Joe Andrieu:  I also recall the latter one specifically that's 
+  requiring it to be at Route was an anti-pattern we seem to 
+  recognize.
+Manu Sporny:  Okay.
+Manu Sporny:  I'm going to write that down because I think that's 
+  what we said anyone have any heartburn over that.
+Manu Sporny:  And then does anyone have any heartburn over the 
+  does anyone remember the name like.
+Manu Sporny:  Name for what we the approach we took.
+Mike Prorock:  Yeah I'm looking it up and basically no one uses 
+  it which is also part of the confusion anytime I throw this API 
+  at a developer is it doesn't match what everyone else in the 
+  world does so that's you know which is more noun based followed 
+  by you know verb of like I've got credentials and then I wanted 
+  you know I have a credential / I want to issue or you know a 
+  getter in this context of you know holders for us and stuff like 
+  that.
+Manu Sporny:  So do we want to write that down as a decision we 
+  made and it's problematic or do we want to say we never made that 
+  decision but for whatever reason that's kind of where the API is 
+  these days and we need to talk about it more.
+Mike Prorock:  I need for my son I'd like to talk about it more 
+  or at least revisit maybe with a reorg PR but whenever timing is 
+  right so I'm happy to comment on the issue on that.
+Manu Sporny:  Do you think we need a new specific issue around 
+  that or do you want to continue discussing it in this position.
+Mike Prorock:  I think continuing here is fine I think as I know 
+  Ori added some actually some helpful examples up above of 
+  different pads that also get followed so.
+Mike Prorock:  Since then you know you know restful API obviously 
+  is gone through and done some very useful things like you know 
+  put out an actual design tutorial for restful apis right and 
+  stuff like that that we probably should adhere to if we're trying 
+  to you know get just in as much as this is pre standards that's 
+  part of my concern is let's not get down a certain path too far 
+  and then have to go revamp everything right.
+Manu Sporny:  Yep okay all right that's that item anyone else 
+  want to weigh in on that or before we move on to the next one.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/104
+Manu Sporny:  Next item is issue 104 raised by One enable HTTP 
+  request to specify optional verification checks there was a PR 
+  that just went in at Marcus I think you were you were involved 
+  with that PR and Charles was as well where we took.
+Manu Sporny:  I believe Marcus do you remember what we did there?
+Markus Sabadello:  Yeah I remember that the problem was 
+  specifically that there was a conflict between what's implemented 
+  in the test suite and what's in the open API specification so the 
+  test Suite was sending checks option that was not actually 
+  Allowed by the by the open API specification and at some point we 
+  had a call which I moderated I think it because you
+Markus Sabadello:  Couldn't that call we had a lot of discussion 
+  around verifying and validating and there was pretty strong 
+  consensus that  some things that we would consider.
+Markus Sabadello:  Validates validation like checking if check 
+  satisfies certain business requirements things like that would be 
+  out of scope so a lot of things that would maybe justify a checks 
+  option that would make that would add some flexibility in what 
+  exactly happens suddenly seemed to become less important than 
+  less relevant and the group was supportive of having a more 
+  well-defined.
+Markus Sabadello:  Behavior when specifying something rather than 
+  having too much flexibility and there were several open issues 
+  related to that and all of that seemed to go into a Direction 
+  Where We want it to moved option again first first reason being 
+  the the contradiction or the conflict between the specification 
+  and the test suite and the second reason being a feeling that we 
+  wanted less flexibility.
+Mike Prorock:  Yeah just recalling some discussion around when 
+  this issue was opened I think some of the difficulty was in the 
+  way it has been addressed since we've moved it to like actual 
+  more open API proper you know definitions so like I know when the 
+  trace case were now able to actually test them using normal you 
+  know you know Postman Etc tall you bought it you know APA valid 
+  API.
+Mike Prorock:  This is a lot of this in addition to the fact in 
+  addition to Marcus's adjustments in that PR you know some of the 
+  little while ago so.
+Manu Sporny:  Okay so I so that this decision is the group the 
+  group talked about this we wanted less optionality and we have 
+  taken this out of the API.
+Mike Prorock:  Yeah and we can actually validate the API schemas 
+  now as well more more fully.
+Manu Sporny:  Juan do you feel like then the issues addressed 
+  like this is not an option anymore we can verify the endpoints 
+  we're done with this issue okay.
+Juancho: Yeah yeah it's fine.
+Manu Sporny:  Okay great all right next up what do we want the 
+  March 20 21 flood Fest feature free state the be.
+Mike Prorock:  I would recommend some time in 2021.
+Manu Sporny:  I mean we can't change the past do we just close 
+  this.
+Mike Prorock:  Close no longer relevant.
+Manu Sporny:  Overtaken by events it is now 2022.
+Manu Sporny:  Alright next one up.
+Manu Sporny:  We're going to have to probably hold off until Orie 
+  gets here... this is a learning credential VC edu... Dimitri, 
+  Kerri, any thoughts here.
+Dmitri Zagidulin:  Let me pull that up.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/107
+Dmitri Zagidulin:  Right.
+<mprorock> the @reverse was the really neat thing about this one 
+  iirc
+Dmitri Zagidulin:  We should add an example credential like that.
+Dmitri Zagidulin:  The exact contents of that credential as you 
+  can probably imagine has been evolving among very different among 
+  various different groups so.
+Dmitri Zagidulin:  Kerri, would it make sense for us to have the 
+  discussion item Paul to get by it.
+Kerri Lemoie:  Yeah I think so can you hear me okay okay good so 
+  there's a couple things going on is when we'll to is that some of 
+  the work that describes this data is happening into education 
+  standards groups open Badges and CLR but also a VC EDU we've been 
+  talking about I'm having a context file that does this either to 
+  helps describe this so I think I might be safe too and if we 
+  could move it over into VC edu or.
+Kerri Lemoie:  What do you think, Manu?
+Manu Sporny:  Yeah we can't we can move it over there's a 
+  transfer link somewhere here I forget where exactly.
+Kerri Lemoie:  Does that make sense to you Dimitri?
+Dmitri Zagidulin:  It does yeah do we want to leave a comment to 
+  that effect and see if Orie is good with that.
+Kerri Lemoie:  Yeah that'd be great.
+Manu Sporny:  I was gonna okay all right so where we would.
+Kerri Lemoie:  Absolutely I am.
+Manu Sporny:  Okay all.
+Kerri Lemoie:  Yeah a lot has changed in VC I do since this was 
+  made so.
+Dmitri Zagidulin:  Right.
+Kerri Lemoie:  Thank you.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/105
+Manu Sporny:  This one might also be easy this is issue 105.
+Mike Prorock:  And long since resolved I issued PR is on that 
+  last year sometime.
+Manu Sporny:  Okay.
+Manu Sporny:  Okay that's that one.
+Manu Sporny:  Here's a good one.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/91
+Manu Sporny:  There's a suggestion that we should use a 
+  well-known endpoint for an API to advertise optional features 
+  supported such as digital signature schemes credential status 
+  methods optional apis some discussion between or Daniel Buchner 
+  one MikeP you're the last comment on here thoughts.
+Mike Prorock: 
+  https://github.com/w3c-ccg/traceability-interop/pull/45/files
+Mike Prorock:  Yeah the obviously this is evolving because did 
+  config we have been leveraging over on the trace side for exactly 
+  this part of the issue is that did configuration is highly 
+  complex for folks that aren't familiar with it to generate and or 
+  generate properly I just put in the chat a link to pull 45 which 
+  we just merged all... this has to do with the same issue as far 
+  as Discovery but leverages a did web for that as far as just 
+  saying hey what keys do I need to use for testing it obviously 
+  does not cover all capabilities right that the this issue 
+  addresses but it does have I think is a good step in the right 
+  direction.
+Mike Prorock:  Since we have gotten away from optional features 
+  right on the VC API that in addition to leveraging something like 
+  you know did web for at least key Discovery for testing purposes 
+  and things like that you know is it probably carries us most of 
+  the way there is my personal Sense on this so.
+Manu Sporny:  All right any any other comments on this one?
+Manu Sporny:  What do you feel are like next steps here Mike.
+Mike Prorock:  Well we can as we get into kind of implementation 
+  of that PR 45 that I linked on the trace side we could always 
+  back Port that over 2v Capi once we've got it up going you know 
+  with Dynamic testing that might be a path right we've been doing 
+  some stuff like that I'm already such as like presentations 
+  available Etc so that might be a good way to handle it right.
+Mike Prorock:  The appetite for other implementers something to 
+  like Spruce and stuff that may want to view no weigh in on you 
+  know service and key discovering type issues right and everyone 
+  shares these you know concerns is just where do you hash it out 
+  and test it out first to make sure it even works before you try 
+  to bother defining an API around it.
+Manu Sporny:  Okay so let's just say discussion will continue in 
+  this PR with this update does that work for everyone.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/101
+Manu Sporny:  Next on opposition 101 the readme is not clear on 
+  purpose or contribution guidelines let's see my kanuri Mike.
+Manu Sporny:  What are your thoughts on this one.
+Mike Prorock:  My thoughts are going to send really nasty 
+  messages to Horry on slack the for hanging me out on this one 
+  this I believe this is actually a dupe I think because.
+Mike Prorock:  In some ways right there is that API style guide 
+  comment right controller versus controller was the word we were 
+  looking for made it earlier that has been more or less kind of 
+  moved away to collection style and points this I think we can 
+  close as a dupe of others I think the contribution guidelines we 
+  got PR din because I wrote those and then the API guidelines are 
+  being hashed out in whatever issue that was we looked at earlier.
+Mike Prorock:  Issue 97.
+Mike Prorock:  So between those have between prior PR S Plus 
+  issue 97 ongoing discussion I think we can close this.
+Manu Sporny:  K any objections to that from anyone?
+Manu Sporny:  Okay we will close that then.
+Manu Sporny:  Next one is from Orie and this is the API does not 
+  meet the needs of our customers.
+Mike Prorock:  Yeah well I can get it some of this right so that 
+  we that I know we have addressed right so one of the issues was 
+  some of this spun out of contention around including an array of 
+  credentials in a verifiable presentation right for being able to 
+  bulk exchange you know either do one single compressed etcetera 
+  and minimize traffic over the wire so that is one item.
+Mike Prorock:  This also allow for workflows that could exchange 
+  data via other protocols if required and under wow the 
+  transcribers amazing the huh that's sorry the you know the the 
+  other one is the workflow side right helps with this as well as 
+  segmentation around better you know API naming and breaking stuff 
+  out.
+Mike Prorock:  Right but so I think we're headed the right 
+  direction on this like as a as a group I don't know about closing 
+  the issue my inclination would be say yes assuming Ori has no 
+  concerns there with closing it but I do think that it is 
+  something that we do need to consider continue to be mindful of 
+  right because a lot of these workflows are very different when 
+  we're looking at you know tens of thousands of concurrent 
+  credential exchanges going on you know sometimes per minute and 
+  the supply chain side against you know possibly one server right 
+  as a different scenario than we see in other cases it mainly 
+  obviously you have flowed cases as well right where you could see 
+  definite High load type situations so it's just stuff we need to 
+  be mindful of as we're designing this stuff out we need to design 
+  it to last and you know follow all best practices whenever 
+  possible even in a void.
+Mike Prorock:   Reinventing the wheel right that's that's I think 
+  one of the biggest dangers we could fall into is trying to go oh 
+  because it's credentials or web three or whatever the cool new 
+  term is you know to forget the lessons that have already been 
+  learned by everyone else right over time so that's my soapbox is 
+  now set aside and them back.
+Manu Sporny:  Okay alright so I wrote down you know high level of 
+  what you said are we okay I feel like these are General 
+  considerations we need to keep in mind and we're headed in the 
+  right direction with the group be okay with closing this issue 
+  which is pretty big and Broad in then or suggesting that we close 
+  the issue to Orie and then asking for more specific issues to be 
+  raised if there's anything remaining.
+<mprorock> That seems very sane
+Manu Sporny:  We're out of time only two minutes left next one up 
+  was going to be 113 the oauth2 bearer token thing for plugfest 
+  2021 we didn't do that this was you know overtaken by events we 
+  could probably close it but let's not rush that well I mean this 
+  is overtaken by events for the 21 plugfest we could update this 
+  for 22.
+Manu Sporny:  At a time anything else folks would like to comment 
+  on before the end of the call anything we should keep in mind for 
+  the next week any of that stuff.
+Mike Prorock:  One single chair note which is looking at certain 
+  people on this call to self nominate for the open ccg chair roll.
+Manu Sporny:  +1, That thanks for the reminder like all right 
+  with that thanks everyone for the call today appreciate the 
+  engagement we will be back next week.
+<kerri_lemoie> Thanks!

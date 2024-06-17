@@ -21,14 +21,17 @@ var updateCounter = 0;
 var updateCounterTimeout = null;
 
 // get irc log from URL
-fetchLog = function(dateString){
-  const url = "https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-"+dateString+"-irc.log";
+fetchLog = function(dateString, groupString){
+  const url = "https://meet.w3c-ccg.org/archives/w3c-ccg-" +
+    groupString + "-" + dateString + "-irc.log";
   fetch(url)
     .then(res => res.text())
     .then(res => {
       $('#irc-log').val(res);
       $('#form-resp').removeClass('error').text('');
-      $('#btn-audio').removeAttr('disabled');
+      $('#btn-copy').attr('disabled', null);
+      $('#btn-audio').attr('disabled', null);
+      $('#btn-video').attr('disabled', null);
       displayMinutes();
     })
     .catch(err => {
@@ -38,13 +41,32 @@ fetchLog = function(dateString){
       $('#text-markup').val('');
       $('#html-markup').val('');
       $('#html-output').html('');
-      $('#btn-audio').prop('disabled', true);
+      $('#btn-copy').attr('disabled', true);
+      $('#btn-audio').attr('disabled', true);
+      $('#btn-video').attr('disabled', true);
     });
 };
 
 // generates and outputs the minutes to the HTML output
 displayMinutes = function() {
   var ircLog = $('#irc-log').val()
+
+  // scan the log file for a group name
+  var meetingRx = /\[.*\]\s\<.*\>\sMeeting: (.*)/gm;
+  var matches = [...ircLog.matchAll(meetingRx)];
+  if(matches.length > 0) {
+    const lastMatch = matches[matches.length-1][1];
+    for(const cfg of config) {
+      if(cfg.id === lastMatch) {
+        scrawl.group = cfg.name;
+        scrawl.chair = cfg.chairs;
+      }
+    }
+  } else {
+    scrawl.group = config[0].name;
+    scrawl.chair = config[0].chairs;
+  }
+
   minutes = scrawl.generateMinutes(ircLog, 'html', $('#date').val());
 
   $('#html-output').html(minutes);
@@ -116,10 +138,17 @@ copyText = async function(){
 }
 
 downloadAudio = function(){
-  var audioUrl = "https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-";
+  var audioUrl = "https://meet.w3c-ccg.org/archives/w3c-ccg-";
   // get date from date input
-  audioUrl = audioUrl + $('#date').val() + ".ogg";
+  audioUrl = audioUrl + $('#group').val() +"-"+ $('#date').val() + ".ogg";
   window.open(audioUrl, '_blank');
+}
+
+downloadVideo = function(){
+  var videoUrl = "https://meet.w3c-ccg.org/archives/w3c-ccg-";
+  // get date from date input
+  videoUrl = videoUrl + $('#group').val() +"-"+ $('#date').val() + ".mp4";
+  window.open(videoUrl, '_blank');
 }
 
 // initialize scrawl
@@ -141,12 +170,12 @@ $(function(){
     $('#date').val(year+'-'+month+'-'+date);
   }else{
     $('#date').val(date);
-    fetchLog(date);
+    fetchLog(date, $('#group').val());
   }
 
   $('#fetch-by-date').submit(function(e){
     e.preventDefault();
-    fetchLog($('#date').val());
+    fetchLog($('#date').val(), $('#group').val());
   });
 });
   </script>
@@ -163,29 +192,42 @@ $(function(){
 <section class="light-bg toolbar-height toolbar-padding"></section>
 
 <section id="toolbar">
-   <span class="left-column">
-      <textarea id="irc-log" class="toolbar-height" name="meeting-irc-log" placeholder="Paste and edit the IRC log here" onkeyup="javascript:updateMinutes(event)"></textarea>
-      <textarea id="html-markup" style="display: none;" class="toolbar-height"></textarea>
-      <textarea id="text-markup" style="display: none;" class="toolbar-height"></textarea>
-   </span>
-   <span class="right-column">
-      <div class="button" onclick="javascript:showMarkup('raw')">Show Raw Log</div>
-      <div class="button" onclick="javascript:showMarkup('html')">Show HTML</div>
-      <div class="button" onclick="javascript:showMarkup('text')">Show Text</div>
-
+   <div class="left-column">
+      <div>
+        <span class="tab" onclick="javascript:showMarkup('raw')">Raw IRC Log</span>
+        <span class="tab" onclick="javascript:showMarkup('html')">HTML</span>
+        <span class="tab" onclick="javascript:showMarkup('text')">Text</span>
+        <textarea id="irc-log" class="toolbar-height" name="meeting-irc-log" placeholder="Paste and edit the IRC log here" onkeyup="javascript:updateMinutes(event)"></textarea>
+        <textarea id="html-markup" style="display: none;" class="toolbar-height"></textarea>
+        <textarea id="text-markup" style="display: none;" class="toolbar-height"></textarea>
+      </div>
+   </div>
+   <div class="right-column">
       <form id="fetch-by-date">
+        <select name="groups" id="group">
+          <option value="weekly">Weekly Meeting</option>
+          <option value="vcapi">Verifiable Credentials API</option>
+          <option value="education">Education</option>
+          <option value="traceability">Traceability</option>
+          <option value="resolution">DID Resolution</option>
+          <option value="vc">Verifiable Credentials</option>
+          <option value="interop">Interoperability</option>
+          <option value="security">Security</option>
+          <option value="didpkh">did:pkh</option>
+          <option value="test">Intrastructure Testing</option>
+        </select>
         <input type="date" name="date" id="date" />
-        <input type="submit" class="button" value="Fetch by date" />
+        <input type="submit" class="button" value="Retrieve Raw Logs" />
       </form>
       <p id="form-resp"></p>
-      <span class="button" onclick="javascript:copyText()">Copy</span>
-      <span id="btn-resp"></span>
 
-      <button id="btn-audio" disabled class="button" onclick="javascript:downloadAudio()">download audio</div>
-   </span>
+      <div class="button" id="btn-copy" onclick="javascript:copyText()">Copy</div>
+      <span id="btn-resp"></span>
+      <div class="button" id="btn-audio" disabled onclick="javascript:downloadAudio()">Download Audio</div>
+      <div class="button" id="btn-video" disabled onclick="javascript:downloadVideo()">Download Video</div>
+   </div>
 </section>
 
 </main>
 </body>
 </html>
-

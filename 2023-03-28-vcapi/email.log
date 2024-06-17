@@ -1,0 +1,736 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-03-28-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-03-28-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2023-03-28
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2023Mar/0154.html
+Topics:
+  1. Relevant Community Updates
+  2. API lacks required discoverability features
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Alan Karp, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Dave Longley, Greg Bernstein, John Henderson, 
+  Phil L (P1), John Kuo, Patrick (IDLab), Joe Andrieu, PL/T3-ASU, 
+  Tom S, Dmitri Zagidulin
+
+Our Robot Overlords are scribing.
+Manu Sporny:  Right welcome everyone this is the verifiable 
+  credential API call this is Tuesday March 28th our agenda is here 
+  on the agenda today is some Community updates from ITF and then 
+  issue processing we got through our long-term issues last time 
+  so.
+Manu Sporny:   In all pull requests.
+Manu Sporny:  So we won't be doing pull request processing today 
+  on the agenda is Discovery discoverability features for the API 
+  an issue that says why do we believe it's a good idea to return 
+  an issued credential to an internal caller which is turned into a 
+  different discussion so we need to process that and that question 
+  really has to do with odd Z4 endpoints and whether or not 
+  endpoints need Otzi and.
+Manu Sporny:   Even that we have a first cut of both of those.
+Manu Sporny:  In the in the spec now in theory we should be able 
+  to address issues 48 and 279 but we'll see how the conversation 
+  goes today are there any other updates or changes to the agenda 
+  anything else that we would like to discuss today.
+John Henderson:  I am not sure if it's an agenda point or a 
+  community update but I've just a brief update about the owf 
+  presentation.
+Manu Sporny:  Let's start off with that.
+
+Topic: Relevant Community Updates
+
+John Henderson:  Okay so I have maybe watching maybe just a quick 
+  Preamble so as I've mentioned for the past couple weeks I'm 
+  hoping to do a presentation about VC API to the open world 
+  Foundation the open world Foundation is a group that's building 
+  wallet components implementations that are building standards and 
+  I think that the VC API would be a good standard for them to have 
+  an implementation of.
+John Henderson:  So the first step they released their proposal 
+  process and the first step is to present to propose a project to 
+  them and to present the the overview first in their Tech 
+  architecture Community beating so I've been repairing 
+  presentation and.
+Manu Sporny:  Yes please yes that'd be great.
+John Henderson:  Wondering it could I take if you one minute to 
+  share the presentation just okay I will quickly show my screen.
+John Henderson:  Said hopefully really is just one minute and.
+John Henderson:  I mean I'm just comes up.
+Manu Sporny:  Yep can see it.
+John Henderson:  Right so this is a work in progress but I 
+  thought just quickly going through it to see if I'm on the right 
+  track would be good so I think previously I'd mention this high 
+  can be documented with the outline and it is essentially the same 
+  so I now have slides representing that the preface some 
+  background on these API use cases that objectives some goals 
+  architecture authorization and then.
+John Henderson:   Been going through the different endpoints.
+John Henderson:  About that sweetie.
+Patrick_(IDLab): Could you go a bit slower.
+John Henderson:  Yeah I'm not sure I it's a lot so what I'm yeah 
+  so I'll just finish quick very quickly going through test Suites 
+  implementation and I'm thinking of doing a demo at the end yeah 
+  I'm glad to take it in slower indeed but I don't take too much 
+  time from this meeting so I may be.
+John Henderson:   If there's it was.
+John Henderson:  Glad to talk about him or answer any questions 
+  or go through it in more detail and maybe maybe going more 
+  detailed in another meeting as well.
+<pl/t3-asu> How about a comment-able version of the slide deck?
+Manu Sporny:  Yeah I mean this is this is great so first of all 
+  thank you very much John for putting this together it's that's 
+  great structure looks really good to me I we should definitely 
+  take some time on this call to go through it in detail I'm 
+  wondering if after you get a little more added you know to the 
+  the or you feel like it's in a state where you want to present it 
+  or feel like it's a solid white.
+Manu Sporny:   Like first.
+Manu Sporny:  Do you have.
+Manu Sporny:  Hang in there.
+Manu Sporny:  You want maybe we can take you know 30 minutes in a 
+  call and you do go run through the presentation with us and we 
+  can provide feedback would that be like helpful.
+John Henderson:  That sounds great.
+Manu Sporny:  Okay so let's schedule that for next week does that 
+  does that work for you or do you want a little more time.
+John Henderson:  I should be okay if it doesn't I'll let you know 
+  thanks.
+Manu Sporny:  Okay alright in no big deal if not and if I forget 
+  to put it on the agenda we can just replace the agenda with this 
+  this thing with with the presentation and talking through it 
+  because it is important to communicate this to owf.
+John Henderson:  Okay thank you.
+Manu Sporny:  Great thanks again a John that's great stuff 
+  Patrick did you did the that address your question concern.
+Patrick_(IDLab): Yeah that's fine it's just I was interested but 
+  I think that the form looks nice but I was interested to see a 
+  bit more in detail the points but we can see take time to discuss 
+  in depth next week differently.
+Manu Sporny:  Okay sounds good John was there I think you had 
+  there was just an open invitation to come and present and no date 
+  set right is that correct.
+John Henderson:  Yeah that's right they at the owf you mean.
+Manu Sporny:  Yes yep that's right yep.
+John Henderson:  Yeah there's no date set they are looking for 
+  people to do present on the Monday meeting so there's this plenty 
+  of slots available at going away anyways.
+Patrick_(IDLab): Yeah it did you have John and idea of like what 
+  other type of presentations are made like what other projects 
+  because I'm assuming the way you are applying other people or 
+  applied to the presentation you know like the type of 
+  presentation are being made.
+John Henderson: 
+  https://github.com/openwallet-foundation/architecture-task-force/wiki
+John Henderson:  Are you all the meetings for the open world 
+  Foundation have been recorded so I can find the link here I'll 
+  put it in the chat.
+Manu Sporny:  Great thanks John let's see Community updates the 
+  so ietf 116 is going on right now and I had two things to present 
+  their one of them was a multi-format so let me go ahead and share 
+  screen.
+Manu Sporny:  Um so I presented multi-format switcher which we 
+  use in verifiable credentials and a variety of places and use and 
+  did so in a variety of places so like did key is using the multi 
+  base format in the multi key format we are looking into we 
+  meaning the community in general is looking at ways of 
+  cryptographically linking between verifiable credentials like if 
+  you want to say you know.
+Manu Sporny:  This credential using this SVG image in here's a 
+  sha-2 256-bit hash for that image so that you can digitally sign 
+  over it and know that you're pulling in cryptographically signed 
+  resources like a SVG file to do the rendering so multi multi hash 
+  can come in to play there so we were we presented this to 
+  dispatched it's a group of people so like.
+Manu Sporny:   I think it's something like.
+<manu_sporny> Dispatch IETF 116 outcomes for Multiformats: 
+  https://mailarchive.ietf.org/arch/msg/dispatch/418F3PuRj0JZHkIpBDDk3033QcY/
+Manu Sporny:  Commanders signed the letter of implementers and 
+  users of the technology signed a letter of like request to ITF to 
+  adopt the technology the dispatch outcome is here for mole he 
+  formats so the proposal was to effectively and let me put this 
+  link in here as well.
+<manu_sporny> IETF 116 Multiformats slide presentation: 
+  https://docs.google.com/presentation/d/1WjKoxB-fxkPpaXB4kUu8IsTwQ4qXFmka1ocwEVEeBpk/edit
+Manu Sporny:  If we were 16 multi-format slide presentation so 
+  the proposal was to for the ITF to adopt and find a home for 
+  multi base and multi hash the dispatch outcome was that ITF found 
+  the work useful they proposed two ways for us to do the work this 
+  work has been incubated in the.
+Manu Sporny:   Is community group for years now.
+Manu Sporny:  And so they suggested either we can have a little 
+  mini working group at ITF to move the work forward or we can go 
+  straight to I see which is basically an independent submission 
+  stream where you don't change anything you just publish the 
+  document it's informational and it's out there with the you know 
+  as solids RFC assigned to it number assigned to it it looks like 
+  we're probably going to go the meaning working group route 
+  because they.
+Manu Sporny:   Is that it would be a fast turnaround in.
+Manu Sporny:  Effectively as fast as having the work 80 sponsored 
+  so they're going to experiment on us a bit but the worst that's 
+  probably going to happen is that it takes a little longer to get 
+  the RFC then if we went the other route.
+Manu Sporny:  And that's it so that's a really good outcome like 
+  that's that's positive there was quite a bit of grumbling about 
+  the design of multi formats and all that kind of stuff but that's 
+  always to be expected at ITF when you expose them to anything new 
+  go ahead Patrick.
+Patrick_(IDLab): Does this have to do with the visual 
+  representation of verifiable credential or did I get this wrong.
+Manu Sporny:  Sorry let me let me it is tangentially related to 
+  that we would use a multi hash to point to what the visual 
+  rendering representation would be or you would use a multi hash 
+  to point to another verifiable credential from within a 
+  verifiable credential let me give you an example here like this 
+  is multi base in the multi-format here is.
+Manu Sporny:  The letter U which says that the rest of this 
+  string is a base64 URL encoded string with no padding so that's 
+  what this letter U does so it's a tiny little header that goes on 
+  data and then the rest of the data so this is Hello World in 
+  coded as base64 URL with no padding you put a little you in the 
+  front of it and this whole thing is a multi base value so did 
+  key.
+Manu Sporny:   Is a.
+Manu Sporny:  The Z means this values-based 64 sorry base 58 
+  Bitcoin encoded go ahead Dave.
+Dave Longley:  Yeah for anyone not familiar with multi formats 
+  they are all about having values that are self describing so if 
+  you get a string or a byte array in you can look at that thing 
+  and determine what it represents so if you're getting a string 
+  you can look at the beginning of the string and there's a header 
+  that the tells you how the data is encoded and so base encoded 
+  means you converted a byte array into someone some characters so 
+  you could represent.
+Dave Longley:   Isn't it as a string by looking at the first.
+Dave Longley:  You can determine what the base is and then you 
+  can you remove the encoding to get a byte array then the byte 
+  array itself is self describing in a my talk about how the byte 
+  array represents a hash with a certain algorithm or it might 
+  represent a public key or private key or maybe a digital 
+  signature or something like that and so what's key here is this 
+  is for having these simple opaque values that you can put in 
+  other places.
+Dave Longley:   That are self-describing.
+Patrick_(IDLab): And how do you is there a way to know that the 
+  value you get has this sort of multi and coded miniheader or.
+Dave Longley:  So that would be based on whatever spec you're 
+  using so if you're using like the did key spec it would say the 
+  value you're getting is a it's a multi-format value and so when 
+  you get that in you can you parse like a did key URL the value so 
+  that the scheme is did the did method is key and then the value 
+  of that is a multi-format value.
+Dave Longley:   And so you can use all the.
+Dave Longley:  All of them.
+Dave Longley:  The format libraries and self describing Header 
+  information to determine what follows.
+Patrick_(IDLab): Okay so like the prove value from what you are 
+  showing here like the Z would represent whatever it is that 
+  represents okay.
+Dave Longley:  Yes the Z or Zed for Canadians and people people 
+  from it from the the British other British places the Z 
+  represents indicates that the value there is a base 58 encoded by 
+  the right so if you use a base 58 decoder you can decode the 
+  value starting at 4:00 so Z's the header.
+Patrick_(IDLab): That's why I always had a hard time decoding.
+Dave Longley:  Yeah so yeah so base 58 is an encoding mechanism 
+  that's different from base64 based 58 is used because it removes 
+  some letters that can be commonly misunderstood confused with 
+  others like L and one can be easily confused depending on the 
+  font that's being used and by removing those you can avoid some 
+  put potential problems which is a very important when you're 
+  dealing with cryptography or financial data things like that.
+Patrick_(IDLab): Wow this was okay it's very glad to get to know 
+  this though.
+Dave Longley:  Yeah so other letters removed are like zeros and 
+  in the letter O since those things can be confused that those get 
+  taken out and that's why you have a lower number at 58 is that a 
+  64.
+Patrick_(IDLab): Pinterest thank you.
+Dmitri Zagidulin:  Thanks can you hear me okay.
+Manu Sporny:  You might be the yep yes yes.
+Dmitri Zagidulin:  Okay so I want to tell you things to what they 
+  said about how do you tell that something is in will be formatted 
+  so as Dave mentioned hopefully you'll know by the Sun so you I 
+  always know that when dealing with the dookie always going to be 
+  encoded and I can proceed from there if you're writing some sort 
+  of command line tool or something else where you parsing values 
+  that could be multi formats and.
+Dmitri Zagidulin:   Could be something in something else that's 
+  also a fairly.
+Dmitri Zagidulin:  Raishin and there the thing to do is just to 
+  try to code it so I've pretty clearly written code that's like 
+  okay does the string start with a Z all right there's a good 
+  chance that it's multi-format go ahead and pass it off to the 
+  multi-format the code if that throws an error okay then it's not 
+  then proceed down from other round but if it goes there's a very 
+  high probability that that's what it was intended and so on so I 
+  just wanted to add that.
+Dmitri Zagidulin:   At that notion there thanks.
+Manu Sporny:  Great thanks to me tree so yeah basically if you're 
+  using VC API and you using dead key you are definitely using 
+  multi base in multi key and so that's why you know it's a 
+  relevance to this group is that this stuff this tiny little 
+  building block you know made it into ITF and now we have to 
+  Shepherd it through the process Dave.
+Dave Longley:  Yeah just wanted to bring this back to Patrick's 
+  original question because he asked about how does this related to 
+  like a display or rendering hint and BC and the way that it's 
+  related is in just expressing a hash value so a rendering hint 
+  could reference a like a template or a URL for like an SVG just 
+  like some other link inside of a VC or any other document your if 
+  you're pointing to an external URL that has some content there 
+  you might want to include.
+Dave Longley:   A hash of that content in your data so that when 
+  someone goes and fetches it later.
+Dave Longley:  That it's the same thing that wasn't that it was 
+  intended to be that it hasn't changed and a way to represent a 
+  hash in a single string in a nice simple opaque value is through 
+  multi formats.
+Manu Sporny:  10 So that's what's being shown on the screen here 
+  is an example of like your verifiable credentials linking to some 
+  kind of rendering template that's got the SVG itself but 
+  associated with it is a digest multi base value which is a Shaw 
+  so this will have a header for how its base encoded and it will 
+  also have a header for the type of hash it is like sha-2 256-bit 
+  so the first couple of characters here tells you that.
+Manu Sporny:   At this is a.
+Manu Sporny:  Things so you're going to end up downloading this 
+  doing a sha-256 on it and the value should match and then this 
+  thing this whole thing here is digitally signed over as an 
+  example.
+Dave Longley:  Yeah just real quick I want to make one other 
+  really important point is that multi formats takes a different 
+  approach from some other more broken out formats where they would 
+  include individual component information in the Json so you might 
+  imagine some Jason that would say like hash algorithm and then 
+  the value sha-256 and maybe some other components we might 
+  imagine a jwk that has different components cryptographic 
+  components of a key laid out in the Jason and.
+Dave Longley:   For mistakes a totally different approach which 
+  is separation of of inference.
+Dave Longley:  Nation so that these values are just opaque blobs 
+  in the Jason because at the Jason layer you shouldn't be doing 
+  anything with this data and then helps you avoid having to do 
+  extra validation comparing the different components you know do 
+  these match up is this even right now I've got to have extra Json 
+  schema and extra checks to make sure that what I'm doing at the 
+  crypto layer is right at the data modeling layer this avoids all 
+  of that by just dropping an opaque value into these places and 
+  you pass that off to the Crypt.
+Dave Longley:   A layer and just let that thing do all the 
+  validation and everything that it needs to do so it's a cleaner 
+  separation of layers.
+Manu Sporny:  Go ahead Patrick and then after that we're going to 
+  move move on probably.
+Patrick_(IDLab): Yeah yeah thank you very much so my part 2 of my 
+  question if it was for visual representation was I hear a lot 
+  about Ossie a layer for like mobile wallets does this have 
+  anything to do with this at all or maybe maybe not or.
+Patrick_(IDLab):  perfect thanks.
+Manu Sporny:  No I mean I've heard of the OCA stuff and I have 
+  you know read at some point read through you know the Docks but 
+  it feels quite more complex and it's more it's quite a bit more 
+  complex than just like this thing right he's got many many 
+  aspects to it but the same you could see it in the same category 
+  of solution certainly.
+Patrick_(IDLab): Maybe eventually it'll be a link to be made 
+  though.
+Manu Sporny:  Yep yep yep okay anyway that's that's why it was 
+  brought up we use multi base and multi digest and or really is 
+  multi formats quite a bit in verifiable credentials and the data 
+  sent to and received from the BC API uses multi formats quite 
+  heavily all right that's it for that.
+Manu Sporny:  That was good news and that's it for Community 
+  updates any any other community updates before we jump into 
+  topics.
+<pl/t3-asu> As long as what the multibase hashlink points to is a 
+  stable address, you can use it to link to any digital object, 
+  docx, pdf, mp3, ... you name it.
+Manu Sporny:  Okay one more reminder that we have a con of issues 
+  that are marked ready for PR in fact we have 29 things 29 changes 
+  to the specification that could be made if someone were to pick 
+  up one of these PR so this is just a request to the community if 
+  you have some spare time in can spend you know maybe an hour 
+  writing a PR there a lot of PR es hear that.
+Manu Sporny:   You might be able to pick from in.
+
+Topic: API lacks required discoverability features
+
+Manu Sporny:  Update the spec on okay so in fact we could cut the 
+  number of issues we have in half if we if we did PRS for all the 
+  ready for PR items which is which is good just we're making 
+  progress we're just not making that that applying that to the 
+  text in the spec just yet we'll get there okay next item up API 
+  lacks required discoverability features this.
+Manu Sporny:   This was raised.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/218
+Manu Sporny:  A Mike Varley and actually sorry no this was raised 
+  by Ori and I think Mike Varley put in a PR to add this and I 
+  think we think I thought we had this in the spec let me check to 
+  make sure.
+Manu Sporny:  Disc of yeah I exchange Discovery so we have this 
+  concept apologies the things looks broken the.
+Manu Sporny:  Yeah it's the renderings broken right now need to 
+  fix that but we do have exchange Discovery in there right now.
+Manu Sporny:  However for this item the last time we discussed 
+  this was last April.
+Manu Sporny:  A question on whether or not we should close this 
+  the there were three concrete proposals made by or E1 the API 
+  uses OS 30 and Define security schemes we have done that in that 
+  has been merged so we've addressed that item that the API is use 
+  I can use a link header for sweet and issuer ID discovery.
+Manu Sporny:   We have not.
+Manu Sporny:  Gus that and then the apis can use a well-known 
+  Jason resource for conveying supported issuer IDs and sweets so 
+  we kind of talked about that but did not really get to the bottom 
+  of that so there's a decent bit of discussion that went on here 
+  but not much as Ben.
+Manu Sporny:  Word as far as discussions concerned so in order to 
+  close this issue we would probably need to address these 
+  questions and these proposals so if folks are okay with 
+  structuring the discussion in that way to determine whether or 
+  not we can close this or not we could go ahead and start.
+Dave Longley:  I'm sure I'm fine with structuring it that way I 
+  would say proposals to in 3 given what we have learned and now 
+  added in issues and plan to add to the spec around configurations 
+  and instances I don't think it makes any sense to do proposal two 
+  and three because there's not a use case I can think of where a 
+  client would discover it some.
+Dave Longley:   Some existing issue.
+Dave Longley:  Action and then decide to use it.
+Dave Longley:  Instead it would be the case that an instance 
+  configuration would be created and given to a client.
+Dave Longley:  There's not I can't think of a use case that it 
+  makes sense that a client would come along make a request to some 
+  issuing service it would list out all of its configurations in 
+  the client would pick one of these in the Klein would hope to 
+  find a configure would even hope to find a configuration that 
+  they could use like that on top of it I don't see any reason why 
+  the client would.
+Dave Longley:   Even have the authorization to use.
+Dave Longley:  And sis and it seems like it would violate 
+  minimizing authorization to those you know limiting authorization 
+  to those parties that should be able to use a particular 
+  configuration.
+Dave Longley:  Yeah that's right.
+Manu Sporny:  So your suggestion is we've addressed proposal one 
+  we've done proposal one in two and three don't make any more 
+  sense because the because of the consensus we have on the 
+  instances and how these things are configured okay go ahead 
+  Patrick.
+Patrick_(IDLab): So in the spec currently at least a discovery 
+  Under The Exchange and point if I understand and when I was doing 
+  a while ago I was doing a sort of a cup I VC API coordinator 
+  project when I was trying to learn about the Visa API and IMAP 
+  The Exchange and point to discover feature and point.
+Patrick_(IDLab):  on the iCup I.
+Patrick_(IDLab): Returns you a list of all the Dead Calm 
+  protocols that are supported by the agent is that the idea here 
+  is to sort of return a list of all the exchange that you can 
+  engage with all the types of exchange that you can engage with so 
+  like issue credential present proof or whatever else exchange are 
+  defined is that kind of the idea of discovery.
+Manu Sporny:  Go ahead babe.
+Dave Longley:  I'm so that might have been what at least a piece 
+  of that might be part of what exchange Discovery could have been 
+  about but I don't think that that's this issue I think 
+  unfortunately this issue says it does it just says API lacks 
+  required discoverability features but I think it's really talking 
+  about issuer Discovery and I don't think issuer Discovery makes 
+  sense but it might make sense.
+Dave Longley:   Since for.
+Dave Longley:  A client to be able to figure out if an exchange 
+  what protocols in exchange supports for delivery of BC's.
+Dave Longley:  But I think maybe that's a different issue.
+Joe Andrieu:  Hi yeah I want to support what day is presented but 
+  I also want to highlight I'm not sure that's going to address 
+  their concerns like I think they want Discovery in a manner that 
+  I don't like so I'm really happy with sort of Dave's approach I 
+  think it's more secure I think it's not advertising all the ways 
+  that you might attack a particular server for people who maybe 
+  don't have authorization to use those services but I think there 
+  is a.
+Joe Andrieu:   Option to get back to my can Dory and say.
+Joe Andrieu:  Is there a use case that's important here let's get 
+  it in the conversation.
+Joe Andrieu:  It's a yes even though Dave and I are going to find 
+  a use case for it.
+Manu Sporny:  Um was first Patrick you're up.
+Patrick_(IDLab): That's the first thing I would say if the title 
+  said APA likes required this Kirby feature for me that probably 
+  tells me there was some kind of use case in mind when this been 
+  written my second point was so you said I don't think it's a good 
+  idea because it would allow people to do some sort of exploit 
+  some sort of vulnerability doesn't that statement imply that.
+Patrick_(IDLab):  this is sort of a security.
+Patrick_(IDLab): Obscurity approached by not allowing people to 
+  discover what is there which I'm not a big fan of the security by 
+  obscurity approach and the system I think making.
+Patrick_(IDLab): Formation public sort of forces you to be 
+  accountable for your solution and too.
+Patrick_(IDLab): Have a good implementation but maybe I 
+  misinterpreted what's been said.
+Manu Sporny:  Go ahead Dave.
+Dave Longley:  Yes I think this issue is filed prior to us 
+  spelling out how to do instances and configurations to resolve 
+  the issues we had with the previous design that was built around 
+  implementing to a test Suite instead of real use cases or real 
+  applications and the instance once we introduced instances and 
+  configurations I think it became clear that it doesn't make sense 
+  to have this kind of discovery.
+Patrick_(IDLab): Something's going on.
+Dave Longley:  Someone needs to mute.
+Dave Longley:  Not sure who but.
+Dave Longley:  The the previous design was was such that you know 
+  you could you would have like a single endpoint and you could ask 
+  what issuers you could issue from and you know what sweets you 
+  supported and that that idea is kind of like any client could 
+  come along presumably with the client would at least have to have 
+  permission to use the the service but I guess it would have 
+  permission to use the service generally to do.
+Dave Longley:   Do anything with the service and it.
+Dave Longley:  Use any endpoint any issue or it can issue any 
+  credential from any issuer using any sweet that the system 
+  supported and you would have to give it alter ization to be able 
+  to do all those things to be able to use this feature as 
+  described and the new system doesn't do security through 
+  obscurity but rather there are different issuer configurations 
+  and if you want to use one of those you get permission to use 
+  that particular one and you would know which one.
+Dave Longley:   When you're in order for a client to get this 
+  permission to do anything.
+Dave Longley:  Um it would need to know which one of these it's 
+  hitting and it would request permission to use that or it would 
+  be be assigned permission to use that by handing it either a an 
+  object capability to hit that particular resource or you would 
+  hand it a wall to token to hit that particular resource with a 
+  scope and audience pinned to that resource.
+Manu Sporny:  All right so I'll go ahead Patrick I think I don't 
+  know if you're on the cue still or.
+Patrick_(IDLab): Yeah maybe just add a comment around so when we 
+  say you have a different instance for sorry I'm getting feedback 
+  from somewhere thank you so we say that there's a different and 
+  stands for implementation how does that compare to a sort of 
+  multi-tenancy model if I think like I kept I can have one eye 
+  Kappa.
+Patrick_(IDLab):  agent that.
+Patrick_(IDLab): Multi-tenancy for different organizations so I 
+  could have multiple issuer based on the same agent and each 
+  issuer would control their old wallet but here we have this is 
+  sort of separate so we have really the full and stands for each 
+  issuer or is there a concept of multi-tenancy that we are 
+  describing here.
+Dave Longley:  Well Allen's on the Cuba for me.
+Manu Sporny:  Go ahead Dave oh my bad go ahead Alan.
+Alan Karp:  Yeah so we had this probably speak where any things 
+  you want anybody be able to discover them for other things we 
+  knowing something exists gives you a point of attack and so and 
+  so we saw that by having a note place where you could go and get 
+  a capability that would let you search perch for things that 
+  things that we want any random person to be able to find.
+Alan Karp:   So you know.
+Alan Karp:  The boat The Best of Both Worlds on Stevens assistant 
+  anybody can hit will return services that were available and or 
+  with some authentic when dickon can we can return a qulity that 
+  you search for things that you'd prefer to be hit.
+Manu Sporny:  Great thank you Ellen Dave you're up next.
+Dave Longley:  Right so I was going to respond to Patrick 
+  multi-tenancy the individual instances so an implementation can 
+  have many different instances and that should cover multi-tenancy 
+  so any given implementation could expose n many issuers each one 
+  having its own credentials / issue endpoint that hangs off of the 
+  end of.
+Dave Longley:  So that might have been where the confusion was 
+  it's not that a single implementation only exposes one endpoint 
+  it exposes as many as senses as it wants each instance has its 
+  own credential issue in some point.
+Manu Sporny:  All right um okay so going back too.
+Manu Sporny:  Going back to this stuff here let's start I want to 
+  start focusing on each question so.
+Manu Sporny:  How does an API know what's how does a client know 
+  which sweets an API supports.
+Manu Sporny:  Go ahead Patrick.
+Patrick_(IDLab): I'm just going to throw what I understand from 
+  the discussion so how does he know what certain types of support 
+  is because the endpoint that's going to be given to it the client 
+  is going to explicitly Define this and it's sort of expected that 
+  when a client receive an end point to an API it already knows 
+  what configuration this endpoint is given to it.
+Patrick_(IDLab):  based on the.
+Manu Sporny:  Yeah I believe it is I want to make it clear so 
+  that when Horry comes and reads this it's clear the instance in 
+  point given to the client is explicit sex licit Lee configured 
+  with a particular cryptographic sweet when the client receives 
+  the end.
+Manu Sporny:   The point.
+Manu Sporny:  It will know what suite is configured for that 
+  instance and point I guess you could argue that it doesn't know 
+  it but it might not matter like it will make a call and it will 
+  be signed with whatever crypto sweets set for that endpoint so he 
+  doesn't need to know it's just given an endpoint at.
+Manu Sporny:   That it uses.
+Manu Sporny:  So it doesn't have to configure the endpoint at 
+  all.
+Manu Sporny:  Quit for me let me try and Chase when the client 
+  makes a call to the instance and point.
+Manu Sporny:  Cryptographic sweet is set ahead of time and used 
+  it it's not configurable.
+Manu Sporny:  Unless through an extension to the VC API I guess 
+  we should say that because I think the traceability folks think 
+  about that a bit differently where they do want that kind of 
+  configurability ahead Patrick.
+Patrick_(IDLab): I just thought of the idea maybe instead of 
+  being discoverable it's provided so there would be like a sort of 
+  configuration step that the client would need to take before to 
+  integrate the this system.
+Manu Sporny:  Yep yep Eurasian is provided.
+Patrick_(IDLab): Sorry I meant instead of being a disk are 
+  discoverable.
+Manu Sporny:  Instead of being discoverable the configuration is 
+  provided to the client.
+Patrick_(IDLab): Try it yeah that's good.
+Manu Sporny:  It was provided to the client prior to the coal 
+  fire.
+Patrick_(IDLab): Just prior to the integration with the system.
+Manu Sporny:  All right how do you know what the issue is ID what 
+  issuer IDs and API supports in and the in which ones are supplied 
+  in the post body to create value VCS this is the the answer here 
+  is the same as the above.
+Dave Longley:  Yeah and again this was written before we've 
+  removed providing the issuer ID in the API because that's not a 
+  thing that you do.
+Manu Sporny:  The issue or ID is no longer provided in the API 
+  unless done via an extension to the Ricci API.
+Manu Sporny:  Go ahead Patrick.
+Patrick_(IDLab): Maybe that's the this point here but I'm 
+  wondering if there should be some discoverability like let's say 
+  I'm a scenario I'm a student wallet you know that's provided by 
+  the school or whatever and I can the school can issue me a 
+  certain set of credential like let's say my membership or my 
+  grades or whatever it is are the credential that I can be issued 
+  and I want to be able to be reissued in case I lose my wallet or.
+Patrick_(IDLab):  set my phone or whatever.
+Patrick_(IDLab): Should there be like an endpoint that's like 
+  like the what the client is already compatible with the issuer 
+  but it gives me a choice of like which credential you want issued 
+  today do you want your membership your test results or this I can 
+  request it and since I'm already authenticated it's going to 
+  issue me the right values and my credential.
+Manu Sporny:  Go ahead Dave you're all done did I clear Allen 
+  from the queue before I don't know Alan is that an old cue.
+Manu Sporny:  I'm presuming it's an old Kia go ahead Dave.
+Dave Longley:  Yes I think this gets to where some of the 
+  confusion was because the client that we're talking about here is 
+  a client that is oauth 2 credentials it's a within the trust 
+  boundary of the issuer and so the client we're talking about is 
+  never a digital wallet and if we're talking about a digital 
+  wallet there they're interacting with the exchanges API so a 
+  digital wallet would not be talking directly.
+Dave Longley:   Glee with the issue or service.
+Manu Sporny:  All right next item know what credential formats 
+  are supported again the answer I think is the same as the above 
+  like when you call an exchange is endpoint that exchanges 
+  endpoint in theory in the future could issue a verifiable 
+  credential or ACL sign blob or a mdl or MDOC or whatever 
+  credential format you want.
+Manu Sporny:  Go ahead Deb.
+Dave Longley:  Yeah I think the main thing here is that this is 
+  sort of top-down administration because this is all through with 
+  in a trust boundary the way that this would work is you would you 
+  would set up instances that are intended to be used by specific 
+  clients it's not that there are clients that would be out in the 
+  wild browsing an issue or service looking for some configuration 
+  that they could reuse and there would be no way for them to even 
+  get authorization to use it.
+Dave Longley:   We would have to have additional API service for 
+  them to ask for that.
+Dave Longley:  Instead it's you have some administrator that's 
+  saying I have these pieces these clients use pieces of software 
+  that are going to need to be able to issue credentials through 
+  the issuing service and so I need to create these instances for 
+  them to use and then it will add those URLs and whatever 
+  authorization tokens are required to those clients so that they 
+  can use them.
+Dave Longley:  And to add to that I think this discovery thing 
+  came from the idea that there would be a single endpoint for 
+  issuing credentials which is coming from that test Suite driven 
+  design and when we've we turn that on its head and fixed it based 
+  on use cases and applications instead this problem of 
+  discoverability I think mostly just went away.
+Manu Sporny:  And so the same thing for all to see each endpoint 
+  can support a variety of different Nazi but when you configure it 
+  instance and Point View very specifically say this is the type of 
+  watsi that's required on this end point in you will communicate 
+  that to the.
+Manu Sporny:   You'll communicate that.
+Manu Sporny:  The client out of band.
+Alan Karp:  You've got all things in all of that and to be not as 
+  either often.
+Alan Karp:  Above the bed.
+Manu Sporny:  Yeah that was the original text I don't know if I 
+  want to I think they're yeah they were talking about I'm almost 
+  certain Allen that they were talking about ought to see you know 
+  nothin.
+Alan Karp:  Okay well I mean just be careful because I've read a 
+  bunch of stuff and I just just saw him get confused.
+Manu Sporny:  Yep you totally totally totally agree with you even 
+  though this point still authentic the section that they point to 
+  his actually ought to see.
+Manu Sporny:  Because Swagger confused often a lot C as well.
+Manu Sporny:  Okay so this has been done this has been done and 
+  is in the latest spec.
+Manu Sporny:  These two proposals have been addressed via the 
+  instances mechanism in the VC API spec which pre configures 
+  instance and points with make sure IDs IDs crypto sweets and 
+  other.
+Manu Sporny:  Z mechanisms in other administrative or or system 
+  provided configurations those instance in points are then given 
+  to the appropriate clients.
+Manu Sporny:  Okay so the question is do we have a consensus to 
+  close this given that we have addressed all of the points would 
+  anyone object to well I mean we need to ask them did we miss 
+  anything or can we close the issue in the use cases team would 
+  like to understand the use case that you have so that we can 
+  analyze it to make sure that we've covered the use case.
+Manu Sporny:  Of group has a few questions one does this dress 
+  the initial use cases you had and then.
+Manu Sporny:  Is the solution appropriate for the use cases you 
+  have.
+Dave Longley:  I think those are the same question I think 
+  question 2 would just be coming close this issue.
+Manu Sporny:  The group feels like we've addressed all of the 
+  initial points raised in the issue.
+Manu Sporny:  It's really a question 24e and barley given all the 
+  others who has two questions okay so we'll mark that.
+Manu Sporny:  Well let me ask does anyone have objections to 
+  marking this pending closed meaning that you know as long as they 
+  don't object to closing it we will close it as long as we get 
+  answers to these two questions.
+Manu Sporny:  All right that's that item is 52 past the hour.
+Manu Sporny:  We will not be able to address these other two 
+  questions in three minutes so next week's call is going to be 
+  listening to John's presentation on verifiable credential API 
+  providing any feedback that we can determining when we might want 
+  to go and present at owf so that you know a number of us go with 
+  John to presented owf.
+Manu Sporny:  We will process the other two issues and keep going 
+  through issues anything else we need to cover for the meeting 
+  today.
+Manu Sporny:  Going once going twice.
+Manu Sporny:  Thank you everyone for the great meeting today 
+  really appreciate it we will meet again next week have a good one 
+  ciao.

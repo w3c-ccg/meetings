@@ -1,0 +1,165 @@
+[2023-05-16T17:30:21.210Z]	<Mahmoud_Alkhraishi>	present+
+[2023-05-16T17:30:21.211Z]	<Paul_Dietrich_GS1>	present+
+[2023-05-16T17:30:22.052Z]	<nis>	present+
+[2023-05-16T17:30:33.169Z]	<Ben_(Transmute)>	present+
+[2023-05-16T17:31:26.319Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-05-16T17:33:17.702Z]	<Orie>	present+
+[2023-05-16T17:34:38.089Z]	<Transcriber>	scribe+
+[2023-05-16T17:34:38.090Z]	<Transcriber>	Meeting: traceability
+[2023-05-16T17:34:49.494Z]	<Ben_(Transmute)>	scribe+
+[2023-05-16T17:35:15.275Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pulls
+[2023-05-16T17:35:33.312Z]	<Ben_(Transmute)>	Mahmoud: Welcome to the trace-call for May 16. Today is interop day, but we have a lot of PR's to go through first
+[2023-05-16T17:35:49.181Z]	<Ben_(Transmute)>	Mahmoud: Before we do PR's is there anything we want to bring up?
+[2023-05-16T17:36:02.840Z]	<Ben_(Transmute)>	Nis: For the Thing credential we wanted to talk about that lines up with workflows
+[2023-05-16T17:36:48.246Z]	<Ben_(Transmute)>	Orie: On VC working groups today we discussed the test suites and exiting VR and getting towards a stable version. And we agrees that JSON schema might support the core data model.
+[2023-05-16T17:37:31.812Z]	<Ben_(Transmute)>	Orie: We can probably continue to the the same kind of testing in the branch with confidence it will line up with what the working group is doing
+[2023-05-16T17:37:55.006Z]	<Ben_(Transmute)>	Mahmoud: Sounds like good news for getting unblocked, but it sounds like no updates on the PR specifically?
+[2023-05-16T17:38:02.217Z]	<Ben_(Transmute)>	Orie: That's correct
+[2023-05-16T17:38:02.623Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/769
+[2023-05-16T17:38:48.730Z]	<Russell_Hofvendahl_(mesur.io)>	present+
+[2023-05-16T17:39:41.910Z]	<Ben_(Transmute)>	Mahmoud: I merged this PR out of band, but before I revert I wanted to go over it. What this is doing is in a workflow I want o reference an identifier that is in a black box system. Orie had the suggestion to create a Thing credential. The main usecase for this is mapping the entry number id to a workflow and a free trade number.
+[2023-05-16T17:39:47.747Z]	<Orie>	It would be cool to see the workflow definitions for those 2 use cases
+[2023-05-16T17:39:50.574Z]	<Orie>	added to the document.
+[2023-05-16T17:40:47.407Z]	<Ben_(Transmute)>	Nis: I wanted to make sure that we're aligned. if we have smaller chunks of data it allows us to pass it along before the rest is ready. The graph shape we're producing here with a generic name identifier might not match up with the entry summary credential. We might be able to fix that if we made it less generic.
+[2023-05-16T17:40:55.132Z]	<Mahmoud_Alkhraishi>	q+
+[2023-05-16T17:41:26.640Z]	<Ben_(Transmute)>	Nis: And my second concern is anything that doesn't match current business process worries me that it's going to be seen as a new thing by the industry. So when it's not aligned to what's being done just digital makes me worried.
+[2023-05-16T17:42:17.169Z]	<Ben_(Transmute)>	Orie: I understand the need for this credential. There isn't any way to do linked data with the current entry numbers because they're not IRI's. But this would give us a way to wrap that, and this would let up offer support without doing much else.
+[2023-05-16T17:42:50.387Z]	<Ben_(Transmute)>	Orie: As far as asking fo a new thing thing, it's the first time it's being asked to do this for several business uses.
+[2023-05-16T17:44:00.822Z]	<Mahmoud_Alkhraishi>	q-
+[2023-05-16T17:44:07.881Z]	<Ben_(Transmute)>	Orie: I think it's valuable to define these forms in JSON-LD, but not everyone is going to agree to that and have the bandwidth to support the credentials.
+[2023-05-16T17:45:05.032Z]	<Ben_(Transmute)>	Mahmoud: I talked to Sapan from Transmute earlier today and there are updates on the requirements for the 7501 entry summary. Our shared customers do not only need the entry summary id.
+[2023-05-16T17:45:28.852Z]	<Ben_(Transmute)>	Orie: There's proposals to have these things changed, but I have not signed off on this. I'll have to follow up with Sapan.
+[2023-05-16T17:46:16.272Z]	<Ben_(Transmute)>	Orie: I think it's fair to say there is no commitment to the JSON-LD quality around any of the credentials as we have not gotten enough review to stand behind them With the exception of GS1 that have gone through GS1's review process.
+[2023-05-16T17:46:56.802Z]	<Ben_(Transmute)>	Mahmoud: There are two paths forward, we can support the 7501 but only the id, the other option is following the Thing Credential
+[2023-05-16T17:47:15.463Z]	<Ben_(Transmute)>	Mahmoud: We would need to create a similar form for free trade to say we want to link this identifier
+[2023-05-16T17:47:36.803Z]	<Ben_(Transmute)>	Mahmoud: I personally think the Thing credential is a much easier way of making this flexible
+[2023-05-16T17:47:46.842Z]	<nis>	https://github.com/w3c-ccg/traceability-vocab/blob/main/docs/openapi/components/schemas/common/CBPEntry.yml#L52
+[2023-05-16T17:48:35.389Z]	<Ben_(Transmute)>	Nis: I just looked at the definition and it's just pointing at the Schema.org description. That kind of kills my first argument. Second it sounds like you will have a workflow that requires a things credential
+[2023-05-16T17:49:03.844Z]	<Ben_(Transmute)>	Mahmoud: yes, that's what  i'm hearing from my customers that they want to provide that information at a point in time and they dont care what it's called.
+[2023-05-16T17:49:04.091Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/770
+[2023-05-16T17:49:48.911Z]	<Ben_(Transmute)>	Mahmoud: This PR is an update to our workflows and our packages. I ran the CI and the tests and adds caching. I removed our auto-release thing. No one is taking advantage of it.
+[2023-05-16T17:50:12.960Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/772
+[2023-05-16T17:50:46.734Z]	<Ben_(Transmute)>	Mahmoud: This was also me. One of the things that we, this adds a reschedule to a delivery statement. We didn't have credentials for this, and that's basically it.
+[2023-05-16T17:51:26.563Z]	<Ben_(Transmute)>	Orie: It looks generally good. I'm looking at changes to port of entry that says identifier, but you're using codes
+[2023-05-16T17:51:44.830Z]	<Ben_(Transmute)>	Mahmoud: We're using the standard coding industry, i think it's CBP's code system
+[2023-05-16T17:52:22.762Z]	<Ben_(Transmute)>	Orie: the term definition for these is schema.org/identifier. If i read that url, I'm not going to be able to resolve which codes are needed.
+[2023-05-16T17:52:48.533Z]	<Ben_(Transmute)>	Mahmoud: in the description i could add a link, i don't know how i could provide a url in the JSON-LD
+[2023-05-16T17:53:00.727Z]	<Ben_(Transmute)>	Orie: If their CFACT, there could be something there
+[2023-05-16T17:53:38.981Z]	<Ben_(Transmute)>	Orie: I think you're proposal works, we want people implementing this we want to provide that kind of information. Does GS1 have some vocab that would provide these codes?
+[2023-05-16T17:53:52.628Z]	<Ben_(Transmute)>	Paul: I'm not aware of any that provide these, but I can check
+[2023-05-16T17:54:05.703Z]	<nis>	q+
+[2023-05-16T17:54:17.581Z]	<Ben_(Transmute)>	Orie: If it's international it might not be customs specific, but having those codes would be beneficial.
+[2023-05-16T17:54:28.838Z]	<nis>	https://vocabulary.uncefact.org/
+[2023-05-16T17:54:46.075Z]	<Paul_Dietrich_GS1>	this is what I found for code but can't tell if this is the same reference you are making https://www.gs1.org/voc/LocationID_Type
+[2023-05-16T17:55:01.971Z]	<Ben_(Transmute)>	Nis: On the port of arrival, port of entry i think those are LO codes
+[2023-05-16T17:55:10.715Z]	<Paul_Dietrich_GS1>	these are ISPS codes
+[2023-05-16T17:55:21.141Z]	<Ben_(Transmute)>	Mahmoud: I don't think it's LO codes being used. I put a comment on the PR to update the description.
+[2023-05-16T17:55:44.490Z]	<Orie>	for example: https://www.gs1.org/voc/LocationID_Type-UN_LOCODE
+[2023-05-16T17:55:49.821Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/774
+[2023-05-16T17:56:31.707Z]	<Ben_(Transmute)>	Paul: That link i put in the type, if you're describing what that code is, then I think you'll need a type.
+[2023-05-16T17:56:45.034Z]	<Ben_(Transmute)>	Orie: I think we need an IRI for an RDF predicate.
+[2023-05-16T17:58:11.903Z]	<Ben_(Transmute)>	Orie: We've received request for a table of terms for each of the credentials of interest. If the data element of a credential is CATAIR, or if not is this information is not being used in CATAIR. This might not be of interest internationally, but the funding from this is coming from the USA.
+[2023-05-16T17:58:42.859Z]	<Mahmoud_Alkhraishi>	q+
+[2023-05-16T17:59:59.187Z]	<Ben_(Transmute)>	Orie: In this case we're using hierarchical types which nobody is using. So the proposal is putting it in a table and if a field is required then put it in a table to match it up with CATAIR. There's also the optional piece and we might want to do that for all fields. This PR takes us down a path of extreme data entry pain for us. But this is the only approach i've seen proposed for this. Mike suggested using AI which I want to see a PR for.
+[2023-05-16T18:00:18.545Z]	<Ben_(Transmute)>	Nis: I suggest we add these tables under the credential section. I think that would make it more byte size.
+[2023-05-16T18:00:41.638Z]	<Ben_(Transmute)>	Orie: I don't think we can do that is those areas as generated from the schemas. I think we do this do address a concern from a customer.
+[2023-05-16T18:01:12.932Z]	<Ben_(Transmute)>	Nis: I like the way it opens up on the columns. More countries could be added if we want to be more international.
+[2023-05-16T18:01:15.192Z]	<TallTed>	s/byte size/bite sized/
+[2023-05-16T18:01:48.428Z]	<Ben_(Transmute)>	Mahmoud: The requirements as I understand them. From what I understood we only needed the fields that were not in CATAIR.
+[2023-05-16T18:02:04.500Z]	<Ben_(Transmute)>	Orie: You have to look in CATAIR to tell if something is in CATAIR or not.
+[2023-05-16T18:02:30.078Z]	<Ben_(Transmute)>	Mahmoud: So that is to say the absent ones are not in CATARI?
+[2023-05-16T18:02:32.314Z]	<Ben_(Transmute)>	Orie: Yes
+[2023-05-16T18:02:44.803Z]	<nis>	+1 Mahmoud
+[2023-05-16T18:02:52.940Z]	<nis>	q+
+[2023-05-16T18:02:55.859Z]	<Ben_(Transmute)>	Mahmoud: Is there a way we can add this to the JSON schemas so that way it shows up next to the credential?
+[2023-05-16T18:03:25.566Z]	<Mahmoud_Alkhraishi>	q-
+[2023-05-16T18:03:36.517Z]	<Ben_(Transmute)>	Orie: We'd have to update an extension, and then update the CD, and then make sure we're doing it inline or by reference, and by the time we do that we could have done it directly.
+[2023-05-16T18:04:03.806Z]	<Ben_(Transmute)>	Nis: Doing this in HTML seems even more painfully. I want something  that I don't have to add TR and TD tags endlessly.
+[2023-05-16T18:04:16.172Z]	<Ben_(Transmute)>	Orie: We can talk about what would be needed to add it programically.
+[2023-05-16T18:04:30.121Z]	<Ben_(Transmute)>	Mahmoud: Let's say I wanted to an entry summary credential.
+[2023-05-16T18:04:41.502Z]	<nis>	+q
+[2023-05-16T18:04:43.766Z]	<Ben_(Transmute)>	Orie: Yes it needs to happen for every credential for every JSON path
+[2023-05-16T18:05:13.118Z]	<nis>	$catair:
+[2023-05-16T18:05:19.922Z]	<nis>	alongside $linkedData:
+[2023-05-16T18:05:24.222Z]	<Ben_(Transmute)>	Mahmoud: My point is the table you have now would need to be repeated for every credential. We would need to update the subheadings. If we do the programming route, we would need to do extentions.
+[2023-05-16T18:05:31.077Z]	<Mahmoud_Alkhraishi>	q- nis
+[2023-05-16T18:05:33.065Z]	<Mahmoud_Alkhraishi>	q- nis
+[2023-05-16T18:06:27.661Z]	<Ben_(Transmute)>	Orie: There are several problems here. The $linked data has mostly been removed. We've done that to make the JSON Schema focus on security and be smaller. So the natural place where you want to do this is focused on schema and less about semantics and comprehention.
+[2023-05-16T18:06:30.583Z]	<Mahmoud_Alkhraishi>	q+
+[2023-05-16T18:07:43.281Z]	<Ben_(Transmute)>	Orie: there's a difference between this is a type and the example, and the JSON pointer operation converts it into the key value pairs. You only get the pointer column and not the values. You would need to get some value for each of the columns for each of the industries. You would need a vector for that in each credential.
+[2023-05-16T18:08:37.852Z]	<Ben_(Transmute)>	Nis: I think we want to not pollute the nice inline JSON schemas that we have, but we might want to add them to common. What we don't want is people having to deal with them when they consume our schemas.
+[2023-05-16T18:08:40.529Z]	<Ben_(Transmute)>	q+
+[2023-05-16T18:08:48.189Z]	<Mahmoud_Alkhraishi>	q- nis
+[2023-05-16T18:09:03.232Z]	<Ben_(Transmute)>	Nis: I think there's an argument for using $linkdata
+[2023-05-16T18:09:26.613Z]	<Ben_(Transmute)>	Orie: We don't consume the $linkeddata. it is a solution.
+[2023-05-16T18:09:38.854Z]	<Ben_(Transmute)>	Nis: We can inline as long as we make sure the types is what's in common.
+[2023-05-16T18:09:58.980Z]	<nis>	LOL
+[2023-05-16T18:09:59.645Z]	<Orie>	https://w3c-ccg.github.io/traceability-vocab/#MillTestReportCredential
+[2023-05-16T18:10:05.397Z]	<Orie>	https://w3c-ccg.github.io/traceability-vocab/openapi/components/schemas/credentials/MillTestReportCredential.yml
+[2023-05-16T18:10:13.008Z]	<Orie>	Look at the schema for the credential
+[2023-05-16T18:10:20.934Z]	<Orie>	this is where the update would need to be made.
+[2023-05-16T18:11:14.795Z]	<Ben_(Transmute)>	Ben: I think that this shouldn't be too automatic. We don't want this to be something that we update often. We make it painful so it's not something that get's updated dynamically.
+[2023-05-16T18:11:58.650Z]	<Ben_(Transmute)>	Mahmoud: I don't mind of manual versus automatic, my main gripe is where the table is in the respec doc. So if we had HTMl that got loaded where it needed to be that's fine.
+[2023-05-16T18:12:36.732Z]	<Ben_(Transmute)>	Orie: We can do that, it would take longer to load, but editor drafts can load longer as the final version is going to be compiled. So we could have a folder structure where HTML is loaded at specific points.
+[2023-05-16T18:13:05.124Z]	<Ben_(Transmute)>	Nis: I'm going to be negative, as it's probably going to be me having to do it, so I reserve my right to be grouchy.
+[2023-05-16T18:13:31.270Z]	<nis>	+1
+[2023-05-16T18:13:55.880Z]	<Ben_(Transmute)>	Orie: You have your rights to complaint, but speak now or forever hold your piece. We're going to add a resolution that we're going to inline the HTML and the HTML needs to be in the credential section. Is that what we're doing?
+[2023-05-16T18:13:58.865Z]	<Ben_(Transmute)>	Mahmoud: Yes
+[2023-05-16T18:14:14.190Z]	<Ben_(Transmute)>	Orie: Okay, then add that as a change request on the PR and I will make the updates.
+[2023-05-16T18:14:15.193Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/775
+[2023-05-16T18:14:46.569Z]	<Ben_(Transmute)>	Nis: We want to make as much mandatory as we can.
+[2023-05-16T18:14:51.636Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/776
+[2023-05-16T18:16:12.852Z]	<Ben_(Transmute)>	Nis: What the PR is about is what we've been doing for the credentials and inlining forms to take out what's not needed from common. For the consignee it's optional, so it's an array with an array with max value of 1.
+[2023-05-16T18:16:45.994Z]	<Ben_(Transmute)>	Mahmoud: So it's an array that is empty or one
+[2023-05-16T18:16:57.605Z]	<Ben_(Transmute)>	Orie: Yes, it's constrained by the JSON Schema
+[2023-05-16T18:17:07.428Z]	<Ben_(Transmute)>	Mahmoud: Where is the zero or one?
+[2023-05-16T18:17:33.564Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/777
+[2023-05-16T18:17:33.947Z]	<Ben_(Transmute)>	line 584
+[2023-05-16T18:17:40.000Z]	<Orie>	nice
+[2023-05-16T18:18:20.950Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/777
+[2023-05-16T18:18:48.627Z]	<Orie>	<3 OG is both oil and gas and original gangster.
+[2023-05-16T18:19:05.056Z]	<Ben_(Transmute)>	Mahmoud: This does a couple things, for what ever reason 771 had a ton of crashing, so i killed the branch and moved it. What this does is changes "OG" to oil and gas and it removes the UN logo from a delivery schedule example.
+[2023-05-16T18:19:21.953Z]	<nis>	LOL
+[2023-05-16T18:19:33.287Z]	<Ben_(Transmute)>	Original Gangster is the only thing my brain defaulted to for OG
+[2023-05-16T18:19:37.124Z]	<nis>	"OilAndGas" or "OilGas"?
+[2023-05-16T18:19:39.086Z]	<nis>	q+
+[2023-05-16T18:20:18.771Z]	<Ben_(Transmute)>	Orie: Maybe we can use Ptrolium?
+[2023-05-16T18:20:37.884Z]	<Mahmoud_Alkhraishi>	q-
+[2023-05-16T18:20:39.682Z]	<Ben_(Transmute)>	Mahmoud: That was proposed and I think there was a business reason why that didn't work
+[2023-05-16T18:20:45.003Z]	<Ben_(Transmute)>	q-
+[2023-05-16T18:20:46.667Z]	<nis>	"OilAndGas" is heaps better than "OG"!!!
+[2023-05-16T18:21:06.422Z]	<Ben_(Transmute)>	Orie: It was a suggestion to get rid of "And"
+[2023-05-16T18:21:14.110Z]	<Orie>	Can we make it "Oil n' Gas"
+[2023-05-16T18:21:33.662Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-interop/pull/540
+[2023-05-16T18:21:56.905Z]	<Ben_(Transmute)>	Mahmoud: The idea is that we're going to need to update the workflows. And this is a package update.
+[2023-05-16T18:22:36.961Z]	<nis>	q+
+[2023-05-16T18:23:01.279Z]	<Ben_(Transmute)>	Mahmoud: One issue that I want to bring up is the Intent to Import credential
+[2023-05-16T18:23:25.212Z]	<Paul_Dietrich_GS1>	have to drop a bit early. Thanks
+[2023-05-16T18:23:30.801Z]	<Orie>	thanks!
+[2023-05-16T18:23:43.858Z]	<Ben_(Transmute)>	Nis: It's almost back to the Thing credential. It's a very vague requirement, what do we want a product to be? If we're talking a steel workflow it's a Mill Test Report, on ecommerce it's more of a GS1.
+[2023-05-16T18:23:45.121Z]	<Mahmoud_Alkhraishi>	q+
+[2023-05-16T18:23:56.686Z]	<Mahmoud_Alkhraishi>	q- nis
+[2023-05-16T18:23:59.067Z]	<Mahmoud_Alkhraishi>	q- nis
+[2023-05-16T18:24:43.058Z]	<nis>	q+
+[2023-05-16T18:24:49.955Z]	<Ben_(Transmute)>	Orie: I think the schema and the example need to be made coherent first. I also agree with Nis that it's better not to make it complicated. Maybe for the minimum fields, product isn't one of them. Given that's an important credential we make it an agenda item for a meeting.
+[2023-05-16T18:25:30.372Z]	<Orie>	That property seems correct to me
+[2023-05-16T18:25:45.913Z]	<Orie>	I don't think we need to add additional claims to intent to import
+[2023-05-16T18:25:45.998Z]	<Mahmoud_Alkhraishi>	q-
+[2023-05-16T18:25:48.067Z]	<Ben_(Transmute)>	Mahmoud: Our common intent to import credential, we removed any agility to add a product. If I were to issue an intent to import with a product would be invalid. And we can spend next call on it and my belief is yes we should.
+[2023-05-16T18:25:53.307Z]	<Orie>	but we can disucss
+[2023-05-16T18:26:35.417Z]	<Mahmoud_Alkhraishi>	https://w3c-ccg.github.io/traceability-vocab/#IntentToImportCredential 
+does not define product or reference intentToImport.yml 
+
+https://w3c-ccg.github.io/traceability-vocab/#IntentToImport 
+defines product
+[2023-05-16T18:26:43.741Z]	<Ben_(Transmute)>	Nis: I was showing off our interoperability and we don't have anything that is 100% interop-able?
+[2023-05-16T18:26:57.763Z]	<Ben_(Transmute)>	Mahmoud: On the trace-interop? We should really up our interop?
+[2023-05-16T18:27:03.025Z]	<nis>	https://w3c-ccg.github.io/traceability-interop/reports/interoperability/
+[2023-05-16T18:27:19.855Z]	<Ben_(Transmute)>	Nis: People look at it and see it's not 100%?
+[2023-05-16T18:27:31.189Z]	<Ben_(Transmute)>	Nis: Interop is really what we should be bragging about.
+[2023-05-16T18:27:42.095Z]	<Orie>	conformance is less. exciting when we are working on VCDM v2
+[2023-05-16T18:28:16.834Z]	<Ben_(Transmute)>	Mahmoud: Looking at our interop side we should change our yellow to green. I see conformance for Transmute and Messur, it's 100%, but then when we look at interop we have yellows.
+[2023-05-16T18:28:41.064Z]	<Ben_(Transmute)>	Orie: I think it's presentations that we want to focus on, and I don't that that's covered by conformance.
+[2023-05-16T18:29:17.712Z]	<Ben_(Transmute)>	Mahmoud: I have sprints scheduled for early June to sit down and attack this.
+[2023-05-16T18:29:31.036Z]	<Ben_(Transmute)>	Nis: Take is encouragement. We need more green.
+[2023-05-16T18:30:00.874Z]	<Ben_(Transmute)>	scribe-

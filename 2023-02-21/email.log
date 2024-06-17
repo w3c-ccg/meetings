@@ -1,0 +1,443 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-02-21/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-02-21/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-02-21
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Feb&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. Introductions/Reintroductions
+  2. DID-Linked Resources
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Sandy Aggarwal, Harrison Tang, Stuart Freeman, Gregory Natran, 
+  Jennie Meier, Greg Bernstein, Bryan Luisana, Paul Dietrich GS1, 
+  Nis Jespersen , Kimberly Linson, Leo, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), Alex Tweeddale, BrentZ, Kaliya Young, 
+  Jeff O - HumanOS, Ankur Banerjee, Chandi Cumaranatunge, Manu 
+  Sporny, Nate Otto, Geun-Hyung, Dmitri Zagidulin, Erica Connell, 
+  Will, Steve Magennis, Joe Andrieu, Keith Kowal, Juan Caballero, 
+  David I. Lehn, Markus Sabadello, Simone Ravaoli, Andrew 
+  Whitehead, Ryan Grant, Taylor (LEF), Tayken (LEF), Julien 
+  Fraichot
+
+Our Robot Overlords are scribing.
+Kimberly Linson:  Recording is on.
+Kimberly Linson:  Awesome great well we've been looking forward 
+  to this topic for a while and we have Alex and anchor here today 
+  to talk to us about did link to resources specification and the I 
+  think the work item that they have in mind around that I did a 
+  little bit of reading but I'm going to let them give you the 
+  whole scoop just a couple of housekeeping items before I turn it 
+  over Alex.
+Kimberly Linson:   To you all.
+Kimberly Linson:  Quick because I think we're going to have a 
+  really good discussion today so first of all I just want to 
+  remind everyone as we do every week and that this meeting really 
+  adheres to the code of ethics and professional conduct and the 
+  w3c has put out and a link to that is found in the agenda and 
+  just remind reminder that everyone has the best intentions at the 
+  core also we are glad to have anyone who is here.
+Kimberly Linson:   Here to participate.
+Kimberly Linson:  His calls however anything that is a 
+  substantial contribution needs to be made by someone who is a 
+  full member of the ccg which is very easy to do the links to that 
+  are also in the agenda and it just requires filling out an 
+  agreement there is no cost to be a member of the ccg also we do 
+  keep a record of these meetings both minutes and recording the 
+  jitsi chat will be.
+Kimberly Linson:   Used to manage the.
+
+Topic: Introductions/Reintroductions
+
+Kimberly Linson:  Chin and dialogue as we continue so if you have 
+  something you'd like to say please add yourself to the queue 
+  using Hue plus and and with that that takes care of the little 
+  formula and I wanted to do introductions and reintroductions do 
+  we have anybody today who is joining us for the first time or or 
+  rejoining us and would like to give us an update on what they've 
+  been up to now is your opportunity.
+Kimberly Linson:   ER tunity.
+Kimberly Linson:  Okay how about announcements and reminders 
+  there we go Manny let me have you go ahead.
+<manu_sporny> Outcome of 2023 Miami Verifiable Credentials WG 
+  Meeting: 
+  https://lists.w3.org/Archives/Public/public-credentials/2023Feb/0125.html
+Manu Sporny:  Sure hey everyone as many of you know we had a a 
+  verifiable credentials working group face-to-face meeting last 
+  week in Miami and it was good we got some stuff done I'd 
+  summarized tried to summarize do a fair summarization of the 
+  outcome of the meeting last week and I wrote that up in an email 
+  so I won't.
+Manu Sporny:   I won't dwell too much.
+Manu Sporny:  On that here but just be aware that you know there 
+  were some decisions made last week that will hopefully help you 
+  know verifiable credentials become even broader and things of 
+  that nature I think the the biggest decision that was probably 
+  made was that you know the core data model will you know continue 
+  to be json-ld and context will continue to be mandatory but the 
+  working.
+Manu Sporny:  Chair for other data formats that as long as they 
+  can map to the core data model can be considered a part of the 
+  verifiable credentials ecosystem so this is very much you know a 
+  part of this kind of big tent approach that was under discussion 
+  and it looks like that's the direction that the working group is 
+  going to go the other thing is I got the holder binding thing 
+  totally wrong so thank you to all of our for correcting me in 
+  adding a lot of detail.
+Manu Sporny:   To that discussion.
+Manu Sporny:  Other things that happened was the Json web 
+  signature to jws 2020 specification was abandoned in favor of 
+  using VC-JWT and then data set canonicalization and the DDS a 
+  Cryptid sweet continues in there's also work around simplifying 
+  how we refer.
+Manu Sporny:   How we talk about other.
+Manu Sporny:  Patients in the ecosystem so there's this desire to 
+  basically without judgment just list all the specifications that 
+  people are working on the stuff that you know anchor you know 
+  it's talking about today potentially being just you know 
+  something that we point to and just going on from there without 
+  as much value judgment as we were putting in for example in like 
+  the did specifications registry so again we're trying to open up 
+  the aperture.
+Manu Sporny:   ER two.
+Manu Sporny:  Let's get work in the area and make less value 
+  judgments around things that's it for that update.
+Kimberly Linson:  Thanks man who I feel like that sounds like it 
+  was a really productive time and I also wanted to thank you for 
+  putting that that summary out into the to the group that was 
+  really helpful so Kelly I think you're up next.
+Kaliya Young:  Yeah I'll start out with working group updates 
+  myself Dimitri and Derek who co-chair the secure data Store 
+  working group are all stepping down as co-chairs partly because 
+  the encrypted Data Vault work has stabilized and is people aren't 
+  meeting because folks are so busy implementing which is great and 
+  the decentralized webnode work it seems like it's continuing so 
+  if folks are interested in.
+Kaliya Young:   In co-chairing that.
+Kaliya Young:  Group there are positions open I think will work 
+  with deaf staff to run an election in that group although it's 
+  jointly chartered with ccg so that's that update.
+Kaliya Young:  There is next week I'm along with Heidi who I run 
+  iiw with we're going to Thailand to run the 8-pack digital 
+  identity I'm conference and it's not too late to register if you 
+  want to join or you have staff in the region who wants to join us 
+  in Bangkok and then two weeks after that is the thoughtful 
+  Biometrics Workshop which is one day March 16th I've already Kim 
+  Hamilton Duffy has registered which is great to see.
+Kaliya Young:   And we have folks coming from the.
+Kaliya Young:  Biometric identity management.
+Kaliya Young:  Ciao say 200 million entry biometric database for 
+  the United States government so they're coming it's gonna be an 
+  interesting day along with like several Civil Society groups 
+  who've written reports in the area and finally I had W is April.
+Kaliya Young:  18 To 20th and if you want to come and you have 
+  difficulty with our pricing please don't hesitate to reach out 
+  we're committed to accessibility and even have some I think we 
+  still have a scholarship or to open for.
+Kaliya Young:  Who need them to get resources to travel.
+Kaliya Young:  Anyways thank you.
+Kaliya Young: https://www.apacdigitalid.org/
+Kimberly Linson:  Things clear I will look forward to your update 
+  on the thoughtful Biometrics conference will have to have you 
+  definitely give us a rundown of that sounds very interesting Joe 
+  I think you're next.
+Kaliya Young: https://www.thoughtfulbiometrics.org/
+Kaliya Young: https://www.thoughtfulbiometrics.org/
+Kaliya Young: https://internetidentityworkshop.com/
+Joe Andrieu:  Yeah thanks I just wanted to add some Nuance to the 
+  big tent conversation man who mentioned there's definitely 
+  interest in extending what VCS are two larger conversations 
+  however all that we spoke about at the VC w g was what that 
+  working group is going to be working on in terms of its it's 
+  based media types and how we might structure being able to 
+  interoperate or transform between a base type and.
+Joe Andrieu:   Types it may be securing that and.
+Joe Andrieu:  In that other groups can Define ways that you 
+  secure VCS and that sort of gets us towards a bigger tent but we 
+  did not specifically say hey whatever toy for diff or or the ietf 
+  comes up with that we are calling those verifiable credentials so 
+  there's a Nuance there that you know will come out in the wash I 
+  think but I wanted to add that to the conversation.
+<manu_sporny> Yes, excellent point, Joe.
+Kimberly Linson:  Okay thanks anybody else have an announcement 
+  reminder introduction if you if you joined us later.
+Juan Caballero: +1
+Kimberly Linson:  I think I do have Bumble fudge.
+<bumblefudge> yeah sorry, badly timed :D
+Kimberly Linson:  Do you have a oh you're just plus you're just 
+  passed whining you're not you're not putting yourself on the key 
+  got it okay so in that case I'm going to go ahead and turn it 
+  over to Alex and anchor and Ross and let you let you get started.
+
+Topic: DID-Linked Resources
+
+Alex_Tweeddale: Yep I'm here Anchor Great yeah if you have any 
+  questions at any point just you can just pass to me I'll also 
+  keep an eye on the chat to see if anything comes through and then 
+  I'll just bring it up if it does.
+<manu_sporny> Shout out to Blacksburg, VA!!! (in the example) :P
+<dmitri_zagidulin> wooooot! shout-out to the Render paper! 
+  https://github.com/WebOfTrustInfo/rwot11-the-hague/blob/master/draft-documents/rendering-vcs-snapshot-9-27-22.md
+Manu Sporny: +1 ^^^
+<bumblefudge> 💪
+Alex_Tweeddale: My name is said that you've been added to the 
+  queue and the CG thought but I mean that you've got your hands 
+  up.
+Manu Sporny:  Yes yes it does I just wanted to say this is a 
+  fantastic presentation anchored like really great job especially 
+  love that I mean you're making the case for you know why why 
+  append-only Ledger's are like a really good like solution to this 
+  problem without saying blockchain blockchain blockchain of every 
+  single slide like I really like that I think that helps a ton so.
+Manu Sporny:   Great presentation I wanted to point.
+<harrison_tang> second on the "great presentation" part.  it 
+  looks really pretty, too
+Manu Sporny: https://github.com/w3c/vc-data-model/pull/1035
+Manu Sporny:  Saying that you had mentioned which is like that 
+  rendering thing like it would be really nice to render you know 
+  link to assets that are effectively content addressed on Ledger 
+  or somewhere so that it renders in the way the issuer initially 
+  intended it to render we do have a new feature that we're 
+  considering in the verifiable credentials working group right now 
+  so I'll put the link in here it's pull 10:35 on a render property 
+  in a verifiable.
+Manu Sporny:   Anshel in one of the things that I imagine that 
+  this.
+Manu Sporny:  He could point to.
+Manu Sporny:  Is a dead linked resource right so I just wanted 
+  you to be aware that that decision is like imminent and if you're 
+  interested in supporting that that would be a good thing same 
+  thing for anyone else here like if you're interested in seeing 
+  that go in or happen in some way please chime in on that thread 
+  that's it.
+Alex_Tweeddale: I think Marcus has his hand up.
+Markus Sabadello:  I just want to say I also really like this on 
+  the web and when it comes to your eyes for a long time there's 
+  been this concept of persistent your eyes right or persistent 
+  URLs purls and historically I think they've always been realized 
+  through convention right so people are simply saying here is a 
+  persistent URL a persistent way to link to a resource and it's 
+  just the domain name that by convention.
+Markus Sabadello:   Ian is considered to be persistent and if 
+  you.
+<bumblefudge> My favorite kind of behavior-- undefined behavior!
+<harrison_tang> ;(
+<manu_sporny> it's the spice of life, bumblefudge! :P
+Markus Sabadello:  It's like that with deeds and you inherit all 
+  the properties of Deeds for for this idea of of any kind of 
+  resource to make them persistent and decentralized and all of 
+  that not by convention but because of the technology that that's 
+  really powerful and yeah great presentation and look forward to 
+  the next part.
+Alex_Tweeddale: Yeah I second that Marcus and Carly who Tema did 
+  a really good presentation in trust over IP called pids with did 
+  switch was looking at like research identifiers which are 
+  traditionally identified using my persistent identifiers and we 
+  both looked at how that could be augmented with using a did 
+  length resource or a piston did URL so I 100% would love to sort 
+  of explore that use case a bit further but yeah I'll pass it back 
+  over to anchors to sort of kick off the second half here.
+Alex_Tweeddale: Just going to pause that cuz I'm a man who has 
+  his hand up so.
+Manu Sporny:  Just a few comments in passing would you mind going 
+  back to the previous slide so I think this is I think this is 
+  great like the you know all the fields there you know have a 
+  purpose the data modeling is a bit off like I think there are a 
+  couple of things that you could change here that would bring it 
+  much more aligned in line with kind of the way things are modeled 
+  in boats did documents and verifiable credentials so things like 
+  resource you are I should probably just be ID.
+Manu Sporny:   But that's really it I mean you know everything 
+  else.
+Manu Sporny:  Probably you know be changed resource type is 
+  really just type it seems like that's probably what it should be 
+  so they're tiny little adjustments here that I think could be 
+  made to bring it more in line with you know the way things are 
+  modeled in did documents and verifiable credentials but largely 
+  Yep looks looks good.
+<bumblefudge> id array?
+Alex_Tweeddale: I think just to pause that and I may be wrong 
+  here anchor but if you called it just type then if you were doing 
+  some sort of query syntax that could get confused with maybe 
+  something like service type which is also called type so if you 
+  are querying a did documents in just wanted to find just wanted 
+  to clear by resource type and I think having a unique delineation 
+  between resource type and other different types within the date 
+  document could be a useful thing to have but I might be wrong.
+Alex_Tweeddale:  I'm there.
+<alex_tweeddale> Ah sorry Dmitri, I'll pause for you in a sec
+Alex_Tweeddale: Yeah Dimitri had his hands up a bit earlier so I 
+  think we'll pass over to Dimitri.
+Dmitri Zagidulin:  Thanks I do questions I one is I'm wondering 
+  if if the resource ID is meant for the researcher is meant to be 
+  an alternative location I wonder if it makes sense to reuse the 
+  also known as term from the did spec right okay.
+Dmitri Zagidulin:  Okay cool alright on.
+Alex_Tweeddale: We actually have done that so I think anchor 
+  maeby was referring to a way we did it previously but then we had 
+  we did update it to also known as because we definitely looked at 
+  that same energy.
+Dmitri Zagidulin:  Okay got it really okay and then the other 
+  question is so the main question I have had when I when I heard 
+  about did linked resource is how is it different from defining a 
+  service endpoint to type three Source right like could this not 
+  be implemented as a service I'm service endpoint or is this a 
+  more like.
+Dmitri Zagidulin:   Simplification and.
+Dmitri Zagidulin:  Yeah so the question is husband.
+Alex_Tweeddale: May I see your hand if I just want to add one 
+  more point that quickly I think in the service section as well 
+  you're quite limited and what the fields are so you've obviously 
+  got the ID and the type but what we do in the resource metadata 
+  is we derive uniqueness from resource name and resource type so 
+  if you were trying to lay this out in the service section you 
+  might run into challenges with previous and next versions of the 
+  same resource because you wouldn't be able to necessarily 
+  advertise.
+Alex_Tweeddale:  add to research to resources in the service 
+  section with the.
+Alex_Tweeddale: In the same type because you might face a 
+  collision where the fragment in the in the ID was the same you 
+  wouldn't be you wouldn't allow that to happen so you would only 
+  be able to point to one specific version of a particular resource 
+  in time which is where I think this is a bit stronger in terms of 
+  being able to semantically point to the next and previous 
+  versions man you are I'll go to you next.
+Manu Sporny:  Yeah this is all fascinating stuff I think the just 
+  wanted to make a couple of General points so my understanding 
+  based on you know Dmitri's question your answers that you're 
+  looking for a generalized form of like this this pattern can be 
+  applied to all did methods and if you put them in I'm not going 
+  to no value judgment on whether it goes in the link resource 
+  section or service section but fundamentally you're trying to 
+  propose a way that could like all did methods could.
+Manu Sporny:   Use this they could choose to use do something 
+  else but you know you've got some qualities here.
+Manu Sporny:  That that you know are.
+Manu Sporny:  Special the the points that I'm I'd like to make 
+  though just going back to the previous statement Alex you were 
+  like you know I don't know if I'm right about this or not I think 
+  that you're going to get some pushback on the the some that the 
+  way you're doing some of the data modeling but I don't think it's 
+  going to lead to like a fundamental change in the way this works 
+  right so I think I think in the what you're saying about there.
+Manu Sporny:   Being collisions and stuff that's right.
+Manu Sporny:  Like Flags in my head of like that doesn't sound 
+  quite right I don't think that there could be a collision there 
+  but clearly I mean you guys thought you know more through this 
+  than you know most of the folks on the call so I think it's going 
+  to be really interesting to see kind of how that that 
+  conversation comes out but by and large this feels like a very 
+  useful you know body of work let's see.
+Manu Sporny:  Yeah it let me suggest that there's no one right 
+  way to do this I think that's what that you that's where the 
+  conversation will go I don't necessarily you know disagree with 
+  the feedback that you got but I think it's missing some important 
+  Nuance which is why you know the way that you've constructed it 
+  right now is a fine way to do it but you can also construct it as 
+  a service endpoint you can do it both ways and that's why I 
+  expect where you know working group discussion is going to you.
+Manu Sporny:  Bit of time is Which Way makes more sense let's.
+Manu Sporny: +1 To having a common way to fetch a linked resource 
+  across multiple DID Methods.
+Markus Sabadello:  Yes yes we we have spoken about this I think 
+  this is really useful I'm very excited about it we discussed a 
+  little bit what the best way would be to fit this into the 
+  resolution specification right the resolution obviously has a 
+  Hooks and extension points where new query parameters a new video 
+  real patterns can be can be plugged in.
+Markus Sabadello:   One question that we discussed a little bit.
+Markus Sabadello:  Was whether or not the actual functionality 
+  the actual meaning and the de-referencing logic of these 
+  parameters would be described in the resolution itself or if that 
+  would be described in a separate specification but then as an 
+  extension to the referencing algorithm that's more than would 
+  then be more generic indeed resolution right like is this actual 
+  part of the digital solution specification or if there is this 
+  some separate.
+Markus Sabadello:   In which extends the debt resolution or.
+Markus Sabadello:  We'll be referencing algorithm I feel like 
+  this is this could potentially be a very fundamental and very 
+  core piece of functionality could be indeed resolution itself but 
+  that's something then for a future working group probably to 
+  decide.
+Alex_Tweeddale: When we were proposing this work item there was 
+  also some like discussion around other implementations of our 
+  habits was working I see Joe Andrew you on the call I was 
+  wondering if you see or any like a lot of synergies between this 
+  approach in your approach and maybe how you thought about this 
+  going forward as well in conjunction with what you've already 
+  done.
+Alex_Tweeddale: I see you come off mute Joe but I can't hear you.
+Joe Andrieu:  I was doubly muted with my headset yeah I think 
+  it's a it's a good attempt at solving a similar problem as what 
+  we did with the did Cosmos work.
+Joe Andrieu:  I'm sorry are you not able to hear me hello.
+Manu Sporny:  We can hear you now.
+Alex_Tweeddale: Sorry it just cuts out.
+Joe Andrieu:  Okay so I think there are a lot of similarities the 
+  one thing that caught me as you were walking through it today.
+Manu Sporny:  Cut out again.
+Kimberly Linson:  Yeah right at that like at the moment where I 
+  was like hanging onto here.
+Joe Andrieu:  I think I'll just try and back up a little bit I 
+  think the best practice with regard to sort of schemas and 
+  versioning is going to be to make them and treat them as 
+  immutable which is what the calm system.
+Dmitri Zagidulin:  So much to say.
+Joe Andrieu:  This application is it still breaking up.
+Alex_Tweeddale: Yeah it is.
+Joe Andrieu:  Yeah it's weird and then if any of you know just a 
+  short idea is there's some things we learned from calm from 
+  having immutable identifiers that uniquely defined the particular 
+  interface for all time rather than having named named schemes 
+  that do change or schemas at do so.
+Manu Sporny: +1 To look at immutability as a mechanism to deal w/ 
+  versioning...
+<manu_sporny> having a "never changing" unique ID might create 
+  problems if its mutable, is what I think Joe is saying (and I 
+  agree with him at a high level).
+Joe Andrieu: +1 Manu. mutability is not our friend.
+<manu_sporny> Though, I'm concerned that I'm missing nuances that 
+  the cheqd team hit in their design.
+Manu Sporny: +1 For this being a very worthwhile discussion, and 
+  a work item, and the conversation/design integrated into the DID 
+  Resolution work.
+Alex_Tweeddale: What's that just kind of closing thoughts as were 
+  at the our I just wanted to say Manu others if you want to sort 
+  of play around with did link to resources and test our theories 
+  in practice it's like a Sandbox environment this is all available 
+  currently use on checks may not and test now so if you want to 
+  get set up and play around with it and test some hypotheses happy 
+  to help there as well.
+<manu_sporny> Awesome, thanks AlexT -- I'm time starved right 
+  now, but very interested in the work.
+<harrison_tang> Thank you, Ankur and Alex!  Love the 
+  presentation.
+<markus_sabadello> Great presentation!
+Kimberly Linson:  Thank you so much anchor this was really 
+  helpful and I really appreciated the presentation and the way you 
+  approached it and was very accessible for me so thank you and and 
+  I know so so we've left this is a proposed work item it sounds 
+  like from the the chat I'm seeing a lot of support and this 
+  conversation has been really good so let me circle with Harrison 
+  and Mike and then we'll sort of understand.
+Kimberly Linson:   What the next steps are.
+Kimberly Linson:  To the next place and get get this work started 
+  here in the ccg so thank you all I'm sorry we're a little bit 
+  over time so I'm going to wrap us up and look forward to seeing 
+  you all next week thank you.
+Harrison_Tang: And some car thank you.

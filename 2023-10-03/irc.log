@@ -1,0 +1,243 @@
+[2023-10-03T15:54:31.413Z]	<Harrison_Tang>	present+
+[2023-10-03T15:56:54.732Z]	<tomj>	present+
+[2023-10-03T15:57:07.280Z]	<Alan_Davies>	present+
+[2023-10-03T15:57:57.983Z]	<David_Waite>	present+
+[2023-10-03T15:58:51.807Z]	<Greg_Bernstein>	present+
+[2023-10-03T15:59:02.570Z]	<Bc>	present+
+[2023-10-03T15:59:51.654Z]	<Marty_Reed>	present+
+[2023-10-03T16:00:31.476Z]	<Mike_Jones>	present+
+[2023-10-03T16:00:46.297Z]	<Andres_Uribe>	present+
+[2023-10-03T16:00:48.409Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-10-03T16:00:54.436Z]	<Vanessa_Xu>	present+
+[2023-10-03T16:00:56.735Z]	<TallTed>	present+
+[2023-10-03T16:01:11.981Z]	<Leo>	present+
+[2023-10-03T16:01:12.265Z]	<DavidC>	present+
+[2023-10-03T16:01:12.776Z]	<Bc>	present+
+[2023-10-03T16:01:14.106Z]	<Clare_Nelson_(DIF)>	present+
+[2023-10-03T16:01:32.094Z]	<Gregory_Natran>	present+
+[2023-10-03T16:01:52.634Z]	<Dmitri_Zagidulin>	present+
+[2023-10-03T16:01:59.785Z]	<Hiroyuki_Sano,_Japan>	present+
+[2023-10-03T16:02:30.743Z]	<Vanessa_Xu>	present+
+[2023-10-03T16:02:46.502Z]	<Transcriber>	scribe+
+[2023-10-03T16:02:46.503Z]	<Transcriber>	Meeting: weekly
+[2023-10-03T16:02:53.379Z]	<econnell>	present+
+[2023-10-03T16:03:00.226Z]	<Dmitri_Zagidulin>	woooot haha DPoP, my old friend!!
+[2023-10-03T16:03:06.354Z]	<Sharon_Leu>	present+
+[2023-10-03T16:03:06.402Z]	<Stuart_Freeman>	present+
+[2023-10-03T16:03:20.506Z]	<Geun-Hyung>	present+
+[2023-10-03T16:03:29.245Z]	<Transcriber>	Harrison_Tang: Welcome welcome everyone to this week's w3c ccg meeting today we are very excited to have my Jones here to actually present the demonstrating proof of possession at the application layer T peopie today but before we get to the main agenda just want to quickly go over the admin stuff so first of all just a quick reminder on the code of ethics and professional conduct just want to make sure that you know everyone.
+[2023-10-03T16:03:29.721Z]	<Transcriber>	Harrison_Tang:  no make respectful comments and.
+[2023-10-03T16:03:34.632Z]	<Will>	present+
+[2023-10-03T16:04:03.109Z]	<Transcriber>	Harrison_Tang: There's something else a quick IP note anyone can participate in these calls however all substantive substantial contributions to a nice ECG work items must be members of the ccg with for IP our agreement sign so if you have any questions on that or have any encounter any issues creating a w3c account please feel free to reach out to any of the co-chairs a quick called note all the calls are being automatically.
+[2023-10-03T16:04:03.579Z]	<Transcriber>	Harrison_Tang:  recorded and transcribed and we will publish.
+[2023-10-03T16:04:07.241Z]	<Transcriber>	Harrison_Tang: Audio recordings within the next few days.
+[2023-10-03T16:04:08.315Z]	<Jeff_O_-_HumanOS>	present+
+[2023-10-03T16:04:17.899Z]	<kimberly_Wilson_Linson>	present+
+[2023-10-03T16:04:39.049Z]	<Transcriber>	Harrison_Tang: We use on Gchat to cure the speakers during the call as well as to take minutes so you can type in Q Plus to add yourself to the queue or q- to remove all right um any introductions were reintroduction if you're new to the community or you if you haven't been engaging with the community and whilst wants to re-engage please feel free to unmute.
+[2023-10-03T16:05:04.929Z]	<Transcriber>	Harrison_Tang: Toward the end if we got time and you don't feel as shy I feel free to just mute and introduce yourself alright next announcements and reminders any news any new announcements or reminders.
+[2023-10-03T16:05:34.391Z]	<Transcriber>	Harrison_Tang: A quick preview of what's coming so next week we'll have the special wa Fushigi hybrid open house session at internet identity workshop at 12 p.m. because I am we have the Open Circles so it will be a special meeting at 12 p.m. Pacific Time 3 p.m. eastern time.
+[2023-10-03T16:05:48.140Z]	<Marty_Reed>	present+
+[2023-10-03T16:05:57.590Z]	<Transcriber>	Harrison_Tang: And then the week after that we will talk about selective disclosure mechanisms an overview of different selective disclosure mechanisms out there and then the week after that we will talk about the grant negotiation authorization protocol for nap and then after that we'll talk about mobile driver license.
+[2023-10-03T16:06:03.773Z]	<Transcriber>	Harrison_Tang: By any other announcements were reminders.
+[2023-10-03T16:06:09.606Z]	<Transcriber>	Harrison_Tang: Any updates to the work items.
+[2023-10-03T16:06:14.025Z]	<James_Chartrand>	present+
+[2023-10-03T16:06:36.728Z]	<Transcriber>	Harrison_Tang: Alright pretty simple I think most people here to learn more about the peopie from mic so that I think it might we don't need further introductions I think you have been a legend in our space so the floor is yours.
+[2023-10-03T16:07:04.897Z]	<Transcriber>	Mike_Jones: Well thank you so I will introduce myself I'm Mike Jones I spent a number of years at Microsoft doing identity standards work and I'm now an independent consultant still doing identity standards and ecosystem building work I've worked on o off open ID connect the Json web token w3c web crypto the did.
+[2023-10-03T16:07:22.068Z]	<Rachel_Donahue_(she/they)_-_Digital_Promise>	present+
+[2023-10-03T16:07:37.473Z]	<Transcriber>	Mike_Jones: And verifiable credentials among other things so I'm here to talk to you today about enabling proof of possession in a practical way which has been something that's been an elusive goal for the industry for a long time and I'll give the caveat this started as a deck that I gave at identifiers a year ago and.
+[2023-10-03T16:07:37.979Z]	<Transcriber>	Mike_Jones:  it's the slide.
+[2023-10-03T16:07:49.885Z]	<Transcriber>	Mike_Jones: Updated the content to reflect the current reality but I didn't bother updating the template because it was hard.
+[2023-10-03T16:07:58.375Z]	<Transcriber>	Mike_Jones: So this was a presentation that identifies I gave with my colleague Peter Castleman.
+[2023-10-03T16:08:03.911Z]	<James_Chartrand>	present+
+[2023-10-03T16:08:07.512Z]	<Transcriber>	Mike_Jones: So in the next 20 minutes I have 20 minutes correct.
+[2023-10-03T16:08:10.504Z]	<pauld_gs1>	present+
+[2023-10-03T16:08:18.792Z]	<Transcriber>	Harrison_Tang: Actually it can be 30 minutes or 40 minutes and we will do the Q&A afterwards but either way it's fine.
+[2023-10-03T16:08:29.130Z]	<Kevhorn_Anderson_(AstrumU)>	present+
+[2023-10-03T16:08:38.087Z]	<Transcriber>	Mike_Jones: Okay I will talk about how token theft is a real problem that affects the industry and the security of the systems that we actually use proof of possession is a way to mitigate the token theft.
+[2023-10-03T16:08:46.906Z]	<Transcriber>	Mike_Jones: And talk about some attacks that depop explicitly mitigates.
+[2023-10-03T16:09:01.073Z]	<Transcriber>	Mike_Jones: This is data from a year ago but over a six-month period the.
+[2023-10-03T16:09:12.621Z]	<Transcriber>	Mike_Jones: Identity Protection Team at Microsoft detected over 150,000 token thefts.
+[2023-10-03T16:09:41.704Z]	<David_I._Lehn>	present+
+[2023-10-03T16:09:43.275Z]	<Transcriber>	Mike_Jones: And over 1.7 million device now we're in infections this came from my friend Alex Winer the head of identity protection at Microsoft the token thefts are typically Bearer tokens a bearer token is like cash if you have it you can use it even if you stole it so the theft of Bearer tokens.
+[2023-10-03T16:09:52.121Z]	<Transcriber>	Mike_Jones: So proof of possession tokens are a safer alternative.
+[2023-10-03T16:10:20.349Z]	<Transcriber>	Mike_Jones: Proof of possession or pop token is like your driver's license only you can use it and the reason only you can use it is it's bound to you in some demonstrable way the driver's license the photo is The Binding to you in proof of possession tokens a cryptographic key is the way you bind the token.
+[2023-10-03T16:10:36.878Z]	<Transcriber>	Mike_Jones: So the use of Bearer tokens was defined by RFC 6750 essentially a decade ago more than a decade ago now.
+[2023-10-03T16:10:45.339Z]	<Transcriber>	Mike_Jones: And before deep up there was no off 20 standard for proof of possession tokens.
+[2023-10-03T16:11:14.478Z]	<Transcriber>	Mike_Jones: So what is proof of possession proof of possession demonstrates possession of cryptographic key material when performing an operation it does that by signing something using a private key and only the possessor of the private key can use a leaked or stolen token even if it's stolen.
+[2023-10-03T16:11:47.198Z]	<Transcriber>	Mike_Jones: So the industry has taken a bunch of stabs at this problem and it's used a whole bunch of different names I give this survey of names just so if you've heard of this under other names that you'll realize oh this is the same thing so it's been called proof of possession holder of key which is the symbol terminology.
+[2023-10-03T16:11:58.316Z]	<Transcriber>	Mike_Jones: Tokens key constraint tokens certificate bound tokens keep bound tokens key confirmation Etc.
+[2023-10-03T16:12:14.136Z]	<Transcriber>	Mike_Jones: And as I mentioned the industry has taken a bunch of stabs at this to its credit sale 20 has the holder of key assertion profile which is.
+[2023-10-03T16:12:14.228Z]	<Bc>	present+
+[2023-10-03T16:12:23.094Z]	<Transcriber>	Mike_Jones: Abound token although it's not exactly oauth which was the problem space that we're trying to solve for.
+[2023-10-03T16:12:23.290Z]	<Transcriber>	Mike_Jones:  oh ah.
+[2023-10-03T16:12:31.573Z]	<Transcriber>	Mike_Jones: One used proof of possession that the message signing that went with it was too complicated for most developers to get right.
+[2023-10-03T16:12:39.107Z]	<Transcriber>	Mike_Jones: An oauth2 Mac draft which was a lot like a with one.
+[2023-10-03T16:12:59.124Z]	<Transcriber>	Mike_Jones: That got abandoned there was an HTTP to signing draft that also got abandoned there was the TLs token binding set of rfc's which could have worked but some browsers declined to ship it.
+[2023-10-03T16:13:31.284Z]	<Transcriber>	Mike_Jones: 20 Mutual TLS does work and it's used in some closed environment successfully or closed environments might be payment ecosystems or open banking systems where all the parties are known to a central Authority and they can be issued a client certificate by that Authority as opposed to open systems where people would be issuing their own.
+[2023-10-03T16:13:31.342Z]	<Transcriber>	Mike_Jones:  own certificates.
+[2023-10-03T16:13:53.317Z]	<Transcriber>	Mike_Jones: Which brings us to the topic for today that oauth2 deep up the demonstration of proof of possession spec which is our current stab at solving this important problem so what is deep pop it stands for demonstrating proof of possession.
+[2023-10-03T16:14:06.136Z]	<Transcriber>	Mike_Jones: The application layer and as of last month it became an RFC ye are fc9 449 assymetric number.
+[2023-10-03T16:14:15.024Z]	<Transcriber>	Mike_Jones: And now it's a pragmatic way to for applications to.
+[2023-10-03T16:14:45.818Z]	<Transcriber>	Mike_Jones: You proof of possession supposed to it happening at sort of a system service level now what's in a name it it's at least humorous to me to note that depop started out because Brian Campbell was in the s-bahn in Stuttgart and so this poster for Deutsche pop which is a education program.
+[2023-10-03T16:14:46.135Z]	<Transcriber>	Mike_Jones:  I'm in Germany.
+[2023-10-03T16:15:08.145Z]	<Transcriber>	Mike_Jones: For the Arts and he thought okay pop that's proof of possession don't you pop that steep up we should find a way to do a reverse acronym for Deutsche pop and so that's the actual origin of the name.
+[2023-10-03T16:15:30.687Z]	<Transcriber>	Mike_Jones: So how does it work do you pop sends a Json web token for the proof of possession as an HTTP header so it demonstrates proof of possession in the context of the request.
+[2023-10-03T16:15:49.197Z]	<Transcriber>	Mike_Jones: It's sent in the same way both for token requests and protected resource requests the authorization server uses the proof to bind the tokens and the resource server uses the proof to verify the bone tokens.
+[2023-10-03T16:15:55.042Z]	<Transcriber>	Mike_Jones: And figure there is straight out of the speck.
+[2023-10-03T16:16:23.440Z]	<Transcriber>	Mike_Jones: So what does a deep proof look like for those of you who know Json web tokens a lot of this should be familiar so there's an explicit type so that you can't confuse the depop proof with another kind of job there's an algorithm there's a key which is used to verify the proof of possession.
+[2023-10-03T16:16:37.539Z]	<Transcriber>	Mike_Jones: Token identifier for replay protection there's the HTTP method which in this case is post.
+[2023-10-03T16:16:59.240Z]	<Transcriber>	Mike_Jones: There's the URL where the thing came from there's when it was issued there's a hash of the access token so that can't be substituted and there's a nonce provided by the server to prevent certain kinds of attacks which we'll talk about.
+[2023-10-03T16:17:15.650Z]	<Transcriber>	Mike_Jones: So there's an access token request but instead of using the type Bearer it's using the type depop.
+[2023-10-03T16:17:29.263Z]	<Transcriber>	Mike_Jones: There's an access token response again rather than using the token type Bearer you're getting a deep up token.
+[2023-10-03T16:17:54.651Z]	<Transcriber>	Mike_Jones: And you can do a refresh token request to bind the refresh token to the DU Pape key so you include a deep up hitter in the refresh token request likewise if you're doing a protected resource request you can deep up bind that.
+[2023-10-03T16:18:11.476Z]	<Brian_Richter>	present+
+[2023-10-03T16:18:20.065Z]	<Transcriber>	Mike_Jones: Now there's this thing in HTTP that some of you are probably familiar with called the www atheltic it challenge that's a means for a server to say to the requester oh you need to do this in order to satisfy me.
+[2023-10-03T16:18:43.679Z]	<Transcriber>	Mike_Jones: Deep pop www with indicate challenge defined to say you have to use depop and by the way these are the signature algorithms that I support and so a response to a protected resource request with an invalid token.
+[2023-10-03T16:18:52.658Z]	<Transcriber>	Mike_Jones: Might be 401 unauthorized and say that.
+[2023-10-03T16:18:56.095Z]	<Transcriber>	Mike_Jones: You need to have depop.
+[2023-10-03T16:18:59.640Z]	<Transcriber>	Mike_Jones: And then you retry with deep up token.
+[2023-10-03T16:19:30.959Z]	<Transcriber>	Mike_Jones: Originally the Deep pops back was simpler than the final version and while I love Simplicity I also love security there were a couple features that were added because in early versions of the spec is deployed there were a couple attacks that could still be mounted.
+[2023-10-03T16:19:38.700Z]	<Transcriber>	Mike_Jones: Where you could mint depop tokens by a bad actor.
+[2023-10-03T16:20:04.713Z]	<Transcriber>	Mike_Jones: So one of these is mitigated by a server provided nonce a value that the server creates to put in the Deep up proof that way the server can know that oh well this is a deep pot proof that's current At This Server because the server provided content put into the proof.
+[2023-10-03T16:20:31.304Z]	<Transcriber>	Mike_Jones: So there is metadata associated with this as those of you who know us know that there's both authorization server metadata in this case there's metadata saying what signing those signing algorithms you support.
+[2023-10-03T16:20:43.026Z]	<Brian_Campbell>	present+
+[2023-10-03T16:21:01.002Z]	<Transcriber>	Mike_Jones: Client registration metadata where the client can say only send me deep up tokens I will not accept Bearer tokens so it's possible to bind the authorization code not just the access tokens and the refresh tokens to a deep popke this was something that was added later in the.
+[2023-10-03T16:21:32.844Z]	<Transcriber>	Mike_Jones: Specification development which enables end and binding of the whole flow those of you who know off to will recall that for the code flow and some of the other flows there's an author it a request to the authorization server returns an authorization code followed by a request to the Token endpoint originally depop only worked at the token endpoint this.
+[2023-10-03T16:21:37.480Z]	<Transcriber>	Mike_Jones: I also work at the authorization and point.
+[2023-10-03T16:21:57.226Z]	<Transcriber>	Mike_Jones: So we got a knife see last month yay here is another picture of Brian Campbell finding another Deutsche pop.
+[2023-10-03T16:22:17.883Z]	<Transcriber>	Mike_Jones: Sign this time in Vienna in the u-bahn again the German Subways which he found a suspicious because this was the same day that depop was moved to working group last call so we have a standard that's great.
+[2023-10-03T16:22:51.115Z]	<Transcriber>	Mike_Jones: For a certainty you know individual developers and organizations have to decide to build it and some very high volume Services people worried about the cost of asymmetric cryptography some proposals have been made by Amazon the like to also enable use of symmetric cryptography but that requires a key exchange step which isn't in the spec it was eventually decided.
+[2023-10-03T16:22:51.828Z]	<Transcriber>	Mike_Jones:  decided by the working group.
+[2023-10-03T16:22:51.884Z]	<Transcriber>	Mike_Jones: That if we.
+[2023-10-03T16:22:58.381Z]	<Transcriber>	Mike_Jones: A symmetric version of depop it would be a new spec so far nobody has written that.
+[2023-10-03T16:23:23.581Z]	<Transcriber>	Mike_Jones: That said I mean deep up is being used in production in some real environments for one thing the financial grade API 2.0 draft which is used as a basis for a lot of open Banking and open finance deployments around the world does use depop their certification tests that include deep up tests.
+[2023-10-03T16:23:43.912Z]	<Transcriber>	Mike_Jones: Now I'll really get down into the details about to potential attacks that caused us to add features that I've talked about so attack one is pre-computing a proof.
+[2023-10-03T16:24:24.971Z]	<Transcriber>	Mike_Jones: This structure there's an identity provider a client and a resource server where the identity provider is an authorization server so you present a public key and proof of possession to the identity provider you bind the client to the cryptographic keys and the tokens you get back a sender constrained or deep pot bound access token and maybe refresh token.
+[2023-10-03T16:24:25.274Z]	<Transcriber>	Mike_Jones:  client generates.
+[2023-10-03T16:24:45.056Z]	<Dmitri_Zagidulin>	present+
+[2023-10-03T16:24:56.091Z]	<Transcriber>	Mike_Jones: Proofs with an issue that parameter to guarantee freshness the client sends the fresh proof of possession with the access token to the resource the resource accepts the token of the proof of possession is valid and the access is granted that's sort of the basic deep up flow but let's look at it pre-computation attack so you start off the same as normal.
+[2023-10-03T16:25:03.157Z]	<Transcriber>	Mike_Jones: If there's malware in the client.
+[2023-10-03T16:25:22.584Z]	<Transcriber>	Mike_Jones: The client has and the malware has access to the key material or or at least the ability to sign with the key material to generate deep up roofs.
+[2023-10-03T16:25:46.664Z]	<Transcriber>	Mike_Jones: Clever malware client could generate proofs well into the future it could you know create a proof for now it could create a proof for a minute from now it could create a proof for 10 minutes from now it could create a proof for an hour from now.
+[2023-10-03T16:25:56.031Z]	<Transcriber>	Mike_Jones: And then it can take those proofs pull them off the box and take them to a place under control of the attacker.
+[2023-10-03T16:26:19.431Z]	<Transcriber>	Mike_Jones: Impasses and then the attacker can use those precomputed proofs at the resource and the resource doesn't have any way to know that these weren't generated by the real client or by the intended party and guess what the attacker gets resource access even though he's off box.
+[2023-10-03T16:26:21.940Z]	<Transcriber>	Mike_Jones: How do we fix that.
+[2023-10-03T16:26:24.926Z]	<Transcriber>	Mike_Jones: You start off as normal.
+[2023-10-03T16:26:30.489Z]	<Transcriber>	Mike_Jones: Malware is present a pre compute some proofs.
+[2023-10-03T16:26:37.964Z]	<Transcriber>	Mike_Jones: He takes the proofs off box time passes he presents them.
+[2023-10-03T16:26:49.508Z]	<Transcriber>	Mike_Jones: The difference is the server has provided a nonce value of its choosing to put into the proofs.
+[2023-10-03T16:26:57.510Z]	<Transcriber>	Mike_Jones: So that value was provided before the proofs were computed.
+[2023-10-03T16:27:06.485Z]	<Transcriber>	Mike_Jones: And guess what if the server has updated the nonce value then.
+[2023-10-03T16:27:16.439Z]	<Transcriber>	Mike_Jones: When the teapot proof is examined if the nonce value isn't current.
+[2023-10-03T16:27:47.363Z]	<Transcriber>	Mike_Jones: People will know that something's amiss and say you're able to prevent that attack by proved by using a server provided nonce again this is a common pattern in security protocols that if you want freshness you need to have one party contribute material to the cryptographically signed entity so that that party can know oh this is.
+[2023-10-03T16:27:47.681Z]	<Transcriber>	Mike_Jones:  nothing that.
+[2023-10-03T16:27:56.617Z]	<Transcriber>	Mike_Jones: List the next attack is rebinding the authorization code.
+[2023-10-03T16:28:04.219Z]	<Transcriber>	Mike_Jones: So here's our standard diagram again.
+[2023-10-03T16:28:26.701Z]	<Transcriber>	Mike_Jones: So remember oh I usually uses two endpoints the authorization and point and the token endpoint this steps back and breaks out the authorization and point request as opposed to the token and point request.
+[2023-10-03T16:28:58.372Z]	<Transcriber>	Mike_Jones: So youth indicate the user an issue the authorization code that goes back to the client the client then context the token endpoint using the public key in the Deep Pub proof and the authorization server binds the client controlled keys to the tokens you send back the sender constrained token client generates proofs.
+[2023-10-03T16:28:58.659Z]	<Transcriber>	Mike_Jones:  present the proofs are.
+[2023-10-03T16:29:06.834Z]	<Transcriber>	Mike_Jones: Accepts the tokens of the proof of possession is valid and you get access so that's all great.
+[2023-10-03T16:29:15.843Z]	<Transcriber>	Mike_Jones: But you know what if there is a proxy or a VPN in the middle for instance.
+[2023-10-03T16:29:22.334Z]	<Transcriber>	Mike_Jones: The access codes and other artifacts and up in log files.
+[2023-10-03T16:29:33.416Z]	<Transcriber>	Mike_Jones: And I'm not making this up this really does happen so supposing the attacker somehow gets some access to your servers.
+[2023-10-03T16:29:40.835Z]	<Transcriber>	Mike_Jones: And compose the authorization code out of a log file.
+[2023-10-03T16:30:03.539Z]	<Transcriber>	Mike_Jones: Then with that authorization code the attacker can generate its own deep popke and deep up proofs that are not actually owned by the client and so the attacker can start using tokens obtained with authorization code.
+[2023-10-03T16:30:08.450Z]	<Transcriber>	Mike_Jones: And goes to town.
+[2023-10-03T16:30:17.796Z]	<Chandi_Cumaranatunge>	present+
+[2023-10-03T16:30:21.137Z]	<Transcriber>	Mike_Jones: How do we prevent that I've mentioned this earlier but let's go over it start off as normal.
+[2023-10-03T16:30:29.632Z]	<Transcriber>	Mike_Jones: Attacker gets the authorization code generates it's on proofs etcetera but.
+[2023-10-03T16:30:34.070Z]	<Transcriber>	Mike_Jones: Authorization server compares the depop.
+[2023-10-03T16:31:03.851Z]	<Transcriber>	Mike_Jones: Jason Webb key with the presented public key and rejects the request if they don't match again the reason they won't match is the attacker doesn't have the client ski it was using its own key but by depop binding the authorization code and not just the access token you can again end-to-end.
+[2023-10-03T16:31:07.025Z]	<Transcriber>	Mike_Jones: The whole flow.
+[2023-10-03T16:31:27.895Z]	<Transcriber>	Mike_Jones: So any good talk has a call for Action the call for Action here is protect yourself from token theft using depop implemented deploy it we hope that's done the job.
+[2023-10-03T16:31:31.176Z]	<Harrison_Tang>	q?
+[2023-10-03T16:31:41.994Z]	<Transcriber>	Mike_Jones: That's my capsule summary of depop in 20 minutes I would now be glad to take questions from any of you find people.
+[2023-10-03T16:32:15.866Z]	<Transcriber>	Dmitri_Zagidulin: Call Madonna question I just want to say that Mike I want to give a big thanks and a big shout out to you want to work on the d-bob spec because it is what has enabled the solid authentications back to exist this is Tim berners-lee solid projects with personal data server and so on and it's Frost domain of integration.
+[2023-10-03T16:32:16.216Z]	<Transcriber>	Dmitri_Zagidulin:  Nation system.
+[2023-10-03T16:32:24.555Z]	<Transcriber>	Dmitri_Zagidulin: D pops back out it's hard so big thanks you've enabled an entire Community to exist with it.
+[2023-10-03T16:32:30.155Z]	<Transcriber>	Mike_Jones: Call will thank you for letting me know that solid is using it.
+[2023-10-03T16:32:34.908Z]	<Transcriber>	Harrison_Tang: Any other questions.
+[2023-10-03T16:33:01.290Z]	<Transcriber>	Harrison_Tang: Oh wait Mike I'm just curious you mentioned that there had been quite a bit of other attempts previously do the pop so what's different between depop solution versus the previous Solutions and how is what do you think is different this time that you think Deepak has a higher chance of getting adopted.
+[2023-10-03T16:33:07.311Z]	<Transcriber>	Mike_Jones: Well let's get back to that slide oops.
+[2023-10-03T16:33:17.082Z]	<Transcriber>	Mike_Jones: Build slides going back through them takes a while.
+[2023-10-03T16:33:41.771Z]	<Transcriber>	Mike_Jones: So the short answer is.
+[2023-10-03T16:33:45.263Z]	<Transcriber>	Mike_Jones: We think we've hit.
+[2023-10-03T16:33:52.741Z]	<Transcriber>	Mike_Jones: A workable balance between complexity and security.
+[2023-10-03T16:33:59.288Z]	<Transcriber>	Mike_Jones: You know developers are finicky people they.
+[2023-10-03T16:34:05.702Z]	<pauld_gs1>	present+
+[2023-10-03T16:34:07.899Z]	<Transcriber>	Mike_Jones: Don't want to do more than they have to and don't want to do things that they don't fundamentally understand.
+[2023-10-03T16:34:13.837Z]	<Transcriber>	Mike_Jones: So let's walk through this list.
+[2023-10-03T16:34:40.120Z]	<Transcriber>	Mike_Jones: Sam'l to did have a holder or does have a holder of key assertion profile and it is used in some deployments so that's actually a success story although symbol to has its own set of complexities the most notable being that signing a Samuel took and requires XML canonicalization.
+[2023-10-03T16:34:50.989Z]	<Transcriber>	Mike_Jones: And one of the big takeaways from XML D Sig and XML canonicalization is that it's too hard and developers got it wrong.
+[2023-10-03T16:34:57.422Z]	<Transcriber>	Mike_Jones: And so all the solutions after that require no canonicalization.
+[2023-10-03T16:35:04.392Z]	<Transcriber>	Mike_Jones: So I want one.
+[2023-10-03T16:35:23.432Z]	<Transcriber>	Mike_Jones: Have proof of possession but it required signing HTTP requests in a fairly General way and it had a lot of options there were options for what are the sign the HTTP body or not there were options to say which header parameters.
+[2023-10-03T16:35:27.873Z]	<Transcriber>	Mike_Jones: Her which HTTP headers were signed.
+[2023-10-03T16:35:59.520Z]	<Transcriber>	Mike_Jones: And you know the signing required again are Bugaboo canonicalization of some of the fields and evidence was that different developers when trying to implement it would implement it slightly differently and cryptographic functions have this step function that either they totally work or they don't work at all if you have a difference for.
+[2023-10-03T16:35:59.906Z]	<Transcriber>	Mike_Jones:  since between a carriage return.
+[2023-10-03T16:36:31.768Z]	<Transcriber>	Mike_Jones: In Line Feed and a carriage return or Line Feed it means the signatures don't match and so while I lost one could have worked there were other problems with it but I'll just focus on that one a lot of developers in practice at the time which is over a decade ago thought this is too hard we will develop something simpler called oauth rap.
+[2023-10-03T16:36:32.311Z]	<Transcriber>	Mike_Jones:  rap we're.
+[2023-10-03T16:37:03.542Z]	<Transcriber>	Mike_Jones: For web resource authorization protocol and you'll notice in the ietf that name of the working group is officially the web resource authorization protocol working group that developed what became off to I stepped into the mix at about that time and the main editor at the time.
+[2023-10-03T16:37:27.583Z]	<Transcriber>	Mike_Jones: Merlot have didn't believe in Bearer tokens and yet that's what Google and Microsoft and Salesforce and Facebook and others wanted to deploy and so I became the editor of the bearer token spec and Aaron did the max spec which eventually got abandoned because the working group wasn't that interested in it.
+[2023-10-03T16:37:59.986Z]	<Transcriber>	Mike_Jones: Did an HTTP signing draft but again it was at least as complex as the oauth1 signing and the working group abandoned it due to complexity as a side note I will say that the HTTP working group did eventually try to do a general HTTP signing draft and that became an RFC but that happened in parallel with depop.
+[2023-10-03T16:38:00.414Z]	<Transcriber>	Mike_Jones:  you know perhaps.
+[2023-10-03T16:38:00.567Z]	<Transcriber>	Mike_Jones: If it is.
+[2023-10-03T16:38:20.875Z]	<Transcriber>	Mike_Jones: There stood before depop existed we would have done a profile of the HTTP signing but as it is we signed basically two things the method like post and request URL as was shown in one of the diagrams.
+[2023-10-03T16:38:41.239Z]	<Transcriber>	Mike_Jones: Now let's talk about TLS token binding that was something where you could do cryptographic binding for a TLS session so a connection between here and there.
+[2023-10-03T16:39:12.092Z]	<Transcriber>	Mike_Jones: And bind the messages sent over TLS to cryptographic material maintained by the TLs engine and there was a draft for doing binding of HTTP requests over TLS token binding and there was an oauth draft to use that HTTP binding and there was a open ID draft to do that TLS took.
+[2023-10-03T16:39:42.537Z]	<TallTed>	present+
+[2023-10-03T16:39:43.319Z]	<Transcriber>	Mike_Jones: This was one of the strange twists in this long and winding road that we got to the place where those specs were done essentially they went to the RFC editor they were deployed in Chrome and Edge and I believe Firefox and I can't remember the status of safari and some friends in the Chrome team decided oh this is going to be.
+[2023-10-03T16:39:43.786Z]	<Transcriber>	Mike_Jones:  too hard to make.
+[2023-10-03T16:40:13.747Z]	<Transcriber>	Mike_Jones: A rip it out and they ripped it out of Chrome on the day that it went to the RFC editor and like a lot of these things these Solutions only work if they're ubiquitous if it you know is browser dependent and works in Safari but doesn't work in Chrome you're SOL and so that was a good start we learned a lot from it it's not deployed.
+[2023-10-03T16:40:21.467Z]	<Transcriber>	Mike_Jones: Now Mutual TLS is kind of an old.
+[2023-10-03T16:40:51.926Z]	<Transcriber>	Mike_Jones: Technology mean there's been ways of using TLS client certificates for most of the time that TLS has existed the problem is that client certificate management is hard and if you involve the end-user at all they will get it wrong it can only really work well in closed ecosystems like thanking ecosystems where.
+[2023-10-03T16:40:52.306Z]	<Transcriber>	Mike_Jones:  all the parties.
+[2023-10-03T16:41:23.167Z]	<Transcriber>	Mike_Jones: Able to be centrally administered and you can push the client certificates from a central authority to all the participants so that can work and it does work but it doesn't work in open systems environments which is why we eventually got to the depop idea which started at an oauth security workshop for years ago where we were brainstorming okay well what can we do if we're not going to have token binding.
+[2023-10-03T16:41:35.418Z]	<Transcriber>	Mike_Jones: If it's not going to be at the TLs or the operating system layer we're going to have to do it at the application Level what can we do at the application Level that will work.
+[2023-10-03T16:41:58.024Z]	<Transcriber>	Mike_Jones: And this is a long preface to me answering the question which is why do I think this is going to work I think it's going to work because developers can build it and deploy it themselves in their protocol Stacks without having to get browser support or operating system support.
+[2023-10-03T16:42:02.484Z]	<Transcriber>	Mike_Jones: Token binding actually needed both.
+[2023-10-03T16:42:33.199Z]	<Transcriber>	Mike_Jones: Um you had to have support in the TLs stack which sometimes was in the operating system and you had to have support to pipe that up through the HTTP layers so for instance to implement this in Java you had to have a modified version of the Java virtual machine that pipe this additional parameter up through the sockets layer.
+[2023-10-03T16:43:04.504Z]	<Transcriber>	Mike_Jones: Brian Campbell and others had built such support but Oracle had never committed to ship it and then the whole thing Came Crashing Down where you can use deep pop just by building both ends of it and using it so I think we're on a path to incremental adoption it's going to work and it's also the case that because this uses oauth Discovery you can incrementally figure out whether the end point you're talking to.
+[2023-10-03T16:43:05.026Z]	<Transcriber>	Mike_Jones:  supports it or not.
+[2023-10-03T16:43:11.509Z]	<Transcriber>	Mike_Jones: If it supports it use it if it doesn't support it use the bearer tokens you've been using for a decade.
+[2023-10-03T16:43:30.475Z]	<Transcriber>	Harrison_Tang: Thank you that's a very detailed answer thanks a lot so you maybe sense this is like a decentralized approach to that is not dependent on like centralized Authority is like browser platforms and things like that basically right.
+[2023-10-03T16:43:39.276Z]	<Transcriber>	Mike_Jones: Exactly it's it's in the hands of developers rather than in the hands of having have a central Authority for the ecosystem you're talking to.
+[2023-10-03T16:43:56.151Z]	<Transcriber>	Harrison_Tang: And what are the future work like that's involved were you think this I mean this solution sounds like pretty much done but I'm just curious I enquired the future development.
+[2023-10-03T16:43:58.211Z]	<Transcriber>	Mike_Jones: The future work is.
+[2023-10-03T16:44:20.699Z]	<Transcriber>	Mike_Jones: And applying it and related work is calling for its use in specifications where it's appropriate so Dimitri called out that solid is using it I called out that fappy 2.0 is using it.
+[2023-10-03T16:44:21.021Z]	<Transcriber>	Mike_Jones: Going to be.
+[2023-10-03T16:44:30.560Z]	<Transcriber>	Mike_Jones: Out of other specifications and ecosystems the decide to use it so again.
+[2023-10-03T16:44:37.555Z]	<Transcriber>	Mike_Jones: Work is no longer specification work for the mechanism the work is using it.
+[2023-10-03T16:44:54.236Z]	<Transcriber>	Harrison_Tang: What are the main challenges in adoption and I think you mentioned about computational complexity due to geometric encryptions and things like that audio other challenges.
+[2023-10-03T16:45:02.426Z]	<Transcriber>	Mike_Jones: The main challenges I think are that.
+[2023-10-03T16:45:08.916Z]	<Transcriber>	Mike_Jones: Have to have all the parties participating.
+[2023-10-03T16:45:15.952Z]	<Transcriber>	Mike_Jones: In the exchange support it so off has a three party model.
+[2023-10-03T16:45:20.428Z]	<Transcriber>	Mike_Jones: It has the client it has an authorization server.
+[2023-10-03T16:45:24.923Z]	<Transcriber>	Mike_Jones: And it has a protected resource.
+[2023-10-03T16:45:50.346Z]	<Transcriber>	Mike_Jones: And for depop to work all of them have to be aware of it and use it if one of the parties doesn't participate it doesn't work and so like you know building out any new ecosystem feature you have to get everybody to sign up to play for it to actually work.
+[2023-10-03T16:46:13.985Z]	<Transcriber>	Mike_Jones: Now the good news is I said before is you can do this incrementally through Discovery you can see does my authorization server support depop tokens at all and if so you ask for them if not you use Bearer tokens.
+[2023-10-03T16:46:19.734Z]	<Transcriber>	Harrison_Tang: Thank you Dimitri.
+[2023-10-03T16:46:48.913Z]	<Transcriber>	Dmitri_Zagidulin: Yeah I wanted to to add did you answer a question from the implementer side on what are the challenges of it and it's it's the challenge we constantly have in this group which is Key Management right client-side key management which which you know debug requires to work that's the whole point of the pump and presents a developer education challenge a.
+[2023-10-03T16:46:49.320Z]	<Transcriber>	Dmitri_Zagidulin:  it's a shift in.
+[2023-10-03T16:47:05.149Z]	<Transcriber>	Dmitri_Zagidulin: It's a paradigm shift for developments right so the the main thing that's difficult is the key management but like you know that that's what we do here day in and day out.
+[2023-10-03T16:47:36.334Z]	<Transcriber>	Mike_Jones: Let me add something about Key Management that we didn't do in this talk which is the deep popke can be in a secured element so if you're on a mobile phone with a secure Enclave if you're on a PC or a Mac with a TPM you can put the Deep up keys in a place that they cannot be exfiltrated.
+[2023-10-03T16:48:08.028Z]	<Transcriber>	Mike_Jones: This is a higher security bar then you get by having just software manage keys in particular if it's in a secure element or a TPM you can't go somewhere else and get deep pop signatures because the private key stays in the device and there's no way to extract it now there's a performance cost of that and it varies by secured.
+[2023-10-03T16:48:35.093Z]	<Transcriber>	Mike_Jones: But I know that TPM digital signatures are not fast some of the secured elements on mobile phones or faster and so you're better off even against malware if you can put the key in a secure element of some form.
+[2023-10-03T16:48:46.295Z]	<Transcriber>	Mike_Jones: If your key is just managed in software and you have malware it's likely that the malware is able to extract the private key.
+[2023-10-03T16:48:52.550Z]	<Transcriber>	Harrison_Tang: Okay you're next in the queue.
+[2023-10-03T16:48:53.427Z]	<Harrison_Tang>	ack tallted
+[2023-10-03T16:49:12.896Z]	<Transcriber>	TallTed: I just do another implementation note from the perspective of a user all the open link stuff that is relevant is or will be implementing deep up as we go we did it first in regards to our solid support but it'll get further.
+[2023-10-03T16:49:18.953Z]	<Transcriber>	Mike_Jones: Thanks Ted can you in a sentence or two tell me what openlink is.
+[2023-10-03T16:49:31.525Z]	<Transcriber>	TallTed: Open mic software is the database company behind the virtuoso which is the engine that powers dbpedia by to rdf uniprot and about.
+[2023-10-03T16:49:38.435Z]	<Transcriber>	TallTed: Well I'll say most of the nodes that you find on the LOD Cloud graphic.
+[2023-10-03T16:49:50.518Z]	<Transcriber>	Harrison_Tang: Any other questions or comments.
+[2023-10-03T16:50:11.176Z]	<pauld_gs1>	present+
+[2023-10-03T16:50:12.705Z]	<Transcriber>	Mike_Jones: I'll give a shout out to Brian Campbell who's on the call who was one of the key inventors and participated in the slaw gifting and draft from an individual draft to an RFC I don't know if you want to add anything Brian.
+[2023-10-03T16:50:20.734Z]	<Transcriber>	Brian_Campbell: No but thank you for the acknowledgement.
+[2023-10-03T16:50:26.942Z]	<Transcriber>	Harrison_Tang: Thank you Brian and thanks for hopping on as well.
+[2023-10-03T16:50:45.362Z]	<Transcriber>	Harrison_Tang: All right so thanks Brian thanks Mike thanks for taking time to come to ccg here today to present the pop it's a very interesting talk and no hope I learned quite a bit today so I hope everyone else do the same as well.
+[2023-10-03T16:50:56.969Z]	<Transcriber>	Harrison_Tang: All right any last items that people are bringing up whether it's introductions reintroductions announcements reminders that we didn't get to earlier in the meeting.
+[2023-10-03T16:51:11.407Z]	<Transcriber>	Harrison_Tang: Cool I think this concludes this week's w3c ccg meeting have a good one hi.
+[2023-10-03T16:51:14.813Z]	<Transcriber>	Mike_Jones: Thank you for inviting me and go forth and protect your tokens.
+[2023-10-03T16:51:22.899Z]	<Transcriber>	Harrison_Tang: Thanks Mike thanks for the call to action thanks for the CTA.
+[2023-10-03T17:39:40.718Z]	<Arun>	present+

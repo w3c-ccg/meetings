@@ -27,6 +27,9 @@
   var agendaRx = /^agenda:\s*((https?):.*)$/i;
   var urlRx = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/;
 
+  // Based on https://github.com/w3c/scribe2/blob/51a2e428fb1d6edf1fe1d1eba756c81d9b109cdd/scribe.perl#L820
+  var replaceRx = /^ *(s|i)(\/|\|)(.*?)\2(.*?)(?:\2([gG*])? *)?$/;
+
   // Compatability code to make this work in both node.js and the browser
   var scrawl = {};
   var nodejs = false;
@@ -82,7 +85,7 @@
     }
 
     // extract all names from present list
-    var ircLines = ircLog.split('\n');
+    var ircLines = ircLog.split(/\r?\n/);
     var presentList = [];
     for(var line of ircLines) {
       var match = commentRx.exec(line);
@@ -368,6 +371,47 @@
     scrawl.htmlFooter = footer;
   };
 
+  scrawl.preprocessLine = function(context, lines, lineNumber)
+  {
+    const line = lines[lineNumber];
+    const match = commentRx.exec(line);
+    if(!match)
+    {
+      return;
+    }
+    const [_, time, nick, msg] = match;
+
+    // check for a substitution
+    const replaceMatch = replaceRx.exec(msg);
+    if(replaceMatch)
+    {
+      const [_, cmd, delim, old, replacement, modifier] = replaceMatch;
+      if (cmd !== 's')
+      {
+        console.error(`command not supported on line ${lineNumber}: ${line}`);
+        return;
+      }
+      const maxReplaces = modifier === 'g' || modifier === 'G' ? Infinity : 1;
+      const endLineN = modifier === 'G' ? lines.length-1 : lineNumber-1;
+      let numReplaces = 0;
+      for(let i = endLineN; i >= 0; i--)
+      {
+        const line = lines[i];
+        const newLine = line.replace(old, replacement);
+        if(line !== newLine)
+        {
+          lines[i] = newLine;
+          console.log('Replacing', JSON.stringify(old), 'with', JSON.stringify(replacement), ' on line', i)
+          if(++numReplaces >= maxReplaces)
+          {
+            break;
+          }
+        }
+      }
+      lines[lineNumber] = '';
+    }
+  }
+
   scrawl.processLine = function(context, aliases, line, textMode)
   {
      var rval = '';
@@ -404,9 +448,13 @@
             // If scribe name is not known just use alias
             context.scribe.push(scribe);
          }
-         rval = scrawl.information(
-          context.scribe[context.scribe.length-1] +
-          ' is scribing.', textMode);
+         if(scribe === 'transcriber') {
+           rval = scrawl.information('Our Robot Overlords are scribing.');
+         } else {
+           rval = scrawl.information(
+            context.scribe[context.scribe.length-1] +
+            ' is scribing.', textMode);
+         }
        }
        else if(msg.search(chairRx) != -1)
        {
@@ -426,7 +474,7 @@
        else if(msg.search(meetingRx) != -1)
        {
          var meeting = msg.match(meetingRx)[1];
-         context.group = meeting;
+         context.group = context.group || meeting;
        }
        // check for present line
        else if(msg.search(presentRx) != -1)
@@ -624,11 +672,21 @@
     var month = '' + (time.getMonth() + 1)
     var day = '' + time.getDate()
     var group = context.group;
-    var agenda = context.agenda;
+    var agenda = context.agenda ||
+     'https://www.w3.org/Search/Mail/Public/advanced_search?' +
+     'hdr-1-name=subject&hdr-1-query=%5BAGENDA' +
+     '&period_month=' + time.toLocaleString('default', { month: 'short' }) +
+     '&period_year=' + time.getFullYear() +
+     '&index-grp=Public__FULL&index-type=t&type-index=public-credentials' +
+     '&resultsperpage=20&sortby=date';
     var audio = 'audio.ogg';
     var chair = context.chair;
-    var scribe = context.scribe.filter(function(item, i, arr) {
-      return arr.indexOf(item) === i;
+    var scribe = context.scribe.map(item => {
+      if(item === 'transcriber') {
+        return 'Our Robot Overlords';
+      } else {
+        return item;
+      }
     });
     var topics = context.topics;
     var resolutions = context.resolutions;
@@ -651,7 +709,6 @@
     if(context.date) {
       time = new Date(context.date)
       time.setHours(23);
-      console.log(time);
     }
 
     // zero-pad the month and day if necessary
@@ -669,7 +726,7 @@
     if(textMode == 'html')
     {
       rval += '<h1>' + group + '</h1>\n';
-      rval += '<h2>Minutes for ' + time.getFullYear() + '-' +
+      rval += '<h2>Transcript for ' + time.getFullYear() + '-' +
          month + '-' + day +'</h2>\n';
       rval += '<div class="summary">\n<dl>\n';
       rval += '<dt>Agenda</dt><dd><a href="' +
@@ -728,7 +785,7 @@
       }
 
       rval += '<dt>Organizer</dt><dd>' + chair.join(', ') + '</dd>\n';
-      rval += '<dt>Scribe</dt><dd>' + scribe.join(', ') + '</dd>\n';
+      rval += '<dt>Scribe</dt><dd>' + scribe.join(' and ') + '</dd>\n';
       rval += '<dt>Present</dt><dd>' + peoplePresent + '</dd>\n';
 
       if(context.audio) {
@@ -760,7 +817,7 @@
       }
 
       rval += group;
-      rval += ' Minutes for ' + time.getFullYear() + '-' +
+      rval += ' Transcript for ' + time.getFullYear() + '-' +
          month + '-' + day + '\n\n';
       rval += 'Agenda:\n  ' + agenda + '\n';
 
@@ -800,17 +857,10 @@
         }
       }
 
-      rval += 'Organizer:\n  ' + chair.join(' and ') + '\n';
+      rval += 'Organizer:\n  ' + chair.join(', ') + '\n';
       rval += 'Scribe:\n  ' + scribe.join(' and ') + '\n';
       rval += 'Present:\n  ' +
-        scrawl.wordwrap(peoplePresent, 65, '\n  ') + '\n';
-      if(context.audio) {
-        rval += 'Audio:\n  https://w3c-ccg.github.io/meetings/' +
-          time.getFullYear() + '-' +
-           month + '-' + day + '/audio.ogg\n\n';
-      } else {
-        rval += '\n';
-      }
+        scrawl.wordwrap(peoplePresent, 65, '\n  ') + '\n\n';
     }
 
     return rval;
@@ -821,7 +871,7 @@
     var rval = '';
     var minutes = '';
     var summary = '';
-    var ircLines = ircLog.split('\n');
+    var ircLines = ircLog.split(/\r?\n/);
     var aliases = scrawl.generateAliases(ircLog);
     scrawl.counter = 0;
 
@@ -842,7 +892,12 @@
     if(date) {
       context.date = new Date(date);
       context.date.setHours(23);
-      console.log(context.date);
+    }
+
+    // pre-process each IRC log line
+    for(var i = 0; i < ircLines.length; i++)
+    {
+      scrawl.preprocessLine(context, ircLines, i);
     }
 
     // process each IRC log line

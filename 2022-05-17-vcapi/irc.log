@@ -1,0 +1,279 @@
+[2022-05-17T20:00:25.325Z]	<Manu_Sporny>	present+
+[2022-05-17T20:00:29.618Z]	<Mahmoud_Alkhraishi>	present+
+[2022-05-17T20:00:30.079Z]	<Dmitri_Zagidulin>	present+
+[2022-05-17T20:01:08.738Z]	<bengo>	present+
+[2022-05-17T20:01:24.547Z]	<Justin_Richer>	present+
+[2022-05-17T20:01:31.825Z]	<Marty_Reed>	present+
+[2022-05-17T20:02:01.923Z]	<Markus_Sabadello>	present+
+[2022-05-17T20:03:34.864Z]	<mike.varley>	present+
+[2022-05-17T20:03:42.642Z]	<Transcriber>	scribe+
+[2022-05-17T20:03:42.642Z]	<Transcriber>	Meeting: vcapi
+[2022-05-17T20:03:55.275Z]	<Markus_Sabadello>	present+
+[2022-05-17T20:04:05.592Z]	<Transcriber>	Manu_Sporny: All right welcome everyone to the verifiable credentials API call this is May 17th 2022 agenda in here.
+[2022-05-17T20:04:06.609Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2022May/0030.html
+[2022-05-17T20:04:22.755Z]	<Andy_Miller>	present+
+[2022-05-17T20:04:33.442Z]	<Transcriber>	Manu_Sporny: On our agenda today we've got this agenda review introductions relevant Community updates and then we're going to jump into issues we're going to talk about Scopes and r&r's and support for those things in our OS files we there's a question on whether or not we should.
+[2022-05-17T20:05:04.273Z]	<Transcriber>	Manu_Sporny: Close an issue I went to closed pending issues and then I wasn't clear if we should close an issue so we're going to talk a bit about that talk about linting see ICD what happens when you delete a revocable credential and any other issues we also need to cover to pull requests that have been out there for a bit Mike Varley one of them is to nudge your PR Ford it seems like it's you've responded to everyone and it's ready to merge and so we just need to see if there any.
+[2022-05-17T20:05:04.665Z]	<Transcriber>	Manu_Sporny:  directions to merge.
+[2022-05-17T20:05:18.860Z]	<Transcriber>	Manu_Sporny: There's of course the mermaid diagrams that need to be merged as well that's it for the agenda are there any updates or additions to the agenda.
+[2022-05-17T20:05:29.839Z]	<Manu_Sporny>	Topic: Introductions, Announcements
+[2022-05-17T20:05:47.665Z]	<Transcriber>	Manu_Sporny: All right so let's go on to introductions and announcements is anyone new on the call today anyone want to give an update on how they're doing their new job old job anything like that anyone want to give an intro or re intro.
+[2022-05-17T20:06:00.787Z]	<Transcriber>	Manu_Sporny: I think it's a the regular crew here so we all know each other.
+[2022-05-17T20:06:03.507Z]	<Eric_Schuh>	present+
+[2022-05-17T20:06:15.779Z]	<Joe_Andrieu>	present+
+[2022-05-17T20:06:20.976Z]	<Manu_Sporny>	Proposed W3C Charter: RDF Dataset Canonicalization and Hash Working Group
+ https://lists.w3.org/Archives/Public/public-credentials/2022May/0033.html
+[2022-05-17T20:06:27.842Z]	<BrentZ>	present+
+[2022-05-17T20:06:31.720Z]	<Transcriber>	Manu_Sporny: Announcements reminders please go ahead and put yourself on the queue for that I've got a couple of announcements this is mostly I'm sure some of you were on the call earlier today the main weekly call there is a new proposed Charter for an rdf data set and canonicalization working group and putting the link in chat now this is so that we can canonicalize.
+[2022-05-17T20:06:32.061Z]	<Transcriber>	Manu_Sporny:  he's Data before we.
+[2022-05-17T20:06:35.694Z]	<Markus_Sabadello>	q+
+[2022-05-17T20:07:00.782Z]	<Transcriber>	Manu_Sporny: In it in a verifiable credentials primarily this work is around linked data rdf data set canonicalization the proposed Charter is linked to in that link I sent if you are w3c member or you know w3c member you might want to urge them to vote on that Charter Marcus here on the Queue go ahead.
+[2022-05-17T20:07:28.544Z]	<Transcriber>	Markus_Sabadello: Yes when you announce this to the list I responded and I also want to quickly respond here and Echo what you said to make everyone aware of that Charter and w3c member then please vote on that I think it's funny a lot of people are probably not aware of the fact that this part of the stack hasn't actually been standardized yet a lot of us maybe take that for granted the fact that we can canonicalize on.
+[2022-05-17T20:07:32.048Z]	<bengo>	😂
+[2022-05-17T20:08:00.854Z]	<Transcriber>	Markus_Sabadello: If data and then attach proofs but we need to standardize it because of things depend on that so please have a look if I find one part of the charter very interesting which says that the the very fiber credential Charter right that's also available right now and that says that the work on securing linked data is primarily intended for verify with credentials.
+[2022-05-17T20:08:01.180Z]	<Transcriber>	Markus_Sabadello:  it may also be used for.
+[2022-05-17T20:08:15.003Z]	<Transcriber>	Markus_Sabadello: And the same is true here for the katana conversation and hashing so let's not underestimate the importance of this giving some attention.
+[2022-05-17T20:08:40.459Z]	<Transcriber>	Manu_Sporny: Wonderful thank you for that Marcus and and some of you might not know but Marcus is one of our fearless leaders in that group Marcus you're one of the co-chairs along with Phil Archer from gs1 which is wonderful and I and I and I know that you and Phil are going to do a fantastic job navigating that group through the through the standardization Waters it's always an adventure.
+[2022-05-17T20:08:52.686Z]	<Logan_Porter>	present+
+[2022-05-17T20:09:14.179Z]	<Transcriber>	Manu_Sporny: The other announcement of course is that the verifiable credentials to a working group Charter is out there for a vote as well please go and vote on that if you are w3c member and if you know a w3c member make sure to poke them to make sure that they vote and I think Brent sundel are other fearless leader who has been leading that group for a long time as chair is here.
+[2022-05-17T20:09:14.503Z]	<Transcriber>	Manu_Sporny:  here but I don't know if you have any words.
+[2022-05-17T20:09:17.633Z]	<Transcriber>	Manu_Sporny: To share about that Charter or the work.
+[2022-05-17T20:09:36.763Z]	<Markus_Sabadello>	q+
+[2022-05-17T20:09:42.299Z]	<Manu_Sporny>	ack markus
+[2022-05-17T20:09:44.656Z]	<Transcriber>	BrentZ: I don't thank you for for advertising us we appreciate all the support we've gotten so far folks who haven't jumped in the more overwhelming the support the better I think we have at this point you know the minimum number of approvals that that we would need but the more we can get the better so please check it out and vote.
+[2022-05-17T20:09:47.617Z]	<Manu_Sporny>	ack markus
+[2022-05-17T20:09:48.958Z]	<Transcriber>	Manu_Sporny: Thank you Bret Marcus you're back on the queue.
+[2022-05-17T20:10:09.886Z]	<Manu_Sporny>	cool, didn't know about that one!
+[2022-05-17T20:10:18.601Z]	<Transcriber>	Markus_Sabadello: Yep just as I wanted to mention about two weeks from now there will be a w3c workshop on data spaces and semantic interoperability here in Vienna we don't have a slot on the agenda because we didn't think client time but both Phil and Phil Archer and myself we will be there and first connect with the other participants and.
+[2022-05-17T20:10:19.036Z]	<Transcriber>	Markus_Sabadello: Get some treats.
+[2022-05-17T20:10:30.796Z]	<Transcriber>	Markus_Sabadello: On the works that we have with rdf data canonicalization and passion also verify credentials we can after that report back to the larger group.
+[2022-05-17T20:10:42.501Z]	<bengo>	https://www.trusts-data.eu/data-spaces-semantic-interoperability/
+[2022-05-17T20:11:01.613Z]	<Transcriber>	Manu_Sporny: Awesome thank you for that Marcus I had I had no idea that wasn't in Vienna or that it was going on all right the only other announcement right now is that a couple of weeks ago we announced a number of test Suites around the verifiable credentials API and crypto sweets and all that kind of.
+[2022-05-17T20:11:27.577Z]	<Manu_Sporny>	Cross-vendor interop for Data Integrity and Ed25519Signature2020 achieved: https://lists.w3.org/Archives/Public/public-credentials/2022May/0034.html
+[2022-05-17T20:11:33.369Z]	<Transcriber>	Manu_Sporny: Um they were V Capi issuer verifier test Suites there were test Suites for the Edwards signature 2020 crypto sweet announced in the here we are three weeks later we've got a demonstration of at least two independent vendor implementations passing those preliminary test Suites I'll put the link to that mail.
+[2022-05-17T20:12:04.439Z]	<Transcriber>	Manu_Sporny: The reason this particular things of relevance is that one of the things that we have to do for the verifiable credentials to a working group is to produce a test suite and get enough implementations for some of the work items and you know usually the minimum bar is two independent implementations the good news here is that we have a test suite and we have demonstrated that there are two.
+[2022-05-17T20:12:04.672Z]	<Transcriber>	Manu_Sporny:  her operable.
+[2022-05-17T20:12:36.082Z]	<Transcriber>	Manu_Sporny: Shins today surely these test Suites are going to change when the group meets they will be refined they will be come more rigorous but the fact that we're going into the working group with test Suites and to interoperable implementations is a really good sign so thank you a ton Demarcus and Dan UTech for being one of the organization's to.
+[2022-05-17T20:12:36.363Z]	<Transcriber>	Manu_Sporny:  ask digital Bazaar is.
+[2022-05-17T20:13:08.192Z]	<Transcriber>	Manu_Sporny: The one right now and we're we've got cross vendor interop going between both of our companies and we have I think I know of at least four other companies that are actively implementing to the test Suite right now so we should be in pretty good good shape from a crypto sweet standpoint for the VC to working group the announcement I did not get around to making today was that we have the same thing for.
+[2022-05-17T20:13:08.510Z]	<Transcriber>	Manu_Sporny:  issue and verify.
+[2022-05-17T20:13:18.282Z]	<Julien_Fraichot>	present+
+[2022-05-17T20:13:40.462Z]	<Transcriber>	Manu_Sporny: Here is that these are cross-industry test Suites the traceability folks have been doing a great job of interrupting between each other using the VC API for many months now which is great the test Suites that that we're talking about here are slightly different in that they're a little more generic they're not super focused on traceability they're more generalized VC API tests and more modular.
+[2022-05-17T20:13:40.721Z]	<Transcriber>	Manu_Sporny:  in that fashion.
+[2022-05-17T20:14:04.871Z]	<Transcriber>	Manu_Sporny: So that's good news you know it's this is this is good you know all the all the hard work that people have been doing for a long time now is starting to kind of you know bear fruit any other updates announcements anything of that nature.
+[2022-05-17T20:14:22.932Z]	<Manu_Sporny>	Topic: Support for scopes/rars in OAS3.0
+[2022-05-17T20:14:28.700Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/219
+[2022-05-17T20:14:34.123Z]	<Transcriber>	Manu_Sporny: All right let's get into the agenda then the first item up has been on our agenda for multiple weeks now it is support for Scopes and regards in the OAS 30 files we haven't talked about this in a while so we're going to come back and talk about it let me go ahead and share my screen.
+[2022-05-17T20:14:40.841Z]	<Transcriber>	Manu_Sporny: I have not even looked at this in a while.
+[2022-05-17T20:14:56.601Z]	<Transcriber>	Manu_Sporny: So I guess Ori raise this Mike it's assigned to you Mike I hate to put you on the spot or would you be able to talk about this otherwise I can.
+[2022-05-17T20:15:25.312Z]	<Transcriber>	mike.varley: Yeah I think I can talk a little bit about it it's it's around how we wanted to manage Scopes in the API and there was a gist there is shows where or he's just using I think structured Scopes you know so there's kind of a structure within the string that server would have to parse.
+[2022-05-17T20:15:25.743Z]	<Transcriber>	mike.varley: And we have.
+[2022-05-17T20:15:25.808Z]	<Transcriber>	mike.varley: Come up with.
+[2022-05-17T20:15:40.035Z]	<bshambaugh>	present+
+[2022-05-17T20:15:46.666Z]	<Justin_Richer>	q+
+[2022-05-17T20:15:56.760Z]	<Transcriber>	mike.varley: Plan Legacy you know: or Dash or whatever the point is that there is a structured scope string and then the suggestion from Justin was that there's there's a better way and called rawr that and I see Justin's on the call so I'll let him jump in on on explaining through how Roars but it's a structured set up for your Scopes that allows you know a location the permissions associated with that scope.
+[2022-05-17T20:15:57.180Z]	<Transcriber>	mike.varley:  and then.
+[2022-05-17T20:16:30.760Z]	<Transcriber>	mike.varley: Looks like there's a data type field there as well so it's a really flexible and structured way so between seems kind of like opposites but they're you know in this way you can you can you can get a lot of flexibility out of your structured Scopes and it's something that's you know got aspect to it and it's and it's portable across other implementation so you may get Library support and all the other benefits I believe the pushback was that the tooling that were using for defining the API.
+[2022-05-17T20:16:31.076Z]	<Transcriber>	mike.varley:  AI does not support rar.
+[2022-05-17T20:17:02.929Z]	<Transcriber>	mike.varley: That would be a challenge to get the spec you know the Swagger that were using to to specify it properly and sort of two points there I think Justin has actually gone and engaged with the open API Group to to involve some of those capabilities within this back so there's some some activity there and also if the group feels that you know structured Scopes are the right thing to do.
+[2022-05-17T20:17:03.202Z]	<Transcriber>	mike.varley:  do then we shouldn't necessarily.
+[2022-05-17T20:17:34.051Z]	<Transcriber>	mike.varley: And Define a proper spec but we do have the limitation where we would like to use open API for various good reasons including test Suites and napi generation and Postman scripts and so on and so on so I think it's still open for discussion about what this group would like to do I am in favor of the RAR approach but I recognize the tooling issue and with that I think.
+[2022-05-17T20:17:58.795Z]	<Transcriber>	mike.varley: You're able to jump on then I think describing the benefits of ride you did a presentation I'm going to say over six months ago but that's only because my memory isn't very good but but it was it was a while ago you did a presentation on R&R structures so maybe just if there's a summary of that as the benefits then maybe we could kick off from there.
+[2022-05-17T20:18:03.502Z]	<Manu_Sporny>	ack justin
+[2022-05-17T20:18:11.365Z]	<Transcriber>	Justin_Richer: Yeah sure / I mean Mike Mike covered most of it and basically.
+[2022-05-17T20:18:21.785Z]	<Brent>	present+
+[2022-05-17T20:18:24.354Z]	<Phil_L_(P1)>	present+
+[2022-05-17T20:18:42.276Z]	<Transcriber>	Justin_Richer: Our was invented because several people in the past myself included developed specifications that required structured Scopes and it's one of those things that seems like a great idea on paper until you actually need to deploy it and use it especially across any pi over time as you discover new and different things that you want to do with that API and you find your structures.
+[2022-05-17T20:19:14.451Z]	<Transcriber>	Justin_Richer: And adding new syntax and New Dimensions and all of this other stuff that I'm sure people will swear to me up and down that no that's not going to happen here because this time is different well it's not it's I'm sorry it's just not it's this is what has happened to every single time I've seen this invented and what we're trying to do with RAR is create an actual multi-dimensional structure for.
+[2022-05-17T20:19:14.686Z]	<Transcriber>	Justin_Richer:  describing exactly.
+[2022-05-17T20:19:16.801Z]	<Transcriber>	Justin_Richer: This kind of thing.
+[2022-05-17T20:19:47.706Z]	<Transcriber>	Justin_Richer: So the tooling is not available for R&R yet Mike mentioned in linked to issues where I'm starting to engage with the open API specification security subgroup about that I encourage people to go read those strawman proposals and comment on them and see if that even makes sense but quite frankly as I demonstrated in a previous call.
+[2022-05-17T20:19:47.932Z]	<Transcriber>	Justin_Richer:  ball two.
+[2022-05-17T20:19:51.953Z]	<Markus_Sabadello>	W3C workshop in Vienna: https://www.trusts-data.eu/data-spaces-semantic-interoperability/
+[2022-05-17T20:20:05.018Z]	<Manu_Sporny>	s/ball two//
+[2022-05-17T20:20:07.433Z]	<Transcriber>	Justin_Richer: The tooling I'm sorry ball to I'm not sure where that came from thanks transcriber but anyway as I demonstrated on a previous call the tooling can in fact be.
+[2022-05-17T20:20:22.055Z]	<Transcriber>	Justin_Richer: Adapted in pretty much any way that we need to describe what it is in the resultant spec because the.
+[2022-05-17T20:20:30.976Z]	<Transcriber>	Justin_Richer: Output of this group is not the OAS spec it's the Respec document.
+[2022-05-17T20:20:37.995Z]	<Transcriber>	Justin_Richer: That fully describes the API and all of its peace pieces so.
+[2022-05-17T20:20:49.382Z]	<mike.varley>	q+
+[2022-05-17T20:20:55.300Z]	<Manu_Sporny>	q+ to propose path forward.
+[2022-05-17T20:21:07.832Z]	<Transcriber>	Justin_Richer: Any additional tooling that's needed for processing that kind of stuff in that type of pluggable system I think is a reasonable reach for this group but that's me I'm not the one who has to write the tooling regardless structured Scopes I can say definitively are not a good idea they feel like a good idea you may have convinced yourself that they're a good idea.
+[2022-05-17T20:21:18.979Z]	<Transcriber>	Justin_Richer: Many years of experience and several versions of inventing these in the past dictates otherwise.
+[2022-05-17T20:21:24.505Z]	<Transcriber>	Manu_Sporny: Great thanks Justin Mike Europe.
+[2022-05-17T20:21:53.064Z]	<Transcriber>	mike.varley: I sure thank you I would also like to consider how Scopes structured or otherwise are seen to be used with our exchanges and point which is kind of an extension piece so you know we have the exchanges endpoint which enables a you know a variety of functionality with credentials and how credentials can be.
+[2022-05-17T20:22:24.663Z]	<Transcriber>	mike.varley: So I don't know if we need nuanced Scopes in order to support the exchanges API that being there's an API or in sorry an access token for one exchange is it scoped for exactly one exchange or is it just kind of a access token which could be used against many anyhow for those implementing the exchanges.
+[2022-05-17T20:22:25.253Z]	<Transcriber>	mike.varley: Maybe interesting to hear your perspective.
+[2022-05-17T20:22:32.629Z]	<Transcriber>	mike.varley: You want to control access to those exchanges or if there's another mechanism.
+[2022-05-17T20:22:40.197Z]	<Manu_Sporny>	q?
+[2022-05-17T20:22:42.336Z]	<Manu_Sporny>	ack mike
+[2022-05-17T20:22:44.599Z]	<Manu_Sporny>	ack manu
+[2022-05-17T20:22:44.726Z]	<Transcriber>	Manu_Sporny: All right good questions Mike I put myself on the Q let's see so.
+[2022-05-17T20:23:17.460Z]	<Transcriber>	Manu_Sporny: I think I mean we're in a position where we could do we don't think anyone here thinks doing all of these things is a good idea but at the same time I think each one of these ideas might need time to breathe and I don't think it would harm anything to start defining but for those that want to do these things I think the group would you know look at PR s in pull PRS.
+[2022-05-17T20:23:17.726Z]	<Transcriber>	Manu_Sporny:  in that enabled.
+[2022-05-17T20:23:48.623Z]	<Justin_Richer>	question to Manu: does OAS3 support ZCAPs? If not, how do you get it in there?
+[2022-05-17T20:23:48.637Z]	<Transcriber>	Manu_Sporny: Is of doing authorization to the API so today what we have is we have people using oauth2 digital bazaars implementation uses ecaps and we support some level of belonged to I think we should also you know enable the RAR stuff to happen I agree with Justin the tooling stuff is not a good reason to say we can't do.
+[2022-05-17T20:23:48.863Z]	<Transcriber>	Manu_Sporny:  do it in.
+[2022-05-17T20:24:14.303Z]	<Justin_Richer>	Thanks for clarifying
+[2022-05-17T20:24:20.632Z]	<Transcriber>	Manu_Sporny: Don't imagine the tooling is going to be that hard to do just ask the question you know there's always three support Z caps it doesn't we just implemented it in the tests we enabled the test Suite to test implementations that have z cap so Justin I think the z cap stuff is in the same boat that the our stuff is in which is that the OAS stuff doesn't support it.
+[2022-05-17T20:24:20.905Z]	<Transcriber>	Manu_Sporny:  it so.
+[2022-05-17T20:24:42.218Z]	<Justin_Richer>	s/always three/OAS3/
+[2022-05-17T20:24:42.952Z]	<bshambaugh>	present+
+[2022-05-17T20:24:47.721Z]	<mike.varley>	q+ (for a question on ZCAPS)
+[2022-05-17T20:24:51.864Z]	<Transcriber>	Manu_Sporny: We can we can enable it in the test Suite I don't see any reason why we why we can't do that and so it's just a matter of you know people putting in the time to do that work so the concrete proposal on this item is that we are entertaining PRS for any of these things you know I think Justin's right the whole structured scope stuff is 0 it's severely problem.
+[2022-05-17T20:24:52.133Z]	<Transcriber>	Manu_Sporny:  attic that's one of the.
+[2022-05-17T20:25:09.772Z]	<Justin_Richer>	q+ to note about RAR's status in OAuth WG (really quick)
+[2022-05-17T20:25:22.839Z]	<Transcriber>	Manu_Sporny: That we're not happy with you know the oauth2 stuff but the fact is the fact of the matter is there a lot of implementers that are doing it anyway and so do we provide any kind of guidance to them or is it a wild west right anyway I guess all this to say that the concrete proposal is we are accepting PRS for supporting all these different authorization mechanisms certainly in the.
+[2022-05-17T20:25:50.714Z]	<Manu_Sporny>	ack mike
+[2022-05-17T20:25:52.140Z]	<Transcriber>	Manu_Sporny: That's just work that people can do and if people don't want to implement you know particular type of authorization they don't have to and you know let's try to see how what people how people think we should integrate this into the spec so it just yeah so so we're accepting PRS would there be any thoughts concerns about that approach Mike you're on the queue.
+[2022-05-17T20:25:59.105Z]	<Transcriber>	mike.varley: Okay then yeah was just in first or was it was it myself.
+[2022-05-17T20:26:04.802Z]	<Transcriber>	Manu_Sporny: I looked at the Q and you were there for question on Z caps.
+[2022-05-17T20:26:34.734Z]	<Transcriber>	mike.varley: Okay I'll ask my question and then just maybe we can follow up on the question on Z caps was just if you could provide maybe a 30 second view on how the client obtains the the original you nosy caps object and then and then how that delegation may work only because I'm familiar with Z caps as a data structure but not the messaging on how to you know get.
+[2022-05-17T20:26:35.053Z]	<Transcriber>	mike.varley:  one or get a particular capability.
+[2022-05-17T20:26:49.414Z]	<Transcriber>	mike.varley: More narrowly so if there is a 30 second kind of overview about how that happens that'd be great because it might help Drive the roar Associated work thank you.
+[2022-05-17T20:27:01.796Z]	<Transcriber>	Manu_Sporny: I am afraid Mike that I would say the wrong thing I would rather have our implementers on the call so they can say how it happens today I have not yeah I can take a guess but it's probably going to be wrong.
+[2022-05-17T20:27:03.173Z]	<Transcriber>	mike.varley: Richard different okay thank you no no no problem no problem no thank you no problem.
+[2022-05-17T20:27:10.876Z]	<Justin_Richer>	https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/
+[2022-05-17T20:27:37.114Z]	<Transcriber>	Justin_Richer: Yeah I just wanted to know to the group just so that everybody knows pasting it in ietf data tracker link for there are specification it is in the state publication requested which in layman's terms means that it is out of the working group and into sort of the higher areas of the ietf we're sort of The Wider review is happening right now and it is this is.
+[2022-05-17T20:27:37.353Z]	<Transcriber>	Justin_Richer:  is kind of one of the final stages.
+[2022-05-17T20:27:40.761Z]	<Transcriber>	Justin_Richer: Publication for our FC.
+[2022-05-17T20:27:51.377Z]	<Transcriber>	Justin_Richer: The ietf process is complicated with many layers but this is the second or third to the end it's very it's very close.
+[2022-05-17T20:28:20.629Z]	<Transcriber>	Manu_Sporny: All right thanks I guess I'll just take that out a quick thanks for that Dustin okay so are there any objections for us basically saying we're looking for pull requests on Scopes Roars C caps any of that stuff and then we'll review as a group once those come in.
+[2022-05-17T20:28:29.133Z]	<Justin_Richer>	+1 to PRs
+[2022-05-17T20:29:04.451Z]	<Manu_Sporny>	Topic: Initial PR for exchange discovery
+[2022-05-17T20:29:05.954Z]	<Transcriber>	Manu_Sporny: All right there we go we'll put it as ready for PR and not is that item um my apologies Mike I totally forgot about processing pull request so let's do yours next yours is the initial PR for exchange Discovery if you would like to give us actually please give us.
+[2022-05-17T20:29:10.575Z]	<Transcriber>	Manu_Sporny: On this PR and its current state.
+[2022-05-17T20:29:11.066Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pull/268
+[2022-05-17T20:29:29.301Z]	<Transcriber>	mike.varley: Yep absolutely so when we were defining the exchanges capability of the API where the API was able to support workflows for obtaining credentials and verifying credentials.
+[2022-05-17T20:30:00.779Z]	<Transcriber>	mike.varley: It was noted that it may be the case where some of those exchanges have protocol rules like username and password has to be handed in or some other authentication token has to be handed in at the time that the exchange in point is accessed and then at which point the the VP our data structure might specify what the protocol is to obtain.
+[2022-05-17T20:30:01.082Z]	<Transcriber>	mike.varley:  in the credential and and.
+[2022-05-17T20:30:32.074Z]	<Transcriber>	mike.varley: Bull is revocation or sorry not revocation refresh Prudential refresh 2020 or 2021 so the trouble there is that as a client application calling the calling an exchange endpoint I likely need some information before I call the endpoint to know what I'm supposed to be doing in order to be successful and with that in mind.
+[2022-05-17T20:31:04.100Z]	<Transcriber>	mike.varley: Respect out on exchanges Discovery and point so you would make a call to the just top of the exchanges tree a get call and you would receive a list of the endpoints available and then the associated protocols just as a string value or a URI that was implemented on those exchange and points and the assumption is that if the client understood what that.
+[2022-05-17T20:31:04.413Z]	<Transcriber>	mike.varley:  string meant then it was it would be able to.
+[2022-05-17T20:31:35.828Z]	<Transcriber>	mike.varley: Kate with the endpoint and if not then it can throw an error right away saying sorry I unsupported to the person using the API or to the other system used using the API as a client and you know and so and then there was a request to enhance the API for pagination and and some other you know structured issues which have been addressed I believe.
+[2022-05-17T20:31:36.093Z]	<Transcriber>	mike.varley:  the open.
+[2022-05-17T20:32:07.412Z]	<Transcriber>	mike.varley: So I believe the pr has addressed all the immediate issues requested however there may be some discussion around whether Discovery is even necessary or if the structure of the VP our protocol supported by this this API sort of has enough built-in that Discovery is redundant.
+[2022-05-17T20:32:07.666Z]	<Transcriber>	mike.varley:  and no one would.
+[2022-05-17T20:32:13.956Z]	<Manu_Sporny>	q+
+[2022-05-17T20:32:18.163Z]	<Manu_Sporny>	ack Jus
+[2022-05-17T20:32:39.440Z]	<Transcriber>	mike.varley: It's more that second question that I put to the group do we still think discoveries necessary do we want to support more than just VPR or do we is can we can we achieve everything just with the VP R-Spec language and finally if there is no answer to that second question today now or discussion we can always add we can always accept the.
+[2022-05-17T20:32:39.751Z]	<Transcriber>	mike.varley:  ER and then.
+[2022-05-17T20:33:06.094Z]	<Transcriber>	mike.varley: And later that Discovery is not necessary we could we could remove it because it's fairly independent of the rest of the API it's just an endpoint which returns a list of n points and protocols so if we decide it's useless and maybe we could remove it but that's the current state the pr itself is probably ready to go there's sort of an open discussion as to whether we still want discovery.
+[2022-05-17T20:33:17.067Z]	<Justin_Richer>	q+
+[2022-05-17T20:33:37.857Z]	<Transcriber>	Manu_Sporny: Awesome thank you for that Mike yeah I mean my read on the pr is that Mike is answered all the questions all the requests in the group have been answered in yes there's an open question on whether or not discoveries needed or not the digital bizarre doesn't use Discovery for the exchange endpoints but it is very possible that we're just not seeing the same use cases that.
+[2022-05-17T20:33:38.145Z]	<Transcriber>	Manu_Sporny:  Avast is see.
+[2022-05-17T20:34:09.458Z]	<Manu_Sporny>	ack Jus
+[2022-05-17T20:34:10.342Z]	<Transcriber>	Manu_Sporny: Um in you know +12 merging I mean you know we're still in an experimental state in the API lets Define this and see if people find it useful or if people want to iterate on it and then as Mike said if implementation experiences we don't need this then then it can be taken out at a later point in time so I'm a plus-one to merge Justin you're on the.
+[2022-05-17T20:34:11.784Z]	<Manu_Sporny>	ack Man
+[2022-05-17T20:34:39.859Z]	<Transcriber>	Justin_Richer: Yeah so also a plus one to merge and I wanted to just raise the often forgotten point that even in protocols where Discovery is not strictly necessary it can be a very useful Dynamic optimization for different systems so good nap for example is written from the start as a protocol that does not need a discovery phase.
+[2022-05-17T20:35:12.085Z]	<Transcriber>	Justin_Richer: We still Define Discovery documents and end points so that self-configuring clients can optimize their interconnection with the server based on the Discovery information now is that step strictly required absolutely not an app is designed to allow for live negotiation and sort of a back-and-forth to kind of find the bits that you need as you go however there is no reason to disallow a.
+[2022-05-17T20:35:12.392Z]	<Transcriber>	Justin_Richer:  client to optimize itself.
+[2022-05-17T20:35:19.079Z]	<Transcriber>	Justin_Richer: In this particular way so I also support merging this.
+[2022-05-17T20:35:21.310Z]	<Manu_Sporny>	q?
+[2022-05-17T20:35:29.569Z]	<Transcriber>	Manu_Sporny: Thanks Justin anyone else in the queue queue is empty are there any objections to merging the pr.
+[2022-05-17T20:36:03.171Z]	<Transcriber>	Manu_Sporny: All right I'm not hearing any objections Mike it's been a while since the pr has been updated means moved on their conflicts would you mind fixing the conflicts and as soon as those are fixed we can merge it in.
+[2022-05-17T20:36:15.141Z]	<Transcriber>	mike.varley: Okay will do can't guarantee what will happen today but yes we'll fix the conflicts and then we can then just get approvals for emerge.
+[2022-05-17T20:36:41.321Z]	<Transcriber>	Manu_Sporny: Okay sounds good and thank you for putting the pr together the only other one that's out there is this sequence diagram mermaid Respec sequence diagram stuff I was just going to merge it it just adds it converts the static PNG images to mermaid diagrams where we can actually hand edit them a hand edit the user flow diagram so that'll that'll go in shortly as well we just forgot to merge that in.
+[2022-05-17T20:36:51.464Z]	<Transcriber>	Manu_Sporny: PRS back to the issues Next Issue up.
+[2022-05-17T20:36:53.032Z]	<Manu_Sporny>	Topic: Close: Should vc http api use PE Spec for query format?
+[2022-05-17T20:37:00.879Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/174
+[2022-05-17T20:37:07.092Z]	<Transcriber>	Manu_Sporny: Is should we close question on whether or not we should use the presentation exciting exchange spec as as a query format.
+[2022-05-17T20:37:39.886Z]	<Transcriber>	Manu_Sporny: Let's see I think Mike you had asked a question we were going to wait was pending close and then we asked secure key if you were the only one that was interested in implementing presentation exchange we said we would you know close the issue until they was more interest and then there was also mentioned that VPR could could potentially support it so Mike why don't you cover your.
+[2022-05-17T20:37:40.119Z]	<Transcriber>	Manu_Sporny:  response here in the.
+[2022-05-17T20:37:49.042Z]	<Transcriber>	Manu_Sporny: Here is are you okay with closing this or should we keep it open.
+[2022-05-17T20:38:16.722Z]	<Transcriber>	mike.varley: Thank you so my comment was a question just to see if any other implementers were interested in utilizing those other protocols presentation exchange did come Etc from our position we were happy to close it out if there was no immediate need and and then.
+[2022-05-17T20:38:41.166Z]	<Transcriber>	mike.varley: Then Buckner jumped in and said hey we do that and so I think that there are some I think there is some Community interest and other protocols but I don't know how serious that is was close block actually intend to use this API with presentation exchange and.
+[2022-05-17T20:39:10.001Z]	<Transcriber>	mike.varley: And we like presentation exchanging with and we'll use it with whatever we're doing I heard to say so but there were some other community members who were asking questions about it so from my perspective I'm still okay to say it looks like for now it's a VP are based API but I believe we should reach out to Dan.
+[2022-05-17T20:39:10.307Z]	<Transcriber>	mike.varley:  I don't know if.
+[2022-05-17T20:39:12.985Z]	<Manu_Sporny>	q+
+[2022-05-17T20:39:27.810Z]	<Transcriber>	mike.varley: He's actually going to implement pecs transmute rather anyway we should we should just kind of ping and say PR's welcome or we're going to close this until we get a PR like I'm not sure what you do with that kind of a hanging issue like that.
+[2022-05-17T20:39:58.747Z]	<Transcriber>	Manu_Sporny: Yeah that's a good question Mike my suggestion is PR's welcome right at this point you know of assets you know about secure key Avast has signaled that there they have interest block has signaled they have interest in so the next thing is to put put forward a PR on what those types of flows would look like if we have presentation Exchange in here currently it is VP our base like the whole a.
+[2022-05-17T20:39:59.261Z]	<Transcriber>	Manu_Sporny:  API and and is VPR based I think.
+[2022-05-17T20:40:02.648Z]	<mike.varley>	q+
+[2022-05-17T20:40:10.797Z]	<Manu_Sporny>	ack manu
+[2022-05-17T20:40:11.903Z]	<Manu_Sporny>	ack mike
+[2022-05-17T20:40:13.829Z]	<Transcriber>	Manu_Sporny: Well I won't speak for Ori but so yeah I think you know PR's welcome let's let's see what a proposal would look like go ahead Mike.
+[2022-05-17T20:40:42.809Z]	<Transcriber>	mike.varley: I'll just note that I believe that in the sample in the linked issue ad presentation exchange example we are using the VPR outer structure and then the inner structure you know because there's a type it says type presentation exchange and then the inner structure is the presentation exchange so again that's not a PR it's just saying here's how you could do it I don't know if anyone.
+[2022-05-17T20:40:48.438Z]	<Transcriber>	mike.varley: Into the idea of oh yes let's do that so.
+[2022-05-17T20:40:56.806Z]	<Transcriber>	Manu_Sporny: Is this the example you're talking about my where the interact service points out.
+[2022-05-17T20:41:01.712Z]	<Transcriber>	mike.varley: No no it's you have to click on the on the link tissue it's actually part of the message.
+[2022-05-17T20:41:08.167Z]	<Transcriber>	Manu_Sporny: This one add presentation exchange example okay.
+[2022-05-17T20:41:36.039Z]	<Transcriber>	mike.varley: So if you click on that you'll just see there you go so see it says it's type presentation exchange credential carry and then in there you have so it's kind of nested within the the VPR rap group but again so there's multiple approaches here not a lot of active discussion on how presentation exchange would actually be leveraged I know presentation exchange and credential manifest our.
+[2022-05-17T20:41:36.334Z]	<Transcriber>	mike.varley:  part of the.
+[2022-05-17T20:41:43.757Z]	<Transcriber>	mike.varley: Open ID work and you know they're being discussed in diff so I just don't know that.
+[2022-05-17T20:42:02.903Z]	<Transcriber>	mike.varley: There's there's activity for this API to support it and again maybe it maybe there's maybe there's a way to add it in later I can't say I just don't I don't know what other people's intentions are.
+[2022-05-17T20:42:21.400Z]	<Transcriber>	Manu_Sporny: Yeah I mean it certainly would be able to be put into the the query type right the PPR type and and credential query that would be one way of doing integration but you're right I mean I think what we need here is again this is kind of a PR's welcome.
+[2022-05-17T20:42:27.209Z]	<mike.varley>	+1 to PRs welcome
+[2022-05-17T20:42:53.185Z]	<Transcriber>	Manu_Sporny: Right if there are two companies that want to interop or one company wants to propose how we would integrate presentation exchange we should try to it is certainly a very good it's a it in the very worst case it's a really great thought exercise to determine whether or not we can actually use different query mechanisms different protocols over the VC API.
+[2022-05-17T20:42:53.514Z]	<Transcriber>	Manu_Sporny:  so like Chappy's.
+[2022-05-17T20:43:20.911Z]	<Transcriber>	Manu_Sporny: All agnostic sorry it chappies message agnostic and so the intent was the VC API was supposed to be message agnostic in some cases and so can we actually achieve that or not and doing a presentation exchange using pecs and did come would be one way of trying to see if that's actually true.
+[2022-05-17T20:43:29.234Z]	<Transcriber>	Manu_Sporny: So Mike is that the suggestion then it's like can we.
+[2022-05-17T20:43:55.139Z]	<Transcriber>	mike.varley: So I would yep say PR's welcome I would all my sorry that's my stuff my anxiety there is that the more protocols we want to enable makes it more difficult for interoperability and you know coverage clients suddenly have to expect.
+[2022-05-17T20:43:55.363Z]	<Transcriber>	mike.varley:  that maybe it's a VP.
+[2022-05-17T20:44:19.484Z]	<Transcriber>	mike.varley: Our base protocol or a presentation exchange based protocol again leading to you know as a client what code do I need to write to talk to this server challenges and it so that's that's why I feel like I'd really like to narrow it down so we could get it working but he ours welcome.
+[2022-05-17T20:44:30.350Z]	<Transcriber>	Manu_Sporny: Okay great are there any objections to suggesting people submit PR's for this so that the group can explore that space.
+[2022-05-17T20:44:47.500Z]	<Transcriber>	Manu_Sporny: Okay we will say it's ready for its not finding clothes it's ready for PR.
+[2022-05-17T20:45:10.723Z]	<mike.varley>	sorry I have to drop early today. thx.
+[2022-05-17T20:45:12.657Z]	<Transcriber>	Manu_Sporny: Come on GitHub ready here we go all right it's ready for PR and we'll move on from that okay next item up is linting and CI CD from OAS or for OAS.
+[2022-05-17T20:45:18.863Z]	<Manu_Sporny>	Topic: Linting CI/CD
+[2022-05-17T20:45:28.753Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/221
+[2022-05-17T20:45:50.197Z]	<Transcriber>	Manu_Sporny: So I think the status here like had to drop the status here is basically me grab this is we just need someone to do the work so Lin ping happens right now on the OAS files when the Respec spec is rendered so if the OS is broken in any way the spec will refuse to render in you have to go to the console.
+[2022-05-17T20:45:50.495Z]	<Transcriber>	Manu_Sporny:  soul and look to see what what.
+[2022-05-17T20:46:05.924Z]	<Brian>	present+
+[2022-05-17T20:46:06.501Z]	<Transcriber>	Manu_Sporny: OAS wenting error was thrown that said it would be really good to have linting as it just a part of the regular process that runs we just need someone to do the work.
+[2022-05-17T20:46:13.131Z]	<Mahmoud_Alkhraishi>	happy to do it
+[2022-05-17T20:46:28.560Z]	<Transcriber>	Manu_Sporny: Would there be any volunteers to do the work on oasc ICD linting should be a quick one my moods volunteering awesome thank you so much my hood let's see discussed this on the.
+[2022-05-17T20:46:44.668Z]	<Transcriber>	Manu_Sporny: Yes no that's not the year 2020 2517 Helicon volunteered to is that as a GitHub action from mood.
+[2022-05-17T20:46:45.396Z]	<Mahmoud_Alkhraishi>	yes
+[2022-05-17T20:47:13.033Z]	<Transcriber>	Manu_Sporny: Thank you volunteer dad to get Hub action to lint the specification the event b os files you PRS are raucous whatever only go as far as okay alright there we go I'm going to assign it to you I'm good.
+[2022-05-17T20:47:23.196Z]	<Transcriber>	Manu_Sporny: And take money off of that and that is up to you to raise a PR to do that thank you very much for all and tearing to do that.
+[2022-05-17T20:47:35.987Z]	<Manu_Sporny>	Topic: What happens when you delete a revocable credential?
+[2022-05-17T20:47:40.929Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/276
+[2022-05-17T20:47:41.773Z]	<Transcriber>	Manu_Sporny: Okay that's that one next item up this one's going to be an interesting one what happens when you delete a revocable credential so this and then here's issue 276.
+[2022-05-17T20:48:10.191Z]	<Transcriber>	Manu_Sporny: All right so Ori ask the question specifically when you delete a revocable credential what happens the status bits anyone have any thoughts.
+[2022-05-17T20:48:26.462Z]	<Transcriber>	Manu_Sporny: Go ahead Joe.
+[2022-05-17T20:48:30.683Z]	<Transcriber>	Joe_Andrieu: What component is this for.
+[2022-05-17T20:48:41.429Z]	<Transcriber>	Manu_Sporny: The issuer I would imagine can you even delete credentials do we have that we I don't think we have that.
+[2022-05-17T20:49:10.039Z]	<Transcriber>	Joe_Andrieu: Yeah I also added a similar note 2268 I wasn't up to speed with it when you asked if there were objections I also don't know how that's supporting the breaking out a different components but yeah we deleting a credential like it matters very much which component you're calling that a pi on I can someone else delete a.
+[2022-05-17T20:49:10.463Z]	<Transcriber>	Joe_Andrieu: The holder app.
+[2022-05-17T20:49:28.014Z]	<Transcriber>	Joe_Andrieu: Very different than if you're deleting a credential that are verifiers already received if you're deleting a credential that an issuer has issued like I really can't even understand the question without understanding which component it's related to.
+[2022-05-17T20:49:32.316Z]	<Transcriber>	Manu_Sporny: That is an excellent point are there any assumptions that you could make that would allow you to answer that question.
+[2022-05-17T20:49:40.913Z]	<Transcriber>	Joe_Andrieu: Well who's I mean.
+[2022-05-17T20:49:52.156Z]	<Transcriber>	Manu_Sporny: Let's let's let's say it's the issuer is an issue or allowed to delete a credential that they have issued and if so what happens to the status bits when that.
+[2022-05-17T20:50:00.698Z]	<Transcriber>	Joe_Andrieu: Where is the so the issuers calling it and they're calling it on the holder app.
+[2022-05-17T20:50:07.016Z]	<Transcriber>	Joe_Andrieu: Right so the issuer app is calling it on the issue or service.
+[2022-05-17T20:50:07.412Z]	<Transcriber>	Manu_Sporny: Now they're calling it on their issuer correct yes.
+[2022-05-17T20:50:29.323Z]	<Transcriber>	Joe_Andrieu: So I don't know why the issuer service would retaining credentials so I don't expect the issuer service to be a data storage of credentials other people might but I think that's it that's it that's a good.
+[2022-05-17T20:50:29.684Z]	<Transcriber>	Joe_Andrieu:  while the issue are.
+[2022-05-17T20:50:37.200Z]	<Transcriber>	Joe_Andrieu: I may need to hold credentials the issuer service I would not expect to.
+[2022-05-17T20:51:00.012Z]	<Transcriber>	Joe_Andrieu: People do I think it's a fair debate I think it's a good debate about should the issuer API enables automatic storage of VCS upon issuance but I think it's probably not a good idea I think these were app that's the website that's interacting with the service I think it's fair game for that issue or distorted.
+[2022-05-17T20:51:14.210Z]	<Transcriber>	Manu_Sporny: Right and taking notes any other thoughts on this item.
+[2022-05-17T20:51:23.179Z]	<Andy_Miller>	Is a "revocable credential" a VC with a "credentialStatus" property?
+[2022-05-17T20:51:58.381Z]	<Transcriber>	Joe_Andrieu: And while you're typing that out man in Andy Miller to your question I think that is correct I think that's what people mean by a revocable credentials that there is a mechanism to check the status which is in the credential status property.
+[2022-05-17T20:52:06.118Z]	<Transcriber>	Andy_Miller: So if the credential status property points at a credential status service the service might be holding the credential to.
+[2022-05-17T20:52:41.197Z]	<Transcriber>	Andy_Miller: Maybe what Orion was asking was let's say the credential status service only actually maintains the I don't know which rarely method they've implemented but let's say if some method but which just keeps a bit flag and for a credential so deleting it might mean just.
+[2022-05-17T20:52:48.565Z]	<Transcriber>	Andy_Miller: Deleting that flag and it's no longer holding it.
+[2022-05-17T20:53:15.989Z]	<Transcriber>	Joe_Andrieu: That's right I think I think if the delete it could be interpreted as unrwa voguing is what you're saying if the component is the refresh status service I'm sorry not reefer I always mess that up a lot the credential status property the service that that points to.
+[2022-05-17T20:53:38.828Z]	<Transcriber>	Manu_Sporny: So let me die with a half half taking notes half listening are we saying basically the the whatever's handling the status bit for that credential needs to flip the bit where we saying something else.
+[2022-05-17T20:53:44.164Z]	<Transcriber>	Manu_Sporny: Like if you delete a credential it's automatically revoked.
+[2022-05-17T20:53:51.716Z]	<Logan_Porter>	q+
+[2022-05-17T20:53:54.165Z]	<Transcriber>	Manu_Sporny: If you if you're holding it if you like well yeah I guess the credential status - yeah.
+[2022-05-17T20:54:02.453Z]	<Transcriber>	Joe_Andrieu: I think Andy supposition was that hey maybe Ori meant that the act of deleting is how you you revoke.
+[2022-05-17T20:54:12.570Z]	<Transcriber>	Joe_Andrieu: I think it comes back to what's what's the component that you're calling it on and who's calling it.
+[2022-05-17T20:54:17.883Z]	<Transcriber>	Manu_Sporny: Okay so we kind of need more information Logan go ahead.
+[2022-05-17T20:54:18.171Z]	<Manu_Sporny>	ack Logan
+[2022-05-17T20:54:49.209Z]	<Transcriber>	Joe_Andrieu: Yeah I mean for example if it's if the credentials already in my wallet then who gets to delete that except the holder me so I'm thinking there may be a more sophisticated use case that I'm just not picking up on.
+[2022-05-17T20:55:03.773Z]	<Transcriber>	Manu_Sporny: I guess it's not clear what the word delete means here either.
+[2022-05-17T20:55:35.632Z]	<Transcriber>	Manu_Sporny: I think we need more information to actually answer the question what is not able to have a bit of discussion around the question because it was not clear which component of the ecos co system was doing the deletion.
+[2022-05-17T20:55:46.742Z]	<Transcriber>	Manu_Sporny: It's also not.
+[2022-05-17T20:55:58.008Z]	<Transcriber>	Manu_Sporny: It's not clear what be delete HTTP verb meant.
+[2022-05-17T20:56:28.810Z]	<Transcriber>	Manu_Sporny: Different aspects of the system delete on a potential in a holder wallet semantically different then delete on a credential in N sure app in or service.
+[2022-05-17T20:56:50.381Z]	<Transcriber>	Manu_Sporny: Components identified and the semantics around the delete operation lied in order to make progress on this issue does that sound like a reasonable.
+[2022-05-17T20:57:01.174Z]	<Transcriber>	Joe_Andrieu: Yeah when one thing you might add is also the color like.
+[2022-05-17T20:57:13.555Z]	<Transcriber>	Manu_Sporny: It means the component the the caller caller the component and the semantics around the delete operation there we go.
+[2022-05-17T20:57:25.335Z]	<Transcriber>	Joe_Andrieu: Yeah I think what by the way just this sort of a medic comment but I think this the lack of the color component is also part of why I think we've struggled about authorization mechanisms.
+[2022-05-17T20:57:26.832Z]	<Transcriber>	Manu_Sporny: Yes that would agree with that.
+[2022-05-17T20:57:32.826Z]	<Transcriber>	Joe_Andrieu: Like you gets to delete or who gets to create that's the authorization question.
+[2022-05-17T20:57:58.597Z]	<Joe_Andrieu>	/s/Like you gets/Like who gets/
+[2022-05-17T20:58:05.597Z]	<Transcriber>	Manu_Sporny: Yep absolutely I'm praying to figure out how we roll that into a future conversation that feels like it would provide some clarity to a number of the questions that have been raised all right we have two ish minutes left in the call let's go ahead and end the call here are there any other comments concerns or things that we should be aware of over the next week before we meet again.
+[2022-05-17T20:59:26.198Z]	<Manu_Sporny>	present+
+

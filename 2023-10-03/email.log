@@ -1,0 +1,602 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2023-10-03/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2023-10-03/audio.ogg
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2023-10-03
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Oct&period_year=2023&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, tomj, Alan Davies, David Waite, Greg Bernstein, 
+  Bc, Marty Reed, Robbie Jones, Andres Uribe, TallTed // Ted 
+  Thibodeau (he/him) (OpenLinkSw.com), Mike Xu, Ted Thibodeau, Leo, 
+  David Chadwick, Nis Jespersen , Gregory Natran, Dmitri Zagidulin, 
+  Hiroyuki Sano, Japan, Erica Connell, Sharon Leu, Stuart Freeman, 
+  Geun-Hyung, Will, Jeff O - HumanOS, Kimberly Linson, James 
+  Chartrand, pauld gs1, Erik Anderson, David I. Lehn, Brian 
+  Richter, Brian Campbell, Chandi Cumaranatunge, Arun
+
+Our Robot Overlords are scribing.
+<dmitri_zagidulin> woooot haha DPoP, my old friend!!
+Harrison_Tang: Welcome welcome everyone to this week's w3c ccg 
+  meeting today we are very excited to have my Jones here to 
+  actually present the demonstrating proof of possession at the 
+  application layer T peopie today but before we get to the main 
+  agenda just want to quickly go over the admin stuff so first of 
+  all just a quick reminder on the code of ethics and professional 
+  conduct just want to make sure that you know everyone.
+Harrison_Tang:  no make respectful comments and.
+Harrison_Tang: There's something else a quick IP note anyone can 
+  participate in these calls however all substantive substantial 
+  contributions to a nice ECG work items must be members of the ccg 
+  with for IP our agreement sign so if you have any questions on 
+  that or have any encounter any issues creating a w3c account 
+  please feel free to reach out to any of the co-chairs a quick 
+  called note all the calls are being automatically.
+Harrison_Tang:  recorded and transcribed and we will publish.
+Harrison_Tang: Audio recordings within the next few days.
+Harrison_Tang: We use on Gchat to cure the speakers during the 
+  call as well as to take minutes so you can type in Q Plus to add 
+  yourself to the queue or q- to remove all right um any 
+  introductions were reintroduction if you're new to the community 
+  or you if you haven't been engaging with the community and whilst 
+  wants to re-engage please feel free to unmute.
+Harrison_Tang: Toward the end if we got time and you don't feel 
+  as shy I feel free to just mute and introduce yourself alright 
+  next announcements and reminders any news any new announcements 
+  or reminders.
+Harrison_Tang: A quick preview of what's coming so next week 
+  we'll have the special wa Fushigi hybrid open house session at 
+  internet identity workshop at 12 p.m. because I am we have the 
+  Open Circles so it will be a special meeting at 12 p.m. Pacific 
+  Time 3 p.m. eastern time.
+Harrison_Tang: And then the week after that we will talk about 
+  selective disclosure mechanisms an overview of different 
+  selective disclosure mechanisms out there and then the week after 
+  that we will talk about the grant negotiation authorization 
+  protocol for nap and then after that we'll talk about mobile 
+  driver license.
+Harrison_Tang: By any other announcements were reminders.
+Harrison_Tang: Any updates to the work items.
+Harrison_Tang: Alright pretty simple I think most people here to 
+  learn more about the peopie from mic so that I think it might we 
+  don't need further introductions I think you have been a legend 
+  in our space so the floor is yours.
+Robbie Jones:  Well thank you so I will introduce myself I'm Mike 
+  Jones I spent a number of years at Microsoft doing identity 
+  standards work and I'm now an independent consultant still doing 
+  identity standards and ecosystem building work I've worked on o 
+  off open ID connect the Json web token w3c web crypto the did.
+Robbie Jones:  And verifiable credentials among other things so 
+  I'm here to talk to you today about enabling proof of possession 
+  in a practical way which has been something that's been an 
+  elusive goal for the industry for a long time and I'll give the 
+  caveat this started as a deck that I gave at identifiers a year 
+  ago and.
+Robbie Jones:   It's the slide.
+Robbie Jones:  Updated the content to reflect the current reality 
+  but I didn't bother updating the template because it was hard.
+Robbie Jones:  So this was a presentation that identifies I gave 
+  with my colleague Peter Castleman.
+Robbie Jones:  So in the next 20 minutes I have 20 minutes 
+  correct.
+Harrison_Tang: Actually it can be 30 minutes or 40 minutes and we 
+  will do the Q&A afterwards but either way it's fine.
+Robbie Jones:  Okay I will talk about how token theft is a real 
+  problem that affects the industry and the security of the systems 
+  that we actually use proof of possession is a way to mitigate the 
+  token theft.
+Robbie Jones:  And talk about some attacks that depop explicitly 
+  mitigates.
+Robbie Jones:  This is data from a year ago but over a six-month 
+  period the.
+Robbie Jones:  Identity Protection Team at Microsoft detected 
+  over 150,000 token thefts.
+Robbie Jones:  And over 1.7 million device now we're in 
+  infections this came from my friend Alex Winer the head of 
+  identity protection at Microsoft the token thefts are typically 
+  Bearer tokens a bearer token is like cash if you have it you can 
+  use it even if you stole it so the theft of Bearer tokens.
+Robbie Jones:  So proof of possession tokens are a safer 
+  alternative.
+Robbie Jones:  Proof of possession or pop token is like your 
+  driver's license only you can use it and the reason only you can 
+  use it is it's bound to you in some demonstrable way the driver's 
+  license the photo is The Binding to you in proof of possession 
+  tokens a cryptographic key is the way you bind the token.
+Robbie Jones:  So the use of Bearer tokens was defined by RFC 
+  6750 essentially a decade ago more than a decade ago now.
+Robbie Jones:  And before deep up there was no off 20 standard 
+  for proof of possession tokens.
+Robbie Jones:  So what is proof of possession proof of possession 
+  demonstrates possession of cryptographic key material when 
+  performing an operation it does that by signing something using a 
+  private key and only the possessor of the private key can use a 
+  leaked or stolen token even if it's stolen.
+Robbie Jones:  So the industry has taken a bunch of stabs at this 
+  problem and it's used a whole bunch of different names I give 
+  this survey of names just so if you've heard of this under other 
+  names that you'll realize oh this is the same thing so it's been 
+  called proof of possession holder of key which is the symbol 
+  terminology.
+Robbie Jones:  Tokens key constraint tokens certificate bound 
+  tokens keep bound tokens key confirmation Etc.
+Robbie Jones:  And as I mentioned the industry has taken a bunch 
+  of stabs at this to its credit sale 20 has the holder of key 
+  assertion profile which is.
+Robbie Jones:  Abound token although it's not exactly oauth which 
+  was the problem space that we're trying to solve for.
+Robbie Jones:   Oh ah.
+Robbie Jones:  One used proof of possession that the message 
+  signing that went with it was too complicated for most developers 
+  to get right.
+Robbie Jones:  An oauth2 Mac draft which was a lot like a with 
+  one.
+Robbie Jones:  That got abandoned there was an HTTP to signing 
+  draft that also got abandoned there was the TLs token binding set 
+  of rfc's which could have worked but some browsers declined to 
+  ship it.
+Robbie Jones:  20 Mutual TLS does work and it's used in some 
+  closed environment successfully or closed environments might be 
+  payment ecosystems or open banking systems where all the parties 
+  are known to a central Authority and they can be issued a client 
+  certificate by that Authority as opposed to open systems where 
+  people would be issuing their own.
+Robbie Jones:   Own certificates.
+Robbie Jones:  Which brings us to the topic for today that oauth2 
+  deep up the demonstration of proof of possession spec which is 
+  our current stab at solving this important problem so what is 
+  deep pop it stands for demonstrating proof of possession.
+Robbie Jones:  The application layer and as of last month it 
+  became an RFC ye are fc9 449 assymetric number.
+Robbie Jones:  And now it's a pragmatic way to for applications 
+  to.
+Robbie Jones:  You proof of possession supposed to it happening 
+  at sort of a system service level now what's in a name it it's at 
+  least humorous to me to note that depop started out because Brian 
+  Campbell was in the s-bahn in Stuttgart and so this poster for 
+  Deutsche pop which is a education program.
+Robbie Jones:   I'm in Germany.
+Robbie Jones:  For the Arts and he thought okay pop that's proof 
+  of possession don't you pop that steep up we should find a way to 
+  do a reverse acronym for Deutsche pop and so that's the actual 
+  origin of the name.
+Robbie Jones:  So how does it work do you pop sends a Json web 
+  token for the proof of possession as an HTTP header so it 
+  demonstrates proof of possession in the context of the request.
+Robbie Jones:  It's sent in the same way both for token requests 
+  and protected resource requests the authorization server uses the 
+  proof to bind the tokens and the resource server uses the proof 
+  to verify the bone tokens.
+Robbie Jones:  And figure there is straight out of the speck.
+Robbie Jones:  So what does a deep proof look like for those of 
+  you who know Json web tokens a lot of this should be familiar so 
+  there's an explicit type so that you can't confuse the depop 
+  proof with another kind of job there's an algorithm there's a key 
+  which is used to verify the proof of possession.
+Robbie Jones:  Token identifier for replay protection there's the 
+  HTTP method which in this case is post.
+Robbie Jones:  There's the URL where the thing came from there's 
+  when it was issued there's a hash of the access token so that 
+  can't be substituted and there's a nonce provided by the server 
+  to prevent certain kinds of attacks which we'll talk about.
+Robbie Jones:  So there's an access token request but instead of 
+  using the type Bearer it's using the type depop.
+Robbie Jones:  There's an access token response again rather than 
+  using the token type Bearer you're getting a deep up token.
+Robbie Jones:  And you can do a refresh token request to bind the 
+  refresh token to the DU Pape key so you include a deep up hitter 
+  in the refresh token request likewise if you're doing a protected 
+  resource request you can deep up bind that.
+Robbie Jones:  Now there's this thing in HTTP that some of you 
+  are probably familiar with called the www atheltic it challenge 
+  that's a means for a server to say to the requester oh you need 
+  to do this in order to satisfy me.
+Robbie Jones:  Deep pop www with indicate challenge defined to 
+  say you have to use depop and by the way these are the signature 
+  algorithms that I support and so a response to a protected 
+  resource request with an invalid token.
+Robbie Jones:  Might be 401 unauthorized and say that.
+Robbie Jones:  You need to have depop.
+Robbie Jones:  And then you retry with deep up token.
+Robbie Jones:  Originally the Deep pops back was simpler than the 
+  final version and while I love Simplicity I also love security 
+  there were a couple features that were added because in early 
+  versions of the spec is deployed there were a couple attacks that 
+  could still be mounted.
+Robbie Jones:  Where you could mint depop tokens by a bad actor.
+Robbie Jones:  So one of these is mitigated by a server provided 
+  nonce a value that the server creates to put in the Deep up proof 
+  that way the server can know that oh well this is a deep pot 
+  proof that's current At This Server because the server provided 
+  content put into the proof.
+Robbie Jones:  So there is metadata associated with this as those 
+  of you who know us know that there's both authorization server 
+  metadata in this case there's metadata saying what signing those 
+  signing algorithms you support.
+Robbie Jones:  Client registration metadata where the client can 
+  say only send me deep up tokens I will not accept Bearer tokens 
+  so it's possible to bind the authorization code not just the 
+  access tokens and the refresh tokens to a deep popke this was 
+  something that was added later in the.
+Robbie Jones:  Specification development which enables end and 
+  binding of the whole flow those of you who know off to will 
+  recall that for the code flow and some of the other flows there's 
+  an author it a request to the authorization server returns an 
+  authorization code followed by a request to the Token endpoint 
+  originally depop only worked at the token endpoint this.
+Robbie Jones:  I also work at the authorization and point.
+Robbie Jones:  So we got a knife see last month yay here is 
+  another picture of Brian Campbell finding another Deutsche pop.
+Robbie Jones:  Sign this time in Vienna in the u-bahn again the 
+  German Subways which he found a suspicious because this was the 
+  same day that depop was moved to working group last call so we 
+  have a standard that's great.
+Robbie Jones:  For a certainty you know individual developers and 
+  organizations have to decide to build it and some very high 
+  volume Services people worried about the cost of asymmetric 
+  cryptography some proposals have been made by Amazon the like to 
+  also enable use of symmetric cryptography but that requires a key 
+  exchange step which isn't in the spec it was eventually decided.
+Robbie Jones:   Decided by the working group.
+Robbie Jones:  That if we.
+Robbie Jones:  A symmetric version of depop it would be a new 
+  spec so far nobody has written that.
+Robbie Jones:  That said I mean deep up is being used in 
+  production in some real environments for one thing the financial 
+  grade API 2.0 draft which is used as a basis for a lot of open 
+  Banking and open finance deployments around the world does use 
+  depop their certification tests that include deep up tests.
+Robbie Jones:  Now I'll really get down into the details about to 
+  potential attacks that caused us to add features that I've talked 
+  about so attack one is pre-computing a proof.
+Robbie Jones:  This structure there's an identity provider a 
+  client and a resource server where the identity provider is an 
+  authorization server so you present a public key and proof of 
+  possession to the identity provider you bind the client to the 
+  cryptographic keys and the tokens you get back a sender 
+  constrained or deep pot bound access token and maybe refresh 
+  token.
+Robbie Jones:   Client generates.
+Robbie Jones:  Proofs with an issue that parameter to guarantee 
+  freshness the client sends the fresh proof of possession with the 
+  access token to the resource the resource accepts the token of 
+  the proof of possession is valid and the access is granted that's 
+  sort of the basic deep up flow but let's look at it 
+  pre-computation attack so you start off the same as normal.
+Robbie Jones:  If there's malware in the client.
+Robbie Jones:  The client has and the malware has access to the 
+  key material or or at least the ability to sign with the key 
+  material to generate deep up roofs.
+Robbie Jones:  Clever malware client could generate proofs well 
+  into the future it could you know create a proof for now it could 
+  create a proof for a minute from now it could create a proof for 
+  10 minutes from now it could create a proof for an hour from now.
+Robbie Jones:  And then it can take those proofs pull them off 
+  the box and take them to a place under control of the attacker.
+Robbie Jones:  Impasses and then the attacker can use those 
+  precomputed proofs at the resource and the resource doesn't have 
+  any way to know that these weren't generated by the real client 
+  or by the intended party and guess what the attacker gets 
+  resource access even though he's off box.
+Robbie Jones:  How do we fix that.
+Robbie Jones:  You start off as normal.
+Robbie Jones:  Malware is present a pre compute some proofs.
+Robbie Jones:  He takes the proofs off box time passes he 
+  presents them.
+Robbie Jones:  The difference is the server has provided a nonce 
+  value of its choosing to put into the proofs.
+Robbie Jones:  So that value was provided before the proofs were 
+  computed.
+Robbie Jones:  And guess what if the server has updated the nonce 
+  value then.
+Robbie Jones:  When the teapot proof is examined if the nonce 
+  value isn't current.
+Robbie Jones:  People will know that something's amiss and say 
+  you're able to prevent that attack by proved by using a server 
+  provided nonce again this is a common pattern in security 
+  protocols that if you want freshness you need to have one party 
+  contribute material to the cryptographically signed entity so 
+  that that party can know oh this is.
+Robbie Jones:   Nothing that.
+Robbie Jones:  List the next attack is rebinding the 
+  authorization code.
+Robbie Jones:  So here's our standard diagram again.
+Robbie Jones:  So remember oh I usually uses two endpoints the 
+  authorization and point and the token endpoint this steps back 
+  and breaks out the authorization and point request as opposed to 
+  the token and point request.
+Robbie Jones:  So youth indicate the user an issue the 
+  authorization code that goes back to the client the client then 
+  context the token endpoint using the public key in the Deep Pub 
+  proof and the authorization server binds the client controlled 
+  keys to the tokens you send back the sender constrained token 
+  client generates proofs.
+Robbie Jones:   Present the proofs are.
+Robbie Jones:  Accepts the tokens of the proof of possession is 
+  valid and you get access so that's all great.
+Robbie Jones:  But you know what if there is a proxy or a VPN in 
+  the middle for instance.
+Robbie Jones:  The access codes and other artifacts and up in log 
+  files.
+Robbie Jones:  And I'm not making this up this really does happen 
+  so supposing the attacker somehow gets some access to your 
+  servers.
+Robbie Jones:  And compose the authorization code out of a log 
+  file.
+Robbie Jones:  Then with that authorization code the attacker can 
+  generate its own deep popke and deep up proofs that are not 
+  actually owned by the client and so the attacker can start using 
+  tokens obtained with authorization code.
+Robbie Jones:  And goes to town.
+Robbie Jones:  How do we prevent that I've mentioned this earlier 
+  but let's go over it start off as normal.
+Robbie Jones:  Attacker gets the authorization code generates 
+  it's on proofs etcetera but.
+Robbie Jones:  Authorization server compares the depop.
+Robbie Jones:  Jason Webb key with the presented public key and 
+  rejects the request if they don't match again the reason they 
+  won't match is the attacker doesn't have the client ski it was 
+  using its own key but by depop binding the authorization code and 
+  not just the access token you can again end-to-end.
+Robbie Jones:  The whole flow.
+Robbie Jones:  So any good talk has a call for Action the call 
+  for Action here is protect yourself from token theft using depop 
+  implemented deploy it we hope that's done the job.
+Robbie Jones:  That's my capsule summary of depop in 20 minutes I 
+  would now be glad to take questions from any of you find people.
+Dmitri Zagidulin:  Call Madonna question I just want to say that 
+  Mike I want to give a big thanks and a big shout out to you want 
+  to work on the d-bob spec because it is what has enabled the 
+  solid authentications back to exist this is Tim berners-lee solid 
+  projects with personal data server and so on and it's Frost 
+  domain of integration.
+Dmitri Zagidulin:   Nation system.
+Dmitri Zagidulin:  D pops back out it's hard so big thanks you've 
+  enabled an entire Community to exist with it.
+Robbie Jones:  Call will thank you for letting me know that solid 
+  is using it.
+Harrison_Tang: Any other questions.
+Harrison_Tang: Oh wait Mike I'm just curious you mentioned that 
+  there had been quite a bit of other attempts previously do the 
+  pop so what's different between depop solution versus the 
+  previous Solutions and how is what do you think is different this 
+  time that you think Deepak has a higher chance of getting 
+  adopted.
+Robbie Jones:  Well let's get back to that slide oops.
+Robbie Jones:  Build slides going back through them takes a 
+  while.
+Robbie Jones:  So the short answer is.
+Robbie Jones:  We think we've hit.
+Robbie Jones:  A workable balance between complexity and 
+  security.
+Robbie Jones:  You know developers are finicky people they.
+Robbie Jones:  Don't want to do more than they have to and don't 
+  want to do things that they don't fundamentally understand.
+Robbie Jones:  So let's walk through this list.
+Robbie Jones:  Sam'l to did have a holder or does have a holder 
+  of key assertion profile and it is used in some deployments so 
+  that's actually a success story although symbol to has its own 
+  set of complexities the most notable being that signing a Samuel 
+  took and requires XML canonicalization.
+Robbie Jones:  And one of the big takeaways from XML D Sig and 
+  XML canonicalization is that it's too hard and developers got it 
+  wrong.
+Robbie Jones:  And so all the solutions after that require no 
+  canonicalization.
+Robbie Jones:  So I want one.
+Robbie Jones:  Have proof of possession but it required signing 
+  HTTP requests in a fairly General way and it had a lot of options 
+  there were options for what are the sign the HTTP body or not 
+  there were options to say which header parameters.
+Robbie Jones:  Her which HTTP headers were signed.
+Robbie Jones:  And you know the signing required again are 
+  Bugaboo canonicalization of some of the fields and evidence was 
+  that different developers when trying to implement it would 
+  implement it slightly differently and cryptographic functions 
+  have this step function that either they totally work or they 
+  don't work at all if you have a difference for.
+Robbie Jones:   Since between a carriage return.
+Robbie Jones:  In Line Feed and a carriage return or Line Feed it 
+  means the signatures don't match and so while I lost one could 
+  have worked there were other problems with it but I'll just focus 
+  on that one a lot of developers in practice at the time which is 
+  over a decade ago thought this is too hard we will develop 
+  something simpler called oauth rap.
+Robbie Jones:   Rap we're.
+Robbie Jones:  For web resource authorization protocol and you'll 
+  notice in the ietf that name of the working group is officially 
+  the web resource authorization protocol working group that 
+  developed what became off to I stepped into the mix at about that 
+  time and the main editor at the time.
+Robbie Jones:  Merlot have didn't believe in Bearer tokens and 
+  yet that's what Google and Microsoft and Salesforce and Facebook 
+  and others wanted to deploy and so I became the editor of the 
+  bearer token spec and Aaron did the max spec which eventually got 
+  abandoned because the working group wasn't that interested in it.
+Robbie Jones:  Did an HTTP signing draft but again it was at 
+  least as complex as the oauth1 signing and the working group 
+  abandoned it due to complexity as a side note I will say that the 
+  HTTP working group did eventually try to do a general HTTP 
+  signing draft and that became an RFC but that happened in 
+  parallel with depop.
+Robbie Jones:   You know perhaps.
+Robbie Jones:  If it is.
+Robbie Jones:  There stood before depop existed we would have 
+  done a profile of the HTTP signing but as it is we signed 
+  basically two things the method like post and request URL as was 
+  shown in one of the diagrams.
+Robbie Jones:  Now let's talk about TLS token binding that was 
+  something where you could do cryptographic binding for a TLS 
+  session so a connection between here and there.
+Robbie Jones:  And bind the messages sent over TLS to 
+  cryptographic material maintained by the TLs engine and there was 
+  a draft for doing binding of HTTP requests over TLS token binding 
+  and there was an oauth draft to use that HTTP binding and there 
+  was a open ID draft to do that TLS took.
+Robbie Jones:  This was one of the strange twists in this long 
+  and winding road that we got to the place where those specs were 
+  done essentially they went to the RFC editor they were deployed 
+  in Chrome and Edge and I believe Firefox and I can't remember the 
+  status of safari and some friends in the Chrome team decided oh 
+  this is going to be.
+Robbie Jones:   Too hard to make.
+Robbie Jones:  A rip it out and they ripped it out of Chrome on 
+  the day that it went to the RFC editor and like a lot of these 
+  things these Solutions only work if they're ubiquitous if it you 
+  know is browser dependent and works in Safari but doesn't work in 
+  Chrome you're SOL and so that was a good start we learned a lot 
+  from it it's not deployed.
+Robbie Jones:  Now Mutual TLS is kind of an old.
+Robbie Jones:  Technology mean there's been ways of using TLS 
+  client certificates for most of the time that TLS has existed the 
+  problem is that client certificate management is hard and if you 
+  involve the end-user at all they will get it wrong it can only 
+  really work well in closed ecosystems like thanking ecosystems 
+  where.
+Robbie Jones:   All the parties.
+Robbie Jones:  Able to be centrally administered and you can push 
+  the client certificates from a central authority to all the 
+  participants so that can work and it does work but it doesn't 
+  work in open systems environments which is why we eventually got 
+  to the depop idea which started at an oauth security workshop for 
+  years ago where we were brainstorming okay well what can we do if 
+  we're not going to have token binding.
+Robbie Jones:  If it's not going to be at the TLs or the 
+  operating system layer we're going to have to do it at the 
+  application Level what can we do at the application Level that 
+  will work.
+Robbie Jones:  And this is a long preface to me answering the 
+  question which is why do I think this is going to work I think 
+  it's going to work because developers can build it and deploy it 
+  themselves in their protocol Stacks without having to get browser 
+  support or operating system support.
+Robbie Jones:  Token binding actually needed both.
+Robbie Jones:  Um you had to have support in the TLs stack which 
+  sometimes was in the operating system and you had to have support 
+  to pipe that up through the HTTP layers so for instance to 
+  implement this in Java you had to have a modified version of the 
+  Java virtual machine that pipe this additional parameter up 
+  through the sockets layer.
+Robbie Jones:  Brian Campbell and others had built such support 
+  but Oracle had never committed to ship it and then the whole 
+  thing Came Crashing Down where you can use deep pop just by 
+  building both ends of it and using it so I think we're on a path 
+  to incremental adoption it's going to work and it's also the case 
+  that because this uses oauth Discovery you can incrementally 
+  figure out whether the end point you're talking to.
+Robbie Jones:   Supports it or not.
+Robbie Jones:  If it supports it use it if it doesn't support it 
+  use the bearer tokens you've been using for a decade.
+Harrison_Tang: Thank you that's a very detailed answer thanks a 
+  lot so you maybe sense this is like a decentralized approach to 
+  that is not dependent on like centralized Authority is like 
+  browser platforms and things like that basically right.
+Robbie Jones:  Exactly it's it's in the hands of developers 
+  rather than in the hands of having have a central Authority for 
+  the ecosystem you're talking to.
+Harrison_Tang: And what are the future work like that's involved 
+  were you think this I mean this solution sounds like pretty much 
+  done but I'm just curious I enquired the future development.
+Robbie Jones:  The future work is.
+Robbie Jones:  And applying it and related work is calling for 
+  its use in specifications where it's appropriate so Dimitri 
+  called out that solid is using it I called out that fappy 2.0 is 
+  using it.
+Robbie Jones:  Going to be.
+Robbie Jones:  Out of other specifications and ecosystems the 
+  decide to use it so again.
+Robbie Jones:  Work is no longer specification work for the 
+  mechanism the work is using it.
+Harrison_Tang: What are the main challenges in adoption and I 
+  think you mentioned about computational complexity due to 
+  geometric encryptions and things like that audio other 
+  challenges.
+Robbie Jones:  The main challenges I think are that.
+Robbie Jones:  Have to have all the parties participating.
+Robbie Jones:  In the exchange support it so off has a three 
+  party model.
+Robbie Jones:  It has the client it has an authorization server.
+Robbie Jones:  And it has a protected resource.
+Robbie Jones:  And for depop to work all of them have to be aware 
+  of it and use it if one of the parties doesn't participate it 
+  doesn't work and so like you know building out any new ecosystem 
+  feature you have to get everybody to sign up to play for it to 
+  actually work.
+Robbie Jones:  Now the good news is I said before is you can do 
+  this incrementally through Discovery you can see does my 
+  authorization server support depop tokens at all and if so you 
+  ask for them if not you use Bearer tokens.
+Harrison_Tang: Thank you Dimitri.
+Dmitri Zagidulin:  Yeah I wanted to to add did you answer a 
+  question from the implementer side on what are the challenges of 
+  it and it's it's the challenge we constantly have in this group 
+  which is Key Management right client-side key management which 
+  which you know debug requires to work that's the whole point of 
+  the pump and presents a developer education challenge a.
+Dmitri Zagidulin:   It's a shift in.
+Dmitri Zagidulin:  It's a paradigm shift for developments right 
+  so the the main thing that's difficult is the key management but 
+  like you know that that's what we do here day in and day out.
+Robbie Jones:  Let me add something about Key Management that we 
+  didn't do in this talk which is the deep popke can be in a 
+  secured element so if you're on a mobile phone with a secure 
+  Enclave if you're on a PC or a Mac with a TPM you can put the 
+  Deep up keys in a place that they cannot be exfiltrated.
+Robbie Jones:  This is a higher security bar then you get by 
+  having just software manage keys in particular if it's in a 
+  secure element or a TPM you can't go somewhere else and get deep 
+  pop signatures because the private key stays in the device and 
+  there's no way to extract it now there's a performance cost of 
+  that and it varies by secured.
+Robbie Jones:  But I know that TPM digital signatures are not 
+  fast some of the secured elements on mobile phones or faster and 
+  so you're better off even against malware if you can put the key 
+  in a secure element of some form.
+Robbie Jones:  If your key is just managed in software and you 
+  have malware it's likely that the malware is able to extract the 
+  private key.
+Harrison_Tang: Okay you're next in the queue.
+Ted Thibodeau:  I just do another implementation note from the 
+  perspective of a user all the open link stuff that is relevant is 
+  or will be implementing deep up as we go we did it first in 
+  regards to our solid support but it'll get further.
+Robbie Jones:  Thanks Ted can you in a sentence or two tell me 
+  what openlink is.
+Ted Thibodeau:  Open mic software is the database company behind 
+  the virtuoso which is the engine that powers dbpedia by to rdf 
+  uniprot and about.
+Ted Thibodeau:  Well I'll say most of the nodes that you find on 
+  the LOD Cloud graphic.
+Harrison_Tang: Any other questions or comments.
+Robbie Jones:  I'll give a shout out to Brian Campbell who's on 
+  the call who was one of the key inventors and participated in the 
+  slaw gifting and draft from an individual draft to an RFC I don't 
+  know if you want to add anything Brian.
+Brian_Campbell: No but thank you for the acknowledgement.
+Harrison_Tang: Thank you Brian and thanks for hopping on as well.
+Harrison_Tang: All right so thanks Brian thanks Mike thanks for 
+  taking time to come to ccg here today to present the pop it's a 
+  very interesting talk and no hope I learned quite a bit today so 
+  I hope everyone else do the same as well.
+Harrison_Tang: All right any last items that people are bringing 
+  up whether it's introductions reintroductions announcements 
+  reminders that we didn't get to earlier in the meeting.
+Harrison_Tang: Cool I think this concludes this week's w3c ccg 
+  meeting have a good one hi.
+Robbie Jones:  Thank you for inviting me and go forth and protect 
+  your tokens.
+Harrison_Tang: Thanks Mike thanks for the call to action thanks 
+  for the CTA.

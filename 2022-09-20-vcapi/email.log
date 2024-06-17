@@ -1,0 +1,887 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-09-20-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-09-20-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-09-20
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Sep/0158.html
+Topics:
+  1. Introductions and Reintroductions
+  2. Announcement or Community Updates
+  3. VC API and Data Integrity Updates
+  4. Snapshot VC API for VCWG?
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Mahmoud Alkhraishi, Manu Sporny, Patrick (IDLab), Paul Dietrich 
+  GS1, Logan Porter, Steve Eisler, John Henderson, Dave Longley, 
+  Kayode Ezike, Stuart Freeman, James Chartrand, Mahesh Balan - 
+  pocketcred.com, Pavel minenkov
+
+https://w3c-ccg.github.io/announcements/
+<patrick_(idlab)> This page still mentions 4pm ET (fixed now)
+<manu_sporny> Thanks for the pointer, fixed the page to the right 
+  time... 3pm ET now.
+Our Robot Overlords are scribing.
+Manu Sporny:  Alright welcome to the verifiable credentials API 
+  call this is our weekly call this is at the new time and it looks 
+  like a number of our regulars probably didn't get the memo that's 
+  it that it's at a new time so we may not be able to get too much 
+  done on this call today but we'll see how it goes on the agenda.
+Manu Sporny:   De for the.
+Manu Sporny:  Is just a quick recap of the w3c technical plenary 
+  meeting with respect to how it may or may not affect the VC API 
+  will talk about the data Integrity discussion that happened at 
+  w3c TPAC we'll have a discussion around potentially snapshotting 
+  or moving partially moving over some subset of the VC API to the 
+  verifiable credentials working group for publication as.
+Manu Sporny:   Note in will do issue.
+Manu Sporny:  Processing as time permits are there any other 
+  updates or changes to the agenda.
+
+Topic: Introductions and Reintroductions
+
+Manu Sporny:  But if there are no updates let's go into 
+  introductions and reintroductions I note that there are a couple 
+  of new people on the call so if you don't mind if you're new 
+  please Interiors introduce yourself to the group.
+Manu Sporny:  Go ahead pass.
+Patrick_(IDLab): I just wanted to give a few updates to three 
+  things so last week it was the hyper Ledger global forum which 
+  some people that ideal add participated.
+Patrick_(IDLab): We another update so we also have currently a 
+  client engagement idle up with the solution provider they want to 
+  get sort of the solution against the VC API and I asked them if I 
+  could mention their name here so it's a company called IP Toki 
+  they are based in Montreal Canada they are interested in 
+  participating and these calls and eventually so I sent the 
+  invitations or they might show up.
+Patrick_(IDLab): Julie introduced themselves and I think they 
+  would be.
+<kayode_ezike> Unfortunately unable to hear anything after trying 
+  two different clients
+<kayode_ezike> May have to drop
+Patrick_(IDLab): It And discussing how to sort of collaborate to 
+  make their implementation known and that's it I also another 
+  subject maybe don't have to discuss it today but there was an 
+  article published by identity woman last weeks or two weeks ago 
+  and it made a bit of the sparked a couple discussions and the 
+  hyper Ledger community so I.
+Patrick_(IDLab):  I was curious to have.
+<mahmoud> can you link the article in question please?
+Patrick_(IDLab): Some opinion from the people here in the w3c 
+  superior was basically an article regarding the an incred data 
+  model pushed forward by hyper Ledger and comparing it to the w3c 
+  so yeah I was just curious if you have heard of the article and 
+  if you have an opinion on that and that's that's pretty much it 
+  for me thank you.
+Manu Sporny:  Great thank you Patrick yes I've seen the article 
+  hesitant to comment on it other than many of those things have 
+  been said over the past seven plus years five six seven years and 
+  we if there's interest here I mean we can discuss it it tends to 
+  it's probably going to it's probably a pretty divisive topic.
+https://identitywoman.net/being-real-about-hyperledger-indy-aries-anoncreds/
+Manu Sporny:  I'm a bit hesitant to bring it up in this form 
+  right I mean we're supposed to be focused on VC API knots and on 
+  creds and that sort of thing so the place for that conversation 
+  might be the more generalized ccg call but if you could provide a 
+  link Patrick I think that would help everyone understand which 
+  article you're talking about I see Steve on the Queue go ahead 
+  Steve.
+<mahmoud> WELCOMES STEVE!
+Steve_Eisler: Hey sorry about that one barge in this time yeah 
+  not so much new to the group but certainly new to you all most of 
+  you all honesty visor I'm working for a company called Credivera 
+  of western Canada we are very much responsible for certifications 
+  for place and compliance and we're taking the step into feces 
+  here and yeah looking forward to helping contribute on the API 
+  side of things.
+Manu Sporny:  Wonderful welcome to the group happy to see you 
+  here Paul.
+<dave_longley> /me wow, i didn't hear anything Steve said ... 
+  anyone else?
+<mahmoud> It worked for me
+Paul_Dietrich_GS1: Hello I'm Paul Dietrich from gs1 you sgs1 is a 
+  global standards body that stewards the numbering for supply 
+  chain products and tooties trade items Etc we've been engaged in 
+  DC's for a few years now and finally we're kind of moving forward 
+  to join this group and see how we can participate.
+<mahmoud> Steve from Crediver
+<mahmoud> Credivera*
+Manu Sporny:  Go ahead great welcome Paul I'm noting coyote and 
+  Dave or having audio issues reloading the browser sometimes helps 
+  we do have a phone dialing number but I forget what the extension 
+  is unfortunately and then again if you are on Mac OS or iPhone 
+  there have been issues that you can try switching browsers 
+  sometimes that clears up the.
+Manu Sporny:   The audio issues.
+<logan_porter> I'm having issues on mac and android as well
+Manu Sporny:  Is for those audio issues and welcome Paul 
+  wonderful to have you here.
+
+Topic: Announcement or Community Updates
+
+Manu Sporny:  Let's see next up on the agenda are well Community 
+  updates in general any Community up Jason have a Patrick you 
+  covered a few any other announcements or Community updates the 
+  only one I have is that next week is rebooting the web of trust 
+  in The Hague there are going to be a number of us.
+Manu Sporny:   There and so.
+Manu Sporny:  The meeting when next week is probably going to be 
+  a while is canceled for those of you that are going to be there 
+  we'll see you there for those of you that we won't I'm sorry we 
+  won't see you but we will meet again at the same time the 
+  following week so this is our permanent time for the call now and 
+  we will meet regularly at this time because it's.
+Manu Sporny:   That's what the poll showed.
+Manu Sporny:  Is the best time for everyone any other 
+  announcements or Community updates.
+
+Topic: VC API and Data Integrity Updates
+
+Manu Sporny: https://www.w3.org/2022/09/15-vcwg-minutes.html#t10
+Manu Sporny:  Alright then moving quickly into our agenda the 
+  first agenda item has to do with kind of discussions at the w3c 
+  technical plenary going to link to the minutes from the w3c 
+  technical plenary there one of the discussions or one of the 
+  topics that was discussed.
+Manu Sporny:  Deepak was this concept of streamlining the data 
+  Integrity specification so the reason that it has an effect on 
+  some of the VC API stuff is that when it comes to testing the VC 
+  API as some of you that are new here we have this test Suite that 
+  test various aspects of the be Capi issuing verifying things like 
+  credential status.
+Manu Sporny:   Different cryptography.
+Manu Sporny:  And of course we had to settle on some kind of did 
+  to run the test Suites under and that's did key right now so all 
+  the tests weeds that do signatures and everything is did key for 
+  testing the streamlining data Integrity work is about effectively 
+  standardizing doing doing the global standard for the data 
+  Integrity mechanism of securing verifiable.
+Manu Sporny:  Which is one of the mechanisms and we're trying to 
+  lock it in basically So within the next let's say nine months 
+  probably closer to six months we will have the data Integrity 
+  specs locked in such that people can start committing to certain 
+  cryptography Suites long-term like five plus years you know 
+  long-term kind of support for.
+Manu Sporny:   Or these cryptography.
+Manu Sporny:  Those discussions happened they didn't necessarily 
+  result in.
+Manu Sporny:  Absolutely concrete decisions meaning that we had 
+  at least one individual may be more say that they objected to the 
+  new direction for the crypto sweets in unfortunately I mean it's 
+  publicly known it was Joe and unfortunately just not here today I 
+  was hoping to have a discussion with him about his concerns 
+  around crypto sweets but in general the the suggestion.
+Manu Sporny:   Was to.
+Manu Sporny:  Find the crypto sweets the basically the data 
+  Integrity crypto sweets and wrap them into the main verifiable 
+  credentials context now you don't have to do that if you're 
+  dealing with data structures that are other than verifiable 
+  credentials suggest like a json-ld document and you want to 
+  digitally sign it you can still use all the Legacy crypto sweets 
+  and you'll be able to use new crypto sweet so we're not talking 
+  about preventing anything that anybody has been doing to date 
+  we're.
+Manu Sporny:   Going to suggest.
+<manu_sporny> Slides around proposal for cryptosuite 
+  streamlining: 
+  https://docs.google.com/presentation/d/1hrqozY2EGZ8i8y40abyEuJmIb6hCiRS-37pdj6bhBLY/edit#slide=id.g1482ccb90af_0_90
+Manu Sporny:  Asian for developers to make it easier to support 
+  multiple crypto sweets so I won't go into the details there are 
+  slides here around the proposal slides around Roseville for 
+  quickness sweet streamlining.
+Manu Sporny:  At there's the slide back that puts the proposal 
+  forward in general there was enough support for us to start 
+  putting in a bunch of PRS in this is just a heads up to this 
+  group that we're probably going to use the VC API to test all 
+  those new crypto sweet so I'll pause here to see if anyone has 
+  any objections on the new path or if you're kind of like I have 
+  no.
+Manu Sporny:   Idea what you're talking about we need more.
+Manu Sporny:  So any any confusion or objections to the path 
+  crypto sweets seem to be taking and using BC API to test them.
+Manu Sporny:  Go ahead Paul is that an old Q or is that a new 
+  one.
+Manu Sporny:  Okay lq Muhammad go ahead please.
+Mahmoud Alkhraishi:  I just want to be clear that there were as 
+  far as I can tell two parts of that proposal one part is to 
+  include Signature suites in the base verifiable credentials 
+  context and another part of how do we ensure backwards 
+  compatibility and long-term use so please review those slides 
+  that were very very helpful I just want to I just want to 
+  underline those two key points.
+Manu Sporny:  Yes that was yeah excellent point Muhammad they 
+  were really two decisions that need to be made and we can make 
+  those decisions independently of one another and at no point are 
+  we going to lose backwards compatibility like you can still do 
+  the old stuff this was just a proposal for us being able to make 
+  it easier for some of the new stuff.
+Manu Sporny:  Patrick you did have your hand up did you want to 
+  go or did that answer your question.
+Patrick_(IDLab): Yeah I can just maybe voice what I'm thinking 
+  like so for me yeah just like this like a right to bit confusing 
+  and that's my first reaction but I just want to make sure I 
+  understand so the from what I understood the last time the goal 
+  was to have individual test suite for each cryptographic methods 
+  so is that still going to be the way the tests are going to be 
+  driven except there will be more tests.
+Patrick_(IDLab): The sort of proof being outside of the context 
+  and the other one to prove being sort of included or embedded 
+  under contact so those would be two separate tests.
+Manu Sporny:  Um so there will still be one test Suite / crypto 
+  sweet so if you're using like e.t. to 5519 signature 2020 there's 
+  a separate test suite for that the new stuff is going to be 
+  called like EDSA 2020 or BBS 2020 or ecdsa 2020 sorry 2022 those 
+  new.
+Manu Sporny:  Ones are going to get one test.
+Manu Sporny:  The sweet so they will always be this one-to-one 
+  mapping between test suite and Krypton sweet and that won't 
+  change what what you said was slightly nuanced there's a slightly 
+  nuanced difference there the group has not made a decision on 
+  whether or not to include this new it's called it data Integrity 
+  proof type like if they include that in the base verifiable 
+  credential version 2 context.
+Manu Sporny:  Has to include new crypto sweets as far as they 
+  follow you know that General design pattern but that decision 
+  hasn't been made yet so the we expect the test Suite might change 
+  if we were testing verifiable credentials so either you're going 
+  to need a new data integrity.
+Manu Sporny:  In the worst case you're going to need to use a new 
+  data Integrity context in addition to the base verifiable 
+  credentials context that's it the worst case which is the case 
+  we're in right now or the verifiable credential working group 
+  will decide you know what let's make it easier on developers and 
+  let's just put that into the base context and if that happens 
+  then the only thing you need to digitally sign a verifiable 
+  credential is the base context and you will by doing that you 
+  will be able to support.
+Manu Sporny:  BBS and all kinds of different contexts Mahmoud 
+  you're next and then Dave Longley.
+Mahmoud Alkhraishi:  I didn't kill I think this was an old key.
+Manu Sporny:  Oops sorry old you go ahead Dave.
+Dave Longley:  Yeah so I think no matter what there's going to be 
+  a data Integrity context that stands alone so it can be used with 
+  things other than VCS and that also implies that there would be 
+  tests where that context is used as well so I think no matter 
+  what in this is to Patrick's Point about there being two 
+  different sets of tests for things that are certainly for things 
+  that are not be seized data Integrity tests would be run against 
+  the day.
+Manu Sporny:  Yep hopefully hopefully that helps and hopefully 
+  this is not confusing things more than then helping it really 
+  helps to have seen the you know the the slide deck and absorbed 
+  it go ahead Paul.
+Paul_Dietrich_GS1: Your mommy you mentioned in the on the TPAC 
+  meeting that it was hard for developers and that's what motivated 
+  this change can you be specific about what exactly was hard and 
+  how this is making easier.
+Mahmoud Alkhraishi: +1 Great question
+Manu Sporny:  Sure yeah that's that's a great question maybe that 
+  will clarify it so developers have basically said stop making us 
+  create new crypto sweet contexts in is there an easier way for us 
+  to do this so it was mostly a complaint with like no solution 
+  right is it was you're making us include all these different 
+  crypto sweets we don't want to do that anymore in there was a 
+  concern around.
+Manu Sporny:   So sweet.
+Manu Sporny:  In like for every new crypto sweet we will need a 
+  new json-ld context and it turns out that the vast majority of 
+  those new crypto sweets everything was the same in the crypto 
+  sweet context except for like the type so the only thing that you 
+  know people were basically copying and pasting these things and 
+  the only thing that was really changing was the type like ed2 
+  5519 signature 2020 or Json web signature 2020 or like that was 
+  the only.
+Manu Sporny:   Only thing that was changing so it was a lot of 
+  kind of template copy paste code that Developers.
+Manu Sporny:  The new proposal basically says let's just call 
+  these all all of these things data Integrity proofs in the only 
+  thing that changes is the name of the crypto sweet which is the 
+  string and so there will be so basically all these cryptic sweets 
+  will share a base context in the only thing that changes is kind 
+  of the crypto sweet string and by doing that all of a sudden you 
+  know.
+Manu Sporny:   If the working group adopts.
+Manu Sporny:  There you just need a base verifiable credential be 
+  to context like they will be like they'll be two contexts in the 
+  verifiable credential they'll be the base verifiable credential 
+  one and then they'll be the market vertical specific one like for 
+  education or traceability or things of that nature hopefully that 
+  helped go ahead Dave.
+Dave Longley:  And so today developers if they want to add a new 
+  crypto sweet to any of their applications software wherever they 
+  want to put it let me start with the ideal case if they want to 
+  add one is they install a new library and hook that Library up to 
+  support that crypto sweet the what they have to do today is they 
+  have to do that and then they additionally have to update any 
+  context document loaders that they have to support whatever new 
+  context are brought in by the new suites.
+Dave Longley:   And they have to update any Jason schemas that 
+  might in may or may not.
+Dave Longley:  Current or new properties and there's a number of 
+  other little side pieces that are involved there that you may or 
+  may not have to touch or deal with and so this is designed to 
+  make it so that it's much much easier to to add or remove crypto 
+  sweets from your software because the core format is not changing 
+  everything's been pushed down into the layering is changed so 
+  that any proof values and things like that.
+Dave Longley:  The data that is specific to the crypto sweet so 
+  the only thing you're Jason scheme is looking for is like proof 
+  value now and doesn't need to change your crypto sweet changes 
+  the context don't need to change because any of the semantic 
+  values have been pushed out of that into a different space so you 
+  don't need to change those things and so ultimately we've gotten 
+  as close as we think we can to making it so that when you want to 
+  add or change support for crypto swedes you just get a library 
+  that.
+Dave Longley:  That and hook that up to your application there 
+  aren't other things that you also have to.
+Manu Sporny:  Yeah and you know maybe it would just it's easier 
+  to just to show this I think II think you know the mistake I made 
+  here was that most of the people here we're not a w3c TPAC and 
+  said this is probably all very new and confusing let me share my 
+  screen in point to what the old version and the new version looks 
+  like and maybe you know that's what we spend time doing.
+Manu Sporny:  Can folks see my screen.
+Manu Sporny:  All right so this is what we do today I'm just just 
+  look at the center part of the screen here so today we have a 
+  version 1 credentials context and then you have your Market 
+  vertical Pacific 14 like education or supply chain or citizen 
+  identity and today we have to add a crypto sweet to say this is 
+  how I'm going to digitally sign it so you end up having like 
+  three contexts here right and it's this third one.
+Manu Sporny:   That people were complaining about right they were 
+  like hey that's really.
+Manu Sporny:  And difficult please don't do that in the only 
+  thing that it really did was it established this type value here 
+  right so this is today if people are doing this today they don't 
+  have to change to this new mechanism so they can continue to do 
+  like if people were not having a problem with this they can 
+  continue to do this but we're trying to be responsive to like 
+  implementer feedback and so.
+Manu Sporny:   The suggestion was.
+Manu Sporny:  I can't we just figure out a way to wrap this thing 
+  into the base context so the proposal is to move to something 
+  that looks like this so in the next working so within the next 
+  nine months the suggestion we are going to move to a V2 context 
+  for verifiable credentials V1 all the old V1 stuff will continue 
+  to work like don't worry that stuff you know.
+Manu Sporny:   And will continue to.
+Manu Sporny:  Do its thing but the new V2 one will could 
+  potentially fold the crypto sweets into it the type for all in 
+  this is just data Integrity proofs it has nothing to do with the 
+  job based stuff right so for data Integrity stuff the type will 
+  always be data Integrity proof but will introduce this new value 
+  called crypto Suite which will call out the specific crypto 
+  sweet.
+Manu Sporny:   This may like.
+Manu Sporny:  Might look at this and go like I don't understand 
+  what the big deal is but fundamentally we're not having to 
+  declare any new json-ld types from new new crypto sweets that's 
+  the big change in my making this big change then all of a sudden 
+  the base V2 context supports many different types of crypto so 
+  the list of all the different types of crypto we can support with 
+  this new model is down here at the bottom right all these 
+  different types of crypto sweets or.
+Manu Sporny:   Or are supported.
+Manu Sporny:  This new model so let me stop there Mahmoud you're 
+  on the Queue and then Patrick.
+Mahmoud Alkhraishi:  Would you mind going back one slide or two 
+  slides to the side that has the current.
+Mahmoud Alkhraishi: https://www.w3.org/2018/credentials/v1
+Mahmoud Alkhraishi:  One thing I would note here is what you're 
+  seeing on the screen only applies to for example e 2519 that 2020 
+  some of the other sweets are already embedded in the V1 context 
+  so if you look at the V1 context right now which I'm going to put 
+  in as a link in chat you'll see that there are existing sweets 
+  like it if it 519 signature 2018 right and.
+Mahmoud Alkhraishi:   What we're doing here isn't revolutionary 
+  right.
+Mahmoud Alkhraishi:  Doing something that's not already currently 
+  being done we're just generalizing this solution so that it 
+  applies to a bunch of other at the sweets without having to you 
+  know having to do this work for every single news with the gets 
+  added.
+Manu Sporny:  Yeah so yeah that's exactly right my mood like the 
+  mistake we made in the V1 context was we started to lock into 
+  very specific crypto sweets in that bounds how like it bound how 
+  crypto sweets could evolve with how verifiable credentials 
+  context would evolve it bound them together and we're trying to 
+  split them apart right now because their number of these that 
+  like people just don't use today like RSA.
+Manu Sporny:   HR 2018 and like.
+Manu Sporny:  This R1 signature isn't used this one's used so 
+  we're trying to do less of a we don't want to pick winners this 
+  time around but we always said but we do want to help developers 
+  you know stay fairly we just want to help developers you know 
+  make it a bit easier for them Patrick go ahead.
+Patrick_(IDLab): Yeah I was just wondering so you showed the 
+  slide of the sort of found a standard prototype of what it would 
+  look like if the crypto sweet would be and better than the 
+  existing context do you have an example of the other alternative 
+  which would be to create a whole new context for the crystals 
+  could persuade you have like a visual example of that.
+Manu Sporny:  Yeah that's that's this one right here that's what 
+  we do today so we create a totally new context for each crypto 
+  sweet today that's the current state of the ecosystem.
+Manu Sporny:  So note how this is a separate crypto Suite that's 
+  defined and included separately.
+Manu Sporny:  Then this one doesn't have that third one it 
+  doesn't have that led to 5519 one.
+Patrick_(IDLab): Okay I see.
+Manu Sporny:  Yeah so just removes the need to do that.
+Mahmoud Alkhraishi:  As an implementer what this means is you 
+  will now need to add that context every time you see a data type 
+  of a context is not in the existing V1 crypto sweet which is a 
+  huge headache whereas it could easily be done for you for was it 
+  80% of the quickest way to find I'm not sure and you wouldn't 
+  lose the ability and this is the key part if you want to go and 
+  add your own crypto sweet.
+Mahmoud Alkhraishi:   You would not lose that ability can.
+Mahmoud Alkhraishi:  Thanks for your own thing it just gives you 
+  this other Avenue that captures the vast majority of people.
+Manu Sporny:  Yep exactly right we're not losing any we're 
+  nobody's losing any features this is just an optimization 
+  basically so the suggestion is you know we start using the 
+  optimization in this group but again it's like it's this optional 
+  it is an optional thing people don't have to do this but that's 
+  kind of the direction that we think people are going to go 
+  because it's just you know easier to eat Caesar.
+Manu Sporny:   ER to work with like you don't.
+Manu Sporny:  Remember which crypto sweet context you need to 
+  include when you're when you're running code anymore.
+Manu Sporny:  Okay any questions concerns comments on that I 
+  think that it's just this is just like a heads up to the group 
+  like this this looks to be where the verifiable credentials you 
+  know working group might be headed some variation of this future 
+  in it will you know we will probably start seeing new crypto 
+  sweet test Suites driven by the VC API that kind of test this 
+  functionality go ahead Patrick.
+Patrick_(IDLab): Is it a concern that while you developed a new 
+  test suite for the crypto sweets that this work could eventually 
+  be made deprecated depending on the direction that they decide to 
+  go or is there a way to sort of plan in advance and make those 
+  test Suite sort of adaptable to the to whatever direction is 
+  taken with this.
+Manu Sporny:  At this point enough I think we've got enough 
+  direction from the group where we're not very concerned about 
+  major changes like we're not expecting there to be major changes 
+  the biggest change that's going to affect the test Suite is 
+  whether or not the working group decides to include the data 
+  Integrity proof definition in the base V2 context or if they say 
+  no we don't want to.
+Manu Sporny:   Do that.
+<dave_longley> it shouldn't be a huge lift in the test suite code
+Manu Sporny:  I have a separate data Integrity context that's the 
+  only thing that would that would impact the test Suite so you 
+  shouldn't be a huge lift.
+Patrick_(IDLab): Say it be a good idea to Boop to be like 
+  proactive and include those two scenarios and the test suite and 
+  added as a flag if that's at all possible or that would be kind 
+  of redundant.
+<dave_longley> YAGNI (you aren't going to need it) principle ... 
+  don't do it until you know you need it
+Manu Sporny:  I think we should just wait for the group to decide 
+  right I mean that's it's an excellent question but I think the 
+  group is probably going to make that decision in the next two 
+  months and you know there is like this really strong compelling 
+  need that we absolutely need these cryptos tweet kryptos we test 
+  Suites to be done in the next two months so I think we can wait 
+  largely on that.
+Manu Sporny:  Did I answer your question Patrick.
+
+Topic: Snapshot VC API for VCWG?
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/304
+Manu Sporny:  Okay all right okay well that's just the heads up 
+  that's agenda item 2 VC API and data Integrity updates let's go 
+  ahead and move on to the next issue which has to do with how this 
+  group might want to move some of the work we're doing here into 
+  the VC.
+Manu Sporny:  So the the question here trying to get this larger.
+Manu Sporny:  Um so we have a number of and I know their new 
+  people on the call it sure let me let me show folks what we're 
+  talking about the Cochran ground the conversation here so 
+  currently this group The VC API work item group has a set of 
+  interoperability test reports that we work on.
+Manu Sporny:   We have them for.
+Manu Sporny:  Words we have them for verifiers I think we have 
+  that Edie yeah we have it for cryptos sweets.
+Manu Sporny:  So for like the issuer's we have it's one two three 
+  four five six companies implementing the VC API for issuing right 
+  now and we have a whole bunch of interop tests that we do against 
+  the API right we have a whole bunch of tests for verifiers and we 
+  have again the same six implementers implementing the BC API and 
+  demonstrating a whole bunch of interop.
+Manu Sporny:  Level we have like three implementers for the Ed to 
+  55:19 Signature 2020 test Suite that does again data model 
+  checking and then cryptography cryptographic signature checking 
+  and then does an N by n test I think yeah it doesn't end by in 
+  test to see if one organization can generate is verifiable 
+  credential with signature and the other organization can verify.
+Manu Sporny:   If I it but positive and negative tests.
+Manu Sporny:  We have all these test Suites in all of these test 
+  Suites are driven at their core by the VC API specifically the 
+  issuer in point in the verifier in point so we have all this 
+  infrastructure here that's super useful in the verifiable 
+  credential working group needs a new test Suite in some of the 
+  requirements put forward or that you know the.
+Manu Sporny:   The test Suite.
+Manu Sporny:  Should be able to be run on a regular basis we 
+  should be able to hook into anyone's issuance or verification 
+  infrastructure to test it we should be able to do in by n Matrix 
+  testing we should be able to test very specific normative 
+  requirements in the specification like razor sharp focus on like 
+  the you know the the issuer property must have this form with 
+  these fields and all that kind of stuff right.
+Manu Sporny:  We looked at a whole bunch of different types of 
+  testing so the VC working group is looking for a new way of doing 
+  testing digital Bazaar is suggesting that we should just reuse 
+  the VC API specifically just the issuer in just the verifier in 
+  points to do testing because of data integrity and the crypto 
+  sweet stuff uses the VC API really successfully to do and by in 
+  testing right.
+Manu Sporny:   Right so.
+Manu Sporny:  It would be useful to have a subset of the VC API 
+  documented in the verifiable credentials working group as 
+  effectively a note to talk about how the test Suite you know what 
+  the endpoints for the test we had and everything are so the 
+  suggestion here is that we move at least those two end points 
+  into the verifiable credential working group and there's kind of 
+  a giant.
+Manu Sporny:   Hand wave around like.
+Manu Sporny:  That like do we do it inspect form do we do it in 
+  OAS form if we do that then how do we keep the work that we're 
+  doing here aligned with the work that's going on there and then 
+  how do we also make sure that it's lined with the traceability 
+  folks you know use of parts of the VC API there's just a lot of 
+  coordination you know work that needs to go on and that's kind of 
+  what the discussion today is about like one do we want to try and 
+  do that like are we support are the.
+Manu Sporny:   Well in this group.
+Manu Sporny:  Verifiable credentials working group reusing BC API 
+  for the test Suite to are we interested in at least providing to 
+  of the endpoints issuance and verification to the VC working 
+  group you know do we feel like they're stable enough to do a test 
+  Suite to run a test suite and then three we need to talk about 
+  like the details of coordinating these things between the 
+  multiple groups.
+Manu Sporny:   So I'll stop.
+Manu Sporny:  Um and see if there any questions any clarifying 
+  questions around you know what we're trying to do here we take a 
+  pause.
+Manu Sporny:  Go ahead Patrick.
+Patrick_(IDLab): If someone else's question regarding what you 
+  just explained it they can go ahead and like something that's 
+  more related to the slides that you shared.
+Manu Sporny:  Okay well is it does it go back into another topic 
+  Patrick.
+Patrick_(IDLab): It's about proofs.
+Manu Sporny:  Okay let me finish this thought and it may be that 
+  right now we just don't have any feedback on this about whether 
+  people want to do it or not and then we can we can go back to 
+  that in Patrick please remind me if it slips my mind please 
+  interrupt and remind me Logan go ahead.
+Manu Sporny:  Yes yeah because we wrote it so here let me let me 
+  go to the VC data model thing there's this implementation so if 
+  you go to the current verifiable credentials data model in you go 
+  to the header there's this thing that says implementation report 
+  and if we click on this we will go this is the implementation 
+  report for a verifiable.
+Manu Sporny:   Giles right and so.
+Manu Sporny:  Scott every normative statement in the 
+  specification both positive and negative test for it and then 
+  it's got every implementer along the top so like brightlink redly 
+  evernham factum gravity so you know all these people implemented 
+  it this was a static test Suite which basically meant like we 
+  gave each each Library implementer we gave them the test suite 
+  and then they ran it against a local.
+Manu Sporny:   Wised copy.
+Manu Sporny:  To generate a report on whether or not they passed 
+  each test so it was kind of self-reported right in the problem 
+  with this test Suite is that basically they ran it once and if 
+  they got a whole bunch of green check marks many of them never 
+  came back they never ran it again so for some of these folks 
+  these tests are like two plus years out of date we have no idea 
+  what their current Library does and we would have to like get in 
+  touch with a human being.
+Manu Sporny:   And get them to run.
+Manu Sporny:  By hand again it also required them to create also 
+  created us to sorry it also required us to invent a command line 
+  text based protocol that looks very much like the VC API but it 
+  only works on like standard in and standard out on a console so 
+  we would have liked this command line tool if you were a library 
+  implementer we would have a command line tool call a binary 
+  version the command line version.
+Manu Sporny:   None of your.
+Manu Sporny:  We would feed a verifiable credential to you and 
+  then you would give us one back that was you know digitally 
+  signed or we would ask you to verify it and you would tell us 
+  whether or not it past verification so it was this completely 
+  bespoke command-line driven thing and today we have the very the 
+  VC API it the VC API basically does the same thing right so the 
+  question was do we want to keep using this old bespoke man.
+Manu Sporny:   Line thing or do we want to just use the VC API 
+  because.
+Manu Sporny:  I supports everything that we'd need to use to test 
+  and we can run be Capi on a nightly basis or weekly basis there 
+  was some pushback I think Gabe from Square was like can we please 
+  do this in Docker because like you shouldn't you shouldn't have 
+  to run your own infrastructure to be able to pass the test Suite 
+  we have tried doctor before it was not a successful outcome.
+Manu Sporny:   But there was there was a suggestion that.
+Manu Sporny:  Maybe somebody else would run your Docker instance 
+  you know as a VC API endpoints so that we could do testing so 
+  it's like the open-source developers wouldn't have to run it 
+  somebody that's a company that has infrastructure you know could 
+  run it or run it in a in a droplet so sorry that was a very 
+  long-winded answer to your question Logan but this is what the 
+  old test Suite looks like currently and it has some pretty 
+  serious flaws.
+Manu Sporny:   Is that the VC API could probably help with that.
+Manu Sporny:  Answer your question Logan.
+Manu Sporny:  Yeah and that's a that's an open question we know 
+  some people don't want to do that and we know that that could 
+  what's the word it could disenfranchised some of the smaller 
+  open-source developers and we definitely don't want to do that 
+  and so there I think there's a I think we get past that problem 
+  if there is some organization that's willing to.
+Manu Sporny:  Forever run Docker instance for example but we also 
+  understand that some companies just don't want to put their 
+  infrastructure up 24/7 365 because you know people can try and 
+  attack it and all that kind of stuff with that said we have six 
+  companies that are doing just that right now each one of these 
+  companies has infrastructure running 24/7 that the test Suite 
+  runs against Patrick Iran the queue.
+Patrick_(IDLab): Yeah it's want to point out is like what you 
+  just described is exactly what we do at the idea lab so we have 
+  an engagement right now with a client so we provided a private 
+  environment we can work with them to deploy virtual machines 
+  whatever they need to deploy their solution and then they come 
+  have someone connect to their environment deploy their solution 
+  we provide them with the public IP follicular mobile IP with the 
+  public and point and then we run tests.
+Patrick_(IDLab):  against their solution so that's sort of one 
+  thing that that we.
+Patrick_(IDLab): Roll that we want to take in the community and 
+  another thing I wanted to mention so for this test Suite here one 
+  of the projects that I've done personally is I made a fork of the 
+  test Suite got rid of all the negative testing and put it in the 
+  docker container and made it so that you could feed to that 
+  Docker container and already sign verified.
+Patrick_(IDLab):  Bowl credential.
+Patrick_(IDLab): Would just validate the data format so that's 
+  one sort of an old project that I've made that I thought was 
+  pretty interesting so I called it a sort of a VC validator simple 
+  application so that was one way I was going with the darker 
+  another question I had so for that test Suite you need to fill 
+  configuration file with generator that was I believe 
+  traditionally meant to roll with like a binary.
+Patrick_(IDLab):  command line.
+Patrick_(IDLab): And one of the example was the PCGS solution you 
+  know that was made by I believe it's your company if I'm correct 
+  digital bizarre.
+Patrick_(IDLab): Yeah so I was able to run this with the latest 
+  version which is sort of a darker base as the way of doing it so 
+  I was able to end the generator line put Docker command and it 
+  would feed the test end is Docker container and the tests ran 
+  fine another question I had maybe you would have a better idea if 
+  this would be possible is for that generator command to do some 
+  sort of curl.
+Patrick_(IDLab): West against an API and.
+Patrick_(IDLab): She did those.
+Patrick_(IDLab): Well into this curl request do you think that 
+  could be possible it was my my next sort of thing to play around 
+  with with this this sweet.
+Manu Sporny:  Yeah certainly it should be possible yeah 
+  absolutely I think what we're trying to do so all these things 
+  are possible right I think what we're trying to do is to add a 
+  continuous integration continuous deployment kind of process to 
+  this so that you know the whole ecosystem can see that on any 
+  given day how how everyone's doing with respect to conforming to 
+  the spec and conforming to the crypto sweets and conforming to.
+Manu Sporny:   To the.
+Manu Sporny:  Stuff right we're trying to you know take go away 
+  from the static testing which is what we did for the VC 10 and 11 
+  and we're trying to go to more Dynamic testing which is what 
+  we're doing with the VC API test Suites but the short answer 
+  Patrick is yeah I mean you should because it's a command-line 
+  driven thing you can always make a curl commands right a curl 
+  call out to an external system.
+Manu Sporny:   Do the testing.
+Manu Sporny:  Okay I think that's enough on this I you know this 
+  is just I guess this is well is kind of a I don't know if we're 
+  going to get to consensus today on whether or not we want a 
+  snapshot to be Capi to move it in the verifiable credentials 
+  working group maybe folks can think about it over the next two 
+  weeks and then if you have thought.
+Manu Sporny:   Thoughts please.
+Manu Sporny:  As comments to the issue issue three or four 
+  because we will need to make a decision on this shortly around 
+  you know how we're going to do testing my mood you're on the 
+  queue.
+Mahmoud Alkhraishi:  So I guess I had a pretty big three points I 
+  want to make I want to answer the doctor I think specifically I 
+  believe they are currently using this at if it has been working 
+  great and it's made a lot of this easier for smaller implementers 
+  I would love it if we can do it I understand if it's you know 
+  hard.
+Mahmoud Alkhraishi:   For people to run.
+Mahmoud Alkhraishi:  And so I'm it's a bit of a I would love it 
+  if we can do it in a reasonable way I've seen a reasonable way to 
+  do it I'm just not sure how we could apply it here I had a 
+  question on the purpose of the note that would go into the VC 
+  working group it started off like you were saying we want to add 
+  the VC issue we're in verifier as a note into the VC working 
+  group and then it felt like you were saying that note will be 
+  used to.
+Mahmoud Alkhraishi:  A straight this is how you can do.
+Mahmoud Alkhraishi:  So the question is basically is it the first 
+  one where it's just we want to add this is how you can do 
+  issuance and verification using the VC API to the VC working 
+  group or was it more this is how you can do it for the purpose of 
+  demonstrating this is how you can do test right and last but not 
+  least how do you envision the work progressing afterwards is this 
+  something where the ccg will no longer be working on it is this 
+  something where we would only.
+Mahmoud Alkhraishi:  Working on it at the working group.
+Manu Sporny:  Yeah it all excellent questions mom and I put 
+  myself on the key to respond go ahead Paul.
+Paul_Dietrich_GS1: Yeah just a comment on nomenclature money I 
+  think that right now as a newcomer I see this BC apis and API and 
+  the VCA API test Suite is a test suite for that API but now what 
+  you're proposing is that this DC API is the API for a test suite 
+  and so like the nomenclature here for me gets pretty confusing 
+  and it makes me like question again we'll what is this API is it 
+  a test Suite or is it an API that's in production or is you know 
+  what I'm saying.
+Paul_Dietrich_GS1: We now have a test suite for the API and then 
+  API.
+Manu Sporny:  Yeah both excellent it it kind of dovetails with 
+  what Mahmud was saying so my apologies I think I confuse things 
+  at the let me I'm looking for so this is the verifiable 
+  credentials API specification that we have right now right so 
+  there is a specification that talks about how you issue verify in 
+  present today.
+Manu Sporny:  Or work item in this group that work item is being 
+  used for a variety of other things it's being used to drive 
+  issuing and verification because the API is used for a showing in 
+  verifying so there's a very there's a very strong distinction 
+  between the testing stuff that we're doing here in the testing 
+  stuff the verifiable credentials group is doing that's one set of 
+  work or sorry those are two separate things.
+Manu Sporny:   And then there's.
+Manu Sporny:  Capi which is the main specification that we're 
+  working on here so the suggestion is the VC API is useful for a 
+  variety of different things in the verifiable credentials working 
+  group has as one of its potential deliverables documenting ways 
+  that credentials can be issued and verified so the VC API 
+  specifically listed as something that the group can can.
+Manu Sporny:   Work on the verifiable credentials working group.
+Manu Sporny:  We cannot do a global standard on it there were 
+  objections to doing that but what we can do is talk about it and 
+  document it in that kind of stuff so this document that's in our 
+  control right now we can either share control of or handed 
+  completely over to the verifiable credential working group so 
+  that's that's item one and that it's just about the VC API and 
+  what it does which is issue verify in present.
+Manu Sporny:   Ain't right okay so that's that's all.
+Manu Sporny:  We can move it over and have them work it at work 
+  on it as a note in the verifiable credentials working group.
+Manu Sporny:  Okay the second thing is we are also working on 
+  tests in all of the test Suites that we're working on here use 
+  the VC API to run the test Suite right and so there's a whole 
+  bunch of testing and test Suite stuff that we that we use in the 
+  mechanism that we use to drive the test Suites are the BC API and 
+  so the verifiable credentials working group needs that capability 
+  and we have.
+Manu Sporny:   Of it.
+Manu Sporny:  Shin is do we want to move that capability over we 
+  do we want to enable the verifiable credentials working group 
+  with that capability so that's kind of the second you know 
+  question that's that's under discussion did that help clarify 
+  things Paul or did that make it.
+Manu Sporny:  Worse who are you still.
+<dave_longley> The VCWG needs a test suite. It could be 
+  implemented via an HTTP API. A new bespoke one could be created 
+  to do that -- or we should say, hey, we've got such an API, 
+  implement to that.
+<dave_longley> should/could
+<mahmoud> It is a test suite to test the VCAPI
+Manu Sporny:  I think we lost them.
+<paul_dietrich_gs1> present-
+Mahmoud Alkhraishi:  I think Paul sorry was it yeah the key 
+  dropped yeah I think it is a test we did that study Capi so I 
+  think what the name is entirely accurate unless I'm completely 
+  misunderstanding your proposal here on my new your proposal is 
+  let's use the this test Suite as a blueprint for any future test 
+  we want to use also we're putting in the VC API as the note so 
+  let's have this test Suite to test that note.
+Mahmoud Alkhraishi:  Networking group as well.
+Manu Sporny:  Yes almost the last bit we could do we could decide 
+  not to do you know it's an optional thing but yeah I think you 
+  got it Paul we lost you there I think we got what you were saying 
+  but would you like to kind of restate.
+Paul_Dietrich_GS1: No that's all right I'll let it go money.
+Manu Sporny:  Okay all right yeah I mean your points well-taken 
+  Paul I mean you know I think we're trying to we're trying to 
+  figure out the best way to convey this stuff because it is 
+  multiple different things that are potentially meshed together 
+  and the clearer the delineation the easier it is for us to kind 
+  of talk about it so in the future probably what we should do is 
+  talk about.
+Manu Sporny:   The VCA.
+Manu Sporny:  I the specification has its own thing in what do we 
+  want to do with it and the question there that folks should you 
+  know spend the next two weeks thinking about is we believe that 
+  no other API does issuing in verifying so specifically the VC API 
+  is the only API that does issuing and verifying now specifically.
+Manu Sporny:   You know with.
+Manu Sporny:  Did come in open idoi DC for VCI stuff those things 
+  kind of do presentations so there's a there's a question around 
+  you know presentation but for as far as we know when you're 
+  talking about back ends kind of like microservices and HTTP API 
+  is the VC API is the only one that does issuing in verifying for 
+  like back office stuff.
+Manu Sporny:   So the suggestion is.
+Mahmoud Alkhraishi: +1
+Manu Sporny:  Could we just move issuing and verifying the parts 
+  of the spec that have to do with issuing and verifying over to 
+  the VC WG we don't think that that is going to be a controversial 
+  thing because it's already in scope for the charter and it's 
+  doing things that the other thing and you know the other 
+  protocols don't do Patrick you put yourself on the Queue and then 
+  you yourself off.
+Manu Sporny:  Yeah that's a good point.
+Patrick_(IDLab): Yeah I think they're just short on time I'll 
+  make in that style just going to point out like so the the Aries 
+  Cloud agent does have an end point that can they don't call it 
+  issue but they call it sighing a credential which returns you 
+  verifiable credential another endpoint that verifies it so 
+  there's two specific and point available on an API that does 
+  those two functions so I just wanted to point this out.
+Manu Sporny:  And we do have areas people that are in the group 
+  so I think they would have to see if they feel I mean they could 
+  you know they could they could try and put their note in as well 
+  so yeah maybe it's just going to be controversial anyway we go 
+  about it.
+Manu Sporny:  Noting mirror over time my apologies for going over 
+  time we will not have the meeting next week because next week is 
+  rebooting the web of trust in the meantime folks should think 
+  about you know whether or not we want to move this work into the 
+  VC working group and and we'll come back and discuss the topic in 
+  two weeks okay thanks everyone safe Journeys to rebooting if 
+  you're going there and if not.
+Manu Sporny:  In your schedule next week take care bye.

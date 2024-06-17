@@ -1,0 +1,80 @@
+[2023-04-25T17:32:32.322Z]	<steven_capell>	present+
+[2023-04-25T17:32:32.323Z]	<Ben_-_Transmute>	present+
+[2023-04-25T17:32:32.324Z]	<Mahmoud_Alkhraishi>	present+
+[2023-04-25T17:32:32.324Z]	<nis>	present+
+[2023-04-25T17:32:35.486Z]	<Orie>	present+
+[2023-04-25T17:32:42.259Z]	<Ben_-_Transmute>	present+
+[2023-04-25T17:32:55.436Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-04-25T17:33:45.087Z]	<steven_capell>	present+
+[2023-04-25T17:34:11.522Z]	<Mahmoud_Alkhraishi>	present+
+[2023-04-25T17:34:32.193Z]	<Transcriber>	scribe+
+[2023-04-25T17:34:32.194Z]	<Transcriber>	Meeting: traceability
+[2023-04-25T17:34:44.476Z]	<Ben_-_Transmute>	scribe+
+[2023-04-25T17:35:28.548Z]	<Ben_-_Transmute>	Mahmoud: Welcome to th traceability call. In order to participate you need the IPR agreement signed. Today we will be doing trace-vocab. Do we have any announcements?
+[2023-04-25T17:35:38.219Z]	<Ben_-_Transmute>	Nis: Should we welcome Steve on the call.
+[2023-04-25T17:36:00.599Z]	<Ben_-_Transmute>	Steve: Hello, this is my first time on the call, we've been using W3c standards, and this is my first time on the call
+[2023-04-25T17:36:01.722Z]	<Orie>	This is a community group call, not a formal working group :)
+[2023-04-25T17:36:18.795Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pulls
+[2023-04-25T17:36:21.962Z]	<Ben_-_Transmute>	Mahmoud: Thanks for coming. We will start with PR's.
+[2023-04-25T17:36:28.088Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/736
+[2023-04-25T17:36:55.745Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/747
+[2023-04-25T17:39:04.425Z]	<Ben_-_Transmute>	Orie: Version 1 of the verifiable credential technical recommendation supported credential schema which allowed you to describe the schema of the VC credential. There was never an implementation of it. But people liked it. In our case we use it, but didn't surface it. So I added this property to all of the credential.
+[2023-04-25T17:40:04.352Z]	<Ben_-_Transmute>	Orie: This is what the PR doesn, it adds that property to all of the examples. And to point out we do publish all of the URL's. And I did test these in the V2 test. So the test for v2 should start passing as we see it's functioning as expected.
+[2023-04-25T17:40:59.140Z]	<nis>	🙏
+[2023-04-25T17:41:06.617Z]	<Ben_-_Transmute>	Orie: Another issue with this is PR is it changes a lot of credentials, so it's going to have a lot of merge conflicts if it doesn't go through.
+[2023-04-25T17:41:46.078Z]	<Ben_-_Transmute>	Mahmoud: Does this unblock the 736 PR?
+[2023-04-25T17:42:00.634Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/745
+[2023-04-25T17:42:04.033Z]	<Ben_-_Transmute>	Orie: I'll need to re-run the CI and if it runs into problems i'll look into them
+[2023-04-25T17:42:36.507Z]	<Ben_-_Transmute>	Nis: This gives a QoL pass on the Purchase Order schema. I updated some of the terms, took out edge cases and made more thing mandatory.
+[2023-04-25T17:43:10.719Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/746
+[2023-04-25T17:44:32.413Z]	<Ben_-_Transmute>	Orie: There are cases where you want to encode an image in a verifiable credential. I think we want to have a credential with this property for the sake of testing. In the case where you have a link to an image, we don't want to load that image, because it will show that credential is being viewed. So we want to have a credential with an embedded image for testing purposes.
+[2023-04-25T17:44:54.452Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/748
+[2023-04-25T17:46:31.026Z]	<Ben_-_Transmute>	Nis: Similar to what we looked at on the purchase order. We did the mill test report  a few years back, so I looked at what does a generic and user friendly mill test report look like? I did some de-normalization where I added classes for Chemical Composition and Mechanical properties.
+[2023-04-25T17:47:03.203Z]	<Ben_-_Transmute>	Mahmoud: My feedback is that Chemical Composition is generic, I though we could use that for oil. But it looks like it's steel specific.
+[2023-04-25T17:48:05.308Z]	<Ben_-_Transmute>	Orie: In the first pass of the mill test report, we made it generic, but that made the experience poor. We had an array, which made data entry hard. So we wanted to have more concrete fields to get better feedback about what's required and what's optional.
+[2023-04-25T17:48:58.156Z]	<Ben_-_Transmute>	Mahmoud: My feedback would be to move Chemical Composition from a generic to a steel specific case.
+[2023-04-25T17:49:30.716Z]	<Ben_-_Transmute>	Orie: I think we're blocked by the schema, not by the terms, so i think we can have @vocab handle the terms, not define a new RDF class here.
+[2023-04-25T17:50:02.958Z]	<Ben_-_Transmute>	Nis: Let me confirm what the ask is here. I want to move ChemicalComposition to Steel Checmical Composition?
+[2023-04-25T17:51:16.525Z]	<Ben_-_Transmute>	Orie: I think that we want to have only inlined fields in this PR. I can't make a change request since this was originally my PR.
+[2023-04-25T17:51:36.637Z]	<Ben_-_Transmute>	Ted: If you look at the changed files, should still see the blue checkmark button to make comments.
+[2023-04-25T17:52:01.436Z]	<Ben_-_Transmute>	Orie: It won't let me request changes, but it will let me leave a comment. I'll leave a comment saying requesting changes.
+[2023-04-25T17:52:09.142Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/pull/749
+[2023-04-25T17:53:53.867Z]	<Ben_-_Transmute>	Orie: Is this the title casing issue. One of our engineers opened this. There was coordination issues. This should be closed.
+[2023-04-25T17:54:28.571Z]	<Ben_-_Transmute>	Nis: Am I asking too much if I say, can I inline and then merge out of bound?
+[2023-04-25T17:54:41.876Z]	<Ben_-_Transmute>	Mahmoud: I think it should be okay, ping me and I'll do a quick review.
+[2023-04-25T17:54:55.012Z]	<Ben_-_Transmute>	Orie: I don't think it should be too bad unless you're issuing MTR's.
+[2023-04-25T17:55:16.600Z]	<Ben_-_Transmute>	Mahmoud: We're not, but I want to give it a pass over to confirm the structure. So I'll say it's okay to merge out of band.
+[2023-04-25T17:56:37.186Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc
+[2023-04-25T17:56:42.937Z]	<Ben_-_Transmute>	Mahmoud: We have no open PR's on trace-interop. Before we review issues do we have any specific issues we want to address?
+[2023-04-25T17:56:50.361Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/issues/297
+[2023-04-25T17:57:13.239Z]	<Ben_-_Transmute>	Mahmoud: This one has no assignee and it's pending volunteers.
+[2023-04-25T17:58:14.519Z]	<Ben_-_Transmute>	Orie: My thinking is there is something valuable here, but we're not communicating it effectively. With linked data there is an ontology that people like, and that people don't like. So it's a matter of how we address it.
+[2023-04-25T17:58:24.632Z]	<nis>	q+
+[2023-04-25T17:59:28.338Z]	<Ben_-_Transmute>	Orie: The issue here is you can optimize for RDF or you can focus on the schema experience. And now we're focused on the data model.
+[2023-04-25T18:00:43.809Z]	<Ben_-_Transmute>	Mahmoud; I don't see how this would apply to oil. So i really don't see how I could be using this. A lot of these values are hardness or tensile tests. These seem to apply more to steel than to oil. And I personally don't see any use cases where we would use it. If someone wants to invest the time into it, then i'm willing to leave it open.
+[2023-04-25T18:01:05.104Z]	<Ben_-_Transmute>	Mahmoud: If anyone is willing to take it as an action item then we can keep it open, otherwise i think we need to close it.
+[2023-04-25T18:01:12.975Z]	<Ben_-_Transmute>	Orie: I agree with your suggestion.
+[2023-04-25T18:01:32.616Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/issues/300
+[2023-04-25T18:01:59.802Z]	<Orie>	Sry I will need to drop
+[2023-04-25T18:02:05.166Z]	<nis>	Gotta drop
+[2023-04-25T18:05:09.045Z]	<Mahmoud_Alkhraishi>	https://github.com/w3c-ccg/traceability-vocab/issues/217
+[2023-04-25T18:05:53.928Z]	<Ben_-_Transmute>	Mahmoud: For this issue, we want to have a roadmap. it's been open for we made some step.
+[2023-04-25T18:07:42.768Z]	<Ben_-_Transmute>	Steve: We've starting a phase 2 of a traceability, and we're talking about using the UN Vocabulary and wanted to ask. And collect thoughts about where the vocabulary lives. And if a UN picks it up, are there any governance issues?
+[2023-04-25T18:08:47.438Z]	<Ben_-_Transmute>	Mahmoud: The question about the roadmap for changing governance, i do know we using existing authoritative sources such as the UN. on the IP note, I think you have a better knowledge of this than I do, as far as I know I don't think we have any restrictions.
+[2023-04-25T18:09:09.694Z]	<Ben_-_Transmute>	Steven: Taking this and contributing this to the UN, what would happen if we were to re-use these at the UN?
+[2023-04-25T18:09:19.856Z]	<Ben_-_Transmute>	Ted: Do you need to re-publish them in order to re-sue them?
+[2023-04-25T18:09:50.782Z]	<Ben_-_Transmute>	Steve: No we don't need to re-publish them, but our constituents care about the governance.
+[2023-04-25T18:11:25.366Z]	<Ben_-_Transmute>	Ted: We are a community group in the W3c, and the documents we create are a report, when it is done, the next process it to pass it to a working group which as a few year span. To make sure that everything is polished and that becomes a TR which patent free and royalty free. There is a lesser IPR for the community group process. I don't have the legal knowledge to make a definitive statement, but it's avaialble.
+[2023-04-25T18:12:01.556Z]	<Ben_-_Transmute>	Steve: From an observer, there's good work here. From nation states, we like to have definitive.
+[2023-04-25T18:12:48.545Z]	<Ben_-_Transmute>	Ted: Part of why things are developed in the W3C and not ISO is the dollars installed. For ISO there is a cost associated with anything including being able read it. With the W3C  the idea is that everything is provided without a paywall.
+[2023-04-25T18:13:30.885Z]	<Ben_-_Transmute>	Steve: I agree, we like open standards, where IPR is owned by the UN but made available with no limitations. I'm coming at it from who is the policy maker for which rules you can use.
+[2023-04-25T18:14:09.119Z]	<Ben_-_Transmute>	Steve: You could easily have a much better quality vocab than the UN, it's a matter of who is endorsing it.
+[2023-04-25T18:14:51.503Z]	<Ben_-_Transmute>	Mahmoud: To answer you specifically there is no plan to change the governance. For republishing, we can't answer that. If you reach out to the chairs of the CCG they should be able to answer that.
+[2023-04-25T18:16:33.056Z]	<Ben_-_Transmute>	Mahmoud: We can add the question on the issue.
+[2023-04-25T18:17:17.329Z]	<Ben_-_Transmute>	Ben: The scope of this issue is we've been hearing that people want to use it, but it's a moving target, so at what point can we communicate that everything is locked down and we're not planning on making any more changes.
+[2023-04-25T18:18:28.078Z]	<Ben_-_Transmute>	Mahmoud: For us we want to have our schemas locked down by June. But for each vertical where we want to get commitments and lock down.
+[2023-04-25T18:19:47.064Z]	<Ben_-_Transmute>	Mahmoud: Also with the context changes to the verifiable credentials V2, this could affect us as well. We could see that once the is locked down, we will want to take that into account.
+[2023-04-25T18:20:24.612Z]	<Ben_-_Transmute>	Ben: yes, depending on where and how we ship this, we we will make different decisions.
+[2023-04-25T18:21:20.409Z]	<Ben_-_Transmute>	Mahmoud: Are there any requirements to start locking down a version? If we get to the point where we need to have a lot of changes. We could say, what is the first date where we need to cut a version, and then what do we need to get to that version?
+[2023-04-25T18:21:31.367Z]	<Ben_-_Transmute>	Ted: That seems like a valid plan, I don't have any details on those dates.
+[2023-04-25T18:21:43.728Z]	<Ben_-_Transmute>	Mahmoud: I'll cc Mike and Orie where we could have internal dates.

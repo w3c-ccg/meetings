@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - id: file_changes
@@ -46,7 +46,9 @@ jobs:
     - name: Generate html minutes
       id: generate_html_minutes
       run: |
+        cd scribe-tool/
         npm install
+        cd ..
         bash ./generate-html.sh
         echo "##[set-output name=date;]${DATE}"
         echo "##[set-output name=dir;]${DIR}"
@@ -57,7 +59,7 @@ jobs:
         DIR: ${{ steps.detect_file.outputs.dir }}
         GROUP: ${{ steps.detect_file.outputs.group }}
 
-    - uses: stefanzweifel/git-auto-commit-action@v2.5.0
+    - uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: Add html minutes for telecon [ci skip]
         branch: main
@@ -66,10 +68,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Send email
-      uses: dawidd6/action-send-mail@v1.3.0
+      uses: dawidd6/action-send-mail@v3
 
       with:
-        server_address: smtp.gmail.com
+        server_address: mail.gandi.net
         server_port: 465
         username: ${{ secrets.email_username }}
         password: ${{ secrets.email_password }}
@@ -77,12 +79,3 @@ jobs:
         body: ${{ format('file://{0}/email.log', steps.detect_file.outputs.dir) }}
         to: public-credentials@w3.org
         from: CCG Minutes Bot
-    - name: Twitter Action
-      uses: ethomson/send-tweet-action@v1
-      with:
-        status: ${{ format('{0} Minutes Available https://w3c-ccg.github.io/meetings/{1}', steps.detect_file.outputs.group, steps.detect_file.outputs.dir) }}
-        consumer-key: ${{ secrets.twitter_api_key }}
-        consumer-secret: ${{ secrets.twitter_api_secret }}
-        access-token: ${{ secrets.twitter_access_token }}
-        access-token-secret: ${{ secrets.twitter_access_token_secret }}
-

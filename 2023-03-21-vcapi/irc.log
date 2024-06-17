@@ -1,0 +1,246 @@
+[2023-03-21T19:01:21.375Z]	<Manu_Sporny>	present+
+[2023-03-21T19:01:21.376Z]	<John_Kuo>	present+
+[2023-03-21T19:01:21.377Z]	<Paul_Dietrich_GS1>	present+
+[2023-03-21T19:01:32.204Z]	<Greg_Bernstein>	present+
+[2023-03-21T19:01:33.213Z]	<John_Kuo>	present+
+[2023-03-21T19:01:45.004Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-03-21T19:02:14.580Z]	<Patrick_(IDLab)>	present+
+[2023-03-21T19:02:25.075Z]	<Dave_Longley>	present+
+[2023-03-21T19:02:55.819Z]	<Eric_S>	present+
+[2023-03-21T19:03:21.051Z]	<Transcriber>	scribe+
+[2023-03-21T19:03:21.051Z]	<Transcriber>	Meeting: vcapi
+[2023-03-21T19:04:03.935Z]	<Dmitri_Zagidulin>	present+
+[2023-03-21T19:04:09.599Z]	<Transcriber>	scribe+
+[2023-03-21T19:04:09.599Z]	<Transcriber>	Meeting: vcapi
+[2023-03-21T19:04:36.864Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2023Mar/0134.html
+[2023-03-21T19:04:52.598Z]	<Joe_Andrieu>	present+
+[2023-03-21T19:05:59.025Z]	<Paul_Dietrich_GS1>	present+
+[2023-03-21T19:06:25.385Z]	<Transcriber>	Manu_Sporny: welcome everyone to the verifiable credential API call this is March 21st 2023 our agenda is in the chat channel on the agenda today Community updates pull request reviews there is movement there are item 3 is extensibleability rules for the API so we send options whenever we make calls to the VC API and this is a discussion around how do people extend those options how they how they put their own secret sauce into the options what are what are our expectations around extensibility there then item for is a discussion around the issuer and point Greenfield exercise this is really the discussion we had around instances verify instances.
+[2023-03-21T19:06:59.093Z]	<Transcriber>	Manu_Sporny:  has issue or instances.
+[2023-03-21T19:07:24.823Z]	<Transcriber>	Manu_Sporny: In I think we're done with that conversation in that we now have this concept of instances that we kind of touched on last week but just need to talk about that and close that out and then how do we get our list of VC API implementations we've made some progress there any updates or changes to the agenda anything else that folks would like to discuss today.
+[2023-03-21T19:07:37.234Z]	<Manu_Sporny>	Topic: Community Updates
+[2023-03-21T19:07:39.827Z]	<Transcriber>	Manu_Sporny: All right well with that let's jump into Community updates.
+[2023-03-21T19:08:12.923Z]	<Transcriber>	Manu_Sporny: The only thing that we may want to pay attention to is that I sent an email out to the mailing list asking if people would be averse to taking these screen recordings in putting them up on something like YouTube or things of that nature we have a lot of these at this point and you know the pros and cons are being weighed on the mailing list just wanted to ask this group if anyone here would have objections on.
+[2023-03-21T19:08:24.877Z]	<Transcriber>	Manu_Sporny: Which are already public anyone can get to them to a site like YouTube or a tube or something along those lines go ahead Patrick.
+[2023-03-21T19:08:33.394Z]	<Transcriber>	Patrick_(IDLab): Just I think I'll read your answer I want to make sure is this uploading all the archive of videos or it's like moving forward kind of thing.
+[2023-03-21T19:08:36.680Z]	<Joe_Andrieu>	no objection from me
+[2023-03-21T19:08:36.813Z]	<Transcriber>	Manu_Sporny: Archived in moving forward so both yep.
+[2023-03-21T19:08:38.204Z]	<Transcriber>	Patrick_(IDLab): All right thank you.
+[2023-03-21T19:09:15.134Z]	<Transcriber>	Manu_Sporny: And I'll hold for a beat I know that there are a couple of people that said at least David Booth was concerned about you know do we really want to help large corporations train their a eyes on us which I think is a really interesting question and you know hope to respond to that on the mailing list but just to be clear it's already out there and it's already being crawled so you know that has been happening whether we live in a country that has good data protection laws and privacy laws or.
+[2023-03-21T19:09:49.451Z]	<Transcriber>	Manu_Sporny: Other I guess somewhat update to the group is that a few of us that deal with the infrastructure for ccg have been playing around with you know Chad GPT for and some of these AI tools to try and make the transcriptions better like for example having punctuation in the transcription would be great in the new were models actually.
+[2023-03-21T19:09:50.096Z]	<Transcriber>	Manu_Sporny:  actually do a really good.
+[2023-03-21T19:10:21.593Z]	<Transcriber>	Manu_Sporny: With adding punctuation but that of course raises the question around again you know this would be use of AI models to modify what we're doing here to be clear we are definitely using an AI model right now in the transcription stuff that's how we do the the voice-to-text stuff just wanted to be super transparent about you know using new tooling and.
+[2023-03-21T19:10:22.155Z]	<Transcriber>	Manu_Sporny:  exposing the.
+[2023-03-21T19:10:54.055Z]	<Transcriber>	Manu_Sporny: Some of these newer things so anyway that's just you know if anyone has any concerns any trepidation any of that stuff please speak up before we potentially take that next step towards fully automating the transcript in a way that hopefully will be easier for humans to read there's a lot of interesting summary stuff in there's some interesting stuff related to.
+[2023-03-21T19:10:54.322Z]	<Transcriber>	Manu_Sporny:  potentially being able to.
+[2023-03-21T19:11:27.265Z]	<Transcriber>	Manu_Sporny: Hi models on our specifications so that when we talked on this call the AI models will be able to understand that we are talking about the verifiable credentials API and we're you know when we say things like see are they know we're talking about probably Canada Trek or things of that nature so I don't expect any of that stuff to happen anytime soon we're still months to years off from doing that but just a heads up that we're trying to.
+[2023-03-21T19:11:27.820Z]	<Transcriber>	Manu_Sporny:  make it so that what we do here is.
+[2023-03-21T19:11:48.465Z]	<Transcriber>	Manu_Sporny: Stored for long term and you know can be used to go back and figure out why we made decisions that we we did okay anything else from a community updates perspective.
+[2023-03-21T19:11:57.638Z]	<Manu_Sporny>	Topic: Pull Requests
+[2023-03-21T19:12:02.110Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pulls
+[2023-03-21T19:12:02.466Z]	<Transcriber>	Manu_Sporny: Alright then we are going to jump right into pull requests that link is here.
+[2023-03-21T19:12:29.891Z]	<Transcriber>	Manu_Sporny: There has been movement on this over the past week specifically there was a issue that was open for a while Nate had taken somewhere here Nate had taken and action to raise to Nu PRS and I went ahead and opened.
+[2023-03-21T19:12:36.356Z]	<Transcriber>	Manu_Sporny: Shoe to track that here.
+[2023-03-21T19:12:48.545Z]	<Transcriber>	Manu_Sporny: So Nate took the following two things so that that was a pull request that got closed and we were expecting it to be closed for weeks for.
+[2023-03-21T19:12:54.360Z]	<Transcriber>	Manu_Sporny: And actually let me see.
+[2023-03-21T19:13:02.937Z]	<Transcriber>	Manu_Sporny: Let's see it give me a sec trying to find.
+[2023-03-21T19:13:07.242Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pull/326
+[2023-03-21T19:13:32.000Z]	<Transcriber>	Manu_Sporny: Here this 1326 so that was 326 the next pull request is 323 in this is basically something we want to see in the spec but Andrew has to change some of the some of the stuff in his PR so I just ping them again because the pr was incorrect as.
+[2023-03-21T19:13:33.164Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/pull/323
+[2023-03-21T19:14:05.186Z]	<Transcriber>	Manu_Sporny: So there's that and then finally we have a PR to fix the linting errors in the OAS files this this has been updated at this point the thing we were waiting on where the security scheme so we wanted to define a network-based authorization scheme to basically say that you've got some kind of source IP access rules that you're going to use to allow someone to hit.
+[2023-03-21T19:14:38.401Z]	<Transcriber>	Manu_Sporny: Sure verifier whatever endpoint so we have you can do network based authentication you can use authorization capabilities you can use did Ott's that's expected to be used in the presentations sorry the exchange is apis and you can use oauth2 in before we had a bunch of detail around oauth2 and we had decided during a previous call that we just didn't want all that detail we just you know the the.
+[2023-03-21T19:14:38.692Z]	<Transcriber>	Manu_Sporny:  the the person that's deploying.
+[2023-03-21T19:15:03.283Z]	<Transcriber>	Manu_Sporny: Infrastructure specifically the instance is the thing that gets to say what you know where you get your oauth tokens and how you do refresh and all that kind of stuff so the VC API specs going to stay silent silent on that other than to say that it's up to the instance to specify in points and things of that nature.
+[2023-03-21T19:15:03.622Z]	<Transcriber>	Manu_Sporny:  everything else has been.
+[2023-03-21T19:15:14.007Z]	<Transcriber>	Manu_Sporny: Dated to use the new security schemes on the endpoints so at this point I believe we have.
+[2023-03-21T19:15:29.192Z]	<Transcriber>	Manu_Sporny: What we wanted in the pr so I'm going to pull this in unless anybody else has any objections any objections on this PR now that we've made those changes we talked about the last time.
+[2023-03-21T19:15:44.247Z]	<Transcriber>	Manu_Sporny: Alright then with that.
+[2023-03-21T19:15:54.283Z]	<Transcriber>	Manu_Sporny: That's going to go in and those are all of our outstanding P ours.
+[2023-03-21T19:16:04.096Z]	<Manu_Sporny>	Topic: Define extensibility rules for VC API endpoint options
+[2023-03-21T19:16:04.861Z]	<Transcriber>	Manu_Sporny: Is the extensibility rules for Ricci API endpoint options.
+[2023-03-21T19:16:08.717Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/335
+[2023-03-21T19:16:10.268Z]	<Transcriber>	Manu_Sporny: And that is issue 335.
+[2023-03-21T19:16:31.421Z]	<Transcriber>	Manu_Sporny: And if we jump in here let's see the DVC API options that we have and maybe this would it would help if we point it at an example here.
+[2023-03-21T19:17:02.386Z]	<Transcriber>	Manu_Sporny: So issuing issue credential so this is this is the credential issuing endpoint here in to issue a credential you give the endpoint a credential and a bunch of options which is wrong and needs to be updated but the idea here is that these are the options that you put in here and the question is what happens if people want to add a new Option that's specific to their API what happens if they.
+[2023-03-21T19:17:02.761Z]	<Transcriber>	Manu_Sporny:  they want to.
+[2023-03-21T19:17:34.291Z]	<Transcriber>	Manu_Sporny: Other argument to an option how did they do that what's the guidance so we're going to give them to do it so the questions are you know can the options be expect expressed as a URL or reverse domain name do we require that in any way do we and we require name spacing in options is the first question the second one is are we expecting there to be a json-ld.
+[2023-03-21T19:17:35.057Z]	<Transcriber>	Manu_Sporny:  context in the options.
+[2023-03-21T19:17:44.243Z]	<Transcriber>	Manu_Sporny: Have a json-ld options context for the VC API that clearly delineates you know one option from the other.
+[2023-03-21T19:18:06.229Z]	<Transcriber>	Manu_Sporny: Or is do we require a Json schema of some kind be registered or documented or something of that nature so those are the questions we currently have to answer.
+[2023-03-21T19:18:11.497Z]	<Transcriber>	Manu_Sporny: Patrick go ahead.
+[2023-03-21T19:18:16.843Z]	<Transcriber>	Patrick_(IDLab): What is the river what do you mean by expressed as a reverse domain name can give an example.
+[2023-03-21T19:18:20.515Z]	<Manu_Sporny>	org.example.myOption
+[2023-03-21T19:18:27.049Z]	<Transcriber>	Manu_Sporny: Like yeah like the Java one like org dot example dot my option in chat that's reverse domain name example.
+[2023-03-21T19:18:35.163Z]	<Transcriber>	Manu_Sporny: That would be the name of the option and then the value would be you know what string or number or something.
+[2023-03-21T19:18:39.860Z]	<Transcriber>	Patrick_(IDLab): Okay I'll try understand but thank you.
+[2023-03-21T19:19:10.455Z]	<Transcriber>	Dave_Longley: So I might answer to the second question is around the second question being is a match matching json-ld context required for terms I would say no this is a Json API the options are done in Json not json-ld format and so I think the answer to that is clearly no regarding question number one.
+[2023-03-21T19:19:34.023Z]	<Transcriber>	Dave_Longley: Everyone says can an option be expressed as a URL or reverse domain name I think it's probably fine too if people want to do that and maybe they want to do that in the hopes that it won't be in conflict with some other option that some other provider uses and ultimately this is about.
+[2023-03-21T19:19:37.599Z]	<Transcriber>	Dave_Longley: Any options that get put in here.
+[2023-03-21T19:19:56.772Z]	<Transcriber>	Dave_Longley: Are going to be specific to a particular implementation and so clients that use that particular implementation can use those options but they should not expect any of those options to be compatible with any other implementation that they would swap out.
+[2023-03-21T19:20:28.542Z]	<Transcriber>	Dave_Longley: And I there's no concept of any open world model here you always know which implementation your client is talking to so I think this is this is this is a closed World system that we're trying to talk about extensions for and I don't know how prescriptive we need to be other than talking about how if you're adding an extension.
+[2023-03-21T19:20:28.867Z]	<Transcriber>	Dave_Longley:  then you.
+[2023-03-21T19:20:49.078Z]	<Transcriber>	Dave_Longley: Not expect it to work with any other implementation and until some working group or some group of maybe group of implementers get together and decide that some option will work across multiple implementations but that's that's essentially what this group is for.
+[2023-03-21T19:20:56.591Z]	<Transcriber>	Manu_Sporny: Thanks Dave Patrick.
+[2023-03-21T19:21:23.980Z]	<Transcriber>	Patrick_(IDLab): It's a concern maybe that came to my mind is if people can Define options that are required for their implementation how would that translate to sort of the the test Suites and if their endpoint requires specific option how can they demonstrate that they are an implementer of the VC API.
+[2023-03-21T19:21:57.260Z]	<Transcriber>	Dave_Longley: So my answer to the second question would be if your endpoint requires a specific option that's not in the spec in your in your endpoint does not work without it then I think you're probably just not compliant that I'll leave some space therefore possible like authorization models because we don't get too prescriptive on what Apple what authorization model you.
+[2023-03-21T19:21:57.675Z]	<Transcriber>	Dave_Longley:  can use but.
+[2023-03-21T19:22:27.764Z]	<Transcriber>	Dave_Longley: You require extra options to be passed in then you're probably not fully compliant with what the spec says As for the first question how does this translate into test Suites it options that are proprietary effectively wouldn't go in a in a shared interoperability test suite and less people were trying to get that option through consensus in a group into the spec.
+[2023-03-21T19:23:00.346Z]	<Transcriber>	Patrick_(IDLab): Yeah I think that that's very good so would it be necessary then to make it to stated that in order to remain an implementer these option needs to be optional and you cannot have an option that's required otherwise it's not respecting the spec or should there be a mention around that.
+[2023-03-21T19:23:07.677Z]	<Transcriber>	Manu_Sporny: We have a queue go ahead and show and then Dave.
+[2023-03-21T19:23:14.148Z]	<Transcriber>	Joe_Andrieu: How about now.
+[2023-03-21T19:23:15.447Z]	<Transcriber>	Manu_Sporny: Yep we can hear.
+[2023-03-21T19:23:16.195Z]	<Transcriber>	Dave_Longley: Yeah we hear you now.
+[2023-03-21T19:23:44.273Z]	<Transcriber>	Joe_Andrieu: Yeah I didn't I didn't like that bit of what you just said Dave about not allowing service providers to use the option mechanism to have a required aspect of their options it seems to me that's where they should put the extensible options that they support and only they support and if they have one that's required then that's just how they're doing business.
+[2023-03-21T19:24:05.382Z]	<Transcriber>	Joe_Andrieu: And if there's not an option field or property in the existing options architecture seems like being able to add and say yes you must provide your social security number in this field like I think we all agree that's a stupid example but a service providers should be able to do that in my opinion and make that a required option.
+[2023-03-21T19:24:12.478Z]	<Transcriber>	Patrick_(IDLab): I think of the example is funny.
+[2023-03-21T19:24:29.136Z]	<Transcriber>	Manu_Sporny: All right give me a sec to catch up from note-taking to do that and make it mandatory go ahead Dave.
+[2023-03-21T19:24:56.274Z]	<Transcriber>	Dave_Longley: So I guess we can allow that behavior if we have clear text that says you know by doing that make standard libraries that people would write against the API which I would expect to be able to take in additional options that are specific to implementations it's well I guess those Libras are libraries are still going to work.
+[2023-03-21T19:24:59.297Z]	<Transcriber>	Dave_Longley:  work but it's going to be.
+[2023-03-21T19:25:16.218Z]	<Transcriber>	Dave_Longley: I'm worried about the awkwardness related to that and how we might end up splitting the ecosystem in such a way that there are implementations that add lots of required options to the point that they don't.
+[2023-03-21T19:25:47.247Z]	<Transcriber>	Dave_Longley: That you that any client using them with would struggle to be able to swap that implementation out I'm worried about vendor lock-in and we should have very clear language around that you know we can't stop people from doing whatever it is they want to do and that you know that's why I'm saying you know people could add required options and even if we smack them on the hand and said you can't do that in the spec that they can still do it obviously but we should be.
+[2023-03-21T19:25:47.622Z]	<Transcriber>	Dave_Longley:  clear with the.
+[2023-03-21T19:25:58.796Z]	<Transcriber>	Dave_Longley: And say the more you do that the more likely it is that there will be vendor lock-in and it's not it's not a good thing for clients.
+[2023-03-21T19:26:07.923Z]	<Transcriber>	Manu_Sporny: Right and Joe Europe.
+[2023-03-21T19:26:12.419Z]	<Manu_Sporny>	q?
+[2023-03-21T19:26:12.991Z]	<Transcriber>	Manu_Sporny: Inner probably muted.
+[2023-03-21T19:26:45.059Z]	<Transcriber>	Joe_Andrieu: Sorry so yeah plus 14 clear language and you know that this service is this is the Innovation that will make interoperability harder when you start doing that kind of customization but sort of from a more I don't know if it's abstract level Dave I think my bigger concern is if they can't put the options in an options field and and have a conformist service they're just going to expose additional endpoints and.
+[2023-03-21T19:26:45.605Z]	<Transcriber>	Joe_Andrieu:  and use those.
+[2023-03-21T19:27:04.464Z]	<Transcriber>	Joe_Andrieu: Mechanisms where they can now use their own options and I think that would be worse like I'd rather have them put their proprietary stuff in a well-known extensible options property then have them start building complicated extra routes and influence and such.
+[2023-03-21T19:27:12.051Z]	<Transcriber>	Manu_Sporny: Right and Patrick you're up next.
+[2023-03-21T19:27:32.405Z]	<Transcriber>	Patrick_(IDLab): So I will go back to my initial question and I'm curious to have your opinion Joe so regarding what you are saying how perhaps options should be allowed to be required how would you demonstrate that you are an implementer of the VC API.
+[2023-03-21T19:27:40.255Z]	<Transcriber>	Patrick_(IDLab): Or how can we maintain the monster ability of the VC API.
+[2023-03-21T19:28:12.334Z]	<Transcriber>	Joe_Andrieu: Sure well I think there are two things are one is we're going to have some sort of test suite and that test Suite is only going to test common features right so these special features are not going to be able to be a part of that test Suite I expect I expect there will be such features however I also expect that the test Suite will have a mechanism to be able to configure the options that should be used.
+[2023-03-21T19:28:13.090Z]	<Transcriber>	Joe_Andrieu:  East with a particular end point.
+[2023-03-21T19:28:28.616Z]	<Transcriber>	Joe_Andrieu: Therefore if your endpoint needs a social security number then I would hope that in the test we can figure such that that test can be executed with that particular bespoke options.
+[2023-03-21T19:28:40.199Z]	<Transcriber>	Manu_Sporny: Joe I'm sorry I missed that last bit you also expect that the test Suite has the ability to.
+[2023-03-21T19:28:47.652Z]	<Transcriber>	Manu_Sporny: So your first point was they'll be a test we'd with common features and will test them your second point was.
+[2023-03-21T19:29:05.408Z]	<Transcriber>	Joe_Andrieu: That if if a given implementation needs a particular property in their options I think the test Suite should be able to in the instrumentation for testing that implementation provide that information and have it be usable.
+[2023-03-21T19:29:19.865Z]	<Transcriber>	Manu_Sporny: We have an example of that I forget what it is today but there are some that require extra options to be passed in and we do that.
+[2023-03-21T19:29:24.120Z]	<Transcriber>	Manu_Sporny: Dave you're on the queue.
+[2023-03-21T19:29:51.456Z]	<Transcriber>	Dave_Longley: Sure I'd like to agree with Joe I just I don't know if it actually would be better or worse for implementers to go off and create custom endpoints to do special things as opposed to adding flags and options to existing endpoints that behave in well-defined ways based on the spec I'm not sure what's better or worse and I'll just I completely.
+[2023-03-21T19:29:51.848Z]	<Transcriber>	Dave_Longley:  we agree with the portion.
+[2023-03-21T19:30:15.434Z]	<Transcriber>	Dave_Longley: Where Joe said implementers will do whatever they want to do we can't if there's something they want to do they're going to do it regardless of how regardless of whether we say they can or can't which really means we can't make that statement but we can give them guidance as to where they should do something if they're going to do it.
+[2023-03-21T19:30:15.828Z]	<Transcriber>	Dave_Longley:  and I don't know.
+[2023-03-21T19:30:37.706Z]	<Transcriber>	Dave_Longley: Right answer is whether we should encourage them to do this through options on existing and points that are well defined or if we should say hey just go make another endpoint to do your special thing I'm not I think there are trade-offs and I don't know which way to support I haven't thought deeply enough about it.
+[2023-03-21T19:30:42.288Z]	<Transcriber>	Manu_Sporny: Right Patrick Europe.
+[2023-03-21T19:31:17.202Z]	<Transcriber>	Patrick_(IDLab): That was just two quick comments for the first one so just a response to the response to you you said that if there are unique sort of implementation these tests which should be allowed to configure that so right away I see an issue with scalability with this like obviously like now there's it's a small set but assuming that it's big will grow and they will be many implementation I think there's a scalability issue to cover every aspect and.
+[2023-03-21T19:31:17.985Z]	<Transcriber>	Patrick_(IDLab):  if it's decided that the implementer day contributes to the test Suite.
+[2023-03-21T19:31:18.127Z]	<Transcriber>	Patrick_(IDLab): Solution to test.
+[2023-03-21T19:31:42.769Z]	<Transcriber>	Patrick_(IDLab): Solution that's kind of giving yourself a hundred percent on an exam and it feels kind of strange to me could be wrong like my new you said there was already an example of such option so maybe I'm missing a bit of insight my second point where was my second point.
+[2023-03-21T19:31:49.609Z]	<Transcriber>	Patrick_(IDLab): I forgot but it's okay maybe it will come back to me.
+[2023-03-21T19:31:51.631Z]	<Manu_Sporny>	q?
+[2023-03-21T19:32:20.483Z]	<Transcriber>	Manu_Sporny: Um all right so let's see right Q okay so empty queue not hearing a lot of disagreement there is some trepidation around exactly what we end up writing so on the question of Canon option be expressed as a URL or reverse domain name I think we're saying yeah sure you can do string or URL or.
+[2023-03-21T19:32:20.891Z]	<Transcriber>	Manu_Sporny:  reverse domain name.
+[2023-03-21T19:32:52.132Z]	<Transcriber>	Manu_Sporny: Drawbacks to each one and we're not going to suggest what people should do correct me if I'm wrong here I'm just stating what I heard think I heard the second one is our is a json-ld context required not hearing anybody saying yes it's required you have to do that is a Json schema required not hearing any one say yes you need to do that so effectively the pr sounds like it's yeah you can add anything you want.
+[2023-03-21T19:32:52.578Z]	<Transcriber>	Manu_Sporny:  to these options.
+[2023-03-21T19:33:25.134Z]	<Transcriber>	Manu_Sporny: The name of the property can be anything you want in there's you could be a string it could be a URL reverse domain name be wary that you know if you use things that can conflict with other implementations it will so try to be careful with your options in you can make the options required or not but we recommend that you don't make them required that could be problematic.
+[2023-03-21T19:33:25.558Z]	<Transcriber>	Manu_Sporny:  for interop with other.
+[2023-03-21T19:33:37.228Z]	<Transcriber>	Manu_Sporny: But we don't tell people that they can't do that or that that's not valid if we raised a PR to say that.
+[2023-03-21T19:33:42.579Z]	<Transcriber>	Manu_Sporny: What would the concerns be go ahead Patrick.
+[2023-03-21T19:34:12.872Z]	<Transcriber>	Patrick_(IDLab): Sorry I just remembered my Mexican point so it was about the same way I remember at the beginning there was this option for I think it was the proof type and then it was decided that this should be implementation specific meaning like there should be an instance for every sort of credential type so I think this same approach to be the first approach towards option is if you're you require a.
+[2023-03-21T19:34:13.268Z]	<Transcriber>	Patrick_(IDLab):  an option well can this be solved by having more.
+[2023-03-21T19:34:47.575Z]	<Transcriber>	Patrick_(IDLab): Instances that your client would need where to connect that would depend on the type of options that you want to set let's say it's a choice you know one of the options is choice between multiple strings will could this be solved by having different instance otherwise would have to be like sort of Justified and I for me unless there's a tangible real case example you know the implementation you did a required option I have a hard time.
+[2023-03-21T19:34:48.249Z]	<Transcriber>	Patrick_(IDLab):  seeing the value in debating if it should be or shouldn't be I.
+[2023-03-21T19:34:55.147Z]	<Transcriber>	Patrick_(IDLab): Is a tangible use case it would help a lot to decide.
+[2023-03-21T19:35:22.700Z]	<Transcriber>	Dave_Longley: Yeah big plus 12 what Patrick just said this we should say in the spec if you can solve your required option problem by using different instances you absolutely should and that'll be very helpful with.
+[2023-03-21T19:35:54.576Z]	<Transcriber>	Dave_Longley: You asked the question Manu if we raise the pr that you suggested what were the what would the possible problems be I would think having lots of different required options across different implementations it's harmful to interoperability and if you can hide those behind the configuration setup you should definitely do that that should be preferred it gets to gets to better interoperability.
+[2023-03-21T19:35:55.095Z]	<Transcriber>	Dave_Longley:  and it pushes the.
+[2023-03-21T19:36:07.061Z]	<Transcriber>	Dave_Longley: This between implementations to the administrative step of setting things up as opposed to having it be part of every client interaction.
+[2023-03-21T19:36:46.115Z]	<Transcriber>	Manu_Sporny: All right I think we're pretty close to a PR text here so raise a PR that does the following specify that option names can be anything strings URLs or reverse domain IDs.
+[2023-03-21T19:36:46.478Z]	<Transcriber>	Manu_Sporny:  but hi.
+[2023-03-21T19:37:17.455Z]	<Transcriber>	Manu_Sporny: Concerns around conflicting with other implementations if you don't use namespaced values we should say that when adding options and bever to see if the option could be.
+[2023-03-21T19:37:31.344Z]	<Transcriber>	Manu_Sporny: Implemented as an instance configuration instead of adding another option the end point.
+[2023-03-21T19:37:33.082Z]	<Transcriber>	Dave_Longley: He should say when considering adding options.
+[2023-03-21T19:37:38.868Z]	<Transcriber>	Manu_Sporny: 10 say during Endeavor to see.
+[2023-03-21T19:38:04.078Z]	<Transcriber>	Manu_Sporny: Option should be implemented as an instance configuration specify option names warned about mandatory options and that they can create interoperability issues but don't them legal.
+[2023-03-21T19:38:04.443Z]	<Transcriber>	Manu_Sporny:  like that.
+[2023-03-21T19:38:07.560Z]	<Transcriber>	Manu_Sporny: Go ahead Patrick.
+[2023-03-21T19:38:39.063Z]	<Transcriber>	Patrick_(IDLab): Also wondering if there is a case where an implementation has a required option is there a requirement for that to be documented somewhere or this will be more on the when you want to interact with them you get in contact with them and ask them what's this option is or should there be like it's going to be cliche but options registry of some sort.
+[2023-03-21T19:38:39.962Z]	<Transcriber>	Manu_Sporny: Good question Dave.
+[2023-03-21T19:39:06.730Z]	<Transcriber>	Dave_Longley: Yeah I would say that's not something we can enforce through our spec and whether or not there's an options registry really comes down to I would think whether different implementations are trying to coalesce around some option that they think is important or useful but I think there's a lot of extra work that could go into that like option Discovery if we.
+[2023-03-21T19:39:07.118Z]	<Transcriber>	Dave_Longley:  start supporting.
+[2023-03-21T19:39:16.750Z]	<Transcriber>	Dave_Longley: Some kind of registry I would rather us not go down that path.
+[2023-03-21T19:39:17.109Z]	<Transcriber>	Dave_Longley: And we should just admit that any implementation that's adding.
+[2023-03-21T19:39:33.877Z]	<Transcriber>	Dave_Longley: Options it behooves them to write their own on documentation about that and they probably will but this spec can't really make them do anything.
+[2023-03-21T19:39:38.609Z]	<Transcriber>	Patrick_(IDLab): Could the could deter them from doing so.
+[2023-03-21T19:40:09.622Z]	<Transcriber>	Manu_Sporny: Yeah I think I tend to agree with Dave we've seen language like that before inspects and it doesn't do anything like you know implementers are like oh that's nice that but you know we're not forced in any way to do it so they don't there's a there's a don't know if it's a growing movement but you know there's one one philosophical angle at w3c specs is if you don't say an implementer.
+[2023-03-21T19:40:10.013Z]	<Transcriber>	Manu_Sporny:  must do something.
+[2023-03-21T19:40:30.998Z]	<Transcriber>	Manu_Sporny: A good chunk of them just won't do it if it's a should or am a the really good implementers will try their best to follow that advice in a sizable subset of implementers will just ignore the language go ahead Dave.
+[2023-03-21T19:40:52.245Z]	<Transcriber>	Dave_Longley: And additionally musts need to be testable and there's no easy way for us to test that someone has written their documentation around their special option so that's not something we don't really have the force of The Primitives to make that happen in in a w3c spec.
+[2023-03-21T19:40:58.741Z]	<Transcriber>	Manu_Sporny: Okay here's what the pr is going to do any objections to that are we ready for PR.
+[2023-03-21T19:41:14.084Z]	<Transcriber>	Patrick_(IDLab): Still confused about reverse domain that's okay read more about it.
+[2023-03-21T19:41:33.237Z]	<Dave_Longley>	test.example.com => com.example.test
+[2023-03-21T19:41:41.360Z]	<Transcriber>	Manu_Sporny: Here let me let me try let me try one more time so a reverse domain if you're if you can see my screen you know you'd have a set of options and then you know you'd have what is the you know we'd have credential well no this is this is an options thing so you have my property sorry my option would be one way right and then to the other way would be http.
+[2023-03-21T19:42:10.711Z]	<Transcriber>	Manu_Sporny: It's not example right now would be another let's see my example / my option boo right that's be the full URL and the reverse domain would be like example dot my dots right option.
+[2023-03-21T19:42:22.439Z]	<Transcriber>	Patrick_(IDLab): Yeah I see but a lot of these example and stuff for me it's hard to understand without having a concrete example when it does you know.
+[2023-03-21T19:42:23.023Z]	<Transcriber>	Manu_Sporny: Yeah I'm trying to think of a option here that would go ahead Dave.
+[2023-03-21T19:42:52.490Z]	<Transcriber>	Dave_Longley: I don't know that we need to mention any of these things the the option name is opaque it doesn't they nothing happens with the name these are just sort of conventions for trying to avoid conflicts and that's that's all that those things are the option name itself is opaque if you choose a you know you could you could get 16 bits of random characters and put that in there.
+[2023-03-21T19:42:52.820Z]	<Transcriber>	Dave_Longley:  and be like.
+[2023-03-21T19:43:00.784Z]	<Transcriber>	Dave_Longley: No one's going to conflict with that unless they intentionally did it that's that's all that that's really about.
+[2023-03-21T19:43:07.055Z]	<Transcriber>	Dave_Longley: There's no there's no parsing of that name and special treatment of it.
+[2023-03-21T19:43:17.764Z]	<Transcriber>	Manu_Sporny: Well that kind of changes this so we don't talk about conflicts and avoiding conflicts in the pr.
+[2023-03-21T19:43:30.033Z]	<Joe_Andrieu>	q?
+[2023-03-21T19:43:47.025Z]	<Transcriber>	Dave_Longley: We can I think we can say that because anybody can create whatever options they want their could be complex so if you are worried about that try to choose a unique unique name and there I don't know if we want to mention whatever whatever we do mention as a convention will probably be used and I don't know how we feel about that.
+[2023-03-21T19:43:57.900Z]	<Transcriber>	Patrick_(IDLab): Yeah that's that's another interesting thing what if two people use like the same similar-sounding option but then totally different ways that would be confusing.
+[2023-03-21T19:44:00.166Z]	<Transcriber>	Manu_Sporny: Yep that's the problem but you know.
+[2023-03-21T19:44:04.072Z]	<Transcriber>	Dave_Longley: Yes it that will happen you should assume it's yeah.
+[2023-03-21T19:44:20.916Z]	<Manu_Sporny>	Topic: VC API - Issuer Endpoints - Greenfield Exercise
+[2023-03-21T19:44:25.782Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/267
+[2023-03-21T19:44:32.799Z]	<Transcriber>	Manu_Sporny: All right okay I think we have ready for PR for this so it can be turned into a PR later that's that item down thank you for the discussion around that next item up VC API issuer in points Greenfield exercise this was an issue that was opens very long time ago and I think already raised as in the he wanted I think effectively.
+[2023-03-21T19:44:33.210Z]	<Transcriber>	Manu_Sporny:  he wanted you.
+[2023-03-21T19:44:56.006Z]	<Transcriber>	Manu_Sporny: Lee Dave Longley to explain how the API would look if we started from scratch and I think you effectively started out by you know providing this concept of instances and things of that nature we talked about this last week didn't lie.
+[2023-03-21T19:45:24.307Z]	<Transcriber>	Dave_Longley: Yeah and the text I put in there can go directly into an optional area in the spec I think the main thing that's really important for the spec is to talk about how the endpoints that we have there today are expected to hang off of issuer verifier exchanger instances and those instances have some configuration associated with them that includes whatever.
+[2023-03-21T19:45:24.672Z]	<Transcriber>	Dave_Longley:  information or state.
+[2023-03-21T19:45:53.222Z]	<Transcriber>	Dave_Longley: To do the to do their jobs because not all of that information can be parameterised you know not all that information can be provided as parameters from the client so the concept of end of instances needs to be explained in the spec and if we want to say and here are some apis you could use to implement instances these are optional we can point to the text that I put in this issue.
+[2023-03-21T19:46:18.771Z]	<Transcriber>	Manu_Sporny: Lori said four days ago that he believes that this is the API has ossified beyond the value of Greenfield exercise which is true but I don't think that's what we end up getting to in this issue go ahead.
+[2023-03-21T19:46:45.995Z]	<Transcriber>	Dave_Longley: Yeah I don't think that we're looking at changing the apis significantly that we have today we're because they already depend on these configurations we're just we in instances we just do a bad job of making that clear to people and so this is more about clarifying that the apis Hang off of instances that are configured with what they need to do their jobs because not everything.
+[2023-03-21T19:46:46.368Z]	<Transcriber>	Dave_Longley:  can or should be.
+[2023-03-21T19:46:54.643Z]	<Transcriber>	Dave_Longley: Guided by the client in the parameters that they passed the API.
+[2023-03-21T19:47:35.629Z]	<Transcriber>	Manu_Sporny: So raise a PR that documents the concept of instances notes its concept of instances and notes that while they are not mandatory I mean are they mandatory.
+[2023-03-21T19:47:50.824Z]	<Transcriber>	Dave_Longley: Now they are mandatory but with coding them creating a specific HTTP API for them it's not mandatory so the concept of instances of mandatory these apis do not work unless you have some configuration and state sitting behind them.
+[2023-03-21T19:48:14.353Z]	<Transcriber>	Dave_Longley: And so this is mostly about saying the apis that are defined in the spec are attached to specific instances that are configured with the whatever state is needed in addition to what the client can provide through the their requests.
+[2023-03-21T19:48:23.205Z]	<Transcriber>	Dave_Longley: And some you know some of that state and configuration is going to be set up by an administrator.
+[2023-03-21T19:48:34.159Z]	<Transcriber>	Dave_Longley: That a client has no business even necessarily knowing about or setting up themselves.
+[2023-03-21T19:48:45.651Z]	<Transcriber>	Dave_Longley: So for example a client should not be passing a private key to okay.
+[2023-03-21T19:49:04.609Z]	<Transcriber>	Manu_Sporny: Hold on wait wait wait I'm falling behind instance configuration said by an administrator where the client calling the instance might not be aware of the setup that the administrator did.
+[2023-03-21T19:49:08.683Z]	<Transcriber>	Dave_Longley: We might want to also say you know they might not be aware of or even have the permission.
+[2023-03-21T19:49:13.123Z]	<Transcriber>	Dave_Longley: To do it or capability.
+[2023-03-21T19:49:29.193Z]	<Transcriber>	Dave_Longley: Be aware of yeah have the it's whatever water you want to put this in.
+[2023-03-21T19:49:39.891Z]	<Transcriber>	Manu_Sporny: So the where the client calling the instance might not instance might not be out of the capability to configure an instance or be aware of the setup that the administrator did on.
+[2023-03-21T19:49:40.782Z]	<Transcriber>	Manu_Sporny:  on the.
+[2023-03-21T19:49:48.662Z]	<Transcriber>	Manu_Sporny: Ministration in points for configuring instances.
+[2023-03-21T19:49:52.589Z]	<Transcriber>	Manu_Sporny: Could be provided.
+[2023-03-21T19:50:20.795Z]	<Transcriber>	Manu_Sporny: Are not are redefining the necessary installation points for convenient could be provided by implementations but are not necessary to expose as HP apis figuration can be done through you I.
+[2023-03-21T19:50:41.049Z]	<Transcriber>	Manu_Sporny: Anyone have any issues with raising a PR that effectively says that.
+[2023-03-21T19:50:52.790Z]	<Transcriber>	Manu_Sporny: Given that the.
+[2023-03-21T19:51:22.853Z]	<Transcriber>	Dave_Longley: The other thing that we might want in this PR is sort of reconfiguring the language for when we talk about the endpoints this is kind of related to at at where we talked about which components the apis are for we might want to also use the instance language when talking about these when a client makes a call to credentials / issue on a particular instance that instance uses its configuration and the parameters.
+[2023-03-21T19:51:23.362Z]	<Transcriber>	Dave_Longley:  from the client to issue a credential.
+[2023-03-21T19:52:17.523Z]	<Manu_Sporny>	Topic: List of VC API implementations
+[2023-03-21T19:52:22.698Z]	<Manu_Sporny>	https://github.com/w3c-ccg/vc-api/issues/278
+[2023-03-21T19:52:24.017Z]	<Transcriber>	Manu_Sporny: Okay all right so that would be then we're well this is ready for this was said ready for you know maybe I just died now that was last week we said it was ready for PR okay so that's what the pr is going to do next item up is list of API implementation see API implementations this is issue to 78.
+[2023-03-21T19:52:24.771Z]	<Transcriber>	Manu_Sporny:  people do this is.
+[2023-03-21T19:52:55.656Z]	<Transcriber>	Manu_Sporny: This was opened a while ago I think Dimitri you asked you know where we tracking where the BC API implementations are we started writing it down but then we have this VC API test Suite implementations repo that has a list of all the implementation so we could say that this has been overcome by events we have a list in the test Suites.
+[2023-03-21T19:52:56.176Z]	<Transcriber>	Manu_Sporny:  if you want to be listed put.
+[2023-03-21T19:53:01.780Z]	<Transcriber>	Dmitri_Zagidulin: I think that's a great solution yeah let's do that feel free to close this this issue.
+[2023-03-21T19:53:33.371Z]	<Transcriber>	Manu_Sporny: Okay alright so the group discussed this on three and 321 we have a list of we have a list of implementations in the test suite implementations for here and maybe I should look at yeah so.
+[2023-03-21T19:54:04.461Z]	<Transcriber>	Manu_Sporny: The group it's that X that is the latest list of implementation yeah implementations that it's to conform to the API do we want to put a link to that in the specification like usually you have like an implementation report that you can link to we can have other links.
+[2023-03-21T19:54:04.893Z]	<Transcriber>	Manu_Sporny:  and we could just say.
+[2023-03-21T19:54:19.301Z]	<Transcriber>	Manu_Sporny: The implementations is here in the in the spec that is non-standard what I'm suggesting now that I'm suggesting it I think it's a bad idea so never mind.
+[2023-03-21T19:54:29.785Z]	<Transcriber>	Manu_Sporny: So the group dance that this is latest list of additional attempt to confirm the API okay should we is that it like closed issue.
+[2023-03-21T19:54:34.120Z]	<Transcriber>	Dmitri_Zagidulin: Yeah I think that's close it.
+[2023-03-21T19:54:39.094Z]	<Transcriber>	Manu_Sporny: Go ahead Patrick.
+[2023-03-21T19:54:47.912Z]	<Transcriber>	Patrick_(IDLab): No I am and I think so I mean when I read this list of this a parent cementation would make sense that it's the VC API implementations people.
+[2023-03-21T19:54:58.596Z]	<Transcriber>	Manu_Sporny: Yep in these are the ones that we actually use to you know make calls against the issuer verifier in points right.
+[2023-03-21T19:55:26.219Z]	<Transcriber>	Patrick_(IDLab): The only thing I'm wondering is as far as I understand you can put you in Plantation there without tagging any test so technically if you do that you don't demonstrate you and implement or you just demonstrate your sort of interests and until implementing this is not like a these have passed the test kind of repo as I understand so.
+[2023-03-21T19:55:35.803Z]	<Transcriber>	Manu_Sporny: That's true and I mean you know if people want to do that it's kind of like we can't really well I mean I guess we could you know tell.
+[2023-03-21T19:55:39.583Z]	<Transcriber>	Patrick_(IDLab): There would need to be like from this repo sort of I think you have that actually a page that publishes those results.
+[2023-03-21T19:55:57.265Z]	<Transcriber>	Manu_Sporny: There is there's a VC API where is it test Suite test Suite I forget where it is it's you are like it's there's like the issuer test Suite here if you go here it will tell you who's passing was not right.
+[2023-03-21T19:55:59.911Z]	<Transcriber>	Patrick_(IDLab): Yes I think this is more than list.
+[2023-03-21T19:56:02.740Z]	<Transcriber>	Manu_Sporny: Yep yeah I agree.
+[2023-03-21T19:56:13.478Z]	<Transcriber>	Patrick_(IDLab): Obviously like are looking at measured at I/O I'm not convinced you know that well they could be for any reason but just looking at this graph like.
+[2023-03-21T19:56:43.091Z]	<Transcriber>	Manu_Sporny: Yep yep yep yep okay alright well there we have it we're one minute past when we usually shut the call down thank you everyone for the great discussion today we got through quite a bit of stuff so we're making progress on issues again we have a lot of things that are ready for PR I was looking at our issues that are ready for PR and.
+[2023-03-21T19:56:44.061Z]	<Transcriber>	Manu_Sporny:  which is great that means that we've.
+[2023-03-21T19:56:44.402Z]	<Transcriber>	Manu_Sporny: The consensus on a.
+[2023-03-21T19:57:08.496Z]	<Transcriber>	Manu_Sporny: But it means that we're not raising PRS at a fast enough clip on the on the spec and we really need to be doing that so if anyone wants to write PRS find a something that's ready for PR and give it a shot and we'll remove review it on the calls week to week all right with that thanks everyone for the great call and we.
+[2023-03-21T19:57:13.803Z]	<Transcriber>	Manu_Sporny: Chat again next week take care bye.
+

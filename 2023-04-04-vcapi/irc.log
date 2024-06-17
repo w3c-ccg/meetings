@@ -1,0 +1,284 @@
+[2023-04-04T19:01:06.340Z]	<Manu_Sporny>	present+
+[2023-04-04T19:01:06.341Z]	<Patrick_(IDLab)>	present+
+[2023-04-04T19:01:07.155Z]	<Dave_Longley>	present+
+[2023-04-04T19:01:07.801Z]	<Alan_Karp>	present+
+[2023-04-04T19:01:08.033Z]	<Greg_Bernstein>	present+
+[2023-04-04T19:01:24.029Z]	<Greg_Bernstein>	present+
+[2023-04-04T19:01:30.076Z]	<Eric_S>	present+
+[2023-04-04T19:01:32.881Z]	<John_Henderson>	present+
+[2023-04-04T19:01:34.163Z]	<Alan_Karp>	present+
+[2023-04-04T19:02:15.455Z]	<Dmitri_Zagidulin>	present+
+[2023-04-04T19:02:22.081Z]	<John_Kuo>	present+
+[2023-04-04T19:03:12.490Z]	<Transcriber>	scribe+
+[2023-04-04T19:03:12.491Z]	<Transcriber>	Meeting: vcapi
+[2023-04-04T19:03:34.402Z]	<Transcriber>	Manu_Sporny:  welcome everyone this is the verifiable credentials API work item call this is Tuesday April 4th 2023.
+[2023-04-04T19:03:43.178Z]	<Transcriber>	Manu_Sporny: At the third like the agenda said thank you Alan for catching that our agenda.
+[2023-04-04T19:03:44.315Z]	<Manu_Sporny>	Agenda: https://lists.w3.org/Archives/Public/public-credentials/2023Apr/0002.html
+[2023-04-04T19:04:14.356Z]	<Transcriber>	Manu_Sporny: It's here on the agenda today we have a review of the VC API presentation that John Henderson has put together for the open Wallet Foundation we've got an issue called why do we believe it's a good idea to return an issue credential to an internal caller if you 48 and then we have an Aussie discussion.
+[2023-04-04T19:04:26.192Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2023-04-04T19:04:35.996Z]	<Transcriber>	Manu_Sporny: Hoping we can close after more than a year of work on trying to answer the question on whether or not exchange and points need all to see or not and then of course other issues as time permits any other updates or changes to the agenda anything else we should discuss today.
+[2023-04-04T19:04:54.987Z]	<Transcriber>	Manu_Sporny: K and then looking through the list of people that are here it's The Usual Suspects that we all know each other so I'm going to skip introductions any relevant Community updates.
+[2023-04-04T19:04:57.760Z]	<Manu_Sporny>	Topic: Relevant Community Updates
+[2023-04-04T19:05:32.902Z]	<Transcriber>	Manu_Sporny: The only thing I think that might be worth mentioning I think we mentioned last week which is which is there's probably going to be a multi-format working group mini working group at the ietf and there's mailing list for that check the minutes from last week for where to sign up for that mailing list the other heads up is that I think the verifiable credentials working group that's working on 20.
+[2023-04-04T19:05:33.433Z]	<Transcriber>	Manu_Sporny:  is going to.
+[2023-04-04T19:05:38.750Z]	<Transcriber>	Manu_Sporny: Fairly aggressive with.
+[2023-04-04T19:06:09.870Z]	<Transcriber>	Manu_Sporny: I won't say cutting features but making sure people are assigned to features and if people aren't assigned the features people should have the expectation that those features are not going to get done and not going to make progress and they're not going to go into Canada track which means that by mid-summer we will see a bunch of hopeful features that we had for 20 get cut so if you care about specific features in the.
+[2023-04-04T19:06:10.387Z]	<Transcriber>	Manu_Sporny:  Bible credential to.
+[2023-04-04T19:06:38.145Z]	<Transcriber>	Manu_Sporny: And there's an issue raised for that feature and there's no one assigned for it either assign yourself or say bye-bye to that feature once you know we get halfway through the summer so you know the chairs are going to give everyone a good heads-up multi-month heads up on that but but that's coming.
+[2023-04-04T19:06:56.415Z]	<Transcriber>	Manu_Sporny: I think that's it for Relevant Community updates anyone have anything else before we jump into the VC API presentation that John is put together.
+[2023-04-04T19:06:57.749Z]	<Manu_Sporny>	Topic: Review VC API Presentation to OWF
+[2023-04-04T19:07:13.467Z]	<Manu_Sporny>	https://speakerdeck.com/jhenderson/vc-api-at-owf
+[2023-04-04T19:07:29.217Z]	<Transcriber>	Manu_Sporny: Okay well with that John volunteered a number of weeks ago to put together a presentation deck for the BC API presentation to the open Wallet Foundation I will put the link to that deck in the minutes here and thanks to John for putting that together and over to you John please take us take us through the you have right now please.
+[2023-04-04T19:07:37.302Z]	<Transcriber>	John_Henderson: Okay will do thank you everyone in advance for giving me the opportunity to share this work I'm going to.
+[2023-04-04T19:07:46.221Z]	<Transcriber>	John_Henderson: And then share my screen okay I was at work okay great so.
+[2023-04-04T19:08:07.546Z]	<Joe_Andrieu>	present+
+[2023-04-04T19:08:07.777Z]	<Transcriber>	John_Henderson: Maybe a bit of a preamble on the open world Foundation I've said this before but in case anyone's mr. or needs a refresher so the open wall Foundation is an organization that is implementing wallet components they're not working on specifications.
+[2023-04-04T19:08:08.226Z]	<Transcriber>	John_Henderson:  and they have.
+[2023-04-04T19:08:36.029Z]	<Transcriber>	John_Henderson: A technical architecture committee that is looking for project proposals and myself at energy web we believe that there's opportunity for a VC API implementation of some sort or at least that is worth considering so this is step one in that process is to educate the Open Lord Foundation or at least share knowledge on this API.
+[2023-04-04T19:08:36.448Z]	<Transcriber>	John_Henderson:  so with that I will get into the.
+[2023-04-04T19:08:48.427Z]	<Transcriber>	John_Henderson: And right so what I'm thinking of doing here is.
+[2023-04-04T19:09:21.443Z]	<Transcriber>	John_Henderson: To deliver the presentation not exactly as I would to the open world Foundation but kind of talking about what I will say to the over what I thinking of saying the open wall Foundation which I propose to say and if there's I would suggest if there's any feedback please chime in at any point and I can note that down and we can make changes I've also been workshopping idea and I think it's been mentioned.
+[2023-04-04T19:09:21.841Z]	<Transcriber>	John_Henderson:  before that having other people at the presentation from the piece.
+[2023-04-04T19:09:54.352Z]	<Transcriber>	John_Henderson: Nearly there be very valuable so if there's any sections in the presentation that people think they could deliver well it could add to or if there's additional sections that people would like to deliver I'm certainly open to that as well please chime in with those suggestions but with that let me get into the agenda here so the topics are a bit of intro motivation is presentations and background on the VC API.
+[2023-04-04T19:09:54.709Z]	<Transcriber>	John_Henderson:  discussing the design the use case.
+[2023-04-04T19:10:15.890Z]	<Transcriber>	John_Henderson: Is the design Jack gives the roles architecture authorization basically all the sections from the start of the speck that they were all familiar with and then talking about the end points themselves and I'm going to intersperse discussion of the endpoints with the little demo using the energy web implementation.
+[2023-04-04T19:10:16.177Z]	<Transcriber>	John_Henderson:  and at the end of.
+[2023-04-04T19:10:18.876Z]	<Transcriber>	John_Henderson: Read about test Suites.
+[2023-04-04T19:10:50.954Z]	<Transcriber>	John_Henderson: So bad about myself I'm a while in particular for this kind of work I'm wearing a software architect at and energy web and I have in focusing on the SSI stack for a couple of years now energy web and and you rub along with Leah Group which is a transmission system operator in Belgium and Germany we've implemented.
+[2023-04-04T19:10:51.316Z]	<Transcriber>	John_Henderson:  it V Capi.
+[2023-04-04T19:11:24.139Z]	<Transcriber>	John_Henderson: Like I mentioned previously this presentation the objective is to get easy API into the sphere of attention of the open wall Foundation community and like Isis in particular the technical architecture folks and this is because energy web is interested in contributing some portion of BC API where it makes sense for open world foundation and I believe that these API is important for the open world.
+[2023-04-04T19:11:24.522Z]	<Transcriber>	John_Henderson:  Foundation because it.
+[2023-04-04T19:11:51.748Z]	<Transcriber>	John_Henderson: Is a shared interface for BC lifecycle management well we'll talk about what that means but I would say at a high level it's interacting and modifying VCS within a role domain and between will domains get into that.
+[2023-04-04T19:12:23.048Z]	<Transcriber>	John_Henderson: Before we talk about the architecture and rules a bit of background so what we talked about the VC lifecycle bit and as we all know on this call it's a ccg work item it's a diversion 0.3 the timeline I would be interested if anyone has any feedback on this I joined in the VC API Community after it started which I believe was in 2020 and I pulled this.
+[2023-04-04T19:12:23.402Z]	<Transcriber>	John_Henderson:  abstract Target.
+[2023-04-04T19:12:31.179Z]	<Transcriber>	John_Henderson: 24 from the profile data standards roadmap yeah go ahead menu.
+[2023-04-04T19:13:02.996Z]	<Transcriber>	Manu_Sporny: Yeah I mean I think we you know it's undetermined I think we're in a state where we're like it's going to be done when it's done right so whenever we as a group decide like hey we like you know where it is right now and we feel like it's ready to go standards track we can do that in 2024 seems like a like you know sure yeah it could probably be ready to go standards track B then but it's largely you know up to this group I think one of the.
+[2023-04-04T19:13:03.606Z]	<Transcriber>	Manu_Sporny:  things we might want to highlight is we don't.
+[2023-04-04T19:13:36.902Z]	<Transcriber>	Manu_Sporny: We let me see throw the statement out there and see if people disagree or agree we don't feel that there is a rush to get this thing done in standardized we want to take our time and do it right in in you know we don't see us taking our time and doing it right as slowing this thing down you know in the market right so we there are already production deployments of these Capi.
+[2023-04-04T19:13:37.527Z]	<Transcriber>	Manu_Sporny:  in production use cases.
+[2023-04-04T19:14:02.645Z]	<Transcriber>	Manu_Sporny: You know those those implementations don't seem to be bothered by the rate at which were we're going right now so if I had to summarize I'd suggest that but I don't know if people you know disagree with that so if you object the kind of like that framing please speak up would love to hear other thoughts on the matter.
+[2023-04-04T19:14:41.265Z]	<Transcriber>	Dave_Longley: Yes I'm generally behind that other than the idea that once something escapes into the wild and takes takes gets a lot of uptake it can become solidified and and hard to change and these things that we say we want to do right might be really hard for us to change and we might end up with two different protocols out there with the one that ends up getting standardized that might not be what is in use in some Productions.
+[2023-04-04T19:14:41.770Z]	<Transcriber>	Dave_Longley:  systems and that can be an.
+[2023-04-04T19:14:55.513Z]	<Transcriber>	John_Henderson: Okay yeah thanks how many reindeer I'll add a bit of.
+[2023-04-04T19:15:00.388Z]	<Transcriber>	John_Henderson: Of that perspective to the slide as well.
+[2023-04-04T19:15:25.813Z]	<Transcriber>	John_Henderson: Moving along I briefly I'm going to touch on the use cases this is just to say that the several areas of user needs that have been compiled by folks on this call and that there's some local use cases and for example the multi-state presentation one.
+[2023-04-04T19:15:26.313Z]	<Transcriber>	John_Henderson:  this is.
+[2023-04-04T19:15:37.145Z]	<Transcriber>	John_Henderson: My view and even mg web in a use case is kind of the energy space so this you see it bi is useful going to be on and it was shown here.
+[2023-04-04T19:15:42.994Z]	<Transcriber>	John_Henderson: Continue along here to the design objectives.
+[2023-04-04T19:15:52.606Z]	<Transcriber>	Manu_Sporny: Just to go back to the last slide is the traceability stuff on there that's a pretty important one as well I imagine it is but I couldn't.
+[2023-04-04T19:15:54.909Z]	<Transcriber>	Manu_Sporny: And in quickly.
+[2023-04-04T19:16:06.013Z]	<Transcriber>	Manu_Sporny: Yeah I'm not seeing like supply chain on there in that might be missing just to note as Eric.
+[2023-04-04T19:16:08.435Z]	<Transcriber>	Manu_Sporny: Thoughts on that.
+[2023-04-04T19:16:19.082Z]	<Transcriber>	Manu_Sporny: Patrick you're on the Queue go ahead.
+[2023-04-04T19:16:27.628Z]	<Transcriber>	Manu_Sporny: And if you're talking Patrick we can't hear you.
+[2023-04-04T19:16:38.603Z]	<Patrick>	present+
+[2023-04-04T19:16:49.084Z]	<Transcriber>	Manu_Sporny: Still no audio Patrick um okay well justjust to know John we might want to mention the supply chain use cases here as well as possible go ahead Patrick.
+[2023-04-04T19:16:53.876Z]	<Transcriber>	Manu_Sporny: There we are we can hear you.
+[2023-04-04T19:17:03.659Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	ack
+[2023-04-04T19:17:05.181Z]	<Transcriber>	Patrick: To do a little brown swap Chrome to the rescue when you say you don't see supply chain on there isn't supply chain sort of implied and some of these use cases like for example.
+[2023-04-04T19:17:11.413Z]	<Transcriber>	Patrick: Hello online pharmacy would end there be implied supply chain in there.
+[2023-04-04T19:17:38.394Z]	<Transcriber>	Manu_Sporny: It there's an implied 1 but I think if you look at the use cases document I don't think it has to do with supply chain the reason I bring it up is because we have like a whole other work group like us that's just focused on traceability right the traceability work item and they utilize the VC API and I was just mentioned and it feels like a problem domain unto itself they work with like US Customs and Border Protection and.
+[2023-04-04T19:17:38.828Z]	<Transcriber>	Manu_Sporny:  imports of.
+[2023-04-04T19:17:57.175Z]	<Transcriber>	Manu_Sporny: Trillions of dollars of product into the United States in I don't I guess we don't have that problem domain listed here so just a minute you know note to like Eric that maybe we want to add that here that's it.
+[2023-04-04T19:18:02.507Z]	<Transcriber>	John_Henderson: Okay yeah thanks that's a good point.
+[2023-04-04T19:18:11.407Z]	<Transcriber>	Joe_Andrieu: Plus one to that mandate to the traceability guys have their own use case document floating around somewhere.
+[2023-04-04T19:18:21.333Z]	<Transcriber>	Manu_Sporny: I don't know I don't think they do I think their use cases might be in their vocabulary document maybe that's what they're doing I don't know it's a short answer.
+[2023-04-04T19:18:35.864Z]	<Manu_Sporny>	https://w3c-ccg.github.io/traceability-interop/draft/#use-cases-and-requirements
+[2023-04-04T19:18:50.757Z]	<Transcriber>	John_Henderson: Yeah again yeah thanks for that that feedback and this next slide on the design objectives is from the again from the spec so talking about the four objectives of modularity Simplicity composability and extensibility and I pulled these icons and they'll show up in layabouts the presentation.
+[2023-04-04T19:18:59.830Z]	<Transcriber>	John_Henderson: Star little bit quicker as I guess time is flying by so looking at the rules.
+[2023-04-04T19:19:32.102Z]	<Transcriber>	John_Henderson: I think this slide is very important in my view for my understanding of you see API because it talks about the roles that are familiar to many in the SSI ecosystem of issuer verifier and older but this will split I think is an Innovative concept that we see API provides so I'll discuss that and I think the key point that I understand is that the service is.
+[2023-04-04T19:19:42.784Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	q+
+[2023-04-04T19:20:05.268Z]	<Transcriber>	John_Henderson: Architectural feature that has been noticed and so separating the business logic from the verifiable credential Services as has resulted in this rule split and then this other bit here is talking about how the holder this language about how the holder could be seen as a wallet the while it is may be overloaded term but as the presentation is for the open.
+[2023-04-04T19:20:05.819Z]	<Transcriber>	John_Henderson:  world Foundation the perhaps.
+[2023-04-04T19:20:08.911Z]	<Transcriber>	John_Henderson: It's of particular interest to them.
+[2023-04-04T19:20:22.434Z]	<Manu_Sporny>	q?
+[2023-04-04T19:20:24.598Z]	<Transcriber>	Manu_Sporny: We've got a q John in don't worry about like if this takes the whole call it takes the whole call I think we're all here to provide feedback to you so so don't worry about having to rush through it Patrick I don't know if that's an old Q or not.
+[2023-04-04T19:20:25.527Z]	<Manu_Sporny>	ack patrick
+[2023-04-04T19:20:28.937Z]	<Manu_Sporny>	ack tallted
+[2023-04-04T19:20:29.447Z]	<Transcriber>	Patrick: Yeah that's probably an old cue.
+[2023-04-04T19:20:31.385Z]	<Transcriber>	Manu_Sporny: Okay go ahead Ted.
+[2023-04-04T19:20:39.720Z]	<Manu_Sporny>	q+
+[2023-04-04T19:20:46.405Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): He's the quick one subject should probably be like a shadow icon because while it's wireless integral to the internals of the VC it is not a part of me Capi.
+[2023-04-04T19:21:23.976Z]	<Transcriber>	Manu_Sporny: Yeah plus 12 that the the other thought I have here is that it might confuse people to have the little person icon for issuer service and issuer coordinator those are really kind of at least I think of them as like sub systems or systems that are operating on behalf of the issuer so using a little person icon for the issuer I think makes sense and then using a I don't know Joe help me like a computer or a something for issue or service or issue.
+[2023-04-04T19:21:24.512Z]	<Transcriber>	Manu_Sporny:  or coordinator might be better maybe.
+[2023-04-04T19:21:28.494Z]	<Transcriber>	Joe_Andrieu: Yeah I think that's right I mean the.
+[2023-04-04T19:21:48.576Z]	<Manu_Sporny>	ack manu
+[2023-04-04T19:21:49.965Z]	<Transcriber>	Joe_Andrieu: My other note here would be to maybe make it symmetric radially rather than left to right so that the coordinators are close to each other and the services are on the outside but yeah some other icon for both the coordinator and service I think would be useful.
+[2023-04-04T19:21:55.885Z]	<Transcriber>	Joe_Andrieu: But probably different one I don't know if they need to be different ones but certainly different from a human.
+[2023-04-04T19:21:59.848Z]	<Manu_Sporny>	ack dave
+[2023-04-04T19:22:01.187Z]	<Manu_Sporny>	q?
+[2023-04-04T19:22:03.209Z]	<Transcriber>	Manu_Sporny: Thanks Joe Dave Europe.
+[2023-04-04T19:22:30.435Z]	<Transcriber>	Dave_Longley: Yeah I agree with those comments generally I was thinking more of these that make we kind of have a completion your roles and components but there's also some some strength to somehow doing a better job of communicating that the individual components like these Services might be provided by a third party and I know if you just break them out as components people could fit perhaps figured that out on.
+[2023-04-04T19:22:30.823Z]	<Transcriber>	Dave_Longley:  in their own butt.
+[2023-04-04T19:22:34.010Z]	<Joe_Andrieu>	Traceability Use Cases https://w3c-ccg.github.io/traceability-interop/draft/#use-cases-and-requirements
+[2023-04-04T19:22:45.577Z]	<Transcriber>	Dave_Longley: Concept or being able to see that this API enables different people to work together to build different pieces that and that they can contribute to an issuer is helpful.
+[2023-04-04T19:22:54.560Z]	<Transcriber>	Manu_Sporny: Go ahead Patrick.
+[2023-04-04T19:22:56.073Z]	<Transcriber>	Patrick: No problem the same.
+[2023-04-04T19:23:10.142Z]	<Transcriber>	Patrick: A wave of changing the icons maybe I would change the icon of the subject because it might not always be a person.
+[2023-04-04T19:23:11.839Z]	<Transcriber>	Manu_Sporny: All good points.
+[2023-04-04T19:23:19.853Z]	<Transcriber>	Manu_Sporny: He thought we'd have so many opinions and iconography back over to you John.
+[2023-04-04T19:23:46.118Z]	<Transcriber>	John_Henderson: Thanks a lot thanks again for the feedback that's some improvements here for sure is I pulled that diagram from the use cases document and there is this other diagram figure that uses bigger but that splits into boxes rather than people so maybe that addresses one of the concerns that it's confusing to have.
+[2023-04-04T19:24:18.709Z]	<Transcriber>	John_Henderson: Yeah I think moving really move along to the next slide it does have more of that some other diagram that has the radio perspective from the BCP is back so this guy want to spend quite a bit of time on this slide while least in the actual presentation because I think it's it's key it shows the separation between service and coordinator that was discussed in the.
+[2023-04-04T19:24:19.122Z]	<Transcriber>	John_Henderson:  previous slide and also introduces.
+[2023-04-04T19:24:43.031Z]	<Transcriber>	John_Henderson: They're interesting components such as the admin and and storage Services there's a couple notes in the text in the specification say about the issue of service saying that it should have access to keys or that the verifier service.
+[2023-04-04T19:25:07.140Z]	<Transcriber>	John_Henderson: The authenticity and time stamps of the credential but the business logic is left to the verifier coordinator I supposed to get generally that's a line of Separation as I see between the services and the coordinators is that the coordinators have the business logic.
+[2023-04-04T19:25:07.469Z]	<Transcriber>	John_Henderson:  and and it.
+[2023-04-04T19:25:13.301Z]	<Transcriber>	John_Henderson: With other other back ends as well.
+[2023-04-04T19:25:44.536Z]	<Transcriber>	John_Henderson: And then a point I wanted to make in this slide as well is that I see there potentially being use of the modularity design principle and this architecture where you could use VC API to send VCS I've said between domains here communication between the coordinators but you can also use be Capi to operate on VCS some of that lifecycle management.
+[2023-04-04T19:25:51.001Z]	<Transcriber>	John_Henderson: Within a single ruler single two of you system.
+[2023-04-04T19:25:55.312Z]	<Transcriber>	John_Henderson: Yeah please manner.
+[2023-04-04T19:26:27.133Z]	<Transcriber>	Manu_Sporny: Yeah I love how you have I mean you know it I love that the diagram so the fact that you've circled the domains and it's like there's a clear separation the second I saw this died you know the second I saw this slide I was like yes that is exactly why we should convey that so thank you for doing that the one and I'm and and now to nitpick on it right and so like the between.
+[2023-04-04T19:26:27.984Z]	<Transcriber>	Manu_Sporny:  domains the check verifiable credential state that.
+[2023-04-04T19:26:28.285Z]	<Transcriber>	Manu_Sporny: Line should probably.
+[2023-04-04T19:27:00.362Z]	<Transcriber>	Manu_Sporny: Check verifiable Prudential State I think that is between domains has as well yeah and of course it's going to be difficult to do that like anyway so but I thought that this is great because it really demonstrates what we've been trying to convey which is some of these apis you were use within a domain and some of them use between domains so plus one to that.
+[2023-04-04T19:27:00.693Z]	<Transcriber>	Manu_Sporny:  Dave you're on the Queue and then Joe.
+[2023-04-04T19:27:01.800Z]	<Manu_Sporny>	ack dave
+[2023-04-04T19:27:30.850Z]	<Transcriber>	Dave_Longley: Yeah something that may or may not come up during the owf presentation is there might be people that are there that are familiar with oid for VC and oid for BP and they may be asking questions around what are the differences between the VC API in that one or you know how do they relate and this diagram might be somewhat useful in answering that question by talking about how those other ones specifically focus on between domains and the BC API Works in.
+[2023-04-04T19:27:31.301Z]	<Transcriber>	Dave_Longley:  both of those places.
+[2023-04-04T19:27:41.648Z]	<Transcriber>	Dave_Longley: Even be integrated with those other systems for the between some of the between donation domain communication.
+[2023-04-04T19:27:48.525Z]	<Transcriber>	Manu_Sporny: Go ahead Joe.
+[2023-04-04T19:28:00.798Z]	<Manu_Sporny>	+1 to Dave
+[2023-04-04T19:28:09.820Z]	<Transcriber>	Joe_Andrieu: One of my favorite phrases from William Gibson is at the Futures already invented it's just not evenly distributed there is a future where this diagram has an exchange service or an exchanger in it but we haven't done that yet or figure it out.
+[2023-04-04T19:28:10.198Z]	<Transcriber>	Joe_Andrieu:  the edge cases of.
+[2023-04-04T19:28:33.859Z]	<Transcriber>	Joe_Andrieu: So I think I just want to note that I don't know Dave or man if you guys want to come and I think I think it would be premature to try and get it into this presentation but just to socialize amongst us I do think there is another component that is an exchanger that's at least the issuer in verifier are probably going to deserve and their box and I'll let that go.
+[2023-04-04T19:28:34.915Z]	<Transcriber>	Manu_Sporny: Okay thanks Joe Patrick.
+[2023-04-04T19:28:35.038Z]	<Manu_Sporny>	ack patr
+[2023-04-04T19:28:56.049Z]	<Transcriber>	Patrick: Yeah there was a term I think Dave said it a couple of times I think he referred to it as trust boundaries would that be correlating to the different domains like different domains are different trust boundaries and if so be so good term I like it.
+[2023-04-04T19:29:01.120Z]	<Manu_Sporny>	ack dave
+[2023-04-04T19:29:02.152Z]	<Manu_Sporny>	q?
+[2023-04-04T19:29:31.325Z]	<Transcriber>	Dave_Longley: Just quickly yes Patrick and I think this helps visualize where those boundaries are the other point I was going to make is yes we don't have exchanges on here yet and I do think it would be a bit of a rush to try and get it in here now but if it does come up and there's something to talk about we can talk about how this diagram at least partially the place where exchanges would happen in this diagram now would be where verifiable credentials are being received or present it so the.
+[2023-04-04T19:29:31.763Z]	<Transcriber>	Dave_Longley:  the arrows.
+[2023-04-04T19:29:48.879Z]	<Transcriber>	Dave_Longley: In within those within the the lower arrows in the between domains Circle between the holder and verifier and issuer and holder and so that could at least be answered if there comes up as a question during the presentation.
+[2023-04-04T19:29:52.524Z]	<Transcriber>	Manu_Sporny: All right back over to you John.
+[2023-04-04T19:30:22.308Z]	<Transcriber>	John_Henderson: Great a thank you thanks again for the comments and feedback I think that's like Converse this slide so exercises to briefed on authorization I don't personally have much to say and maybe it's not worth having such a slide but I think my purpose here is to say that authorization is within the scope of you see API and that oauth 2 is explicitly mentioned other.
+[2023-04-04T19:30:22.741Z]	<Transcriber>	John_Henderson:  is are allowed.
+[2023-04-04T19:30:35.667Z]	<Transcriber>	John_Henderson: An explicit for baiting of long-lived credentials like username and password basic HTTP authorization.
+[2023-04-04T19:31:10.373Z]	<Transcriber>	John_Henderson: So that gets us through the design section of the presentation and into a discussion of the endpoints so the first section is on issuance and points and I've got a few so I'll just skip ahead just going to shows there's a few sections on the various endpoints it's having made these tables exhaustive they don't have every endpoint but more to give a sense of some of the key and points.
+[2023-04-04T19:31:27.669Z]	<Transcriber>	Manu_Sporny: I think it's a good thing that you don't have every endpoint on here I totally agree with the way you're choosing to present it which is give them and give them an idea of what's in there it doesn't need to be exhaustive it's a plus one to the approach you're taking.
+[2023-04-04T19:31:36.225Z]	<Transcriber>	John_Henderson: Okay that's good to know that thank you.
+[2023-04-04T19:32:05.953Z]	<Transcriber>	John_Henderson: Quite so talking more about the issue its endpoints are actually maybe to introduce this table so what I've done here is take the from that one discussion that was maybe not sure a couple months ago maybe those it is an attempt to put the endpoints on the various components and list the expected callers so I've.
+[2023-04-04T19:32:13.945Z]	<Manu_Sporny>	+1 a good assumption to make
+[2023-04-04T19:32:22.792Z]	<Manu_Sporny>	it's the closest we have to consensus now :)
+[2023-04-04T19:32:32.754Z]	<Transcriber>	John_Henderson: Information is still still relevant even though it's not in the spec as of yet I don't think but I think it does help understand the endpoints so I've with focusing on issuance now so the probably the most important point is this issuance of a credential and.
+[2023-04-04T19:32:38.423Z]	<Transcriber>	John_Henderson: Yeah I'd like to do a little demo that so I will.
+[2023-04-04T19:32:42.893Z]	<Transcriber>	John_Henderson: Go over to.
+[2023-04-04T19:32:58.112Z]	<Transcriber>	John_Henderson: We've got yeah we should have time so I yeah I'll run through my demo was planned here so the first step of that is yet use this credentials issue and point I'm running the energy web implementation locally.
+[2023-04-04T19:33:05.940Z]	<Transcriber>	John_Henderson: Yeah let me go over I've got a.
+[2023-04-04T19:33:19.503Z]	<Transcriber>	John_Henderson: Ready here that I will copy.
+[2023-04-04T19:33:33.115Z]	<Transcriber>	John_Henderson: It's been so it's a permanent it's a permanent resident card credential and.
+[2023-04-04T19:34:04.195Z]	<Transcriber>	John_Henderson: The point that I want to make about the the issue and point is that there was a discussion a little while back now about reducing the client optionality for the issue and point so it's not necessary to at one point was possible to specify the verification method but it's not currently possible and I see that as an example of Simplicity of the Simplicity design principle.
+[2023-04-04T19:34:06.672Z]	<Transcriber>	John_Henderson: Yeah please go ahead.
+[2023-04-04T19:34:18.850Z]	<Transcriber>	Patrick: Just wanted to know like is it forbidden or is it optional I forgot where the decision was made about this.
+[2023-04-04T19:34:28.586Z]	<Transcriber>	Dave_Longley: So it should be forbidden it should be based on the configuration of the particular issuer instance you're communicating with.
+[2023-04-04T19:34:46.506Z]	<Transcriber>	John_Henderson: Yeah so like I said not specifying here and I don't think we can specify no limitation anyway yeah let's let's go and we end up with.
+[2023-04-04T19:34:50.830Z]	<Transcriber>	John_Henderson: This permanent resident card credential with the the proof.
+[2023-04-04T19:35:21.696Z]	<Transcriber>	John_Henderson: Okay don't have too much to say about the this other status and point folks on the call will know well but it's to update the status of a credential on the status service so within the issue a domain and this is also this get credentials within the issue domain where an issue coordinator could say list all the credentials that have been issued at least that's my understanding.
+[2023-04-04T19:35:26.458Z]	<Transcriber>	John_Henderson: So that takes us to verification.
+[2023-04-04T19:35:45.598Z]	<Transcriber>	John_Henderson: Will flip over to well actually maybe I'll just point out that the these two endpoints there's presentation verify credentials verified both on the verification service and called by the verification coordinator I will quickly do a demo of the.
+[2023-04-04T19:35:48.825Z]	<Transcriber>	John_Henderson: An important when we.
+[2023-04-04T19:35:54.396Z]	<Transcriber>	John_Henderson: This gradual that was just issued.
+[2023-04-04T19:36:13.336Z]	<Transcriber>	John_Henderson: Okay thank you.
+[2023-04-04T19:36:27.553Z]	<Transcriber>	John_Henderson: And this might not sure if this is the right reply but yet it's if this this replies in this back but it's saying that the proof has been checked.
+[2023-04-04T19:36:53.567Z]	<Transcriber>	John_Henderson: Okay that's it for verification nice and short there and then we get to presentation so the presentation section I'm going to do in tandem with the exchange section because the presentation is done in response to an exchange so.
+[2023-04-04T19:37:15.794Z]	<Transcriber>	John_Henderson: But I'll talk about presentation for a bit so the presentation were we're looking at and points on the issuer and holder services and coordinators and here where it's more on the Imports on the holder service and the caller's the holder coordinator so there's an endpoint.
+[2023-04-04T19:37:16.088Z]	<Transcriber>	John_Henderson:  for driving.
+[2023-04-04T19:37:47.225Z]	<Transcriber>	John_Henderson: Controls for example for BBS credentials for proving a credential for applying a proof to soive approving a presentation shoulder demo up and then this other important that I've added is for getting a presentation and potentially it could be on the bear for verifier coordinator and I called it out because it could be useful for asynchronous flows and that's an example of the composability principle of composing.
+[2023-04-04T19:37:47.957Z]	<Transcriber>	John_Henderson:  these complex flows from.
+[2023-04-04T19:37:51.961Z]	<Transcriber>	John_Henderson: How many points.
+[2023-04-04T19:38:04.084Z]	<Transcriber>	John_Henderson: And so before I demo that like I said let's go over and continue with exchange and points so and.
+[2023-04-04T19:38:04.931Z]	<Transcriber>	John_Henderson:  the key endpoint here.
+[2023-04-04T19:38:11.627Z]	<Transcriber>	John_Henderson: Just posting to this exchange and point which is done by.
+[2023-04-04T19:38:18.878Z]	<Transcriber>	John_Henderson: Traffic so I won't let this baby this is backwards.
+[2023-04-04T19:38:24.954Z]	<Transcriber>	John_Henderson: I think it should be the other way around where they hold their coordinator with wood.
+[2023-04-04T19:38:29.747Z]	<Transcriber>	John_Henderson: Be a collar and it could be on the issue or the rarefied coordinator.
+[2023-04-04T19:38:35.528Z]	<Dave_Longley>	+1 to that being backwards
+[2023-04-04T19:38:42.168Z]	<Manu_Sporny>	^ yep
+[2023-04-04T19:38:44.577Z]	<Transcriber>	John_Henderson: An interesting note is that you're potentially do some point hopefully doesn't need authorization and some of you some use of the design principles here is that.
+[2023-04-04T19:39:06.522Z]	<Transcriber>	John_Henderson: This changes are extensible via the verifiable presentation request format so I'll talk about that in a minute and also composable the multi-step flow so I mentioned that being one of the focal use cases and so it's it's the possible using the exchanges and point.
+[2023-04-04T19:39:23.282Z]	<Transcriber>	John_Henderson: I think it's helpful to before doing the demo to talk about what the verifiable presentation request is so it's a it's a related specification to be Capi least it's it's.
+[2023-04-04T19:39:57.502Z]	<Transcriber>	John_Henderson: And then you see API where you have I mean every on this calls for know you so I don't spend too much time but the they're getting the key point I want to highlight for the award Foundation is that this interact well really this extension points in the query as well but in the interactors and extension point where there's these different interact types so you can imagine extending into other interaction types Beyond you Capi exchanges and also others can be added.
+[2023-04-04T19:40:04.364Z]	<Transcriber>	Dave_Longley: Yeah I think in the bullet points there you should probably put oid for BC.
+[2023-04-04T19:40:07.329Z]	<Transcriber>	John_Henderson: Yeah good idea yes.
+[2023-04-04T19:40:10.306Z]	<Transcriber>	John_Henderson: That's great point.
+[2023-04-04T19:40:21.786Z]	<Transcriber>	John_Henderson: Yeah that yeah thanks for that point that no other questions I think I will roll into the one of the demo year.
+[2023-04-04T19:40:29.011Z]	<Transcriber>	John_Henderson: That I've got.
+[2023-04-04T19:40:40.128Z]	<Transcriber>	John_Henderson: And exchange created actually let me just create it on the demo screen.
+[2023-04-04T19:41:15.773Z]	<Transcriber>	John_Henderson: I actually saw before going into the demo let's see one other other slide I have on not with the example exchange flow and this is essentially what I'm going to be demoing so there's this is a it will this figure you'll probably recognize pulled its pulled from the spec or you have a holder coordinator initiate an exchange and in a sponsor will be a verifiable presentation request and then a VP will be sent.
+[2023-04-04T19:41:16.154Z]	<Transcriber>	John_Henderson:  so yes.
+[2023-04-04T19:41:24.718Z]	<Transcriber>	John_Henderson: You know that sequence that I will show so I'll start by initiating The Exchange which I believe is this one here yeah so.
+[2023-04-04T19:41:31.066Z]	<Transcriber>	John_Henderson: 3 when I've configured.
+[2023-04-04T19:41:34.575Z]	<Transcriber>	John_Henderson: And in response I have this.
+[2023-04-04T19:42:06.379Z]	<Transcriber>	John_Henderson: If you request this very enviable presentation request so there's a query which energy well we've been using the presentation definitions back to ask for credentials so it's asking here for a permanent resident card credential which is the gradual issued earlier and there's this challenge that I'll use to prove a presentation and also interaction and point.
+[2023-04-04T19:42:15.102Z]	<Transcriber>	John_Henderson: Do the next step of proving the presentation here.
+[2023-04-04T19:42:16.199Z]	<Transcriber>	John_Henderson:  so that.
+[2023-04-04T19:42:17.412Z]	<Transcriber>	John_Henderson: The send it.
+[2023-04-04T19:42:25.311Z]	<Transcriber>	John_Henderson: Let me take the quiz station the potential for you.
+[2023-04-04T19:42:41.577Z]	<Transcriber>	John_Henderson: It should go here.
+[2023-04-04T19:42:53.548Z]	<Transcriber>	John_Henderson: The whole everything else should be.
+[2023-04-04T19:43:09.269Z]	<Transcriber>	John_Henderson: Same except for the I've already used using the same same older and verification method I do need to change that but I need to change the challenge.
+[2023-04-04T19:43:32.054Z]	<Transcriber>	John_Henderson: Great John response we have a VP which we can.
+[2023-04-04T19:43:37.570Z]	<Transcriber>	John_Henderson: It so the final step of the demo is to go.
+[2023-04-04T19:43:54.515Z]	<Transcriber>	John_Henderson: Close small have it up to get behind in our implementation there were still using the old put rather than post introduced three I'll put the presentation here.
+[2023-04-04T19:44:30.463Z]	<Transcriber>	John_Henderson: Response I saw in the that that concludes the demo and was in the diagram there was a presentation the container credentials and here is just a response body.
+[2023-04-04T19:44:30.942Z]	<Transcriber>	John_Henderson:  and what did that.
+[2023-04-04T19:44:39.341Z]	<Transcriber>	John_Henderson: Yes please go ahead if there's any feedback on the demo I mean probably could be improved in terms of smoothness.
+[2023-04-04T19:44:41.874Z]	<Manu_Sporny>	q?
+[2023-04-04T19:44:43.188Z]	<Alan_Karp>	q+
+[2023-04-04T19:44:43.333Z]	<Transcriber>	Manu_Sporny: Patrick you're on the queue.
+[2023-04-04T19:44:44.036Z]	<Manu_Sporny>	ack patrick
+[2023-04-04T19:45:06.476Z]	<Transcriber>	Patrick: Yeah just regarding exchanged is the first time I see some kind of demonstration of an exchange and it's very interesting abstract question so you set the exchange ideas value of three what does the three represent is it like a type of exchange that someone can engage with and then the transaction ID is like sort of Communication channel between two agents.
+[2023-04-04T19:45:21.642Z]	<Transcriber>	John_Henderson: My understanding is they're opaque especially to the client so there's no real meaning at least I haven't attributed them any meaning to these numbers strengths.
+[2023-04-04T19:45:30.631Z]	<Transcriber>	Patrick: So tell me like you put three but does that mean that three is what I need to engage with if I want to do a presentation exchange for example.
+[2023-04-04T19:45:34.978Z]	<Transcriber>	John_Henderson: Press over to the Q yeah.
+[2023-04-04T19:45:37.727Z]	<Transcriber>	Manu_Sporny: Got it Alan and then Dave go ahead Alan.
+[2023-04-04T19:45:38.576Z]	<Manu_Sporny>	ack alan
+[2023-04-04T19:45:57.257Z]	<Transcriber>	Alan_Karp: Yeah as someone who's not very familiar with this stuff I found the demo to be just you know like a magic act with without the excitement you have to consider that people don't know what most of this stuff is which is me now if your audience knows more about this than for ignore my comment.
+[2023-04-04T19:45:58.725Z]	<Alan_Karp>	q-
+[2023-04-04T19:46:01.421Z]	<Transcriber>	Manu_Sporny: Thanks Alan Dave.
+[2023-04-04T19:46:30.411Z]	<Transcriber>	Dave_Longley: Yeah I agree a lot with what Alan said I don't know how much for our benefit you were skipping whatever kind of set up you might provide in before you run the demo and talk about it but talking about a specific use case and what's going on with that exchange I think would really help ground it for the people that are watching even if they're not going to really understand what the technical details are and to respond to Patrick the way that we've implemented exchanges is.
+[2023-04-04T19:46:32.651Z]	<Transcriber>	Dave_Longley:  there are exchangers.
+[2023-04-04T19:46:32.781Z]	<Transcriber>	Dave_Longley: Have IDs that hang off of them.
+[2023-04-04T19:47:05.783Z]	<Transcriber>	Dave_Longley: Mapped to specific flows are use cases that you might work through and when you're on like a website and you want to like pick up a USCIS permanent resident card the issue where Coordinator would create a new exchange off of that Alpha the exchanger that's for getting a USCIS card and then they would give you that exchange with the with you know maybe then it won't be the number three it'll be some random number on the end of the URL I would hand that to you.
+[2023-04-04T19:47:06.253Z]	<Transcriber>	Dave_Longley:  and then when you post to that URL it'll give you a.
+[2023-04-04T19:47:18.164Z]	<Transcriber>	Dave_Longley: Present a verifiable presentation request for what it is you must hand over in order to get a USCIS card permanent resident card in response.
+[2023-04-04T19:47:27.387Z]	<Transcriber>	Patrick: And the transaction ID is just something that's link between that specific exchange between you as a holder and this issuer.
+[2023-04-04T19:47:39.245Z]	<Transcriber>	Dave_Longley: Yes yeah and and in our implementation we've actually found we don't need to use the transaction ID but it could be used to keep track of State we just keep track of that internally as we walk people through exchanges.
+[2023-04-04T19:47:47.456Z]	<Transcriber>	Patrick: Yeah I do you could probably delegate that ID to some field in the body to keep track of which exchange that is.
+[2023-04-04T19:48:11.981Z]	<Transcriber>	Dave_Longley: Or the exchange itself could be stateful so each time they make a post to the exchange it keeps track of what step there on in what the you know and it might there might only be one step but if it's a multiple step thing it could keep track of where they are and return back to them either another presentation request or the actual VP with the BCS in it that they are trying to get.
+[2023-04-04T19:48:20.259Z]	<Manu_Sporny>	q?
+[2023-04-04T19:48:34.096Z]	<Transcriber>	John_Henderson: All right y'all thanks again for that feedback yeah certainly agree the demo could use some work in that some great feedback to try to ground it in a use case please.
+[2023-04-04T19:49:04.835Z]	<Transcriber>	Patrick: I think something at least for me and I think it's probably a shared feeling maybe not with everyone but something that was interesting to discuss was the whole part about which endpoint can live on which component and two because when I think about an API usually I'm thinking about okay there's one server with these API roots and then it can do all this but the this Vis API Founders and it's more providing.
+[2023-04-04T19:49:05.288Z]	<Transcriber>	Patrick:  a choice of routes that you can Implement on.
+[2023-04-04T19:49:35.523Z]	<Transcriber>	Patrick: Eviscerate component to do a goal that I think this is displayed by the the tables you had and when you talk about modularity but I think it should be more emphasis should be put on that maybe when you present the tables to say like to put emphasis on the modularity meaning it's not like this one server it's going to have all these roots implemented but it's almost like a pick and choose approach.
+[2023-04-04T19:49:42.859Z]	<Transcriber>	Patrick: Does anyone resonate with that or.
+[2023-04-04T19:50:03.546Z]	<Manu_Sporny>	yes, +1 Patrick -- we do want to call out "you can pick and choose which bits you implement (and where)"
+[2023-04-04T19:50:08.268Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	Loose Coupling, for the win
+[2023-04-04T19:50:13.079Z]	<Transcriber>	Dave_Longley: The president's a lot with me and I think it would I was kind of trying to get at something related to that when we were talking about iconography around how this API enables you to pick and choose from different service providers because it's modular and broken up in that way you can you could Implement all these pieces on your own and run a whole system yourself or you might pick and choose from different implementations or different service providers that are giving you the different pieces and they should all work together.
+[2023-04-04T19:50:14.289Z]	<Transcriber>	Dave_Longley:  and it's the it.
+[2023-04-04T19:50:14.587Z]	<Transcriber>	Dave_Longley: The design in.
+[2023-04-04T19:50:26.742Z]	<Transcriber>	Dave_Longley: To happen so that there's interoperability and a there can be a bigger ecosystem and more choice in in the pieces that you pick and choose from.
+[2023-04-04T19:50:33.164Z]	<Manu_Sporny>	^ +1 to that
+[2023-04-04T19:50:40.192Z]	<Transcriber>	John_Henderson: Okay yeah I bet that's a good point how about a size in the modularity I'll think about how that could be emphasized but more.
+[2023-04-04T19:50:45.659Z]	<Transcriber>	John_Henderson: M that it that's it presentation-wise see here.
+[2023-04-04T19:50:52.929Z]	<Transcriber>	John_Henderson: No I spoke too soon yeah less so I thought.
+[2023-04-04T19:50:57.532Z]	<Transcriber>	Patrick: And my last question was about to test Suites and imitation.
+[2023-04-04T19:51:05.948Z]	<Transcriber>	John_Henderson: All right so there's just a bit about the sweets I actually I was thinking maybe it makes sense to go and.
+[2023-04-04T19:51:23.511Z]	<Transcriber>	John_Henderson: I show like wow and I will do now but yeah my plan for the presentation is to just show the table that I'm sure you've all seen in them and they rendered test Suite results and I've got a point here about focusing on data Integrity proofs.
+[2023-04-04T19:51:34.919Z]	<Transcriber>	John_Henderson: Yeah maybe I should say but WT is mentioned I would say that.
+[2023-04-04T19:51:45.431Z]	<Transcriber>	John_Henderson: And then I just a bit about implementation so I've listed if anyone wants to highlight their implementation or.
+[2023-04-04T19:51:53.322Z]	<Transcriber>	John_Henderson: Add an additional implementation or something like that please let me know but I provided a link to the energy where I wanted as well.
+[2023-04-04T19:52:01.079Z]	<Manu_Sporny>	https://docs.google.com/presentation/d/19GmJ3bLMrbVadesnkmsWaaUr-U71Y9Kr775tZvgs-xI/edit#
+[2023-04-04T19:52:24.571Z]	<Transcriber>	Manu_Sporny: We might want to mention the jff plugfest results specifically when you have a handful of implementations there but we had you know like what was it 17 implementations or 17 different issuers right now I don't know how many different like full-blown implementers there but there's some I put the slide deck in the chat Channel you might want to pull some content.
+[2023-04-04T19:52:25.118Z]	<Transcriber>	Manu_Sporny:  from that to demonstrate that.
+[2023-04-04T19:52:46.063Z]	<Transcriber>	Manu_Sporny: We've already get done interoperability testing on on the stuff and demonstrated some level of interop there and you know it's in any case like there's a we've got like really good really good interop story already on it that's it.
+[2023-04-04T19:53:01.872Z]	<Transcriber>	John_Henderson: Okay great thank you yeah I would be good to list as many as possible and without that really does close the presentation thank you for giving me the opportunity to present here.
+[2023-04-04T19:53:04.937Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	q+
+[2023-04-04T19:53:31.591Z]	<Transcriber>	Manu_Sporny: Treyton in thank you John again for putting this together I think it's great and now we have we actually have a presentation deck to talk about you know the stuff that we do here so that's also very much appreciated sure a number of us are going to want to kind of divide and conquer in other groups that were involved with okay so I think you know next steps here John or just if you coordinate with owf.
+[2023-04-04T19:53:32.069Z]	<Transcriber>	Manu_Sporny:  f to get a date just.
+[2023-04-04T19:54:03.288Z]	<Transcriber>	Manu_Sporny: Let us know what the date is in the date and time for the presentation and as many of us as can make it will certainly show up in support you and then maybe it during the next call we could talk about you know who wants to take what section although I mean John I think you having a unified Voice through the whole thing was a good thing so maybe what we could do is just kind of say something supportive things while you're going through the presentation at owf.
+[2023-04-04T19:54:19.457Z]	<John_Kuo>	Did we get a link to the presentation?  Sorry if I missed it
+[2023-04-04T19:54:29.673Z]	<Manu_Sporny>	https://speakerdeck.com/jhenderson/vc-api-at-owf
+[2023-04-04T19:54:34.379Z]	<Transcriber>	Manu_Sporny: Okay with that thanks again John we're at time in so next week we will pick up on the agenda that we had today pick back up on issues and process those linked to the agenda is here I'll put it back in the chat Channel John quo.
+[2023-04-04T19:54:51.502Z]	<Transcriber>	TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Just a quick note a possible shorthand for the modularity is to highlight loose coupling basically that you pick the component that you want to use from the bunch that have implemented the stuff and they can interchange like Lego blocks for the various roles.
+[2023-04-04T19:55:09.919Z]	<Transcriber>	Manu_Sporny: Plus one do that alright with that that's the call thank you everyone for the the input and feedback to John on the deck today we will pick back up on issue processing next week thanks again have a good one.
+

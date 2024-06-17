@@ -1,0 +1,784 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2022-10-11-vcapi/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2022-10-11-vcapi/audio.ogg
+
+----------------------------------------------------------------
+VC API Task Force Transcript for 2022-10-11
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-credentials/2022Oct/0042.html
+Topics:
+  1. Introductions, Relevant Community Updates
+  2. Pull Requests
+  3. Publication of VC API FCGR for VCWG
+  4. Response body for POST /credentials/status
+  5. Internal vs. External API language
+Organizer:
+  Manu Sporny
+Scribe:
+  Our Robot Overlords
+Present:
+  Manu Sporny, Stuart Freeman, Mahmoud Alkhraishi, Logan Porter, 
+  Dmitri Zagidulin, Patrick (IDLab), Dave Longley, John Kuo, Joe 
+  Andrieu, James Chartrand, Brian Richter
+
+Our Robot Overlords are scribing.
+Manu Sporny:  All right welcome everyone to the October 11th 2020 
+  to verify verifiable credentials API call our agenda is here go 
+  ahead and share my screen might as well.
+Manu Sporny:  Today on the agenda is just our regular 
+  introductions agenda review introductions relevant Community 
+  updates and we have a lot of issues here I wanted to add at least 
+  two things on it one of them is just a review of the VC API 
+  snapshot that we had agreed to publish last week just make sure 
+  that we have agreement on.
+Manu Sporny:   On that since we have.
+Manu Sporny:  A different set of people on the call this week a 
+  conversation about VC API exchange Dimitri I don't know if you 
+  are interested in having that discussion today or next week but 
+  we can basically.
+Manu Sporny:   Put it put a.
+Manu Sporny:  Time on the agenda for that if you want to say 
+  anything about that and then the rest of the time is basically 
+  issue processing watch the response body for posting to 
+  credential status be what should we do about the internal versus 
+  external Epi language should we do a test for an issue with the 
+  default issue or provided this issue we might be able to close 
+  and then any other issues as time permits.
+Manu Sporny:  Are there any other changes or updates to the 
+  agenda anything else we want to discuss today.
+
+Topic: Introductions, Relevant Community Updates
+
+Manu Sporny:  Okay if there are no other changes let's go ahead 
+  and jump into the first topic which is introductions and relevant 
+  Community updates is there anyone new on the call today that 
+  would like to introduce themselves anyone want to reintroduce 
+  themselves because of a change in position or what you're working 
+  on.
+Manu Sporny:  Okay if not any relevant Community updates anything 
+  happening that the group should know about I can start off with 
+  the data Integrity a stuff is moving forward we're going to do a 
+  first public working draft for the data Integrity work probably 
+  in the next month.
+Manu Sporny:  There is a new EDSA 2022 crypto Suite which is just 
+  a minor variation on the the 2021 so we expect that stuff might 
+  start impacting this group if we decide to change like some of 
+  the default crypto Suites that are used for some of the tests 
+  actually let me let me rephrase that.
+Manu Sporny:   If your parent.
+<dmitri_zagidulin> link to the crypto suite?
+Manu Sporny:  Have sweets today you'll continue to pass the test 
+  Suites there will just be new test Suites for the new crypto 
+  sweets Dimitri this is the EDSA one EDSA 2022 let me know where 
+  is it so let me put in a link to the updated data Integrity spec.
+<manu_sporny> New data integrity spec: 
+  https://w3c.github.io/vc-data-integrity/
+Manu Sporny:  So a lot of a lot of the Core Concepts are getting 
+  walk down here and then there is the need to add the website here 
+  let me try what is it Edie.
+Manu Sporny:  This one URL EDSA 2022.
+<manu_sporny> New 'eddsa-2022' cryptosuite test suite: 
+  https://w3c-ccg.github.io/di-eddsa-2022-test-suite/
+Manu Sporny:  About the accident yes that's right okay so here's 
+  the link new meat EDSA 2022 Crisco sweet test Suite this one this 
+  test Suite here it's just us in it right now but it's effectively 
+  almost the exact same thing as the Ed to 5519 signature 2021 
+  there but they're byte for byte compatible on the signature.
+Manu Sporny:   It's just you specify.
+Manu Sporny:  Type and you specify a crypto sweet value so so the 
+  type has to be data Integrity proof in the crypto sweet value 
+  must be EDSA 2022 other than that it's the exact same thing as 
+  the as this crypto sweet the the Ed to 5519 signature 2021 and 
+  again like nobody needs to implement it.
+Manu Sporny:   Anytime soon it's just a demonstration.
+Manu Sporny:  The new data Integrity spec is implementable as is 
+  there is a just so folks have it let me see data integrity.
+Manu Sporny:  Let's see there it actually it's BC data.
+Manu Sporny:  PC data model this is also somewhat important in 
+  that there is this new data Integrity proof thing so I'll go 
+  ahead and link to hear this shit.
+<manu_sporny> Discussion about how DI works: 
+  https://github.com/w3c/vc-data-model/pull/943#issue-1402363790
+Manu Sporny:  There's a discussion on streamlining the data 
+  Integrity stuff and so anyway there's a there's a new crypto 
+  sweet conformance test Suite explanation of how it works in an 
+  implementation to just demonstrate that all this work so so 
+  anyway this this stuff's going you know happening in the 
+  verifiable credentials working group the data Integrity spec 
+  seems to be settling down which means that we're going to start 
+  specifying a bunch of new crypto sweets like he's.
+Manu Sporny:  GSA EDSA and BBs.
+Manu Sporny:  We're going to have test Suites that are driven by 
+  the BC API to test the functionality and all these specifications 
+  so it's just a heads up for people more than likely you're not 
+  going to have to think about doing implementations for you know 
+  three to six months maybe even nine months from now but that's of 
+  importance in going on right now.
+Manu Sporny:   I think that's it for that.
+Manu Sporny:  Of update the other thing that's going on right now 
+  is the jmf plugfest is going on in there's stuff happening with 
+  VC API there specifically their number of issuers using the issue 
+  endpoint issue verifiable credentials and then there's some work 
+  that's going on in the VC API Exchange.
+Manu Sporny:  A tree I don't know if your audio is working now 
+  and you can say something about that or if you're still on mute.
+Dmitri Zagidulin:  What was it what was the question again this 
+  was.
+Manu Sporny:  So earlier today in the jff plugfest you said that 
+  you wanted to kind of talk about something with the VC API Group 
+  around the exchange stuff do you want to do that today or do you 
+  want to do that some of the point.
+Dmitri Zagidulin:  Right so the question that.
+Dmitri Zagidulin:  So let's say at another call I'm not sure I 
+  have exact question formulated.
+Manu Sporny:  Okay alright that's fine.
+Dmitri Zagidulin:  We wait having said that I see James is on on 
+  the call James did we have anything to ask to the VC API Group.
+Dmitri Zagidulin:  From our previous conversation about exchange 
+  endpoint and Nation put.
+Manu Sporny:  No audio from you James if you're saying anything.
+Manu Sporny:  You could type it in if your audio is not working 
+  for some reason.
+Dmitri Zagidulin:  Okay I think I'm not sure if James is 
+  reconnecting anyways Mana thank you for for giving us a chance to 
+  ask the question.
+Manu Sporny:  Okay alright we can we can cover it at some other 
+  point so all that to say that they're they're they're definitely 
+  usages of e c API number of companies using the C API to do 
+  issuance in the jmf plugfest in there are a few that are looking 
+  at using the exchanges stuff to do full-blown issuing so.
+Manu Sporny:  Due to do effectively.
+Manu Sporny:  Station and then do an issuance so we may want to 
+  talk about that prioritize talking about that if any questions 
+  come up around that later on okay any other anything else 
+  happening in the ecosystem that we should talk about anything 
+  else impacting VC API.
+
+Topic: Pull Requests
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/pulls
+<james_chartrand> Sorry, connection troubles. Yes, best for 
+  another call dmitri.
+Manu Sporny:  All right if not we can jump into our first agenda 
+  topic and that is 0 actually before we do that almost forgot all 
+  requests we have a couple of PRS interestingly enough from people 
+  that don't attend these calls they're finding things in the spec 
+  spec and fixing them which is good many of them are just obvious 
+  editorial issues.
+Manu Sporny:   There's a PR in.
+Manu Sporny:  Rename apt coordinator which is a decision we made 
+  a long time ago and so that PR is in we still have these PRS 
+  hanging out from the days where we were just wrapped around the 
+  axle talking about authorization my suggestion is that we close 
+  both of these PRS they've just been hanging out literally for 
+  over a year at this point in.
+Manu Sporny:   And it doesn't look like.
+Manu Sporny:  To be able to be merged in so would there be any 
+  objections for us closing PRS these PR is that are over a year 
+  old.
+Mahmoud Alkhraishi: +1 To closing
+Patrick_(IDLab): How relevant today I'm not familiar with these P 
+  ever.
+Manu Sporny:  They're not relevant anymore I mean this this was I 
+  think it was it was a big fight over like are we going to Define 
+  authorization to include you know everything like good nap or 
+  oauth2 or nothing or in so there was a big fight over which ones 
+  we would mandate and they just didn't go anywhere and then the 
+  thing on authorization delegation was a you know we are going to.
+Manu Sporny:   Wow delegated on.
+Manu Sporny:  But even that you know came with like people saying 
+  we have to Define exactly how we do it and so.
+Manu Sporny:  My suggestion is there not.
+Manu Sporny:  They're not relevant to the current discussion.
+Manu Sporny:  Did that answer your question Patrick.
+Patrick_(IDLab): But yeah sure because I remember you were 
+  talking about the what to would see weeks ago that seemed to be 
+  the decided the authorization mechanism.
+Manu Sporny:  At least that yeah we're basically that's what 
+  everyone has a lamented and so like this spec would be you know a 
+  work of fiction if it didn't actually talk about what the 
+  implementers have implemented yeah yeah and that was a totally 
+  separate thing that's a different PR that hasn't been raised yet 
+  but it will be okay well then we can close both of these I'll do 
+  that after citing the discussion around them.
+Manu Sporny:  Not much else in the way of PRS the other thing I 
+  wanted to raise really quickly is publication publication of my 
+  own company will see GR.
+
+Topic: Publication of VC API FCGR for VCWG
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/304
+Manu Sporny:  API for basically G so publication of verifiable 
+  credential API final community group report for verifiable 
+  credential working group we had raised an issue a while ago 
+  around snapshotting the VC H or verifier API for reccwg during 
+  last week's call which interestingly enough had a very different 
+  set of people.
+Manu Sporny:   Ending same time.
+Manu Sporny:  We asked if we could go ahead and publish the note 
+  with the fault with the caveats that have been discussed in here 
+  and there were no objections for it so let me ask again since we 
+  have a different set of people on the call this week let me try 
+  and get this little larger so people can see the proposal is to 
+  basically publish.
+Manu Sporny:   The VC API.
+Manu Sporny:  In a group report that covers generating a VC 
+  generating a verifiable presentation verifying both and checking 
+  the status it specifically does not include the exchanges stuff 
+  is that was viewed as too controversial to put in would there be 
+  any objections to doing that on the call today Patrick you're on 
+  the cube go ahead please.
+Patrick_(IDLab): Forget if I was that bid last week but so it 
+  says Snapchat VC issuer verifier as holder been left out 
+  deliberately or it includes the holder as well it's just not.
+Manu Sporny:  No we didn't use the term holder because certainly 
+  like a transmute wanted the ability to create presentations and P 
+  you could call that the holder API so instead of instead of 
+  calling out the roles we're going to include all three roles but 
+  cut out the parts around exchanges.
+Patrick_(IDLab): Yeah I think it makes sense to include 
+  everything as long.
+Patrick_(IDLab): So you just / like credentials and presentations 
+  and.
+Patrick_(IDLab): Because the VC API is suspect there's like the 
+  issuer verify your holder then which are three they each have 
+  their own sort of subsections of the.
+Patrick_(IDLab): The the paths that are available in my head that 
+  I don't know if it was decided to do it like this or if it's just 
+  the way that it came out but there should be one Speck with all 
+  the paths and.
+Patrick_(IDLab): The solution implements the ones that it 
+  supports.
+Manu Sporny:  We may be miscommunicating a bit so the current 
+  spec has issuing verifying and presenting right and so we moved 
+  away from doing it by roll to doing it by a kind of action right 
+  in the only part that people are disagreeing with is this 
+  exchanges sections three four six seven and eight like these 
+  three are the things that people are like do not include those.
+Patrick_(IDLab): Okay so presenting would be the holder 
+  basically.
+Manu Sporny:  Yes but but generating a presentation not 
+  presenting.
+Manu Sporny:  We would get objections if we put presentation in 
+  there that doesn't mean we can't do it later but for this round 
+  we've gotten at least multiple people saying that they would 
+  object to it if we included the exchanges stuff now to be clear 
+  we can continue to work on exchanges in this group they just 
+  don't want to put exchanges in front of the verifiable 
+  credentials working group yet.
+Patrick_(IDLab): Yeah I'm not too sure exactly what the exchange 
+  is about so the exchange as I understand it it's got to do with 
+  anything that.
+Patrick_(IDLab): Transfers information from one to the other.
+Manu Sporny:  No it's it is so in the spec I can understand why 
+  that's the general definition of exchange but in the spec it 
+  means something very specific it means these sets of API 
+  endpoints the / exchanges in points.
+Manu Sporny:  If that makes sense so you see like this thing.
+Manu Sporny:  Thing that starts with / exchanges that's the thing 
+  that people said they'd object-- to if we tried to include it in 
+  the thing that we sent to the VC w g.
+Manu Sporny:  Yeah so the suggestion was like we would not 
+  include 3463 48 but would include everything else which is 
+  issuing a credential arguably get credentials getting an updating 
+  status verifying driving proving exchange Discovery we would 
+  probably take out and then.
+Manu Sporny:  Continue exchange and exchange examples.
+Manu Sporny:  Okay so so let me let me just make sure and ask 
+  again are there any objections to prepping that to go to the be 
+  cwg.
+Mahmoud Alkhraishi:  Up do you want to process the queue manager 
+  or.
+Mahmoud Alkhraishi:  It's meanest I can.
+Manu Sporny:  Oh yeah I'm sorry and what's not looking at it go 
+  ahead moment.
+Mahmoud Alkhraishi:  So I had a question about how this how does 
+  this actually work when how does work occur if this is accepted 
+  in the VC working group do not two separate yeah I think about 
+  this before but I'm blanking.
+Manu Sporny:  Yes no I don't think that we were like we will 
+  figure it out but I don't think anything was proposed so let me 
+  try and proposed put myself on the cube something go ahead Joe.
+Joe Andrieu:  Yeah I think I think we still need to annotate the 
+  endpoints as to what component there in I think if we don't do 
+  that first I think we're going to be causing more confusion than 
+  enlightenment.
+Joe Andrieu:  And I hope you know flag me for it and I'm happy to 
+  engage with you to help iterate that.
+<manu_sporny> joe mah
+Manu Sporny:  Okay point taken and I will try to put in a PR to 
+  do that Joe because we have agreement okay that's great yeah and 
+  we have agreement to do that already like in an issue so that 
+  should just be a mechanical thing that we can work through rather 
+  than something the group has to sign off on yep good good point 
+  so I'm going to answer your question or attempt to answer your 
+  question.
+Manu Sporny:  Well I think we've never had to do this before that 
+  I can think of usually when you hand a document over to a group 
+  you just hand it over and it just totally goes over to them and 
+  in the community group stops working on it and the working group 
+  takes it over right in this case it's a little different where we 
+  want to continue refining the document but we also want to 
+  publish a snapshot there are two ways to do that one of them is 
+  to just cut a release and just make that the snapshot and make 
+  that the know.
+Manu Sporny:  I don't that's going to it I tried to figure out a 
+  month bunch of ways to do that that's not disruptive and I can't 
+  think of an easy way to do that other than just them point to the 
+  ccg and say we're going to snapshot you know that specific 
+  document that looks like a note in the VC w g so 11 approach here 
+  is just create a static copy just the document itself with 
+  nothing else in publish it the other thing that we can do.
+Manu Sporny:   Do is we can.
+Manu Sporny:  One of two things either the VC WG would Fork our 
+  repo the thing that we're working on here and then they would 
+  create a branch which would then publish a note so that's one 
+  thing that could be done we're basically this group continues to 
+  retain ownership over the repository and continues to work on it 
+  I expect members of the VC.
+Manu Sporny:   Ewg to object to that.
+Manu Sporny:  Like they're probably going to say if we are 
+  publishing a note we need to be in control of the source where 
+  the note comes from and the repository and it needs to be clear 
+  that yada yada yada right so that's one argument against that the 
+  other thing that we can do is we can transfer our repository over 
+  to the verifiable credentials working group so it will be in 
+  there and then we can re for Kit meaning that the note will be.
+Manu Sporny:   Wished from VC w.
+Manu Sporny:  And they'll have ownership over the repo and all 
+  that kind of stuff but we will have a fork that we work on that 
+  does you know newer and better and it just does new things right 
+  and then every now and then if the VC w g wants to publish a new 
+  note or new iteration of it they can pull the changes from us 
+  into their repository in that should continue to work so.
+Manu Sporny:   My suggestion is we do that thing.
+Manu Sporny:  We say we give our repository over to the 
+  verifiable credentials working group we for Kit we continue to do 
+  our work here and then they will pull in new versions of it as 
+  things as things occur so let me stop there Mahmood you're on the 
+  Queue go ahead.
+Mahmoud Alkhraishi:  That makes a ton of sense the last thing you 
+  said which is they take ownership Leaf work that resonates quite 
+  a bit with me the question that I have is we expect them to do 
+  changes right I mean that's the point of giving them the note in 
+  the first place that they would weigh in and provide some sort of 
+  input and make some sort of adjustments in some way right how 
+  does this normally I mean because this is I was going to say it 
+  is normal.
+Mahmoud Alkhraishi:  But I think you just said this hasn't 
+  happened before to your knowledge.
+Mahmoud Alkhraishi:  It basically how do you envision we 
+  reconcile differences would it be a case of their note is 
+  authoritative note and everything we do is an extension to it so 
+  any changes they implement we would have to implement to or where 
+  are we okay with them diverging in some way does that sorry if my 
+  question was not Salient but geometer phrase or is.
+Manu Sporny:  Yeah no I mean oh it makes perfect sense so the 
+  question is if they make changes what do we do right meaning the 
+  as the as a community group what do we do if they make changes so 
+  my suggestion is that you know whoever is going to edit this 
+  document and I'm raising my hand I'm totally happy to you know 
+  try and make sure that things stay the same between the ccwg in 
+  this group we should be let me let me.
+Manu Sporny:   Try and figure out a way.
+<mahmoud> /s/ geometer phase/ happy to rephrase/
+Manu Sporny:  Correctly we should keep them in sync right because 
+  if the verifiable credentials working group is saying you're 
+  doing something then we do have a say because a number of us are 
+  in that group as well we have a say over what what happens I 
+  think notes are different right so so this thing is not a quote 
+  unquote authoritative anything a note is just like a here's a 
+  bunch of ideas we were thinking about and we're just publishing.
+Manu Sporny:   Get out there and notes are kind of like 
+  snapshots.
+Manu Sporny:  Right and so and Publishing a note is like 
+  publishing a snapshot of current thinking at that point of time 
+  at that point in time the note the note in the verifiable 
+  credentials working group can actually point to our work as the 
+  editors draft so people would go and look at the note as 
+  published by the verifiable credentials working group but if they 
+  wanted to see the latest copy of it they would be redirected over 
+  to the credentials community group VC API Group us right so I 
+  think.
+Manu Sporny:   There's a way.
+Manu Sporny:  There's a way to keep everything in sync and 
+  aligned no problem and if it looks like things are going to 
+  diverge greatly than we can have a discussion about that at that 
+  point but they will be us a number of us in that group that will 
+  probably object-- very strenuously for there being any kind of 
+  Divergence right because like what's the upside so in practice I 
+  don't expect it to be a problem but you know we should all be 
+  very much aware that.
+Manu Sporny:   At this is a not you.
+Manu Sporny:  This happen did that help my mood.
+Manu Sporny:  So I mean I think you know if we will just try it 
+  and if it blows up in our face then we can figure out a way to 
+  you know some other way to work but I'm pretty I'm pretty 
+  confident that this mode of operation should be okay because I 
+  don't think we're expecting we're going to prompt we're going to 
+  tell the verifiable credential working group like hey this 
+  stuff's actively being worked on every single week in the ccg v 
+  CW G is just taking a snapshot you know and agreed to snap.
+Manu Sporny:   A lot of that work and work will continue in the 
+  ccg so at no point.
+Manu Sporny:  Did somebody say.
+Manu Sporny:  Like oh now the works going to happen in the be cwg 
+  go ahead and log Logan.
+Logan Porter:  I am a missed it in a bit just so the VC wa would 
+  be or Thera to over the note and the VCI working group would 
+  still be authority over the VC API is that right and they just 
+  okay to do it.
+Manu Sporny:  He kind of let me try and re-explain it after 
+  Dimitri guys go ahead.
+Dmitri Zagidulin:  I think my question was can you can you 
+  explain again why the VC working group wants a snapshot 
+  especially after the emphasis that the that it's data model and 
+  that the API is not a speck.
+Manu Sporny:  Tree there is an entry in the charter saying that 
+  we're going to publish some kind of API as a note.
+Manu Sporny:  So that's the let me yeah the ccwg charter I don't 
+  know if I can let me let me try and find that while other people 
+  go ahead Logan.
+Logan Porter:  I'm in the system would publish like guidance on 
+  API it's rather than an API itself I might be wrong.
+Manu Sporny:  They're so if we look at the charter let me see 
+  what's the this latest one yes so in the charter.
+Manu Sporny:  We have a section on one or more HTTP protocol 
+  definitions for verifiable credential exchange that is the VC API 
+  as a another deliverable that we can publish in there are 
+  multiple people saying that they want to they want to work 
+  towards publishing that thing.
+Manu Sporny:  Go ahead Patrick let me try and answer Logan 
+  Logan's question so the the you asked you know is the note of 
+  Thor is the VC WG authoritative on the note and are we at or 
+  tentative on the API they're the same document so I think the 
+  answer to that is both yes and no there is.
+Manu Sporny:   Only one document that we're talking.
+Manu Sporny:  And that's this document.
+Manu Sporny:  What the VC WG can do is they can take a snapshot 
+  and publish this document so they can publish a snapshot of this 
+  document while we the VC API in to be clear this is a community 
+  group Logan not a working group so we're not an official we're 
+  not an official working group we are a community group meaning 
+  that the work that we're doing here we do in is pre standards 
+  work it is not a part of an officially ratified working group at 
+  the w3c that has.
+Manu Sporny:  Have a different standing right so we're kind of 
+  like the incubation.
+Manu Sporny:  Group in we are we want the working group to take a 
+  snapshot of this document if that makes sense so there's only one 
+  document it's just the V CW G is going to publish a snapshot of 
+  it effectively did that answer your first question.
+Logan Porter:  Yeah yeah I think so so so this community group 
+  would keep be the one that's still working on the VC API document 
+  and the VC working group would just take pick up a copy copy it 
+  and what put it in no not necessarily in that way but they're 
+  like take a static version and publish it as a note in the PC.
+Manu Sporny:  That's correct yes.
+Logan Porter:  And this group would stay or authoritative over 
+  this document.
+Manu Sporny:  That's right yeah we'd continue to work on it in 
+  here.
+Logan Porter:  Yeah it's efficient thanks.
+Manu Sporny:  Okay no problem Patrick you had a question.
+Patrick_(IDLab): Two things quickly first of all if you could 
+  share that link with the charger like to have a link I will be in 
+  this.
+<manu_sporny> 2022 VCWG Charter: 
+  https://www.w3.org/2022/06/verifiable-credentials-wg-charter.html
+Patrick_(IDLab): And my second question was like so historically 
+  the from what I understand there used to be some sort of this API 
+  part of the.
+Patrick_(IDLab): And so community group and then it got rejected 
+  is that what I understood.
+Patrick_(IDLab): Sorry if I maybe is the wrong term but because I 
+  remember the it was a very formal credential API test Suites that 
+  was part of the w3c GitHub repo and it's sort of got moved to 
+  this credential community group.
+Manu Sporny:  I don't remember that happening the the VC test 
+  Suite the VC API test Suite was has always been in the CG it's 
+  never been promoted to into the working group.
+Patrick_(IDLab): Okay so once you will publish this note after 
+  this there's going to be like periodic updates made or how it's 
+  going to go from then on that's going to be.
+Manu Sporny:  Up to us in the VC w g to decide so if we feel like 
+  we want to publish an update every month we could do it if we 
+  wanted the updates to happen every week or every day we could 
+  agree to that every quarter it's up to us and the ccwg to 
+  determine at what rate we publish new.
+Manu Sporny:  Yeah all options are available to us and we'll just 
+  have to talk about that in the VC w g and then we'll of course 
+  communicate that back to this group and so on so forth so yeah 
+  the frequencies to be determined I guess is what I'm trying to 
+  say.
+Manu Sporny:  Alright okay I'm not hearing any objections to 
+  creating a snapshot with the things that we just discussed in 
+  there.
+Manu Sporny:  This again on the 2022 1011 with a different.
+Manu Sporny:  Additional items discussed or by transferring the 
+  repository to V CW G but and then for kicking it here to continue 
+  working you working on the BC API here.
+Manu Sporny:  The ccg you're working on the BC API it's to the 
+  notes will be published on a periodic basis depending on.
+Manu Sporny:  Um agreements between you see GG and 60g that's 
+  that for that item anything else on this topic before we move on.
+Manu Sporny:  All right next up.
+Manu Sporny:  Is issue 141.
+
+Topic: Response body for POST /credentials/status
+
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/141
+Manu Sporny:  So 141 is about is Ori asking the question what 
+  should be the response body for posting to credential status.
+Manu Sporny:  So this was a time where we felt revocation was 
+  poorly understood now there's a desire to have a credential 
+  status mechanism here so the question is what when you post a 
+  status update to the endpoint what should the return value be.
+Manu Sporny:   Let me stop and.
+Manu Sporny:  Thoughts on that go ahead Dave.
+Dave Longley:  So in our implementation today I'm just I'll just 
+  speak to that if there was an error that occurred we return a for 
+  HTTP status code with 4X or 5x X depending on client or server 
+  and if it's successful we just return back a 200 and I don't 
+  think we send any response body today and that's just saying 
+  we've accepted whatever status thing you've requested I think it 
+  would be possible for our.
+Manu Sporny:  Sorry sorry oh that's good the transcriber got you 
+  and what was the or the return values sorry I missed.
+Dave Longley:  There are no return values right now it's just a 
+  status code with an empty body for 200 and then for errors well I 
+  guess their return values for errors some going to Json error 
+  format similar to what we do for any of the other apis.
+Dave Longley:  And I was saying that our implementation I think 
+  at least for status list 2021 could return back the updated 
+  credential but it might be advantageous to not have to do that it 
+  might be that people want to have implementations that will 
+  update that in in the in a background process or something like 
+  that so it doesn't have to be done immediately in the response so 
+  I think we would want.
+Dave Longley:  To hear whether or not people thought the clients 
+  needed to have that updated value or you know what whether or not 
+  that was in the necessary and it wasn't necessary maybe we just 
+  don't have a response value for that trying to think if there was 
+  anything else I had on that subject but I guess not for now.
+<brian_richter> just wanted to suggest 202 accepted if response 
+  body is blank but really shouldn't matter
+<dmitri_zagidulin> oh, I remember what James and I wanted to ask! 
+  about Challenge management
+Manu Sporny:  All right thanks Dave Bryan go ahead.
+Manu Sporny:  Okay so so.
+Brian Richter:  I just wanted to mention 20 to accept it if 
+  there's no response body might be the correct obviously.
+Manu Sporny:  Sorry go ahead Brian.
+Brian Richter:  I just think really matter too much sorry I 
+  didn't mean to be mean to be pedantic.
+Manu Sporny:  Okay well it's so what about the general does 
+  anyone believe that we should be returning anything in the body.
+Manu Sporny:  Or is a status code enough like an HTTP status code 
+  enough.
+Brian Richter: +1
+Mahmoud Alkhraishi:  If it's a positive or negative it would be 
+  200 or 400 I mean I would say if it's a negative it should 
+  include the error if possible but that's the only thing I would 
+  add.
+Dave Longley:  Yep plus one for me as well.
+Manu Sporny:  Okay Brian's doing a plus one okay Dave's plus one 
+  okay so so the pull request should update the post credentials 
+  status in point such that positive modification provides pay 200.
+Manu Sporny:   Status code.
+Manu Sporny:  And a failure returns a 400 with well I think it's 
+  go ahead Dave.
+Manu Sporny:  Sorry what was that to what for content.
+Dave Longley:  Yeah failure could be a 4X x or a 5 x X depending 
+  on whether it's client or server error and the other thing we 
+  could to pay it is whether we want to send a 2004 no content 
+  status message since we're not sending a body that would be the 
+  more pedantic thing to do 204 no content status code.
+Manu Sporny:  Code Brian you were suggesting 202.
+Brian Richter:  Yeah really either I think but like honestly 200 
+  is probably fine as well.
+Brian Richter:  Khamenei obviously so.
+Manu Sporny:  Okay we need to make a call here cuz we need to 
+  write spec text so what do we want 200 or to hope for.
+Dave Longley:  So the difference in between 2002 and 2004 so 2 of 
+  2 means that your request has been accepted and there might be 
+  additional processing and you might need to check back later to 
+  afford just says success but I don't have any response for you so 
+  I would.
+Dave Longley:   I would say.
+Dave Longley:  We could make it so you can send either one of 
+  these but I don't know that we need to signal that your request 
+  has been accepted that there might be additional processing 
+  that's really an implementation detail but maybe the spec could 
+  say you return a to XX Response Code either this one or that one 
+  depending on weather.
+Dave Longley:   Is the next.
+Dave Longley:  Request to check the status would be up-to-date or 
+  not but all of that seems really hard to for people to predict 
+  and eventually consistent systems and so on so I my personal 
+  feeling is that we should just do 2004 and have people expect 
+  that these are partitioned a synchronous systems anyway.
+Brian Richter: +1 204
+Manu Sporny:  Okay thoughts Brian.
+Brian Richter:  Yeah I think I agree with that like there might 
+  be some some processing required for some.
+Brian Richter:  And potential status type but I think 2.0 content 
+  makes the most sense really.
+Manu Sporny:  Okay alright so we're going to say the pull request 
+  should update post credential status in points such that the 
+  positive data positive modification provides a.
+Manu Sporny:  204 No content status code and a failure returns of 
+  4X x or 5x X should we just say to xx and say any one of these is 
+  okay.
+Manu Sporny:  Do we have to.
+Manu Sporny:  I don't know.
+Dave Longley:  I would be comfortable with just saying to XX for 
+  now and a lot of clients can just look for the two and not care 
+  about the content.
+Patrick_(IDLab): I agree and I believe that it can be reviewed 
+  later at there's more.
+Manu Sporny:  Okay um I don't know if the if OAS allows you to.
+Manu Sporny:  I think you have to specify each one like very 
+  clearly but I can I'll look at I look at it I mean at the here's 
+  the worst case the worst case is we have multiple 200 codes and 
+  multiple 400 codes in multiple 500 codes and we let people pick 
+  among any one of them.
+Dave Longley:  That's how most hdb apis kind of work today 
+  anyway.
+Manu Sporny:  Okay so this one is ready for PR are there any 
+  objections to this kind of pull requests being raised.
+Manu Sporny:  Okay so let's do that and then labels is PR.
+Manu Sporny:  And we should remove the revocation should be 
+  removed thing since I think we're past that at this point.
+
+Topic: Internal vs. External API language
+
+Manu Sporny:  Okay that's that item next up is this topic of 
+  internal versus external API language quite a while ago we had 
+  let me put the link in here.
+Manu Sporny: https://github.com/w3c-ccg/vc-api/issues/282
+Manu Sporny:  So quite a while ago we had thought about this API 
+  as a is this an internal call or is this an external call in it 
+  it's so like for example issuing or verifying were quote unquote 
+  internal calls whereas the exchanges apis were external calls in 
+  I think in the meantime.
+Manu Sporny:  We've talked about you know where these endpoints 
+  can be exposed and some of them can be exposed as internal API 
+  some of them as external apis and some of them is both right and 
+  so there's a question around us deciding that instead of calling 
+  something an internal API or an external API we do what You Know 
+  Joe has been suggesting we had this discussion a while ago.
+Manu Sporny:   Go to basically say.
+Manu Sporny:  Components and API could be exposed on so is this a 
+  is this an API that's Exposed on a coordinator or is this an API 
+  that's Exposed on a service or is is this an API that could be 
+  exposed on both of them.
+Manu Sporny:  Let me stop there and see what folks thoughts are 
+  on this should we try to use internal external API language or 
+  should we instead just say which components in API can be exposed 
+  on go ahead Patrick.
+Patrick_(IDLab): Well I was under the impression that all these 
+  API path were part of this coordinator that we defined and it was 
+  not meant to be exposed publicly but meant to be controlled by 
+  another application like a web web application or whatever the 
+  implementation requires.
+Manu Sporny:  Um kind of speak to that directly here's our system 
+  diagram right in this app stuff is being renamed coordinator but 
+  once that's done there's a question around is the API you know 
+  which one of these blocks is the API Exposed on or can it be 
+  exposed on multiple of them and I think the reality today is that 
+  some of the apis can be exposed on multiple of these blocks.
+Manu Sporny:  While some of them are not really intended to be 
+  exposed you know externally.
+Manu Sporny:  No sorry the internal versus external language is 
+  bad but it's the the idea is that we would be able to say oh the 
+  issuer endpoint that's Exposed on the issue or service or the 
+  exchanges and point well that can be exposed on the issuer 
+  coordinator or the holder coordinator of the verifier coordinator 
+  the status service is something you know the status get service 
+  is exposed on.
+Manu Sporny:   The status service.
+Manu Sporny:  I think that's the that was a joke correct me if 
+  I'm wrong but I think Joe that's your suggestion is to do that 
+  and I think we had consensus to do that which would then mean 
+  that the internal versus external nomenclature is not needed 
+  anymore.
+Manu Sporny:   Let me.
+Manu Sporny:  Let's see if people lots of them.
+Patrick_(IDLab): Because I'd feel like it would sort of add 
+  another layer of complexity to have this external internal 
+  distinction.
+Manu Sporny:  Agreed go ahead Joe you're on the queue.
+Joe Andrieu:  Yeah I just want to Echo I think that internal 
+  external have we've moved past their usefulness and that's you 
+  know we really don't have a perimeter model for security in this 
+  system especially with three parter he's like who's inside whose 
+  outside what's internal or external those were parts of the 
+  semantic confusion as we were debating this before I think when 
+  we identify who's calling what endpoint on what component then it 
+  will pull into.
+Joe Andrieu:   Focus the information we thought we were getting 
+  with internal and external.
+Joe Andrieu:  Tell General an endorsement for your approach 
+  there, Manu.
+Manu Sporny:  Oops sorry I was speaking so does that mean that we 
+  basically close this issue noting that our plan is to.
+Manu Sporny:  Use internal versus external language instead what 
+  we're going to do is just note which apis are Exposed on what 
+  components and talk about it that way.
+Dave Longley: +1 To eliminating "internal / external" language 
+  and using components instead
+Joe Andrieu:  With OneNote and I think we I know we're still 
+  trying to pull in some of the changes in language from the 
+  coordinator and you know so that the components are anchored on 
+  so I'm sorry so endpoints are anchored on a component I think we 
+  also need to start folding in who's calling it or who is expected 
+  to call it a someone calling an issuer coordinator on behalf of 
+  the holder would.
+Joe Andrieu:   Be a very different.
+Joe Andrieu:  I'm privacy and security problem then if a verifier 
+  we're contacting that same issuer on that same endpoint but in 
+  their role as a verifier instead of their role is a holder and I 
+  think those nuances were still just getting some awareness of how 
+  do we how do we talk about them.
+Manu Sporny:  The great go ahead Patrick and then we've got to 
+  close up the call.
+Patrick_(IDLab): Yeah so like for example I know we were 
+  discussed like you mentioned like there's a reservation mechanism 
+  in place my question sort of goes like does that a translation 
+  mechanism apply to every endpoint or is there any point that are 
+  designed to be sort of unanimously queried like the discovery and 
+  point for example or that's not the case.
+Manu Sporny:  Status status would be one example of that that's 
+  supposed to be quote unquote anonymously hit and like the status 
+  list in then the other one would be an exchange like starting 
+  exchange could be started anonymously.
+Manu Sporny:  Did that answer your question Patrick.
+Patrick_(IDLab): Yeah so that case those two endpoints should be 
+  public.
+Manu Sporny:  Yeah and we're going to have to we'll have to 
+  struggle through some of that language.
+Manu Sporny:  And it's not clear if it's public right because you 
+  could do that in an intranet which is technically not public 
+  right okay so any objections to basically closing this issue and 
+  not using the internal external language and focusing instead on 
+  specifying suffice eyeing that pinpoints are anchored to specific 
+  ecosystem.
+Manu Sporny:   Come come.
+Manu Sporny:  A service is coordinators and we all focus on who 
+  all's each endpoint.
+Manu Sporny:  Any objections I don't want to rush this if people 
+  have a concern about it we can leave this to the next call.
+Patrick_(IDLab): Open probably leave it.
+Manu Sporny:  Okay all right we will cover this again I'll call 
+  okay all right that's it for the call today apologies for going 
+  four minutes over thank you everyone for the great discussion in 
+  we will see everyone again next week thanks all bye.
