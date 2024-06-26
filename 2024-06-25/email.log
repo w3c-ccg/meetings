@@ -1,0 +1,1035 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-06-25/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-06-25/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-06-25.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-06-25
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jun&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, Nis Jespersen , Erica Connell, GregB, Hiroyuki 
+  Sano, Japan, Markus Sabadello, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Gregory Natran, Kaliya Young, Benjamin Young, 
+  Wes-Smith, James Chartrand, Leo, Manu Sporny, Joe Andrieu, Wendy 
+  Seltzer, Laura Paglione, Julien Fraichot, PL-T3, Tim Bloomfield, 
+  Alex H, Dmitri Zagidulin, Jeff O - HumanOS, Brandi Delancey, Dave 
+  Longley, Patrick St-Louis, Gerald Glickman
+
+<harrison_tang> @Greg you might want to check your microphone.  i 
+  don't think we can hear you when you unmuted earlier
+Our Robot Overlords are scribing.
+Harrison_Tang: All right um welcome to this week's w3c ccg 
+  meeting uh today we are excited to have Greg uh Bernstein back 
+  again to present on the anonymous holder binding and student sum 
+  so about 2 weeks ago Greg uh.
+Harrison_Tang: Present an update on the PBS signatures and uh 
+  today we'll follow up with uh related but different discussion 
+  regards to uh the holder binding Anonymous holder binding and uh 
+  pseudonym so before we get to uh the main agenda I just want to 
+  quickly go over uh the administrative stuff um so first of all a 
+  quick reminder on the code of ethics and professional conduct uh 
+  just want to make sure that uh we hold uh constructive and 
+  respectful conversations and discussions.
+Harrison_Tang: A quick note on the intellectual property uh 
+  anyone can participate in these calls however all substantive 
+  contributions to any ccg work items must be the member of the ccg 
+  with full IPR agreement signed so if you have any questions in 
+  regard to getting a w3c account or signing the community 
+  contributor license agreement uh please just let any of the 
+  cultures know.
+Harrison_Tang: A quick note on uh the minute meetings uh these uh 
+  minutes are automatically recorded and we will publish the 
+  meeting minutes as well as the audio and video recordings in the 
+  next uh 1 or 2 days.
+GregB: Sorry guys I couldn't hear a thing I don't know what was 
+  happening okay sorry.
+Harrison_Tang: Because uh does this sound work now can you hear 
+  us now.
+GregB: Yeah all all I was hearing is the recording is on and I 
+  knew that you guys were talking because I started seeing the 
+  transcript sorry.
+Harrison_Tang: Oh no problem I'm glad it works um.
+Harrison_Tang: All right so uh uh just getting back uh to the 
+  administrative stuff and then we'll have Greg on uh to present 
+  and be the discussion on the anonymous holder binding.
+Harrison_Tang: All right so again these meetings are being 
+  automatically recorded and will publish the meeting minutes audio 
+  recording and video recording in the next 1 or 2 days we use GT 
+  chat to cue the speaker so you can type in Q Plus to add yourself 
+  to the queue or cue minus to remove.
+Harrison_Tang: I think it's a time for introductions and 
+  reintroduction so if you're new to the community or you haven't 
+  been active and want to re-engage feel free to unmute and just uh 
+  introduce yourself.
+Harrison_Tang: All right 1 of those days I'm gonna start calling 
+  on people but today's mostly uh familiar faces so I'll let it go 
+  all right um announcements and reminders uh if you have anything 
+  new or new events or new projects uh feel free to just uh unmute 
+  or uh.
+Harrison_Tang: Typing Q Plus to add yourself to the queue.
+Harrison_Tang: Money you want to go first.
+Manu Sporny:  Sure sorry uh no no audio for America um.
+Manu Sporny:  Yeah just a a quick update that um we are we're 
+  we're kind of coming to the end of issues in the verifiable 
+  credential working group on many of the major specifications so 
+  that's good that's that's great news it means that we're pretty 
+  much ready to.
+Manu Sporny:  Go to the next stage um we are um we are slowly 
+  finishing the test Suites and the number of them uh are um now 
+  ready for implementers to implement against um if you have uh an 
+  implementation and you've been holding off on integrating um uh 
+  now would be a good time to start integrating with the verifiable 
+  credential 20 um test Suite in any of the data Integrity test 
+  Suites we know what that we have a number of implementers that um 
+  are passing some of the older test Suites that would probably 
+  pass.
+Manu Sporny:  Good chunk 80% plus of the new tests um and so 
+  we're going to be reaching out to people um to integrate with 
+  tests um.
+<benjamin_young> Here's how to add your implementation: 
+  https://github.com/w3c/vc-test-suite-implementations?tab=readme-ov-file#usage
+Manu Sporny:  A also a reminder to implementers is that um as 
+  soon as we get a a healthy number of implementations like Beyond 
+  3 to 4 we will probably just move on um uh meaning that you know 
+  if if you want to be able to kind of prove that you pass a test 
+  Suite uh doing it sooner than later would be good um you are not 
+  expected to pass the entire test Suite nor is it viewed as a 
+  negative thing if you don't pass the entire test Suite um because 
+  right now all we're doing is we're testing to make sure that the 
+  specifications are implementable we're not looking for like 
+  maximum number of implementations um so just a reminder to 
+  implementers um now is the time to start integrating with the 
+  test Suites um Benjamin who's also on this call uh can help you 
+  uh do that uh reach out through the VCW or the ccg if you want 
+  any kind of support or help in doing that that's it.
+Harrison_Tang: Thank you man.
+Harrison_Tang: By the way Erica uh do you have new announcements 
+  uh.
+Erica Connell:  Can you hear me now.
+Harrison_Tang: Great we can hear you great.
+Erica Connell:  Awesome thanks Harrison hey I just wanted to uh 
+  remind everybody that um rebooting the web of trust is going to 
+  be convening in October the 7th through 11th in beautiful Ventura 
+  California if you were at the Santa Barbara event um it it's uh 
+  just right down the road from that actually and I'll put the link 
+  um to gets are available on Eventbrite I'll put the link in the 
+  chat and um that's it for now thank you.
+Erica Connell: https://rwot13.eventbrite.com/
+Harrison_Tang: Thanks a lot and Erica like if you can send a link 
+  to me or directly to the public list that would be great too.
+Erica Connell:  Oh absolutely I'll do that thanks.
+Harrison_Tang: Benjamin do you have anything else to add.
+Benjamin Young:  No I just wanted to highlight the uh link that I 
+  shared in chat which I share again since it's probably scroll on 
+  past.
+Benjamin Young:  Um to the.
+Benjamin Young:  Integration guide for the test Suites if folks 
+  want to add.
+Benjamin Young:  Implementations uh these are the instructions 
+  for doing that.
+Benjamin Young:  No is that shortly.
+Benjamin Young: 
+  https://github.com/w3c/vc-test-suite-implementations?tab=readme-ov-file#usage
+Harrison_Tang:  thank you.
+Harrison_Tang: Thanks a lot.
+Harrison_Tang: All right any other announcements or reminders.
+Harrison_Tang: All right updates on the work items.
+Manu Sporny:  Um the verifiable credential barcodes work uh was 
+  uh adopted last week thank you uh to the chairs um uh and we are 
+  going to continue kind of pushing that forward uh just a heads up 
+  to everyone that that that work item is on a kind of a fairly uh 
+  what's the word accelerated schedule to be deployed into 
+  production um uh there are some uh governments that are are not 
+  going to want to wait for the standardization process to finish 
+  before a version of it is pushed into production um but there but 
+  they will it'll be versioned in a way that allows us to you know 
+  upgrade later on when the whole thing goes through the 
+  standardization process so uh just a heads up that that work item 
+  is going to move a little faster than some of the other ones um 
+  the other uh heads up is that um we got uh government of 
+  Singapore's stuff into render method uh we are looking for 
+  feedback.
+Manu Sporny:  Uh render method in general we are thinking that it 
+  is possible to generalize render methods so that it works with uh 
+  svgs and PDFs and um and other other things like that and so 
+  there's a generalization discussion that's going on um there we'd 
+  love to hear from other people that want to render credentials um 
+  we will also be releasing examples of render method um.
+Manu Sporny:  Around uh in the next couple of weeks as well.
+Manu Sporny:   That's it.
+Harrison_Tang: Thank you man.
+Harrison_Tang: And uh we'll have a West actually uh talking about 
+  the verifiable credential barcodes on August 6th and uh in 
+  addition to that uh uh will has been uh contacting different work 
+  item um leaders uh and owners uh in regards to uh providing 
+  updates uh as well as uh scheduling them uh to uh you know hold a 
+  special sessions on those work items so we're working on that 
+  actively so uh stay tuned.
+Harrison_Tang: All right uh any last uh.
+Harrison_Tang: Work item uh discussions.
+Harrison_Tang: Last calls for introductions announcements 
+  reminders and work items.
+Kaliya Young:  Haven't been around much because I was on a 
+  whirlwind tour to uh Europe um last week we had our second 
+  digital identity unconference Europe and it went very very well.
+Kaliya Young:  Had 1 of the the counselor of Switzerland come and 
+  open the conference.
+Kaliya Young:  They don't have a prime minister or a president 
+  they have this Council and he's 1 of the people on that Council 
+  so that was pretty cool.
+<manu_sporny> Nice!
+Kaliya Young:  Um and I just wanted to remind folks that we have.
+Kaliya Young:  Did on conference Africa coming up in South Africa 
+  september.
+Kaliya Young:  7Th 25 to 27.
+Kaliya Young:  So if you have Partners or folks you know working.
+Kaliya Young:   In Africa.
+Kaliya Young:  Particularly the southern part of Africa and want 
+  to let them know about the event please do that.
+Kaliya Young:   And then.
+Kaliya Young:  And um IBEW.
+Kaliya Young:  Number 39 is coming up in October and super super 
+  early bird registration is open and I'll put links to both of 
+  those in the chat.
+Harrison_Tang: Great thanks Clea.
+Harrison_Tang: Didn't know that about the Swiss government so 
+  learn new things uh every day so great.
+Kaliya Young: https://didunconf.africa/
+Harrison_Tang: All right any last calls for introductions 
+  announcements work items.
+Kaliya Young: https://internetidentityworkshop.com/
+Harrison_Tang: All right let's get to the main agenda I think uh 
+  you know 2 3 weeks ago we had a we had a Greg here to talk about 
+  BBS amazing discussion learn new things and uh today we have him 
+  back to talk about Anonymous holder binding and Sudan so Greg uh 
+  the floor is yours.
+GregB: All right now I am.
+GregB: Share this screen.
+GregB: Okay but I'm doing it from a different browser okay.
+GregB: You see anything.
+GregB: Great can you still to see things.
+Harrison_Tang: Yep looks good.
+GregB: Going cross browser all right.
+GregB: So we're going to talk about some Advanced features that 
+  we've added to BBS so we're gonna kind of do an overview remind 
+  folks again.
+GregB: BBS we're going to go in a little reverse order because 
+  when I was walking through figuring out how to tell this story it 
+  seemed like pseudonyms were the things to start with and I was a 
+  little shocked to discover that they are now specified for the EU 
+  diw European Union digital identity wallet.
+GregB:  so I.
+GregB: This stuff about cryptographers reviewing the ud ARF 
+  which.
+GregB: That came up and I was saying good okay so we're going to 
+  talk about pseudonyms and then at the end we'll get to Anonymous 
+  Soldier binding because that comes.
+GregB: Comes with everything okay.
+GregB: Have talked before yeah.
+GregB: Been helping to co-edit these specs I do a lot of the 
+  cryptographic test fixture generation for these specs um working 
+  out I've got open-source software for almost all this stuff 
+  somebody did recently asked me uh can I use some of this code and 
+  I had forgotten to put a open source license thing in it if you 
+  run across any of my code and it's missing an open source license 
+  statement just tell me I've got a update those things.
+GregB: And I'm working with the ietf on the BBS specs which we're 
+  going to be talking about a little bit here.
+GregB: We're concerned with tracking so there is a famous song 
+  back in the 80s by a band called The Police Every Breath You Take 
+  every move you make every Bond you break I'll be watching you.
+GregB: And it was a very sweet song and it was mistaken for a 
+  love song but it was really about a stalker so people were using 
+  this as their wedding songs and things like that.
+<harrison_tang> ;(
+GregB: It was a very popular song so people went crazy with the 
+  lyrics to not only Every Breath You Take but every move you make 
+  every leaf you rake.
+Manu Sporny: :Scream:
+GregB: And so it really is about and if I was currently teaching 
+  cyber security like I used to I would make my students go through 
+  and say How could somebody get this information on you oh you 
+  went to the Home Depot website and looked up a leaf blower oh 
+  your ring doorbell uh camera caught uh you doing something at 
+  blah blah blah so we're concerned with tracking.
+GregB: And so when we've talked about tracking.
+GregB:  we talk.
+GregB: Talk about the main players in verifiable credentials the 
+  issuer the holder and the verifiers.
+GregB: All right this thing is I'm seeing this thing right in the 
+  middle of it okay.
+GregB: So what if a verifier shares information about an 
+  encounter with a holder.
+GregB: They learn things.
+GregB: They understand the holder's been visiting various sites.
+GregB: Seems like they should especially if the holder fully 
+  identifies themselves.
+GregB: What about if the verifier.
+GregB: Shares information about encounters withholding 
+  presentation of credentials.
+GregB: Okay from the holder to a verifier shares that information 
+  back with the issuer it seems like obviously the issuer know all 
+  the places the holders visiting.
+GregB: Okay and we can go 1 step further say what if the 
+  verifiers share that information about their encounter with a 
+  holder to a third party that third party could get to know all 
+  that information.
+GregB: How do we stop that.
+GregB: Or minimize that well.
+GregB: First of all don't reveal your name okay and you can do 
+  that with the selective disclosure mechanism okay minimize what 
+  you reveal to the verifiers about yourself.
+GregB:  to make.
+GregB: But there's a bit of a problem with verifiable credentials 
+  and it's that.
+GregB: General signatures the digital signatures we use are very 
+  unique.
+GregB: Okay and they can take the place of your name to become an 
+  identifier used to track you so we need something called unlined 
+  to make sure the security features that secure the credentials 
+  don't become an identifier to track US okay.
+GregB: BBS signature scheme applied to VCS can provide both these 
+  things okay selective disclosures and these things known as 
+  unlink proofs.
+GregB: There was just a cryptographic review of these wallets the 
+  European wallet standard and they actually say now that.
+GregB: To obtain okay not allow providers of electronic attach 
+  stations meeting some kind of credentials okay to obtain data 
+  allows transactions or user Behavior to be tracked linked or 
+  correlated okay unless explicitly authorized okay.
+GregB: And they say this technical framework of the wallet shell 
+  enable privacy preserving techniques which ensure unlike ability.
+GregB: I did not make that error that was an errors that's unlink 
+  but I copied it straight from the document so they have a 
+  spelling error okay.
+GregB: So we know we want this not always.
+GregB: And even if we want anonymity.
+GregB: How much anonymity do we want.
+GregB:  there is.
+GregB: Another song from the 80s.
+GregB: Is all well after my time don't you forget about me right.
+GregB: Got these very Anonymous credential from BBs.
+GregB: Your selectively disclosed a minimal amount of 
+  information.
+GregB: And you want to.
+GregB: But you'd like the verifier.
+GregB: To be able to.
+GregB: Recognize you from a previous encounter.
+GregB: But not be able to link your data with other verifiers.
+GregB: So you'd like them to recognize you.
+GregB: But not link you with other verifiers.
+GregB: That sounds a little tricky okay.
+GregB: Another variation of this would be led a verifier 
+  associate you with a previous encounter.
+GregB: Not link your data with other verifiers.
+GregB: Issuer to know it's you okay oh why would you want that.
+GregB: Um let's say we go back and do a pandemic.
+GregB: We want to prevent people from hoarding you have to 
+  prevent some kind of present some credit credential to say hey 
+  I'm allowed to buy toilet paper and we're going to not let 
+  individual stores tracker toilet paper use but we're going to see 
+  that there's no hoarding going on by letting some issue or check 
+  that.
+GregB: So subtle right.
+GregB: Remind you BBS signatures.
+GregB:  what do they.
+GregB: It look like somebody comes up with a bunch of information 
+  that BBS calls messages.
+GregB: So this looks like a driver's license for a tree.
+GregB: First name Sequoia Sentra and lives in the Redwoods uh 
+  State Park in California where you can create a signature.
+GregB: Okay this signature information.
+GregB: Okay can act as an ID okay.
+GregB: With BBs though.
+GregB: We don't the holder doesn't present that signature it only 
+  goes from the issuer to the holder they don't pass it along.
+GregB: So he wants to go into a bar to get a very large drink of 
+  water and the requirement is.
+GregB: Got to live in California because we had sometimes have 
+  droughts and he's got to prove his age.
+GregB: So he's only going to select those 2 pieces of information 
+  to reveal.
+GregB: Generate proof at all.
+GregB: It's always great when you do a demo.
+GregB: Sorry I was not using the online demo.
+GregB: Oh demos are always great.
+GregB: I do have a demo of the thing we're doing but let me see 
+  let me go back and get to the code.
+<harrison_tang> demo is better than no demo
+GregB: Too many links create signature.
+GregB: Is above signature.
+GregB: Select date of birth generate the proof.
+GregB: Now as many times as I hit create signature.
+GregB: That signature number which is the cryptographic signature 
+  won't change.
+GregB: This proof that's generated by the holder to present to 
+  the verifier.
+GregB: Every time I hit generate proof I get a unique proof.
+GregB: For all purposes like a signature but it's not correlated.
+GregB: So that's what we mean we get that anonymity unlink.
+GregB: This is a property of BBS you don't get this with the 
+  other signature algorithms.
+GregB: You don't get this with eddsa or ecdsa.
+GregB: Okay so that's we can do this.
+GregB: Or at least we can get that anonymity.
+GregB: Appropriate conditions okay but how can we make it so they 
+  can remember us.
+GregB: Okay well there's an idea known as a pseudonym right it's 
+  a fictitious name that you use for a particular purpose right.
+GregB: Writers like Samuel Clemens wrote as Mark Twain the 
+  mathematician Charles Dodge and Dodge and or however you 
+  pronounce it wrote novels under the name of Lis Carol Wright.
+GregB: And when you visit websites you can do the same thing you 
+  can use a different username for each website and you make sure 
+  you use the different password for each website.
+GregB: And if you had to.
+GregB: Verify with an email address you could use a unique email 
+  address that can be a little bit bothersome but there's some 
+  places that make it very easy to come up with unique email 
+  addresses that forward things to you so if I'm if I think a 
+  website that I'm registering with is a bit dodgy and I don't want 
+  them spamming me I'll go use uh email forwarder that comes up 
+  with unique addresses for each website like Duck private 
+  addresses.
+GregB: So that's great that's pseudonyms that's 1 approach is 
+  good for the web but how would you do that with a verifiable 
+  credential.
+GregB: Oh and look.
+GregB: In this European digital wallet which I just learned 
+  about.
+GregB: I'd like you to be able to generate pseudonyms too.
+GregB: We're making up a unique name for yourself for every place 
+  sounds a little problematic okay.
+GregB: How are we going to do this for VCS.
+GregB: I guess we could ask the issuer.
+GregB: The issue of EC to the holder under each pseudonym the 
+  holder wants.
+GregB: Problems the issuer would have to issue lots of near 
+  duplicate credentials to the holder for each verifier that the 
+  holder encounters.
+GregB: Sure would know the holder pseudonyms and can track all 
+  their encounters with verifiers.
+GregB: We sit in 1 of our 2 use cases that like the uh the 
+  hoarding prevention use case this might be allowable but.
+GregB: In general no we don't want to be dragged okay or that's 
+  not okay but let's start with this first 1 how could we prevent 
+  this headache.
+GregB: Okay of having to make an issuer issue lots of VCS under 
+  each pseudonym we want and such okay.
+GregB: Well we could do this with a cryptographic technique okay.
+GregB: We could have the holder know a secret.
+GregB: Find that with par verifier public data to produce.
+GregB: Pseudonym okay it's not going to be nice and readable and 
+  things like that but it would be very easy to use in the digital 
+  wallet okay so how do we do this in general.
+GregB: Have a hold or have a secret number we can call our 
+  approver ID that's what we do in uh the BBS specs okay and you 
+  want it essentially unique.
+GregB: So a random number that's super secret.
+GregB: The verifier we're going to let us have a public 
+  essentially unique number call to verify our ID a vid a bid and a 
+  vid okay.
+GregB: The holder generates a certain Name by raising the vid to 
+  the power of the pit.
+GregB:  and shares.
+GregB: Okay so how does this help.
+GregB: An issuer needs to only sign the VC with info about the 
+  proofer ID.
+GregB: Generate the pseudonym for any verifier that they that 
+  publishes a verifier ID.
+GregB: Let's keep track of this with appropriate parameters the 
+  difficulty of the discrete logarithm problem this is 1 of those 
+  mathematical things that drives.
+GregB: Most of the cry uh most of the digital signature schemes 
+  where you're using today ecdsa and eddsa are based on this thing 
+  called the discrete logarithm problem in addition to um.
+GregB: Uh key sharing algorithms like Diffie helmet okay and it 
+  prevents any other verifiers discovering the pit from the 
+  pseudonym and linking with other verifiers.
+Dave Longley: Note: for anyone wondering how "vids" could 
+  manifest at a higher level -- they could be derived from things 
+  like Web origins or DIDs.
+GregB: Don't freak out it's a little bit of math okay but.
+GregB: It's not that hard to do.
+GregB: Value would be a number and then BBS we call such numbers 
+  as scalar.
+GregB: The vid value the verifier ID would be an element of the 
+  group G1 and BBs.
+GregB: BBS has functions already to take an arbitrary number and 
+  turn it into 1 of these scalars or to take an arbitrary number or 
+  bite string and turn it into such an element okay a suited in the 
+  value oh let's see how this works.
+GregB: Okay so here's this is not yet this is actually running on 
+  my machine I did.
+GregB: Not get this demo out yet so I'm the holder.
+GregB: I'm going to generate a random secret number that I'll 
+  call my approver ID okay.
+GregB: So here's my PID this number I'm showing in text just for 
+  Simplicity it's are we use hex for large numbers when we do these 
+  tests vectors because.
+GregB:  it's easy.
+GregB: Whatever language people are writing their code in okay oh 
+  but look the verifier ID I'm using looks just like a URL doesn't 
+  have to be.
+GregB: Should be unique something to verify or has that they're 
+  going to make public okay from these 2 pieces of information I 
+  can generate a pseudonym.
+GregB: This is what it looks like it's a big long hexa decimal 
+  value okay from this value.
+GregB: Nobody can go with in current computing.
+GregB: Uh terms can go from this value back and discover what my 
+  original secret Brewer ideas.
+GregB: And I can hence use this value as a pseudonym.
+GregB: With that particular verifier so we can sometimes call 
+  this a pseudonym or a pervert ID.
+GregB: But it's got these nice properties okay.
+GregB: Do we have enough to do something.
+GregB: Make a protocol that gives us a pseudonym that's good for 
+  being recognized and that can't be tracked across verifiers.
+GregB:  yeah we.
+GregB: Let's see how this would work.
+GregB: Issuer known pit flow so the issuer in this case we're 
+  going to have them.
+GregB: Come up with approver ID our secret value they're going to 
+  share it with the holder okay in addition what they're actually 
+  going to do is they we'll see in a sec they're going to sign it 
+  as a message that they provide using BBS to the holder okay the 
+  holder gets to verify our ID from the verifier somehow they know 
+  it already it's published somewhere they compute the pseudonym.
+GregB: Then they create their selective disclosure vidi vici and 
+  send it with the pseudonym to the verifier the verifier sees the 
+  pseudonym they can recognize oh it's the same entity.
+GregB:  coming back.
+GregB: Back with this credential I've seen them before I can say 
+  hello how are you.
+GregB: Got whatever it is that you want it.
+GregB: Or whatever we continue that relations okay.
+GregB: Once again this does not prevent tracking by the issuer so 
+  this would be good for the case of issuer assigns this number and 
+  if needed could with verifier help track purchases or whatever 
+  the holder is doing okay we're going to get to the harder case in 
+  a second okay so the issuer duties they generate the bid they 
+  create a BBS signature the VC adding the PID value.
+GregB: At the end.
+GregB: Right create the signature.
+GregB: Use above signature.
+GregB: What we don't do is we'd never revealed the pit oh.
+GregB: Oh but this but they have to know the bid and they're told 
+  the bid and when they get their signature.
+GregB: Never revealed the pit so the other the verifier never 
+  learns it but they have to prove it.
+GregB: Okay send VC with bass proof bid to holder what is the 
+  holder do holder verifies.
+GregB: Obtain the verifiers pit value uh vide value the verifier 
+  ID computes the pseudonym based on those 2.
+GregB: Permanent is the minimal amount of information to disclose 
+  to the verifier and especially not their approver ID.
+GregB: The VC with the derived proof okay that's our term in the 
+  BBS VC BBS spec we have the base proof which is the original 
+  signature which is unique derived proofs have that BBS proof 
+  where I said every time you hit the button to regenerate it its 
+  unique and can't be correlated.
+GregB: Send that derived proof and hands and the pseudonym to the 
+  verifier.
+GregB: Now what we do.
+GregB:  and this is.
+GregB: In the BBS pseudonym draft is we actually extend the proof 
+  to make sure.
+GregB: That pseudonym value calculated and everything like that 
+  is legit and based on the proof of it okay.
+GregB: We'll see a little bit about how those kind of things work 
+  coming up.
+Harrison_Tang: Hey Craig do you mind taking a clarification 
+  questions.
+Harrison_Tang: Yes so so far what you described the solution does 
+  not solve the issuer tracking uh when they collude with verifiers 
+  and tracking the uh tracking cases what it solves is when 
+  verifiers collude with other verifies verifiers and and and.
+Harrison_Tang:  it solves.
+Harrison_Tang: Right like I just want to clarify okay.
+GregB: Yes exactly okay because we're going to need something 
+  more for that next case okay.
+Harrison_Tang: So so in the earlier presentation you represented 
+  3 types of tracking 1 is the verifier colluding with other 
+  verifiers 1 is the issuer's colluding with uh verifiers and the 
+  third the third 1 is the third party so the solutions so far 
+  solves the verifier collusion problem does it solve the third 
+  party problem or not not.
+GregB: Yeah unless yeah unless they are working with the issuer 
+  they don't know the pit the that proved her ID value so yeah you 
+  know.
+GregB: Good there okay and that's why when we write some of these 
+  specs and I've gotten on some of the the cryptography people's 
+  specs cases like you got to be really clear about what 
+  information is known to who otherwise they can't figure out what 
+  the attack scenario is and what you're protecting and you got to 
+  tell me what is protected and what's not so under the assumption 
+  that the issuer does not reveal the pit to anybody we're 
+  protected from that third-party tracking.
+Harrison_Tang: Got it thank you.
+GregB: So we didn't solve the problem of.
+GregB: Issuer being able to track us we need something more from 
+  that okay so how can we prevent the okay so this is the question 
+  how can we prevent the issuer from knowing the pit in the first 
+  place and be able to track all their encounters okay and even 
+  even more so what if we wanted to come back to uh a verifier.
+GregB: With credentials from somebody else and say hey this is 
+  me.
+GregB: Use that same PID.
+GregB: With a different issuer without revealing it.
+GregB: So what we want to do is we want to have the holder.
+GregB: Generate the PID this prover ID value and keep it secret 
+  but how could this work if it's kept secrets.
+GregB: Let Me Go full screen.
+GregB: The prover ID to be kept secret by the holder.
+GregB: What good is the secret and the amazing part of BBS and 
+  zero knowledge proofs start to kick in okay.
+GregB: BBS is based on zero knowledge proofs that's how we get 
+  that on linkability and it already uses this stuff inside but 
+  let's understand it.
+GregB: Apply to prove her ID uh this whole pseudonym thing the 
+  first thing we need to know is something called a commitment 
+  scheme.
+GregB: So a way that you can commit to a number.
+GregB: Keep it hidden from others.
+GregB: With the ability to reveal it later but not change it.
+GregB: It's that classic beginning of a magic trick where it's 
+  like think of a number write it down on a piece of paper fold it 
+  up but don't show it to me.
+GregB: After they get it they do their magic trick they're going 
+  to say ah look I know your number.
+GregB:  or what.
+GregB: There was a card or whatever somehow they figured out what 
+  your number was okay.
+GregB: But it okay so it's like writing something down to be 
+  revealed later so commitment scheme has the following properties.
+GregB: A commitment is generated.
+GregB: You can only open it to that original message okay you 
+  can't change the message or your secret number your secret 
+  message whatever it was okay after the commitment has been made.
+GregB: Other thing we want out of a commitment scheme 
+  particularly.
+GregB: Uh for what we're working with here is we also want 
+  something called hiding.
+GregB: Okay the commitment string should not reveal information 
+  about the committed message.
+GregB: For example what if it's a very simple message like I 
+  flipped a coin heads or tails you call it right and you're going 
+  to do this interact you know it's like.
+GregB: Wait there's only 2 messages you know maybe I can just 
+  reverse engineer things okay well let's take a look at a typical 
+  commitment scheme.
+GregB: We've got a message m.
+GregB: We choose a number number another number separate from the 
+  message that we're High we're committing to randomly we commute 
+  compute a commitment this is just 1 example of by taking the 
+  hash.
+GregB: Of our number or message.
+GregB: Concatenated combined just glued together with that random 
+  value.
+GregB: The person we're committing to you know this is like 
+  riding that na number and on a piece of paper putting it in an 
+  envelope sealing it up sending it off to them we send them both 
+  the value computed and that random number.
+GregB: On revealing it.
+GregB: Okay we revealed the message we can prove then that we 
+  haven't changed things by having them recomp compute this.
+GregB: Okay so that's 1 example of a commitment scheme.
+GregB: Another more another famous commitment scheme is something 
+  called a Patterson commitment.
+GregB: Oh we've got this group Theory stuff so we have these 2 
+  numbers 2 separate numbers X is the number that we want to our 
+  message okay and this is more like how BBs Works inside.
+GregB: Message ours are random number known as the blinding 
+  factor and we compute the commitments.
+GregB: Oh it's got that these are those discrete log things to 
+  solve this is not easy it looks easy to write down.
+GregB:  and we.
+GregB: Can compute exponentials easily but to try and reverse 
+  this is hard.
+GregB: Uh how does this help.
+GregB: If we reveal the pit.
+GregB: We can be tracked still.
+GregB: So we don't ever want to go that full step of doing the 
+  reveal.
+GregB: So what we're going to do.
+GregB: Is provide a proof that we know this value.
+GregB: And require the proof doesn't reveal any information 
+  about.
+GregB: This is what we mean by a zero knowledge proof.
+GregB: And these get quite quite complicated okay you've heard 
+  maybe a thing is called ZK snarks or such like that you've heard 
+  of things that huge computations.
+GregB:  that's not.
+GregB: Not the case.
+GregB: With BBs or what we're doing here it's a zero knowledge 
+  proof but it's 1 of the first cases of zero knowledge proofs BBS 
+  is remember go back 20 years.
+GregB: And uses some techniques so what kind of concepts are we 
+  going to have here so we're never going to reveal the pit we're 
+  going to prove we know the pit.
+GregB: Without revealing it so what do we need here first of all 
+  we're going to have this proof thing this protocol we got to make 
+  sure by the time we're done with this protocol.
+GregB: That it actually works you know.
+GregB: Okay so if we accept things.
+GregB: You know it's true.
+GregB: We want to make sure.
+GregB: There's a thing called special sound is that basically 
+  says.
+GregB: They must know that number to be able to complete this 
+  proof of this protocol.
+GregB: Okay so first if we go through all the steps.
+GregB: It better be right okay we're we're told hey you really 
+  know that number okay we get a an accepting conversation.
+GregB: Again you have to know that secret number okay the prover 
+  needs to really know the number to finish that proof call.
+GregB: Okay then the final piece is.
+GregB: Okay meaning in an honest verifier I mean they're not 
+  using active attacks and things like that it doesn't learn 
+  anything about that unknown information from the proof protocol.
+GregB: Some of these things are very easy to prove okay.
+GregB: Others take more effort so how do they I said I'm going to 
+  make this commitment thing.
+GregB: Okay this Patterson commitment okay this is going to be my 
+  pit value this is my blinding Factor okay I want to prove that I 
+  know the 2 values.
+GregB: Okay so I'm Computing this information.
+GregB: The prover and to verify are both going to know g&h the 
+  only the prover knows Alpha and beta.
+GregB: Okay Alpha is going to be our pit beta is going to be our 
+  hiding Factor okay prover gives you to the verifier.
+GregB: And they want to prove they know those things that they 
+  know the other 2 values.
+GregB: So stolen straight from Bonet.
+GregB: The B and bbs's book uh free graduate course book on 
+  applied cryptography how these proofs work.
+GregB: Is we got P for the approver V for the verifier we pick a 
+  couple random numbers.
+GregB: Okay we compute something kind of a test value okay we 
+  send that over.
+<wendy_seltzer> (Boneh, for the transcript)
+GregB: The verifier computes a random challenge value sends it 
+  back to us.
+GregB: Craig what's the point of all this.
+GregB: Then at the end they test things.
+GregB:  well let's.
+GregB: Look a little bit Alpha and beta the things that the 
+  prover keeping hidden.
+GregB: The challenge value comes from the verifier and mixes in 
+  with those 2 values.
+GregB: That's dangerous oh but these Alpha T and beta T kind of 
+  help blind those values so they can't learn it okay kind of makes 
+  sense and then we're going to check at the end.
+GregB: The verifier is going to look at these 2 values raised to 
+  powers and see does that correspond to.
+GregB: That test value times the other stuff raised to that power 
+  of the challenge okay lots of math don't freak Do Not freak okay 
+  written out long form okay.
+GregB: The simplest part of this thing is proving correctness 
+  meaning that if you go through this procedure and the condition 
+  is satisfied that this thing on the left equals this thing on the 
+  right then you should accept it it's an accepting conversation 
+  and that just.
+GregB: Follows from doing some stuff with exponentials okay.
+GregB:  the other.
+GregB: 2 things are proven in the textbook okay Greg what does 
+  this mean.
+GregB: And how are we going to use it.
+GregB: Did 1 more piece.
+GregB:  so we're.
+GregB: Going to be able to generate a proof that we actually know 
+  those values.
+GregB: Know our now we need somebody to sign it for us.
+GregB: There's something known as a blind signature in 
+  cryptography is a form of digital signature in which the content 
+  of the message is disguised how are you going to disguise it yeah 
+  with that person commitment thing before it's signed the 
+  resulting blind signature can be publicly verified against the 
+  original unblinded messages.
+GregB: Blind signatures are typically employed in privacy related 
+  protocols where the sir and message authors are different 
+  parties.
+GregB: Examples include cryptographic election systems and 
+  digital cash schemes.
+GregB: Yes maybe if they ever come but we're leading the charge 
+  here.
+GregB: We have this used need and use and credentials okay.
+GregB: BBS already uses all those proof techniques I was telling 
+  you about okay and a lot more complicated elaborate ones.
+GregB: The proof that BBS generates from the holder that gets 
+  sent to the verifier.
+GregB: The BBS signature scheme can be easily extended to support 
+  blind signature functionality okay and a blind signature setting 
+  the the prover will request signature on a list of messages 
+  without revealing those messages.
+GregB:  to the.
+GregB: However they will be proving to the Ser that they know 
+  what's in those messages they know their secret value okay.
+GregB: So we have an API for blind BBS signatures that looks just 
+  like BBS signatures okay except here's the secret key the public 
+  key header all this stuff the messages.
+GregB: Okay but it allows us.
+GregB: To furnish a commitment.
+GregB: That Patterson commitment thing I told you about.
+GregB: But we have to furnish it along with the proof.
+GregB: They will check okay so let's see how this works a little 
+  bit.
+GregB: So let's go to the holder.
+GregB: Okay we got the issuer we got the holder.
+GregB: The holder has a secret number.
+GregB: To do that computation like I said and generate a 
+  commitment with proof.
+GregB: In all this stuff.
+GregB: 2 of those random numbers uh the scalar plus the 
+  computation of the commitment blah blah blah stuff okay.
+GregB: We can validate that commitment with proof.
+GregB: They don't learn the holder secret approver blind okay 
+  they don't learn the pit value but they are going to check that 
+  the prover is actually proven they know this.
+GregB: So we can validate the commitment once again you change 1 
+  number.
+GregB: And things won't validate this is all cryptographically 
+  rigorous material okay.
+GregB: And it's about 20 years old okay this was what shook up 
+  things it was this is as a practical version of zero knowledge 
+  proofs okay early on.
+GregB: So what are we going to do.
+GregB: The holder's got to generate the pit.
+GregB: So the holder generated the bid.
+GregB: We got the commitment used previous commitment double 
+  check it's valid.
+GregB: It goes over to the issuer ah but now.
+GregB: In addition to all the messages that were they're going to 
+  sign they're going to sign.
+GregB: Over this thing that that came from the holder okay.
+GregB: A commitment to the bid.
+GregB:  it's not.
+GregB: Not the pit itself it's not the prover secret number and 
+  it's got a proof.
+GregB: The issuer can check to make sure that the holder is not 
+  lying about knowing that number okay.
+GregB: We can create this blind signature.
+GregB: We get the signature bundle all this useful information 
+  okay.
+GregB: So hold your generates their secret value.
+GregB: They don't share the secret value with anyone.
+GregB: Commitment to that secret value along with the proof that 
+  they actually know it.
+GregB: Not enough to send just the commitment because they never 
+  want to reveal that stuff they send it with the proof.
+GregB: Issuer is going to do a blind signature.
+GregB: On that commitment thing.
+GregB: All the good.
+GregB: Information there verifying right my trees driver's 
+  license here.
+GregB: We got to send that back I forgot to check we're almost 
+  out of time ah sorry.
+GregB: We send that back.
+GregB: Do the holder what's the holder do well they've got a 
+  pseudonym.
+GregB: To go do proof generation.
+GregB: I live in the state park uh my date of birth.
+GregB: Generate the proof.
+GregB: Here's my proof bundle it's got all sorts of useful stuff 
+  in it okay.
+GregB: Out over to the verifier.
+GregB: Gets the pseudonym here was the verifiers ID they need 
+  that they can do the calculation and verify the proof.
+GregB: So using zero knowledge proofs in a very practical way.
+GregB: A way that's already used and we can achieve pseudonyms.
+GregB: Are on trackable by either by collusion between verifiers 
+  and verifiers issuers.
+GregB: Since we learned how to do.
+GregB: When somebody issues you a credential.
+GregB: Got a signature in it anybody who receives that credential 
+  could potentially go and use that credential then.
+GregB: It's not strongly bound to.
+GregB: Okay anybody who knows the signature in BBs.
+GregB: Generate these BBS proofs however.
+GregB: If we want to lock down a virtual of VC okay.
+GregB: Using blind signatures approver cam commit to a secret 
+  message before issuance okay so this is like smaller than the 
+  Sudan case the holder generates a secret commits to the secret 
+  blind BBS signs on the commitment plus the other messages.
+GregB: Ah we generate a BBS proof with the secret we never reveal 
+  the secret but nobody besides the holder who knows that secret 
+  okay.
+GregB: Generate the proof this is what we mean by Anonymous 
+  holder binding it's bound the VC is bound to the holder but it's 
+  only the holder secret that nobody else knows and it can't be 
+  correlated against them.
+GregB: Okay I know that's a lot and we've run out of time summary 
+  and final words.
+GregB: Completely unlined once again.
+GregB: If you sit there and tell them in your selectively 
+  disclosed information your name address and your telephone number 
+  it's not on linkable anymore okay.
+GregB: Able pseudonyms okay that can be tracked by the issuer if 
+  required.
+GregB: Cryptographically strong but um linkable binding of VCS to 
+  anonymous.
+GregB: The holder okay.
+GregB: Is cryptographic techniques are well established and 
+  contained in the BBS literature okay.
+GregB: All these techniques are currently used in BBS so what are 
+  we doing.
+GregB:  we have.
+GregB: To finalize the apis because partially what was driving 
+  needed to drive the apis was what what did we want from the app 
+  requirements.
+GregB:  the init.
+GregB: Verifier ID suited in draft didn't have the hidden case.
+GregB: Oh but we can do that okay so that's where we are here.
+GregB: Go to cryptography but nailing down the apis and producing 
+  test vectors and things like that.
+GregB: Questions sorry to run so late.
+Harrison_Tang: No great presentation amazing um.
+Harrison_Tang:  I know.
+Harrison_Tang: Some people might want to drop off but we can take 
+  like 1 or 2 last questions.
+Harrison_Tang: Anyone have questions.
+<brandi_delancey> great presentation!  thanks greg!!
+Manu Sporny:  Right I I guess this 1 is about the.
+Dave Longley: +1 Great presentation!
+<harrison_tang> yeah, amazing presentation!
+Manu Sporny:  Recently and you linked to this on the mailing list 
+  Greg um 16 world renowned cryptographers really well known 
+  cryptographers in the in the European Union uh came out and said 
+  that the type of cryptography that's being used for the European 
+  digital identity wallets is is not not good enough right they're 
+  basically saying SD jot has some serious flaws when it comes to 
+  unlink specifically and that they're suggesting they used to BBS 
+  did they make any recommendations around any of these optional 
+  Technologies or was it like a more General.
+Manu Sporny:  You should be using BBS without saying you know 
+  Anonymous holder binding or any of that other.
+GregB: Oh no they they they they're well aware of the anonymous 
+  Soldier binding and they thought that was.
+GregB: Important and pseudonyms they did not specifically mention 
+  the 2 flavors of pseudonyms they said BBS should be used for 
+  pseudonyms but not even the the European Union digital wallet got 
+  into quite understood the subtlety of the 2 different cases where 
+  you know sometimes we do want the issuer to be able to track 
+  things for good reason you know Controlled Substances use 
+  tracking um.
+GregB: So yes those cryptographers are were aware of the blind 
+  signatures and their use and this nice feature of this Anonymous 
+  holder binding which helps lock a credential down to somebody 
+  better.
+Harrison_Tang: 1 more question from the audience.
+Patrick St-Louis:  Yeah sure might as well throw a little 
+  question so uh 1 technology I've been working with for quite some 
+  time is the announcements signature which has similar features 
+  you know like on linkability holder binding and so on um maybe my 
+  question would uh do you have like a concrete bullet point of 
+  things that are quite different uh between these 2 models like 
+  what.
+<dave_longley> "holder binding" means "binding to a secret only 
+  the holder knows (and is expected to keep secret)"
+Patrick St-Louis:  There's a lot of improvements to be made so 
+  what like in a simple concrete way what would these improvements 
+  be and my second question is how uh the work for the he did 
+  document I'm sorry I came a bit late maybe I missed it but was 
+  does the issue or publishes publicly versus what does the holder 
+  kind of present to the verifier.
+<dave_longley> (for clarity -- as this terminology has been 
+  confusing sometimes)
+GregB: Short answer is that EBS are signatures in its 
+  capabilities its kind of looked at as a a more modern version 
+  than CL signatures that's why the a non-red or look folks are 
+  looking at 2.0 to use BBS and that was mentioned in the uh that 
+  cryptographic review so.
+GregB: Both good uh there's also something called PS signatures 
+  that don't for um um.
+GregB: Select a disclosure but they offer uh unlink so there's 
+  some good stuff out there now um.
+GregB: Case of pseudonyms.
+GregB: There was the issuer known prover ID case that in that 
+  case the issuer should not.
+GregB: Publish that proved her ID value they should keep that 
+  secret otherwise all the verifiers can correlate and know what 
+  the holder is doing that should only be shared between the issuer 
+  and the holder.
+Patrick St-Louis:  But is there anything that the issuer needs to 
+  publish.
+GregB: In public uh know the thing that needs to be publicly done 
+  is a verifier needs some unique public information to form the 
+  verifier ID.
+GregB: That's the thing that needs to be published and that and 
+  that's why I cited used the URL like you need to my little domain 
+  that I own as that information okay and BBS has nice things to 
+  Hash a value like that into a curved point so we can make all the 
+  math work.
+GregB: Can start with something.
+GregB:  like that.
+GregB: Um and turned it into a number that we can use so yes the 
+  so we're getting a perverse pseudonym or perverse ID and it's 
+  composed of 2 pieces a hidden piece from the that the holder 
+  knows and a public piece that's unique to the verifier.
+<dave_longley> technically, a Web origin, a DID, any 
+  identifier/string could be turned into a Verifier ID (vid)
+GregB: And as you and as you can see it'd be nice to have some 
+  protocols to go around this and procedures but that's out of 
+  scope right now so we're baking things into the VCS to be able to 
+  do all this.
+Patrick St-Louis:  Interesting thank you.
+GregB: For for some of that deeper stuff I recommend the 
+  cryptographic that recent cryptographers review because it is 
+  discrete log based its elliptic curve it's got the same issues as 
+  eddsa and ecdsa right.
+GregB: There are there is work on post-quantum Style.
+GregB: Signatures that are privacy preserving just in the same uh 
+  vein uh 1 of the authors of a privacy preserving um.
+GregB: Sanders PS signatures actually has been working with a 
+  group of folks on a post-quantum lattice based uh privacy 
+  preserving signature in the same vein so people know that they 
+  want these features um now as far as Hardware support.
+GregB: A lot of the stuff came from um some initial attestation 
+  Anonymous attestation work for TPMS um and so.
+GregB: That was mentioned in that cryptographic review uh of the 
+  digital wallet and so.
+GregB: I am not actually sure on that I do know that.
+GregB: You just saw.
+GregB: Best running in a web browser uh I have run it on a cheap 
+  in a web browser on a cheap.
+GregB: Uh cell phone that I use for wind serving that's 
+  waterproof but low $160 cell phone and that's running in 
+  JavaScript not even C or rust so these things are definitely 
+  implementable and can run um.
+GregB: Exact nature of the hardware support and TPM I don't know.
+Harrison_Tang: Alright well thanks Greg we're 10 minutes over 
+  time but no no actually I do want to probably work with you to 
+  schedule a follow-up session in september or October I personally 
+  have a lot of follow up a lot of questions about this as well 
+  this is very very presentation very very.
+GregB: The more the more questions the more I can hone it you 
+  know because sometimes I start these things with uh it's a 
+  tutorial to myself to remind me how this stuff works.
+Markus Sabadello: :Clap:
+Harrison_Tang: Oh no I I I love it like I I think demos uh is way 
+  better than slides in regards to teaching us how how these things 
+  work so this is this is amazing thanks Greg thanks a lot.
+GregB: Okay thanks a bunch guys.
+Harrison_Tang: All right so I think this concludes uh this week's 
+  uh ccg meeting I'll work with Greg uh to figure out uh how do we 
+  schedule a follow-up session so if people have any more questions 
+  in regards to these interesting topics we can continue the 
+  conversation.
+Harrison_Tang: Thanks a lot.
