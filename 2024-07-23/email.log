@@ -1,0 +1,135 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-07-23/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-07-23/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-07-23.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-07-23
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jul&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Mike Prorock, Kimberly Linson, Harrison Tang
+Scribe:
+  Our Robot Overlords
+Present:
+  Pascal Knoth, Will Abramson, Harrison Tang, Hiroyuki Sano, 
+  Stephen Curran, Gregory Natran, Sam Smith, Rashmi Siravara, 
+  Benjamin Young, Jennie M, Erica Connell, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), seth, Daniel Buchner, Vanessa, PL/T3, 
+  julien fraichot, Kimberly Linson, Markus Sabadello, Leo, Line 
+  Kofoed, Joe Andrieu, Alex H, Jeff O - HumanOS, Patrick St-Louis, 
+  andor kesselman, Lucy Yang, Nis Jespersen , Manu Sporny, Stephan 
+  Baur
+
+Our Robot Overlords are scribing.
+Erica Connell:  Hey hey Will and everybody um just a friendly 
+  reminder that rebooting the web of trusts will be convening in 
+  October the 7th through 11th in uh Ventura California people have 
+  started submitting papers and um that is a great way to get count 
+  on your um tickets uh early bird uh ticket deadlines are coming 
+  up at the beginning of uh August I don't have the counter in 
+  front of me so I don't remember what exactly they are I think the 
+  9th is uh is the ticket deadline it might be the week before for 
+  papers on the second uh I'll put a link in the chat for details 
+  and a link to the event right all the details are there that's it 
+  thanks.
+Erica Connell: https://rwot13.eventbrite.com/
+Patrick St-Louis:  I will a long time will chat um yeah so just 
+  um.
+Patrick St-Louis:  Since you you invited to people to share any 
+  kind of work 1 thing that I've been working for quite a 
+  significant amount of time and it's you know getting closer to 
+  tuition it was to um maintain the hyperledger Aries Cloud agent 
+  python uh along with verifiable credential 2.0 uh and I'm 
+  currently looking at data Integrity um crypto Suites and test 
+  Suites and we can now have the uh agent directly interacting with 
+  the test Suites uh which is great to demonstrate interoperability 
+  and and show support to the specification so just wanted to share 
+  this.
+Stephen Curran:  All right um.
+Stephen Curran:  I am going to talk today about whoops that's not 
+  good I gotta share a screen um hang on 1 second.
+Stephen Curran:  Just go screen.
+Stephen Curran:  All right people can see my screen.
+Stephen Curran:  Okay good all right so um this is a presentation 
+  um originally scheduled for way back in May it seems years ago um 
+  but kept get moving around so finally here on and ready to talk 
+  about hyperledger non-red in vcd format yet we all just get along 
+  what just happened.
+Stephen Curran:  Maybe I shouldn't have shared my screen.
+Stephen Curran:  I'm not quite sure why that just happened but 
+  let's go there there we go.
+Stephen Curran:  Agenda about uh hyperledger and on creds and 
+  then the project we've implemented recently on putting it into 
+  w3c bcdm format so give some background on that and then the main 
+  part of what I wanted to mention was that learnings from that 
+  from taking a um a uh credential format and converting it to bcdm 
+  and what we learned and then some follow-up just some brief 
+  wrap-ups on how the work got done and um what's next so um for 
+  those not aware I think many of you are aware of what hyperledger 
+  and owns is um zero knowledge proof based verifiable credentials 
+  specification and implementation so an encore a hyperledger or an 
+  ENC um spun out of the indie project so um CL signatures was 
+  created around 2000 to 2004 and then on creds B1 is based on CL 
+  signatures um.
+Stephen Curran:  It is the second generation of Cl signatures 
+  implementations um and production implementations so IBM's admx 
+  was there um.
+Stephen Curran:  Hyperledger uh or the the implementation of an 
+  entrance was part of hyperledger Indie in 2016 and that's where 
+  all of this work um V1 of a non-red was established and has has 
+  is essentially unchanged since then and then it became a separate 
+  project at hyperledger in 2022 and the idea of separating it out 
+  was to disentangle it from from um.
+Stephen Curran:  Um make it uh vdr agnostic Define a 
+  specification since no specification had been previously written 
+  um and that specification locks in what V1 of an on creds is.
+Stephen Curran:  It also the project is a place to work on V2 of 
+  an on creds and that's based on newer newer being a couple of 
+  years after CL signatures came out so still in the.
+Stephen Curran:  Um early 2000s cryptography notably BBS 
+  signatures and and later the PS signature so uh I'll talk a bit 
+  about B2 at the end but just um.
+Stephen Curran:  Uh briefly touching on that so A non-red V1 is 
+  not a signature scheme per se it's an opinionated way to use CL 
+  signatures um and and that opinionated way is to enable 
+  interoperability and that's where it's been pretty successful in 
+  that there are many implementations um around that use an on 
+  creds um and and that allow you know a pile of wallets that use 
+  it a pile of um issuers and verifiers that use it and and pretty 
+  good interoperability across them.
+Stephen Curran:  Um the spec the specification itself covers um 
+  the data objects um from the issuer.
+Stephen Curran:  Um needed by the holder in the verifier so um 
+  I'll talk about that in in the next but there's a bunch of 
+  objects there there's the actual verifiable credential format and 
+  the presentation format so the data models and objects and really 
+  that's what we're talking about in the in in aligning that with 
+  the vcd.
+Stephen Curran:   And then.
+Stephen Curran:  Also is the interactions and data models between 
+  the issuer and the holder and the holder and the verifier so when 
+  a issuer issues a credential to a holder they have to do a 
+  sequence of an offer a request that an issue and there's uh data 
+  uh data models between each of those and then a request present 
+  and verify so it doesn't talk about the protocols between how 
+  those those things flow back and forth but rather here's what the 
+  data is expect what the what the issue is expected to produce and 
+  what the holder is going to consume in an offer and and from the 
+  request from the issuer or from the holder to the issuer the 
+  requests that finally actual issue of the credential.
+Patrick St-Louis: 
+  https://w3c-ccg.github.io/citizenship-vocab/#example-minimal-permanent-resident-card-vc
+<manu_sporny> Bitstring Status List
+<line_kofoed> :clap:
