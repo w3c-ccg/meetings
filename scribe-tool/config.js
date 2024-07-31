@@ -5,7 +5,7 @@ var config = [
   {
     "id": "weekly",
     "name": "W3C CCG Weekly Teleconference",
-    "chairs": ["Mike Prorock", "Kimberly Linson", "Harrison Tang"]
+    "chairs": ["Harrison Tang", "Kimberly Linson", "Will Abramson"]
   },
   {
     "id": "vcapi",
