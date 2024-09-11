@@ -1,0 +1,145 @@
+Thanks to Our Robot Overlords and Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-09-10/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-09-10/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-09-10.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-09-10
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Sep&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords and Our Robot Overlords and Our Robot Overlords
+Present:
+  Harrison Tang, Will Abramson, Hiroyuki Sano, Andrew Trask, Erica 
+  Connell, Benjamin Young, Kimberly Linson, Vanessa, Joe Andrieu, 
+  Manu Sporny, James Chartrand, Dmitri Zagidulin, Leo, Patrick 
+  St-Louis, Nis Jespersen , Lucy Yang, Alex H, PL, Kaliya Young, 
+  Jeff O - HumanOS, Kerri Lemoie, Eric, bengo, Jennie M, TallTed // 
+  Ted Thibodeau (he/him) (OpenLinkSw.com)
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Give me a second.
+Our Robot Overlords are scribing.
+Manu Sporny:  Yeah I can just do 1 I haven't done 1 in in years 
+  um I my name's Moni I'm 1 of the uh lead editors and architects 
+  of a number of global standards around digital credentials uh 
+  notably privacy preserving credentials um uh I've also worked 
+  with um I think some of your colleagues uh at uh and uh openai 
+  and a number of other um kind of AI companies on this new proof 
+  of personhood.
+Manu Sporny:  Paper yeah the the personhood credentials paper um 
+  and we're trying to figure out a way of uh translating the needs 
+  in that paper to uh Global standards here um so we kind of 
+  incubate those things in this group and then we take it through 
+  the global standards track at the internet engineering task force 
+  or the worldwide Web Consortium so I'm 1 of many people in this 
+  community that tries to make the web uh a better more privacy 
+  preserving uh thing for uh humanity and so really appreciate the 
+  work that uh you're doing um in that same vein that's it.
+Manu Sporny: https://github.com/w3c/tpac2024-breakouts/issues/37
+Manu Sporny:  Sorry just just a few um so uh the w3c uh in-person 
+  technical plenary is coming up um at the end of this month uh so 
+  that's going to be several hundred of us uh in Anaheim California 
+  um 1 of the breakout sessions is on and I'll put a link to this 
+  in the chat Channel um on uh the future future standards and 
+  Innovations for w3c verifiable credentials um we are going to be 
+  covering a lot of stuff that's an incubation in this uh group uh 
+  so render method confidence method unlabel ecdsa cryptography 
+  Suites uh verifiable credential barcodes verifiable credential 
+  API uh transmitting verifiable credentials over Wireless near 
+  field communication peer-to-peer and then a variety of vocabulary 
+  work so that link takes you to the breakout session um I believe 
+  the I I don't know if this is true I think the breakout sessions 
+  are.
+Manu Sporny:   Open to.
+Manu Sporny:  And you can attend remotely um but I'm not not 
+  positive about that um so just a heads up there uh the other note 
+  is that uh we are continuing to finalize the global standards 
+  track stuff for verifiable credentials data Integrity uh in the 
+  verified credential working group uh we are continuing to pick up 
+  uh implementers I think we have.
+Manu Sporny:  11 To 15 now which is great um uh in just a a call 
+  out if you are working on an implementation for any of the global 
+  standards uh please let us know so we can count you in the number 
+  of implementations uh that's it from me.
+<manu_sporny> No, please give an intro
+<patrick_st.> an introduction would be really useful for me
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> Hmm. 
+  Transcriber doesn't appear to be hearing Andrew. Does that mean 
+  the recording will also lack his voice?
+<manu_sporny> recording will have his voice.
+<harrison_tang> yeah, transcriber doesn't work for non-US inputs, 
+  but the recording (video and audio) will work.
+Our Robot Overlords are scribing.
+Patrick St-Louis:  Was that just me no okay.
+Manu Sporny:  No a bunch of us got kicked off.
+Patrick St-Louis:  I was getting pretty juicy.
+<bengo> 😅
+<manu_sporny> /me calls his lawyer. :P
+Harrison_Tang: Yes uh well Andrew uh thank you for a great great 
+  presentation I really enjoy it um now in the last uh example you 
+  gave is it a home more morphic encryption where you you just like 
+  encrypt data and do calculations on it and uh if it's not how is 
+  homomorphic encryption calculations different from multi-party 
+  computation.
+<bengo> 🚀 https://docs.rs/risc0-zkvm/latest/risc0_zkvm/
+Harrison_Tang: Got it sorry a quick follow-up question uh like 
+  earlier so you mentioned about performance trade-offs like what 
+  is the uh practical applications uh because like we we actually 
+  try it like 4 years ago on the homomorphic uh encryption it was 
+  like really really slow so basically practically speaking is not 
+  very usable so like how how is how has that advanced like uh in 
+  the recent times in terms of performance.
+Manu Sporny:  Uh thanks uh Andrew that that was fantastic a great 
+  presentation thank you um uh 1 of the things I'm wondering is 
+  about you know what what can we be working on that's going to 
+  help um you know your initiatives I think what's what's missing 
+  right now is kind of the glue that binds our community together 
+  with the um kind of the the the AI community so you know we've 
+  got tools and we are actively working on zero knowledge proof uh 
+  mechanisms Advanced ones Beyond just like you know BBS and things 
+  like that so cryptographic circuits and um zkm and snarks and 
+  snarks and you know all all that kind of stuff um but we largely 
+  think in kind of you know single credentials like a driver's 
+  license or a passport or a or a health checkup right I mean you 
+  you can have you know education certificates that kind of thing 
+  that are held in people's you know private data stores or digital 
+  wallets um and and so and there and everything's digitally signed 
+  by issuer so this is you know.
+Manu Sporny:   As as you.
+Manu Sporny:  You have said hi.
+Manu Sporny:  Trusted data that is sitting with an individual um 
+  and and we have ways of doing a zero knowledge proof on that 
+  information that we're holding and then presenting it to in 
+  general to the public or to a to a specific thing um but but I 
+  think the thing that's missing is we we don't understand um what 
+  other things we should be working on that would be high value to 
+  your community right so so like you know what are the you know we 
+  we've got we've got a set of Technologies and we could run down 
+  them and say this is what they do and here's how we think it can 
+  help you but we don't have someone from your side going yeah but 
+  what we really need is X.
+<wendy_seltzer_(she/her)> Why HTTPS?
+Manu Sporny:  Okay that's very helpful and and how do we keep in 
+  touch with you um that's the that's I think the key thing is that 
+  this is this needs to be an ongoing conversation so we need to 
+  figure out how we keep the conversation going Beyond this um this 
+  meeting.
+<wendy_seltzer_(she/her)> (would love to follow up, but need to 
+  leave now)
+<andrew_trask> slack.openmined.org
+Manu Sporny:  Got it thank.
+<harrison_tang> thank you, Andrew!
