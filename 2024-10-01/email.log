@@ -1,0 +1,705 @@
+Thanks to Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-10-01/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-10-01/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-10-01.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-10-01
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Oct&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords and Our Robot Overlords
+Present:
+  Harrison Tang, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Hiroyuki Sano, Japan, Nis Jespersen , David 
+  Chadwick, Rashmi Siravara, Giuseppe Tropea, Erica Connell, Jennie 
+  M, Mike Xu, Alex H, Benjamin Young, Jeff O - HumanOS
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Hi everyone uh welcome back uh to this week's w3c 
+  shii meeting so uh we uh they didn't have 1 yet uh last week 
+  because of the peak uh but I will resume our regular uh content 
+  program um starting this week so this week we're very excited to 
+  have your saifi and Martin uh present on a NGS uh signing engine 
+  s i l d and also authentication of NGS um today and uh.
+Harrison_Tang: And uh before before that just want to quickly go 
+  through some administrative stuff uh first of all just a quick 
+  reminder on the code of ethics and professional conduct I just 
+  want to make sure that we hold a respectful and constructive 
+  conversations here we've been doing that but that's continued to 
+  do that.
+Harrison_Tang: A quick note on the intellectual property anyone 
+  can participate in these calls however all substantial 
+  contributions to any ccg work items must be member of the ccg 
+  with full IPR agreement signed so if you have any questions in 
+  regards to the agreement or the w3c account uh feel free to uh 
+  reach out to any of the ccg cultures.
+Harrison_Tang: A quick call note these are meetings uh are 
+  automatically recorded and transcribed and we will publish the 
+  meeting minutes audio recordings and video recordings in the next 
+  day or 2.
+Harrison_Tang: We use a GC chat to cue the speaker so you can 
+  type in Q Plus to add yourself to the queue or cue minus and I 
+  will be moderating the Q and discussions.
+Harrison_Tang: All right just want to take a quick moment moment 
+  for the introductions and reintroductions so if you're new to the 
+  community or you haven't been active and want to re-engage uh 
+  feel free to just unmute and introduce yourself.
+Harrison_Tang: Actually see mostly familiar faces so move on to 
+  the next agenda um announcements and reminders so any 
+  announcements and or reminders.
+Harrison_Tang: I know that some of us were in TPAC last week so 
+  any announcements from that.
+Harrison_Tang: I actually joined 1 of The Sessions but uh there's 
+  no particular announcement uh relevant to ccg so.
+Harrison_Tang: All right what about updates to work items.
+Harrison_Tang: So we'll actually have different uh.
+Harrison_Tang: On a different.
+Harrison_Tang: Work items to actually provide updates such as a 
+  VC edu uh on December 3rd.
+Harrison_Tang: And then the.
+Harrison_Tang: I will hold another quarter for review and work 
+  item updates on November 19th so just.
+Harrison_Tang: I'll give you a heads up for what's coming.
+Harrison_Tang: All right uh so last calls for introductions 
+  reintroductions announcements reminders and or work items.
+Harrison_Tang: All right that's quick um so just uh want to get 
+  to a main agenda so uh this week uh again very excited to have 
+  Jose and Martin here uh to present on the NGS ild uh signing NGS 
+  ild and authentication in NGS silv by the way uh NGS I stands for 
+  New Generation servers interface I think um but they can go a 
+  little bit deeper into uh NGS NGS I and also how it actually uh 
+  intersects with identity problems that uh ccg uh really uh cares 
+  about so.
+Harrison_Tang:  I think.
+Harrison_Tang: Yeah without further ado.
+Martin_Bauer_(ETSI_ISG_CIM): I I'll give you a bit of an 
+  introduction um I think when when we are at the right place so.
+Harrison_Tang: Great great all right so without further Ado uh I 
+  think the floor is yours uh you say pay and Martin.
+Martin_Bauer_(ETSI_ISG_CIM): Okay should I share try to share 
+  first um okay.
+Martin_Bauer_(ETSI_ISG_CIM): Okay have to the right screen.
+Martin_Bauer_(ETSI_ISG_CIM): Okay it's not quite yet but almost 
+  there.
+Martin_Bauer_(ETSI_ISG_CIM): You see my my screen.
+Martin_Bauer_(ETSI_ISG_CIM): Jepa and me we're both um Vice 
+  chairs of etsy is G Sim.
+Martin_Bauer_(ETSI_ISG_CIM): I'm a principal standardization 
+  engineer at um NEC um NC Laboratories from Europe we are in 
+  Heidelberg in Germany and we are the European lab of NEC the 
+  worldwide active um japan-based um.
+Martin_Bauer_(ETSI_ISG_CIM): Um what I will do is try to give you 
+  a bit of an introduction to NG's LD so you have the general scope 
+  and then um just separate will focus on the core topics that we 
+  wanted to present and discuss on with you regarding signing and 
+  um Authentication.
+Martin_Bauer_(ETSI_ISG_CIM): So um first um to start with um who 
+  are we and and what do we do so we work in Etsy for that 
+  standardization so that's the European telecommunications 
+  standards Institute.
+Martin_Bauer_(ETSI_ISG_CIM): It's the producers globally 
+  applicable standards for information and Communications 
+  Technologies it's 1 of the officially recognized European 
+  standards organizations the others being sent and selac and we 
+  are an industry specification group the special thing about isgs 
+  is that they also allow the participation of non um Etsy members.
+Martin_Bauer_(ETSI_ISG_CIM): From isg SIM where Sim stands for 
+  context information management was established in 2017.
+Martin_Bauer_(ETSI_ISG_CIM):  it's always.
+Martin_Bauer_(ETSI_ISG_CIM): Isgs are always on for 2 years um so 
+  the current extension is until 2025.
+Martin_Bauer_(ETSI_ISG_CIM): Ask for another extension I'm quite 
+  soon have currently about 30 support organization and um our main 
+  um activity is the evolution of the NGS I contact interfaces to 
+  NGS and that's also a bit of the background and where this some 
+  strange acronym comes from um the story didn't start in Etsy but 
+  in MMA in before 2010 where omma was defining a sweet um of um 
+  different interfaces and um 2 of these um were the context um API 
+  then called ngi 9 and 10 so they were numbered it's not a version 
+  number it's just a number of that interface with respect to that 
+  um sweet then um this was taken up by Fireware time was a large 
+  project um in Europe On future internet and that um further 
+  developed on that um and um defined bindings um which ended up 
+  being um ngci version 1 and 2 and um Fireware became from.
+Martin_Bauer_(ETSI_ISG_CIM):  a project um.
+Martin_Bauer_(ETSI_ISG_CIM): An open source Community um and um 
+  then it was decided okay as this is the key interface really um 
+  this should go back um into standardization um and um that's what 
+  what we're doing now in Etsy um what's called um NG's ild.
+Martin_Bauer_(ETSI_ISG_CIM): So high level goals um it was the 
+  evolution of these um um Fireware in ghee context interfaces and 
+  we wanted to put the NG's LD information model on a solid 
+  conceptual grounding so wanted to apply the property graph model 
+  enable semantic concept definitions enable linking to existing 
+  information so I would call linked data and the idea of the API 
+  is to give applications relatively high level of abstraction 
+  enable them to specify what information um they require based on 
+  this um underlying information model including Geographic scoping 
+  and the temporal um API and also to support Central as well as 
+  distributed in Federated um architecture where information can be 
+  arbitrarily distributed and we'll see why that's important um 
+  also for our discussion later on.
+Martin_Bauer_(ETSI_ISG_CIM): So let's um start with the NGS 
+  information model um basically the Assumption of the world of NGS 
+  LDS that the world consists of entities entities um have a type 
+  and an identifier so you see here um car on the shop building 
+  person um and um a unique identifier in each cases all of these 
+  entities can have properties some like the speed um location or 
+  address.
+Martin_Bauer_(ETSI_ISG_CIM): Relationships basically so the 
+  person that owns the shop um for example on the camera that's 
+  attached to the pole and and and so on So based on having these 
+  um relationships some explicitly um we we in the end um have have 
+  a graph um that's um the underlying um property graph if we talk 
+  about properties in relationships together we also call that 
+  attribute.
+Martin_Bauer_(ETSI_ISG_CIM): And um not all things um um are 
+  suitable basically to be stored in in in this way and um things 
+  so if you think of um camera video stream basically um or maybe a 
+  complex 3D model of a building um this graph isn't um suitable 
+  but what you can do is basically link and also provide the right 
+  meta information for applications to find this maybe find this 
+  camera and then um there would be able to.
+Martin_Bauer_(ETSI_ISG_CIM): That um stream basically so you have 
+  with this graph also kind of an index structure can follow on 
+  relationship um and retrieve um um graph elements um from that.
+Martin_Bauer_(ETSI_ISG_CIM): Um the LD in NG's LD comes from Json 
+  LD because we decided um to use um not plain Json which was used 
+  before but um Json LD and um 1 thing you can do is basically um 
+  you you have um your concept um you can in your instance um use 
+  um nice um short names that are human readable and um in short 
+  but um with a predecessor you had basically the problem okay you 
+  use these short names but um then maybe somebody else used the 
+  same ones um but in a different way um so they were not unique um 
+  so what um um um Json LD um does is um it says um it defines some 
+  these URI and it defines the mapping so you define your mapping 
+  you can then still use um your short names um in your instances 
+  but um you also give the mapping basically um and then um it 
+  means in my document um um it means um this um unique um Yuri.
+Martin_Bauer_(ETSI_ISG_CIM): So I have a bit of The Best of Both 
+  Worlds um I can still use in my document um this um short names 
+  and it's um it's um relatively easy but um I have still unique um 
+  your eyes behind it.
+Martin_Bauer_(ETSI_ISG_CIM): Let's look at a typical um 
+  representation of NGS LD so here I have an entity which is a 
+  vehicle has an ID Json LD that needs to be a URI it has a 
+  property the brand name um with the value Mercedes which happened 
+  to be in an accident um so it has a relationship to an object 
+  which is that lamp post um and um that was observed at a certain 
+  time and provided so you can um put um meta information um in 
+  there and what you need to attach um is this um at context so 
+  that can either be directly attached to to the data or um you can 
+  in a header put um the the URL basically where you can download 
+  from that um context so for communication.
+Martin_Bauer_(ETSI_ISG_CIM): And um what's important is basically 
+  um you have always um entered we are always talking about 
+  entities.
+Martin_Bauer_(ETSI_ISG_CIM): And in the extreme case um you you 
+  can handle these um attributes um for these um things separately 
+  so for the same vehicle you may have in 1 place um stored the ID 
+  type in brand name and somewhere else on the ID um type and in 
+  accident and when retrieving um them you want to aggregate um 
+  this so that may be relevant um later on in the discussion.
+Martin_Bauer_(ETSI_ISG_CIM): I will not go very deeply um into 
+  the um API discussion but the kind of things you can do is um if 
+  you know um your entity you can ask a question like what is the 
+  location of Sam Sam being my entity location being okay go 
+  property um what do I need to know I need to know basically the 
+  base URL I need to know the entity ID and from the data model I 
+  need to know okay there's a location on property.
+Martin_Bauer_(ETSI_ISG_CIM): Probably um security credentials but 
+  that's orthogonal to the core API specification I don't need to 
+  know more complex some structures and so on where information may 
+  be stored.
+Martin_Bauer_(ETSI_ISG_CIM): May be Mr Geographic query so I can 
+  um ask on which costs are within a geographic um area so here I 
+  need to know the type that the type car exists um and um also how 
+  to specify that geographic location I have a place um to go and 
+  ask that and as an application that's um I need to know um to 
+  retrieve this um information.
+Martin_Bauer_(ETSI_ISG_CIM): From an architecture perspective um 
+  this um would be the kind of um Central um deployment um we often 
+  have right now um is you have a central broker that stores all 
+  the information you have context produces that great update 
+  delete the information here and you have context consumers that 
+  query subscripts query all that subscribe and get notifications 
+  when there are changes so we can also do temporal um based so get 
+  notification every um 10 minutes or something like that.
+Martin_Bauer_(ETSI_ISG_CIM): Um but we may also have um 
+  distributed um architectures where information is stored in 
+  context um sources so they also um implement the query or And 
+  subscribe notify interface and so the broker that the broker 
+  knows um how to find that information they can register what type 
+  of information they have um that can be um specific I have for 
+  this entity um these attributes or it can be a type based 
+  registration I have cards maybe in this kind of area so when I 
+  get a request the broker checks okay um which sources to have 
+  that information maybe it also um internally has um its own 
+  information it will go fetch these things aggregate these things 
+  and then return them um to the context um consumer.
+Martin_Bauer_(ETSI_ISG_CIM): So um in context sources um as they 
+  have the same interface can be for Brokers again so on that basis 
+  um you can build a hierarchy of of of brokers.
+Martin_Bauer_(ETSI_ISG_CIM): Or even a different kind of um 
+  things it doesn't have to be an explicit hierarchy.
+Martin_Bauer_(ETSI_ISG_CIM): Okay so that was basically the 
+  general introductory part I hope I didn't take too much time for 
+  it are there any immediate clarification questions.
+Harrison_Tang: No I think we're good.
+Martin_Bauer_(ETSI_ISG_CIM): Okay then I would hand over to um to 
+  jeppe and do you want to share yourself I assume.
+Giuseppe_Tropea: Thank you Martin yes let's see what happens so I 
+  click here.
+Martin_Bauer_(ETSI_ISG_CIM): Okay I stopped sharing.
+Giuseppe_Tropea: If I click here on the screen.
+Giuseppe_Tropea: At some point.
+Giuseppe_Tropea: Do you do you see my screen or do you not see 
+  screen.
+Giuseppe_Tropea: Start stop sharing.
+Harrison_Tang: No not yet.
+Giuseppe_Tropea: Bo have no clue.
+Harrison_Tang: It's the third button.
+Harrison_Tang: If you're using a Mac you might need to change the 
+  permissions.
+Giuseppe_Tropea: Uh because this is the gcd okay but you should 
+  ask okay so probably is the silently failing on me yeah you're 
+  right you usually usually yes I need to change the uh Martin 
+  would you be so kind to to continue.
+Giuseppe_Tropea: Ing and then it's easier probably thanks a lot.
+Martin_Bauer_(ETSI_ISG_CIM): I I tried to continue sharing then 
+  yes okay.
+Our Robot Overlords are scribing.
+Giuseppe_Tropea: Uh some years I guess and uh at some point we um 
+  we created uh what's in Etsy parlance is a specialist task force 
+  for implementing data Integrity in the standard so we we came up 
+  with a with a solution um okay of course starting from uh 1 uh 
+  main crucial assumption just as Martin has a highlighted um are 
+  information creators are what we call the context providers and 
+  um and it is pass.
+Giuseppe_Tropea: In possibly quite a complex network of Brokers 
+  before being related to clients so basically of course the 
+  hypothesis here that we won't end to end uh Integrity uh the only 
+  uh and the only uh person the only um thing that uh is trusted by 
+  clients of course is the context provider we we cannot assume 
+  that clients trust the intermediate brokers.
+Giuseppe_Tropea: Okay um next slide.
+Giuseppe_Tropea: Uh Martin I think starting from these 
+  assumptions we came with the list of basically 4 main 
+  requirements.
+Giuseppe_Tropea: Um this 1 is fairly obvious um the second 1 uh 
+  verification of Integrity shall be independent of syntax syntax 
+  reordering that may occur when as I said sterilizing entities 
+  that's passed among among peers um 1 of course 1 1 attribute may 
+  be serialized by 1 Brokerage in the client um also we have 
+  several NGS we have several different output formats so um once 
+  we attach uh verification information of of course we share that 
+  this is stripped out when it passes through through the network.
+Giuseppe_Tropea: Also as I said of course clients would not want 
+  to trust intermediate context progress so it's fairly obvious set 
+  set of requirements.
+Giuseppe_Tropea: Next slide so the solution we came up with uh 
+  which is implemented in in this specification there GS Sim uh 
+  019.
+Giuseppe_Tropea: Um realize on mostly on the data Integrity work 
+  uh that you guys of course are very familiar with um third 
+  reference is uh exactly the API specification that Martin was 
+  mentioning beforehand.
+Giuseppe_Tropea: Uh just uh a quick note so this GS uh Sim 19 is 
+  as first release but an update is is in preparation.
+Giuseppe_Tropea: Mainly uh to align uh with the updated data 
+  Integrity versions that in the meanwhile uh have published.
+Giuseppe_Tropea: Um next slide.
+Giuseppe_Tropea: Okay so let me introduce 2 key terms uh the home 
+  entity in the sealed attribute and and the derivation process 
+  that takes us from the atomic entity to the sealed attribute um 
+  as you have seen uh an entity comprises generally an ID and an 
+  array of types at top level and then a bunch of attributes and or 
+  relationships.
+Giuseppe_Tropea: An atomic entity um an entity that comprises 
+  only 1 attribute and I'll come to this in a second um then from 
+  the atomic entity we derive a sealed attribute which is data 
+  attribute together with with a complaining cryptographic proof 
+  and the process to transform 1 into the other uh next slide so 
+  concerning the.
+Giuseppe_Tropea: Atomic entity um as I said it must be uh 
+  containing just 1 attribute um access slide we we we try to 
+  clarify.
+Giuseppe_Tropea: You can jump to the next 1 Martin.
+Martin_Bauer_(ETSI_ISG_CIM): Oh okay yeah.
+Giuseppe_Tropea: Yes so as I said um multiple entity aggregation 
+  steps can uh can happen because if you are the client and you ask 
+  for I don't know car 1 2 3 then maybe broker a uh contained 
+  information about its color and broke a big containing 
+  information about it I don't know injection date so uh basically 
+  when all this info come to the client they are or or better say 
+  to the aggregation broker or distribution broker I'll call it um 
+  this is aggregated into 1 entity uh of course also entities 
+  attributes can be filtered out because because of querying or.
+Giuseppe_Tropea: Because uh the entities uh travel throughout the 
+  chain of Brokers so the point is that we cannot take the whole uh 
+  NGS document representing the entity with all of its attributes 
+  and and sign all of them to get into 1 uh big sealed package this 
+  is why we have to um let's say uh sign them 1 by 1 in.
+Giuseppe_Tropea: In in what we call the atomic entities um okay 
+  let's go to the other 1.
+Giuseppe_Tropea: So the important Point here to understand is 
+  though that um when we sign for instance the color attribute 
+  being it red and we want this to be tamper evident um we also 
+  need to repackage within the color attribute also the entity ID 
+  and and the types uh that this color was referred to so basically 
+  what we do in in when we move from the atomic entity to the seal 
+  attribute is that we move this information within the proof we 
+  bound it together with the proof so we sign the color red 
+  together with information that colors red in entity I don't know 
+  car 1 2 3 that was of type car so this is basically our.
+Giuseppe_Tropea: Signed package what we call the sealed the 
+  sealed attribute uh so if we jump to to the next slide it's it's 
+  pretty straightforward the derivation process it it goes like 
+  that we have we have an entity with several attributes so out of 
+  that we create um a bunch of atomic entities 1 for each attribute 
+  that we want to sign uh then we created the NGS ild proof uh 
+  struct and nested inside each sealed attribute um.
+Giuseppe_Tropea: Taking into account as I just said that the ID 
+  and the types need to go together with the attribute.
+Giuseppe_Tropea: And then of course the value is exactly and this 
+  is important part and this is why I said we uh point to the uh 
+  Integrity w3c Integrity standard is it is exactly uh the proof 
+  um.
+Giuseppe_Tropea: The proof field when uh when it when the when 
+  the proof is is created.
+Giuseppe_Tropea: We derive uh the sealed attribute at this point 
+  Martin if we skip to the next slide it's the the of course the 
+  Reconstruction process is when when things get to the client then 
+  it will be more clear in in the next slide.
+Giuseppe_Tropea: Just straight jump the other 1 that's your 
+  typical workflow so uh context provider um generating signs uh 1 
+  Atomic entity for each attribute each Atomic entity is 
+  transformed into a sealed attribute through the reaction process 
+  we've seen um then uh of course the provider.
+Giuseppe_Tropea: Uh inject the seal attributes at this point this 
+  entity can circulate a network and can undergo any number of 
+  cycles of of you know um.
+Giuseppe_Tropea: Signing and rearranging uh attributes um 
+  throughout uh the path until it reaches the clients when it 
+  reaches the client it's straight forward what the client needs to 
+  do is delete the reverse.
+Giuseppe_Tropea: And then uh validating each Atomic entity the 
+  additional step is of course that at that point when I when I 
+  validate the proof what I have to also check is that basically 
+  the entity ID that was a campaigning the proof is matches the 1 
+  uh of the entity that I that I received.
+Giuseppe_Tropea: So this do we have another slide Martin what 
+  what was next let me yes okay so when we started thinking about 
+  so I think it it's pretty it's it's pretty straightforward what 
+  what we try to do but at the beginning we were even thinking but 
+  um why in the Integrity specification uh of w3c is integrity 
+  specification there's no uh such a thing as the possibility to 
+  map uh just a subset of course to sign just a subset of of of the 
+  properties of the jcd document but then and then to have a map a 
+  campaigning the document and telling you okay dear client you 
+  received this Json LD watch out this this and that attributes are 
+  signed all the others are not.
+Giuseppe_Tropea: Um we we started enacting with the your mailing 
+  is actually this male is from 2020 so um and and and and we 
+  promptly received the replies this is from Mano spawning he he 
+  suggested no that's the wrong way to do we have that map to uh 
+  because then uh it's it's it's a weakness in the security 
+  approach because the client expects the the whole document that 
+  he receives to be signed so this is why we took our approach of 
+  um you know making each of those sealed attributes uh stand on 
+  its own uh you can it's it's basically a uh Standalone um.
+Giuseppe_Tropea: Fully conformant document that you you can 
+  verify by yourself and then.
+Giuseppe_Tropea: You have the ID and the type inside inside the 
+  sealed attributes that refer to the external entity.
+Giuseppe_Tropea: Um so that that is the first.
+Martin_Bauer_(ETSI_ISG_CIM): The idea you can check in for the 
+  type it's important we support multi typing so we maybe um during 
+  this um aggregation process more types were aggregated um but um 
+  it was signed with maybe just 1 of these types so that's why it's 
+  important to to keep the original information and then in that 
+  case okay that type should still be included in that but um for 
+  the atomic entity I mean of course have to um take only the type 
+  with the with which it was originally signed.
+Giuseppe_Tropea: Yep uh yeah I think yeah probably we didn't show 
+  any examples beforehand that yeah that the types can be multiple 
+  so we can have an array of times in their.
+Giuseppe_Tropea: Okay so this this first part was about signing 
+  um so we implemented this solution now we have to uh update it 
+  because okay the standards have evolved but mainly the idea stays 
+  basically stays the same.
+Giuseppe_Tropea: Uh then uh I I don't know maybe maybe I can go 
+  through the the idea of authentication part this is this is uh 
+  and then if we want to we can have a discussion this is um not 
+  yet a solution it's much less mature we we haven't published 
+  anything yet but we are now investigating.
+Giuseppe_Tropea: Uh uh some important some important ideas for 
+  for NGS I that that's coming from the ID authentication 
+  distributed uh uh identifiers um if if we skip to the next slide.
+Giuseppe_Tropea: Uh this is this is just basically my how I try 
+  to do some to summarize in in my main the core points about the 
+  the idea um.
+Giuseppe_Tropea: So the I think the important uh uh the important 
+  thing is that um okay they are designed to to function without 
+  the need for a centralized registry or authority but of course 
+  they can even we can in centralized case so good um we know that 
+  the the idea resolves to the IDE document uh where we have public 
+  key authentication method the service the service end point but 
+  the point in in my mind is that basically the uh the security is 
+  uh.
+Giuseppe_Tropea: Strictly related to to the public key 
+  infrastructure that underpins the the did uh so next slide please 
+  um.
+Giuseppe_Tropea: Basically the IDE authentication it boils down 
+  to to proving the the subject.
+Giuseppe_Tropea: Of va everything changed but um uh in the D 
+  document but of course the the the has to stay has to stay the 
+  same uh and as the the idea resolution step that um you need to 
+  perform in order to authenticate the the dat.
+Giuseppe_Tropea: Uh next slide.
+Giuseppe_Tropea: So of course we can have multiple application 
+  workflows and.
+Giuseppe_Tropea: Involving for instance usual Challenger response 
+  mechanisms so that that this is not the key point so in in my 
+  mind it's what that what characterizes the the trust architecture 
+  of of the idea is basically the the did method that backs backs 
+  it up that specific the idea and in the next slide I tried to 
+  group and I also started this discussion credentials can be group 
+  list um grouping the different the ID methods um based on.
+Giuseppe_Tropea: Their trust architectures from from the most 
+  simple which is the ID key and people suggested also the ID jwa 
+  which is basically offline and to my understanding the subject 
+  there will be almost anything I mean as long as you able to 
+  create a key pair you can be a bot you can be a human you can be 
+  a legal entity.
+Giuseppe_Tropea: Uh then there's the ID method uh based on 
+  basically on.
+Giuseppe_Tropea: Key infrastructure which is the 1 of the 
+  cryptocurrencies the real Bitcoin what's permissions um it's 
+  Global Ledger and in this case I'm sure the guarantee is that 
+  basically the subject is at least some kind of entity that holds 
+  uh a bus in in the network.
+Giuseppe_Tropea: Uh did Sovereign is interesting because it's a 
+  permissioned global Ledger and I I understand it has um uh well 
+  specified trust governance and also the possibility it will have 
+  through this Steward nodes to delegate the trust to.
+Giuseppe_Tropea: Other nodes um.
+Giuseppe_Tropea: Question is uh what what what is the subject uh 
+  typically in the ID Sovereign network is it a legal entity is it 
+  a human is there any guarantee about that.
+Giuseppe_Tropea: Then I think EU people are trying also to.
+Giuseppe_Tropea: Register another method which is the ID appz and 
+  in this case I think it's guaranteed that the identifiers are 
+  bound to Legal EU.
+Giuseppe_Tropea: Entities and the network is um is basically the 
+  nodes of the network of of the key infrastructure are basically 
+  um owned by EU Public public bodies so.
+Giuseppe_Tropea: They say they can support different trust 
+  Frameworks but bottom line they are owned by.
+Giuseppe_Tropea: Governments for big parties um then also 
+  interesting is the the ID web or DNS in that case I think I can 
+  be sure that the subject of the did in that case controls some 
+  kind of resource on the internet and they have the domain or.
+Giuseppe_Tropea: Have all of our kind of server on an IP address 
+  some somewhere on the internet.
+Giuseppe_Tropea: The I think we have a 1 last slide what is 
+  interesting to NGS because uh that's so now so much work about 
+  the data spaces where basically I think the goal would be to.
+Giuseppe_Tropea: A trust model where you have a private space is 
+  the owner of the database and you you want to um route the the 
+  Trust on on the owner of of the data space and also basically you 
+  probably want this um owner to intend be able to delegate uh 
+  trust to other other trusted members of of the data space.
+Giuseppe_Tropea: Members can either be humans or or legal legal 
+  entities uh so question is there a the IDE method where I 
+  identifies a guaranteed to be humans I mean it's a little bit of 
+  a rhetorical question and um.
+Giuseppe_Tropea:  I was.
+Giuseppe_Tropea: Also the discussion on the list about the.
+Giuseppe_Tropea: Person who the credentials this is a fairly 
+  recent thing uh.
+Giuseppe_Tropea:  and I.
+Giuseppe_Tropea: There was also a research paper about it so 
+  things are ongoing but that I think is probably the the most 
+  interesting the most interesting discussion there because well 
+  humans and and now and nowadays also AIS right which can pass uh 
+  so uh it's a Hot Topic and it's interesting I think bottom line 
+  for NGS ild um what what would be our goal is to implement this 
+  data space the the data space model where we we at least would 
+  like to be able to guarantee that what's behind the da is either 
+  a legal entity or more difficult I understand or a human.
+Giuseppe_Tropea: Um I think that's that's all on my side thank 
+  you for your attention and if you have questions or we can 
+  discuss.
+Harrison_Tang: Oh thank you thanks for the presentation and by 
+  the way like we do have uh.
+Harrison_Tang: I did invited the author of the person who 
+  credentials to actually talk about on November 12th so if you're 
+  interested uh make sure to mark that date on your calendar um I 
+  have also been trying to get the the the guys at the world coin 
+  to talk about their project which is also trying to uh tie 
+  credentials to uh basically uh authenticated uh humans right and 
+  uh using Iris scanners uh plus some cryptocurrencies which I know 
+  some people probably don't like as much but uh so far still 
+  working haven't got them to agree to present it here but uh but 
+  yeah those those conversations are definitely interesting and 
+  we'll continue those conversations here.
+Giuseppe_Tropea: Uh sorry Harrison when you you did say uh 
+  November 12.
+Harrison_Tang: Yeah November 12th uh we will have the Stephen uh 
+  Zoe and Shay uh the main authors to talk about a person who 
+  credentials yeah.
+Giuseppe_Tropea: Uh okay great but do you think we or I could 
+  join here uh freely or because this I quite didn't understand 
+  whether it's open or the calls are open for everybody or how does 
+  it work.
+Harrison_Tang: Yes yes so it's all free you can just join via 
+  that public link uh we also send out the the transcriptions and 
+  video recordings so you can also watch it afterwards if you're on 
+  the mailing list yeah.
+Giuseppe_Tropea: Right right right right right right right right 
+  right right okay great great that's that's that's interesting 
+  okay thanks for letting us know.
+Harrison_Tang: By the way I have 1.
+Martin_Bauer_(ETSI_ISG_CIM): So I think what 1 key so I think the 
+  fiware context is where it's used most um but not only um and I 
+  think smart cities overall are the main users but it can also be 
+  used in other domains or is used um to a lesser degree but um I 
+  think in in smart cities it's already um quite commonly used in 
+  Europe but also in in Japan and in Korea they did their own 
+  project um in India there are using it um partially together with 
+  some of their own um standards so they did their own 
+  implementation and partly um used them and GLD so that's about 
+  the usage um.
+Harrison_Tang: So it's mostly governments basically.
+Martin_Bauer_(ETSI_ISG_CIM): Yeah but um not just yeah.
+Harrison_Tang: Got it and then so the next clarification question 
+  is like why do you need to Federate from different context 
+  providers I mean for example if you're a government you probably 
+  have a system of record right like that's Central so why do you 
+  need to have multiple contacts providers and then you have to uh 
+  autonomous the entities and then aggregated like what do you need 
+  to do that.
+Martin_Bauer_(ETSI_ISG_CIM): So why why to why why do you want 
+  the Federate system because you have different units um even 
+  within the city um you have different departments that may only 
+  want to partially share and then um if you go further um you may 
+  have um.
+Martin_Bauer_(ETSI_ISG_CIM): Counties um um States um um whatever 
+  and you may also have private um um operators so maybe if you're 
+  looking at parking spaces and you want that for a different areas 
+  um that comprise different cities and communities um then these 
+  may want to partially share um their data their parking spaces 
+  but not not necessarily everything and um in in such a case um it 
+  makes sense to to Federate that you don't want necessarily to 
+  have 1 single or owner that controls all the data.
+Harrison_Tang: Dollar okay yeah because I was assuming that if 
+  you're a government entity how we have have all in your 
+  centralized database so got it thank you.
+Harrison_Tang: Then the uh the point is the point of the signing 
+  mainly for data Integrity purposes like uh because we're talking 
+  about uh signing the the the data and things like that just to 
+  make sure that the data Integrity is good and then it's not being 
+  tampered with that kind of thing.
+Giuseppe_Tropea: Yep yep yep yep that's that's absolutely the 
+  goal yes yes because maybe you have a sensor that I don't know 
+  measures uh pollution I mean streets uh or CD and you'll be sure 
+  that I I don't know either measurements come from a certified uh 
+  uh Hardware maker or uh afterwards that they are certified by by 
+  the city I don't know you as a citizen may may want to be able to 
+  verify that and that they have not been tampered with by some 
+  malicious intermediate broker or relay node in in between.
+Giuseppe_Tropea:  let's say.
+Giuseppe_Tropea: If I want to depict a typical your typical use 
+  case.
+Giuseppe_Tropea:  of course.
+Harrison_Tang: Uh any questions from the audience.
+Harrison_Tang: And then 1 more question sorry uh when we're 
+  talking about uh the signature so the signature is far from the 
+  context providers right it's not does the broker actually sign 
+  the document once they aggregate all the contexts together or the 
+  signature is only from the context providers.
+Giuseppe_Tropea: Yeah that's the main point the signature is only 
+  from the provider because basically you don't trust the broker 
+  you don't want to trust the broker so um of course you may add 
+  yes you could add a second layer which because in in that case if 
+  if the broker for instance if the distribution broker before 
+  relaying the package to you uh Aggregates everything and then 
+  signs it on its own then it basically vouches that well yes I am 
+  the guy who is aggregating this I'm you can help me you can hold 
+  me responsible for this aggregation step but I'm not responsible 
+  for the value so if the pollution value is 25 or 27 it was not me 
+  uh who did that it's it's the original provider of of the data 
+  so.
+Giuseppe_Tropea: Yeah you know it's a an additional layer of of 
+  it's it's a different meaning.
+Giuseppe_Tropea: If if you if you sign the aggregated part.
+Martin_Bauer_(ETSI_ISG_CIM): So we we came to the conclusion in 
+  the end that um for us um on the attribute level it made most 
+  sense.
+Martin_Bauer_(ETSI_ISG_CIM): So if we send the whole entities um 
+  in Fireware sometimes we have a posteriori um Access Control 
+  check so you might filter on the entity later on so um um the 
+  broker May return an entity with all sorts of attributes and then 
+  later on it's um there's a PP that decides okay that attribute 
+  shall not go out and filters it out so then um it would break um 
+  um the signed entity.
+Martin_Bauer_(ETSI_ISG_CIM): So such use cases may also be there 
+  and then um in in in these cases it doesn't make sense to um sign 
+  whole entities.
+Harrison_Tang: About the registry like the registry of uh 
+  different uh identifiers and then also the trust framework is it 
+  the same as Brokers or is it going is it separate like basically 
+  the broker the aggregator is separate from the registry where are 
+  they do they uh basically the same they play the same role or the 
+  same entity played both 2 roles.
+Martin_Bauer_(ETSI_ISG_CIM): The sums of identity management and 
+  so on that can be completely separate.
+Harrison_Tang: Got it but in the real world is it the same entity 
+  that plays both roles the registry and aggregation or they are 
+  separate.
+Martin_Bauer_(ETSI_ISG_CIM): Could could well be but um what what 
+  we try some with NGS LD to to be able to work in in in also in 
+  different environments so basically so we don't want to make um 
+  just 1 single assumption so what we are also looking at now in 
+  our security is okay um we look at different scenarios and um 
+  basically want to give people an idea if this is your scenario 
+  maybe um you choose from this set of um Technologies and if you 
+  have a different 1 you're choosing another we're currently 
+  discussing the use of NGS LD in data spaces so which is a quite 
+  Hot Topic at least in Europe um and they are the the IDS um play 
+  an important role in in in this um underlying idea that you don't 
+  have um Central um entities um controlling this on so that's why 
+  1 of the reasons why we said okay it's also for us makes sense to 
+  to dig a bit deeper into the did case.
+Harrison_Tang: Got it thanks.
+Harrison_Tang: All right any questions.
+Harrison_Tang: Let me check the queue.
+Harrison_Tang: Right so if no further questions I just want to 
+  thank you again josephe and Martin uh who actually taking the 
+  time to present here today at w3c ccg thanks a lot.
+Giuseppe_Tropea: Thank you everybody.
+Martin_Bauer_(ETSI_ISG_CIM): Thank you for having us.
+Giuseppe_Tropea: Thanks a lot.
+Harrison_Tang: So this concludes that today so ccg meeting will 
+  publish the video audio and transcriptions and next day or 2 and 
+  then uh please uh come back um next Tuesday and next Tuesday we 
+  will have.
+Harrison_Tang: Jeremy and Andreas to talk about BBS signature 
+  scheme benchmarks.
+Harrison_Tang: Thanks thank you bye.
+Martin_Bauer_(ETSI_ISG_CIM): Thank you bye.
