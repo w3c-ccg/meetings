@@ -1,0 +1,865 @@
+Thanks to Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-11-12/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-11-12/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-11-12.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-11-12
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Nov&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. <Personhood Credentials: A Privacy-Preserving Credential to 
+    Demonstrate Who's Real Online, Amid Artificial Intelligence>
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords and Our Robot Overlords
+Present:
+  Harrison Tang, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Manu Sporny, Drummond Reed, Geun-Hyung Kim, Sam 
+  Smith, zoë hitzig, Will Abramson, Greg Natran, Pat Adler, James 
+  Chartrand, Joe Andrieu, Lara, Benjamin Young, Olvis E. Gil Ríos, 
+  andor, Patrick St-Louis, Nicky Hickman, Greg Bernstein, Nis 
+  Jespersen , John Henderson, Chandi, Vanessa, Tom S, Jeff O / 
+  HumanOS, Dmitri Zagidulin, Leo, Alberto Leon, Matthieu Bosquet, 
+  David Waite, julien fraichot, Matthieu Collé, Stephan Baur, David 
+  I. Lehn, Lara Schull, Rashmi Siravara, Kerri Lemoie, Alberto 
+  Leon(BKC at Harvard)
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Hello this is the recording works let me double 
+  check.
+Harrison_Tang: Restarted give me a second.
+Our Robot Overlords are scribing.
+Harrison_Tang: Right uh welcome welcome everyone to this week's 
+  w3c cgg meeting uh today we're very excited to have Joey Steven 
+  from openai and also mom is here too uh to actually uh talk about 
+  need of discussion around personhood credentials a privacy 
+  preserving credential to demonstrate who's real online amid 
+  artificial intelligence.
+Harrison_Tang: But before we start I I I know everyone is so 
+  anxious uh to actually jump into that topic but before we start I 
+  just want to quickly go over some administrative stuff.
+Harrison_Tang: I just want to have a quick reminder around the 
+  code of ethics and professional conduct just want to make sure 
+  that we hold a constructive and uh.
+Harrison_Tang: Conversations here at w3c ccg we have been doing 
+  that for years I never heard of any like bad comments or anything 
+  like that but that just continue to do that.
+Harrison_Tang: A second just a quick note on the intellectual 
+  property anyone can participate in these calls are also sensitive 
+  contributions to any CC items must be member ccg with full IPR 
+  agreement signed so if you have any questions regards to getting 
+  a w3c account or the community contributor license agreement uh 
+  feel free to reach out to any of the cultures.
+Harrison_Tang: A quick notes about this call uh these uh calls 
+  are being automatically transcribed and recorded so we will 
+  publish the transcription the audio and video recording in the 
+  next uh 224 to 48 hours.
+Harrison_Tang: We use GT chat to cue the speakers so you can type 
+  in Q Plus to add yourself to the queue or cue minus to remove I 
+  will be moderating the queue.
+Harrison_Tang: All right just want to take a quick moment uh for 
+  the introductions and reintroduction so if you're new to the 
+  community or you haven't been active and want to re-engage uh 
+  please feel free to just uh unmute and actually just uh introduce 
+  yourself you don't have to type in Q Plus or anything.
+Harrison_Tang: It's mostly familiar faces and.
+Harrison_Tang: I'm not going to call on people today so let's 
+  jump to the next segment uh a quick uh want to take a quick 
+  moment for the announcements and reminders so are there any 
+  announcements or reminders about upcoming events or anything.
+Manu Sporny: 
+  https://mailarchive.ietf.org/arch/msg/cfrg/J4pdvxigpXiW7bUfCNeD92fgzng/
+<manu_sporny> [CFRG] Call for Adoption of Blind BBS and BBS 
+  Pseudonyms
+Manu Sporny:  Uh yeah just uh 1 quick 1 for this week so um and 
+  it's relevant to uh the topic that we're going to talk about uh 
+  today uh at the internet engineering task force in the 
+  cryptography uh crypto Forum research group that's the group 
+  standardizes cryptography for the internet uh and the web uh 
+  there's a new call for adoption that just went out I'm going to 
+  put the link in the chat channel here um it is for the adoption 
+  of what's called Blind BBS in BBS pseudonyms um this particular 
+  technology is super important when you want a privacy preserving 
+  way of asserting you know an attribute about your about yourself 
+  so we we have gotten like the core BBS the base BBS stuff through 
+  the.
+Manu Sporny:  ITF and CFR it's got you know good like 
+  cryptographic review these are optional things that you can layer 
+  on top um to achieve things like um.
+<greg_bernstein> Thanks Manu!
+Manu Sporny:  Proof of personhood or uh proving age um uh per 
+  verifier pseudonyms uh per issue or pseudonyms uh holder 
+  pseudonyms uh things of that nature so um we see it as like it's 
+  it's vital technology for uh the BBS work uh so how can you help 
+  um send an email to the mailing list if you think that like this 
+  is useful technology and by the way we totally need this 
+  technology for verifiable credentials um uh if you think this is 
+  useful technology please send an email to the mailing list saying 
+  that you feel that the um.
+Manu Sporny:  The technology is important and you support uh its 
+  adoption into the group uh again as a reminder to people that are 
+  not familiar with ietf um everyone is there as an individual so 
+  as an individual you have a voice as an individual you can say I 
+  support the adoption of this uh technology it's really important 
+  that um this adoption happens because if it doesn't happen then 
+  we don't have any way of doing um you know uh pseudonym uh stuff 
+  in BBS which would be like really bad.
+<greg_bernstein> Pseudonyms and Anonymous holder binding!
+Manu Sporny:  Um okay uh that's it and and of course uh Greg is 
+  here today uh Greg who's been working on this technology Gregg 
+  Bernstein who's also done presentations to this group about um uh 
+  pseudonyms and and BBs is here if.
+Manu Sporny:  Any questions there um.
+Greg Bernstein:  Thank you Harrison.
+Harrison_Tang: Well thanks man thanks great.
+Harrison_Tang: I think you are on the queue.
+Steven_Adler_(OpenAI): Hi um man thank you for the update on that 
+  do you know when when they expect to have a decision on whether 
+  it will be incorporated.
+Manu Sporny:  Uh usually it takes they keep it open for like 
+  anywhere from a week to a month um Greg do you know how long the.
+Manu Sporny:  The review period is for this particular 1.
+Greg Bernstein:  Uh this isn't even a review this is just to get 
+  these documents as working group documents so we can really 
+  formalize work so they.
+Greg Bernstein:  To get uh I would say uh.
+Greg Bernstein:  A week to a month and that will probably ask the 
+  work group chairs.
+Greg Bernstein:  So that's kind of the time frame.
+Greg Bernstein:  Bfrg is a little looser.
+Greg Bernstein:  In general uh than the rest of the iatf.
+Harrison_Tang: Great any other questions.
+Manu Sporny:  Yeah sorry I also meant to to say that like this is 
+  work that happened at uh deaf decentralized identity Foundation 
+  uh which is fantastic that the that the work happened there and 
+  um you know it's being promoted to ITF for for standardization uh 
+  there are a number of people in you know uh this community diff 
+  you know ccg w3c that that have worked worked on it so thanks a 
+  ton for our friends over at deaf as well.
+Harrison_Tang: Yep big thanks.
+Harrison_Tang: Any other announcements or reminders.
+Harrison_Tang: By the way a quick announcement so uh Kimberly's 
+  uh term our culture of w3c ccg will uh end this year so we'll be 
+  soliciting a new uh basically nomination for a new W3 ccg culture 
+  so we'll send out an email in the next few weeks in regards to 
+  the process but if you have anyone that you would like to 
+  recommend uh feel free to just reach out to me or will.
+Harrison_Tang: And then the.
+Harrison_Tang: A quick uh preview on what's coming so next week 
+  we'll have the Open session for the quarter 4 2024 review and 
+  also work item updates uh so I will be sending out an email to uh 
+  to the different um task forces in regards to see if they have 
+  any updates there's no updates uh feel free to just say hey no 
+  updates so we'll quickly go through them um and then also just 
+  open up the floor uh for any discussions or topics or maybe 
+  suggestions on how we can further improve and grow um next week.
+Harrison_Tang: After that uh we got Heather uh to actually give 
+  us the update on the February identity working group.
+Harrison_Tang: All right so last calls for introductions 
+  announcements reminders or if you have any updates in regards to 
+  work items uh feel free to just uh type in P Q Plus or just on 
+  mute.
+Harrison_Tang: All right let's jump to the main agenda so again 
+  we're very excited to have Joey and Stephen from openai here to 
+  actually talk about present and the lead a discussion around 
+  person who credentials a privacy preserving credential to 
+  demonstrate who's real online and if artificial intelligence so I 
+  have sent out the link to their research paper uh in the email 
+  agenda uh feel free to uh you know click on that if that further 
+  questions but without further Ado uh sorry the floor is shorts.
+
+Topic: <Personhood Credentials: A Privacy-Preserving Credential to Demonstrate Who's Real Online, Amid Artificial Intelligence>
+
+Zoë_hitzig: Great thank you so much thanks for having me it's 
+  great to be able to present this work to this group.
+Zoë_hitzig: Um can everyone see this screen okay.
+Zoë_hitzig: I'm sure there's a better way to uh.
+Zoë_hitzig: Uh to it but let's just go with this for now.
+Zoë_hitzig: So I'm super excited to talk to this group the idea 
+  of personhood credentials I would imagine is somewhat familiar to 
+  many here I think what's exciting for me about talking to all of 
+  you is that we're going to bring a perspective to this question 
+  about that basically suggests that digital credentials um 
+  personhood credentials being 1 of them are incredibly important 
+  as a solution to some of the problems that we that we can see 
+  coming.
+Zoë_hitzig: Um from the widespread adoption and deployment of 
+  artificial intelligence in various ways so what I'll focus on 
+  today is talking about you know the content of the paper and 
+  giving you an overview but I really want to accelerate through to 
+  the discussion to hear ideas from you all about where to go um 
+  where to go with these ideas after I've convinced you that um.
+Zoë_hitzig: These sorts of privacy preserving credentials are 
+  really uh 1 of the most important source of solutions and 
+  protections we have.
+Zoë_hitzig: Some of the coming problems.
+Zoë_hitzig: Um also feel free to I don't know what the group um 
+  Norms are but I don't mind being interrupted if you have 
+  questions as we go along and I will adjust my timing to make sure 
+  that I leave at least 15 minutes for uh questions and discussions 
+  at the end.
+Zoë_hitzig: So for some for some background I'm currently a 
+  researcher at openai and this paper is was a massive effort from 
+  a wide range of people led by my colleague Stephen Adler who's 
+  here on the call who you who you just heard um and as well as 
+  Trey Jane who might be on the call um and a wide range of other 
+  uh.
+Zoë_hitzig: Other researchers and practitioners from industry 
+  Academia and the Civil sector um Manu of course was a crucial uh 
+  author on this paper as was Kim Duffy who I think is on the call.
+Zoë_hitzig: So I'll just briefly talk as I said I want to focus 
+  in this um in this call on what we see as the problem that person 
+  had credentials can respond to um and these are problems that 
+  we're seeing in the AI space then I'll give a an overview of our 
+  approach what we sort of outlined as a as as a A system that 
+  solves the problem we've identified.
+Zoë_hitzig: I will say upfront that this is not a particularly.
+Zoë_hitzig: Solution we don't offer a very specific concrete 
+  implementation that's not kind of the point of the paper the 
+  point of the paper was to.
+Zoë_hitzig: Argue for the importance of this idea and to get 
+  people talking about it in a serious way and then as I said we'll 
+  focus on next steps.
+Zoë_hitzig: So this paper starts from a kind of basic observation 
+  but 1 that is increasingly alarming and AI policy circles which 
+  is that it's getting harder to tell if there's a person behind 
+  various kinds of activity on the internet um and this is because 
+  this is kind of for 2 reasons or 2 Trends in AI that are pushing 
+  in this direction the first is 1 that we roughly talk about as in 
+  indistinguishability it's becoming much easier for um to create 
+  content that is indistinguishable from Human content um and this 
+  is not just like.
+Zoë_hitzig: You know highly uh highly persuasive text that sounds 
+  like it was written thoughtfully by some person and um but also 
+  avatars increasingly deep fakes and so forth and increasingly um 
+  actions can be taken around the Internet by AI agents in a way 
+  that makes them even their actions and distinguishable from the 
+  sorts of actions that um a human would take and by the and to 
+  think about this um.
+Zoë_hitzig:  you know think.
+Zoë_hitzig: About some of the tools that have come out recently 
+  like in the last month anthropic released a computer using agent 
+  for example which clicks around the web um much like a human 
+  does.
+Zoë_hitzig: And at the same time as many people know.
+Zoë_hitzig: The uh these AI tools are increasingly widely 
+  available their costs are decreasing and there's ton there are 
+  tons of accessible models um especially open weights models um 
+  are easily accessible to.
+Zoë_hitzig: Anyone with uh an ability to access the internet and 
+  figure out how to run them.
+Zoë_hitzig: 1 of the observations that we really.
+Zoë_hitzig: Try to try to begin with is the person in 
+  credentials.
+Zoë_hitzig: End up are end up looking like a solution that are 
+  that is highly that is robust to highly capable AI as in it 
+  provides a way of identifying.
+Zoë_hitzig: When some activity is coming from from a person in a 
+  way that's robust to C highly capable Ai and also in a way that 
+  is privacy preserving and inclusive so those are kind of like the 
+  3 der that we think about in this paper that we want a solution 
+  that allows us to sort of authenticate like anonymously activity 
+  on the internet but in a way that is privacy preserving and also 
+  inclusive so some of the other strategies that you might think 
+  about if you're trying to think about how to counter AI powered 
+  deception is you know you might think first of captures and 
+  browser challenges of various kinds or an anomaly detection 
+  systems.
+Zoë_hitzig: What we want to argue here is.
+Zoë_hitzig: Those uh the existing approaches are not going to be 
+  robust to the kinds of tools that are coming out these days um 
+  other strategies that you might consider could be economic 
+  barriers for example.
+Zoë_hitzig: Um you know this is what for example Twitter does 
+  right now.
+Zoë_hitzig: In order to get an authentication a blue check mark 
+  you simply have to pay in some way um those approaches may work 
+  but they're not particularly inclusive.
+Zoë_hitzig: Um in AI policy circles people talk a lot about 
+  synthetic content.
+Zoë_hitzig: Tools like watermarking and content provenance.
+Zoë_hitzig: Our argument is going to be the personhood 
+  credentials can really complement these sorts of approaches.
+Zoë_hitzig: And then you know another another possibility is 
+  that.
+Zoë_hitzig: 1 way of telling who's a person online is to require 
+  a.
+Zoë_hitzig: Of verification through appearance-based and 
+  documents based.
+Zoë_hitzig: Verification processes like asking for a picture of a 
+  driver's license or you know now sometimes if you're doing some 
+  remote uh remote.
+Zoë_hitzig: For example if you're starting a job and you have to 
+  do it remotely you'll do some kind of uh live video call to check 
+  that you are the person you say you are.
+Zoë_hitzig: Our argument is going to be that not only are these 
+  not particularly privacy preserving like there might be some 
+  solutions where it's way overboard to ask people to provide their 
+  identification or hop on a video call and say show exactly who 
+  they are.
+Zoë_hitzig: But also these these Solutions are also not robust to 
+  highly capable AI it's getting increasingly easy to spoof a 
+  driver's license in a really convincing way um it's getting 
+  increasingly easy to use a video deep fake Avatar of some kind 
+  and get on a zoom call um using a likeness that is not your own.
+Zoë_hitzig: What we're going to what we argue in the paper is 
+  that we need some kind of new Solutions and.
+Zoë_hitzig: Been so far slightly vague about what exactly we're 
+  trying to what kinds of AI powered deception we're really trying 
+  to prevent and to sort of fix ideas for all of you.
+Zoë_hitzig: I'll talk about just 3 kind of broad areas.
+Zoë_hitzig: 1 area you can think of as like reducing the impact 
+  of sock puppeting so people pretending to be someone they're not 
+  online and often malicious actors whether they're trying to do 
+  fraud or some kind of political manipulation will make many many 
+  profiles um that are supposedly representing a particular you 
+  know particular.
+Zoë_hitzig: Real people but in fact these are sock puppets um we 
+  also think about mitigating various kinds of Bot attacks so.
+Zoë_hitzig: In a world where it's very cheap to send agents out 
+  in AI agents out into the web and make tons of accounts um we 
+  worry a lot about the various kinds of attacks that this could 
+  enable on um important Digital Services.
+Zoë_hitzig: Um there's also a kind of more more futuristic though 
+  not that futuristic use case that we start thinking about in the 
+  paper and that is part of a broader open wide open question um 
+  about how these agents are going how these AI agents are going to 
+  work across the web and and how we're going to make sure that 
+  they are uh acting on behalf of real people.
+Zoë_hitzig: And that is um we think the personhood credentials 
+  could be a a really valuable way of maintaining you know the 
+  anonymity of the internet that we hold dear in this world where 
+  AI agents are running around and doing things on people on humans 
+  behalf if there were no way of authenticating AI agents at all 
+  then we imagine we would see lots of scaled deception um and you 
+  know to a degree that could really overwhelm the internet um.
+Zoë_hitzig: But with personhood credentials there could be a some 
+  really simple ways to at least verify that 1 an agent.
+Zoë_hitzig: Is acting they're acting on behalf of some person and 
+  you don't have to know which but some person.
+Zoë_hitzig: Um so this uh new paradigm of agentic AI is really 
+  motivating um for a lot of the paper and happy to.
+Zoë_hitzig:  go into.
+Zoë_hitzig: More on that when we get into the discussion later 
+  on.
+Zoë_hitzig: Um as I said 1 of the big worries and again 1 of the 
+  things motivating a lot of us who worked on this paper is that we 
+  worry about a future where.
+Zoë_hitzig: AI the the widespread use of AI makes.
+Zoë_hitzig: Digital Services so hard to use um they become so 
+  overwhelmed that people that service providers end up resorting 
+  to highly non-private methods of authentication um and you know 
+  some groups around the world are already trying to tie internet 
+  usage to personal.
+Zoë_hitzig: Identity in various ways and that's kind of like the 
+  the a a motivating.
+Zoë_hitzig: Um a motivating bad case I'll say that.
+Zoë_hitzig: That that partially we think person had credentials 
+  can help us to avoid.
+Zoë_hitzig: Um and as I said I'm not sure how many of you have 
+  been paying close attention in the AI policy space but 1 of the 
+  major policy tools in in discussion right now are various kinds 
+  of content provenance um and maybe you guys are familiar with the 
+  content uh the ctpa group who are trying to come up with 
+  standards for making sure that there's a kind of standard way of.
+Zoë_hitzig: Providing a manifest you know a metadata manifests 
+  that says where various kinds of media came from.
+Zoë_hitzig: And what we want to suggest in this paper is that 
+  personhood credentials kind of are like very complimentary they 
+  take a different approach rather than trying to figure out 
+  whether some piece of AI media was produced or whether some piece 
+  of media was produced by an AI or a person we say well forget 
+  about the media itself let's think about the account or let's 
+  think about you know the user is that user a real person.
+Zoë_hitzig: So I'll go.
+Zoë_hitzig: Now through our approach to the problem which as I 
+  said at the beginning is kind of like a big picture um outline of 
+  the types of of the properties that we think a person had 
+  credential system should have.
+Zoë_hitzig: We landed on 2 fundamental requirements of personhood 
+  credential systems.
+Zoë_hitzig: Um I should also note that many of you may be 
+  familiar with the term proof of personhood which is in many ways 
+  essentially what we're describing we chose to use a different um 
+  a different term in this paper because proof of personhood.
+Zoë_hitzig: Varied and have taken on many different meanings in 
+  blockchain communities and so we wanted to be able to sort of 
+  create our own definition of like exactly what we mean when we 
+  talk about a personhood credential and so you know this does this 
+  does describe some existing systems.
+Zoë_hitzig: Systems that describe themselves as proof of 
+  personhood.
+Harrison_Tang: Joy sorry to interject do you mind uh clarifying 
+  what's the difference between uh person who credential proof of 
+  personhood and proof of humanity know.
+Zoë_hitzig: Um basically there's.
+Zoë_hitzig: In this paper we wanted to outline a very specific 
+  set of requirements and definitions.
+Zoë_hitzig: A personhood and proof of humanity don't actually 
+  have particularly specific definitions they tend to refer to a 
+  wide variety of protocols in you know vaguely associated with the 
+  blockchain space and so to distinguish ourselves from.
+Zoë_hitzig: Them or just kind of make something a bit more 
+  specific we use this term personhood credentials so it's really 
+  just that we wanted to be able to uh make a concrete definition.
+Zoë_hitzig: Regardless of what is already out there.
+Zoë_hitzig: So the the core idea here is that.
+Zoë_hitzig:  the first.
+<nicky_hickman> There are also 'proof of liveliness' checks in 
+  identity proofing processes that rely on pictures or videors
+Zoë_hitzig: First foundational requirement of a of a person to 
+  credential system is that there has to be some method of limiting 
+  the number of credentials per user.
+Zoë_hitzig: Um and specifically we say that there needs to be 1 
+  credenza.
+Zoë_hitzig: The second foundational requirement is on linkable 
+  pseudonymity.
+Zoë_hitzig: This is our this is the kind of privacy that we think 
+  this this sort of system should aim for um this is 1 in which the 
+  user interacts with Services through some kind of service 
+  specific pseudonym and all of their activity is both untraceable 
+  by the issuer and also unlink across service providers even when 
+  the service providers collude with each other and with the 
+  issuer.
+Zoë_hitzig: So these are these are the uh the requirements that 
+  we think are most important for a personhood credential system 
+  obviously they're still vague and need to be filled in with more 
+  specificity um but there are protocols that satisfy these 
+  requirements in some way um obviously you know what it how well 
+  do they mitigate theft or transfer is always going to be a 
+  question um you're not going to be able to perfectly uh.
+Zoë_hitzig: All of these things.
+Zoë_hitzig: And that's another another reason why we wanted to 
+  sort of distinguish ourselves a little bit from.
+Zoë_hitzig:  proof of.
+Zoë_hitzig: Personhood work is that often they have their own 
+  ideas about.
+Zoë_hitzig: Exactly uh you know what exactly the foundational 
+  requirements are and often.
+Zoë_hitzig: They're aiming for a kind of extreme uniqueness.
+Zoë_hitzig: Um where you know the the place in the trade-off that 
+  where they really put their weight is making sure that no person 
+  has has 2 um and they also sort of.
+Zoë_hitzig: Often have kind of global Ambitions and and want to.
+Zoë_hitzig: And often sort of operate under the assumption that 
+  there would be only 1 issuer of of personhood credentials.
+Zoë_hitzig: But we can talk more about all of that in the 
+  discussion.
+Zoë_hitzig: For now what I'll highlight is the personhood 
+  credentials need to lean into what AI cannot and will not soon be 
+  able to do.
+Zoë_hitzig: I'm saying that they definitely can't.
+Zoë_hitzig: Right now and probably not for a while as they can't 
+  pass as a person in the real world.
+Zoë_hitzig: We like to think about the.
+Zoë_hitzig:  person who.
+Zoë_hitzig: Credential is requiring some kind of offline 
+  component now that doesn't necessarily mean that a person has to 
+  show up.
+Zoë_hitzig:  you know.
+Zoë_hitzig: Live like as if they're showing up to the DMV to do 
+  some kind of in-person check it could be that they have some 
+  physical document like that's offline they have some physical 
+  document that you know itself required you know something like 
+  being born for example if if it's a birth certificate um.
+Zoë_hitzig: Or perhaps it's a driver's license which required at 
+  some point um taking a driver a driving test.
+Zoë_hitzig: So I guess what I'm saying here is.
+Zoë_hitzig: There needs to be some kind of offline component in 
+  the phc issuance process but it doesn't have to necessarily be 
+  that the issuer is going to uh confront the the user in person 
+  themselves.
+Zoë_hitzig: I'll describe now the sort of enrollment and usage 
+  process that we have in mind here.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> One PHC 
+  issuer to rule them all... seems like the UN might be the most 
+  likely (and that's not very) candidate.
+Zoë_hitzig: And again this is something that we can talk about 
+  more in the discussion to talk through specific ways that this 
+  could uh be implemented but the basic idea here is that the user 
+  there we like to imagine a world with many possible or multiple 
+  possible issuers not too many but a few um.
+Zoë_hitzig: Where the user is going to request their credential 
+  and provide a particular kind of evidence that the issuer asks 
+  for.
+Zoë_hitzig: Issuer is going to do some kind of validity check.
+Zoë_hitzig:  where they're.
+<harrison_tang> I don't believe in one credential to rule them 
+  all :)
+Zoë_hitzig: A is this are is the person in question actually a 
+  person and they're also doing some uniqueness check because 
+  remember there's this requirement of a credential limit 1 1.
+<dmitri_zagidulin> what I'm not seeing on this diagram is any 
+  sort of revocation / conflict resolution mechanisms
+Zoë_hitzig: And then if both of those checks pass they hand over 
+  this personhood credential to the user.
+Zoë_hitzig: We think of the user kind of holding their personhood 
+  credential in a digital wallet.
+Zoë_hitzig: And then they can use their their personhood 
+  credential around the web with various different applications um 
+  various different service providers and all the while it's very 
+  important they're not going to be revealing any details about 
+  their credentials so service providers will always be using.
+Zoë_hitzig: Kind of zero knowledge proof um possibly with a 
+  nullifier if it's important for the service provider to not allow 
+  duplicate accounts.
+Zoë_hitzig:  so you.
+<manu_sporny> Yes, this is one of the toughest parts of the 
+  problem... how many issuers, and should they (or should they not) 
+  collude to ensure 1 PHC per person. Or, how many sybils are 
+  acceptable in the system.
+Zoë_hitzig: It might be that if we're thinking about the service 
+  provider as some social media platform like Twitter it might be 
+  the case that they want to try to enforce.
+Zoë_hitzig: Rule where each person has only 1 account.
+Zoë_hitzig: So in that case they could make some application 
+  specific pseudonym to ensure that they're not giving 1 user more 
+  than 1 account.
+Zoë_hitzig: Keep in mind there are multiple issuers so if we 
+  think through this you know let's imagine there are 2 different 
+  issuers 1 might be you know.
+Zoë_hitzig: Scanning some part of your body like a palm or an 
+  iris and issuing uh a personhood credential on the basis of of 
+  some kind of biometric scan.
+<harrison_tang> How can we ensure 1 PHC per person?  For example, 
+  1 person can have multiple devices, so does this mean that only 1 
+  device could hold that PHC?
+Zoë_hitzig: Might also go to an issuer that's perhaps a 
+  government issue or who you know scans a driver's license and and 
+  without storing any details um or tying any details about my 
+  identity to my credential hands me a credential on the basis of 
+  this.
+Zoë_hitzig: So then I could be in a position where I have 2 
+  credentials 1 1 that comes from um the biometric issuer and 1 
+  that comes from some kind of government issuer and so clearly the 
+  in the system I would be able to get to social media accounts 
+  even um.
+Zoë_hitzig: 2 authenticated social media accounts because I have 
+  2 different credentials and basically what we're going to the 
+  position that we take in the paper and you know hap very happy to 
+  discuss this because I think we all had really valuable 
+  discussions about this in the course of writing the paper um.
+Zoë_hitzig:  to us.
+Zoë_hitzig: That seems fine um it it seems like the the most 
+  important thing is being able to in some way limit activity 
+  rather than to enforce um a strong notion of uniqueness.
+<nivas_s> I have a question - how does the service provider trust 
+  the issuer is the right one and not a fake one? (Please bear with 
+  me if a silly question as I am a newbie in the domain)
+Zoë_hitzig: Um so as I said 1 1 possible way of like achieving 
+  this offline component is to have to use some kind of zero 
+  knowledge proof of just holding a government ID without.
+Zoë_hitzig: Revealing which ID so the issuer could um and there 
+  are there are some early protocols like um.
+Zoë_hitzig: Um Annan Adar for example that are.
+Zoë_hitzig: Regarding to do this on the base of basis of national 
+  uh.
+<dmitri_zagidulin> @Nivas - not a silly question at all. it's the 
+  central and crucial question for anything to do with Verifiable 
+  Credentials.
+Zoë_hitzig: So as I said you know when I was highlighting the 
+  social media example.
+<dmitri_zagidulin> and the answer is - we'll need Issuer 
+  registries. (and registries of registries)
+<harrison_tang> @Nivas You need a trust framework
+Zoë_hitzig: Um we favor we in the paper we sort of identified 
+  this kind of fundamental trade-off.
+Zoë_hitzig: Sorry something happened to my student we identify 
+  these sorts of fundamental trade-offs between systems that have 1 
+  creds systems that have unlimited credentials and systems that 
+  have bounded credentials so as I said we favor this approach 
+  where there are multiple issuers so it is possible you know 
+  you're not going to fully prevent a kind of civil attack but you 
+  will really limit the scope of those attacks because there will 
+  be a small finite number of potential trusted issuers.
+<nivas_s> @Dmitri and @Harrison - Is this what the GAN (Global 
+  acceptance network) is all about?
+Zoë_hitzig: And so this trade-off that we described here is that 
+  you know of course if you can the the very best way to counter 
+  scalable AI based deception would be to do something like you 
+  know.
+Zoë_hitzig: Where where there's some like.
+Zoë_hitzig: Database that has everyone's Anonymous um Anonymous a 
+  person had credentials in it.
+Zoë_hitzig: Think that this is.
+Zoë_hitzig: Bad type of solution from the perspective of privacy 
+  and civil liberties I mean I definitely don't have to say that 
+  you know I don't probably don't have to convince this group that 
+  that's um for many reasons a A system that would.
+<harrison_tang> @Nivas Yes.  And we will have Drummond to present 
+  and talk about GAN next year.
+Zoë_hitzig: To uh potentially very bad outcomes.
+Zoë_hitzig: But at the same time what we're suggesting here is 
+  that if you have no method of limiting the activity online then 
+  you really lose out on your ability to counter scalable deception 
+  to the degree which you may actually so we may actually see so 
+  much overwhelming activity on the internet that people resort to 
+  to certain kinds of um aggressive privacy invasive approaches so 
+  that's why we we see a bounded credential ecosystem as 1 that.
+Zoë_hitzig: Uh balances this trade-off between protecting privacy 
+  and civil liberties while also countering scalable deception.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> oh, I think 
+  I see... I missed the part where "per issuer" means multiple 
+  *PHC* issuers can be in play. Perhaps one from regional govt, 
+  another from employer, another from NGO membership 
+  organization...
+Zoë_hitzig: Um and on that note as I'm talking about these 
+  trade-offs of course any phc system is going to be a 
+  sociotechnical system that has to be carefully uh designed and 
+  care and many implementation challenges have to be considered 
+  such as.
+<nivas_s> @Harrison Thank you for the answers and clarification
+Zoë_hitzig: All these uh how these credentials might end up 
+  impacting access to Digital Services how they impact people's 
+  feelings of of safety and and confidence and free expression um 
+  of course there's a there are questions about the power dynamics 
+  of Digital Services and the degree to which different phc systems 
+  are vulnerable to mistakes and intentional subversion by 
+  different actors.
+Zoë_hitzig: And you know these are all the big questions we 
+  believe that there are.
+Zoë_hitzig:  you know.
+<drummond_reed_(ipad)> GAN is super interested in PHCs. We have 
+  several of us attending this call. Really love this paper.
+<manu_sporny> Yep, Ted, that's one of the open questions -- how 
+  many issuers are enough? (in all the senses of "enough")
+Zoë_hitzig: If we if we all start if we all put our heads 
+  together and start thinking about this really really carefully 
+  and thoughtfully we believe that.
+Zoë_hitzig: Ways to implement phc systems that would um.
+Zoë_hitzig: Maintain Equitable access and free expression and 
+  checks on Power and be robust to to attack an error.
+Zoë_hitzig: So with that um in the paper we outline a wide range 
+  of next steps in um for governments and technologists and 
+  standards bodies and you know public consultation will be a very 
+  important part of socializing this idea uh you can't be a it 
+  can't be a solution that comes from the top down people need to 
+  understand the cryptography they need to understand why it's 
+  valuable um.
+Zoë_hitzig: And so we talked about ways in which we can adapt 
+  existing digital systems and also prioritize person and 
+  credentials through policy and um technology.
+Zoë_hitzig:  in particular.
+<darius_kazemi_(harvard_asml)> also how does one become an 
+  issuer, how hard is it, how much money and time does it cost, 
+  etc. looking at SSL issuers might be instructive re: where this 
+  fails/succeeds
+Zoë_hitzig:  this is where.
+Zoë_hitzig: I'll stop so that we have plenty of time for 
+  discussion but I know that this group has particular um skills 
+  and perspectives to offer and we'd be super excited to hear.
+Zoë_hitzig:  what your.
+Zoë_hitzig: Reactions are I mean I think 1 1 very clear next step 
+  is to move towards some more Concrete technical.
+Zoë_hitzig: Ations um and you know potentially the this group 
+  might be interested in spinning off another kind of working group 
+  on personhood credentials in particular or maybe it fits into an 
+  existing initiative to um try to make these ideas more concrete 
+  and to bring them to a wider audience.
+Zoë_hitzig: So I'll stop there and yeah let's let's do discussion 
+  I mean we can format it as Q&A my um my co-author Stevens here 
+  too and Kim and Manu I want all of us to you know be part of the 
+  discussion.
+<olvis_e._gil_ríos> Hello! My name is Olvis E. Gil Ríos, founder 
+  of OG Technologies EU, I am currently working on blockchain 
+  standards for cross-border payments using DIDs/VCs.  Very 
+  interesting presentation! My question is: How can developers 
+  interested in building on PHC learn more?
+<kim_duffy> +1,
+Manu Sporny:  Yeah um thank you Zoe that was like uh that was 
+  awesome um uh thank you for you know uh taking the time and 
+  presenting it to the group and I know as you said this group is 
+  like super interested in the work in really wants to see it um uh 
+  uh be realized right so um I guess the you know the the question 
+  is like you know where do we go from here and what do we do um I 
+  also before going to that though I also want to kind of point out 
+  to the rest of the group that um uh uh Stephen and Zoe in shrey 
+  have been like absolutely amazing and awesome through this entire 
+  like exercise like this has been going on for you know uh uh 2 
+  plus years a year plus in there are some of the best Bridge 
+  builders that I've seen operate across like all these different 
+  groups being people together to kind of work on this problem um 
+  so you know if you're interested in working on this stuff I 
+  can't.
+Manu Sporny:   More highly recommend.
+Manu Sporny:  And you know working.
+Manu Sporny:  With uh Stephen and Zoe um you know on this stuff 
+  um that said there you know we have seen signals this is mostly 
+  for like you know uh so in Stephen we've seen signals where like 
+  people are already starting to work on this stuff like they read 
+  the paper and they're kind of like uh charging for it so like 
+  just last week I think uh Kim you you have more details on this 
+  but like there are a number of people at D that have gotten 
+  together uh to create a vocabulary where meaning like a way of 
+  digitally expressing this credential where a subset of it is 
+  around a personhood credential in last week we talked about like 
+  hey we need to get this thing you know in front of uh you know uh 
+  Stephen Zoe get their thoughts on it and then try to put like an 
+  actual like actually issue 1 of these credentials in like a um in 
+  like a a playground setting and and just get the technology kind 
+  of sorted out um I'm interested in.
+Manu Sporny:   Hearing from.
+Manu Sporny:  In the community.
+Manu Sporny:  Where else you know work is happening I know 
+  Drummond said that there's some stuff that's going on uh in gain 
+  uh as well so so yeah really interested in hearing about like 
+  other places people have seen personhood credentials.
+Manu Sporny:  Pop up as like.
+Manu Sporny:  You know forming real real things uh that's.
+Harrison_Tang: On your next in the queue.
+https://github.com/andorsk/awesome-proof-of-personhood
+Andor: Yeah I think I think first of all fantastic presentation 
+  thank you so much um actually Manu your your points really well 
+  noted right here I'm going to point in a link I started after 
+  this paper indexing personage credentials and or uh just person 
+  who uh sort of methodologies and types and just uh we need to 
+  remove it in depth.
+Andor: So if anybody would like to contribute or help adding to 
+  the index I think that'd be really appreciated um so uh feel free 
+  to I just sent the link on the uh chats and uh would appreciate 
+  um people pushing in their their projects so thank you.
+Harrison_Tang: And also there's a a question in the chat how can 
+  developers interested in building on PHT learn more.
+Harrison_Tang: So I I I think some of you guys already kind of 
+  talked about the anything else that.
+Zoë_hitzig: This page from indoors seems like a great place to 
+  start.
+Harrison_Tang: That was that was what I was gonna say so.
+<olvis_e._gil_ríos> Thank you!
+Harrison_Tang: Great cool uh dimitry.
+Dmitri Zagidulin:  Yeah I wanted to ask if the if openai or the 
+  paper authors uh.
+Dmitri Zagidulin:  Have thought about a uh revocation and 
+  conflict resolution architecture.
+Dmitri Zagidulin:  Uh because as we all know verifiable 
+  credentials are great against being forged or stolen but offer no 
+  protection against being voluntarily shared or you know uh shared 
+  for for money Etc and so I'm curious uh uh if any thought went 
+  into the.
+Dmitri Zagidulin:  Uh reporting moderation and conflict 
+  resolution side of the credentials.
+Zoë_hitzig: Yeah I I 1 Thing also and others can feel free to 
+  jump in as the 1 perspective that we came to and writing this 
+  paper was that in some ways of course theft and or sharing a 
+  credentials selling a credential is a huge issue and especially 
+  in a world with multiple issuers you know people might have more 
+  incentives to.
+Zoë_hitzig: S or to um.
+Zoë_hitzig: Or to uh uh sell them in some way.
+Zoë_hitzig: These sort of came to the came to the view in this 
+  paper and and others can can correct me if this is not a 
+  representation of your view but I I came to the view that to some 
+  degree it's.
+Zoë_hitzig: Okay cost to not have um you know to have these 
+  systems be occasionally sold or stolen or or shared and part of 
+  that is that 1 of the big as I focused on in in the in in the 
+  problem statement.
+Zoë_hitzig: We're really talking about scalable AI deception and 
+  to some degree just being able to put a limit on things is 
+  incredibly valuable so even if it's not really that you know this 
+  person had credentials like exactly given to who it uh you know 
+  is that is exactly being used by the person who it was issued to 
+  there's still this sense in which the overall activity.
+<greg_bernstein> Pseudonyms can help put a limit on things.
+Zoë_hitzig: And overall like fraudulent activity in the system is 
+  largely reduced um and that said we also um in terms of the 
+  actual thinking in the paper so so that's 1 part of my answer is 
+  like just some degree you know.
+Zoë_hitzig: You're right and we kind of take the view that it's 
+  okay to some degree because there's still this overall limit.
+Zoë_hitzig: Um in the paper we also talked a bit about um 
+  revocation and recovery and reau reauthentication kind of taking 
+  the view that you know of course it's inconvenient to have to 
+  reauthenticate frequently but we would tend to favor tighter 
+  expiration limits generally for this reason exactly um.
+Zoë_hitzig: While it's not like perfect and we can't transfer 
+  like we can't prevent people from transferring our our selling 
+  you know tight expiration limits would go a large.
+Zoë_hitzig:  a large.
+Zoë_hitzig: Part of the way.
+Dmitri Zagidulin:  I uh if I if I could clarify specifically 
+  meant uh sharing with AI is not with people uh does that does 
+  your answer still apply to that.
+Zoë_hitzig: Yeah and um the answer still applies and I think that 
+  you know again.
+Zoë_hitzig: 1 of the 1 of the sort of positive use cases that we 
+  talked about in the paper is this idea of verified delegation so 
+  yeah sure you know give your credential to an AI agent but you 
+  know again you'll only really be able to.
+Zoë_hitzig: Will still be.
+Zoë_hitzig: Pretty Limited in you know the number of AI agents 
+  that you could give your credential to.
+Pat Adler:  Make mad on.
+<dmitri_zagidulin> I'm not sure I see the part that would limit 
+  how many malicious AI agents I could share my PHC with
+Pat Adler:  Yeah um yeah I I think what's always said is totally 
+  correct like I we we did not go so far as to lay out uh an 
+  architecture I would say for Recovery or revocation those 
+  certainly we recognize that they are like important and useful um 
+  but also maybe less critical than sometimes understood and so in 
+  the case of AI like Zoe Zoe is alluding to you know if a dating 
+  app has a rule that you may not delegate your account to an AI 
+  system uh and you decide to do it anyway right you do it 
+  illicitly.
+<dmitri_zagidulin> @Steven - I see, so you're envisioning 
+  per-application revocation mechanisms, rather than part of the 
+  infrastructure
+Pat Adler:  You know you're violating the terms of service it's 
+  not great uh if the site determines that you've done it they can 
+  actually now just you they can suspend your account and you can't 
+  create another 1 and so there is a pretty natural bound on what 
+  you can do um and likewise you wouldn't be able to use your 
+  credential to power 20 accounts on the platform or do fishing at 
+  scale or things um to to the extent that uh the platform decides 
+  that they want to limit to a certain number of accounts per 
+  credential so hopefully that illustrates how you you can still do 
+  elicit sharing in various ways but at significantly lower impact 
+  than maybe in other systems.
+Zoë_hitzig: Yeah and I just tagged yeah thank you Stephen that's 
+  really helpful clarification and I I would just tack on that this 
+  is another kind of it may be subtle but it is another sort of 
+  difference from what we typically think of as like proof of 
+  personhood protocols which really do care a lot about the uh 
+  credential only being used by the person it was issued to like 
+  we're a little.
+Zoë_hitzig: Uh our view is a little looser than that.
+Harrison_Tang: Money do you want to add to that.
+Manu Sporny:  Um sure yeah uh.
+Manu Sporny:   I I think.
+Manu Sporny:  Yes so plus 1 to what you know um uh Zoe and 
+  Stephen have already said um I I'm pointing out something that 
+  Gregg Bernstein who's been working on the BBS pseudonym stuff uh 
+  pointed out in the chat Channel um so you know this community 
+  knows that there's no such thing as a perfect security system 
+  there will always be uh security failures in any any system that 
+  you that you build right so um we are expecting a certain amount 
+  of cables in the system it's just a natural consequence of uh the 
+  balance that we're trying to uh strike uh I think Demetri your 
+  point is like how do you make it so the syllables don't make it 
+  so that the system itself falls apart like there's a certain 
+  level of fraud in a system that leads to system failure and we 
+  don't want to go past that line so um uh so there are a number of 
+  variables here right um we don't want 1 Uber issuer that there's 
+  only 1 you know you the United Nations of personhood credentials 
+  and there's only.
+Manu Sporny:   1 Of those in the world.
+<steven_adler> @Dmitri you asked if revocation happens at a 
+  service-provider level rather than the infra overall - it could 
+  happen at both, but that's a helpful way of describing it. Moreso 
+  than revocation though, a service-provider can just 'burn' a 
+  credential for their service once it's used, independent of 
+  revoking
+<olvis_e._gil_ríos> Thank you so much!
