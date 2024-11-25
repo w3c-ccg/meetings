@@ -1,0 +1,160 @@
+[2024-11-18T15:45:11.223Z]	<Ildiko_Mazar> agenda: https://lists.w3.org/Archives/Public/public-vc-edu/2024Nov/0002.html
+
+[2024-11-18T15:56:01.471Z]	<Dmitri_Zagidulin>	present+
+[2024-11-18T15:59:48.018Z]	<Andy_Griebel>	present+
+[2024-11-18T16:00:30.856Z]	<Ildiko_Mazar>	present+
+[2024-11-18T16:00:50.997Z]	<Mahesh_Balan_-_pocketcred.com>	present+
+[2024-11-18T16:00:57.356Z]	<James_Chartrand>	present+
+[2024-11-18T16:00:59.739Z]	<TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com)>	present+
+[2024-11-18T16:01:01.410Z]	<David>	present+
+[2024-11-18T16:01:33.248Z]	<Sheela_Kiiskila>	present+
+[2024-11-18T16:01:35.619Z]	<Jim_Kelly>	present+
+[2024-11-18T16:02:12.592Z]	<Transcriber>	scribe+
+[2024-11-18T16:02:12.593Z]	<Transcriber>	Meeting: education
+[2024-11-18T16:02:27.029Z]	<Christoph_Graf_(switch.ch)>	present+
+[2024-11-18T16:02:41.587Z]	<Simone_Ravaioli>	present+
+[2024-11-18T16:02:51.240Z]	<Transcriber>	Dmitri_Zagidulin: Yeah there we go all right uh so these calls are free and open to anyone you don't have to be a member of the group uh to join the call however if you want to make any substantive contribution to any of the specs this group works on uh you must be a member of w3c and a member of the credentials community group of which this is a task force so if you want to make contributions and have them joined yet please reach out to myself or to go or to Simone and uh we'll walk you through how to join.
+[2024-11-18T16:03:11.653Z]	<Transcriber>	Dmitri_Zagidulin: Uh let's see outbound under w3c and ccg code of conduct uh we use jitsi chat to queue up for questions so uh hit raise your hand and uh the bot will automatically add you to the queue.
+[2024-11-18T16:03:14.256Z]	<Transcriber>	Dmitri_Zagidulin: You can go from there.
+[2024-11-18T16:03:28.641Z]	<Transcriber>	Dmitri_Zagidulin: First stop uh introductions and reintroductions is anybody new to the call today or I haven't introduced themselves in a while and wants to say hello to everyone.
+[2024-11-18T16:03:38.220Z]	<Transcriber>	Dmitri_Zagidulin: All right um.
+[2024-11-18T16:03:43.463Z]	<Transcriber>	Dmitri_Zagidulin: Next topic are there any Community announcements.
+[2024-11-18T16:03:47.470Z]	<Phil_Barker>	present+
+[2024-11-18T16:03:57.355Z]	<Federico_Giacanelli>	present+
+[2024-11-18T16:04:04.530Z]	<Transcriber>	Dmitri_Zagidulin: All right no announcements uh in that case let us move on to our main topic today uh which is uh DCC team uh James Chartrand.
+[2024-11-18T16:04:09.855Z]	<Alex_Higuera_(DCC)>	present+
+[2024-11-18T16:04:13.858Z]	<Transcriber>	Dmitri_Zagidulin: Alex Agera myself mostly James are going to be presenting on a couple of interrelated topics.
+[2024-11-18T16:04:22.625Z]	<Transcriber>	Dmitri_Zagidulin: Uh specifically we want to talk about the course of study extension to the open badges version 3.
+[2024-11-18T16:04:46.777Z]	<Adam_Eunson_(AuvoDigital)>	present+
+[2024-11-18T16:04:49.237Z]	<Phil_Barker>	present+
+[2024-11-18T16:05:05.020Z]	<Transcriber>	Dmitri_Zagidulin: Uh specification this is for diplomas right so you have a major and you have a course of study how do we and I'm currently there isn't um a flexible way to express that so how do you how do you express it using open badges well it turns out that open badges has an extension mechanism with that you can use to add custom Fields like this uh fun fact krie lamoy was the 1 who originally uh created the extension mechanism for the original open badge specification uh it's changed uh since then but the idea is the same so we're going to talk about how the extension mechanism Works in general and.
+[2024-11-18T16:05:05.761Z]	<Kerri_Lemoie>	present+
+[2024-11-18T16:05:14.940Z]	<Transcriber>	Dmitri_Zagidulin: Although it's not exactly an extension but it's a related topic we're going to talk a little bit about um.
+[2024-11-18T16:05:21.588Z]	<Transcriber>	Dmitri_Zagidulin: Ation localization and specifically multi-language fields in open badges.
+[2024-11-18T16:05:30.333Z]	<Transcriber>	Dmitri_Zagidulin: All right uh over to you uh before we get started I see James is setting up James uh we can see your screen nicely.
+[2024-11-18T16:05:35.958Z]	<Transcriber>	Dmitri_Zagidulin: Uh does anybody have any questions before we get started.
+[2024-11-18T16:05:42.367Z]	<Transcriber>	Dmitri_Zagidulin: All right over to you James.
+[2024-11-18T16:05:53.205Z]	<Transcriber>	James_Chartrand: Okay thanks Dmitri uh everyone can see my screen share okay.
+[2024-11-18T16:06:21.704Z]	<Transcriber>	James_Chartrand: Great so as Demetri said this is all about um extending obd3 to support degree May uh minors and Majors so to be able to in an obd3 not just say that this obd3 is 4 degree but to list the minors and Majors that go along with it um so today I I'm going to be getting into the code a little bit so into the weeds a little bit um and I'm assuming yep.
+[2024-11-18T16:06:28.087Z]	<Transcriber>	Dmitri_Zagidulin: 1 second James we we uh may have lost your screen share I'm not sure if it's just me or if anybody else uh has lost it as well.
+[2024-11-18T16:06:28.446Z]	<Transcriber>	Dmitri_Zagidulin:  if you.
+[2024-11-18T16:06:37.365Z]	<Transcriber>	James_Chartrand: Can you see it is it back.
+[2024-11-18T16:06:38.823Z]	<Simone_Ravaioli>	it is there for me
+[2024-11-18T16:06:42.302Z]	<Merul_(AuvoDigital)>	present+
+[2024-11-18T16:06:42.818Z]	<Transcriber>	Kerri_Lemoie: Yeah I can see the slides James.
+[2024-11-18T16:06:49.758Z]	<Transcriber>	Dmitri_Zagidulin: Okay yep uh all right so if anybody else like myself uh faces this uh just refresh and you should be able to.
+[2024-11-18T16:06:58.455Z]	<Dmitri_Zagidulin>	present+
+[2024-11-18T16:07:20.462Z]	<Deb_Everhart_(Credential_Engine)>	present+
+[2024-11-18T16:09:38.348Z]	<Xavi_Aracil_(1EdTech)>	present+
+[2024-11-18T16:10:01.897Z]	<Nate_Otto_(he/him)>	present+
+[2024-11-18T16:11:08.745Z]	<David_Ward>	present+
+[2024-11-18T16:12:36.598Z]	<Kerri_Lemoie>	Open Badges haven't been used for degrees in the past (as far as we know) so we're encountering these challenges. As another example, right before OBv3 was final, we recommended adding "name" to the identity object because degrees usually contain a person's name whereas open badges typically use email addresses or other identifiers.
+[2024-11-18T16:13:52.461Z]	<Ildiko_Mazar>	Why is the cardinality of fieldOfStudy [0..1]?
+[2024-11-18T16:13:55.058Z]	<Deb_Everhart_(Credential_Engine)>	https://credreg.net/ctdl/terms/Degree#Degree
+[2024-11-18T16:14:25.992Z]	<Phil_Barker>	Degree major in CTDL https://credreg.net/ctdl/terms/degreeMajor
+[2024-11-18T16:14:28.260Z]	<Xavi_Aracil_(1EdTech)>	@Ildiko is [0..1]
+[2024-11-18T16:14:40.849Z]	<TimG>	present+
+[2024-11-18T16:15:29.005Z]	<David_Ward>	present+
+[2024-11-18T16:15:42.992Z]	<Chandi>	present+
+[2024-11-18T16:16:03.639Z]	<Dmitri_Zagidulin>	@Ildiko I'm not sure why that cardinality was chosen.
+[2024-11-18T16:16:04.893Z]	<Simone_Ravaioli>	Bestr.it in Italy has been issuing OB for University Degrees for a while, but not sure they have the additional "minor" details as a requirement.
+[2024-11-18T16:16:05.676Z]	<Nate_Otto_(he/him)>	@Ildiko The cardinality of fieldOfStudy is [0..1] just for historical reasons, that's what it was drafted as, and multiple-field-of-study use cases weren't considered until after the spec was final. Multiple values will definitely be considered for the next revision.
+[2024-11-18T16:16:33.705Z]	<Dmitri_Zagidulin>	@Simone - oh, great to know!
+[2024-11-18T16:16:45.541Z]	<Dmitri_Zagidulin>	@Nate - ah, makes sense, thanks.
+[2024-11-18T16:16:53.564Z]	<Deb_Everhart_(Credential_Engine)>	https://credreg.net/ctdl/terms/
+[2024-11-18T16:17:07.557Z]	<Jeff_O_-_HumanOS>	present+
+[2024-11-18T16:17:11.224Z]	<Federico_Giacanelli>	Hi Simone, Bestr.it is currently issuing "minor" degree OBs but without any specific property. Just a mention in the title
+[2024-11-18T16:17:28.529Z]	<Ildiko_Mazar>	Thank you both @Xavi and @Nate. FYI (you probably know already), in ELM it's card [0..*]
+[2024-11-18T16:20:25.496Z]	<Nate_Otto_(he/him)>	Why is major just a string not a multi-string value?
+[2024-11-18T16:20:35.021Z]	<Nate_Otto_(he/him)>	I had two majors and two minors
+[2024-11-18T16:21:20.755Z]	<Ildiko_Mazar>	+1 to @Nate's question on string
+[2024-11-18T16:21:25.872Z]	<Kerri_Lemoie>	:+1:
+[2024-11-18T16:21:47.541Z]	<Kayode_Ezike>	present+
+[2024-11-18T16:22:14.855Z]	<Phil_Barker>	@Nate Otto, in CTDL it would be multivalue with Credential Alignment Objects as values.
+[2024-11-18T16:22:37.088Z]	<Nate_Otto_(he/him)>	Right, Phil, my question is about the schema on screen now, to represent double major
+[2024-11-18T16:22:58.720Z]	<Dmitri_Zagidulin>	@Nate - I think this is a sample schema that shows how to do either
+[2024-11-18T16:23:27.544Z]	<Nate_Otto_(he/him)>	Sure, just do consider that use case before you finalize v0.0.1, it's real!
+[2024-11-18T16:23:35.233Z]	<Dmitri_Zagidulin>	totally agreed
+[2024-11-18T16:23:59.176Z]	<Kayode_Ezike>	present+
+[2024-11-18T16:24:13.253Z]	<Simone_Ravaioli>	here is a page of the University of Bergamo with all the Badge classes for Diplomas https://bestr.it/project/show/136
+[2024-11-18T16:24:17.877Z]	<Federico_Giacanelli>	Here's a OB set from University of Venice Ca' Foscari titled "Minor"
+[2024-11-18T16:24:20.149Z]	<Federico_Giacanelli>	https://bestr.it/project/show/117?ln=en
+[2024-11-18T16:24:23.426Z]	<Kerri_Lemoie>	Would concentrations be included in a similar way? Part of the same extensions?
+[2024-11-18T16:24:31.281Z]	<Simone_Ravaioli>	thank Fede, much better !
+[2024-11-18T16:25:00.448Z]	<Federico_Giacanelli>	:+1: @simone
+[2024-11-18T16:25:15.739Z]	<Kerri_Lemoie>	@federico, would minor be a separate badge from the degree?
+[2024-11-18T16:26:13.354Z]	<Xavi_Aracil_(1EdTech)>	q+
+[2024-11-18T16:26:48.963Z]	<Kayode_Ezike>	present+
+[2024-11-18T16:26:56.384Z]	<Federico_Giacanelli>	@kerri I'm not directly involved into it, but AFAIK these are sort of mini-courses composed of a small number of Degree exams: cfr https://bestr.it/badge/show/3618
+[2024-11-18T16:27:38.254Z]	<Phil_Barker>	Yes! in CTDL it is an object!
+[2024-11-18T16:27:47.922Z]	<Federico_Giacanelli>	@kerri so yes they are separates from the degrees: https://bestr.it/project/show/148
+[2024-11-18T16:28:00.087Z]	<Kerri_Lemoie>	Thanks @federico!
+[2024-11-18T16:28:43.560Z]	<Kerri_Lemoie>	@philBarker - would you be able to show an example?
+[2024-11-18T16:28:53.518Z]	<Dmitri_Zagidulin>	ack Xavi
+[2024-11-18T16:29:00.511Z]	<Phil_Barker>	Not right now
+[2024-11-18T16:29:16.024Z]	<Kerri_Lemoie>	:)
+[2024-11-18T16:31:31.752Z]	<Deb_Everhart_(Credential_Engine)>	here are credentials in CTDL, and you can filter to see specific types, e.g.  degrees https://credentialfinder.org/search?searchType=credential
+[2024-11-18T16:32:18.534Z]	<Phil_Barker>	@Kerri but the value for degreeMajor etc. is a Credential Alignment Object which looks like the https://credreg.net/ctdl/terms/CredentialAlignmentObject and which include links to the definition used for "Biology" etc. as a Degree Concentration
+[2024-11-18T16:33:07.884Z]	<Kerri_Lemoie>	:+1:
+[2024-11-18T16:33:10.817Z]	<Dmitri_Zagidulin>	q?
+[2024-11-18T16:33:54.500Z]	<Deb_Everhart_(Credential_Engine)>	q+
+[2024-11-18T16:34:10.012Z]	<Nate_Otto_(he/him)>	@Phil if you had your preference between two options, what would it be? (1) not use the CTDL and use some other IRI instead, or (2) use the CTDL while not obeying the expectations of the CTDL for the value?
+[2024-11-18T16:35:06.562Z]	<Phil_Barker>	@Nate, I don't see why use CTDL as expected isn't an option!
+[2024-11-18T16:35:42.067Z]	<Nate_Otto_(he/him)>	Some implementers may feel that something like "major": [{"targetNodeName": "Biology"}] is overwrought
+[2024-11-18T16:35:52.636Z]	<Phil_Barker>	It would add about 6 characters to the JSON
+[2024-11-18T16:36:20.958Z]	<Phil_Barker>	(if you alias the targetNodfName)
+[2024-11-18T16:38:44.260Z]	<Nate_Otto_(he/him)>	Credential Engine recommends adding an "alignment" to a target URL on credentialfinder.org . In addition, the "ctid" property could be added to the Achievement if the CTDL IRI for that term appears in the extension context.
+[2024-11-18T16:39:31.069Z]	<Deb_Everhart_(Credential_Engine)>	https://credentialengine.org/resources/how-to-align-digital-credentials-with-meaningful-ctdl-data/
+[2024-11-18T16:42:11.994Z]	<Dmitri_Zagidulin>	q?
+[2024-11-18T16:42:30.085Z]	<Dmitri_Zagidulin>	ack deb
+[2024-11-18T16:42:41.620Z]	<Deb_Everhart_(Credential_Engine)>	q-
+[2024-11-18T16:43:30.322Z]	<Deb_Everhart_(Credential_Engine)>	here's the alignment guidance for using a CTID for additional linked data within an OB3 https://www.imsglobal.org/spec/ob/v3p0/impl/#alignment-with-a-ceterms-credential-resource
+[2024-11-18T16:43:45.814Z]	<Kerri_Lemoie>	https://docs.google.com/document/d/1T-_-w5N2Ax5kl6x5-TgbSd-9PaPI3q4J2mnsFHgnBV0/edit?tab=t.0#heading=h.hrcjoq4lis6w
+[2024-11-18T16:45:02.956Z]	<Dmitri_Zagidulin>	example multi-language VC from the VC 2.0 spec: https://www.w3.org/TR/vc-data-model-2.0/#example-example-dual-language-credential
+[2024-11-18T16:45:18.001Z]	<Dmitri_Zagidulin>	present+
+[2024-11-18T16:46:00.207Z]	<Dmitri_Zagidulin>	present+
+[2024-11-18T16:46:05.584Z]	<Alex_Higuera_(DCC)>	present+
+[2024-11-18T16:46:07.359Z]	<James_Chartrand>	present+
+[2024-11-18T16:46:11.130Z]	<Ildiko_Mazar>	present+
+[2024-11-18T16:46:12.718Z]	<Deb_Everhart_(Credential_Engine)>	present+
+[2024-11-18T16:46:15.302Z]	<Andy_Griebel>	present+
+[2024-11-18T16:46:16.650Z]	<Simone_Ravaioli>	present+
+[2024-11-18T16:46:18.872Z]	<Ildiko_Mazar>	:-D
+[2024-11-18T16:46:19.663Z]	<Jeff_O_-_HumanOS>	present+
+[2024-11-18T16:46:21.067Z]	<Xavi_Aracil_(1EdTech)>	present+
+[2024-11-18T16:46:23.814Z]	<Mahesh_Balan_-_pocketcred.com>	present+
+[2024-11-18T16:46:25.578Z]	<Phil_Barker>	present+
+[2024-11-18T16:46:26.410Z]	<Merul_(AuvoDigital)>	present+
+[2024-11-18T16:46:30.457Z]	<David_Ward>	present+
+[2024-11-18T16:46:30.537Z]	<Federico_Giacanelli>	present+
+[2024-11-18T16:46:30.618Z]	<Chandi_Cumaranatunge>	present+
+[2024-11-18T16:46:34.477Z]	<Christoph_Graf_(switch.ch)>	present+
+[2024-11-18T16:46:35.764Z]	<Nate_Otto_(he/him)>	present+
+[2024-11-18T16:46:36.884Z]	<Ildiko_Mazar>	Yes, we can see
+[2024-11-18T16:46:47.197Z]	<TimG>	present+
+[2024-11-18T16:47:10.700Z]	<David>	present+
+[2024-11-18T16:48:55.228Z]	<Ildiko_Mazar>	Would there be a semantic consideration to which approach to apply? "related" feels not exactly the same as the main achievement in a different language.
+[2024-11-18T16:49:10.007Z]	<Deb_Everhart_(Credential_Engine)>	CTDL uses inLanguage https://credreg.net/ctdl/terms/#inLanguage
+[2024-11-18T16:49:39.253Z]	<Federico_Giacanelli>	q+
+[2024-11-18T16:50:05.514Z]	<Phil_Barker>	@Deb CTDL uses inLanguage for the language of the credential, but uses standard rdf langStrings for the metadata just like VCs
+[2024-11-18T16:50:30.007Z]	<Deb_Everhart_(Credential_Engine)>	:+1:
+[2024-11-18T16:51:09.797Z]	<Dmitri_Zagidulin>	q+
+[2024-11-18T16:51:11.150Z]	<Ildiko_Mazar>	We feel that with European Digital Credentials - our multilingual creds are massive json files
+[2024-11-18T16:55:42.119Z]	<Kerri_Lemoie>	:slightly_smiling_face:
+[2024-11-18T16:57:02.427Z]	<Ildiko_Mazar>	We do the         "title" : {
+          "en" : [ "English title" ],
+          "es" : [ "Spanish title" ]
+        },
+[2024-11-18T16:58:03.039Z]	<Kayode_Ezike>	CLRv2
+[2024-11-18T16:58:08.181Z]	<Ildiko_Mazar>	We have QR codes for all EDCs - independent from their size (I don't know how they are generated though)
+[2024-11-18T16:58:11.798Z]	<Kerri_Lemoie>	Interesting @Ildiko - can the values for each language be an array?
+[2024-11-18T16:58:39.742Z]	<Ildiko_Mazar>	Yes, @Kerri
+[2024-11-18T16:58:46.996Z]	<Kerri_Lemoie>	:+1:
+[2024-11-18T16:59:15.544Z]	<Kerri_Lemoie>	Thank you!!
+[2024-11-18T16:59:32.104Z]	<Kerri_Lemoie>	I could start a thread on vc-edu mailing list about this.
+[2024-11-18T16:59:33.152Z]	<Federico_Giacanelli>	bestr.it already exports some OBs in EDC format (thanks to @ildiko help)
+[2024-11-18T16:59:33.227Z]	<Ildiko_Mazar>	And size-wise, a transcript of records with 10 subjects is 885KB
+[2024-11-18T17:00:13.501Z]	<Dmitri_Zagidulin>	@Ildiko - yeah, and the QR code limit is ~4KB
+[2024-11-18T17:00:18.766Z]	<Dmitri_Zagidulin>	so it's way over.
+[2024-11-18T17:00:25.917Z]	<Ildiko_Mazar>	...and that ToR is 8826 lines of code, by the way
+[2024-11-18T17:00:55.988Z]	<Federico_Giacanelli>	:wave:
