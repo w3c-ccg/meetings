@@ -1,0 +1,229 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-11-18-vc-education/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-11-18-vc-education/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-11-18.mp4
+
+----------------------------------------------------------------
+VC for Education Task Force Transcript for 2024-11-18
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-vc-edu/2024Nov/0002.html
+Organizer:
+  Kerri Lemoie, Simone Ravaioli, Dmitri Zagidulin
+Scribe:
+  Our Robot Overlords
+Present:
+  Dmitri Zagidulin, Andy Griebel, Ildiko Mazar, Mahesh Balan - 
+  pocketcred.com, James Chartrand, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), David Ward, Sheela Kiiskila, Jim 
+  Kelly, Nis Jespersen , Simone Ravaoli, Phil Barker, Federico 
+  Giacanelli, Kerri Lemoie, Merul (AuvoDigital), Deb Everhart, Nate 
+  Otto, TimG, Chandi, Jeff O - HumanOS, Kayode Ezike, Chandi 
+  Cumaranatunge
+
+Our Robot Overlords are scribing.
+Dmitri Zagidulin:  Yeah there we go all right uh so these calls 
+  are free and open to anyone you don't have to be a member of the 
+  group uh to join the call however if you want to make any 
+  substantive contribution to any of the specs this group works on 
+  uh you must be a member of w3c and a member of the credentials 
+  community group of which this is a task force so if you want to 
+  make contributions and have them joined yet please reach out to 
+  myself or to go or to Simone and uh we'll walk you through how to 
+  join.
+Dmitri Zagidulin:  Uh let's see outbound under w3c and ccg code 
+  of conduct uh we use jitsi chat to queue up for questions so uh 
+  hit raise your hand and uh the bot will automatically add you to 
+  the queue.
+Dmitri Zagidulin:  You can go from there.
+Dmitri Zagidulin:  First stop uh introductions and 
+  reintroductions is anybody new to the call today or I haven't 
+  introduced themselves in a while and wants to say hello to 
+  everyone.
+Dmitri Zagidulin:  All right um.
+Dmitri Zagidulin:  Next topic are there any Community 
+  announcements.
+Dmitri Zagidulin:  All right no announcements uh in that case let 
+  us move on to our main topic today uh which is uh DCC team uh 
+  James Chartrand.
+Dmitri Zagidulin:  Alex Agera myself mostly James are going to be 
+  presenting on a couple of interrelated topics.
+Dmitri Zagidulin:  Uh specifically we want to talk about the 
+  course of study extension to the open badges version 3.
+Dmitri Zagidulin:  Uh specification this is for diplomas right so 
+  you have a major and you have a course of study how do we and I'm 
+  currently there isn't um a flexible way to express that so how do 
+  you how do you express it using open badges well it turns out 
+  that open badges has an extension mechanism with that you can use 
+  to add custom Fields like this uh fun fact krie lamoy was the 1 
+  who originally uh created the extension mechanism for the 
+  original open badge specification uh it's changed uh since then 
+  but the idea is the same so we're going to talk about how the 
+  extension mechanism Works in general and.
+Dmitri Zagidulin:  Although it's not exactly an extension but 
+  it's a related topic we're going to talk a little bit about um.
+Dmitri Zagidulin:  Ation localization and specifically 
+  multi-language fields in open badges.
+Dmitri Zagidulin:  All right uh over to you uh before we get 
+  started I see James is setting up James uh we can see your screen 
+  nicely.
+Dmitri Zagidulin:  Uh does anybody have any questions before we 
+  get started.
+Dmitri Zagidulin:  All right over to you James.
+James Chartrand:  Okay thanks Dmitri uh everyone can see my 
+  screen share okay.
+James Chartrand:  Great so as Demetri said this is all about um 
+  extending obd3 to support degree May uh minors and Majors so to 
+  be able to in an obd3 not just say that this obd3 is 4 degree but 
+  to list the minors and Majors that go along with it um so today I 
+  I'm going to be getting into the code a little bit so into the 
+  weeds a little bit um and I'm assuming yep.
+Dmitri Zagidulin:  1 Second James we we uh may have lost your 
+  screen share I'm not sure if it's just me or if anybody else uh 
+  has lost it as well.
+Dmitri Zagidulin:   If you.
+James Chartrand:  Can you see it is it back.
+<simone_ravaioli> it is there for me
+Kerri Lemoie:  Yeah I can see the slides James.
+Dmitri Zagidulin:  Okay yep uh all right so if anybody else like 
+  myself uh faces this uh just refresh and you should be able to.
+<kerri_lemoie> Open Badges haven't been used for degrees in the 
+  past (as far as we know) so we're encountering these challenges. 
+  As another example, right before OBv3 was final, we recommended 
+  adding "name" to the identity object because degrees usually 
+  contain a person's name whereas open badges typically use email 
+  addresses or other identifiers.
+<ildiko_mazar> Why is the cardinality of fieldOfStudy [0..1]?
+https://credreg.net/ctdl/terms/Degree#Degree
+<phil_barker> Degree major in CTDL 
+  https://credreg.net/ctdl/terms/degreeMajor
+<xavi_aracil_(1edtech)> @Ildiko is [0..1]
+<dmitri_zagidulin> @Ildiko I'm not sure why that cardinality was 
+  chosen.
+<simone_ravaioli> Bestr.it in Italy has been issuing OB for 
+  University Degrees for a while, but not sure they have the 
+  additional "minor" details as a requirement.
+<nate_otto_(he/him)> @Ildiko The cardinality of fieldOfStudy is 
+  [0..1] just for historical reasons, that's what it was drafted 
+  as, and multiple-field-of-study use cases weren't considered 
+  until after the spec was final. Multiple values will definitely 
+  be considered for the next revision.
+<dmitri_zagidulin> @Simone - oh, great to know!
+<dmitri_zagidulin> @Nate - ah, makes sense, thanks.
+https://credreg.net/ctdl/terms/
+<federico_giacanelli> Hi Simone, Bestr.it is currently issuing 
+  "minor" degree OBs but without any specific property. Just a 
+  mention in the title
+<ildiko_mazar> Thank you both @Xavi and @Nate. FYI (you probably 
+  know already), in ELM it's card [0..*]
+<nate_otto_(he/him)> Why is major just a string not a 
+  multi-string value?
+<nate_otto_(he/him)> I had two majors and two minors
+Kerri Lemoie: :+1:
+<phil_barker> @Nate Otto, in CTDL it would be multivalue with 
+  Credential Alignment Objects as values.
+<nate_otto_(he/him)> Right, Phil, my question is about the schema 
+  on screen now, to represent double major
+<dmitri_zagidulin> @Nate - I think this is a sample schema that 
+  shows how to do either
+<nate_otto_(he/him)> Sure, just do consider that use case before 
+  you finalize v0.0.1, it's real!
+<dmitri_zagidulin> totally agreed
+<simone_ravaioli> here is a page of the University of Bergamo 
+  with all the Badge classes for Diplomas 
+  https://bestr.it/project/show/136
+<federico_giacanelli> Here's a OB set from University of Venice 
+  Ca' Foscari titled "Minor"
+https://bestr.it/project/show/117?ln=en
+<kerri_lemoie> Would concentrations be included in a similar way? 
+  Part of the same extensions?
+<simone_ravaioli> thank Fede, much better !
+<federico_giacanelli> :+1: @simone
+<kerri_lemoie> @federico, would minor be a separate badge from 
+  the degree?
+<federico_giacanelli> @kerri I'm not directly involved into it, 
+  but AFAIK these are sort of mini-courses composed of a small 
+  number of Degree exams: cfr https://bestr.it/badge/show/3618
+<phil_barker> Yes! in CTDL it is an object!
+<federico_giacanelli> @kerri so yes they are separates from the 
+  degrees: https://bestr.it/project/show/148
+<kerri_lemoie> Thanks @federico!
+<kerri_lemoie> @philBarker - would you be able to show an 
+  example?
+<phil_barker> Not right now
+<kerri_lemoie> :)
+<deb_everhart_(credential_engine)> here are credentials in CTDL, 
+  and you can filter to see specific types, e.g.  degrees 
+  https://credentialfinder.org/search?searchType=credential
+<phil_barker> @Kerri but the value for degreeMajor etc. is a 
+  Credential Alignment Object which looks like the 
+  https://credreg.net/ctdl/terms/CredentialAlignmentObject and 
+  which include links to the definition used for "Biology" etc. as 
+  a Degree Concentration
+Kerri Lemoie: :+1:
+<nate_otto_(he/him)> @Phil if you had your preference between two 
+  options, what would it be? (1) not use the CTDL and use some 
+  other IRI instead, or (2) use the CTDL while not obeying the 
+  expectations of the CTDL for the value?
+<phil_barker> @Nate, I don't see why use CTDL as expected isn't 
+  an option!
+<nate_otto_(he/him)> Some implementers may feel that something 
+  like "major": [{"targetNodeName": "Biology"}] is overwrought
+<phil_barker> It would add about 6 characters to the JSON
+<phil_barker> (if you alias the targetNodfName)
+<nate_otto_(he/him)> Credential Engine recommends adding an 
+  "alignment" to a target URL on credentialfinder.org . In 
+  addition, the "ctid" property could be added to the Achievement 
+  if the CTDL IRI for that term appears in the extension context.
+https://credentialengine.org/resources/how-to-align-digital-credentials-with-meaningful-ctdl-data/
+<deb_everhart_(credential_engine)> here's the alignment guidance 
+  for using a CTID for additional linked data within an OB3 
+  https://www.imsglobal.org/spec/ob/v3p0/impl/#alignment-with-a-ceterms-credential-resource
+Kerri Lemoie: 
+  https://docs.google.com/document/d/1T-_-w5N2Ax5kl6x5-TgbSd-9PaPI3q4J2mnsFHgnBV0/edit?tab=t.0#heading=h.hrcjoq4lis6w
+<dmitri_zagidulin> example multi-language VC from the VC 2.0 
+  spec: 
+  https://www.w3.org/TR/vc-data-model-2.0/#example-example-dual-language-credential
+<ildiko_mazar> :-D
+<ildiko_mazar> Yes, we can see
+<ildiko_mazar> Would there be a semantic consideration to which 
+  approach to apply? "related" feels not exactly the same as the 
+  main achievement in a different language.
+<deb_everhart_(credential_engine)> CTDL uses inLanguage 
+  https://credreg.net/ctdl/terms/#inLanguage
+<phil_barker> @Deb CTDL uses inLanguage for the language of the 
+  credential, but uses standard rdf langStrings for the metadata 
+  just like VCs
+<deb_everhart_(credential_engine)> :+1:
+<ildiko_mazar> We feel that with European Digital Credentials - 
+  our multilingual creds are massive json files
+Kerri Lemoie: :Slightly_smiling_face:
+<ildiko_mazar> We do the         "title" : {
+<kayode_ezike> CLRv2
+<ildiko_mazar> We have QR codes for all EDCs - independent from 
+  their size (I don't know how they are generated though)
+<kerri_lemoie> Interesting @Ildiko - can the values for each 
+  language be an array?
+<ildiko_mazar> Yes, @Kerri
+Kerri Lemoie: :+1:
+<kerri_lemoie> Thank you!!
+<kerri_lemoie> I could start a thread on vc-edu mailing list 
+  about this.
+<federico_giacanelli> bestr.it already exports some OBs in EDC 
+  format (thanks to @ildiko help)
+<ildiko_mazar> And size-wise, a transcript of records with 10 
+  subjects is 885KB
+<dmitri_zagidulin> @Ildiko - yeah, and the QR code limit is ~4KB
+<dmitri_zagidulin> so it's way over.
+<ildiko_mazar> ...and that ToR is 8826 lines of code, by the way
+<federico_giacanelli> :wave:
