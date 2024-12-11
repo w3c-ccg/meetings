@@ -1,0 +1,908 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2024-12-11/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2024-12-11/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2024-12-11.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2024-12-11
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Dec&period_year=2024&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords
+Present:
+  Christopher Allen, Harrison Tang, Alan Karp, Mahmoud Alkhraishi, 
+  Vanessa, Greg Bernstein, Tim Bouma, Manu Sporny, cc, TallTed // 
+  Ted Thibodeau (he/him) (OpenLinkSw.com), Will Abramson, Nis 
+  Jespersen , Tom S, Jeff O / HumanOS, Joe Andrieu, Geun-Hyung, 
+  Erica Connell, Alberto Leon, Phil Long, Alberto Leon(BKC at 
+  Harvard), Benjamin Young
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Good morning uh good morning everyone so welcome 
+  to this week's w3c ctg uh meeting so today uh we're very excited 
+  to have Krista Christopher Allen here to uh talk about Edge 
+  identifiers and clicks uh but before that just want to go through 
+  some administrative stuff and then also uh we are in the process 
+  of the election of a new uh ccg culture role so I'll talk about 
+  that a little bit later.
+Harrison_Tang: Now I just want to quickly start with uh a 
+  reminder on the code of ethics and professional conduct I just 
+  want to make sure that we hold the constructive and respectful 
+  conversations here.
+Harrison_Tang: A quick note on the intellectual property anyone 
+  can participate in these calls however all substance 
+  contributions to any ccg work guidelines must be the member of 
+  the ccg with 4 IP agreements signed so if you have any questions 
+  in regards to uh getting a w3c account or the w3c community 
+  contributor license agreement uh please feel free to reach out to 
+  any of the cultures.
+Harrison_Tang: Please note that these meetings are automatically 
+  recorded and transcribed and we will publish the meeting minutes 
+  and the audio and video recordings uh in the next day or 2.
+Harrison_Tang: We use our GT chat to cue the speakers during the 
+  call.
+Harrison_Tang: Cost to take minutes so you can type in Q Plus to 
+  add yourself to the queue or cue minus to remove.
+Harrison_Tang: All right I just want to take a moment uh to uh 
+  for the introductions and reintroduction so if you are new to the 
+  community or you haven't been active and want to re-engage feel 
+  free to just unmute and uh speak yourself.
+Harrison_Tang: All right next announcements and reminders any uh 
+  new announcements or reminders of the upcoming events.
+Manu Sporny:  Um yeah uh just 1 uh heads up to the group um I'm 
+  trying to find.
+<harrison_tang> Add "Topic: <Edge Identifiers & Cliques>"
+Manu Sporny:  Appropriate email um uh there is uh so we've done a 
+  number of presentations on uh BBS in this group so it's a new 
+  privacy preserving cryptography new as in 20 years old at this 
+  point um but there's a big push to get it standardized at uh at 
+  ITF um and uh uh.
+Manu Sporny:  And so there's been a lot of discussion and work so 
+  um Greg Bernstein's done a lot of presentations on BBS and how 
+  it's useful for privacy preserving uh credentials uh work has 
+  been going on at the internet engineering task force uh 
+  specifically uh really in the crypto Forum research Group which 
+  is where new types of cryptography tends to be standardized um in 
+  their uh was repeated requests to.
+Manu Sporny:  Adopt um uh these these specifications so BBS is 
+  already adopted it has cryptographic review but there are 2 new 
+  features that we're really looking for in a complete solution to 
+  enable and linkable uh credentials uh and so the official call is 
+  out now and it is only open until December 20th so it's a very 
+  short period where you have to write in and uh signal your 
+  support for the specification.
+Manu Sporny:  Uh if you care about.
+Manu Sporny: 
+  https://mailarchive.ietf.org/arch/msg/cfrg/H3LfT7mrelFnDUvJ3kL6CNev3C8/
+Manu Sporny:  Privacy preserving cryptography uh and specifically 
+  kind of the BBS stuff that we've been you know working on for 
+  years here um this is an important uh Point um to go in and and 
+  uh write in your support I put a link into the chat channel uh if 
+  you go there and you respond to that email uh unfortunately you 
+  do need to sign up for the CFR Gmail mailing list for your email 
+  not to be bounced um if you responded that and say that you 
+  supported adoption that's really all we're looking for now so 
+  again if you'd like to see this type of privacy preserving 
+  cryptography uh standardized and used and verifiable credentials 
+  and dids and all that kind of stuff uh it is vital that you go 
+  and um provide your support uh to the call for adoption that's 
+  it.
+Will Abramson:  Yeah I just wanted to ask my that's different to 
+  like the past like I feel like I've already done that but like it 
+  seems like this is a new thing.
+Will Abramson:  Ah okay so this is more important yeah okay.
+Manu Sporny:  I know it's confusing the the previous 1 was a 
+  request that they start a call for adoption this 1 is the actual 
+  call for adoption which is.
+Manu Sporny:   Kind of ridiculous.
+Manu Sporny:  You know whatever so please write in again 
+  reaffirming that you would like the things adopted that's it.
+Harrison_Tang:  any other.
+<greg_bernstein> Thanks all from the BBS team!
+Harrison_Tang: Announcements or reminders.
+Harrison_Tang: Just a quick previous what's coming so uh next 
+  Tuesday we'll have uh Isaac to uh give an update on the 
+  verifiable issuers and verifiers and then we will be uh not have 
+  we will not have to uh ccg meetings on December 24th and the 
+  December 31st and we will resume on January 7th uh with.
+Harrison_Tang: Presentation by JC.
+Harrison_Tang: I will send out the email reminders as always.
+Harrison_Tang: All right any uh last calls for the announcements 
+  and reminders.
+Harrison_Tang: All right so I just want to take a moment uh to 
+  open up the to talk about the election of the w3c ccg culture 
+  position so uh.
+Harrison_Tang: So the nomination has closed and we have 2 
+  candidates uh Jillian Walsh and Mammoth uh I'm not gonna butcher 
+  his last name but we'll have 2 candidates uh and then I would 
+  like to invite them to actually share a few words and then uh 
+  right afterwards I'm going to send out uh an email uh to open up 
+  the voting and then we will have we will have the about a week uh 
+  to for for the voting to happen and we'll.
+Harrison_Tang: So my mom do you want to uh just uh speak a few 
+  words about your candidacy.
+Mahmoud Alkhraishi:  Um hi my name is Muhammad Al keshi um over 
+  the past few years I've had the pleasure of working with many if 
+  not most of you.
+Harrison_Tang: Thank you Mamou.
+Mahmoud Alkhraishi:  And it has been a wonderful time uh I'm 
+  looking to be the nominee for co-chair and to do that I would 
+  love to be able to help push forward the ccg in a lot of the 
+  different ways 1 of them is I've been very happy with the 
+  diversity inclusion that's been going on I would like to increase 
+  that there are a lot of changes that have been happening the last 
+  8 months to a year in the ccg especially on how the topics are 
+  picked especially on what kinds of things that are being talked 
+  about these have been wonderful and I would like to keep pushing 
+  that forward um I've worked with a lot of you on many things at 
+  here at the VC working group at the did working group at ITF or 
+  at Dak and I feel like I would be able to provide uh you know a 
+  different perspective and I think that would be helpful thank 
+  you.
+Harrison_Tang: And I don't think I see uh joining here but I 
+  think she has sent out an email about her around the issue so uh 
+  you can just refer to her email.
+Harrison_Tang: All right a quick note so I will send out an email 
+  for the.
+Harrison_Tang: Regards to how you can vote uh but uh I will just 
+  quickly show what that voting interface look like so give me a 
+  second.
+Harrison_Tang: I think people people get to see my screen right.
+Harrison_Tang: Cool all right so it is a rank Choice voting so 
+  the we have 2 candidates here so it takes like about 30 seconds 
+  to do it's really easy so just uh type in your name and email and 
+  then you'll get to this screen and then you just uh do the rank 
+  Choice and then that's it so.
+Harrison_Tang: Let me see okay so the nomination uh has closed uh 
+  the end of day yesterday so we will open up the voting uh I'll 
+  send out the email right after this and then the voting will 
+  close on the.
+Harrison_Tang: Uh the end of the day next Monday and we'll 
+  announce the election result uh during the ccg meeting next 
+  Tuesday.
+Harrison_Tang: And then the new culture term will start on 
+  January 7th the new year.
+Harrison_Tang: All right pretty straight forward um.
+Harrison_Tang: All right before we get to the main agenda um any 
+  last introductions reintroductions announcements or.
+Harrison_Tang: Work item updates relay stuff.
+Will Abramson:  Yes I will say something so we've I've been 
+  working at it with my mood and a bunch of other people who are on 
+  the traceability um.
+Will Abramson: 
+  https://www.w3.org/community/reports/credentials/CG-FINAL-traceability-interop-20241204/
+Will Abramson:  I think it's like a task force right to publish a 
+  final report I did mention this last time but we finally managed 
+  to get them published so I guess you know we can celebrate that a 
+  little bit I just dropped 2 links into the.
+Will Abramson: 
+  https://www.w3.org/community/reports/credentials/CG-FINAL-traceability-vocab-20241204/
+Will Abramson:  Um documents like these are now like final w3c 
+  official Community reports.
+Will Abramson:  Maybe I'll ask my mood if I have to say anything 
+  about the documents themselves but before that I just would 
+  invite anybody if you're working on a report or if you have a 
+  report that you think is a final Community report but hasn't got 
+  this like official w3.org URL link yet like please reach out to 
+  me and and I'll work with you to help get them to this sort of 
+  more official stage.
+Will Abramson:   So I think.
+Will Abramson:  Get a proper you.
+Will Abramson:  And we can put it on our community uh.
+Will Abramson:  Stuff you know just mix things a bit more 
+  official.
+Will Abramson:  So I don't know I moved you on to speak a little 
+  bit to these documents like.
+Mahmoud Alkhraishi:  Yeah happy to walk through them um I want to 
+  say thank you all this I know this is not an easy process there's 
+  I know we haven't done it in a while and there's a few hiccups 
+  um.
+Mahmoud Alkhraishi:  I wanted to have a chat with you afterwards 
+  maybe about a few things we could do to hopefully streamline this 
+  for the other participants but um there are 2 reports 1 for the 
+  traceability vocab 1 for the traceability interop both have been 
+  a work in progress since uh 2020 and they both tackle to close 
+  topics but they're a little bit different the traceability 
+  vocabulary aims to provide a vocabulary that would be used for 
+  asserting claims and verifiable credentials that talk about 
+  Supply chains and traceability within them they talk about 
+  products they talk about organizations they talk about chemical 
+  properties they talk about attributes uh like uh country of 
+  origin and that kind of stuff things about the Providence of a uh 
+  credential the traceability anthrop is started off as a profile 
+  of the VC API that was a little bit more restrictive with a few 
+  different um.
+Mahmoud Alkhraishi:  Things picked out so that it would Aid in 
+  Enterprise uh interoperability that was specific to the 
+  traceability sector so there were a lot of assumptions about the 
+  kind of company that would run it there's a lot of assumptions 
+  about the kinds of things that you would want to do it and so we 
+  aimed to keep it in line with the VC API for the first while um 
+  after I want to say 3 years it started becoming its own thing and 
+  uh now it's published and it is intended to be used as a way to 
+  provide traceability documents from 1 point to the other over 
+  long-lived workflows that would allow people to correlate that 
+  would allow organizations to correlate credentials that relate to 
+  a life cycle of a specific product so there's a lot of things to 
+  go over there I'm happy to go in depth at any time anybody would 
+  like but um at risk of hijacking this meeting if there are any 
+  questions I'm happy.
+Harrison_Tang: Thank you thank you will and thank you Mammoth and 
+  by the way I probably would like you to uh uh come here and 
+  present those uh 2 papers uh at some point uh in the next the in 
+  the new year.
+Mahmoud Alkhraishi:  Answer them yeah.
+Harrison_Tang: Sounds good thank you.
+Harrison_Tang: Last call or the announcements reminders or what 
+  kind of related thanks.
+<christopher_allen> First post is: 
+  https://www.blockchaincommons.com/musings/musings-cliques-1/
+Christopher Allen: 
+  https://www.blockchaincommons.com/musings/musings-cliques-2/
+Harrison_Tang: All right so let's get to the main agenda so again 
+  we're very excited to have Christopher Allen here to talk about 
+  Edge identifiers and clicks I saw that uh I saw his blog post 
+  about a month ago and I thought it was really really good uh 
+  especially I did have the same questions in regards to the single 
+  key Paradigm and uh I think he in his block goes he actually uh 
+  correctly pointed out in my opinion uh the flaws and the 
+  challenges in regards to the single click uh Paradigm how we can 
+  actually uh change that using Edge identifier so without further 
+  Ado um Christopher Allen uh your the floor is yours.
+<mahmoud_alkhraishi> as a correction, i believe the traceability 
+  wokr started early 2021 not 2020!
+Manu Sporny:  You're muted Christopher I think.
+Harrison_Tang: Yes sorry of course the firm.
+Harrison_Tang: I think you're on mute still.
+Christopher Allen:  Can you hear me now.
+Christopher Allen:  Okay so um uh.
+Christopher Allen:  I um uh have been talking about this for a 
+  while I think the first time uh I did it was at the last TPAC a 
+  little more a little uh uh briefly um I also have a brief video 
+  that I'll share um uh at the end of the meeting which is a a 
+  longer version of what I'm going to go through here um but what 
+  I'm really wanting to do with this community is talk about the 
+  implications of this so let me first reiterate it so that people 
+  have the basic understanding and then um I can go into some more 
+  uh uh specifics so um uh you know if you don't know me I've been 
+  involved for a very long time in this community and then before 
+  that uh you know with organizations like digicash and pgp and 
+  whatever uh uh uh prettl and then I was the co-editor and 
+  co-author of the TLs protocol and then blockchain Commons is.
+Christopher Allen:   An organization.
+Christopher Allen:  On uh interoperable secure and compassionate 
+  infrastructure uh in particular decentralized Solutions where 
+  everybody wins um.
+Christopher Allen:   So as.
+Christopher Allen:  Uh Harrison mentioned there is the uh uh the 
+  single signature Paradigm if we look at you know uh digital 
+  signatures today they were uh you know invented in uh kind of a a 
+  rough form in the late 70s really in the uh 80s is when the 
+  cryptography uh emerged and also a lot of the patents started 
+  getting locked up um and uh uh you know you know with real 
+  deployment of them in the 90s uh in Technologies like pgp early 
+  on and then later uh SSL TLS uh uh.
+Christopher Allen:  Etc to uh you know move to today and to a 
+  certain extent we've been locked into a lot of the assumptions of 
+  that basic technology um uh and I think that there are now real 
+  solid mature and uh uh you know opportunities to rethink that and 
+  this is just the beginning of a discussion about that so um uh 
+  let's first talk about the the the the dangers of the Paradigm 
+  obviously you have a single point of compromise you know whether 
+  or not it's uh you know somebody stealing uh a key or uh doing a 
+  uh uh supply chain attack or um you know dealing with side 
+  channels Etc it's just a real uh uh.
+Christopher Allen:   You know.
+Christopher Allen:  Uh risky single point it's also a single 
+  point of failure in a variety of ways that aren't about 
+  compromise you know some of this is you know because of key 
+  fragility because of bit rot you know I have some old pgp keys 
+  that I can't seem to get to work anymore sometimes it's format 
+  changes you know I have some some uh you know uh you know old uh 
+  keys from the early days of Bitcoin that I can use but I have to 
+  keep an old copy of the software around.
+Christopher Allen:  And then you know as we started doing a lot 
+  of the work in uh dids uh we really said hey key rotation and key 
+  separation are really important and it's hard uh to do with the 
+  single signature par Paradigm and then I wrote a book with 
+  Shannon and 1999 that talked about the 28 adversaries of keys and 
+  this is the the list categorized in uh you know these uh uh 7 
+  categories um and this was really focused on digital asset Keys 
+  uh since that book I've you know at least added uh 2 or 3 uh 
+  possibilities for um identity focused adversaries uh for Keys um 
+  so we've got to address these problems uh and um uh now they're 
+  begin to be some new opportunities to do so.
+Christopher Allen:  You know where I really want to start with 
+  and I I can't say I'm the first 1 is is uh you know talked about 
+  this but I think cryptographically it's been hard to do um and 
+  now we have an opportunity to do it so um if we go back to uh you 
+  know my original vision of self Sovereign identity it really was 
+  all about your relationships uh you control your identity but you 
+  don't control the network and we you know it was designed the 
+  whole point of the 10 principles was to support human dignity but 
+  also to allow people you know people to be peers not petitioners 
+  um and uh you know so but still it's not like you're this 
+  isolated uh being in this Digital Universe you have relationships 
+  and um uh we can't forget that in in SSI um so.
+Christopher Allen:  So uh if we talk about relationships from a 
+  sociological perspective you know identity is actually 
+  decentralized already it's a bunch of edges you know when um you 
+  know your first identity was your you know mother's son or 
+  daughter.
+Christopher Allen:  Uh you know while you know you were still in 
+  in her um uh pregnant body and um.
+Christopher Allen:  That it was that is in effect the first you 
+  know identifier uh and that is a uh you know affiliate link and 
+  uh you know which goes backward in time forward in time but we 
+  also going to have fraternal links Etc so we can kind of consider 
+  these edges as membranes where there's kind of a a selective 
+  information you know uh between the entities you know um and 
+  there's a lot of you know papers if you look up local names or 
+  pet names Etc uh that have talked about you know how this um uh 
+  can be a different way of approaching identity um.
+Christopher Allen:  Now we come to you know some modern 
+  technology Shore is a particular signature um uh uh system that I 
+  admire and 1 of the things is that some of the modern advances 
+  leveraging Shore have the power to create these relational 
+  relational edges so for instance 2 parties can create a key pair 
+  together where each party contributes a a secret but in fact the 
+  private key only exists in kind of what I call a cryptographic 
+  fog um and 1 of the interesting things about Shore is that these 
+  multi are the same size as a single Sig they are you know you 
+  know unless you reveal that they are a multi-sig you know they're 
+  indistinguishable from a single signature um and this means in 
+  the that the the group public key of these 2 parties uh is um.
+Christopher Allen:  Is an edge.
+Christopher Allen:  I mean it's a public key it looks like a 
+  public key of an individual uh but in this particular case it is 
+  referring to say the edge between Anna and Mary and Mary and 
+  Joshua um this you know group sort of fog private key allows for 
+  joint signatures so uh you can sign things together uh either 
+  indistinguishable from you know just being the the the that edge 
+  or you can say you know Mary and Joshua have done so together but 
+  it's a single uh cryptographic uh proof um so uh that really kind 
+  of leads up from edges to uh groups so um let's talk about a 
+  closed click which has some you know interesting opportunities uh 
+  this is the simplest form of a click um where there's basically 
+  an edge identifier between every pair of entities um and then 
+  together these married.
+Christopher Allen:   To Joshua.
+Christopher Allen:  Joshua um uh identifiers and keys can 
+  together create yet another key which identifies the click and 
+  that means that all 3 parties can participate in joint decisions 
+  and signatures and once again be indistinguishable and not 
+  correlate with the individual parties um uh and then of course 
+  you can go up forward from there you can have higher order clicks 
+  uh you know try to assist the simplest but you know it's um uh 
+  you know a uh an a.
+Christopher Allen:   I'm not.
+Christopher Allen:  Ally which it is it's not it's not a uh it it 
+  isn't a straight graphic its larger the more members there are 
+  the harder it is to close the graph um but you know you can do 
+  some fairly complex things here um and you can do these really 
+  interesting uh.
+Christopher Allen:  Things where Clicks in turn can be recursive 
+  so you can have a click and another click and another click which 
+  together create an even larger group uh a click of clicks um and 
+  I think this also offers some very interesting power that Central 
+  signature and that diagram again is indistinguishable from the 
+  signature of uh uh a single person um.
+Christopher Allen:  So what are the advantages of these Edge 
+  identifiers and clicks well um among other things in 
+  decentralized identity management it it offers some opportunities 
+  for peer-based identity creation and uh also peer-based identity 
+  validation in ways that um uh don't require uh uh a centralized 
+  party it's just the peers that do it um the uh there is uh uh 
+  Spock and Spa are are single point of compromise single point of 
+  failure um resilience so distributed control guards against 
+  different kinds of compromise and fail failure we have 
+  opportunities for secret group decision making and we have the 
+  opportunities for enhanced privacy and there are a lot of 
+  different variants here I'm not proposing any particular 1 here 
+  I'm just saying there are new opportunities uh given this um 
+  there are uh some identifiers uh click identifier drawbacks they 
+  are.
+Christopher Allen:   Are more.
+Christopher Allen:  Complex right now they require um you know 
+  multi-signature technology which has you know matured in the last 
+  5 6 years uh but is new um multi-set instantaneous so there's no 
+  instant gratification and it is a new paradigm you know there are 
+  you know going to be new risks that are uh you know as we create 
+  these systems that you know we've not seen before um.
+Christopher Allen:  Very quickly go through this page uh uh so 
+  obviously you know those clothes clicks are hard they get bigger 
+  and bigger uh but you don't necessarily have to have closed 
+  clicks you could have open clicks which is often more realistic 
+  um uh they lose some graph analysis advantages and certain 
+  cryptographic things you can do when a click is closed but it 
+  also you know offers some new possibilities.
+Christopher Allen:  I particularly like what I've been calling 
+  fuzzy clicks again you know my own terminology for it but um uh 
+  they allow for threshold signings so that just some members of 
+  The Click uh can participate so uh you can be in say in a 2 of 3 
+  it can be um you know Mary or Bob or Bob or Joshua or Joshua and 
+  Mary uh that can uh sign for the group um.
+Christopher Allen:  And uh but I think the real opportunity here 
+  is that clicks can be used with devices so devices can be part of 
+  clicks uh you can have your ring and your phone and uh you know 
+  an offline Service uh together be part of a clique that is a 2 of 
+  3 and if any 1 of them fail uh you still have your identifiers 
+  and your keys and that what you need to do to rotate and move 
+  things forward um and then of course these can be combined with 
+  the you know person oriented clicks so um now with this uh Triad 
+  uh that is the relationship well it's really a a diad of Mary and 
+  Joshua uh but if Mary lost her secret or Joshua lost his uh 
+  they've lost their uh their Edge identifier but if they do it in 
+  a click form where the third party is a uh.
+Christopher Allen:  Uh you know a hardware click they have now uh 
+  increased reliability um either 1 of them can fail and then the 
+  the remainders can basically recover uh Keys uh rotate Keys Etc.
+Christopher Allen:  So let's talk about the uh the implications 
+  for identity so um you know if we look at uh you know this is 
+  really focused on you know the kind of work that we do uh if we 
+  look at the the classic faux clear uh peer claim uh and you know 
+  I know there are lots of uh limitations of faux and whatever but 
+  this is an example of 1 where you know Christopher a says he 
+  knows the public key of wolf um and is verifying it uh in the in 
+  the original faux uh you could the uh there was this concept of 
+  uh uh of um uh nose being this 1-way relationship but then they 
+  also had this concept of up here well you couldn't really do the 
+  peer uh directly you could maybe have wolf know the public key of 
+  Zid you look at these 2 I mean the did ish type uh uh object um 
+  uh you could they could basically say in return I know.
+Christopher Allen:  The wolf knows.
+Christopher Allen:  And then you can infer that their peers this 
+  isn't really a peer statement as opposed to uh in a uh uh an edge 
+  credential and kind of a VC style you know we are a peer group uh 
+  here are the 2 peers here's the public key that is the public key 
+  of the of the peers you can get the public key of Christopher a 
+  the public key of wolf aggregate them and go oh yeah that is the 
+  public key of the of them both and then verify it so that gives 
+  us a lot of you know interesting opportunities to make crypto ref 
+  proofs about these types of things um and of course with Elysian 
+  uh you know we don't have to reveal that those are actually 2 
+  parties so you we can basically say this is a peer group but 
+  we're not saying who the peers are but you can still validate the 
+  signature um uh so I think there's some real you know interesting 
+  opportunities uh in that uh in that.
+Christopher Allen:  In that space and I've been exploring this a 
+  lot more um with different kinds of proofs and you know uh when 
+  might you want to align signatures or signature um metadata uh 
+  also you know trying to puzzle out how to do this with object 
+  capabilities and uh some other opportunities.
+<phil> Does the ELIDED (2) convey that the group consists of a 
+  pair?
+Christopher Allen:  So some final notes uh the single signature 
+  Paradigm is not enough we really need these relational 
+  identifiers for peers and groups um there are the interesting 
+  exotic opportunities in nested open and fuzzy uh groups they're 
+  interesting challenges um and this is a really rich uh Paradigm 
+  uh the uh the musings uh uh number 1 is the uh the first article 
+  on this topic um I will put that link in the chat in just a 
+  second.
+Christopher Allen:  Me uh stop the.
+Christopher Allen:  Okay so uh let me share my window other 
+  window.
+Christopher Allen:  There is the share button now.
+Christopher Allen:  There we go.
+Harrison_Tang: It's the third 1 at the bottom.
+Christopher Allen:  Okay so um blockchain Commons is my main 
+  website uh the first Edge identifiers uh.
+Christopher Allen: 
+  https://www.blockchaincommons.com/musings/musings-cliques-1/
+Christopher Allen:  Uh post is here I'll put that in the chat.
+Christopher Allen:  Uh at the uh uh end of that post is uh a link 
+  to uh the open and fuzzy uh follow-up uh there's another version 
+  of my presentation on YouTube um the you know we have a whole 
+  page on Music 2 technology and how it works including you know 
+  some of the implications of you know how you would do a sequence 
+  diagram to create this multi-sig between uh 3 parties um.
+Christopher Allen:  Does not dive into snore before I have a 
+  whole bunch of stuff here on uh you know kind of making uh uh you 
+  know what is snore and how does it work um uh but I also have 
+  this thing called snore in a nutshell which is kind of an 8-bit 
+  uh version of snore so you can understand how how it functions uh 
+  we have a whole bunch of stuff on Frost which is uh the threshold 
+  algorithm we've held 4 know yeah 4 Workshop uh these are results 
+  from the first 3 Workshop we just held a workshop last week and 
+  this page will be updated tomorrow uh but there is a uh a frost 
+  meeting tomorrow and then we also have a lot of uh you know 
+  research papers in our uh blockchain Commons research uh 
+  exploring some of the the uh the challenges and stuff.
+Christopher Allen:  Okay so uh I'm going to stop sharing my 
+  screen and.
+Christopher Allen:  Uh open it up for questions.
+Harrison_Tang: Phil I think you have a question in regards to 
+  evision.
+Phil Long:  Noted that when you showed the the way in which you 
+  could um share the the uh privately the the combined key and 
+  noted Illusions parenthesis 2 parentheses was that conveying that 
+  there were in fact 2 members of the group or was that meaning 
+  something else.
+Christopher Allen:  Um so uh I don't want to go into detail on uh 
+  uh gordian envelope uh the.
+Christopher Allen:  Uh but basically you have a choice of what 
+  you how you want how you want to structure these and what you 
+  wish to allow to be correlated so yes you can reveal that there 
+  are 2 entries there or you can choose to not uh and just say that 
+  there's a single entry there and and it you know because it's all 
+  a a recursive nested structure uh in this particular case I just 
+  simply because it is a reclaiming its appear I felt well you kind 
+  of already know it's at least 2 people.
+Christopher Allen:  And uh that that was a better representative 
+  of it but that's actually been a lot of what I've been focusing 
+  my work in the last 2 months on is exploring uh you know what 
+  does it mean to Allied some of this different types of data 
+  especially you know with key separation where we might have a lot 
+  of different kinds of keys that have different uh uh capabilities 
+  different kinds of proofs including non-s signature proofs when 
+  would you want to Allied.
+Christopher Allen:   Some portion.
+Christopher Allen:  Or some details of them and I think there's a 
+  lot of work that that is required for that and I and you know 
+  have discovered a number of things in uh in uh kind of the the 
+  the Json LD style proofs that are kind of difficult to do um you 
+  know you know presuming we add a lesion to Jason just straight up 
+  Json LD uh and there have been some old proposals for how that 
+  might work uh it turns out it's actually uh some stuff is uh a 
+  little more hard to do um with some of the assumptions in in Json 
+  LD so I've been doing almost all of my stuff right now in uh 
+  gordian envelope which I you know maybe someday could be a an 
+  alternative to in say a D20 or a vc20 uh a core based a liable 
+  structure um but that's you know uh a ways away I'm more in the 
+  experimentation phase.
+Christopher Allen:   Thank you.
+Phil Long:  Thanks that's very helpful.
+Alan Karp:  Uh yeah can you walk through how you would as an 
+  individual use these keys to to do something.
+Christopher Allen:  Sure so um let me go to um.
+Christopher Allen:  Let me go to this window.
+Christopher Allen:  So this is Music 2 uh so Music 2 is uh an N 
+  of n uh protocol so you have to have you know it's not a 
+  threshold uh protocol um in its uh in its basic form and um uh 
+  you know from the you know uh the the point of view of Alice and 
+  Bob uh they're basically you know create kind of create some 
+  session keys for each other they're going to share some partial 
+  public Keys uh uh which will then allow them to uh to create a a 
+  group public key and that's what they share with the verifier um 
+  so uh then when they want to sign something they're basically 
+  doing this non exchange uh and then you know creating these 
+  parcel signatures which are basically combined which then allows 
+  you to have the the the final verified signature so when we look 
+  at this this very.
+Christopher Allen:  Uh you know by default sees that there is a 
+  public key and assigned message and it verifies like any other 
+  schnoor signature um even though it was created by Alice and Bob 
+  and this basically represents you know them as uh and a you know 
+  as a a uh the simplest Association a diad um and uh what what's 
+  kind of interesting about this is that it's not you know 
+  obviously you know you could do a verifiable credential that was 
+  um you know 1 was signed by 1 and 1 and then there's you know a 
+  co-signature by that but that co-signature is what I call a comp 
+  computational uh smart contract in the sense that you know 
+  there's some kind of or statement uh you know excuse me and 
+  statement in code that is evaluate signature 1 and says that's 
+  true and then evaluates Signature 2 2 and says that's true and 
+  because there is this and.
+Christopher Allen:   Statement in between.
+Christopher Allen:  Now they're both true uh in a logical and but 
+  that computational um uh or statement is uh very easy to attack 
+  whereas the the cryptographic and of Allison Bob is a 
+  cryptographic function and it's not just simply swapping out the 
+  logical and operator in some hack for a logical or operator it 
+  the mass just simply will not work uh unless it is an and and I 
+  think there's some real power in thinking about the you know the 
+  Futures where you have these cryptographic and not comp uh uh you 
+  know scripts whether or not simple logical scripts and or not or 
+  more powerful scripting functions I've talked about that in in a 
+  couple of papers.
+Alan Karp:  So yeah well not really because uh I said as an 
+  individual so this means that to to use these keys I need to 
+  coordinate with at least 1 other party is that true.
+Christopher Allen:  Yes um but that being said if we go back to 
+  um where is my.
+Christopher Allen:  Okay so if we go back to this um you know 
+  this is 1 of the first things that we've been implementing here 
+  at blockchain Commons is uh you know 1 of our patrons is a is a 
+  ring um uh cryptographic ring and uh it has cryptographic 
+  material on it uh.
+Christopher Allen:  A you know a phone that acts as a coordinator 
+  that has another um uh excuse me the Hub would be the phone um 
+  which has another uh secret on it um and all I need is my you 
+  know my ring and my phone which are together here with me to 
+  represent me uh and even though there is uh you know an operation 
+  that is happening here um the advantage of having the this in a 
+  in a 2 of 3 and a in a fuzzy click is that the um you know I can 
+  have a an offline or another uh you know social key recovery 
+  service or whatever that if you know I my phone dies or Android 
+  uh uh you know uh becomes corrupted uh that single key will not 
+  be a single point of compromise my my offline service and my ring 
+  can still recover you know my public identifier.
+Christopher Allen:  Um so but yeah any 1 of these operations is 
+  going to require some kind of communication between uh 2 devices 
+  or 2 people or 2 services at minimum.
+Alan Karp:  Okay know that answers the question thank you.
+Manu Sporny:  Yeah this is a great Christopher I I read um either 
+  your blog posts and kind of tried to internalize how we could 
+  maybe apply some of this stuff to the existing did and in VC 
+  ecosystem um so I I think I get the the whole like you know to 
+  issue something you've got to run this cryptographic protocol to 
+  get the parties together to share you know parts of their key and 
+  generate the signature um for the verifier it seems like the only 
+  thing the verifier needs is is the combined you know public key 
+  um and the signature and they should be able to verify that just 
+  in and of itself is that correct.
+Christopher Allen:  That is correct um so you know let let's talk 
+  about you know 1 of the interesting things I think we first 
+  talked about this in um uh when you presented verifiable 
+  credentials at our wat 2 in in New York City uh after the UN 
+  event which is there uh you know we have all of this work this 
+  desire to be decentralized uh but then we have this problem of 
+  the issuers are centralizing because in issuer is making a claim 
+  and that is a natural centrality and um uh however I think 
+  there's some interesting opportunities maybe not precisely 
+  decentralized but in more distributed Fashions uh you could 
+  basically say the DMV which among other things requires uh uh uh 
+  you know a uh uh driver's test uh you could have uh you know.
+Christopher Allen:  Drivers test which is judged by multiple 
+  parties who uh and it's some Quorum of them which might be 2 of 
+  99 uh to basically say yes this person has passed their driver's 
+  test and uh now you have this uh this proof uh that is you know 
+  represents the the the all of the DMV and there's no single point 
+  of failure um I could see also a lot of interesting Hardware uh 
+  things we can do here where um especially as we're exploring uh 
+  key rotation and key recovery right now there are very explicitly 
+  proven and working um key recovery things so if uh you have a bit 
+  rot on 1 of your uh Quorum devices uh that that key can be uh 
+  restored if you now want to move from say A you know 3 or 5 to a 
+  4 of 9 you can create a new Quorum uh and still keep the same 
+  public key those are.
+Christopher Allen:   I I considered.
+Christopher Allen:  Be relatively mature.
+Christopher Allen:  There are papers and other you know work 
+  beginning on also how to do approvable rotation where the the the 
+  old Quorum whatever remains of it you know uh say it's a 3 of 5 
+  and 2 of them have gone down and they're going oh no we're now 
+  we're you know any 1 of us fail the whole Quorum fails well they 
+  can basically not just regenerate the 2 Bad Keys maybe they were 
+  compromised instead of uh just bad uh they can basically create a 
+  new public key identifier plus a cryptographic proof that this 
+  could not have happened if the first Quorum didn't exist um and 
+  then once again we're back to a uh a new um uh you know a a real 
+  cryptographic key rotation uh and thus eliminating and 
+  distributing some of the risks of the single keys in uh in an 
+  issue work.
+Harrison_Tang: Well no I think you have a follow-up question.
+Manu Sporny:  I do but I'll I can go after well.
+Will Abramson:  Cool yeah thanks I wanted to say 2 things the 
+  first is kind of uh.
+Will Abramson:  Similar to on my building on my manufactured like 
+  in theory you know if there was a snow sep uh verification like 
+  signature Suite that existed today which you know maybe doesn't I 
+  would like that to be people could be issuing credentials using 
+  music or Frost and from a verification perspective you wouldn't 
+  know like you know like it would just be the same process the 
+  signature would look the same you'd be able to verify a 
+  credential exactly the same this this whole stuff that Chris was 
+  talking can I happen before we create the signature it's like 
+  some internal you know it's kind of like.
+Will Abramson:  Did want to.
+Will Abramson:  Better support it but like we need to other specs 
+  like the bids are kind of already could support it if if people 
+  could create these signatures.
+Will Abramson:  Uh and I think you spoke to I just went to like 
+  this very clear right we could do this today we just.
+Will Abramson:  Don't do it.
+Christopher Allen:  Correct um you I don't believe that there are 
+  any current um uh.
+Christopher Allen:  Uh Signature suites oh wait wait wait there 
+  is 1 hold on let me let me show you uh let me uh share window.
+Will Abramson:  Well I thought Ed 25549 was maybe snore compliant 
+  or like similar to.
+Christopher Allen:  Okay so it is and it isn't so let's be clear 
+  here um so this is 1 of the more mature uh implementations at 
+  this point it was found uh I presume are you seeing my screen.
+Christopher Allen:  Okay so this is the zcash foundation they 
+  funded the frost 1 of the major Frost libraries and they also 
+  funded the uh uh the development of an ITF uh uh research RFC uh 
+  that uh is just on the signature part of the frost uh 
+  functionality um and they do have a frost ed25519 so yes you can 
+  uh do frost uh uh with 255125519 and generate a key uh there are 
+  some interesting implications of that this is not really 
+  completely compatible with.
+Christopher Allen:  Other 25519 um uh implementations because 
+  there are bugs in 25519 um there are a lot of conformance 
+  problems between different libraries of 25519 so if you tried to 
+  use uh I mean in fact these days and we just did a 25519 
+  implementation for um.
+Christopher Allen:  40 And envelope and we basically had to find 
+  a library that reproduced the bugs of the SSH.
+Christopher Allen:  Cryptography um there are also other problems 
+  with uh ed25519 uh in the fact that uh uh that some of the 
+  aggregation capabilities of it um are don't work because of some 
+  choices that were made uh early on to avoid side Channel attacks 
+  um so the most of the the uh to avoid those there is something 
+  that is very close to Ed 2551 25519 called ristretto um and it 
+  doesn't have either of these problems um but again you know 
+  that's not going to be conformant uh you know to um to uh you 
+  know SSH uh implementations of 255519 um there's a wonderful I I 
+  I I'm not going to try to pull up the the the the the uh the 
+  document here um but there is a.
+Christopher Allen:   Ah uh.
+Christopher Allen:  Uh you know a paper that sort of describes 
+  you know the the the challenges there and there are a number of 
+  cryptographers that are kind of going hey you know we really need 
+  to respect to Phi you know completely redo 25519 because it you 
+  know because of these uh.
+Christopher Allen:  Valuability and other problems um.
+Will Abramson:  I do think I suppose we had like a snore sep uh 
+  signature Suite like it would be interesting to think about like 
+  what would it actually have to add to that to like support to 
+  support like creating these types of signatures I think it would 
+  just be an extra sort of paragraph in the create proof section 
+  that says you could also create your approved using this 
+  algorithm just point out to the you know like here's it described 
+  over here like the the like ccg or the work items here wouldn't 
+  be defining that stuff just it's defined over here as long as you 
+  can create a proof following this process stick it in the DC.
+Will Abramson:  They should be verifiable using regular small 
+  verification.
+Christopher Allen:  That's correct and I mean basically if you I 
+  mean if as far as the VC is concerned the spec and whatever it's 
+  just a single signature like any other signature that but in fact 
+  behind the scenes is uh you know a more complex uh proof so yeah 
+  you can start using this stuff now this is kind of why I've been 
+  puzzling around this whole issue of this metadata around 
+  signatures um you know how how do you include the fact that there 
+  are other things going on behind the scenes you don't really want 
+  to put it in the the vert the in the the triples of the 
+  verifiable credential it really kind of belongs in the signature 
+  block to basically say hey there's other things that were 
+  happening here if you need to know them here's how you might.
+Christopher Allen:   You know.
+Will Abramson:  Yes if you wanted to tell someone this signature 
+  was created by 3 of 3 of 5 right and like have them be able to 
+  verify that themselves.
+Christopher Allen:  Correct correct um so they can verify the 
+  signature trivially um it's you know how do you add that extra 
+  information and how do you secure that extra information as well 
+  as you know been 1 of the the challenges that I'm working on.
+Will Abramson:  Uh I did have 1 more comment but Mana you can go 
+  no man can go.
+Harrison_Tang:  I'm sorry.
+Manu Sporny:  Thanks well yeah so adding it to the signature at 
+  least with the data Integrity signatures is pretty trivial like 
+  you can add arbitrary information to that and it is in the 
+  signature block and it is signed over a by default so that's a 
+  fairly Light Lift I would imagine that you know in in the worst 
+  case we're talking about creating another crypto Suite that is as 
+  will said effectively a copy and paste of the existing 1 with 
+  some minor modifications in there like for example the the Ed 
+  ed25519 crypto Suite that we have right now um does try to fix 
+  some of the malleability problems with ed25519 so so we we went 
+  in and and applied some of the you know the the best practices 
+  for making sure that ed25519 was a little more locked down I 
+  think the only other things we'd have to add is like will said 
+  like maybe a paragraph or 2 to say that you know if you want to 
+  create you know a frost based signature this.
+Manu Sporny:   Is how you.
+Manu Sporny:  Um we don't really even need to use ed25519 we 
+  could use ristretto or something else like that I think that 
+  there are 2 big challenges that I see here so I I don't see the 
+  crypto Suite as a challenge that's fairly uh uh simple to put 
+  together um.
+Manu Sporny:  And it it ends up looking.
+Manu Sporny:   Just like.
+Manu Sporny:  Regular verifiable credential you know at the end 
+  of the day so that's that's a good thing um and that's not 
+  difficult um the the thing where I'm I don't quite understand how 
+  we we scale is you know for for every click.
+Manu Sporny:  You have to kind of identify that click I mean 
+  that's and the clicks kind of identified through a public key but 
+  but then how does the verifier know whether or not to trust that 
+  click my my presumption here is that you'd put it in something 
+  like the did document you would just list it as another key that 
+  can make assertions in your did document and the verifier somehow 
+  uh finds out that you know oh you are you know presenting this or 
+  or they they figure out a way to find you know that key 
+  publication in a did document that they trust and then that's the 
+  thing that gives them kind of trust in the issuing click right 
+  they they have to kind of do some kind of Discovery process to 
+  figure out who if if 1 of the issues issuers they trust is a part 
+  of a clique that ended up um.
+Manu Sporny:  Issuing the the credential so do you have um what 
+  are your what are your thoughts on oh sorry that was 1 of the 
+  things so I I it feels like there's an explosion in public Keys 
+  when we need to put them somewhere like in a did document the 
+  other difficult thing as you know Christopher is like getting 
+  some variation of this through the ietf crypto form research 
+  group can take years um but this feels like.
+Manu Sporny:  You know doable like I mean it if we started today 
+  I would imagine we'd be able to get this done in like 2 years um.
+Manu Sporny:  So so what are your thoughts on kind of the 
+  standardization that would need to happen with some of this Frost 
+  stuff and then what are your thoughts on you know how does the 
+  verifier trust the issuing click.
+Christopher Allen:  Right so I think it depends on things so I'll 
+  give you this example uh I I'm sure are you seeing my shared 
+  screen.
+Christopher Allen:  Okay so obviously this requires nothing but 
+  you know just simply saying here's you know ah you know seventh 
+  uh um uh you know signature Suite which supports say uh you know 
+  a bip 340 Shore or ristretto 255 ristretto or whatever um uh you 
+  and this is again 1 you cannot do with 25519 um but this actually 
+  here is an interesting thing because when I reviewed that this is 
+  a peer group.
+Christopher Allen:  I can simply do a a cryptographic finite 
+  field edition of this public key and this public key and it will 
+  equal this public key okay that's 1 of the things that schnoor 
+  offers is this finite uh field um uh aggregation capability so 
+  you know if you know who's what Christopher's public key is and 
+  what Wolf's public key is you uh then.
+Christopher Allen:  This fairly trivial operation uh to determine 
+  yes that they you know this would not be possible unless those 2 
+  were were the same and so you might verify the signature uh that 
+  is you know using this thing here but this sort of allows for 
+  some additional information revealed and I think this is a uh you 
+  know this is a small example of a whole bunch of these kinds of 
+  problems because for instance um uh this is what I call an 
+  accountable uh signature in the sense that um because we're using 
+  Music 2 uh we can through a variety of mechanisms know 
+  definitively that Christopher was 1 of the parties that signed it 
+  meaning Christopher is accountable as 1 of the parties in this in 
+  this Quorum of 2 of 2 or if you're using Taproot there's some 
+  other techniques where you're combining these um and if you go to 
+  my last frost presentation uh from last Tuesday um on YouTube.
+Christopher Allen:   You can see.
+Christopher Allen:  An example of it.
+Christopher Allen:  You can know but Frost is not an accountable 
+  protocol in fact um you know even though I have secret material I 
+  can't prove that I contributed to the signature.
+Christopher Allen:  Um I a quorum of parties can prove can prove 
+  that I contributed or make a claim and prove that I contributed 
+  to the signature but it's what is known as a non-accountable 
+  signature so it turns out there's some interesting advantages for 
+  having non-accountable signatures that you know prevent certain 
+  kinds of coercion allows for certain kinds of voting and 
+  anonymity but sometimes you want parties to be accountable so how 
+  do you do both is kind of 1 of my big challenges you know uh this 
+  month the next month um and you know I've begun to work on it in 
+  uh this uh research paper so and we've you know barely begun um.
+Manu Sporny:  Yes very helpful thank you.
+Christopher Allen:  Oh and 1 thing I was subtle in there because 
+  I hadn't really come up with it was in that 1 I'd actually put 
+  that peer information in the in with the credential um but in 
+  fact it really should have been in the signature block um and 
+  because but it's something extra in the signature block that 
+  requires it or the proof block uh it's some other proof that if 
+  you need that if you really want you know to verify that it truly 
+  is a peer because there's because that's important for some 
+  reason or a click or 1 of these other forms uh you know which can 
+  be a proof of of Click formation you know you can do all these 
+  social you can do all these graph cryptographic graph things with 
+  it um you know so you the signature may not be all you need you 
+  also want in some cases to do this other stuff it really belongs 
+  in the signature block.
+Harrison_Tang: Thank you thank you Christopher I always enjoy 
+  when you uh jump on and talk about this kind of stuff so thanks a 
+  lot.
+<christopher_allen> My email ChristopherA@LifeWithAlacrity.com
+Harrison_Tang: All right so who's uh this week's uh ccg meeting 
+  uh I have to send out the email in regards to the culture vote uh 
+  if you have any questions just uh email me back but thank you 
+  thanks Christopher thanks Manu thanks will thanks everybody uh 
+  today.
+Christopher Allen:  Okay and my emails in the transcript.
