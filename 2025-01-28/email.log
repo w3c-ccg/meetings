@@ -1,0 +1,1036 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2025-01-28/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2025-01-28/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2025-01-28.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2025-01-28
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Jan&period_year=2025&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. <Updates on Solid and Decentralized Data Stores>
+  2. <Updates on Solid and Decentralized Data Stores>
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords
+Present:
+  Alan Karp, Harrison Tang, Greg Bernstein, Aaron Coburn, TallTed 
+  // Ted Thibodeau (he/him) (OpenLinkSw.com), Mahmoud Alkhraishi, 
+  Vanessa, Hadrian, Alberto Leon, Nis Jespersen , Jennie M, Erica 
+  Connell, Joe Andrieu, James Chartrand, Tom S, Will Abramson, Leo, 
+  Kerri Lemoie, julien fraichot, PL, Savita Farooqui, Dmitri 
+  Zagidulin, Jeff O - HumanOS, Kayode Ezike, Kaliya Young, Benjamin 
+  Young, Sarven Capadisli
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Hello everyone so welcome to this week's w3c ccg 
+  meeting uh today we're very excited to have Hedren uh from in Rob 
+  and uh solid and Apache software Foundation as well as uh Aaron 
+  um.
+Harrison_Tang: Uh the culture of the linked web storage uh group 
+  w3c link web storage group uh here to talk about the latest 
+  developments on solid decentralized uh data stores uh but before 
+  we get into the main agenda I just want to quickly go through 
+  the.
+Harrison_Tang: Of ethics and professional conduct reminder um 
+  just want to make sure we have constructive and respectful 
+  conversation.
+Harrison_Tang: All right a quick note on the intellectual 
+  property notes um anyone can participate in these calls however 
+  all substantive contributions to any ccg work items must be 
+  members of the ccg with full IPR agreements signed if you have 
+  any questions about the w3c account or the w3c community 
+  contributor license agreement uh please feel free to reach out to 
+  any of the cultures.
+Harrison_Tang: Are these meetings are automatically recorded and 
+  transcribed and we will publish the meeting minutes the audio and 
+  video recording in the next uh day or 2.
+Harrison_Tang:  we use.
+Harrison_Tang: Gigi chat uh to to the speakers during the call to 
+  end to take minutes and you can type in Q Plus or Q minus uh to 
+  uh remove from your phone the queue and you can type in Q 
+  question mark to see who is in the queue.
+Harrison_Tang: Right I just want to take a quick moment for the 
+  introductions and reintroduction so if you're new to the 
+  community or you haven't been active and want to re-engage uh 
+  please feel free to just unmute and uh introduce yourself a 
+  little bit.
+Harrison_Tang: Just want to take a moment for the announcements 
+  and reminders so if you is if there's any new announcements uh 
+  feel free to just type in Q Plus or on mute.
+Greg Bernstein:  I just wanted to let folks know that um for 
+  privacy preserving uh forms of credentials um particularly like 
+  the BBS crypto so we we've got some additional features that have 
+  advanced to working group documents over at The cryptographic 
+  Forum research group The CFR of the ietf so that's pseudonyms 
+  which we all want to uh give us limited linkability so we can 
+  kind of be remembered but not too much and uh some extra security 
+  features and which go under blind BBS so those have advanced to 
+  work group status we also have.
+Greg Bernstein:  For that at the CFR we have public GitHub repos 
+  where people can now post issues and such like that so I'll put.
+Greg Bernstein:  Send out an email to the ccg with all those 
+  links um.
+Greg Bernstein:  I will be adding more explanatory texts to both 
+  those documents uh the more you want to see and example of cases 
+  so we're making progress we're going to get this nailed down so 
+  we can get the BBS spec out.
+Harrison_Tang: Thank you thanks Greg.
+Harrison_Tang: And by the way uh we had Greg uh here and present 
+  about BBS plus uh in the in the last few months uh so you can 
+  just search in your email inbox if you are subscribed to the 
+  email list uh for Greg uh and then it's the emails from me to see 
+  the recordings or if you uh cannot find the recording just reach 
+  out to me because uh it is a must-watch sessions because I think 
+  Greg has done a very good job explaining what BBS plus and 
+  commitment schemes and all these things uh so thanks Greg.
+Harrison_Tang: All right any other announcements or reminders.
+Harrison_Tang: Uh any updates on the work items.
+Harrison_Tang: I just preview uh what's coming so next week we'll 
+  have uh Drummond here to talk about uh what used to be called 
+  Global acceptance network uh trust framework now I think it's 
+  called era IRA.
+Harrison_Tang: And anyway if I mispronounced it I apologize for 
+  that uh and then the week after that we have uh Mike porok uh our 
+  former culture to talk about trade verified.
+Harrison_Tang: Uh verifiable traceability and AI in Supply Chain 
+  management.
+Harrison_Tang: All right uh last calls for introductions 
+  reintroductions announcements or work item related.
+
+Topic: <Updates on Solid and Decentralized Data Stores>
+
+Harrison_Tang: Great well let's get to the main agenda so again 
+  uh very very happy here to have a Hadrian and Aaron here uh to.
+Harrison_Tang: Some updates on the solid and decentralized data 
+  source.
+Harrison_Tang:  so Aaron.
+Harrison_Tang: You want to take it away actually if you don't 
+  mind just introduce yourself a little bit and uh as well as the 
+  your work whether it's at in rump or the w3c uh link web storage 
+  group.
+Aaron Coburn:  Thanks Harrison um.
+Aaron Coburn:  So I will start off by just introducing myself I'm 
+  Aaron Coburn um along with hadrien I work at inrupt um I'm 1 of 
+  the co-chairs of.
+
+Topic: <Updates on Solid and Decentralized Data Stores>
+
+Aaron Coburn:  The w3c linked web storage working group this is a 
+  working group that was started um September of last year so I'll 
+  get into some of the time frame that we have for this but we've 
+  um we're still in a sense getting getting ramped up um in the 
+  working group and um before starting with the working group I've 
+  I've I've been involved in the solid world for.
+Aaron Coburn:  567 Years um even before I came to interruptus so 
+  I've worked on implementations I've worked on specifications so 
+  I've seen kind of a broad range of of the issues that relate to 
+  this this uh this space.
+Aaron Coburn:  Let me just um jump into I have a couple of 
+  slides.
+Aaron Coburn:  Um there should be fairly quick I want to jump on 
+  Hedren's toes here um so.
+Aaron Coburn:  Uh link web storage it's uh working group we've 
+  got um a number of people who meet uh we meet every week um on 
+  Mondays and I'll get into the some of the you know how you can 
+  participate.
+Aaron Coburn:  Really the high-level goals here have to do with 
+  web-based permission data storage.
+Aaron Coburn:  Um secondarily um interoperability across this 
+  shared storage using different applications.
+Aaron Coburn:  Decentralization can be a part of this but it's 
+  not necessarily a part of this so I just want to make it clear 
+  that.
+Aaron Coburn:  For some people decentralization is really key 
+  when they talk about solid but it's not necessarily a um it's not 
+  necessarily part of solid.
+Aaron Coburn:  Or is it necessary part of uh the lws working 
+  group that may be where we go and and I think we're going to 
+  largely be pulling uh from technologies that come out of the 
+  decentralization space but um just kind of keep in mind that some 
+  of you know based on the charter based on where things currently 
+  stand those are really some of the high level goals.
+Aaron Coburn:  Um we're still in the in the um process of of.
+Aaron Coburn:  Curating use cases and and during uh requirements 
+  but some of the high-level requirements that most certainly are 
+  going to be front and center for this working group involved 
+  Global identifiers for entities and that's not just uh data that 
+  you put in your storage but agents uh applications other kinds of 
+  entities that that work in that ecosystem.
+Aaron Coburn:  Secondly um Global semantics for application 
+  interoperability so like I said in the high level goals 1 of the 
+  key things here is making sure that you can have you can separate 
+  data from Storage I'm sorry you can separate data from 
+  applications such that you have different applications working on 
+  the same data and interoperability.
+Aaron Coburn:  That kind of is the goal there is really how can 
+  you how can you help individuals or agents generally.
+Aaron Coburn:  Become too tied to a particular application or 
+  ensure that the that the application that that data isn't too 
+  tied to a particular application.
+Aaron Coburn:  That's where that interoperability comes in and 
+  thirdly and this is going to be really critical for um the link 
+  web storage and I think is where this is where a lot of the 
+  overlap with this group comes in is having mechanisms for 
+  controlling access this is both um authorization and 
+  authentication but.
+Aaron Coburn:  We don't have.
+Aaron Coburn:  If we don't have this mechanism.
+Aaron Coburn:  It's really hard to it's really hard to to look at 
+  this about you know in terms of how you can share data how you 
+  can work with data across different apps with in different 
+  domains with different security profiles.
+Aaron Coburn:  Um the current status we uh we were chartered in 
+  uh um.
+Aaron Coburn:  September of last year so we're chartered through 
+  2026 um at the moment we're uh we've been collecting use cases 
+  where in the in the process of refining those use cases so that 
+  we can derive very specific requirements um and then you know 
+  we'll be prioritizing those requirements.
+Aaron Coburn:  Clearly based on the use cases not everything is 
+  going to be um is going to make it into the spec um so there will 
+  be some cutting that has to happen but some of the main things 
+  that will be part of this relate to Identity.
+Aaron Coburn:  I'm putting in with identity um.
+Aaron Coburn:  Because there's just so much overlap there but 
+  identity broadly.
+Aaron Coburn:  Authorization and then uh ultimately a protocol 
+  that defines this.
+Aaron Coburn:  This is my last slide um.
+Aaron Coburn:  So we meet weekly on Mondays at uh 10:00 a.m. 
+  eastern time.
+Aaron Coburn:  So the timing always uh aligns with Boston time so 
+  you know.
+Aaron Coburn:  When there's a time a time change that's that's 
+  what we're we're pinned to um participation is open to all w3c 
+  members just like any other uh working group.
+Aaron Coburn:  There's a link here I can paste this into the chat 
+  in just a moment um has more information about joining um and 
+  about the the calendar obviously the minutes are all public so 
+  anyone can can access those.
+Aaron Coburn:  Um the other.
+Aaron Coburn:  Thing I wanted to mention is that everyone is 
+  welcome to contribute and discuss all of our use cases which are 
+  currently in that first uh repository that first GitHub 
+  repository lws.
+Aaron Coburn:   A lot.
+Aaron Coburn:  Of the eventual work will go into the lws protocol 
+  repository but so far that's pretty empty we haven't we just 
+  haven't gotten to the point where we were ready to start their.
+Aaron Coburn:  That is all that I have so.
+Aaron Coburn:  Happy to open it up for questions.
+Aaron Coburn:  Um or to move into the next stage.
+Harrison_Tang: Sounds good well before we get to the questions 
+  and by the way I prepared a couple questions and if people other 
+  people have questions feel free to just type in Q Plus uh to add 
+  yourself to the queue but before we get to that Hadrian do you 
+  mind kind of uh do a quick quick introductions about yourself 
+  that would be great.
+Hadrian: Uh sure and thanks Harrison for uh inviting us uh it's a 
+  pleasure to uh talk to you I don't know much about the ccg group 
+  although I recognize quite a few names in the audience right now 
+  uh some of them for from the IBEW crowd um I work for indrop for 
+  a bit over 2 years but and you mentioned that um Aaron works 
+  there as well but funny enough uh actually Aaron and I bumped uh 
+  into each other a long time ago because we're both committees at 
+  the Apes of the foundation um Aaron on Jenna if anybody is 
+  interested so turns out that we know each other for quite a 
+  while.
+Hadrian: Um and I came with a different background I was um.
+Hadrian: Uh working for a while with dog SS at uh customer 
+  comments and that's really how I got to be a user of sorts and 
+  observer of uh solid.
+Hadrian: We had many discussions about that and I'm sure some of 
+  you are aware of those.
+<aaron_coburn> Some links from my presentation: Linked Web 
+  Storage WG: https://www.w3.org/groups/wg/lws/
+Hadrian: And there was some frustration that solid is not 
+  progressing well enough and kind of by accident I ended up 
+  working for for interrupt.
+Hadrian: And I'm very happy that we're making quite a bit of 
+  progress and I hope this uh solid idea will will catch up.
+Hadrian: Um can I share some slides uh.
+Harrison_Tang: Yeah of course thank you.
+Hadrian: Okay so let's see if I can share my screen.
+Hadrian: Can you see my screen I think you can.
+Hadrian: So I adapted some old slice there's not much and I'm 
+  going to Echo something that Aaron said but a bit from a 
+  different perspective because solid is actually not very easy to 
+  explain it's pretty fundamental and it's very hard to explain 
+  until you start using it and then it becomes kind of obvious um.
+Hadrian: Yes so you probably know that uh team is the author of 
+  solid he started it around 20145 and he incubated at MIT and then 
+  it became a community group at w3c uh in the last part of the 
+  decade and then um he started being dropped to create uh he's 1 
+  of the co-founders to uh um create commercial products and foster 
+  adoption and last year is Aaron said the lws uh group was created 
+  uh because uh community group cannot issue a final recommendation 
+  w3c as you know so lws is probably the Final Phase in getting 
+  this specification uh to become a real standard w3c final 
+  recommendation and the motivations for for doing this for team 
+  initially were the fact that.
+Hadrian: The web is good and adopted as it was it wasn't really 
+  writable right so he talks a lot about web 3 as you probably know 
+  um but the web 1.0 did not it was only read only and it was 
+  actually great it was very simple it got adopted but it wasn't 
+  writable.
+Hadrian:  you could.
+Hadrian: Right with your own tools in the back end the famous 
+  Pepe web server public HTML you probably know all that then tools 
+  uh came about and all that but.
+Hadrian: From the web it wasn't really writable.
+Hadrian: Because it didn't handle identities for instance that's 
+  what that was 1 of the main blockers so anyway we have to uh all 
+  came around.
+Hadrian: And then uh.
+Hadrian: What team calls web 3.0 uh always emphasized uh not to 
+  be confused for web 3 the uh blockchain world.
+Hadrian: You see on the slides that some of the frustrations came 
+  from the stagnating and all that however the more important um.
+Hadrian: Path for me was my work with doctors and they work on 
+  the intention economy which is if you want kind of a practical 
+  application uh of the technology in the sense that in order for 
+  people to engage in economic transactions or any kind of 
+  transactions socials transactions and all um they have to 
+  exchange data and data has to reside somewhere and right now 
+  because of communication issues the easiest way to exchange data 
+  is being on the same platform because exchanging data outside 
+  platforms requires protocols which don't really quite.
+Hadrian: Exist there are some but uh nothing um.
+Hadrian: Globally accepted and um that led to the idea.
+Hadrian: And and by the way um.
+Hadrian: Last time as far as I know team and Doc met was a Web 
+  Camp 2 years ago and actually team said that solid was impart 
+  inspired by Doc's ideas and his uh intention economy or portray 
+  Manifesto uh 1 of the books.
+Hadrian: So as I said slowly this kind of hard to explain.
+Hadrian: So what it does it tries to separate data uh from 
+  applications and from identities as Aaron already mentioned.
+Hadrian: It's a bit subtle I don't know if I have a slide for 
+  that.
+Hadrian: Yes it's this 1 so today the way applications are built 
+  is to have a front end and have the back end and the front end 
+  has some if you want more or less unlimited access to the back 
+  end and they are very tightly coupled.
+Hadrian: Solid proposes a turned around sort of model that 
+  decouples uh applications from.
+Hadrian: Um data allowing data to be stored in if you want this 
+  Universal data storage.
+Hadrian: Solid calls them ports.
+Hadrian: And then from their data being shared with.
+Hadrian: Applications and other entities so that these parts 
+  become.
+Hadrian: If you want a distributed decentralized back end for any 
+  kind of application.
+Hadrian: And if anything that's what I would like you to retain 
+  from today's presentation because it has massive implications on 
+  a lot of things for me most importantly is cost because.
+Hadrian: The way things are done today it's very costly for 
+  applications to be built and more importantly maintained at scale 
+  um.
+Hadrian: Aaron can tell you that uh indras largest customer is 
+  the government of Belgium of Flanders that provides a pod to 
+  every citizen and I think what they realized is that if you have 
+  data.
+Hadrian: Citizens own support and the part and they have their 
+  data in the Pod then there is no need for data exchanges between 
+  different government agencies and all that because all the data 
+  is in that reflects the relationship between the government and 
+  the citizen is in that part and the only need thing they need to 
+  build now is new uh applications to add more data and benefit 
+  from the existing data so.
+Hadrian: That's a very interesting model that I hope you're going 
+  to think more about and as I said if anything I would like this 
+  to be the conclusion of this uh conversation um.
+Hadrian: I think I'm gonna stop here there are some basic things 
+  here.
+Hadrian: Um Harrison said that I we should expect this 
+  conversation to become quite Technical and uh well that's in part 
+  why aren't here because it's way more technical than me um so.
+Hadrian: I think we should open up the rest of the time for for 
+  questions uh Harrison what do you think.
+Harrison_Tang: Yeah that would be great um let me uh ask a 
+  clarification question uh is what is the difference between 
+  decentralized data stores versus like link web storage or is it 
+  uh basically synonyms that means the same thing.
+Hadrian: You mean linked web storage is the name of the group.
+Harrison_Tang: Uh link web storage and decentralized data store 
+  yeah like is there a difference or we're using these terms like 
+  interchangeably yeah.
+Hadrian: So I should let Aaron take it but linked web storage is 
+  the name of the work group at uh.
+Hadrian: W3c I don't think we use it.
+<kaliya_identity_woman> Decentralized Web Node
+Hadrian: Different contexts whereas decentralized data store is a 
+  general concept uh.
+Hadrian: Please correct me if you have a different View.
+Aaron Coburn:  Sure some of this I think comes from the history 
+  of solid um.
+Aaron Coburn:  Historically solid was built on um.
+Aaron Coburn:  A protocol called um linked um the linked data 
+  platform ldp.
+Aaron Coburn:  Ldp itself is not particularly.
+Aaron Coburn:  Well it's not particularly decentralized at all.
+Aaron Coburn:  That's the first thing.
+Aaron Coburn:  I don't think that decentralization really had any 
+  had much to much of a role in the development of ldp.
+Aaron Coburn:  A solid background really is more in the linked 
+  data sphere.
+Aaron Coburn:   Like I said.
+Aaron Coburn:  There are ways of approaching solid from a 
+  decentralized perspective and you can you can you can certainly 
+  build solid as a decentralized system but it's not necessarily 
+  the case that all solid systems or all systems that come out of 
+  the linked web storage Community you know working group will 
+  necessarily be decentralized.
+Aaron Coburn:  What we tend to find even in in interrupt.
+Aaron Coburn:  This is especially the case for um the instance 
+  that hadrien mentioned with uh the government of Flanders or 
+  Belgium is there's more of a Federated model that's actually that 
+  tends to be more of an of of the interest um for you know for 
+  like large Enterprises for governments.
+Aaron Coburn:  They need to they need to have a governance model 
+  that makes sense to them so.
+Aaron Coburn:  Not so much decentralized necessarily but it can 
+  be decentralized in the sense that you can have you can have data 
+  all over the web you can have you can have lots of different pods 
+  you can have your.
+Aaron Coburn:  User identity decoupled you can have like 
+  everything can be decoupled but it's um.
+Aaron Coburn:  But it's not necessarily the case that it's 
+  decoupled.
+Harrison_Tang: Got it Dmitry you're in the queue.
+Dmitri Zagidulin:  Hi Adrian I just wanted to add a couple more 
+  words.
+Dmitri Zagidulin:  Uh specifically to to Harrison's question on 
+  so we have this vague notion of decentralized data storage where 
+  does solid fit in in that landscape.
+Dmitri Zagidulin:  And the the thing that it's really important 
+  to think about with data storage is less centralized and 
+  decentralized and more storing public data versus storing 
+  permissions data and there's a pretty fundamental divide in.
+Dmitri Zagidulin:  In let's say.
+Dmitri Zagidulin:  Blockchain world or any sort of decentralized 
+  world.
+Dmitri Zagidulin:   Fundamental bi.
+Dmitri Zagidulin:  Side all data storage.
+Dmitri Zagidulin:  Eventually is divided into either we're 
+  dealing with public only data right so that's ipfs for example 
+  many of you are familiar with ipfs internet interplanetary file 
+  system uh similar projects built on it like ceramic and some 
+  others and in general we've seen a number of protocols that are 
+  like okay you know what permissioned data storage is hard we're 
+  going to focus on public data right so for example the that 
+  project dat which I think.
+Dmitri Zagidulin:   Uh well.
+Dmitri Zagidulin:  Protocol I I forget what it got renamed to but 
+  it got started with we have public data sets from big science 
+  right so we've got like terabytes and petabytes of data how do we 
+  store them efficiently in a decentralized way but it's all public 
+  data.
+Dmitri Zagidulin:  So so that's that's 1 major category of of 
+  writing and retrieving public data.
+Dmitri Zagidulin:  And then the other 1 is.
+Dmitri Zagidulin:  And and and the divide with permission to data 
+  storage is essentially it goes like this.
+Dmitri Zagidulin:  There's a number of people who believe that 
+  you can ensure permission storage with encryption alone.
+Dmitri Zagidulin:  Those are um the number of projects that are 
+  like we can do permission to storage on untrusted nodes meaning 
+  anybody could spin up a storage node and we're gonna we're gonna 
+  ensure Access Control via encryption alone.
+Dmitri Zagidulin:  And the other half of that divide says no 
+  encryption on can never be sufficient because all encryption has 
+  a half-life you're essentially just temporarily storing data 
+  until it becomes public.
+Dmitri Zagidulin:  So we're solid Falls in is and where how it 
+  fits into the decentralized landscape is there's going to be some 
+  some cases that deal with public data that can be fundamentally 
+  decentralized.
+Dmitri Zagidulin:  Some cases that are low enough threat that you 
+  can say oh yeah yeah we're going to encrypt them but really it's 
+  it's temporarily uh encrypted until it becomes public.
+Dmitri Zagidulin:  There's a number of cases where you want the 
+  data to be private and that means.
+Dmitri Zagidulin:  Encryption with permission to access control 
+  and that's where solid solidly fits in it's it's exactly for 
+  those applications where.
+Dmitri Zagidulin:   Can still be.
+Dmitri Zagidulin:  Centralized you can still be decentralized you 
+  can still be a network of nodes where you storing and reading 
+  stuff from.
+Dmitri Zagidulin:   But those.
+Dmitri Zagidulin:  Notes have to be trusted those notes have to 
+  be able to enforce the access control the authorization part of 
+  the protocol so hopefully that uh puts it a bit more into 
+  perspective.
+Harrison_Tang: Ted you have a comment.
+Hadrian: No I just wanted to say that for those who are not aware 
+  Demitri is 1 of the original parents of uh solid at MIT.
+Harrison_Tang: I did know that.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There are a 
+  lot.
+Harrison_Tang: That's cool I feel like I know demetry for a long 
+  time but I didn't know that fact so amazing.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's not just 
+  a couple.
+Hadrian: So yeah so and uh in SWS now we start we are probably 
+  starting to discuss deeds and deity actually showed uh solid 
+  working with uh did web I think quite a while ago so FYI Demetri.
+Hadrian: So uh go ahead that sorry.
+<dmitri_zagidulin> haha thanks Hadrian :)
+Harrison_Tang: So just to sorry uh just to summarize a demetry 
+  your comment so you're saying that a solid positioning and uh 
+  unique value proposition is on permission uh storing permission 
+  private data in the decentralized way versus like ipfs is focused 
+  on public data is that correct.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That's not 
+  quite accurate.
+Harrison_Tang: Oh sorry do you mind the yeah.
+Dmitri Zagidulin:  So uh I I would say that's roughly correct but 
+  uncertain uh time is going to give more details go ahead.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Uh yeah so 
+  having been involved in this space for quite a while I was part 
+  of the ldp working group.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Solid based 
+  itself or solid servers were initially based on.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Solid itself 
+  is more of a philosophy.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And and 
+  implementation or specification.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That 
+  philosophy is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): 2 things 
+  first is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): We 
+  decentralizing the web.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And what that 
+  means is instead of there being like 3 places where you can go to 
+  have your blog hosted.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There are 3 
+  million places that you can go to have your blog posted.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And it still 
+  can be visible.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): As visible as 
+  if it were just in those 3.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The way that 
+  gets accomplished is by Federation among other things that 
+  aggregation.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): People who 
+  have dealt with um.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): News readers 
+  in the modern sense.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Where they're 
+  picking up RSS and atom feeds and aggregating all those feeds 
+  into 1 long feed that you read.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Sort of 
+  similar to how the old use Net News groups used to work.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The other 
+  piece is if I can get my brain to cooperate.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Uh read the 
+  centralization and and making the web writable.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's always 
+  been globally readable right there's no purpose to having a web 
+  server except to let people read it.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Also there 
+  needs to be a way for people to write it.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And that 
+  writing.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Takes many 
+  forms 1 of the most commonly understood ways is wikis like 
+  Wikipedia where somebody creates a page on a topic and other 
+  people come in and say now wait a minute that's not right or 
+  that's not accurate or here's a missing detail and then somebody 
+  else comes in and says well this language screwed up so let me 
+  fix some of that and somebody else comes in and says well this is 
+  only part of a bigger picture so let me make some links back and 
+  forth.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The whole 
+  web.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Was designed 
+  to work that way.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It hasn't 
+  been implemented that way because it gets hard quick.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): In themselves 
+  are hard to manage.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Uh graffiti 
+  you get um.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): A lot of 
+  sources that needs to be kept out or removed as you go.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): A Wikipedia 
+  used to be a lot more of a free-for-all for anybody who's been on 
+  the web for a while.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There could 
+  be editing Wars going back and forth on a page for months before 
+  somebody came in and said okay this is clearly a point of 
+  contention so there's going to be different articles that are 
+  branched from this to handle that contention.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Maybe 
+  somebody comes in and says this is clearly false data and this is 
+  clearly true data and so we're also going to Branch for that 
+  reason and and to claim 1 as false and the other a claim as true.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): But this is a 
+  big process and its evolving.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Quality 
+  implementations that exists solid server implementations excuse 
+  me um there is no such thing as solid per se it's not a monolith 
+  it's a lot of things as I said it starts out as philosophy.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Solid server 
+  implementations that exist.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Are 
+  themselves sort of centralizing.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Because it is 
+  hard to aggregate data from a bajillion servers.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's 
+  difficult to present you with a view of a conversation if.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Software that 
+  is presenting that view has to pull all of the comments from all 
+  of the people's individual servers.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Instead of 
+  pulling them all from 1.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Right 
+  Facebook has they have a bunch of machines but they're all 
+  working together to look like 1 server.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And it's all 
+  1 big database.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The vision of 
+  solid is to have.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): 1 person's 
+  data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): A space that 
+  in multiple spaces that they control that they say that 
+  application can read and or write this data that user can read 
+  and or write this data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): All 
+  controlled by the individual who owns that data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): This also 
+  gets complicated really quickly.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): As that new 
+  slide shows there's different kinds of data involved.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There's the 
+  data that is between you and your bank or Banks multiple Banks.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There's the 
+  data that's involved in magazines or books or movies or music.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That you are 
+  mostly consuming mostly reading.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): But 
+  occasionally you're going to have something to say about it.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There's also 
+  government data and.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The 
+  government is or governments are the most consistent about 
+  wanting to keep your private data private and keeping the 
+  Public's data public.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And also 
+  wanting to keep their hands on all of it there's a thing called 
+  The Library of Congress which holds 1 instance of.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Most 
+  published works in the United States.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It grows 
+  infinitely.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): These Works 
+  have not necessarily been digitized because the Library of 
+  Congress began a couple hundred years ago.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): When there 
+  was no internet there was no telephone there was no recording 
+  system it was all just paper.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That's going 
+  to evolve over time so this is a huge big pile of question.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There was a 
+  question a little bit ago about the relationship between solid 
+  and linked web servers.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): As I said 
+  before the solid philosophy.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Needs to be 
+  held by.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Um a number 
+  of different implementations.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Solid servers 
+  as they exist today.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Implement 
+  part of the solid vision.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Which might 
+  be considered a linked web server.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Those solid 
+  servers.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): As they're 
+  branded right now.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Might be 
+  compatible with the linked web server specification as it gets 
+  developed.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): They also 
+  might not.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): So that's 
+  part of why uh the working group is linked web servers which is 
+  talking about a style of server.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And not the 
+  solid working group which is a philosophical thing with a lot of 
+  different tendrils.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I've said a 
+  lot of words and hopefully they've made sense I'll let somebody 
+  else go.
+Harrison_Tang: Well thank you thanks Ted.
+Harrison_Tang: Adrian Aaron anything to add.
+Hadrian: Um yes I do thank you so much uh Ted.
+Hadrian: Insights what I want to say is that the pecan there was 
+  a party and I think the guys in the board were asked to present 
+  slides that they never saw before it was kind of for fun and it 
+  feels like that's what they just did right now because I don't 
+  think he saw these slides before.
+Hadrian: Um anyway um.
+Hadrian: Are there any more questions very soon I I would really 
+  like to.
+Harrison_Tang: Yes uh I have a.
+Hadrian: Uh for the audience to get as much as they can from this 
+  from this meeting.
+Harrison_Tang: Yeah I have a kind of a question a little bit 
+  technical questions uh actually uh earlier Ted you're talking 
+  about the histories and the contacts now um a question is.
+Harrison_Tang: Isn't there a fundamental trade-off between 
+  latency performance uh versus uh decentralization and 
+  centralization right so to be specific um if you want to focus on 
+  decentralization and use Federation uh application use Federation 
+  to to to process this data then you'll take a long time right 
+  because you need to do aggregations and then do maybe do joins in 
+  real time it takes a while but then if you actually aggregate all 
+  of them together you'll uh to speed up the performance of such 
+  calculations then you're centralizing the data into 1 entity on 
+  aggregation layer right so how do you actually uh address this 
+  trade fundamental trade-off.
+Hadrian: Uh can I take this 1 uh here.
+Harrison_Tang: Yes uh huh.
+Hadrian: I'm sure that his other stuff to say so.
+Hadrian:  to me that.
+Hadrian: A massive red herring because I worked in projects at 
+  massive scale in the past and it's impossible.
+Hadrian: To design this to Define what performance is to whom 
+  when and all that even today what we think happens on the web is 
+  completely different from what really happens you have cdns you 
+  have all sorts of stuff uh if you look at the searches we have 
+  algorithms like map reduce there are algorithms created all the 
+  time so I don't think.
+Hadrian: The way we think perform about performance should be a 
+  factor in the way Protocols are built and I stopped here uh Ted 
+  I'm curious what uh what your opinion.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Thanks um yes 
+  there are trade-offs at all levels of this picture.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Some cases it 
+  may make sense to optimize for presentation.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And in that 
+  case it may make sense for.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  all the.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Data of some 
+  conversation or conversations.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Held in a 
+  central location.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Sometimes 
+  that data will be mirrors of what people hold in their individual 
+  locations.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Part of what 
+  these individuals control over their data at the same time as 
+  applications presented.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  we can sort.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Sort of see 
+  this in action today in the way that um I think both IOS and 
+  Android do this.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): You to Echo 
+  your pictures from your smartphone to some storage place on the 
+  web which you can also access through a web browser on a on a 
+  desktop or laptop machine.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Those 
+  pictures do not exist only on your phone and then get presented 
+  through that Central thing.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Nor do they 
+  only exist in that Central thing and get presented by your phone.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): In both 
+  places because that is the way to optimize the use of that data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The services 
+  that store the pictures.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Are keeping 
+  them as private as you set them.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Know 
+  sometimes or well yeah some of them let you do settings so that 
+  you can say like Joe can see these pictures but Mary cannot.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Others and 
+  this will increase going forward let you use a semantic 
+  description to say that.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): My first 
+  cousins can see these pictures but my grandparents cannot for 
+  whatever reason.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That kind of 
+  smart logic in.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Setting 
+  permissions it's called attribute-based assets control.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  it is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): More 
+  attractive thing to use because the systems are getting better at 
+  being able to process it as sort of what you were saying about 
+  algorithms that get better.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): You'll get 
+  better over time but they're not there yet and so some of some 
+  recent centralization of the red decentralization.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com):  is going.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): To happen in 
+  order to make the presentation fast enough for the consumer.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's not to 
+  say there's some performance benchmark.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's to say 
+  that I don't want to wait more than 10 seconds for the first page 
+  of pictures to show up in my picture browser.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Whether 
+  that's a web browser as it is today or it's in iPhoto which is 
+  the web the picture browser on Ajo on Mac OS rather uh or it's 
+  the pictures on.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): IOS there's 
+  there's a whole bunch of applications that present picture data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And this is 
+  another part of the solid division is to be able to say I want to 
+  use ios's photos.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I want to use 
+  Mac OS.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): On the same 
+  data files.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Down the road 
+  I may want to use a different application I don't know what the 
+  name of it is on Android but the data files are likely to be the 
+  same whether they're jpegs or gifts or pings or something else.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Those are 
+  standardized data formats which multiple applications know how to 
+  read and write and interoperate over.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Pictures are 
+  a nice easy example of this.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It gets more 
+  complex when you start talking about financial data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Is there a 
+  different schemas different ontologies different vocabularies 
+  that are used to describe that financial data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Having 
+  multiple applications able to read and write that data or read or 
+  write that data requires.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Some 
+  decisions about what vocabulary or ontology to use or at least 
+  what are the connections between the multiple vocabularies that 
+  exist.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): What I'll 
+  same as relations are there.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I throw that 
+  in because it's an important thing that people as we get further 
+  into the weeds need to understand.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): All same as.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Is a 
+  relationship that says that the subject and object of the 
+  statement including Al same as the subject and object.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): What does 
+  that mean.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The 
+  identifier in the subject position and the identifier in the 
+  object position.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Same entity 
+  it's like my name is tal Ted my name is also Ted Tibido.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Those 2 uh 
+  identifiers.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Is Al same as 
+  relationship except of course that those are just strings they're 
+  not Uris and that's deeper into the weeds that we need to get at 
+  this moment.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The challenge 
+  at hand.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Build enough 
+  standardized vocabularies.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Enough 
+  application implementers.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Are you able 
+  to use.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): That enough 
+  applications will be produced that enough users will choose to 
+  use or want to use over the data that they have or will have.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And whether 
+  they have it on their local pod or is already exists in some.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Silo on the 
+  web or it exists on a local floppy disc right all these things 
+  are valid.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The challenge 
+  is to have the vocabulary is be understood by enough applications 
+  that they can open enough files that are becomes a a u.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Critical mass 
+  of users.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Users 
+  applications and data that they can interoperate that everything 
+  is Loosely coupled.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): What is Lucy 
+  coupled means.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Loosely 
+  coupled means that the banking application.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Can read any 
+  banking data not just the data produced by the bank that produced 
+  that application.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It means that 
+  I can decide that I'm changing Banks and all of my old data can 
+  move with me.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): At least my 
+  new bank can read all of my old data.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And 
+  understand it.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Translations 
+  are an element of loose coupling.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The best 
+  loose coupling is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): You can 
+  change things on the fly as you care and that's like using a 
+  different web browser.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): There were 6 
+  of them give or take.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Major web 
+  browsers that you can use to read any website on the web.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Some are a 
+  little more bleeding edge than others and so browsers move faster 
+  or as sites move faster but pretty much Loosely they work 
+  together.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And you can 
+  change from chrome to Safari to Firefox on whim.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It's not 
+  going to change anything you take the link of a page you're 
+  looking at and copy it from 1 Brouse to another and it's still 
+  going to work it's going to look roughly the same.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): It might go a 
+  little faster a little slower it might show some data a little 
+  more pretty than the other that to your eyes but somebody else 
+  likes the other and that's all fine because these are Loosely 
+  coupled.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): They only 
+  connect when they need to.
+Harrison_Tang: By the way Ted.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And again 
+  I've had a lot of words.
+Harrison_Tang: Yeah I'm sorry yeah I just want to do a time check 
+  do you have 1 last comment uh.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): No I'm good.
+Harrison_Tang: Okay good good thank you thanks Ted so Adrian I 
+  know you have other slides that you want to share so do you want 
+  to proceed yeah.
+Hadrian: No actually that's the last 1.
+Harrison_Tang: Got it got it okay cool cool um so earlier tag 
+  was.
+Hadrian: But we can take more questions uh Harrison.
+Harrison_Tang: Got it okay so I I think uh earlier uh you know 
+  Ted actually mentioned a good point where uh to to make sure that 
+  this string comes true you need to have this uh ecosystem and uh 
+  where a lot a lot of pods are going uh basically a lot of 
+  adoptions right where it creates a positive reinforcement Loop so 
+  my question is like uh what are the market adoptions right now 
+  and what are the challenges and what can we do to actually drive 
+  more adoption.
+Hadrian: Oh man that's a that's a actually Ted said it very well 
+  I like what he said although it's a bit theoretical so.
+Hadrian: This is a very low conversation in reality I don't know 
+  but.
+Hadrian: I was thinking what what was the motivation of people 
+  paying for isps let's say back in the in the 90s because they 
+  didn't provide anything except access right you had to have that 
+  connectivity to the internet to then access websites and data and 
+  all that.
+Hadrian: And that's in a way the case for solid you need to have 
+  enough um.
+Hadrian: Either solid hosting providers or easy to set up like 
+  the Apache browser uh sorry the Apache web server was um 
+  technology to install on your Lan to host the solid pods and then 
+  you have to have that critical mass of applications that use this 
+  data from multiple Parts because you will share data with your 
+  family or communities and they will use data from your parts but 
+  this applications will provide value for the people who use them.
+Hadrian: And that involves writing as well like both Dimitri and 
+  and that said and once you have that critical mass and the data 
+  resides in the solid parts as I said this would create a sort of 
+  universal distributed decentralized uh back end so people will 
+  basically only write applications or algorithms to benefit from 
+  this data of course.
+Hadrian: Agents are a hot topic.
+Hadrian: Um AI is a very hot topic uh especially given the um.
+Hadrian: Privacy requirements um wallets are also hot and I saw 
+  Alex is on the call she's at MIT and they um so interrupt donated 
+  1 of the wallet projects that are based on solid parts at the uh 
+  uh open Wallet foundation and Alex leads a group at MIT that did 
+  the same.
+Hadrian: Um so wallets I think are going to be very hot and in 
+  terms of governance and acceptance.
+Hadrian: I'm not sure who mentioned Gan earlier today but we 
+  became members of Gan as well and that's another thing to look at 
+  in terms of governance and um.
+Hadrian: Promoting more the idea of yeah the work of global 
+  acceptance networks and now they are Ira because it was 
+  incorporated in Switzerland under this name recently um.
+Hadrian: So I'm not sure if I gave you an answer Harrison but I 
+  think this would be the Milestones or the the points to look for.
+Harrison_Tang: Garden well earlier Aaron shared that in Rob has a 
+  very satisfied customer with flandes and Netherland government so 
+  what's the user value proposition uh that they chose uh to use a 
+  solid interrupt uh versus other types of solutions.
+Hadrian: Well I don't think there are other types of solutions 
+  with this characteristics but Aaron do you want to talk more 
+  about that.
+Aaron Coburn:  I think 1 of the value propositions has to do with 
+  really this this question of data sharing so building.
+Aaron Coburn:  A an ecosystem.
+Aaron Coburn:  Where more Innovation can happen so um.
+Aaron Coburn:  The government of Flanders is trying to do is is 
+  create a structure where the data becomes available for.
+Aaron Coburn:  Is you know.
+Aaron Coburn:  Oh sort of allowed entities to write applications 
+  that can interact with the data.
+Aaron Coburn:  The data that's that's really controlled by users 
+  in this case um and and then provide additional benefit beyond 
+  what the um you know any individual.
+Aaron Coburn:  Governmental agency would be able to to provide so 
+  that's what they're that's the the basic value proposition that 
+  that they're going with and.
+Aaron Coburn:   You know.
+Aaron Coburn:  Part of it has to do with.
+Aaron Coburn:  Rather than having a lot of siloed kinds of of.
+Aaron Coburn:  They would have a um.
+Aaron Coburn:  Structure of data where the data itself becomes um 
+  more of a um more of an object for sharing you know across these 
+  permiss specifically permission to sharing across these different 
+  agencies.
+Hadrian: Uh Aaron may I point out something it may not be obvious 
+  um the fact that you have control over who the data is shared 
+  with the government data in the pot doesn't necessarily mean that 
+  you can alter or even see that data so imagine it's a criminal 
+  record it's not like oh it's in my pot I'm going to erase my uh 
+  criminal record now.
+Hadrian: So I'm not sure if that's obvious but.
+Hadrian: Texas doesn't necessarily mean that you're the owner of 
+  the data can can modify it.
+Aaron Coburn:  Indeed it's not it's not as though I can just uh 
+  tell my banking pod that I I have a lot more money than I 
+  currently have but there's there's there's um there are a lot of 
+  ways to achieve that in terms of as an example verifiable 
+  credentials or other kinds of um.
+Aaron Coburn:  Uh cryptographic mechanisms to show that you know 
+  has a particular bit of data been tampered with or you know who 
+  was who signed for this particular data so there's there are a 
+  lot of ways of going about making sure that a particular entity 
+  is authoritative for a particular bit of of data.
+Harrison_Tang: Cool thank you uh 1 last question is from the 
+  community if there's any.
+Harrison_Tang: All right I think we're at time uh just want to 
+  thank you Hadrian and thank you Erin for jumping on this is a 
+  great conversation I feel like I need to invite you guys to jump 
+  on in the next few months to do a follow-up because there's still 
+  some questions that I think I have that haven't been able to ask 
+  so thanks a lot.
+Hadrian: Uh thank you so much for inviting us.
+Aaron Coburn:  Thank you very much.
+Harrison_Tang: All right this concludes this week's uh ccg 
+  meeting so thanks for attending.
