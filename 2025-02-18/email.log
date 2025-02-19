@@ -1,0 +1,926 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2025-02-18/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2025-02-18/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2025-02-18.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2025-02-18
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Feb&period_year=2025&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. <Verifiable Credentials for First Responders>
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords
+Present:
+  Harrison Tang, Chandi Cumaranatunge, Mahmoud Alkhraishi, Vanessa, 
+  David I. Lehn, Benjamin Young, Kaliya Young, Nis Jespersen , 
+  David Chadwick, Rob Padula, Greg Bernstein, Jilian, Geun-Hyung 
+  Kim, James Chartrand, Manu Sporny, Sharon Leu, Tim Bloomfield, 
+  Jennie Meier, Kayode Ezike, Joe Andrieu, Tom S, Erica Connell, 
+  Dmitri Zagidulin, Kerri Lemoie, Will Abramson, Przemek 
+  Praszczalek
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Welcome welcome to uh this week's w3c ccg um today 
+  we're very excited to have monu here to present and need a 
+  discussion on verifiable credentials for First Responders uh but 
+  before then just want to uh quickly go over some administrative 
+  stuff so first of all just a quick reminder on the code of ethics 
+  and professional conduct just want to make sure we hold uh 
+  constructed and uh respectful conversations here which we have 
+  been doing for years so but no it's always good to have a quick 
+  reminder uh at the beginning of every meeting.
+Harrison_Tang: Quick note on the intellectual property um anyone 
+  can participate in these calls however all substantive 
+  contributions to any ccg work items must must be the member of 
+  the ccg before IPR agreement signed so if you have any questions 
+  regards to having the w3c account or the community contributor 
+  license agreement uh feel free to reach out to any of the 
+  cultures.
+Harrison_Tang: Uh quick notes about the call so these meetings 
+  are automatically transcribed and recorded and will we will 
+  publish the transcriptions the audio and video recordings uh in 
+  the next day or 2.
+Harrison_Tang: Use a GT chat to cue the speakers during the call 
+  so you can type in Q Plus to add yourself to the queue or cue 
+  minus to remove.
+Harrison_Tang: All right just want to take a quick moment for the 
+  introductions and reintroduction so if you're new to the 
+  community or you haven't been active and want to re-engage um 
+  actually just feel free to unmute and uh introduce yourself a 
+  little bit.
+Harrison_Tang: A few words.
+Manu Sporny:  Mine might as well alright since uh I'm presenting 
+  today um hi everyone my name is mano spori um uh I have been with 
+  this community uh for a while now um I focus a lot on uh privacy 
+  preserving Technologies um when it comes to like um digital 
+  credentials and things of that nature I am the editor of a number 
+  of specs including the decentralized identifiers specification 
+  the verifiable credential specifications um and a variety of 
+  other specs that the community uh works on I'm a computer 
+  Scientist by training um care a lot about um uh Building Systems 
+  for the web that Empower individuals and people uh keeping them 
+  uh safe and protected online um and uh.
+Manu Sporny:  That maximize um individual Agency on the web I 
+  think it's really important uh to build out a web um based on 
+  those principles uh as always wonderful to be here.
+Harrison_Tang: Uh thank you man and thanks for sending the 
+  example so if you.
+Harrison_Tang: You know if you feel Brave I feel free to just 
+  unmute and introduce yourself a little bit.
+Harrison_Tang: You know I always threatened to call on people but 
+  today I'll just uh skip that I think it's not really nice to to 
+  call on the newcomers I'm probably scared that a little bit but 
+  anytime you feel uh confident uh feel free to just unmute and 
+  introduce yourself okay.
+Harrison_Tang: All right announcements and reminders any new 
+  upcoming events.
+Kaliya Young:  Sure uh next not next week um the first week of 
+  March we have the Dead unconference Europe happening in Zurich 
+  for 2 days it's focused on ecosystems um so if you are in an 
+  ecosystem.
+Kaliya Young:  And you have folks in Europe.
+Kaliya Young:  Working on that ecosystem we'd encourage you to 
+  encourage them to come um it's just 2 days so you can fly in and 
+  1 day and fly out the next day.
+Kaliya Young:  Uh that was by Community requests and um yeah so 
+  that's that and then we have iiw uh 40 oh my goodness.
+Kaliya Young:  Uh the first week of April.
+Kaliya Young:  Internet identity Workshop um coming up.
+Kaliya Young:  The fetty Forum I'm hosting with Johannes Earth is 
+  um.
+Kaliya Young:  April 1 and 2 which is all about the FED averse 
+  and.
+Kaliya Young:  Mastadon and blue skies at protocol Etc.
+Kaliya Young:  That's that's all thanks.
+Harrison_Tang: Thank you thank you ka and by the way so we will 
+  not have a w3c ccg meeting on April 8th during the IBEW uh I will 
+  send out the.
+Harrison_Tang: Uh calendar reminder uh we can uh awaken the 
+  events.
+Kaliya Young: https://lu.ma/DICEecosystems
+https://www.w3.org/groups/cg/credentials/calendar/
+Harrison_Tang: But uh if you want to take a look at what's coming 
+  in the w3c ccg calendar uh here's the link.
+Kaliya Young: https://internetidentityworkshop.com/
+Harrison_Tang: All right man.
+Kaliya Young: https://fediforum.org/
+Manu Sporny:  Yeah just a quick update on the standards track 
+  stuff at w3c so the verifiable credential working group um is 
+  getting ready to prepare the final uh proposed recommendations 
+  for I think it's like 8 specifications simultaneously now it's 
+  verifiable credentials 20 data Integrity uh the ecdsa eddsa 
+  crypto Suites bit string status list Json uh verifiable 
+  credential Json schema uh VC huzzy cozy.
+Manu Sporny:  Here's another 1 the a controlled uh identifiers 
+  specification 8 specifications never been part of a working group 
+  that has ever tried to take that many specifications.
+Manu Sporny:  At the same time but the verifiable credential 
+  working group is is doing that um we are expecting that to happen 
+  in a month um so just a heads up to everyone um that is the last 
+  step to the global standardization um uh uh uh track um uh what 
+  happens when we put stuff in proposed recommendation is we're 
+  proposing it to the worldwide Web Consortium membership that it 
+  should be published as a global standard so all 8 of those 
+  documents should become Global standards and then the w3c 
+  membership who has been tracking this you know the whole while um 
+  gets to have a final vote on whether or not they allow it uh this 
+  is the last chance kind of people have to formally object against 
+  the work um uh before it becomes a global standard uh we have no 
+  signals that anyone's planning to formally object it's it's 
+  highly uh frowned upon at this stage because it's been you know 
+  in development for.
+Manu Sporny:   Uh 3.
+Manu Sporny:  That is what we're getting ready to do just a heads 
+  up to everyone you know again feel free to take a read through 
+  the specifications um if you find any grammatical errors or 
+  anything of that nature you know let us know um but we're on a 
+  good track.
+Manu Sporny:   That's it.
+Manu Sporny:  Oh sorry that was that was verifiable credentials 
+  the other thing that's happening is um.
+Manu Sporny:  Uh Marcus and Jonathan and the chairs uh of the did 
+  methods uh working group at uh deaf are doing a great job trying 
+  to figure out you know what the first set of did methods are that 
+  we're going to standardize um in parallel we're going to be 
+  putting a charter forward uh at w3c for those did method um for 
+  that did method working group um so that is uh proceeding as well 
+  uh those meetings happen uh every other Thursday um really good 
+  good energy in that group lots of people showing up usually about 
+  18 plus people showing up um which is a good healthy amount of of 
+  input into that process uh that's it as far as updates there are 
+  concerned.
+Harrison_Tang: Thank you thanks Mom you.
+Harrison_Tang: Any other uh announcements or reminders.
+Harrison_Tang: All right um what items updates uh any updates on 
+  the work items.
+Manu Sporny:  Sorry um there's a new meeting that we're rolling 
+  into the work item um uh meetings uh per week uh that's around 
+  data Integrity uh there are a number of people uh are good 
+  colleagues in Europe and um uh Italy specifically uh well 
+  Netherlands and and and Switzerland too I guess um that are um uh 
+  working on uh post-quantum crypto Suites um we've got our 
+  colleagues in Singapore uh in Asia Pacific region working on um 
+  uh uh selective redaction uh crypto Suites um and we of course 
+  continue to work on the final bits of the BBS crypto Suites uh 
+  for privacy preserving unlabel disclosure uh we're going to have 
+  to start we're we've had we've been the editors have been having 
+  meetings for the past.
+Manu Sporny:   Past 2 years.
+Manu Sporny:  The VC working group but we're opening up to the 
+  the next kind of stage of crypto Suites that we're planning to 
+  take standards track uh at w3c those meetings will be uh on 
+  Fridays at 10:00 a.m. uh Eastern to try and make it work for our 
+  you know uh European colleagues as well as uh folks on the west 
+  coast um uh.
+Manu Sporny:  So that that announcement that that meeting invite 
+  went out to the ccg mailing list earlier today so if you're 
+  interested in advanced cryptography and digital signatures and 
+  privacy preserving unlabel um digital signatures and things like 
+  that uh please join us um we're going to be working on kind of 
+  some of the Next Generation uh stuff.
+Harrison_Tang: Thank you man and by the way uh we will have uh 
+  Andrea and Jeremy uh Jeremy uh actually here a month from now on 
+  March 18th to talk about multi-key multibase verifiable 
+  credentials and pqc uh post Quantum cryptography verifiable 
+  credentials so.
+Harrison_Tang: And uh uh so on March 11th uh basically 3 weeks 
+  from now we will have the quarter 1 2025 review and work item 
+  update so I send out uh presentation deck uh to different um 
+  project leads uh so please help like uh update the presentation 
+  deck um so that we can kind of go through these work item updates 
+  um March 11th.
+Harrison_Tang: By the way I.
+Harrison_Tang: I I had the opportunity to kind of represent us uh 
+  in the security industry associations uh webinar to talk about 
+  the wcm ccg work items so actually having a quarterly review of 
+  these work items and updates is uh actually quite helpful.
+Harrison_Tang: It took me like probably an hour just to put it 
+  together because everything's there so thank you thanks everyone 
+  for actually uh updating these work items and uh actually 
+  contributing to them.
+Harrison_Tang: All right um last calls for introductions 
+  reintroductions um announcements reminders or what guidelines 
+  related stuff.
+Harrison_Tang: All right let's schedule the main agenda so again 
+  we're very excited to have M here to actually talk about 
+  verifiable credentials for First Responders so money uh the floor 
+  is yours.
+
+Topic: <Verifiable Credentials for First Responders>
+
+Manu Sporny:  Awesome thanks Harrison let me go ahead and screen 
+  share.
+Manu Sporny:  All right um let me know if folks can't see this 
+  but I think you can um okay so uh this uh particular presentation 
+  is about um the first responder committee uh and using verifiable 
+  credentials um in in that Community um so uh these folks are 
+  called different things throughout uh the the world but you know 
+  First Responders are typically people like uh firefighters um uh 
+  uh emergency medical technicians um uh police um that come into 
+  an area when a disaster happens um and they help people right 
+  they they they they help people that need to go to the hospital 
+  they help people that may be injured or immobilized they rescue 
+  people from buildings or flooding or fires um these are you know 
+  people that um uh help us in our greatest times.
+Manu Sporny:  Uh of need um people also don't quite realize that 
+  you know First Response goes beyond just that just firefighters 
+  and police and and EMTs um there are all kinds of other people 
+  that come in to um uh uh an area um when a disaster happens so 
+  for example like civil engineers come in to check to make sure 
+  the buildings are safe to be reoccupied um uh the US uh de comes 
+  in like because uh following a flood there can be outbreaks of 
+  disease um CDC so all of these people are kind of a part of the 
+  response effort um as well as people in your local community I 
+  mean people that um you know are typically in a an accountant or 
+  a local shop owner um sometimes are also uh a volunteer and 
+  Disaster Response um person um so when we talk about verifiable 
+  credentials for First Responders we're talking about verifiable 
+  credential usage among all of these people.
+Manu Sporny:  Victims themselves the people that have been caught 
+  up in a um in a in a bad situation um.
+Manu Sporny:  So uh let me kind of use uh and an example that's 
+  fairly uh um uh fresh and I know some of you you know um directly 
+  experienced this or were very close to it um um uh to kind of you 
+  know kick off what we're going to to talk about today so I'm 
+  going to talk about kind of the problem and vision using a very 
+  specific example um we'll look at what some of these verifiable 
+  credentials look like they look slightly different than the ones 
+  that we've typically uh are used to will highlight the 
+  technologies that this community is actively uh working on to 
+  help the first responder community and then we can talk about 
+  kind of next steps where it's this stuff going um you know when 
+  when can we expect to see it um uh uh uh used um okay so I'm sure 
+  many of you have seen this picture this is from the recent 
+  California wildfires um and it shows you how incredible.
+Manu Sporny:   Incredibly scary.
+Manu Sporny:  You know these these events can be um uh this is um 
+  uh you know a picture right in the middle of when the fires were 
+  coming through the things that you know made the fires so 
+  damaging is incredibly high winds you know really dry environment 
+  um you know and fire all of those things together made it 1 of uh 
+  the the more devastating um uh uh disasters that that California 
+  has experienced um so when when events like this happen and we 
+  had a couple of these types of events happened last year there 
+  was a hurricane Milton hurricane Helen on the east coast in the 
+  United States on the west coast we had the wildfires and clearly 
+  all around the world there were other other things mudslides 
+  flooding um things of that nature each 1 of them uh a disaster 
+  with uh First Responders responding within hours uh to try and 
+  help uh the local population.
+Manu Sporny:  So this is typically what it looks like right right 
+  after the first uh you know right after the disaster starts or um 
+  strikes or even leading up to it like a hurricane you know it's 
+  going to happen and you kind of know where it's going to go even 
+  with wildfires that you know you can't predict you know 5 days 
+  ahead of where things are going to be but usually our to our 
+  you've got kind of a prediction on where things you know might go 
+  based on wind and weather and things like that um and so the 
+  people that show up to um.
+Manu Sporny:  I help uh rescue people and to help in the recovery 
+  efforts um are are these these folks that you see on the screen 
+  right um and they have just driven in from all types of different 
+  locations um uh in the United States uh as we know uh you know 
+  our um uh our our friends to the north of the border of the 
+  Canadians uh in in South of the Border in Mexico came into battle 
+  the the California wildfires so you have this very decentralized 
+  response to um a local uh typically a local um emergency of some 
+  kind and 1 of the things you know that's wonderful about this 
+  this this system is it is fantastically decentralized when when 
+  you see you know when when the First Responders see something 
+  happening they've already got plans on on who's going to to be 
+  deployed generally but when you when you look at the people in 
+  this picture.
+Manu Sporny:  Each 1 of them has like a totally different Mission 
+  profile um totally different batching system totally different 
+  identification system uh and they all come together um and this 
+  person in the middle is usually the the the resource officer of 
+  the coordinator and they're the 1 that's supposed to know who 
+  showed up what they're capable of doing and where they can be 
+  most effectively uh uh deployed um.
+Manu Sporny:  These things are chaotic in nature right they're 
+  they're they're chaotic in nature um and so sometimes things 
+  don't always go right or you know despite everyone's best efforts 
+  you know people get in that shouldn't get in so here's an 
+  example.
+Manu Sporny:  Something that just happened in the LA fires so it 
+  turns out and you can read the read the thing on the the right 
+  there was a convicted arsonist in Oregon um and his wife.
+Manu Sporny:  Bought a fire truck and drove into the LA 
+  evacuation area and got through because they were in a firetruck 
+  they were dressed as firefighters they had badges that that look 
+  legitimate and because everything so decentralized you know 
+  there's no way to really check you know their ID um in in in you 
+  know every large scale incident has a number of stories just like 
+  this um uh disasters attract a certain type of Personality 
+  sometimes that really shouldn't be there whether it's to loot the 
+  houses that people have evacuated or set additional fires uh 
+  because you know everyone's evacuated and no 1's supposed to be 
+  around arsonists kind of gravitate to um these these sites um in 
+  in this is all happening while the First Responders are doing 
+  their best to try and keep people safe keep.
+Manu Sporny:   People that should.
+Manu Sporny:  Be in the area.
+Manu Sporny:  Of the area and so there's a lot of kind of 
+  Incident Management um uh that has to happen that make sure that 
+  people are really well known to get behind um the the line that's 
+  that's being protected right so this is what happens 1 of the 
+  things that happens when you've got a decentralized system and 
+  you don't have very good identity uh management controls around 
+  that um around that system.
+Manu Sporny:  Okay so what's the mission here um or or rather you 
+  know what's what's the problem the problem here is people can buy 
+  fake uniforms and they often do uh they fake their IDs um their 
+  templates online that you can use to to print out um uh you know 
+  uh fire response EMT cards you know things of that nature fake 
+  Hospital badges um and it's really difficult for these incident 
+  commanders the people that are in charge of of managing the 
+  incident and um uh you know uh according off the area so that it 
+  can be recovered it's really difficult for them to get a big 
+  picture view of of what's going on um uh especially a verified 
+  responders to a large-scale incident um you know we've we've been 
+  out to some of these locations in in in many of these cases the 
+  thing that the dashboard that they have to manage their First 
+  Responders is a whiteboard it is a physical whiteboard and people 
+  come in and they stick their.
+Manu Sporny:  There um tear offs onto the onto the the Whiteboard 
+  and that's how they know who's on site and who's assigned to what 
+  and and whether somebody came back.
+Manu Sporny:  Uh an area or not right at the end of the day if 
+  their badges still there then they know they need to go out and 
+  potentially rescue um that that uh responder uh and the bigger 
+  the incident the bigger the Whiteboard that is that is how we 
+  operate you know today there is some digitization that that 
+  happens um and there are many processes and procedures in place 
+  that make these operations run smoothly the vast majority of the 
+  time but when you have a large scale incident like the LA 
+  wildfires uh like uh hurricane Milton or hurricane H Helen 
+  inevitably it is very difficult to to understand who's who and 
+  who should be there and and who shouldn't be there uh and more 
+  importantly where to where to deploy the people so the vision 
+  here is to deploy the right people with the right training to the 
+  right location at the right time getting all 4 of those things 
+  done uh is is still difficult.
+Manu Sporny:  Um and the other thing is to ensure that the that 
+  we're able to rapidly and accurately secure the perimeter 
+  perimeter around these um disaster um.
+Manu Sporny:  Uh uh areas.
+Manu Sporny:  Uh there are challenges in doing this right so I 
+  mean like you know what we do in this community is like you know 
+  digital credentials we we you know believe in high security High 
+  cryptography you know we presume people have like mobile devices 
+  and digital wallets and like it's the wonderful future right but 
+  but in.
+Manu Sporny:   A first.
+Manu Sporny:  Scenario they're working in a very different 
+  environment than the 1 that we're designing for or have 
+  traditionally designed for in the ccg so some of the challenges 
+  here are that powers down right after a hurricane after uh you 
+  know a wildfire there's no power um and there might not be power 
+  for weeks and then if it comes on it might be intermittent you 
+  know that sort of thing uh networks go down like quite literally 
+  mobile network you know a cell towers burned to the ground or 
+  knocked down you know backups go down um and so and when they 
+  come back on they're they're usually kind of.
+Manu Sporny:  Dated um uh with with too much traffic and then 
+  they can go down as well uh clearly not everyone has a mobile 
+  digital wallet people lose their phones in disasters or they get 
+  stepped on crushed run out of battery a variety of different you 
+  know negative things there um and these environments are dirty 
+  right it's it's raining it's muddy there's you know wildfires 
+  it's just not a clean operating um environment um the other 
+  challenge um which I which I mentioned is that um there are many 
+  jurisdictions that respond right I mean if if you look at you 
+  know who responds to like like if we look at the the California 
+  wildfires.
+Manu Sporny:  The people responding might be a very big ladder 
+  company out of out of like you know San Francisco Cisco or or San 
+  Diego or it might be a 4-person volunteer fire department that's 
+  driven 3 states to to be there right so it's a very decentralized 
+  kind of um uh uh response effort uh and so this system by Design 
+  okay and it's a good design is inherently decentralized because 
+  if you have any kind of centralization in in a emergency response 
+  system there's a chance that that point of centralization goes 
+  down and causes the response to fail right that's that's what 
+  that's what we don't don't want to see uh happen um so it's 
+  inherently a decentralized system um and and that is 1 of the 
+  reasons where applying decentralized Technologies uh to this 
+  decentralized system so.
+Manu Sporny:  What are where are we starting actually let me let 
+  me stop here are there any kind of questions around like the 
+  problems the vision what we're trying to do here the challenge 
+  is.
+Manu Sporny:  Before I go into kind of what we're trying right 
+  now.
+Harrison_Tang: No I don't think there's anyone in the queue but I 
+  do want to uh add a comment uh is that there's actually a a 
+  business opportunity too right we're in the business side a 
+  little bit uh there's a company called merits um actually they 
+  specializing this space uh emergency respond um like basically 
+  digital credentials for uh emergency responses so it's actually a 
+  uh business wise it's actually um there's actually a sizable 
+  Market in this market.
+Harrison_Tang: Swami comment there.
+https://www.merits.com/industries/emergency-services.html
+Manu Sporny:  Yes plus 1 to that I I I failed to mention that 
+  this this program that we're working on is funded by uh the by 
+  DHS the US Department of Homeland Security as a part of their 
+  emergency response efforts um FEMA is also you know uh 1 of the 1 
+  of the organizations that that's really interested in this and US 
+  Department of Homeland Security is the is the federal you know 
+  agency that is trying to get the the way we respond to 
+  large-scale disasters um more standardized right not centralized 
+  but standardized so that when all these people show up onto a 
+  site they um they can identify themselves more strongly um in DHS 
+  has funded uh you know work um in this area and it's it's not a 
+  new thing right they've been funding this for 20.
+Manu Sporny:  For 20 plus years like a long time um because they 
+  because they knew that you know they know that you know 
+  large-scale disasters are still.
+Manu Sporny:  They want to.
+Manu Sporny:  They want to help things you know help help 
+  responders get to where they need to you know much faster um.
+Manu Sporny:  Uh okay so what are we focusing on we're we're 
+  focusing on something super simple to to start and that is the ID 
+  badges for these First Responders so First Responders have ID 
+  badges uh and if you're a volunteer fire department in the middle 
+  of you know the the Midwest in your population of your town is 
+  you know like 300 people um you're going to print your bad badge 
+  off on an inkjet printer and you might laminate it maybe you'll 
+  laminate it right so that's kind of and and you have no budget at 
+  all right it's like everything's volunteer you know everything's 
+  donation-based so but but those responders you know we have to 
+  make sure that they are capable of responding and they have the 
+  same kind of technology that someone in for example you know 
+  Dallas or Chicago or San Francisco or New York City would have so 
+  the we have to pick a solution that is.
+Manu Sporny:  Incredibly cost effective.
+Manu Sporny:  Across the entire uh United States um.
+Manu Sporny:   So this.
+Manu Sporny:  This is what 1 of the badges look like I had to 
+  redact a bunch of information on it but um that QR code that you 
+  see on the left there is a verifiable credential so I think many 
+  of you have seen that you know we've been able to uh greatly 
+  compress a verifiable credentials down into something that will 
+  fit into a QR code with a digital signature on it um that that 
+  thing that that you know pattern of static that you see that QR 
+  code is a 100% legitimate w3c verifiable credential and we'll go 
+  into how we how we get it that small uh to to fit onto the card 
+  um so the thing on the left is the physical badge that uh we're 
+  giving these um a First Responders and then the thing on the 
+  right is just a website that can be used to verify the badge no 
+  matter where you are um um that website uh in the future you know 
+  will be fully offline capable so that even if the Network's down.
+Manu Sporny:  Uh you can um uh verify the badge um in totally 
+  open to anyone that needs to verify 1 of these bads badges so 
+  it's open to Citizens that need to verify if a first responder is 
+  actually who they say they are before they come into their 
+  neighborhood or their home um it allows um law enforcement to 
+  enforce uh checkpoints in a disaster Zone by being able to scan 
+  the badge uh again you know we're looking for incredibly uh 
+  cost-effective solutions that work on what people have today so 
+  First Responders have badge printing systems so it's either an 
+  inkjet printer and they laminate it or they have more 
+  sophisticated like uh plastic badge you know printing uh uh 
+  systems um.
+Manu Sporny:  And so we needed a solution.
+Manu Sporny:  That worked for those modalities so no digital 
+  wallet know you know online infrastructure none of that it's got 
+  to work fully offline um uh and and be able to be put onto a tiny 
+  you know ID card okay.
+Manu Sporny:  That's the first thing that we're we're deploying 
+  is is these physical credentials for First Responders and it up 
+  it UPS their ability to more strongly identify it allows The 
+  Incident Commander to more strongly identify uh who the 
+  individual is and even sometimes their level of training like 
+  there are multiple levels of like EMT like you can be a EMT or an 
+  advanced EMT or paramedic in each 1 of those levels says that you 
+  can do uh more uh than than the than the other level that went 
+  before you so.
+Manu Sporny:  So Physical badges QR codes that's 1 of the things 
+  we're doing and of course um you know we're using technology that 
+  this group uh has incubated over many years to do it so we're 
+  using w3c verifiable credentials 20 uh we have this this 
+  vocabulary called the first responder vocabulary that we've we've 
+  published so I'll you know pull this up and this vocabulary here 
+  if I can let's see if I can uh zoom in the first responder 
+  vocabulary has all these different things like we can talk about 
+  individual skills the training that they have um uh uh the role 
+  that the individual has um there are a bunch of nist uh and fips 
+  conformance things that we can encode in the badge um and 
+  fundamentally if we go down to like you know 1 of the examples 
+  like this is what a first.
+Manu Sporny:  Edge looks like.
+Manu Sporny:  As a verifiable credential right so this is just 
+  Samantha doe in Samantha's first responder badge she's an EMT out 
+  of Georgia um she's been deployed you know for 105 days so you 
+  have some idea of how much experience she has she's attached to 
+  Grady Memorial Hospital um she's got you know this identifier and 
+  again dating Integrity proof so so again 100% you know w3c 
+  verifiable credential.
+Manu Sporny:  Uh using the the the first responder vocabulary 
+  there.
+Manu Sporny:  Um the other let's see uh.
+Manu Sporny:  Other thing that we're doing is we're using the 
+  data Integrity crypto Suite that this group's worked on we're 
+  using core LD to get the compression um uh to the the part that 
+  we need and we're using some of the verifiable credential 
+  barcodes specification that we uh talked about earlier this year 
+  and adopted work item here so this this set of Technologies is 
+  what we're using uh for the first responder um uh credentials.
+Manu Sporny:  So that's those are the physical credentials um we 
+  are also um working on digital credentials as well of course um 
+  and this is what uh an emergency medical technician badge looks 
+  like um in a digital wallet today um uh you'll see a tap to share 
+  icon here we'll talk about that here in a bit but down at the 
+  bottom we're using some of the render method stuff to get it to 
+  render uh in a nice way so this is Samantha Do's ID card what it 
+  looks like um it's digitally signed you know over again uh w3c 
+  verifiable credential um.
+Manu Sporny:  And we've got a little tap to share button here 
+  that will share it over NFC so we've got Wireless transmission of 
+  uh this uh EMT card in case the network is totally down and they 
+  need to do a peer-to-peer verification on the right hand side 
+  this is the NFC verifier um this particular credential I think we 
+  have down to like 1.5 kilobytes and that includes the picture um 
+  uh in there um uh and over NFC it takes about 1 and a half 
+  seconds to transmit and verify the the whole thing so we can 
+  shove it all down into a very simple tap to ID um uh credential 
+  in theory we can support you know selective disclosure on 
+  linkable disclosure all those different variations um uh.
+Manu Sporny:  That is out there you can actually I think yeah we 
+  we still need to release the the verifier side of it for for the 
+  NFC but this badge you can pick up in the VC playground uh today 
+  uh and you'd have the tap to share uh capability and the and the 
+  display capability um so what are we using for the digital 
+  version of this stuff again no surprise here w3c verifiable 
+  credentials 20 first responder vocabulary core LD to get the 
+  payload down really tiny uh so that we can send it over NFC and 
+  we're using the verifiable credentials over Wireless um uh 
+  specification uh which we keep intending to move over to the ccg 
+  we just haven't done it quite yet um so if anyone's interested in 
+  in working with us on the wireless spec we'd love to love to chat 
+  with you and get some other company names uh on the 
+  specification.
+Manu Sporny:  Okay so that's uh that's the digital uh version of 
+  it and this is what it looks like I think this 1 is transmitting 
+  and uh employment authorization document so I'll just hit play 
+  the thing on the left is 1 of the digital wallets and the thing 
+  on the right is the verifier that can be built into a digital 
+  wallet so and it happens pretty quickly go ahead and hit play.
+Manu Sporny:  So what they're doing is.
+Manu Sporny:  Pulling it up clicking tap to share.
+Manu Sporny:  Up the other phone uh tapping it on the back and 
+  that's it it's verified on the right and you can see the 
+  debugging information the verifiable credential um you know 
+  passed over uh that I'll show it once again because that usually 
+  that went pretty quickly um again this is the digital wallet on 
+  the left here it's a web-based digital wallet it's not a native 
+  app you click tap to share um the thing on the right is a native 
+  app.
+Manu Sporny:  And it reads and verifies and a very small amount 
+  of time uh totally offline um uh mechanism at play there.
+Manu Sporny:  Uh it doesn't use Bluetooth or anything like that 
+  it's just a straight NFC uh tap to verify um example um okay.
+Manu Sporny:  So uh what is uh well there we go so what's next 
+  and this is the last slide um uh currently we're deploying this 
+  in Pilots across the United States so this is not just like.
+Manu Sporny:  Look at this cool you know lab demo now we're 
+  deploying it in um um uh in Pilots uh across in multiple 
+  different states the other thing that's really interesting about 
+  this space is like every state there the way they run their 
+  Emergency Response Group is different like they're run by the 
+  states they have different requirements you know in in each state 
+  is some of that a good thing some of it's a bad thing right 
+  interrupts really hard um uh we are expecting production 
+  deployments of this stuff um very soon now unfortunately I can't 
+  I can't say how soon but it's it's this year um uh soon um and 
+  then you know what can we do in this group to kind of help move 
+  this stuff along well you know we're using a number of things um 
+  to make this real uh verifiable credential API is critical for 
+  issuance and transmission um of the uh credentials uh we're using 
+  core LD which is.
+Manu Sporny:  Going to go standards track um uh in the in the 
+  Json LDC board LD working group so that Charters pretty much 
+  there and and reviewed um close to close to making progress there 
+  maybe Benjamin you can speak more to that in a bit um we had the 
+  verifiable credentials barcodes thing which is important for 
+  those QR codes and to be able to compress the verifiable 
+  credentials a small enough to fit in these QR codes and and 
+  barcodes and then finally the verifiable credentials over 
+  Wireless specification to move things over NFC uh and then for 
+  larger uh credentials uh over uh Bluetooth um so those are the 
+  things that we're hoping to move into the verifiable credential 
+  working group over the next um uh after we get the current set of 
+  of those 8 specifications uh done um and then once we do that we 
+  expect a a little more rapid turnaround on these specifications 
+  because they've been incubated for so long um in the.
+Manu Sporny:   In the C.
+Manu Sporny:  All right I mean that's pretty much it um happy to 
+  chat about anything the group wants to with respect to kind of 
+  what we're doing here um so we can probably you know go to the 
+  queue if people have any questions.
+Dmitri Zagidulin:  Well thank you Mano uh wonderful uh as usual 
+  uh really excited about this project I've got just a couple of uh 
+  questions about the offline aspect uh.
+Dmitri Zagidulin:  Question about dids and did key uh question 
+  about QR codes and about the NFC I'll start in reverse order uh 
+  what's so we know there's a 4 4000 bites roughly limit on QR 
+  codes uh the singular ones uh I know um visualizar team has some 
+  really cool tech for um what are they called like moving QR codes 
+  that I can stuff more uh is what's the size limit for the NFC 
+  table.
+Manu Sporny:  Um so the size limit is how long you want to wait 
+  with both phones together right so you could you could transmit 
+  so the the typical the typical speeds that we've found in let let 
+  me kind of back up and and talk about like what we're what 
+  technology stack we're trying to use we're trying to Target pure 
+  whatever's in the web browser pure web browser engagement right 
+  because we want maximum we want people's Maxim maximize people's 
+  ability to move these things around and that means use the web um 
+  uh typically because an app install is like a point of friction 
+  and what we're finding of course is that people are like I don't 
+  want to install an app so we're like okay but can you go to a 
+  website like are you willing to go to the website and if they're 
+  willing to go to a website then we can do the the NFC thing so so 
+  typically the the speeds we've found through the browsers is 
+  around 1 kilobyte a second that's what you can transfer and if 
+  you if you make that transfer take longer than like a 7.
+Manu Sporny:   Second and a half.
+Manu Sporny:  Is that the individual will pull the phone away 
+  before the transmission's done goes up like exponentially so 
+  we're we're you know yes you can transmit 4 kilobytes but do 
+  people have the patient to hold their phones still for 4 seconds 
+  now like the our our that's what we found like people are like 
+  they they get antc after about a second and a half yeah.
+Dmitri Zagidulin:  Oh that makes perfect sense that be and and I 
+  bet the the visual feedback is like we don't have a loading bar 
+  or anything affords.
+Manu Sporny:  Exactly yeah that's the other real big problem.
+Dmitri Zagidulin:  So so to that end um.
+Dmitri Zagidulin:  I guess my main question is in the pictures 
+  right because so much of this offline uh first respond to 
+  credential depends on the picture for the Biometrics and pictures 
+  of the notoriously big right what uh what are the challenges that 
+  you found and and what what are you thinking of how do we stuff 
+  in pictures into uh you know not even 1 or 2K let alone 4K I I I 
+  know some of uh my own experimentations with the core LD it's 
+  like it's rough the the logos are very small uh to fit into a QR 
+  code.
+Manu Sporny:  Mhm yeah you're exactly right and and I 
+  unfortunately I don't so so we've got some QR codes where we do 
+  fit in pictures where it's the the resolution is good enough to 
+  identify the person right so it is it is it is possible to fit a 
+  picture in um I we've we've got them down to about like 1 the 
+  entire VC we've got down to about like 1.5 kilobytes.
+Dmitri Zagidulin:  Got it yeah.
+Manu Sporny:  In in 90% of that is the picture data highly 
+  compressed image data so it's totally doable but the QR codes are 
+  fairly gigantic we're talking about like 2 inch by 2 inch QR 
+  codes and they can't fit on this ID card here um 1 of the 
+  interesting things though that we found in the first responder 
+  Community is that they're like yeah we don't really care about 
+  what the person looks like we just care that like a first respond 
+  we we like what they have to go buy right now is like a laminated 
+  badge printed out on an inkjet printer and anything is better 
+  like anything with a digital signature is like way better right 
+  um so so so so what they're saying is like you we don't need the 
+  picture like just put the picture on the badge we know it would 
+  be like super great if we could get the picture in there but um 
+  but uh if we can't like we we want these QR codes like an inch by 
+  an inch in size which basically means we need to keep the size of 
+  the credential down below 5.
+Manu Sporny:   5 500 By.
+Manu Sporny:  So 40000 bytes uh which basically means we can 
+  maybe stick in like the person's first name last name their badge 
+  number um and then which agency issued the uh the credential and 
+  that's usually good enough for them to do auditing right I mean 
+  because because.
+Dmitri Zagidulin:  I see I see I uh in in asking I forgot that 
+  you have all that space on the badge to actually print out you 
+  don't need to stuff the full picture into the QR code that makes 
+  sense.
+Dmitri Zagidulin:   That makes.
+Manu Sporny:  Yeah yeah but but you know as as you know like the 
+  danger there is like what if somebody comes in and does a photo 
+  Photoshop attack they replace the picture they steal somebody 
+  else's QR code they put their picture on there um that that kind 
+  it is still possible with just the printed badge um that's why 
+  we're looking at like you know NFC because NFC doesn't have to 
+  just be on a mobile phone it can be on a TAP card right and those 
+  cards cost $2.50 and that is.
+Manu Sporny:   A a.
+Manu Sporny:  They're more than willing to pay because what they 
+  pay today is $55 a card for a PIV card.
+Dmitri Zagidulin:  Right got it got it.
+Manu Sporny:  Right so if we can fit this thing in in in 4 
+  kilobytes on an NFC card and they really need to you know verify 
+  the person's picture then at that point they can tap for 4 
+  seconds to read it off the NFC card.
+Manu Sporny:  Did that answer your question okay.
+Dmitri Zagidulin:  That makes uh that makes so much sense yes it 
+  does yes so uh if if I if there's nobody else in the queue I want 
+  to ask a question about DS uh which is so I'm assuming that for 
+  offline verifiability uh using did keys.
+Dmitri Zagidulin:  Uh so what's the on the verifier side what's 
+  the envisioned architecture like uh on the with the um issuer 
+  registry part.
+Dmitri Zagidulin:  Is is the idea that the verifiers would 
+  preload the DS of the signing Registries or are you thinking like 
+  hierarchical.
+Manu Sporny:  No it's it's preload the the list is is where we 
+  are right now so that you know we're still trying to as as is 
+  everyone in the ecosystem we're still trying to figure out what 
+  the best way to deploy you know that that list of issuers is we 
+  we are largely so we're using a combination either did web or did 
+  key right um and we're we're kind of finding out that it doesn't 
+  really matter it just needs to be on the latest list um so that 
+  so specifically you know did key versus did web doesn't tend to 
+  matter too much at this point but we would expect.
+Dmitri Zagidulin:  Except for the offline part right.
+Dmitri Zagidulin:  Oh yeah okay.
+Dmitri Zagidulin:  That makes sense.
+Manu Sporny:  Well no cuz cuz did Webb they the cashing and 
+  aggressive caching so the the the answer to the offline thing is 
+  like aggressive caching you know first responder agencies don't 
+  just like randomly pop up and go away overnight right they 
+  usually there for years at a time they typically have they all 
+  have email like if you're in a first responder you know group you 
+  have um you know email you've got a domain of some kind um and so 
+  did web is a is a reasonable way to do it um but you know there 
+  are some like all those volunteer fire departments many of them 
+  don't have a web presence or domain presence and so that's where 
+  did key can be you know a better a better solution for them um 
+  there there is like you know there are National Registries that 
+  exist for First Responders and so um uh having a the the problem 
+  as you know Demitri that is.
+Manu Sporny:   Always like.
+Manu Sporny:  Okay so who is going to maintain and serve up this 
+  list like who in who in The Who in the first responder community 
+  and it's like you know the firefighters are like oh well we'll 
+  take care of our own list um and then the EMTs are like know 
+  we've got our own list that's our purview right in in the states 
+  are like uh uh know we're State and so we will maintain our list 
+  so again like the ugly side of decentralization you know shows up 
+  which is like all right who's in charge list I I don't think 
+  we've we don't have a clean solution we don't have a clean answer 
+  for that um because fundamentally they don't want to centralize 
+  you know that.
+Dmitri Zagidulin:  Understood thank you so much that that answers 
+  my.
+Manu Sporny:  Sure thing great questions.
+Harrison_Tang: Oh wait yeah money uh just uh Curious like in the 
+  offline scenario uh when someone scanned the barcode but then you 
+  open the website but then it's offline like how do you do the 
+  verifications.
+Manu Sporny:  Off offline website so so websites as long as they 
+  loaded the website once um you can use service workers so that 
+  the website continues to operate offline um and the things that 
+  that website needs offline are like you know who are the who are 
+  the known you know list of trusted issuers um and then that 
+  that's pretty much it and then it needs their it needs you know 
+  the code downloaded from the website which happens the first time 
+  you go to the website um so they're offline they're just typical 
+  web offline apps.
+Harrison_Tang: Yeah like Progressive web app basically right yeah 
+  okay.
+Manu Sporny:  Yeah exactly yep yep.
+Harrison_Tang: The assumptions that the verifier needs to load 
+  the website before going offline essentially.
+Manu Sporny:  Yeah at least once yeah yeah and and again I mean 
+  these these you know the incident commanders the incident 
+  response teams and the resource officers they you know they 
+  trained for this like and so they run multiple different you know 
+  um if they don't have a real disaster they have simulated 
+  disasters throughout the year that they run through and so the 
+  chances that they would have.
+Manu Sporny:  The website uh before an actual disaster happens is 
+  is very high especially if it is a part of their kind of 
+  operational manual um which they're all required to have.
+Harrison_Tang: So so earlier when Dimitri talked about the Deep 
+  Web like the Registries and things like that it's also loaded 
+  basically through the progressive web app scenario okay got it.
+Manu Sporny:  That's right you got it yep.
+Manu Sporny:  All the Deads all the key information you know all 
+  that kind of stuff even the revocation lists if they if they have 
+  them would be loaded into that app um whenever they have a 
+  network connection.
+Manu Sporny:  I think the other thing that's important is that 
+  the the chances of them not having power.
+Manu Sporny:  Way higher than them not having a network 
+  connection so if you look at any of the satellite based networks 
+  you know if you look at a 1 website it is very rare that they're 
+  truly offline um and and if they are they're only offline for 
+  like.
+Manu Sporny:   A very.
+Harrison_Tang: Any last questions.
+Harrison_Tang: By the way a follow-up question um for the VC over 
+  Wireless uh and Bluetooth like uh I'm just curious how far the 
+  challenges there right uh is it similar kind of challenges like 
+  the VC barcode or is it different.
+Manu Sporny:  Yeah so so there are 3 classes of challenges there 
+  um almost all of the challenges have to do with like um so with 
+  with the QR code the challenge is always like the size of the QR 
+  code you want to keep it really small which means you're 
+  verifiable credential needs to come in somewhere between 300 to 
+  500 bytes if you want to fit it on like 1 of these ID cards um 
+  which is not a lot of space right especially when the digital 
+  signature takes up like 64 bytes and the and the and the you know 
+  the the did key or whatever takes up another like 32 bytes half 
+  your payload is already gone in like signature and key key key 
+  values um uh.
+Manu Sporny:  So so size is really important for QR codes and for 
+  NFC because NFC it's like you can only transmit 1,000 bytes a 
+  second and while that sounds like a non it it sounds like a lot 
+  it really is not so you're looking at like 1500 bytes if you're 
+  doing it over NFC you'll probably top out about 2 kilobytes 2,000 
+  bytes is um for you know for the types of interactions that most 
+  people are are used to um and then for Bluetooth there's a good 
+  chance that your other device doesn't have Bluetooth on it so if 
+  you're doing like phone to phone maybe it has it or maybe the 
+  person on the other side forgot to turn their Bluetooth on in in 
+  their fumbling around with their phone trying to turn the 
+  Bluetooth on um uh you know maybe there's a mismatch in in 
+  Bluetooth protocols you know all kinds of bad things happen with 
+  Bluetooth but if you can get up to a Bluetooth connection then 
+  you can send like megabytes you know no problem.
+Manu Sporny:  The what we found is the challenge is kind of like 
+  up uh up upgrading in in protocol so if you like go from NFC to 
+  Bluetooth we've seen some you know interactions with like mdl 
+  where they're like you know SC the QR code or tap the phone and 
+  then they'll need to like interact with their phone all over 
+  again to like actually transmit the credential whereas with NFC 
+  like people are very trained to just tap and go right with 
+  payments it's like take your credit card tap it to the terminal 
+  um if you're on you know have a metro Subway card you take it you 
+  tap it to the the reader to open the gate um people are not used 
+  to like tapping their phone and then looking at the screen and 
+  having to make a whole bunch of like you know selections and then 
+  you know the Bluetooth thing um going over so um there is a 
+  usability challenge as well um when you bring Bluetooth into the 
+  mix um but sometimes you like you.
+Manu Sporny:   Don't have.
+Manu Sporny:  Don't have an option like when we when we go to 
+  post-quantum cryptography it's going to have to almost certainly 
+  happen over over Bluetooth because of the signature sizes um.
+Manu Sporny:  The other thing I didn't mention didn't didn't 
+  focus on quite here is like there is a huge education credential 
+  part of what we're doing here right the first thing is knowing 
+  whether or not the person's a first responder but then you need 
+  to kind of what they really want is to understand the First 
+  Responders skill set so they're like you know so they know if 
+  this firefighter is trained to fight a certain type of chemical 
+  fire or if this EMT is capable of operating in a neonatal field 
+  unit right um so knowing what who's showing up and what skill set 
+  they're bringing to the disaster to help um is vital because 
+  sometimes it can take like hours upon hours to figure out what 
+  everyone's capable of and that means that you know people that 
+  are in in danger are put in more danger because they can't be 
+  pulled out by the by the right people showing up um sooner than 
+  later.
+Harrison_Tang: Got it thank you.
+Harrison_Tang: Hello 1 last question then the.
+Harrison_Tang: Who's kind of certified these skills like 
+  basically the issuers that do do that right basically.
+Manu Sporny:  Yeah each state has their own certification body 
+  their their National certification bodies like National Registry 
+  of emergency medical technicians um their state training 
+  facilities so typically you know people go to a community college 
+  or a local college or university to train as a first responder.
+Manu Sporny:  Go through a.
+Manu Sporny:  Test that'll go and they'll be licensed through 
+  some kind of state process um and then there's some national 
+  accreditation processes as well it's also very decentralized you 
+  know system like just like education is right I mean the training 
+  First Responders is just a variation on the education use cases 
+  uh and as you know uh Carrie and Sharon and Dmitri can tell you 
+  like it's a very diverse and decentralized um uh area but the 
+  good news there though is like we've got vce to you and like 
+  they're working on that right and that everything that VCU is 
+  doing is massively helping uh the this this first responder use 
+  case.
+Harrison_Tang: Thank you thanks Manu as always you have great 
+  presentations and great answers so thanks a lot for taking the 
+  time.
+Manu Sporny:  So I appreciate appreciate the opportunity to come 
+  and present.
+<kerri_lemoie> Thanks, Manu!
+Manu Sporny:  And thank you to everyone in the community that's 
+  doing work here like.
+Manu Sporny:  People write in their greatest greatest time of 
+  need.
+Harrison_Tang: Thanks a lot uh this concludes this week's ccg 
+  meeting thanks.
