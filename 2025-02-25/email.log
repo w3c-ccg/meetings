@@ -1,0 +1,967 @@
+Thanks to Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2025-02-25/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2025-02-25/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2025-02-25.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2025-02-25
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Feb&period_year=2025&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. <Cryptographic Event Logs>
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords
+Present:
+  TallTed // Ted Thibodeau (he/him) (OpenLinkSw.com), Harrison 
+  Tang, Manu Sporny, Rob Padula, Joe Andrieu, Erica Connell, Markus 
+  Sabadello, Nate Otto, Nis Jespersen , Rashmi Siravara, Brian, 
+  Will Abramson, Justin Howard, Bob Wyman, Tim Bloomfield, Vanessa, 
+  Dmitri Zagidulin, Jeff O - HumanOS, Chandi Cumaranatunge, 
+  Geun-Hyung Kim, Wolf McNally, Kayode Ezike, James Chartrand, 
+  Denken, Ariel, David I. Lehn, Benjamin Young, Nivas, Steve M, 
+  Robert Long, David Chadwick
+
+Our Robot Overlords are scribing.
+Harrison_Tang: Well welcome welcome everyone for uh to this 
+  week's w3c ccg meeting uh today we're very excited to have mu 
+  here back again and also Brian uh to uh talk about cryptographic 
+  event logs.
+Harrison_Tang: And uh but before that I just want to quickly go 
+  over some administrative stuff um first of all just a quick 
+  reminder for the code of ethics and professional conduct uh just 
+  want to make sure we have constructive and respectful 
+  conversations.
+Harrison_Tang: Next uh a quick note about the intellectual 
+  property uh anyone can participate in these calls have all 
+  substantive contribution to any ccg core guidance must be member 
+  of the ccg with full IPR agreement sign.
+Harrison_Tang: So if you have any questions about the w3c account 
+  or the community contributor license agreement uh please feel 
+  free to reach out to any of the cultures.
+Harrison_Tang: All right a quick note about the calls.
+Harrison_Tang: We uh all the calls are being automatically 
+  transcribed and we will publish the uh meeting minutes and the 
+  audio and video recordings uh in the next day or 2.
+Harrison_Tang: Well you said Gigi Gigi chat I do the speakers 
+  doing the call so you can type in Q Plus to add yourself to the 
+  queue or cue minus to be moved.
+Harrison_Tang: All right I just want to take a quick moment for 
+  the introductions and we introductions so if you're new to the 
+  community where you haven't been active and want to say hello uh 
+  feel free to just unmute.
+Harrison_Tang: Right I think some people are feeling shy but it's 
+  okay.
+Harrison_Tang: Um next uh announcements and reminders uh so if 
+  you have any announcements uh about the identity related or Open 
+  Standards work uh feel free to just uh.
+Harrison_Tang:  mute the word.
+Manu Sporny:  Yeah just 1 item um we uh announced the data 
+  Integrity kind of group uh loose group meeting um uh last Friday 
+  so Friday at 10:00 am Eastern um we have some um we're just kind 
+  of getting together it's a loose kind of community of people 
+  working on data Integrity related things getting together and 
+  talking about how they can move their specifications forward uh 
+  way more people than we were expecting showed up last Friday 
+  which was great um but it also kind of raised the question of 
+  like okay like what kind of work are we going to be doing in that 
+  group so right now we are definitely going to continue to work on 
+  um zkp and BBs style like data Integrity Suites we still need to 
+  get that work done and shipped to a global standard um uh last 
+  Friday uh our Italian colleagues uh showed up that are working on 
+  a post-quantum.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> group 
+  calendar/page link?
+Manu Sporny:  Sweet so um Andrea from dine uh in Fork bomb uh was 
+  there along with his team uh to talk about um uh things that you 
+  know they'd like to focus on um will was there to talk about um 
+  or you know will will was there and I think we're going to start 
+  talking about some of the uh the crypto Suite uh he's been 
+  working on along with um uh se26 K1 and Shor signatures um and 
+  then there was of course interest in ZK snarks and CK Starks and 
+  and that type of privacy preserving kind of um mechanism so um 
+  and then of course during this week we saw the selective 
+  redaction um uh conversation also happen so there's a lot of 
+  discussion that's happening and we have those meetings weekly 
+  every Friday at 10:00 am Eastern so if you're interested in the 
+  work uh please drop in uh we are trying to figure it out and 
+  trying to figure out the best way to structure all those.
+Manu Sporny:   All those work.
+Manu Sporny:  We move forward um.
+Manu Sporny:  But yeah just just that as a if you're interested 
+  uh please join.
+Manu Sporny:  Um Ted you asked for.
+Manu Sporny:  Group calendar link I sent it out to the ccg um I 
+  think as a as a meeting invite so it should be there and if it's 
+  not let me know and I'll try to.
+Manu Sporny:   Push it out.
+Manu Sporny:   That's it.
+<harrison_tang> @Ted  7:00 – 7:30am
+Will Abramson: 
+  https://dcdpr.github.io/data-integrity-schnorr-secp256k1/
+Will Abramson:  Sure yeah that reminds me uh I mean it's great 
+  timing just looks like like last week I think it was last week I 
+  posted to the mailing list some work we've been doing with DCd 
+  and that is just to develop this new data Integrity crypto suite 
+  for sep using schnorr signatures so basically anyone with you 
+  know keys they use in Bitcoin would be able to use these keys to.
+Will Abramson:  Sign verifiable credentials for example.
+Will Abramson:  Yeah and it's kind of.
+Will Abramson:   I mean.
+Will Abramson:  I think it's pretty that I like to have some 
+  implementations that kind of work in uh I'd love to work with 
+  manager and get it integrated into some of.
+Will Abramson:  That digital bizarre libraries but also I think 
+  within the next few weeks probably we'll put a formal proposal 
+  together to move this is a proper work item under the ccg uh I 
+  just haven't got to do that yet.
+Harrison_Tang: Great thanks well thanks Manny.
+Harrison_Tang: In other uh announcements or reminders.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> found it — 
+  https://www.w3.org/mid/calendar-6b933a6a-78f9-4bf4-b49d-df6e53c24c57@google.com
+Harrison_Tang: Any updates on the work kind.
+Harrison_Tang: So uh next week uh we will actually have a team 
+  and Sam uh from Google to talk about digital credentials API so 
+  digital credentials API Charter actually has been approved and it 
+  will proceed uh and uh came and said will actually provide an 
+  update about digital credentials API uh and just a quick note 
+  digital credentials API is uh basically an API that allows you to 
+  access digital credentials from the wallet and there has been 
+  discussions about um.
+Harrison_Tang: Know um changing the fasti and Federate 
+  credentials management API that browser support to uh kind of the 
+  wallet self Sovereign identity model so so I think they will talk 
+  more about it uh so stay tuned uh next week and then the week 
+  after we will have the uh open Agenda and uh q1 2025 review as 
+  well as the work item update so um I'm just gonna paint the 
+  different work item leaders uh again uh to help us like update 
+  the presentation deck which I sent out um so that we can actually 
+  have a no.
+Harrison_Tang: Uh next next.
+Harrison_Tang: Tuesday how much is that.
+Harrison_Tang: Calls for introductions reintroductions 
+  announcements reminders and work item related stuff.
+Harrison_Tang: Cool let's get to the main agenda so uh again very 
+  excited to have Manu and Brian here to talk about a need that the 
+  discussion on cryptographic event logs I think there has been 
+  several threads about this topic and uh as M you have described 
+  could the graphic event logs are like local blockchains that 
+  record and digital sign changes to data right but without the 
+  need for uh distributed networks or consensus algorithms or 
+  cryptography which could cry cryptocurrency which is uh.
+Harrison_Tang: Topic of debate right not community so without 
+  further Ado man please take it away.
+Manu Sporny:  Awesome thank you Harrison um.
+
+Topic: <Cryptographic Event Logs>
+
+Manu Sporny:  All right and uh uh uh Brian uh richer um very 
+  graciously uh uh agreed to co-present this uh with me because 
+  Brian's also very um involved uh in um some of the did web VH 
+  work and a variety of other uh cryptographic event log uh style 
+  things um I will also mention that before we go into any of this 
+  that like we're still all figuring this out um I don't think that 
+  there's like a cohesive concrete plan on how we're going to get 
+  all of this stuff to work together and that's like we're kind of 
+  presenting it now it's it's pretty rough um but the hope is to 
+  you know um share what we've learned so far with the rest of the 
+  community with the hope that some of you uh join us and help us 
+  uh make this stuff uh better uh successful all that kind of stuff 
+  so um uh while we're calling these things cryptographic event 
+  logs uh today they're called other things.
+Manu Sporny:   In other.
+Manu Sporny:  And as I'll kind of go into uh this isn't super new 
+  um some concepts are are kind of new and the way we're putting it 
+  together is is maybe new but um cryptographic event logs have 
+  been a thing for a very long time even pre-b blockchain uh 
+  they've they've kind of been around um Brian do you want to add 
+  anything before we launch into it.
+Brian: Know I think that sums it up pretty good.
+Manu Sporny:  Awesome all right all right so we're going to cover 
+  a couple things today we're going to talk about kind of 
+  blockchains and what you know well why they're difficult 
+  sometimes um how cryptographic event logs might be a simpler way 
+  to tackle some of the problems that blockchains are typically 
+  used for we're going to talk about how uh cryptographic logs work 
+  uh other projects that are you know uh sell like uh we're going 
+  to talk about did web VH um and did skid and kind of you know how 
+  they use uh logs um and then we are talk we're going to talk 
+  about how you know maybe we can use this stuff and apply to uh 
+  things that this community has worked on for a while like 
+  decentralized identifiers um and um potentially how this work 
+  could impact social networks um love to see that uh Brian Newbold 
+  uh from Blue Sky is here today so would love to hear your 
+  thoughts um on this stuff as we go.
+<bryan_newbold_(bluesky)> /me waves
+Manu Sporny:  Feel free to interrupt as we go uh this is a very 
+  kind of loose presentation um.
+Manu Sporny:  Okay so let's get into it um now why are 
+  blockchains difficult to use so you know blockchains have now 
+  been around for you know well over a decade um uh some would 
+  argue even longer um they exist in the world today and they are 
+  useful things right um uh they have uh they they solve certain 
+  problems that we were not able to solve um uh before um so 
+  they're they're fundamentally like a really neat cool new 
+  technology relatively speaking um uh but there are some things 
+  that are difficult about uh blockchains um you know we were in 
+  the early days of blockchains we were thinking like oh they're 
+  going to totally take over the way we run organizations and make 
+  decisions and uh you know do ownership and you know 15 years 
+  later that hasn't necessarily uh happened but they are still in 
+  existence with massive um kind of.
+Manu Sporny:   Kind of monetary value.
+Manu Sporny:  Associated with them okay so.
+Manu Sporny:  What makes blockchains difficult to use though like 
+  why have they not expanded to to replace databases um well 1 of 
+  the 1 of the issues um with certain blockchains is that uh they 
+  burn a lot of energy now relatively speaking you there there's a 
+  good argument that they don't um uh but um in some cases you know 
+  you look at uh these massive Farms of mining machines that eat an 
+  enormous amount of energy um and that is viewed as you know um uh 
+  a concern uh to some people um on the other side of it you know 
+  the blockchains that don't burn a lot of energy they and you end 
+  up having to stake something of value which is money and then 
+  there's an argument there that like oh well you know those things 
+  are just centralizing on uh who has money and and who doesn't and 
+  you know that sort of thing there are all kinds of hybrid 
+  mechanisms.
+Manu Sporny:   In between you know.
+Manu Sporny:  Electra based mechanisms you know things that have 
+  um.
+Manu Sporny:  Levels of governance but fundamentally in order to 
+  get that governance right it takes a lot of effort like a lot of 
+  people have to get together and they have to agree so blockchains 
+  you know haven't been applied to every single problem because 
+  they are kind of heavyweight things to get up and and running um 
+  at scale so you burn a lot of energy you stake a lot of money or 
+  you just end up spending a lot of time in governance and the 
+  governance thing Falls over at certain scaling points so that's 
+  that's fundamentally why they're difficult difficult but they all 
+  pretty much do the same thing they they order a set of events 
+  right things happen they keep the State of the State of their 
+  world that they're tracking uh internally consistent um and 
+  fundamentally they are hard to use because it takes a lot of work 
+  either represented as energy burned or money spent or you know 
+  whom now or is taken.
+Manu Sporny:  Work to agree on an overall state of the the 
+  system.
+Manu Sporny:  Um but and this is kind of the pitch behind 
+  cryptographic event logs is what if we don't have to agree on the 
+  system like every single Financial account uh in the system or 
+  every single um uh asset or token in the system um uh 1 of the 
+  ways to think about this is the the way the web happen so you 
+  know pre-web we had these hypertext systems in there was just 
+  this fundamental notion in these hypertext systems that you could 
+  never break a link like you know that the links were 
+  bidirectional you could go forward and backward and everything 
+  was internally consistent and they all you know pointed and and 
+  you know there was this complete graph that you could navigate 
+  forward and backward um but the web did 1 fundamental different 
+  thing um it proposed that you know what it's okay for us to break 
+  these links and and while that sounds like a normal part of the 
+  web today back then.
+Manu Sporny:   It was.
+Manu Sporny:  Viewed as this just.
+Manu Sporny:  Heretical concept right why would you have a 
+  computer which can keep things you know perfectly consistent in 
+  introduced this concept of a broken link who would even want that 
+  right um so the web succeeded because it it it changed this 
+  fundamental belief that you needed consistency um uh in the 
+  system.
+Manu Sporny:  So you know what if we kind of.
+Manu Sporny:  Try to solve this problem in the way the web solves 
+  this problem in that the web really only cares about like 1 
+  Resource uh at a time uh at the most fundamental level and it 
+  allows broken links and so what if we allow broken links in a 
+  blockchain what if we allow a blockchain to have multiple 
+  different um uh ways that it can be interpreted um.
+Manu Sporny:  And I know that you know.
+Manu Sporny:  This has been talked about in the literature people 
+  have kind of tried to build this uh stuff but uh again with 
+  cryptographic event logs we're trying to take this idea um uh you 
+  know to to to its its natural natural end Okay so.
+Manu Sporny:  Fundamentally what is a cryptographic event log um 
+  if we think about like a document that you're editing so you know 
+  you've got like a Google Document open or a Microsoft Excel thing 
+  open or whatever you make changes to that document over time you 
+  might write a sentence in the document and then go away for a 
+  couple days and come back and write another paragraph go away for 
+  a couple of days you come back and you revise what you wrote and 
+  each time there's kind of a change to that document and there's a 
+  history there in fact with like Google Docs you can go to the 
+  history and you can see all the changes that you've made over 
+  time and that is effectively an event log of how you've modified 
+  this document over time now a cryptographic event log adds 
+  something to that process it adds this concept of a witness uh 
+  and a witness all the witness has to do is say I saw your 
+  document at this point in time um and in fact the witness doesn't 
+  even have to see the document they just.
+Manu Sporny:  A cryptographic hash of the document and so each 
+  witness basically goes uh yes I saw your document and using the 
+  timeline on the screen here yes I saw your document on January 
+  5th yes I saw your document on January 10th and these were the 
+  contents of it yes I saw your document on January 18th and this 
+  was you know the cryptographic hash and so on and so forth so 
+  that um anyone that's modifying this document can prove.
+Manu Sporny:  To anyone else that the document changed in a very 
+  specific way over a over a a a a series of you know time and and 
+  events in these witnesses as long as whoever's verifying these 
+  set of changes trusts at least 1 witness and this is where it 
+  kind of gets exciting um uh.
+Manu Sporny:  Then you've proven the entire change log for the 
+  document and you haven't had to create a blockchain network you 
+  haven't had to get a bunch of people together to agree on who the 
+  electors uh or the the Witnesses are uh and and so on and so 
+  forth um so think about this as an adversarial process um and 
+  pretend that these Witnesses are nation states that do not like 
+  each other.
+Manu Sporny:  Um the I think that the real power of this system 
+  is that you can have a set of witnesses um.
+Manu Sporny:  On a set of changes.
+Manu Sporny:  Where they are.
+Manu Sporny:  Of each other in the worst case or you know 
+  moderately you know they moderately dislike each other right in 
+  other cases um and as long as the person verifying it just trusts 
+  1 of them it doesn't have to trust both of them but if it trusts 
+  1 of them then it can be sure that a certain series of events 
+  happen and and even if it it trusts both of them if they're both 
+  saying the same thing and you know they're kind of like mortal 
+  enemies uh you've got a pretty.
+Manu Sporny:  Belief that you know these sets of events happened 
+  okay so that's that's fundamentally what a cryptographic event 
+  log uh is at its at its core let me stop there and see if there 
+  are any questions on the concept.
+Manu Sporny:  Or if Brian you want to add anything kind of to 
+  that.
+Harrison_Tang: Up the question um what's the incentive for the 
+  witnesses to uh basically verify or be the witness essentially.
+Manu Sporny:  That is an excellent question I don't know um is 
+  the is the is the honest answer that there there so this this 
+  concept um presumes that there is an incentive right so so for 
+  example um uh let me uh I don't know if Kim's here but let me let 
+  me pull like diff into this the decentralized identity 
+  Foundation.
+Manu Sporny:  If the diff cares about decentralized identifiers 
+  and decentralized identifiers documents um which they do um uh in 
+  in for example the w3c cares about that stuff they may set up 
+  witnessing Services um for decentralized identifiers documents um 
+  and and they and they do that because they want to see dids uh 
+  dids work um there are 2 ways to do that 1 of them they could do 
+  it so that um they do blind witnessing the other 1 is so that 
+  they know they can see the documents that that that are that are 
+  being changed the latter 1 being dangerous which we don't want to 
+  do right so so so so the incentive here is that organizations 
+  believe that having these witnessing mechanisms out there are 
+  important um uh in from a liability standpoint uh if that all 
+  they're doing is signing cryptographic hashes some organizations 
+  will view that as an acceptable.
+Manu Sporny:   Level of risk.
+Manu Sporny:  Meaning like they.
+Manu Sporny:  They don't know what the they don't know what hash 
+  they're signing is they just saw it at certain point in time and 
+  they're asserting that they they saw it at a certain point in 
+  time so um the the the I think the neat thing about these 
+  Witnesses is they don't all have to have the same incentives in 
+  fact they can have wildly different incentives but if the end 
+  result of that is they witness the event at a certain point in 
+  time then um then that's that's that's great and I see the the uh 
+  Q growing so I'm going to be quiet.
+Robert Long:  Yeah matter hi thank you um so you are I think 
+  partially answered what I was asking which is the Witnesses are 
+  simply acknowledging that they've looked at the document at the 
+  particular time and date that they did and they're not making any 
+  judgment or comment or anything about what they've seen other 
+  than that they did is that correct.
+Manu Sporny:  That is correct and in in I want to focus on 
+  they've looked at the document they don't even have to do that 
+  they just have to witness that a cryptographic hash existed at a 
+  certain point in time in fact that's.
+Robert Long:  Okay so if the document is is is is in fact 
+  encrypted in some way that's fine they're just acknowledging they 
+  see it that that it is present if the document is something they 
+  can be done of course that can look at it.
+Robert Long:  Okay all right thank you.
+Wolf_McNally: Hi thanks man um uh I'm curious why you felt that 
+  the Witnesses were uh actually a necessary feature of crypto 
+  cryptographic event logs without them what um what essential 
+  aspects of the system.
+Wolf_McNally: Are missing that you felt adding them was uh 
+  important for.
+<phillip_long> Witnesses add third-party confirmation of the log 
+  and it's entries
+Manu Sporny:  Yes that's an excellent point wolf it's so you can 
+  have um I think this is what you're you're getting at you can 
+  have a cryptographic event log without Witnesses um and at that 
+  point you're kind of uh uh depending on whoever created the law 
+  you're you're trusting whoever created the log right um Witnesses 
+  um at least the the 1 thing that we can see that Witnesses add is 
+  it allows um another kind of source of truth that you might trust 
+  more than the entity that created the cryptographic event log in 
+  the in the first place um so it's uh you can have a cryptographic 
+  event log with zero Witnesses um uh.
+Manu Sporny:   But we.
+Manu Sporny:  Is add a level of further trust into the system uh 
+  that doesn't exist if you didn't have the witnesses did did that 
+  um make sense well.
+Wolf_McNally: Yeah I think it does um I wasn't clear from reading 
+  the original spec whether you considered witnesses to be an 
+  essential feature of the system or an optional feature of the 
+  system.
+Wolf_McNally: Great thank you.
+Manu Sporny:  I'd I'd suggest it's optional right now but we 
+  don't I I don't know if we have Clarity on that yet wolf like 
+  would love to hear other people's you know opinions on it um.
+Manu Sporny:  Thing if we make it mandatory then we may 
+  accidentally uh remove a set of use cases that are important 
+  that's that's why I'm hesitant to make it mandatory at this 
+  point.
+Wolf_McNally: Excellent thank you.
+Bob Wyman:  Yeah I think I think my concerns are.
+Bob Wyman:  Similar to wolves um I I'm very surprised by the 
+  introduction of this idea of witness we as you said we've had 
+  cryptographic event logs.
+Bob Wyman:  Very long time.
+Bob Wyman:   I mean.
+Bob Wyman:  I was used them back in the in the early 90s but but 
+  without the necessity of any complex complexity like uh um like 
+  Witnesses I mean.
+Bob Wyman:  Cryptographic event log can be simply created by by 
+  having whoever writes an event uh do do the hash updates um.
+Bob Wyman:  It it it concerns me that you present this idea of 
+  essentially a specific form of cryptographic event log and event 
+  log which which relies on Witnesses under a title which is 
+  cryptographic event logs in other words the general title.
+Bob Wyman:  Concern here is that.
+Bob Wyman:  Presentation of this um it really would be better if 
+  you if you focused more on the fact that you are dealing with a 
+  specialized version of cryptographic event logs as opposed to the 
+  general class the general class of of of event logs doesn't 
+  require Witnesses this 1 May and it may have some particular 
+  advantages and if so those advantages should be clearly called 
+  out relative to the the the the the other members of the general 
+  class but um it just it just bothers me this in in many contexts 
+  we do this of adding on unnecessary complexity um when a 
+  appearing to Define fundamental concepts and in this case I think 
+  you've you've kind of done that you've added this witness thing 
+  to an idea which which doesn't require it.
+Manu Sporny:  That is a very fair point so perhaps what we need 
+  to do is rename the specification to something like witnessed 
+  cryptographic event logs or something more specific um because 
+  you're right I mean it does confuse.
+Bob Wyman:  That I think would be excellent because you know I.
+Bob Wyman:  Had this problem with people for instance say oh you 
+  can't actually have you know crypto cryptographic event logs 
+  without blockchain and it's like.
+Bob Wyman:  How could anybody like so Mis fundamentally 
+  misunderstand the reality yet there there are people who make 
+  those statements regularly because they've been taught that uh 
+  that kind of algorithmic complexity is necessary to accomplish 
+  the basic function and we we we are not well served by having 
+  people believe such things anyway yes if you called it witness 
+  cryptographic event logs I think that would be wonderful to 
+  distinguish it from the general class.
+Manu Sporny:  Excellent so so let's let's uh let's let's make 
+  that change you know modulo what what the rest of the the 
+  community uh thinks um and yeah plus 1 let me you know like I 
+  said we haven't figured all this stuff out we're kind of 
+  presenting in its rough form to get feedback from the community 
+  um go go ahead Brian please.
+Brian: Yeah I just wanted to point out um like you said um like 
+  the witnessing feature of this is is I'd say an advanced version 
+  um like there is the basic version without Witnesses like like 
+  you pointed out um so I maybe witness the both event logs but uh 
+  I I don't think we should throw away the concept to this is 
+  possible without Witnesses in this uh data model.
+Manu Sporny:  Yeah and we'll get into that when uh we get into 
+  kind of did web VH and and that sort of thing okay all right uh 
+  I'm going to keep going uh that's the the basic concept here um 
+  just so you know folks that like looking at code this is kind of 
+  what it looks like like this is the structure of a cryptographic 
+  event log um uh that has been witnessed you've got events and 
+  then you've got a set of proofs that are from the witnesses and 
+  the log consists of an event with proofs and event with proofs 
+  and event with proofs um there are other ways to structure it as 
+  as we'll get to when you know Brian talks about did Webb VH um 
+  but the fundamental concept hopefully is like pretty pretty 
+  simple uh and high level um if we want to look into what 1 of 
+  these events look like uh sorry what what 1 of these events uh 
+  look like um we've got a log we've got an event in operation 
+  which is a create operation on some.
+Manu Sporny:  Right so the data is just an object that says the 
+  name of this object is hello world and then it's got a digital 
+  signature on it no not from a witness it's just a digital 
+  signature from The Entity that created the data so this is a this 
+  is an unwitnessed um entry uh in the cryptographic event log um 
+  and it's really no more complicated than that right it's just a 
+  series of events with proofs uh optional you know witness proofs 
+  on it and then each entry is like a Creator update operation 
+  which you should look very familiar to many people in the group 
+  that you know work on blockchains and and things like that um 
+  there are a number of these other examples uh in the 
+  specification today.
+Manu Sporny:  Okay so fundamentally uh cryptographic event logs 
+  are witnessed uh witness cryptographic event logs are like 
+  blockchains in that they order a set of events they order a set 
+  of events that modify kind of like this data object um but unlike 
+  blockchains they uh largely focus on a single resource though 
+  that's not always you know uh true but I think for the purposes 
+  of this discussion they just deal with a single resource uh the 
+  change is we're suggesting are like blindly witnessed um in their 
+  all kinds of privacy reasons to do that in liability reasons uh 
+  to do that from a witness perspective and the truth what the 
+  object what the series of events actually means is in the eye of 
+  the verifier.
+Manu Sporny:  Um which is again slightly different from you know 
+  the way uh some blockchains you know are are implemented um so 
+  truth is a perspective that a verifier can have rather than there 
+  being kind of a single uh uh uh source of Truth um uh Harrison 
+  you did sorry I saw you put yourself on the Queue do you have any 
+  questions on this.
+Harrison_Tang: Oh yeah just a clarification question so basically 
+  uh uh the proofs are chained together essentially right so make 
+  sure that okay cool.
+Manu Sporny:  Yes absolutely yeah yeah that's that's the yeah I 
+  forgot to mention that earlier but yes the the proofs are changed 
+  chained together so that there is a very specific ordering of of 
+  events and when things happened.
+Manu Sporny:  Uh let's see.
+Manu Sporny:  Uh I don't know why I had this slide in there 
+  anyway uh moving on there are other cryptographic event log like 
+  projects blockchains right we've talked about blockchains as Bob 
+  mentioned like cryptographic event logs existed even before 
+  blockchains there's a certificate transparency stuff which you 
+  could view as kind of a cryptographic event log um and then you 
+  know to hand it over to to uh Brian uh there is also work in 
+  multiple did methods that kind of focus on uh cryptographic uh 
+  event logs um so Brian over to you to to take us through kind of 
+  did web VH and and you know what it what it does and how it does 
+  it.
+Brian: Yeah thanks man um yeah so uh the did method that we've 
+  been working on did web VH uh VH stands for verifiable history um 
+  so that's kind of a lead into the crypto event log part of it.
+Brian: So basically it works similar to did web um you publish 
+  all of your logs every update um instead of just the final output 
+  did document what you do did web um so these logs in uh in web VH 
+  they're not right now they're not a a cell they're not the exact 
+  format we've been looking at today but they're the same sort of 
+  concept so each.
+Brian: New entry sort of references the previous entry and that's 
+  where you get your your chaining of your logs.
+Brian: Um it uses the same did web HTTP transform to find the 
+  file uh all we did was we tacked on a an L onto the uh did Json 
+  to make it did did Json l.
+Brian: And that's that's just on lines which is um it's just a a 
+  file that is lines of of Json they're all separated by a new new 
+  line character there's nothing too crazy there they just um we 
+  just found that format to work for us.
+Brian: Um so that's what this gives you is your full verifiable 
+  history basically um and it's you can pull that down and and the 
+  resolvable uh.
+Brian: Verify the whole start to finish history when they when 
+  they need to see the current state of the document.
+Brian: Uh another feature that we kind of have in there is this 
+  this concept of a skid which may reference sort of briefly um 
+  which is what that is is essentially like a globally unique sort 
+  of hash that is the.
+Brian: Sort of like access the first hash in the chain um you're 
+  able to um add your first entry which has a reference to that and 
+  and you can sort of look at the input and and know that that got 
+  to that first uh date sort of thing.
+Brian: Um each of these log entries in our in our jsonl file is 
+  has this uh signatures data Integrity signatures um and these are 
+  solely the controller that creates those signatures there's no 
+  witnessing involved in that process there.
+Brian: So you can use this um this.
+Brian: Verification on that log entry and um if it passes then 
+  you you know that that the controller got to that point uh in a 
+  valid way.
+Brian: I know the concept we have in there is the is pre rotation 
+  of keys.
+Brian:  so that.
+Brian: Means is you're able to visually public publish the hash 
+  of the key that you say is going to be the next 1.
+Brian: And then when you make an update your your new key has to 
+  match that hash that you've already published so that allows you 
+  to um if you your key gets compromised your active key gets 
+  compromised you don't have to worry about um them the malicious 
+  attacker rotating away and creating a new um new history that you 
+  don't have control over certain thing.
+Brian: So we also do have the concept of a witness um how this 
+  works into the Webb is is actually in a different separate Json 
+  file.
+Brian: And the resolver has to pull that file down and verify 
+  that uh.
+Brian: Uh witness did did make valid signatures and they passed 
+  the threshold and out of of um signatures that we require.
+Brian: That the controller has set up as a requirement.
+Brian: And lastly we also have this concept of uh who is what 
+  which is is something we came up with that feels it pretty 
+  powerful what it is is basically um having a place a known place 
+  that uh has a bundle of verifiable credentials about the the did 
+  to sort of uh help a verifier when they're when they're judging 
+  if they trust that did.
+Brian: Um yes so next slide.
+Brian: Uh our next steps so essentially we've been working on 
+  this for um a better part of last year and this year and we're 
+  hoping that we can get to a version 1.0 soon um like very soon um 
+  we think we're basically there with all the features and 
+  everything sort of um hasn't been changing too much recently so 
+  we're hoping that we can call it you know uh essentially done 
+  ready to work um and 1 thing we are very interested though is 
+  this alignment with this uh.
+Brian: Specification that we're talking about today um it would 
+  be it's you know it's.
+Brian: Formed data model and it would be great to have alignment 
+  here in that way um like I said there our current logs are not 
+  quite this exact format but they're quite similar so it wouldn't 
+  take too much change.
+Brian: We think that maybe that would open up like a potential 
+  path for using cell and and um.
+Brian: Web and and skid did skid altogether to sort of make a new 
+  um version of did web that is just cryptographically verifiable 
+  history of of the logs and stuff.
+Brian: Uh so if you go to the next yeah so here um I broke up all 
+  of the different features that I've gone over into sort of those 
+  buckets that I just listed so the first ones there you see 
+  they're sort of just.
+Brian: You do these sort of stuff on the on the web um we added 
+  you know our who is on there how do you find that and how to 
+  transform the um the did into a uh.
+Brian: A location to download the file and that sort of stuff and 
+  then there's the features that are pretty much the same as what 
+  cell kind of provides so um being able to witness things and 
+  being able to uh sign the the the update and uh having that full 
+  verifiable history.
+Brian: Then um the last thing we've sort of uh bucketed there is 
+  this this concept of a skid um so basically being able to.
+Brian: Know being able to address the the the did in this case 
+  right I'm having this this globally unique um identifier that you 
+  are able to use to verify the of the input certainly.
+Brian: Um yeah so that's kind of our our thinking around how 
+  these sorts of things could align um and yeah.
+Brian:  next slide I think.
+Brian: I think that's.
+Brian: Kind of all I had for uh did web VH.
+Manu Sporny:  Awesome thanks Brian.
+Manu Sporny:  Um any any questions on kind of did web VH and 
+  direction it's going and that sort of thing.
+Manu Sporny:  I will mention that you know there's this um did 
+  method standardization or incubation work that's happening at the 
+  decentralized identity foundation and uh you know did web VH is 
+  like 1 of The Front Runners I think for.
+Manu Sporny:  Things that we would like to see in a did Webb like 
+  you know method um it's got a lot of really cool features uh that 
+  I think would be generally useful um uh as upgrades uh optional 
+  upgrades to did web.
+Harrison_Tang: Uh sorry uh yeah a clarification question um so I 
+  know there's like a lot of deep methods out there and then some 
+  deep methods will check some of the boxes like for example the 
+  the self-certifying identifier there are some methods that does 
+  it so is it true that did what VH is trying to basically be the 
+  standard or like 1 of the more popular did methods that check all 
+  these boxes is that is that true or no.
+Brian: Um yeah I mean it we're trying to to check as many many of 
+  the boxes as possible um I think you know the the fact that you 
+  have to rely on the web server uh there's a certain sort of 
+  control uh placed in that web server uh so it's not I would say 
+  it's not fully self Sovereign in in a way like um a you know a 
+  third-party entity that is relying on some web server that they 
+  don't control of course has to have some level of control in 
+  there there's also uh you know DNS factors into that there's 
+  maybe not ideal that you have to kind of resolve domain names um 
+  but yeah I'd say we're trying to trying to take as many boxes as 
+  possible.
+Harrison_Tang: And also another clarification question for the 
+  who is feature is the verifiable presentation uh containing the 
+  verifiable credentials about basically the controller is that is 
+  that correct or.
+Brian: Yeah that's right yeah yeah that that concept is sort of 
+  like um here's a list of or here's a bunch of VCS about me um 
+  here's my you know license to.
+Brian: On the internet on uh this sort of certain product here 
+  and then the resolver the verifier is able to pull that down and 
+  be like oh yeah they've got this um this CNC from this third 
+  party that we trust kind of thing.
+Manu Sporny:  Yeah like like for a business like you know here's 
+  here's my you know business um uh did uh here is my uh uh um you 
+  know verification that I am a a registered business in this 
+  province or this state or this nation uh you know here is uh here 
+  are the products that uh you know I sell these are certified by 
+  you know these um you know uh consumer authorities things like 
+  that like you know the ability for uh a business to express 
+  things that it is licensed and uh validly operating uh for 
+  example um.
+Manu Sporny:   I think.
+Manu Sporny:  We're we're I don't think we're suggesting like you 
+  know someone would take their driver's license and like post it 
+  on their website um in in who is I think this is largely for 
+  things that you want to be public um uh like you're verified you 
+  know um uh uh social media accounts or that you're verified 
+  business or you know your store hours or things of that nature.
+Manu Sporny:  Um moving in real quick uh to the to the end here 
+  um so there is a way that we can put these Technologies together 
+  as Brian was mentioning um uh in a way that might get us to kind 
+  of the the the Holy Grail you know what whatever you want to you 
+  know call it Promised Land of dids which is a truly decentralized 
+  um uh did method that uh is not uh part that is not dependent on 
+  a blockchain right um so uh if we construct the witness uh 
+  mechanism in a way where uh you only need a handful of Witnesses 
+  on your did document as it changed through changes through time 
+  um if we can construct it in a way where it doesn't really matter 
+  which domain you put the the history log on um there is a way 
+  that we could create a really lightweight fully decentralized.
+Manu Sporny:  Did method built on these Concepts so like did web 
+  VH is like very very close to that right there is still that 
+  domain binding that Brian was talking about and you know there 
+  there's a design decision there um because you know there was a 
+  there was a desire to have compatibility with did web which a lot 
+  of.
+Manu Sporny:  Large organizations like to see um.
+Manu Sporny:  But it doesn't take a lot of work to kind of look 
+  at did web VH in a certain light or did skid in a certain light 
+  and go like you know what we can totally break that tie with the 
+  domain and make it fully portable in fact they're you know 
+  there's a mechanism in the web VH that does allow uh you to Port 
+  documents from 1 1 domain to the other so.
+Manu Sporny:  That fundamentally it's kind of built on this 
+  concept of cryptographic event logs and Witnesses if you have 
+  those things then all of a sudden you don't necessarily need a 
+  blockchain for a fully decentralized in method and this is 
+  particularly exciting because we're getting ready to try and do 
+  some of the first Global standards for did methods um and if we 
+  get this right it means that we will have kind of solved the 
+  thing that we had initially uh set out to solve with 
+  decentralized identifiers now it doesn't mean that it's the only 
+  you know decentralized identifiers you know mechanism there can 
+  be many many different ones um because of the design of Deads but 
+  it means that maybe we finally hit something that everyone can 
+  agree to um to use that is way more decentralized than than what 
+  we have uh today.
+<steve_m> r.e. portability - how do you ensure time stamp 
+  alignment across domains?
+Manu Sporny:  So the technology is applicable directly applicable 
+  to Deads you know it's directly applicable to any document that 
+  changes over over time any any binary data that changes over time 
+  uh but specifically it's uh useful um uh for DS.
+Manu Sporny:  The other thing that it could be useful for.
+<kayode_ezike> Remind me: do you intend to incorporate the whois 
+  service into the core DID spec or does did:webvh just use the 
+  existing DID service format to provide the whois service?
+Manu Sporny:  And this is where we need you know uh help help 
+  kind of understanding the the design space uh from Brian Newbold 
+  and the other folks at Blue Sky and the folks that worked on 
+  activity Pub and all that kind of stuff um I have been talking 
+  with uh Christine uh who was the you know the primary architect 
+  behind activity Pub about this uh and she's really excited about 
+  it because you know this would allow us to create a more 
+  decentralized kind of way of doing posts and responses and 
+  modifications and things like that so if you think if you think 
+  of like inactivity Pub post um uh with a cryptographic event log 
+  and Witnesses um you could 1 W witness the post over time so I 
+  definitely said this thing at this point in time and I definitely 
+  modified it at this point in time there's a there's a you know a 
+  transparency authenticity part of people posting things right 
+  people wouldn't be able to just delete things um sometimes that.
+Manu Sporny:   That's a good thing and you want.
+Manu Sporny:  It's a bad thing and you don't want that feature um 
+  uh but you know we could do this with posts and profiles and all 
+  kinds of other things in in in Social uh media and we could get 
+  full portability of these data objects um uh you know that that 
+  is also a a full cryptographically provable portability um of our 
+  our kind of social media uh posts and and things like that um uh 
+  so it ends up operating.
+Manu Sporny:  Being a more decentralized uh uh manner.
+Manu Sporny:   I think that's large.
+Manu Sporny:  It you know what are the next steps here like you 
+  know.
+<markus_sabadello> DIF DID Methods WG: 
+  https://github.com/decentralized-identity/did-methods/
+Manu Sporny:  If you are interested in any of this stuff like 
+  working with the did web VH group you know would be uh would be 1 
+  place that you could contribute or learn more there's also the 
+  deaf did methods working group right now where we're incubating 
+  some of these you know specifications uh there will be a w3c did 
+  methods working group uh probably at some point this year um I 
+  should we are there enough people that are interested in this 
+  just to talk about the the cell based you know did method um uh 
+  in you know where else can we collaborate on this stuff you know 
+  what what else can we use this technology to do that people are 
+  interested in um okay I think that's that's largely it um Brian 
+  would you want to share like what's the best way for people to 
+  kind of participate in the did web VH work.
+Brian: Yeah sure um yes we have a first of all we have a slack 
+  group in the uh diff slack um so I was chatting in there and then 
+  we have meetings every Thursday at um I think it's 8 a.m. or 9 am 
+  Pacific and so every other Thursday sorry so that is this 
+  Thursday we have 1.
+Brian: It's in the diff calendar.
+Brian: And then just check if it's not Amber 8 a.m. yeah it's 9 
+  am.
+Brian: Yeah so please join us there.
+Manu Sporny:  It's 9 a.m. uh Pacific did you say Brian.
+Manu Sporny:  All right I think we have.
+Harrison_Tang: Cool I think we have a couple questions in the 
+  queue so first of all uh Steve had a question in regards to 
+  portability how do you ensure time stamp alignments across 
+  domains.
+Manu Sporny:  That's an excellent question that's 1 of those 
+  that's 1 of those things where it's kind of like uh it depends on 
+  the verifier and what the verifier you know as long as aligned 
+  with you know we have mechanisms that that I think 1 of the ideal 
+  things is that to use a timestamping service you have to make 
+  sure that it's clock is aligned with other timestamping services 
+  and that's something that we would probably have to put into the 
+  protocol to make sure that um you know it is using an atomic 
+  clock um appropriately um I will assert that that's largely a s 
+  solved problem on the on the internet like since the the 90s um 
+  but it is possible to have clock skew and clock drift and it's 
+  possible to have that in a way that matters in a particular set 
+  of you know cryptographic event logs um like for example if 
+  you're doing high frequency trading you probably wouldn't be able 
+  to use witnesses that did not also have like very strongly synced 
+  um uh uh uh atomic clocks right.
+Harrison_Tang: Cool I have 4 more questions so I'll quickly go 
+  through them so coyote has a question in regards to do you you 
+  tend to incorporate the who is service into the court did spec or 
+  does did web VH just use the existing disservice format to 
+  provide the who is service.
+Brian: Um yeah that's a good question um I think we think it's we 
+  think it's a very useful feature and so we kind of uh are urging 
+  more did methods to sort of adopt it um I think there's there is 
+  some talk about spinning it out as it's as its own sort of 
+  extension.
+<bobwyman> Lamport's paper on clocks was published in 1978...
+Brian: Application um and then just pointing to that um but yeah 
+  we.
+Brian: How are you how it works is um we have an implicit um 
+  files resolver sort of thing um or linked to VP um which is 
+  another diff specification um so we have an implicit linked VP 
+  service that if the um controller doesn't override that it will 
+  just um uh fall back to the same sort of path as the uh did jsonl 
+  file uh so if you.
+Brian:  if you don't.
+Brian: Sort of update that to be some other path you will find 
+  your your who is in that path.
+<kayode_ezike> Thanks  :+1:
+Harrison_Tang: Cool thank you Brian a brand new board you're on 
+  the queue.
+Bryan_Newbold_(Bluesky): Hey um well I'm gonna reply there's 
+  there's some like kind of I don't so I don't have a question but 
+  I want to just have a couple comments uh so we have uh we at Blue 
+  Sky and in at protocol have a did method called did PLC which in 
+  this kind of ontology aligns closest to scid there's skid so it's 
+  just they're just they're not bound to a domain um they're 
+  they're chained logs like per account or per did so there's not a 
+  global you know there's not a global uh blockchain or anything 
+  like that at least for now um that each in in our system each 
+  event signs is signed by the previous event so there they are 
+  they're not blindly like they're they're expected to be verified.
+Bryan_Newbold_(Bluesky):  we consider.
+Bryan_Newbold_(Bluesky): Like the design of it is that they're 
+  completely free floating they're not bound to any particular 
+  domain or any particular thing that's kind of a hack to just get 
+  the system off the ground we have a central directory that people 
+  send um their operations or their events to but the idea is that 
+  those are you know 1 way to think of those so that they're just 
+  witnesses that cache the results in other people can query those 
+  witnesses to get uh a set of the logs back so instead of hosting 
+  the event log on like a web server that's you know bound to a 
+  domain any you know you could have these large directories or 
+  directory services that that cache them um that you know there's 
+  some work to be done there about how to decentralize that a 
+  little bit more and we're super out um interested in talking 
+  about that but the the kind of core of it is kind of just the 
+  scid mechanism um some of the things that have come up from that 
+  you know there's like rate limiting that would also be an issue 
+  with witnessing I would assume like how do you come up with a 
+  policy around you know.
+Bryan_Newbold_(Bluesky):  we think.
+Bryan_Newbold_(Bluesky): Well you know these directories are 
+  witnesses to scale just fine to like billions of um or even like 
+  tens of billions of events and things like that but there's like 
+  well what about trillions what about Millions per second um does 
+  that become a problem uh we've had some there's been some design 
+  questions around harmful events uh so on like a blockchain we 
+  want to be able to go out and pull out events about how do you do 
+  that in a transparent manner so as an example you know if someone 
+  stuffs harmful content in a base 64 encoded string that gets 
+  stuffed and it did document you need to be able to pull that out 
+  um at some point um.
+Bryan_Newbold_(Bluesky): Uh and account recovery with multiple 
+  Keys that's also we have that feature I can't remember if that 
+  was put yeah the pre- rotation key so it does really kind of 
+  aligned with skid um anyways that's a bit of a ramble not much of 
+  a question sorry.
+Harrison_Tang: Thank you thank you Brian.
+<wolf_mcnally> Provenance Marks White Paper:
+<harrison_tang> the DID PLC that Bryan shared earlier 
+  https://github.com/did-method-plc/did-method-plc
+Wolf_McNally: Hi uh thanks so most of you probably don't know me 
+  Manu does um I'm the leader lead researcher for a nonprofit 
+  called blockchain Commons and I've been working on a project for 
+  um a couple years now actually that uh blockchain commonly took 
+  over called Providence marks and I just wanted to um uh I'm not 
+  giving a presentation obviously here I wanted to drop a few links 
+  into the chat um which I just did um to the white paper on 
+  Providence marks and because they are definitely relevant to the 
+  interests of the president group and I'd love to receive some um 
+  early feedback on them um in addition to the white paper I also 
+  have a link there to hack empty document that actually Compares 
+  uh Providence marks in their current form with what I understand 
+  to be cryptic about graphic event logs um as well as a link to my 
+  personal uh Province Mark chain I have a reference 
+  implementations in both um.
+Wolf_McNally: Rust and Swift available now including a rust 
+  command line tool that generates the next Providence Mark in a 
+  chain and um um 1 of the main things that I think is unique about 
+  Providence Marx is each Mark which is actually a relatively small 
+  binary structure includes a pre-commitment to the next Mark in 
+  the chain and this allows each Mark to be published um without uh 
+  an actual cryptographic signature um as well as I think in many 
+  cases obvious the need for for Witnesses um but I you know 
+  haven't like proved that in any deep sense yet um but I would 
+  love to receive some early feedback from this group on um what 
+  ideas they think in Providence Marx might be um interesting 
+  useful not useful um and uh I'm just very open to any kind of 
+  feedback so um that's all I have to say.
+Harrison_Tang: Thank you well.
+Harrison_Tang: Thank you Dan and by the way you're building the 
+  talent talent digital wallet right is that right.
+Harrison_Tang: Cool great so yeah we'll have you uh hopefully you 
+  can jump on and to present your work uh uh a month or 2 months 
+  later.
+Manu Sporny:  Yeah real quick before we wrap up um I wanted to 
+  see I I think it'd be awesome to have Wolf come and present um 
+  his uh work on the province Mark stuff I think that might be the 
+  best way for you to get feedback wolf on it and I really very 
+  what you said was really intriguing to me so would love to you 
+  know spend an hour uh on that um the the other item I guess is 
+  for um uh Brian I mean 1 of the things Brian that you know I 
+  think we're struggling with and did the diff did methods working 
+  group is like PLC is the largest deployed did method out there 
+  and we want to make sure that whatever we create is uh highly 
+  aligned um or use it reuses it or or something right and so what 
+  would be the best way to collaborate with you in that discussion.
+Manu Sporny:  Knowing that your time is precious in in in right.
+Bryan_Newbold_(Bluesky): Yeah if you if you email me directly I'm 
+  happy to check calls um around that.
+Harrison_Tang: Great so wolf I'll send you an email and then 
+  coordinate a time you don't mind to talk about the Providence 
+  marks.
+Wolf_McNally: That would be excellent thank you so much.
+Harrison_Tang: Great all right I think we're at time um right at 
+  time so thank you thank you Manu and thank you Brian for jumping 
+  on and need a great discussion about this concludes this week's 
+  ccg call thanks.
