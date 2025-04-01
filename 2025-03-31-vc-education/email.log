@@ -1,0 +1,1043 @@
+Thanks to Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2025-03-31-vc-education/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2025-03-31-vc-education/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2025-03-31.mp4
+
+----------------------------------------------------------------
+VC for Education Task Force Transcript for 2025-03-31
+
+Agenda:
+  https://lists.w3.org/Archives/Public/public-vc-edu/2025Mar/0005.html
+Organizer:
+  Kerri Lemoie, Simone Ravaioli, Dmitri Zagidulin
+Scribe:
+  Our Robot Overlords and Our Robot Overlords
+Present:
+  Dmitri Zagidulin, Ildiko Mazar, Don Presant, Learning Agents, 
+  Canada, David Ward, TallTed // Ted Thibodeau (he/him) 
+  (OpenLinkSw.com), Don Presant, Learning Agents, 🇨🇦, Sheela 
+  Kiiskila, Nate Otto, Sharon Leu, Phil Barker, Nis Jespersen , 
+  Geun-Hyung, Simone Ravaoli, Kayode Ezike, Chandi Cumaranatunge
+
+<dmitri_zagidulin> presentation slides: 
+  https://docs.google.com/presentation/d/15RXxjlgNaLSxgXqceZvUmw52Dq6X4bx0H5Oi_WEwe7I
+Our Robot Overlords are scribing.
+Dmitri Zagidulin:  Are you recording a lot okay looks like it's 
+  recording.
+Dmitri Zagidulin:  Yeah there we go there's the transcriber.
+Dmitri Zagidulin:  All right uh.
+Dmitri Zagidulin:  Let's do uh introductions of reintroductions 
+  if anybody's new uh to the call and wants to uh introduce 
+  themselves.
+Dmitri Zagidulin:  A communion announcements uh.
+Dmitri Zagidulin:  Have uh internet identity Workshop W coming up 
+  um the week of I believe it's April 8th.
+Dmitri Zagidulin:  Um Tuesday through Thursday I.
+Dmitri Zagidulin:  A lot of uh really interesting um 
+  specifications that this task force deals with uh get incubated 
+  there.
+Dmitri Zagidulin:  I'm sure there's there's other um.
+Dmitri Zagidulin:  Conferences that that I'm that I'm missing uh 
+  please feel free to add uh to the chat as Community reminders.
+Dmitri Zagidulin:  All right any other any other announcements or 
+  reminders before we Dive In.
+Our Robot Overlords are scribing.
+Dmitri Zagidulin:  Yeah there we go.
+Dmitri Zagidulin:  There's the recording okay.
+<don_presant,_learning_agents,_🇨🇦> ePIC 2025 OCt 21-23 in Paris 
+Dmitri Zagidulin:  Oh yeah so speaking of recording.
+Dmitri Zagidulin:  Uh the granches community group ccg have has 
+  recently um announced that we're um.
+<don_presant,_learning_agents,_🇨🇦> ..open.. 8->
+Dmitri Zagidulin:  Transitioning to a different uh recording and 
+  transcription infrastructure.
+Dmitri Zagidulin:  Short of it is uh we're going to try using 
+  Google Google meet uh with uh some open source AI transcription 
+  uh that's.
+Dmitri Zagidulin:  Testing has been uh fairly dramatically better 
+  than the transcriber here so uh.
+Dmitri Zagidulin:  We can look forward to hopefully better uh 
+  transcription and recording quality and um.
+Dmitri Zagidulin:  Another familiar interface hopefully all of us 
+  have used Google meet.
+Dmitri Zagidulin:  So we'll keep you uh we'll keep you posted on 
+  the progress there.
+<ildiko_mazar> That's not very difficult, TBH :-)
+Dmitri Zagidulin:  All right uh.
+Dmitri Zagidulin:  Let's uh yeah low bar uh low bar to Ico.
+Dmitri Zagidulin:  All right so let's uh jump into our main topic 
+  uh which is.
+Dmitri Zagidulin: 
+  https://docs.google.com/presentation/d/15RXxjlgNaLSxgXqceZvUmw52Dq6X4bx0H5Oi_WEwe7I
+Dmitri Zagidulin:  Issuer and verify Registries 101 uh so here 
+  are the slides again in chat.
+Dmitri Zagidulin:  And so I will share screen.
+Dmitri Zagidulin:  And please feel free to ask questions as we go 
+  so uh click the raise hand icon or type Q Plus in GC chat and 
+  you'll get added to the queue.
+Dmitri Zagidulin:  We'll we'll have uh time for questions uh 
+  afterwards but it's all also helpful so that we don't forget.
+Dmitri Zagidulin:  Um to ask.
+Dmitri Zagidulin:  The questions as we go all right hopefully 
+  here we go.
+Dmitri Zagidulin:  Can everybody see presentation mode.
+Dmitri Zagidulin:  Fantastic all right so.
+Dmitri Zagidulin:  Here's what we're going to talk about.
+Dmitri Zagidulin:  Here's the tldr so to speak 1.
+Dmitri Zagidulin:  I'm going to do anything with verifiable 
+  credentials for most cases most open world cases which I think.
+Dmitri Zagidulin:  Most of us are here for in this task force to 
+  do.
+Dmitri Zagidulin:  Going to need registries.
+Dmitri Zagidulin:  And why is that we'll get into it uh but 
+  basically because cryptographic identifiers are opaque and we 
+  need to on opaque them all right we're gonna talk about how 
+  Registries work what goes into 1 going to mention uh a little 
+  some of the issues with registry governance.
+Dmitri Zagidulin:  Talk about um some projects specifications and 
+  further resources that uh you can look into to find out more.
+Dmitri Zagidulin:   Let's step.
+Dmitri Zagidulin:  Back quick reminder uh because this is going 
+  to be important it's going to lead to why exactly we need.
+Dmitri Zagidulin:  What's a credential set of claims.
+Dmitri Zagidulin:  What's a claim uh just a statement think of 
+  them for in in crude technical terms they're going to be key 
+  value pairs they're going to be uh somebody said something okay.
+Dmitri Zagidulin:  As usual we've got a whole range of 
+  credentials from uh low value bare credentials that uh typically 
+  don't have bindings to to an identity such as you know a movie 
+  ticket or I don't know a lottery ticket or something.
+Dmitri Zagidulin:  Uh that can be anonymous we we call those 
+  barrier credentials and then we have a whole world of.
+Dmitri Zagidulin:  Find credentials that are bound to a 
+  particular identity such as passport diploma even play plane 
+  tickets uh they can be bound to a cryptographic identity meaning.
+Dmitri Zagidulin:  This credential was issued to somebody that 
+  has a possession of this key.
+Dmitri Zagidulin:  1 To 345 or.
+Dmitri Zagidulin:  This uh credential was issued specifically to 
+  Demetrius agodon okay and.
+Dmitri Zagidulin:   Of course.
+Dmitri Zagidulin:  Uh only a name is used we get into issues of 
+  uh duplicate names and how do you deduplicate.
+Dmitri Zagidulin:  Don't get into that but.
+Dmitri Zagidulin:  Uh the hopefully the the idea is clear.
+Dmitri Zagidulin:  So if credential is a set of claims what's a 
+  verifiable credentials.
+Dmitri Zagidulin:  It's machine readable document that has some 
+  claims has some metadata about the claims and has some sort of 
+  cryptographic proof typically a signature so.
+Dmitri Zagidulin:  1 More claims such as MIT claims or says that 
+  Alice has a PHD in public education.
+Dmitri Zagidulin:  1 Or more um attributes about the credential 
+  itself such as this credential is only good until next year.
+Dmitri Zagidulin:  Also this this credential was issued by MIT.
+Dmitri Zagidulin:  And then third has a digital signature.
+Dmitri Zagidulin:  And then that's going to be there's going to 
+  be the key Parts uh this is going to be key to understanding 
+  about why we need Registries in the first place because it's uh 
+  it's very easy when you first hear about verifiable credential to 
+  to hear about it and say oh okay hey the credentials are signed 
+  therefore we know exactly who signed it.
+Dmitri Zagidulin:  What we do and we don't we know exactly the 
+  identity of the key that signed it.
+Dmitri Zagidulin:  But nothing else about that for anything else 
+  nothing else beyond that like who that key belongs to uh is it 
+  authorized is it expired etc etc.
+Dmitri Zagidulin:  For any sort of useful real world information 
+  about.
+Dmitri Zagidulin:  So so is does this key actually belong to MIT 
+  we need registries.
+<ildiko_mazar> RE: credential definition, I would argue that from 
+  the 2 presented on your first slide, Dmitri, the first might be 
+  too restricted for some more complex credentials (e.g. joint 
+  degrees): “A credential is a set of one or more claims *made by 
+  the same entity*.”
+Dmitri Zagidulin:  Uh again to uh sort of restate it uh.
+Dmitri Zagidulin:  In different way.
+Dmitri Zagidulin:  Have a credential.
+Dmitri Zagidulin:   Often have.
+Dmitri Zagidulin:  Identifiers that doesn't though it doesn't 
+  need to has a number of claims such as name and address and date 
+  of birth or.
+Dmitri Zagidulin:   Date of.
+Dmitri Zagidulin:  Sub subject of study for the diploma and so 
+  on.
+Dmitri Zagidulin:  It's got uh a number of.
+Dmitri Zagidulin:  Find um metadata Fields about the credential 
+  itself when was it issued when does it expire.
+Dmitri Zagidulin:  What are the terms of service usage how do you 
+  render the credential in a in a browser or in a mobile phone all 
+  that kind of stuff.
+Dmitri Zagidulin:  And of course the digital signature.
+Dmitri Zagidulin:  Here's uh 1.
+Dmitri Zagidulin:  Just 1 example of what that looks like in 
+  machine readable form so this is some Json again we've got the 
+  optional credential identifier we have a number of claims such as 
+  uh.
+Dmitri Zagidulin:  The name of the person the university they're 
+  an alumni of uh got an example of um internationalization and 
+  localization.
+Dmitri Zagidulin:  Which is a constant topic uh for us here in 
+  this group.
+Dmitri Zagidulin:  We've got some metadata about the credential.
+Dmitri Zagidulin:  Such as this is who he was issued by and here 
+  we start to see the problem.
+Dmitri Zagidulin:  Got issuer key 1 to key 1 to 3 for 5 who is 
+  that.
+Dmitri Zagidulin:  Like we we have we have strong cryptographic 
+  proof that the entity signing this.
+Dmitri Zagidulin:  Is definitely key 1 2 3 4 5.
+Dmitri Zagidulin:  Who does that keep belong to.
+Dmitri Zagidulin:  And that's all we know about the signature uh.
+Dmitri Zagidulin:  So to get back to why we need issue Registries 
+  we need them because cryptographic identifiers are opaque.
+Dmitri Zagidulin:   We need.
+Dmitri Zagidulin:  To do something useful with them we need to 
+  unop them.
+Dmitri Zagidulin:  At the other end when you hand over the 
+  diploma to an admissions office to an employer's desk to uh.
+Dmitri Zagidulin:  Random person checking on the street.
+Dmitri Zagidulin:  They're going to run.
+Dmitri Zagidulin:  Tribal credential through a verify function.
+Dmitri Zagidulin:  Verify function can only tell them 2 things.
+Dmitri Zagidulin:  Is the signature valid yes or no.
+Dmitri Zagidulin:  And what key identifier it was signed by.
+Dmitri Zagidulin:   That's it.
+Dmitri Zagidulin:  So all of the all of the heavy lifting of um.
+Dmitri Zagidulin:  Who that key belongs to.
+Dmitri Zagidulin:  Can't be done by the automatic verification 
+  code can't be done by the libraries that are just checking the 
+  digital signature we need to build additional infrastructure 
+  around it.
+Dmitri Zagidulin:  Uh those of you who have who have been in uh 
+  identity case or or have been thinking about this uh for a while 
+  uh.
+Dmitri Zagidulin:  You can probably say hey what about can we 
+  sign with websites right does it have to be opaque key 
+  identifiers does it have to be did key don't we at least have did 
+  web and similar mechanisms.
+Dmitri Zagidulin:  Don't we have the for example the well-known 
+  mechanism for for websites can't we use that.
+Dmitri Zagidulin:  Yes of course we can uh.
+Dmitri Zagidulin:  But as we all know from.
+Dmitri Zagidulin:  History of the web fishing uh and and just 
+  just using a browser.
+Dmitri Zagidulin:  Knowing the website of an entity doesn't 100% 
+  translate to uh knowing exactly.
+Dmitri Zagidulin:  Where that website came from.
+Dmitri Zagidulin:  We we know that.
+Dmitri Zagidulin:  Websites can be slightly misspelled can have 
+  uh.
+Dmitri Zagidulin:  International uh characters that look like 
+  different letters right so so basically you can fake websites or 
+  even if the website is not fake.
+Dmitri Zagidulin:  Didn't look just looking at a website there's 
+  no automated and oftentimes there's no even uh human assisted way 
+  of knowing that.
+Dmitri Zagidulin:  This is this is a legit entity that should be 
+  signing this credential in the first place.
+Dmitri Zagidulin:  What's uh 30 years of History.
+Dmitri Zagidulin:  Of of the worldwide web and all of the 
+  problems from uh DNS and and certificate authorities.
+Dmitri Zagidulin:  Can we do even slightly better with verifiable 
+  credentials can we have some of the problems.
+Dmitri Zagidulin:  In order to do that.
+Dmitri Zagidulin:  Need this infrastructure of issue of 
+  Registries we need to.
+Dmitri Zagidulin:  Build in identity verification from the very 
+  start.
+Dmitri Zagidulin:   Okay so what are.
+Dmitri Zagidulin:  Having taking all of that detour through 
+  what's a verifiable credential uh and why we need Registries in 
+  the first place Registries are just directories.
+Dmitri Zagidulin:  Uh they're just mappings of.
+Dmitri Zagidulin:  Uh exactly as as important as that and as easy 
+  as that so.
+Dmitri Zagidulin:  For those those of us who remember uh.
+Dmitri Zagidulin:  Yeah Yellow Pages in the US and and I'm sure 
+  other countries had very similar uh directories that mapped phone 
+  numbers to.
+Dmitri Zagidulin:  Uh to business entities for example uh.
+Dmitri Zagidulin:  And and we had both um.
+Dmitri Zagidulin:  We have mappings going in in in both 
+  directions we could look up by name and get the phone number uh 
+  or look up a phone number and and get the name similarly.
+Dmitri Zagidulin:  All that are issued registry is and the same 
+  same thing is true for a verifier registry and we'll talk about 
+  what those are and what those are for.
+Dmitri Zagidulin:  It's just a map of.
+Dmitri Zagidulin:  Or or did essentially.
+Dmitri Zagidulin:  Known entities that somebody.
+Dmitri Zagidulin:  Went through the trouble of verifying.
+Dmitri Zagidulin:  And that's the that's the important big 
+  asterisk there who who's the somebody who actually did The Entity 
+  identity verification.
+Dmitri Zagidulin:  Uh to to put together this directory.
+Dmitri Zagidulin:  As as you'll see the issue Registries are only 
+  as useful only as good as.
+Dmitri Zagidulin:  The Entity who is hosting those registries.
+Dmitri Zagidulin:  So if you trust the uh Ministry of Education 
+  or the Chamber of Commerce or whatever Authority or or even 
+  person.
+Dmitri Zagidulin:  That's hosting the registry.
+Dmitri Zagidulin:  That's that level of trust is is um.
+Dmitri Zagidulin:  Directly proportional to how useful the 
+  registry is going to be.
+Dmitri Zagidulin:  So how does it work well like what is it uh.
+Dmitri Zagidulin:  We we know that they're a directory mapping 
+  identifiers to some information about an entity.
+Dmitri Zagidulin:  You can think of them as 2 different types.
+Dmitri Zagidulin:  And usually most uh issue registry 
+  specifications support both.
+Dmitri Zagidulin:  You can download the whole directory.
+Dmitri Zagidulin:  So we just a a flat machine readable file.
+Dmitri Zagidulin:  That has all of the mappings of all of the 
+  entries identifiers to entities or.
+Dmitri Zagidulin:  Don't want to especially if the registry is uh 
+  is long.
+Dmitri Zagidulin:   If you don't.
+Dmitri Zagidulin:  I want to uh download the whole thing.
+Dmitri Zagidulin:  Registries typically provide an API service 
+  where you can say hey.
+Dmitri Zagidulin:  Key1 2345 who does that belong to and get back 
+  some information.
+Dmitri Zagidulin:  What kind of information uh.
+Dmitri Zagidulin:  Anything that you need.
+Dmitri Zagidulin:  To think of it as to populate a user interface 
+  screen.
+Dmitri Zagidulin:  If I have a verifiable credential wallet or if 
+  I have a verifier software.
+Dmitri Zagidulin:  Let's say I'm a Border guard at a checkpoint 
+  and I'm I'm scanning uh a license or I'm an admissions officer or 
+  I'm a HR professional and I get a resume I was verifiable 
+  credential and some diplomas into it and I feed the let's say the 
+  diplomas of course credentials into my verifier software.
+Dmitri Zagidulin:  Think about what that verifier software is 
+  going to show me on the screen.
+Dmitri Zagidulin:  What would be helpful uh at least the name of 
+  the entity and and sometimes especially in um our vertical of um 
+  education will often need at least the common name and the legal 
+  names right because a lot of universities have uh the.
+Dmitri Zagidulin:  Uh the funky thing of like.
+Dmitri Zagidulin:  There's the common University name such as MIT 
+  and then there's the legal name which is like uh Ye Olde Trustees 
+  of Massachusetts internet of technology or Institute of 
+  Technology.
+Dmitri Zagidulin:  Website is helpful if you want to get Advanced 
+  maybe the location for disambiguation of uh.
+Dmitri Zagidulin:  If you want to get really Advanced and this is 
+  this is going to go into Registries 101 but we can talk about 
+  this as well.
+Dmitri Zagidulin:  You can also say.
+Dmitri Zagidulin:  Who this entity is but is it authorized to 
+  issue these credentials in the first place so.
+Dmitri Zagidulin:   Not all.
+Dmitri Zagidulin:  Only is this uh ABC University but ABC 
+  university has been authorized by the state of California.
+Dmitri Zagidulin:  2 Uh issue bachelor's diplomas right so so 
+  it's the accreditation aspect of it.
+Dmitri Zagidulin:  Uh and then also kind of overlooked but really 
+  important is not just its current identify its current set of 
+  keys that it signs diplomas with.
+Dmitri Zagidulin:  But also all the past ones.
+Dmitri Zagidulin:  And and why is that because.
+Dmitri Zagidulin:  Keys get rotated.
+Dmitri Zagidulin:  So 1 of the sort of common security policies 
+  uh that to guard against key theft key loss um.
+Dmitri Zagidulin:  Graphic algorithm expiration just a number of 
+  things.
+Dmitri Zagidulin:  We've been taught for 4 good reasons that you 
+  should rotate Keys regularly.
+Dmitri Zagidulin:  But here's the problem.
+Dmitri Zagidulin:  I graduate the university has 1 key.
+Dmitri Zagidulin:  Uh it signs my uh my diploma with it.
+Dmitri Zagidulin:  I go out into the world.
+Dmitri Zagidulin:  And 2 years down the line I'm applying 
+  somewhere and I hand over my diploma.
+Dmitri Zagidulin:  But the university is required to rotate its 
+  Keys every 3 months.
+Dmitri Zagidulin:   And now.
+Dmitri Zagidulin:  2 Years past that.
+<ildiko_mazar> Does this advanced verification (of issuer 
+  identity) have to be a part of the registry? Such authorisations 
+  (e.g. accreditation and various licences) could be a separate 
+  issue not necessarily linked to the Agent's identity
+Dmitri Zagidulin:  Going to know that 2 years ago.
+Dmitri Zagidulin:  They had this key.
+Dmitri Zagidulin:  Somebody's going to keep that uh somebody 
+  trusted needs to keep that history.
+Dmitri Zagidulin:  Some did methods.
+Dmitri Zagidulin:  Sami Sanchez has identified methods.
+Dmitri Zagidulin:  Keep the key rotation history as part of the 
+  Dead mechanism itself like they're required to that's how you 
+  know.
+Dmitri Zagidulin:  Uh it's part of the verification of the did 
+  method.
+Dmitri Zagidulin:  But other dead methods such as did Webb such 
+  as did key such as a number of other dead methods don't keep that 
+  history in the method itself.
+Dmitri Zagidulin:   So we.
+Dmitri Zagidulin:  That we have to put it somewhere and 1 
+  convenient place to put that history is of course in an issue or 
+  registry.
+Dmitri Zagidulin:  Now we get into the all important question of.
+Dmitri Zagidulin:   All right.
+Dmitri Zagidulin:  So why we need issues.
+Dmitri Zagidulin:  Cryptographic identifiers to figure out who it 
+  is that signed something.
+Dmitri Zagidulin:  What are they there their mappings their 
+  directories.
+Dmitri Zagidulin:  Okay who is going to run them.
+Dmitri Zagidulin:  And that right there is the key issue for for 
+  all of us to think about because.
+Dmitri Zagidulin:  At this point in time at this point in the 
+  development of verifiable credentials.
+Dmitri Zagidulin:  This is going to be the key question.
+Dmitri Zagidulin:  Very little of it is technical right the 
+  format of a mapping format of a directory is is Trivial it's just 
+  a dictionary it's just a map that bit is easy all of the hard 
+  part is social legal political.
+Dmitri Zagidulin:  Who do you trust to run these lists.
+Dmitri Zagidulin:  And how do we.
+Dmitri Zagidulin:  How do we learn from uh the lessons that for 
+  example DNS certificates did because if you think about it.
+Dmitri Zagidulin:  Certificates there's a cell certificates are 
+  run by registries.
+Dmitri Zagidulin:  And what happened in the in the web world is.
+Dmitri Zagidulin:  Main registrant to the business of issuing 
+  these certificates there are these um certificate authorities 
+  that most users don't know about and don't care.
+Dmitri Zagidulin:  Uh for for good reasons right we don't 
+  necessarily need users to care.
+Dmitri Zagidulin:  But we'll put an asterisk uh in that and come 
+  back to it.
+Dmitri Zagidulin:  But basically it's all built into the browser 
+  and at best you see like a little green check mark of like okay 
+  this was this was known by this SSL certificate this domain was 
+  issued by a known issuer.
+Dmitri Zagidulin:  Of course lately what happened with registry 
+  is on the web.
+Dmitri Zagidulin:  Is at first it costs a lot to buy an SSL 
+  certificate.
+Dmitri Zagidulin:  For from the domain registar so getting an 
+  https URL for your domain was was a significant uh investment 
+  until it came down in price to be you know below hundred dollars.
+Dmitri Zagidulin:  It used to be many hundreds of dollars 
+  possibly thousands of dollars or you go to your domain registar 
+  and say hey in addition to registering the domain give me a 
+  certificate meaning.
+Dmitri Zagidulin:  Me an entry in your registry.
+Dmitri Zagidulin:  Because domain certificate is much like 
+  verifiable credentials and opaque key that is mapped to.
+Dmitri Zagidulin:  Uh identity verified.
+Dmitri Zagidulin:  And there are a number of problems with this 
+  uh 1 is of course the.
+Dmitri Zagidulin:  Towards centralization the certificate 
+  authorities sort of merged and acquired each other there's only I 
+  forget a dozen or 2.
+Dmitri Zagidulin:  Of uh Global root authorities that are built 
+  into the browser uh currently.
+Dmitri Zagidulin:  But even beyond that.
+Dmitri Zagidulin:  It's not possible for us the users of the web 
+  to know how much do you diligent due diligence did the registar 
+  do in order to hand out that sell certificate.
+Dmitri Zagidulin:  Back this time when on and as the ASL 
+  certificates dropped in price.
+Dmitri Zagidulin:  1 Of the ways that it dropped in price is that 
+  the registar.
+Dmitri Zagidulin:  Wasn't standing behind.
+Dmitri Zagidulin:  This this actually happened to me uh 
+  researching regards of years ago.
+Dmitri Zagidulin:  To a domain registar to to their pricing page 
+  and it said.
+Dmitri Zagidulin:  Here's how much it costs to get an SSL 
+  certificate.
+Dmitri Zagidulin:  We can give you uh as a certificate for like 
+  90 dollars.
+Dmitri Zagidulin:  We can give it to you for like 3,000 or you 
+  can give it to you for 10,000.
+Dmitri Zagidulin:  It's the same certificate.
+Dmitri Zagidulin:  What's what's the difference between the price 
+  there.
+Dmitri Zagidulin:  It turned out that the difference was.
+Dmitri Zagidulin:  That the registar put on themselves 
+  essentially the difference uh.
+Dmitri Zagidulin:  Out to be the amount of due diligence.
+Dmitri Zagidulin:  That the register went through.
+Dmitri Zagidulin:   In order.
+Dmitri Zagidulin:  Give me the certificate in the first place.
+Dmitri Zagidulin:  Again through the browser you as the user if 
+  you go to I don't know ibm.com.
+Dmitri Zagidulin:  You don't know whether IBM.
+Dmitri Zagidulin:  Went through you know went for the free SSL 
+  certificate or the fifty dollar 1 or the $10,000 1.
+Dmitri Zagidulin:  That that information is not really surfaced 
+  to us as the users.
+Dmitri Zagidulin:  Uh so we should we should think about for 
+  verifiable credentials how to.
+Dmitri Zagidulin:   Can we.
+Dmitri Zagidulin:  Better than that.
+Dmitri Zagidulin:  Coming back to uh site tangent on uh a self 
+  certificates which are also just another example of an issue of 
+  registry.
+Dmitri Zagidulin:  Who is going to run.
+Dmitri Zagidulin:  Our issue Registries for verifiable 
+  credentials.
+Dmitri Zagidulin:  And the answer as you've you've come to expect 
+  in this group is.
+Dmitri Zagidulin:  It depends let's wait and see but here's what 
+  we do know.
+Dmitri Zagidulin:  It's likely going to be different by the 
+  vertical right so in in.
+Dmitri Zagidulin:  Education vertical it's going to be 1 set of 
+  authorities in medical licensing going to be another 1 in uh 
+  driver's licenses or truck licenses going to be yet another set 
+  of authorities and so on right so.
+Dmitri Zagidulin:  The way the ecosystem is shaping up is the.
+Dmitri Zagidulin:  And the the organizations and companies and 
+  and government entities running these Registries are going to be 
+  slightly closer to the vertical rather than.
+Dmitri Zagidulin:  Technical register is like verisign.
+Dmitri Zagidulin:  Because this is a necessary component of the 
+  architecture essentially if we don't have Registries we don't 
+  really have a verified credential ecosystem so everything that 
+  we're working on in this group kind of depends on this piece of 
+  infrastructure.
+Dmitri Zagidulin:  So 1 of the 1 of the work that we're all sort 
+  of doing in the background is.
+Dmitri Zagidulin:  Looking to see.
+Dmitri Zagidulin:  In education or even in higher education.
+Dmitri Zagidulin:  Who are going to be the the the entities that 
+  we trust to run these directories.
+Dmitri Zagidulin:  And what is shaping up to be 1 depends on 
+  geographical jurisdiction right so like European Union.
+Dmitri Zagidulin:  Has has some regulation has some strong 
+  feelings about.
+Dmitri Zagidulin:  Who's allowed to run uh these these Registries 
+  that's going to be different from what's in the US it's gonna be 
+  different from what it is uh globally.
+Dmitri Zagidulin:  But 1 of the 1 of the things as usual.
+Dmitri Zagidulin:  Like if you're if you're responsible for sort 
+  of bootstrapping an entire ecosystem in your vertical 1 of the 
+  common techniques is you look for a natural Authority you look 
+  for somebody.
+Dmitri Zagidulin:  Hopefully somebody neutral.
+Dmitri Zagidulin:  Directories and lists or lists of 
+  accreditations.
+Dmitri Zagidulin:  There you can say hey do you since you're 
+  already doing this can you also run this verify the credential 
+  issue a registry for us.
+Dmitri Zagidulin:  Um area of Education.
+Dmitri Zagidulin:  Uh we have.
+Dmitri Zagidulin:  Educating and in common.
+Dmitri Zagidulin:  Who are who already.
+Dmitri Zagidulin:  Keep Registries uh of um saml 2 certificates 
+  right they they do it so that you as a student or as a professor 
+  if you go to any other university.
+Dmitri Zagidulin:   Uh in the world.
+Dmitri Zagidulin:  You can use their Wi-Fi.
+Dmitri Zagidulin:  And and again how do you use their Wi-Fi under 
+  the hood there's an issue a registry.
+Dmitri Zagidulin:  And the the system gets a digital digital 
+  signed object from from your home University.
+Dmitri Zagidulin:  Looks it up in the registry and says okay yeah 
+  this is.
+Dmitri Zagidulin:  University is a member of.
+Dmitri Zagidulin:  Edugain Edgar Rome.
+Dmitri Zagidulin:  We're gonna give you access right so same sort 
+  of deal.
+Dmitri Zagidulin:  No that's 1 of the parties that that we've 
+  approached and said hey do you want to run this registry and 
+  fortunately.
+Dmitri Zagidulin:  Interested in doing this work and they've 
+  they've joined in the issue registry project uh with us so that 
+  we're going to talk about uh in just a second.
+Dmitri Zagidulin:  Uh DCC the folks that I work with uh the MIT 
+  is digital credential Consortium is exactly that a Consortium of 
+  a bunch of universities and as 1 of the services provided by the 
+  Consortium 1 of the things that we realized we needed in order 
+  for verifiable credential and education to work.
+Dmitri Zagidulin:  Is if we.
+Dmitri Zagidulin:  Could provide a directory of okay these are a 
+  couple dozen members.
+Dmitri Zagidulin:  Here are the keys that they used to sign so 
+  GCC is going to run uh a registry for its members.
+Dmitri Zagidulin:  Going to be ministries of Education that have 
+  some input on the subject there's going to be uh trade 
+  associations and and uh companies like in the US we have Acro the 
+  American Association of uh something of regards essentially.
+Dmitri Zagidulin:  If we do this right if um.
+Dmitri Zagidulin:  If we set up the infrastructure correctly from 
+  a social political standpoint there's going to be many 
+  registries.
+Dmitri Zagidulin:   Uh and then of course you get into the fact 
+  that.
+Dmitri Zagidulin:  Right Human Resources software or.
+Dmitri Zagidulin:   As um.
+Dmitri Zagidulin:  Verification of of credentials.
+Dmitri Zagidulin:   As an application developer let's say I write 
+  admissions software or I write wallet uh credential wallet 
+  software or.
+Dmitri Zagidulin:  How do I know.
+Dmitri Zagidulin:  About about all of these.
+Dmitri Zagidulin:  All of these verticals but but for a given 
+  vertical who the Registries are going to be like literally what's 
+  the URL of the API endpoints of those Registries then I can send 
+  a request to you and say who's did 1 2 3 oh that's that's Arizona 
+  State University.
+Dmitri Zagidulin:  And what we suspect is going to happen and and 
+  there's there's already sort of a project started.
+Dmitri Zagidulin:  Uh towards this.
+Dmitri Zagidulin:  These are going to get aggregated into lists 
+  of lists into registry of the Registries so that I can hopefully 
+  I as a service provider don't need to know all the you know 20 or 
+  100.
+Dmitri Zagidulin:  Registries in my vertical I can just say hey 
+  project a uh here's a did can you connect me.
+Dmitri Zagidulin:  With a registry that does know about it.
+Dmitri Zagidulin:  Uh and and and they would do that.
+Dmitri Zagidulin:  Here's here's where we come to sort of the 
+  Crux of the matter and let's let's pause here.
+Dmitri Zagidulin:  Uh and and see do we have any questions on the 
+  Queue before we get into.
+Dmitri Zagidulin:  Uh the the.
+Dmitri Zagidulin:  Sort of cracks of the matter which is 
+  registered governance.
+Dmitri Zagidulin:  Elico please go ahead.
+Dmitri Zagidulin:  Yes go ahead.
+Dmitri Zagidulin:  Yeah great great question uh.
+Dmitri Zagidulin:  So like you said.
+Dmitri Zagidulin:  They obviously uh 2 different aspects and we 
+  need both.
+Dmitri Zagidulin:  Right we need to we need to identify who the 
+  University or whatever the issuer is and whether they're credited 
+  or not.
+Dmitri Zagidulin:  So so 1 1 way of thinking about what you're 
+  asking is are different services.
+Dmitri Zagidulin:  Going to be responsible for those 2 different 
+  things do I make a call out to an identity service and then do I 
+  make a separate call to an accreditation service Maybe.
+Dmitri Zagidulin:  Spam dancers maybe let's we're going to find 
+  out as as of ecosystem.
+Dmitri Zagidulin:  At the moment what we see is the technical 
+  specs.
+<ildiko_mazar> ...and the first (identifier) might be necessary 
+  to verify the second (i.e. accredited status)
+Dmitri Zagidulin:  These Registries they have an affordance they 
+  have the feature that says.
+Dmitri Zagidulin:  Here's the identity section here's the 
+  accreditation section so.
+Dmitri Zagidulin:   They at least.
+Dmitri Zagidulin:  Give you the.
+Dmitri Zagidulin:  Of Hosting both in the same service.
+Dmitri Zagidulin:  But nothing is stopping you from using 2 
+  different Services uh from that so it's unclear I suspect just 
+  for.
+Dmitri Zagidulin:  Ality and developer convenience they might be 
+  combined into 1 service so that instead of 2 HTP calls.
+Dmitri Zagidulin:  To choose different Services I make just 1 
+  right but under the hood of putting together that registry of 
+  course different um jurisdiction different uh authorities are 
+  going to be.
+Dmitri Zagidulin:  Used to to combine that that information does 
+  that make sense.
+Dmitri Zagidulin:  I so I completely agree with you and I suspect 
+  we're going to see that everywhere that.
+Dmitri Zagidulin:  Some use cases and some verticals are going to 
+  need the accreditation component and for others it's Overkill so 
+  yes that exactly that uh what you said.
+Dmitri Zagidulin:  Wearing our hat as technologists and uh.
+Dmitri Zagidulin:  Technical specification creators we need to 
+  make sure that the specs that we use at least have that feature.
+Dmitri Zagidulin:  That at least you're able to provide that 
+  accreditation information uh the other the other term for it the 
+  other technical jargon for citation information uh that I've seen 
+  is trust marks.
+Dmitri Zagidulin:   Kind of.
+Dmitri Zagidulin:  Terrible name right because it uses the very 
+  loaded terminology of trust.
+Dmitri Zagidulin:  That we kind of want to so mentally translate 
+  when you see trust marks in these uh specs think think of it as 
+  uh.
+Dmitri Zagidulin:  Yeah other questions uh before we get into the 
+  governance.
+Dmitri Zagidulin:  All right so.
+Dmitri Zagidulin:  Got it um so governance.
+Dmitri Zagidulin:  Governance is hard so.
+Dmitri Zagidulin:  This whole thing works.
+Dmitri Zagidulin:  I trust the entity providing.
+Dmitri Zagidulin:   The registry.
+Dmitri Zagidulin:  I'm in a vertical.
+Dmitri Zagidulin:  Where such trust trustworthy um.
+Dmitri Zagidulin:  Authorities uh exist already whether it's 
+  Mischief education whether it's Acro whether it's uh uh I'm Town 
+  municipality whether it's a nonprofit that is hosting like here's 
+  the.
+Dmitri Zagidulin:   Uh what what.
+Dmitri Zagidulin:  Whether it's a.
+Dmitri Zagidulin:  Journalist that says here's the universities 
+  or whatever that I've interviewed here they are and here's here's 
+  their keys not that we expect really journalists to to do that 
+  but I'm just giving an example that that could be really anyone.
+Dmitri Zagidulin:  What do we mean when we say by governance.
+Dmitri Zagidulin:  It's identifying the The Entity who's hosting 
+  the the registry.
+Dmitri Zagidulin:  What steps usually we want an explanation of 
+  what was the procedure that they went through to kyc to know your 
+  customer to to.
+<ildiko_mazar> I suppose school rankings could be such lists too, 
+  right?
+Dmitri Zagidulin:  Ify the identity of the entries in there.
+Dmitri Zagidulin:  And then what are the terms of service what's 
+  the what's the liability what's the guarantee that that they're 
+  taking on.
+Dmitri Zagidulin:  Right I Demetri could run.
+Dmitri Zagidulin:  A um registry service that says here's some 
+  universities that Demitri talked to on the phone.
+Dmitri Zagidulin:  In the section under what's a liability none 
+  use at your own risk right that's 1 end of the spectrum.
+Dmitri Zagidulin:  And then on the other end of the spectrum is.
+Dmitri Zagidulin:  Uh this is this list is run by Ministry of 
+  Education uh here are the here's the procedures that we went 
+  through for each University on there these are the forms that we 
+  required uh we talked to I don't know the the registar on the 
+  phone or on video uh these are the passports of the people 
+  involved on file like as detailed and as as crazy as you want to 
+  get.
+Dmitri Zagidulin:  So 1 of the social and Technical challenges 
+  that we have is.
+Dmitri Zagidulin:  Both as organizers of these Registries but 
+  more more likely as consumers of the Registries as creators of 
+  software or writers of policy.
+Dmitri Zagidulin:   We're going to need.
+Dmitri Zagidulin:  To figure this stuff out.
+Dmitri Zagidulin:   At the moment.
+Dmitri Zagidulin:  Moment to the state of the art is.
+Dmitri Zagidulin:   There's a.
+Dmitri Zagidulin:  Governance page there's a government's 
+  document kind of like.
+Dmitri Zagidulin:  A terms of service on any website or any 
+  software that you install right the the thing that everybody 
+  clicks through and and never looks at um because we know it's uh 
+  it's opaque and hopeless anyways uh hopefully we can do slightly 
+  better than that but.
+Dmitri Zagidulin:  Usually governance means a government's policy 
+  document somewhere.
+Dmitri Zagidulin:  Will we ever get to a point where that 
+  governance policy document is machine readable or machine 
+  processable with or without Ai and llms maybe the moment.
+Dmitri Zagidulin:  We're hoping to just have human readable 
+  documents that says uh this is such a so.
+Dmitri Zagidulin:  What what are the reasons I'm mentioning it 
+  is.
+Dmitri Zagidulin:  Ultimately a human has to be in the loop.
+Dmitri Zagidulin:  The question is who and how often right we 
+  want to set it up so that.
+Dmitri Zagidulin:  Each individual user verifying a credential 
+  doesn't need to be a uh policy expert.
+Dmitri Zagidulin:  Uh so they they trust essentially they they 
+  delegate the decision.
+Dmitri Zagidulin:  To the creator of the software of their 
+  verification software they they trust that.
+Dmitri Zagidulin:  Whichever registry the software is checking.
+Dmitri Zagidulin:  Good ones they did their due diligence now of 
+  course we want to present the information um to the users as much 
+  as possible so for example uh I'm going to talk about the trust 
+  registry project in just a second but.
+Dmitri Zagidulin:  At the DCC the DCC wallet.
+Dmitri Zagidulin:  1 Of the.
+Dmitri Zagidulin:  Confidential 1 of the.
+Dmitri Zagidulin:  Challenges that we're discussing right now and 
+  making changes to your software is.
+Dmitri Zagidulin:  Okay so each credential.
+Dmitri Zagidulin:  The issuer is checked against a number of 
+  registries.
+Dmitri Zagidulin:  What's the best way of telling the user that.
+Dmitri Zagidulin:   Uh and.
+Dmitri Zagidulin:  And at the moment what we're we're heading 
+  towards is saying.
+Dmitri Zagidulin:  The the part that identifies the issuer.
+Dmitri Zagidulin:  Is the the part where it says MIT issued this 
+  diploma.
+Dmitri Zagidulin:  That name is taken from a registry.
+Dmitri Zagidulin:  And then we list which Registries were checked 
+  so we can say.
+Dmitri Zagidulin:   All right.
+Dmitri Zagidulin:  The issue appears to be mitt how do we know 
+  because we checked the DCC issuer registry we checked the uh The 
+  Edge you gain 1 the acro and the California Ministry of Education 
+  or whatever.
+Dmitri Zagidulin:  Right we so we.
+Dmitri Zagidulin:  Surface to the user to the UI.
+Dmitri Zagidulin:  Some of this information.
+Dmitri Zagidulin:  With both the.
+Dmitri Zagidulin:  The software so do you see creating the wallet 
+  we maintain that list of of Registries that we were checking 
+  right and and it's up to us to do our due diligence to.
+Dmitri Zagidulin:  To read through the policy governance.
+Dmitri Zagidulin:  Documents for each 1 and say okay is this a 
+  trustworthy.
+Dmitri Zagidulin:  Or or you know is this a useful registry for 
+  us to check.
+Dmitri Zagidulin:  But in addition to our judgment as a software 
+  vendors not vendors uh creators.
+Dmitri Zagidulin:  In addition we want to surface that 
+  information to the user so that the user can double-check us to 
+  say oh okay uh so this this registry.
+Dmitri Zagidulin:  Uh this is sure.
+Dmitri Zagidulin:  Is in the Ministry of Education registry okay 
+  seems legit uh this issue is unknown.
+Dmitri Zagidulin:  And and what do I do with that information or 
+  this issuer is in Demitri's Fly by Night registry right I 
+  exaggerated for a fact because if it is fly fly by night and not 
+  that useful why is it in the list in the first place.
+Dmitri Zagidulin:  The the software creator.
+Dmitri Zagidulin:   Can see.
+Dmitri Zagidulin:  That it's useful but the user might not so 
+  we're going to.
+Dmitri Zagidulin:  This stage in the game we're going to try and.
+Dmitri Zagidulin:  Uh let the user at least uh make their own 
+  decisions but we we also understand that especially depending on 
+  the vertical the user is not going to know some of these 
+  authorities right like this is where government steps in this is 
+  where legislation steps in this is where.
+Dmitri Zagidulin:  Social contracts step in.
+Dmitri Zagidulin:  1 Other thing that I want to.
+Dmitri Zagidulin:  That I want to highlight which is not obvious 
+  is.
+Dmitri Zagidulin:  In thinking about who can be trusted to run 
+  these registries.
+Dmitri Zagidulin:  Especially for selfish credentials especially 
+  for personal issue credential and what's an example of that a 
+  resume a resume is uh I'm applying to a job.
+Dmitri Zagidulin:  I am making a number of claims about myself 
+  issued by me.
+Dmitri Zagidulin:  And then it's up to the verifier the HR office 
+  to uh double-check those claims but that's a that's a verifiable 
+  credential and I'm going to sign with my own personal key.
+Dmitri Zagidulin:  That key that I put on my resume.
+Dmitri Zagidulin:   Is that.
+Dmitri Zagidulin:  Going to be in any directory anywhere 
+  unlikely.
+Dmitri Zagidulin:  Smart and diligent jurisdictions like the 
+  European Union specifically forbid person level.
+Dmitri Zagidulin:  So what do we do in that case.
+Dmitri Zagidulin:  And the answer is unclear the the field is is 
+  trying to figure it out uh but 1 1 thing that I want to 
+  highlight.
+Dmitri Zagidulin:  Is that essentially we all already carry uh 
+  direct our own personal trust Registries uh sorry issuer 
+  Registries our own directories with us already in our mobile 
+  phones in our address books.
+Dmitri Zagidulin:  It's the difference between.
+Dmitri Zagidulin:  I get a call unknown number.
+Dmitri Zagidulin:  Uh unknown number but suspected as spam what 
+  does that mean it means the software checked against uh a 
+  registry provided by my cell phone carrier and said okay yeah 
+  this is this is a good chance that it's spam or.
+Dmitri Zagidulin:  It's uh Demetri's friend Joe that's calling oh 
+  okay how do I know that because the phone checked an issue a 
+  registry which happened to be my address book.
+Dmitri Zagidulin:  And we all know that um address books carry 
+  phone numbers and emails uh but also there's a field there's 
+  literally a field for key identifiers for account IDs in there so 
+  what 1 thing that I want to.
+Dmitri Zagidulin:  Uh sort of plant a seed and everybody's mind 
+  is that especially for personal credentials.
+Dmitri Zagidulin:  Uh while this whole infrastructure is booting 
+  up don't forget about address books as a complimentary component 
+  uh to these registries.
+Dmitri Zagidulin:  Uh we're nearing the top of the hour so let's 
+  uh.
+Dmitri Zagidulin:  Let's make sure we cover a couple more.
+Dmitri Zagidulin:  All right so.
+Dmitri Zagidulin:  If you're involved in building this technology 
+  or writing spec uh writing policy.
+<don_presant,_learning_agents,_🇨🇦> Levels of confidence useful 
+  here, mapped to criteria IMO
+Dmitri Zagidulin:  What are the specs what are the technical 
+  specifications that describe how to run these Registries there's 
+  a handful uh there's open ID federations uh.
+Dmitri Zagidulin:  Sorry open ID foundations.
+Dmitri Zagidulin:  Federation 1.0 spec.
+Dmitri Zagidulin:  There's the w3c uh ccg verifiable issues and 
+  verifiers.
+Dmitri Zagidulin:  There's uh diffs that's the decentralized 
+  identifiers Foundation.
+Dmitri Zagidulin:  Uh credential trust establishments back.
+Dmitri Zagidulin:  There's many others.
+Dmitri Zagidulin:  Uh because there's there's all these um all 
+  these specs.
+Dmitri Zagidulin:  Mit's digital credential Consortium credential 
+  engine and a couple of other organizations uh got a got a fund uh 
+  sorry got a grant to try and make sense of this to go through.
+Dmitri Zagidulin:   Some of.
+Dmitri Zagidulin:  These existing specifications and they're all 
+  drafts because it's all it's all still early.
+Dmitri Zagidulin:  Uh to compare and contrast them figure out 
+  what each 1 is trying to do.
+Dmitri Zagidulin:  And and run a year-long pilot.
+Dmitri Zagidulin:  And of course share the learnings uh do 
+  education Outreach so that's the issue registry project that that 
+  I uh mentioned earlier so that's that's something my team 
+  credential engine and others are are involved in.
+Dmitri Zagidulin:  And just to like spoiler we in we evaluated 
+  all these specifications and I decided to go with open ID 
+  Federation as our initial uh specification to implement.
+Dmitri Zagidulin:   To learn.
+Dmitri Zagidulin:  From and so on uh because we feel it's uh it's 
+  very simple and it has the most sort of current momentum.
+Dmitri Zagidulin:   Of of.
+Dmitri Zagidulin:  Of implementers that there's a bunch of uh 
+  countries in Europe for example like Italy and Sweden Sweden that 
+  have implemented it that that are that are experimenting with it 
+  so we went with it as well.
+Dmitri Zagidulin:  But essentially all of these do the same thing 
+  they they may have slightly different features and slightly uh 
+  different.
+Dmitri Zagidulin:  Aspects to them but they're all either a flat 
+  file mapping identifiers to entities or an API that says hey 
+  what's a key 1 2 3 oh it's this entity here.
+Dmitri Zagidulin:  Or or in many cases uh both.
+Dmitri Zagidulin:  Encourage everyone to check out some of these 
+  blog posts and and uh.
+Dmitri Zagidulin:  Mitts and credentials uh.
+Dmitri Zagidulin:  A research on the subject okay I heard a uh Q 
+  sound so that's illico go ahead.
+Dmitri Zagidulin:  Oh great question what is vat.
+<nate_otto> Value Added Tax
+Dmitri Zagidulin:  Oh yeah I'm not I'm not familiar with that at 
+  all uh I'm I'm not sure oh but probably that that's because they 
+  already.
+Dmitri Zagidulin:  I I I think it's a government um.
+Dmitri Zagidulin:  Government entity that has that mapping of 
+  opaque identifiers your your vat number to who it is that it 
+  represents yeah that's that's 1 natural authority to try and talk 
+  to and say hey do do you want to stand behind this registry and 
+  they might tell you that know for example in the US we have uh.
+Dmitri Zagidulin:  Uh much much maligned uh Social Security.
+Dmitri Zagidulin:   I mean.
+Dmitri Zagidulin:  Administration that runs a directory of social 
+  security numbers to like to People to kyc People.
+<nate_otto> VAT registries are unlikely to include the DID 
+  identifiers that we'd like to map to a registry entry, but that 
+  authority could be extended to add support for these identifiers. 
+  They have the org metadata, but they don't yet have the 
+  credential issuance DIDs associated with these orgs.
+Dmitri Zagidulin:  That conversation came up with them in the US 
+  government hey Social Security Administration.
+Dmitri Zagidulin:  Do you want to be do you want to run a 
+  registry and they're like no we don't have the funds for it we 
+  don't want to be responsible for it go away don't use our don't 
+  don't use our identifiers for this stuff so.
+<sharon_leu> Is someone working with Duns and Bradstreet?
+Dmitri Zagidulin:  They might say oh yeah this is this is a good 
+  uh I don't know uh chance for us to get lots of um Government 
+  funding yeah we'll we'll take that on or it'll be like no forget 
+  it.
+Dmitri Zagidulin:  And and as um I think Nate points out in uh in 
+  chat that they're unlikely to use.
+Dmitri Zagidulin:  At the moment they certainly don't have data 
+  did information uh would they be interested in it uh unclear 
+  probably not uh we have um also Ted on the Queue go ahead Ted.
+Dmitri Zagidulin:  Oh no worries.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Oh sorry 
+  that's an accidental queue but um I was typing oh there we are 
+  actually laws against using these social security number for any 
+  purpose other than tracking Social Security and tax information 
+  that's the only place it's allowed to be used and that's for 
+  decades ago.
+Dmitri Zagidulin:  Yeah yeah and.
+Dmitri Zagidulin:  Yeah so so and.
+Dmitri Zagidulin:  In in recent like couple couple years ago or 
+  or more recent like the for example Department of Homeland 
+  Security came again to Social Security Administration is like hey 
+  do you want to reconsider know we don't go away so.
+Dmitri Zagidulin:  It'll depend uh Sharon in chat asks uh is 
+  anybody working with duns and Bradstreet duns and Bradstreet the 
+  the what is the DNB number uh is also a great example of such a 
+  directory literally an opaque identifier like a random number uh 
+  mapped to a known entity here's the interesting part about it.
+Dmitri Zagidulin:  Uh so so 1 are they going to be interested in 
+  running such a thing I suspect so uh I haven't talked to them 
+  personally they they might not be aware of uh this opportunity so 
+  somebody should talk to them uh they're a great example because 
+  they're a great example of why governance is important.
+Dmitri Zagidulin:  Would they be an actual fit for running such a 
+  directory yes.
+Dmitri Zagidulin:  However how useful such a directory uh it 
+  depends on how much kyc they're willing to do behind each entry 
+  what the liability and what the terms of service are.
+Dmitri Zagidulin:  To put it plainly.
+Dmitri Zagidulin:  I can I can get uh dunan uh DNB number.
+Dmitri Zagidulin:  Very easily without much documentation right I 
+  can say hey I run this company here it is and get a number.
+Dmitri Zagidulin:  Uh a couple days later without without much 
+  document so could I register uh a university with them or some 
+  something equivalent yes.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> One other 
+  Social Security note -- the *number* is not uniquely assigned; 
+  the *combination of name and number* is uniquely assigned.
+Dmitri Zagidulin:  Uh so it's 1 of those buyer beware things uh 
+  if if they decide to.
+Dmitri Zagidulin:  If they decide this is a business opportunity 
+  and they're going to focus on it they they'll need to figure out 
+  how much.
+Dmitri Zagidulin:  Identification they're going to do what their 
+  terms of service are going to be how much liability they're going 
+  to be right so like.
+Dmitri Zagidulin:  Pay attention to the fine print basically.
+Dmitri Zagidulin:  Uh oh Ted also points out Social Security it's 
+  not that the numbers uniquely assigned it's specifically the 
+  combination of name and number that is unique that's interesting 
+  I did not know that that's cool tidbit all right uh other other 
+  questions.
+Dmitri Zagidulin:  As we near the top of the hour.
+Dmitri Zagidulin:  So let's let's summarize.
+Dmitri Zagidulin:  5 F credentials we need registries.
+Dmitri Zagidulin:   In order.
+Dmitri Zagidulin:  Order to make any any of this work specially 
+  in open world scenarios what do I mean by that well for example 
+  in um the true age.
+Dmitri Zagidulin:  Age verification project IT issues verifiable 
+  credentials.
+Dmitri Zagidulin:   Does it.
+Dmitri Zagidulin:  A uh issue a registry behind it no because 
+  there's only 1 issuer.
+Dmitri Zagidulin:   Which is.
+Dmitri Zagidulin:  The North American Association of convenience 
+  stores.
+Dmitri Zagidulin:  Like we're going to issue the credentials and 
+  that's it so the verifier software.
+Dmitri Zagidulin:  All we need to know about 1 is her except they 
+  too rotate keys so it's really it's not even just 1 key ID that 
+  they need that the verifier needs to know about it's the history 
+  of the keys but still.
+Dmitri Zagidulin:  They can they can go to uh uh hard-coded place 
+  on uh the next website and then download the key history and work 
+  like that so they don't need necessarily a full-on issue register 
+  but that's because it's a very narrow sort of closed world use 
+  case where there's only 1 issue or and a bunch of verifiers and 
+  they can coordinate the moment you have multiple issuers like 
+  with education universities that's where you need these 
+  Registries that's why we need this information.
+Dmitri Zagidulin:  Uh the tech behind it is easy go look at the 
+  specs the governance is hard as usual nothing we can do about it 
+  uh buyer beware and read the fee print.
+<sharon_leu> Thanks for this great overview!
+Dmitri Zagidulin:  I'll just check for last moment questions uh 
+  thank you everyone uh talk to you all uh if not next week uh 
+  because I think a number of us are going to be at IBEW then 
+  definitely the week after and thanks Sharon.
+Dmitri Zagidulin:   Bye everyone.
