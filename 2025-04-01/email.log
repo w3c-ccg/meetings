@@ -1,0 +1,1108 @@
+Thanks to Our Robot Overlords and Our Robot Overlords for scribing this week!
+
+The transcript for the call is now available here:
+
+https://w3c-ccg.github.io/meetings/2025-04-01/
+
+Full text of the discussion follows for W3C archival purposes.
+Audio of the meeting is available at the following location:
+
+https://w3c-ccg.github.io/meetings/2025-04-01/audio.ogg
+
+A video recording is also available at:
+
+https://meet.w3c-ccg.org/archives/w3c-ccg-weekly-2025-04-01.mp4
+
+----------------------------------------------------------------
+W3C CCG Weekly Teleconference Transcript for 2025-04-01
+
+Agenda:
+  https://www.w3.org/Search/Mail/Public/advanced_search?hdr-1-name=subject&hdr-1-query=%5BAGENDA&period_month=Apr&period_year=2025&index-grp=Public__FULL&index-type=t&type-index=public-credentials&resultsperpage=20&sortby=date
+Topics:
+  1. <Identity in AT Protocol>
+Organizer:
+  Harrison Tang, Kimberly Linson, Will Abramson
+Scribe:
+  Our Robot Overlords and Our Robot Overlords
+Present:
+  Harrison Tang, Guest, Brian Campbell, Erica Connell, Andrew 
+  Kaizer, Chandi Cumaranatunge, Vanessa, Nis Jespersen , Will 
+  Abramson, Manu Sporny, Gregory Natran, TallTed // Ted Thibodeau 
+  (he/him) (OpenLinkSw.com), James Chartrand, Geun-Hyung, Kayode 
+  Ezike, David Chadwick, Leo, Benjamin Young, Tim Cappalli, Dmitri 
+  Zagidulin, julien fraichot, Joe Andrieu, Przemek Praszczalek, 
+  Mahmoud Alkhraishi, bumblefudge (afk), Juan Caballero, Aaron
+
+<harrison_tang> can you hear me, Bryan?
+Our Robot Overlords are scribing.
+Harrison_Tang: Checking the recording.
+Harrison_Tang: Let me restart give me a second.
+Our Robot Overlords are scribing.
+Harrison_Tang: Hi everyone uh welcome to uh this week's w3c ccg 
+  meeting uh today uh very excited to have Brian Nubble uh from 
+  Blue Sky uh to talk about identity in at protocol uh so before we 
+  start just want to quickly uh go over some administrative stuff 
+  uh first of all just a quick reminder on the call of Patrick and 
+  professional conduct I just want to make sure we have respectful 
+  and constructive conversations um so we've been doing that for 
+  years um but just want to do a quick reminder at the start of 
+  every meeting.
+Harrison_Tang: Now a quick note on the intellectual property 
+  anyone can participate in these calls however all substantive 
+  contributions to the ccg work items must be member of the ccg 
+  with full IPR agreements signed uh so if you have any questions 
+  in regards to the w3c account or the community contributor 
+  license agreement uh please feel free to reach out to any of the 
+  cultures.
+Harrison_Tang: Uh next uh these calls are being uh recorded and 
+  automatically transcribed and we will publish the meeting 
+  recording uh video audio recording and the transcription in the 
+  next day or 2.
+Harrison_Tang: We use TT chat to cue the speakers during the call 
+  so you can type in Q Plus to add yourself to the queue or cue 
+  minus to remove and you can type in Q question mark uh to see who 
+  is NICU.
+Harrison_Tang: Right just want to take a quick moment for the 
+  introductions and reintroduction so if you're new to the 
+  community or you haven't been active and just want to say hi uh 
+  please feel free to just unmute.
+Harrison_Tang: All right uh just want to take a moment for the 
+  announcements and reminders.
+Harrison_Tang: Any announcements or reminders.
+Manu Sporny: 
+  https://lists.w3.org/Archives/Public/public-credentials/2025Mar/0137.html
+Manu Sporny:  Yes uh a couple um so the first um 1 is that the uh 
+  voting for The verifiable credentials 20 work is underway at the 
+  worldwide Web Consortium uh here's a link uh to that male that 
+  went out to the mailing list um basically there are 7 
+  specifications up for Global standardization vote uh at w3c uh 
+  that vote will remain until halfway through this month um if you 
+  are a w3c member or know of a w3c member uh please uh have them 
+  go and uh vote um for those specifications um.
+Manu Sporny:  That's the first item uh the second item is as a 
+  result of that um there are a number of specifications that this 
+  community is incubating around verifiable credentials uh that we 
+  would um like to transition over to the verifiable credential 
+  working group now that it's done with those 7 specifications uh 
+  it has some spare bandwidth to work on some other ones um we have 
+  been uh incubating uh in discussing those on weekly calls um our 
+  next uh ccg work item promotion call is uh tomorrow at 11:00 am 
+  Eastern uh we'll send out an agenda for that um we are.
+Manu Sporny:   Going to focus.
+Manu Sporny:  The verifiable credential barcode stuff uh tomorrow 
+  which is putting VCS on things like driver's licenses and 
+  permanent resident cards and Bert certificates and and uh uh 
+  things like that um uh we'll spend a decent chunk of the call uh 
+  covering those items and then we'll also do the verifiable 
+  issuers and verifiers tomorrow as well David Chadwick's gonna be 
+  a participating there uh and then the Friday data Integrity call 
+  will focus on the uh Security review that has been uh that's 
+  nearing completion at w3c on the data Integrity work um that went 
+  that call went well today um as well as uh focusing on moving 
+  some of the post-quantum uh signatures uh specs and the uh unlink 
+  the Everlasting unlink properties of bbs4 um so that's that's it.
+Harrison_Tang: Thank you man.
+Harrison_Tang: The ccg promotion call is a 8:00 AM PT every 
+  Wednesday so if people want to join um please uh to join.
+Harrison_Tang: All right any other announcements or reminders.
+Harrison_Tang: Any updates on the work items.
+Harrison_Tang: All right let's get to the main agenda um again uh 
+  very excited to have Brian NewBo here uh from Blue Sky to talk 
+  about identity in at protocol so a quick intro uh blue sky as a 
+  lot of you guys know is 1 1 of the most popular decentralized 
+  social networks and they use uh app protocol and uh today Brian's 
+  going to talk about how they're going to how they been tackling 
+  the identity problem in app protocol.
+Harrison_Tang: The floor is yours.
+Bryan_Newbold_(Bluesky): Cool all right let's try.
+Bryan_Newbold_(Bluesky): Sharing my screen on Linux.
+Bryan_Newbold_(Bluesky): Is that working can you see slides 
+  great.
+Bryan_Newbold_(Bluesky): Okay so I'm gonna try to keep this.
+Bryan_Newbold_(Bluesky): Li short and it's like kind of a high 
+  level overview of uh identity in a Proto um so maybe like 15 or 
+  20 minutes uh and I mostly want to leave time for conversation so 
+  I'm not going to go too deep into any 1 of these kind of topics 
+  I'm going to kind of give a picture of like what we're doing and 
+  how everything fits together and kind of what our motivations are 
+  um for our identity system um so I'll run through kind of like 
+  what you know like kind of the the goals of the pro of the the 
+  app prototype and then how that translated down into our use of 
+  bids and handles and coming up with our own did system and then a 
+  couple um future things like what we're working on later this 
+  year and what some potential kind of like collaborations or other 
+  things might be.
+
+Topic: <Identity in AT Protocol>
+
+Bryan_Newbold_(Bluesky): So the background is uh of blue sky is 
+  uh was kind of started as a small R&D company with a contract and 
+  Twitter uh many years ago there's like this long whole long story 
+  of how the company was founded um uh through this like selection 
+  process within Twitter and then it's spun out and then there's 
+  obviously been a lot of Twitter history in the last couple years 
+  so at this point we're completely.
+Bryan_Newbold_(Bluesky): Uh separate from both Twitter and uh X 
+  now xai I guess uh just acquired X recently um so the the goal 
+  you know kind of like the fundamental goal is like really well 
+  uh.
+Bryan_Newbold_(Bluesky): Described in these essays by Mike maznik 
+  uh uh tech journalist who's now on our board um who wrote these 
+  essays about like the difficulty of content moderation kind of 
+  like how impossible it is to do content moderation in the context 
+  of these giant Global multinational corporations like Twitter and 
+  Facebook and Reddit that have that are making trying to make 
+  decisions for everyone in the world in different regions and not 
+  just how difficult that is um and a proposal to switch to 
+  protocols over platforms so the this uh this Knight First 
+  Amendment essay was like influential on Jack dorsy and then which 
+  kind of led to ponying up the money for uh Blue Sky um the team 
+  you know so Jay greyber is the founder of Blue Sky kind of got 
+  together a team of us uh that had background my background I 
+  worked at the internet archive right before um uh blue sky for 
+  about 5 years the internet archive had this series of dweb uh 
+  camps and some that's so it's kind of trying to like cultivate 
+  these new a new generation.
+Bryan_Newbold_(Bluesky):  of web Proto.
+Bryan_Newbold_(Bluesky): Um so that's like a little bit of my 
+  background other people on the team worked on earlier 
+  peer-to-peer systems like secure scuttlebutt or SSB which is a 
+  device to device mostly device to device uh social protocol other 
+  big influences were just the web we had some recent uh there's a 
+  conference a week or 2 ago that has some good talks that people 
+  have have time and are interested in out Proto in general there's 
+  a couple of these talks about kind of like the ethos or like the 
+  design goals of the overall protocol.
+Bryan_Newbold_(Bluesky):  and some of the.
+Bryan_Newbold_(Bluesky): Are you know the traditional Tim berners 
+  Lee web of documents and links and URLs uh there's a lot of a 
+  pretty strong influence from these more recent generation of 
+  peer-to-peer protocols none of these really broke out and got 
+  very large user bases but they're pretty influential at least on 
+  us so Technologies like bit torrent which was obviously has been 
+  quite successful at scale scuttlebutt is a Social Web application 
+  that uh and Citizen and Beaker browser were some attempts at 
+  other um more like Webby content address systems and then the 
+  kind of the last we we're we're ambitious we actually want to try 
+  to replace and build.
+Bryan_Newbold_(Bluesky): Large scale global scale networks and so 
+  we're pretty heavily influenced by modern web infrastructure so 
+  things like uh we have Martin kupper's 1 of our technical 
+  advisors he has this book designing data intensive uh 
+  applications and that's like kind of like 1 of the Bibles for us 
+  is like how do we actually do this with tens or hundreds of 
+  millions of users uh in the protocol so that's kind of like where 
+  where culturally coming at um in designing app Proto and uh some 
+  of the you know so that that was kind of like the formation that 
+  was kind of in the air you know 4 or 5 years ago when we were 
+  coming up with the protocol and some of the kind of decisions 
+  that we came up with using this these technical influences kind 
+  of combined with the goals of the company some of the things we 
+  came to some and not all these were planned from the beginning 1 
+  pattern we've really come down to is using peer-to-peer 
+  technology but using them on servers instead of trying to do them 
+  entirely device to device so this is a lot of content content 
+  addressable data um using cryptographic t.
+Bryan_Newbold_(Bluesky):  keys for Authentication.
+Bryan_Newbold_(Bluesky): So you don't need.
+Bryan_Newbold_(Bluesky): It doesn't doesn't have authority 
+  because it came from a particular server that has Authority 
+  because it's signed and verifiable.
+Bryan_Newbold_(Bluesky): A big a big connection to our mission is 
+  credible exit analogy we make often is to uh you know the ease 
+  that people have to move email between providers or to move your 
+  cell phone service between different carriers and you own your 
+  phone number um so we think that credible exit credible exit is a 
+  bigger idea is that as a as a kind of like political economy in 
+  the network every component of the network should be 
+  substitutable by a different provider uh and you don't need to 
+  replace everything all at once to as much as possible you should 
+  be able to swap out individual components so you should be able 
+  to swap out you know the client app you're using you should be 
+  able to swap out the moderation service you're using you should 
+  be able to swap out.
+Bryan_Newbold_(Bluesky): Server that's hosting your data things 
+  like that and so that kind of drives like a key a key 
+  functionality of the protocol is seamless account migration it 
+  needs to be possible to move your account between different 
+  service providers and not have that influence your social graph 
+  it shouldn't break links it shouldn't change your experience or 
+  for other people and almost any ways I'd say we've pretty 
+  successfully delivered on that people move their accounts within 
+  the network and other people don't even realize that they've 
+  moved to accounts it's like not obvious when people migrate their 
+  accounts um and so this is kind of like in stacked order this 
+  results in the demand to have um uh like as a design thing we put 
+  when we use Urus for social graph or for references or links uh 
+  we use the identity of the of accounts in the authority position 
+  so we have a schema at this is like a Ayanna provisionally 
+  registered URI scheme so we have the the schemas at in the 
+  author.
+Bryan_Newbold_(Bluesky):  the section which would.
+Bryan_Newbold_(Bluesky): Normally be a host name.
+Bryan_Newbold_(Bluesky): Or network location we put an account 
+  identifier which is like a person um and this case it did uh and 
+  then uh uh record type or kind of a schema type and then a an 
+  individual thing so you can kind of ignore the path segment the 
+  key idea is that references are to other people and which server 
+  they're hosted on could change so to resolve these bids as 
+  another layer of its resolve the Urus we add another layer of 
+  indirection and resolution which is you have to resolve the did 
+  look up the uh the current hosting location and then you can kind 
+  of get the data um but this is kind of 1 of The Big Ideas is the 
+  protocol is this using identity in the Authority location of Uris 
+  uh and it makes uh it lets you migrate around and move around um 
+  without it breaking any linkage in the network.
+Bryan_Newbold_(Bluesky): Um so we you know we're not a we're kind 
+  of a Social Web company we didn't we're not really an identity 
+  company uh but we've kind of come up with a bunch of identity 
+  stuff along the way um early on you know we weren't like 
+  committed to using dates from the start it just it's close enough 
+  uh to what we needed uh and why why reinvent something so our use 
+  of bids is fairly simple we basically just want a persistent 
+  identifier um it's machine readable it shouldn't change because 
+  it gets embedded in these URLs it's nice that it's Compact and 
+  not super long and we like the modularity the idea that you can 
+  swap out we can have multiple methods so we've started with just 
+  these 2 methods that we use did web which is a a existing kind of 
+  draft method that's quite simple it's very easy for people to 
+  implement and understand and like understand the semantics of did 
+  Webb for For Better or Worse it's quite it's kind of a demo um uh 
+  method and then we came up with our own method dplc which I'll 
+  get to a little bit later um but you know in in the future.
+Bryan_Newbold_(Bluesky):  we could add a.
+Bryan_Newbold_(Bluesky): We could get.
+Bryan_Newbold_(Bluesky): Up to multiple methods we don't want to 
+  support all methods we think that is not great for 
+  interoperability it puts this burden of implementation on every 
+  party in the network but this ability to evolve uh over time is 
+  like really appealing it's 1 of the big uh appeals of this um so 
+  what are how do we you know how do we decide why don't we have 10 
+  methods like what are what are the things we look for when we go 
+  um hunting for methods we want fast and simple resolution for 
+  anyone in the network we don't think if you want to just set up a 
+  little toy project on the weekend we don't want people that you 
+  know provision some huge multi-terabyte blockchain uh node in a 
+  network with like ongoing maintenance required it should be 
+  pretty simple to just start resolving bids immediately we do you 
+  know many of our services are doing thousands of data resolutions 
+  per second um and so it needs to be you know it's heavily cached 
+  but it needs to be simple and cheap anyone needs to be able to 
+  start resolving data and get.
+Bryan_Newbold_(Bluesky):  did documents with like.
+Bryan_Newbold_(Bluesky): With as little prior kind of preparation 
+  to that process or any kind of like service um Service 
+  registration or anything like that.
+Bryan_Newbold_(Bluesky):  uh we want.
+Bryan_Newbold_(Bluesky): Low marginal cost at scale we're pretty 
+  ambitious we want to get the network up to tens and hundreds of 
+  millions of users um so it needs to not be expensive as some 
+  context you know needs to be at most pennies per user per year or 
+  something like that like our hosting costs are quite low we're 
+  very frugal company we own and operate our own Hardware our own 
+  data centers and did did registration and updates can't be a 
+  dominant cost of our infrastructure and we've we've achieved that 
+  with the methods we have right now but even even like a dollar 
+  for date or something would blow all of our other costs out of 
+  the water and be completely unaffordable um we believe pretty 
+  heavily in key rotation we don't want to Route uh we don't want 
+  to Route identities in permanent.
+Bryan_Newbold_(Bluesky): So we have the the methods you know did 
+  web you can obviously just swap out the verifiable credentials 
+  component of the did document anytime you want with the PLC it's 
+  pretty easy to to swap out um components um.
+Bryan_Newbold_(Bluesky): And you know flexibility in Key 
+  Management Key Management is like a big challenge in application 
+  design and we don't want people to have to start you know start 
+  with provisioning a wallet or something like that if they want to 
+  take control of their identities over time that's great but it 
+  needs to be easy uh for non-technical users to get started with 
+  the whole system um and tying back to the beginning because we 
+  used dids as the root of authority in Urus they need to be 
+  they're persistent identifiers they really can't change over time 
+  in some sense the did is the identity and identity is the did 
+  they're like 1 to 1 so we don't have uh we don't have a mechanism 
+  for redirecting 1 did to another we don't have mechanisms for 
+  merging them there's a lot of other systems that try to bite that 
+  off we think that maybe in the did ecosystem that that kind of 
+  stuff will emerge over time but for us and our use case and that 
+  Proto we don't we think it's a huge simplification for developers 
+  to not have to worry about that and just have the hard constraint 
+  that bids don't change.
+Bryan_Newbold_(Bluesky):  over time so and I.
+Bryan_Newbold_(Bluesky): An account in the network is it did in 
+  some sense.
+Bryan_Newbold_(Bluesky): So and this is like how we use bids this 
+  is an example of a did PLC do um you know our usage is pretty 
+  minimal we use service registrations as part of the protocol we 
+  have a couple of these IDs and types so in this case we have a 
+  personal data set server here set to Morrell um this is like a 
+  blue sky hosted 1 and then we have at least 1 signing key um as 
+  part part of Pros as registered with the Proto fragment and we 
+  support a couple different key types uh and then there's the 
+  handle is registered in the also known as so we want to use we 
+  want to a large degree we want our did method did PLC and we want 
+  to interoperate with other uses of vids right you could imagine 
+  stuffing other stuff and they also known as there could be other 
+  services and verification methods in here um this is just kind of 
+  like the minimum viable this is the usage that we use for app 
+  Proto we're open to doing other things it's not a huge.
+Bryan_Newbold_(Bluesky): There's a little bit of tension around 
+  some of these other like national ID and other more um strong 
+  uses of dates and identity on the in society I guess uh you know 
+  we're pretty focused on pseudonymity so accounts are persistent 
+  and you want to know that you're talking to the account but we 
+  don't in many cases we do not want to link them to an offline 
+  Identity or you know a government ID or something like that we're 
+  open to that if people want to do that but we imagine that we'll 
+  always be like a pretty small fraction of people uh in the 
+  network will be linking their online identity to an offline 
+  identity.
+Bryan_Newbold_(Bluesky): Um the other component sorry.
+Bryan_Newbold_(Bluesky): The other component of the approval 
+  identity system is handles so did you can use did web and did 
+  webs are you know human meaningful because they have a domain in 
+  them but in general people are mostly using good PLC or and we 
+  want people to be open to using did methods that are somewhat 
+  opaque and machine readable but not very human friendly but you 
+  need you know you need a username in the network it's pretty 
+  important for Social Web applications.
+Bryan_Newbold_(Bluesky): So we use domain names domain host names 
+  specifically uh as Handles in the network they're human friendly 
+  like you can you know they're ASCII text at least relatively 
+  human friendly to most English speakers um and parts of the world 
+  we don't really support ibn's yet but we're open to it we just 
+  need to kind of do a security audit of what our policy around 
+  what gets rendered when and what language will be um handles are 
+  recognizable they can be a kind of soft form of identity 
+  verification so we have you know the New York Times is in that 
+  Proto Network and it's at in New York times.net or.com so you 
+  know it's a at least a relatively.
+Bryan_Newbold_(Bluesky): Firm it's where it's not like totally 
+  bulletproof but there's a fairly firm identity verification 
+  between uh previously registered domains and handles and and 
+  accounts in the network this doesn't work for all use cases not 
+  everyone has like a really well-established domain name as an 
+  identity that they can kind of verify with but it's a part of the 
+  package uh handles can change over time we think that's really 
+  important like the way the the username that you have in the 
+  network tend to churn and change over time almost every social 
+  system lets you update what your handle and username is um so 
+  that wouldn't work if we were using dids as the more recognizable 
+  and visible identifier.
+Bryan_Newbold_(Bluesky):  um and this kind.
+Bryan_Newbold_(Bluesky): The same handle might be associated with 
+  different accounts over time and that's not a great user 
+  experience people find that a little confusing but uh mostly 
+  people stick with them like relatively over relatively long 
+  periods of time or if it's a more serious use case like white 
+  house.gov or New York times.com they're not going to be swapping 
+  around between accounts um and so handles are bidirectionally 
+  verified between with it did so it did declares it back in this 
+  example and also known as there's an at colon URI which has a 
+  handle in it you need to then resolve the handle back to the did 
+  and we support a DNS txt method and an HPS uh well known we'd 
+  support both of those partially you know just to make it 
+  convenient we had we didn't think 1 or the other would fit all 
+  the use cases the little Annoying to have 2 methods because you 
+  can have the situation where they resolved to different DS.
+Bryan_Newbold_(Bluesky): It's worked out pretty well um and 
+  here's the you know here's kind of visual mapping of that how.
+Bryan_Newbold_(Bluesky): Uh the handle resolution references it 
+  did you then resolve the did to a did document and then the did 
+  document must refer back to the DNS so doing doing before anyone 
+  you know the the best practice before ever displaying a handle in 
+  the network or resolving a handle you need to verify it both ways 
+  um which is a little bit of extra work but it's not too bad.
+Bryan_Newbold_(Bluesky): Um all right so did PLC is a a new did 
+  method we came up with we looked we did uh my co-workers Paul and 
+  Daniel at the time did like a huge survey for like weeks looking 
+  through all the various uh did methods and trying to compare them 
+  and didn't find 1 that we thought would meet all of our needs so 
+  I'm not going to go super deep into this this could be like a 
+  whole separate talk on its own uh there's specifications on the 
+  PLC directory website uh so this is kind of like provisionally 
+  pseudo registered uh as it did method we haven't pushed to 
+  standardize it yet we're kind of open to that over time um but 
+  haven't haven't had a huge amount of time uh to push on this uh 
+  some of the Key Properties it's self-certifying so it has this 
+  Operation Log per PLC the PLC directory itself doesn't hold any 
+  key material it only receives and validates operations submitted 
+  to it.
+Bryan_Newbold_(Bluesky): The PLC method has a separate set of 
+  keys purely for managing the did identity separate from the like 
+  the app Proto signing key registered in the document itself um 
+  the whole thing is auditable and forkable so people can fetch all 
+  the operations that have been submitted to the directory and 
+  verify them uh we have a couple ideas I'll touch on a little bit 
+  of how um we could further decentralize this whole thing and 
+  interested in having conversations with other people about that 
+  and I'll touch on that a little bit at the end um and talk a 
+  little bit about the threat model of this um so kind of like how 
+  is it going you know we've got um about 30 million accounts in 
+  the network almost all of them has have PLC dids I would say in 
+  2023 when we were rolling this out about 2 years ago we had a few 
+  um folks in the community kind of come at us uh which was great 
+  and you know we had a couple we had a couple security incidents 
+  with design of PLC and uh and the handle system so people got 
+  like.
+Bryan_Newbold_(Bluesky): Aws.com as a handle somewhat famously 
+  when we were not using a well-known properly uh there's still a a 
+  occasionally there are some of these smaller security incidents 
+  like someone got uh googie dot blog and if you capitalize the I 
+  it looks like google.log and that's like a pretty good 
+  impersonation attack on the system but in general there really 
+  haven't since 2023 there haven't been a ton of um attacks on the 
+  system 1 of the more kind of emergent ones right now is people 
+  stuffing um.
+Bryan_Newbold_(Bluesky): Bogus data or invalid data in the PLC 
+  directory so submitting operations that are like valid or look 
+  valid um but don't um.
+Bryan_Newbold_(Bluesky):  you know they.
+Bryan_Newbold_(Bluesky): Just have data stuffed in B 64 or 
+  something like that uh it's a little bit of a denial of service 
+  attack um so we've over time we've you know gotten more and more 
+  strict about the directory uh and we've intervened a couple times 
+  to pull data out of the directory we think that that's a pretty 
+  sensitive thing to do to redact or remove information from the 
+  directory so every time we've done it we've kind of dumped uh we 
+  maintain this log of like all of the data that's been pulled out 
+  of the Live directory uh and we try to record it and justify the 
+  decision and talk about why we did it um that will you know we'll 
+  need more policies over over time with that but what we've 
+  definitely seen is that there's been fewer fewer and fewer 
+  attacks have gotten through uh in the directory so we feel like 
+  it's a pretty stable robust system right now.
+Bryan_Newbold_(Bluesky): Common a common thing is people are 
+  critical of their being a single directory that has all of this 
+  it's kind of like a bottleneck or like a watering hole in the 
+  system uh that bad actors could go after or that we as the 
+  current operators of the directory could abuse that position of 
+  authority um so this is kind of like when we when we've thought 
+  through and talked to other security researchers around like 
+  what's the threat model with the directory in some sense it's 
+  pretty Broad and other senses it's pretty constrained because the 
+  directory doesn't have any Keys it cannot manipulate any of the 
+  you know I can't swap out to declare hosting locations it can't 
+  swap out anything about handles um it can fully remove bids like 
+  it can remove all operations and pretend that did doesn't exist 
+  uh retroactively that's 1 intervention it can do so it can do 
+  this kind of denial of service thing it can go in and selectively 
+  remove valid operations that were submitted and that could change 
+  so it can basically revert.
+Bryan_Newbold_(Bluesky): Did documents to a previous point in 
+  time um it can reject new operations is a different kind of 
+  denial of service so you could prevent someone from migrating 
+  their account for example between different hosting providers or 
+  prevent them from updating their handle uh there's some very 
+  subtle there's like kind of a a key recovery mechanism built into 
+  PLC that depends on time stamps so some keys can override can 
+  submit operations that override other operations uh in this 
+  somewhat complicated way and technically you can manipulate time 
+  stamps with the the PLC directory time stamps operations when 
+  they come in and it could mess around with clocks and that could 
+  change kind of like which Fork of dispute resolution has gone 
+  down uh and then it's in a position to do rate limiting and we've 
+  increasingly needed to add some rate limits.
+<aaron> re-order only racing updates. the did's key needs to 
+  create the race
+Bryan_Newbold_(Bluesky): I'd have to double check I don't we 
+  don't the the limits are generous enough that we don't for 
+  instance like self um self deal like we don't give our own 
+  hosting providers more rate limits than any other server and 
+  we're operating at pretty large scale um with tens of millions of 
+  accounts in the network um so this hasn't been that big of a deal 
+  I think we're a little nervous about rate limiting and that like 
+  a really sophisticated Bots Network could probably start 
+  thrashing um the directory over time but at least so far it 
+  hasn't hasn't really come up as a big problem.
+Bryan_Newbold_(Bluesky): Um and then a little bit forward looking 
+  like where where are we going so this you know the the identity 
+  system is pretty big in it's working for us uh we're open to 
+  other people using it we think that would be cool it's we try to 
+  be realistic about what our goals you know our goals might not be 
+  other people's goals it might not be fit for um fit for use for 
+  other applications it's pretty specific to the Social Web we're 
+  really trying to do these kind of pseudonymous um accounts online 
+  that's what we're very focused on um 1 of our big focuses right 
+  now is reducing the centralization of the PLC entity and we think 
+  there's kind of both social legal approaches to that and 
+  Technical approaches we could take to decentralize the central 
+  directory uh so the next step for us something we're we're 
+  looking to do this year is to spin out the operation and kind of 
+  ownership of the PLC directory into a separate legal entity we'll 
+  probably just fund that for now so in some sense it won't be 
+  super super independent but we think there's a path forward to 
+  that entity ending up in a consort.
+Bryan_Newbold_(Bluesky): A nonprofit Foundation or something more 
+  strictly independent it looks like we're probably going to have 
+  it not in the United States that's the direction we're looking in 
+  that um.
+Bryan_Newbold_(Bluesky): Where you on a technical side we want to 
+  do transparency logs uh on the output of the PLC a directory so 
+  we have a AP like an hcp API where you can fetch um like a live 
+  stream of all of the operations coming through the directory 
+  right now which lets people mirror but there's no you know if the 
+  directory removed and did or removed operations.
+Bryan_Newbold_(Bluesky): There'd be no way to prove that if 
+  someone had been consuming it they could compare and say like hey 
+  this thing's missing now um but we can use existing technology 
+  like the great work that the um.
+Bryan_Newbold_(Bluesky): Have come up with particularly this kind 
+  of like modern generation of transparency logs that are 
+  relatively efficient and easy to operate and verify um so we're 
+  pretty excited about trying to get that in as a first step and 
+  then you know other the the method might evolve into more of a 
+  Consortium model of like multiple servers or cross validation of 
+  logs and stuff like that over time but just we think those 2 
+  steps will be a pretty big Improvement in the um the 
+  decentralization of the uh the directory.
+<aaron> or you could publish as a AtProto repo to have 
+  Transparency
+Bryan_Newbold_(Bluesky): Some other things we're working on this 
+  like fairly far along is being able to do account management of 
+  app Proto identities and accounts in the network kind of agnostic 
+  to the application so to date Blue Sky the Blue Sky social 
+  applications kind of the flagship app still it's like what we as 
+  the Blue Sky company um work on but increasingly people are 
+  building other apps in the network so there's like I don't know 
+  dozens of these other smaller um social networks and uis for the 
+  Blue Sky social network like using the same data uh and it's 
+  still kind of awkward because if you want to sign up for an 
+  account most people go through the Blue Sky app so we're we're 
+  we're deploying um a web interface to people's personal data 
+  servers or personal data server or hosting services that love 
+  people sign up in the network and use their identities without 
+  using the Blue Sky app at all uh and so that's like uh uh small 
+  but important and difficult uh kind of uh uh user um education 
+  experiences like what.
+Bryan_Newbold_(Bluesky):  what is this experience.
+Bryan_Newbold_(Bluesky): Like and all that you can.
+Bryan_Newbold_(Bluesky): They are not.
+Bryan_Newbold_(Bluesky): But basically it opens up people using 
+  the identity system of the protocol for uses other than the blue 
+  blue sky micro blogging app.
+Bryan_Newbold_(Bluesky): We have an an oath schema that's like 
+  fairly complicated you use a lot of these kind of like uh 
+  avantguard uh oath standards an rfc's that are still working 
+  their way through the system uh so it's a little difficult for 
+  people to get jumping on its oaf in our in the network is 
+  different because there's many clients and there's many hosting 
+  providers so there's not an easier obvious way to where you would 
+  register a client so all the client registration is dynamic um.
+Bryan_Newbold_(Bluesky): And that kind of raises the stakes on 
+  things like token loss because it's not a way to revoke tokens 
+  across the entire network so anyways we have this like somewhat 
+  complicated ooth system that we're rolling out and we'll be we'll 
+  start using our off our app somewhat soon but this is like a a 
+  thing that opens up using our identity system for login and 
+  authentic is either off end or off Z for arbitrary other services 
+  on the web uh likely this year will take at Proto to the ITF or 
+  start that process of the parts of the protocol that makes sense 
+  to live at the iatf which isn't the whole thing um there's other 
+  components that might lift better somewhere else uh other things 
+  that were like kind of just thinking about like we're pretty 
+  interested in UK cans or other UK cans are uh uh off token 
+  technology for doing delegated like recursively delegated um.
+<bumblefudge_afk> ucan.xyz
+Bryan_Newbold_(Bluesky): Authorization uh to other resource 
+  servers and that we're kind of feeling some need to do something 
+  in that direction and that would be still rooted in like there'd 
+  be a chain of signatures coming from a did do so that's something 
+  that other people might be interested in collaborating on is like 
+  using verifiable credentials to generate authentication tokens um 
+  we're pretty interested in fed CM uh that we haven't really dug 
+  into it this is trying to integrate in the browser to to 
+  automatic sign in to other applications in a browser assisted way 
+  I'll touch on that in the next screen and then the last kind of 
+  fuzzy category is DNS SEC around handles that just like feels 
+  like something we probably should be doing um from a security 
+  standpoint but also is a fairly large um kind of user experience 
+  for a lot of people it might be the first time they experience 
+  DNS SEC or have to set up DNS SEC on their DNS domains to do 
+  their handles so we're pretty hesitant about requiring DNS SEC 
+  but uh it's a conversation to have um.
+Bryan_Newbold_(Bluesky): And so like you know some of these kind 
+  of come around to like a use you know the whole identity system 
+  could be spun off and used for other applications you know you 
+  could use it to log into like.
+Bryan_Newbold_(Bluesky): Old web kind of things or new web you 
+  know new other um current generation Social Web Technologies and 
+  protocols um.
+Bryan_Newbold_(Bluesky):  it's a.
+Bryan_Newbold_(Bluesky): What does that look like we're still 
+  working through this is a this is a proposal from someone in our 
+  developer Community this isn't something that came from the Blue 
+  Sky Team but what is this form look like is it are you logging in 
+  with your handle to the atmosphere are you logging in with your 
+  did to the web are you logging in with your account uh we don't 
+  you know it still says sign up with blue sky that gets back to 
+  the account management thing where we don't want it to be we 
+  don't want any part of this experience to really be branded Blue 
+  Sky specific if possible.
+Bryan_Newbold_(Bluesky):  but what.
+Bryan_Newbold_(Bluesky): What does this look.
+Bryan_Newbold_(Bluesky): Like and then the are people going to 
+  remember to what their handle is to type it in there uh fed cm is 
+  would potentially be great because it would uh have the user 
+  agent the browser like assist with this so you wouldn't need to 
+  enter in the name um but that's a little bit this is kind of like 
+  a active uh area of design work in the in the team and in the 
+  community right now it's like what these kind of Simon forms look 
+  like um and that's it um so there's you know it's a whole team 
+  that's gotten to this point we've talked a lot of other folks in 
+  the community we have some great technical advisors um we have 
+  some of this if you haven't played around with that Proto I 
+  recommend taking a look um we've got some command line tools 
+  there's some cool demos um working in the fire hose and stuff 
+  like that so I hope.
+Bryan_Newbold_(Bluesky): Uh I hope audio is working that whole 
+  time gonna.
+Harrison_Tang: Yes thank you thanks Brian.
+Harrison_Tang: Great any questions Aaron do you have a comment.
+Harrison_Tang: On you please.
+Manu Sporny:  Yeah that that was great Brian thank you so much 
+  for coming to the community and and and presenting all that stuff 
+  as as you probably know many of us are big fans of uh blue sky 
+  and the Technologies uh you know that that you're using to to 
+  build it out um uh.
+Manu Sporny:  So 1 of the I I think 1 of the most.
+<tallted_//_ted_thibodeau_(he/him)_(openlinksw.com)> Could you 
+  provide a link to the deck? .or send it to CCG mailing list?
+Manu Sporny:  Uh interesting areas of collaboration like 1 of the 
+  most immediate ones feels like you know you've got 30 million 
+  accounts on did PLC um uh we are at the w3c you know going to 
+  flow to Charter for standardizing specific dead methods and so 
+  right now like did key did webs on there and there's this big 
+  question mark around like the fully decentralized method right so 
+  we've got I think we've we've made a conscious decision to not do 
+  a blockchain based thing at w3c just because there are number of 
+  w3c members that are like hostile to blockchain in any form um 
+  but uh doing 1 that um it looks like did PLC or is did PLC I 
+  think like it's very much on the table so um but 1 of the things 
+  we don't want to do is we don't want to standardize something 
+  that you know could change or needs to change or might change or 
+  or whatever so I I get.
+Manu Sporny:   The general.
+Manu Sporny:  Um would we want to put did PLC you know on the 
+  standards track or do we want to shoot for something slightly 
+  different the certificate transparency log stuff.
+Manu Sporny:  Something that's kind of in scope that we're trying 
+  to put in scope um so it it feels like where you want the PLC to 
+  go and what we are suggesting to Charter to to kind of say like 
+  we'll get to this in a year it feels like that's converging so I 
+  I don't know if you have any thoughts about what you would want 
+  to see modified updated or changed and did PLC before we were to 
+  take it standards track.
+Bryan_Newbold_(Bluesky): Yeah it's a it's a great question I 
+  would love to you know I'd love to get it standardized I think 
+  that the timing is a little awkward where we're just like kind of 
+  not if feels like it's like kind of not quite ready and we 
+  haven't had enough time to to maybe push on it or really think 
+  about it we have we're pretty committed at this point for like 
+  did like did PLC did in the wild today we want to be remain keep 
+  them backwards compatible um you know we have these 30 million 
+  accounts and as described like there's not really a migration uh 
+  mechanism kind of by Design so we kind of have to keep the 
+  current system chugging along as it is we have some ideas about 
+  like potentially you know maybe once in the history of the whole 
+  method we could do some kind of uh somewhat breaking change or 
+  something like that but we really want to minimize that um.
+<aaron> there are two schemas alertly
+Bryan_Newbold_(Bluesky): Uh we have a couple ideas of like 
+  potential changes like maybe we made them too short and they 
+  should be longer that's a little awkward with the like 
+  maintaining backward um scheme is that the the length issue is 
+  around like how harder it is to do Collision attacks and generate 
+  um duplicate IDs and stuff like that and it's like a little bit 
+  maybe we made it a little too easy for attackers to generate 
+  colliding bids um in general yeah we're like really so so the 
+  tension is that we want to we want to keep we need to keep the 
+  current system working basically as it is today and keep it 
+  backwards compatible and yet there's like some maybe some changes 
+  if we were going to go standards track that like maybe it would 
+  be good so maybe like PLC 2 um could be a helpful thing uh or 
+  something like that um uh and I'd be happy to to talk through 
+  some of that anyways it's I feel a little conflicted about it 
+  basically like like it would be really great but I don't quite 
+  see how to cut the path in the next like 4 months or something 
+  like that so it's a little.
+Bryan_Newbold_(Bluesky):  sorry about.
+Harrison_Tang: Money do you have a follow-up comment or question.
+Manu Sporny:  Yeah no I mean you definitely don't feel bad about 
+  it like you know we're we're all working as fast as we can um uh 
+  and I think that's fine like I don't think that there's a there 
+  isn't like a um uh a super critical timeline that we're trying to 
+  hit we're just trying to create the charter so that we could 
+  merge in PLC or PLC to whenever everyone feels good with it like 
+  in a year so um I think that's largely the feedback we needed is 
+  like we need to figure out a way to keep the door open to PLC or 
+  PLC too in a year once everyone feels more comfortable kind of 
+  with with where it is so so that's that's very helpful I think 
+  that's all all we needed for today.
+Manu Sporny:   To make.
+Manu Sporny:  Make sure that.
+Manu Sporny:  The charter leaves leaves space for it.
+Bryan_Newbold_(Bluesky): Yeah I'll like just to make it really to 
+  try to make it really explicit like we have no we have no claim 
+  over like the intellectual property of it we'd really like it to 
+  be as open as possible if someone else like really credible came 
+  along and wanted to run the whole thing we'd probably be open to 
+  that um uh and so in particular if other people are considering 
+  designing similar systems we'd really be happy to talk about like 
+  what we've learned from this system so like sharing that kind of 
+  information definitely definitely interested and that I would 
+  definitely if we could leave the door open to it being 
+  standardized kind of like as it is that would be really exciting 
+  and I guess the last thing to touch on is like almost right so 
+  these things like adding transparency logs that won't that's like 
+  an appealing great thing for us because it will not touch the 
+  underlying method at all like it makes it auditable but it 
+  doesn't change how clients work it doesn't change how 
+  verification works it kind of doesn't change the method itself 
+  it's just like an extra layer on top um.
+Bryan_Newbold_(Bluesky): Um thanks uh if and if uh thank you for 
+  facilitating and and uh I I can't keep up with the the chat so 
+  um.
+Harrison_Tang: No I'll monitor the chats so demetry you're next.
+Dmitri Zagidulin:  Related question on um.
+Dmitri Zagidulin:  To hear your your and the team's thoughts on 
+  did web VH that's the web verified history so I know that web VH.
+Dmitri Zagidulin:  Uh team has been uh talking with you a bit and 
+  I'm curious what has on the blue sky team in the 80 Proto side 
+  there's been any talk about uh either supporting web VH or what 
+  you feel the Delta is between that and did BLC.
+Bryan_Newbold_(Bluesky): Yeah the main difference is like where 
+  so the main difference is that it has uh I think it's cool I 
+  think it's 1 of the more most interesting did methods out there 
+  um and and probably pretty fit for purpose for like a lot of 
+  applications I'm not sure totally fits exactly with what we want 
+  for app Proto but it's like very close and I'm really excited to 
+  see other people so that's like kind of my like Vibe on it so 
+  like I'm really excited to see that kind of thing being done I 
+  think a key thing that makes it difficult uh at least the last 
+  time I looked at it um is it has this idea that there's uh you 
+  know parts of the did can change in parts are unchanging so it's 
+  kind of a mashup of in my mind it's kind of a mashup of did PLC 
+  and did web is like that's just like the brain I have um so it 
+  has kind of a domain embedded in the did and that can change and 
+  then there's a part then there's like an operation log key aspect 
+  of it that doesn't change over time that's awkward for us in the 
+  Urus because potentially.
+Bryan_Newbold_(Bluesky):  that did change.
+Bryan_Newbold_(Bluesky): Part is really the identity is like a 
+  little split and just artsy factual use of the dids in the Urus 
+  if it changes it makes all kinds of indexing and aggregation and 
+  like all these other things um quite difficult uh and we've 
+  really tried to avoid putting that burden on developers in the 
+  protocol um so we so it's a it's a little hard to adopt kind of 
+  as it is I feel like maybe if it could be.
+Bryan_Newbold_(Bluesky): Yeah I don't know like maybe maybe we 
+  could have a a way of using it which is like we built something 
+  like did like the PLC directory on top of it that would kind of 
+  like recentral it unfortunately but it would uh make it more 
+  amenable to that use case or something um I'm not sure uh I do 
+  feel overall that if there's right if this group if if things 
+  become if a couple you know whichever did methods come out of 
+  this working group and actually get standardized uh.
+Bryan_Newbold_(Bluesky): A very strong signal for us to support 
+  it even if it's like not a super great fit it's also you know 
+  it's totally possible for us to support methods like did web VH 
+  even if it doesn't quite fit so like if you move domain it would 
+  be basically a new app Proto identity we could still do it it I 
+  think it would be a confusing and weird user experience for 
+  everyone but it's like you know it's there's no hard blocker to 
+  to try to get that through um so that's that's.
+Bryan_Newbold_(Bluesky): I don't know if that conveyed much 
+  coherently.
+Juan Caballero:  Uh yeah I was I was actually going to.
+Juan Caballero:  Say something similar which is that um.
+Juan Caballero:  There are a couple different did methods that 
+  basically built something on top of did web because they needed 
+  migration and verifiable histories.
+Juan Caballero:  Um and the way you described it as maybe if the 
+  sum of the shoulds were must and some of the musts were shoulds 
+  um.
+Juan Caballero:  C could sort of.
+Juan Caballero:  Converge with web VH by having an.
+Juan Caballero:   You know.
+Juan Caballero:  By by the PLC deck directory spitting out a web 
+  VH translation of each.
+Juan Caballero:  When someone from outside asked for it or 
+  something uh I I think that's.
+Juan Caballero:  Uh a good goal that lot lots of people are 
+  trying to figure out how to do because uh there is.
+Juan Caballero:  Um you know it's like there are certain design 
+  patterns that multiple did methods have.
+Juan Caballero:  Followed or cribed from each other or been 
+  variations on and and part of what I think uh.
+Juan Caballero:  For something I've observed from this process 
+  over the years is that people tend to build an identity system 
+  and then writer did method that describes the system they built 
+  and then when they want to do interoperability they're finding 
+  the it's a did method is not always a complete API for 
+  interacting with an identity system for outside of it and the the 
+  commonalities between multiple successors to did web really make 
+  this clear because they're all uh trying to add portability or 
+  add um self verifiability of all the did docs you know like in an 
+  ipfs sense like if if each did Doc contains or is named by its 
+  CID that it's self verifiable um and.
+Juan Caballero:  I think part of the.
+Juan Caballero:  The the process weirdness here is that we're 
+  trying to come up with.
+Juan Caballero:  Standardization of like how to make a good did 
+  method.
+Juan Caballero:  It's hard to pick a feature from this death did 
+  method in a feature from this did method in standardized that 
+  like it's the the mixing and matching the Frankenstein is what 
+  would be better to be able to do but we can't because we did 
+  methods can't move quickly enough right like you can't just.
+<dmitri_zagidulin> @bumble - I think did:webvh is just the 
+  successor to did:web :)
+Juan Caballero:  Did web but with this feature from this method 
+  and this feature from that method because there will be zero 
+  implementations the day it is standardized um so anyways sorry 
+  all that is a roundabout way of saying um the goal is definitely 
+  to give you something did PLC could converge with uh at least 
+  speaking for the I don't know myself not that group um but um 
+  yeah I think the the just to just to sort of.
+Juan Caballero:  Riff on the idea of why did PC can't use today's 
+  web VH I think the portability thing has worked a few different 
+  ways over the history of did web VH which is still v0.6 right so 
+  like V1 hasn't been cut yet maybe V1 would work in a way that PLC 
+  could use um.
+Juan Caballero:  The the the invariant part is the CID of the 
+  initial did Doc wherever that was hosted and the host.
+Juan Caballero:  Can be changeable.
+Juan Caballero:   Or can.
+Juan Caballero:  Be not on the initial you know depending on the 
+  configuration of the host that first created the did um so in a 
+  way you could drop the domain name.
+Juan Caballero:  Have the did PLC be the the invariant the CID 
+  only without the domain.
+Juan Caballero:   And then.
+Juan Caballero:  The you could sort of do a did PLC to get the 
+  current um.
+Juan Caballero:  Uh PDS and that would give you the domain that 
+  you could put back in to make it a valid web VH right like the 
+  see what I mean it's like it is it did PLC already has the 
+  invariant part.
+Juan Caballero:  Uh and that that did PLC to did what VH 
+  translation could just be a matter of.
+Juan Caballero:  Some domain in there.
+Juan Caballero:  You know where the current the doc is hosted in 
+  well known right.
+Juan Caballero:  Just figure out.
+Bryan_Newbold_(Bluesky): Yeah there's definitely ideas in there I 
+  feel like we have a little bit of like um you know from this I I 
+  think for us at things a couple things have kind of crystallized 
+  around us of like.
+Bryan_Newbold_(Bluesky): Is the goal like decentralized for the 
+  sake of decentralization or is this like credible exit.
+Bryan_Newbold_(Bluesky): Like strong enough like like what what 
+  is driving us away from there just being big databases like 
+  what's the like fundamentally why not just have some big 
+  databases and like computers are really fast these days you know 
+  are not super expensive computer can just have all the identities 
+  in the network so why not just have like 4 or 5 of those and and 
+  we're just like more I don't I'm not trying to like evangelize 
+  that world view um but it's like definitely been a change of 
+  thinking for us is is just having these big directories um and as 
+  long as so the key question is like do we get the properties and 
+  the exit and the kind of like political economy out of it that we 
+  want um.
+<joe_andrieu> Wow. Why decentralize? That's really a question for 
+  BlueSky?
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Right so 
+  first thing is what I put in the chat there is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): Can we get a 
+  link to that deck or can you send that uh or a copy of it to the 
+  mailing list.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I'm seeing a 
+  lot of stuff in what you presented here today which is the loose 
+  coupling that a lot of us at least have been looking for for 
+  years if not decades uh and if properly.
+<bryan_newbold_(bluesky)> slides link:
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The thing 
+  that will desilo all of the silos and the challenge of course is.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): To find a way 
+  to pay for that.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): The silos 
+  that exist do exist because the lock in is the thing that lets 
+  them ashore their advertisers that they're going to get the 
+  benefit from advertising in that Silo and that's the whole reason 
+  that they lock Us in it is not because they wanted to lock Us in 
+  per se they want to get the money and the way to get the money is 
+  by advertising or subscribers and we're not going to pay as much 
+  as the advertisers do.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): And so then 
+  they have to lock in the audience for the advertising.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I don't see 
+  the Holy Grail quite yet but a lot of the pieces are here and if 
+  you start referring to the way that it's built as loose coupling.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): I think 
+  you'll have a lot of people who already understand that term and 
+  understand the benefit of it from the user perspective and 
+  potentially from the service provider perspective I think we've 
+  got to go a little ways yet to get there but it then Pro uh 
+  provides a path that benefits the users because the providers 
+  have to come up with the better service instead of just the lock 
+  in and that better service has to stay better and continue to get 
+  better so that we don't jump ship to the other 1 that's providing 
+  a better service.
+TallTed_//_Ted_Thibodeau_(he/him)_(OpenLinkSw.com): A lot of 
+  words to say a simple idea there you go.
+Bryan_Newbold_(Bluesky): Yeah that's definitely you know trying 
+  to reintroduce uh competition is definitely a big aspect um of 
+  the whole thing I think I mean I don't think this was directly if 
+  I interpreted your question or your comment it was mostly about 
+  the overall protocol and not necessarily about the identity 
+  system the like but I'll kind of answer the question because it's 
+  something we think about a lot which is like okay how is this how 
+  does this PLC system or the identity system kind of like fund 
+  itself like the handle system doesn't need the handle system is 
+  like rests on DNS and DNS has a financial sustainability kind of 
+  like at least partial answer that has worked pretty well for a 
+  few decades um and we don't have that for PLC I think uh and we 
+  have a little bit of like different discussion within the team 
+  around this though it's like who's going to pay for PLC basically 
+  1 aspect of this is like at least for us at what we're doing 
+  still as a startup it's like not super huge like the PLC 
+  directory is just like a rounding error of costs like it's really 
+  really cheap for us compared to almost anything else we run.
+<aaron> the PDS operator has an incentive to mirror and fund.
+Bryan_Newbold_(Bluesky):  API wise.
+Bryan_Newbold_(Bluesky): Every other API.
+Bryan_Newbold_(Bluesky): Service we have.
+Bryan_Newbold_(Bluesky): Costs way way way more than PLC uh so 
+  it's it's.
+Bryan_Newbold_(Bluesky): Feasible for us to subsidize a PLC 
+  instance or be a member of a PLC kind of a Consortium or like 
+  Fund in something that's only operating that um.
+Bryan_Newbold_(Bluesky): But does that work you know if the whole 
+  system grows does that work and like especially around these kind 
+  of like rate limiting or these other you know like security 
+  attacks and stuff like that like we think we think that like 
+  security the security team will cost more than operating the 
+  infrastructure basically um for PLC and like 1 answer is that 
+  it's just cheap enough that it's just kind of like subsidized if 
+  there's enough value in the network other people will pay so this 
+  is kind of the model that I would say is kind of like um let's 
+  encrypt right like let's encrypt doesn't have a direct 
+  sustainability thing it depends on other people like paying in or 
+  contributing and I my read is like there's enough value in what 
+  lets encrypt is doing that that just works there's not a lot of 
+  Internet infrastructure that's in that kind of quadrant or like 
+  off on the graph where it's like cheap enough and creates enough 
+  value that it can get by on that model I'm kind of optimistic 
+  that PLC is but there's just so few things that get there that uh 
+  it's worth being skeptical of I think.
+Harrison_Tang: So yeah I have a quick question on that topic in 
+  regards to cost so early you mentioned that a lot of methods cost 
+  like a dollar or even more so do you know roughly how much the 
+  did PLC cost.
+Bryan_Newbold_(Bluesky): Uh it's a little hard to give a fall 
+  like really honest answer to that question um I mean I from a 
+  compute resource cost I'm pretty sure it costs less than a 
+  thousand dollars a month and we're running it pretty 
+  inefficiently compared to how we run a lot of things like we're 
+  just running it on a cloud provider uh if we put it on a cheaper 
+  Cloud you know service provider we could have the same 
+  availability and uh and cost maybe a hundred dollars a month or 
+  something like that like you could run the whole thing on like a 
+  hundred dollars a month instance um I'm very confident of that at 
+  the fall reload we have which is like thousands or tens of 
+  thousands of requests per second of um read requests uh so but 
+  that's like nowhere near the actual cost right so like ten 
+  thousand dollars a year that's not actually what it costs by far 
+  the dominant cost is like having an on call rotation um I'm in 
+  the on call rotation I haven't been aged for PLC for more than a 
+  year but like it's important.
+Bryan_Newbold_(Bluesky): Someone is there I mean this is like a.
+Bryan_Newbold_(Bluesky): Uh so giving giving like the true cost 
+  is a little difficult but certainly if there are more instances 
+  of it that we're mirroring from each other then each individual 1 
+  wouldn't be as critical a need as much on call I guess.
+Harrison_Tang: And last question 1 do you have last question or 
+  comment.
+Juan Caballero:  Oh yeah I was actually just gonna ask um.
+Juan Caballero:  A follow-up because you mentioned 1 candidate 
+  solution is to.
+Juan Caballero:  Uh just call it an ID system but don't worry 
+  about it being open-ended uh just have it be a federation between 
+  4 Central directories or 5 um but there's already so many pdss so 
+  is the idea that pdss could be self hostable but DS would be.
+Juan Caballero:  Need permission Federation in that possible 
+  future.
+Bryan_Newbold_(Bluesky): Uh I mean there's I think.
+Bryan_Newbold_(Bluesky): I don't we don't we don't have like a 
+  fall per proposal for what the what the kind of like set of.
+Bryan_Newbold_(Bluesky): Nodes would look like um but like I I I 
+  most of the ideas that I I've been shooting around are not 
+  permission right it's just like who would bother running it I 
+  think like people get something a little more individual 
+  attachment to running their own PDS or their personal data server 
+  and app Proto uh and there's more that's I think more people are 
+  like more motivated to do whereas I think running a PLC mirror is 
+  like a purely Community play right like you're really it doesn't 
+  help you it's mostly helping.
+Bryan_Newbold_(Bluesky): Other people uh to run 1 certain running 
+  replicas of the network I would imagine anyone.
+Bryan_Newbold_(Bluesky):  you know.
+Bryan_Newbold_(Bluesky): Anyone with an on call of rotation in 
+  the network probably is going to run a fall replica of of the PLC 
+  directory but that's different from accepting operations from 
+  other people um or or trying to stay in sync that way.
+Juan Caballero:  Yeah and well actually I mean I should I should 
+  clarify I meant like uh I would I I assumed from the way he said 
+  it that there would be 4 or 5 different um.
+Juan Caballero:  On ramps like blue sky wouldn't be the only 
+  place to create your initial did.
+Juan Caballero:  Uh and any of multiple like the in terms of who 
+  would be motivated to stand up a mirror or a uh I don't know a 
+  consensus node if it were if there were some sort of consensus 
+  mechanism for this vdr um.
+Juan Caballero:  Yeah I would I would wonder about the on-ramps 
+  but just 1 last point before I forget uh in terms of whether or 
+  not these are full full nodes consensus nodes on-ramps or just 
+  Witnesses uh some people are talking next week at iaw about the 
+  concept of witnessing and whether or not a sort of light node 
+  that only exists to point out inconsistencies are forks and other 
+  people's dates uh that's that's something happening at IBEW for 
+  people attending next week so just wanted to put that plug in 
+  because it might be relevant to this very conversation about uh.
+Juan Caballero:  BLC accepts full nodes or just witness nodes.
+<joe_andrieu> #NotJustSnark witness architecture == surveillance 
+  archirtecture. Be careful what you wish for.
+Bryan_Newbold_(Bluesky): Sure yeah um I mean anyone right it's 
+  permissionless that anyone can submit an operation to at least 
+  our directory so if multiple people were running directories like 
+  you wouldn't need permission to submissions to them um you just 
+  submit it uh and so if like the Consortium model could just be I 
+  don't know that the analogy I kind of make is like it's like 
+  running an open DNS resolver it's like anyone can run an open DNS 
+  resolver like there's no you know you don't need to be in a 
+  Consortium to do that it's just like why would you um uh and 
+  there's de facto it's like there's not that many that people 
+  really rely on because.
+Bryan_Newbold_(Bluesky): The the like relying on it is uh High 
+  barrier to entry um.
+Bryan_Newbold_(Bluesky): But you know the authority model is 
+  different and everything in DNS so it's not an exact um analogy.
+<bumblefudge_afk> @joe i got some bad news for u about todays plc
+Harrison_Tang: Great thank you uh thanks a lot Brian uh I think 
+  uh today we have a very good discussion and a lot of good 
+  questions so thank you thanks for jumping on and leading the 
+  discussion.
+Bryan_Newbold_(Bluesky): Yeah thanks for having me um and you can 
+  I can't remember I mean I don't know my my emails out there Brian 
+  at Blue Sky web.xyz this embarrassing XYZ domain that we still 
+  have um I think if you if you also just like Google my name you 
+  can find my website and my personal email I'm happy to follow up 
+  and chat more about this.
+Harrison_Tang: Great thanks a lot.
+Harrison_Tang: This concludes that this week's ccg meeting.
+Aaron: If you need an audit log you just put them all in and that 
+  repo that protocol.
+Bryan_Newbold_(Bluesky): It's true I'm actually like pretty 
+  interested in people having.
